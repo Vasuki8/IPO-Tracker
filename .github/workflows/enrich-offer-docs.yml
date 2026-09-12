@@ -14,6 +14,7 @@ on:
     paths:
       - "scripts/enrich_offer_docs.py"
       - "scripts/run_offer_docs_v2.py"
+      - "scripts/run_offer_docs_v3.py"
       - "scripts/run_critical_offer_backfill.py"
       - "scripts/enrich_sebi_document_links.py"
       - "scripts/critical_backfill.py"
@@ -21,6 +22,7 @@ on:
       - "scripts/build_missing_queue.py"
       - "tests/test_offer_docs.py"
       - "tests/test_offer_docs_v2.py"
+      - "tests/test_offer_docs_v3.py"
       - "tests/test_critical_offer_backfill.py"
       - "tests/test_sebi_document_links.py"
       - "tests/test_critical_backfill.py"
@@ -61,8 +63,8 @@ jobs:
       - name: Run offer-document parser v1 regression tests
         run: uv run python -m unittest discover -s tests -p "test_offer_docs.py" -v
 
-      - name: Run offer-document parser v2 tests
-        run: uv run python -m unittest discover -s tests -p "test_offer_docs_v2.py" -v
+      - name: Run offer-document parser v3 tests
+        run: uv run python -m unittest discover -s tests -p "test_offer_docs_v3.py" -v
 
       - name: Run safe full-document fallback tests
         run: uv run python -m unittest discover -s tests -p "test_critical_offer_backfill.py" -v
@@ -97,11 +99,12 @@ jobs:
           # SEBI's listing often points to an HTML filing page. Resolve the
           # direct Abridged Prospectus and full-offer PDFs first.
           uv run python scripts/enrich_sebi_document_links.py --priority-max 2 --limit "$LINK_LIMIT"
-          # Parser v2 reprocesses previously parsed AP PDFs because its version
-          # is bumped, and adds conservative fallbacks for newer SEBI wording.
-          uv run python scripts/run_offer_docs_v2.py --limit "$DOC_LIMIT"
-          # Repair path uses the same parser v2 but accepts only direct official
-          # PDF targets; HTML filing pages can never be handed to pypdf.
+          # Parser v3 reprocesses eligible PDFs with the current quality fixes,
+          # preferring Abridged Prospectus and safely falling back to direct
+          # official SEBI RHP/DRHP PDFs when needed.
+          uv run python scripts/run_offer_docs_v3.py --limit "$DOC_LIMIT"
+          # The repair path uses parser v3 and accepts only direct official PDF
+          # targets; HTML filing pages can never be handed to pypdf.
           uv run python scripts/run_critical_offer_backfill.py --documents-only --priority-max 2 --limit "$CRITICAL_LIMIT"
 
       - name: Publish changed offer-document data and audit safely
