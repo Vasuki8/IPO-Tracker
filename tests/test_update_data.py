@@ -3,8 +3,8 @@ import sys
 import unittest
 from pathlib import Path
 
-MODULE = Path(__file__).resolve().parents[1] / "scripts" / "update_data.py"
-spec = importlib.util.spec_from_file_location("update_data", MODULE)
+MODULE = Path(__file__).resolve().parents[1] / "scripts" / "run_update.py"
+spec = importlib.util.spec_from_file_location("run_update", MODULE)
 mod = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = mod
 spec.loader.exec_module(mod)
