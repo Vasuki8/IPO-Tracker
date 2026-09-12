@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the validated issuer-document fallback with the current live registry."""
+"""Run the validated issuer-document fallback with the current Phase 4.5 parser."""
 from __future__ import annotations
 
 import sys
@@ -10,6 +10,13 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 import enrich_issuer_offer_docs as base  # noqa: E402
+import run_offer_docs_v5 as parser_v5  # noqa: E402
+
+# The base issuer module predates parser v5. Route its runtime parser/deep scan
+# through v5 while retaining the base module's host + issuer-identity gates.
+base.parser_v4 = parser_v5
+base.PARSER_VERSION = parser_v5.PARSER_VERSION
+base._extract_targeted_full_text = parser_v5.extract_targeted_pdf_text
 
 # Both links resolve to the issuer's own website. The base module still validates
 # host, PDF magic and company identity at runtime before accepting any fields.
