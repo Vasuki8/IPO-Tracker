@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Backfill recent IPO detail fields from BSE's Historical Public Issues archive.
 
-BSE's historical page is an ASP.NET Web Forms page. A plain GET only renders the
-issue-type selector; selecting "Public Issue-Book Building" submits hidden
-VIEWSTATE/EVENTVALIDATION fields and returns the historical IPO table. This script
-replays that normal browser form submission, then reuses the conservative BSE
+BSE has served the historical archive in two modes over time: some hosts/renderings
+return the IPO table directly, while the older ASP.NET Web Forms page first asks
+for an issue type and requires a normal form submission. This script supports
+both behaviours on both official BSE hosts, then reuses the conservative BSE
 detail parser/merge logic from enrich_exchange_details.py.
 """
 from __future__ import annotations
@@ -28,15 +28,18 @@ import enrich_exchange_details as detail  # noqa: E402
 import track_subscriptions as link_helpers  # noqa: E402
 
 DATA_FILE = core.DATA_FILE
-HISTORY_URL = detail.BSE_HISTORY_URL
+HISTORY_URLS = (
+    detail.BSE_HISTORY_URL,
+    "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P",
+)
 
 
 def history_form_payload(html: str) -> dict[str, str]:
-    """Build the same form fields BSE receives when the browser selects Book Building."""
+    """Build fields submitted when a browser selects Public Issue-Book Building."""
     soup = BeautifulSoup(html, "html.parser")
     form = soup.find("form")
     if form is None:
-        raise ValueError("BSE historical page did not contain its ASP.NET form")
+        raise ValueError("historical page did not contain its ASP.NET form")
 
     payload: dict[str, str] = {}
     for field in form.find_all("input"):
@@ -55,7 +58,7 @@ def history_form_payload(html: str) -> dict[str, str]:
         attrs={"name": lambda value: bool(value and "ddlIssueType" in value)},
     )
     if select is None or not select.get("name"):
-        raise ValueError("BSE historical issue-type selector was not found")
+        raise ValueError("historical issue-type selector was not found")
 
     chosen = None
     for option in select.find_all("option"):
@@ -64,7 +67,7 @@ def history_form_payload(html: str) -> dict[str, str]:
             chosen = option
             break
     if chosen is None:
-        raise ValueError("BSE historical page has no Public Issue-Book Building option")
+        raise ValueError("historical page has no Public Issue-Book Building option")
     payload[str(select.get("name"))] = str(chosen.get("value") or "")
 
     submit = form.find(
@@ -76,26 +79,12 @@ def history_form_payload(html: str) -> dict[str, str]:
     return payload
 
 
-def fetch_history_html(session: requests.Session) -> str:
-    initial = session.get(HISTORY_URL, timeout=35)
-    initial.raise_for_status()
-    payload = history_form_payload(initial.text)
-    response = session.post(
-        HISTORY_URL,
-        data=payload,
-        timeout=45,
-        headers={"Referer": HISTORY_URL},
-    )
-    response.raise_for_status()
-    return response.text
-
-
-def history_index(html: str) -> list[dict[str, str | None]]:
+def history_index(html: str, page_url: str) -> list[dict[str, str | None]]:
     soup = BeautifulSoup(html, "html.parser")
     index: list[dict[str, str | None]] = []
     seen: set[str] = set()
     for tr in soup.find_all("tr"):
-        label, url = link_helpers._extract_bse_display_link(tr, HISTORY_URL)
+        label, url = link_helpers._extract_bse_display_link(tr, page_url)
         if not url or url in seen:
             continue
         low = url.lower()
@@ -111,10 +100,72 @@ def history_index(html: str) -> list[dict[str, str | None]]:
                 "key": key,
                 "url": url,
                 "openDate": detail._start_date_from_display_url(url),
-                "indexUrl": HISTORY_URL,
+                "indexUrl": page_url,
             }
         )
     return index
+
+
+def fetch_history_index(session: requests.Session) -> tuple[list[dict[str, str | None]], str, dict[str, Any]]:
+    """Try direct-table and ASP.NET-form modes on both official BSE hosts."""
+    attempts: dict[str, Any] = {}
+    last_error: Exception | None = None
+
+    for page_url in HISTORY_URLS:
+        try:
+            initial = session.get(page_url, timeout=35, headers={"Referer": f"{core.BSE_HOME}/"})
+            initial.raise_for_status()
+
+            direct = history_index(initial.text, page_url)
+            if direct:
+                attempts[page_url] = {"ok": True, "mode": "direct", "records": len(direct)}
+                return direct, page_url, attempts
+
+            try:
+                payload = history_form_payload(initial.text)
+            except Exception as form_exc:
+                attempts[page_url] = {
+                    "ok": False,
+                    "mode": "get",
+                    "records": 0,
+                    "error": str(form_exc)[:250],
+                    "bytes": len(initial.content),
+                }
+                last_error = form_exc
+                continue
+
+            response = session.post(
+                page_url,
+                data=payload,
+                timeout=45,
+                headers={
+                    "Referer": page_url,
+                    "Origin": page_url.split("/markets/", 1)[0],
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+            )
+            response.raise_for_status()
+            posted = history_index(response.text, page_url)
+            if posted:
+                attempts[page_url] = {"ok": True, "mode": "aspnet-post", "records": len(posted)}
+                return posted, page_url, attempts
+            error = ValueError("ASP.NET submission returned no IPO detail links")
+            attempts[page_url] = {
+                "ok": False,
+                "mode": "aspnet-post",
+                "records": 0,
+                "error": str(error),
+                "bytes": len(response.content),
+            }
+            last_error = error
+        except Exception as exc:  # try the other official host
+            attempts[page_url] = {"ok": False, "records": 0, "error": str(exc)[:250]}
+            last_error = exc
+
+    summary = "; ".join(
+        f"{url}: {info.get('error', 'no data')}" for url, info in attempts.items()
+    )
+    raise ValueError(f"BSE historical archive unavailable on official hosts: {summary}") from last_error
 
 
 def is_candidate(record: dict[str, Any], today: date, history_days: int) -> bool:
@@ -147,19 +198,23 @@ def main() -> int:
 
     session = requests.Session()
     session.headers.update(core.HEADERS)
-    session.headers.update({"Referer": f"{core.BSE_HOME}/"})
+    session.headers.update(
+        {
+            "Referer": f"{core.BSE_HOME}/",
+            "Cache-Control": "no-cache",
+            "Pragma": "no-cache",
+        }
+    )
 
     try:
-        archive_html = fetch_history_html(session)
-        index = history_index(archive_html)
-        if not index:
-            raise ValueError("BSE historical form returned no IPO detail links")
+        index, archive_url, archive_health = fetch_history_index(session)
     except Exception as exc:  # official archive outage must not block other refreshes
         payload.setdefault("meta", {}).setdefault("sourceHealth", {})["BSE-history-detail"] = {
             "ok": False,
             "records": 0,
             "attempted": 0,
-            "error": str(exc)[:300],
+            "hosts": list(HISTORY_URLS),
+            "error": str(exc)[:500],
         }
         DATA_FILE.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f"BSE historical detail unavailable: {exc}")
@@ -183,7 +238,7 @@ def main() -> int:
     for record, url in matched_records:
         attempted += 1
         try:
-            response = session.get(url, timeout=30, headers={"Referer": HISTORY_URL})
+            response = session.get(url, timeout=30, headers={"Referer": archive_url})
             response.raise_for_status()
             parsed = detail.parse_detail_html(response.text)
             changed = detail.merge_detail(record, parsed, url)
@@ -202,6 +257,8 @@ def main() -> int:
     payload.setdefault("meta", {}).setdefault("sourceHealth", {})["BSE-history-detail"] = {
         "ok": failed == 0 if attempted else True,
         "indexRecords": len(index),
+        "archiveUrl": archive_url,
+        "archiveHealth": archive_health,
         "candidates": len(candidates),
         "matched": len(matched_records),
         "attempted": attempted,
