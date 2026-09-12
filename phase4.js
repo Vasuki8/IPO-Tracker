@@ -60,7 +60,9 @@ function p4Chart(history) {
   const margin = { left: 58, right: 20, top: 22, bottom: 52 };
   const plotW = width - margin.left - margin.right;
   const plotH = height - margin.top - margin.bottom;
-  const values = history.flatMap(row => p4Series.map(([key]) => Number(row[key])).filter(Number.isFinite));
+  const values = history.flatMap(row => p4Series
+    .map(([key]) => row[key] == null ? null : Number(row[key]))
+    .filter(value => value != null && Number.isFinite(value)));
   const maxValue = Math.max(1, ...values);
   const roundedMax = maxValue <= 5 ? Math.ceil(maxValue * 2) / 2 : maxValue <= 20 ? Math.ceil(maxValue / 2) * 2 : Math.ceil(maxValue / 10) * 10;
   const times = history.map(row => new Date(row.capturedAt).getTime());
@@ -88,6 +90,7 @@ function p4Chart(history) {
 
   const lines = p4Series.map(([key, label]) => {
     const points = history.map((row, index) => {
+      if (row[key] == null) return null;
       const value = Number(row[key]);
       return Number.isFinite(value) ? { x: xAt(row, index), y: yAt(value), value, row } : null;
     }).filter(Boolean);
@@ -108,7 +111,7 @@ function phase4DetailSection(ipo) {
 
   const latestCards = p4Series.map(([key, label]) => `<div class="subscription-card"><span>${p4Esc(label)}</span><strong>${p4X(latest[key])}</strong></div>`).join('');
   const legend = p4Series.map(([key, label]) => `<span class="sub-legend-item"><i class="sub-swatch sub-${key}"></i>${p4Esc(label)}</span>`).join('');
-  const latestTime = ipo.subscriptionAsOf || history.at(-1)?.capturedAt;
+  const latestTime = ipo.subscriptionAsOf || (history.length ? history[history.length - 1].capturedAt : null);
   const historyNote = history.length === 1 ? '1 stored change' : `${history.length.toLocaleString('en-IN')} stored changes`;
   const source = (ipo.sources || []).find(s => s?.name === 'NSE subscription detail');
   const sourceLink = source?.url ? `<a href="${p4Esc(source.url)}" target="_blank" rel="noopener">Open NSE bid detail ↗</a>` : '';
