@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="phase4.css" />
   <link rel="stylesheet" href="company.css" />
   <link rel="stylesheet" href="company-page.css" />
+  <link rel="stylesheet" href="completeness.css" />
 </head>
 <body>
   <div class="shell">
@@ -43,6 +44,7 @@
       </section>
 
       <section class="stats" id="stats"></section>
+      <div id="qualityDashboard"></div>
 
       <section class="workspace">
         <div class="toolbar">
@@ -103,6 +105,7 @@
           <article><span>03</span><h3>BSE validation</h3><p>BSE fills missing issue terms and independently checks comparable fields such as dates, price band, lot size and issue size.</p></article>
           <article><span>04</span><h3>SEBI document extraction</h3><p>Abridged RHP/Prospectus PDFs are parsed for fresh issue and OFS composition, lead managers, registrar, promoters, objects and restated financials.</p></article>
           <article><span>05</span><h3>Exchange subscription history</h3><p>QIB, NII/HNI, Retail/Individual and Total demand is captured throughout the live bidding window. NSE is preferred, with BSE's official cumulative-demand schedule as the cloud-runner fallback.</p></article>
+          <article><span>06</span><h3>Completeness repair queue</h3><p>Lifecycle-aware audits identify missing official fields and prioritize open/upcoming IPOs before historical backfills.</p></article>
         </div>
       </section>
     </main>
@@ -129,5 +132,6 @@
   <script src="phase4.js" defer></script>
   <script src="company.js" defer></script>
   <script src="route-links.js" defer></script>
+  <script src="completeness.js" defer></script>
 </body>
 </html>
