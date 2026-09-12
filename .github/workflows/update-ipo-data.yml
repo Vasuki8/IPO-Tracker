@@ -68,7 +68,7 @@ jobs:
           else
             EXTRA="$EXTRA --sebi-pages 4"
           fi
-          uv run python scripts/update_data.py $EXTRA
+          uv run python scripts/run_update.py $EXTRA
 
       - name: Commit changed data
         run: |
