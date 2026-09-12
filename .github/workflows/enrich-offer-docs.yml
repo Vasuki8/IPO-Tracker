@@ -13,11 +13,13 @@ on:
       - main
     paths:
       - "scripts/enrich_offer_docs.py"
+      - "scripts/run_offer_docs_v2.py"
       - "scripts/enrich_sebi_document_links.py"
       - "scripts/critical_backfill.py"
       - "scripts/audit_data_completeness.py"
       - "scripts/build_missing_queue.py"
       - "tests/test_offer_docs.py"
+      - "tests/test_offer_docs_v2.py"
       - "tests/test_sebi_document_links.py"
       - "tests/test_critical_backfill.py"
       - "tests/test_data_completeness.py"
@@ -54,8 +56,11 @@ jobs:
       - name: Sync dependencies
         run: uv sync
 
-      - name: Run offer-document parser tests
+      - name: Run offer-document parser v1 regression tests
         run: uv run python -m unittest discover -s tests -p "test_offer_docs.py" -v
+
+      - name: Run offer-document parser v2 tests
+        run: uv run python -m unittest discover -s tests -p "test_offer_docs_v2.py" -v
 
       - name: Run SEBI document-link tests
         run: uv run python -m unittest discover -s tests -p "test_sebi_document_links.py" -v
@@ -87,8 +92,9 @@ jobs:
           # SEBI's listing often points to an HTML filing page. Resolve the
           # direct Abridged Prospectus and full-offer PDFs first.
           uv run python scripts/enrich_sebi_document_links.py --priority-max 2 --limit "$LINK_LIMIT"
-          # Fast path: short Abridged Prospectus PDFs.
-          uv run python scripts/enrich_offer_docs.py --limit "$DOC_LIMIT"
+          # Parser v2 reprocesses previously parsed AP PDFs because its version
+          # is bumped, and adds conservative fallbacks for newer SEBI wording.
+          uv run python scripts/run_offer_docs_v2.py --limit "$DOC_LIMIT"
           # Repair path: if critical fields remain, try another official full
           # RHP/DRHP/Prospectus PDF now that direct links are available.
           uv run python scripts/critical_backfill.py --documents-only --priority-max 2 --limit "$CRITICAL_LIMIT"
