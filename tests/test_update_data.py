@@ -166,6 +166,35 @@ class NormalizerTests(unittest.TestCase):
         }
         self.assertIsNone(mod.clean_existing_record(rec))
 
+    def test_bse_subscription_source_survives_core_cleanup(self):
+        rec = {
+            "company": "Example Limited",
+            "sources": [
+                {"name": "NSE current", "url": "nse"},
+                {"name": "BSE cumulative demand", "url": "bse-demand"},
+            ],
+            "subscription": {"qib": 1.2, "nii": 2.3, "retail": 3.4, "total": 2.0},
+            "subscriptionHistory": [{"capturedAt": "2026-09-12T10:00:00+05:30", "qib": 1.2}],
+        }
+        out = mod.clean_existing_record(rec)
+        self.assertIsNotNone(out)
+        self.assertTrue(any(s["name"] == "BSE cumulative demand" for s in out["sources"]))
+        self.assertEqual(out["subscription"]["qib"], 1.2)
+        self.assertEqual(len(out["subscriptionHistory"]), 1)
+
+    def test_core_merge_preserves_category_subscription_when_nse_only_has_total(self):
+        old = {
+            "subscription": {"qib": 7.7, "nii": 1.58, "retail": 0.69, "total": 2.88},
+            "subscriptionHistory": [{"capturedAt": "2026-09-12T10:00:00+05:30"}],
+        }
+        incoming = {"subscription": {"qib": None, "nii": None, "retail": None, "total": 3.15}}
+        out = mod.merge_non_null(old, incoming)
+        self.assertEqual(out["subscription"]["qib"], 7.7)
+        self.assertEqual(out["subscription"]["nii"], 1.58)
+        self.assertEqual(out["subscription"]["retail"], 0.69)
+        self.assertEqual(out["subscription"]["total"], 3.15)
+        self.assertEqual(len(out["subscriptionHistory"]), 1)
+
     def test_conflict_is_not_overwritten(self):
         base = {"openDate": "2026-09-10", "lotSize": 100, "company": "Example Limited"}
         incoming = {"openDate": "2026-09-11", "lotSize": 125, "company": "Example Limited"}
