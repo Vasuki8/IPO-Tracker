@@ -44,7 +44,9 @@ jobs:
         run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
 
       - name: Reconcile recent IPO history
-        run: uv run python scripts/run_update.py --history-days 365 --skip-sebi --skip-bse --sebi-pages 1
+        # Keep BSE enabled because run_update intentionally refreshes BSE validation
+        # from scratch each run. One SEBI page is enough for this daily history job.
+        run: uv run python scripts/run_update.py --history-days 365 --sebi-pages 1
 
       - name: Publish changed historical data safely
         shell: bash
