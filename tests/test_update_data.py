@@ -57,6 +57,29 @@ class NormalizerTests(unittest.TestCase):
         self.assertEqual(size, 500.0)
         self.assertEqual(shares, 20_000_000)
 
+    def test_nse_historical_aliases_are_retained(self):
+        record = mod.normalize_nse_record(
+            {
+                "smSymbol": "EXAMPLE",
+                "companyName": "Example Limited",
+                "ipoStartDate": "10-Sep-2025",
+                "ipoEndDate": "12-Sep-2025",
+                "listingDate": "18-Sep-2025",
+                "priceRange": "Rs.100 to Rs.110",
+                "bidLot": "125",
+                "issueSize": "10000000",
+                "securityType": "EQ",
+            },
+            "historical",
+        )
+        self.assertEqual(record["symbol"], "EXAMPLE")
+        self.assertEqual(record["openDate"], "2025-09-10")
+        self.assertEqual(record["closeDate"], "2025-09-12")
+        self.assertEqual(record["listingDate"], "2025-09-18")
+        self.assertEqual(record["lotSize"], 125)
+        self.assertEqual(record["priceBand"], {"min": 100.0, "max": 110.0})
+        self.assertEqual(record["issueSizeCr"], 110.0)
+
     def test_bse_html_parser_handles_numeric_dates(self):
         html = """
         <table>
