@@ -17,6 +17,7 @@ on:
       - "scripts/run_offer_docs_v3.py"
       - "scripts/run_offer_docs_v4.py"
       - "scripts/enrich_issuer_offer_docs.py"
+      - "scripts/run_issuer_offer_docs.py"
       - "scripts/run_critical_offer_backfill.py"
       - "scripts/enrich_sebi_document_links.py"
       - "scripts/critical_backfill.py"
@@ -112,10 +113,10 @@ jobs:
           uv run python scripts/enrich_sebi_document_links.py --priority-max 2 --limit "$LINK_LIMIT"
           uv run python scripts/run_offer_docs_v4.py --limit "$DOC_LIMIT"
 
-          # Secondary primary-source path: a tiny explicit registry of issuer-owned
-          # RHP PDFs. Each PDF is runtime-validated for host, PDF content and issuer
-          # identity, and it can fill only values still missing after SEBI.
-          uv run python scripts/enrich_issuer_offer_docs.py --priority-max 2 --limit "$ISSUER_LIMIT"
+          # Secondary primary-source path: an explicit registry of issuer-owned
+          # RHP PDFs. Each PDF is runtime-validated for host, PDF content and
+          # issuer identity, and it can fill only values still missing after SEBI.
+          uv run python scripts/run_issuer_offer_docs.py --priority-max 2 --limit "$ISSUER_LIMIT"
 
           # Rebuild the queue after primary + issuer extraction so later fallback
           # stages never act on stale gaps that were just filled.
