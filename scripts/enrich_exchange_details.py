@@ -9,6 +9,9 @@ company + issue-start-date matching so repeated issuers cannot collide.
 
 Populated NSE values remain primary: BSE fills gaps and records an independent
 observation for conflict validation rather than silently overwriting NSE data.
+Official BSE Prospectus/GID PDF links are retained as document provenance so the
+Phase 4.5 offer-document parser can recover Fresh Issue/OFS composition when a
+SEBI PDF is unavailable.
 """
 from __future__ import annotations
 
@@ -20,7 +23,7 @@ from datetime import date, datetime, timedelta
 from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
-from urllib.parse import parse_qs, unquote, urlparse
+from urllib.parse import parse_qs, unquote, urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup
@@ -45,10 +48,20 @@ def _cell_texts(cell) -> list[str]:
     return [" ".join(str(x).split()) for x in cell.stripped_strings if str(x).strip()]
 
 
+def _official_bse_pdf(url: str) -> bool:
+    try:
+        parsed = urlparse(str(url or ""))
+        host = (parsed.hostname or "").lower()
+        return (host == "bseindia.com" or host.endswith(".bseindia.com")) and parsed.path.lower().endswith(".pdf")
+    except Exception:
+        return False
+
+
 def parse_detail_html(html: str) -> dict[str, Any]:
     """Parse the stable label/value table exposed by BSE DisplayIPO.aspx."""
     soup = BeautifulSoup(html, "html.parser")
     pairs: dict[str, list[str]] = {}
+    documents: list[dict[str, Any]] = []
 
     for tr in soup.find_all("tr"):
         cells = tr.find_all(["th", "td"], recursive=False)
@@ -62,6 +75,23 @@ def parse_detail_html(html: str) -> dict[str, Any]:
             values.extend(_cell_texts(cell))
         if values:
             pairs.setdefault(clean_label(label), []).extend(values)
+
+        # BSE issue pages commonly expose an official "Prospectus & GID" link.
+        # Retain only direct BSE-hosted PDFs; generic external links and forms are
+        # deliberately ignored.
+        if "prospectus" in clean_label(label):
+            for anchor in tr.select("a[href]"):
+                href = urljoin(f"{core.BSE_HOME}/", str(anchor.get("href") or "").strip())
+                if not _official_bse_pdf(href):
+                    continue
+                doc = {
+                    "type": "PROSPECTUS",
+                    "title": label or "BSE Prospectus",
+                    "url": href,
+                    "source": "BSE",
+                }
+                if not any(existing.get("url") == href for existing in documents):
+                    documents.append(doc)
 
     def values_for(*labels: str) -> list[str]:
         wanted = [clean_label(label) for label in labels]
@@ -137,6 +167,7 @@ def parse_detail_html(html: str) -> dict[str, Any]:
         "minInvestment": min_investment,
         "leadManagers": lead_managers,
         "registrar": registrar,
+        "documents": documents,
     }
 
 
@@ -273,7 +304,7 @@ def is_candidate(record: dict[str, Any], today: date, history_days: int) -> bool
         return False
     return any(
         record.get(field) in (None, "", [], {})
-        for field in ("lotSize", "issueSizeCr", "registrar", "leadManagers")
+        for field in ("lotSize", "issueSizeCr", "issueComposition", "registrar", "leadManagers")
     )
 
 
@@ -303,6 +334,21 @@ def merge_detail(record: dict[str, Any], detail: dict[str, Any], url: str) -> li
     if not record.get("leadManagers") and detail.get("leadManagers"):
         record["leadManagers"] = detail["leadManagers"]
         changed.append("leadManagers")
+
+    incoming_docs = [doc for doc in (detail.get("documents") or []) if isinstance(doc, dict) and doc.get("url")]
+    if incoming_docs:
+        docs = [doc for doc in (record.get("documents") or []) if isinstance(doc, dict)]
+        existing_urls = {str(doc.get("url") or "") for doc in docs}
+        added = 0
+        for doc in incoming_docs:
+            if str(doc.get("url") or "") in existing_urls:
+                continue
+            docs.append(doc)
+            existing_urls.add(str(doc.get("url") or ""))
+            added += 1
+        if added:
+            record["documents"] = core.dedupe_dicts(docs, ("url", "type"))
+            changed.append("documents")
 
     if detail.get("minimumBidQuantity") is not None:
         record["minimumBidQuantity"] = detail["minimumBidQuantity"]
