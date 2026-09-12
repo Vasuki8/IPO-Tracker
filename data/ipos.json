@@ -1,6 +1,6 @@
 {
   "meta": {
-    "schemaVersion": 2,
+    "schemaVersion": 4,
     "generatedAt": "2026-09-12T17:11:15+05:30",
     "timezone": "Asia/Kolkata",
     "sources": [
@@ -73,9 +73,109 @@
         "records": 0,
         "attempted": 0,
         "error": "BSE historical page did not contain its ASP.NET form"
+      },
+      "IPO-subscription": {
+        "ok": false,
+        "records": 2,
+        "attempted": 7,
+        "snapshotsAdded": 0,
+        "failed": 5,
+        "nseRecords": 0,
+        "bseFallbackRecords": 2,
+        "asOf": "2026-09-12T17:23:06+05:30",
+        "errors": [
+          "Maharaja & Speedex India Limited: BSE cumulative demand page returned no headline categories",
+          "OM GALAXY LIMITED: BSE cumulative demand page returned no headline categories",
+          "RAKSAN TRANSFORMERS LIMITED: BSE cumulative demand page returned no headline categories",
+          "CENTURY BUSINESS MEDIA LIMITED: BSE cumulative demand page returned no headline categories",
+          "INJECTO POLYMERS LIMITED: BSE cumulative demand page returned no headline categories"
+        ]
+      },
+      "Critical-backfill": {
+        "ok": false,
+        "records": 7,
+        "asOf": "2026-09-12T17:22:32+05:30"
       }
     },
-    "errors": []
+    "errors": [],
+    "subscriptionHealth": {
+      "ok": false,
+      "attempted": 7,
+      "updated": 2,
+      "snapshotsAdded": 0,
+      "failed": 5,
+      "nseRecords": 0,
+      "bseFallbackRecords": 2,
+      "asOf": "2026-09-12T17:23:06+05:30",
+      "warnings": [
+        "Veegaland Developers Limited: NSE unavailable; used official BSE/BSE SME cumulative demand",
+        "Manika Plastech Limited: NSE unavailable; used official BSE/BSE SME cumulative demand"
+      ],
+      "errors": [
+        "Maharaja & Speedex India Limited: BSE cumulative demand page returned no headline categories",
+        "OM GALAXY LIMITED: BSE cumulative demand page returned no headline categories",
+        "RAKSAN TRANSFORMERS LIMITED: BSE cumulative demand page returned no headline categories",
+        "CENTURY BUSINESS MEDIA LIMITED: BSE cumulative demand page returned no headline categories",
+        "INJECTO POLYMERS LIMITED: BSE cumulative demand page returned no headline categories"
+      ],
+      "pageHealth": {
+        "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+          "ok": true,
+          "records": 0
+        },
+        "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+          "ok": true,
+          "records": 29
+        },
+        "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2": {
+          "ok": false,
+          "records": 0,
+          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7fd717c7efc0>, 'Connection to www.bsesme.c"
+        }
+      }
+    },
+    "criticalBackfillHealth": {
+      "ok": false,
+      "targetCount": 7,
+      "priorityMax": 0,
+      "asOf": "2026-09-12T17:22:32+05:30",
+      "subscriptions": {
+        "ok": false,
+        "attempted": 7,
+        "updated": 2,
+        "snapshotsAdded": 0,
+        "failed": 5,
+        "nseRecords": 0,
+        "bseFallbackRecords": 2,
+        "asOf": "2026-09-12T17:23:06+05:30",
+        "warnings": [
+          "Veegaland Developers Limited: NSE unavailable; used official BSE/BSE SME cumulative demand",
+          "Manika Plastech Limited: NSE unavailable; used official BSE/BSE SME cumulative demand"
+        ],
+        "errors": [
+          "Maharaja & Speedex India Limited: BSE cumulative demand page returned no headline categories",
+          "OM GALAXY LIMITED: BSE cumulative demand page returned no headline categories",
+          "RAKSAN TRANSFORMERS LIMITED: BSE cumulative demand page returned no headline categories",
+          "CENTURY BUSINESS MEDIA LIMITED: BSE cumulative demand page returned no headline categories",
+          "INJECTO POLYMERS LIMITED: BSE cumulative demand page returned no headline categories"
+        ],
+        "pageHealth": {
+          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+            "ok": true,
+            "records": 0
+          },
+          "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+            "ok": true,
+            "records": 29
+          },
+          "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2": {
+            "ok": false,
+            "records": 0,
+            "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7fd717c7efc0>, 'Connection to www.bsesme.c"
+          }
+        }
+      }
+    }
   },
   "ipos": [
     {
@@ -964,10 +1064,10 @@
       "freshIssueCr": null,
       "ofsCr": null,
       "subscription": {
-        "qib": null,
-        "nii": null,
-        "retail": null,
-        "total": 0.9358464395923508
+        "qib": 0.35,
+        "nii": 1.19,
+        "retail": 2.12,
+        "total": 1.43
       },
       "listing": null,
       "source": {
@@ -1000,6 +1100,12 @@
           "kind": "exchange",
           "url": "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p",
           "asOf": "2026-09-12T17:11:15+05:30"
+        },
+        {
+          "name": "BSE cumulative demand",
+          "kind": "exchange",
+          "url": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7966&status=L",
+          "asOf": "2026-09-12T17:23:06+05:30"
         }
       ],
       "validation": {
@@ -1063,7 +1169,7 @@
       },
       "allotmentDate": null,
       "issueType": "IPO",
-      "subscriptionAsOf": "2026-09-12T09:10:08+05:30",
+      "subscriptionAsOf": "2026-09-12T17:23:06+05:30",
       "subscriptionSource": "BSE cumulative demand",
       "subscriptionHistory": [
         {
@@ -1281,10 +1387,10 @@
       "freshIssueCr": null,
       "ofsCr": null,
       "subscription": {
-        "qib": null,
-        "nii": null,
-        "retail": null,
-        "total": 0.905597800152321
+        "qib": 0.45,
+        "nii": 0.94,
+        "retail": 1.65,
+        "total": 1.16
       },
       "listing": null,
       "source": {
@@ -1317,6 +1423,12 @@
           "kind": "exchange",
           "url": "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p",
           "asOf": "2026-09-12T17:11:15+05:30"
+        },
+        {
+          "name": "BSE cumulative demand",
+          "kind": "exchange",
+          "url": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7959&status=L",
+          "asOf": "2026-09-12T17:23:06+05:30"
         }
       ],
       "validation": {
@@ -1380,7 +1492,7 @@
       },
       "allotmentDate": null,
       "issueType": "IPO",
-      "subscriptionAsOf": "2026-09-12T09:10:08+05:30",
+      "subscriptionAsOf": "2026-09-12T17:23:06+05:30",
       "subscriptionSource": "BSE cumulative demand",
       "subscriptionHistory": [
         {
