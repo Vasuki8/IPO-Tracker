@@ -93,13 +93,13 @@
       "Critical-backfill": {
         "ok": true,
         "records": 20,
-        "asOf": "2026-09-13T04:12:36+05:30"
+        "asOf": "2026-09-13T04:24:14+05:30"
       },
       "SEBI-document-links": {
         "ok": true,
         "records": 0,
         "attempted": 7,
-        "asOf": "2026-09-13T04:11:52+05:30",
+        "asOf": "2026-09-13T04:21:10+05:30",
         "errors": []
       },
       "Offer-docs": {
@@ -109,14 +109,16 @@
         "failed": 0
       },
       "Issuer-offer-docs": {
-        "ok": true,
-        "records": 5,
+        "ok": false,
+        "records": 4,
         "attempted": 5,
-        "updated": 2,
-        "deepScanned": 3,
-        "failed": 0,
-        "asOf": "2026-09-13T04:12:35+05:30",
-        "errors": []
+        "updated": 1,
+        "deepScanned": 4,
+        "failed": 1,
+        "asOf": "2026-09-13T04:24:14+05:30",
+        "errors": [
+          "INJECTO POLYMERS LIMITED: HTTPSConnectionPool(host='injectopolymers.in', port=443): Max retries exceeded with url: /wp-content/uploads/2026/09/1.-RHP_07.09.2026.pdf (Caused by ConnectTimeoutError(<HTTPSConnection(host='injectopolymers.in', port=443) at 0x7fe259dd6600>, 'Connection to injectopolymers.in timed out. (connect timeout=45)'))"
+        ]
       }
     },
     "errors": [],
@@ -127,7 +129,7 @@
       "failed": 0,
       "eligibleRemaining": 0,
       "parserVersion": 4,
-      "asOf": "2026-09-13T04:12:06+05:30",
+      "asOf": "2026-09-13T04:21:26+05:30",
       "errors": []
     },
     "subscriptionHealth": {
@@ -172,7 +174,7 @@
       "ok": true,
       "targetCount": 20,
       "priorityMax": 2,
-      "asOf": "2026-09-13T04:12:36+05:30",
+      "asOf": "2026-09-13T04:24:14+05:30",
       "documents": {
         "ok": true,
         "attempted": 3,
@@ -182,10 +184,10 @@
         "discoveryHealth": {
           "ok": false,
           "records": 0,
-          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f3c526ad310>, 'Connection to www.bsesme.com time"
+          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7fec19f8c800>, 'Connection to www.bsesme.com time"
         },
         "errors": [],
-        "asOf": "2026-09-13T04:15:25+05:30"
+        "asOf": "2026-09-13T04:27:05+05:30"
       }
     },
     "sebiDocumentLinkHealth": {
@@ -194,7 +196,7 @@
       "resolvedPages": 7,
       "linksAdded": 0,
       "failed": 0,
-      "asOf": "2026-09-13T04:11:52+05:30",
+      "asOf": "2026-09-13T04:21:10+05:30",
       "errors": []
     },
     "criticalOfferDocumentHealth": {
@@ -206,20 +208,22 @@
       "discoveryHealth": {
         "ok": false,
         "records": 0,
-        "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f3c526ad310>, 'Connection to www.bsesme.com time"
+        "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7fec19f8c800>, 'Connection to www.bsesme.com time"
       },
       "errors": [],
-      "asOf": "2026-09-13T04:15:25+05:30"
+      "asOf": "2026-09-13T04:27:05+05:30"
     },
     "issuerOfferDocumentHealth": {
-      "ok": true,
+      "ok": false,
       "attempted": 5,
-      "extracted": 5,
-      "updated": 2,
-      "deepScanned": 3,
-      "failed": 0,
-      "asOf": "2026-09-13T04:12:35+05:30",
-      "errors": []
+      "extracted": 4,
+      "updated": 1,
+      "deepScanned": 4,
+      "failed": 1,
+      "asOf": "2026-09-13T04:24:14+05:30",
+      "errors": [
+        "INJECTO POLYMERS LIMITED: HTTPSConnectionPool(host='injectopolymers.in', port=443): Max retries exceeded with url: /wp-content/uploads/2026/09/1.-RHP_07.09.2026.pdf (Caused by ConnectTimeoutError(<HTTPSConnection(host='injectopolymers.in', port=443) at 0x7fe259dd6600>, 'Connection to injectopolymers.in timed out. (connect timeout=45)'))"
+      ]
     }
   },
   "ipos": [
@@ -622,7 +626,7 @@
           "issueComposition",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T04:14:51+05:30",
+        "extractedAt": "2026-09-13T04:26:27+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/ssretail/",
@@ -855,7 +859,7 @@
           "issueComposition",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T04:13:56+05:30",
+        "extractedAt": "2026-09-13T04:25:24+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/jsipl/",
@@ -1093,7 +1097,7 @@
           "issueComposition",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T04:15:25+05:30",
+        "extractedAt": "2026-09-13T04:27:05+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/heromotors/",
@@ -1864,7 +1868,7 @@
           "objectsOfIssue"
         ],
         "changedFields": [],
-        "extractedAt": "2026-09-13T04:12:27+05:30",
+        "extractedAt": "2026-09-13T04:21:55+05:30",
         "source": "Issuer website"
       }
     },
@@ -2189,11 +2193,18 @@
           "registrar",
           "promoters",
           "issueComposition",
-          "objectsOfIssue"
+          "objectsOfIssue",
+          "shareholding"
         ],
-        "changedFields": [],
-        "extractedAt": "2026-09-13T04:12:22+05:30",
+        "changedFields": [
+          "shareholding"
+        ],
+        "extractedAt": "2026-09-13T04:21:52+05:30",
         "source": "Issuer website"
+      },
+      "shareholding": {
+        "promoters": [],
+        "promoterPreIssuePct": 100.0
       }
     },
     {
@@ -2371,20 +2382,15 @@
         "documentTitle": "Red Herring Prospectus",
         "sourcePage": "https://omgalaxymould.com/",
         "sha256": "31dc977c9309fcd6c394eaea0a141b52c299275924d6e259cf2a95e890ca31c4",
-        "pagesRead": 30,
+        "pagesRead": 79,
         "pageCount": 509,
         "extractedFields": [
           "leadManagers",
           "issueComposition",
           "objectsOfIssue"
         ],
-        "changedFields": [
-          "freshIssueCr",
-          "ofsCr",
-          "issueComposition",
-          "objectsOfIssue"
-        ],
-        "extractedAt": "2026-09-13T04:12:33+05:30",
+        "changedFields": [],
+        "extractedAt": "2026-09-13T04:21:35+05:30",
         "source": "Issuer website"
       }
     },
@@ -2574,7 +2580,7 @@
           "objectsOfIssue"
         ],
         "changedFields": [],
-        "extractedAt": "2026-09-13T04:12:14+05:30",
+        "extractedAt": "2026-09-13T04:21:44+05:30",
         "source": "Issuer website"
       }
     },
