@@ -11,11 +11,18 @@ Every PDF is revalidated at runtime before any value is written:
 * the response must be a real PDF (handled by parser v4's downloader);
 * extractable text must contain the expected company identity;
 * existing exchange/SEBI values are never overwritten.
+
+For full RHPs, the normal parser reads the first 30 pages. If a priority record is
+still missing financials or promoter shareholding, this module performs a bounded
+page scan and only appends pages around relevant section headings. That avoids
+parsing hundreds of irrelevant pages while still reaching sections that are often
+located deep inside SME offer documents.
 """
 from __future__ import annotations
 
 import argparse
 import hashlib
+import io
 import json
 import re
 import sys
@@ -24,6 +31,7 @@ from typing import Any
 from urllib.parse import urlparse
 
 import requests
+from pypdf import PdfReader
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
@@ -76,6 +84,18 @@ OFFER_GAPS = (
     "offer.promoterShareholding",
 )
 
+_FINANCIAL_MARKERS = re.compile(
+    r"(?:summary\s+of\s+restated|restated\s+(?:consolidated\s+)?financial|"
+    r"key\s+performance\s+indicators?|financial\s+information)",
+    re.I,
+)
+_SHAREHOLDING_MARKERS = re.compile(
+    r"(?:pre[-\s]?and[-\s]?post[-\s]?issue\s+shareholding|"
+    r"shareholding\s+pattern|capital\s+structure|"
+    r"promoters?\s+and\s+promoter\s+group)",
+    re.I,
+)
+
 
 def _normal_host(value: str) -> str:
     return re.sub(r"^www\.", "", str(value or "").strip().lower())
@@ -112,6 +132,68 @@ def _identity_matches(company: str, text: str) -> bool:
 def _has_priority_gap(item: dict[str, Any]) -> bool:
     missing = {str(field) for field in (item.get("missingFields") or [])}
     return any(field in missing for field in OFFER_GAPS)
+
+
+def _needs_deep_scan(item: dict[str, Any], parsed: dict[str, Any]) -> tuple[bool, bool]:
+    missing = {str(field) for field in (item.get("missingFields") or [])}
+    need_financials = "offer.financials" in missing and not parsed.get("financials")
+    need_shareholding = "offer.promoterShareholding" in missing and not parsed.get("shareholding")
+    return need_financials, need_shareholding
+
+
+def _extract_targeted_full_text(
+    data: bytes,
+    base_text: str,
+    *,
+    need_financials: bool,
+    need_shareholding: bool,
+    max_scan_pages: int = 420,
+    max_hits: int = 14,
+) -> tuple[str, int, int]:
+    """Append only relevant deep-document pages to the normal first-30-page text.
+
+    We inspect later pages one by one, keep pages that contain a requested section
+    marker plus the following two pages, and stop after a bounded number of hits.
+    The returned page count is the actual PDF page count; pages_read is the number
+    of pages inspected, which is useful provenance for the extraction record.
+    """
+    if not need_financials and not need_shareholding:
+        return base_text, 30, 30
+
+    reader = PdfReader(io.BytesIO(data))
+    page_count = len(reader.pages)
+    if page_count <= 30:
+        return base_text, page_count, page_count
+
+    collected: list[str] = [base_text]
+    capture_next = 0
+    hits = 0
+    inspected = min(30, page_count)
+    stop_at = min(page_count, max_scan_pages)
+
+    for idx in range(30, stop_at):
+        inspected = idx + 1
+        try:
+            page_text = reader.pages[idx].extract_text() or ""
+        except Exception:
+            page_text = ""
+
+        marker_hit = bool(
+            (need_financials and _FINANCIAL_MARKERS.search(page_text))
+            or (need_shareholding and _SHAREHOLDING_MARKERS.search(page_text))
+        )
+        if marker_hit:
+            hits += 1
+            capture_next = max(capture_next, 2)
+            collected.append(page_text)
+        elif capture_next > 0:
+            collected.append(page_text)
+            capture_next -= 1
+
+        if hits >= max_hits and capture_next == 0:
+            break
+
+    return "\n".join(collected), inspected, page_count
 
 
 def _merge_dict_missing(existing: dict[str, Any] | None, incoming: dict[str, Any] | None):
@@ -237,13 +319,13 @@ def main() -> int:
 
     session = requests.Session()
     session.headers.update(core.HEADERS)
-    attempted = extracted = updated = failed = 0
+    attempted = extracted = updated = failed = deep_scanned = 0
     errors: list[str] = []
 
     previous_cap = parser_v4.base.MAX_PDF_BYTES
     parser_v4.base.MAX_PDF_BYTES = max(previous_cap, 35 * 1024 * 1024)
     try:
-        for record, _item, spec in targets:
+        for record, item, spec in targets:
             attempted += 1
             company = str(record.get("company") or spec.get("company") or "")
             try:
@@ -254,6 +336,26 @@ def main() -> int:
                 if not _identity_matches(company, text):
                     raise ValueError("PDF identity did not match the expected issuer")
                 parsed = parser_v4.parse_document_text(text, record.get("priceBand"))
+
+                need_financials, need_shareholding = _needs_deep_scan(item, parsed)
+                if (need_financials or need_shareholding) and page_count > pages_read:
+                    deep_text, deep_pages_read, page_count = _extract_targeted_full_text(
+                        data,
+                        text,
+                        need_financials=need_financials,
+                        need_shareholding=need_shareholding,
+                    )
+                    reparsed = parser_v4.parse_document_text(deep_text, record.get("priceBand"))
+                    # Prefer the deep parse only when it adds a requested field;
+                    # otherwise retain the stable first-30-page result.
+                    if (
+                        (need_financials and reparsed.get("financials"))
+                        or (need_shareholding and reparsed.get("shareholding"))
+                    ):
+                        parsed = reparsed
+                    pages_read = max(pages_read, deep_pages_read)
+                    deep_scanned += 1
+
                 if not parsed.get("extractedFields"):
                     raise ValueError("no structured offer fields recognized")
                 changed = merge_issuer_enrichment(
@@ -269,7 +371,8 @@ def main() -> int:
                 print(
                     f"Issuer offer doc {company}: "
                     f"extracted={','.join(parsed.get('extractedFields') or [])} "
-                    f"changed={','.join(changed) if changed else 'none'}"
+                    f"changed={','.join(changed) if changed else 'none'} "
+                    f"pages={pages_read}/{page_count}"
                 )
             except Exception as exc:
                 failed += 1
@@ -285,6 +388,7 @@ def main() -> int:
         "attempted": attempted,
         "extracted": extracted,
         "updated": updated,
+        "deepScanned": deep_scanned,
         "failed": failed,
         "asOf": as_of,
         "errors": errors[:10],
@@ -296,6 +400,7 @@ def main() -> int:
         "records": extracted,
         "attempted": attempted,
         "updated": updated,
+        "deepScanned": deep_scanned,
         "failed": failed,
         "asOf": as_of,
         "errors": errors[:5],
@@ -303,7 +408,8 @@ def main() -> int:
     DATA_FILE.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(
         "Issuer offer docs: "
-        f"attempted={attempted} extracted={extracted} updated={updated} failed={failed}"
+        f"attempted={attempted} extracted={extracted} updated={updated} "
+        f"deep_scanned={deep_scanned} failed={failed}"
     )
     return 0
 
