@@ -23,7 +23,7 @@ renderTable = function() {
     const symbol = cell.querySelector('.symbol');
     const link = document.createElement('a');
     link.className = 'company-name-link';
-    link.href = `ipo/${companyRouteSlug(ipo.id || ipo.company)}/`;
+    link.href = ipo.profilePath || `ipo/${companyRouteSlug(ipo.id || ipo.company)}/`;
     link.textContent = ipo.company || 'Unknown';
     link.setAttribute('aria-label', `Open ${ipo.company || 'IPO'} permanent profile`);
     link.addEventListener('click', event => event.stopPropagation());
