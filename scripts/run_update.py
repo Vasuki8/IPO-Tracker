@@ -2,8 +2,9 @@
 """Quality-gated entry point for the IPO updater.
 
 This wrapper keeps the live collector conservative without duplicating its core
-logic. It cleans preview-era data before merge and replaces the broad BSE HTML
-parser with an IPO-only parser before running update_data.main().
+logic. It cleans preview-era data, normalizes legacy/current NSE field aliases,
+and replaces the broad BSE HTML parser with an IPO-only parser before running
+update_data.main().
 """
 from __future__ import annotations
 
@@ -116,6 +117,39 @@ def clean_existing_record(record):
     else:
         rec.pop("source", None)
     return rec
+
+
+# NSE has changed field names across the live/upcoming/past endpoints. The core
+# normalizer accepts the canonical live names; copy known official aliases into
+# those canonical keys first so historical data is not silently discarded.
+_original_normalize_nse_record = core.normalize_nse_record
+
+
+def normalize_nse_record(record, kind):
+    row = dict(record or {})
+    aliases = {
+        "symbol": ("smSymbol",),
+        "issueStartDate": ("ipoStartDate", "startDate"),
+        "issueEndDate": ("ipoEndDate", "endDate"),
+        "lotSize": ("bidLot", "marketLot"),
+        "listingDate": ("dateOfListing",),
+    }
+    for canonical, alternatives in aliases.items():
+        if row.get(canonical) not in (None, "", "-", "--"):
+            continue
+        for alias in alternatives:
+            value = row.get(alias)
+            if value not in (None, "", "-", "--"):
+                row[canonical] = value
+                break
+
+    # Some NSE past-issue responses label the security code under series or
+    # securityType. We do not use it as the symbol, but retaining it in the row
+    # lets the core board classifier correctly identify SME/Emerge records.
+    return _original_normalize_nse_record(row, kind)
+
+
+core.normalize_nse_record = normalize_nse_record
 
 
 def parse_bse_ipo_html(html, source_url=core.BSE_URL):
