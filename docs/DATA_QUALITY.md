@@ -1,17 +1,17 @@
 # IPO Tracker Data Quality
 
-Generated: **2026-09-12T10:14:42+05:30**  
+Generated: **2026-09-12T10:17:24+05:30**  
 Records audited: **1,371**
 
 ## Completeness scores
 
 | Area | Score | Records in denominator |
 | --- | ---: | ---: |
-| Core exchange terms | 44.8% | 1,364 |
-| Recent exchange terms (2Y) | 85.4% | 19 |
+| Core exchange terms | 66.8% | 1,364 |
+| Recent exchange terms (2Y) | 67.2% | 458 |
 | Offer-document intelligence | 27.8% | 12 |
 | Live subscription categories | 7.1% | 7 |
-| Matured lifecycle dates | 100.0% | 0 |
+| Matured lifecycle dates | 48.7% | 1,332 |
 | Source/provenance trail | 67.0% | 1,371 |
 
 ## Core exchange fields
@@ -21,8 +21,8 @@ Records audited: **1,371**
 | symbol | 1,364 | 0 | 100.0% |
 | board | 1,364 | 0 | 100.0% |
 | exchange | 1,364 | 0 | 100.0% |
-| openDate | 19 | 1,345 | 1.4% |
-| closeDate | 19 | 1,345 | 1.4% |
+| openDate | 1,364 | 0 | 100.0% |
+| closeDate | 1,364 | 0 | 100.0% |
 | priceBand | 1,341 | 23 | 98.3% |
 | lotSize | 11 | 1,353 | 0.8% |
 | issueSizeCr | 20 | 1,344 | 1.5% |
@@ -32,15 +32,15 @@ Records audited: **1,371**
 
 | Field | Present | Missing | Coverage |
 | --- | ---: | ---: | ---: |
-| symbol | 19 | 0 | 100.0% |
-| board | 19 | 0 | 100.0% |
-| exchange | 19 | 0 | 100.0% |
-| openDate | 19 | 0 | 100.0% |
-| closeDate | 19 | 0 | 100.0% |
-| priceBand | 19 | 0 | 100.0% |
-| lotSize | 11 | 8 | 57.9% |
-| issueSizeCr | 19 | 0 | 100.0% |
-| issueComposition | 2 | 17 | 10.5% |
+| symbol | 458 | 0 | 100.0% |
+| board | 458 | 0 | 100.0% |
+| exchange | 458 | 0 | 100.0% |
+| openDate | 458 | 0 | 100.0% |
+| closeDate | 458 | 0 | 100.0% |
+| priceBand | 448 | 10 | 97.8% |
+| lotSize | 11 | 447 | 2.4% |
+| issueSizeCr | 20 | 438 | 4.4% |
+| issueComposition | 3 | 455 | 0.7% |
 
 ## Offer-document fields
 
@@ -66,8 +66,8 @@ Records audited: **1,371**
 
 | Field | Present | Missing | Coverage |
 | --- | ---: | ---: | ---: |
-| allotmentDate | 0 | 0 | 100.0% |
-| listingDate | 0 | 0 | 100.0% |
+| allotmentDate | 0 | 1,332 | 0.0% |
+| listingDate | 1,297 | 35 | 97.4% |
 
 ## Interpretation
 

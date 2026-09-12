@@ -1,30 +1,30 @@
 {
-  "generatedAt": "2026-09-12T10:14:42+05:30",
+  "generatedAt": "2026-09-12T10:17:24+05:30",
   "asOfDate": "2026-09-12",
   "recordCount": 1371,
   "stageCounts": {
-    "closed": 6,
-    "filing-pipeline": 8,
+    "closed": 46,
+    "filing-pipeline": 6,
     "listed": 1305,
     "open": 7,
-    "unknown": 39,
+    "unknown": 1,
     "upcoming": 6
   },
   "segmentCounts": {
     "allRecords": 1371,
     "exchangeStage": 1364,
-    "recentExchange2Y": 19,
-    "historicalExchange": 1345,
+    "recentExchange2Y": 458,
+    "historicalExchange": 906,
     "offerDocumentEligible": 12,
     "openNow": 7,
-    "maturedClosed": 0
+    "maturedClosed": 1332
   },
   "scores": {
-    "exchangeStage": 44.8,
-    "recentExchange2Y": 85.4,
+    "exchangeStage": 66.8,
+    "recentExchange2Y": 67.2,
     "offerDocumentEligible": 27.8,
     "openSubscription": 7.1,
-    "maturedLifecycle": 100.0,
+    "maturedLifecycle": 48.7,
     "provenance": 67.0
   },
   "coverage": {
@@ -48,16 +48,16 @@
         "pct": 100.0
       },
       "openDate": {
-        "present": 19,
+        "present": 1364,
         "expected": 1364,
-        "missing": 1345,
-        "pct": 1.4
+        "missing": 0,
+        "pct": 100.0
       },
       "closeDate": {
-        "present": 19,
+        "present": 1364,
         "expected": 1364,
-        "missing": 1345,
-        "pct": 1.4
+        "missing": 0,
+        "pct": 100.0
       },
       "priceBand": {
         "present": 1341,
@@ -86,114 +86,114 @@
     },
     "recentExchange2Y": {
       "symbol": {
-        "present": 19,
-        "expected": 19,
+        "present": 458,
+        "expected": 458,
         "missing": 0,
         "pct": 100.0
       },
       "board": {
-        "present": 19,
-        "expected": 19,
+        "present": 458,
+        "expected": 458,
         "missing": 0,
         "pct": 100.0
       },
       "exchange": {
-        "present": 19,
-        "expected": 19,
+        "present": 458,
+        "expected": 458,
         "missing": 0,
         "pct": 100.0
       },
       "openDate": {
-        "present": 19,
-        "expected": 19,
+        "present": 458,
+        "expected": 458,
         "missing": 0,
         "pct": 100.0
       },
       "closeDate": {
-        "present": 19,
-        "expected": 19,
+        "present": 458,
+        "expected": 458,
         "missing": 0,
         "pct": 100.0
       },
       "priceBand": {
-        "present": 19,
-        "expected": 19,
-        "missing": 0,
-        "pct": 100.0
+        "present": 448,
+        "expected": 458,
+        "missing": 10,
+        "pct": 97.8
       },
       "lotSize": {
         "present": 11,
-        "expected": 19,
-        "missing": 8,
-        "pct": 57.9
+        "expected": 458,
+        "missing": 447,
+        "pct": 2.4
       },
       "issueSizeCr": {
-        "present": 19,
-        "expected": 19,
-        "missing": 0,
-        "pct": 100.0
+        "present": 20,
+        "expected": 458,
+        "missing": 438,
+        "pct": 4.4
       },
       "issueComposition": {
-        "present": 2,
-        "expected": 19,
-        "missing": 17,
-        "pct": 10.5
+        "present": 3,
+        "expected": 458,
+        "missing": 455,
+        "pct": 0.7
       }
     },
     "historicalExchange": {
       "symbol": {
-        "present": 1345,
-        "expected": 1345,
+        "present": 906,
+        "expected": 906,
         "missing": 0,
         "pct": 100.0
       },
       "board": {
-        "present": 1345,
-        "expected": 1345,
+        "present": 906,
+        "expected": 906,
         "missing": 0,
         "pct": 100.0
       },
       "exchange": {
-        "present": 1345,
-        "expected": 1345,
+        "present": 906,
+        "expected": 906,
         "missing": 0,
         "pct": 100.0
       },
       "openDate": {
-        "present": 0,
-        "expected": 1345,
-        "missing": 1345,
-        "pct": 0.0
+        "present": 906,
+        "expected": 906,
+        "missing": 0,
+        "pct": 100.0
       },
       "closeDate": {
-        "present": 0,
-        "expected": 1345,
-        "missing": 1345,
-        "pct": 0.0
+        "present": 906,
+        "expected": 906,
+        "missing": 0,
+        "pct": 100.0
       },
       "priceBand": {
-        "present": 1322,
-        "expected": 1345,
-        "missing": 23,
-        "pct": 98.3
+        "present": 893,
+        "expected": 906,
+        "missing": 13,
+        "pct": 98.6
       },
       "lotSize": {
         "present": 0,
-        "expected": 1345,
-        "missing": 1345,
+        "expected": 906,
+        "missing": 906,
         "pct": 0.0
       },
       "issueSizeCr": {
-        "present": 1,
-        "expected": 1345,
-        "missing": 1344,
-        "pct": 0.1
+        "present": 0,
+        "expected": 906,
+        "missing": 906,
+        "pct": 0.0
       },
       "issueComposition": {
-        "present": 1,
-        "expected": 1345,
-        "missing": 1344,
-        "pct": 0.1
+        "present": 0,
+        "expected": 906,
+        "missing": 906,
+        "pct": 0.0
       }
     },
     "offerDocumentEligible": {
@@ -263,15 +263,15 @@
     "maturedLifecycle": {
       "allotmentDate": {
         "present": 0,
-        "expected": 0,
-        "missing": 0,
-        "pct": 100.0
+        "expected": 1332,
+        "missing": 1332,
+        "pct": 0.0
       },
       "listingDate": {
-        "present": 0,
-        "expected": 0,
-        "missing": 0,
-        "pct": 100.0
+        "present": 1297,
+        "expected": 1332,
+        "missing": 35,
+        "pct": 97.4
       }
     },
     "provenance": {
@@ -302,7 +302,68 @@
       "exchange": [],
       "openDate": [],
       "closeDate": [],
-      "priceBand": [],
+      "priceBand": [
+        {
+          "id": "935iifl33",
+          "company": "IIFL Finance Limited",
+          "openDate": "2026-02-17",
+          "stage": "listed"
+        },
+        {
+          "id": "pfc2026",
+          "company": "Power Finance Corporation Limited",
+          "openDate": "2026-01-16",
+          "stage": "listed"
+        },
+        {
+          "id": "815chli36",
+          "company": "Canara HSBC Life Insurance Company Limited",
+          "openDate": "2025-10-10",
+          "stage": "listed"
+        },
+        {
+          "id": "805taca29",
+          "company": "Tata Capital Limited",
+          "openDate": "2025-10-06",
+          "stage": "listed"
+        },
+        {
+          "id": "scl004",
+          "company": "Sammaan Capital Limited",
+          "openDate": "2025-07-15",
+          "stage": "listed"
+        },
+        {
+          "id": "avtl29",
+          "company": "Aegis Vopak Terminals Limited",
+          "openDate": "2025-05-26",
+          "stage": "listed"
+        },
+        {
+          "id": "790ihfl27",
+          "company": "IIFL Home Finance Limited",
+          "openDate": "2024-12-06",
+          "stage": "listed"
+        },
+        {
+          "id": "727ngel36",
+          "company": "NTPC Green Energy Limited",
+          "openDate": "2024-11-19",
+          "stage": "listed"
+        },
+        {
+          "id": "84ail28",
+          "company": "Afcons Infrastructure Limited",
+          "openDate": "2024-10-25",
+          "stage": "listed"
+        },
+        {
+          "id": "904nacl28",
+          "company": "Northern Arc Capital Limited",
+          "openDate": "2024-09-16",
+          "stage": "listed"
+        }
+      ],
       "lotSize": [
         {
           "id": "ssretail",
@@ -351,9 +412,142 @@
           "company": "Asset Reconstruction Company (India) Limited",
           "openDate": "2026-09-09",
           "stage": "closed"
+        },
+        {
+          "id": "prasolchem",
+          "company": "Prasol Chemicals Limited",
+          "openDate": "2026-09-08",
+          "stage": "closed"
+        },
+        {
+          "id": "kanohar",
+          "company": "Kanohar Electricals Limited",
+          "openDate": "2026-09-08",
+          "stage": "closed"
+        },
+        {
+          "id": "glasswall",
+          "company": "Glass Wall Systems (India) Limited",
+          "openDate": "2026-09-08",
+          "stage": "closed"
+        },
+        {
+          "id": "pranav",
+          "company": "Pranav Constructions Limited",
+          "openDate": "2026-09-07",
+          "stage": "closed"
+        },
+        {
+          "id": "qualiance",
+          "company": "Qualiance International Limited",
+          "openDate": "2026-09-04",
+          "stage": "listed"
+        },
+        {
+          "id": "deepa",
+          "company": "Deepa Jewellers Limited",
+          "openDate": "2026-09-01",
+          "stage": "listed"
+        },
+        {
+          "id": "momsbelief",
+          "company": "Rays of Belief Limited- For Profit Social Enterprise (FPSE)",
+          "openDate": "2026-09-01",
+          "stage": "closed"
         }
       ],
-      "issueSizeCr": [],
+      "issueSizeCr": [
+        {
+          "id": "prasolchem",
+          "company": "Prasol Chemicals Limited",
+          "openDate": "2026-09-08",
+          "stage": "closed"
+        },
+        {
+          "id": "kanohar",
+          "company": "Kanohar Electricals Limited",
+          "openDate": "2026-09-08",
+          "stage": "closed"
+        },
+        {
+          "id": "glasswall",
+          "company": "Glass Wall Systems (India) Limited",
+          "openDate": "2026-09-08",
+          "stage": "closed"
+        },
+        {
+          "id": "pranav",
+          "company": "Pranav Constructions Limited",
+          "openDate": "2026-09-07",
+          "stage": "closed"
+        },
+        {
+          "id": "qualiance",
+          "company": "Qualiance International Limited",
+          "openDate": "2026-09-04",
+          "stage": "listed"
+        },
+        {
+          "id": "deepa",
+          "company": "Deepa Jewellers Limited",
+          "openDate": "2026-09-01",
+          "stage": "listed"
+        },
+        {
+          "id": "momsbelief",
+          "company": "Rays of Belief Limited- For Profit Social Enterprise (FPSE)",
+          "openDate": "2026-09-01",
+          "stage": "closed"
+        },
+        {
+          "id": "shantiinor",
+          "company": "Shanti Inorganics Limited",
+          "openDate": "2026-08-31",
+          "stage": "listed"
+        },
+        {
+          "id": "perniaspop",
+          "company": "Purple Style Labs Limited",
+          "openDate": "2026-08-31",
+          "stage": "listed"
+        },
+        {
+          "id": "ashutosh",
+          "company": "Ashutosh Fibre Limited",
+          "openDate": "2026-08-31",
+          "stage": "listed"
+        },
+        {
+          "id": "priority",
+          "company": "Priority Jewels Limited",
+          "openDate": "2026-08-28",
+          "stage": "listed"
+        },
+        {
+          "id": "esds",
+          "company": "ESDS Software Solution Limited",
+          "openDate": "2026-08-28",
+          "stage": "listed"
+        },
+        {
+          "id": "lumino",
+          "company": "Lumino Industries Limited",
+          "openDate": "2026-08-27",
+          "stage": "listed"
+        },
+        {
+          "id": "sumax",
+          "company": "Sumax Engineering Limited",
+          "openDate": "2026-08-25",
+          "stage": "listed"
+        },
+        {
+          "id": "annu",
+          "company": "Annu Projects Limited",
+          "openDate": "2026-08-25",
+          "stage": "listed"
+        }
+      ],
       "issueComposition": [
         {
           "id": "ssretail",
@@ -468,20 +662,26 @@
           "stage": "closed"
         },
         {
+          "id": "prasolchem",
+          "company": "Prasol Chemicals Limited",
+          "openDate": "2026-09-08",
+          "stage": "closed"
+        },
+        {
+          "id": "glasswall",
+          "company": "Glass Wall Systems (India) Limited",
+          "openDate": "2026-09-08",
+          "stage": "closed"
+        },
+        {
           "id": "tempsens",
           "company": "Tempsens Instruments (India) Limited",
-          "openDate": null,
+          "openDate": "2026-08-20",
           "stage": "listed"
         },
         {
           "id": "torrent-gas-limited",
           "company": "Torrent Gas Limited",
-          "openDate": null,
-          "stage": "filing-pipeline"
-        },
-        {
-          "id": "prasolchem",
-          "company": "Prasol Chemicals Limited",
           "openDate": null,
           "stage": "filing-pipeline"
         },
@@ -500,12 +700,6 @@
         {
           "id": "m-k-c-agro-fresh-limited",
           "company": "M K C AGRO FRESH LIMITED",
-          "openDate": null,
-          "stage": "filing-pipeline"
-        },
-        {
-          "id": "glasswall",
-          "company": "Glass Wall Systems (India) Limited",
           "openDate": null,
           "stage": "filing-pipeline"
         }
@@ -530,20 +724,26 @@
           "stage": "closed"
         },
         {
+          "id": "prasolchem",
+          "company": "Prasol Chemicals Limited",
+          "openDate": "2026-09-08",
+          "stage": "closed"
+        },
+        {
+          "id": "glasswall",
+          "company": "Glass Wall Systems (India) Limited",
+          "openDate": "2026-09-08",
+          "stage": "closed"
+        },
+        {
           "id": "tempsens",
           "company": "Tempsens Instruments (India) Limited",
-          "openDate": null,
+          "openDate": "2026-08-20",
           "stage": "listed"
         },
         {
           "id": "torrent-gas-limited",
           "company": "Torrent Gas Limited",
-          "openDate": null,
-          "stage": "filing-pipeline"
-        },
-        {
-          "id": "prasolchem",
-          "company": "Prasol Chemicals Limited",
           "openDate": null,
           "stage": "filing-pipeline"
         },
@@ -564,12 +764,6 @@
           "company": "M K C AGRO FRESH LIMITED",
           "openDate": null,
           "stage": "filing-pipeline"
-        },
-        {
-          "id": "glasswall",
-          "company": "Glass Wall Systems (India) Limited",
-          "openDate": null,
-          "stage": "filing-pipeline"
         }
       ],
       "promoters": [
@@ -588,8 +782,14 @@
         {
           "id": "prasolchem",
           "company": "Prasol Chemicals Limited",
-          "openDate": null,
-          "stage": "filing-pipeline"
+          "openDate": "2026-09-08",
+          "stage": "closed"
+        },
+        {
+          "id": "glasswall",
+          "company": "Glass Wall Systems (India) Limited",
+          "openDate": "2026-09-08",
+          "stage": "closed"
         },
         {
           "id": "national-stock-exchange-of-india-limited",
@@ -600,12 +800,6 @@
         {
           "id": "nopaperforms-solutions-limited",
           "company": "NOPAPERFORMS SOLUTIONS LIMITED",
-          "openDate": null,
-          "stage": "filing-pipeline"
-        },
-        {
-          "id": "glasswall",
-          "company": "Glass Wall Systems (India) Limited",
           "openDate": null,
           "stage": "filing-pipeline"
         }
@@ -636,20 +830,26 @@
           "stage": "closed"
         },
         {
+          "id": "prasolchem",
+          "company": "Prasol Chemicals Limited",
+          "openDate": "2026-09-08",
+          "stage": "closed"
+        },
+        {
+          "id": "glasswall",
+          "company": "Glass Wall Systems (India) Limited",
+          "openDate": "2026-09-08",
+          "stage": "closed"
+        },
+        {
           "id": "tempsens",
           "company": "Tempsens Instruments (India) Limited",
-          "openDate": null,
+          "openDate": "2026-08-20",
           "stage": "listed"
         },
         {
           "id": "torrent-gas-limited",
           "company": "Torrent Gas Limited",
-          "openDate": null,
-          "stage": "filing-pipeline"
-        },
-        {
-          "id": "prasolchem",
-          "company": "Prasol Chemicals Limited",
           "openDate": null,
           "stage": "filing-pipeline"
         },
@@ -670,12 +870,6 @@
           "company": "M K C AGRO FRESH LIMITED",
           "openDate": null,
           "stage": "filing-pipeline"
-        },
-        {
-          "id": "glasswall",
-          "company": "Glass Wall Systems (India) Limited",
-          "openDate": null,
-          "stage": "filing-pipeline"
         }
       ],
       "financials": [
@@ -688,18 +882,18 @@
         {
           "id": "prasolchem",
           "company": "Prasol Chemicals Limited",
-          "openDate": null,
-          "stage": "filing-pipeline"
-        },
-        {
-          "id": "national-stock-exchange-of-india-limited",
-          "company": "National Stock Exchange of India Limited",
-          "openDate": null,
-          "stage": "filing-pipeline"
+          "openDate": "2026-09-08",
+          "stage": "closed"
         },
         {
           "id": "glasswall",
           "company": "Glass Wall Systems (India) Limited",
+          "openDate": "2026-09-08",
+          "stage": "closed"
+        },
+        {
+          "id": "national-stock-exchange-of-india-limited",
+          "company": "National Stock Exchange of India Limited",
           "openDate": null,
           "stage": "filing-pipeline"
         }
@@ -730,20 +924,26 @@
           "stage": "closed"
         },
         {
+          "id": "prasolchem",
+          "company": "Prasol Chemicals Limited",
+          "openDate": "2026-09-08",
+          "stage": "closed"
+        },
+        {
+          "id": "glasswall",
+          "company": "Glass Wall Systems (India) Limited",
+          "openDate": "2026-09-08",
+          "stage": "closed"
+        },
+        {
           "id": "tempsens",
           "company": "Tempsens Instruments (India) Limited",
-          "openDate": null,
+          "openDate": "2026-08-20",
           "stage": "listed"
         },
         {
           "id": "torrent-gas-limited",
           "company": "Torrent Gas Limited",
-          "openDate": null,
-          "stage": "filing-pipeline"
-        },
-        {
-          "id": "prasolchem",
-          "company": "Prasol Chemicals Limited",
           "openDate": null,
           "stage": "filing-pipeline"
         },
@@ -762,12 +962,6 @@
         {
           "id": "m-k-c-agro-fresh-limited",
           "company": "M K C AGRO FRESH LIMITED",
-          "openDate": null,
-          "stage": "filing-pipeline"
-        },
-        {
-          "id": "glasswall",
-          "company": "Glass Wall Systems (India) Limited",
           "openDate": null,
           "stage": "filing-pipeline"
         }
@@ -940,8 +1134,190 @@
       ]
     },
     "maturedLifecycle": {
-      "allotmentDate": [],
-      "listingDate": []
+      "allotmentDate": [
+        {
+          "id": "sumax",
+          "company": "Sumax Engineering Limited",
+          "openDate": "2026-08-25",
+          "stage": "listed"
+        },
+        {
+          "id": "annu",
+          "company": "Annu Projects Limited",
+          "openDate": "2026-08-25",
+          "stage": "listed"
+        },
+        {
+          "id": "symbiotec",
+          "company": "Symbiotec Pharmalab Limited",
+          "openDate": "2026-08-24",
+          "stage": "listed"
+        },
+        {
+          "id": "skyways",
+          "company": "Skyways Air Services Limited",
+          "openDate": "2026-08-24",
+          "stage": "listed"
+        },
+        {
+          "id": "madhurknit",
+          "company": "Madhur Knit Crafts Limited",
+          "openDate": "2026-08-24",
+          "stage": "listed"
+        },
+        {
+          "id": "htel",
+          "company": "Hy-Tech Engineers Limited",
+          "openDate": "2026-08-24",
+          "stage": "listed"
+        },
+        {
+          "id": "abh",
+          "company": "ABH Healthcare Limited",
+          "openDate": "2026-08-24",
+          "stage": "listed"
+        },
+        {
+          "id": "augmont",
+          "company": "Augmont Enterprises Limited",
+          "openDate": "2026-08-21",
+          "stage": "listed"
+        },
+        {
+          "id": "tempsens",
+          "company": "Tempsens Instruments (India) Limited",
+          "openDate": "2026-08-20",
+          "stage": "listed"
+        },
+        {
+          "id": "gaja",
+          "company": "Gaja Alternative Asset Management Limited",
+          "openDate": "2026-08-19",
+          "stage": "listed"
+        },
+        {
+          "id": "sunshine",
+          "company": "Sunshine Pictures Limited",
+          "openDate": "2026-08-18",
+          "stage": "listed"
+        },
+        {
+          "id": "shankesh",
+          "company": "Shankesh Jewellers Limited",
+          "openDate": "2026-08-18",
+          "stage": "listed"
+        },
+        {
+          "id": "lalithaa",
+          "company": "Lalithaa Jewellery Mart Limited",
+          "openDate": "2026-08-17",
+          "stage": "listed"
+        },
+        {
+          "id": "horizonind",
+          "company": "Horizon Industrial Parks Limited",
+          "openDate": "2026-08-17",
+          "stage": "listed"
+        },
+        {
+          "id": "skytech",
+          "company": "Skytech Infinite Platform Limited",
+          "openDate": "2026-08-14",
+          "stage": "listed"
+        }
+      ],
+      "listingDate": [
+        {
+          "id": "icel",
+          "company": "IC Electricals Company Limited-Issue postponed",
+          "openDate": "2026-06-25",
+          "stage": "closed"
+        },
+        {
+          "id": "spgcl",
+          "company": "Sri Priyanka Geo Commex Limited-Issue Withdrawn",
+          "openDate": "2026-06-24",
+          "stage": "closed"
+        },
+        {
+          "id": "rsl",
+          "company": "Rajputana Stainless Limited-Special Withdrawal Option",
+          "openDate": "2026-03-12",
+          "stage": "closed"
+        },
+        {
+          "id": "sampoorna",
+          "company": "NFP Sampoorna Foods Limited-Issue Withdrawn",
+          "openDate": "2026-02-04",
+          "stage": "closed"
+        },
+        {
+          "id": "pfczcb1",
+          "company": "Power Finance Corporation Limited (Zero Coupon NCD)",
+          "openDate": "2026-01-16",
+          "stage": "closed"
+        },
+        {
+          "id": "smcg03",
+          "company": "SMC Global Securities Limited",
+          "openDate": "2025-10-16",
+          "stage": "closed"
+        },
+        {
+          "id": "nsdl",
+          "company": "National Securities Depository Limited",
+          "openDate": "2025-07-30",
+          "stage": "closed"
+        },
+        {
+          "id": "c2cw",
+          "company": "C2C Advanced Systems Limited- Withdrawal Window",
+          "openDate": "2024-11-26",
+          "stage": "closed"
+        },
+        {
+          "id": "pkh",
+          "company": "PKH Ventures Limited - Issue Withdrawn",
+          "openDate": "2023-06-30",
+          "stage": "closed"
+        },
+        {
+          "id": "pkh",
+          "company": "PKH Ventures Limited",
+          "openDate": "2023-06-30",
+          "stage": "closed"
+        },
+        {
+          "id": "dcx",
+          "company": "DCX System limited",
+          "openDate": "2022-10-31",
+          "stage": "closed"
+        },
+        {
+          "id": "propequity",
+          "company": "P.E. Analytics Limited",
+          "openDate": "2022-03-22",
+          "stage": "closed"
+        },
+        {
+          "id": "timescan",
+          "company": "Timescan Logistics (India) Private Limited",
+          "openDate": "2021-12-31",
+          "stage": "closed"
+        },
+        {
+          "id": "abcots",
+          "company": "AB Cotspin India Limited",
+          "openDate": "2021-12-30",
+          "stage": "closed"
+        },
+        {
+          "id": "dkegl",
+          "company": "D. K. Enterprises Global Limited",
+          "openDate": "2021-10-07",
+          "stage": "closed"
+        }
+      ]
     }
   },
   "notes": [
