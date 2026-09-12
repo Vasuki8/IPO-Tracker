@@ -1,4 +1,4 @@
-name: Update IPO data
+name: Core IPO refresh
 
 on:
   workflow_dispatch:
@@ -13,26 +13,23 @@ on:
         required: false
         type: boolean
         default: false
-      deep_offer_docs:
-        description: "Extract all eligible SEBI abridged offer documents"
-        required: false
-        type: boolean
-        default: false
   push:
     branches:
       - main
     paths:
-      - "scripts/**"
-      - "tests/**"
+      - "scripts/update_data.py"
+      - "scripts/run_update.py"
+      - "tests/test_update_data.py"
       - "pyproject.toml"
       - ".github/workflows/update-ipo-data.yml"
   schedule:
-    # Hourly. GitHub cron is UTC; the updater derives Indian dates in Asia/Kolkata.
+    # Hourly. GitHub cron uses UTC. The updater timestamps data in Asia/Kolkata.
     - cron: "17 * * * *"
 
 permissions:
   contents: write
 
+# All data-writing workflows share this group so only one can modify ipos.json at a time.
 concurrency:
   group: ipo-data-refresh
   cancel-in-progress: false
@@ -56,16 +53,13 @@ jobs:
       - name: Sync dependencies
         run: uv sync
 
-      - name: Run parser tests
-        run: uv run python -m unittest discover -s tests -v
+      - name: Run core parser tests
+        run: uv run python -m unittest discover -s tests -p "test_update_data.py" -v
 
-      # Remember exactly which data revision this run started from. If main moves
-      # while the updater is running, the publication step can distinguish an
-      # unrelated code/docs commit from a newer data refresh.
       - name: Record starting data revision
         run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
 
-      - name: Refresh IPO data
+      - name: Refresh NSE, SEBI and BSE core data
         shell: bash
         run: |
           EXTRA=""
@@ -81,24 +75,7 @@ jobs:
           fi
           uv run python scripts/run_update.py $EXTRA
 
-      # Run after the core rebuild so Phase 4 fields are added to the final
-      # normalized records and cannot be lost when current issues are merged.
-      # NSE is preferred; the collector uses BSE's official cumulative-demand
-      # schedule when NSE's WAF blocks the GitHub Actions runner.
-      - name: Capture live subscription history
-        run: uv run python scripts/track_subscriptions.py --limit 30
-
-      - name: Enrich from SEBI offer documents
-        shell: bash
-        run: |
-          if [ "${{ github.event.inputs.deep_offer_docs }}" = "true" ]; then
-            DOC_LIMIT=0
-          else
-            DOC_LIMIT=8
-          fi
-          uv run python scripts/enrich_offer_docs.py --limit "$DOC_LIMIT"
-
-      - name: Commit changed data
+      - name: Publish changed data safely
         shell: bash
         run: |
           if git diff --quiet -- data/ipos.json; then
@@ -106,24 +83,16 @@ jobs:
             exit 0
           fi
 
-          # Preserve this run's generated file while we inspect the current tip.
           cp data/ipos.json /tmp/generated-ipos.json
           BASE_DATA="$(cat /tmp/base-data-blob)"
           git fetch origin main
           REMOTE_DATA="$(git rev-parse origin/main:data/ipos.json)"
 
-          # If another updater published fresher data after this run started,
-          # never overwrite it with a stale snapshot. Exit successfully; the next
-          # scheduled or push-triggered run will refresh from that newer base.
           if [ "$REMOTE_DATA" != "$BASE_DATA" ]; then
             echo "Remote IPO data changed during this run; skipping stale publication."
-            echo "base=$BASE_DATA remote=$REMOTE_DATA"
             exit 0
           fi
 
-          # Main may still have moved because of code/docs commits. Rebase by
-          # resetting to the latest tip, then restore only our generated data.
-          # This avoids merge conflicts in the machine-generated JSON file.
           git reset --hard origin/main
           cp /tmp/generated-ipos.json data/ipos.json
 
@@ -135,5 +104,5 @@ jobs:
           git config user.name "ipo-tracker-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/ipos.json
-          git commit -m "data: refresh IPO tracker"
+          git commit -m "data: refresh core IPO data"
           git push origin HEAD:main
