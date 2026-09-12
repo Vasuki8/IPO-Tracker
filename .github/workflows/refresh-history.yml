@@ -1,0 +1,79 @@
+name: Daily IPO history refresh
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/refresh-history.yml"
+  schedule:
+    # Daily at 19:37 IST (14:07 UTC), after the main Indian session.
+    - cron: "7 14 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ipo-data-refresh
+  cancel-in-progress: false
+
+jobs:
+  history:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.1.0
+        with:
+          version: "latest-known"
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Sync dependencies
+        run: uv sync
+
+      - name: Run core parser tests
+        run: uv run python -m unittest discover -s tests -p "test_update_data.py" -v
+
+      - name: Record starting data revision
+        run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
+
+      - name: Reconcile recent IPO history
+        run: uv run python scripts/run_update.py --history-days 365 --skip-sebi --skip-bse --sebi-pages 1
+
+      - name: Publish changed historical data safely
+        shell: bash
+        run: |
+          if git diff --quiet -- data/ipos.json; then
+            echo "No historical data changes"
+            exit 0
+          fi
+
+          cp data/ipos.json /tmp/generated-ipos.json
+          BASE_DATA="$(cat /tmp/base-data-blob)"
+          git fetch origin main
+          REMOTE_DATA="$(git rev-parse origin/main:data/ipos.json)"
+
+          if [ "$REMOTE_DATA" != "$BASE_DATA" ]; then
+            echo "Remote IPO data changed during this run; skipping stale publication."
+            exit 0
+          fi
+
+          git reset --hard origin/main
+          cp /tmp/generated-ipos.json data/ipos.json
+
+          if git diff --quiet -- data/ipos.json; then
+            echo "Generated data already matches latest main"
+            exit 0
+          fi
+
+          git config user.name "ipo-tracker-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ipos.json
+          git commit -m "data: reconcile IPO history"
+          git push origin HEAD:main
