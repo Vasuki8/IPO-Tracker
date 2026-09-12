@@ -22,9 +22,13 @@ jobs:
       - name: Download official July 2026 NSE primary-market report
         shell: bash
         run: |
-          curl -fL --retry 3 --retry-delay 2 \
+          curl --http1.1 -fL --retry 3 --retry-all-errors --retry-delay 2 \
+            -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/152 Safari/537.36" \
+            -H "Accept: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/octet-stream,*/*" \
+            -H "Referer: https://www.nseindia.com/" \
             "https://nsearchives.nseindia.com/web/mediaattachment/2026-08/Primary_Market_data__July26_20260814112232.xlsx" \
             -o /tmp/primary-market.xlsx
+          test -s /tmp/primary-market.xlsx
           ls -lh /tmp/primary-market.xlsx
 
       - name: Print workbook sheet names and first non-empty rows
