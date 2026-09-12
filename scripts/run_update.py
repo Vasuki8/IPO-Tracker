@@ -3,11 +3,12 @@
 
 This wrapper keeps the live collector conservative without duplicating its core
 logic. It cleans preview-era data, normalizes legacy/current NSE field aliases,
-and replaces the broad BSE HTML parser with an IPO-only parser before running
-update_data.main().
+preserves richer enrichment fields across core refreshes, and replaces the broad
+BSE HTML parser with an IPO-only parser before running update_data.main().
 """
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
 
@@ -67,13 +68,7 @@ def _source_root(source):
 
 
 def clean_existing_record(record):
-    """Remove stale BSE snapshots and preview-only values before a live merge.
-
-    BSE is intentionally re-fetched each run because this project currently
-    uses BSE as a *current-issue validation layer*, not as a historical store.
-    Preview seed values are also cleared so only fields re-observed from an
-    official source survive.
-    """
+    """Remove stale BSE validation snapshots and preview-only values before merge."""
     if not isinstance(record, dict):
         return None
 
@@ -88,16 +83,23 @@ def clean_existing_record(record):
     if not sources and rec.get("source"):
         sources = [rec["source"]]
 
-    # Remove the prior run's BSE validation. The strict IPO-only parser will
-    # attach a fresh BSE observation later in this run.
-    non_bse_sources = [s for s in sources if _source_root(s) != "BSE"]
+    # Remove prior BSE validation/detail observations because those official pages
+    # are re-fetched after every core run. Keep BSE cumulative-demand provenance,
+    # which belongs to the independent live-subscription collector.
+    non_bse_sources = [
+        s
+        for s in sources
+        if not (
+            _source_root(s) == "BSE"
+            and "cumulative demand" not in _source_name(s).lower()
+        )
+    ]
     observations = dict(rec.get("observations") or {})
     observations.pop("BSE", None)
     rec["observations"] = observations
 
-    # A BSE-only row came from the validation page. Drop it now; genuine IPO
-    # rows will be re-added by the strict parser, while FPO/RI/debt/buyback rows
-    # will disappear instead of accumulating in the database.
+    # A validation-only BSE row is dropped and refetched. A subscription record is
+    # not validation-only, so cumulative-demand provenance is intentionally kept.
     if sources and not non_bse_sources:
         return None
 
@@ -150,6 +152,33 @@ def normalize_nse_record(record, kind):
 
 
 core.normalize_nse_record = normalize_nse_record
+
+
+# Core NSE payloads sometimes expose only the overall subscription multiple. A
+# top-level dict replacement would erase QIB/NII/Retail values collected earlier
+# from NSE ipo-detail or BSE cumulative demand. Merge that nested object field by
+# field while retaining the normal "new official value wins" behavior elsewhere.
+_original_merge_non_null = core.merge_non_null
+
+
+def merge_non_null_preserving_nested(base, incoming):
+    out = _original_merge_non_null(base, incoming)
+    old_subscription = base.get("subscription") if isinstance(base, dict) else None
+    new_subscription = incoming.get("subscription") if isinstance(incoming, dict) else None
+    if isinstance(old_subscription, dict) or isinstance(new_subscription, dict):
+        merged_subscription = {}
+        if isinstance(old_subscription, dict):
+            merged_subscription.update(old_subscription)
+        if isinstance(new_subscription, dict):
+            for key, value in new_subscription.items():
+                if value is not None:
+                    merged_subscription[key] = value
+        out["subscription"] = merged_subscription or None
+    return out
+
+
+core.merge_non_null = merge_non_null_preserving_nested
+merge_non_null = merge_non_null_preserving_nested
 
 
 def parse_bse_ipo_html(html, source_url=core.BSE_URL):
@@ -241,8 +270,45 @@ def load_existing_cleaned():
 core.load_existing = load_existing_cleaned
 
 
+def _preserve_enrichment_meta(previous_meta):
+    """Never downgrade schema or erase health from independent enrichment jobs."""
+    try:
+        payload = json.loads(core.DATA_FILE.read_text(encoding="utf-8"))
+    except Exception:
+        return
+
+    meta = payload.setdefault("meta", {})
+    old_schema = int((previous_meta or {}).get("schemaVersion") or 1)
+    new_schema = int(meta.get("schemaVersion") or 1)
+    meta["schemaVersion"] = max(old_schema, new_schema)
+
+    old_health = dict((previous_meta or {}).get("sourceHealth") or {})
+    old_health.update(meta.get("sourceHealth") or {})
+    meta["sourceHealth"] = old_health
+
+    for key in ("offerDocumentHealth", "subscriptionHealth"):
+        if key not in meta and (previous_meta or {}).get(key) is not None:
+            meta[key] = previous_meta[key]
+
+    old_history_start = (previous_meta or {}).get("historyStart")
+    new_history_start = meta.get("historyStart")
+    if old_history_start and new_history_start:
+        meta["historyStart"] = min(str(old_history_start), str(new_history_start))
+    elif old_history_start and not new_history_start:
+        meta["historyStart"] = old_history_start
+
+    core.DATA_FILE.write_text(
+        json.dumps(payload, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+
+
 def main():
-    return core.main()
+    previous = _original_load_existing()
+    result = core.main()
+    if result == 0:
+        _preserve_enrichment_meta(previous.get("meta") or {})
+    return result
 
 
 if __name__ == "__main__":
