@@ -17,10 +17,11 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import sys
 from pathlib import Path
-from urllib.parse import urlparse
 from typing import Any
+from urllib.parse import urlparse
 
 import requests
 
@@ -76,11 +77,22 @@ OFFER_GAPS = (
 )
 
 
+def _normal_host(value: str) -> str:
+    return re.sub(r"^www\.", "", str(value or "").strip().lower())
+
+
 def _host_matches(url: str, expected_host: str) -> bool:
-    host = (urlparse(str(url or "")).hostname or "").lower()
-    expected = str(expected_host or "").lower().lstrip("www.")
-    normalized = host.lstrip("www.")
-    return bool(normalized and expected and normalized == expected)
+    host = _normal_host(urlparse(str(url or "")).hostname or "")
+    expected = _normal_host(expected_host)
+    return bool(host and expected and host == expected)
+
+
+def _name_tokens(company: str) -> list[str]:
+    return [
+        token
+        for token in re.findall(r"[A-Z0-9]+", str(company or "").upper())
+        if len(token) >= 3 and token not in {"LIMITED", "PRIVATE", "INDIA", "LTD"}
+    ]
 
 
 def _identity_matches(company: str, text: str) -> bool:
@@ -90,13 +102,9 @@ def _identity_matches(company: str, text: str) -> bool:
         return False
     if needle in haystack:
         return True
-    # The canonicalizer can preserve/strip legal suffixes differently across
-    # filings. Require all meaningful company-name tokens as a conservative
-    # fallback rather than fuzzy matching an unrelated PDF.
-    tokens = [
-        token for token in core.words(company)
-        if len(token) >= 3 and token not in {"LIMITED", "PRIVATE", "INDIA", "LTD"}
-    ]
+    # Legal suffixes and punctuation vary across filings. Require every
+    # meaningful issuer-name token rather than fuzzy matching an unrelated PDF.
+    tokens = _name_tokens(company)
     upper = str(text or "")[:30000].upper()
     return len(tokens) >= 2 and all(token in upper for token in tokens)
 
@@ -248,11 +256,10 @@ def main() -> int:
                 parsed = parser_v4.parse_document_text(text, record.get("priceBand"))
                 if not parsed.get("extractedFields"):
                     raise ValueError("no structured offer fields recognized")
-                doc = dict(spec)
                 changed = merge_issuer_enrichment(
                     record,
                     parsed,
-                    doc,
+                    spec,
                     pdf_hash=hashlib.sha256(data).hexdigest(),
                     pages_read=pages_read,
                     page_count=page_count,
