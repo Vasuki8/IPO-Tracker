@@ -15,7 +15,8 @@ promoter-contribution or lock-in percentages.
 
 Document selection continues to prefer direct official SEBI PDFs. When SEBI has
 no eligible PDF, an official BSE-hosted Prospectus PDF captured from the BSE IPO
-detail page is accepted as an exchange-official fallback.
+detail page is accepted as an exchange-official fallback. Extraction provenance
+is copied from the selected document instead of being hardcoded to SEBI.
 """
 from __future__ import annotations
 
@@ -36,6 +37,7 @@ PARSER_VERSION = 6
 _ORIGINAL_EXTRACT_FINANCIALS = v5.extract_financials
 _ORIGINAL_EXTRACT_PROMOTER_SHAREHOLDING = v5.extract_promoter_shareholding
 _ORIGINAL_CHOOSE_DOCUMENT = v5.choose_document
+_ORIGINAL_APPLY_ENRICHMENT = base.apply_enrichment
 
 _PRE_CONTEXT = re.compile(
     r"(?:pre[-\s]?(?:issue|offer|ipo)|before\s+the\s+(?:issue|offer)|"
@@ -249,13 +251,21 @@ def choose_document(record):
     return max(candidates, key=lambda item: item[:-1])[-1]
 
 
+def apply_enrichment(record, parsed, doc, pdf_hash, pages_read, page_count):
+    """Use the base merge logic, then preserve the selected document's source."""
+    _ORIGINAL_APPLY_ENRICHMENT(record, parsed, doc, pdf_hash, pages_read, page_count)
+    extraction = record.get("offerDocumentExtraction")
+    if isinstance(extraction, dict):
+        extraction["source"] = str(doc.get("source") or "SEBI").upper()
+
+
 base.extract_financials = extract_financials
 base.extract_promoter_shareholding = extract_promoter_shareholding
 base.choose_document = choose_document
+base.apply_enrichment = apply_enrichment
 base.PARSER_VERSION = PARSER_VERSION
 
 parse_document_text = base.parse_document_text
-apply_enrichment = base.apply_enrichment
 download_pdf = v5.download_pdf
 extract_targeted_pdf_text = v5.extract_targeted_pdf_text
 
