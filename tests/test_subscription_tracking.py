@@ -81,6 +81,15 @@ class SubscriptionParserTests(unittest.TestCase):
             "https://www.bseindia.com/markets/PublicIssues/CummDemandSchedule.aspx?ID=7154&status=L",
         )
 
+    def test_display_ipo_url_maps_to_cumulative_demand(self):
+        url = mod._demand_url_from_display_url(
+            "https://www.bseindia.com/markets/publicIssues/DisplayIPO.aspx?IPONo=7425&id=4279&idtype=1&status=L&type=IPO"
+        )
+        self.assertEqual(
+            url,
+            "https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7425&status=L",
+        )
+
 
 class SubscriptionHistoryTests(unittest.TestCase):
     def test_identical_snapshot_is_deduplicated(self):
