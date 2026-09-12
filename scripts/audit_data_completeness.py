@@ -24,7 +24,6 @@ REPORT_FILE = ROOT / "docs" / "DATA_QUALITY.md"
 IST = timezone(timedelta(hours=5, minutes=30))
 
 FILING_STAGES = {"drhp", "udrhp", "rhp", "prospectus"}
-OFFER_DOC_TYPES = ("RHP", "RED HERRING", "PROSPECTUS", "ABRIDGED PROSPECTUS")
 
 
 def present(value: Any) -> bool:
@@ -79,9 +78,14 @@ def lifecycle_stage(record: dict[str, Any], today: date) -> str:
 
 
 def has_offer_document(record: dict[str, Any]) -> bool:
+    """True for RHP/Prospectus-stage documents, but not DRHP/UDRHP drafts."""
     for document in record.get("documents") or []:
-        doc_type = str((document or {}).get("type") or "").upper()
-        if any(token in doc_type for token in OFFER_DOC_TYPES):
+        doc_type = " ".join(str((document or {}).get("type") or "").upper().split())
+        if "PROSPECTUS" in doc_type:
+            return True
+        if doc_type == "RHP" or doc_type.startswith("RHP "):
+            return True
+        if "RED HERRING" in doc_type and "DRAFT" not in doc_type:
             return True
     extraction = record.get("offerDocumentExtraction") or {}
     return present(extraction.get("documentUrl")) or extraction.get("status") == "extracted"
