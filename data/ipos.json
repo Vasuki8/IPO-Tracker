@@ -76,19 +76,19 @@
       },
       "IPO-subscription": {
         "ok": false,
-        "records": 2,
-        "attempted": 7,
+        "records": 0,
+        "attempted": 5,
         "snapshotsAdded": 0,
         "failed": 5,
         "nseRecords": 0,
-        "bseFallbackRecords": 2,
-        "asOf": "2026-09-12T17:23:06+05:30",
+        "bseFallbackRecords": 0,
+        "asOf": "2026-09-12T17:30:18+05:30",
         "errors": [
-          "Maharaja & Speedex India Limited: BSE cumulative demand page returned no headline categories",
-          "OM GALAXY LIMITED: BSE cumulative demand page returned no headline categories",
-          "RAKSAN TRANSFORMERS LIMITED: BSE cumulative demand page returned no headline categories",
-          "CENTURY BUSINESS MEDIA LIMITED: BSE cumulative demand page returned no headline categories",
-          "INJECTO POLYMERS LIMITED: BSE cumulative demand page returned no headline categories"
+          "Maharaja & Speedex India Limited: no categories https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7962&status=L · Cumulative Demand Schedule · Cumulative Demand Schedule Note : 1.The above data display includes demand for UPI & Non-UPI bids. 2.In case of UPI bids, only bids with status as RC100 – “Mandate Accepted by Inve; no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7962&status=L · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange)",
+          "OM GALAXY LIMITED: no categories https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7960&status=L · Cumulative Demand Schedule · Cumulative Demand Schedule Note : 1.The above data display includes demand for UPI & Non-UPI bids. 2.In case of UPI bids, only bids with status as RC100 – “Mandate Accepted by Inve; no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7960&status=L · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange)",
+          "RAKSAN TRANSFORMERS LIMITED: no categories https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7958&status=L · Cumulative Demand Schedule · Cumulative Demand Schedule Note : 1.The above data display includes demand for UPI & Non-UPI bids. 2.In case of UPI bids, only bids with status as RC100 – “Mandate Accepted by Inve; no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7958&status=L · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange)",
+          "CENTURY BUSINESS MEDIA LIMITED: no categories https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7961&status=L · Cumulative Demand Schedule · Cumulative Demand Schedule Note : 1.The above data display includes demand for UPI & Non-UPI bids. 2.In case of UPI bids, only bids with status as RC100 – “Mandate Accepted by Inve; no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7961&status=L · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange)",
+          "INJECTO POLYMERS LIMITED: no categories https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7968&status=L · Cumulative Demand Schedule · Cumulative Demand Schedule Note : 1.The above data display includes demand for UPI & Non-UPI bids. 2.In case of UPI bids, only bids with status as RC100 – “Mandate Accepted by Inve; no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7968&status=L · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange)"
         ]
       },
       "Critical-backfill": {
@@ -113,24 +113,13 @@
     "errors": [],
     "subscriptionHealth": {
       "ok": false,
-      "attempted": 7,
-      "updated": 2,
+      "attempted": 5,
+      "updated": 0,
       "snapshotsAdded": 0,
       "failed": 5,
       "nseRecords": 0,
-      "bseFallbackRecords": 2,
-      "asOf": "2026-09-12T17:23:06+05:30",
-      "warnings": [
-        "Veegaland Developers Limited: NSE unavailable; used official BSE/BSE SME cumulative demand",
-        "Manika Plastech Limited: NSE unavailable; used official BSE/BSE SME cumulative demand"
-      ],
-      "errors": [
-        "Maharaja & Speedex India Limited: BSE cumulative demand page returned no headline categories",
-        "OM GALAXY LIMITED: BSE cumulative demand page returned no headline categories",
-        "RAKSAN TRANSFORMERS LIMITED: BSE cumulative demand page returned no headline categories",
-        "CENTURY BUSINESS MEDIA LIMITED: BSE cumulative demand page returned no headline categories",
-        "INJECTO POLYMERS LIMITED: BSE cumulative demand page returned no headline categories"
-      ],
+      "bseFallbackRecords": 0,
+      "asOf": "2026-09-12T17:30:18+05:30",
       "pageHealth": {
         "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
           "ok": true,
@@ -138,14 +127,22 @@
         },
         "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
           "ok": true,
-          "records": 29
+          "records": 28
         },
         "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2": {
           "ok": false,
           "records": 0,
-          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7fd717c7efc0>, 'Connection to www.bsesme.c"
+          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f5abcfb5010>, 'Connection to www.bsesme.c"
         }
-      }
+      },
+      "warnings": [],
+      "errors": [
+        "Maharaja & Speedex India Limited: no categories https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7962&status=L · Cumulative Demand Schedule · Cumulative Demand Schedule Note : 1.The above data display includes demand for UPI & Non-UPI bids. 2.In case of UPI bids, only bids with status as RC100 – “Mandate Accepted by Inve; no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7962&status=L · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange)",
+        "OM GALAXY LIMITED: no categories https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7960&status=L · Cumulative Demand Schedule · Cumulative Demand Schedule Note : 1.The above data display includes demand for UPI & Non-UPI bids. 2.In case of UPI bids, only bids with status as RC100 – “Mandate Accepted by Inve; no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7960&status=L · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange)",
+        "RAKSAN TRANSFORMERS LIMITED: no categories https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7958&status=L · Cumulative Demand Schedule · Cumulative Demand Schedule Note : 1.The above data display includes demand for UPI & Non-UPI bids. 2.In case of UPI bids, only bids with status as RC100 – “Mandate Accepted by Inve; no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7958&status=L · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange)",
+        "CENTURY BUSINESS MEDIA LIMITED: no categories https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7961&status=L · Cumulative Demand Schedule · Cumulative Demand Schedule Note : 1.The above data display includes demand for UPI & Non-UPI bids. 2.In case of UPI bids, only bids with status as RC100 – “Mandate Accepted by Inve; no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7961&status=L · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange)",
+        "INJECTO POLYMERS LIMITED: no categories https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7968&status=L · Cumulative Demand Schedule · Cumulative Demand Schedule Note : 1.The above data display includes demand for UPI & Non-UPI bids. 2.In case of UPI bids, only bids with status as RC100 – “Mandate Accepted by Inve; no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7968&status=L · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange)"
+      ]
     },
     "criticalBackfillHealth": {
       "ok": false,
