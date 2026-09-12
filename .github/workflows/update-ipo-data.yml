@@ -20,8 +20,10 @@ on:
       - "scripts/update_data.py"
       - "scripts/run_update.py"
       - "scripts/build_company_pages.py"
+      - "scripts/audit_data_completeness.py"
       - "tests/test_update_data.py"
       - "tests/test_company_routes.py"
+      - "tests/test_data_completeness.py"
       - "pyproject.toml"
       - ".github/workflows/update-ipo-data.yml"
   schedule:
@@ -61,6 +63,9 @@ jobs:
       - name: Run company-route tests
         run: uv run python -m unittest discover -s tests -p "test_company_routes.py" -v
 
+      - name: Run completeness-audit tests
+        run: uv run python -m unittest discover -s tests -p "test_data_completeness.py" -v
+
       - name: Record starting data revision
         run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
 
@@ -82,7 +87,7 @@ jobs:
           fi
           uv run python scripts/run_update.py $EXTRA
 
-      - name: Publish core data and permanent company routes safely
+      - name: Publish core data, routes and completeness audit safely
         shell: bash
         run: |
           cp data/ipos.json /tmp/generated-ipos.json
@@ -92,7 +97,7 @@ jobs:
 
           # Always publish on top of the latest branch tip. If another data writer
           # moved ipos.json during this run, discard this run's stale data but still
-          # rebuild company routes from the newer official dataset.
+          # rebuild routes/audit from the newer official dataset.
           git reset --hard origin/main
           if [ "$REMOTE_DATA" = "$BASE_DATA" ]; then
             cp /tmp/generated-ipos.json data/ipos.json
@@ -101,14 +106,15 @@ jobs:
           fi
 
           uv run python scripts/build_company_pages.py
+          uv run python scripts/audit_data_completeness.py
 
-          if [ -z "$(git status --porcelain -- data/ipos.json ipo/)" ]; then
-            echo "No core data or company-route changes"
+          if [ -z "$(git status --porcelain -- data/ipos.json data/completeness.json docs/DATA_QUALITY.md ipo/)" ]; then
+            echo "No core data, route or completeness changes"
             exit 0
           fi
 
           git config user.name "ipo-tracker-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/ipos.json ipo/
-          git commit -m "data: refresh core IPO data and company routes"
+          git add data/ipos.json data/completeness.json docs/DATA_QUALITY.md ipo/
+          git commit -m "data: refresh core IPO data, routes and completeness audit"
           git push origin HEAD:main
