@@ -15,9 +15,10 @@ import json
 import re
 import sys
 from datetime import datetime
+from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
-from urllib.parse import urlencode, urljoin
+from urllib.parse import parse_qs, urlencode, urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup
@@ -145,8 +146,7 @@ def parse_bse_demand_html(html: str) -> dict[str, float | None]:
         cells = [" ".join(c.stripped_strings).strip() for c in tr.select("th,td")]
         if len(cells) < 2:
             continue
-        # The category normally sits in the second cell (after Sr.No.), while
-        # Total starts in the first cell. Looking at the first two cells handles both.
+        # Category is normally the second cell (after Sr.No.); Total begins in first.
         category = " ".join(cells[:2])
         field, score = _classify_category(category)
         if not field:
@@ -262,29 +262,82 @@ class NSESubscriptionClient:
         return {}, series_options[-1]
 
 
-def _extract_bse_demand_url(tr, page_url: str) -> str | None:
-    """Find a Cumulative Demand Schedule URL in a BSE issue table row."""
-    for tag in tr.select("a"):
-        for raw in (tag.get("href"), tag.get("onclick")):
-            if not raw or "demandschedule" not in raw.lower():
-                continue
-            decoded = html_lib.unescape(raw)
-            match = re.search(
-                r"(?:https?://[^'\"\s)]+)?(?:/[^'\"\s)]*)?CummDemandSchedule\.aspx\?[^'\"\s)]+",
-                decoded,
-                flags=re.I,
-            )
-            if match:
-                return urljoin(page_url, match.group(0))
-
-    # Some BSE rows use JavaScript markup rather than a conventional anchor href.
-    markup = html_lib.unescape(str(tr))
+def _find_url(raw: str | None, page_name: str, page_url: str) -> str | None:
+    if not raw or page_name.lower() not in raw.lower():
+        return None
+    decoded = html_lib.unescape(raw)
     match = re.search(
-        r"(?:https?://[^'\"\s)]+)?(?:/[^'\"\s)]*)?CummDemandSchedule\.aspx\?[^'\"\s)<>]+",
-        markup,
+        rf"(?:https?://[^'\"\s)]+)?(?:/[^'\"\s)]*)?{re.escape(page_name)}\?[^'\"\s)<>]+",
+        decoded,
         flags=re.I,
     )
     return urljoin(page_url, match.group(0)) if match else None
+
+
+def _extract_bse_demand_url(tr, page_url: str) -> str | None:
+    """Find a direct Cumulative Demand Schedule URL in BSE markup."""
+    for tag in tr.select("a"):
+        for raw in (tag.get("href"), tag.get("onclick")):
+            found = _find_url(raw, "CummDemandSchedule.aspx", page_url)
+            if found:
+                return found
+    return _find_url(str(tr), "CummDemandSchedule.aspx", page_url)
+
+
+def _extract_bse_display_link(tr, page_url: str) -> tuple[str | None, str | None]:
+    """Return (company label, DisplayIPO URL) from one BSE issue-table row."""
+    for tag in tr.select("a"):
+        for raw in (tag.get("href"), tag.get("onclick")):
+            found = _find_url(raw, "DisplayIPO.aspx", page_url)
+            if found:
+                label = " ".join(tag.stripped_strings).strip() or None
+                if not label:
+                    cells = [" ".join(c.stripped_strings).strip() for c in tr.select("td")]
+                    label = cells[0] if cells else None
+                return label, found
+
+    found = _find_url(str(tr), "DisplayIPO.aspx", page_url)
+    if not found:
+        return None, None
+    cells = [" ".join(c.stripped_strings).strip() for c in tr.select("td")]
+    return (cells[0] if cells else None), found
+
+
+def _demand_url_from_display_url(display_url: str) -> str | None:
+    """BSE DisplayIPO URLs carry the IPONo used by CummDemandSchedule.
+
+    Example official route:
+    DisplayIPO.aspx?...&IPONo=612 -> CummDemandSchedule.aspx?ID=612&status=L
+    """
+    parsed = urlparse(html_lib.unescape(display_url))
+    query = {str(k).lower(): v for k, v in parse_qs(parsed.query).items()}
+    values = query.get("ipono") or []
+    if not values:
+        return None
+    ipo_no = re.sub(r"[^0-9]", "", str(values[0]))
+    if not ipo_no:
+        return None
+    base = urljoin(display_url, "CummDemandSchedule.aspx")
+    return f"{base}?{urlencode({'ID': ipo_no, 'status': 'L'})}"
+
+
+def _row_company_key(tr, label: str | None = None) -> str:
+    candidates = []
+    if label:
+        candidates.append(label)
+    for tag in tr.select("a"):
+        text = " ".join(tag.stripped_strings).strip()
+        low = text.lower()
+        if text and not any(x in low for x in ("cumulative", "demand", "bid detail", "more")):
+            candidates.append(text)
+    cells = [" ".join(c.stripped_strings).strip() for c in tr.select("td")]
+    if cells:
+        candidates.append(cells[0])
+    for text in candidates:
+        key = core.canonical_company(text)
+        if key:
+            return key
+    return ""
 
 
 class BSESubscriptionClient:
@@ -309,18 +362,33 @@ class BSESubscriptionClient:
                 r.raise_for_status()
                 soup = BeautifulSoup(r.text, "html.parser")
                 index: list[tuple[str, str]] = []
+                display_links = direct_links = 0
                 for tr in soup.select("tr"):
-                    demand_url = _extract_bse_demand_url(tr, page_url)
+                    label, display_url = _extract_bse_display_link(tr, page_url)
+                    demand_url = None
+                    if display_url:
+                        display_links += 1
+                        demand_url = _demand_url_from_display_url(display_url)
+                    if not demand_url:
+                        demand_url = _extract_bse_demand_url(tr, page_url)
+                        if demand_url:
+                            direct_links += 1
                     if not demand_url:
                         continue
-                    text = " ".join(tr.stripped_strings)
-                    key = core.canonical_company(text)
+                    key = _row_company_key(tr, label)
                     if key:
                         index.append((key, demand_url))
                 if index:
                     self._index = index
+                    print(
+                        f"BSE subscription index: {len(index)} issues "
+                        f"({display_links} DisplayIPO links, {direct_links} direct demand links)"
+                    )
                     return
-                last_error = ValueError(f"No BSE cumulative-demand links found at {page_url}")
+                last_error = ValueError(
+                    f"No BSE IPO detail links found at {page_url} "
+                    f"(DisplayIPO={display_links}, directDemand={direct_links})"
+                )
             except Exception as exc:  # noqa: BLE001 - try beta BSE as fallback
                 last_error = exc
         self._index_error = last_error or ValueError("BSE issue index unavailable")
@@ -329,19 +397,15 @@ class BSESubscriptionClient:
     def detail(self, company: str):
         self._load_index()
         needle = core.canonical_company(company)
-        matches = [(key, url) for key, url in (self._index or []) if needle and needle in key]
+        matches = [(key, url) for key, url in (self._index or []) if needle and (needle in key or key in needle)]
         if not matches:
-            # In case the row contains abbreviated legal wording, use the same fuzzy
-            # canonical matching threshold as the core updater.
             scored = []
-            from difflib import SequenceMatcher
-
             for key, url in self._index or []:
-                ratio = SequenceMatcher(None, needle, key[: max(len(needle) + 12, 1)]).ratio()
-                scored.append((ratio, url))
+                ratio = SequenceMatcher(None, needle, key).ratio()
+                scored.append((ratio, url, key))
             scored.sort(reverse=True)
             if scored and scored[0][0] >= 0.72:
-                matches = [(needle, scored[0][1])]
+                matches = [(scored[0][2], scored[0][1])]
         if not matches:
             raise ValueError(f"BSE cumulative-demand link not found for {company}")
 
@@ -462,7 +526,9 @@ def main():
                 )
                 source_counts["BSE"] += 1
                 source_used = "BSE"
-                warnings.append(f"{company}: NSE unavailable ({nse_exc}); used BSE cumulative demand")
+                warnings.append(
+                    f"{company}: NSE unavailable ({nse_exc}); used BSE cumulative demand"
+                )
 
             updated += 1
             snapshots_added += int(added)
