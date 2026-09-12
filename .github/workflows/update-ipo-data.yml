@@ -1,0 +1,58 @@
+name: Update IPO data
+
+on:
+  workflow_dispatch:
+    inputs:
+      bootstrap_history:
+        description: "Backfill full IPO history from 2000 (slower)"
+        required: false
+        type: boolean
+        default: false
+  schedule:
+    # Hourly. GitHub cron is UTC. The updater itself uses Asia/Kolkata dates.
+    - cron: "17 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ipo-data-refresh
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Sync dependencies
+        run: uv sync --frozen=false
+
+      - name: Refresh IPO data
+        shell: bash
+        run: |
+          if [ "${{ github.event.inputs.bootstrap_history }}" = "true" ]; then
+            uv run python scripts/update_data.py --bootstrap-history --history-from 2000-01-01
+          else
+            uv run python scripts/update_data.py --history-days 365
+          fi
+
+      - name: Commit changed data
+        run: |
+          if git diff --quiet -- data/ipos.json; then
+            echo "No data changes"
+            exit 0
+          fi
+          git config user.name "ipo-tracker-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ipos.json
+          git commit -m "data: refresh IPO tracker"
+          git push
