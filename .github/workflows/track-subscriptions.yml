@@ -9,11 +9,13 @@ on:
       - "scripts/track_subscriptions.py"
       - "scripts/priority_subscriptions.py"
       - "scripts/run_priority_subscriptions_v2.py"
+      - "scripts/run_priority_subscriptions_v3.py"
       - "scripts/audit_data_completeness.py"
       - "scripts/build_missing_queue.py"
       - "tests/test_subscription_tracking.py"
       - "tests/test_priority_subscriptions.py"
       - "tests/test_priority_subscriptions_v2.py"
+      - "tests/test_priority_subscriptions_v3.py"
       - "tests/test_data_completeness.py"
       - "tests/test_missing_queue.py"
       - ".github/workflows/track-subscriptions.yml"
@@ -58,6 +60,9 @@ jobs:
       - name: Run current BSE route tests
         run: uv run python -m unittest discover -s tests -p "test_priority_subscriptions_v2.py" -v
 
+      - name: Run secondary fallback tests
+        run: uv run python -m unittest discover -s tests -p "test_priority_subscriptions_v3.py" -v
+
       - name: Run completeness-audit tests
         run: uv run python -m unittest discover -s tests -p "test_data_completeness.py" -v
 
@@ -68,7 +73,7 @@ jobs:
         run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
 
       - name: Capture priority live QIB, NII, Retail and Total demand
-        run: uv run python scripts/run_priority_subscriptions_v2.py --limit 30
+        run: uv run python scripts/run_priority_subscriptions_v3.py --limit 30
 
       - name: Publish changed subscription history and audit safely
         shell: bash
