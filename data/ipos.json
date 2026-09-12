@@ -93,8 +93,21 @@
       },
       "Critical-backfill": {
         "ok": false,
+        "records": 20,
+        "asOf": "2026-09-12T17:28:24+05:30"
+      },
+      "SEBI-document-links": {
+        "ok": true,
         "records": 7,
-        "asOf": "2026-09-12T17:22:32+05:30"
+        "attempted": 7,
+        "asOf": "2026-09-12T17:28:23+05:30",
+        "errors": []
+      },
+      "Offer-docs": {
+        "ok": true,
+        "records": 0,
+        "attempted": 0,
+        "failed": 0
       }
     },
     "errors": [],
@@ -136,45 +149,72 @@
     },
     "criticalBackfillHealth": {
       "ok": false,
-      "targetCount": 7,
-      "priorityMax": 0,
-      "asOf": "2026-09-12T17:22:32+05:30",
-      "subscriptions": {
+      "targetCount": 20,
+      "priorityMax": 2,
+      "asOf": "2026-09-12T17:28:24+05:30",
+      "documents": {
         "ok": false,
         "attempted": 7,
-        "updated": 2,
-        "snapshotsAdded": 0,
-        "failed": 5,
-        "nseRecords": 0,
-        "bseFallbackRecords": 2,
-        "asOf": "2026-09-12T17:23:06+05:30",
-        "warnings": [
-          "Veegaland Developers Limited: NSE unavailable; used official BSE/BSE SME cumulative demand",
-          "Manika Plastech Limited: NSE unavailable; used official BSE/BSE SME cumulative demand"
-        ],
+        "extracted": 0,
+        "failed": 7,
+        "documentsDiscovered": 0,
+        "discoveryHealth": {
+          "ok": false,
+          "records": 0,
+          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f975918e720>, 'Connection to www.bsesme.com time"
+        },
         "errors": [
-          "Maharaja & Speedex India Limited: BSE cumulative demand page returned no headline categories",
-          "OM GALAXY LIMITED: BSE cumulative demand page returned no headline categories",
-          "RAKSAN TRANSFORMERS LIMITED: BSE cumulative demand page returned no headline categories",
-          "CENTURY BUSINESS MEDIA LIMITED: BSE cumulative demand page returned no headline categories",
-          "INJECTO POLYMERS LIMITED: BSE cumulative demand page returned no headline categories"
+          "SS Retail Limited: URL did not return a PDF (text/html; charset=utf-8)",
+          "Jindal Supreme (India) Limited: URL did not return a PDF (text/html; charset=utf-8)",
+          "Hero Motors Limited: URL did not return a PDF (text/html; charset=utf-8)",
+          "Glass Wall Systems (India) Limited: URL did not return a PDF (text/html; charset=utf-8)",
+          "Prasol Chemicals Limited: URL did not return a PDF (text/html; charset=utf-8)",
+          "Rentomojo Limited: URL did not return a PDF (text/html; charset=utf-8)",
+          "Tempsens Instruments (India) Limited: URL did not return a PDF (text/html; charset=utf-8)"
         ],
-        "pageHealth": {
-          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
-            "ok": true,
-            "records": 0
-          },
-          "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
-            "ok": true,
-            "records": 29
-          },
-          "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2": {
-            "ok": false,
-            "records": 0,
-            "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7fd717c7efc0>, 'Connection to www.bsesme.c"
-          }
-        }
+        "asOf": "2026-09-12T17:29:02+05:30"
       }
+    },
+    "sebiDocumentLinkHealth": {
+      "ok": true,
+      "attempted": 7,
+      "resolvedPages": 7,
+      "linksAdded": 7,
+      "failed": 0,
+      "asOf": "2026-09-12T17:28:23+05:30",
+      "errors": []
+    },
+    "offerDocumentHealth": {
+      "ok": true,
+      "attempted": 0,
+      "extracted": 0,
+      "failed": 0,
+      "eligibleRemaining": 0,
+      "parserVersion": 1,
+      "asOf": "2026-09-12T17:28:24+05:30",
+      "errors": []
+    },
+    "criticalOfferDocumentHealth": {
+      "ok": false,
+      "attempted": 7,
+      "extracted": 0,
+      "failed": 7,
+      "documentsDiscovered": 0,
+      "discoveryHealth": {
+        "ok": false,
+        "records": 0,
+        "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f975918e720>, 'Connection to www.bsesme.com time"
+      },
+      "errors": [
+        "SS Retail Limited: URL did not return a PDF (text/html; charset=utf-8)",
+        "Jindal Supreme (India) Limited: URL did not return a PDF (text/html; charset=utf-8)",
+        "Hero Motors Limited: URL did not return a PDF (text/html; charset=utf-8)",
+        "Glass Wall Systems (India) Limited: URL did not return a PDF (text/html; charset=utf-8)",
+        "Prasol Chemicals Limited: URL did not return a PDF (text/html; charset=utf-8)",
+        "Rentomojo Limited: URL did not return a PDF (text/html; charset=utf-8)",
+        "Tempsens Instruments (India) Limited: URL did not return a PDF (text/html; charset=utf-8)"
+      ],
+      "asOf": "2026-09-12T17:29:02+05:30"
     }
   },
   "ipos": [
@@ -501,6 +541,13 @@
           "url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/SS%20RETAIL%20LIMITED%20-%20AP_p.pdf",
           "filedDate": null,
           "source": "SEBI"
+        },
+        {
+          "type": "RHP",
+          "title": "SEBI RHP",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788946092145.pdf",
+          "source": "SEBI",
+          "filedDate": null
         }
       ],
       "validation": {
@@ -642,6 +689,13 @@
           "url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Jindal%20Supreme%20(India)%20Limited%20-%20AP_p.PDF",
           "filedDate": null,
           "source": "SEBI"
+        },
+        {
+          "type": "RHP",
+          "title": "SEBI RHP",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788843844738.PDF",
+          "source": "SEBI",
+          "filedDate": null
         }
       ],
       "validation": {
@@ -807,6 +861,13 @@
           "url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/HERO%20MOTORS%20LIMITED%20-%20AP_p.pdf",
           "filedDate": null,
           "source": "SEBI"
+        },
+        {
+          "type": "RHP",
+          "title": "SEBI RHP",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789013295445.pdf",
+          "source": "SEBI",
+          "filedDate": null
         }
       ],
       "validation": {
@@ -1829,6 +1890,13 @@
           "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/rentomojo-limited-addendum-to-rhp_104349.html",
           "filedDate": null,
           "source": "SEBI"
+        },
+        {
+          "type": "RHP",
+          "title": "SEBI RHP",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788934492263.pdf",
+          "source": "SEBI",
+          "filedDate": null
         }
       ],
       "sources": [
@@ -2174,6 +2242,13 @@
           "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/prasol-chemicals-limited-addendum-to-rhp_104322.html",
           "filedDate": null,
           "source": "SEBI"
+        },
+        {
+          "type": "RHP",
+          "title": "SEBI RHP",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788781595860.pdf",
+          "source": "SEBI",
+          "filedDate": null
         }
       ],
       "validation": {
@@ -2306,6 +2381,13 @@
           "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/glass-wall-systems-india-limited-prospectus_104426.html",
           "filedDate": null,
           "source": "SEBI"
+        },
+        {
+          "type": "PROSPECTUS",
+          "title": "SEBI PROSPECTUS",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789099730206.pdf",
+          "source": "SEBI",
+          "filedDate": null
         }
       ],
       "validation": {
@@ -3398,6 +3480,13 @@
           "url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Tempsens%20Instruments%20(India)%20Limited%20-%20AP_p.pdf",
           "filedDate": null,
           "source": "SEBI"
+        },
+        {
+          "type": "RHP",
+          "title": "SEBI RHP",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788841692972.pdf",
+          "source": "SEBI",
+          "filedDate": null
         }
       ],
       "validation": {
