@@ -87,9 +87,44 @@ def official_demand_route_variants(url: str) -> list[str]:
 
 base._alternate_bse_hosts = official_demand_route_variants
 
+
+def fetch_demand(session, rows):
+    """Fetch demand using the issue-detail page as the official referrer.
+
+    BSE's migrated public-issue pages are more reliable when the cumulative-
+    demand request follows the same navigation chain a browser uses: index ->
+    DisplayIPO -> cumulative demand. ``demand_candidates`` already visits the
+    DisplayIPO page with this same session, so its cookies are retained here.
+    """
+    urls, diagnostics = base.demand_candidates(session, rows)
+    attempts: list[str] = []
+    referer = None
+    if rows:
+        referer = rows[0].display_url or rows[0].index_url
+    referer = referer or base.core.BSE_URL
+
+    for url in urls:
+        try:
+            response = session.get(url, timeout=25, headers={"Referer": referer})
+            response.raise_for_status()
+            parsed = base.sub.parse_bse_demand_html(response.text)
+            if any(value is not None for value in parsed.values()):
+                return parsed, url, diagnostics + attempts
+            soup = base.BeautifulSoup(response.text, "html.parser")
+            title = " ".join(soup.title.stripped_strings).strip() if soup.title else "no title"
+            attempts.append(
+                f"no categories {url} · {title} · {base.diagnose_demand_html(response.text)}"
+            )
+        except Exception as exc:
+            attempts.append(f"fetch failed {url}: {exc}")
+
+    raise ValueError("; ".join((diagnostics + attempts)[-8:]) or "no BSE demand candidates")
+
+
+base.fetch_demand = fetch_demand
+
 IssueLink = base.IssueLink
 demand_candidates = base.demand_candidates
-fetch_demand = base.fetch_demand
 priority_open_targets = base.priority_open_targets
 
 
