@@ -24,6 +24,28 @@ class PrioritySubscriptionV2Tests(unittest.TestCase):
         )
         self.assertIn(url, variants)
 
+    def test_legacy_status_and_status_free_variants_are_added(self):
+        url = "https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7962&status=L"
+        variants = mod.official_demand_route_variants(url)
+        self.assertIn(
+            "https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7962",
+            variants,
+        )
+        self.assertIn(
+            "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7962&status=F",
+            variants,
+        )
+        self.assertIn(
+            "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7962&status=H",
+            variants,
+        )
+
+    def test_issue_id_parser_is_case_insensitive(self):
+        self.assertEqual(
+            mod._demand_id("https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?id=7968"),
+            "7968",
+        )
+
     def test_non_demand_url_keeps_normal_official_host_variants(self):
         url = "https://www.bseindia.com/markets/publicIssues/DisplayIPO.aspx?IPONo=7960"
         variants = mod.official_demand_route_variants(url)
