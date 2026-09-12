@@ -97,13 +97,13 @@
       "Critical-backfill": {
         "ok": true,
         "records": 20,
-        "asOf": "2026-09-13T04:36:02+05:30"
+        "asOf": "2026-09-13T04:58:47+05:30"
       },
       "SEBI-document-links": {
         "ok": true,
         "records": 0,
         "attempted": 7,
-        "asOf": "2026-09-13T04:32:59+05:30",
+        "asOf": "2026-09-13T04:53:36+05:30",
         "errors": []
       },
       "Offer-docs": {
@@ -113,14 +113,16 @@
         "failed": 0
       },
       "Issuer-offer-docs": {
-        "ok": true,
-        "records": 5,
-        "attempted": 5,
-        "updated": 5,
+        "ok": false,
+        "records": 3,
+        "attempted": 4,
+        "updated": 0,
         "deepScanned": 0,
-        "failed": 0,
-        "asOf": "2026-09-13T04:36:02+05:30",
-        "errors": []
+        "failed": 1,
+        "asOf": "2026-09-13T04:58:47+05:30",
+        "errors": [
+          "INJECTO POLYMERS LIMITED: HTTPSConnectionPool(host='injectopolymers.in', port=443): Max retries exceeded with url: /wp-content/uploads/2026/09/1.-RHP_07.09.2026.pdf (Caused by ConnectTimeoutError(<HTTPSConnection(host='injectopolymers.in', port=443) at 0x7f31ca0b2180>, 'Connection to injectopolymers.in timed out. (connect timeout=45)'))"
+        ]
       }
     },
     "errors": [],
@@ -130,8 +132,8 @@
       "extracted": 12,
       "failed": 0,
       "eligibleRemaining": 0,
-      "parserVersion": 5,
-      "asOf": "2026-09-13T04:34:34+05:30",
+      "parserVersion": 6,
+      "asOf": "2026-09-13T04:55:19+05:30",
       "errors": []
     },
     "subscriptionHealth": {
@@ -171,6 +173,61 @@
         "INJECTO POLYMERS LIMITED: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7968&status=H · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · ); used explicitly labelled IPO Dhamaka subscription (secondary)"
       ],
       "errors": []
+    },
+    "sebiDocumentLinkHealth": {
+      "ok": true,
+      "attempted": 7,
+      "resolvedPages": 7,
+      "linksAdded": 0,
+      "failed": 0,
+      "asOf": "2026-09-13T04:53:36+05:30",
+      "errors": []
+    },
+    "issuerOfferDocumentHealth": {
+      "ok": false,
+      "attempted": 4,
+      "extracted": 3,
+      "updated": 0,
+      "deepScanned": 0,
+      "failed": 1,
+      "asOf": "2026-09-13T04:58:47+05:30",
+      "errors": [
+        "INJECTO POLYMERS LIMITED: HTTPSConnectionPool(host='injectopolymers.in', port=443): Max retries exceeded with url: /wp-content/uploads/2026/09/1.-RHP_07.09.2026.pdf (Caused by ConnectTimeoutError(<HTTPSConnection(host='injectopolymers.in', port=443) at 0x7f31ca0b2180>, 'Connection to injectopolymers.in timed out. (connect timeout=45)'))"
+      ]
+    },
+    "criticalOfferDocumentHealth": {
+      "ok": true,
+      "attempted": 3,
+      "extracted": 3,
+      "failed": 0,
+      "documentsDiscovered": 0,
+      "discoveryHealth": {
+        "ok": false,
+        "records": 0,
+        "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7fa08c0a6c60>, 'Connection to www.bsesme.com time"
+      },
+      "errors": [],
+      "asOf": "2026-09-13T05:02:53+05:30"
+    },
+    "criticalBackfillHealth": {
+      "ok": true,
+      "targetCount": 20,
+      "priorityMax": 2,
+      "asOf": "2026-09-13T04:58:47+05:30",
+      "documents": {
+        "ok": true,
+        "attempted": 3,
+        "extracted": 3,
+        "failed": 0,
+        "documentsDiscovered": 0,
+        "discoveryHealth": {
+          "ok": false,
+          "records": 0,
+          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7fa08c0a6c60>, 'Connection to www.bsesme.com time"
+        },
+        "errors": [],
+        "asOf": "2026-09-13T05:02:53+05:30"
+      }
     }
   },
   "ipos": [
@@ -400,7 +457,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 5,
+        "parserVersion": 6,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Sonaselection%20India%20Limited%20%20-%20AP_p.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "SONASELECTION INDIA LIMITED - Abridged Prospectus",
@@ -417,7 +474,7 @@
           "objectsOfIssue",
           "shareholding"
         ],
-        "extractedAt": "2026-09-13T04:33:02+05:30",
+        "extractedAt": "2026-09-13T04:53:41+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/sona/",
@@ -564,7 +621,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 5,
+        "parserVersion": 6,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788946092145.pdf",
         "documentType": "RHP",
         "documentTitle": "SEBI RHP",
@@ -580,7 +637,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T04:38:40+05:30",
+        "extractedAt": "2026-09-13T05:01:45+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/ssretail/",
@@ -759,7 +816,8 @@
             "netWorthCr": 9682.48,
             "roePct": 11.0,
             "eps": 2.05,
-            "ronwPct": 2024.0
+            "ronwPct": 2024.0,
+            "patCr": 0.05
           },
           {
             "period": "FY2025",
@@ -768,7 +826,8 @@
             "netWorthCr": 19700.08,
             "roePct": 8.2,
             "eps": 1.66,
-            "ronwPct": 27.98
+            "ronwPct": 27.98,
+            "patCr": 0.06
           },
           {
             "period": "FY2024",
@@ -777,7 +836,8 @@
             "netWorthCr": 105360.7,
             "roePct": 26.28,
             "eps": 1.92,
-            "ronwPct": 1.0
+            "ronwPct": 1.0,
+            "patCr": 0.07
           }
         ]
       },
@@ -791,7 +851,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 5,
+        "parserVersion": 6,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788843844738.PDF",
         "documentType": "RHP",
         "documentTitle": "SEBI RHP",
@@ -807,7 +867,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T04:37:22+05:30",
+        "extractedAt": "2026-09-13T05:00:14+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/jsipl/",
@@ -1012,19 +1072,22 @@
             "period": "FY2026",
             "patCr": 0.175,
             "netWorthCr": 1.977,
-            "roePct": 9.08
+            "roePct": 9.08,
+            "revenueCr": 0.595
           },
           {
             "period": "FY2025",
             "patCr": 0.185,
             "netWorthCr": 1.884,
-            "roePct": 8.19
+            "roePct": 8.19,
+            "revenueCr": 0.587
           },
           {
             "period": "FY2024",
             "patCr": 0.266,
             "netWorthCr": 2.323,
-            "roePct": 4.78
+            "roePct": 4.78,
+            "revenueCr": 0.567
           }
         ]
       },
@@ -1038,7 +1101,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 5,
+        "parserVersion": 6,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789013295445.pdf",
         "documentType": "RHP",
         "documentTitle": "SEBI RHP",
@@ -1054,7 +1117,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T04:39:38+05:30",
+        "extractedAt": "2026-09-13T05:02:53+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/heromotors/",
@@ -1840,7 +1903,7 @@
       ],
       "issuerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 5,
+        "parserVersion": 6,
         "documentUrl": "https://centurymedia.in/wp-content/uploads/2026/09/Red-Herring-Prospectus.pdf",
         "documentType": "RHP",
         "documentTitle": "Red Herring Prospectus",
@@ -1856,10 +1919,8 @@
           "financials",
           "objectsOfIssue"
         ],
-        "changedFields": [
-          "financials"
-        ],
-        "extractedAt": "2026-09-13T04:35:28+05:30",
+        "changedFields": [],
+        "extractedAt": "2026-09-13T04:56:29+05:30",
         "source": "Issuer website"
       },
       "financials": {
@@ -2445,7 +2506,7 @@
       ],
       "issuerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 5,
+        "parserVersion": 6,
         "documentUrl": "https://omgalaxymould.com/wp-content/uploads/2026/09/Project-Om_-RHP_with_RFS.pdf",
         "documentType": "RHP",
         "documentTitle": "Red Herring Prospectus",
@@ -2460,11 +2521,8 @@
           "financials",
           "objectsOfIssue"
         ],
-        "changedFields": [
-          "promoters",
-          "financials"
-        ],
-        "extractedAt": "2026-09-13T04:34:57+05:30",
+        "changedFields": [],
+        "extractedAt": "2026-09-13T04:56:14+05:30",
         "source": "Issuer website"
       },
       "promoters": [
@@ -2671,7 +2729,7 @@
       ],
       "issuerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 5,
+        "parserVersion": 6,
         "documentUrl": "https://speedexind.com/wp-content/uploads/2026/09/SPeedex-RHP.pdf",
         "documentType": "RHP",
         "documentTitle": "Red Herring Prospectus",
@@ -2686,10 +2744,8 @@
           "financials",
           "objectsOfIssue"
         ],
-        "changedFields": [
-          "financials"
-        ],
-        "extractedAt": "2026-09-13T04:35:17+05:30",
+        "changedFields": [],
+        "extractedAt": "2026-09-13T04:55:44+05:30",
         "source": "Issuer website"
       },
       "financials": {
@@ -2901,7 +2957,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 5,
+        "parserVersion": 6,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788934492263.pdf",
         "documentType": "RHP",
         "documentTitle": "SEBI RHP",
@@ -2914,7 +2970,7 @@
           "promoters",
           "issueComposition"
         ],
-        "extractedAt": "2026-09-13T04:33:30+05:30",
+        "extractedAt": "2026-09-13T04:54:14+05:30",
         "source": "SEBI"
       }
     },
@@ -3276,7 +3332,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 5,
+        "parserVersion": 6,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788781595860.pdf",
         "documentType": "RHP",
         "documentTitle": "SEBI RHP",
@@ -3291,7 +3347,7 @@
           "issueComposition",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T04:33:33+05:30",
+        "extractedAt": "2026-09-13T04:54:17+05:30",
         "source": "SEBI"
       }
     },
@@ -3497,7 +3553,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 5,
+        "parserVersion": 6,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789099730206.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "SEBI PROSPECTUS",
@@ -3513,7 +3569,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T04:34:31+05:30",
+        "extractedAt": "2026-09-13T04:55:16+05:30",
         "source": "SEBI"
       },
       "freshIssueCr": 46.05,
@@ -4702,7 +4758,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 5,
+        "parserVersion": 6,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Tempsens%20Instruments%20(India)%20Limited%20-%20AP_p.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "Tempsens Instruments (India) Limited - Abridged Prospectus",
@@ -4718,7 +4774,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T04:34:34+05:30",
+        "extractedAt": "2026-09-13T04:55:19+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/tempsens/",
@@ -78745,21 +78801,24 @@
             "revenueCr": 1788.011,
             "netWorthCr": 2219.978,
             "ebitdaCr": 306.744,
-            "eps": 10.0
+            "eps": 10.0,
+            "patCr": 0.8
           },
           {
             "period": "FY2025",
             "revenueCr": 1396.781,
             "netWorthCr": 1865.41,
             "ebitdaCr": 185.191,
-            "eps": 0.78
+            "eps": 0.78,
+            "patCr": 36.5
           },
           {
             "period": "FY2024",
             "revenueCr": 5933.392,
             "netWorthCr": 2091.921,
             "ebitdaCr": 850.794,
-            "eps": 0.33
+            "eps": 0.33,
+            "patCr": 9.1
           }
         ]
       },
@@ -78773,7 +78832,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 5,
+        "parserVersion": 6,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Torrent%20Gas%20Limited%20-%20DAP_p.pdf",
         "documentType": "DRHP",
         "documentTitle": "Torrent Gas Limited - Draft Abridged Prospectus",
@@ -78789,7 +78848,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T04:33:17+05:30",
+        "extractedAt": "2026-09-13T04:53:59+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/torrent-gas-limited/",
@@ -78951,7 +79010,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 5,
+        "parserVersion": 6,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/NATIONAL%20STOCK%20EXCHANGE%20OF%20INDIA%20LIMITED%20-%20AP_p.pdf",
         "documentType": "DRHP",
         "documentTitle": "NATIONAL STOCK EXCHANGE OF INDIA LIMITED - Draft Abridged Prospectus",
@@ -78966,7 +79025,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T04:33:21+05:30",
+        "extractedAt": "2026-09-13T04:54:03+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/national-stock-exchange-of-india-limited/",
@@ -79180,7 +79239,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 5,
+        "parserVersion": 6,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/NOPAPERFORMS%20SOLUTIONS%20LIMITED%20-%20DAP_p.pdf",
         "documentType": "DRHP",
         "documentTitle": "NOPAPERFORMS SOLUTIONS LIMITED - Draft Abridged Prospectus",
@@ -79196,7 +79255,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T04:33:24+05:30",
+        "extractedAt": "2026-09-13T04:54:07+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/nopaperforms-solutions-limited/",
@@ -79376,7 +79435,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 5,
+        "parserVersion": 6,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/M%20K%20C%20AGRO%20FRESH%20LIMITED%20-%20DAP_p.pdf",
         "documentType": "DRHP",
         "documentTitle": "M K C AGRO FRESH LIMITED - Draft Abridged prospectus",
@@ -79392,7 +79451,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T04:33:26+05:30",
+        "extractedAt": "2026-09-13T04:54:10+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/m-k-c-agro-fresh-limited/",
