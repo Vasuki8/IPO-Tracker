@@ -8,6 +8,8 @@ refresh workflow.
 """
 from __future__ import annotations
 
+from collections import Counter
+import hashlib
 import html
 import json
 import re
@@ -29,6 +31,52 @@ def route_slug(value: str) -> str:
     return text or "ipo"
 
 
+def _identity(record: dict) -> str:
+    fields = (
+        record.get("id"),
+        record.get("company"),
+        record.get("matchKey"),
+        record.get("openDate"),
+        record.get("listingDate"),
+        record.get("board"),
+        record.get("exchange"),
+    )
+    return "|".join(str(value or "") for value in fields)
+
+
+def assign_routes(records: list[dict]) -> list[tuple[dict, str]]:
+    """Assign stable clean routes and add profilePath to every record.
+
+    Historical exchange identifiers are mostly URL-safe already, but a few
+    normalize to the same slug. Colliding bases get a stable short identity hash
+    so two different IPO records can never silently share one page.
+    """
+    bases = [route_slug(str(row.get("id") or row.get("company") or "")) for row in records]
+    counts = Counter(bases)
+    used: set[str] = set()
+    assigned: list[tuple[dict, str]] = []
+
+    for record, base in zip(records, bases):
+        route = base
+        if counts[base] > 1:
+            digest = hashlib.sha1(_identity(record).encode("utf-8")).hexdigest()[:8]
+            route = f"{base}--{digest}"
+        if route in used:
+            # Only possible for exact duplicate identities. Keep the route unique
+            # without changing the stable base for normal records.
+            suffix = 2
+            candidate = f"{route}-{suffix}"
+            while candidate in used:
+                suffix += 1
+                candidate = f"{route}-{suffix}"
+            route = candidate
+        used.add(route)
+        record["profilePath"] = f"ipo/{route}/"
+        assigned.append((record, route))
+
+    return assigned
+
+
 def page_html(record: dict, route: str) -> str:
     company = str(record.get("company") or "Indian IPO")
     symbol = str(record.get("symbol") or record.get("exchange") or "IPO")
@@ -40,6 +88,7 @@ def page_html(record: dict, route: str) -> str:
     company_html = html.escape(company, quote=True)
     symbol_html = html.escape(symbol, quote=True)
     record_id = html.escape(str(record.get("id") or ""), quote=True)
+    profile_path = html.escape(str(record.get("profilePath") or f"ipo/{route}/"), quote=True)
     route_html = html.escape(route, quote=True)
 
     return f'''<!doctype html>
@@ -61,7 +110,7 @@ def page_html(record: dict, route: str) -> str:
   <link rel="stylesheet" href="company.css" />
   <link rel="stylesheet" href="company-page.css" />
 </head>
-<body class="company-route-body" data-ipo-id="{record_id}">
+<body class="company-route-body" data-ipo-id="{record_id}" data-profile-path="{profile_path}">
   <div class="company-route-shell">
     <header class="topbar company-route-topbar">
       <a class="brand" href="./" aria-label="Back to India IPO Tracker" style="text-decoration:none;color:inherit">
@@ -109,15 +158,15 @@ def main() -> int:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
     previous = load_manifest()
-    current: set[str] = set()
-    written = unchanged = skipped = 0
+    assigned = assign_routes(records)
+    current = {route for _, route in assigned}
+    written = unchanged = 0
 
-    for record in records:
-        route = route_slug(str(record.get("id") or record.get("company") or ""))
-        if not route:
-            skipped += 1
-            continue
-        current.add(route)
+    # profilePath is part of the normalized public record so the dashboard can
+    # link to the exact route even when a collision needed a hash suffix.
+    DATA_FILE.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    for record, route in assigned:
         target_dir = OUT_DIR / route
         target_dir.mkdir(parents=True, exist_ok=True)
         target = target_dir / "index.html"
@@ -144,8 +193,10 @@ def main() -> int:
     MANIFEST.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(
         f"Company routes: records={len(records)}, routes={len(current)}, "
-        f"written={written}, unchanged={unchanged}, removed={removed}, skipped={skipped}"
+        f"written={written}, unchanged={unchanged}, removed={removed}"
     )
+    if len(current) != len(records):
+        raise RuntimeError("Permanent-route count does not match IPO record count")
     return 0
 
 
