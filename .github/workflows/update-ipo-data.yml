@@ -19,6 +19,7 @@ on:
     paths:
       - "scripts/update_data.py"
       - "scripts/run_update.py"
+      - "scripts/run_update_v2.py"
       - "scripts/normalize_source_health.py"
       - "scripts/enrich_exchange_details.py"
       - "scripts/critical_backfill.py"
@@ -26,6 +27,7 @@ on:
       - "scripts/audit_data_completeness.py"
       - "scripts/build_missing_queue.py"
       - "tests/test_update_data.py"
+      - "tests/test_update_data_v2.py"
       - "tests/test_source_health.py"
       - "tests/test_exchange_details.py"
       - "tests/test_critical_backfill.py"
@@ -68,6 +70,9 @@ jobs:
       - name: Run core parser tests
         run: uv run python -m unittest discover -s tests -p "test_update_data.py" -v
 
+      - name: Run BSE SME aggregate tests
+        run: uv run python -m unittest discover -s tests -p "test_update_data_v2.py" -v
+
       - name: Run source-health tests
         run: uv run python -m unittest discover -s tests -p "test_source_health.py" -v
 
@@ -89,7 +94,7 @@ jobs:
       - name: Record starting data revision
         run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
 
-      - name: Refresh NSE, SEBI and BSE core data
+      - name: Refresh NSE, SEBI and aggregate BSE/BSE-SME core data
         shell: bash
         run: |
           EXTRA=""
@@ -105,7 +110,7 @@ jobs:
           else
             EXTRA="$EXTRA --sebi-pages 4"
           fi
-          uv run python scripts/run_update.py $EXTRA
+          uv run python scripts/run_update_v2.py $EXTRA
           uv run python scripts/normalize_source_health.py
 
       - name: Publish enriched core data, routes and completeness audit safely
