@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""Audit IPO dataset completeness without confusing lifecycle timing with collector gaps.
+"""Audit IPO dataset completeness using lifecycle-specific expectations.
 
 Outputs:
 - data/completeness.json: machine-readable coverage, gap counts, and examples
 - docs/DATA_QUALITY.md: concise human-readable report
 
-The audit deliberately uses stage-specific denominators. A DRHP-stage company is
-not penalized for having no price band or listing date yet, while an exchange IPO
-with announced bidding dates is expected to have its core issue terms populated.
+A DRHP-stage company is not penalized for having no price band or listing date
+because those may not be disclosed yet. Once an issue reaches the exchange stage,
+missing core terms are treated as actionable collector/backfill gaps.
 """
 from __future__ import annotations
 
@@ -59,7 +59,7 @@ def parse_iso_date(value: Any) -> date | None:
         return None
 
 
-def stage(record: dict[str, Any], today: date) -> str:
+def lifecycle_stage(record: dict[str, Any], today: date) -> str:
     opened = parse_iso_date(record.get("openDate"))
     closed = parse_iso_date(record.get("closeDate"))
     listed = parse_iso_date(record.get("listingDate"))
@@ -107,9 +107,14 @@ def has_price_band(record: dict[str, Any]) -> bool:
 
 def has_financials(record: dict[str, Any]) -> bool:
     periods = nested(record, "financials.periods")
-    return isinstance(periods, list) and any(isinstance(row, dict) and any(
-        present(row.get(key)) for key in ("revenueCr", "ebitdaCr", "patCr", "netWorthCr", "eps", "ronwPct", "roePct")
-    ) for row in periods)
+    return isinstance(periods, list) and any(
+        isinstance(row, dict)
+        and any(
+            present(row.get(key))
+            for key in ("revenueCr", "ebitdaCr", "patCr", "netWorthCr", "eps", "ronwPct", "roePct")
+        )
+        for row in periods
+    )
 
 
 def has_sources(record: dict[str, Any]) -> bool:
@@ -226,22 +231,26 @@ def main() -> int:
 
     by_stage: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for record in records:
-        audit_stage = stage(record, today)
+        audit_stage = lifecycle_stage(record, today)
         record["_auditStage"] = audit_stage
         by_stage[audit_stage].append(record)
 
     exchange_records = [r for r in records if present(r.get("openDate")) or present(r.get("symbol"))]
     recent_cutoff = today - timedelta(days=730)
-    recent_exchange = [r for r in exchange_records if (parse_iso_date(r.get("openDate")) or date.min) >= recent_cutoff]
-    historical_exchange = [r for r in exchange_records if r not in recent_exchange]
+    recent_exchange = [
+        r for r in exchange_records
+        if (parse_iso_date(r.get("openDate")) or date.min) >= recent_cutoff
+    ]
+    historical_exchange = [
+        r for r in exchange_records
+        if (parse_iso_date(r.get("openDate")) or date.min) < recent_cutoff
+    ]
     offer_doc_records = [r for r in records if has_offer_document(r)]
     open_records = by_stage.get("open", [])
 
-    # A close date older than 14 days should normally have both allotment and listing
-    # dates. Keeping this denominator conservative avoids flagging newly closed deals.
     matured_closed = [
         r for r in exchange_records
-        if (parse_iso_date(r.get("closeDate")) is not None)
+        if parse_iso_date(r.get("closeDate")) is not None
         and parse_iso_date(r.get("closeDate")) <= today - timedelta(days=14)
     ]
     lifecycle_rules: list[FieldRule] = [
@@ -297,14 +306,13 @@ def main() -> int:
         ],
     }
 
-    # Remove audit-only helper key before any accidental reuse.
     for record in records:
         record.pop("_auditStage", None)
 
     OUTPUT_FILE.write_text(json.dumps(audit, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
     score = audit["scores"]
-    report = f"""# IPO Tracker Data Quality\n\n"
+    report = "# IPO Tracker Data Quality\n\n"
     report += f"Generated: **{audit['generatedAt']}**  \n"
     report += f"Records audited: **{len(records):,}**\n\n"
     report += "## Completeness scores\n\n"
