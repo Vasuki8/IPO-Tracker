@@ -13,10 +13,12 @@ on:
       - main
     paths:
       - "scripts/enrich_offer_docs.py"
+      - "scripts/enrich_sebi_document_links.py"
       - "scripts/critical_backfill.py"
       - "scripts/audit_data_completeness.py"
       - "scripts/build_missing_queue.py"
       - "tests/test_offer_docs.py"
+      - "tests/test_sebi_document_links.py"
       - "tests/test_critical_backfill.py"
       - "tests/test_data_completeness.py"
       - "tests/test_missing_queue.py"
@@ -36,7 +38,7 @@ concurrency:
 jobs:
   enrich:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 45
     steps:
       - name: Checkout
         uses: actions/checkout@v7.0.1
@@ -55,6 +57,9 @@ jobs:
       - name: Run offer-document parser tests
         run: uv run python -m unittest discover -s tests -p "test_offer_docs.py" -v
 
+      - name: Run SEBI document-link tests
+        run: uv run python -m unittest discover -s tests -p "test_sebi_document_links.py" -v
+
       - name: Run critical-backfill tests
         run: uv run python -m unittest discover -s tests -p "test_critical_backfill.py" -v
 
@@ -67,20 +72,25 @@ jobs:
       - name: Record starting data revision
         run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
 
-      - name: Extract official offer-document intelligence
+      - name: Discover direct SEBI PDFs and extract offer intelligence
         shell: bash
         run: |
           if [ "${{ github.event.inputs.deep_offer_docs }}" = "true" ]; then
             DOC_LIMIT=0
+            LINK_LIMIT=0
             CRITICAL_LIMIT=0
           else
-            DOC_LIMIT=8
+            DOC_LIMIT=12
+            LINK_LIMIT=40
             CRITICAL_LIMIT=20
           fi
-          # Fast path: short SEBI abridged prospectuses.
+          # SEBI's listing often points to an HTML filing page. Resolve the
+          # direct Abridged Prospectus and full-offer PDFs first.
+          uv run python scripts/enrich_sebi_document_links.py --priority-max 2 --limit "$LINK_LIMIT"
+          # Fast path: short Abridged Prospectus PDFs.
           uv run python scripts/enrich_offer_docs.py --limit "$DOC_LIMIT"
-          # Repair path: P0-P2 records may use a later-stage full RHP/DRHP or an
-          # official BSE SME filing when the abridged document is absent/incomplete.
+          # Repair path: if critical fields remain, try another official full
+          # RHP/DRHP/Prospectus PDF now that direct links are available.
           uv run python scripts/critical_backfill.py --documents-only --priority-max 2 --limit "$CRITICAL_LIMIT"
 
       - name: Publish changed offer-document data and audit safely
@@ -109,5 +119,5 @@ jobs:
           git config user.name "ipo-tracker-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md
-          git commit -m "data: backfill priority offer documents and refresh repair queue"
+          git commit -m "data: resolve and backfill priority offer documents"
           git push origin HEAD:main
