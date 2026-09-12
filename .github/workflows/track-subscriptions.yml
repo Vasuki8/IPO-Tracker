@@ -7,9 +7,13 @@ on:
       - main
     paths:
       - "scripts/track_subscriptions.py"
+      - "scripts/critical_backfill.py"
       - "scripts/audit_data_completeness.py"
+      - "scripts/build_missing_queue.py"
       - "tests/test_subscription_tracking.py"
+      - "tests/test_critical_backfill.py"
       - "tests/test_data_completeness.py"
+      - "tests/test_missing_queue.py"
       - ".github/workflows/track-subscriptions.yml"
       - "pyproject.toml"
   schedule:
@@ -46,14 +50,20 @@ jobs:
       - name: Run subscription parser tests
         run: uv run python -m unittest discover -s tests -p "test_subscription_tracking.py" -v
 
+      - name: Run critical-backfill tests
+        run: uv run python -m unittest discover -s tests -p "test_critical_backfill.py" -v
+
       - name: Run completeness-audit tests
         run: uv run python -m unittest discover -s tests -p "test_data_completeness.py" -v
+
+      - name: Run missing-queue tests
+        run: uv run python -m unittest discover -s tests -p "test_missing_queue.py" -v
 
       - name: Record starting data revision
         run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
 
-      - name: Capture live QIB, NII, Retail and Total demand
-        run: uv run python scripts/track_subscriptions.py --limit 30
+      - name: Capture priority live QIB, NII, Retail and Total demand
+        run: uv run python scripts/critical_backfill.py --subscriptions-only --priority-max 0 --limit 30
 
       - name: Publish changed subscription history and audit safely
         shell: bash
@@ -71,14 +81,15 @@ jobs:
           git reset --hard origin/main
           cp /tmp/generated-ipos.json data/ipos.json
           uv run python scripts/audit_data_completeness.py
+          uv run python scripts/build_missing_queue.py
 
-          if [ -z "$(git status --porcelain -- data/ipos.json data/completeness.json docs/DATA_QUALITY.md)" ]; then
-            echo "No subscription or audit changes"
+          if [ -z "$(git status --porcelain -- data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md)" ]; then
+            echo "No subscription, audit or repair-queue changes"
             exit 0
           fi
 
           git config user.name "ipo-tracker-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/ipos.json data/completeness.json docs/DATA_QUALITY.md
-          git commit -m "data: capture live IPO subscriptions and refresh audit"
+          git add data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md
+          git commit -m "data: capture priority IPO subscriptions and refresh repair queue"
           git push origin HEAD:main
