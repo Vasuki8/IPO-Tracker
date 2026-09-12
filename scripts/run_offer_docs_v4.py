@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Phase 4.5B offer-document parser v4.
 
-v4 keeps the quality gates from v3 and adds two production hardening fixes:
+v4 keeps the quality gates from v3 and adds production hardening fixes:
 
 * normalize modern Fresh Issue / OFS wording (including ``upto``) before
   deciding that issue composition is unavailable;
+* capture explicit Fresh Issue / OFS monetary amounts when share counts are not
+  present in the same summary block;
 * retry transient/truncated PDF transfers instead of turning one incomplete
   HTTP read into a permanent extraction error.
 
@@ -41,6 +43,29 @@ def _share_count_near(label_pattern: str, text: str):
     return base._share_count(patterns, text)
 
 
+def _money_cr_near(label_pattern: str, text: str):
+    """Capture an explicit rupee amount near Fresh Issue / OFS wording."""
+    money = re.search(
+        rf"{label_pattern}.{{0,420}}?(?:aggregat(?:e|es|ing)\s+(?:up\s*to\s+|upto\s+)?|"
+        rf"for\s+an\s+amount\s+(?:up\s*to\s+)?|amounting\s+to\s+)?"
+        rf"(?:₹|Rs\.?|INR)\s*([\d,]+(?:\.\d+)?)\s*"
+        rf"(crores?|cr\.?|million|lakhs?|lacs?)\b",
+        text,
+        re.I,
+    )
+    if not money:
+        return None
+    value = base.number(money.group(1))
+    if value is None:
+        return None
+    unit = money.group(2).lower()
+    if unit.startswith("million"):
+        return round(float(value) / 10.0, 4)
+    if unit.startswith("lakh") or unit.startswith("lac"):
+        return round(float(value) / 100.0, 4)
+    return round(float(value), 4)
+
+
 def extract_issue_composition(text: str, price_band=None):
     """Extend v3 with whitespace-normalized current prospectus wording."""
     issue = dict(v3.extract_issue_composition(text, price_band) or {})
@@ -50,6 +75,15 @@ def extract_issue_composition(text: str, price_band=None):
         issue["freshShares"] = _share_count_near(r"\bFresh\s+Issue\b", flat)
     if issue.get("ofsShares") is None:
         issue["ofsShares"] = _share_count_near(r"\bOffer\s+for\s+Sale\b", flat)
+
+    # Prefer explicit document amounts over values inferred from share count × cap
+    # price. This also handles summaries that disclose only aggregate rupee values.
+    explicit_fresh_cr = _money_cr_near(r"\bFresh\s+Issue\b", flat)
+    explicit_ofs_cr = _money_cr_near(r"\bOffer\s+for\s+Sale\b", flat)
+    if explicit_fresh_cr is not None:
+        issue["freshIssueCr"] = explicit_fresh_cr
+    if explicit_ofs_cr is not None:
+        issue["ofsCr"] = explicit_ofs_cr
 
     # Explicit fresh-only wording is strong enough to record zero OFS. Merely
     # failing to find an OFS phrase is intentionally NOT treated as zero.
@@ -81,6 +115,8 @@ def extract_issue_composition(text: str, price_band=None):
         ofs = issue.get("ofsCr")
         if fresh is not None and ofs is not None:
             issue["totalIssueSizeCr"] = round(float(fresh) + float(ofs), 4)
+        elif fresh is not None and issue.get("ofsShares") == 0:
+            issue["totalIssueSizeCr"] = round(float(fresh), 4)
 
     return issue
 
