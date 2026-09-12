@@ -2,8 +2,8 @@
 """Build a lifecycle-aware priority queue of IPO records with missing fields.
 
 This queue is intentionally actionable rather than a raw list of nulls. Fields are
-only expected once the IPO has reached a lifecycle stage where the information
-should normally be available from an official source.
+only expected once the IPO has reached a lifecycle/source stage where the
+information should normally be recoverable from an official source.
 """
 from __future__ import annotations
 
@@ -35,7 +35,10 @@ def expected_rules(record: dict[str, Any], today: date):
     exchange_stage = audit.present(record.get("openDate")) or audit.present(record.get("symbol"))
 
     if exchange_stage:
-        rules.extend((f"exchange.{name}", predicate) for name, predicate in audit.CORE_EXCHANGE_FIELDS)
+        rules.extend(
+            (f"exchange.{name}", predicate)
+            for name, predicate in audit.expected_exchange_rules(record, today)
+        )
 
     if audit.has_offer_document(record):
         rules.extend((f"offer.{name}", predicate) for name, predicate in audit.OFFER_DOC_FIELDS)
@@ -46,23 +49,14 @@ def expected_rules(record: dict[str, Any], today: date):
     close_date = audit.parse_iso_date(record.get("closeDate"))
     if close_date and close_date <= today - timedelta(days=14):
         rules.extend(
-            [
-                ("lifecycle.allotmentDate", lambda r: audit.present(r.get("allotmentDate"))),
-                ("lifecycle.listingDate", lambda r: audit.present(r.get("listingDate"))),
-            ]
+            (f"lifecycle.{name}", predicate)
+            for name, predicate in audit.MATURED_LIFECYCLE_FIELDS
         )
 
-    # Source and validation provenance should exist for every normalized record.
     rules.extend(
-        [
-            ("provenance.sources", audit.has_sources),
-            ("provenance.validation", lambda r: audit.present(r.get("validation"))),
-        ]
+        (f"provenance.{name}", predicate)
+        for name, predicate in audit.expected_provenance_rules(record, today)
     )
-
-    if stage == "filing-pipeline":
-        rules.append(("provenance.documents", lambda r: audit.present(r.get("documents"))))
-
     return rules
 
 
@@ -78,7 +72,7 @@ def priority_band(record: dict[str, Any], today: date) -> tuple[int, str]:
         return 2, "P2 recent IPO (30d)"
     if stage == "filing-pipeline":
         return 3, "P3 filing pipeline"
-    if opened and opened >= today - timedelta(days=730):
+    if opened and opened >= today - timedelta(days=audit.RECENT_EXCHANGE_DAYS):
         return 4, "P4 recent history (2y)"
     return 5, "P5 historical backfill"
 
@@ -147,7 +141,9 @@ def main() -> int:
         "queue": queue[:300],
         "notes": [
             "P0/P1 records are repaired before historical records.",
-            "Only lifecycle-appropriate missing fields enter the queue.",
+            "Only lifecycle- and source-appropriate missing fields enter the queue.",
+            "Older exchange-only records do not require Fresh/OFS composition when the official historical archive does not expose it.",
+            "Allotment date is tracked as optional research coverage until a reliable official historical collector exists.",
             "Blank values are never guessed; backfill values must come from official sources.",
         ],
     }

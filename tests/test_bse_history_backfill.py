@@ -1,6 +1,7 @@
 import importlib.util
 import sys
 import unittest
+from datetime import date
 from pathlib import Path
 
 MODULE = Path(__file__).resolve().parents[1] / "scripts" / "backfill_bse_history.py"
@@ -41,6 +42,58 @@ class BSEHistoricalBackfillTests(unittest.TestCase):
         self.assertEqual(index[0]["key"], "EXAMPLE")
         self.assertEqual(index[0]["openDate"], "2013-02-01")
         self.assertIn("type=IPO", index[0]["url"])
+
+    def test_core_only_ignores_registrar_only_gap(self):
+        record = {
+            "openDate": "2013-02-01",
+            "lotSize": 100,
+            "issueSizeCr": 250.0,
+            "registrar": None,
+            "leadManagers": ["Example Capital Limited"],
+        }
+        today = date(2026, 9, 13)
+        self.assertFalse(mod.is_candidate(record, today, 10000, core_only=True))
+        self.assertTrue(mod.is_candidate(record, today, 10000, core_only=False))
+
+    def test_archival_core_gap_is_candidate(self):
+        record = {
+            "openDate": "2013-02-01",
+            "lotSize": None,
+            "issueSizeCr": 250.0,
+        }
+        self.assertTrue(
+            mod.is_candidate(record, date(2026, 9, 13), 10000, core_only=True)
+        )
+
+    def test_retry_cooldown_skips_recently_considered_record(self):
+        record = {
+            "openDate": "2013-02-01",
+            "lotSize": None,
+            "issueSizeCr": None,
+            mod.ATTEMPT_KEY: {"lastAttemptAt": "2026-09-01T19:00:00+05:30"},
+        }
+        today = date(2026, 9, 13)
+        self.assertTrue(mod.attempted_recently(record, today, 30))
+        self.assertFalse(
+            mod.is_candidate(record, today, 10000, core_only=True, retry_days=30)
+        )
+        self.assertTrue(
+            mod.is_candidate(record, today, 10000, core_only=True, retry_days=0)
+        )
+
+    def test_attempt_marker_records_validation_provenance(self):
+        record = {}
+        mod.mark_attempt(
+            record,
+            status="validated",
+            archive_url="https://www.bseindia.com/history",
+            detail_url="https://www.bseindia.com/detail",
+            changed_fields=[],
+        )
+        marker = record[mod.ATTEMPT_KEY]
+        self.assertEqual(marker["status"], "validated")
+        self.assertEqual(marker["detailUrl"], "https://www.bseindia.com/detail")
+        self.assertIn("lastAttemptAt", marker)
 
 
 if __name__ == "__main__":

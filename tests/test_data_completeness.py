@@ -62,6 +62,59 @@ class CompletenessRuleTests(unittest.TestCase):
             )
         )
 
+    def test_old_exchange_only_record_does_not_require_issue_composition(self):
+        record = {
+            "openDate": "2018-01-01",
+            "symbol": "OLD",
+            "board": "Mainboard",
+            "exchange": "NSE",
+        }
+        names = [name for name, _ in mod.expected_exchange_rules(record, date(2026, 9, 13))]
+        self.assertNotIn("issueComposition", names)
+        self.assertIn("lotSize", names)
+        self.assertIn("issueSizeCr", names)
+
+    def test_old_record_with_offer_document_still_requires_issue_composition(self):
+        record = {
+            "openDate": "2018-01-01",
+            "documents": [{"type": "RHP", "url": "https://example.test/rhp.pdf"}],
+        }
+        names = [name for name, _ in mod.expected_exchange_rules(record, date(2026, 9, 13))]
+        self.assertIn("issueComposition", names)
+
+    def test_document_provenance_is_only_expected_for_filing_or_offer_records(self):
+        old = {
+            "openDate": "2018-01-01",
+            "symbol": "OLD",
+            "sources": [{"name": "NSE"}],
+            "validation": {"status": "single-source"},
+        }
+        filing = {
+            "lifecycle": {"stage": "drhp"},
+            "documents": [{"type": "DRHP", "url": "https://example.test/drhp.pdf"}],
+        }
+        old_names = [name for name, _ in mod.expected_provenance_rules(old, date(2026, 9, 13))]
+        filing_names = [name for name, _ in mod.expected_provenance_rules(filing, date(2026, 9, 13))]
+        self.assertNotIn("documents", old_names)
+        self.assertIn("documents", filing_names)
+
+    def test_allotment_is_optional_not_actionable_lifecycle_gap(self):
+        actionable = [name for name, _ in mod.MATURED_LIFECYCLE_FIELDS]
+        optional = [name for name, _ in mod.OPTIONAL_LIFECYCLE_FIELDS]
+        self.assertEqual(actionable, ["listingDate"])
+        self.assertEqual(optional, ["allotmentDate"])
+
+    def test_dynamic_coverage_uses_field_specific_denominator(self):
+        today = date(2026, 9, 13)
+        records = [
+            {"openDate": "2026-09-01", "freshIssueCr": 100},
+            {"openDate": "2018-01-01"},
+        ]
+        result = mod.dynamic_coverage(records, lambda r: mod.expected_exchange_rules(r, today))
+        self.assertEqual(result["issueComposition"]["expected"], 1)
+        self.assertEqual(result["issueComposition"]["present"], 1)
+        self.assertEqual(result["issueComposition"]["pct"], 100.0)
+
 
 if __name__ == "__main__":
     unittest.main()

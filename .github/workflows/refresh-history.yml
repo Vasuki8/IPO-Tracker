@@ -8,9 +8,13 @@ on:
     paths:
       - "scripts/run_update_v2.py"
       - "scripts/backfill_bse_history.py"
+      - "scripts/audit_data_completeness.py"
+      - "scripts/build_missing_queue.py"
       - "scripts/normalize_source_health.py"
       - "tests/test_update_data_v2.py"
       - "tests/test_bse_history_backfill.py"
+      - "tests/test_data_completeness.py"
+      - "tests/test_missing_queue.py"
       - "tests/test_source_health.py"
       - ".github/workflows/refresh-history.yml"
   schedule:
@@ -27,7 +31,7 @@ concurrency:
 jobs:
   history:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - name: Checkout
         uses: actions/checkout@v7.0.1
@@ -58,6 +62,9 @@ jobs:
       - name: Run completeness-audit tests
         run: uv run python -m unittest discover -s tests -p "test_data_completeness.py" -v
 
+      - name: Run missing-queue tests
+        run: uv run python -m unittest discover -s tests -p "test_missing_queue.py" -v
+
       - name: Record starting data revision
         run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
 
@@ -68,7 +75,7 @@ jobs:
           uv run python scripts/run_update_v2.py --history-days 365 --sebi-pages 1
           uv run python scripts/normalize_source_health.py
 
-      - name: Publish historical reconciliation and detail backfill safely
+      - name: Publish historical reconciliation and progressive detail backfill safely
         shell: bash
         run: |
           cp data/ipos.json /tmp/generated-ipos.json
@@ -89,16 +96,29 @@ jobs:
           # registrar and lead-manager details for recent listed IPOs.
           uv run python scripts/enrich_exchange_details.py --limit 30 --history-days 730
           uv run python scripts/backfill_bse_history.py --history-days 730 --limit 80
+
+          # Phase 4.5D archival sweep: progressively walk the older official BSE
+          # archive for recoverable exchange-core fields. Attempt markers + a
+          # cooldown make each daily run advance instead of retrying the same
+          # unfillable records forever.
+          uv run python scripts/backfill_bse_history.py \
+            --history-days 10000 \
+            --limit 120 \
+            --core-only \
+            --retry-days 30 \
+            --oldest-first
+
           uv run python scripts/build_company_pages.py
           uv run python scripts/audit_data_completeness.py
+          uv run python scripts/build_missing_queue.py
 
-          if [ -z "$(git status --porcelain -- data/ipos.json data/completeness.json docs/DATA_QUALITY.md ipo/)" ]; then
-            echo "No historical, detail-backfill, route or audit changes"
+          if [ -z "$(git status --porcelain -- data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md ipo/)" ]; then
+            echo "No historical, detail-backfill, route, audit or repair-queue changes"
             exit 0
           fi
 
           git config user.name "ipo-tracker-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/ipos.json data/completeness.json docs/DATA_QUALITY.md ipo/
-          git commit -m "data: reconcile and enrich recent IPO history"
+          git add data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md ipo/
+          git commit -m "data: reconcile and enrich IPO history"
           git push origin HEAD:main

@@ -49,7 +49,7 @@ class MissingQueueTests(unittest.TestCase):
         entry = mod.queue_entry(record, date(2026, 9, 12))
         self.assertIsNone(entry)
 
-    def test_matured_issue_requires_allotment_and_listing_dates(self):
+    def test_matured_issue_requires_listing_but_not_optional_allotment(self):
         record = {
             "id": "closed",
             "company": "Closed Limited",
@@ -66,8 +66,47 @@ class MissingQueueTests(unittest.TestCase):
             "validation": {"status": "single-source"},
         }
         entry = mod.queue_entry(record, date(2026, 9, 12))
-        self.assertIn("lifecycle.allotmentDate", entry["missingFields"])
+        self.assertNotIn("lifecycle.allotmentDate", entry["missingFields"])
         self.assertIn("lifecycle.listingDate", entry["missingFields"])
+
+    def test_old_exchange_record_does_not_queue_archival_issue_composition(self):
+        record = {
+            "id": "old",
+            "company": "Old Limited",
+            "symbol": "OLD",
+            "board": "Mainboard",
+            "exchange": "NSE",
+            "openDate": "2018-01-01",
+            "closeDate": "2018-01-03",
+            "listingDate": "2018-01-10",
+            "priceBand": {"min": 100, "max": 110},
+            "lotSize": None,
+            "issueSizeCr": None,
+            "sources": [{"name": "NSE"}],
+            "validation": {"status": "single-source"},
+        }
+        entry = mod.queue_entry(record, date(2026, 9, 12))
+        self.assertNotIn("exchange.issueComposition", entry["missingFields"])
+        self.assertIn("exchange.lotSize", entry["missingFields"])
+        self.assertIn("exchange.issueSizeCr", entry["missingFields"])
+
+    def test_legacy_exchange_record_does_not_require_documents(self):
+        record = {
+            "id": "old-complete",
+            "company": "Old Complete Limited",
+            "symbol": "OLDC",
+            "board": "Mainboard",
+            "exchange": "NSE",
+            "openDate": "2018-01-01",
+            "closeDate": "2018-01-03",
+            "listingDate": "2018-01-10",
+            "priceBand": {"min": 100, "max": 110},
+            "lotSize": 100,
+            "issueSizeCr": 500,
+            "sources": [{"name": "NSE"}],
+            "validation": {"status": "single-source"},
+        }
+        self.assertIsNone(mod.queue_entry(record, date(2026, 9, 12)))
 
     def test_queue_sorts_open_before_history(self):
         today = date(2026, 9, 12)

@@ -5,9 +5,10 @@ Outputs:
 - data/completeness.json: machine-readable coverage, gap counts, and examples
 - docs/DATA_QUALITY.md: concise human-readable report
 
-A DRHP-stage company is not penalized for having no price band or listing date
-because those may not be disclosed yet. Once an issue reaches the exchange stage,
-missing core terms are treated as actionable collector/backfill gaps.
+A DRHP-stage company is not penalized for fields that are not disclosed yet.
+Likewise, archival exchange records are only scored against fields that official
+historical sources can reasonably expose. Optional research fields remain visible
+in the report, but they do not inflate the actionable repair queue.
 """
 from __future__ import annotations
 
@@ -24,6 +25,7 @@ REPORT_FILE = ROOT / "docs" / "DATA_QUALITY.md"
 IST = timezone(timedelta(hours=5, minutes=30))
 
 FILING_STAGES = {"drhp", "udrhp", "rhp", "prospectus"}
+RECENT_EXCHANGE_DAYS = 730
 
 
 def present(value: Any) -> bool:
@@ -165,6 +167,35 @@ PROVENANCE_FIELDS: list[FieldRule] = [
     ("documents", lambda r: present(r.get("documents"))),
 ]
 
+MATURED_LIFECYCLE_FIELDS: list[FieldRule] = [
+    ("listingDate", lambda r: present(r.get("listingDate"))),
+]
+
+OPTIONAL_LIFECYCLE_FIELDS: list[FieldRule] = [
+    ("allotmentDate", lambda r: present(r.get("allotmentDate"))),
+]
+
+
+def expected_exchange_rules(record: dict[str, Any], today: date) -> list[FieldRule]:
+    """Return exchange fields that are actionable for this record's era.
+
+    Fresh/OFS composition is routinely recoverable for current/recent IPOs and
+    for records that still carry an official offer document. It is not treated
+    as a collector failure for older exchange-only records whose historical BSE/
+    NSE pages do not expose that split.
+    """
+    opened = parse_iso_date(record.get("openDate"))
+    if opened and opened < today - timedelta(days=RECENT_EXCHANGE_DAYS) and not has_offer_document(record):
+        return [rule for rule in CORE_EXCHANGE_FIELDS if rule[0] != "issueComposition"]
+    return list(CORE_EXCHANGE_FIELDS)
+
+
+def expected_provenance_rules(record: dict[str, Any], today: date) -> list[FieldRule]:
+    rules = PROVENANCE_FIELDS[:2]
+    if lifecycle_stage(record, today) == "filing-pipeline" or has_offer_document(record):
+        rules = [*rules, PROVENANCE_FIELDS[2]]
+    return rules
+
 
 def coverage(records: list[dict[str, Any]], rules: list[FieldRule]) -> dict[str, dict[str, Any]]:
     total = len(records)
@@ -178,6 +209,31 @@ def coverage(records: list[dict[str, Any]], rules: list[FieldRule]) -> dict[str,
             "pct": round((count / total * 100) if total else 100.0, 1),
         }
     return result
+
+
+def dynamic_coverage(
+    records: list[dict[str, Any]],
+    rule_builder: Callable[[dict[str, Any]], list[FieldRule]],
+) -> dict[str, dict[str, Any]]:
+    names: list[str] = []
+    expected: Counter[str] = Counter()
+    present_counts: Counter[str] = Counter()
+    for record in records:
+        for name, predicate in rule_builder(record):
+            if name not in names:
+                names.append(name)
+            expected[name] += 1
+            if predicate(record):
+                present_counts[name] += 1
+    return {
+        name: {
+            "present": present_counts[name],
+            "expected": expected[name],
+            "missing": expected[name] - present_counts[name],
+            "pct": round((present_counts[name] / expected[name] * 100) if expected[name] else 100.0, 1),
+        }
+        for name in names
+    }
 
 
 def record_gap_count(record: dict[str, Any], rules: list[FieldRule]) -> int:
@@ -221,10 +277,28 @@ def average_group_score(records: list[dict[str, Any]], rules: list[FieldRule]) -
     return round(complete / possible * 100, 1)
 
 
+def average_dynamic_score(
+    records: list[dict[str, Any]],
+    rule_builder: Callable[[dict[str, Any]], list[FieldRule]],
+) -> float:
+    possible = complete = 0
+    for record in records:
+        rules = rule_builder(record)
+        possible += len(rules)
+        complete += len(rules) - record_gap_count(record, rules)
+    return round((complete / possible * 100) if possible else 100.0, 1)
+
+
 def markdown_table(rows: dict[str, dict[str, Any]]) -> str:
-    lines = ["| Field | Present | Missing | Coverage |", "| --- | ---: | ---: | ---: |"]
+    lines = [
+        "| Field | Present | Expected | Missing | Coverage |",
+        "| --- | ---: | ---: | ---: | ---: |",
+    ]
     for field, stat in rows.items():
-        lines.append(f"| {field} | {stat['present']:,} | {stat['missing']:,} | {stat['pct']:.1f}% |")
+        lines.append(
+            f"| {field} | {stat['present']:,} | {stat['expected']:,} | "
+            f"{stat['missing']:,} | {stat['pct']:.1f}% |"
+        )
     return "\n".join(lines)
 
 
@@ -240,7 +314,7 @@ def main() -> int:
         by_stage[audit_stage].append(record)
 
     exchange_records = [r for r in records if present(r.get("openDate")) or present(r.get("symbol"))]
-    recent_cutoff = today - timedelta(days=730)
+    recent_cutoff = today - timedelta(days=RECENT_EXCHANGE_DAYS)
     recent_exchange = [
         r for r in exchange_records
         if (parse_iso_date(r.get("openDate")) or date.min) >= recent_cutoff
@@ -257,10 +331,6 @@ def main() -> int:
         if parse_iso_date(r.get("closeDate")) is not None
         and parse_iso_date(r.get("closeDate")) <= today - timedelta(days=14)
     ]
-    lifecycle_rules: list[FieldRule] = [
-        ("allotmentDate", lambda r: present(r.get("allotmentDate"))),
-        ("listingDate", lambda r: present(r.get("listingDate"))),
-    ]
 
     segments = {
         "allRecords": records,
@@ -272,6 +342,9 @@ def main() -> int:
         "maturedClosed": matured_closed,
     }
 
+    exchange_builder = lambda record: expected_exchange_rules(record, today)
+    provenance_builder = lambda record: expected_provenance_rules(record, today)
+
     audit = {
         "generatedAt": datetime.now(IST).isoformat(timespec="seconds"),
         "asOfDate": today.isoformat(),
@@ -279,34 +352,37 @@ def main() -> int:
         "stageCounts": dict(sorted(Counter(r["_auditStage"] for r in records).items())),
         "segmentCounts": {name: len(rows) for name, rows in segments.items()},
         "scores": {
-            "exchangeStage": average_group_score(exchange_records, CORE_EXCHANGE_FIELDS),
-            "recentExchange2Y": average_group_score(recent_exchange, CORE_EXCHANGE_FIELDS),
+            "exchangeStage": average_dynamic_score(exchange_records, exchange_builder),
+            "recentExchange2Y": average_dynamic_score(recent_exchange, exchange_builder),
             "offerDocumentEligible": average_group_score(offer_doc_records, OFFER_DOC_FIELDS),
             "openSubscription": average_group_score(open_records, LIVE_SUBSCRIPTION_FIELDS),
-            "maturedLifecycle": average_group_score(matured_closed, lifecycle_rules),
-            "provenance": average_group_score(records, PROVENANCE_FIELDS),
+            "maturedLifecycle": average_group_score(matured_closed, MATURED_LIFECYCLE_FIELDS),
+            "provenance": average_dynamic_score(records, provenance_builder),
         },
         "coverage": {
-            "exchangeStage": coverage(exchange_records, CORE_EXCHANGE_FIELDS),
-            "recentExchange2Y": coverage(recent_exchange, CORE_EXCHANGE_FIELDS),
-            "historicalExchange": coverage(historical_exchange, CORE_EXCHANGE_FIELDS),
+            "exchangeStage": dynamic_coverage(exchange_records, exchange_builder),
+            "recentExchange2Y": dynamic_coverage(recent_exchange, exchange_builder),
+            "historicalExchange": dynamic_coverage(historical_exchange, exchange_builder),
             "offerDocumentEligible": coverage(offer_doc_records, OFFER_DOC_FIELDS),
             "openSubscription": coverage(open_records, LIVE_SUBSCRIPTION_FIELDS),
-            "maturedLifecycle": coverage(matured_closed, lifecycle_rules),
-            "provenance": coverage(records, PROVENANCE_FIELDS),
+            "maturedLifecycle": coverage(matured_closed, MATURED_LIFECYCLE_FIELDS),
+            "optionalLifecycle": coverage(matured_closed, OPTIONAL_LIFECYCLE_FIELDS),
+            "provenance": dynamic_coverage(records, provenance_builder),
         },
         "gapExamples": {
             "recentExchange2Y": group_gap_examples(recent_exchange, CORE_EXCHANGE_FIELDS),
             "offerDocumentEligible": group_gap_examples(offer_doc_records, OFFER_DOC_FIELDS),
             "openSubscription": group_gap_examples(open_records, LIVE_SUBSCRIPTION_FIELDS),
-            "maturedLifecycle": group_gap_examples(matured_closed, lifecycle_rules),
+            "maturedLifecycle": group_gap_examples(matured_closed, MATURED_LIFECYCLE_FIELDS),
         },
         "notes": [
-            "Coverage uses lifecycle-specific denominators; pre-exchange DRHP records are not penalized for undisclosed exchange terms.",
+            "Coverage uses lifecycle- and availability-specific denominators; pre-exchange DRHP records are not penalized for undisclosed exchange terms.",
+            "Fresh/OFS composition is actionable for recent IPOs and records with an official offer document, but not for older exchange-only records whose archive pages do not expose the split.",
             "recentExchange2Y isolates current collector quality from sparse older historical records.",
             "offerDocumentEligible only expects structured research fields when an RHP/Prospectus-like official document is attached.",
             "openSubscription only expects category-wise subscription data while bidding is currently open.",
-            "maturedLifecycle only flags allotment/listing dates when the IPO closed at least 14 days ago.",
+            "maturedLifecycle treats listing date as the actionable official lifecycle field. Allotment date remains reported as an optional observation until a reliable official historical collector exists.",
+            "Document provenance is expected for filing/offer-document records, not for every legacy exchange-only row.",
         ],
     }
 
@@ -321,23 +397,27 @@ def main() -> int:
     report += f"Records audited: **{len(records):,}**\n\n"
     report += "## Completeness scores\n\n"
     report += "| Area | Score | Records in denominator |\n| --- | ---: | ---: |\n"
-    report += f"| Core exchange terms | {score['exchangeStage']:.1f}% | {len(exchange_records):,} |\n"
+    report += f"| Actionable exchange terms | {score['exchangeStage']:.1f}% | {len(exchange_records):,} |\n"
     report += f"| Recent exchange terms (2Y) | {score['recentExchange2Y']:.1f}% | {len(recent_exchange):,} |\n"
     report += f"| Offer-document intelligence | {score['offerDocumentEligible']:.1f}% | {len(offer_doc_records):,} |\n"
     report += f"| Live subscription categories | {score['openSubscription']:.1f}% | {len(open_records):,} |\n"
     report += f"| Matured lifecycle dates | {score['maturedLifecycle']:.1f}% | {len(matured_closed):,} |\n"
     report += f"| Source/provenance trail | {score['provenance']:.1f}% | {len(records):,} |\n\n"
 
-    report += "## Core exchange fields\n\n" + markdown_table(audit["coverage"]["exchangeStage"]) + "\n\n"
+    report += "## Actionable exchange fields\n\n" + markdown_table(audit["coverage"]["exchangeStage"]) + "\n\n"
     report += "## Recent exchange fields — last 2 years\n\n" + markdown_table(audit["coverage"]["recentExchange2Y"]) + "\n\n"
+    report += "## Historical exchange fields\n\n" + markdown_table(audit["coverage"]["historicalExchange"]) + "\n\n"
     report += "## Offer-document fields\n\n" + markdown_table(audit["coverage"]["offerDocumentEligible"]) + "\n\n"
     report += "## Open IPO subscription fields\n\n" + markdown_table(audit["coverage"]["openSubscription"]) + "\n\n"
     report += "## Matured lifecycle fields\n\n" + markdown_table(audit["coverage"]["maturedLifecycle"]) + "\n\n"
+    report += "## Optional lifecycle observations\n\n" + markdown_table(audit["coverage"]["optionalLifecycle"]) + "\n\n"
     report += "## Interpretation\n\n"
     report += "- **Not yet disclosed** is not treated as a data-quality failure for pre-exchange filings.\n"
-    report += "- **Collector gap** means a field is expected for that lifecycle stage but remains missing.\n"
+    report += "- **Collector gap** means an official field is expected and recoverable for that lifecycle/source class but remains missing.\n"
+    report += "- Fresh/OFS composition is not counted as an archival collector gap unless a qualifying offer document exists.\n"
+    report += "- Allotment dates remain visible as optional research coverage rather than inflating the actionable queue without a reliable official historical source.\n"
     report += "- Recent exchange coverage is the best measure of whether the live collectors are working well today.\n"
-    report += "- Historical coverage is tracked separately because older exchange/SEBI pages expose fewer structured fields.\n"
+    report += "- Historical lot size and issue size are progressively repaired from the official BSE historical archive when available.\n"
 
     REPORT_FILE.write_text(report, encoding="utf-8")
     print(json.dumps(audit["scores"], indent=2))
