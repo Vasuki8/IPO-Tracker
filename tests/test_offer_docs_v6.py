@@ -84,6 +84,54 @@ class OfferDocsV6Tests(unittest.TestCase):
         self.assertAlmostEqual(parsed["periods"][0]["patCr"], 104.299, places=3)
         self.assertAlmostEqual(parsed["periods"][0]["netWorthCr"], 295.81, places=2)
 
+    def test_sebi_document_remains_preferred_over_bse(self):
+        record = {
+            "documents": [
+                {
+                    "type": "PROSPECTUS",
+                    "title": "BSE Prospectus & GID",
+                    "url": "https://www.bseindia.com/corporates/download/123/example.pdf",
+                    "source": "BSE",
+                },
+                {
+                    "type": "RHP",
+                    "title": "SEBI Red Herring Prospectus",
+                    "url": "https://www.sebi.gov.in/sebi_data/attachdocs/example.pdf",
+                    "source": "SEBI",
+                },
+            ]
+        }
+        chosen = mod.choose_document(record)
+        self.assertEqual(chosen["source"], "SEBI")
+
+    def test_official_bse_prospectus_is_used_when_sebi_pdf_is_absent(self):
+        record = {
+            "documents": [
+                {
+                    "type": "PROSPECTUS",
+                    "title": "Prospectus & GID",
+                    "url": "https://www.bseindia.com/corporates/download/123/example.pdf",
+                    "source": "BSE",
+                }
+            ]
+        }
+        chosen = mod.choose_document(record)
+        self.assertIsNotNone(chosen)
+        self.assertEqual(chosen["source"], "BSE")
+
+    def test_non_bse_pdf_is_not_accepted_as_bse_fallback(self):
+        record = {
+            "documents": [
+                {
+                    "type": "PROSPECTUS",
+                    "title": "Prospectus",
+                    "url": "https://example.com/prospectus.pdf",
+                    "source": "BSE",
+                }
+            ]
+        }
+        self.assertIsNone(mod.choose_document(record))
+
 
 if __name__ == "__main__":
     unittest.main()
