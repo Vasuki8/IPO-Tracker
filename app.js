@@ -86,9 +86,15 @@ function filtered() {
     const matchesYear = state.year === 'all' || year === state.year;
     return matchesStatus && matchesBoard && matchesSearch && matchesYear;
   }).sort((a,b) => {
-    const ad = a.openDate || a.listingDate || a.lifecycle?.stageDate || '';
-    const bd = b.openDate || b.listingDate || b.lifecycle?.stageDate || '';
-    return bd.localeCompare(ad);
+    // Strict opening-date order: latest opening date first. Records that do not
+    // yet have an exchange opening date (for example early SEBI filings) stay
+    // below all dated IPOs instead of being mixed in using filing/listing dates.
+    const ad = a.openDate || '';
+    const bd = b.openDate || '';
+    if (ad && !bd) return -1;
+    if (!ad && bd) return 1;
+    if (ad !== bd) return bd.localeCompare(ad);
+    return String(a.company || '').localeCompare(String(b.company || ''), 'en', { sensitivity: 'base' });
   });
 }
 
