@@ -6,8 +6,10 @@ on:
     branches:
       - main
     paths:
+      - "scripts/run_update_v2.py"
       - "scripts/backfill_bse_history.py"
       - "scripts/normalize_source_health.py"
+      - "tests/test_update_data_v2.py"
       - "tests/test_bse_history_backfill.py"
       - "tests/test_source_health.py"
       - ".github/workflows/refresh-history.yml"
@@ -44,6 +46,9 @@ jobs:
       - name: Run core parser tests
         run: uv run python -m unittest discover -s tests -p "test_update_data.py" -v
 
+      - name: Run BSE SME aggregate tests
+        run: uv run python -m unittest discover -s tests -p "test_update_data_v2.py" -v
+
       - name: Run source-health tests
         run: uv run python -m unittest discover -s tests -p "test_source_health.py" -v
 
@@ -60,7 +65,7 @@ jobs:
         # The one-time full repair has populated historical open/close dates.
         # Routine jobs only need the most recent year to catch later corrections.
         run: |
-          uv run python scripts/run_update.py --history-days 365 --sebi-pages 1
+          uv run python scripts/run_update_v2.py --history-days 365 --sebi-pages 1
           uv run python scripts/normalize_source_health.py
 
       - name: Publish historical reconciliation and detail backfill safely
