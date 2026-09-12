@@ -1,22 +1,26 @@
 #!/usr/bin/env python3
-"""Capture timestamped NSE category-wise IPO subscription snapshots.
+"""Capture timestamped category-wise IPO subscription snapshots.
 
-The core updater already stores NSE's overall subscription multiple from
-``/api/ipo-current-issue``. This companion step calls ``/api/ipo-detail`` for
-issues whose bidding window is open and preserves QIB / NII / Retail / Total
-multiples over time instead of overwriting the previous observation.
+NSE ``/api/ipo-detail`` is the preferred source for QIB / NII / Retail / Total
+multiples. NSE's Akamai layer can block cloud/datacenter runners even when the
+public current-issue endpoints remain usable, so the collector transparently
+falls back to BSE's official Cumulative Demand Schedule for the same live issue.
+Changed observations are retained instead of overwriting previous values.
 """
 from __future__ import annotations
 
 import argparse
+import html as html_lib
 import json
+import re
 import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Any
-from urllib.parse import urlencode
+from urllib.parse import urlencode, urljoin
 
 import requests
+from bs4 import BeautifulSoup
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
@@ -49,31 +53,37 @@ def _category_text(row: dict[str, Any]) -> str:
 
 
 def _classify_category(text: str):
-    """Return (field, score) for a headline NSE subscription row.
+    """Return (field, score) for a headline subscription category row.
 
-    NSE occasionally includes NII amount sub-buckets alongside the aggregate NII
-    row. The score keeps the aggregate row when both are present.
+    Both exchanges can expose NII amount sub-buckets. We intentionally keep the
+    aggregate NII row rather than substituting one of those sub-buckets.
     """
-    t = " ".join(text.replace("-", " ").replace("_", " ").split())
+    t = " ".join(text.lower().replace("-", " ").replace("_", " ").split())
     words = set(t.split())
 
     if "total" in words or t in {"overall", "grand total"}:
         return "total", 120
-    if "qualified institutional" in t or "qib" in words:
+    if "qualified institutional" in t or "qib" in words or "qibs" in words:
         return "qib", 110
-    if "retail" in t or "rii" in words:
+    if "retail" in t or "rii" in words or "riis" in words:
         return "retail", 110
     if "individual investor" in t and "non institutional" not in t:
-        # NSE's 2026 SME terminology uses Individual Investor instead of Retail.
+        # NSE's newer SME terminology uses Individual Investor instead of Retail.
         return "retail", 90
-    if "non institutional" in t or "nii" in words or "nib" in words:
-        score = 105
+    if (
+        "non institutional" in t
+        or "nii" in words
+        or "niis" in words
+        or "nib" in words
+    ):
         split_markers = (
             "bid amount",
             "above",
             "below",
             "more than",
             "less than",
+            "upto",
+            "up to",
             "10 lakh",
             "10 lac",
             "2 lakh",
@@ -85,7 +95,7 @@ def _classify_category(text: str):
         )
         if any(marker in t for marker in split_markers):
             return None, 0
-        return "nii", score
+        return "nii", 105
     return None, 0
 
 
@@ -117,7 +127,6 @@ def parse_bid_details(payload: Any) -> dict[str, float | None]:
         if current is None or score > current[0]:
             best[field] = (score, value)
 
-    # Some NSE responses expose the overall multiple at the payload root.
     if "total" not in best and isinstance(payload, dict):
         root_total = core.number(
             _first(payload, "noOfTime", "subscription", "timesSubscribed", "totalSubscription")
@@ -125,6 +134,33 @@ def parse_bid_details(payload: Any) -> dict[str, float | None]:
         if root_total is not None and root_total >= 0:
             best["total"] = (80, root_total)
 
+    return {key: (best[key][1] if key in best else None) for key in SNAPSHOT_KEYS}
+
+
+def parse_bse_demand_html(html: str) -> dict[str, float | None]:
+    """Parse BSE's official Cumulative Demand Schedule table."""
+    soup = BeautifulSoup(html, "html.parser")
+    best: dict[str, tuple[int, float]] = {}
+    for tr in soup.select("tr"):
+        cells = [" ".join(c.stripped_strings).strip() for c in tr.select("th,td")]
+        if len(cells) < 2:
+            continue
+        # The category normally sits in the second cell (after Sr.No.), while
+        # Total starts in the first cell. Looking at the first two cells handles both.
+        category = " ".join(cells[:2])
+        field, score = _classify_category(category)
+        if not field:
+            continue
+        value = None
+        for cell in reversed(cells):
+            value = core.number(cell)
+            if value is not None:
+                break
+        if value is None or value < 0:
+            continue
+        current = best.get(field)
+        if current is None or score > current[0]:
+            best[field] = (score, value)
     return {key: (best[key][1] if key in best else None) for key in SNAPSHOT_KEYS}
 
 
@@ -184,13 +220,20 @@ class NSESubscriptionClient:
         self.s = requests.Session()
         self.s.headers.update(core.HEADERS)
         self.primed = False
+        self.prime_error: Exception | None = None
 
     def _prime(self):
         if self.primed:
             return
-        r = self.s.get(NSE_HOME, timeout=20)
-        r.raise_for_status()
-        self.primed = True
+        if self.prime_error is not None:
+            raise self.prime_error
+        try:
+            r = self.s.get(NSE_HOME, timeout=20)
+            r.raise_for_status()
+            self.primed = True
+        except Exception as exc:  # remember a WAF block instead of retrying per IPO
+            self.prime_error = exc
+            raise
 
     def detail(self, symbol: str, board: str | None = None):
         self._prime()
@@ -219,21 +262,124 @@ class NSESubscriptionClient:
         return {}, series_options[-1]
 
 
+def _extract_bse_demand_url(tr, page_url: str) -> str | None:
+    """Find a Cumulative Demand Schedule URL in a BSE issue table row."""
+    for tag in tr.select("a"):
+        for raw in (tag.get("href"), tag.get("onclick")):
+            if not raw or "demandschedule" not in raw.lower():
+                continue
+            decoded = html_lib.unescape(raw)
+            match = re.search(
+                r"(?:https?://[^'\"\s)]+)?(?:/[^'\"\s)]*)?CummDemandSchedule\.aspx\?[^'\"\s)]+",
+                decoded,
+                flags=re.I,
+            )
+            if match:
+                return urljoin(page_url, match.group(0))
+
+    # Some BSE rows use JavaScript markup rather than a conventional anchor href.
+    markup = html_lib.unescape(str(tr))
+    match = re.search(
+        r"(?:https?://[^'\"\s)]+)?(?:/[^'\"\s)]*)?CummDemandSchedule\.aspx\?[^'\"\s)<>]+",
+        markup,
+        flags=re.I,
+    )
+    return urljoin(page_url, match.group(0)) if match else None
+
+
+class BSESubscriptionClient:
+    """Official fallback when NSE's WAF blocks a cloud runner."""
+
+    def __init__(self):
+        self.s = requests.Session()
+        self.s.headers.update(core.HEADERS)
+        self.s.headers.update({"Referer": f"{core.BSE_HOME}/"})
+        self._index: list[tuple[str, str]] | None = None
+        self._index_error: Exception | None = None
+
+    def _load_index(self):
+        if self._index is not None:
+            return
+        if self._index_error is not None:
+            raise self._index_error
+        last_error = None
+        for page_url in core.BSE_URLS:
+            try:
+                r = self.s.get(page_url, timeout=30)
+                r.raise_for_status()
+                soup = BeautifulSoup(r.text, "html.parser")
+                index: list[tuple[str, str]] = []
+                for tr in soup.select("tr"):
+                    demand_url = _extract_bse_demand_url(tr, page_url)
+                    if not demand_url:
+                        continue
+                    text = " ".join(tr.stripped_strings)
+                    key = core.canonical_company(text)
+                    if key:
+                        index.append((key, demand_url))
+                if index:
+                    self._index = index
+                    return
+                last_error = ValueError(f"No BSE cumulative-demand links found at {page_url}")
+            except Exception as exc:  # noqa: BLE001 - try beta BSE as fallback
+                last_error = exc
+        self._index_error = last_error or ValueError("BSE issue index unavailable")
+        raise self._index_error
+
+    def detail(self, company: str):
+        self._load_index()
+        needle = core.canonical_company(company)
+        matches = [(key, url) for key, url in (self._index or []) if needle and needle in key]
+        if not matches:
+            # In case the row contains abbreviated legal wording, use the same fuzzy
+            # canonical matching threshold as the core updater.
+            scored = []
+            from difflib import SequenceMatcher
+
+            for key, url in self._index or []:
+                ratio = SequenceMatcher(None, needle, key[: max(len(needle) + 12, 1)]).ratio()
+                scored.append((ratio, url))
+            scored.sort(reverse=True)
+            if scored and scored[0][0] >= 0.72:
+                matches = [(needle, scored[0][1])]
+        if not matches:
+            raise ValueError(f"BSE cumulative-demand link not found for {company}")
+
+        url = matches[0][1]
+        r = self.s.get(url, timeout=30, headers={"Referer": core.BSE_URL})
+        r.raise_for_status()
+        parsed = parse_bse_demand_html(r.text)
+        if not any(value is not None for value in parsed.values()):
+            raise ValueError("BSE cumulative demand page returned no headline categories")
+        return parsed, url
+
+
 def _source_url(symbol: str, series: str):
     return f"{NSE_DETAIL_PAGE}?{urlencode({'symbol': symbol, 'series': series})}"
 
 
 def _replace_subscription_source(record: dict[str, Any], source: dict[str, Any]):
-    sources = list(record.get("sources") or [])
-    sources = [s for s in sources if str((s or {}).get("name") or "") != "NSE subscription detail"]
+    source_names = {"NSE subscription detail", "BSE cumulative demand"}
+    sources = [
+        s
+        for s in (record.get("sources") or [])
+        if str((s or {}).get("name") or "") not in source_names
+    ]
     sources.append(source)
     record["sources"] = sources
 
 
-def update_record(record: dict[str, Any], detail: Any, *, series="EQ", force_snapshot=False):
-    parsed = parse_bid_details(detail)
+def apply_subscription(
+    record: dict[str, Any],
+    parsed: dict[str, float | None],
+    *,
+    source_name: str,
+    source_url: str,
+    snapshot_source: str,
+    force_snapshot=False,
+):
     if not any(value is not None for value in parsed.values()):
-        raise ValueError("NSE ipo-detail returned no headline subscription rows")
+        raise ValueError("Subscription source returned no headline category rows")
 
     captured_at = core.now_ist().isoformat(timespec="seconds")
     current = dict(record.get("subscription") or {})
@@ -242,20 +388,29 @@ def update_record(record: dict[str, Any], detail: Any, *, series="EQ", force_sna
             current[key] = value
     record["subscription"] = current
     record["subscriptionAsOf"] = captured_at
+    record["subscriptionSource"] = source_name
 
-    snapshot = {"capturedAt": captured_at, "source": "NSE ipo-detail"}
+    snapshot = {"capturedAt": captured_at, "source": snapshot_source}
     snapshot.update({key: core.number(current.get(key)) for key in SNAPSHOT_KEYS})
     added = append_snapshot(record, snapshot, force=force_snapshot)
 
-    symbol = str(record.get("symbol") or "").strip()
-    source = core.source_stamp(
-        "NSE subscription detail",
-        _source_url(symbol, series),
-        "exchange",
-        captured_at,
-    )
+    source = core.source_stamp(source_name, source_url, "exchange", captured_at)
     _replace_subscription_source(record, source)
     return added
+
+
+def update_record(record: dict[str, Any], detail: Any, *, series="EQ", force_snapshot=False):
+    """Backward-compatible NSE application helper used by tests and callers."""
+    parsed = parse_bid_details(detail)
+    symbol = str(record.get("symbol") or "").strip()
+    return apply_subscription(
+        record,
+        parsed,
+        source_name="NSE subscription detail",
+        source_url=_source_url(symbol, series),
+        snapshot_source="NSE ipo-detail",
+        force_snapshot=force_snapshot,
+    )
 
 
 def main():
@@ -272,19 +427,47 @@ def main():
         return 2
 
     records = candidate_records(payload, company=args.company, limit=args.limit)
-    client = NSESubscriptionClient()
+    nse = NSESubscriptionClient()
+    bse = BSESubscriptionClient()
     attempted = updated = snapshots_added = failed = 0
+    source_counts = {"NSE": 0, "BSE": 0}
     errors = []
+    warnings = []
 
     for record in records:
         attempted += 1
+        company = str(record.get("company") or "")
         try:
-            detail, series = client.detail(str(record.get("symbol") or "").strip(), record.get("board"))
-            added = update_record(record, detail, series=series, force_snapshot=args.force_snapshot)
+            try:
+                detail, series = nse.detail(
+                    str(record.get("symbol") or "").strip(), record.get("board")
+                )
+                added = update_record(
+                    record,
+                    detail,
+                    series=series,
+                    force_snapshot=args.force_snapshot,
+                )
+                source_counts["NSE"] += 1
+                source_used = "NSE"
+            except Exception as nse_exc:  # official BSE fallback for WAF/API failures
+                parsed, bse_url = bse.detail(company)
+                added = apply_subscription(
+                    record,
+                    parsed,
+                    source_name="BSE cumulative demand",
+                    source_url=bse_url,
+                    snapshot_source="BSE cumulative demand",
+                    force_snapshot=args.force_snapshot,
+                )
+                source_counts["BSE"] += 1
+                source_used = "BSE"
+                warnings.append(f"{company}: NSE unavailable ({nse_exc}); used BSE cumulative demand")
+
             updated += 1
             snapshots_added += int(added)
             print(
-                f"Subscription {record.get('company')}: "
+                f"Subscription {company} [{source_used}]: "
                 f"QIB={record.get('subscription', {}).get('qib')} "
                 f"NII={record.get('subscription', {}).get('nii')} "
                 f"Retail={record.get('subscription', {}).get('retail')} "
@@ -292,33 +475,42 @@ def main():
             )
         except Exception as exc:  # noqa: BLE001 - one issue must not block the refresh
             failed += 1
-            msg = f"{record.get('company')}: {exc}"
+            msg = f"{company}: {exc}"
             errors.append(msg)
             print(f"Subscription refresh failed: {msg}", file=sys.stderr)
 
     meta = payload.setdefault("meta", {})
     meta["schemaVersion"] = max(int(meta.get("schemaVersion") or 1), 4)
-    meta["subscriptionHealth"] = {
+    health = {
         "ok": failed == 0 if attempted else True,
         "attempted": attempted,
         "updated": updated,
         "snapshotsAdded": snapshots_added,
         "failed": failed,
+        "nseRecords": source_counts["NSE"],
+        "bseFallbackRecords": source_counts["BSE"],
         "asOf": core.now_ist().isoformat(timespec="seconds"),
+        "warnings": warnings[:10],
         "errors": errors[:10],
     }
-    meta.setdefault("sourceHealth", {})["NSE-subscription"] = {
-        "ok": failed == 0 if attempted else True,
+    meta["subscriptionHealth"] = health
+    source_health = meta.setdefault("sourceHealth", {})
+    source_health.pop("NSE-subscription", None)
+    source_health["IPO-subscription"] = {
+        "ok": health["ok"],
         "records": updated,
         "attempted": attempted,
         "snapshotsAdded": snapshots_added,
         "failed": failed,
+        "nseRecords": source_counts["NSE"],
+        "bseFallbackRecords": source_counts["BSE"],
     }
 
     DATA_FILE.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(
         f"Subscription tracking: attempted={attempted}, updated={updated}, "
-        f"snapshots_added={snapshots_added}, failed={failed}"
+        f"snapshots_added={snapshots_added}, failed={failed}, "
+        f"nse={source_counts['NSE']}, bse_fallback={source_counts['BSE']}"
     )
     return 0
 
