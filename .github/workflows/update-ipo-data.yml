@@ -19,7 +19,9 @@ on:
     paths:
       - "scripts/update_data.py"
       - "scripts/run_update.py"
+      - "scripts/build_company_pages.py"
       - "tests/test_update_data.py"
+      - "tests/test_company_routes.py"
       - "pyproject.toml"
       - ".github/workflows/update-ipo-data.yml"
   schedule:
@@ -56,6 +58,9 @@ jobs:
       - name: Run core parser tests
         run: uv run python -m unittest discover -s tests -p "test_update_data.py" -v
 
+      - name: Run company-route tests
+        run: uv run python -m unittest discover -s tests -p "test_company_routes.py" -v
+
       - name: Record starting data revision
         run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
 
@@ -77,34 +82,33 @@ jobs:
           fi
           uv run python scripts/run_update.py $EXTRA
 
-      - name: Publish changed data safely
+      - name: Publish core data and permanent company routes safely
         shell: bash
         run: |
-          if git diff --quiet -- data/ipos.json; then
-            echo "No data changes"
-            exit 0
-          fi
-
           cp data/ipos.json /tmp/generated-ipos.json
           BASE_DATA="$(cat /tmp/base-data-blob)"
           git fetch origin main
           REMOTE_DATA="$(git rev-parse origin/main:data/ipos.json)"
 
-          if [ "$REMOTE_DATA" != "$BASE_DATA" ]; then
-            echo "Remote IPO data changed during this run; skipping stale publication."
-            exit 0
+          # Always publish on top of the latest branch tip. If another data writer
+          # moved ipos.json during this run, discard this run's stale data but still
+          # rebuild company routes from the newer official dataset.
+          git reset --hard origin/main
+          if [ "$REMOTE_DATA" = "$BASE_DATA" ]; then
+            cp /tmp/generated-ipos.json data/ipos.json
+          else
+            echo "Remote IPO data changed during this run; preserving newer data."
           fi
 
-          git reset --hard origin/main
-          cp /tmp/generated-ipos.json data/ipos.json
+          uv run python scripts/build_company_pages.py
 
-          if git diff --quiet -- data/ipos.json; then
-            echo "Generated data already matches latest main"
+          if [ -z "$(git status --porcelain -- data/ipos.json ipo/)" ]; then
+            echo "No core data or company-route changes"
             exit 0
           fi
 
           git config user.name "ipo-tracker-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/ipos.json
-          git commit -m "data: refresh core IPO data"
+          git add data/ipos.json ipo/
+          git commit -m "data: refresh core IPO data and company routes"
           git push origin HEAD:main
