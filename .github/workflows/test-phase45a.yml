@@ -6,9 +6,11 @@ on:
       - main
     paths:
       - "scripts/enrich_nse_primary_market_reports.py"
+      - "scripts/enrich_nse_primary_market_reports_v2.py"
       - "scripts/enrich_exchange_details_v2.py"
       - "scripts/backfill_bse_history_v2.py"
       - "tests/test_nse_primary_market_reports.py"
+      - "tests/test_nse_primary_market_reports_v2.py"
       - "tests/test_exchange_details_v2.py"
       - "tests/test_bse_history_backfill.py"
       - ".github/workflows/test-phase45a.yml"
@@ -42,6 +44,9 @@ jobs:
 
       - name: Test NSE monthly primary-market parser
         run: uv run python -m unittest discover -s tests -p "test_nse_primary_market_reports.py" -v
+
+      - name: Test NSE monthly-report discovery v2
+        run: uv run python -m unittest discover -s tests -p "test_nse_primary_market_reports_v2.py" -v
 
       - name: Test BSE exchange-detail v2 parser
         run: uv run python -m unittest discover -s tests -p "test_exchange_details_v2.py" -v
