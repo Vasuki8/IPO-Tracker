@@ -1,33 +1,32 @@
 {
-  "generatedAt": "2026-09-12T23:59:07+05:30",
-  "asOfDate": "2026-09-12",
+  "generatedAt": "2026-09-13T00:32:33+05:30",
+  "asOfDate": "2026-09-13",
   "recordCount": 1371,
   "queueCount": 1368,
   "priorityCounts": {
     "P0 open IPO": 7,
     "P1 upcoming IPO": 5,
-    "P2 recent IPO (30d)": 35,
+    "P2 recent IPO (30d)": 34,
     "P3 filing pipeline": 4,
-    "P4 recent history (2y)": 410,
+    "P4 recent history (2y)": 411,
     "P5 historical backfill": 907
   },
   "fieldGapCounts": {
-    "exchange.issueComposition": 1361,
+    "exchange.issueComposition": 1358,
     "exchange.lotSize": 1353,
     "exchange.issueSizeCr": 1344,
     "lifecycle.allotmentDate": 1332,
     "lifecycle.listingDate": 35,
     "exchange.priceBand": 23,
-    "offer.objectsOfIssue": 11,
     "offer.promoterShareholding": 11,
-    "offer.registrar": 10,
-    "offer.leadManagers": 10,
-    "offer.promoters": 6,
     "subscription.qib": 5,
     "subscription.nii": 5,
     "subscription.retail": 5,
     "subscription.total": 5,
-    "offer.financials": 4,
+    "offer.financials": 3,
+    "offer.registrar": 1,
+    "offer.objectsOfIssue": 1,
+    "offer.leadManagers": 1,
     "provenance.sources": 1
   },
   "queue": [
@@ -178,30 +177,6 @@
       "profilePath": "ipo/manika/"
     },
     {
-      "id": "ssretail",
-      "company": "SS Retail Limited",
-      "symbol": "SSRETAIL",
-      "stage": "upcoming",
-      "openDate": "2026-09-16",
-      "closeDate": "2026-09-18",
-      "listingDate": null,
-      "priority": 1,
-      "priorityLabel": "P1 upcoming IPO",
-      "completenessPct": 58.8,
-      "expectedFieldCount": 17,
-      "missingFieldCount": 7,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueComposition",
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.promoters",
-        "offer.objectsOfIssue",
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/ssretail/"
-    },
-    {
       "id": "jsipl",
       "company": "Jindal Supreme (India) Limited",
       "symbol": "JSIPL",
@@ -211,37 +186,33 @@
       "listingDate": null,
       "priority": 1,
       "priorityLabel": "P1 upcoming IPO",
-      "completenessPct": 70.6,
+      "completenessPct": 88.2,
       "expectedFieldCount": 17,
-      "missingFieldCount": 5,
+      "missingFieldCount": 2,
       "missingFields": [
         "exchange.lotSize",
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.objectsOfIssue",
         "offer.promoterShareholding"
       ],
       "profilePath": "ipo/jsipl/"
     },
     {
-      "id": "heromotors",
-      "company": "Hero Motors Limited",
-      "symbol": "HEROMOTORS",
+      "id": "ssretail",
+      "company": "SS Retail Limited",
+      "symbol": "SSRETAIL",
       "stage": "upcoming",
       "openDate": "2026-09-16",
       "closeDate": "2026-09-18",
       "listingDate": null,
       "priority": 1,
       "priorityLabel": "P1 upcoming IPO",
-      "completenessPct": 82.4,
+      "completenessPct": 88.2,
       "expectedFieldCount": 17,
-      "missingFieldCount": 3,
+      "missingFieldCount": 2,
       "missingFields": [
-        "exchange.issueComposition",
-        "offer.objectsOfIssue",
+        "exchange.lotSize",
         "offer.promoterShareholding"
       ],
-      "profilePath": "ipo/heromotors/"
+      "profilePath": "ipo/ssretail/"
     },
     {
       "id": "shakti-polytarp-limited",
@@ -280,6 +251,24 @@
       "profilePath": "ipo/vama-wovenfab-limited/"
     },
     {
+      "id": "heromotors",
+      "company": "Hero Motors Limited",
+      "symbol": "HEROMOTORS",
+      "stage": "upcoming",
+      "openDate": "2026-09-16",
+      "closeDate": "2026-09-18",
+      "listingDate": null,
+      "priority": 1,
+      "priorityLabel": "P1 upcoming IPO",
+      "completenessPct": 94.1,
+      "expectedFieldCount": 17,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "offer.promoterShareholding"
+      ],
+      "profilePath": "ipo/heromotors/"
+    },
+    {
       "id": "glasswall",
       "company": "Glass Wall Systems (India) Limited",
       "symbol": "GLASSWALL",
@@ -289,17 +278,13 @@
       "listingDate": null,
       "priority": 2,
       "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 47.1,
+      "completenessPct": 70.6,
       "expectedFieldCount": 17,
-      "missingFieldCount": 9,
+      "missingFieldCount": 5,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
         "exchange.issueComposition",
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.promoters",
-        "offer.objectsOfIssue",
         "offer.financials",
         "offer.promoterShareholding"
       ],
@@ -315,17 +300,13 @@
       "listingDate": null,
       "priority": 2,
       "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 47.1,
+      "completenessPct": 70.6,
       "expectedFieldCount": 17,
-      "missingFieldCount": 9,
+      "missingFieldCount": 5,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
         "exchange.issueComposition",
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.promoters",
-        "offer.objectsOfIssue",
         "offer.financials",
         "offer.promoterShareholding"
       ],
@@ -341,43 +322,17 @@
       "listingDate": null,
       "priority": 2,
       "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 52.9,
+      "completenessPct": 70.6,
       "expectedFieldCount": 17,
-      "missingFieldCount": 8,
+      "missingFieldCount": 5,
       "missingFields": [
         "exchange.lotSize",
-        "exchange.issueComposition",
         "offer.registrar",
-        "offer.leadManagers",
-        "offer.promoters",
         "offer.objectsOfIssue",
         "offer.financials",
         "offer.promoterShareholding"
       ],
       "profilePath": "ipo/rentomojo/"
-    },
-    {
-      "id": "tempsens",
-      "company": "Tempsens Instruments (India) Limited",
-      "symbol": "TEMPSENS",
-      "stage": "listed",
-      "openDate": "2026-08-20",
-      "closeDate": "2026-08-24",
-      "listingDate": "2026-08-28",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 68.4,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 6,
-      "missingFields": [
-        "exchange.lotSize",
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.objectsOfIssue",
-        "offer.promoterShareholding",
-        "lifecycle.allotmentDate"
-      ],
-      "profilePath": "ipo/tempsens/"
     },
     {
       "id": "abh",
@@ -441,27 +396,6 @@
         "lifecycle.allotmentDate"
       ],
       "profilePath": "ipo/augmont/"
-    },
-    {
-      "id": "credent",
-      "company": "Credent Connect N Care Limited",
-      "symbol": "CREDENT",
-      "stage": "listed",
-      "openDate": "2026-08-13",
-      "closeDate": "2026-08-17",
-      "listingDate": "2026-08-20",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
-      ],
-      "profilePath": "ipo/credent/"
     },
     {
       "id": "gaja",
@@ -915,6 +849,26 @@
       "profilePath": "ipo/shantiinor/"
     },
     {
+      "id": "tempsens",
+      "company": "Tempsens Instruments (India) Limited",
+      "symbol": "TEMPSENS",
+      "stage": "listed",
+      "openDate": "2026-08-20",
+      "closeDate": "2026-08-24",
+      "listingDate": "2026-08-28",
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 84.2,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 3,
+      "missingFields": [
+        "exchange.lotSize",
+        "offer.promoterShareholding",
+        "lifecycle.allotmentDate"
+      ],
+      "profilePath": "ipo/tempsens/"
+    },
+    {
       "id": "arcil",
       "company": "Asset Reconstruction Company (India) Limited",
       "symbol": "ARCIL",
@@ -1019,40 +973,14 @@
       "listingDate": null,
       "priority": 3,
       "priorityLabel": "P3 filing pipeline",
-      "completenessPct": 33.3,
+      "completenessPct": 77.8,
       "expectedFieldCount": 9,
-      "missingFieldCount": 6,
+      "missingFieldCount": 2,
       "missingFields": [
-        "offer.registrar",
         "offer.leadManagers",
-        "offer.promoters",
-        "offer.objectsOfIssue",
-        "offer.financials",
         "offer.promoterShareholding"
       ],
       "profilePath": "ipo/national-stock-exchange-of-india-limited/"
-    },
-    {
-      "id": "nopaperforms-solutions-limited",
-      "company": "NOPAPERFORMS SOLUTIONS LIMITED",
-      "symbol": null,
-      "stage": "filing-pipeline",
-      "openDate": null,
-      "closeDate": null,
-      "listingDate": null,
-      "priority": 3,
-      "priorityLabel": "P3 filing pipeline",
-      "completenessPct": 44.4,
-      "expectedFieldCount": 9,
-      "missingFieldCount": 5,
-      "missingFields": [
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.promoters",
-        "offer.objectsOfIssue",
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/nopaperforms-solutions-limited/"
     },
     {
       "id": "m-k-c-agro-fresh-limited",
@@ -1064,16 +992,31 @@
       "listingDate": null,
       "priority": 3,
       "priorityLabel": "P3 filing pipeline",
-      "completenessPct": 55.6,
+      "completenessPct": 88.9,
       "expectedFieldCount": 9,
-      "missingFieldCount": 4,
+      "missingFieldCount": 1,
       "missingFields": [
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.objectsOfIssue",
         "offer.promoterShareholding"
       ],
       "profilePath": "ipo/m-k-c-agro-fresh-limited/"
+    },
+    {
+      "id": "nopaperforms-solutions-limited",
+      "company": "NOPAPERFORMS SOLUTIONS LIMITED",
+      "symbol": null,
+      "stage": "filing-pipeline",
+      "openDate": null,
+      "closeDate": null,
+      "listingDate": null,
+      "priority": 3,
+      "priorityLabel": "P3 filing pipeline",
+      "completenessPct": 88.9,
+      "expectedFieldCount": 9,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "offer.promoterShareholding"
+      ],
+      "profilePath": "ipo/nopaperforms-solutions-limited/"
     },
     {
       "id": "torrent-gas-limited",
@@ -1085,13 +1028,10 @@
       "listingDate": null,
       "priority": 3,
       "priorityLabel": "P3 filing pipeline",
-      "completenessPct": 55.6,
+      "completenessPct": 88.9,
       "expectedFieldCount": 9,
-      "missingFieldCount": 4,
+      "missingFieldCount": 1,
       "missingFields": [
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.objectsOfIssue",
         "offer.promoterShareholding"
       ],
       "profilePath": "ipo/torrent-gas-limited/"
@@ -3318,6 +3258,27 @@
         "lifecycle.allotmentDate"
       ],
       "profilePath": "ipo/corona/"
+    },
+    {
+      "id": "credent",
+      "company": "Credent Connect N Care Limited",
+      "symbol": "CREDENT",
+      "stage": "listed",
+      "openDate": "2026-08-13",
+      "closeDate": "2026-08-17",
+      "listingDate": "2026-08-20",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 69.2,
+      "expectedFieldCount": 13,
+      "missingFieldCount": 4,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr",
+        "exchange.issueComposition",
+        "lifecycle.allotmentDate"
+      ],
+      "profilePath": "ipo/credent/"
     },
     {
       "id": "cubeinvit",
