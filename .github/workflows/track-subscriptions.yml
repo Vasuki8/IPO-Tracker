@@ -7,7 +7,9 @@ on:
       - main
     paths:
       - "scripts/track_subscriptions.py"
+      - "scripts/audit_data_completeness.py"
       - "tests/test_subscription_tracking.py"
+      - "tests/test_data_completeness.py"
       - ".github/workflows/track-subscriptions.yml"
       - "pyproject.toml"
   schedule:
@@ -44,40 +46,39 @@ jobs:
       - name: Run subscription parser tests
         run: uv run python -m unittest discover -s tests -p "test_subscription_tracking.py" -v
 
+      - name: Run completeness-audit tests
+        run: uv run python -m unittest discover -s tests -p "test_data_completeness.py" -v
+
       - name: Record starting data revision
         run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
 
       - name: Capture live QIB, NII, Retail and Total demand
         run: uv run python scripts/track_subscriptions.py --limit 30
 
-      - name: Publish changed subscription history safely
+      - name: Publish changed subscription history and audit safely
         shell: bash
         run: |
-          if git diff --quiet -- data/ipos.json; then
-            echo "No subscription changes"
-            exit 0
-          fi
-
           cp data/ipos.json /tmp/generated-ipos.json
           BASE_DATA="$(cat /tmp/base-data-blob)"
           git fetch origin main
           REMOTE_DATA="$(git rev-parse origin/main:data/ipos.json)"
 
           if [ "$REMOTE_DATA" != "$BASE_DATA" ]; then
-            echo "Remote IPO data changed during this run; skipping stale publication."
+            echo "Remote IPO data changed during this run; skipping stale subscription publication."
             exit 0
           fi
 
           git reset --hard origin/main
           cp /tmp/generated-ipos.json data/ipos.json
+          uv run python scripts/audit_data_completeness.py
 
-          if git diff --quiet -- data/ipos.json; then
-            echo "Generated data already matches latest main"
+          if [ -z "$(git status --porcelain -- data/ipos.json data/completeness.json docs/DATA_QUALITY.md)" ]; then
+            echo "No subscription or audit changes"
             exit 0
           fi
 
           git config user.name "ipo-tracker-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/ipos.json
-          git commit -m "data: capture live IPO subscriptions"
+          git add data/ipos.json data/completeness.json docs/DATA_QUALITY.md
+          git commit -m "data: capture live IPO subscriptions and refresh audit"
           git push origin HEAD:main
