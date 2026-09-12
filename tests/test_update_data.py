@@ -61,21 +61,87 @@ class NormalizerTests(unittest.TestCase):
         html = """
         <table>
           <tr>
-            <th>Security Name</th><th>Start Date</th><th>End Date</th>
-            <th>Offer Price</th><th>Face Value</th><th>Issue Status</th>
+            <th>Security Name</th><th>Exchange Platform</th><th>Start Date</th>
+            <th>End Date</th><th>Offer Price</th><th>Face Value</th>
+            <th>Type of Issue</th><th>Issue Status</th>
           </tr>
           <tr>
-            <td>Example Limited</td><td>17-09-2026</td><td>21-09-2026</td>
-            <td>Rs 94 - Rs 99</td><td>10</td><td>Forthcoming</td>
+            <td>Example Limited</td><td>MainBoard</td><td>17-09-2026</td>
+            <td>21-09-2026</td><td>Rs 94 - Rs 99</td><td>10</td>
+            <td>IPO</td><td>Forthcoming</td>
           </tr>
         </table>
         """
         rows = mod.BSEClient.parse_html(html)
         self.assertEqual(len(rows), 1)
         self.assertEqual(rows[0]["company"], "Example Limited")
+        self.assertEqual(rows[0]["board"], "Mainboard")
         self.assertEqual(rows[0]["openDate"], "2026-09-17")
         self.assertEqual(rows[0]["closeDate"], "2026-09-21")
         self.assertEqual(rows[0]["priceBand"], {"min": 94.0, "max": 99.0})
+
+    def test_bse_parser_keeps_only_ipos_and_ignores_outer_nested_row(self):
+        html = """
+        <table>
+          <tr><td>
+            <table>
+              <tr>
+                <th>Security Name</th><th>Exchange Platform</th><th>Start Date</th>
+                <th>End Date</th><th>Offer Price</th><th>Face Value</th>
+                <th>Type of Issue</th><th>Issue Status</th>
+              </tr>
+              <tr>
+                <td>Good IPO Limited</td><td>SME</td><td>17-09-2026</td>
+                <td>21-09-2026</td><td>94.00 - 99.00</td><td>10</td>
+                <td>IPO</td><td>Forthcoming</td>
+              </tr>
+              <tr>
+                <td>Not An IPO Limited</td><td>MainBoard</td><td>17-09-2026</td>
+                <td>21-09-2026</td><td>50.00</td><td>10</td>
+                <td>FPO</td><td>Forthcoming</td>
+              </tr>
+            </table>
+          </td></tr>
+        </table>
+        """
+        rows = mod.BSEClient.parse_html(html)
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["company"], "Good IPO Limited")
+        self.assertEqual(rows[0]["board"], "SME")
+        self.assertEqual(rows[0]["issueType"], "IPO")
+
+    def test_legacy_seed_fields_are_removed_before_live_merge(self):
+        rec = {
+            "company": "Example Limited",
+            "symbol": "FAKE",
+            "openDate": "2026-09-01",
+            "closeDate": "2026-09-03",
+            "priceBand": {"min": 1, "max": 2},
+            "issueSizeCr": 999,
+            "subscription": {"total": 42},
+            "source": {"name": "Seed snapshot", "url": "seed"},
+            "sources": [
+                {"name": "Seed snapshot", "url": "seed"},
+                {"name": "SEBI public issues", "url": "sebi"},
+            ],
+            "observations": {"SEBI": {"stage": "drhp"}},
+        }
+        out = mod.clean_existing_record(rec)
+        self.assertIsNotNone(out)
+        self.assertIsNone(out["symbol"])
+        self.assertIsNone(out["openDate"])
+        self.assertIsNone(out["priceBand"])
+        self.assertIsNone(out["issueSizeCr"])
+        self.assertIsNone(out["subscription"])
+        self.assertEqual([s["name"] for s in out["sources"]], ["SEBI public issues"])
+
+    def test_old_bse_only_rows_are_dropped_and_refetched(self):
+        rec = {
+            "company": "Old FPO Limited",
+            "sources": [{"name": "BSE public issue", "url": "bse"}],
+            "observations": {"BSE": {"openDate": "2026-09-01"}},
+        }
+        self.assertIsNone(mod.clean_existing_record(rec))
 
     def test_conflict_is_not_overwritten(self):
         base = {"openDate": "2026-09-10", "lotSize": 100, "company": "Example Limited"}
