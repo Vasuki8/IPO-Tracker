@@ -1,10 +1,11 @@
 [project]
 name = "india-ipo-tracker"
-version = "0.3.0"
+version = "0.3.1"
 description = "Static Indian IPO tracker powered by NSE, SEBI and BSE public-market data"
 requires-python = ">=3.12"
 dependencies = [
   "beautifulsoup4>=4.12.3",
+  "fonttools>=4.59.0",
   "pypdf>=5.0.0",
   "requests>=2.32.0",
 ]
