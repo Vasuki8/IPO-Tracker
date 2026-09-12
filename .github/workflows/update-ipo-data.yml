@@ -13,6 +13,14 @@ on:
         required: false
         type: boolean
         default: false
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/**"
+      - "tests/**"
+      - "pyproject.toml"
+      - ".github/workflows/update-ipo-data.yml"
   schedule:
     # Hourly. GitHub cron is UTC; the updater derives Indian dates in Asia/Kolkata.
     - cron: "17 * * * *"
@@ -30,10 +38,12 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7.0.1
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v10.1.0
+        with:
+          version: "latest-known"
 
       - name: Set up Python
         run: uv python install 3.12
