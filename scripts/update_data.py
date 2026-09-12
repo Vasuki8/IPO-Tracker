@@ -1,415 +1,280 @@
 #!/usr/bin/env python3
-"""Build data/ipos.json from NSE current, upcoming and historical IPO endpoints.
-
-The NSE endpoints used here are public web endpoints rather than a documented
-commercial API. The collector therefore treats failures conservatively: it will
-never replace a healthy dataset with an empty response.
-"""
-
+"""Build data/ipos.json from NSE, SEBI and BSE public-market sources."""
 from __future__ import annotations
 
-import argparse
-import json
-import math
-import re
-import sys
-import time
-from dataclasses import dataclass
-from datetime import date, datetime, timedelta, timezone
+import argparse, json, math, re, sys, time
+from datetime import date, datetime, timedelta
+from difflib import SequenceMatcher
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any
+from urllib.parse import urljoin
 from zoneinfo import ZoneInfo
 
 import requests
+from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "ipos.json"
 IST = ZoneInfo("Asia/Kolkata")
-
 NSE_HOME = "https://www.nseindia.com"
 NSE_API = f"{NSE_HOME}/api"
-SOURCE_URL = f"{NSE_HOME}/market-data/all-upcoming-issues-ipo"
-
+NSE_SOURCE_URL = f"{NSE_HOME}/market-data/all-upcoming-issues-ipo"
+SEBI_HOME = "https://www.sebi.gov.in"
+SEBI_URL = f"{SEBI_HOME}/sebiweb/home/HomeAction.do?doListingAll=yes&sid=3&smid=0&ssid=0"
+BSE_HOME = "https://www.bseindia.com"
+BSE_URL = f"{BSE_HOME}/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p"
 HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0 Safari/537.36"
-    ),
-    "Accept": "application/json,text/plain,*/*",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/152 Safari/537.36",
+    "Accept": "application/json,text/html,application/xhtml+xml,text/plain,*/*",
     "Accept-Language": "en-US,en;q=0.9",
-    "Referer": SOURCE_URL,
-    "Connection": "keep-alive",
 }
 
 
-def now_ist() -> datetime:
-    return datetime.now(IST)
+def now_ist(): return datetime.now(IST)
 
+def slugify(v: str) -> str:
+    return re.sub(r"[^a-zA-Z0-9]+", "-", v.strip().lower()).strip("-") or "ipo"
 
-def slugify(value: str) -> str:
-    value = re.sub(r"[^a-zA-Z0-9]+", "-", value.strip().lower()).strip("-")
-    return value or "ipo"
+def canonical_company(v: str) -> str:
+    t = v.upper().replace("&", " AND ")
+    t = re.sub(r"\b(LIMITED|LTD|PRIVATE|PVT|INCORPORATED|INC|CORPORATION|CORP)\b", " ", t)
+    t = re.sub(r"\b(ADDENDUM|CORRIGENDUM|UDRHP|DRHP|RHP|PROSPECTUS|DRAFT|ABRIDGED|OFFER|DOCUMENT|FINAL|RED HERRING)\b", " ", t)
+    return re.sub(r"[^A-Z0-9]+", "", t)
 
-
-def first(obj: dict[str, Any], *keys: str, default: Any = None) -> Any:
-    for key in keys:
-        value = obj.get(key)
-        if value not in (None, "", "-", "--", "NA", "N/A"):
-            return value
+def first(d: dict[str, Any], *keys, default=None):
+    for k in keys:
+        v = d.get(k)
+        if v not in (None, "", "-", "--", "NA", "N/A"): return v
     return default
 
+def number(v):
+    if v is None or isinstance(v, bool): return None
+    if isinstance(v, (int, float)):
+        if isinstance(v, float) and (math.isnan(v) or math.isinf(v)): return None
+        return float(v)
+    m = re.search(r"-?\d+(?:\.\d+)?", str(v).replace(",", "").replace("₹", ""))
+    return float(m.group()) if m else None
 
-def number(value: Any) -> float | None:
-    if value is None or isinstance(value, bool):
-        return None
-    if isinstance(value, (int, float)):
-        if isinstance(value, float) and (math.isnan(value) or math.isinf(value)):
-            return None
-        return float(value)
-    text = str(value).replace(",", "").replace("₹", "").strip()
-    match = re.search(r"-?\d+(?:\.\d+)?", text)
-    return float(match.group()) if match else None
+def integer(v):
+    n = number(v); return int(n) if n is not None else None
 
-
-def integer(value: Any) -> int | None:
-    n = number(value)
-    return int(n) if n is not None else None
-
-
-def iso_date(value: Any) -> str | None:
-    if value in (None, "", "-", "--"):
-        return None
-    if isinstance(value, datetime):
-        return value.date().isoformat()
-    if isinstance(value, date):
-        return value.isoformat()
-    text = str(value).strip()
-    candidates = (
-        "%d-%b-%Y", "%d-%B-%Y", "%d/%m/%Y", "%d-%m-%Y",
-        "%Y-%m-%d", "%d %b %Y", "%d %B %Y",
-    )
-    for fmt in candidates:
-        try:
-            return datetime.strptime(text, fmt).date().isoformat()
-        except ValueError:
-            pass
-    match = re.search(r"(\d{1,2})[-/ ]([A-Za-z]{3,9}|\d{1,2})[-/ ](\d{4})", text)
-    if match:
-        d, m, y = match.groups()
-        for fmt in ("%d-%b-%Y", "%d-%B-%Y", "%d-%m-%Y"):
-            try:
-                return datetime.strptime(f"{d}-{m}-{y}", fmt).date().isoformat()
-            except ValueError:
-                pass
+def iso_date(v):
+    if v in (None, "", "-", "--"): return None
+    if isinstance(v, datetime): return v.date().isoformat()
+    if isinstance(v, date): return v.isoformat()
+    t = re.sub(r"\s+", " ", str(v).strip())
+    for f in ("%d-%b-%Y","%d-%B-%Y","%d/%m/%Y","%d-%m-%Y","%Y-%m-%d","%d %b %Y","%d %B %Y","%b %d, %Y","%B %d, %Y"):
+        try: return datetime.strptime(t, f).date().isoformat()
+        except ValueError: pass
     return None
 
+def parse_period(text: str):
+    dates = re.findall(r"\d{1,2}\s+[A-Za-z]{3,9}\s+\d{4}", text or "")
+    return (iso_date(dates[0]), iso_date(dates[1])) if len(dates) >= 2 else (None, None)
 
-def price_band(record: dict[str, Any]) -> dict[str, float | None] | None:
-    low = number(first(record, "minPrice", "priceMin", "lowerPrice", "floorPrice"))
-    high = number(first(record, "maxPrice", "priceMax", "upperPrice", "capPrice"))
-    raw = first(record, "issuePrice", "priceBand", "priceRange")
-    if (low is None or high is None) and raw is not None:
-        nums = [float(x.replace(",", "")) for x in re.findall(r"\d+(?:\.\d+)?", str(raw).replace(",", ""))]
-        if nums:
-            low = low if low is not None else nums[0]
-            high = high if high is not None else nums[-1]
-    if low is None and high is None:
-        return None
-    if high is None:
-        high = low
-    if low is None:
-        low = high
-    return {"min": low, "max": high}
+def parse_price_band_text(text: str):
+    nums = [float(x.replace(",", "")) for x in re.findall(r"\d+(?:\.\d+)?", (text or "").replace(",", ""))]
+    if not nums: return None
+    return {"min": nums[0], "max": nums[-1]}
 
+def price_band(r):
+    lo = number(first(r, "minPrice","priceMin","lowerPrice","floorPrice","priceBandMin"))
+    hi = number(first(r, "maxPrice","priceMax","upperPrice","capPrice","priceBandMax"))
+    raw = first(r, "issuePrice","priceBand","priceRange")
+    if (lo is None or hi is None) and raw is not None:
+        p = parse_price_band_text(str(raw))
+        if p: lo, hi = lo if lo is not None else p["min"], hi if hi is not None else p["max"]
+    if lo is None and hi is None: return None
+    return {"min": lo if lo is not None else hi, "max": hi if hi is not None else lo}
 
-def normalize_board(record: dict[str, Any]) -> str:
-    text = " ".join(str(first(record, k, default="")) for k in ("series", "category", "securityType", "issueType", "marketType")).upper()
-    return "SME" if "SME" in text or "EMERGE" in text else "Mainboard"
-
-
-def derive_status(open_date: str | None, close_date: str | None, listing_date: str | None, hint: str | None) -> str:
+def derive_status(od, cd, ld, hint=None, stage=None):
     today = now_ist().date()
-    od = date.fromisoformat(open_date) if open_date else None
-    cd = date.fromisoformat(close_date) if close_date else None
-    ld = date.fromisoformat(listing_date) if listing_date else None
-    if od and today < od:
-        return "upcoming"
-    if od and cd and od <= today <= cd:
-        return "open"
-    if ld and today >= ld:
-        return "listed"
-    if cd and today > cd:
-        return "closed"
+    o = date.fromisoformat(od) if od else None; c = date.fromisoformat(cd) if cd else None; l = date.fromisoformat(ld) if ld else None
+    if o and today < o: return "upcoming"
+    if o and c and o <= today <= c: return "open"
+    if l and today >= l: return "listed"
+    if c and today > c: return "closed"
     h = (hint or "").lower()
-    if "active" in h or "open" in h:
-        return "open"
-    if "upcoming" in h:
-        return "upcoming"
-    if "list" in h:
-        return "listed"
+    if "open" in h or "active" in h: return "open"
+    if "list" in h: return "listed"
     return "upcoming"
 
+def source_stamp(name, url, kind, as_of=None):
+    return {"name": name, "kind": kind, "url": url, "asOf": as_of or now_ist().isoformat(timespec="seconds")}
 
-def map_subscription(record: dict[str, Any]) -> dict[str, float | None] | None:
-    total = number(first(record, "noOfTime", "subscription", "timesSubscribed", "totalSubscription"))
-    sub = {"qib": None, "nii": None, "retail": None, "total": total}
-    for k, target in (
-        ("qib", "qib"), ("qualifiedInstitutionalBuyers", "qib"),
-        ("nii", "nii"), ("hni", "nii"), ("nonInstitutionalInvestors", "nii"),
-        ("retail", "retail"), ("rii", "retail"), ("retailIndividualInvestors", "retail"),
-    ):
-        if k in record:
-            sub[target] = number(record[k])
-    return sub if any(v is not None for v in sub.values()) else None
+def map_subscription(r):
+    out = {"qib": number(first(r,"qib","qualifiedInstitutionalBuyers")), "nii": number(first(r,"nii","hni","nonInstitutionalInvestors")), "retail": number(first(r,"retail","rii","retailIndividualInvestors")), "total": number(first(r,"noOfTime","subscription","timesSubscribed","totalSubscription"))}
+    return out if any(v is not None for v in out.values()) else None
 
+def normalize_nse_record(r, kind):
+    company = str(first(r,"companyName","company","issuerName","name","symbol",default="Unknown IPO")).strip()
+    symbol = first(r,"symbol","nseSymbol","securitySymbol")
+    od = iso_date(first(r,"issueStartDate","openDate","issueOpenDate","biddingStartDate")); cd = iso_date(first(r,"issueEndDate","closeDate","issueCloseDate","biddingEndDate")); ld = iso_date(first(r,"listingDate","dateOfListing"))
+    board = "SME" if "SME" in str(r).upper() or "EMERGE" in str(r).upper() else "Mainboard"
+    src = source_stamp(f"NSE {kind}", NSE_SOURCE_URL, "exchange")
+    band = price_band(r); lot = integer(first(r,"lotSize","marketLot","minimumBidQuantity","minBidQuantity")); size = number(first(r,"issueSize","issueSizeCr","totalIssueSize"))
+    return {"id": slugify(str(symbol or company)),"matchKey":canonical_company(company),"symbol":str(symbol).strip() if symbol else None,"company":company,"board":board,"exchange":"NSE" if board=="Mainboard" else "NSE Emerge","status":derive_status(od,cd,ld,str(first(r,"status","issueStatus",default=kind))),"openDate":od,"closeDate":cd,"allotmentDate":iso_date(first(r,"allotmentDate","basisOfAllotmentDate")),"listingDate":ld,"priceBand":band,"lotSize":lot,"issueSizeCr":size,"freshIssueCr":number(first(r,"freshIssue","freshIssueCr")),"ofsCr":number(first(r,"offerForSale","ofs","ofsCr")),"sharesOffered":integer(first(r,"noOfSharesOffered","sharesOffered")),"sharesBid":integer(first(r,"noOfsharesBid","sharesBid")),"subscription":map_subscription(r),"listing":None,"lifecycle":{"stage":"exchange","stageDate":od},"documents":[],"sources":[src],"source":src,"observations":{"NSE":{"openDate":od,"closeDate":cd,"priceBand":band,"lotSize":lot,"issueSizeCr":size}}}
 
-def normalize_record(record: dict[str, Any], source_kind: str) -> dict[str, Any]:
-    company = str(first(record, "companyName", "company", "issuerName", "name", "symbol", default="Unknown IPO")).strip()
-    symbol = first(record, "symbol", "nseSymbol", "securitySymbol")
-    open_date = iso_date(first(record, "issueStartDate", "openDate", "issueOpenDate", "biddingStartDate"))
-    close_date = iso_date(first(record, "issueEndDate", "closeDate", "issueCloseDate", "biddingEndDate"))
-    listing_date = iso_date(first(record, "listingDate", "dateOfListing", "listing_date"))
-    issue_price = number(first(record, "issuePrice", "finalIssuePrice", "cutOffPrice"))
-    list_price = number(first(record, "listingPrice", "listPrice", "openPrice"))
-    gain = None
-    if issue_price and list_price:
-        gain = round((list_price / issue_price - 1) * 100, 2)
-    band = price_band(record)
-    board = normalize_board(record)
-    hint = str(first(record, "status", "issueStatus", default=source_kind))
-    status = derive_status(open_date, close_date, listing_date, hint)
-
-    stable = str(symbol or company)
-    out = {
-        "id": slugify(stable),
-        "symbol": str(symbol).strip() if symbol else None,
-        "company": company,
-        "board": board,
-        "exchange": "NSE" if board == "Mainboard" else "NSE Emerge",
-        "status": status,
-        "openDate": open_date,
-        "closeDate": close_date,
-        "allotmentDate": iso_date(first(record, "allotmentDate", "basisOfAllotmentDate")),
-        "listingDate": listing_date,
-        "priceBand": band,
-        "lotSize": integer(first(record, "lotSize", "marketLot", "minimumBidQuantity", "minBidQuantity")),
-        "issueSizeCr": number(first(record, "issueSize", "issueSizeCr", "totalIssueSize")),
-        "freshIssueCr": number(first(record, "freshIssue", "freshIssueCr")),
-        "ofsCr": number(first(record, "offerForSale", "ofs", "ofsCr")),
-        "sharesOffered": integer(first(record, "noOfSharesOffered", "sharesOffered", "offeredReserved")),
-        "sharesBid": integer(first(record, "noOfsharesBid", "sharesBid", "bids")),
-        "subscription": map_subscription(record),
-        "listing": ({"issuePrice": issue_price, "listPrice": list_price, "gainPct": gain} if (issue_price is not None or list_price is not None) else None),
-        "source": {
-            "name": f"NSE {source_kind}",
-            "url": SOURCE_URL,
-            "asOf": now_ist().isoformat(timespec="seconds"),
-        },
-    }
+def dedupe_dicts(items, keys):
+    out=[]; seen=set()
+    for i in items:
+        k=tuple(i.get(x) for x in keys)
+        if k not in seen: seen.add(k); out.append(i)
     return out
 
+def merge_non_null(a,b):
+    out=dict(a)
+    for k,v in b.items():
+        if v is not None and v != {} and v != []: out[k]=v
+    return out
 
-def merge_non_null(base: dict[str, Any], incoming: dict[str, Any]) -> dict[str, Any]:
-    result = dict(base)
-    for key, value in incoming.items():
-        if value is None:
-            continue
-        if isinstance(value, dict) and isinstance(result.get(key), dict):
-            result[key] = merge_non_null(result[key], value)
-        else:
-            result[key] = value
-    return result
+def merge_fill_only(base, incoming, protected=set()):
+    out=dict(base)
+    for k,v in incoming.items():
+        if k in protected: continue
+        if out.get(k) in (None,"",[],{}) and v not in (None,"",[],{}): out[k]=v
+    return out
 
+def best_match(records, key):
+    if key in records: return key
+    best=None; score=0
+    for k in records:
+        s=SequenceMatcher(None,key,k).ratio()
+        if s>score: best,score=k,s
+    return best if score >= 0.88 else None
 
-@dataclass
+def field_equal(field,a,b):
+    if a is None or b is None: return None
+    if field=="priceBand":
+        if not isinstance(a,dict) or not isinstance(b,dict): return False
+        return all(abs(float(a.get(k) or 0)-float(b.get(k) or 0))<=0.01 for k in ("min","max"))
+    if field=="issueSizeCr":
+        av,bv=number(a),number(b)
+        if av is None or bv is None: return None
+        return abs(av-bv)<=max(0.05,0.005*max(abs(av),abs(bv)))
+    return a==b
+
+def build_validation(rec):
+    obs=rec.get("observations") or {}; nse=obs.get("NSE") or {}; bse=obs.get("BSE") or {}; checks=[]
+    for f in ("openDate","closeDate","priceBand","lotSize","issueSizeCr"):
+        m=field_equal(f,nse.get(f),bse.get(f))
+        if m is not None: checks.append({"field":f,"nse":nse.get(f),"bse":bse.get(f),"match":m})
+    names={s.get("name","").split()[0] for s in rec.get("sources") or [] if s.get("name")}
+    status="conflict" if any(c["match"] is False for c in checks) else ("verified" if len(names)>=2 and (checks or "SEBI" in names) else "single-source")
+    return {"status":status,"checkedAt":now_ist().isoformat(timespec="seconds"),"checks":checks,"independentSources":sorted(names)}
+
 class NSEClient:
-    timeout: int = 20
+    def __init__(self):
+        self.s=requests.Session(); self.s.headers.update(HEADERS); self.primed=False
+    def get(self,path,params=None):
+        if not self.primed:
+            self.s.get(NSE_HOME,timeout=20); self.primed=True
+        r=self.s.get(f"{NSE_API}{path}",params=params,timeout=25); r.raise_for_status(); data=r.json()
+        if isinstance(data,list): return data
+        for k in ("data","records","result"):
+            if isinstance(data.get(k),list): return data[k]
+        return []
+    def current(self): return self.get("/ipo-current-issue")
+    def upcoming(self): return self.get("/all-upcoming-issues",{"category":"ipo"})
+    def past(self,start,end): return self.get("/public-past-issues",{"from_date":start.strftime("%d-%m-%Y"),"to_date":end.strftime("%d-%m-%Y")})
 
-    def __post_init__(self) -> None:
-        self.session = requests.Session()
-        self.session.headers.update(HEADERS)
-        self.primed = False
+class SEBIClient:
+    def __init__(self): self.s=requests.Session(); self.s.headers.update(HEADERS)
+    def fetch_recent_filings(self,max_pages=4):
+        out=[]
+        for page in range(1,max_pages+1):
+            r=self.s.get(SEBI_URL,params={"page":page},timeout=30); r.raise_for_status(); soup=BeautifulSoup(r.text,"html.parser")
+            for a in soup.select("a[href]"):
+                title=" ".join(a.stripped_strings).strip(); up=title.upper()
+                if not title or not any(x in up for x in ("DRHP","RHP","PROSPECTUS","RED HERRING")): continue
+                typ="UDRHP" if "UDRHP" in up or "UPDATED DRAFT" in up else "DRHP" if "DRHP" in up or "DRAFT" in up else "RHP" if "RHP" in up or "RED HERRING" in up else "PROSPECTUS"
+                out.append({"company":re.sub(r"\s*[-–:]?\s*(UDRHP|DRHP|RHP|RED HERRING PROSPECTUS|PROSPECTUS).*", "", title, flags=re.I).strip(),"type":typ,"title":title,"url":urljoin(SEBI_HOME,a.get("href")),"filedDate":iso_date(a.find_parent().get_text(" ",strip=True) if a.find_parent() else "")})
+            time.sleep(.15)
+        return dedupe_dicts(out,("url","type"))
 
-    def prime(self) -> None:
-        if self.primed:
-            return
-        # Cookie handshake. NSE frequently rejects direct API calls without it.
-        for url in (f"{NSE_HOME}/option-chain", SOURCE_URL, NSE_HOME):
-            try:
-                response = self.session.get(url, timeout=self.timeout)
-                if response.status_code < 500:
-                    self.primed = True
-                    return
-            except requests.RequestException:
-                continue
+class BSEClient:
+    def __init__(self): self.s=requests.Session(); self.s.headers.update(HEADERS)
+    def current_issues(self):
+        r=self.s.get(BSE_URL,timeout=30); r.raise_for_status(); soup=BeautifulSoup(r.text,"html.parser"); rows=[]
+        for tr in soup.select("tr"):
+            cells=[" ".join(c.stripped_strings) for c in tr.select("th,td")]
+            if len(cells)<3: continue
+            text=" | ".join(cells)
+            if not re.search(r"\d{1,2}\s+[A-Za-z]{3,9}\s+\d{4}",text): continue
+            company=cells[0].strip()
+            if not company or company.lower() in {"company","issuer"}: continue
+            od,cd=parse_period(text); band=parse_price_band_text(text)
+            src=source_stamp("BSE public issue",BSE_URL,"exchange")
+            rows.append({"id":slugify(company),"matchKey":canonical_company(company),"company":company,"openDate":od,"closeDate":cd,"priceBand":band,"lotSize":None,"issueSizeCr":None,"sources":[src],"source":src,"observations":{"BSE":{"openDate":od,"closeDate":cd,"priceBand":band,"lotSize":None,"issueSizeCr":None}}})
+        return rows
 
-    def get(self, path: str, params: dict[str, Any] | None = None) -> Any:
-        self.prime()
-        url = f"{NSE_API}/{path.lstrip('/')}"
-        last_error: Exception | None = None
-        for attempt in range(3):
-            try:
-                response = self.session.get(url, params=params, timeout=self.timeout)
-                if response.status_code in (401, 403):
-                    self.primed = False
-                    self.prime()
-                    time.sleep(1.0 + attempt)
-                    continue
-                response.raise_for_status()
-                return response.json()
-            except (requests.RequestException, ValueError) as exc:
-                last_error = exc
-                time.sleep(1.0 + attempt)
-        raise RuntimeError(f"NSE request failed for {url}: {last_error}")
+def attach_sebi(records,filings):
+    count=0
+    by={}
+    for f in filings: by.setdefault(canonical_company(f["company"]),[]).append(f)
+    rank={"drhp":1,"udrhp":2,"rhp":3,"prospectus":4}
+    for k,docs in by.items():
+        m=best_match(records,k)
+        if m is None:
+            m=k; company=docs[0]["company"]; records[m]={"id":slugify(company),"matchKey":k,"symbol":None,"company":company,"board":"Mainboard","exchange":None,"status":"upcoming","openDate":None,"closeDate":None,"listingDate":None,"priceBand":None,"lotSize":None,"issueSizeCr":None,"subscription":None,"listing":None,"documents":[],"sources":[],"observations":{}}
+        rec=records[m]; rec["documents"]=dedupe_dicts((rec.get("documents") or [])+[{**d,"source":"SEBI"} for d in docs],("url","type")); rec["sources"]=dedupe_dicts((rec.get("sources") or [])+[source_stamp("SEBI public issues",SEBI_URL,"regulator",d.get("filedDate")) for d in docs],("name","url"))
+        latest=max(docs,key=lambda d:rank.get(d["type"].lower(),0)); stage=latest["type"].lower(); rec["lifecycle"]={"stage":stage,"stageDate":latest.get("filedDate"),"candidate":not bool(rec.get("openDate"))}; rec.setdefault("observations",{})["SEBI"]={"stage":stage,"filedDate":latest.get("filedDate"),"documentCount":len(rec["documents"])}; count+=1
+    return count
 
-    def current(self) -> list[dict[str, Any]]:
-        payload = self.get("ipo-current-issue")
-        return unwrap_records(payload)
+def attach_bse(records,rows):
+    count=0; protected={"company","openDate","closeDate","listingDate","priceBand","lotSize","issueSizeCr"}
+    for b in rows:
+        k=best_match(records,b["matchKey"])
+        if k is None: records[b["matchKey"]]=b; count+=1; continue
+        rec=records[k]; rec["sources"]=dedupe_dicts((rec.get("sources") or [])+(b.get("sources") or []),("name","url")); rec.setdefault("observations",{}).update(b.get("observations") or {}); records[k]=merge_fill_only(rec,b,protected); count+=1
+    return count
 
-    def upcoming(self) -> list[dict[str, Any]]:
-        payload = self.get("all-upcoming-issues", {"category": "ipo"})
-        return unwrap_records(payload)
+def load_existing():
+    try: return json.loads(DATA_FILE.read_text(encoding="utf-8"))
+    except Exception: return {"ipos":[]}
 
-    def details(self, symbol: str, series: str) -> list[dict[str, Any]]:
-        payload = self.get("ipo-detail", {"symbol": symbol, "series": series})
-        return unwrap_records(payload)
+def history_ranges(start,end,days=90):
+    cur=start
+    while cur<=end:
+        stop=min(cur+timedelta(days=days-1),end); yield cur,stop; cur=stop+timedelta(days=1)
 
-    def past(self, start: date, end: date) -> list[dict[str, Any]]:
-        params = {"from_date": start.strftime("%d-%m-%Y"), "to_date": end.strftime("%d-%m-%Y")}
-        payload = self.get("public-past-issues", params)
-        return unwrap_records(payload)
-
-
-def unwrap_records(payload: Any) -> list[dict[str, Any]]:
-    if isinstance(payload, list):
-        return [x for x in payload if isinstance(x, dict)]
-    if isinstance(payload, dict):
-        for key in ("data", "records", "results", "items"):
-            value = payload.get(key)
-            if isinstance(value, list):
-                return [x for x in value if isinstance(x, dict)]
-        # Sometimes a response is a dict keyed by rows/categories.
-        if payload and all(isinstance(v, dict) for v in payload.values()):
-            return list(payload.values())
-    return []
-
-
-def history_ranges(start: date, end: date, days: int = 90) -> Iterable[tuple[date, date]]:
-    cursor = start
-    while cursor <= end:
-        chunk_end = min(end, cursor + timedelta(days=days - 1))
-        yield cursor, chunk_end
-        cursor = chunk_end + timedelta(days=1)
-
-
-def load_existing() -> dict[str, Any]:
-    if not DATA_FILE.exists():
-        return {"meta": {}, "ipos": []}
+def main():
+    p=argparse.ArgumentParser(); p.add_argument("--history-days",type=int,default=365); p.add_argument("--bootstrap-history",action="store_true"); p.add_argument("--history-from",default="2000-01-01"); p.add_argument("--skip-details",action="store_true"); p.add_argument("--skip-sebi",action="store_true"); p.add_argument("--skip-bse",action="store_true"); p.add_argument("--sebi-pages",type=int,default=6); a=p.parse_args()
+    existing=load_existing(); records={}; errors=[]; health={}; fetched=False
+    for x in existing.get("ipos",[]):
+        if isinstance(x,dict):
+            k=x.get("matchKey") or canonical_company(str(x.get("company") or "")); x["matchKey"]=k; records[k]=x
+    n=NSEClient(); gathered=[]
     try:
-        return json.loads(DATA_FILE.read_text(encoding="utf-8"))
-    except Exception:
-        return {"meta": {}, "ipos": []}
-
-
-def enrich_details(client: NSEClient, records: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    enriched = []
-    for raw in records:
-        normalized = normalize_record(raw, "current/upcoming")
-        symbol = normalized.get("symbol")
-        if symbol:
-            series = "SME" if normalized.get("board") == "SME" else "EQ"
-            try:
-                details = client.details(symbol, series)
-                for d in details:
-                    normalized = merge_non_null(normalized, normalize_record(d, "detail"))
-                time.sleep(0.25)
-            except Exception as exc:
-                print(f"WARN detail {symbol}: {exc}", file=sys.stderr)
-        enriched.append(normalized)
-    return enriched
-
-
-def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--history-days", type=int, default=365, help="How many recent days of historical IPOs to refresh")
-    parser.add_argument("--bootstrap-history", action="store_true", help="Backfill historical IPOs from --history-from")
-    parser.add_argument("--history-from", default="2000-01-01", help="Start date for bootstrap history YYYY-MM-DD")
-    parser.add_argument("--skip-details", action="store_true", help="Skip /ipo-detail enrichment")
-    args = parser.parse_args()
-
-    client = NSEClient()
-    existing = load_existing()
-    old_by_id = {x.get("id"): x for x in existing.get("ipos", []) if isinstance(x, dict) and x.get("id")}
-
-    errors: list[str] = []
-    gathered: list[dict[str, Any]] = []
-
-    try:
-        current_raw = client.current()
-        upcoming_raw = client.upcoming()
-        live_raw = current_raw + upcoming_raw
-        gathered.extend(
-            [normalize_record(x, "current") for x in current_raw]
-            + [normalize_record(x, "upcoming") for x in upcoming_raw]
-            if args.skip_details
-            else enrich_details(client, live_raw)
-        )
-        print(f"Fetched current={len(current_raw)} upcoming={len(upcoming_raw)}")
-    except Exception as exc:
-        errors.append(f"live/upcoming: {exc}")
-        print(f"ERROR live/upcoming: {exc}", file=sys.stderr)
-
-    hist_end = now_ist().date()
-    hist_start = date.fromisoformat(args.history_from) if args.bootstrap_history else hist_end - timedelta(days=max(args.history_days, 1))
-    historical_count = 0
-    for start, end in history_ranges(hist_start, hist_end):
+        cur=n.current(); up=n.upcoming(); gathered += [normalize_nse_record(x,"current") for x in cur]+[normalize_nse_record(x,"upcoming") for x in up]; health["NSE-live"]={"ok":True,"records":len(cur)+len(up)}; fetched |= bool(cur or up)
+    except Exception as e: errors.append(f"NSE live/upcoming: {e}"); health["NSE-live"]={"ok":False,"error":str(e)}
+    end=now_ist().date(); start=date.fromisoformat(a.history_from) if a.bootstrap_history else end-timedelta(days=max(a.history_days,1)); hcount=0
+    for s,e in history_ranges(start,end):
         try:
-            rows = client.past(start, end)
-            historical_count += len(rows)
-            gathered.extend(normalize_record(x, "historical") for x in rows)
-            time.sleep(0.25)
-        except Exception as exc:
-            errors.append(f"history {start}..{end}: {exc}")
-            print(f"WARN history {start}..{end}: {exc}", file=sys.stderr)
-            if args.bootstrap_history:
-                continue
-            break
-    print(f"Fetched historical rows={historical_count}")
-
-    if not gathered:
-        print("No data fetched. Existing dataset preserved.", file=sys.stderr)
-        return 2
-
-    merged: dict[str, dict[str, Any]] = dict(old_by_id)
+            rows=n.past(s,e); hcount+=len(rows); gathered += [normalize_nse_record(x,"historical") for x in rows]; fetched |= bool(rows); time.sleep(.2)
+        except Exception as ex:
+            errors.append(f"NSE history {s}..{e}: {ex}")
+            if not a.bootstrap_history: break
+    health["NSE-history"]={"ok":hcount>0,"records":hcount}
     for item in gathered:
-        key = item["id"]
-        merged[key] = merge_non_null(merged.get(key, {}), item)
+        key=item["matchKey"]; m=best_match(records,key); old=records.pop(m) if m and m!=key else records.get(key,{})
+        merged=merge_non_null(old,item); merged["sources"]=dedupe_dicts((old.get("sources") or [])+(item.get("sources") or []),("name","url")); merged["documents"]=dedupe_dicts((old.get("documents") or [])+(item.get("documents") or []),("url","type")); records[key]=merged
+    if not a.skip_sebi:
+        try:
+            filings=SEBIClient().fetch_recent_filings(a.sebi_pages); attached=attach_sebi(records,filings); health["SEBI"]={"ok":True,"records":len(filings),"companiesAttached":attached}; fetched |= bool(filings)
+        except Exception as e: errors.append(f"SEBI filings: {e}"); health["SEBI"]={"ok":False,"error":str(e)}
+    if not a.skip_bse:
+        try:
+            rows=BSEClient().current_issues(); attached=attach_bse(records,rows); health["BSE"]={"ok":True,"records":len(rows),"companiesAttached":attached}; fetched |= bool(rows)
+        except Exception as e: errors.append(f"BSE public issues: {e}"); health["BSE"]={"ok":False,"error":str(e)}
+    if not fetched and records: print("No source refreshed. Existing dataset preserved.",file=sys.stderr); return 2
+    if not fetched: return 2
+    for x in records.values():
+        life=x.get("lifecycle") or {}; x["status"]=derive_status(x.get("openDate"),x.get("closeDate"),x.get("listingDate"),x.get("status"),life.get("stage")); x["documents"]=dedupe_dicts(x.get("documents") or [],("url","type")); x["sources"]=dedupe_dicts(x.get("sources") or ([x["source"]] if x.get("source") else []),("name","url"));
+        if x["sources"]: x["source"]=x["sources"][0]
+        x["validation"]=build_validation(x)
+    rows=sorted(records.values(),key=lambda x:(x.get("openDate") or x.get("listingDate") or (x.get("lifecycle") or {}).get("stageDate") or "0000-00-00",x.get("company") or ""),reverse=True)
+    out={"meta":{"schemaVersion":2,"generatedAt":now_ist().isoformat(timespec="seconds"),"timezone":"Asia/Kolkata","sources":["NSE India","SEBI","BSE India"],"seed":False,"recordCount":len(rows),"historyStart":start.isoformat(),"sourceHealth":health,"errors":errors},"ipos":rows}
+    DATA_FILE.write_text(json.dumps(out,indent=2,ensure_ascii=False)+"\n",encoding="utf-8"); print(f"Wrote {len(rows)} records to {DATA_FILE}"); return 0
 
-    # Re-derive status from dates on every update so stale records migrate naturally.
-    for item in merged.values():
-        item["status"] = derive_status(item.get("openDate"), item.get("closeDate"), item.get("listingDate"), item.get("status"))
-
-    def sort_key(item: dict[str, Any]) -> tuple[str, str]:
-        return (item.get("openDate") or item.get("listingDate") or "0000-00-00", item.get("company") or "")
-
-    rows = sorted(merged.values(), key=sort_key, reverse=True)
-    out = {
-        "meta": {
-            "schemaVersion": 1,
-            "generatedAt": now_ist().isoformat(timespec="seconds"),
-            "timezone": "Asia/Kolkata",
-            "source": "NSE India web data endpoints",
-            "seed": False,
-            "recordCount": len(rows),
-            "historyStart": hist_start.isoformat(),
-            "errors": errors,
-        },
-        "ipos": rows,
-    }
-    DATA_FILE.write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    print(f"Wrote {len(rows)} records to {DATA_FILE}")
-    return 0
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())
+if __name__ == "__main__": raise SystemExit(main())

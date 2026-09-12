@@ -4,12 +4,17 @@ on:
   workflow_dispatch:
     inputs:
       bootstrap_history:
-        description: "Backfill full IPO history from 2000 (slower)"
+        description: "Backfill full NSE IPO history from 2000"
+        required: false
+        type: boolean
+        default: false
+      deep_sebi_scan:
+        description: "Deep scan recent SEBI filing pages (use on first Phase 2 run)"
         required: false
         type: boolean
         default: false
   schedule:
-    # Hourly. GitHub cron is UTC. The updater itself uses Asia/Kolkata dates.
+    # Hourly. GitHub cron is UTC; the updater derives Indian dates in Asia/Kolkata.
     - cron: "17 * * * *"
 
 permissions:
@@ -22,7 +27,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -36,14 +41,24 @@ jobs:
       - name: Sync dependencies
         run: uv sync --frozen=false
 
+      - name: Run parser tests
+        run: uv run python -m unittest discover -s tests -v
+
       - name: Refresh IPO data
         shell: bash
         run: |
+          EXTRA=""
           if [ "${{ github.event.inputs.bootstrap_history }}" = "true" ]; then
-            uv run python scripts/update_data.py --bootstrap-history --history-from 2000-01-01
+            EXTRA="$EXTRA --bootstrap-history --history-from 2000-01-01"
           else
-            uv run python scripts/update_data.py --history-days 365
+            EXTRA="$EXTRA --history-days 365"
           fi
+          if [ "${{ github.event.inputs.deep_sebi_scan }}" = "true" ]; then
+            EXTRA="$EXTRA --sebi-pages 20"
+          else
+            EXTRA="$EXTRA --sebi-pages 4"
+          fi
+          uv run python scripts/update_data.py $EXTRA
 
       - name: Commit changed data
         run: |

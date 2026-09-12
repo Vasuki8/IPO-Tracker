@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#07111f" />
-  <meta name="description" content="Live and historical Indian IPO tracker for Mainboard and SME issues." />
+  <meta name="description" content="Live, upcoming and historical Indian IPO tracker using NSE, SEBI and BSE official-market sources." />
   <title>India IPO Tracker</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -15,7 +15,7 @@
         <div class="brand-mark">IP</div>
         <div>
           <div class="brand-title">India IPO Tracker</div>
-          <div class="brand-subtitle">Mainboard + SME · NSE-first data</div>
+          <div class="brand-subtitle">Mainboard + SME · NSE + SEBI + BSE</div>
         </div>
       </div>
       <div class="freshness" id="freshness">Loading data…</div>
@@ -25,13 +25,17 @@
       <section class="hero">
         <div>
           <div class="eyebrow">PRIMARY MARKET MONITOR</div>
-          <h1>Track every stage of the Indian IPO lifecycle.</h1>
-          <p>Upcoming, open, closed and listed issues in one searchable database, with the source and timestamp kept alongside the data.</p>
+          <h1>Follow an IPO from first filing to market listing.</h1>
+          <p>SEBI filing discovery, exchange issue data, subscription tracking and historical listings in one auditable database. Conflicting official values are flagged instead of silently overwritten.</p>
         </div>
         <div class="hero-note">
           <span class="pulse"></span>
-          <div><strong>Automation-ready</strong><br><span>Scheduled refresh via GitHub Actions</span></div>
+          <div><strong>Multi-source validation</strong><br><span>SEBI filings · NSE spine · BSE cross-check</span></div>
         </div>
+      </section>
+
+      <section class="source-health-panel">
+        <div><div class="eyebrow">SOURCE HEALTH</div><div class="source-health" id="sourceHealth"></div></div>
       </section>
 
       <section class="stats" id="stats"></section>
@@ -68,12 +72,14 @@
                 <th>Company</th>
                 <th>Status</th>
                 <th>Board</th>
+                <th>Filing</th>
                 <th>Price band</th>
                 <th>Open</th>
                 <th>Close</th>
                 <th>Issue size</th>
                 <th>Subscription</th>
                 <th>Listing return</th>
+                <th>Validation</th>
               </tr>
             </thead>
             <tbody id="ipoRows"></tbody>
@@ -85,13 +91,13 @@
       <section class="methodology">
         <div>
           <div class="eyebrow">DATA DESIGN</div>
-          <h2>Built for auditability, not just display.</h2>
+          <h2>Official sources have different jobs.</h2>
         </div>
         <div class="method-grid">
-          <article><span>01</span><h3>NSE spine</h3><p>Current, upcoming, detail and historical endpoints feed one normalized schema.</p></article>
-          <article><span>02</span><h3>Source stamps</h3><p>Each record keeps source name, URL and the time it was observed.</p></article>
-          <article><span>03</span><h3>No empty overwrite</h3><p>If an exchange blocks a refresh, the updater preserves the last healthy dataset.</p></article>
-          <article><span>04</span><h3>Next layer</h3><p>SEBI DRHP/RHP pipeline and BSE cross-checks can be added without changing the frontend.</p></article>
+          <article><span>01</span><h3>SEBI discovery</h3><p>DRHP, UDRHP, RHP and final prospectus filings create the pre-exchange IPO pipeline and retain official document links.</p></article>
+          <article><span>02</span><h3>NSE spine</h3><p>Current, upcoming, detail and historical exchange records remain the primary source for issue dates and exchange fields.</p></article>
+          <article><span>03</span><h3>BSE validation</h3><p>BSE fills missing issue terms and independently checks comparable fields such as dates, price band, lot size and issue size.</p></article>
+          <article><span>04</span><h3>Conflict-safe merge</h3><p>Lower-priority sources never overwrite a populated primary value. Disagreements are retained and visibly flagged for review.</p></article>
         </div>
       </section>
     </main>

@@ -1,11 +1,12 @@
 {
   "meta": {
-    "schemaVersion": 1,
+    "schemaVersion": 2,
     "generatedAt": "2026-09-11T13:36:00+05:30",
     "timezone": "Asia/Kolkata",
     "source": "Seed snapshot for UI preview; run scripts/update_data.py for NSE-backed data",
     "seed": true,
-    "recordCount": 9
+    "recordCount": 9,
+    "note": "Preview seed only. Run the updater to populate live NSE + SEBI + BSE source health and validation."
   },
   "ipos": [
     {
@@ -18,7 +19,10 @@
       "openDate": "2026-09-17",
       "closeDate": "2026-09-21",
       "listingDate": "2026-09-24",
-      "priceBand": {"min": 1700, "max": 1785},
+      "priceBand": {
+        "min": 1700,
+        "max": 1785
+      },
       "lotSize": 8,
       "issueSizeCr": 22562.4,
       "freshIssueCr": 0,
@@ -29,6 +33,26 @@
         "name": "SEBI / public filing reported by Reuters",
         "url": "https://www.sebi.gov.in/filings/public-issues.html",
         "asOf": "2026-09-11T00:00:00+05:30"
+      },
+      "matchKey": "NATIONALSTOCKEXCHANGEOFINDIA",
+      "lifecycle": {
+        "stage": "exchange",
+        "stageDate": "2026-09-17",
+        "candidate": false
+      },
+      "documents": [],
+      "sources": [
+        {
+          "name": "SEBI / public filing reported by Reuters",
+          "url": "https://www.sebi.gov.in/filings/public-issues.html",
+          "asOf": "2026-09-11T00:00:00+05:30"
+        }
+      ],
+      "validation": {
+        "status": "single-source",
+        "checkedAt": "2026-09-11T13:36:00+05:30",
+        "checks": [],
+        "independentSources": []
       }
     },
     {
@@ -41,14 +65,46 @@
       "openDate": "2026-09-11",
       "closeDate": "2026-09-16",
       "listingDate": null,
-      "priceBand": {"min": 40, "max": 43},
+      "priceBand": {
+        "min": 40,
+        "max": 43
+      },
       "lotSize": null,
       "issueSizeCr": null,
       "freshIssueCr": null,
       "ofsCr": null,
-      "subscription": {"qib": null, "nii": null, "retail": null, "total": 1.43},
+      "subscription": {
+        "qib": null,
+        "nii": null,
+        "retail": null,
+        "total": 1.43
+      },
       "listing": null,
-      "source": {"name": "Seed snapshot", "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo", "asOf": "2026-09-11T09:06:00+05:30"}
+      "source": {
+        "name": "Seed snapshot",
+        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+        "asOf": "2026-09-11T09:06:00+05:30"
+      },
+      "matchKey": "MANIKAPLASTECH",
+      "lifecycle": {
+        "stage": "exchange",
+        "stageDate": "2026-09-11",
+        "candidate": false
+      },
+      "documents": [],
+      "sources": [
+        {
+          "name": "Seed snapshot",
+          "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+          "asOf": "2026-09-11T09:06:00+05:30"
+        }
+      ],
+      "validation": {
+        "status": "single-source",
+        "checkedAt": "2026-09-11T13:36:00+05:30",
+        "checks": [],
+        "independentSources": []
+      }
     },
     {
       "id": "veegaland-developers-limited",
@@ -60,14 +116,46 @@
       "openDate": "2026-09-10",
       "closeDate": "2026-09-15",
       "listingDate": null,
-      "priceBand": {"min": 130, "max": 140},
+      "priceBand": {
+        "min": 130,
+        "max": 140
+      },
       "lotSize": null,
       "issueSizeCr": null,
       "freshIssueCr": null,
       "ofsCr": null,
-      "subscription": {"qib": null, "nii": null, "retail": null, "total": 1.16},
+      "subscription": {
+        "qib": null,
+        "nii": null,
+        "retail": null,
+        "total": 1.16
+      },
       "listing": null,
-      "source": {"name": "Seed snapshot", "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo", "asOf": "2026-09-11T09:06:00+05:30"}
+      "source": {
+        "name": "Seed snapshot",
+        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+        "asOf": "2026-09-11T09:06:00+05:30"
+      },
+      "matchKey": "VEEGALANDDEVELOPERS",
+      "lifecycle": {
+        "stage": "exchange",
+        "stageDate": "2026-09-10",
+        "candidate": false
+      },
+      "documents": [],
+      "sources": [
+        {
+          "name": "Seed snapshot",
+          "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+          "asOf": "2026-09-11T09:06:00+05:30"
+        }
+      ],
+      "validation": {
+        "status": "single-source",
+        "checkedAt": "2026-09-11T13:36:00+05:30",
+        "checks": [],
+        "independentSources": []
+      }
     },
     {
       "id": "raksan-transformers-limited",
@@ -79,14 +167,46 @@
       "openDate": "2026-09-10",
       "closeDate": "2026-09-15",
       "listingDate": null,
-      "priceBand": {"min": 258, "max": 273},
+      "priceBand": {
+        "min": 258,
+        "max": 273
+      },
       "lotSize": null,
       "issueSizeCr": null,
       "freshIssueCr": null,
       "ofsCr": null,
-      "subscription": {"qib": null, "nii": null, "retail": null, "total": 1.29},
+      "subscription": {
+        "qib": null,
+        "nii": null,
+        "retail": null,
+        "total": 1.29
+      },
       "listing": null,
-      "source": {"name": "Seed snapshot", "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo", "asOf": "2026-09-11T09:06:00+05:30"}
+      "source": {
+        "name": "Seed snapshot",
+        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+        "asOf": "2026-09-11T09:06:00+05:30"
+      },
+      "matchKey": "RAKSANTRANSFORMERS",
+      "lifecycle": {
+        "stage": "exchange",
+        "stageDate": "2026-09-10",
+        "candidate": false
+      },
+      "documents": [],
+      "sources": [
+        {
+          "name": "Seed snapshot",
+          "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+          "asOf": "2026-09-11T09:06:00+05:30"
+        }
+      ],
+      "validation": {
+        "status": "single-source",
+        "checkedAt": "2026-09-11T13:36:00+05:30",
+        "checks": [],
+        "independentSources": []
+      }
     },
     {
       "id": "century-business-limited",
@@ -98,14 +218,46 @@
       "openDate": "2026-09-11",
       "closeDate": "2026-09-16",
       "listingDate": null,
-      "priceBand": {"min": 70, "max": 74},
+      "priceBand": {
+        "min": 70,
+        "max": 74
+      },
       "lotSize": null,
       "issueSizeCr": null,
       "freshIssueCr": null,
       "ofsCr": null,
-      "subscription": {"qib": null, "nii": null, "retail": null, "total": 1.06},
+      "subscription": {
+        "qib": null,
+        "nii": null,
+        "retail": null,
+        "total": 1.06
+      },
       "listing": null,
-      "source": {"name": "Seed snapshot", "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo", "asOf": "2026-09-11T09:06:00+05:30"}
+      "source": {
+        "name": "Seed snapshot",
+        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+        "asOf": "2026-09-11T09:06:00+05:30"
+      },
+      "matchKey": "CENTURYBUSINESS",
+      "lifecycle": {
+        "stage": "exchange",
+        "stageDate": "2026-09-11",
+        "candidate": false
+      },
+      "documents": [],
+      "sources": [
+        {
+          "name": "Seed snapshot",
+          "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+          "asOf": "2026-09-11T09:06:00+05:30"
+        }
+      ],
+      "validation": {
+        "status": "single-source",
+        "checkedAt": "2026-09-11T13:36:00+05:30",
+        "checks": [],
+        "independentSources": []
+      }
     },
     {
       "id": "injecto-polymers-limited",
@@ -117,14 +269,46 @@
       "openDate": "2026-09-11",
       "closeDate": "2026-09-16",
       "listingDate": null,
-      "priceBand": {"min": 98, "max": 100},
+      "priceBand": {
+        "min": 98,
+        "max": 100
+      },
       "lotSize": null,
       "issueSizeCr": null,
       "freshIssueCr": null,
       "ofsCr": null,
-      "subscription": {"qib": null, "nii": null, "retail": null, "total": 0.28},
+      "subscription": {
+        "qib": null,
+        "nii": null,
+        "retail": null,
+        "total": 0.28
+      },
       "listing": null,
-      "source": {"name": "Seed snapshot", "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo", "asOf": "2026-09-11T09:06:00+05:30"}
+      "source": {
+        "name": "Seed snapshot",
+        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+        "asOf": "2026-09-11T09:06:00+05:30"
+      },
+      "matchKey": "INJECTOPOLYMERS",
+      "lifecycle": {
+        "stage": "exchange",
+        "stageDate": "2026-09-11",
+        "candidate": false
+      },
+      "documents": [],
+      "sources": [
+        {
+          "name": "Seed snapshot",
+          "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+          "asOf": "2026-09-11T09:06:00+05:30"
+        }
+      ],
+      "validation": {
+        "status": "single-source",
+        "checkedAt": "2026-09-11T13:36:00+05:30",
+        "checks": [],
+        "independentSources": []
+      }
     },
     {
       "id": "rentomojo-limited",
@@ -136,14 +320,46 @@
       "openDate": "2026-09-09",
       "closeDate": "2026-09-11",
       "listingDate": "2026-09-17",
-      "priceBand": {"min": 384, "max": 404},
+      "priceBand": {
+        "min": 384,
+        "max": 404
+      },
       "lotSize": 37,
       "issueSizeCr": 1256,
       "freshIssueCr": 150,
       "ofsCr": 1105.57,
-      "subscription": {"qib": null, "nii": null, "retail": null, "total": 3.37},
+      "subscription": {
+        "qib": null,
+        "nii": null,
+        "retail": null,
+        "total": 3.37
+      },
       "listing": null,
-      "source": {"name": "Seed snapshot", "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo", "asOf": "2026-09-11T09:06:00+05:30"}
+      "source": {
+        "name": "Seed snapshot",
+        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+        "asOf": "2026-09-11T09:06:00+05:30"
+      },
+      "matchKey": "RENTOMOJO",
+      "lifecycle": {
+        "stage": "exchange",
+        "stageDate": "2026-09-09",
+        "candidate": false
+      },
+      "documents": [],
+      "sources": [
+        {
+          "name": "Seed snapshot",
+          "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+          "asOf": "2026-09-11T09:06:00+05:30"
+        }
+      ],
+      "validation": {
+        "status": "single-source",
+        "checkedAt": "2026-09-11T13:36:00+05:30",
+        "checks": [],
+        "independentSources": []
+      }
     },
     {
       "id": "karamtara-engineering-limited",
@@ -155,14 +371,46 @@
       "openDate": "2026-09-09",
       "closeDate": "2026-09-11",
       "listingDate": null,
-      "priceBand": {"min": 241, "max": 254},
+      "priceBand": {
+        "min": 241,
+        "max": 254
+      },
       "lotSize": 59,
       "issueSizeCr": 875,
       "freshIssueCr": null,
       "ofsCr": null,
-      "subscription": {"qib": null, "nii": null, "retail": null, "total": 2.43},
+      "subscription": {
+        "qib": null,
+        "nii": null,
+        "retail": null,
+        "total": 2.43
+      },
       "listing": null,
-      "source": {"name": "Seed snapshot", "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo", "asOf": "2026-09-11T09:06:00+05:30"}
+      "source": {
+        "name": "Seed snapshot",
+        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+        "asOf": "2026-09-11T09:06:00+05:30"
+      },
+      "matchKey": "KARAMTARAENGINEERING",
+      "lifecycle": {
+        "stage": "exchange",
+        "stageDate": "2026-09-09",
+        "candidate": false
+      },
+      "documents": [],
+      "sources": [
+        {
+          "name": "Seed snapshot",
+          "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+          "asOf": "2026-09-11T09:06:00+05:30"
+        }
+      ],
+      "validation": {
+        "status": "single-source",
+        "checkedAt": "2026-09-11T13:36:00+05:30",
+        "checks": [],
+        "independentSources": []
+      }
     },
     {
       "id": "steamhouse-india-limited",
@@ -174,14 +422,46 @@
       "openDate": "2026-09-09",
       "closeDate": "2026-09-11",
       "listingDate": null,
-      "priceBand": {"min": 77, "max": 81},
+      "priceBand": {
+        "min": 77,
+        "max": 81
+      },
       "lotSize": 185,
       "issueSizeCr": 414,
       "freshIssueCr": null,
       "ofsCr": null,
-      "subscription": {"qib": null, "nii": null, "retail": null, "total": 1.28},
+      "subscription": {
+        "qib": null,
+        "nii": null,
+        "retail": null,
+        "total": 1.28
+      },
       "listing": null,
-      "source": {"name": "Seed snapshot", "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo", "asOf": "2026-09-11T09:06:00+05:30"}
+      "source": {
+        "name": "Seed snapshot",
+        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+        "asOf": "2026-09-11T09:06:00+05:30"
+      },
+      "matchKey": "STEAMHOUSEINDIA",
+      "lifecycle": {
+        "stage": "exchange",
+        "stageDate": "2026-09-09",
+        "candidate": false
+      },
+      "documents": [],
+      "sources": [
+        {
+          "name": "Seed snapshot",
+          "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+          "asOf": "2026-09-11T09:06:00+05:30"
+        }
+      ],
+      "validation": {
+        "status": "single-source",
+        "checkedAt": "2026-09-11T13:36:00+05:30",
+        "checks": [],
+        "independentSources": []
+      }
     }
   ]
 }
