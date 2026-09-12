@@ -64,6 +64,36 @@ class OfferDocsV4Tests(unittest.TestCase):
         self.assertAlmostEqual(parsed["freshIssueCr"], 210.0, places=2)
         self.assertAlmostEqual(parsed["totalIssueSizeCr"], 210.0, places=2)
 
+    def test_promoter_holding_pattern_table_parses_pre_issue_pct(self):
+        text = """
+        SHAREHOLDING PATTERN
+        Particulars  Pre IPO Shares  Pre IPO % Shares  Post IPO Shares  Post IPO % Shares
+        Promoter and Promoter Group  6,449,280  100%  6,449,280  73.61%
+        Others  -  0%  2,312,000  26.39%
+        """
+        parsed = mod.extract_promoter_shareholding(text)
+        self.assertIsNotNone(parsed)
+        self.assertAlmostEqual(parsed["promoterPreIssuePct"], 100.0, places=2)
+
+    def test_promoter_narrative_pre_offer_pct_is_parsed(self):
+        text = """
+        PRE-OFFER SHAREHOLDING
+        Our Promoters collectively hold 12,000,000 Equity Shares constituting
+        74.25% of the pre-Offer share capital of our Company.
+        """
+        parsed = mod.extract_promoter_shareholding(text)
+        self.assertIsNotNone(parsed)
+        self.assertAlmostEqual(parsed["promoterPreIssuePct"], 74.25, places=2)
+
+    def test_promoter_contribution_lock_in_is_not_treated_as_pre_issue_holding(self):
+        text = """
+        CAPITAL STRUCTURE
+        The pre-Issue paid-up capital consists of 10,000,000 Equity Shares.
+        Promoters Contribution 20% of the post-Issue capital shall be locked in.
+        """
+        parsed = mod.extract_promoter_shareholding(text)
+        self.assertIsNone(parsed)
+
     def test_transport_failure_is_retried(self):
         calls = []
         original = mod._ORIGINAL_DOWNLOAD_PDF

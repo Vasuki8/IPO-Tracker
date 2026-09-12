@@ -7,6 +7,8 @@ v4 keeps the quality gates from v3 and adds production hardening fixes:
   deciding that issue composition is unavailable;
 * capture explicit Fresh Issue / OFS monetary amounts when share counts are not
   present in the same summary block;
+* recover conservative pre-issue promoter shareholding from common prospectus
+  holding-pattern tables and explicit pre-offer ownership sentences;
 * retry transient/truncated PDF transfers instead of turning one incomplete
   HTTP read into a permanent extraction error.
 
@@ -121,6 +123,97 @@ def extract_issue_composition(text: str, price_band=None):
     return issue
 
 
+_PRE_OWNERSHIP_CONTEXT = (
+    r"(?:pre[-\s]?(?:issue|offer|ipo)|before\s+the\s+(?:issue|offer)|"
+    r"prior\s+to\s+the\s+(?:issue|offer))"
+)
+_PROMOTER_LABEL = (
+    r"(?:Promoters?(?:\s+(?:and|&)\s+Promoter\s+Group)?|Promoter\s+Group)"
+)
+
+
+def _valid_pct(value):
+    pct = base.number(value)
+    if pct is None:
+        return None
+    pct = float(pct)
+    if not 0 <= pct <= 100:
+        return None
+    return pct
+
+
+def extract_promoter_shareholding(text: str):
+    """Recover a pre-issue promoter percentage from common modern layouts.
+
+    v2 already handles explicit ``Pre-Issue Shareholding of Promoters`` sections.
+    Current prospectuses also use compact holding-pattern tables such as::
+
+        Promoter and Promoter Group  6,449,280  100%  6,449,280  73.61%
+
+    or narrative wording that states the percentage of pre-Offer capital.  This
+    fallback is intentionally local and requires an explicit pre-ownership cue so
+    that promoter-contribution / lock-in percentages are not misclassified.
+    """
+    existing = v3.extract_promoter_shareholding(text)
+    if existing:
+        return existing
+
+    flat = base.norm_space(text)
+    windows = []
+    marker_patterns = [
+        r"Promoters?\s+(?:and|&)\s+Promoter\s+Group",
+        r"Promoters?\s+Shareholding",
+        r"Shareholding\s+Pattern",
+        r"Pre[-\s]?(?:Issue|Offer|IPO)",
+    ]
+    for marker in marker_patterns:
+        for match in re.finditer(marker, flat, re.I):
+            start = max(0, match.start() - 500)
+            end = min(len(flat), match.end() + 2200)
+            windows.append(flat[start:end])
+            if len(windows) >= 12:
+                break
+        if len(windows) >= 12:
+            break
+
+    for block in windows:
+        if not re.search(_PRE_OWNERSHIP_CONTEXT, block, re.I):
+            continue
+
+        # Holding-pattern row: label, pre shares, pre %, post shares, post %.
+        # Requiring the percentage to follow the row label directly prevents
+        # matching narrative "Promoters' Contribution" lock-in disclosures.
+        row = re.search(
+            rf"{_PROMOTER_LABEL}\s*[:\-]?\s+"
+            rf"(?:[\d,]+\s+)?([0-9]+(?:\.[0-9]+)?)\s*%"
+            rf"(?:\s+(?:[\d,]+\s+)?([0-9]+(?:\.[0-9]+)?)\s*%)?",
+            block,
+            re.I,
+        )
+        if row:
+            pre_pct = _valid_pct(row.group(1))
+            if pre_pct is not None:
+                return {"promoters": [], "promoterPreIssuePct": pre_pct}
+
+        # Narrative form: "our Promoters ... hold ... constituting 74.25% of
+        # the pre-Offer share capital". The explicit pre context is part of the
+        # same match, so unrelated percentages in the surrounding section fail.
+        sentence = re.search(
+            rf"{_PROMOTER_LABEL}.{{0,320}}?"
+            rf"(?:hold|holds|holding|constitut(?:e|es|ing)).{{0,220}}?"
+            rf"([0-9]+(?:\.[0-9]+)?)\s*%\s+(?:of\s+)?(?:our\s+|the\s+)?"
+            rf"{_PRE_OWNERSHIP_CONTEXT}",
+            block,
+            re.I,
+        )
+        if sentence:
+            pre_pct = _valid_pct(sentence.group(1))
+            if pre_pct is not None:
+                return {"promoters": [], "promoterPreIssuePct": pre_pct}
+
+    return None
+
+
 def download_pdf(session, url, *, attempts: int = 3, retry_delay: float = 1.0):
     """Retry transport-level PDF truncation while preserving all v3 quality gates."""
     last_error = None
@@ -141,6 +234,7 @@ def download_pdf(session, url, *, attempts: int = 3, retry_delay: float = 1.0):
 
 # base.main()/parse_document_text resolve these functions from the base module.
 base.extract_issue_composition = extract_issue_composition
+base.extract_promoter_shareholding = extract_promoter_shareholding
 base.download_pdf = download_pdf
 base.PARSER_VERSION = PARSER_VERSION
 
