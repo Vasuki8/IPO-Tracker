@@ -2,6 +2,16 @@
  * Loaded after app.js/company.js so it can wrap the existing table renderer.
  */
 
+function companyRouteSlug(value) {
+  return String(value || '')
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '') || 'ipo';
+}
+
 const routeTableRenderer = renderTable;
 renderTable = function() {
   routeTableRenderer();
@@ -13,7 +23,7 @@ renderTable = function() {
     const symbol = cell.querySelector('.symbol');
     const link = document.createElement('a');
     link.className = 'company-name-link';
-    link.href = `ipo/${encodeURIComponent(ipo.id)}/`;
+    link.href = `ipo/${companyRouteSlug(ipo.id || ipo.company)}/`;
     link.textContent = ipo.company || 'Unknown';
     link.setAttribute('aria-label', `Open ${ipo.company || 'IPO'} permanent profile`);
     link.addEventListener('click', event => event.stopPropagation());
