@@ -40,42 +40,46 @@ jobs:
       - name: Run core parser tests
         run: uv run python -m unittest discover -s tests -p "test_update_data.py" -v
 
+      - name: Run completeness-audit tests
+        run: uv run python -m unittest discover -s tests -p "test_data_completeness.py" -v
+
       - name: Record starting data revision
         run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
 
-      - name: Reconcile recent IPO history
-        # Keep BSE enabled because run_update intentionally refreshes BSE validation
-        # from scratch each run. One SEBI page is enough for this daily history job.
-        run: uv run python scripts/run_update.py --history-days 365 --sebi-pages 1
+      - name: Repair full NSE IPO history from 2000
+        # One-time Phase 4.5 repair. The workflow will be restored to the normal
+        # 365-day reconciliation after this run verifies the historical aliases.
+        run: uv run python scripts/run_update.py --bootstrap-history --history-from 2000-01-01 --sebi-pages 4
 
-      - name: Publish changed historical data safely
+      - name: Publish full historical repair safely
         shell: bash
         run: |
-          if git diff --quiet -- data/ipos.json; then
-            echo "No historical data changes"
-            exit 0
-          fi
-
           cp data/ipos.json /tmp/generated-ipos.json
           BASE_DATA="$(cat /tmp/base-data-blob)"
           git fetch origin main
           REMOTE_DATA="$(git rev-parse origin/main:data/ipos.json)"
 
           if [ "$REMOTE_DATA" != "$BASE_DATA" ]; then
-            echo "Remote IPO data changed during this run; skipping stale publication."
+            echo "Remote IPO data changed during this run; skipping stale historical repair."
             exit 0
           fi
 
           git reset --hard origin/main
           cp /tmp/generated-ipos.json data/ipos.json
 
-          if git diff --quiet -- data/ipos.json; then
-            echo "Generated data already matches latest main"
+          # Re-apply current issue detail fields and regenerate all derived views
+          # from the repaired full-history dataset.
+          uv run python scripts/enrich_exchange_details.py --limit 0
+          uv run python scripts/build_company_pages.py
+          uv run python scripts/audit_data_completeness.py
+
+          if [ -z "$(git status --porcelain -- data/ipos.json data/completeness.json docs/DATA_QUALITY.md ipo/)" ]; then
+            echo "No historical repair changes"
             exit 0
           fi
 
           git config user.name "ipo-tracker-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/ipos.json
-          git commit -m "data: reconcile IPO history"
+          git add data/ipos.json data/completeness.json docs/DATA_QUALITY.md ipo/
+          git commit -m "data: repair full NSE IPO history"
           git push origin HEAD:main
