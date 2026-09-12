@@ -75,23 +75,20 @@
         "error": "BSE historical page did not contain its ASP.NET form"
       },
       "IPO-subscription": {
-        "ok": false,
-        "degraded": false,
-        "records": 0,
+        "ok": true,
+        "degraded": true,
+        "records": 5,
         "attempted": 5,
-        "snapshotsAdded": 0,
-        "failed": 5,
+        "snapshotsAdded": 5,
+        "failed": 0,
         "nseRecords": 0,
         "bseFallbackRecords": 0,
-        "secondaryFallbackRecords": 0,
-        "asOf": "2026-09-13T02:03:57+05:30",
-        "errors": [
-          "Maharaja & Speedex India Limited: Groww subscription page contained no parseable table rows",
-          "OM GALAXY LIMITED: Groww subscription page contained no parseable table rows",
-          "RAKSAN TRANSFORMERS LIMITED: Groww subscription page contained no parseable table rows",
-          "CENTURY BUSINESS MEDIA LIMITED: Groww subscription page contained no parseable table rows",
-          "INJECTO POLYMERS LIMITED: Groww subscription page contained no parseable table rows"
-        ]
+        "secondaryFallbackRecords": 5,
+        "secondarySources": {
+          "IPO Dhamaka subscription (secondary)": 5
+        },
+        "asOf": "2026-09-13T03:21:46+05:30",
+        "errors": []
       },
       "Critical-backfill": {
         "ok": true,
@@ -124,16 +121,19 @@
       "errors": []
     },
     "subscriptionHealth": {
-      "ok": false,
-      "degraded": false,
+      "ok": true,
+      "degraded": true,
       "attempted": 5,
-      "updated": 0,
-      "snapshotsAdded": 0,
-      "failed": 5,
+      "updated": 5,
+      "snapshotsAdded": 5,
+      "failed": 0,
       "nseRecords": 0,
       "bseFallbackRecords": 0,
-      "secondaryFallbackRecords": 0,
-      "asOf": "2026-09-13T02:03:57+05:30",
+      "secondaryFallbackRecords": 5,
+      "secondarySources": {
+        "IPO Dhamaka subscription (secondary)": 5
+      },
+      "asOf": "2026-09-13T03:21:46+05:30",
       "pageHealth": {
         "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
           "ok": true,
@@ -146,17 +146,17 @@
         "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2": {
           "ok": false,
           "records": 0,
-          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f701b3ba0f0>, 'Connection to www.bsesme.c"
+          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f5655b317c0>, 'Connection to www.bsesme.c"
         }
       },
-      "warnings": [],
-      "errors": [
-        "Maharaja & Speedex India Limited: Groww subscription page contained no parseable table rows",
-        "OM GALAXY LIMITED: Groww subscription page contained no parseable table rows",
-        "RAKSAN TRANSFORMERS LIMITED: Groww subscription page contained no parseable table rows",
-        "CENTURY BUSINESS MEDIA LIMITED: Groww subscription page contained no parseable table rows",
-        "INJECTO POLYMERS LIMITED: Groww subscription page contained no parseable table rows"
-      ]
+      "warnings": [
+        "Maharaja & Speedex India Limited: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7962&status=H · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · ); used explicitly labelled IPO Dhamaka subscription (secondary)",
+        "OM GALAXY LIMITED: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7960&status=H · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · ); used explicitly labelled IPO Dhamaka subscription (secondary)",
+        "RAKSAN TRANSFORMERS LIMITED: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7958&status=H · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · ); used explicitly labelled IPO Dhamaka subscription (secondary)",
+        "CENTURY BUSINESS MEDIA LIMITED: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7961&status=H · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · ); used explicitly labelled IPO Dhamaka subscription (secondary)",
+        "INJECTO POLYMERS LIMITED: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7968&status=H · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · ); used explicitly labelled IPO Dhamaka subscription (secondary)"
+      ],
+      "errors": []
     },
     "criticalBackfillHealth": {
       "ok": true,
@@ -1437,6 +1437,12 @@
           "kind": "exchange",
           "url": "https://beta.bseindia.com/markets/publicIssues/DisplayIPO.aspx?id=4819&type=IPO&idtype=1&status=L&IPONo=7968&startdt=11/09/2026",
           "asOf": "2026-09-13T02:59:41+05:30"
+        },
+        {
+          "name": "IPO Dhamaka subscription (secondary)",
+          "kind": "secondary-market-data",
+          "url": "https://ipodhamaka.in/subscription/",
+          "asOf": "2026-09-13T03:21:46+05:30"
         }
       ],
       "source": {
@@ -1477,7 +1483,25 @@
       ],
       "minimumBidQuantity": 2400,
       "marketLot": 1200,
-      "profilePath": "ipo/injecto-polymers-limited/"
+      "profilePath": "ipo/injecto-polymers-limited/",
+      "subscription": {
+        "qib": 1.02,
+        "nii": 0.08,
+        "retail": 0.26,
+        "total": 0.29
+      },
+      "subscriptionAsOf": "2026-09-13T03:21:46+05:30",
+      "subscriptionSource": "IPO Dhamaka subscription (secondary)",
+      "subscriptionHistory": [
+        {
+          "capturedAt": "2026-09-13T03:21:46+05:30",
+          "source": "IPO Dhamaka subscription (secondary)",
+          "qib": 1.02,
+          "nii": 0.08,
+          "retail": 0.26,
+          "total": 0.29
+        }
+      ]
     },
     {
       "id": "century-business-limited",
@@ -1544,6 +1568,12 @@
           "kind": "exchange",
           "url": "https://beta.bseindia.com/markets/publicIssues/DisplayIPO.aspx?id=4812&type=IPO&idtype=1&status=L&IPONo=7961&startdt=11/09/2026",
           "asOf": "2026-09-13T02:59:42+05:30"
+        },
+        {
+          "name": "IPO Dhamaka subscription (secondary)",
+          "kind": "secondary-market-data",
+          "url": "https://ipodhamaka.in/subscription/",
+          "asOf": "2026-09-13T03:21:37+05:30"
         }
       ],
       "source": {
@@ -1584,7 +1614,25 @@
       ],
       "minimumBidQuantity": 3200,
       "marketLot": 1600,
-      "profilePath": "ipo/century-business-media-limited/"
+      "profilePath": "ipo/century-business-media-limited/",
+      "subscription": {
+        "qib": 3.51,
+        "nii": 0.41,
+        "retail": 0.12,
+        "total": 1.15
+      },
+      "subscriptionAsOf": "2026-09-13T03:21:37+05:30",
+      "subscriptionSource": "IPO Dhamaka subscription (secondary)",
+      "subscriptionHistory": [
+        {
+          "capturedAt": "2026-09-13T03:21:37+05:30",
+          "source": "IPO Dhamaka subscription (secondary)",
+          "qib": 3.51,
+          "nii": 0.41,
+          "retail": 0.12,
+          "total": 1.15
+        }
+      ]
     },
     {
       "id": "veegaland",
@@ -1760,6 +1808,12 @@
           "kind": "exchange",
           "url": "https://beta.bseindia.com/markets/publicIssues/DisplayIPO.aspx?id=4809&type=IPO&idtype=1&status=L&IPONo=7958&startdt=10/09/2026",
           "asOf": "2026-09-13T02:59:43+05:30"
+        },
+        {
+          "name": "IPO Dhamaka subscription (secondary)",
+          "kind": "secondary-market-data",
+          "url": "https://ipodhamaka.in/subscription/",
+          "asOf": "2026-09-13T03:21:29+05:30"
         }
       ],
       "source": {
@@ -1800,7 +1854,25 @@
       ],
       "minimumBidQuantity": 800,
       "marketLot": 400,
-      "profilePath": "ipo/raksan-transformers-limited/"
+      "profilePath": "ipo/raksan-transformers-limited/",
+      "subscription": {
+        "qib": 3.87,
+        "nii": 0.16,
+        "retail": 0.34,
+        "total": 1.31
+      },
+      "subscriptionAsOf": "2026-09-13T03:21:29+05:30",
+      "subscriptionSource": "IPO Dhamaka subscription (secondary)",
+      "subscriptionHistory": [
+        {
+          "capturedAt": "2026-09-13T03:21:29+05:30",
+          "source": "IPO Dhamaka subscription (secondary)",
+          "qib": 3.87,
+          "nii": 0.16,
+          "retail": 0.34,
+          "total": 1.31
+        }
+      ]
     },
     {
       "id": "om-galaxy-limited",
@@ -1830,6 +1902,12 @@
           "kind": "exchange",
           "url": "https://beta.bseindia.com/markets/publicIssues/DisplayIPO.aspx?id=4811&type=IPO&idtype=1&status=L&IPONo=7960&startdt=10/09/2026",
           "asOf": "2026-09-13T02:59:45+05:30"
+        },
+        {
+          "name": "IPO Dhamaka subscription (secondary)",
+          "kind": "secondary-market-data",
+          "url": "https://ipodhamaka.in/subscription/",
+          "asOf": "2026-09-13T03:21:22+05:30"
         }
       ],
       "source": {
@@ -1870,7 +1948,25 @@
       ],
       "minimumBidQuantity": 3200,
       "marketLot": 1600,
-      "profilePath": "ipo/om-galaxy-limited/"
+      "profilePath": "ipo/om-galaxy-limited/",
+      "subscription": {
+        "qib": 3.11,
+        "nii": 0.05,
+        "retail": 0.1,
+        "total": 0.95
+      },
+      "subscriptionAsOf": "2026-09-13T03:21:22+05:30",
+      "subscriptionSource": "IPO Dhamaka subscription (secondary)",
+      "subscriptionHistory": [
+        {
+          "capturedAt": "2026-09-13T03:21:22+05:30",
+          "source": "IPO Dhamaka subscription (secondary)",
+          "qib": 3.11,
+          "nii": 0.05,
+          "retail": 0.1,
+          "total": 0.95
+        }
+      ]
     },
     {
       "id": "maharaja-speedex-india-limited",
@@ -1900,6 +1996,12 @@
           "kind": "exchange",
           "url": "https://beta.bseindia.com/markets/publicIssues/DisplayIPO.aspx?id=4813&type=IPO&idtype=1&status=L&IPONo=7962&startdt=10/09/2026",
           "asOf": "2026-09-13T02:59:46+05:30"
+        },
+        {
+          "name": "IPO Dhamaka subscription (secondary)",
+          "kind": "secondary-market-data",
+          "url": "https://ipodhamaka.in/subscription/",
+          "asOf": "2026-09-13T03:21:14+05:30"
         }
       ],
       "source": {
@@ -1940,7 +2042,25 @@
       ],
       "minimumBidQuantity": 1200,
       "marketLot": 600,
-      "profilePath": "ipo/maharaja-speedex-india-limited/"
+      "profilePath": "ipo/maharaja-speedex-india-limited/",
+      "subscription": {
+        "qib": 0.1,
+        "nii": 1.16,
+        "retail": 0.56,
+        "total": 0.55
+      },
+      "subscriptionAsOf": "2026-09-13T03:21:14+05:30",
+      "subscriptionSource": "IPO Dhamaka subscription (secondary)",
+      "subscriptionHistory": [
+        {
+          "capturedAt": "2026-09-13T03:21:14+05:30",
+          "source": "IPO Dhamaka subscription (secondary)",
+          "qib": 0.1,
+          "nii": 1.16,
+          "retail": 0.56,
+          "total": 0.55
+        }
+      ]
     },
     {
       "id": "steamhouse",

@@ -1,6 +1,6 @@
 # IPO Tracker Data Quality
 
-Generated: **2026-09-13T03:00:22+05:30**  
+Generated: **2026-09-13T03:21:46+05:30**  
 Records audited: **1,371**
 
 ## Completeness scores
@@ -10,7 +10,7 @@ Records audited: **1,371**
 | Core exchange terms | 66.8% | 1,364 |
 | Recent exchange terms (2Y) | 67.3% | 458 |
 | Offer-document intelligence | 76.4% | 12 |
-| Live subscription categories | 28.6% | 7 |
+| Live subscription categories | 100.0% | 7 |
 | Matured lifecycle dates | 48.7% | 1,332 |
 | Source/provenance trail | 67.0% | 1,371 |
 
@@ -57,10 +57,10 @@ Records audited: **1,371**
 
 | Field | Present | Missing | Coverage |
 | --- | ---: | ---: | ---: |
-| qib | 2 | 5 | 28.6% |
-| nii | 2 | 5 | 28.6% |
-| retail | 2 | 5 | 28.6% |
-| total | 2 | 5 | 28.6% |
+| qib | 7 | 0 | 100.0% |
+| nii | 7 | 0 | 100.0% |
+| retail | 7 | 0 | 100.0% |
+| total | 7 | 0 | 100.0% |
 
 ## Matured lifecycle fields
 

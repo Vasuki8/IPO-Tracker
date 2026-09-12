@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-13T03:00:22+05:30",
+  "generatedAt": "2026-09-13T03:21:46+05:30",
   "asOfDate": "2026-09-13",
   "recordCount": 1371,
   "queueCount": 1368,
@@ -19,10 +19,6 @@
     "lifecycle.listingDate": 35,
     "exchange.priceBand": 23,
     "offer.promoterShareholding": 11,
-    "subscription.qib": 5,
-    "subscription.nii": 5,
-    "subscription.retail": 5,
-    "subscription.total": 5,
     "offer.financials": 3,
     "offer.registrar": 1,
     "offer.objectsOfIssue": 1,
@@ -40,15 +36,11 @@
       "listingDate": null,
       "priority": 0,
       "priorityLabel": "P0 open IPO",
-      "completenessPct": 66.7,
+      "completenessPct": 93.3,
       "expectedFieldCount": 15,
-      "missingFieldCount": 5,
+      "missingFieldCount": 1,
       "missingFields": [
-        "exchange.issueComposition",
-        "subscription.qib",
-        "subscription.nii",
-        "subscription.retail",
-        "subscription.total"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/maharaja-speedex-india-limited/"
     },
@@ -62,15 +54,11 @@
       "listingDate": null,
       "priority": 0,
       "priorityLabel": "P0 open IPO",
-      "completenessPct": 66.7,
+      "completenessPct": 93.3,
       "expectedFieldCount": 15,
-      "missingFieldCount": 5,
+      "missingFieldCount": 1,
       "missingFields": [
-        "exchange.issueComposition",
-        "subscription.qib",
-        "subscription.nii",
-        "subscription.retail",
-        "subscription.total"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/om-galaxy-limited/"
     },
@@ -84,61 +72,13 @@
       "listingDate": null,
       "priority": 0,
       "priorityLabel": "P0 open IPO",
-      "completenessPct": 66.7,
+      "completenessPct": 93.3,
       "expectedFieldCount": 15,
-      "missingFieldCount": 5,
+      "missingFieldCount": 1,
       "missingFields": [
-        "exchange.issueComposition",
-        "subscription.qib",
-        "subscription.nii",
-        "subscription.retail",
-        "subscription.total"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/raksan-transformers-limited/"
-    },
-    {
-      "id": "century-business-media-limited",
-      "company": "CENTURY BUSINESS MEDIA LIMITED",
-      "symbol": "CENTURYOOH",
-      "stage": "open",
-      "openDate": "2026-09-11",
-      "closeDate": "2026-09-16",
-      "listingDate": null,
-      "priority": 0,
-      "priorityLabel": "P0 open IPO",
-      "completenessPct": 66.7,
-      "expectedFieldCount": 15,
-      "missingFieldCount": 5,
-      "missingFields": [
-        "exchange.issueComposition",
-        "subscription.qib",
-        "subscription.nii",
-        "subscription.retail",
-        "subscription.total"
-      ],
-      "profilePath": "ipo/century-business-media-limited/"
-    },
-    {
-      "id": "injecto-polymers-limited",
-      "company": "INJECTO POLYMERS LIMITED",
-      "symbol": "INJECTO",
-      "stage": "open",
-      "openDate": "2026-09-11",
-      "closeDate": "2026-09-16",
-      "listingDate": null,
-      "priority": 0,
-      "priorityLabel": "P0 open IPO",
-      "completenessPct": 66.7,
-      "expectedFieldCount": 15,
-      "missingFieldCount": 5,
-      "missingFields": [
-        "exchange.issueComposition",
-        "subscription.qib",
-        "subscription.nii",
-        "subscription.retail",
-        "subscription.total"
-      ],
-      "profilePath": "ipo/injecto-polymers-limited/"
     },
     {
       "id": "veegaland",
@@ -157,6 +97,42 @@
         "exchange.issueComposition"
       ],
       "profilePath": "ipo/veegaland/"
+    },
+    {
+      "id": "century-business-media-limited",
+      "company": "CENTURY BUSINESS MEDIA LIMITED",
+      "symbol": "CENTURYOOH",
+      "stage": "open",
+      "openDate": "2026-09-11",
+      "closeDate": "2026-09-16",
+      "listingDate": null,
+      "priority": 0,
+      "priorityLabel": "P0 open IPO",
+      "completenessPct": 93.3,
+      "expectedFieldCount": 15,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.issueComposition"
+      ],
+      "profilePath": "ipo/century-business-media-limited/"
+    },
+    {
+      "id": "injecto-polymers-limited",
+      "company": "INJECTO POLYMERS LIMITED",
+      "symbol": "INJECTO",
+      "stage": "open",
+      "openDate": "2026-09-11",
+      "closeDate": "2026-09-16",
+      "listingDate": null,
+      "priority": 0,
+      "priorityLabel": "P0 open IPO",
+      "completenessPct": 93.3,
+      "expectedFieldCount": 15,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.issueComposition"
+      ],
+      "profilePath": "ipo/injecto-polymers-limited/"
     },
     {
       "id": "manika",
