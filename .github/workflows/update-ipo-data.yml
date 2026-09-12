@@ -66,7 +66,9 @@ jobs:
           if [ "${{ github.event.inputs.bootstrap_history }}" = "true" ]; then
             EXTRA="$EXTRA --bootstrap-history --history-from 2000-01-01"
           else
-            EXTRA="$EXTRA --history-days 365"
+            # Hourly runs only reconcile the newest history window. A separate
+            # daily workflow performs the broader 365-day historical refresh.
+            EXTRA="$EXTRA --history-days 1"
           fi
           if [ "${{ github.event.inputs.deep_sebi_scan }}" = "true" ]; then
             EXTRA="$EXTRA --sebi-pages 20"
