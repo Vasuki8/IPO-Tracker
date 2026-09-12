@@ -29,6 +29,7 @@ if str(SCRIPT_DIR) not in sys.path:
 import enrich_exchange_details as base  # noqa: E402
 
 PARSER_VERSION = 2
+_ORIGINAL_PARSE_DETAIL_HTML = base.parse_detail_html
 
 
 def _pairs(html: str) -> dict[str, list[str]]:
@@ -122,7 +123,7 @@ def _direct_issue_size_crore(pairs: dict[str, list[str]]) -> float | None:
 
 
 def parse_detail_html(html: str) -> dict[str, Any]:
-    detail = dict(base.parse_detail_html(html))
+    detail = dict(_ORIGINAL_PARSE_DETAIL_HTML(html))
     pairs = _pairs(html)
 
     market_lot = detail.get("marketLot") or base.core.integer(
@@ -182,7 +183,8 @@ def parse_detail_html(html: str) -> dict[str, Any]:
 
 # Patch the production entry point in this process. base.main resolves this
 # global at runtime, so all existing indexing/matching/merge/health logic stays
-# unchanged while using the v2 parser.
+# unchanged while using the v2 parser. Keep a separate reference to the original
+# parser above so this wrapper never calls itself recursively.
 base.parse_detail_html = parse_detail_html
 
 DATA_FILE = base.DATA_FILE
