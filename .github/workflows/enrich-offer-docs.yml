@@ -14,12 +14,14 @@ on:
     paths:
       - "scripts/enrich_offer_docs.py"
       - "scripts/run_offer_docs_v2.py"
+      - "scripts/run_critical_offer_backfill.py"
       - "scripts/enrich_sebi_document_links.py"
       - "scripts/critical_backfill.py"
       - "scripts/audit_data_completeness.py"
       - "scripts/build_missing_queue.py"
       - "tests/test_offer_docs.py"
       - "tests/test_offer_docs_v2.py"
+      - "tests/test_critical_offer_backfill.py"
       - "tests/test_sebi_document_links.py"
       - "tests/test_critical_backfill.py"
       - "tests/test_data_completeness.py"
@@ -62,6 +64,9 @@ jobs:
       - name: Run offer-document parser v2 tests
         run: uv run python -m unittest discover -s tests -p "test_offer_docs_v2.py" -v
 
+      - name: Run safe full-document fallback tests
+        run: uv run python -m unittest discover -s tests -p "test_critical_offer_backfill.py" -v
+
       - name: Run SEBI document-link tests
         run: uv run python -m unittest discover -s tests -p "test_sebi_document_links.py" -v
 
@@ -95,9 +100,9 @@ jobs:
           # Parser v2 reprocesses previously parsed AP PDFs because its version
           # is bumped, and adds conservative fallbacks for newer SEBI wording.
           uv run python scripts/run_offer_docs_v2.py --limit "$DOC_LIMIT"
-          # Repair path: if critical fields remain, try another official full
-          # RHP/DRHP/Prospectus PDF now that direct links are available.
-          uv run python scripts/critical_backfill.py --documents-only --priority-max 2 --limit "$CRITICAL_LIMIT"
+          # Repair path uses the same parser v2 but accepts only direct official
+          # PDF targets; HTML filing pages can never be handed to pypdf.
+          uv run python scripts/run_critical_offer_backfill.py --documents-only --priority-max 2 --limit "$CRITICAL_LIMIT"
 
       - name: Publish changed offer-document data and audit safely
         shell: bash
