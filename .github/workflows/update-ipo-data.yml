@@ -19,9 +19,11 @@ on:
     paths:
       - "scripts/update_data.py"
       - "scripts/run_update.py"
+      - "scripts/enrich_exchange_details.py"
       - "scripts/build_company_pages.py"
       - "scripts/audit_data_completeness.py"
       - "tests/test_update_data.py"
+      - "tests/test_exchange_details.py"
       - "tests/test_company_routes.py"
       - "tests/test_data_completeness.py"
       - "pyproject.toml"
@@ -60,6 +62,9 @@ jobs:
       - name: Run core parser tests
         run: uv run python -m unittest discover -s tests -p "test_update_data.py" -v
 
+      - name: Run BSE detail-enrichment tests
+        run: uv run python -m unittest discover -s tests -p "test_exchange_details.py" -v
+
       - name: Run company-route tests
         run: uv run python -m unittest discover -s tests -p "test_company_routes.py" -v
 
@@ -87,7 +92,7 @@ jobs:
           fi
           uv run python scripts/run_update.py $EXTRA
 
-      - name: Publish core data, routes and completeness audit safely
+      - name: Publish enriched core data, routes and completeness audit safely
         shell: bash
         run: |
           cp data/ipos.json /tmp/generated-ipos.json
@@ -95,9 +100,9 @@ jobs:
           git fetch origin main
           REMOTE_DATA="$(git rev-parse origin/main:data/ipos.json)"
 
-          # Always publish on top of the latest branch tip. If another data writer
-          # moved ipos.json during this run, discard this run's stale data but still
-          # rebuild routes/audit from the newer official dataset.
+          # Always work from the latest branch tip. If another data writer moved
+          # ipos.json during this run, discard the stale core snapshot and enrich
+          # the newer official dataset instead.
           git reset --hard origin/main
           if [ "$REMOTE_DATA" = "$BASE_DATA" ]; then
             cp /tmp/generated-ipos.json data/ipos.json
@@ -105,16 +110,21 @@ jobs:
             echo "Remote IPO data changed during this run; preserving newer data."
           fi
 
+          # BSE DisplayIPO pages expose important live issue fields that the list
+          # pages omit: symbol, minimum bid quantity/lot size, issue shares/value,
+          # registrar and lead managers. Fill missing values only; never overwrite
+          # populated NSE fields.
+          uv run python scripts/enrich_exchange_details.py --limit 30
           uv run python scripts/build_company_pages.py
           uv run python scripts/audit_data_completeness.py
 
           if [ -z "$(git status --porcelain -- data/ipos.json data/completeness.json docs/DATA_QUALITY.md ipo/)" ]; then
-            echo "No core data, route or completeness changes"
+            echo "No core data, enrichment, route or completeness changes"
             exit 0
           fi
 
           git config user.name "ipo-tracker-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/ipos.json data/completeness.json docs/DATA_QUALITY.md ipo/
-          git commit -m "data: refresh core IPO data, routes and completeness audit"
+          git commit -m "data: refresh enriched IPO data, routes and completeness audit"
           git push origin HEAD:main
