@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-13T03:39:57+05:30",
+  "generatedAt": "2026-09-13T04:15:26+05:30",
   "asOfDate": "2026-09-13",
   "recordCount": 1371,
   "queueCount": 1368,
@@ -12,20 +12,41 @@
     "P5 historical backfill": 907
   },
   "fieldGapCounts": {
-    "exchange.issueComposition": 1354,
     "exchange.lotSize": 1353,
+    "exchange.issueComposition": 1352,
     "exchange.issueSizeCr": 1343,
     "lifecycle.allotmentDate": 1332,
     "lifecycle.listingDate": 35,
     "exchange.priceBand": 23,
-    "offer.promoterShareholding": 14,
-    "offer.financials": 6,
+    "offer.promoterShareholding": 16,
+    "offer.financials": 8,
+    "offer.promoters": 1,
     "offer.registrar": 1,
     "offer.objectsOfIssue": 1,
     "offer.leadManagers": 1,
     "provenance.sources": 1
   },
   "queue": [
+    {
+      "id": "om-galaxy-limited",
+      "company": "OM GALAXY LIMITED",
+      "symbol": "OMGL",
+      "stage": "open",
+      "openDate": "2026-09-10",
+      "closeDate": "2026-09-15",
+      "listingDate": null,
+      "priority": 0,
+      "priorityLabel": "P0 open IPO",
+      "completenessPct": 85.7,
+      "expectedFieldCount": 21,
+      "missingFieldCount": 3,
+      "missingFields": [
+        "offer.promoters",
+        "offer.financials",
+        "offer.promoterShareholding"
+      ],
+      "profilePath": "ipo/om-galaxy-limited/"
+    },
     {
       "id": "maharaja-speedex-india-limited",
       "company": "Maharaja & Speedex India Limited",
@@ -84,22 +105,23 @@
       "profilePath": "ipo/century-business-media-limited/"
     },
     {
-      "id": "om-galaxy-limited",
-      "company": "OM GALAXY LIMITED",
-      "symbol": "OMGL",
+      "id": "injecto-polymers-limited",
+      "company": "INJECTO POLYMERS LIMITED",
+      "symbol": "INJECTO",
       "stage": "open",
-      "openDate": "2026-09-10",
-      "closeDate": "2026-09-15",
+      "openDate": "2026-09-11",
+      "closeDate": "2026-09-16",
       "listingDate": null,
       "priority": 0,
       "priorityLabel": "P0 open IPO",
-      "completenessPct": 93.3,
-      "expectedFieldCount": 15,
-      "missingFieldCount": 1,
+      "completenessPct": 90.5,
+      "expectedFieldCount": 21,
+      "missingFieldCount": 2,
       "missingFields": [
-        "exchange.issueComposition"
+        "offer.financials",
+        "offer.promoterShareholding"
       ],
-      "profilePath": "ipo/om-galaxy-limited/"
+      "profilePath": "ipo/injecto-polymers-limited/"
     },
     {
       "id": "veegaland",
@@ -118,24 +140,6 @@
         "exchange.issueComposition"
       ],
       "profilePath": "ipo/veegaland/"
-    },
-    {
-      "id": "injecto-polymers-limited",
-      "company": "INJECTO POLYMERS LIMITED",
-      "symbol": "INJECTO",
-      "stage": "open",
-      "openDate": "2026-09-11",
-      "closeDate": "2026-09-16",
-      "listingDate": null,
-      "priority": 0,
-      "priorityLabel": "P0 open IPO",
-      "completenessPct": 93.3,
-      "expectedFieldCount": 15,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/injecto-polymers-limited/"
     },
     {
       "id": "manika",

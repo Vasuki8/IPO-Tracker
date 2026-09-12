@@ -93,40 +93,41 @@
       "Critical-backfill": {
         "ok": true,
         "records": 20,
-        "asOf": "2026-09-13T03:37:22+05:30"
+        "asOf": "2026-09-13T04:12:36+05:30"
       },
       "SEBI-document-links": {
         "ok": true,
         "records": 0,
         "attempted": 7,
-        "asOf": "2026-09-13T03:35:58+05:30",
+        "asOf": "2026-09-13T04:11:52+05:30",
         "errors": []
       },
       "Offer-docs": {
         "ok": true,
-        "records": 12,
-        "attempted": 12,
+        "records": 3,
+        "attempted": 3,
         "failed": 0
       },
       "Issuer-offer-docs": {
         "ok": true,
-        "records": 3,
-        "attempted": 3,
-        "updated": 3,
+        "records": 5,
+        "attempted": 5,
+        "updated": 2,
+        "deepScanned": 3,
         "failed": 0,
-        "asOf": "2026-09-13T03:37:22+05:30",
+        "asOf": "2026-09-13T04:12:35+05:30",
         "errors": []
       }
     },
     "errors": [],
     "offerDocumentHealth": {
       "ok": true,
-      "attempted": 12,
-      "extracted": 12,
+      "attempted": 3,
+      "extracted": 3,
       "failed": 0,
       "eligibleRemaining": 0,
       "parserVersion": 4,
-      "asOf": "2026-09-13T03:37:07+05:30",
+      "asOf": "2026-09-13T04:12:06+05:30",
       "errors": []
     },
     "subscriptionHealth": {
@@ -171,7 +172,7 @@
       "ok": true,
       "targetCount": 20,
       "priorityMax": 2,
-      "asOf": "2026-09-13T03:37:22+05:30",
+      "asOf": "2026-09-13T04:12:36+05:30",
       "documents": {
         "ok": true,
         "attempted": 3,
@@ -181,10 +182,10 @@
         "discoveryHealth": {
           "ok": false,
           "records": 0,
-          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7fa98b54f530>, 'Connection to www.bsesme.com time"
+          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f3c526ad310>, 'Connection to www.bsesme.com time"
         },
         "errors": [],
-        "asOf": "2026-09-13T03:39:57+05:30"
+        "asOf": "2026-09-13T04:15:25+05:30"
       }
     },
     "sebiDocumentLinkHealth": {
@@ -193,7 +194,7 @@
       "resolvedPages": 7,
       "linksAdded": 0,
       "failed": 0,
-      "asOf": "2026-09-13T03:35:58+05:30",
+      "asOf": "2026-09-13T04:11:52+05:30",
       "errors": []
     },
     "criticalOfferDocumentHealth": {
@@ -205,18 +206,19 @@
       "discoveryHealth": {
         "ok": false,
         "records": 0,
-        "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7fa98b54f530>, 'Connection to www.bsesme.com time"
+        "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f3c526ad310>, 'Connection to www.bsesme.com time"
       },
       "errors": [],
-      "asOf": "2026-09-13T03:39:57+05:30"
+      "asOf": "2026-09-13T04:15:25+05:30"
     },
     "issuerOfferDocumentHealth": {
       "ok": true,
-      "attempted": 3,
-      "extracted": 3,
-      "updated": 3,
+      "attempted": 5,
+      "extracted": 5,
+      "updated": 2,
+      "deepScanned": 3,
       "failed": 0,
-      "asOf": "2026-09-13T03:37:22+05:30",
+      "asOf": "2026-09-13T04:12:35+05:30",
       "errors": []
     }
   },
@@ -620,7 +622,7 @@
           "issueComposition",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T03:39:23+05:30",
+        "extractedAt": "2026-09-13T04:14:51+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/ssretail/",
@@ -853,7 +855,7 @@
           "issueComposition",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T03:38:27+05:30",
+        "extractedAt": "2026-09-13T04:13:56+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/jsipl/",
@@ -1069,8 +1071,8 @@
       "issueComposition": {
         "freshShares": null,
         "ofsShares": null,
-        "freshIssueCr": 600.0,
-        "ofsCr": 600.0,
+        "freshIssueCr": 400.0,
+        "ofsCr": 400.0,
         "totalIssueSizeCr": 600.0,
         "valuationPriceUsed": 84.0
       },
@@ -1091,7 +1093,7 @@
           "issueComposition",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T03:39:57+05:30",
+        "extractedAt": "2026-09-13T04:15:25+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/heromotors/",
@@ -1474,6 +1476,12 @@
           "kind": "secondary-market-data",
           "url": "https://ipodhamaka.in/subscription/",
           "asOf": "2026-09-13T03:21:46+05:30"
+        },
+        {
+          "name": "Issuer-hosted offer document",
+          "kind": "issuer-filing",
+          "url": "https://injectopolymers.in/",
+          "asOf": "2026-09-13T04:12:35+05:30"
         }
       ],
       "source": {
@@ -1495,7 +1503,15 @@
           "issueType": "IPO"
         }
       },
-      "documents": [],
+      "documents": [
+        {
+          "type": "RHP",
+          "title": "Red Herring Prospectus",
+          "url": "https://injectopolymers.in/wp-content/uploads/2026/09/1.-RHP_07.09.2026.pdf",
+          "filedDate": null,
+          "source": "Issuer website"
+        }
+      ],
       "validation": {
         "status": "single-source",
         "checkedAt": "2026-09-13T02:59:41+05:30",
@@ -1532,7 +1548,93 @@
           "retail": 0.26,
           "total": 0.29
         }
-      ]
+      ],
+      "ofsCr": 0.0,
+      "issueComposition": {
+        "ofsShares": 0,
+        "ofsCr": 0.0,
+        "valuationPriceUsed": 100.0
+      },
+      "promoters": [
+        "being Ramesh Kumar Rateria",
+        "Ashok Kumar Rateria"
+      ],
+      "objectsOfIssue": [
+        {
+          "purpose": "BASIS FOR ISSUE PRICE",
+          "amountCr": 123.0
+        },
+        {
+          "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
+          "amountCr": 132.0
+        },
+        {
+          "purpose": "INDUSTRY OVERVIEW",
+          "amountCr": 136.0
+        },
+        {
+          "purpose": "OUR BUSINESS",
+          "amountCr": 145.0
+        },
+        {
+          "purpose": "KEY INDUSTRY REGULATIONS AND POLICIES",
+          "amountCr": 168.0
+        },
+        {
+          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+          "amountCr": 178.0
+        },
+        {
+          "purpose": "OUR MANAGEMENT",
+          "amountCr": 184.0
+        },
+        {
+          "purpose": "OUR PROMOTERS & PROMOTER GROUP",
+          "amountCr": 200.0
+        },
+        {
+          "purpose": "DIVIDEND POLICY",
+          "amountCr": 208.0
+        },
+        {
+          "purpose": "RESTATED FINANCIAL STATEMENTS",
+          "amountCr": 209.0
+        },
+        {
+          "purpose": "FINANCIAL INDEBTEDNESS",
+          "amountCr": 246.0
+        },
+        {
+          "purpose": "OUTSTANDING LITIGATIONS AND OTHER MATERIAL DEVELOPMENTS",
+          "amountCr": 277.0
+        }
+      ],
+      "issuerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 4,
+        "documentUrl": "https://injectopolymers.in/wp-content/uploads/2026/09/1.-RHP_07.09.2026.pdf",
+        "documentType": "RHP",
+        "documentTitle": "Red Herring Prospectus",
+        "sourcePage": "https://injectopolymers.in/",
+        "sha256": "f1b16cb0e4b49ed988eeaeea2d99b67ceb0192a42689a1856d13d0b8c4c864ba",
+        "pagesRead": 30,
+        "pageCount": 410,
+        "extractedFields": [
+          "leadManagers",
+          "registrar",
+          "promoters",
+          "issueComposition",
+          "objectsOfIssue"
+        ],
+        "changedFields": [
+          "ofsCr",
+          "issueComposition",
+          "promoters",
+          "objectsOfIssue"
+        ],
+        "extractedAt": "2026-09-13T04:12:35+05:30",
+        "source": "Issuer website"
+      }
     },
     {
       "id": "century-business-limited",
@@ -1752,7 +1854,7 @@
         "documentTitle": "Red Herring Prospectus",
         "sourcePage": "https://centurymedia.in/investorrelation/",
         "sha256": "be30612c31cf5327d31d7a6547e3ba07be3e066a180493a3920425f28db16dd8",
-        "pagesRead": 30,
+        "pagesRead": 72,
         "pageCount": 303,
         "extractedFields": [
           "leadManagers",
@@ -1761,14 +1863,8 @@
           "issueComposition",
           "objectsOfIssue"
         ],
-        "changedFields": [
-          "freshIssueCr",
-          "ofsCr",
-          "issueComposition",
-          "promoters",
-          "objectsOfIssue"
-        ],
-        "extractedAt": "2026-09-13T03:37:22+05:30",
+        "changedFields": [],
+        "extractedAt": "2026-09-13T04:12:27+05:30",
         "source": "Issuer website"
       }
     },
@@ -2086,7 +2182,7 @@
         "documentTitle": "Red Herring Prospectus",
         "sourcePage": "https://raksantransformers.com/corporategovernance/prospectus",
         "sha256": "968b575d73bd7371a494f197fbbf37c3a42182db46138c24deae10fef63fc0a0",
-        "pagesRead": 30,
+        "pagesRead": 82,
         "pageCount": 321,
         "extractedFields": [
           "leadManagers",
@@ -2095,14 +2191,8 @@
           "issueComposition",
           "objectsOfIssue"
         ],
-        "changedFields": [
-          "freshIssueCr",
-          "ofsCr",
-          "issueComposition",
-          "promoters",
-          "objectsOfIssue"
-        ],
-        "extractedAt": "2026-09-13T03:37:19+05:30",
+        "changedFields": [],
+        "extractedAt": "2026-09-13T04:12:22+05:30",
         "source": "Issuer website"
       }
     },
@@ -2140,6 +2230,12 @@
           "kind": "secondary-market-data",
           "url": "https://ipodhamaka.in/subscription/",
           "asOf": "2026-09-13T03:21:22+05:30"
+        },
+        {
+          "name": "Issuer-hosted offer document",
+          "kind": "issuer-filing",
+          "url": "https://omgalaxymould.com/",
+          "asOf": "2026-09-13T04:12:33+05:30"
         }
       ],
       "source": {
@@ -2161,7 +2257,15 @@
           "issueType": "IPO"
         }
       },
-      "documents": [],
+      "documents": [
+        {
+          "type": "RHP",
+          "title": "Red Herring Prospectus",
+          "url": "https://omgalaxymould.com/wp-content/uploads/2026/09/Project-Om_-RHP_with_RFS.pdf",
+          "filedDate": null,
+          "source": "Issuer website"
+        }
+      ],
       "validation": {
         "status": "single-source",
         "checkedAt": "2026-09-13T02:59:45+05:30",
@@ -2198,7 +2302,91 @@
           "retail": 0.1,
           "total": 0.95
         }
-      ]
+      ],
+      "freshIssueCr": 105.0,
+      "ofsCr": 0.0,
+      "issueComposition": {
+        "freshShares": 11667200,
+        "ofsShares": 0,
+        "freshIssueCr": 105.0,
+        "ofsCr": 0.0,
+        "totalIssueSizeCr": 105.0,
+        "valuationPriceUsed": 90.0
+      },
+      "objectsOfIssue": [
+        {
+          "purpose": "BASIS FOR ISSUE PRICE",
+          "amountCr": 127.0
+        },
+        {
+          "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
+          "amountCr": 134.0
+        },
+        {
+          "purpose": "SECTION IV- ABOUT THE COMPANY",
+          "amountCr": 138.0
+        },
+        {
+          "purpose": "INDUSTRY OVERVIEW",
+          "amountCr": 138.0
+        },
+        {
+          "purpose": "OUR BUSINESS",
+          "amountCr": 184.0
+        },
+        {
+          "purpose": "KEY REGULATIONS AND POLICIES",
+          "amountCr": 219.0
+        },
+        {
+          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+          "amountCr": 228.0
+        },
+        {
+          "purpose": "OUR MANAGEMENT",
+          "amountCr": 235.0
+        },
+        {
+          "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
+          "amountCr": 254.0
+        },
+        {
+          "purpose": "OUR GROUP COMPANIES",
+          "amountCr": 261.0
+        },
+        {
+          "purpose": "DIVIDEND POLICY",
+          "amountCr": 262.0
+        },
+        {
+          "purpose": "SECTION V- FINANCIAL INFORMATION",
+          "amountCr": 263.0
+        }
+      ],
+      "issuerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 4,
+        "documentUrl": "https://omgalaxymould.com/wp-content/uploads/2026/09/Project-Om_-RHP_with_RFS.pdf",
+        "documentType": "RHP",
+        "documentTitle": "Red Herring Prospectus",
+        "sourcePage": "https://omgalaxymould.com/",
+        "sha256": "31dc977c9309fcd6c394eaea0a141b52c299275924d6e259cf2a95e890ca31c4",
+        "pagesRead": 30,
+        "pageCount": 509,
+        "extractedFields": [
+          "leadManagers",
+          "issueComposition",
+          "objectsOfIssue"
+        ],
+        "changedFields": [
+          "freshIssueCr",
+          "ofsCr",
+          "issueComposition",
+          "objectsOfIssue"
+        ],
+        "extractedAt": "2026-09-13T04:12:33+05:30",
+        "source": "Issuer website"
+      }
     },
     {
       "id": "maharaja-speedex-india-limited",
@@ -2377,7 +2565,7 @@
         "documentTitle": "Red Herring Prospectus",
         "sourcePage": "https://speedexind.com/changes-in-name/",
         "sha256": "47591636fc45d44497ad3b34d6f62022ca6c68803bade174b0b994340920db62",
-        "pagesRead": 30,
+        "pagesRead": 86,
         "pageCount": 406,
         "extractedFields": [
           "registrar",
@@ -2385,14 +2573,8 @@
           "issueComposition",
           "objectsOfIssue"
         ],
-        "changedFields": [
-          "freshIssueCr",
-          "ofsCr",
-          "issueComposition",
-          "promoters",
-          "objectsOfIssue"
-        ],
-        "extractedAt": "2026-09-13T03:37:13+05:30",
+        "changedFields": [],
+        "extractedAt": "2026-09-13T04:12:14+05:30",
         "source": "Issuer website"
       }
     },
