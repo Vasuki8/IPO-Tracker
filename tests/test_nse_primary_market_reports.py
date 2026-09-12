@@ -83,8 +83,9 @@ class NSEPrimaryMarketReportTests(unittest.TestCase):
         self.assertEqual(item["issueSizeCr"], 439.5)
         self.assertEqual(item["issueComposition"]["freshShares"], 22_365_164)
         self.assertEqual(item["issueComposition"]["ofsShares"], 3_500_000)
-        self.assertAlmostEqual(item["freshIssueCr"], 380.0078, places=4)
+        self.assertAlmostEqual(item["freshIssueCr"], 380.2078, places=4)
         self.assertEqual(item["ofsCr"], 59.5)
+        self.assertEqual(item["issueComposition"]["totalIssueSizeCr"], 439.5)
 
     def test_non_ipo_primary_market_row_is_rejected(self):
         row = [
@@ -145,12 +146,12 @@ class NSEPrimaryMarketReportTests(unittest.TestCase):
             "listingDate": "2026-07-08",
             "sharesOffered": 25_865_164,
             "issueSizeCr": 439.5,
-            "freshIssueCr": 380.0078,
+            "freshIssueCr": 380.2078,
             "ofsCr": 59.5,
             "issueComposition": {
                 "freshShares": 22_365_164,
                 "ofsShares": 3_500_000,
-                "freshIssueCr": 380.0078,
+                "freshIssueCr": 380.2078,
                 "ofsCr": 59.5,
                 "totalIssueSizeCr": 439.5,
                 "valuationPriceUsed": 170.0,
