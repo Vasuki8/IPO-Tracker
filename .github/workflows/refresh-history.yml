@@ -6,6 +6,8 @@ on:
     branches:
       - main
     paths:
+      - "scripts/backfill_bse_history.py"
+      - "tests/test_bse_history_backfill.py"
       - ".github/workflows/refresh-history.yml"
   schedule:
     # Daily at 19:37 IST (14:07 UTC), after the main Indian session.
@@ -40,6 +42,9 @@ jobs:
       - name: Run core parser tests
         run: uv run python -m unittest discover -s tests -p "test_update_data.py" -v
 
+      - name: Run BSE historical backfill tests
+        run: uv run python -m unittest discover -s tests -p "test_bse_history_backfill.py" -v
+
       - name: Run completeness-audit tests
         run: uv run python -m unittest discover -s tests -p "test_data_completeness.py" -v
 
@@ -51,7 +56,7 @@ jobs:
         # Routine jobs only need the most recent year to catch later corrections.
         run: uv run python scripts/run_update.py --history-days 365 --sebi-pages 1
 
-      - name: Publish historical reconciliation safely
+      - name: Publish historical reconciliation and detail backfill safely
         shell: bash
         run: |
           cp data/ipos.json /tmp/generated-ipos.json
@@ -66,17 +71,22 @@ jobs:
 
           git reset --hard origin/main
           cp /tmp/generated-ipos.json data/ipos.json
-          uv run python scripts/enrich_exchange_details.py --limit 30
+
+          # Current/forthcoming BSE pages cover live issues. The ASP.NET historical
+          # archive is submitted separately to recover market lot, issue size,
+          # registrar and lead-manager details for recent listed IPOs.
+          uv run python scripts/enrich_exchange_details.py --limit 30 --history-days 730
+          uv run python scripts/backfill_bse_history.py --history-days 730 --limit 80
           uv run python scripts/build_company_pages.py
           uv run python scripts/audit_data_completeness.py
 
           if [ -z "$(git status --porcelain -- data/ipos.json data/completeness.json docs/DATA_QUALITY.md ipo/)" ]; then
-            echo "No historical, enrichment, route or audit changes"
+            echo "No historical, detail-backfill, route or audit changes"
             exit 0
           fi
 
           git config user.name "ipo-tracker-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/ipos.json data/completeness.json docs/DATA_QUALITY.md ipo/
-          git commit -m "data: reconcile IPO history and refresh completeness audit"
+          git commit -m "data: reconcile and enrich recent IPO history"
           git push origin HEAD:main
