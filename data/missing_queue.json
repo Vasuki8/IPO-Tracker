@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-09-13T04:27:06+05:30",
+  "generatedAt": "2026-09-13T04:39:38+05:30",
   "asOfDate": "2026-09-13",
   "recordCount": 1371,
-  "queueCount": 1368,
+  "queueCount": 1367,
   "priorityCounts": {
-    "P0 open IPO": 7,
+    "P0 open IPO": 6,
     "P1 upcoming IPO": 5,
     "P2 recent IPO (30d)": 34,
     "P3 filing pipeline": 4,
@@ -13,40 +13,18 @@
   },
   "fieldGapCounts": {
     "exchange.lotSize": 1353,
-    "exchange.issueComposition": 1352,
     "exchange.issueSizeCr": 1343,
-    "lifecycle.allotmentDate": 1332,
+    "exchange.issueComposition": 446,
     "lifecycle.listingDate": 35,
     "exchange.priceBand": 23,
     "offer.promoterShareholding": 15,
-    "offer.financials": 8,
-    "offer.promoters": 1,
+    "offer.financials": 2,
     "offer.registrar": 1,
     "offer.objectsOfIssue": 1,
     "offer.leadManagers": 1,
     "provenance.sources": 1
   },
   "queue": [
-    {
-      "id": "om-galaxy-limited",
-      "company": "OM GALAXY LIMITED",
-      "symbol": "OMGL",
-      "stage": "open",
-      "openDate": "2026-09-10",
-      "closeDate": "2026-09-15",
-      "listingDate": null,
-      "priority": 0,
-      "priorityLabel": "P0 open IPO",
-      "completenessPct": 85.7,
-      "expectedFieldCount": 21,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "offer.promoters",
-        "offer.financials",
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/om-galaxy-limited/"
-    },
     {
       "id": "maharaja-speedex-india-limited",
       "company": "Maharaja & Speedex India Limited",
@@ -57,70 +35,31 @@
       "listingDate": null,
       "priority": 0,
       "priorityLabel": "P0 open IPO",
-      "completenessPct": 90.5,
-      "expectedFieldCount": 21,
-      "missingFieldCount": 2,
+      "completenessPct": 95.5,
+      "expectedFieldCount": 22,
+      "missingFieldCount": 1,
       "missingFields": [
-        "offer.financials",
         "offer.promoterShareholding"
       ],
       "profilePath": "ipo/maharaja-speedex-india-limited/"
     },
     {
-      "id": "century-business-media-limited",
-      "company": "CENTURY BUSINESS MEDIA LIMITED",
-      "symbol": "CENTURYOOH",
-      "stage": "open",
-      "openDate": "2026-09-11",
-      "closeDate": "2026-09-16",
-      "listingDate": null,
-      "priority": 0,
-      "priorityLabel": "P0 open IPO",
-      "completenessPct": 90.5,
-      "expectedFieldCount": 21,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "offer.financials",
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/century-business-media-limited/"
-    },
-    {
-      "id": "injecto-polymers-limited",
-      "company": "INJECTO POLYMERS LIMITED",
-      "symbol": "INJECTO",
-      "stage": "open",
-      "openDate": "2026-09-11",
-      "closeDate": "2026-09-16",
-      "listingDate": null,
-      "priority": 0,
-      "priorityLabel": "P0 open IPO",
-      "completenessPct": 90.5,
-      "expectedFieldCount": 21,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "offer.financials",
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/injecto-polymers-limited/"
-    },
-    {
-      "id": "raksan-transformers-limited",
-      "company": "RAKSAN TRANSFORMERS LIMITED",
-      "symbol": "RAKSAN",
+      "id": "om-galaxy-limited",
+      "company": "OM GALAXY LIMITED",
+      "symbol": "OMGL",
       "stage": "open",
       "openDate": "2026-09-10",
       "closeDate": "2026-09-15",
       "listingDate": null,
       "priority": 0,
       "priorityLabel": "P0 open IPO",
-      "completenessPct": 95.2,
-      "expectedFieldCount": 21,
+      "completenessPct": 95.5,
+      "expectedFieldCount": 22,
       "missingFieldCount": 1,
       "missingFields": [
-        "offer.financials"
+        "offer.promoterShareholding"
       ],
-      "profilePath": "ipo/raksan-transformers-limited/"
+      "profilePath": "ipo/om-galaxy-limited/"
     },
     {
       "id": "veegaland",
@@ -139,6 +78,42 @@
         "exchange.issueComposition"
       ],
       "profilePath": "ipo/veegaland/"
+    },
+    {
+      "id": "century-business-media-limited",
+      "company": "CENTURY BUSINESS MEDIA LIMITED",
+      "symbol": "CENTURYOOH",
+      "stage": "open",
+      "openDate": "2026-09-11",
+      "closeDate": "2026-09-16",
+      "listingDate": null,
+      "priority": 0,
+      "priorityLabel": "P0 open IPO",
+      "completenessPct": 95.5,
+      "expectedFieldCount": 22,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "offer.promoterShareholding"
+      ],
+      "profilePath": "ipo/century-business-media-limited/"
+    },
+    {
+      "id": "injecto-polymers-limited",
+      "company": "INJECTO POLYMERS LIMITED",
+      "symbol": "INJECTO",
+      "stage": "open",
+      "openDate": "2026-09-11",
+      "closeDate": "2026-09-16",
+      "listingDate": null,
+      "priority": 0,
+      "priorityLabel": "P0 open IPO",
+      "completenessPct": 95.5,
+      "expectedFieldCount": 22,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "offer.promoterShareholding"
+      ],
+      "profilePath": "ipo/injecto-polymers-limited/"
     },
     {
       "id": "manika",
@@ -168,8 +143,8 @@
       "listingDate": null,
       "priority": 1,
       "priorityLabel": "P1 upcoming IPO",
-      "completenessPct": 88.2,
-      "expectedFieldCount": 17,
+      "completenessPct": 88.9,
+      "expectedFieldCount": 18,
       "missingFieldCount": 2,
       "missingFields": [
         "exchange.lotSize",
@@ -187,8 +162,8 @@
       "listingDate": null,
       "priority": 1,
       "priorityLabel": "P1 upcoming IPO",
-      "completenessPct": 88.2,
-      "expectedFieldCount": 17,
+      "completenessPct": 88.9,
+      "expectedFieldCount": 18,
       "missingFieldCount": 2,
       "missingFields": [
         "exchange.lotSize",
@@ -242,8 +217,8 @@
       "listingDate": null,
       "priority": 1,
       "priorityLabel": "P1 upcoming IPO",
-      "completenessPct": 94.1,
-      "expectedFieldCount": 17,
+      "completenessPct": 94.4,
+      "expectedFieldCount": 18,
       "missingFieldCount": 1,
       "missingFields": [
         "offer.promoterShareholding"
@@ -260,8 +235,8 @@
       "listingDate": null,
       "priority": 2,
       "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 70.6,
-      "expectedFieldCount": 17,
+      "completenessPct": 72.2,
+      "expectedFieldCount": 18,
       "missingFieldCount": 5,
       "missingFields": [
         "exchange.lotSize",
@@ -282,8 +257,8 @@
       "listingDate": null,
       "priority": 2,
       "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 70.6,
-      "expectedFieldCount": 17,
+      "completenessPct": 72.2,
+      "expectedFieldCount": 18,
       "missingFieldCount": 5,
       "missingFields": [
         "exchange.lotSize",
@@ -304,14 +279,13 @@
       "listingDate": "2026-09-01",
       "priority": 2,
       "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/abh/"
     },
@@ -325,268 +299,15 @@
       "listingDate": "2026-09-02",
       "priority": 2,
       "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/annu/"
-    },
-    {
-      "id": "augmont",
-      "company": "Augmont Enterprises Limited",
-      "symbol": "AUGMONT",
-      "stage": "listed",
-      "openDate": "2026-08-21",
-      "closeDate": "2026-08-25",
-      "listingDate": "2026-08-31",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
-      ],
-      "profilePath": "ipo/augmont/"
-    },
-    {
-      "id": "gaja",
-      "company": "Gaja Alternative Asset Management Limited",
-      "symbol": "GAJA",
-      "stage": "listed",
-      "openDate": "2026-08-19",
-      "closeDate": "2026-08-21",
-      "listingDate": "2026-08-26",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
-      ],
-      "profilePath": "ipo/gaja/"
-    },
-    {
-      "id": "horizonind",
-      "company": "Horizon Industrial Parks Limited",
-      "symbol": "HORIZONIND",
-      "stage": "listed",
-      "openDate": "2026-08-17",
-      "closeDate": "2026-08-19",
-      "listingDate": "2026-08-24",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
-      ],
-      "profilePath": "ipo/horizonind/"
-    },
-    {
-      "id": "htel",
-      "company": "Hy-Tech Engineers Limited",
-      "symbol": "HTEL",
-      "stage": "listed",
-      "openDate": "2026-08-24",
-      "closeDate": "2026-08-27",
-      "listingDate": "2026-09-01",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
-      ],
-      "profilePath": "ipo/htel/"
-    },
-    {
-      "id": "lalithaa",
-      "company": "Lalithaa Jewellery Mart Limited",
-      "symbol": "LALITHAA",
-      "stage": "listed",
-      "openDate": "2026-08-17",
-      "closeDate": "2026-08-19",
-      "listingDate": "2026-08-24",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
-      ],
-      "profilePath": "ipo/lalithaa/"
-    },
-    {
-      "id": "madhurknit",
-      "company": "Madhur Knit Crafts Limited",
-      "symbol": "MADHURKNIT",
-      "stage": "listed",
-      "openDate": "2026-08-24",
-      "closeDate": "2026-08-27",
-      "listingDate": "2026-09-01",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
-      ],
-      "profilePath": "ipo/madhurknit/"
-    },
-    {
-      "id": "shankesh",
-      "company": "Shankesh Jewellers Limited",
-      "symbol": "SHANKESH",
-      "stage": "listed",
-      "openDate": "2026-08-18",
-      "closeDate": "2026-08-20",
-      "listingDate": "2026-08-25",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
-      ],
-      "profilePath": "ipo/shankesh/"
-    },
-    {
-      "id": "skytech",
-      "company": "Skytech Infinite Platform Limited",
-      "symbol": "SKYTECH",
-      "stage": "listed",
-      "openDate": "2026-08-14",
-      "closeDate": "2026-08-18",
-      "listingDate": "2026-08-21",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
-      ],
-      "profilePath": "ipo/skytech/"
-    },
-    {
-      "id": "skyways",
-      "company": "Skyways Air Services Limited",
-      "symbol": "SKYWAYS",
-      "stage": "listed",
-      "openDate": "2026-08-24",
-      "closeDate": "2026-08-27",
-      "listingDate": "2026-09-01",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
-      ],
-      "profilePath": "ipo/skyways/"
-    },
-    {
-      "id": "sumax",
-      "company": "Sumax Engineering Limited",
-      "symbol": "SUMAX",
-      "stage": "listed",
-      "openDate": "2026-08-25",
-      "closeDate": "2026-08-28",
-      "listingDate": "2026-09-02",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
-      ],
-      "profilePath": "ipo/sumax/"
-    },
-    {
-      "id": "sunshine",
-      "company": "Sunshine Pictures Limited",
-      "symbol": "SUNSHINE",
-      "stage": "listed",
-      "openDate": "2026-08-18",
-      "closeDate": "2026-08-20",
-      "listingDate": "2026-08-25",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
-      ],
-      "profilePath": "ipo/sunshine/"
-    },
-    {
-      "id": "symbiotec",
-      "company": "Symbiotec Pharmalab Limited",
-      "symbol": "SYMBIOTEC",
-      "stage": "listed",
-      "openDate": "2026-08-24",
-      "closeDate": "2026-08-27",
-      "listingDate": "2026-09-01",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
-      ],
-      "profilePath": "ipo/symbiotec/"
     },
     {
       "id": "ashutosh",
@@ -607,6 +328,26 @@
         "exchange.issueComposition"
       ],
       "profilePath": "ipo/ashutosh/"
+    },
+    {
+      "id": "augmont",
+      "company": "Augmont Enterprises Limited",
+      "symbol": "AUGMONT",
+      "stage": "listed",
+      "openDate": "2026-08-21",
+      "closeDate": "2026-08-25",
+      "listingDate": "2026-08-31",
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr",
+        "exchange.issueComposition"
+      ],
+      "profilePath": "ipo/augmont/"
     },
     {
       "id": "deepa",
@@ -649,24 +390,64 @@
       "profilePath": "ipo/esds/"
     },
     {
-      "id": "glasswall",
-      "company": "Glass Wall Systems (India) Limited",
-      "symbol": "GLASSWALL",
-      "stage": "closed",
-      "openDate": "2026-09-08",
-      "closeDate": "2026-09-10",
-      "listingDate": null,
+      "id": "gaja",
+      "company": "Gaja Alternative Asset Management Limited",
+      "symbol": "GAJA",
+      "stage": "listed",
+      "openDate": "2026-08-19",
+      "closeDate": "2026-08-21",
+      "listingDate": "2026-08-26",
       "priority": 2,
       "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 82.4,
-      "expectedFieldCount": 17,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
       "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
-        "offer.financials",
-        "offer.promoterShareholding"
+        "exchange.issueSizeCr",
+        "exchange.issueComposition"
       ],
-      "profilePath": "ipo/glasswall/"
+      "profilePath": "ipo/gaja/"
+    },
+    {
+      "id": "horizonind",
+      "company": "Horizon Industrial Parks Limited",
+      "symbol": "HORIZONIND",
+      "stage": "listed",
+      "openDate": "2026-08-17",
+      "closeDate": "2026-08-19",
+      "listingDate": "2026-08-24",
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr",
+        "exchange.issueComposition"
+      ],
+      "profilePath": "ipo/horizonind/"
+    },
+    {
+      "id": "htel",
+      "company": "Hy-Tech Engineers Limited",
+      "symbol": "HTEL",
+      "stage": "listed",
+      "openDate": "2026-08-24",
+      "closeDate": "2026-08-27",
+      "listingDate": "2026-09-01",
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr",
+        "exchange.issueComposition"
+      ],
+      "profilePath": "ipo/htel/"
     },
     {
       "id": "kanohar",
@@ -689,6 +470,26 @@
       "profilePath": "ipo/kanohar/"
     },
     {
+      "id": "lalithaa",
+      "company": "Lalithaa Jewellery Mart Limited",
+      "symbol": "LALITHAA",
+      "stage": "listed",
+      "openDate": "2026-08-17",
+      "closeDate": "2026-08-19",
+      "listingDate": "2026-08-24",
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr",
+        "exchange.issueComposition"
+      ],
+      "profilePath": "ipo/lalithaa/"
+    },
+    {
       "id": "lumino",
       "company": "Lumino Industries Limited",
       "symbol": "LUMINO",
@@ -707,6 +508,26 @@
         "exchange.issueComposition"
       ],
       "profilePath": "ipo/lumino/"
+    },
+    {
+      "id": "madhurknit",
+      "company": "Madhur Knit Crafts Limited",
+      "symbol": "MADHURKNIT",
+      "stage": "listed",
+      "openDate": "2026-08-24",
+      "closeDate": "2026-08-27",
+      "listingDate": "2026-09-01",
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr",
+        "exchange.issueComposition"
+      ],
+      "profilePath": "ipo/madhurknit/"
     },
     {
       "id": "pranav",
@@ -809,6 +630,26 @@
       "profilePath": "ipo/momsbelief/"
     },
     {
+      "id": "shankesh",
+      "company": "Shankesh Jewellers Limited",
+      "symbol": "SHANKESH",
+      "stage": "listed",
+      "openDate": "2026-08-18",
+      "closeDate": "2026-08-20",
+      "listingDate": "2026-08-25",
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr",
+        "exchange.issueComposition"
+      ],
+      "profilePath": "ipo/shankesh/"
+    },
+    {
       "id": "shantiinor",
       "company": "Shanti Inorganics Limited",
       "symbol": "SHANTIINOR",
@@ -829,24 +670,104 @@
       "profilePath": "ipo/shantiinor/"
     },
     {
-      "id": "tempsens",
-      "company": "Tempsens Instruments (India) Limited",
-      "symbol": "TEMPSENS",
+      "id": "skytech",
+      "company": "Skytech Infinite Platform Limited",
+      "symbol": "SKYTECH",
       "stage": "listed",
-      "openDate": "2026-08-20",
-      "closeDate": "2026-08-24",
-      "listingDate": "2026-08-28",
+      "openDate": "2026-08-14",
+      "closeDate": "2026-08-18",
+      "listingDate": "2026-08-21",
       "priority": 2,
       "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 84.2,
-      "expectedFieldCount": 19,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
       "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
-        "offer.promoterShareholding",
-        "lifecycle.allotmentDate"
+        "exchange.issueSizeCr",
+        "exchange.issueComposition"
       ],
-      "profilePath": "ipo/tempsens/"
+      "profilePath": "ipo/skytech/"
+    },
+    {
+      "id": "skyways",
+      "company": "Skyways Air Services Limited",
+      "symbol": "SKYWAYS",
+      "stage": "listed",
+      "openDate": "2026-08-24",
+      "closeDate": "2026-08-27",
+      "listingDate": "2026-09-01",
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr",
+        "exchange.issueComposition"
+      ],
+      "profilePath": "ipo/skyways/"
+    },
+    {
+      "id": "sumax",
+      "company": "Sumax Engineering Limited",
+      "symbol": "SUMAX",
+      "stage": "listed",
+      "openDate": "2026-08-25",
+      "closeDate": "2026-08-28",
+      "listingDate": "2026-09-02",
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr",
+        "exchange.issueComposition"
+      ],
+      "profilePath": "ipo/sumax/"
+    },
+    {
+      "id": "sunshine",
+      "company": "Sunshine Pictures Limited",
+      "symbol": "SUNSHINE",
+      "stage": "listed",
+      "openDate": "2026-08-18",
+      "closeDate": "2026-08-20",
+      "listingDate": "2026-08-25",
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr",
+        "exchange.issueComposition"
+      ],
+      "profilePath": "ipo/sunshine/"
+    },
+    {
+      "id": "symbiotec",
+      "company": "Symbiotec Pharmalab Limited",
+      "symbol": "SYMBIOTEC",
+      "stage": "listed",
+      "openDate": "2026-08-24",
+      "closeDate": "2026-08-27",
+      "listingDate": "2026-09-01",
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr",
+        "exchange.issueComposition"
+      ],
+      "profilePath": "ipo/symbiotec/"
     },
     {
       "id": "arcil",
@@ -866,6 +787,25 @@
         "exchange.issueComposition"
       ],
       "profilePath": "ipo/arcil/"
+    },
+    {
+      "id": "glasswall",
+      "company": "Glass Wall Systems (India) Limited",
+      "symbol": "GLASSWALL",
+      "stage": "closed",
+      "openDate": "2026-09-08",
+      "closeDate": "2026-09-10",
+      "listingDate": null,
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 88.9,
+      "expectedFieldCount": 18,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "offer.promoterShareholding"
+      ],
+      "profilePath": "ipo/glasswall/"
     },
     {
       "id": "karamtara",
@@ -942,6 +882,25 @@
         "exchange.issueComposition"
       ],
       "profilePath": "ipo/steamhouse/"
+    },
+    {
+      "id": "tempsens",
+      "company": "Tempsens Instruments (India) Limited",
+      "symbol": "TEMPSENS",
+      "stage": "listed",
+      "openDate": "2026-08-20",
+      "closeDate": "2026-08-24",
+      "listingDate": "2026-08-28",
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 89.5,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "offer.promoterShareholding"
+      ],
+      "profilePath": "ipo/tempsens/"
     },
     {
       "id": "national-stock-exchange-of-india-limited",
@@ -1026,15 +985,14 @@
       "listingDate": "2026-01-08",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 61.5,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 5,
+      "completenessPct": 66.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 4,
       "missingFields": [
         "exchange.priceBand",
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/avtl29/"
     },
@@ -1048,15 +1006,14 @@
       "listingDate": "2025-10-17",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 61.5,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 5,
+      "completenessPct": 66.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 4,
       "missingFields": [
         "exchange.priceBand",
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/84ail28/"
     },
@@ -1070,14 +1027,13 @@
       "listingDate": null,
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 61.5,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 5,
+      "completenessPct": 66.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 4,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
         "exchange.issueComposition",
-        "lifecycle.allotmentDate",
         "lifecycle.listingDate"
       ],
       "profilePath": "ipo/c2cw/"
@@ -1092,15 +1048,14 @@
       "listingDate": "2026-03-17",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 61.5,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 5,
+      "completenessPct": 66.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 4,
       "missingFields": [
         "exchange.priceBand",
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/815chli36/"
     },
@@ -1114,14 +1069,13 @@
       "listingDate": null,
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 61.5,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 5,
+      "completenessPct": 66.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 4,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
         "exchange.issueComposition",
-        "lifecycle.allotmentDate",
         "lifecycle.listingDate"
       ],
       "profilePath": "ipo/icel/"
@@ -1136,15 +1090,14 @@
       "listingDate": "2026-09-11",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 61.5,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 5,
+      "completenessPct": 66.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 4,
       "missingFields": [
         "exchange.priceBand",
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/935iifl33/"
     },
@@ -1158,15 +1111,14 @@
       "listingDate": "2025-12-02",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 61.5,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 5,
+      "completenessPct": 66.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 4,
       "missingFields": [
         "exchange.priceBand",
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/790ihfl27/"
     },
@@ -1180,14 +1132,13 @@
       "listingDate": null,
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 61.5,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 5,
+      "completenessPct": 66.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 4,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
         "exchange.issueComposition",
-        "lifecycle.allotmentDate",
         "lifecycle.listingDate"
       ],
       "profilePath": "ipo/sampoorna/"
@@ -1202,15 +1153,14 @@
       "listingDate": "2026-07-13",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 61.5,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 5,
+      "completenessPct": 66.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 4,
       "missingFields": [
         "exchange.priceBand",
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/727ngel36/"
     },
@@ -1224,14 +1174,13 @@
       "listingDate": null,
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 61.5,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 5,
+      "completenessPct": 66.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 4,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
         "exchange.issueComposition",
-        "lifecycle.allotmentDate",
         "lifecycle.listingDate"
       ],
       "profilePath": "ipo/nsdl/"
@@ -1246,15 +1195,14 @@
       "listingDate": "2026-08-05",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 61.5,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 5,
+      "completenessPct": 66.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 4,
       "missingFields": [
         "exchange.priceBand",
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/904nacl28/"
     },
@@ -1268,15 +1216,14 @@
       "listingDate": "2026-09-09",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 61.5,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 5,
+      "completenessPct": 66.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 4,
       "missingFields": [
         "exchange.priceBand",
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/pfc2026/"
     },
@@ -1290,14 +1237,13 @@
       "listingDate": null,
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 61.5,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 5,
+      "completenessPct": 66.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 4,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
         "exchange.issueComposition",
-        "lifecycle.allotmentDate",
         "lifecycle.listingDate"
       ],
       "profilePath": "ipo/pfczcb1/"
@@ -1312,14 +1258,13 @@
       "listingDate": null,
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 61.5,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 5,
+      "completenessPct": 66.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 4,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
         "exchange.issueComposition",
-        "lifecycle.allotmentDate",
         "lifecycle.listingDate"
       ],
       "profilePath": "ipo/rsl--b3cf3e5b/"
@@ -1334,14 +1279,13 @@
       "listingDate": null,
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 61.5,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 5,
+      "completenessPct": 66.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 4,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
         "exchange.issueComposition",
-        "lifecycle.allotmentDate",
         "lifecycle.listingDate"
       ],
       "profilePath": "ipo/smcg03/"
@@ -1356,15 +1300,14 @@
       "listingDate": "2026-03-09",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 61.5,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 5,
+      "completenessPct": 66.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 4,
       "missingFields": [
         "exchange.priceBand",
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/scl004/"
     },
@@ -1378,14 +1321,13 @@
       "listingDate": null,
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 61.5,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 5,
+      "completenessPct": 66.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 4,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
         "exchange.issueComposition",
-        "lifecycle.allotmentDate",
         "lifecycle.listingDate"
       ],
       "profilePath": "ipo/spgcl/"
@@ -1400,15 +1342,14 @@
       "listingDate": "2026-09-10",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 61.5,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 5,
+      "completenessPct": 66.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 4,
       "missingFields": [
         "exchange.priceBand",
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/805taca29/"
     },
@@ -1422,14 +1363,13 @@
       "listingDate": "2024-11-13",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/acmesolar/"
     },
@@ -1443,14 +1383,13 @@
       "listingDate": "2025-08-18",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/amcl/"
     },
@@ -1464,14 +1403,13 @@
       "listingDate": "2025-08-29",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/arciil/"
     },
@@ -1485,14 +1423,13 @@
       "listingDate": "2025-04-02",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/atcenergy/"
     },
@@ -1506,14 +1443,13 @@
       "listingDate": "2025-06-27",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/aakaar/"
     },
@@ -1527,14 +1463,13 @@
       "listingDate": "2025-08-11",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/aaradhya/"
     },
@@ -1548,14 +1483,13 @@
       "listingDate": "2026-07-06",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/aastha/"
     },
@@ -1569,14 +1503,13 @@
       "listingDate": "2024-12-04",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/abhapower/"
     },
@@ -1590,14 +1523,13 @@
       "listingDate": "2025-05-21",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/accpl/"
     },
@@ -1611,14 +1543,13 @@
       "listingDate": "2026-03-09",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/acetec/"
     },
@@ -1632,14 +1563,13 @@
       "listingDate": "2025-03-28",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/activeinfr/"
     },
@@ -1653,14 +1583,13 @@
       "listingDate": "2026-02-10",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/adanienpp1/"
     },
@@ -1674,14 +1603,13 @@
       "listingDate": "2026-04-30",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/adisoft/"
     },
@@ -1695,14 +1623,13 @@
       "listingDate": "2025-08-05",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/cpplus/"
     },
@@ -1716,14 +1643,13 @@
       "listingDate": "2025-10-08",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/advance/"
     },
@@ -1737,14 +1663,13 @@
       "listingDate": "2026-07-01",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/rambhajo/"
     },
@@ -1758,14 +1683,13 @@
       "listingDate": "2025-12-10",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/aequs/"
     },
@@ -1779,14 +1703,13 @@
       "listingDate": "2024-12-05",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/agarwaltuf/"
     },
@@ -1800,14 +1723,13 @@
       "listingDate": "2025-02-17",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/ajaxengg/"
     },
@@ -1821,14 +1743,13 @@
       "listingDate": "2025-08-14",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/alltime/"
     },
@@ -1842,14 +1763,13 @@
       "listingDate": "2026-07-21",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/alpinetex/"
     },
@@ -1863,14 +1783,13 @@
       "listingDate": "2026-01-21",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/amagi/"
     },
@@ -1884,14 +1803,13 @@
       "listingDate": "2025-09-09",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/amanta/"
     },
@@ -1905,14 +1823,13 @@
       "listingDate": "2026-05-05",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/ambaauto/"
     },
@@ -1926,14 +1843,13 @@
       "listingDate": "2026-04-02",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/amirchand/"
     },
@@ -1947,14 +1863,13 @@
       "listingDate": "2025-09-30",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/arssbl/"
     },
@@ -1968,14 +1883,13 @@
       "listingDate": "2025-10-16",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/anantam/"
     },
@@ -1989,14 +1903,13 @@
       "listingDate": "2026-08-10",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/anawil/"
     },
@@ -2010,14 +1923,13 @@
       "listingDate": "2025-09-03",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/ahcl/"
     },
@@ -2031,14 +1943,13 @@
       "listingDate": "2025-09-01",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/anondita/"
     },
@@ -2052,14 +1963,13 @@
       "listingDate": "2025-07-21",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/anthem/"
     },
@@ -2073,14 +1983,13 @@
       "listingDate": "2025-01-02",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/anya/"
     },
@@ -2094,14 +2003,13 @@
       "listingDate": "2024-12-04",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/apexeco/"
     },
@@ -2115,14 +2023,13 @@
       "listingDate": "2026-03-18",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/apsisaero/"
     },
@@ -2136,14 +2043,13 @@
       "listingDate": "2026-08-12",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/ardee/"
     },
@@ -2157,14 +2063,13 @@
       "listingDate": "2025-06-25",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/arisinfra/"
     },
@@ -2178,14 +2083,13 @@
       "listingDate": "2024-09-24",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/arkade/"
     },
@@ -2199,14 +2103,13 @@
       "listingDate": "2026-01-22",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/armour/"
     },
@@ -2220,14 +2123,13 @@
       "listingDate": "2025-05-07",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/arunaya/"
     },
@@ -2241,14 +2143,13 @@
       "listingDate": "2025-12-19",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/ashwini/"
     },
@@ -2262,14 +2163,13 @@
       "listingDate": "2025-05-06",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/atherenerg/"
     },
@@ -2283,14 +2183,13 @@
       "listingDate": "2025-09-29",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/atlantaele/"
     },
@@ -2304,14 +2203,13 @@
       "listingDate": "2026-01-20",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/avana/"
     },
@@ -2325,14 +2223,13 @@
       "listingDate": "2024-09-27",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/aviansh/"
     },
@@ -2346,14 +2243,13 @@
       "listingDate": "2026-06-25",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/avience/"
     },
@@ -2367,14 +2263,13 @@
       "listingDate": "2026-02-16",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/aye/"
     },
@@ -2388,14 +2283,13 @@
       "listingDate": "2025-10-08",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/bagdigital/"
     },
@@ -2409,14 +2303,13 @@
       "listingDate": "2025-10-01",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/bmwventltd/"
     },
@@ -2430,14 +2323,13 @@
       "listingDate": "2026-05-14",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/bagmane/"
     },
@@ -2451,14 +2343,13 @@
       "listingDate": "2025-03-07",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/balajiphos/"
     },
@@ -2472,14 +2363,13 @@
       "listingDate": "2025-01-20",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/barflex/"
     },
@@ -2493,14 +2383,13 @@
       "listingDate": "2026-08-19",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/blel/"
     },
@@ -2514,14 +2403,13 @@
       "listingDate": "2025-05-28",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/belrise/"
     },
@@ -2535,14 +2423,13 @@
       "listingDate": "2025-08-11",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/bhadora/"
     },
@@ -2556,14 +2443,13 @@
       "listingDate": "2026-01-19",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/bharatcoal/"
     },
@@ -2577,14 +2463,13 @@
       "listingDate": "2024-09-27",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/bikewo/"
     },
@@ -2598,14 +2483,13 @@
       "listingDate": "2025-11-12",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/groww/"
     },
@@ -2619,14 +2503,13 @@
       "listingDate": "2026-05-29",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/bmll/"
     },
@@ -2640,14 +2523,13 @@
       "listingDate": "2026-02-13",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/biopol/"
     },
@@ -2661,14 +2543,13 @@
       "listingDate": "2025-06-03",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/bluewater/"
     },
@@ -2682,14 +2563,13 @@
       "listingDate": "2025-08-19",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/bluestone/"
     },
@@ -2703,14 +2583,13 @@
       "listingDate": "2025-05-27",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/borana/"
     },
@@ -2724,14 +2603,13 @@
       "listingDate": "2026-02-11",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/brandman/"
     },
@@ -2745,14 +2623,13 @@
       "listingDate": "2025-07-31",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/brighotel/"
     },
@@ -2766,14 +2643,13 @@
       "listingDate": "2026-02-06",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/ckkretail/"
     },
@@ -2787,14 +2663,13 @@
       "listingDate": "2024-12-03",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/c2c/"
     },
@@ -2808,14 +2683,13 @@
       "listingDate": "2026-06-10",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/cmrgreen/"
     },
@@ -2829,14 +2703,13 @@
       "listingDate": "2025-07-09",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/crizac/"
     },
@@ -2850,14 +2723,13 @@
       "listingDate": "2026-07-02",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/csm/"
     },
@@ -2871,14 +2743,13 @@
       "listingDate": "2026-07-24",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/cmll/"
     },
@@ -2892,14 +2763,13 @@
       "listingDate": "2025-10-16",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/cramc/"
     },
@@ -2913,14 +2783,13 @@
       "listingDate": "2025-11-21",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/capillary/"
     },
@@ -2934,14 +2803,13 @@
       "listingDate": "2025-01-17",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/capinvit/"
     },
@@ -2955,14 +2823,13 @@
       "listingDate": "2024-12-30",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/carraro/"
     },
@@ -2976,14 +2843,13 @@
       "listingDate": "2025-08-07",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/cudml/"
     },
@@ -2997,14 +2863,13 @@
       "listingDate": "2025-07-07",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/cedaar/"
     },
@@ -3018,14 +2883,13 @@
       "listingDate": "2026-03-30",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/cmpdi/"
     },
@@ -3039,14 +2903,13 @@
       "listingDate": "2025-02-11",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/chamunda/"
     },
@@ -3060,14 +2923,13 @@
       "listingDate": "2025-02-17",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/chandan/"
     },
@@ -3081,14 +2943,13 @@
       "listingDate": "2026-04-29",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/citiusinvt/"
     },
@@ -3102,14 +2963,13 @@
       "listingDate": "2025-09-01",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/classiceil/"
     },
@@ -3123,14 +2983,13 @@
       "listingDate": "2026-06-24",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/claycraft/"
     },
@@ -3144,14 +3003,13 @@
       "listingDate": "2026-03-02",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/cleanmax/"
     },
@@ -3165,14 +3023,13 @@
       "listingDate": "2025-12-08",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/cssl/"
     },
@@ -3186,14 +3043,13 @@
       "listingDate": "2024-12-27",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/cewater/"
     },
@@ -3207,14 +3063,13 @@
       "listingDate": "2025-08-14",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/connplex/"
     },
@@ -3228,14 +3083,13 @@
       "listingDate": "2025-12-15",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/corona/"
     },
@@ -3249,14 +3103,13 @@
       "listingDate": "2026-08-20",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/credent/"
     },
@@ -3270,14 +3123,13 @@
       "listingDate": "2026-07-31",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/cubeinvit/"
     },
@@ -3291,14 +3143,13 @@
       "listingDate": "2025-11-14",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/curis/"
     },
@@ -3312,14 +3163,13 @@
       "listingDate": "2025-09-03",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/current/"
     },
@@ -3333,14 +3183,13 @@
       "listingDate": "2024-12-27",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/damcapital/"
     },
@@ -3354,14 +3203,13 @@
       "listingDate": "2024-10-29",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/danish/"
     },
@@ -3375,14 +3223,13 @@
       "listingDate": "2026-08-12",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/1305dccl29/"
     },
@@ -3396,14 +3243,13 @@
       "listingDate": "2024-09-24",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/deccantran/"
     },
@@ -3417,14 +3263,13 @@
       "listingDate": "2024-10-28",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/dbeil/"
     },
@@ -3438,14 +3283,13 @@
       "listingDate": "2025-01-14",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/deltic/"
     },
@@ -3459,14 +3303,13 @@
       "listingDate": "2025-01-29",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/denta/"
     },
@@ -3480,14 +3323,13 @@
       "listingDate": "2025-09-17",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/devx/"
     },
@@ -3501,14 +3343,13 @@
       "listingDate": "2024-12-16",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/dhanlaxmi/"
     },
@@ -3522,14 +3363,13 @@
       "listingDate": "2025-12-31",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/dhararail/"
     },
@@ -3543,14 +3383,13 @@
       "listingDate": "2026-08-17",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/dhoottrans/"
     },
@@ -3564,14 +3403,13 @@
       "listingDate": "2024-10-04",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/diffnkg/"
     },
@@ -3585,14 +3423,13 @@
       "listingDate": "2025-03-24",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/divinehira/"
     },
@@ -3606,14 +3443,13 @@
       "listingDate": "2024-10-04",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/divyadhan/"
     },
@@ -3627,14 +3463,13 @@
       "listingDate": "2025-02-04",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/agarwaleye/"
     },
@@ -3648,14 +3483,13 @@
       "listingDate": "2026-01-02",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/e2erail/"
     },
@@ -3669,14 +3503,13 @@
       "listingDate": "2025-01-24",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/emain/"
     },
@@ -3690,14 +3523,13 @@
       "listingDate": "2025-12-30",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/epwindia/"
     },
@@ -3711,14 +3543,13 @@
       "listingDate": "2025-09-30",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/ecoline/"
     },
@@ -3732,14 +3563,13 @@
       "listingDate": "2025-02-14",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/elgnz/"
     },
@@ -3753,14 +3583,13 @@
       "listingDate": "2025-07-01",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/ellen/"
     },
@@ -3774,14 +3603,13 @@
       "listingDate": "2024-12-12",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/etml/"
     },
@@ -3795,14 +3623,13 @@
       "listingDate": "2025-11-18",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/emmvee/"
     },
@@ -3816,14 +3643,13 @@
       "listingDate": "2025-12-12",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/encompas/"
     },
@@ -3837,14 +3663,13 @@
       "listingDate": "2024-11-29",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/eiel/"
     },
@@ -3858,14 +3683,13 @@
       "listingDate": "2024-09-24",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/enviro/"
     },
@@ -3879,14 +3703,13 @@
       "listingDate": "2025-10-01",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/epackpeb/"
     },
@@ -3900,14 +3723,13 @@
       "listingDate": "2025-06-24",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/eepl/"
     },
@@ -3921,14 +3743,13 @@
       "listingDate": "2025-09-23",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/europratik/"
     },
@@ -3942,14 +3763,13 @@
       "listingDate": "2025-11-26",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/excelsoft/"
     },
@@ -3963,14 +3783,13 @@
       "listingDate": "2025-12-19",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/eximroutes/"
     },
@@ -3984,14 +3803,13 @@
       "listingDate": "2025-10-07",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/fabtech/"
     },
@@ -4005,14 +3823,13 @@
       "listingDate": "2026-08-24",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/fascinate/"
     },
@@ -4026,14 +3843,13 @@
       "listingDate": "2025-11-13",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/finbud/"
     },
@@ -4047,14 +3863,13 @@
       "listingDate": "2025-08-08",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/flysbs/"
     },
@@ -4068,14 +3883,13 @@
       "listingDate": "2025-12-12",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/fwstc/"
     },
@@ -4089,14 +3903,13 @@
       "listingDate": "2024-10-04",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/forgeauto/"
     },
@@ -4110,14 +3923,13 @@
       "listingDate": "2026-02-16",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/fractal/"
     },
@@ -4131,14 +3943,13 @@
       "listingDate": "2024-10-24",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/freshara/"
     },
@@ -4152,14 +3963,13 @@
       "listingDate": "2025-11-20",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/utlsolar/"
     },
@@ -4173,14 +3983,13 @@
       "listingDate": "2025-09-26",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/gkenergy/"
     },
@@ -4194,14 +4003,13 @@
       "listingDate": "2025-07-30",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/ebgng/"
     },
@@ -4215,14 +4023,13 @@
       "listingDate": "2026-03-24",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/gspcrop/"
     },
@@ -4236,14 +4043,13 @@
       "listingDate": "2025-09-17",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/gml/"
     },
@@ -4257,14 +4063,13 @@
       "listingDate": "2025-09-29",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/ganeshcp/"
     },
@@ -4278,14 +4083,13 @@
       "listingDate": "2024-12-06",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/ganeshin/"
     },
@@ -4299,14 +4103,13 @@
       "listingDate": "2025-06-11",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/gangabath/"
     },
@@ -4320,14 +4123,13 @@
       "listingDate": "2024-10-15",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/garuda/"
     },
@@ -4341,14 +4143,13 @@
       "listingDate": "2026-02-27",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/gaudiumivf/"
     },
@@ -4362,14 +4163,13 @@
       "listingDate": "2025-08-26",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/gemaroma/"
     },
@@ -4383,14 +4183,13 @@
       "listingDate": "2026-06-12",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/genxai/"
     },
@@ -4404,14 +4203,13 @@
       "listingDate": "2025-07-01",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/globecivil/"
     },
@@ -4425,14 +4223,13 @@
       "listingDate": "2025-10-07",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/glottis/"
     },
@@ -4446,14 +4243,13 @@
       "listingDate": "2024-10-30",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/godavarib/"
     },
@@ -4467,14 +4263,13 @@
       "listingDate": "2025-03-27",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/gchotels/"
     },
@@ -4488,14 +4283,13 @@
       "listingDate": "2025-10-09",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/greenleaf/"
     },
@@ -4509,14 +4303,13 @@
       "listingDate": "2026-02-11",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/gjl/"
     },
@@ -4530,14 +4323,13 @@
       "listingDate": "2025-12-30",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/gksl/"
     },
@@ -4551,14 +4343,13 @@
       "listingDate": "2025-10-01",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/gurunanak/"
     },
@@ -4572,14 +4363,13 @@
       "listingDate": "2025-07-02",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/hdbfs/"
     },
@@ -4593,14 +4383,13 @@
       "listingDate": "2025-02-28",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/hptl/"
     },
@@ -4614,14 +4403,13 @@
       "listingDate": "2025-07-10",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/whiteforce/"
     },
@@ -4635,14 +4423,13 @@
       "listingDate": "2026-07-16",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/happy/"
     },
@@ -4656,14 +4443,13 @@
       "listingDate": "2026-06-12",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/hexagon/"
     },
@@ -4677,14 +4463,13 @@
       "listingDate": "2025-02-19",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/hext/"
     },
@@ -4698,14 +4483,13 @@
       "listingDate": "2025-08-12",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/hilinfra/"
     },
@@ -4719,14 +4503,13 @@
       "listingDate": "2024-10-07",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/hvax/"
     },
@@ -4740,14 +4523,13 @@
       "listingDate": "2024-10-22",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/hyundai/"
     },
@@ -4761,14 +4543,13 @@
       "listingDate": "2026-07-10",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/icelco/"
     },
@@ -4782,14 +4563,13 @@
       "listingDate": "2025-12-19",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/iciciamc/"
     },
@@ -4803,14 +4583,13 @@
       "listingDate": "2026-07-30",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/indomim/"
     },
@@ -4824,14 +4603,13 @@
       "listingDate": "2024-12-26",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/identical/"
     },
@@ -4845,14 +4623,13 @@
       "listingDate": "2025-07-30",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/indiqube/"
     },
@@ -4866,14 +4643,13 @@
       "listingDate": "2025-01-07",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/indofarm/"
     },
@@ -4887,14 +4663,13 @@
       "listingDate": "2025-07-03",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/igcl/"
     },
@@ -4908,14 +4683,13 @@
       "listingDate": "2025-06-25",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/influx/"
     },
@@ -4929,14 +4703,13 @@
       "listingDate": "2026-03-23",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/innovision/"
     },
@@ -4950,14 +4723,13 @@
       "listingDate": "2025-05-20",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/integrity/"
     },
@@ -4971,14 +4743,13 @@
       "listingDate": "2024-12-20",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/igil/"
     },
@@ -4992,14 +4763,13 @@
       "listingDate": "2024-12-19",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/iks/"
     },
@@ -5013,14 +4783,13 @@
       "listingDate": "2025-12-08",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/invicta/"
     },
@@ -5034,14 +4803,13 @@
       "listingDate": "2025-09-25",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/ivalue/"
     },
@@ -5055,14 +4823,13 @@
       "listingDate": "2025-05-06",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/iware/"
     },
@@ -5076,14 +4843,13 @@
       "listingDate": "2025-08-14",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/jswcement/"
     },
@@ -5097,14 +4863,13 @@
       "listingDate": "2025-10-01",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/jainrec/"
     },
@@ -5118,14 +4883,13 @@
       "listingDate": "2025-06-17",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/jainik/"
     },
@@ -5139,14 +4903,13 @@
       "listingDate": "2025-09-30",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/jaro/"
     },
@@ -5160,14 +4923,13 @@
       "listingDate": "2025-11-03",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/jayesh/"
     },
@@ -5181,14 +4943,13 @@
       "listingDate": "2025-10-03",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/jkipl/"
     },
@@ -5202,14 +4963,13 @@
       "listingDate": "2026-08-06",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/jnpr/"
     },
@@ -5223,14 +4983,13 @@
       "listingDate": "2025-08-11",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/jyotiglobl/"
     },
@@ -5244,14 +5003,13 @@
       "listingDate": "2026-01-29",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/krmayurved/"
     },
@@ -5265,14 +5023,13 @@
       "listingDate": "2024-10-03",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/krn/"
     },
@@ -5286,14 +5043,13 @@
       "listingDate": "2025-12-23",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/kshintl/"
     },
@@ -5307,14 +5063,13 @@
       "listingDate": "2025-01-22",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/kkjewels/"
     },
@@ -5328,14 +5083,13 @@
       "listingDate": "2024-09-26",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/kalana/"
     },
@@ -5349,14 +5103,13 @@
       "listingDate": "2025-07-01",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/kalpataru/"
     },
@@ -5370,14 +5123,13 @@
       "listingDate": "2025-08-05",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/kaytex/"
     },
@@ -5391,14 +5143,13 @@
       "listingDate": "2025-02-12",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/ken/"
     },
@@ -5412,14 +5163,13 @@
       "listingDate": "2026-07-08",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/knack/"
     },
@@ -5433,14 +5183,13 @@
       "listingDate": "2025-08-18",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/krt/"
     },
@@ -5454,14 +5203,13 @@
       "listingDate": "2026-07-15",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/kusumgar/"
     },
@@ -5475,14 +5223,13 @@
       "listingDate": "2025-10-14",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/lgeindia/"
     },
@@ -5496,14 +5243,13 @@
       "listingDate": "2024-10-23",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/lakshya/"
     },
@@ -5517,14 +5263,13 @@
       "listingDate": "2024-11-29",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/lamosaic/"
     },
@@ -5538,14 +5283,13 @@
       "listingDate": "2026-07-16",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/laserpower/"
     },
@@ -5559,14 +5303,13 @@
       "listingDate": "2025-01-20",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/laxmidentl/"
     },
@@ -5580,14 +5323,13 @@
       "listingDate": "2025-08-05",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/laxmiindia/"
     },
@@ -5601,14 +5343,13 @@
       "listingDate": "2026-08-14",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/leap/"
     },
@@ -5622,14 +5363,13 @@
       "listingDate": "2025-11-10",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/lenskart/"
     },
@@ -5643,14 +5383,13 @@
       "listingDate": "2026-07-30",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/lcl/"
     },
@@ -5664,14 +5403,13 @@
       "listingDate": "2025-08-06",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/mbel/"
     },
@@ -5685,14 +5423,13 @@
       "listingDate": "2026-08-06",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/mvelectro/"
     },
@@ -5706,14 +5443,13 @@
       "listingDate": "2025-08-20",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/mril/"
     },
@@ -5727,14 +5463,13 @@
       "listingDate": "2024-12-27",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/mamata/"
     },
@@ -5748,14 +5483,13 @@
       "listingDate": "2025-10-06",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/mpel/"
     },
@@ -5769,14 +5503,13 @@
       "listingDate": "2024-09-30",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/manba/"
     },
@@ -5790,14 +5523,13 @@
       "listingDate": "2025-08-28",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/meil/"
     },
@@ -5811,14 +5543,13 @@
       "listingDate": "2026-02-27",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/manilam/"
     },
@@ -5832,14 +5563,13 @@
       "listingDate": "2026-08-05",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/manipalhos/"
     },
@@ -5853,14 +5583,13 @@
       "listingDate": "2025-12-24",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/marc/"
     },
@@ -5874,14 +5603,13 @@
       "listingDate": "2026-02-19",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/marushika/"
     },
@@ -5895,14 +5623,13 @@
       "listingDate": "2025-09-30",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/mgsl/"
     },
@@ -5916,14 +5643,13 @@
       "listingDate": "2025-02-19",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/maxvolt/"
     },
@@ -5937,14 +5663,13 @@
       "listingDate": "2025-06-27",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/mayasheel/"
     },
@@ -5958,14 +5683,13 @@
       "listingDate": "2025-08-18",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/medistep/"
     },
@@ -5979,14 +5703,13 @@
       "listingDate": "2025-12-10",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/meesho/"
     },
@@ -6000,14 +5723,13 @@
       "listingDate": "2026-07-28",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/metalic/"
     },
@@ -6021,14 +5743,13 @@
       "listingDate": "2025-10-24",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/midwestltd/"
     },
@@ -6042,14 +5763,13 @@
       "listingDate": "2026-08-18",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/milkymist/"
     },
@@ -6063,14 +5783,13 @@
       "listingDate": "2026-03-02",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/mobilise/"
     },
@@ -6084,14 +5803,13 @@
       "listingDate": "2026-08-17",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/molbio/"
     },
@@ -6105,14 +5823,13 @@
       "listingDate": "2025-06-19",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/monolith/"
     },
@@ -6126,14 +5843,13 @@
       "listingDate": "2025-07-03",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/mmel/"
     },
@@ -6147,14 +5863,13 @@
       "listingDate": "2025-10-08",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/munish/"
     },
@@ -6168,14 +5883,13 @@
       "listingDate": "2025-06-04",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/nrvandana/"
     },
@@ -6189,14 +5903,13 @@
       "listingDate": "2026-05-25",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/nfpsampoor/"
     },
@@ -6210,14 +5923,13 @@
       "listingDate": "2026-03-06",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/nmc01/"
     },
@@ -6231,14 +5943,13 @@
       "listingDate": "2024-11-18",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/neelam/"
     },
@@ -6252,14 +5963,13 @@
       "listingDate": "2025-12-09",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/neochem/"
     },
@@ -6273,21 +5983,42 @@
       "listingDate": "2025-12-17",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 69.2,
-      "expectedFieldCount": 13,
-      "missingFieldCount": 4,
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.allotmentDate"
+        "exchange.issueComposition"
       ],
       "profilePath": "ipo/nephroplus/"
+    },
+    {
+      "id": "neptune",
+      "company": "Neptune Petrochemicals Limited",
+      "symbol": "NEPTUNE",
+      "stage": "listed",
+      "openDate": "2025-05-28",
+      "closeDate": "2025-05-30",
+      "listingDate": "2025-06-04",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 75.0,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 3,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr",
+        "exchange.issueComposition"
+      ],
+      "profilePath": "ipo/neptune/"
     }
   ],
   "notes": [
     "P0/P1 records are repaired before historical records.",
-    "Only lifecycle-appropriate missing fields enter the queue.",
+    "Only lifecycle- and source-appropriate missing fields enter the queue.",
+    "Older exchange-only records do not require Fresh/OFS composition when the official historical archive does not expose it.",
+    "Allotment date is tracked as optional research coverage until a reliable official historical collector exists.",
     "Blank values are never guessed; backfill values must come from official sources."
   ]
 }

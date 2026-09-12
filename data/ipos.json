@@ -93,43 +93,41 @@
       "Critical-backfill": {
         "ok": true,
         "records": 20,
-        "asOf": "2026-09-13T04:24:14+05:30"
+        "asOf": "2026-09-13T04:36:02+05:30"
       },
       "SEBI-document-links": {
         "ok": true,
         "records": 0,
         "attempted": 7,
-        "asOf": "2026-09-13T04:21:10+05:30",
+        "asOf": "2026-09-13T04:32:59+05:30",
         "errors": []
       },
       "Offer-docs": {
         "ok": true,
-        "records": 3,
-        "attempted": 3,
+        "records": 12,
+        "attempted": 12,
         "failed": 0
       },
       "Issuer-offer-docs": {
-        "ok": false,
-        "records": 4,
+        "ok": true,
+        "records": 5,
         "attempted": 5,
-        "updated": 1,
-        "deepScanned": 4,
-        "failed": 1,
-        "asOf": "2026-09-13T04:24:14+05:30",
-        "errors": [
-          "INJECTO POLYMERS LIMITED: HTTPSConnectionPool(host='injectopolymers.in', port=443): Max retries exceeded with url: /wp-content/uploads/2026/09/1.-RHP_07.09.2026.pdf (Caused by ConnectTimeoutError(<HTTPSConnection(host='injectopolymers.in', port=443) at 0x7fe259dd6600>, 'Connection to injectopolymers.in timed out. (connect timeout=45)'))"
-        ]
+        "updated": 5,
+        "deepScanned": 0,
+        "failed": 0,
+        "asOf": "2026-09-13T04:36:02+05:30",
+        "errors": []
       }
     },
     "errors": [],
     "offerDocumentHealth": {
       "ok": true,
-      "attempted": 3,
-      "extracted": 3,
+      "attempted": 12,
+      "extracted": 12,
       "failed": 0,
       "eligibleRemaining": 0,
-      "parserVersion": 4,
-      "asOf": "2026-09-13T04:21:26+05:30",
+      "parserVersion": 5,
+      "asOf": "2026-09-13T04:34:34+05:30",
       "errors": []
     },
     "subscriptionHealth": {
@@ -174,7 +172,7 @@
       "ok": true,
       "targetCount": 20,
       "priorityMax": 2,
-      "asOf": "2026-09-13T04:24:14+05:30",
+      "asOf": "2026-09-13T04:36:02+05:30",
       "documents": {
         "ok": true,
         "attempted": 3,
@@ -184,10 +182,10 @@
         "discoveryHealth": {
           "ok": false,
           "records": 0,
-          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7fec19f8c800>, 'Connection to www.bsesme.com time"
+          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f56176c2510>, 'Connection to www.bsesme.com time"
         },
         "errors": [],
-        "asOf": "2026-09-13T04:27:05+05:30"
+        "asOf": "2026-09-13T04:39:38+05:30"
       }
     },
     "sebiDocumentLinkHealth": {
@@ -196,7 +194,7 @@
       "resolvedPages": 7,
       "linksAdded": 0,
       "failed": 0,
-      "asOf": "2026-09-13T04:21:10+05:30",
+      "asOf": "2026-09-13T04:32:59+05:30",
       "errors": []
     },
     "criticalOfferDocumentHealth": {
@@ -208,22 +206,20 @@
       "discoveryHealth": {
         "ok": false,
         "records": 0,
-        "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7fec19f8c800>, 'Connection to www.bsesme.com time"
+        "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f56176c2510>, 'Connection to www.bsesme.com time"
       },
       "errors": [],
-      "asOf": "2026-09-13T04:27:05+05:30"
+      "asOf": "2026-09-13T04:39:38+05:30"
     },
     "issuerOfferDocumentHealth": {
-      "ok": false,
+      "ok": true,
       "attempted": 5,
-      "extracted": 4,
-      "updated": 1,
-      "deepScanned": 4,
-      "failed": 1,
-      "asOf": "2026-09-13T04:24:14+05:30",
-      "errors": [
-        "INJECTO POLYMERS LIMITED: HTTPSConnectionPool(host='injectopolymers.in', port=443): Max retries exceeded with url: /wp-content/uploads/2026/09/1.-RHP_07.09.2026.pdf (Caused by ConnectTimeoutError(<HTTPSConnection(host='injectopolymers.in', port=443) at 0x7fe259dd6600>, 'Connection to injectopolymers.in timed out. (connect timeout=45)'))"
-      ]
+      "extracted": 5,
+      "updated": 5,
+      "deepScanned": 0,
+      "failed": 0,
+      "asOf": "2026-09-13T04:36:02+05:30",
+      "errors": []
     }
   },
   "ipos": [
@@ -378,21 +374,24 @@
             "revenueCr": 516.949,
             "ebitdaCr": 84.774,
             "patCr": 34.023,
-            "ronwPct": 39.05
+            "ronwPct": 39.05,
+            "netWorthCr": 3.905
           },
           {
             "period": "FY2025",
             "revenueCr": 120.979,
             "ebitdaCr": 28.487,
             "patCr": 13.095,
-            "ronwPct": 40.46
+            "ronwPct": 40.46,
+            "netWorthCr": 4.046
           },
           {
             "period": "FY2024",
             "revenueCr": 315.952,
             "ebitdaCr": 58.119,
             "patCr": 18.563,
-            "ronwPct": 34.08
+            "ronwPct": 34.08,
+            "netWorthCr": 3.408
           }
         ]
       },
@@ -450,7 +449,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 4,
+        "parserVersion": 5,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Sonaselection%20India%20Limited%20%20-%20AP_p.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "SONASELECTION INDIA LIMITED - Abridged Prospectus",
@@ -467,7 +466,7 @@
           "objectsOfIssue",
           "shareholding"
         ],
-        "extractedAt": "2026-09-13T03:36:01+05:30",
+        "extractedAt": "2026-09-13T04:33:02+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/sona/",
@@ -573,31 +572,34 @@
         "unit": "₹ crore",
         "periods": [
           {
-            "period": "FY2026",
-            "revenueCr": 2351.031,
-            "ebitdaCr": 125.149,
-            "netWorthCr": 225.707,
+            "period": "FY2024",
+            "revenueCr": 4.503,
+            "ebitdaCr": 56.502,
+            "patCr": 10.0,
+            "netWorthCr": 3.26,
             "ronwPct": 32.6,
-            "eps": 9.11,
-            "roePct": 30.6
+            "roePct": 30.2,
+            "eps": 3.0
+          },
+          {
+            "period": "FY2026",
+            "revenueCr": 4.713,
+            "ebitdaCr": 125.149,
+            "patCr": 10.0,
+            "netWorthCr": 3.1,
+            "ronwPct": 31.0,
+            "roePct": 30.6,
+            "eps": 31.0
           },
           {
             "period": "FY2025",
-            "revenueCr": 1597.931,
+            "revenueCr": 202.6,
             "ebitdaCr": 80.441,
-            "netWorthCr": 141.369,
-            "ronwPct": 32.82,
-            "eps": 6.13,
-            "roePct": 30.94
-          },
-          {
-            "period": "FY2024",
-            "revenueCr": 1206.743,
-            "ebitdaCr": 56.502,
-            "netWorthCr": 101.508,
-            "ronwPct": 30.21,
-            "eps": 4.1,
-            "roePct": 30.2
+            "patCr": 18.9,
+            "netWorthCr": 202.6,
+            "ronwPct": 2026.0,
+            "roePct": 30.94,
+            "eps": 2026.0
           }
         ]
       },
@@ -611,22 +613,23 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 4,
+        "parserVersion": 5,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788946092145.pdf",
         "documentType": "RHP",
         "documentTitle": "SEBI RHP",
         "documentFiledDate": null,
         "sha256": "695637dcfdc34c556075ec33ee7573342474f33d8587a95cf6eef442c62299fd",
-        "pagesRead": 30,
+        "pagesRead": 520,
         "pageCount": 646,
         "extractedFields": [
           "leadManagers",
           "registrar",
           "promoters",
           "issueComposition",
+          "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T04:26:27+05:30",
+        "extractedAt": "2026-09-13T04:38:40+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/ssretail/",
@@ -802,35 +805,28 @@
             "period": "FY2026",
             "revenueCr": 19093.65,
             "ebitdaCr": 1375.5,
-            "netWorthCr": 10502.18,
-            "ronwPct": 8.2,
-            "eps": 9.0,
-            "roePct": 11.0
+            "netWorthCr": 9682.48,
+            "roePct": 11.0,
+            "eps": 2.05,
+            "ronwPct": 2024.0
           },
           {
             "period": "FY2025",
             "revenueCr": 67538.72,
-            "ebitdaCr": 4162.9,
-            "netWorthCr": 9682.48,
-            "ronwPct": 26.28,
-            "eps": 2.05,
-            "roePct": 8.2
+            "ebitdaCr": 1017.13,
+            "netWorthCr": 19700.08,
+            "roePct": 8.2,
+            "eps": 1.66,
+            "ronwPct": 27.98
           },
           {
             "period": "FY2024",
             "revenueCr": 58639.93,
-            "ebitdaCr": 2592.17,
-            "netWorthCr": 7463.71,
-            "ronwPct": 38.85,
-            "eps": 5.59,
-            "roePct": 26.28
-          },
-          {
-            "period": "FY2021",
-            "revenueCr": 645.4398,
-            "ebitdaCr": 25.9217,
-            "roePct": 38.85,
-            "eps": 6.02
+            "ebitdaCr": 9514.4,
+            "netWorthCr": 105360.7,
+            "roePct": 26.28,
+            "eps": 1.92,
+            "ronwPct": 1.0
           }
         ]
       },
@@ -844,22 +840,23 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 4,
+        "parserVersion": 5,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788843844738.PDF",
         "documentType": "RHP",
         "documentTitle": "SEBI RHP",
         "documentFiledDate": null,
         "sha256": "360eded96fcff4cb1a87599d135235d3c19fdb6e4e634cce248f206e26c9f875",
-        "pagesRead": 30,
+        "pagesRead": 400,
         "pageCount": 400,
         "extractedFields": [
           "leadManagers",
           "registrar",
           "promoters",
           "issueComposition",
+          "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T04:25:24+05:30",
+        "extractedAt": "2026-09-13T04:37:22+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/jsipl/",
@@ -1062,13 +1059,21 @@
         "periods": [
           {
             "period": "FY2026",
-            "revenueCr": 1188.351,
-            "ebitdaCr": 147.782,
-            "patCr": 41.168,
-            "netWorthCr": 482.448,
-            "ronwPct": 8.53,
-            "roePct": 8.56,
-            "eps": 1.15
+            "patCr": 0.175,
+            "netWorthCr": 1.977,
+            "roePct": 9.08
+          },
+          {
+            "period": "FY2025",
+            "patCr": 0.185,
+            "netWorthCr": 1.884,
+            "roePct": 8.19
+          },
+          {
+            "period": "FY2024",
+            "patCr": 0.266,
+            "netWorthCr": 2.323,
+            "roePct": 4.78
           }
         ]
       },
@@ -1082,22 +1087,23 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 4,
+        "parserVersion": 5,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789013295445.pdf",
         "documentType": "RHP",
         "documentTitle": "SEBI RHP",
         "documentFiledDate": null,
         "sha256": "a355417b9a9734283b7df8eb35d703a74a1673de1e3284653004da02789c944a",
-        "pagesRead": 30,
+        "pagesRead": 520,
         "pageCount": 582,
         "extractedFields": [
           "leadManagers",
           "registrar",
           "promoters",
           "issueComposition",
+          "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T04:27:05+05:30",
+        "extractedAt": "2026-09-13T04:39:38+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/heromotors/",
@@ -1615,29 +1621,68 @@
       ],
       "issuerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 4,
+        "parserVersion": 5,
         "documentUrl": "https://injectopolymers.in/wp-content/uploads/2026/09/1.-RHP_07.09.2026.pdf",
         "documentType": "RHP",
         "documentTitle": "Red Herring Prospectus",
         "sourcePage": "https://injectopolymers.in/",
         "sha256": "f1b16cb0e4b49ed988eeaeea2d99b67ceb0192a42689a1856d13d0b8c4c864ba",
-        "pagesRead": 30,
+        "pagesRead": 410,
         "pageCount": 410,
         "extractedFields": [
           "leadManagers",
           "registrar",
           "promoters",
           "issueComposition",
+          "financials",
           "objectsOfIssue"
         ],
         "changedFields": [
-          "ofsCr",
-          "issueComposition",
-          "promoters",
-          "objectsOfIssue"
+          "financials"
         ],
-        "extractedAt": "2026-09-13T04:12:35+05:30",
+        "extractedAt": "2026-09-13T04:35:44+05:30",
         "source": "Issuer website"
+      },
+      "financials": {
+        "unit": "₹ crore",
+        "periods": [
+          {
+            "period": "FY2026",
+            "revenueCr": 0.0568,
+            "ebitdaCr": 0.2094,
+            "patCr": 16.0128,
+            "netWorthCr": 0.31,
+            "roePct": 28.94,
+            "eps": 10.0
+          },
+          {
+            "period": "FY2025",
+            "revenueCr": 0.99,
+            "ebitdaCr": 0.03,
+            "patCr": 8.1093,
+            "netWorthCr": -0.26,
+            "roePct": 23.66,
+            "eps": 8588.08
+          },
+          {
+            "period": "FY2024",
+            "revenueCr": 0.0426,
+            "ebitdaCr": 0.1,
+            "patCr": 4.4436,
+            "netWorthCr": 0.31,
+            "roePct": 22.31,
+            "eps": 6669.76
+          },
+          {
+            "period": "FY2023",
+            "revenueCr": 0.06,
+            "ebitdaCr": 85.8808,
+            "patCr": 0.1,
+            "netWorthCr": 20.25,
+            "roePct": 5.0,
+            "eps": 12770.03
+          }
+        ]
       }
     },
     {
@@ -1852,24 +1897,68 @@
       ],
       "issuerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 4,
+        "parserVersion": 5,
         "documentUrl": "https://centurymedia.in/wp-content/uploads/2026/09/Red-Herring-Prospectus.pdf",
         "documentType": "RHP",
         "documentTitle": "Red Herring Prospectus",
         "sourcePage": "https://centurymedia.in/investorrelation/",
         "sha256": "be30612c31cf5327d31d7a6547e3ba07be3e066a180493a3920425f28db16dd8",
-        "pagesRead": 72,
+        "pagesRead": 303,
         "pageCount": 303,
         "extractedFields": [
           "leadManagers",
           "registrar",
           "promoters",
           "issueComposition",
+          "financials",
           "objectsOfIssue"
         ],
-        "changedFields": [],
-        "extractedAt": "2026-09-13T04:21:55+05:30",
+        "changedFields": [
+          "financials"
+        ],
+        "extractedAt": "2026-09-13T04:35:28+05:30",
         "source": "Issuer website"
+      },
+      "financials": {
+        "unit": "₹ crore",
+        "periods": [
+          {
+            "period": "FY2025",
+            "revenueCr": 0.1,
+            "ebitdaCr": 8.5762,
+            "netWorthCr": 0.01,
+            "ronwPct": 1.0,
+            "roePct": 36.44,
+            "eps": 10.0
+          },
+          {
+            "period": "FY2024",
+            "revenueCr": 0.0861,
+            "ebitdaCr": 7.1766,
+            "netWorthCr": 0.31,
+            "ronwPct": 31.0,
+            "roePct": 46.52,
+            "eps": 1.0
+          },
+          {
+            "period": "FY2023",
+            "revenueCr": 0.3083,
+            "ebitdaCr": 5.5838,
+            "netWorthCr": 20.26,
+            "ronwPct": 2026.0,
+            "roePct": 62.15,
+            "eps": 31.0
+          },
+          {
+            "period": "FY2026",
+            "revenueCr": 0.2794,
+            "ebitdaCr": 0.1847,
+            "netWorthCr": 0.3083,
+            "ronwPct": 30.83,
+            "roePct": 30.06,
+            "eps": 2026.0
+          }
+        ]
       }
     },
     {
@@ -2180,31 +2269,76 @@
       ],
       "issuerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 4,
+        "parserVersion": 5,
         "documentUrl": "https://raksantransformers.com/assets/pdf/drhp.pdf",
         "documentType": "RHP",
         "documentTitle": "Red Herring Prospectus",
         "sourcePage": "https://raksantransformers.com/corporategovernance/prospectus",
         "sha256": "968b575d73bd7371a494f197fbbf37c3a42182db46138c24deae10fef63fc0a0",
-        "pagesRead": 82,
+        "pagesRead": 321,
         "pageCount": 321,
         "extractedFields": [
           "leadManagers",
           "registrar",
           "promoters",
           "issueComposition",
-          "objectsOfIssue",
-          "shareholding"
+          "financials",
+          "objectsOfIssue"
         ],
         "changedFields": [
-          "shareholding"
+          "financials"
         ],
-        "extractedAt": "2026-09-13T04:21:52+05:30",
+        "extractedAt": "2026-09-13T04:36:02+05:30",
         "source": "Issuer website"
       },
       "shareholding": {
         "promoters": [],
         "promoterPreIssuePct": 100.0
+      },
+      "financials": {
+        "unit": "₹ crore",
+        "periods": [
+          {
+            "period": "FY2025",
+            "revenueCr": 0.1,
+            "ebitdaCr": 46.719,
+            "patCr": 0.04,
+            "netWorthCr": 0.01,
+            "ronwPct": 1.0,
+            "roePct": 55.32,
+            "eps": 10.0
+          },
+          {
+            "period": "FY2024",
+            "revenueCr": 0.2039,
+            "ebitdaCr": 29.5101,
+            "patCr": 0.01,
+            "netWorthCr": 0.31,
+            "ronwPct": 31.0,
+            "roePct": 60.14,
+            "eps": 1.0
+          },
+          {
+            "period": "FY2023",
+            "revenueCr": 0.2039,
+            "ebitdaCr": 10.1937,
+            "patCr": 0.31,
+            "netWorthCr": 20.26,
+            "ronwPct": 2026.0,
+            "roePct": 38.14,
+            "eps": 31.0
+          },
+          {
+            "period": "FY2026",
+            "revenueCr": 0.4341,
+            "ebitdaCr": 0.1287,
+            "patCr": 20.24,
+            "netWorthCr": 0.4341,
+            "ronwPct": 43.41,
+            "roePct": 46.72,
+            "eps": 2026.0
+          }
+        ]
       }
     },
     {
@@ -2376,22 +2510,63 @@
       ],
       "issuerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 4,
+        "parserVersion": 5,
         "documentUrl": "https://omgalaxymould.com/wp-content/uploads/2026/09/Project-Om_-RHP_with_RFS.pdf",
         "documentType": "RHP",
         "documentTitle": "Red Herring Prospectus",
         "sourcePage": "https://omgalaxymould.com/",
         "sha256": "31dc977c9309fcd6c394eaea0a141b52c299275924d6e259cf2a95e890ca31c4",
-        "pagesRead": 79,
+        "pagesRead": 509,
         "pageCount": 509,
         "extractedFields": [
           "leadManagers",
+          "promoters",
           "issueComposition",
+          "financials",
           "objectsOfIssue"
         ],
-        "changedFields": [],
-        "extractedAt": "2026-09-13T04:21:35+05:30",
+        "changedFields": [
+          "promoters",
+          "financials"
+        ],
+        "extractedAt": "2026-09-13T04:34:57+05:30",
         "source": "Issuer website"
+      },
+      "promoters": [
+        "supported by a team of qualified",
+        "experienced professional managers with experti se in"
+      ],
+      "financials": {
+        "unit": "₹ crore",
+        "periods": [
+          {
+            "period": "FY2026",
+            "revenueCr": 0.31,
+            "ebitdaCr": 32.8214,
+            "patCr": 0.01,
+            "netWorthCr": 79.8196,
+            "ronwPct": 1.0,
+            "eps": 1.0
+          },
+          {
+            "period": "FY2025",
+            "revenueCr": 2.02,
+            "ebitdaCr": 29.3569,
+            "patCr": 16.6358,
+            "netWorthCr": 64.7793,
+            "ronwPct": 2.0,
+            "eps": 2.0
+          },
+          {
+            "period": "FY2024",
+            "revenueCr": 0.06,
+            "ebitdaCr": 24.5985,
+            "patCr": 15.9164,
+            "netWorthCr": 49.1288,
+            "ronwPct": 22.13,
+            "eps": 43.22
+          }
+        ]
       }
     },
     {
@@ -2565,23 +2740,55 @@
       ],
       "issuerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 4,
+        "parserVersion": 5,
         "documentUrl": "https://speedexind.com/wp-content/uploads/2026/09/SPeedex-RHP.pdf",
         "documentType": "RHP",
         "documentTitle": "Red Herring Prospectus",
         "sourcePage": "https://speedexind.com/changes-in-name/",
         "sha256": "47591636fc45d44497ad3b34d6f62022ca6c68803bade174b0b994340920db62",
-        "pagesRead": 86,
+        "pagesRead": 406,
         "pageCount": 406,
         "extractedFields": [
           "registrar",
           "promoters",
           "issueComposition",
+          "financials",
           "objectsOfIssue"
         ],
-        "changedFields": [],
-        "extractedAt": "2026-09-13T04:21:44+05:30",
+        "changedFields": [
+          "financials"
+        ],
+        "extractedAt": "2026-09-13T04:35:17+05:30",
         "source": "Issuer website"
+      },
+      "financials": {
+        "unit": "₹ crore",
+        "periods": [
+          {
+            "period": "FY2026",
+            "revenueCr": 122.6538,
+            "ebitdaCr": 22.5233,
+            "patCr": 15.3419,
+            "netWorthCr": 0.8047,
+            "ronwPct": 80.47
+          },
+          {
+            "period": "FY2025",
+            "revenueCr": 93.5081,
+            "ebitdaCr": 10.6097,
+            "patCr": 5.5655,
+            "netWorthCr": 0.6803,
+            "ronwPct": 68.03
+          },
+          {
+            "period": "FY2024",
+            "revenueCr": 61.3233,
+            "ebitdaCr": 2.9004,
+            "patCr": 1.0785,
+            "netWorthCr": 0.3157,
+            "ronwPct": 31.57
+          }
+        ]
       }
     },
     {
@@ -2763,7 +2970,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 4,
+        "parserVersion": 5,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788934492263.pdf",
         "documentType": "RHP",
         "documentTitle": "SEBI RHP",
@@ -2776,7 +2983,7 @@
           "promoters",
           "issueComposition"
         ],
-        "extractedAt": "2026-09-13T03:36:30+05:30",
+        "extractedAt": "2026-09-13T04:33:30+05:30",
         "source": "SEBI"
       }
     },
@@ -3138,7 +3345,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 4,
+        "parserVersion": 5,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788781595860.pdf",
         "documentType": "RHP",
         "documentTitle": "SEBI RHP",
@@ -3153,7 +3360,7 @@
           "issueComposition",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T03:36:33+05:30",
+        "extractedAt": "2026-09-13T04:33:33+05:30",
         "source": "SEBI"
       }
     },
@@ -3359,27 +3566,61 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 4,
+        "parserVersion": 5,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789099730206.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "SEBI PROSPECTUS",
         "documentFiledDate": null,
         "sha256": "e804efb2cfbf72b5b661df68d630d4116c13c72255c9d9ca18b66f01552f5906",
-        "pagesRead": 30,
+        "pagesRead": 520,
         "pageCount": 571,
         "extractedFields": [
           "leadManagers",
           "registrar",
           "promoters",
           "issueComposition",
+          "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T03:37:05+05:30",
+        "extractedAt": "2026-09-13T04:34:31+05:30",
         "source": "SEBI"
       },
       "freshIssueCr": 46.05,
       "ofsCr": 46.05,
-      "issueSizeCr": 92.1
+      "issueSizeCr": 92.1,
+      "financials": {
+        "unit": "₹ crore",
+        "periods": [
+          {
+            "period": "FY2026",
+            "revenueCr": 456.971,
+            "ebitdaCr": 105.198,
+            "roePct": 38.62,
+            "patCr": 83.789,
+            "netWorthCr": 3.203,
+            "ronwPct": 32.03,
+            "eps": 11.0
+          },
+          {
+            "period": "FY2025",
+            "revenueCr": 278.327,
+            "ebitdaCr": 73.009,
+            "patCr": 57.51,
+            "netWorthCr": 3.272,
+            "ronwPct": 32.72,
+            "eps": 2024.0
+          },
+          {
+            "period": "FY2024",
+            "revenueCr": 304.342,
+            "ebitdaCr": 54.703,
+            "patCr": 20.251,
+            "netWorthCr": 1.652,
+            "ronwPct": 16.52,
+            "eps": 3.0
+          }
+        ]
+      }
     },
     {
       "id": "pranav",
@@ -4491,7 +4732,8 @@
             "patCr": 71.067,
             "netWorthCr": 496.889,
             "eps": 8.35,
-            "revenueCr": 0.3
+            "revenueCr": 0.3,
+            "roePct": 13.54
           },
           {
             "period": "FY2025",
@@ -4499,7 +4741,8 @@
             "patCr": 62.555,
             "netWorthCr": 430.627,
             "eps": 7.51,
-            "revenueCr": 455.855
+            "revenueCr": 455.855,
+            "roePct": 14.08
           },
           {
             "period": "FY2024",
@@ -4507,7 +4750,8 @@
             "patCr": 40.919,
             "netWorthCr": 180.613,
             "eps": 8.06,
-            "revenueCr": 382.468
+            "revenueCr": 382.468,
+            "roePct": 20.02
           },
           {
             "period": "FY2021",
@@ -4527,7 +4771,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 4,
+        "parserVersion": 5,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Tempsens%20Instruments%20(India)%20Limited%20-%20AP_p.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "Tempsens Instruments (India) Limited - Abridged Prospectus",
@@ -4543,7 +4787,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T03:37:07+05:30",
+        "extractedAt": "2026-09-13T04:34:34+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/tempsens/",
@@ -78568,17 +78812,23 @@
           {
             "period": "FY2026",
             "revenueCr": 1788.011,
-            "netWorthCr": 2219.978
+            "netWorthCr": 2219.978,
+            "ebitdaCr": 306.744,
+            "eps": 10.0
           },
           {
             "period": "FY2025",
             "revenueCr": 1396.781,
-            "netWorthCr": 1865.41
+            "netWorthCr": 1865.41,
+            "ebitdaCr": 185.191,
+            "eps": 0.78
           },
           {
             "period": "FY2024",
             "revenueCr": 5933.392,
-            "netWorthCr": 2091.921
+            "netWorthCr": 2091.921,
+            "ebitdaCr": 850.794,
+            "eps": 0.33
           }
         ]
       },
@@ -78592,7 +78842,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 4,
+        "parserVersion": 5,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Torrent%20Gas%20Limited%20-%20DAP_p.pdf",
         "documentType": "DRHP",
         "documentTitle": "Torrent Gas Limited - Draft Abridged Prospectus",
@@ -78608,7 +78858,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T03:36:17+05:30",
+        "extractedAt": "2026-09-13T04:33:17+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/torrent-gas-limited/",
@@ -78770,7 +79020,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 4,
+        "parserVersion": 5,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/NATIONAL%20STOCK%20EXCHANGE%20OF%20INDIA%20LIMITED%20-%20AP_p.pdf",
         "documentType": "DRHP",
         "documentTitle": "NATIONAL STOCK EXCHANGE OF INDIA LIMITED - Draft Abridged Prospectus",
@@ -78785,7 +79035,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T03:36:21+05:30",
+        "extractedAt": "2026-09-13T04:33:21+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/national-stock-exchange-of-india-limited/",
@@ -78954,7 +79204,8 @@
             "netWorthCr": 53.285,
             "ronwPct": 12.12,
             "roePct": 12.12,
-            "patCr": 6.034
+            "patCr": 6.034,
+            "eps": 33.0
           },
           {
             "period": "FY2025",
@@ -78963,7 +79214,8 @@
             "netWorthCr": 46.321,
             "ronwPct": 33.12,
             "roePct": 33.12,
-            "patCr": 11.933
+            "patCr": 11.933,
+            "eps": 7.0
           },
           {
             "period": "FY2024",
@@ -78972,7 +79224,8 @@
             "netWorthCr": 25.744,
             "ronwPct": 8.39,
             "roePct": 8.39,
-            "patCr": 1.882
+            "patCr": 1.882,
+            "eps": 33.0
           },
           {
             "period": "FY2023",
@@ -78981,7 +79234,8 @@
             "patCr": 0.04,
             "netWorthCr": 19.126,
             "ronwPct": 0.25,
-            "roePct": 0.25
+            "roePct": 0.25,
+            "eps": 8.0
           }
         ]
       },
@@ -78995,7 +79249,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 4,
+        "parserVersion": 5,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/NOPAPERFORMS%20SOLUTIONS%20LIMITED%20-%20DAP_p.pdf",
         "documentType": "DRHP",
         "documentTitle": "NOPAPERFORMS SOLUTIONS LIMITED - Draft Abridged Prospectus",
@@ -79011,7 +79265,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T03:36:24+05:30",
+        "extractedAt": "2026-09-13T04:33:24+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/nopaperforms-solutions-limited/",
@@ -79191,7 +79445,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 4,
+        "parserVersion": 5,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/M%20K%20C%20AGRO%20FRESH%20LIMITED%20-%20DAP_p.pdf",
         "documentType": "DRHP",
         "documentTitle": "M K C AGRO FRESH LIMITED - Draft Abridged prospectus",
@@ -79207,7 +79461,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T03:36:26+05:30",
+        "extractedAt": "2026-09-13T04:33:26+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/m-k-c-agro-fresh-limited/",

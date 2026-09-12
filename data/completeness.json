@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-13T04:27:06+05:30",
+  "generatedAt": "2026-09-13T04:39:38+05:30",
   "asOfDate": "2026-09-13",
   "recordCount": 1371,
   "stageCounts": {
@@ -20,12 +20,12 @@
     "maturedClosed": 1332
   },
   "scores": {
-    "exchangeStage": 66.8,
+    "exchangeStage": 72.2,
     "recentExchange2Y": 67.5,
-    "offerDocumentEligible": 73.5,
+    "offerDocumentEligible": 80.4,
     "openSubscription": 100.0,
-    "maturedLifecycle": 48.7,
-    "provenance": 67.1
+    "maturedLifecycle": 97.4,
+    "provenance": 100.0
   },
   "coverage": {
     "exchangeStage": {
@@ -79,9 +79,9 @@
       },
       "issueComposition": {
         "present": 12,
-        "expected": 1364,
-        "missing": 1352,
-        "pct": 0.9
+        "expected": 458,
+        "missing": 446,
+        "pct": 2.6
       }
     },
     "recentExchange2Y": {
@@ -188,12 +188,6 @@
         "expected": 906,
         "missing": 906,
         "pct": 0.0
-      },
-      "issueComposition": {
-        "present": 0,
-        "expected": 906,
-        "missing": 906,
-        "pct": 0.0
       }
     },
     "offerDocumentEligible": {
@@ -210,10 +204,10 @@
         "pct": 94.1
       },
       "promoters": {
-        "present": 16,
+        "present": 17,
         "expected": 17,
-        "missing": 1,
-        "pct": 94.1
+        "missing": 0,
+        "pct": 100.0
       },
       "objectsOfIssue": {
         "present": 16,
@@ -222,10 +216,10 @@
         "pct": 94.1
       },
       "financials": {
-        "present": 9,
+        "present": 15,
         "expected": 17,
-        "missing": 8,
-        "pct": 52.9
+        "missing": 2,
+        "pct": 88.2
       },
       "promoterShareholding": {
         "present": 2,
@@ -261,17 +255,19 @@
       }
     },
     "maturedLifecycle": {
-      "allotmentDate": {
-        "present": 0,
-        "expected": 1332,
-        "missing": 1332,
-        "pct": 0.0
-      },
       "listingDate": {
         "present": 1297,
         "expected": 1332,
         "missing": 35,
         "pct": 97.4
+      }
+    },
+    "optionalLifecycle": {
+      "allotmentDate": {
+        "present": 0,
+        "expected": 1332,
+        "missing": 1332,
+        "pct": 0.0
       }
     },
     "provenance": {
@@ -289,9 +285,9 @@
       },
       "documents": {
         "present": 19,
-        "expected": 1371,
-        "missing": 1352,
-        "pct": 1.4
+        "expected": 19,
+        "missing": 0,
+        "pct": 100.0
       }
     }
   },
@@ -658,14 +654,7 @@
           "stage": "filing-pipeline"
         }
       ],
-      "promoters": [
-        {
-          "id": "om-galaxy-limited",
-          "company": "OM GALAXY LIMITED",
-          "openDate": "2026-09-10",
-          "stage": "open"
-        }
-      ],
+      "promoters": [],
       "objectsOfIssue": [
         {
           "id": "rentomojo",
@@ -676,36 +665,6 @@
       ],
       "financials": [
         {
-          "id": "injecto-polymers-limited",
-          "company": "INJECTO POLYMERS LIMITED",
-          "openDate": "2026-09-11",
-          "stage": "open"
-        },
-        {
-          "id": "century-business-media-limited",
-          "company": "CENTURY BUSINESS MEDIA LIMITED",
-          "openDate": "2026-09-11",
-          "stage": "open"
-        },
-        {
-          "id": "raksan-transformers-limited",
-          "company": "RAKSAN TRANSFORMERS LIMITED",
-          "openDate": "2026-09-10",
-          "stage": "open"
-        },
-        {
-          "id": "om-galaxy-limited",
-          "company": "OM GALAXY LIMITED",
-          "openDate": "2026-09-10",
-          "stage": "open"
-        },
-        {
-          "id": "maharaja-speedex-india-limited",
-          "company": "Maharaja & Speedex India Limited",
-          "openDate": "2026-09-10",
-          "stage": "open"
-        },
-        {
           "id": "rentomojo",
           "company": "Rentomojo Limited",
           "openDate": "2026-09-09",
@@ -714,12 +673,6 @@
         {
           "id": "prasolchem",
           "company": "Prasol Chemicals Limited",
-          "openDate": "2026-09-08",
-          "stage": "closed"
-        },
-        {
-          "id": "glasswall",
-          "company": "Glass Wall Systems (India) Limited",
           "openDate": "2026-09-08",
           "stage": "closed"
         }
@@ -824,98 +777,6 @@
       "total": []
     },
     "maturedLifecycle": {
-      "allotmentDate": [
-        {
-          "id": "sumax",
-          "company": "Sumax Engineering Limited",
-          "openDate": "2026-08-25",
-          "stage": "listed"
-        },
-        {
-          "id": "annu",
-          "company": "Annu Projects Limited",
-          "openDate": "2026-08-25",
-          "stage": "listed"
-        },
-        {
-          "id": "symbiotec",
-          "company": "Symbiotec Pharmalab Limited",
-          "openDate": "2026-08-24",
-          "stage": "listed"
-        },
-        {
-          "id": "skyways",
-          "company": "Skyways Air Services Limited",
-          "openDate": "2026-08-24",
-          "stage": "listed"
-        },
-        {
-          "id": "madhurknit",
-          "company": "Madhur Knit Crafts Limited",
-          "openDate": "2026-08-24",
-          "stage": "listed"
-        },
-        {
-          "id": "htel",
-          "company": "Hy-Tech Engineers Limited",
-          "openDate": "2026-08-24",
-          "stage": "listed"
-        },
-        {
-          "id": "abh",
-          "company": "ABH Healthcare Limited",
-          "openDate": "2026-08-24",
-          "stage": "listed"
-        },
-        {
-          "id": "augmont",
-          "company": "Augmont Enterprises Limited",
-          "openDate": "2026-08-21",
-          "stage": "listed"
-        },
-        {
-          "id": "tempsens",
-          "company": "Tempsens Instruments (India) Limited",
-          "openDate": "2026-08-20",
-          "stage": "listed"
-        },
-        {
-          "id": "gaja",
-          "company": "Gaja Alternative Asset Management Limited",
-          "openDate": "2026-08-19",
-          "stage": "listed"
-        },
-        {
-          "id": "sunshine",
-          "company": "Sunshine Pictures Limited",
-          "openDate": "2026-08-18",
-          "stage": "listed"
-        },
-        {
-          "id": "shankesh",
-          "company": "Shankesh Jewellers Limited",
-          "openDate": "2026-08-18",
-          "stage": "listed"
-        },
-        {
-          "id": "lalithaa",
-          "company": "Lalithaa Jewellery Mart Limited",
-          "openDate": "2026-08-17",
-          "stage": "listed"
-        },
-        {
-          "id": "horizonind",
-          "company": "Horizon Industrial Parks Limited",
-          "openDate": "2026-08-17",
-          "stage": "listed"
-        },
-        {
-          "id": "skytech",
-          "company": "Skytech Infinite Platform Limited",
-          "openDate": "2026-08-14",
-          "stage": "listed"
-        }
-      ],
       "listingDate": [
         {
           "id": "icel",
@@ -1011,10 +872,12 @@
     }
   },
   "notes": [
-    "Coverage uses lifecycle-specific denominators; pre-exchange DRHP records are not penalized for undisclosed exchange terms.",
+    "Coverage uses lifecycle- and availability-specific denominators; pre-exchange DRHP records are not penalized for undisclosed exchange terms.",
+    "Fresh/OFS composition is actionable for recent IPOs and records with an official offer document, but not for older exchange-only records whose archive pages do not expose the split.",
     "recentExchange2Y isolates current collector quality from sparse older historical records.",
     "offerDocumentEligible only expects structured research fields when an RHP/Prospectus-like official document is attached.",
     "openSubscription only expects category-wise subscription data while bidding is currently open.",
-    "maturedLifecycle only flags allotment/listing dates when the IPO closed at least 14 days ago."
+    "maturedLifecycle treats listing date as the actionable official lifecycle field. Allotment date remains reported as an optional observation until a reliable official historical collector exists.",
+    "Document provenance is expected for filing/offer-document records, not for every legacy exchange-only row."
   ]
 }
