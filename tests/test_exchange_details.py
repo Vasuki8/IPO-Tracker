@@ -58,6 +58,50 @@ class ExchangeDetailParserTests(unittest.TestCase):
         self.assertEqual(detail["minimumBidQuantity"], 1200)
         self.assertEqual(detail["lotSize"], 1200)
 
+    def test_historical_start_date_from_display_url(self):
+        url = (
+            "https://www.bseindia.com/markets/publicIssues/DisplayIPO.aspx?"
+            "id=567&type=IPO&idtype=2&status=H&IPONo=612&startdt=01/02/2013"
+        )
+        self.assertEqual(mod._start_date_from_display_url(url), "2013-02-01")
+
+    def test_best_url_uses_issue_date_for_repeated_issuer(self):
+        index = [
+            {
+                "key": "EXAMPLE",
+                "url": "https://bse.example/old?type=IPO&startdt=01/02/2013",
+                "openDate": "2013-02-01",
+                "indexUrl": mod.BSE_HISTORY_URL,
+            },
+            {
+                "key": "EXAMPLE",
+                "url": "https://bse.example/new?type=IPO&startdt=10/09/2026",
+                "openDate": "2026-09-10",
+                "indexUrl": mod.BSE_HISTORY_URL,
+            },
+        ]
+        self.assertEqual(
+            mod.best_url(index, "Example Limited", "2026-09-10"),
+            "https://bse.example/new?type=IPO&startdt=10/09/2026",
+        )
+
+    def test_best_url_refuses_distant_repeated_issue(self):
+        index = [
+            {
+                "key": "EXAMPLE",
+                "url": "https://bse.example/old1",
+                "openDate": "2013-02-01",
+                "indexUrl": mod.BSE_HISTORY_URL,
+            },
+            {
+                "key": "EXAMPLE",
+                "url": "https://bse.example/old2",
+                "openDate": "2015-03-01",
+                "indexUrl": mod.BSE_HISTORY_URL,
+            },
+        ]
+        self.assertIsNone(mod.best_url(index, "Example Limited", "2026-09-10"))
+
     def test_merge_detail_is_fill_only_but_keeps_bse_observation(self):
         record = {
             "company": "Example Limited",
