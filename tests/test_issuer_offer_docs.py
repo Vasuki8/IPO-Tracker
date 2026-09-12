@@ -35,6 +35,36 @@ class IssuerOfferDocumentTests(unittest.TestCase):
             )
         )
 
+    def test_deep_scan_only_targets_requested_unparsed_sections(self):
+        item = {
+            "missingFields": [
+                "offer.financials",
+                "offer.promoterShareholding",
+                "exchange.issueComposition",
+            ]
+        }
+        self.assertEqual(
+            mod._needs_deep_scan(item, {"financials": None, "shareholding": None}),
+            (True, True),
+        )
+        self.assertEqual(
+            mod._needs_deep_scan(item, {"financials": {"periods": [{}]}, "shareholding": None}),
+            (False, True),
+        )
+        self.assertEqual(
+            mod._needs_deep_scan(
+                {"missingFields": ["exchange.issueComposition"]},
+                {"financials": None, "shareholding": None},
+            ),
+            (False, False),
+        )
+
+    def test_deep_section_markers_cover_financial_and_shareholding_headings(self):
+        self.assertTrue(mod._FINANCIAL_MARKERS.search("Summary of Restated Financial Information"))
+        self.assertTrue(mod._FINANCIAL_MARKERS.search("KEY PERFORMANCE INDICATORS"))
+        self.assertTrue(mod._SHAREHOLDING_MARKERS.search("Pre and Post-Issue Shareholding"))
+        self.assertTrue(mod._SHAREHOLDING_MARKERS.search("Promoters and Promoter Group"))
+
     def test_merge_fills_missing_values_without_overwriting_primary_values(self):
         record = {
             "company": "Example Limited",
