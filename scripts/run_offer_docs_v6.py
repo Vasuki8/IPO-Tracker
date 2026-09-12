@@ -12,12 +12,17 @@ pre-issue shareholding extraction for layouts observed in live prospectuses:
 The fallback remains conservative: an explicit pre-issue/pre-offer context is
 required and values must be valid percentages. It never derives ownership from
 promoter-contribution or lock-in percentages.
+
+Document selection continues to prefer direct official SEBI PDFs. When SEBI has
+no eligible PDF, an official BSE-hosted Prospectus PDF captured from the BSE IPO
+detail page is accepted as an exchange-official fallback.
 """
 from __future__ import annotations
 
 import re
 import sys
 from pathlib import Path
+from urllib.parse import urlparse
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
@@ -30,6 +35,7 @@ PARSER_VERSION = 6
 
 _ORIGINAL_EXTRACT_FINANCIALS = v5.extract_financials
 _ORIGINAL_EXTRACT_PROMOTER_SHAREHOLDING = v5.extract_promoter_shareholding
+_ORIGINAL_CHOOSE_DOCUMENT = v5.choose_document
 
 _PRE_CONTEXT = re.compile(
     r"(?:pre[-\s]?(?:issue|offer|ipo)|before\s+the\s+(?:issue|offer)|"
@@ -203,13 +209,53 @@ def extract_financials(text: str):
     return v5._merge_financials(existing, best)
 
 
+def _official_bse_pdf(doc: dict):
+    url = str(doc.get("url") or "").strip()
+    if str(doc.get("source") or "").upper() != "BSE":
+        return None
+    try:
+        parsed = urlparse(url)
+    except Exception:
+        return None
+    host = (parsed.hostname or "").lower()
+    if host != "bseindia.com" and not host.endswith(".bseindia.com"):
+        return None
+    if not parsed.path.lower().endswith(".pdf"):
+        return None
+    return url
+
+
+def choose_document(record):
+    """Prefer SEBI; fall back only to an official BSE Prospectus PDF."""
+    preferred = _ORIGINAL_CHOOSE_DOCUMENT(record)
+    if preferred:
+        return preferred
+
+    rank = {"PROSPECTUS": 4, "RHP": 3, "UDRHP": 2, "DRHP": 1, "DOCUMENT": 0}
+    candidates = []
+    for doc in record.get("documents") or []:
+        if not isinstance(doc, dict):
+            continue
+        url = _official_bse_pdf(doc)
+        if not url:
+            continue
+        title = str(doc.get("title") or "")
+        typ = str(doc.get("type") or "DOCUMENT").upper()
+        if "PROSPECTUS" not in title.upper() and typ not in {"PROSPECTUS", "RHP", "UDRHP", "DRHP"}:
+            continue
+        candidates.append((rank.get(typ, 0), str(doc.get("filedDate") or ""), len(title), doc))
+    if not candidates:
+        return None
+    return max(candidates, key=lambda item: item[:-1])[-1]
+
+
 base.extract_financials = extract_financials
 base.extract_promoter_shareholding = extract_promoter_shareholding
+base.choose_document = choose_document
 base.PARSER_VERSION = PARSER_VERSION
 
 parse_document_text = base.parse_document_text
 apply_enrichment = base.apply_enrichment
-choose_document = v5.choose_document
 download_pdf = v5.download_pdf
 extract_targeted_pdf_text = v5.extract_targeted_pdf_text
 
