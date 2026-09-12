@@ -7,7 +7,9 @@ on:
       - main
     paths:
       - "scripts/backfill_bse_history.py"
+      - "scripts/normalize_source_health.py"
       - "tests/test_bse_history_backfill.py"
+      - "tests/test_source_health.py"
       - ".github/workflows/refresh-history.yml"
   schedule:
     # Daily at 19:37 IST (14:07 UTC), after the main Indian session.
@@ -42,6 +44,9 @@ jobs:
       - name: Run core parser tests
         run: uv run python -m unittest discover -s tests -p "test_update_data.py" -v
 
+      - name: Run source-health tests
+        run: uv run python -m unittest discover -s tests -p "test_source_health.py" -v
+
       - name: Run BSE historical backfill tests
         run: uv run python -m unittest discover -s tests -p "test_bse_history_backfill.py" -v
 
@@ -54,7 +59,9 @@ jobs:
       - name: Reconcile recent IPO history
         # The one-time full repair has populated historical open/close dates.
         # Routine jobs only need the most recent year to catch later corrections.
-        run: uv run python scripts/run_update.py --history-days 365 --sebi-pages 1
+        run: |
+          uv run python scripts/run_update.py --history-days 365 --sebi-pages 1
+          uv run python scripts/normalize_source_health.py
 
       - name: Publish historical reconciliation and detail backfill safely
         shell: bash
