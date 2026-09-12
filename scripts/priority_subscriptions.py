@@ -77,8 +77,6 @@ def build_issue_index(session: requests.Session, page_urls=None):
             health[page_url] = {"ok": True, "records": len(rows)}
         except Exception as exc:
             health[page_url] = {"ok": False, "records": 0, "error": str(exc)[:250]}
-    # Preserve duplicates from different official pages/hosts; they provide
-    # useful alternative links when one host has stale or incomplete markup.
     if not all_links:
         raise ValueError("No BSE public-issue links found")
     return all_links, health
@@ -106,7 +104,6 @@ def best_issue_links(index: list[IssueLink], company: str) -> list[IssueLink]:
 
 
 def _alternate_bse_hosts(url: str) -> list[str]:
-    """Return the same BSE route on primary/beta hosts, without inventing non-official endpoints."""
     parsed = urlparse(html_lib.unescape(url))
     host = (parsed.hostname or "").lower()
     if host not in {"www.bseindia.com", "beta.bseindia.com", "bseindia.com"}:
@@ -124,7 +121,6 @@ def demand_link_from_display_html(html: str, display_url: str) -> str | None:
     direct = sub._extract_bse_demand_url(soup, display_url)
     if direct:
         return direct
-    # BSE sometimes embeds the link in script text rather than an anchor.
     decoded = html_lib.unescape(html)
     match = re.search(
         r"(?:https?://[^'\"\s)]+)?(?:/[^'\"\s)]*)?CummDemandSchedule(?:\.aspx)?\?[^'\"\s)<>]+",
@@ -141,7 +137,6 @@ def demand_candidates(session: requests.Session, rows: list[IssueLink]) -> tuple
         if row.direct_demand_url:
             candidates.extend(_alternate_bse_hosts(row.direct_demand_url))
         if row.display_url:
-            # The DisplayIPO page is authoritative for its own bid-detail link.
             try:
                 response = session.get(row.display_url, timeout=25, headers={"Referer": row.index_url})
                 response.raise_for_status()
@@ -158,6 +153,55 @@ def demand_candidates(session: requests.Session, rows: list[IssueLink]) -> tuple
     return list(dict.fromkeys(candidates)), diagnostics
 
 
+def diagnose_demand_html(html: str) -> str:
+    """Return bounded markup diagnostics without dumping ViewState or full HTML."""
+    soup = BeautifulSoup(html, "html.parser")
+    table_bits = []
+    for table in soup.select("table")[:8]:
+        ident = table.get("id") or "-"
+        classes = ".".join(table.get("class") or []) or "-"
+        rows = []
+        for tr in table.select("tr")[:10]:
+            cells = [re.sub(r"\s+", " ", cell.get_text(" ", strip=True))[:100] for cell in tr.find_all(["th", "td"], recursive=False)]
+            if cells:
+                rows.append(" | ".join(cells))
+        if rows:
+            table_bits.append(f"table#{ident}.{classes}: " + " || ".join(rows[:6]))
+
+    hidden_names = []
+    for field in soup.select('input[type="hidden"][name]'):
+        name = str(field.get("name") or "")
+        if name and name not in {"__VIEWSTATE", "__EVENTVALIDATION", "__VIEWSTATEGENERATOR"}:
+            hidden_names.append(name)
+
+    scripts = []
+    for script in soup.select("script"):
+        src = script.get("src")
+        if src:
+            scripts.append(str(src))
+    keywords = []
+    decoded = html_lib.unescape(html)
+    for key in ("QIB", "Retail", "NII", "Category", "Demand", "CummDemand", "ajax", "/api/", "IPONo", "RC100"):
+        match = re.search(re.escape(key), decoded, flags=re.I)
+        if not match:
+            continue
+        start = max(0, match.start() - 90)
+        end = min(len(decoded), match.end() + 180)
+        snippet = re.sub(r"\s+", " ", decoded[start:end])[:280]
+        keywords.append(f"{key}=>{snippet}")
+
+    bits = []
+    if table_bits:
+        bits.append("TABLES: " + " /// ".join(table_bits[:5]))
+    if hidden_names:
+        bits.append("HIDDEN: " + ",".join(dict.fromkeys(hidden_names))[:600])
+    if scripts:
+        bits.append("SCRIPTS: " + ",".join(dict.fromkeys(scripts))[:900])
+    if keywords:
+        bits.append("KEYWORDS: " + " /// ".join(keywords[:8]))
+    return " || ".join(bits)[:5000] or "no useful table/script diagnostics"
+
+
 def fetch_demand(session: requests.Session, rows: list[IssueLink]):
     urls, diagnostics = demand_candidates(session, rows)
     attempts: list[str] = []
@@ -170,8 +214,7 @@ def fetch_demand(session: requests.Session, rows: list[IssueLink]):
                 return parsed, url, diagnostics + attempts
             soup = BeautifulSoup(response.text, "html.parser")
             title = " ".join(soup.title.stripped_strings).strip() if soup.title else "no title"
-            body = " ".join(soup.stripped_strings)
-            attempts.append(f"no categories {url} · {title} · {body[:180]}")
+            attempts.append(f"no categories {url} · {title} · {diagnose_demand_html(response.text)}")
         except Exception as exc:
             attempts.append(f"fetch failed {url}: {exc}")
     raise ValueError("; ".join((diagnostics + attempts)[-6:]) or "no BSE demand candidates")
