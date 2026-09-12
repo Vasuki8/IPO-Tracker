@@ -59,6 +59,12 @@ jobs:
       - name: Run parser tests
         run: uv run python -m unittest discover -s tests -v
 
+      # Remember exactly which data revision this run started from. If main moves
+      # while the updater is running, the publication step can distinguish an
+      # unrelated code/docs commit from a newer data refresh.
+      - name: Record starting data revision
+        run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
+
       - name: Refresh IPO data
         shell: bash
         run: |
@@ -93,15 +99,41 @@ jobs:
           uv run python scripts/enrich_offer_docs.py --limit "$DOC_LIMIT"
 
       - name: Commit changed data
+        shell: bash
         run: |
           if git diff --quiet -- data/ipos.json; then
             echo "No data changes"
             exit 0
           fi
+
+          # Preserve this run's generated file while we inspect the current tip.
+          cp data/ipos.json /tmp/generated-ipos.json
+          BASE_DATA="$(cat /tmp/base-data-blob)"
+          git fetch origin main
+          REMOTE_DATA="$(git rev-parse origin/main:data/ipos.json)"
+
+          # If another updater published fresher data after this run started,
+          # never overwrite it with a stale snapshot. Exit successfully; the next
+          # scheduled or push-triggered run will refresh from that newer base.
+          if [ "$REMOTE_DATA" != "$BASE_DATA" ]; then
+            echo "Remote IPO data changed during this run; skipping stale publication."
+            echo "base=$BASE_DATA remote=$REMOTE_DATA"
+            exit 0
+          fi
+
+          # Main may still have moved because of code/docs commits. Rebase by
+          # resetting to the latest tip, then restore only our generated data.
+          # This avoids merge conflicts in the machine-generated JSON file.
+          git reset --hard origin/main
+          cp /tmp/generated-ipos.json data/ipos.json
+
+          if git diff --quiet -- data/ipos.json; then
+            echo "Generated data already matches latest main"
+            exit 0
+          fi
+
           git config user.name "ipo-tracker-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/ipos.json
           git commit -m "data: refresh IPO tracker"
-          git fetch origin main
-          git rebase origin/main
           git push origin HEAD:main
