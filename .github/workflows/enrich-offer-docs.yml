@@ -16,6 +16,7 @@ on:
       - "scripts/run_offer_docs_v2.py"
       - "scripts/run_offer_docs_v3.py"
       - "scripts/run_offer_docs_v4.py"
+      - "scripts/enrich_issuer_offer_docs.py"
       - "scripts/run_critical_offer_backfill.py"
       - "scripts/enrich_sebi_document_links.py"
       - "scripts/critical_backfill.py"
@@ -25,6 +26,7 @@ on:
       - "tests/test_offer_docs_v2.py"
       - "tests/test_offer_docs_v3.py"
       - "tests/test_offer_docs_v4.py"
+      - "tests/test_issuer_offer_docs.py"
       - "tests/test_critical_offer_backfill.py"
       - "tests/test_sebi_document_links.py"
       - "tests/test_critical_backfill.py"
@@ -71,6 +73,9 @@ jobs:
       - name: Run offer-document parser v4 tests
         run: uv run python -m unittest discover -s tests -p "test_offer_docs_v4.py" -v
 
+      - name: Run issuer-document fallback tests
+        run: uv run python -m unittest discover -s tests -p "test_issuer_offer_docs.py" -v
+
       - name: Run safe full-document fallback tests
         run: uv run python -m unittest discover -s tests -p "test_critical_offer_backfill.py" -v
 
@@ -89,30 +94,36 @@ jobs:
       - name: Record starting data revision
         run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
 
-      - name: Discover direct SEBI PDFs and extract offer intelligence
+      - name: Resolve and extract priority offer intelligence
         shell: bash
         run: |
           if [ "${{ github.event.inputs.deep_offer_docs }}" = "true" ]; then
             DOC_LIMIT=0
             LINK_LIMIT=0
+            ISSUER_LIMIT=0
             CRITICAL_LIMIT=0
           else
             DOC_LIMIT=12
             LINK_LIMIT=40
+            ISSUER_LIMIT=10
             CRITICAL_LIMIT=20
           fi
-          # SEBI's listing often points to an HTML filing page. Resolve the
-          # direct Abridged Prospectus and full-offer PDFs first.
+          # Primary path: direct official SEBI filing PDFs.
           uv run python scripts/enrich_sebi_document_links.py --priority-max 2 --limit "$LINK_LIMIT"
-          # Parser v4 keeps the v3 quality gates, handles modern Fresh/OFS
-          # wording and retries transient truncated PDF transfers.
           uv run python scripts/run_offer_docs_v4.py --limit "$DOC_LIMIT"
-          # Rebuild the queue after the primary extraction. This prevents the
-          # fallback stage from acting on stale gaps that were just filled.
+
+          # Secondary primary-source path: a tiny explicit registry of issuer-owned
+          # RHP PDFs. Each PDF is runtime-validated for host, PDF content and issuer
+          # identity, and it can fill only values still missing after SEBI.
+          uv run python scripts/enrich_issuer_offer_docs.py --priority-max 2 --limit "$ISSUER_LIMIT"
+
+          # Rebuild the queue after primary + issuer extraction so later fallback
+          # stages never act on stale gaps that were just filled.
           uv run python scripts/audit_data_completeness.py
           uv run python scripts/build_missing_queue.py
-          # The repair path also uses parser v4 and accepts only direct official
-          # PDF targets; HTML filing pages can never be handed to pypdf.
+
+          # Final official BSE/BSE-SME document fallback. HTML filing pages can
+          # never be handed to pypdf, and parser v4 handles transient truncation.
           uv run python scripts/run_critical_offer_backfill.py --documents-only --priority-max 2 --limit "$CRITICAL_LIMIT"
 
       - name: Publish changed offer-document data and audit safely
