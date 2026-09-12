@@ -158,7 +158,10 @@ def extract_promoter_shareholding(text: str):
     if existing:
         return existing
 
-    flat = base.norm_space(text)
+    # PDF text extraction frequently splits one narrative sentence across lines.
+    # Collapse all whitespace locally so bounded regex windows can safely span
+    # those line breaks without enabling unconstrained DOTALL matching.
+    flat = re.sub(r"\s+", " ", base.norm_space(text)).strip()
     windows = []
     marker_patterns = [
         r"Promoters?\s+(?:and|&)\s+Promoter\s+Group",
