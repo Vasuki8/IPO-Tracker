@@ -100,7 +100,7 @@ jobs:
           # Phase 4.5D archival sweep: progressively walk the older official BSE
           # archive for recoverable exchange-core fields. Attempt markers + a
           # cooldown make each daily run advance instead of retrying the same
-          # unfillable records forever.
+          # unfillable records forever. This pass is deliberately rerunnable.
           uv run python scripts/backfill_bse_history.py \
             --history-days 10000 \
             --limit 120 \

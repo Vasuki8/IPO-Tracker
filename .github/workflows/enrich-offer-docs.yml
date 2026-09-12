@@ -17,6 +17,7 @@ on:
       - "scripts/run_offer_docs_v3.py"
       - "scripts/run_offer_docs_v4.py"
       - "scripts/run_offer_docs_v5.py"
+      - "scripts/run_offer_docs_v6.py"
       - "scripts/enrich_issuer_offer_docs.py"
       - "scripts/run_issuer_offer_docs.py"
       - "scripts/run_critical_offer_backfill.py"
@@ -29,6 +30,7 @@ on:
       - "tests/test_offer_docs_v3.py"
       - "tests/test_offer_docs_v4.py"
       - "tests/test_offer_docs_v5.py"
+      - "tests/test_offer_docs_v6.py"
       - "tests/test_issuer_offer_docs.py"
       - "tests/test_critical_offer_backfill.py"
       - "tests/test_sebi_document_links.py"
@@ -38,7 +40,6 @@ on:
       - ".github/workflows/enrich-offer-docs.yml"
       - "pyproject.toml"
   schedule:
-    # Once daily at 19:13 IST (13:43 UTC), after Indian market hours.
     - cron: "43 13 * * *"
 
 permissions:
@@ -79,6 +80,9 @@ jobs:
       - name: Run offer-document parser v5 tests
         run: uv run python -m unittest discover -s tests -p "test_offer_docs_v5.py" -v
 
+      - name: Run offer-document parser v6 tests
+        run: uv run python -m unittest discover -s tests -p "test_offer_docs_v6.py" -v
+
       - name: Run issuer-document fallback tests
         run: uv run python -m unittest discover -s tests -p "test_issuer_offer_docs.py" -v
 
@@ -114,23 +118,11 @@ jobs:
             ISSUER_LIMIT=10
             CRITICAL_LIMIT=20
           fi
-          # Primary path: direct official SEBI filing PDFs.
           uv run python scripts/enrich_sebi_document_links.py --priority-max 2 --limit "$LINK_LIMIT"
-          uv run python scripts/run_offer_docs_v5.py --limit "$DOC_LIMIT"
-
-          # Secondary primary-source path: an explicit registry of issuer-owned
-          # RHP PDFs. Each PDF is runtime-validated for host, PDF content and
-          # issuer identity, and it can fill only values still missing after SEBI.
+          uv run python scripts/run_offer_docs_v6.py --limit "$DOC_LIMIT"
           uv run python scripts/run_issuer_offer_docs.py --priority-max 2 --limit "$ISSUER_LIMIT"
-
-          # Rebuild the queue after primary + issuer extraction so later fallback
-          # stages never act on stale gaps that were just filled.
           uv run python scripts/audit_data_completeness.py
           uv run python scripts/build_missing_queue.py
-
-          # Final official BSE/BSE-SME document fallback. HTML filing pages can
-          # never be handed to pypdf, and parser v5 handles deep table ranking
-          # plus transient transport truncation.
           uv run python scripts/run_critical_offer_backfill.py --documents-only --priority-max 2 --limit "$CRITICAL_LIMIT"
 
       - name: Publish changed offer-document data and audit safely
