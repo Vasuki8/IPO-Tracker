@@ -1,0 +1,110 @@
+name: Complete Phase 4.5 deep backfill
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/complete-phase45.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ipo-data-refresh
+  cancel-in-progress: false
+
+jobs:
+  complete:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 1
+
+      - name: Refresh to latest main
+        shell: bash
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.1.0
+        with:
+          version: "latest-known"
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Sync dependencies
+        run: uv sync
+
+      - name: Run Phase 4.5 regression suite
+        shell: bash
+        run: |
+          uv run python -m unittest discover -s tests -p "test_exchange_details.py" -v
+          uv run python -m unittest discover -s tests -p "test_bse_history_backfill.py" -v
+          uv run python -m unittest discover -s tests -p "test_offer_docs_v6.py" -v
+          uv run python -m unittest discover -s tests -p "test_issuer_offer_docs.py" -v
+          uv run python -m unittest discover -s tests -p "test_critical_offer_backfill.py" -v
+          uv run python -m unittest discover -s tests -p "test_data_completeness.py" -v
+          uv run python -m unittest discover -s tests -p "test_missing_queue.py" -v
+
+      - name: Deep reconcile exchange and SEBI history
+        shell: bash
+        run: |
+          uv run python scripts/run_update_v2.py --history-days 730 --sebi-pages 50
+          uv run python scripts/normalize_source_health.py
+          uv run python scripts/build_missing_queue.py
+
+      - name: Exhaust recent official exchange detail backfill
+        shell: bash
+        run: |
+          uv run python scripts/enrich_exchange_details.py --limit 0 --history-days 730
+          uv run python scripts/backfill_bse_history.py --history-days 730 --limit 0
+          uv run python scripts/audit_data_completeness.py
+          uv run python scripts/build_missing_queue.py
+
+      - name: Exhaust Phase 4.5B offer-document intelligence
+        shell: bash
+        run: |
+          uv run python scripts/enrich_sebi_document_links.py --priority-max 4 --limit 0
+          uv run python scripts/run_offer_docs_v6.py --limit 0 --force
+          uv run python scripts/run_issuer_offer_docs.py --priority-max 4 --limit 0
+          uv run python scripts/audit_data_completeness.py
+          uv run python scripts/build_missing_queue.py
+          uv run python scripts/run_critical_offer_backfill.py --documents-only --priority-max 4 --limit 0
+
+      - name: Exhaust Phase 4.5D archival core sweep
+        shell: bash
+        run: |
+          uv run python scripts/backfill_bse_history.py \
+            --history-days 10000 \
+            --limit 0 \
+            --core-only \
+            --retry-days 0 \
+            --oldest-first
+
+      - name: Rebuild Phase 4.5 outputs
+        shell: bash
+        run: |
+          uv run python scripts/build_company_pages.py
+          uv run python scripts/audit_data_completeness.py
+          uv run python scripts/build_missing_queue.py
+
+      - name: Publish Phase 4.5 completion data
+        shell: bash
+        run: |
+          if [ -z "$(git status --porcelain -- data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md ipo/)" ]; then
+            echo "Phase 4.5 deep pass produced no repository changes"
+            exit 0
+          fi
+
+          git config user.name "ipo-tracker-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md ipo/
+          git commit -m "data: complete Phase 4.5 deep backfill"
+          git push origin HEAD:main
