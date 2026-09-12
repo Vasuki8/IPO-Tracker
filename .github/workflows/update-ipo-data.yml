@@ -9,7 +9,12 @@ on:
         type: boolean
         default: false
       deep_sebi_scan:
-        description: "Deep scan recent SEBI filing pages (use on first Phase 2 run)"
+        description: "Deep scan recent SEBI filing pages"
+        required: false
+        type: boolean
+        default: false
+      deep_offer_docs:
+        description: "Extract all eligible SEBI abridged offer documents"
         required: false
         type: boolean
         default: false
@@ -69,6 +74,16 @@ jobs:
             EXTRA="$EXTRA --sebi-pages 4"
           fi
           uv run python scripts/run_update.py $EXTRA
+
+      - name: Enrich from SEBI offer documents
+        shell: bash
+        run: |
+          if [ "${{ github.event.inputs.deep_offer_docs }}" = "true" ]; then
+            DOC_LIMIT=0
+          else
+            DOC_LIMIT=8
+          fi
+          uv run python scripts/enrich_offer_docs.py --limit "$DOC_LIMIT"
 
       - name: Commit changed data
         run: |
