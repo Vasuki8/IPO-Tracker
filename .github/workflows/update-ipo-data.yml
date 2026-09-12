@@ -22,10 +22,12 @@ on:
       - "scripts/enrich_exchange_details.py"
       - "scripts/build_company_pages.py"
       - "scripts/audit_data_completeness.py"
+      - "scripts/build_missing_queue.py"
       - "tests/test_update_data.py"
       - "tests/test_exchange_details.py"
       - "tests/test_company_routes.py"
       - "tests/test_data_completeness.py"
+      - "tests/test_missing_queue.py"
       - "pyproject.toml"
       - ".github/workflows/update-ipo-data.yml"
   schedule:
@@ -70,6 +72,9 @@ jobs:
 
       - name: Run completeness-audit tests
         run: uv run python -m unittest discover -s tests -p "test_data_completeness.py" -v
+
+      - name: Run missing-queue tests
+        run: uv run python -m unittest discover -s tests -p "test_missing_queue.py" -v
 
       - name: Record starting data revision
         run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
@@ -117,14 +122,15 @@ jobs:
           uv run python scripts/enrich_exchange_details.py --limit 30
           uv run python scripts/build_company_pages.py
           uv run python scripts/audit_data_completeness.py
+          uv run python scripts/build_missing_queue.py
 
-          if [ -z "$(git status --porcelain -- data/ipos.json data/completeness.json docs/DATA_QUALITY.md ipo/)" ]; then
+          if [ -z "$(git status --porcelain -- data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md ipo/)" ]; then
             echo "No core data, enrichment, route or completeness changes"
             exit 0
           fi
 
           git config user.name "ipo-tracker-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/ipos.json data/completeness.json docs/DATA_QUALITY.md ipo/
+          git add data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md ipo/
           git commit -m "data: refresh enriched IPO data, routes and completeness audit"
           git push origin HEAD:main
