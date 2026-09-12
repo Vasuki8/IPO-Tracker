@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-13T05:02:54+05:30",
+  "generatedAt": "2026-09-13T05:05:41+05:30",
   "asOfDate": "2026-09-13",
   "recordCount": 1371,
   "stageCounts": {
@@ -15,14 +15,14 @@
     "exchangeStage": 1364,
     "recentExchange2Y": 458,
     "historicalExchange": 906,
-    "offerDocumentEligible": 17,
+    "offerDocumentEligible": 20,
     "openNow": 7,
     "maturedClosed": 1332
   },
   "scores": {
     "exchangeStage": 72.2,
     "recentExchange2Y": 67.5,
-    "offerDocumentEligible": 80.4,
+    "offerDocumentEligible": 73.3,
     "openSubscription": 100.0,
     "maturedLifecycle": 97.4,
     "provenance": 100.0
@@ -192,40 +192,40 @@
     },
     "offerDocumentEligible": {
       "registrar": {
-        "present": 16,
-        "expected": 17,
+        "present": 19,
+        "expected": 20,
         "missing": 1,
-        "pct": 94.1
+        "pct": 95.0
       },
       "leadManagers": {
-        "present": 16,
-        "expected": 17,
+        "present": 19,
+        "expected": 20,
         "missing": 1,
-        "pct": 94.1
+        "pct": 95.0
       },
       "promoters": {
         "present": 17,
-        "expected": 17,
-        "missing": 0,
-        "pct": 100.0
+        "expected": 20,
+        "missing": 3,
+        "pct": 85.0
       },
       "objectsOfIssue": {
         "present": 16,
-        "expected": 17,
-        "missing": 1,
-        "pct": 94.1
+        "expected": 20,
+        "missing": 4,
+        "pct": 80.0
       },
       "financials": {
         "present": 15,
-        "expected": 17,
-        "missing": 2,
-        "pct": 88.2
+        "expected": 20,
+        "missing": 5,
+        "pct": 75.0
       },
       "promoterShareholding": {
         "present": 2,
-        "expected": 17,
-        "missing": 15,
-        "pct": 11.8
+        "expected": 20,
+        "missing": 18,
+        "pct": 10.0
       }
     },
     "openSubscription": {
@@ -284,8 +284,8 @@
         "pct": 100.0
       },
       "documents": {
-        "present": 19,
-        "expected": 19,
+        "present": 22,
+        "expected": 22,
         "missing": 0,
         "pct": 100.0
       }
@@ -654,8 +654,45 @@
           "stage": "filing-pipeline"
         }
       ],
-      "promoters": [],
+      "promoters": [
+        {
+          "id": "shakti-polytarp-limited",
+          "company": "Shakti Polytarp Limited",
+          "openDate": "2026-09-15",
+          "stage": "upcoming"
+        },
+        {
+          "id": "manika",
+          "company": "Manika Plastech Limited",
+          "openDate": "2026-09-11",
+          "stage": "open"
+        },
+        {
+          "id": "veegaland",
+          "company": "Veegaland Developers Limited",
+          "openDate": "2026-09-10",
+          "stage": "open"
+        }
+      ],
       "objectsOfIssue": [
+        {
+          "id": "shakti-polytarp-limited",
+          "company": "Shakti Polytarp Limited",
+          "openDate": "2026-09-15",
+          "stage": "upcoming"
+        },
+        {
+          "id": "manika",
+          "company": "Manika Plastech Limited",
+          "openDate": "2026-09-11",
+          "stage": "open"
+        },
+        {
+          "id": "veegaland",
+          "company": "Veegaland Developers Limited",
+          "openDate": "2026-09-10",
+          "stage": "open"
+        },
         {
           "id": "rentomojo",
           "company": "Rentomojo Limited",
@@ -664,6 +701,24 @@
         }
       ],
       "financials": [
+        {
+          "id": "shakti-polytarp-limited",
+          "company": "Shakti Polytarp Limited",
+          "openDate": "2026-09-15",
+          "stage": "upcoming"
+        },
+        {
+          "id": "manika",
+          "company": "Manika Plastech Limited",
+          "openDate": "2026-09-11",
+          "stage": "open"
+        },
+        {
+          "id": "veegaland",
+          "company": "Veegaland Developers Limited",
+          "openDate": "2026-09-10",
+          "stage": "open"
+        },
         {
           "id": "rentomojo",
           "company": "Rentomojo Limited",
@@ -697,6 +752,18 @@
           "stage": "upcoming"
         },
         {
+          "id": "shakti-polytarp-limited",
+          "company": "Shakti Polytarp Limited",
+          "openDate": "2026-09-15",
+          "stage": "upcoming"
+        },
+        {
+          "id": "manika",
+          "company": "Manika Plastech Limited",
+          "openDate": "2026-09-11",
+          "stage": "open"
+        },
+        {
           "id": "injecto-polymers-limited",
           "company": "INJECTO POLYMERS LIMITED",
           "openDate": "2026-09-11",
@@ -706,6 +773,12 @@
           "id": "century-business-media-limited",
           "company": "CENTURY BUSINESS MEDIA LIMITED",
           "openDate": "2026-09-11",
+          "stage": "open"
+        },
+        {
+          "id": "veegaland",
+          "company": "Veegaland Developers Limited",
+          "openDate": "2026-09-10",
           "stage": "open"
         },
         {
@@ -747,24 +820,6 @@
         {
           "id": "torrent-gas-limited",
           "company": "Torrent Gas Limited",
-          "openDate": null,
-          "stage": "filing-pipeline"
-        },
-        {
-          "id": "national-stock-exchange-of-india-limited",
-          "company": "National Stock Exchange of India Limited",
-          "openDate": null,
-          "stage": "filing-pipeline"
-        },
-        {
-          "id": "nopaperforms-solutions-limited",
-          "company": "NOPAPERFORMS SOLUTIONS LIMITED",
-          "openDate": null,
-          "stage": "filing-pipeline"
-        },
-        {
-          "id": "m-k-c-agro-fresh-limited",
-          "company": "M K C AGRO FRESH LIMITED",
           "openDate": null,
           "stage": "filing-pipeline"
         }

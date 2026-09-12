@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-13T05:02:54+05:30",
+  "generatedAt": "2026-09-13T05:05:41+05:30",
   "asOfDate": "2026-09-13",
   "recordCount": 1371,
   "queueCount": 1367,
@@ -17,14 +17,59 @@
     "exchange.issueComposition": 446,
     "lifecycle.listingDate": 35,
     "exchange.priceBand": 23,
-    "offer.promoterShareholding": 15,
-    "offer.financials": 2,
+    "offer.promoterShareholding": 18,
+    "offer.financials": 5,
+    "offer.objectsOfIssue": 4,
+    "offer.promoters": 3,
     "offer.registrar": 1,
-    "offer.objectsOfIssue": 1,
     "offer.leadManagers": 1,
     "provenance.sources": 1
   },
   "queue": [
+    {
+      "id": "veegaland",
+      "company": "Veegaland Developers Limited",
+      "symbol": "VEEGALAND",
+      "stage": "open",
+      "openDate": "2026-09-10",
+      "closeDate": "2026-09-15",
+      "listingDate": null,
+      "priority": 0,
+      "priorityLabel": "P0 open IPO",
+      "completenessPct": 77.3,
+      "expectedFieldCount": 22,
+      "missingFieldCount": 5,
+      "missingFields": [
+        "exchange.issueComposition",
+        "offer.promoters",
+        "offer.objectsOfIssue",
+        "offer.financials",
+        "offer.promoterShareholding"
+      ],
+      "profilePath": "ipo/veegaland/"
+    },
+    {
+      "id": "manika",
+      "company": "Manika Plastech Limited",
+      "symbol": "MANIKA",
+      "stage": "open",
+      "openDate": "2026-09-11",
+      "closeDate": "2026-09-16",
+      "listingDate": null,
+      "priority": 0,
+      "priorityLabel": "P0 open IPO",
+      "completenessPct": 77.3,
+      "expectedFieldCount": 22,
+      "missingFieldCount": 5,
+      "missingFields": [
+        "exchange.issueComposition",
+        "offer.promoters",
+        "offer.objectsOfIssue",
+        "offer.financials",
+        "offer.promoterShareholding"
+      ],
+      "profilePath": "ipo/manika/"
+    },
     {
       "id": "maharaja-speedex-india-limited",
       "company": "Maharaja & Speedex India Limited",
@@ -60,24 +105,6 @@
         "offer.promoterShareholding"
       ],
       "profilePath": "ipo/om-galaxy-limited/"
-    },
-    {
-      "id": "veegaland",
-      "company": "Veegaland Developers Limited",
-      "symbol": "VEEGALAND",
-      "stage": "open",
-      "openDate": "2026-09-10",
-      "closeDate": "2026-09-15",
-      "listingDate": null,
-      "priority": 0,
-      "priorityLabel": "P0 open IPO",
-      "completenessPct": 93.3,
-      "expectedFieldCount": 15,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/veegaland/"
     },
     {
       "id": "century-business-media-limited",
@@ -116,22 +143,26 @@
       "profilePath": "ipo/injecto-polymers-limited/"
     },
     {
-      "id": "manika",
-      "company": "Manika Plastech Limited",
-      "symbol": "MANIKA",
-      "stage": "open",
-      "openDate": "2026-09-11",
-      "closeDate": "2026-09-16",
+      "id": "shakti-polytarp-limited",
+      "company": "Shakti Polytarp Limited",
+      "symbol": "SHAKTIPOLY",
+      "stage": "upcoming",
+      "openDate": "2026-09-15",
+      "closeDate": "2026-09-17",
       "listingDate": null,
-      "priority": 0,
-      "priorityLabel": "P0 open IPO",
-      "completenessPct": 93.3,
-      "expectedFieldCount": 15,
-      "missingFieldCount": 1,
+      "priority": 1,
+      "priorityLabel": "P1 upcoming IPO",
+      "completenessPct": 72.2,
+      "expectedFieldCount": 18,
+      "missingFieldCount": 5,
       "missingFields": [
-        "exchange.issueComposition"
+        "exchange.issueComposition",
+        "offer.promoters",
+        "offer.objectsOfIssue",
+        "offer.financials",
+        "offer.promoterShareholding"
       ],
-      "profilePath": "ipo/manika/"
+      "profilePath": "ipo/shakti-polytarp-limited/"
     },
     {
       "id": "jsipl",
@@ -170,24 +201,6 @@
         "offer.promoterShareholding"
       ],
       "profilePath": "ipo/ssretail/"
-    },
-    {
-      "id": "shakti-polytarp-limited",
-      "company": "Shakti Polytarp Limited",
-      "symbol": "SHAKTIPOLY",
-      "stage": "upcoming",
-      "openDate": "2026-09-15",
-      "closeDate": "2026-09-17",
-      "listingDate": null,
-      "priority": 1,
-      "priorityLabel": "P1 upcoming IPO",
-      "completenessPct": 90.9,
-      "expectedFieldCount": 11,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/shakti-polytarp-limited/"
     },
     {
       "id": "vama-wovenfab-limited",
