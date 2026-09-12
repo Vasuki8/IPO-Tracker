@@ -97,9 +97,6 @@ def extract_promoter_shareholding(text: str):
         if not _PRE_CONTEXT.search(block):
             continue
 
-        # Narrative aggregate used in many RHP/DRHP capital-structure sections:
-        # "Our Promoters and Promoter Group collectively holds ... aggregating to
-        # 77.67% of the pre-Issue paid-up Share Capital".
         narrative_patterns = [
             rf"{_PROMOTER_LABEL}.{{0,420}}?(?:collectively\s+)?(?:hold|holds|holding|held).{{0,320}}?"
             rf"(?:aggregat(?:e|es|ing)\s+(?:to\s+)?|represent(?:s|ing)?\s+|constitut(?:e|es|ing)\s+)?"
@@ -116,7 +113,6 @@ def extract_promoter_shareholding(text: str):
                 if pct is not None:
                     return {"promoters": [], "promoterPreIssuePct": pct}
 
-        # Direct summary rows such as "Promoter Holding Pre Issue 89.20%".
         direct = re.search(
             r"Promoter(?:s|\s+Group)?\s+(?:Share\s*)?Holding.{0,90}?"
             r"Pre[-\s]?(?:Issue|Offer|IPO).{0,80}?([0-9]+(?:\.[0-9]+)?)\s*%",
@@ -128,8 +124,6 @@ def extract_promoter_shareholding(text: str):
             if pct is not None:
                 return {"promoters": [], "promoterPreIssuePct": pct}
 
-        # Capital-structure tables often spell the percentage in the header and
-        # omit '%' from body cells. Prefer explicit aggregate rows only.
         pre_pct_header = re.search(
             r"(?:Pre[-\s]?(?:Issue|IPO|Offer).{0,130}?(?:%|Percentage|Share\s+Holding)|"
             r"(?:%|Percentage|Share\s+Holding).{0,130}?Pre[-\s]?(?:Issue|IPO|Offer))",
@@ -150,9 +144,6 @@ def extract_promoter_shareholding(text: str):
                 if pct is not None:
                     return {"promoters": [], "promoterPreIssuePct": pct}
 
-        # Section-specific totals, e.g. promoter rows followed by
-        # "Sub Total (A) ... 77.67". Only accept when the window explicitly names
-        # pre-issue shareholding of promoters/promoter group.
         if re.search(r"Pre[-\s]?Issue\s+Shareholding\s+of\s+(?:our\s+)?Promoters?", block, re.I):
             subtotal = re.search(
                 r"(?:Sub\s*Total|Total)\s*(?:\([^)]*\))?\s+([\d,]{4,})\s+([0-9]+(?:\.[0-9]+)?)\s*%?",
@@ -168,10 +159,8 @@ def extract_promoter_shareholding(text: str):
 
 
 def extract_financials(text: str):
-    """Keep v5 and add common PAT/table aliases seen in current RHPs."""
+    """Merge v5 output with additional current-RHP PAT/revenue aliases."""
     existing = _ORIGINAL_EXTRACT_FINANCIALS(text)
-    if existing:
-        return existing
 
     aliases = dict(v5._FINANCIAL_METRICS)
     aliases["patCr"] = [
@@ -211,7 +200,7 @@ def extract_financials(text: str):
         if score > best_score:
             best_score = score
             best = {"unit": "₹ crore", "periods": periods}
-    return best
+    return v5._merge_financials(existing, best)
 
 
 base.extract_financials = extract_financials
