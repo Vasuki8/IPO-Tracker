@@ -1,0 +1,83 @@
+name: Live IPO subscriptions
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/track_subscriptions.py"
+      - "tests/test_subscription_tracking.py"
+      - ".github/workflows/track-subscriptions.yml"
+      - "pyproject.toml"
+  schedule:
+    # Every 30 minutes on Indian business days from 09:30 to 18:00 IST.
+    # GitHub cron uses UTC: 04:00 through 12:30 UTC.
+    - cron: "0,30 4-12 * * 1-5"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ipo-data-refresh
+  cancel-in-progress: false
+
+jobs:
+  subscriptions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.1.0
+        with:
+          version: "latest-known"
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Sync dependencies
+        run: uv sync
+
+      - name: Run subscription parser tests
+        run: uv run python -m unittest discover -s tests -p "test_subscription_tracking.py" -v
+
+      - name: Record starting data revision
+        run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
+
+      - name: Capture live QIB, NII, Retail and Total demand
+        run: uv run python scripts/track_subscriptions.py --limit 30
+
+      - name: Publish changed subscription history safely
+        shell: bash
+        run: |
+          if git diff --quiet -- data/ipos.json; then
+            echo "No subscription changes"
+            exit 0
+          fi
+
+          cp data/ipos.json /tmp/generated-ipos.json
+          BASE_DATA="$(cat /tmp/base-data-blob)"
+          git fetch origin main
+          REMOTE_DATA="$(git rev-parse origin/main:data/ipos.json)"
+
+          if [ "$REMOTE_DATA" != "$BASE_DATA" ]; then
+            echo "Remote IPO data changed during this run; skipping stale publication."
+            exit 0
+          fi
+
+          git reset --hard origin/main
+          cp /tmp/generated-ipos.json data/ipos.json
+
+          if git diff --quiet -- data/ipos.json; then
+            echo "Generated data already matches latest main"
+            exit 0
+          fi
+
+          git config user.name "ipo-tracker-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ipos.json
+          git commit -m "data: capture live IPO subscriptions"
+          git push origin HEAD:main
