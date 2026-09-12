@@ -69,7 +69,7 @@ class OfferDocsV6Tests(unittest.TestCase):
         """
         self.assertGreater(mod._shareholding_score(table), mod._shareholding_score(toc))
 
-    def test_pat_alias_profit_loss_after_tax_is_supported(self):
+    def test_pat_alias_profit_loss_after_tax_is_supported_and_merged(self):
         text = """
         SUMMARY OF FINANCIAL INFORMATION
         (₹ in million)
@@ -80,7 +80,9 @@ class OfferDocsV6Tests(unittest.TestCase):
         """
         parsed = mod.extract_financials(text)
         self.assertIsNotNone(parsed)
+        self.assertAlmostEqual(parsed["periods"][0]["revenueCr"], 386.988, places=3)
         self.assertAlmostEqual(parsed["periods"][0]["patCr"], 104.299, places=3)
+        self.assertAlmostEqual(parsed["periods"][0]["netWorthCr"], 295.81, places=2)
 
 
 if __name__ == "__main__":
