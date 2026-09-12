@@ -27,6 +27,30 @@ class OfferDocsV4Tests(unittest.TestCase):
         self.assertAlmostEqual(parsed["freshIssueCr"], 64.1, places=2)
         self.assertAlmostEqual(parsed["ofsCr"], 16.03, places=2)
 
+    def test_explicit_monetary_amounts_work_without_share_counts(self):
+        text = """
+        DETAILS OF THE ISSUE
+        The Offer comprises a Fresh Issue aggregating up to INR 120.50 Crores
+        and an Offer for Sale aggregating up to Rs. 24.75 Crores.
+        GENERAL RISK
+        """
+        parsed = mod.extract_issue_composition(text, None)
+        self.assertAlmostEqual(parsed["freshIssueCr"], 120.50, places=2)
+        self.assertAlmostEqual(parsed["ofsCr"], 24.75, places=2)
+        self.assertAlmostEqual(parsed["totalIssueSizeCr"], 145.25, places=2)
+
+    def test_million_and_lakh_amounts_convert_to_crore(self):
+        self.assertAlmostEqual(
+            mod._money_cr_near("Fresh\\s+Issue", "Fresh Issue aggregating up to ₹ 945.0 million"),
+            94.5,
+            places=2,
+        )
+        self.assertAlmostEqual(
+            mod._money_cr_near("Offer\\s+for\\s+Sale", "Offer for Sale amounting to Rs. 2,500 lakhs"),
+            25.0,
+            places=2,
+        )
+
     def test_explicit_fresh_only_sets_zero_ofs(self):
         text = """
         DETAILS OF THE ISSUE
