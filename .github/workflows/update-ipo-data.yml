@@ -75,6 +75,9 @@ jobs:
           fi
           uv run python scripts/run_update.py $EXTRA
 
+      - name: Capture live subscription history
+        run: uv run python scripts/track_subscriptions.py --limit 30
+
       - name: Enrich from SEBI offer documents
         shell: bash
         run: |
