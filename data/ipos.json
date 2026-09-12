@@ -92,32 +92,32 @@
       },
       "Critical-backfill": {
         "ok": true,
-        "records": 12,
-        "asOf": "2026-09-13T02:59:46+05:30"
+        "records": 20,
+        "asOf": "2026-09-13T03:27:09+05:30"
       },
       "SEBI-document-links": {
         "ok": true,
         "records": 0,
         "attempted": 7,
-        "asOf": "2026-09-13T00:28:53+05:30",
+        "asOf": "2026-09-13T03:26:57+05:30",
         "errors": []
       },
       "Offer-docs": {
         "ok": true,
-        "records": 12,
-        "attempted": 12,
+        "records": 2,
+        "attempted": 2,
         "failed": 0
       }
     },
     "errors": [],
     "offerDocumentHealth": {
       "ok": true,
-      "attempted": 12,
-      "extracted": 12,
+      "attempted": 2,
+      "extracted": 2,
       "failed": 0,
       "eligibleRemaining": 0,
       "parserVersion": 3,
-      "asOf": "2026-09-13T00:29:59+05:30",
+      "asOf": "2026-09-13T03:27:09+05:30",
       "errors": []
     },
     "subscriptionHealth": {
@@ -160,36 +160,46 @@
     },
     "criticalBackfillHealth": {
       "ok": true,
-      "targetCount": 12,
-      "priorityMax": 1,
-      "asOf": "2026-09-13T02:59:46+05:30",
-      "exchange": {
+      "targetCount": 20,
+      "priorityMax": 2,
+      "asOf": "2026-09-13T03:27:09+05:30",
+      "documents": {
         "ok": true,
-        "attempted": 0,
-        "matched": 0,
-        "updated": 0,
+        "attempted": 3,
+        "extracted": 3,
         "failed": 0,
-        "pageHealth": {
-          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
-            "ok": true,
-            "records": 0
-          },
-          "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
-            "ok": true,
-            "records": 11
-          },
-          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P": {
-            "ok": true,
-            "records": 0
-          },
-          "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2": {
-            "ok": false,
-            "records": 0,
-            "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7fb1a95a9580>, 'Connection to www.bsesme.c"
-          }
+        "documentsDiscovered": 0,
+        "discoveryHealth": {
+          "ok": false,
+          "records": 0,
+          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7fd4a903c800>, 'Connection to www.bsesme.com time"
         },
-        "errors": []
+        "errors": [],
+        "asOf": "2026-09-13T03:30:01+05:30"
       }
+    },
+    "sebiDocumentLinkHealth": {
+      "ok": true,
+      "attempted": 7,
+      "resolvedPages": 7,
+      "linksAdded": 0,
+      "failed": 0,
+      "asOf": "2026-09-13T03:26:57+05:30",
+      "errors": []
+    },
+    "criticalOfferDocumentHealth": {
+      "ok": true,
+      "attempted": 3,
+      "extracted": 3,
+      "failed": 0,
+      "documentsDiscovered": 0,
+      "discoveryHealth": {
+        "ok": false,
+        "records": 0,
+        "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7fd4a903c800>, 'Connection to www.bsesme.com time"
+      },
+      "errors": [],
+      "asOf": "2026-09-13T03:30:01+05:30"
     }
   },
   "ipos": [
@@ -577,23 +587,22 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 3,
-        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/SS%20RETAIL%20LIMITED%20-%20AP_p.pdf",
-        "documentType": "PROSPECTUS",
-        "documentTitle": "SS RETAIL LIMITED - Abridged Prospectus",
+        "parserVersion": 4,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788946092145.pdf",
+        "documentType": "RHP",
+        "documentTitle": "SEBI RHP",
         "documentFiledDate": null,
-        "sha256": "526cb7494350982da3ce16c9079573ececb0dbf35bab4342adfbc776e52976d6",
-        "pagesRead": 15,
-        "pageCount": 15,
+        "sha256": "695637dcfdc34c556075ec33ee7573342474f33d8587a95cf6eef442c62299fd",
+        "pagesRead": 30,
+        "pageCount": 646,
         "extractedFields": [
           "leadManagers",
           "registrar",
           "promoters",
           "issueComposition",
-          "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T00:28:59+05:30",
+        "extractedAt": "2026-09-13T03:29:28+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/ssretail/",
@@ -603,61 +612,65 @@
         "BSE Limited",
         "India Limited"
       ],
-      "registrar": "India Limited",
+      "registrar": "LOGO KFin Technologies Limited",
       "promoters": [
-        "SIDDHARTH GUNV ANT SHAH",
-        "DEEPA SIDDHARTH SHAH",
-        "HARSHAL KISHOR PAREKH",
-        "BHA VINI HARSHAL PAREKH"
+        "ANALYSIS OF FINANCIAL CONDITION",
+        "OTHER MATERIAL DEVELOPMENTS .......................................... 540 GOVERNMENT",
+        "ABBREVIATIONS This Red Herring Prospectus uses certain definitions",
+        "abbreviations which",
+        "unless the context otherwise indicates or implies",
+        "or unless otherwise specified",
+        "shall have the meaning as provided below. References to any legislations",
+        "act",
+        "statutes",
+        "regulations",
+        "rules",
+        "guidelines"
       ],
       "objectsOfIssue": [
         {
-          "purpose": "in Fiscal 2027 and Fiscal",
-          "amountCr": 202.8
+          "purpose": "BASIS FOR THE OFFER PRICE",
+          "amountCr": 183.0
         },
         {
-          "purpose": "General corporate purposes(1)",
-          "amountCr": null
+          "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
+          "amountCr": 199.0
         },
         {
-          "purpose": "Net Proceeds(1)",
-          "amountCr": null
+          "purpose": "SECTION V: ABOUT THE COMPANY",
+          "amountCr": 207.0
         },
         {
-          "purpose": "Pre and post offer shareholding of our Promoters, members of the Promoter Group and top",
-          "amountCr": 1.0
+          "purpose": "INDUSTRY OVERVIEW",
+          "amountCr": 207.0
         },
         {
-          "purpose": "33,608,600 51.03 [●] [●] [●]",
-          "amountCr": null
+          "purpose": "OUR BUSINESS",
+          "amountCr": 290.0
         },
         {
-          "purpose": "8,740,150 13.27 [●] [●] [●]",
-          "amountCr": null
+          "purpose": "KEY REGULATIONS AND POLICIES",
+          "amountCr": 330.0
         },
         {
-          "purpose": "5,559,850 8.44 [●] [●] [●]",
-          "amountCr": null
+          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+          "amountCr": 338.0
         },
         {
-          "purpose": "1,950,000 2.96 [●] [●] [●]",
-          "amountCr": null
+          "purpose": "OUR SUBSIDIARIES",
+          "amountCr": 362.0
         },
         {
-          "purpose": "Sub-total (A) 49,858,600 75.70 [●] [●] [●]",
-          "amountCr": null
+          "purpose": "OUR MANAGEMENT",
+          "amountCr": 366.0
         },
         {
-          "purpose": "25,000 0.04 [●] [●] [●]",
-          "amountCr": null
+          "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
+          "amountCr": 392.0
         },
         {
-          "purpose": "Sub-total (B) 25,000 0.04 [●] [●] [●]",
-          "amountCr": null
-        },
-        {
-          "purpose": "4,875,000 7.40 [●] [●] [●]",
-          "amountCr": null
+          "purpose": "DIVIDEND POLICY",
+          "amountCr": 398.0
         }
       ]
     },
@@ -807,7 +820,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 3,
+        "parserVersion": 4,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788843844738.PDF",
         "documentType": "RHP",
         "documentTitle": "SEBI RHP",
@@ -822,7 +835,7 @@
           "issueComposition",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T00:31:50+05:30",
+        "extractedAt": "2026-09-13T03:28:14+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/jsipl/",
@@ -1045,7 +1058,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 3,
+        "parserVersion": 4,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789013295445.pdf",
         "documentType": "RHP",
         "documentTitle": "SEBI RHP",
@@ -1060,7 +1073,7 @@
           "issueComposition",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T00:32:25+05:30",
+        "extractedAt": "2026-09-13T03:30:01+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/heromotors/",
