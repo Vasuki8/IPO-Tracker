@@ -1,0 +1,95 @@
+name: SEBI offer-document enrichment
+
+on:
+  workflow_dispatch:
+    inputs:
+      deep_offer_docs:
+        description: "Extract all currently eligible SEBI abridged offer documents"
+        required: false
+        type: boolean
+        default: false
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/enrich_offer_docs.py"
+      - "tests/test_offer_docs.py"
+      - ".github/workflows/enrich-offer-docs.yml"
+      - "pyproject.toml"
+  schedule:
+    # Once daily at 19:13 IST (13:43 UTC), after Indian market hours.
+    - cron: "43 13 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ipo-data-refresh
+  cancel-in-progress: false
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.1.0
+        with:
+          version: "latest-known"
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Sync dependencies
+        run: uv sync
+
+      - name: Run offer-document parser tests
+        run: uv run python -m unittest discover -s tests -p "test_offer_docs.py" -v
+
+      - name: Record starting data revision
+        run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
+
+      - name: Extract SEBI offer-document intelligence
+        shell: bash
+        run: |
+          if [ "${{ github.event.inputs.deep_offer_docs }}" = "true" ]; then
+            DOC_LIMIT=0
+          else
+            DOC_LIMIT=8
+          fi
+          uv run python scripts/enrich_offer_docs.py --limit "$DOC_LIMIT"
+
+      - name: Publish changed offer-document data safely
+        shell: bash
+        run: |
+          if git diff --quiet -- data/ipos.json; then
+            echo "No offer-document changes"
+            exit 0
+          fi
+
+          cp data/ipos.json /tmp/generated-ipos.json
+          BASE_DATA="$(cat /tmp/base-data-blob)"
+          git fetch origin main
+          REMOTE_DATA="$(git rev-parse origin/main:data/ipos.json)"
+
+          if [ "$REMOTE_DATA" != "$BASE_DATA" ]; then
+            echo "Remote IPO data changed during this run; skipping stale publication."
+            exit 0
+          fi
+
+          git reset --hard origin/main
+          cp /tmp/generated-ipos.json data/ipos.json
+
+          if git diff --quiet -- data/ipos.json; then
+            echo "Generated data already matches latest main"
+            exit 0
+          fi
+
+          git config user.name "ipo-tracker-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ipos.json
+          git commit -m "data: enrich SEBI offer documents"
+          git push origin HEAD:main
