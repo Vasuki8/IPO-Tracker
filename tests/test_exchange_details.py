@@ -24,6 +24,7 @@ class ExchangeDetailParserTests(unittest.TestCase):
           <tr><td>Minimum Bid Quantity</td><td>200</td></tr>
           <tr><td>Book Running Lead Manager</td><td>1) Alpha Capital Limited<br/>2) Beta Securities Limited</td></tr>
           <tr><td>Registrar</td><td>Example Registry Limited</td></tr>
+          <tr><td>Prospectus &amp; GID</td><td><a href="/corporates/download/123/IPO/PROSPECTUS_EXAMPLE.pdf">Click Here</a></td></tr>
         </table>
         """
         detail = mod.parse_detail_html(html)
@@ -44,6 +45,20 @@ class ExchangeDetailParserTests(unittest.TestCase):
             ["Alpha Capital Limited", "Beta Securities Limited"],
         )
         self.assertEqual(detail["registrar"], "Example Registry Limited")
+        self.assertEqual(len(detail["documents"]), 1)
+        self.assertEqual(detail["documents"][0]["type"], "PROSPECTUS")
+        self.assertEqual(detail["documents"][0]["source"], "BSE")
+        self.assertTrue(detail["documents"][0]["url"].endswith("PROSPECTUS_EXAMPLE.pdf"))
+
+    def test_non_bse_prospectus_link_is_rejected(self):
+        html = """
+        <table>
+          <tr><td>Security Type</td><td>Equity</td></tr>
+          <tr><td>Prospectus &amp; GID</td><td><a href="https://example.com/prospectus.pdf">Click Here</a></td></tr>
+        </table>
+        """
+        detail = mod.parse_detail_html(html)
+        self.assertEqual(detail["documents"], [])
 
     def test_minimum_bid_quantity_wins_over_market_lot(self):
         html = """
@@ -111,6 +126,7 @@ class ExchangeDetailParserTests(unittest.TestCase):
             "issueSizeCr": None,
             "registrar": None,
             "leadManagers": [],
+            "documents": [],
             "sources": [{"name": "NSE current", "url": "https://nse.example"}],
             "observations": {
                 "NSE": {
@@ -137,6 +153,14 @@ class ExchangeDetailParserTests(unittest.TestCase):
             "minInvestment": 22_000.0,
             "registrar": "Registry Limited",
             "leadManagers": ["Alpha Capital Limited"],
+            "documents": [
+                {
+                    "type": "PROSPECTUS",
+                    "title": "Prospectus & GID",
+                    "url": "https://www.bseindia.com/corporates/download/123/example.pdf",
+                    "source": "BSE",
+                }
+            ],
         }
         changed = mod.merge_detail(record, detail, "https://bse.example/detail")
         self.assertEqual(record["symbol"], "NSEEX")
@@ -146,6 +170,8 @@ class ExchangeDetailParserTests(unittest.TestCase):
         self.assertEqual(record["registrar"], "Registry Limited")
         self.assertEqual(record["leadManagers"], ["Alpha Capital Limited"])
         self.assertIn("issueSizeCr", changed)
+        self.assertIn("documents", changed)
+        self.assertEqual(record["documents"][0]["source"], "BSE")
         self.assertEqual(record["observations"]["BSE"]["lotSize"], 200)
         self.assertEqual(record["validation"]["status"], "conflict")
         self.assertTrue(any(s["name"] == "BSE issue detail" for s in record["sources"]))
