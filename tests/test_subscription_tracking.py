@@ -3,6 +3,8 @@ import sys
 import unittest
 from pathlib import Path
 
+from bs4 import BeautifulSoup
+
 MODULE = Path(__file__).resolve().parents[1] / "scripts" / "track_subscriptions.py"
 spec = importlib.util.spec_from_file_location("track_subscriptions", MODULE)
 mod = importlib.util.module_from_spec(spec)
@@ -48,6 +50,36 @@ class SubscriptionParserTests(unittest.TestCase):
         parsed = mod.parse_bid_details(payload)
         self.assertEqual(parsed["qib"], 3.16)
         self.assertEqual(parsed["total"], 4.8)
+
+    def test_parse_bse_cumulative_demand(self):
+        html = """
+        <table>
+          <tr><th>Sr.No.</th><th>Category</th><th>Offered</th><th>Bid</th><th>Times</th></tr>
+          <tr><td>1</td><td>Qualified Institutional Buyers (QIBs)</td><td>38,20,095</td><td>2,93,98,278</td><td>7.70</td></tr>
+          <tr><td>2</td><td>Non Institutional Investors(NIIS)</td><td>28,65,072</td><td>45,36,662</td><td>1.58</td></tr>
+          <tr><td>2.1</td><td>Non Institutional Investors(Bid amount of more than Ten Lakh Rupees)</td><td>19,10,048</td><td>33,28,143</td><td>1.74</td></tr>
+          <tr><td>3</td><td>Retail Individual Investors (RIIs)</td><td>66,85,168</td><td>46,27,506</td><td>0.69</td></tr>
+          <tr><td>Total</td><td>1,34,12,842</td><td>3,86,35,766</td><td>2.88</td></tr>
+        </table>
+        """
+        self.assertEqual(
+            mod.parse_bse_demand_html(html),
+            {"qib": 7.7, "nii": 1.58, "retail": 0.69, "total": 2.88},
+        )
+
+    def test_extract_bse_cumulative_demand_link(self):
+        soup = BeautifulSoup(
+            '<tr><td>Example Limited</td><td><a href="CummDemandSchedule.aspx?ID=7154&amp;status=L">Cumulative Bid Details</a></td></tr>',
+            "html.parser",
+        )
+        url = mod._extract_bse_demand_url(
+            soup.select_one("tr"),
+            "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p",
+        )
+        self.assertEqual(
+            url,
+            "https://www.bseindia.com/markets/PublicIssues/CummDemandSchedule.aspx?ID=7154&status=L",
+        )
 
 
 class SubscriptionHistoryTests(unittest.TestCase):
