@@ -59,12 +59,6 @@ jobs:
       - name: Run parser tests
         run: uv run python -m unittest discover -s tests -v
 
-      # NSE's website rate-limits repeated fresh sessions from the same runner IP.
-      # Capture bid detail first, then let the broader core refresh use its own
-      # session. This avoids immediately re-priming NSE after the history sweep.
-      - name: Capture live subscription history
-        run: uv run python scripts/track_subscriptions.py --limit 30
-
       - name: Refresh IPO data
         shell: bash
         run: |
@@ -80,6 +74,13 @@ jobs:
             EXTRA="$EXTRA --sebi-pages 4"
           fi
           uv run python scripts/run_update.py $EXTRA
+
+      # Run after the core rebuild so Phase 4 fields are added to the final
+      # normalized records and cannot be lost when current issues are merged.
+      # NSE is preferred; the collector uses BSE's official cumulative-demand
+      # schedule when NSE's WAF blocks the GitHub Actions runner.
+      - name: Capture live subscription history
+        run: uv run python scripts/track_subscriptions.py --limit 30
 
       - name: Enrich from SEBI offer documents
         shell: bash
