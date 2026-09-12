@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-13T03:30:02+05:30",
+  "generatedAt": "2026-09-13T03:39:57+05:30",
   "asOfDate": "2026-09-13",
   "recordCount": 1371,
   "stageCounts": {
@@ -15,17 +15,17 @@
     "exchangeStage": 1364,
     "recentExchange2Y": 458,
     "historicalExchange": 906,
-    "offerDocumentEligible": 12,
+    "offerDocumentEligible": 15,
     "openNow": 7,
     "maturedClosed": 1332
   },
   "scores": {
     "exchangeStage": 66.8,
-    "recentExchange2Y": 67.3,
-    "offerDocumentEligible": 76.4,
+    "recentExchange2Y": 67.4,
+    "offerDocumentEligible": 74.4,
     "openSubscription": 100.0,
     "maturedLifecycle": 48.7,
-    "provenance": 67.0
+    "provenance": 67.1
   },
   "coverage": {
     "exchangeStage": {
@@ -72,16 +72,16 @@
         "pct": 0.8
       },
       "issueSizeCr": {
-        "present": 20,
+        "present": 21,
         "expected": 1364,
-        "missing": 1344,
+        "missing": 1343,
         "pct": 1.5
       },
       "issueComposition": {
-        "present": 6,
+        "present": 10,
         "expected": 1364,
-        "missing": 1358,
-        "pct": 0.4
+        "missing": 1354,
+        "pct": 0.7
       }
     },
     "recentExchange2Y": {
@@ -128,16 +128,16 @@
         "pct": 2.4
       },
       "issueSizeCr": {
-        "present": 20,
+        "present": 21,
         "expected": 458,
-        "missing": 438,
-        "pct": 4.4
+        "missing": 437,
+        "pct": 4.6
       },
       "issueComposition": {
-        "present": 6,
+        "present": 10,
         "expected": 458,
-        "missing": 452,
-        "pct": 1.3
+        "missing": 448,
+        "pct": 2.2
       }
     },
     "historicalExchange": {
@@ -198,40 +198,40 @@
     },
     "offerDocumentEligible": {
       "registrar": {
-        "present": 11,
-        "expected": 12,
+        "present": 14,
+        "expected": 15,
         "missing": 1,
-        "pct": 91.7
+        "pct": 93.3
       },
       "leadManagers": {
-        "present": 11,
-        "expected": 12,
+        "present": 14,
+        "expected": 15,
         "missing": 1,
-        "pct": 91.7
+        "pct": 93.3
       },
       "promoters": {
-        "present": 12,
-        "expected": 12,
+        "present": 15,
+        "expected": 15,
         "missing": 0,
         "pct": 100.0
       },
       "objectsOfIssue": {
-        "present": 11,
-        "expected": 12,
+        "present": 14,
+        "expected": 15,
         "missing": 1,
-        "pct": 91.7
+        "pct": 93.3
       },
       "financials": {
         "present": 9,
-        "expected": 12,
-        "missing": 3,
-        "pct": 75.0
+        "expected": 15,
+        "missing": 6,
+        "pct": 60.0
       },
       "promoterShareholding": {
         "present": 1,
-        "expected": 12,
-        "missing": 11,
-        "pct": 8.3
+        "expected": 15,
+        "missing": 14,
+        "pct": 6.7
       }
     },
     "openSubscription": {
@@ -288,10 +288,10 @@
         "pct": 100.0
       },
       "documents": {
-        "present": 14,
+        "present": 17,
         "expected": 1371,
-        "missing": 1357,
-        "pct": 1.0
+        "missing": 1354,
+        "pct": 1.2
       }
     }
   },
@@ -470,12 +470,6 @@
           "stage": "closed"
         },
         {
-          "id": "glasswall",
-          "company": "Glass Wall Systems (India) Limited",
-          "openDate": "2026-09-08",
-          "stage": "closed"
-        },
-        {
           "id": "pranav",
           "company": "Pranav Constructions Limited",
           "openDate": "2026-09-07",
@@ -546,6 +540,12 @@
           "company": "Annu Projects Limited",
           "openDate": "2026-08-25",
           "stage": "listed"
+        },
+        {
+          "id": "symbiotec",
+          "company": "Symbiotec Pharmalab Limited",
+          "openDate": "2026-08-24",
+          "stage": "listed"
         }
       ],
       "issueComposition": [
@@ -574,32 +574,14 @@
           "stage": "open"
         },
         {
-          "id": "century-business-media-limited",
-          "company": "CENTURY BUSINESS MEDIA LIMITED",
-          "openDate": "2026-09-11",
-          "stage": "open"
-        },
-        {
           "id": "veegaland",
           "company": "Veegaland Developers Limited",
           "openDate": "2026-09-10",
           "stage": "open"
         },
         {
-          "id": "raksan-transformers-limited",
-          "company": "RAKSAN TRANSFORMERS LIMITED",
-          "openDate": "2026-09-10",
-          "stage": "open"
-        },
-        {
           "id": "om-galaxy-limited",
           "company": "OM GALAXY LIMITED",
-          "openDate": "2026-09-10",
-          "stage": "open"
-        },
-        {
-          "id": "maharaja-speedex-india-limited",
-          "company": "Maharaja & Speedex India Limited",
           "openDate": "2026-09-10",
           "stage": "open"
         },
@@ -638,6 +620,24 @@
           "company": "Prasol Chemicals Limited",
           "openDate": "2026-09-08",
           "stage": "closed"
+        },
+        {
+          "id": "kanohar",
+          "company": "Kanohar Electricals Limited",
+          "openDate": "2026-09-08",
+          "stage": "closed"
+        },
+        {
+          "id": "pranav",
+          "company": "Pranav Constructions Limited",
+          "openDate": "2026-09-07",
+          "stage": "closed"
+        },
+        {
+          "id": "qualiance",
+          "company": "Qualiance International Limited",
+          "openDate": "2026-09-04",
+          "stage": "listed"
         }
       ]
     },
@@ -668,6 +668,24 @@
         }
       ],
       "financials": [
+        {
+          "id": "century-business-media-limited",
+          "company": "CENTURY BUSINESS MEDIA LIMITED",
+          "openDate": "2026-09-11",
+          "stage": "open"
+        },
+        {
+          "id": "raksan-transformers-limited",
+          "company": "RAKSAN TRANSFORMERS LIMITED",
+          "openDate": "2026-09-10",
+          "stage": "open"
+        },
+        {
+          "id": "maharaja-speedex-india-limited",
+          "company": "Maharaja & Speedex India Limited",
+          "openDate": "2026-09-10",
+          "stage": "open"
+        },
         {
           "id": "rentomojo",
           "company": "Rentomojo Limited",
@@ -705,6 +723,24 @@
           "company": "Hero Motors Limited",
           "openDate": "2026-09-16",
           "stage": "upcoming"
+        },
+        {
+          "id": "century-business-media-limited",
+          "company": "CENTURY BUSINESS MEDIA LIMITED",
+          "openDate": "2026-09-11",
+          "stage": "open"
+        },
+        {
+          "id": "raksan-transformers-limited",
+          "company": "RAKSAN TRANSFORMERS LIMITED",
+          "openDate": "2026-09-10",
+          "stage": "open"
+        },
+        {
+          "id": "maharaja-speedex-india-limited",
+          "company": "Maharaja & Speedex India Limited",
+          "openDate": "2026-09-10",
+          "stage": "open"
         },
         {
           "id": "rentomojo",

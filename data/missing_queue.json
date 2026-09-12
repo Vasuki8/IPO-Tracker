@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-13T03:30:02+05:30",
+  "generatedAt": "2026-09-13T03:39:57+05:30",
   "asOfDate": "2026-09-13",
   "recordCount": 1371,
   "queueCount": 1368,
@@ -12,14 +12,14 @@
     "P5 historical backfill": 907
   },
   "fieldGapCounts": {
-    "exchange.issueComposition": 1358,
+    "exchange.issueComposition": 1354,
     "exchange.lotSize": 1353,
-    "exchange.issueSizeCr": 1344,
+    "exchange.issueSizeCr": 1343,
     "lifecycle.allotmentDate": 1332,
     "lifecycle.listingDate": 35,
     "exchange.priceBand": 23,
-    "offer.promoterShareholding": 11,
-    "offer.financials": 3,
+    "offer.promoterShareholding": 14,
+    "offer.financials": 6,
     "offer.registrar": 1,
     "offer.objectsOfIssue": 1,
     "offer.leadManagers": 1,
@@ -36,13 +36,52 @@
       "listingDate": null,
       "priority": 0,
       "priorityLabel": "P0 open IPO",
-      "completenessPct": 93.3,
-      "expectedFieldCount": 15,
-      "missingFieldCount": 1,
+      "completenessPct": 90.5,
+      "expectedFieldCount": 21,
+      "missingFieldCount": 2,
       "missingFields": [
-        "exchange.issueComposition"
+        "offer.financials",
+        "offer.promoterShareholding"
       ],
       "profilePath": "ipo/maharaja-speedex-india-limited/"
+    },
+    {
+      "id": "raksan-transformers-limited",
+      "company": "RAKSAN TRANSFORMERS LIMITED",
+      "symbol": "RAKSAN",
+      "stage": "open",
+      "openDate": "2026-09-10",
+      "closeDate": "2026-09-15",
+      "listingDate": null,
+      "priority": 0,
+      "priorityLabel": "P0 open IPO",
+      "completenessPct": 90.5,
+      "expectedFieldCount": 21,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "offer.financials",
+        "offer.promoterShareholding"
+      ],
+      "profilePath": "ipo/raksan-transformers-limited/"
+    },
+    {
+      "id": "century-business-media-limited",
+      "company": "CENTURY BUSINESS MEDIA LIMITED",
+      "symbol": "CENTURYOOH",
+      "stage": "open",
+      "openDate": "2026-09-11",
+      "closeDate": "2026-09-16",
+      "listingDate": null,
+      "priority": 0,
+      "priorityLabel": "P0 open IPO",
+      "completenessPct": 90.5,
+      "expectedFieldCount": 21,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "offer.financials",
+        "offer.promoterShareholding"
+      ],
+      "profilePath": "ipo/century-business-media-limited/"
     },
     {
       "id": "om-galaxy-limited",
@@ -63,24 +102,6 @@
       "profilePath": "ipo/om-galaxy-limited/"
     },
     {
-      "id": "raksan-transformers-limited",
-      "company": "RAKSAN TRANSFORMERS LIMITED",
-      "symbol": "RAKSAN",
-      "stage": "open",
-      "openDate": "2026-09-10",
-      "closeDate": "2026-09-15",
-      "listingDate": null,
-      "priority": 0,
-      "priorityLabel": "P0 open IPO",
-      "completenessPct": 93.3,
-      "expectedFieldCount": 15,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/raksan-transformers-limited/"
-    },
-    {
       "id": "veegaland",
       "company": "Veegaland Developers Limited",
       "symbol": "VEEGALAND",
@@ -97,24 +118,6 @@
         "exchange.issueComposition"
       ],
       "profilePath": "ipo/veegaland/"
-    },
-    {
-      "id": "century-business-media-limited",
-      "company": "CENTURY BUSINESS MEDIA LIMITED",
-      "symbol": "CENTURYOOH",
-      "stage": "open",
-      "openDate": "2026-09-11",
-      "closeDate": "2026-09-16",
-      "listingDate": null,
-      "priority": 0,
-      "priorityLabel": "P0 open IPO",
-      "completenessPct": 93.3,
-      "expectedFieldCount": 15,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/century-business-media-limited/"
     },
     {
       "id": "injecto-polymers-limited",
@@ -243,28 +246,6 @@
         "offer.promoterShareholding"
       ],
       "profilePath": "ipo/heromotors/"
-    },
-    {
-      "id": "glasswall",
-      "company": "Glass Wall Systems (India) Limited",
-      "symbol": "GLASSWALL",
-      "stage": "closed",
-      "openDate": "2026-09-08",
-      "closeDate": "2026-09-10",
-      "listingDate": null,
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 70.6,
-      "expectedFieldCount": 17,
-      "missingFieldCount": 5,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "offer.financials",
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/glasswall/"
     },
     {
       "id": "prasolchem",
@@ -663,6 +644,26 @@
         "exchange.issueComposition"
       ],
       "profilePath": "ipo/esds/"
+    },
+    {
+      "id": "glasswall",
+      "company": "Glass Wall Systems (India) Limited",
+      "symbol": "GLASSWALL",
+      "stage": "closed",
+      "openDate": "2026-09-08",
+      "closeDate": "2026-09-10",
+      "listingDate": null,
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 82.4,
+      "expectedFieldCount": 17,
+      "missingFieldCount": 3,
+      "missingFields": [
+        "exchange.lotSize",
+        "offer.financials",
+        "offer.promoterShareholding"
+      ],
+      "profilePath": "ipo/glasswall/"
     },
     {
       "id": "kanohar",
