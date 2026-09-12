@@ -1,7 +1,6 @@
 import importlib.util
 import json
 import sys
-import tempfile
 import unittest
 from pathlib import Path
 
@@ -17,13 +16,28 @@ class CompanyRouteTests(unittest.TestCase):
         self.assertEqual(mod.route_slug("Veegaland Developers Limited"), "veegaland-developers-limited")
         self.assertEqual(mod.route_slug("A&B (India) Ltd."), "a-b-india-ltd")
 
+    def test_colliding_base_slugs_get_unique_stable_paths(self):
+        records = [
+            {"id": "A&B", "company": "Alpha Limited", "matchKey": "alpha"},
+            {"id": "A B", "company": "Beta Limited", "matchKey": "beta"},
+        ]
+        assigned = mod.assign_routes(records)
+        routes = [route for _, route in assigned]
+        self.assertEqual(len(set(routes)), 2)
+        self.assertTrue(all(route.startswith("a-b--") for route in routes))
+        self.assertTrue(all(row["profilePath"].startswith("ipo/a-b--") for row in records))
+
     def test_page_uses_repo_root_base_and_live_json_renderer(self):
-        html = mod.page_html(
-            {"id": "example-limited", "company": "Example Limited", "symbol": "EXAMPLE"},
-            "example-limited",
-        )
+        record = {
+            "id": "example-limited",
+            "company": "Example Limited",
+            "symbol": "EXAMPLE",
+            "profilePath": "ipo/example-limited/",
+        }
+        html = mod.page_html(record, "example-limited")
         self.assertIn('<base href="../../" />', html)
         self.assertIn('data-ipo-id="example-limited"', html)
+        self.assertIn('data-profile-path="ipo/example-limited/"', html)
         self.assertIn('company-page.js', html)
         self.assertIn('company.js', html)
         self.assertIn('Example Limited IPO | India IPO Tracker', html)
