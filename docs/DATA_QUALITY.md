@@ -1,15 +1,15 @@
 # IPO Tracker Data Quality
 
-Generated: **2026-09-12T10:12:10+05:30**  
+Generated: **2026-09-12T10:14:42+05:30**  
 Records audited: **1,371**
 
 ## Completeness scores
 
 | Area | Score | Records in denominator |
 | --- | ---: | ---: |
-| Core exchange terms | 44.6% | 1,364 |
-| Recent exchange terms (2Y) | 70.8% | 19 |
-| Offer-document intelligence | 25.0% | 12 |
+| Core exchange terms | 44.8% | 1,364 |
+| Recent exchange terms (2Y) | 85.4% | 19 |
+| Offer-document intelligence | 27.8% | 12 |
 | Live subscription categories | 7.1% | 7 |
 | Matured lifecycle dates | 100.0% | 0 |
 | Source/provenance trail | 67.0% | 1,371 |
@@ -18,36 +18,36 @@ Records audited: **1,371**
 
 | Field | Present | Missing | Coverage |
 | --- | ---: | ---: | ---: |
-| symbol | 1,357 | 7 | 99.5% |
+| symbol | 1,364 | 0 | 100.0% |
 | board | 1,364 | 0 | 100.0% |
 | exchange | 1,364 | 0 | 100.0% |
 | openDate | 19 | 1,345 | 1.4% |
 | closeDate | 19 | 1,345 | 1.4% |
 | priceBand | 1,341 | 23 | 98.3% |
-| lotSize | 0 | 1,364 | 0.0% |
-| issueSizeCr | 13 | 1,351 | 1.0% |
+| lotSize | 11 | 1,353 | 0.8% |
+| issueSizeCr | 20 | 1,344 | 1.5% |
 | issueComposition | 3 | 1,361 | 0.2% |
 
 ## Recent exchange fields — last 2 years
 
 | Field | Present | Missing | Coverage |
 | --- | ---: | ---: | ---: |
-| symbol | 12 | 7 | 63.2% |
+| symbol | 19 | 0 | 100.0% |
 | board | 19 | 0 | 100.0% |
 | exchange | 19 | 0 | 100.0% |
 | openDate | 19 | 0 | 100.0% |
 | closeDate | 19 | 0 | 100.0% |
 | priceBand | 19 | 0 | 100.0% |
-| lotSize | 0 | 19 | 0.0% |
-| issueSizeCr | 12 | 7 | 63.2% |
+| lotSize | 11 | 8 | 57.9% |
+| issueSizeCr | 19 | 0 | 100.0% |
 | issueComposition | 2 | 17 | 10.5% |
 
 ## Offer-document fields
 
 | Field | Present | Missing | Coverage |
 | --- | ---: | ---: | ---: |
-| registrar | 1 | 11 | 8.3% |
-| leadManagers | 1 | 11 | 8.3% |
+| registrar | 2 | 10 | 16.7% |
+| leadManagers | 2 | 10 | 16.7% |
 | promoters | 6 | 6 | 50.0% |
 | objectsOfIssue | 1 | 11 | 8.3% |
 | financials | 8 | 4 | 66.7% |

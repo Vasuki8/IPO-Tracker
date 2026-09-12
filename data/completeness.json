@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-12T10:12:10+05:30",
+  "generatedAt": "2026-09-12T10:14:42+05:30",
   "asOfDate": "2026-09-12",
   "recordCount": 1371,
   "stageCounts": {
@@ -20,9 +20,9 @@
     "maturedClosed": 0
   },
   "scores": {
-    "exchangeStage": 44.6,
-    "recentExchange2Y": 70.8,
-    "offerDocumentEligible": 25.0,
+    "exchangeStage": 44.8,
+    "recentExchange2Y": 85.4,
+    "offerDocumentEligible": 27.8,
     "openSubscription": 7.1,
     "maturedLifecycle": 100.0,
     "provenance": 67.0
@@ -30,10 +30,10 @@
   "coverage": {
     "exchangeStage": {
       "symbol": {
-        "present": 1357,
+        "present": 1364,
         "expected": 1364,
-        "missing": 7,
-        "pct": 99.5
+        "missing": 0,
+        "pct": 100.0
       },
       "board": {
         "present": 1364,
@@ -66,16 +66,16 @@
         "pct": 98.3
       },
       "lotSize": {
-        "present": 0,
+        "present": 11,
         "expected": 1364,
-        "missing": 1364,
-        "pct": 0.0
+        "missing": 1353,
+        "pct": 0.8
       },
       "issueSizeCr": {
-        "present": 13,
+        "present": 20,
         "expected": 1364,
-        "missing": 1351,
-        "pct": 1.0
+        "missing": 1344,
+        "pct": 1.5
       },
       "issueComposition": {
         "present": 3,
@@ -86,10 +86,10 @@
     },
     "recentExchange2Y": {
       "symbol": {
-        "present": 12,
+        "present": 19,
         "expected": 19,
-        "missing": 7,
-        "pct": 63.2
+        "missing": 0,
+        "pct": 100.0
       },
       "board": {
         "present": 19,
@@ -122,16 +122,16 @@
         "pct": 100.0
       },
       "lotSize": {
-        "present": 0,
+        "present": 11,
         "expected": 19,
-        "missing": 19,
-        "pct": 0.0
+        "missing": 8,
+        "pct": 57.9
       },
       "issueSizeCr": {
-        "present": 12,
+        "present": 19,
         "expected": 19,
-        "missing": 7,
-        "pct": 63.2
+        "missing": 0,
+        "pct": 100.0
       },
       "issueComposition": {
         "present": 2,
@@ -198,16 +198,16 @@
     },
     "offerDocumentEligible": {
       "registrar": {
-        "present": 1,
+        "present": 2,
         "expected": 12,
-        "missing": 11,
-        "pct": 8.3
+        "missing": 10,
+        "pct": 16.7
       },
       "leadManagers": {
-        "present": 1,
+        "present": 2,
         "expected": 12,
-        "missing": 11,
-        "pct": 8.3
+        "missing": 10,
+        "pct": 16.7
       },
       "promoters": {
         "present": 6,
@@ -297,62 +297,13 @@
   },
   "gapExamples": {
     "recentExchange2Y": {
-      "symbol": [
-        {
-          "id": "vama-wovenfab-limited",
-          "company": "Vama Wovenfab Limited",
-          "openDate": "2026-09-15",
-          "stage": "upcoming"
-        },
-        {
-          "id": "shakti-polytarp-limited",
-          "company": "Shakti Polytarp Limited",
-          "openDate": "2026-09-15",
-          "stage": "upcoming"
-        },
-        {
-          "id": "injecto-polymers-limited",
-          "company": "INJECTO POLYMERS LIMITED",
-          "openDate": "2026-09-11",
-          "stage": "open"
-        },
-        {
-          "id": "century-business-media-limited",
-          "company": "CENTURY BUSINESS MEDIA LIMITED",
-          "openDate": "2026-09-11",
-          "stage": "open"
-        },
-        {
-          "id": "raksan-transformers-limited",
-          "company": "RAKSAN TRANSFORMERS LIMITED",
-          "openDate": "2026-09-10",
-          "stage": "open"
-        },
-        {
-          "id": "om-galaxy-limited",
-          "company": "OM GALAXY LIMITED",
-          "openDate": "2026-09-10",
-          "stage": "open"
-        },
-        {
-          "id": "maharaja-speedex-india-limited",
-          "company": "Maharaja & Speedex India Limited",
-          "openDate": "2026-09-10",
-          "stage": "open"
-        }
-      ],
+      "symbol": [],
       "board": [],
       "exchange": [],
       "openDate": [],
       "closeDate": [],
       "priceBand": [],
       "lotSize": [
-        {
-          "id": "sona",
-          "company": "Sonaselection India Limited",
-          "openDate": "2026-09-17",
-          "stage": "upcoming"
-        },
         {
           "id": "ssretail",
           "company": "SS Retail Limited",
@@ -366,66 +317,6 @@
           "stage": "upcoming"
         },
         {
-          "id": "heromotors",
-          "company": "Hero Motors Limited",
-          "openDate": "2026-09-16",
-          "stage": "upcoming"
-        },
-        {
-          "id": "vama-wovenfab-limited",
-          "company": "Vama Wovenfab Limited",
-          "openDate": "2026-09-15",
-          "stage": "upcoming"
-        },
-        {
-          "id": "shakti-polytarp-limited",
-          "company": "Shakti Polytarp Limited",
-          "openDate": "2026-09-15",
-          "stage": "upcoming"
-        },
-        {
-          "id": "manika",
-          "company": "Manika Plastech Limited",
-          "openDate": "2026-09-11",
-          "stage": "open"
-        },
-        {
-          "id": "injecto-polymers-limited",
-          "company": "INJECTO POLYMERS LIMITED",
-          "openDate": "2026-09-11",
-          "stage": "open"
-        },
-        {
-          "id": "century-business-media-limited",
-          "company": "CENTURY BUSINESS MEDIA LIMITED",
-          "openDate": "2026-09-11",
-          "stage": "open"
-        },
-        {
-          "id": "veegaland",
-          "company": "Veegaland Developers Limited",
-          "openDate": "2026-09-10",
-          "stage": "open"
-        },
-        {
-          "id": "raksan-transformers-limited",
-          "company": "RAKSAN TRANSFORMERS LIMITED",
-          "openDate": "2026-09-10",
-          "stage": "open"
-        },
-        {
-          "id": "om-galaxy-limited",
-          "company": "OM GALAXY LIMITED",
-          "openDate": "2026-09-10",
-          "stage": "open"
-        },
-        {
-          "id": "maharaja-speedex-india-limited",
-          "company": "Maharaja & Speedex India Limited",
-          "openDate": "2026-09-10",
-          "stage": "open"
-        },
-        {
           "id": "steamhouse",
           "company": "Steamhouse India Limited",
           "openDate": "2026-09-09",
@@ -436,52 +327,33 @@
           "company": "Rentomojo Limited",
           "openDate": "2026-09-09",
           "stage": "closed"
+        },
+        {
+          "id": "mpimanipal",
+          "company": "Manipal Payment and Identity Solutions Limited",
+          "openDate": "2026-09-09",
+          "stage": "closed"
+        },
+        {
+          "id": "lccproject",
+          "company": "LCC Projects Limited",
+          "openDate": "2026-09-09",
+          "stage": "closed"
+        },
+        {
+          "id": "karamtara",
+          "company": "Karamtara Engineering Limited",
+          "openDate": "2026-09-09",
+          "stage": "closed"
+        },
+        {
+          "id": "arcil",
+          "company": "Asset Reconstruction Company (India) Limited",
+          "openDate": "2026-09-09",
+          "stage": "closed"
         }
       ],
-      "issueSizeCr": [
-        {
-          "id": "vama-wovenfab-limited",
-          "company": "Vama Wovenfab Limited",
-          "openDate": "2026-09-15",
-          "stage": "upcoming"
-        },
-        {
-          "id": "shakti-polytarp-limited",
-          "company": "Shakti Polytarp Limited",
-          "openDate": "2026-09-15",
-          "stage": "upcoming"
-        },
-        {
-          "id": "injecto-polymers-limited",
-          "company": "INJECTO POLYMERS LIMITED",
-          "openDate": "2026-09-11",
-          "stage": "open"
-        },
-        {
-          "id": "century-business-media-limited",
-          "company": "CENTURY BUSINESS MEDIA LIMITED",
-          "openDate": "2026-09-11",
-          "stage": "open"
-        },
-        {
-          "id": "raksan-transformers-limited",
-          "company": "RAKSAN TRANSFORMERS LIMITED",
-          "openDate": "2026-09-10",
-          "stage": "open"
-        },
-        {
-          "id": "om-galaxy-limited",
-          "company": "OM GALAXY LIMITED",
-          "openDate": "2026-09-10",
-          "stage": "open"
-        },
-        {
-          "id": "maharaja-speedex-india-limited",
-          "company": "Maharaja & Speedex India Limited",
-          "openDate": "2026-09-10",
-          "stage": "open"
-        }
-      ],
+      "issueSizeCr": [],
       "issueComposition": [
         {
           "id": "ssretail",
@@ -590,12 +462,6 @@
           "stage": "upcoming"
         },
         {
-          "id": "heromotors",
-          "company": "Hero Motors Limited",
-          "openDate": "2026-09-16",
-          "stage": "upcoming"
-        },
-        {
           "id": "rentomojo",
           "company": "Rentomojo Limited",
           "openDate": "2026-09-09",
@@ -654,12 +520,6 @@
         {
           "id": "jsipl",
           "company": "Jindal Supreme (India) Limited",
-          "openDate": "2026-09-16",
-          "stage": "upcoming"
-        },
-        {
-          "id": "heromotors",
-          "company": "Hero Motors Limited",
           "openDate": "2026-09-16",
           "stage": "upcoming"
         },
