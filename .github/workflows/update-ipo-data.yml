@@ -21,12 +21,14 @@ on:
       - "scripts/run_update.py"
       - "scripts/normalize_source_health.py"
       - "scripts/enrich_exchange_details.py"
+      - "scripts/critical_backfill.py"
       - "scripts/build_company_pages.py"
       - "scripts/audit_data_completeness.py"
       - "scripts/build_missing_queue.py"
       - "tests/test_update_data.py"
       - "tests/test_source_health.py"
       - "tests/test_exchange_details.py"
+      - "tests/test_critical_backfill.py"
       - "tests/test_company_routes.py"
       - "tests/test_data_completeness.py"
       - "tests/test_missing_queue.py"
@@ -71,6 +73,9 @@ jobs:
 
       - name: Run BSE detail-enrichment tests
         run: uv run python -m unittest discover -s tests -p "test_exchange_details.py" -v
+
+      - name: Run critical-backfill tests
+        run: uv run python -m unittest discover -s tests -p "test_critical_backfill.py" -v
 
       - name: Run company-route tests
         run: uv run python -m unittest discover -s tests -p "test_company_routes.py" -v
@@ -121,11 +126,10 @@ jobs:
             echo "Remote IPO data changed during this run; preserving newer data."
           fi
 
-          # BSE DisplayIPO pages expose important live issue fields that the list
-          # pages omit: symbol, minimum bid quantity/lot size, issue shares/value,
-          # registrar and lead managers. Fill missing values only; never overwrite
-          # populated NSE fields.
+          # First use the broad BSE detail enricher, then explicitly retry P0/P1
+          # repair-queue records with BSE SME's official current-issue index.
           uv run python scripts/enrich_exchange_details.py --limit 30
+          uv run python scripts/critical_backfill.py --exchange-only --priority-max 1 --limit 20
           uv run python scripts/build_company_pages.py
           uv run python scripts/audit_data_completeness.py
           uv run python scripts/build_missing_queue.py
