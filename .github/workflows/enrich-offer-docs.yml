@@ -13,7 +13,9 @@ on:
       - main
     paths:
       - "scripts/enrich_offer_docs.py"
+      - "scripts/audit_data_completeness.py"
       - "tests/test_offer_docs.py"
+      - "tests/test_data_completeness.py"
       - ".github/workflows/enrich-offer-docs.yml"
       - "pyproject.toml"
   schedule:
@@ -49,6 +51,9 @@ jobs:
       - name: Run offer-document parser tests
         run: uv run python -m unittest discover -s tests -p "test_offer_docs.py" -v
 
+      - name: Run completeness-audit tests
+        run: uv run python -m unittest discover -s tests -p "test_data_completeness.py" -v
+
       - name: Record starting data revision
         run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
 
@@ -62,34 +67,30 @@ jobs:
           fi
           uv run python scripts/enrich_offer_docs.py --limit "$DOC_LIMIT"
 
-      - name: Publish changed offer-document data safely
+      - name: Publish changed offer-document data and audit safely
         shell: bash
         run: |
-          if git diff --quiet -- data/ipos.json; then
-            echo "No offer-document changes"
-            exit 0
-          fi
-
           cp data/ipos.json /tmp/generated-ipos.json
           BASE_DATA="$(cat /tmp/base-data-blob)"
           git fetch origin main
           REMOTE_DATA="$(git rev-parse origin/main:data/ipos.json)"
 
           if [ "$REMOTE_DATA" != "$BASE_DATA" ]; then
-            echo "Remote IPO data changed during this run; skipping stale publication."
+            echo "Remote IPO data changed during this run; skipping stale offer-document publication."
             exit 0
           fi
 
           git reset --hard origin/main
           cp /tmp/generated-ipos.json data/ipos.json
+          uv run python scripts/audit_data_completeness.py
 
-          if git diff --quiet -- data/ipos.json; then
-            echo "Generated data already matches latest main"
+          if [ -z "$(git status --porcelain -- data/ipos.json data/completeness.json docs/DATA_QUALITY.md)" ]; then
+            echo "No offer-document or audit changes"
             exit 0
           fi
 
           git config user.name "ipo-tracker-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/ipos.json
-          git commit -m "data: enrich SEBI offer documents"
+          git add data/ipos.json data/completeness.json docs/DATA_QUALITY.md
+          git commit -m "data: enrich SEBI offer documents and refresh audit"
           git push origin HEAD:main
