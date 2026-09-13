@@ -16,6 +16,21 @@ class IssuerOfferDocsV3Tests(unittest.TestCase):
         self.assertEqual(mod.parser_v13.PARSER_VERSION, 13)
         self.assertIs(mod.base._extract_targeted_full_text, mod.parser_v13.extract_targeted_pdf_text)
 
+    def test_p4_sebi_fallbacks_are_explicit_and_regulator_hosted(self):
+        expected = {
+            "leap": "Leap India Limited",
+            "propshop": "Propshop Events and Exhibitions Limited",
+        }
+        for record_id, company in expected.items():
+            doc = mod.base.ISSUER_DOCUMENTS[record_id]
+            self.assertEqual(doc["company"], company)
+            self.assertEqual(doc["host"], "www.sebi.gov.in")
+            self.assertTrue(doc["url"].startswith("https://www.sebi.gov.in/sebi_data/attachdocs/"))
+            self.assertEqual(doc["type"], "Prospectus")
+            self.assertEqual(doc["extractionSource"], "SEBI")
+            self.assertEqual(doc["documentSource"], "SEBI")
+            self.assertEqual(doc["sourceKind"], "regulatory-filing")
+
     def test_validated_terms_remain_fill_only_and_stamp_v13(self):
         record = {
             "lotSize": None,

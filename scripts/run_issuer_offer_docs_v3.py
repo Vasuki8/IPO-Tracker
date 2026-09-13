@@ -23,6 +23,38 @@ base.parser_v4 = parser_v13
 base.PARSER_VERSION = parser_v13.PARSER_VERSION
 base._extract_targeted_full_text = parser_v13.extract_targeted_pdf_text
 
+# Current P4 residuals that already have regulator-hosted final prospectuses.
+# Keep these registrations explicit so every fallback still passes the base
+# runner's exact-host, PDF-magic, issuer-identity and fill-only merge gates.
+base.ISSUER_DOCUMENTS.update(
+    {
+        "leap": {
+            "company": "Leap India Limited",
+            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1786535192735.pdf",
+            "host": "www.sebi.gov.in",
+            "type": "Prospectus",
+            "title": "Prospectus",
+            "sourcePage": "https://www.sebi.gov.in/filings/public-issues/aug-2026/leap-india-limited-prospectus_103511.html",
+            "extractionSource": "SEBI",
+            "documentSource": "SEBI",
+            "sourceName": "SEBI final Prospectus",
+            "sourceKind": "regulatory-filing",
+        },
+        "propshop": {
+            "company": "Propshop Events and Exhibitions Limited",
+            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1785404948142.pdf",
+            "host": "www.sebi.gov.in",
+            "type": "Prospectus",
+            "title": "Prospectus",
+            "sourcePage": "https://www.sebi.gov.in/filings/public-issues/jul-2026/propshop-events-and-exhibitions-limited-prospectus_103111.html",
+            "extractionSource": "SEBI",
+            "documentSource": "SEBI",
+            "sourceName": "SEBI final Prospectus",
+            "sourceKind": "regulatory-filing",
+        },
+    }
+)
+
 _ORIGINAL_MERGE = base.merge_issuer_enrichment
 
 
