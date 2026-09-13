@@ -29,39 +29,49 @@ jobs:
       - name: Sync dependencies
         run: uv sync
 
-      - name: Print real P2 bid-lot excerpts
+      - name: Compare verified SEBI TLS paths
         shell: bash
         run: |
+          URL="https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788759187148.pdf"
+          ALT="https://sebi.gov.in/sebi_data/attachdocs/sep-2026/1788759187148.pdf"
+          echo '=== curl www ==='
+          curl -I -L --max-time 25 -A 'Mozilla/5.0' "$URL" || true
+          echo '=== curl bare ==='
+          curl -I -L --max-time 25 -A 'Mozilla/5.0' "$ALT" || true
+          echo '=== python certifi/system ==='
           uv run python - <<'PY'
-          import io, json, re, requests
+          import requests, certifi
+          urls=[
+            'https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788759187148.pdf',
+            'https://sebi.gov.in/sebi_data/attachdocs/sep-2026/1788759187148.pdf',
+          ]
+          for url in urls:
+            for verify in (certifi.where(), '/etc/ssl/certs/ca-certificates.crt'):
+              try:
+                r=requests.get(url,headers={'User-Agent':'Mozilla/5.0','Referer':'https://www.sebi.gov.in/'},stream=True,timeout=25,verify=verify)
+                print(url,verify,'HTTP',r.status_code,'ctype',r.headers.get('content-type'),'len',r.headers.get('content-length'))
+                r.close()
+              except Exception as e:
+                print(url,verify,'ERROR',type(e).__name__,str(e)[:260])
+          PY
+
+      - name: Download one prospectus with curl and inspect real lot layout
+        shell: bash
+        run: |
+          URL="https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788759187148.pdf"
+          curl -fL --retry 3 --retry-all-errors --max-time 90 -A 'Mozilla/5.0' -H 'Referer: https://www.sebi.gov.in/' "$URL" -o /tmp/deepa.pdf
+          uv run python - <<'PY'
+          import re
           from pypdf import PdfReader
           import scripts.enrich_recent_offer_terms as terms
-          import scripts.update_data as core
-
-          payload=json.load(open('data/ipos.json',encoding='utf-8'))
-          wanted={'deepa','annu','gaja','htel','lalithaa','lumino','priority','skyways','augmont','glasswall','prasolchem','rentomojo'}
-          s=requests.Session(); s.headers.update(core.HEADERS)
-          for r in payload['ipos']:
-            if r.get('id') not in wanted: continue
-            doc=terms.choose_full_document(r)
-            print('\n\n###',r.get('id'),r.get('company'),'DOC=',json.dumps(doc,ensure_ascii=False))
-            if not doc:
-              continue
-            try:
-              data=terms.offer.base.download_pdf(s,doc['url'])
-              reader=PdfReader(io.BytesIO(data))
-              hits=[]
-              for i,page in enumerate(reader.pages[:80]):
-                text=page.extract_text() or ''
-                flat=re.sub(r'\s+',' ',text)
-                for m in re.finditer(r'(?i)(?:bid\s+lot|minimum\s+(?:bid|application)|application\s+lot|minimum\s+order)',flat):
-                  excerpt=flat[max(0,m.start()-280):m.start()+650]
-                  if excerpt not in [x[1] for x in hits]: hits.append((i+1,excerpt))
-                  if len(hits)>=8: break
-                if len(hits)>=8: break
-              print('PARSER_LOT=',terms.extract_lot_size('\n'.join((p.extract_text() or '') for p in reader.pages[:35])))
-              for page,excerpt in hits:
-                print('PAGE',page,excerpt)
-            except Exception as e:
-              print('ERROR',type(e).__name__,str(e)[:300])
+          reader=PdfReader('/tmp/deepa.pdf')
+          texts=[]
+          for i,page in enumerate(reader.pages[:100]):
+            text=page.extract_text() or ''
+            texts.append(text)
+            flat=re.sub(r'\s+',' ',text)
+            for m in re.finditer(r'(?i)(?:bid\s+lot|minimum\s+(?:bid|application)|application\s+lot|minimum\s+order)',flat):
+              print('PAGE',i+1,flat[max(0,m.start()-220):m.start()+700])
+          print('LOT35',terms.extract_lot_size('\n'.join(texts[:35])))
+          print('LOT100',terms.extract_lot_size('\n'.join(texts)))
           PY
