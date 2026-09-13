@@ -3,12 +3,13 @@
 
 The normal SEBI DRHP/RHP stream often ends before the final bid lot is fixed.
 SEBI also publishes post-filing documents such as price-band advertisements and
-allotment notices. This pass discovers those regulator-hosted PDFs and reuses
-our strict explicit-Equity-Shares lot parser.
+allotment notices. This pass discovers those regulator-hosted documents and
+reuses our strict explicit-Equity-Shares lot parser.
 """
 from __future__ import annotations
 
 import argparse
+import html as html_lib
 import io
 import json
 import re
@@ -18,7 +19,7 @@ from dataclasses import dataclass
 from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
-from urllib.parse import urljoin, urlparse
+from urllib.parse import unquote, urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup
@@ -40,7 +41,7 @@ SEBI_OTHER_DOCS_URL = (
     "?doListing=yes&sid=3&smid=78&ssid=15"
 )
 MAX_PDF_PAGES = 20
-PARSER_VERSION = 1
+PARSER_VERSION = 2
 PREFERRED_LABELS = (
     "PRICE BAND",
     "BID LOT",
@@ -71,7 +72,6 @@ def _canonical(value: Any) -> str:
 
 
 def identity_score(company: str, text: str) -> float:
-    """Match an issuer name against either a short label or a long document."""
     expected, observed = _canonical(company), _canonical(text)
     if not expected or not observed:
         return 0.0
@@ -149,29 +149,62 @@ def discover_pages(session: requests.Session, records: list[dict[str, Any]], max
     return list(found.values()), errors
 
 
+def _candidate_urls_from_text(raw: str, base_url: str) -> set[str]:
+    """Extract PDF/attachment URLs hidden in href, onclick, JS or escaped HTML."""
+    decoded = html_lib.unescape(str(raw or ""))
+    decoded = decoded.replace("\\/", "/")
+    candidates: set[str] = set()
+
+    patterns = (
+        r"https?://[^\s\"'<>]+?\.pdf(?:\?[^\s\"'<>]*)?",
+        r"(?:/|\.\./|\./)?(?:sebi_data|webfiles|commonDocs|attachdocs)/[^\s\"'<>]+?\.pdf(?:\?[^\s\"'<>]*)?",
+        r"[^\s\"'<>]+?\.pdf(?:\?[^\s\"'<>]*)?",
+    )
+    for pattern in patterns:
+        for match in re.findall(pattern, decoded, flags=re.I):
+            cleaned = unquote(str(match)).rstrip(")],;}")
+            url = urljoin(base_url, cleaned)
+            if _is_sebi(url) and urlparse(url).path.lower().endswith(".pdf"):
+                candidates.add(url)
+    return candidates
+
+
+def extract_document_candidates(page_html: str, base_url: str) -> list[dict[str, Any]]:
+    """Find SEBI PDFs even when the detail page uses onclick/JS wrappers."""
+    soup = BeautifulSoup(page_html, "html.parser")
+    labels: dict[str, str] = {}
+
+    for tag in soup.find_all(True):
+        tag_text = " ".join(tag.stripped_strings).strip()
+        blobs = []
+        for value in tag.attrs.values():
+            if isinstance(value, list):
+                blobs.extend(str(v) for v in value)
+            else:
+                blobs.append(str(value))
+        for blob in blobs:
+            for url in _candidate_urls_from_text(blob, base_url):
+                labels.setdefault(url, tag_text)
+
+    for url in _candidate_urls_from_text(page_html, base_url):
+        labels.setdefault(url, "")
+
+    docs = []
+    for url, label in labels.items():
+        upper = label.upper()
+        rank = next((i for i, marker in enumerate(PREFERRED_LABELS) if marker in upper), len(PREFERRED_LABELS))
+        docs.append({"url": url, "title": label or "SEBI Other Document", "rank": rank})
+    docs.sort(key=lambda d: (d["rank"], d["title"], d["url"]))
+    return docs
+
+
 def discover_pdfs(session: requests.Session, page: CandidatePage) -> list[dict[str, Any]]:
     response = session.get(page.url, timeout=30)
     response.raise_for_status()
-    soup = BeautifulSoup(response.text, "html.parser")
-    docs, seen = [], set()
-    for anchor in soup.select("a[href]"):
-        url = urljoin(page.url, anchor.get("href") or "")
-        if not _is_sebi(url) or not urlparse(url).path.lower().endswith(".pdf") or url in seen:
-            continue
-        seen.add(url)
-        label = " ".join(anchor.stripped_strings).strip()
-        if not label and anchor.find_parent():
-            label = " ".join(anchor.find_parent().stripped_strings).strip()
-        upper = label.upper()
-        rank = next((i for i, marker in enumerate(PREFERRED_LABELS) if marker in upper), len(PREFERRED_LABELS))
-        docs.append({
-            "url": url,
-            "title": label or "SEBI Other Document",
-            "sourcePage": page.url,
-            "filedDate": page.filed_date,
-            "rank": rank,
-        })
-    docs.sort(key=lambda d: (d["rank"], d["title"], d["url"]))
+    docs = extract_document_candidates(response.text, page.url)
+    for doc in docs:
+        doc["sourcePage"] = page.url
+        doc["filedDate"] = page.filed_date
     return docs
 
 
@@ -252,7 +285,7 @@ def backfill(payload: dict[str, Any], session: requests.Session, max_listing_pag
 
     pages, errors = discover_pages(session, records, max_listing_pages, pause)
     by_id = {str(r.get("id") or ""): r for r in records}
-    attempted_docs = updated = failed = 0
+    attempted_docs = discovered_docs = updated = failed = 0
     updated_ids: list[str] = []
 
     for page in pages:
@@ -261,6 +294,7 @@ def backfill(payload: dict[str, Any], session: requests.Session, max_listing_pag
             continue
         try:
             docs = discover_pdfs(session, page)
+            discovered_docs += len(docs)
         except Exception as exc:
             failed += 1
             errors.append(f"{page.company} detail: {exc}")
@@ -271,8 +305,10 @@ def backfill(payload: dict[str, Any], session: requests.Session, max_listing_pag
             try:
                 response = session.get(str(doc["url"]), timeout=45)
                 response.raise_for_status()
+                content_type = str(response.headers.get("content-type") or "").lower()
+                if "pdf" not in content_type and not response.content.startswith(b"%PDF"):
+                    continue
                 text, pages_read, page_count = pdf_text(response.content)
-                # Exact canonical issuer containment is required for long PDF text.
                 if identity_score(page.company, text[:20_000]) < 0.90:
                     continue
                 lot = terms.extract_lot_size(text)
@@ -293,6 +329,7 @@ def backfill(payload: dict[str, Any], session: requests.Session, max_listing_pag
         "targets": len(target_ids),
         "selected": len(records),
         "matchedPages": len(pages),
+        "discoveredDocuments": discovered_docs,
         "attemptedDocuments": attempted_docs,
         "updated": updated,
         "failed": failed,
