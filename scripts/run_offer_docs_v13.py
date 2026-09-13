@@ -7,10 +7,10 @@ shareholding pages. In many RHPs the bid-lot language lives hundreds of pages
 later in Issue Procedure / Terms of the Offer, so the correct extractor never
 saw the relevant text.
 
-v13 keeps every v12 extraction/merge rule unchanged and widens only page
-selection. Financial, shareholding and finalized offer-term pages are ranked
-independently inside the same bounded scan. The resulting text remains a small
-subset of the PDF and exchange fields remain fill-only.
+v13 keeps every v12 recognition and fill-only merge rule unchanged and widens
+only page selection. Financial, shareholding and finalized offer-term pages are
+ranked independently inside the same bounded scan. The resulting text remains a
+small subset of the PDF and exchange fields remain fill-only.
 """
 from __future__ import annotations
 
@@ -180,8 +180,20 @@ def extract_pdf_text(data: bytes):
     )
 
 
+def apply_enrichment(record, parsed, doc, pdf_hash, pages_read, page_count):
+    """Use v12 fill-only semantics while marking the v13 page-selection pass."""
+    v12.apply_enrichment(record, parsed, doc, pdf_hash, pages_read, page_count)
+    extraction = record.get("offerDocumentExtraction")
+    if isinstance(extraction, dict):
+        extraction["parserVersion"] = PARSER_VERSION
+    observation = (record.get("observations") or {}).get("SEBI-offer")
+    if isinstance(observation, dict):
+        observation["parserVersion"] = PARSER_VERSION
+
+
 base.extract_pdf_text = extract_pdf_text
 base.extract_targeted_pdf_text = extract_targeted_pdf_text
+base.apply_enrichment = apply_enrichment
 base.PARSER_VERSION = PARSER_VERSION
 
 # v12 remains authoritative for recognition and fill-only merge semantics.
@@ -191,7 +203,6 @@ extract_price_band = v12.extract_price_band
 extract_promoter_shareholding = v12.extract_promoter_shareholding
 extract_financials = v12.extract_financials
 choose_document = v12.choose_document
-apply_enrichment = v12.apply_enrichment
 download_pdf = v12.download_pdf
 
 
