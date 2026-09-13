@@ -18,8 +18,9 @@ base.parser_v4 = parser_v9
 base.PARSER_VERSION = parser_v9.PARSER_VERSION
 base._extract_targeted_full_text = parser_v9.extract_targeted_pdf_text
 
-# Both links resolve to the issuer's own website. The base module still validates
-# host, PDF magic and company identity at runtime before accepting any fields.
+# These links resolve to the issuers' own websites. The base module still
+# validates host, PDF magic and company identity at runtime before accepting any
+# fields, and merge logic remains fill-only so official exchange/SEBI values win.
 base.ISSUER_DOCUMENTS.update(
     {
         "om-galaxy-limited": {
@@ -37,6 +38,14 @@ base.ISSUER_DOCUMENTS.update(
             "type": "RHP",
             "title": "Red Herring Prospectus",
             "sourcePage": "https://injectopolymers.in/",
+        },
+        "shakti-polytarp-limited": {
+            "company": "Shakti Polytarp Limited",
+            "url": "https://shaktipolytarp.com/wp-content/uploads/2025/10/DRHP_Shakti_29092025.pdf",
+            "host": "shaktipolytarp.com",
+            "type": "DRHP",
+            "title": "Draft Red Herring Prospectus",
+            "sourcePage": "https://shaktipolytarp.com/ipo-drhp-and-industry-report/",
         },
     }
 )
