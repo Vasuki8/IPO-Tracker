@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-09-14T04:08:07+05:30",
+  "generatedAt": "2026-09-14T04:14:19+05:30",
   "asOfDate": "2026-09-14",
   "recordCount": 1354,
-  "queueCount": 1038,
+  "queueCount": 1032,
   "priorityCounts": {
-    "P4 recent history (2y)": 131,
+    "P4 recent history (2y)": 125,
     "P5 historical backfill": 907
   },
   "fieldGapCounts": {
     "exchange.lotSize": 1024,
-    "exchange.issueSizeCr": 921,
+    "exchange.issueSizeCr": 914,
     "lifecycle.listingDate": 28,
-    "exchange.issueComposition": 22,
+    "exchange.issueComposition": 15,
     "exchange.priceBand": 13,
     "provenance.sources": 1
   },
@@ -182,91 +182,6 @@
       "profilePath": "ipo/pramodini/"
     },
     {
-      "id": "rajputana",
-      "company": "Rajputana Biodiesel Limited",
-      "symbol": "RAJPUTANA",
-      "stage": "listed",
-      "openDate": "2024-11-26",
-      "closeDate": "2024-11-28",
-      "listingDate": "2024-12-03",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/rajputana/"
-    },
-    {
-      "id": "c2c",
-      "company": "C2C Advanced Systems Limited",
-      "symbol": "C2C",
-      "stage": "listed",
-      "openDate": "2024-11-22",
-      "closeDate": "2024-11-26",
-      "listingDate": "2024-12-03",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/c2c/"
-    },
-    {
-      "id": "etml",
-      "company": "Emerald Tyre Manufacturers Limited",
-      "symbol": "ETML",
-      "stage": "listed",
-      "openDate": "2024-12-05",
-      "closeDate": "2024-12-09",
-      "listingDate": "2024-12-12",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/etml/"
-    },
-    {
-      "id": "ganeshin",
-      "company": "Ganesh Infraworld Limited",
-      "symbol": "GANESHIN",
-      "stage": "listed",
-      "openDate": "2024-11-29",
-      "closeDate": "2024-12-03",
-      "listingDate": "2024-12-06",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/ganeshin/"
-    },
-    {
       "id": "identical",
       "company": "Identical Brains Studios Limited",
       "symbol": "IDENTICAL",
@@ -307,69 +222,6 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/igil/"
-    },
-    {
-      "id": "nmsteel",
-      "company": "NewMalayalam Steel Limited",
-      "symbol": "NMSTEEL",
-      "stage": "listed",
-      "openDate": "2024-12-19",
-      "closeDate": "2024-12-23",
-      "listingDate": "2024-12-27",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/nmsteel/"
-    },
-    {
-      "id": "purpleuted",
-      "company": "Purple United Sales Limited",
-      "symbol": "PURPLEUTED",
-      "stage": "listed",
-      "openDate": "2024-12-11",
-      "closeDate": "2024-12-13",
-      "listingDate": "2024-12-18",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/purpleuted/"
-    },
-    {
-      "id": "sfml",
-      "company": "Supreme Facility Management Limited",
-      "symbol": "SFML",
-      "stage": "listed",
-      "openDate": "2024-12-11",
-      "closeDate": "2024-12-13",
-      "listingDate": "2024-12-18",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/sfml/"
     },
     {
       "id": "amcl",
@@ -1850,6 +1702,26 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/riit/"
+    },
+    {
+      "id": "rajputana",
+      "company": "Rajputana Biodiesel Limited",
+      "symbol": "RAJPUTANA",
+      "stage": "listed",
+      "openDate": "2024-11-26",
+      "closeDate": "2024-11-28",
+      "listingDate": "2024-12-03",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/rajputana/"
     },
     {
       "id": "rnpl",
@@ -6259,6 +6131,132 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/ckpproduct/"
+    },
+    {
+      "id": "cleducate",
+      "company": "CL Educate Limited",
+      "symbol": "CLEDUCATE",
+      "stage": "listed",
+      "openDate": "2017-03-20",
+      "closeDate": "2017-03-22",
+      "listingDate": "2017-03-31",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/cleducate/"
+    },
+    {
+      "id": "cmmipl",
+      "company": "CMM Infraprojects Limited",
+      "symbol": "CMMIPL",
+      "stage": "listed",
+      "openDate": "2017-09-29",
+      "closeDate": "2017-10-04",
+      "listingDate": "2017-10-12",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/cmmipl/"
+    },
+    {
+      "id": "csbbank",
+      "company": "CSB Bank Limited",
+      "symbol": "CSBBANK",
+      "stage": "listed",
+      "openDate": "2019-11-22",
+      "closeDate": "2019-11-26",
+      "listingDate": "2019-12-04",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/csbbank/"
+    },
+    {
+      "id": "cadsys",
+      "company": "Cadsys (India) Limited",
+      "symbol": "CADSYS",
+      "stage": "listed",
+      "openDate": "2017-09-21",
+      "closeDate": "2017-09-25",
+      "listingDate": "2017-10-04",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/cadsys/"
+    },
+    {
+      "id": "campus",
+      "company": "Campus Activewear Limited",
+      "symbol": "CAMPUS",
+      "stage": "listed",
+      "openDate": "2022-04-26",
+      "closeDate": "2022-04-28",
+      "listingDate": "2022-05-09",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/campus/"
+    },
+    {
+      "id": "canarys",
+      "company": "Canarys Automations Limited",
+      "symbol": "CANARYS",
+      "stage": "listed",
+      "openDate": "2023-09-27",
+      "closeDate": "2023-10-03",
+      "listingDate": "2023-10-11",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/canarys/"
     }
   ],
   "resolvedUnavailable": [

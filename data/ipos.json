@@ -385,16 +385,16 @@
       },
       "verified-p4-nse-issue-terms": {
         "ok": true,
-        "entries": 4,
-        "updated": 4,
+        "entries": 11,
+        "updated": 7,
         "rejected": 0,
         "fields": {
-          "issueSizeCr": 4,
-          "freshIssueCr": 4,
-          "ofsCr": 4,
-          "issueComposition": 4
+          "issueSizeCr": 7,
+          "freshIssueCr": 7,
+          "ofsCr": 7,
+          "issueComposition": 7
         },
-        "checkedAt": "2026-09-14T04:08:06+05:30"
+        "checkedAt": "2026-09-14T04:14:18+05:30"
       }
     },
     "errors": [],
@@ -44698,6 +44698,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=NMSTEEL&type=Past",
           "asOf": "2026-09-13T18:43:25+05:30"
+        },
+        {
+          "name": "NSE Emerge NewMalayalam Steel Prospectus",
+          "kind": "exchange",
+          "url": "https://nsearchives.nseindia.com/emerge/corporates/content/NewmalayalamSteelLimited_PROSP.pdf",
+          "asOf": "2026-09-14T04:14:18+05:30"
         }
       ],
       "source": {
@@ -44716,12 +44722,23 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4NSEIssueTerms": {
+          "issueSizeCr": 41.76,
+          "freshIssueCr": 41.76,
+          "ofsCr": 0.0,
+          "openDate": "2024-12-19",
+          "sourceUrls": [
+            "https://nsearchives.nseindia.com/emerge/corporates/content/NewmalayalamSteelLimited_PROSP.pdf"
+          ],
+          "sourceKind": "exchange",
+          "sourceBasis": "NSE final Prospectus: Rs 4,176.00 lakh fresh issue; offer for sale not applicable"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "checkedAt": "2026-09-14T04:14:18+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -44750,6 +44767,15 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
+      },
+      "issueSizeCr": 41.76,
+      "freshIssueCr": 41.76,
+      "ofsCr": 0.0,
+      "issueComposition": {
+        "freshIssueCr": 41.76,
+        "ofsCr": 0.0,
+        "totalIssueSizeCr": 41.76,
+        "sourceBasis": "NSE final Prospectus: Rs 4,176.00 lakh fresh issue; offer for sale not applicable"
       }
     },
     {
@@ -45442,6 +45468,18 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SFML&type=Past",
           "asOf": "2026-09-13T18:44:08+05:30"
+        },
+        {
+          "name": "NSE Supreme Facility Management IPO disclosures (1)",
+          "kind": "exchange",
+          "url": "https://nsearchives.nseindia.com/emerge/corporates/content/SupremeFacilityManagementLtd_DRHP.pdf",
+          "asOf": "2026-09-14T04:14:18+05:30"
+        },
+        {
+          "name": "NSE Supreme Facility Management IPO disclosures (2)",
+          "kind": "exchange",
+          "url": "https://nsearchives.nseindia.com/web/sites/default/files/inline-files/BASISOFALLOTMENT-Final_supereme.pdf",
+          "asOf": "2026-09-14T04:14:18+05:30"
         }
       ],
       "source": {
@@ -45460,12 +45498,24 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4NSEIssueTerms": {
+          "issueSizeCr": 50.0019,
+          "freshIssueCr": 50.0019,
+          "ofsCr": 0.0,
+          "openDate": "2024-12-11",
+          "sourceUrls": [
+            "https://nsearchives.nseindia.com/emerge/corporates/content/SupremeFacilityManagementLtd_DRHP.pdf",
+            "https://nsearchives.nseindia.com/web/sites/default/files/inline-files/BASISOFALLOTMENT-Final_supereme.pdf"
+          ],
+          "sourceKind": "exchange",
+          "sourceBasis": "NSE DRHP shows fresh issue/OFS nil; final basis fixes 65,79,200 shares at Rs 76 and Rs 5,000.19 lakh issue size"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "checkedAt": "2026-09-14T04:14:18+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -45494,6 +45544,15 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
+      },
+      "issueSizeCr": 50.0019,
+      "freshIssueCr": 50.0019,
+      "ofsCr": 0.0,
+      "issueComposition": {
+        "freshIssueCr": 50.0019,
+        "ofsCr": 0.0,
+        "totalIssueSizeCr": 50.0019,
+        "sourceBasis": "NSE DRHP shows fresh issue/OFS nil; final basis fixes 65,79,200 shares at Rs 76 and Rs 5,000.19 lakh issue size"
       }
     },
     {
@@ -45625,6 +45684,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=PURPLEUTED&type=Past",
           "asOf": "2026-09-13T18:44:19+05:30"
+        },
+        {
+          "name": "NSE Purple United Sales audited IPO proceeds filing",
+          "kind": "exchange",
+          "url": "https://nsearchives.nseindia.com/corporate/ixbrl/INTEGRATED_FILING_NONINDAS_93544_24052025143346_iXBRL_WEB.html",
+          "asOf": "2026-09-14T04:14:18+05:30"
         }
       ],
       "source": {
@@ -45643,12 +45708,23 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4NSEIssueTerms": {
+          "issueSizeCr": 32.8104,
+          "freshIssueCr": 32.8104,
+          "ofsCr": 0.0,
+          "openDate": "2024-12-11",
+          "sourceUrls": [
+            "https://nsearchives.nseindia.com/corporate/ixbrl/INTEGRATED_FILING_NONINDAS_93544_24052025143346_iXBRL_WEB.html"
+          ],
+          "sourceKind": "exchange",
+          "sourceBasis": "NSE audited filing: Rs 3,281.04 lakh gross proceeds from fresh IPO issue"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "checkedAt": "2026-09-14T04:14:18+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -45677,6 +45753,15 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
+      },
+      "issueSizeCr": 32.8104,
+      "freshIssueCr": 32.8104,
+      "ofsCr": 0.0,
+      "issueComposition": {
+        "freshIssueCr": 32.8104,
+        "ofsCr": 0.0,
+        "totalIssueSizeCr": 32.8104,
+        "sourceBasis": "NSE audited filing: Rs 3,281.04 lakh gross proceeds from fresh IPO issue"
       }
     },
     {
@@ -45892,6 +45977,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=ETML&type=Past",
           "asOf": "2026-09-13T18:44:36+05:30"
+        },
+        {
+          "name": "NSE Emerge Emerald Tyre Manufacturers Prospectus",
+          "kind": "exchange",
+          "url": "https://nsearchives.nseindia.com/emerge/corporates/content/EmeraldTyreManufacturersLimited_PROSP.pdf",
+          "asOf": "2026-09-14T04:14:18+05:30"
         }
       ],
       "source": {
@@ -45910,12 +46001,23 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4NSEIssueTerms": {
+          "issueSizeCr": 49.2594,
+          "freshIssueCr": 47.367,
+          "ofsCr": 1.8924,
+          "openDate": "2024-12-05",
+          "sourceUrls": [
+            "https://nsearchives.nseindia.com/emerge/corporates/content/EmeraldTyreManufacturersLimited_PROSP.pdf"
+          ],
+          "sourceKind": "exchange",
+          "sourceBasis": "NSE final Prospectus: Rs 4,736.70 lakh fresh offer plus Rs 189.24 lakh OFS"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "checkedAt": "2026-09-14T04:14:18+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -45944,6 +46046,15 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
+      },
+      "issueSizeCr": 49.2594,
+      "freshIssueCr": 47.367,
+      "ofsCr": 1.8924,
+      "issueComposition": {
+        "freshIssueCr": 47.367,
+        "ofsCr": 1.8924,
+        "totalIssueSizeCr": 49.2594,
+        "sourceBasis": "NSE final Prospectus: Rs 4,736.70 lakh fresh offer plus Rs 189.24 lakh OFS"
       }
     },
     {
@@ -46082,6 +46193,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=GANESHIN&type=Past",
           "asOf": "2026-09-13T18:44:47+05:30"
+        },
+        {
+          "name": "NSE Emerge Ganesh Infraworld Prospectus",
+          "kind": "exchange",
+          "url": "https://nsearchives.nseindia.com/emerge/corporates/content/GaneshInfraworldLimited_PROSP.pdf",
+          "asOf": "2026-09-14T04:14:18+05:30"
         }
       ],
       "source": {
@@ -46100,12 +46217,23 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4NSEIssueTerms": {
+          "issueSizeCr": 98.5774,
+          "freshIssueCr": 98.5774,
+          "ofsCr": 0.0,
+          "openDate": "2024-11-29",
+          "sourceUrls": [
+            "https://nsearchives.nseindia.com/emerge/corporates/content/GaneshInfraworldLimited_PROSP.pdf"
+          ],
+          "sourceKind": "exchange",
+          "sourceBasis": "NSE final Prospectus: fresh issue Rs 9,857.74 lakh; offer for sale nil"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "checkedAt": "2026-09-14T04:14:18+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -46134,6 +46262,15 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
+      },
+      "issueSizeCr": 98.5774,
+      "freshIssueCr": 98.5774,
+      "ofsCr": 0.0,
+      "issueComposition": {
+        "freshIssueCr": 98.5774,
+        "ofsCr": 0.0,
+        "totalIssueSizeCr": 98.5774,
+        "sourceBasis": "NSE final Prospectus: fresh issue Rs 9,857.74 lakh; offer for sale nil"
       }
     },
     {
@@ -46495,6 +46632,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:28+05:30"
+        },
+        {
+          "name": "NSE Rajputana Biodiesel audited IPO proceeds filing",
+          "kind": "exchange",
+          "url": "https://nsearchives.nseindia.com/corporate/ixbrl/INTEGRATED_FILING_NONINDAS_93925_26052025190829_iXBRL_WEB.html",
+          "asOf": "2026-09-14T04:14:18+05:30"
         }
       ],
       "source": {
@@ -46513,12 +46656,23 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4NSEIssueTerms": {
+          "issueSizeCr": 24.7,
+          "freshIssueCr": 24.7,
+          "ofsCr": 0.0,
+          "openDate": "2024-11-26",
+          "sourceUrls": [
+            "https://nsearchives.nseindia.com/corporate/ixbrl/INTEGRATED_FILING_NONINDAS_93925_26052025190829_iXBRL_WEB.html"
+          ],
+          "sourceKind": "exchange",
+          "sourceBasis": "NSE audited filing: company raised Rs 24.70 crore by issuing 19,00,000 shares; full proceeds allocated to issuer objects"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "checkedAt": "2026-09-14T04:14:18+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -46544,6 +46698,15 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
+      },
+      "issueSizeCr": 24.7,
+      "freshIssueCr": 24.7,
+      "ofsCr": 0.0,
+      "issueComposition": {
+        "freshIssueCr": 24.7,
+        "ofsCr": 0.0,
+        "totalIssueSizeCr": 24.7,
+        "sourceBasis": "NSE audited filing: company raised Rs 24.70 crore by issuing 19,00,000 shares; full proceeds allocated to issuer objects"
       }
     },
     {
@@ -46786,6 +46949,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=C2C&type=Past",
           "asOf": "2026-09-13T18:45:25+05:30"
+        },
+        {
+          "name": "NSE Emerge C2C Advanced Systems Prospectus",
+          "kind": "exchange",
+          "url": "https://nsearchives.nseindia.com/emerge/corporates/content/C2CAdvancedSystemsLimited_PROSP.pdf",
+          "asOf": "2026-09-14T04:14:18+05:30"
         }
       ],
       "source": {
@@ -46804,12 +46973,23 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4NSEIssueTerms": {
+          "issueSizeCr": 99.0694,
+          "freshIssueCr": 99.0694,
+          "ofsCr": 0.0,
+          "openDate": "2024-11-22",
+          "sourceUrls": [
+            "https://nsearchives.nseindia.com/emerge/corporates/content/C2CAdvancedSystemsLimited_PROSP.pdf"
+          ],
+          "sourceKind": "exchange",
+          "sourceBasis": "NSE final Prospectus: Rs 9,906.94 lakh fresh issue; offer for sale nil"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "checkedAt": "2026-09-14T04:14:18+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -46838,6 +47018,15 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
+      },
+      "issueSizeCr": 99.0694,
+      "freshIssueCr": 99.0694,
+      "ofsCr": 0.0,
+      "issueComposition": {
+        "freshIssueCr": 99.0694,
+        "ofsCr": 0.0,
+        "totalIssueSizeCr": 99.0694,
+        "sourceBasis": "NSE final Prospectus: Rs 9,906.94 lakh fresh issue; offer for sale nil"
       }
     },
     {
