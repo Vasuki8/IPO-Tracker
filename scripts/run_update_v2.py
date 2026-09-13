@@ -2,9 +2,9 @@
 """Core updater v2 with aggregate BSE + BSE SME current-issue coverage.
 
 The original quality-gated updater remains authoritative for NSE/SEBI merging and
-validation. This wrapper only widens the BSE current-issue collector so a BSE-SME
-only IPO cannot disappear merely because the main BSE public-issues page is the
-first healthy endpoint.
+validation. This wrapper widens the BSE current-issue collector and guards NSE's
+broad historical public-issues feed so debt/NCD rows cannot contaminate the IPO
+database or the P4 recent-history repair queue.
 """
 from __future__ import annotations
 
@@ -20,8 +20,10 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 import run_update as gated  # noqa: E402
+import p4_history_guard as p4_guard  # noqa: E402
 
 core = gated.core
+p4_guard.install(core)
 BSE_SME_CURRENT_URL = "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2"
 
 
@@ -197,10 +199,17 @@ merge_non_null = gated.merge_non_null
 merge_fill_only = gated.merge_fill_only
 build_validation = gated.build_validation
 clean_existing_record = gated.clean_existing_record
+classify_nse_historical_issue = p4_guard.classify_nse_historical_issue
+record_matches_excluded = p4_guard.record_matches_excluded
+excluded_identity = p4_guard.excluded_identity
 
 
 def main() -> int:
-    return gated.main()
+    p4_guard.reset_state()
+    result = gated.main()
+    if result == 0:
+        p4_guard.prune_excluded_from_data(core)
+    return result
 
 
 if __name__ == "__main__":
