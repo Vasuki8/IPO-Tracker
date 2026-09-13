@@ -98,18 +98,19 @@ jobs:
       - name: Apply verified P4 fast path
         shell: bash
         run: |
-          # Apply deterministic/source-registered repairs first. Verified offer
-          # documents are deliberately bounded because deep extraction can scan
-          # hundreds of pages per issuer. The first eight-document production
-          # batch completed comfortably inside the 35-minute job, so process ten
-          # per pass while keeping current-parser successes out of repeat scans.
-          # A parser-version or document-URL change automatically re-enables them.
+          # Apply deterministic/source-registered repairs before expensive PDF
+          # scanning, then rebuild the queue so already-resolved offer records
+          # do not consume a bounded issuer-document slot. Verified documents
+          # remain capped at ten per pass because deep extraction can inspect
+          # hundreds of pages per issuer. Current-parser successes are skipped;
+          # a parser-version or document-URL change automatically re-enables them.
           uv run python scripts/apply_p4_record_repairs_v2.py
           uv run python scripts/apply_verified_lot_sizes.py
           uv run python scripts/apply_verified_recent_issue_terms.py
-          uv run python scripts/run_issuer_offer_docs_v4.py --priority-max 4 --limit 10
           uv run python scripts/apply_verified_offer_residuals_v2.py
           uv run python scripts/apply_verified_offer_shareholding_residuals.py
+          uv run python scripts/build_missing_queue.py
+          uv run python scripts/run_issuer_offer_docs_v4.py --priority-max 4 --limit 10
           uv run python scripts/audit_data_completeness.py
           uv run python scripts/build_missing_queue.py
 
