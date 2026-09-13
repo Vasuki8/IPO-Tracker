@@ -31,6 +31,30 @@ class IssuerOfferDocsV4Tests(unittest.TestCase):
             self.assertTrue(entry["url"].endswith(pdf_name))
             self.assertTrue(entry["sourcePage"].startswith("https://www.sebi.gov.in/filings/public-issues/"))
 
+    def test_new_official_nse_fallbacks(self):
+        expected = {
+            "ardee": (
+                "Ardee Industries Limited",
+                "DRHP",
+                "Registration_29092025064558_Ardee_Industries_Limited.pdf",
+            ),
+            "powerica": (
+                "Powerica Limited",
+                "Prospectus",
+                "FP_INE921L01032_30MAR2026.pdf",
+            ),
+        }
+        for record_id, (company, doc_type, pdf_name) in expected.items():
+            entry = mod.base.ISSUER_DOCUMENTS[record_id]
+            self.assertEqual(entry["company"], company)
+            self.assertEqual(entry["host"], "nsearchives.nseindia.com")
+            self.assertEqual(entry["type"], doc_type)
+            self.assertEqual(entry["extractionSource"], "NSE")
+            self.assertEqual(entry["documentSource"], "NSE")
+            self.assertEqual(entry["sourceKind"], "exchange-filing")
+            self.assertTrue(entry["url"].endswith(pdf_name))
+            self.assertEqual(entry["sourcePage"], entry["url"])
+
     def test_duplicate_id_selects_exact_registered_issuer(self):
         payload = {
             "ipos": [
