@@ -1,4 +1,4 @@
-name: Validate Phase 4.5B parser v8
+name: Validate Phase 4.5B parser v9
 
 on:
   push:
@@ -11,13 +11,13 @@ permissions:
   contents: read
 
 concurrency:
-  group: phase45b-v8-ci
+  group: phase45b-v9-ci
   cancel-in-progress: true
 
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 35
     steps:
       - name: Checkout
         uses: actions/checkout@v7.0.1
@@ -33,25 +33,50 @@ jobs:
       - name: Sync dependencies
         run: uv sync
 
-      - name: Run parser v8 regression tests
+      - name: Run parser v9 regression tests
+        run: uv run python -m unittest discover -s tests -p "test_offer_docs_v9.py" -v
+
+      - name: Run parser v8 regressions
         run: uv run python -m unittest discover -s tests -p "test_offer_docs_v8.py" -v
 
-      - name: Run parser v7 regressions
-        run: uv run python -m unittest discover -s tests -p "test_offer_docs_v7.py" -v
+      - name: Run SEBI document-link regressions
+        run: uv run python -m unittest discover -s tests -p "test_sebi_document_links.py" -v
 
-      - name: Run parser v6 regressions
-        run: uv run python -m unittest discover -s tests -p "test_offer_docs_v6.py" -v
-
-      - name: Preview v8 enrichment coverage without publishing
+      - name: Preview canonical RHP recovery and v9 enrichment without publishing
         shell: bash
         run: |
-          uv run python scripts/run_offer_docs_v8.py --limit 0
+          uv run python scripts/enrich_sebi_document_links.py --priority-max 2 --limit 0
+          uv run python - <<'PY'
+          import json
+          from pathlib import Path
+          payload = json.loads(Path("data/ipos.json").read_text(encoding="utf-8"))
+          for row in payload.get("ipos") or []:
+              if row.get("id") not in {"rentomojo", "prasolchem"}:
+                  continue
+              print("DOCS", row.get("id"))
+              for doc in row.get("documents") or []:
+                  if doc.get("source") == "SEBI":
+                      print(doc.get("type"), doc.get("title"), doc.get("filedDate"), doc.get("url"))
+          PY
+          uv run python scripts/run_offer_docs_v9.py --limit 0
           uv run python scripts/audit_data_completeness.py
           uv run python - <<'PY'
           import json
           from pathlib import Path
 
+          payload = json.loads(Path("data/ipos.json").read_text(encoding="utf-8"))
           audit = json.loads(Path("data/completeness.json").read_text(encoding="utf-8"))
-          stat = audit["coverage"]["offerDocumentEligible"]["promoterShareholding"]
-          print("PROMOTER_SHAREHOLDING_COVERAGE", json.dumps(stat, sort_keys=True))
+          print("OFFER_DOC_SCORE", audit["scores"]["offerDocumentEligible"])
+          print("PROMOTER_SHAREHOLDING_COVERAGE", json.dumps(audit["coverage"]["offerDocumentEligible"]["promoterShareholding"], sort_keys=True))
+          for row in payload.get("ipos") or []:
+              if row.get("id") in {"rentomojo", "prasolchem"}:
+                  print(
+                      "FIELDS",
+                      row.get("id"),
+                      "registrar=", bool(row.get("registrar")),
+                      "financials=", bool(row.get("financials")),
+                      "shareholding=", row.get("promoterShareholding"),
+                      "objects=", bool(row.get("objectsOfIssue")),
+                      "extraction=", row.get("offerDocumentExtraction"),
+                  )
           PY
