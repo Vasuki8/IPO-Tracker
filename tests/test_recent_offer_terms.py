@@ -65,6 +65,14 @@ class RecentOfferTermsTests(unittest.TestCase):
         chosen = mod.choose_full_document(record)
         self.assertIn("example-prospectus.pdf", chosen["url"])
 
+    def test_lot_only_requires_final_prospectus(self):
+        gaps = {"exchange.lotSize"}
+        rhp = {"type": "RHP"}
+        prospectus = {"type": "PROSPECTUS"}
+        self.assertFalse(mod.should_attempt_document(gaps, rhp))
+        self.assertTrue(mod.should_attempt_document(gaps, prospectus))
+        self.assertTrue(mod.should_attempt_document({"exchange.lotSize", "exchange.issueComposition"}, rhp))
+
     def test_supplemental_document_is_not_selected(self):
         record = {
             "documents": [
