@@ -95,14 +95,14 @@
         "records": 0,
         "attemptedRecords": 0,
         "attempted": 0,
-        "asOf": "2026-09-14T02:45:52+05:30",
+        "asOf": "2026-09-14T03:08:53+05:30",
         "errors": []
       },
       "Offer-docs": {
-        "ok": true,
-        "records": 12,
+        "ok": false,
+        "records": 11,
         "attempted": 12,
-        "failed": 0,
+        "failed": 1,
         "parserVersion": 13,
         "schedulerVersion": 1
       },
@@ -145,7 +145,7 @@
         "searchMatchedRecords": 0,
         "searchLinksAdded": 0,
         "failed": 0,
-        "asOf": "2026-09-14T02:45:52+05:30",
+        "asOf": "2026-09-14T03:08:53+05:30",
         "errors": []
       },
       "SEBI-offer-terms": {
@@ -334,15 +334,17 @@
     },
     "errors": [],
     "offerDocumentHealth": {
-      "ok": true,
+      "ok": false,
       "attempted": 12,
-      "extracted": 12,
-      "failed": 0,
-      "eligibleRemaining": 23,
+      "extracted": 11,
+      "failed": 1,
+      "eligibleRemaining": 12,
       "parserVersion": 13,
       "schedulerVersion": 1,
-      "asOf": "2026-09-14T02:56:10+05:30",
-      "errors": []
+      "asOf": "2026-09-14T03:14:30+05:30",
+      "errors": [
+        "Lohia Corp Limited: PDF too large (22002332 bytes)"
+      ]
     },
     "subscriptionHealth": {
       "ok": true,
@@ -400,7 +402,7 @@
       "seededPages": 0,
       "linksAdded": 0,
       "failed": 0,
-      "asOf": "2026-09-14T02:45:52+05:30",
+      "asOf": "2026-09-14T03:08:53+05:30",
       "errors": []
     },
     "criticalBackfillHealth": {
@@ -12871,6 +12873,17 @@
             "min": 560.0,
             "max": 590.0
           }
+        },
+        "SEBI-offer": {
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1785732646843.pdf",
+          "documentType": "PROSPECTUS",
+          "documentFiledDate": "2026-08-03",
+          "parserVersion": 13,
+          "lotSize": 25,
+          "priceBand": {
+            "min": 560.0,
+            "max": 590.0
+          }
         }
       },
       "documents": [
@@ -12917,6 +12930,7 @@
       "ofsCr": 15.0,
       "issueSizeCr": 8015.0,
       "issueComposition": {
+        "freshShares": null,
         "ofsShares": 10808861,
         "freshIssueCr": 100.0,
         "ofsCr": 637.72,
@@ -13039,6 +13053,30 @@
         ],
         "extractedAt": "2026-09-14T03:00:58+05:30",
         "source": "SEBI"
+      },
+      "offerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 13,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1785732646843.pdf",
+        "documentType": "PROSPECTUS",
+        "documentTitle": "SEBI PROSPECTUS",
+        "documentFiledDate": "2026-08-03",
+        "sha256": "f858d9be21b0a92ba8b71e79f6a32f6bf8dba607643f5bffb6f7a2a0317b208c",
+        "pagesRead": 520,
+        "pageCount": 717,
+        "extractedFields": [
+          "leadManagers",
+          "registrar",
+          "promoters",
+          "issueComposition",
+          "financials",
+          "objectsOfIssue",
+          "shareholding",
+          "lotSize",
+          "priceBand"
+        ],
+        "extractedAt": "2026-09-14T03:10:24+05:30",
+        "source": "SEBI"
       }
     },
     {
@@ -13095,6 +13133,13 @@
           "documentFiledDate": null,
           "parserVersion": 13,
           "source": "SEBI",
+          "lotSize": 4000
+        },
+        "SEBI-offer": {
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1785404948142.pdf",
+          "documentType": "PROSPECTUS",
+          "documentFiledDate": "2026-07-30",
+          "parserVersion": 13,
           "lotSize": 4000
         }
       },
@@ -13279,7 +13324,30 @@
         "extractedAt": "2026-09-14T02:14:43+05:30",
         "source": "SEBI"
       },
-      "lotSize": 4000
+      "lotSize": 4000,
+      "offerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 13,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1785404948142.pdf",
+        "documentType": "PROSPECTUS",
+        "documentTitle": "SEBI PROSPECTUS",
+        "documentFiledDate": "2026-07-30",
+        "sha256": "42afe3d9632e44060c47896e3e5188b7a8a548f4a39dddbbeeeddaf16e7d8204",
+        "pagesRead": 443,
+        "pageCount": 443,
+        "extractedFields": [
+          "leadManagers",
+          "registrar",
+          "promoters",
+          "issueComposition",
+          "financials",
+          "objectsOfIssue",
+          "shareholding",
+          "lotSize"
+        ],
+        "extractedAt": "2026-09-14T03:11:21+05:30",
+        "source": "SEBI"
+      }
     },
     {
       "id": "xtranet",
@@ -13620,6 +13688,15 @@
         ],
         "extractedAt": "2026-09-14T02:59:30+05:30",
         "source": "SEBI"
+      },
+      "offerDocumentExtraction": {
+        "status": "error",
+        "parserVersion": 13,
+        "schedulerVersion": 1,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1785231911524.pdf",
+        "lastAttemptAt": "2026-09-14T03:11:22+05:30",
+        "error": "PDF too large (22002332 bytes)",
+        "source": "SEBI"
       }
     },
     {
@@ -13725,11 +13802,11 @@
       "freshIssueCr": 500.9,
       "ofsCr": 3312.1146,
       "issueComposition": {
-        "freshShares": 10327835,
+        "freshShares": 68291022,
         "ofsShares": 68291022,
-        "freshIssueCr": 500.9,
-        "ofsCr": 3312.1146,
-        "totalIssueSizeCr": 3812.11,
+        "freshIssueCr": 500.0,
+        "ofsCr": 500.0,
+        "totalIssueSizeCr": 500.0,
         "valuationPriceUsed": 485.0
       },
       "lotSize": 30,
@@ -13746,94 +13823,102 @@
       "registrar": "Formerly Link Intime India Private Limited",
       "leadManagers": [
         "BSE Limited",
-        "India Limited",
-        "MANAGERS NAMES AND LOGOS OF THE BRLMS HDFC Bank Limited"
+        "India Limited"
       ],
       "promoters": [
-        "Our Promoters currently hold an aggregate of 444",
-        "491",
-        "587 Equity Shares of face value of"
+        "GREEN MEADOWS INVESTMENTS LTD",
+        "KRISHNA CHIVUKULA",
+        "KRISHNA CHIVUKULA JR",
+        "RAJ CHIVUKULA AND"
       ],
       "financials": {
         "unit": "₹ crore",
         "periods": [
           {
             "period": "FY2026",
-            "revenueCr": 202.6,
+            "revenueCr": 4192.985,
             "ebitdaCr": 1070.923,
-            "netWorthCr": 3.1,
-            "ronwPct": 31.0,
+            "netWorthCr": 2819.554,
+            "ronwPct": 21.26,
             "roePct": 21.26,
-            "eps": 31.0,
+            "eps": 11.06,
             "patCr": 533.543
           },
           {
             "period": "FY2025",
-            "revenueCr": 3.1,
+            "revenueCr": 3329.577,
             "ebitdaCr": 932.597,
-            "netWorthCr": 202.6,
-            "ronwPct": 2026.0,
+            "netWorthCr": 2199.434,
+            "ronwPct": 19.94,
             "roePct": 19.94,
-            "eps": 2026.0,
+            "eps": 8.79,
             "patCr": 423.734
           },
           {
             "period": "FY2024",
-            "revenueCr": 202.6,
+            "revenueCr": 2870.395,
             "ebitdaCr": 743.462,
-            "netWorthCr": 2.126,
-            "ronwPct": 21.26,
+            "netWorthCr": 2050.511,
+            "ronwPct": 14.01,
             "roePct": 14.01,
-            "eps": 11.06,
+            "eps": 5.89,
             "patCr": 283.734
           }
         ]
       },
       "objectsOfIssue": [
         {
-          "purpose": "BASIS FOR OFFER PRICE",
-          "amountCr": 132.0
+          "purpose": "Repayment/ prepayment, in full or part, of all or certain outstanding borrowings availed by our Company",
+          "amountCr": 400.0
         },
         {
-          "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
-          "amountCr": 141.0
+          "purpose": "1 Green Meadows Investments Ltd^ 437,886,732 90.44% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "SECTION IV: ABOUT OUR COMPANY",
-          "amountCr": 151.0
+          "purpose": "2 Krishna Chivukula 994,735 0.21% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "INDUSTRY OVERVIEW",
-          "amountCr": 151.0
+          "purpose": "3 Krishna Chivukula Jr. Nil Nil [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "OUR BUSINESS",
-          "amountCr": 192.0
+          "purpose": "4 Raj Chivukula Nil Nil [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "KEY REGULATIONS AND POLICIES",
-          "amountCr": 217.0
+          "purpose": "5 Jagadamba Chandrasekhar 5,610,120 1.16% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
-          "amountCr": 226.0
+          "purpose": "1 Anuradha Koduri^ 5,459,000 1.13% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "OUR MANAGEMENT",
-          "amountCr": 237.0
+          "purpose": "4,615,385 0.95% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
-          "amountCr": 258.0
+          "purpose": "2 Parasuraman Balasubramanian 2,412,000 0.50% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "DIVIDEND POLICY",
-          "amountCr": 266.0
+          "purpose": "3 Ajeet Khare 2,400,000 0.50% [●] [●] [●]",
+          "amountCr": null
+        },
+        {
+          "purpose": "4 T.S. Shivashankar 2,012,000 0.42% [●] [●] [●]",
+          "amountCr": null
+        },
+        {
+          "purpose": "5 Jagadish Govindrao Holla 2,000,000 0.41% [●] [●] [●]",
+          "amountCr": null
         }
       ],
       "shareholding": {
         "promoters": [],
-        "promoterPreIssuePct": 91.81
+        "promoterPreIssuePct": 92.94
       },
       "issuerDocumentExtraction": {
         "status": "extracted",
@@ -13863,6 +13948,28 @@
           "shareholding"
         ],
         "extractedAt": "2026-09-14T02:40:50+05:30",
+        "source": "SEBI"
+      },
+      "offerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 13,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/Indo-MIM%20Limited%20%20-%20AP_p.pdf",
+        "documentType": "RHP",
+        "documentTitle": "Indo-MIM Limited - Abridged prospectus",
+        "documentFiledDate": "2026-07-17",
+        "sha256": "c31e59e469f9cec5ef4d649ef7cfa604f0934de1d6ba4436049bf46809587be1",
+        "pagesRead": 8,
+        "pageCount": 8,
+        "extractedFields": [
+          "leadManagers",
+          "registrar",
+          "promoters",
+          "issueComposition",
+          "financials",
+          "objectsOfIssue",
+          "shareholding"
+        ],
+        "extractedAt": "2026-09-14T03:11:25+05:30",
         "source": "SEBI"
       }
     },
@@ -14177,11 +14284,11 @@
       "freshIssueCr": 400.0,
       "ofsCr": 49.9999,
       "issueComposition": {
-        "freshShares": 9433962,
-        "ofsShares": 1179244,
+        "freshShares": null,
+        "ofsShares": null,
         "freshIssueCr": 400.0,
-        "ofsCr": 49.9999,
-        "totalIssueSizeCr": 450.0,
+        "ofsCr": 400.0,
+        "totalIssueSizeCr": 400.0,
         "valuationPriceUsed": 424.0
       },
       "lotSize": 35,
@@ -14195,99 +14302,101 @@
         "lotSize": 35,
         "error": null
       },
-      "registrar": "CONTACT PERSON TELEPHONE AND EMAIL KFin Technologies Limited",
+      "registrar": "AND LOGO CONTACT PERSON TELEPHONE AND EMAIL KFin Technologies Limited",
       "leadManagers": [
         "BSE Limited",
         "India Limited",
-        "BRLM CONTACT PERSON TELEPHONE AND EMAIL DAM Capital Advisors Limited"
+        "LOGO CONTACT PERSON TELEPHONE AND EMAIL DAM Capital Advisors Limited"
       ],
       "promoters": [
-        "namely",
-        "Mohit Satishkumar Chadda",
-        "Anuj Krishanlal"
+        "ARE MOHIT SATISHKUMAR CHADDA",
+        "ANUJ KRISHANLAL CHADDA"
       ],
       "financials": {
         "unit": "₹ crore",
         "periods": [
           {
-            "period": "FY2023",
-            "revenueCr": 4.77,
-            "ebitdaCr": 20.23,
-            "patCr": 157.9004,
-            "netWorthCr": 0.31,
-            "ronwPct": 24.38
-          },
-          {
             "period": "FY2026",
-            "revenueCr": 0.31,
-            "ebitdaCr": 20.26,
-            "patCr": 131.5488,
-            "netWorthCr": 20.26,
-            "ronwPct": 26.89
+            "revenueCr": 1677.6609,
+            "ebitdaCr": 437.9147,
+            "patCr": 157.9004,
+            "netWorthCr": 647.5431,
+            "ronwPct": 24.38,
+            "eps": 29.47
           },
           {
             "period": "FY2025",
-            "revenueCr": 20.26,
-            "ebitdaCr": 20.25,
-            "patCr": 95.9016,
-            "netWorthCr": 0.31,
-            "ronwPct": 32.41
+            "revenueCr": 1430.4038,
+            "ebitdaCr": 354.9292,
+            "patCr": 131.5488,
+            "netWorthCr": 489.2971,
+            "ronwPct": 26.89,
+            "eps": 24.55
           },
           {
             "period": "FY2024",
-            "revenueCr": 20.25,
-            "ebitdaCr": 20.24,
-            "patCr": 1404.0943,
-            "netWorthCr": 20.25,
-            "ronwPct": 2026.0
+            "revenueCr": 953.116,
+            "ebitdaCr": 247.9523,
+            "patCr": 95.9016,
+            "netWorthCr": 295.9338,
+            "ronwPct": 32.41,
+            "eps": 18.8
           }
         ]
       },
       "objectsOfIssue": [
         {
-          "purpose": "BASIS OF OFFER PRICE",
-          "amountCr": 176.0
+          "purpose": "0 34.00% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
-          "amountCr": 194.0
+          "purpose": "0 24.09% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "SECTION IV– ABOUT THE COMPANY",
-          "amountCr": 199.0
+          "purpose": "0 18.50% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "INDUSTRY OVERVIEW",
-          "amountCr": 199.0
+          "purpose": "66,80,000 11.94% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "OUR BUSINESS",
-          "amountCr": 297.0
+          "purpose": "Chadda 1,20,000 0.21% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "KEY REGULATIONS AND POLICIES",
-          "amountCr": 334.0
+          "purpose": "0 88.75% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
-          "amountCr": 346.0
+          "purpose": "1,20,000 0.21% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "OUR MANAGEMENT",
-          "amountCr": 362.0
+          "purpose": "Chachra 1,20,000 0.21% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
-          "amountCr": 385.0
+          "purpose": "1,20,000 0.21% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "DIVIDEND POLICY",
-          "amountCr": 392.0
+          "purpose": "1,20,000 0.21% [●] [●] [●]",
+          "amountCr": null
+        },
+        {
+          "purpose": "1,20,000 0.21% [●] [●] [●]",
+          "amountCr": null
+        },
+        {
+          "purpose": "1,20,000 0.21% [●] [●] [●]",
+          "amountCr": null
         }
       ],
       "shareholding": {
         "promoters": [],
-        "promoterPreIssuePct": 88.79
+        "promoterPreIssuePct": 2.15
       },
       "issuerDocumentExtraction": {
         "status": "extracted",
@@ -14319,6 +14428,28 @@
           "shareholding"
         ],
         "extractedAt": "2026-09-14T02:34:44+05:30",
+        "source": "SEBI"
+      },
+      "offerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 13,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/Caliber%20Mining%20and%20Logistics%20Limited%20-%20Abridged%20Prospectus_p.pdf",
+        "documentType": "RHP",
+        "documentTitle": "CALIBER MINING AND LOGISTICS LIMITED - Abridged Prospectus",
+        "documentFiledDate": "2026-07-14",
+        "sha256": "52d8e9901e24a8feb705f9346acd6237866145f2a07a499241bd737afcebcf84",
+        "pagesRead": 17,
+        "pageCount": 17,
+        "extractedFields": [
+          "leadManagers",
+          "registrar",
+          "promoters",
+          "issueComposition",
+          "financials",
+          "objectsOfIssue",
+          "shareholding"
+        ],
+        "extractedAt": "2026-09-14T03:11:29+05:30",
         "source": "SEBI"
       }
     },
@@ -14484,6 +14615,17 @@
             "min": 100.0,
             "max": 105.0
           }
+        },
+        "SEBI-offer": {
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1786621533716.pdf",
+          "documentType": "Prospectus",
+          "documentFiledDate": null,
+          "parserVersion": 13,
+          "lotSize": 142,
+          "priceBand": {
+            "min": 100.0,
+            "max": 105.0
+          }
         }
       },
       "documents": [
@@ -14527,11 +14669,11 @@
       "freshIssueCr": 126.252,
       "ofsCr": 0.0,
       "issueComposition": {
-        "freshShares": 12024000,
-        "ofsShares": 0,
-        "freshIssueCr": 126.252,
-        "ofsCr": 0.0,
-        "totalIssueSizeCr": 126.25,
+        "freshShares": null,
+        "ofsShares": null,
+        "freshIssueCr": null,
+        "ofsCr": null,
+        "totalIssueSizeCr": null,
         "valuationPriceUsed": 105.0
       },
       "lotSize": 142,
@@ -14666,6 +14808,30 @@
           "shareholding"
         ],
         "extractedAt": "2026-09-14T02:17:42+05:30",
+        "source": "SEBI"
+      },
+      "offerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 13,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1786621533716.pdf",
+        "documentType": "Prospectus",
+        "documentTitle": "Prospectus",
+        "documentFiledDate": null,
+        "sha256": "207f35afa6d43583eca64f55e727b12077812fb667d283d3d6e99eec9a04c4ee",
+        "pagesRead": 494,
+        "pageCount": 494,
+        "extractedFields": [
+          "leadManagers",
+          "registrar",
+          "promoters",
+          "issueComposition",
+          "financials",
+          "objectsOfIssue",
+          "shareholding",
+          "lotSize",
+          "priceBand"
+        ],
+        "extractedAt": "2026-09-14T03:12:27+05:30",
         "source": "SEBI"
       }
     },
@@ -14980,10 +15146,10 @@
       "freshIssueCr": 0.0,
       "ofsCr": 650.3446,
       "issueComposition": {
-        "freshShares": 0,
-        "ofsShares": 15521350,
-        "freshIssueCr": 0.0,
-        "ofsCr": 650.3446,
+        "freshShares": null,
+        "ofsShares": 0,
+        "freshIssueCr": 650.0,
+        "ofsCr": 650.0,
         "totalIssueSizeCr": 650.0,
         "valuationPriceUsed": 419.0
       },
@@ -15005,13 +15171,13 @@
         "IIFL Securities Limited",
         "Motilal Oswal Investment Advisors Limited",
         "OFFER NAME CONTACT PERSON TELEPHONE AND EMAIL Bigshare Services Private Limited",
-        "Kusumgar Private Limited",
-        "Kusumgar Finstocks Private Limited",
-        "Kusumgar Corporates Private Limited",
-        "Kusumgar Limited"
+        "India Limited",
+        "BSE Limited"
       ],
       "promoters": [
-        "in terms of Regulation 2(1)(oo) of the SEBI ICDR Regulations. For details"
+        "are Yogesh Kantilal Kusumgar",
+        "Siddharth Yogesh Kusumgar",
+        "Sapna Siddharth Kusumgar"
       ],
       "financials": {
         "unit": "₹ crore",
@@ -15020,74 +15186,82 @@
             "period": "FY2026",
             "revenueCr": 692.003,
             "ebitdaCr": 187.85,
-            "patCr": 111.988,
-            "netWorthCr": 202.6,
-            "ronwPct": 2026.0,
+            "patCr": 98.2,
+            "netWorthCr": 502.954,
+            "ronwPct": 19.52,
             "roePct": 25.82,
-            "eps": 2026.0
+            "eps": 9.68
           },
           {
             "period": "FY2025",
             "revenueCr": 778.997,
             "ebitdaCr": 188.389,
-            "patCr": 202.5,
-            "netWorthCr": 2.582,
-            "ronwPct": 25.82,
+            "patCr": 111.988,
+            "netWorthCr": 257.752,
+            "ronwPct": 43.45,
             "roePct": 56.26,
-            "eps": 9.68
+            "eps": 11.03
           },
           {
             "period": "FY2024",
             "revenueCr": 467.908,
             "ebitdaCr": 131.847,
             "patCr": 84.396,
-            "netWorthCr": 0.3,
-            "ronwPct": 3.0,
+            "netWorthCr": 140.359,
+            "ronwPct": 60.13,
             "roePct": 86.13,
-            "eps": 9.31
+            "eps": 8.32
           }
         ]
       },
       "objectsOfIssue": [
         {
-          "purpose": "BASIS FOR THE OFFER PRICE",
-          "amountCr": 117.0
+          "purpose": "Pre-Offer and Post -Offer shareholding of our Promoters, members of the Promoter Group and top",
+          "amountCr": 1.0
         },
         {
-          "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
-          "amountCr": 129.0
+          "purpose": "61,884,021 58.71% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "SECTION V: ABOUT OUR COMPANY",
-          "amountCr": 137.0
+          "purpose": "29,561,148 28.05% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "INDUSTRY OVERVIEW",
-          "amountCr": 137.0
+          "purpose": "3,485,000 3.31% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "OUR BUSINESS",
-          "amountCr": 185.0
+          "purpose": "51,000 0.05% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "KEY REGULATIONS AND POLICIES IN INDIA",
-          "amountCr": 215.0
+          "purpose": "2,550 Negligible [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
-          "amountCr": 224.0
+          "purpose": "2,550 Negligible [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "OUR MANAGEMENT",
-          "amountCr": 238.0
+          "purpose": "2,550 Negligible [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
-          "amountCr": 260.0
+          "purpose": "2,550 Negligible [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "DIVIDEND POLICY",
-          "amountCr": 266.0
+          "purpose": "2,739,726 2.60% [●] [●] [●]",
+          "amountCr": null
+        },
+        {
+          "purpose": "2,054,795 1.95% [●] [●] [●]",
+          "amountCr": null
+        },
+        {
+          "purpose": "1,643,835 1.56% [●] [●] [●]",
+          "amountCr": null
         }
       ],
       "shareholding": {
@@ -15124,6 +15298,27 @@
           "shareholding"
         ],
         "extractedAt": "2026-09-14T02:45:03+05:30",
+        "source": "SEBI"
+      },
+      "offerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 13,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/Kusumgar%20Limited%20-%20Abridged_p.pdf",
+        "documentType": "RHP",
+        "documentTitle": "KUSUMGAR LIMITED- Abridged Prospectus",
+        "documentFiledDate": "2026-07-02",
+        "sha256": "ba20826ae0894b85bb92a4bfc206c1c7c10aa3bdb0eb3629975d51d52a39fb1e",
+        "pagesRead": 15,
+        "pageCount": 15,
+        "extractedFields": [
+          "leadManagers",
+          "registrar",
+          "promoters",
+          "issueComposition",
+          "financials",
+          "objectsOfIssue"
+        ],
+        "extractedAt": "2026-09-14T03:12:31+05:30",
         "source": "SEBI"
       }
     },
@@ -15347,11 +15542,11 @@
       "freshIssueCr": 380.2078,
       "ofsCr": 59.5,
       "issueComposition": {
-        "freshShares": 22365164,
+        "freshShares": 3500000,
         "ofsShares": 3500000,
-        "freshIssueCr": 380.2078,
+        "freshIssueCr": 380.0,
         "ofsCr": 59.5,
-        "totalIssueSizeCr": 439.5,
+        "totalIssueSizeCr": 119.0,
         "valuationPriceUsed": 170.0
       },
       "lotSize": 88,
@@ -15365,7 +15560,7 @@
         "lotSize": 88,
         "error": null
       },
-      "registrar": "Formerly Link Intime India Private Limited",
+      "registrar": "Link Intime India Private Limited",
       "leadManagers": [
         "BSE Limited",
         "India Limited",
@@ -15375,83 +15570,92 @@
       ],
       "promoters": [
         "ARE ALPESH TULSIBHAI PATEL",
-        "PRAVINKUMAR AMBALAL PATEL AND"
+        "PRA VINKUMAR AMBALAL PATEL",
+        "RASHMINBHAI TULSIBHAI PATEL"
       ],
       "financials": {
         "unit": "₹ crore",
         "periods": [
           {
             "period": "FY2026",
-            "revenueCr": 0.2,
-            "ebitdaCr": 0.6,
-            "patCr": 0.8,
-            "netWorthCr": 15.1,
-            "ronwPct": 151.0,
-            "roePct": 13.0,
-            "eps": 2026.0
+            "revenueCr": 823.434,
+            "ebitdaCr": 172.294,
+            "patCr": 92.724,
+            "netWorthCr": 308.185,
+            "ronwPct": 35.47,
+            "roePct": 35.75,
+            "eps": 9.27
           },
           {
             "period": "FY2025",
-            "revenueCr": 0.3,
-            "ebitdaCr": 0.7,
-            "patCr": 0.9,
-            "netWorthCr": 202.6,
-            "ronwPct": 2026.0,
-            "roePct": 14.0,
-            "eps": 9.27
+            "revenueCr": 736.49,
+            "ebitdaCr": 144.337,
+            "patCr": 73.81,
+            "netWorthCr": 214.709,
+            "ronwPct": 41.54,
+            "roePct": 41.7,
+            "eps": 7.38
           },
           {
             "period": "FY2024",
-            "revenueCr": 0.4,
-            "ebitdaCr": 0.8,
-            "patCr": 1.0,
-            "netWorthCr": 3.547,
-            "ronwPct": 35.47,
-            "roePct": 15.0,
-            "eps": 9.27
+            "revenueCr": 654.559,
+            "ebitdaCr": 101.374,
+            "patCr": 45.977,
+            "netWorthCr": 140.622,
+            "ronwPct": 38.97,
+            "roePct": 38.38,
+            "eps": 4.6
           }
         ]
       },
       "objectsOfIssue": [
         {
-          "purpose": "BASIS FOR THE OFFER PRICE",
-          "amountCr": 150.0
+          "purpose": "General corporate purposes (1)",
+          "amountCr": null
         },
         {
-          "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
-          "amountCr": 160.0
+          "purpose": "Net Proceeds(1)",
+          "amountCr": null
         },
         {
-          "purpose": "SECTION IV – ABOUT OUR COMPANY",
-          "amountCr": 169.0
+          "purpose": "Alpesh Tulsibhai Patel^ 21,030,000 21.03 [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "INDUSTRY OVERVIEW",
-          "amountCr": 169.0
+          "purpose": "KNACK PACKAGING LIMITED",
+          "amountCr": 0.7
         },
         {
-          "purpose": "OUR BUSINESS",
-          "amountCr": 243.0
+          "purpose": "Pravinkumar Ambalal Patel^ 11,200,000 11.20 [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "KEY REGULATIONS AND POLICIES IN INDIA",
-          "amountCr": 274.0
+          "purpose": "Rashminbhai Tulsibhai Patel^ 22,690,000 22.70 [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
-          "amountCr": 280.0
+          "purpose": "Sub-total (A) 54,920,000 54.92 [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "OUR MANAGEMENT",
-          "amountCr": 293.0
+          "purpose": "Tulsibhai Keshavlal Patel^ 6,800,000 6.80 [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
-          "amountCr": 310.0
+          "purpose": "Patel Kamlesh Ambalal^ 6,300,000 6.30 [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "DIVIDEND POLICY",
-          "amountCr": 315.0
+          "purpose": "Dharmisthaben Pravinbhai Patel^ 1,000,000 1.00 [●] [●] [●]",
+          "amountCr": null
+        },
+        {
+          "purpose": "Divyaben Rashminkumar Patel^ 3,960,000 3.96 [●] [●] [●]",
+          "amountCr": null
+        },
+        {
+          "purpose": "Savitaben Tulsibhai Patel 1,980,000 1.98 [●] [●] [●]",
+          "amountCr": null
         }
       ],
       "shareholding": {
@@ -15488,6 +15692,28 @@
           "shareholding"
         ],
         "extractedAt": "2026-09-14T02:44:12+05:30",
+        "source": "SEBI"
+      },
+      "offerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 13,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/KNACK%20PACKAGING%20LIMITED%20-%20AP_p.pdf",
+        "documentType": "RHP",
+        "documentTitle": "KNACK PACKAGING LIMITED - Abridged prospectus",
+        "documentFiledDate": "2026-06-24",
+        "sha256": "29110256c430fe43b2c278c932c94dd55dd2c2ab4e8c1e88df3da11d7853d87c",
+        "pagesRead": 8,
+        "pageCount": 8,
+        "extractedFields": [
+          "leadManagers",
+          "registrar",
+          "promoters",
+          "issueComposition",
+          "financials",
+          "objectsOfIssue",
+          "shareholding"
+        ],
+        "extractedAt": "2026-09-14T03:12:34+05:30",
         "source": "SEBI"
       }
     },
@@ -15746,6 +15972,17 @@
             "min": 125.0,
             "max": 136.0
           }
+        },
+        "SEBI-offer": {
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1785320834804.pdf",
+          "documentType": "PROSPECTUS",
+          "documentFiledDate": "2026-07-29",
+          "parserVersion": 13,
+          "lotSize": 110,
+          "priceBand": {
+            "min": 125.0,
+            "max": 136.0
+          }
         }
       },
       "documents": [
@@ -15783,9 +16020,9 @@
       "ofsCr": 0.0,
       "issueComposition": {
         "freshShares": 12500000,
-        "ofsShares": 0,
+        "ofsShares": 12500000,
         "freshIssueCr": 170.0,
-        "ofsCr": 0.0,
+        "ofsCr": 170.0,
         "totalIssueSizeCr": 170.0,
         "valuationPriceUsed": 136.0
       },
@@ -15913,6 +16150,28 @@
         ],
         "changedFields": [],
         "extractedAt": "2026-09-14T03:07:26+05:30",
+        "source": "SEBI"
+      },
+      "offerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 13,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1785320834804.pdf",
+        "documentType": "PROSPECTUS",
+        "documentTitle": "SEBI PROSPECTUS",
+        "documentFiledDate": "2026-07-29",
+        "sha256": "83894c66ad7a76b09ce05a0fce3f205e4f33e59fd3f921c8ae958e07803febf1",
+        "pagesRead": 415,
+        "pageCount": 415,
+        "extractedFields": [
+          "leadManagers",
+          "promoters",
+          "issueComposition",
+          "financials",
+          "objectsOfIssue",
+          "lotSize",
+          "priceBand"
+        ],
+        "extractedAt": "2026-09-14T03:13:27+05:30",
         "source": "SEBI"
       }
     },
@@ -16294,10 +16553,10 @@
       "ofsCr": 0.0,
       "issueComposition": {
         "freshShares": 12901000,
-        "ofsShares": 0,
-        "freshIssueCr": 145.7813,
-        "ofsCr": 0.0,
-        "totalIssueSizeCr": 145.78,
+        "ofsShares": 12901000,
+        "freshIssueCr": 145.78,
+        "ofsCr": 145.78,
+        "totalIssueSizeCr": 291.56,
         "valuationPriceUsed": 113.0
       },
       "lotSize": 132,
@@ -16312,89 +16571,65 @@
         "error": null
       },
       "promoters": [
-        "in terms of Regulation 2(1)(oo) of the SEBI ICDR"
+        "are Priyadarshi Pany",
+        "Lagna Panda"
       ],
       "financials": {
         "unit": "₹ crore",
         "periods": [
           {
             "period": "FY2025",
+            "revenueCr": 165.5236,
             "ebitdaCr": 30.0666,
-            "netWorthCr": 0.1654,
+            "patCr": 14.7014,
+            "netWorthCr": 88.8838,
             "ronwPct": 16.54,
-            "eps": 33.0
+            "roePct": 23.75
           },
           {
             "period": "FY2024",
+            "revenueCr": 199.2442,
             "ebitdaCr": 29.27,
-            "netWorthCr": 0.1849,
+            "patCr": 14.0865,
+            "netWorthCr": 76.1797,
             "ronwPct": 18.49,
-            "eps": 2015.0
+            "roePct": 20.73
           },
           {
             "period": "FY2023",
+            "revenueCr": 196.7105,
             "ebitdaCr": 23.7094,
-            "netWorthCr": 0.21,
+            "patCr": 12.5493,
+            "netWorthCr": 59.747,
             "ronwPct": 21.0,
-            "eps": 6.0
-          },
-          {
-            "period": "FY2026",
-            "ebitdaCr": 27.8723,
-            "netWorthCr": 0.3145,
-            "ronwPct": 31.45,
-            "eps": 7.0
+            "roePct": 22.8
           }
         ]
       },
       "objectsOfIssue": [
         {
-          "purpose": "BASIS FOR ISSUE PRICE",
-          "amountCr": 138.0
+          "purpose": "Funding working capital requirements of our Company",
+          "amountCr": 56.0
         },
         {
-          "purpose": "SECTION IV: ABOUT OUR COMPANY",
-          "amountCr": 153.0
+          "purpose": "Net Proceeds*",
+          "amountCr": null
         },
         {
-          "purpose": "INDUSTRY OVERVIEW",
-          "amountCr": 153.0
+          "purpose": "The aggregate pre -Issue and post -Issue shareholding, of each of our Promoters, members of our Promoter Group and additional top",
+          "amountCr": 0.1
         },
         {
-          "purpose": "OUR BUSINESS",
-          "amountCr": 227.0
+          "purpose": "value of ₹",
+          "amountCr": 0.1
         },
         {
-          "purpose": "KEY REGULATIONS AND POLICIES IN INDIA",
-          "amountCr": 261.0
+          "purpose": "value of ₹",
+          "amountCr": 0.1
         },
         {
-          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
-          "amountCr": 268.0
-        },
-        {
-          "purpose": "OUR SUBSIDIARIES",
-          "amountCr": 273.0
-        },
-        {
-          "purpose": "OUR MANAGEMENT",
-          "amountCr": 278.0
-        },
-        {
-          "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
-          "amountCr": 297.0
-        },
-        {
-          "purpose": "OUR GROUP COMPANY",
-          "amountCr": 301.0
-        },
-        {
-          "purpose": "DIVIDEND POLICY",
-          "amountCr": 302.0
-        },
-        {
-          "purpose": "SECTION V: FINANCIAL INFORMATION",
-          "amountCr": 303.0
+          "purpose": "value of ₹",
+          "amountCr": 0.1
         }
       ],
       "shareholding": {
@@ -16432,7 +16667,26 @@
       "registrar": "KFin Technologies Limited",
       "leadManagers": [
         "Keynote Financial Services Limited"
-      ]
+      ],
+      "offerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 13,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/jun-2026/CSM%20Technologies%20Limited%20-%20Abridged%20Prospectus_p.pdf",
+        "documentType": "RHP",
+        "documentTitle": "CSM Technologies Limited - Abridged Prospectus",
+        "documentFiledDate": "2026-06-17",
+        "sha256": "5a2bd4ac86b8b05a4a2377c6d66f126bdac0ef7939f3adc691411ac854ebdd1f",
+        "pagesRead": 16,
+        "pageCount": 16,
+        "extractedFields": [
+          "promoters",
+          "issueComposition",
+          "financials",
+          "objectsOfIssue"
+        ],
+        "extractedAt": "2026-09-14T03:13:30+05:30",
+        "source": "SEBI"
+      }
     },
     {
       "id": "cordelia",
@@ -16745,11 +16999,11 @@
       "freshIssueCr": 165.1584,
       "ofsCr": 0.0,
       "issueComposition": {
-        "freshShares": 11968000,
-        "ofsShares": 0,
-        "freshIssueCr": 165.1584,
-        "ofsCr": 0.0,
-        "totalIssueSizeCr": 165.16,
+        "freshShares": null,
+        "ofsShares": null,
+        "freshIssueCr": null,
+        "ofsCr": null,
+        "totalIssueSizeCr": null,
         "valuationPriceUsed": 138.0
       },
       "lotSize": 100,
@@ -16769,9 +17023,7 @@
         "India Limited"
       ],
       "promoters": [
-        "being Mr. Nitin Gilara",
-        "Mr. Prateek Gilara",
-        "Mr"
+        "S. No. Name Individual/Corporate/"
       ],
       "financials": {
         "unit": "₹ crore",
@@ -16779,8 +17031,16 @@
           {
             "period": "FY2025",
             "revenueCr": 123.7901,
-            "ebitdaCr": 0.31,
-            "patCr": 25.4424,
+            "ebitdaCr": 36.6761,
+            "netWorthCr": 83.6516,
+            "ronwPct": 30.41,
+            "roePct": 35.89,
+            "eps": 7.95
+          },
+          {
+            "period": "FY2023",
+            "revenueCr": 123.7901,
+            "ebitdaCr": 36.6761,
             "netWorthCr": 83.6516,
             "ronwPct": 30.41,
             "roePct": 35.89,
@@ -16789,22 +17049,11 @@
           {
             "period": "FY2024",
             "revenueCr": 124.9373,
-            "ebitdaCr": 20.25,
-            "patCr": 25.3671,
+            "ebitdaCr": 37.1467,
             "netWorthCr": 58.1342,
             "ronwPct": 43.64,
             "roePct": 55.79,
             "eps": 7.92
-          },
-          {
-            "period": "FY2023",
-            "revenueCr": 69.4426,
-            "ebitdaCr": 0.31,
-            "patCr": 14.7104,
-            "netWorthCr": 32.8029,
-            "ronwPct": 44.84,
-            "roePct": 57.82,
-            "eps": 4.6
           }
         ]
       },
@@ -16840,6 +17089,75 @@
           "shareholding"
         ],
         "extractedAt": "2026-09-14T02:16:44+05:30",
+        "source": "SEBI"
+      },
+      "objectsOfIssue": [
+        {
+          "purpose": "Aggregate Pre – Issue and Post – Issue Shareholding of the Promoters and Promoter Group and Top",
+          "amountCr": 10.0
+        },
+        {
+          "purpose": "Vipul Gilara 1,57,48,920 46.53% [●] [●] [●]",
+          "amountCr": null
+        },
+        {
+          "purpose": "Nitin Gilara 79,70,490 23.55% [●] [●] [●]",
+          "amountCr": null
+        },
+        {
+          "purpose": "Prateek Gilara 79,70,490 23.55% [●] [●] [●]",
+          "amountCr": null
+        },
+        {
+          "purpose": "Gilara 2,24,070 0.66% [●] [●] [●]",
+          "amountCr": null
+        },
+        {
+          "purpose": "Kiran Gilara 32,010 0.10% [●] [●] [●]",
+          "amountCr": null
+        },
+        {
+          "purpose": "Rachna Gilara 32,010 0.10% [●] [●] [●]",
+          "amountCr": null
+        },
+        {
+          "purpose": "Swati Gilara 32,010 0.10% [●] [●] [●]",
+          "amountCr": null
+        },
+        {
+          "purpose": "2,40,000 0.70% [●] [●] [●]",
+          "amountCr": null
+        },
+        {
+          "purpose": "Ankita Jain 60,000 0.18% [●] [●] [●]",
+          "amountCr": null
+        },
+        {
+          "purpose": "Akshit Aggarwal 48,000 0.14% [●] [●] [●]",
+          "amountCr": null
+        },
+        {
+          "purpose": "Alka Bhandari 40,000 0.12% [●] [●] [●]",
+          "amountCr": null
+        }
+      ],
+      "offerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 13,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/jun-2026/Advit%20Jewels%20Limited%20-%20APR_p.pdf",
+        "documentType": "RHP",
+        "documentTitle": "Advit Jewels Limited - Abridged Prospectus",
+        "documentFiledDate": "2026-06-11",
+        "sha256": "56b8c53b47f1072965366e5eebe1c311e5868270c2bb7635c012cc5396883f5b",
+        "pagesRead": 9,
+        "pageCount": 9,
+        "extractedFields": [
+          "promoters",
+          "issueComposition",
+          "financials",
+          "objectsOfIssue"
+        ],
+        "extractedAt": "2026-09-14T03:13:33+05:30",
         "source": "SEBI"
       }
     },
@@ -17271,6 +17589,16 @@
             "min": 42.0,
             "max": 45.0
           }
+        },
+        "SEBI-offer": {
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781074175044.pdf",
+          "documentType": "PROSPECTUS",
+          "documentFiledDate": "2026-06-10",
+          "parserVersion": 13,
+          "priceBand": {
+            "min": 42.0,
+            "max": 45.0
+          }
         }
       },
       "documents": [
@@ -17323,11 +17651,11 @@
       "freshIssueCr": 0.0,
       "ofsCr": 138.8687,
       "issueComposition": {
-        "freshShares": 0,
+        "freshShares": 30859704,
         "ofsShares": 30859704,
-        "freshIssueCr": 0.0,
-        "ofsCr": 138.8687,
-        "totalIssueSizeCr": 138.87,
+        "freshIssueCr": 138.87,
+        "ofsCr": 138.869,
+        "totalIssueSizeCr": 277.739,
         "valuationPriceUsed": 45.0
       },
       "lotSize": 333,
@@ -17472,6 +17800,29 @@
           "shareholding"
         ],
         "extractedAt": "2026-09-14T02:40:01+05:30",
+        "source": "SEBI"
+      },
+      "offerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 13,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781074175044.pdf",
+        "documentType": "PROSPECTUS",
+        "documentTitle": "SEBI PROSPECTUS",
+        "documentFiledDate": "2026-06-10",
+        "sha256": "a4391fa1c9986de758b32018ef39adfe813624412f8b80b652cd3968754692bb",
+        "pagesRead": 520,
+        "pageCount": 688,
+        "extractedFields": [
+          "leadManagers",
+          "registrar",
+          "promoters",
+          "issueComposition",
+          "financials",
+          "objectsOfIssue",
+          "shareholding",
+          "priceBand"
+        ],
+        "extractedAt": "2026-09-14T03:14:30+05:30",
         "source": "SEBI"
       }
     },
@@ -22419,6 +22770,13 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=MANILAM&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T03:08:41+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
       }
     },
     {
@@ -22592,6 +22950,13 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=MARUSHIKA&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T03:08:42+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
       }
     },
     {
@@ -23034,6 +23399,13 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=BIOPOL&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T03:08:43+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
       }
     },
     {
@@ -23236,6 +23608,13 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=GJL&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T03:08:44+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
       }
     },
     {
@@ -23318,6 +23697,13 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=BRANDMAN&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T03:08:45+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
       }
     },
     {
@@ -23400,6 +23786,13 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CKKRETAIL&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T03:08:46+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
       }
     },
     {
@@ -23482,6 +23875,13 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=KRMAYURVED&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T03:08:48+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
       }
     },
     {
@@ -23655,6 +24055,13 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ARMOUR&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T03:08:49+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
       }
     },
     {
@@ -23828,6 +24235,13 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=AVANA&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T03:08:50+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
       }
     },
     {
@@ -24001,6 +24415,13 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=VICTORYEV&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T03:08:51+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
       }
     },
     {
@@ -24083,6 +24504,13 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=E2ERAIL&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T03:08:52+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
       }
     },
     {
@@ -24165,6 +24593,13 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=DHARARAIL&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T03:08:53+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
       }
     },
     {

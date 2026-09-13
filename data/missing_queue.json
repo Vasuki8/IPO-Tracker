@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-09-14T03:08:23+05:30",
+  "generatedAt": "2026-09-14T03:14:31+05:30",
   "asOfDate": "2026-09-14",
   "recordCount": 1354,
-  "queueCount": 1060,
+  "queueCount": 1059,
   "priorityCounts": {
-    "P4 recent history (2y)": 153,
+    "P4 recent history (2y)": 152,
     "P5 historical backfill": 907
   },
   "fieldGapCounts": {
@@ -15,7 +15,7 @@
     "exchange.priceBand": 13,
     "offer.promoterShareholding": 6,
     "offer.registrar": 2,
-    "offer.objectsOfIssue": 2,
+    "offer.objectsOfIssue": 1,
     "provenance.sources": 1
   },
   "resolvedUnavailableRecordCount": 5,
@@ -789,26 +789,6 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/adisoft/"
-    },
-    {
-      "id": "rambhajo",
-      "company": "Advit Jewels Limited",
-      "symbol": "RAMBHAJO",
-      "stage": "listed",
-      "openDate": "2026-06-23",
-      "closeDate": "2026-06-25",
-      "listingDate": "2026-07-01",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 94.7,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.objectsOfIssue"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/rambhajo/"
     },
     {
       "id": "ambaauto",
@@ -6256,6 +6236,27 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/bhinvit/"
+    },
+    {
+      "id": "brnl",
+      "company": "Bharat Road Network Limited",
+      "symbol": "BRNL",
+      "stage": "listed",
+      "openDate": "2017-09-06",
+      "closeDate": "2017-09-08",
+      "listingDate": "2017-09-18",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/brnl/"
     }
   ],
   "resolvedUnavailable": [
