@@ -176,14 +176,12 @@
       },
       "verified-recent-offer-fields": {
         "ok": true,
-        "entries": 18,
-        "updated": 4,
+        "entries": 20,
+        "updated": 5,
         "fields": {
-          "registrar": 2,
-          "shareholding": 1,
-          "objectsOfIssue": 1
+          "shareholding": 5
         },
-        "checkedAt": "2026-09-14T03:20:51+05:30"
+        "checkedAt": "2026-09-14T03:27:40+05:30"
       },
       "verified-filing-offer-fields": {
         "ok": true,
@@ -10124,6 +10122,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:32+05:30"
+        },
+        {
+          "name": "Shiprocket issuer financial statements promoter status",
+          "kind": "validated-offer-document-term",
+          "url": "https://sr-website-01.shiprocket.in/sr-website/1.%20Shiprocket%20Standalone%20financials%20FY%2024-25-ulD9o9.pdf",
+          "asOf": "2026-09-14T03:27:40+05:30"
         }
       ],
       "source": {
@@ -10153,6 +10157,14 @@
             "min": 97.0,
             "max": 97.0
           }
+        },
+        "VerifiedOfferFields": {
+          "openDate": "2026-08-12",
+          "sourceUrl": "https://sr-website-01.shiprocket.in/sr-website/1.%20Shiprocket%20Standalone%20financials%20FY%2024-25-ulD9o9.pdf",
+          "sourceKind": "validated-offer-document-term",
+          "fields": [
+            "shareholding"
+          ]
         }
       },
       "documents": [
@@ -10175,10 +10187,11 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "checkedAt": "2026-09-14T03:27:40+05:30",
         "checks": [],
         "independentSources": [
-          "NSE"
+          "NSE",
+          "Shiprocket"
         ]
       },
       "profilePath": "ipo/shiprocket/",
@@ -10298,7 +10311,10 @@
         "extractedAt": "2026-09-14T02:48:51+05:30",
         "source": "SEBI"
       },
-      "lotSize": 154
+      "lotSize": 154,
+      "shareholding": {
+        "promoterPreIssuePct": 0.0
+      }
     },
     {
       "id": "pramodini",
@@ -12578,6 +12594,12 @@
           "kind": "validated-offer-document-term",
           "url": "https://nsearchives.nseindia.com/corporate/Registration_28062025043935_JuniperGreenEnergyLimitedDRHP.pdf",
           "asOf": "2026-09-14T03:20:51+05:30"
+        },
+        {
+          "name": "Juniper Green Energy issuer-hosted DRHP offer terms",
+          "kind": "validated-offer-document-term",
+          "url": "https://www.junipergreenenergy.com/wp-content/uploads/2025/06/JuniperGreenEnergyLimitedDRHP.pdf",
+          "asOf": "2026-09-14T03:27:40+05:30"
         }
       ],
       "source": {
@@ -12622,10 +12644,11 @@
         },
         "VerifiedOfferFields": {
           "openDate": "2026-07-30",
-          "sourceUrl": "https://nsearchives.nseindia.com/corporate/Registration_28062025043935_JuniperGreenEnergyLimitedDRHP.pdf",
+          "sourceUrl": "https://www.junipergreenenergy.com/wp-content/uploads/2025/06/JuniperGreenEnergyLimitedDRHP.pdf",
           "sourceKind": "validated-offer-document-term",
           "fields": [
-            "registrar"
+            "registrar",
+            "shareholding"
           ]
         }
       },
@@ -12649,9 +12672,10 @@
       ],
       "validation": {
         "status": "verified",
-        "checkedAt": "2026-09-14T03:20:51+05:30",
+        "checkedAt": "2026-09-14T03:27:40+05:30",
         "checks": [],
         "independentSources": [
+          "Juniper",
           "NSE",
           "SEBI"
         ]
@@ -12819,7 +12843,10 @@
         "extractedAt": "2026-09-14T02:56:10+05:30",
         "source": "SEBI"
       },
-      "registrar": "KFin Technologies Limited"
+      "registrar": "KFin Technologies Limited",
+      "shareholding": {
+        "promoterPreIssuePct": 100.0
+      }
     },
     {
       "id": "manipalhos",
@@ -15955,6 +15982,12 @@
           "kind": "validated-offer-document-term",
           "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781090594066.pdf",
           "asOf": "2026-09-14T03:20:51+05:30"
+        },
+        {
+          "name": "Aastha Spintex issuer-hosted RHP offer terms",
+          "kind": "validated-offer-document-term",
+          "url": "https://aasthaspintex.com/pdf/RHP/RHP_Aastha.pdf",
+          "asOf": "2026-09-14T03:27:40+05:30"
         }
       ],
       "source": {
@@ -15999,10 +16032,11 @@
         },
         "VerifiedOfferFields": {
           "openDate": "2026-06-29",
-          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781090594066.pdf",
+          "sourceUrl": "https://aasthaspintex.com/pdf/RHP/RHP_Aastha.pdf",
           "sourceKind": "validated-offer-document-term",
           "fields": [
-            "registrar"
+            "registrar",
+            "shareholding"
           ]
         }
       },
@@ -16026,9 +16060,10 @@
       ],
       "validation": {
         "status": "verified",
-        "checkedAt": "2026-09-14T03:20:51+05:30",
+        "checkedAt": "2026-09-14T03:27:40+05:30",
         "checks": [],
         "independentSources": [
+          "Aastha",
           "NSE",
           "SEBI"
         ]
@@ -16196,7 +16231,10 @@
         "extractedAt": "2026-09-14T03:13:27+05:30",
         "source": "SEBI"
       },
-      "registrar": "Bigshare Services Private Limited"
+      "registrar": "Bigshare Services Private Limited",
+      "shareholding": {
+        "promoterPreIssuePct": 74.23
+      }
     },
     {
       "id": "icel",
@@ -20909,6 +20947,12 @@
           "kind": "validated-offer-document-term",
           "url": "https://nsearchives.nseindia.com/corporate/INNOVISION2007_13052026170308_Reg_32_1_-_Statement_of_Deviation_and_variation_signed.pdf",
           "asOf": "2026-09-14T03:20:51+05:30"
+        },
+        {
+          "name": "Innovision issuer-hosted offer documents",
+          "kind": "validated-offer-document-term",
+          "url": "https://www.innovision.co.in/public/uploads/631573851.pdf",
+          "asOf": "2026-09-14T03:27:40+05:30"
         }
       ],
       "source": {
@@ -20942,10 +20986,11 @@
         },
         "VerifiedOfferFields": {
           "openDate": "2026-03-10",
-          "sourceUrl": "https://nsearchives.nseindia.com/corporate/INNOVISION2007_13052026170308_Reg_32_1_-_Statement_of_Deviation_and_variation_signed.pdf",
+          "sourceUrl": "https://www.innovision.co.in/public/uploads/631573851.pdf",
           "sourceKind": "validated-offer-document-term",
           "fields": [
-            "objectsOfIssue"
+            "objectsOfIssue",
+            "shareholding"
           ]
         }
       },
@@ -20985,9 +21030,10 @@
       ],
       "validation": {
         "status": "verified",
-        "checkedAt": "2026-09-14T03:20:51+05:30",
+        "checkedAt": "2026-09-14T03:27:40+05:30",
         "checks": [],
         "independentSources": [
+          "Innovision",
           "NSE",
           "SEBI"
         ]
@@ -21085,7 +21131,10 @@
         "Repayment or prepayment, in part or full of all or certain borrowings availed by the Company",
         "Funding working capital requirements of the Company",
         "General corporate purposes"
-      ]
+      ],
+      "shareholding": {
+        "promoterPreIssuePct": 100.0
+      }
     },
     {
       "id": "rsl",
@@ -21130,10 +21179,10 @@
           "asOf": "2026-09-14T03:06:34+05:30"
         },
         {
-          "name": "SEBI final Prospectus",
-          "kind": "regulatory-filing",
-          "url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/rajputana-stainless-limited-prospectus_100791.html",
-          "asOf": "2026-09-14T03:20:50+05:30"
+          "name": "Rajputana Stainless issuer-hosted final Prospectus shareholding",
+          "kind": "validated-offer-document-term",
+          "url": "https://www.rajputanastainless.com/public/frontend/assets/pdf/RSL_Prospectus_Project-Steel_Final.pdf",
+          "asOf": "2026-09-14T03:27:40+05:30"
         }
       ],
       "source": {
@@ -21164,6 +21213,14 @@
             "min": 116.0,
             "max": 122.0
           }
+        },
+        "VerifiedOfferFields": {
+          "openDate": "2026-03-09",
+          "sourceUrl": "https://www.rajputanastainless.com/public/frontend/assets/pdf/RSL_Prospectus_Project-Steel_Final.pdf",
+          "sourceKind": "validated-offer-document-term",
+          "fields": [
+            "shareholding"
+          ]
         }
       },
       "documents": [
@@ -21201,11 +21258,13 @@
         }
       ],
       "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "status": "verified",
+        "checkedAt": "2026-09-14T03:27:40+05:30",
         "checks": [],
         "independentSources": [
-          "NSE"
+          "NSE",
+          "Rajputana",
+          "SEBI"
         ]
       },
       "profilePath": "ipo/rsl--ab39dbaf/",
@@ -21358,6 +21417,9 @@
         "changedFields": [],
         "extractedAt": "2026-09-14T03:20:50+05:30",
         "source": "SEBI"
+      },
+      "shareholding": {
+        "promoterPreIssuePct": 78.22
       }
     },
     {
