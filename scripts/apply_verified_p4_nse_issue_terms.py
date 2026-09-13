@@ -74,7 +74,7 @@ VERIFIED_P4_NSE_ISSUE_TERMS: dict[str, dict[str, Any]] = {
             "https://nsearchives.nseindia.com/corporate/AGARWALTOUGHENED_06092025172834_tuff_covering_Annualreport_notice_FY2025_se_signed.pdf",
             "https://nsearchives.nseindia.com/corporate/ixbrl/INTEGRATED_FILING_NONINDAS_125947_11112025155716_iXBRL_WEB.html",
         ],
-        source_basis="57,99,600 fresh shares at Rs 108 per share",
+        source_basis="official NSE share-count basis: 57,99,600 fresh shares at Rs 108 per share",
         official_note=(
             "Exact share-count times issue-price equals Rs 6,263.568 lakh; "
             "the later NSE integrated filing displays Rs 6,263.56 lakh. "
