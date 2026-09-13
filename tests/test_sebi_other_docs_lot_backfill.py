@@ -50,6 +50,30 @@ class SebiOtherDocsLotBackfillTests(unittest.TestCase):
         )
         self.assertIsNone(mod.terms.extract_lot_size("The minimum Bid Lot is [●] Equity Shares."))
 
+    def test_discovers_pdf_hidden_in_onclick_javascript(self):
+        html = '''
+        <html><body>
+          <button onclick="window.open('/sebi_data/attachdocs/sep-2026/vinit-price-band.pdf')">
+            Price Band Advertisement
+          </button>
+        </body></html>
+        '''
+        docs = mod.extract_document_candidates(
+            html,
+            "https://www.sebi.gov.in/filings/public-issues/sep-2026/vinit-mobile-limited_104253.html",
+        )
+        self.assertEqual(len(docs), 1)
+        self.assertEqual(
+            docs[0]["url"],
+            "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/vinit-price-band.pdf",
+        )
+        self.assertEqual(docs[0]["rank"], 0)
+
+    def test_discovers_escaped_absolute_pdf_url(self):
+        html = r'''<script>var file="https:\/\/www.sebi.gov.in\/sebi_data\/attachdocs\/offer.pdf";</script>'''
+        docs = mod.extract_document_candidates(html, "https://www.sebi.gov.in/filings/public-issues/x.html")
+        self.assertEqual([d["url"] for d in docs], ["https://www.sebi.gov.in/sebi_data/attachdocs/offer.pdf"])
+
 
 if __name__ == "__main__":
     unittest.main()
