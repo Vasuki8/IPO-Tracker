@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-13T07:36:02+05:30",
+  "generatedAt": "2026-09-13T07:44:19+05:30",
   "asOfDate": "2026-09-13",
   "recordCount": 1371,
-  "queueCount": 1367,
+  "queueCount": 1364,
   "priorityCounts": {
-    "P0 open IPO": 6,
-    "P1 upcoming IPO": 5,
+    "P0 open IPO": 4,
+    "P1 upcoming IPO": 4,
     "P2 recent IPO (30d)": 34,
     "P3 filing pipeline": 4,
     "P4 recent history (2y)": 411,
@@ -17,7 +17,7 @@
     "exchange.issueComposition": 264,
     "lifecycle.listingDate": 35,
     "exchange.priceBand": 23,
-    "offer.promoterShareholding": 18,
+    "offer.promoterShareholding": 13,
     "offer.financials": 5,
     "offer.objectsOfIssue": 4,
     "offer.promoters": 3,
@@ -89,42 +89,6 @@
       "profilePath": "ipo/maharaja-speedex-india-limited/"
     },
     {
-      "id": "om-galaxy-limited",
-      "company": "OM GALAXY LIMITED",
-      "symbol": "OMGL",
-      "stage": "open",
-      "openDate": "2026-09-10",
-      "closeDate": "2026-09-15",
-      "listingDate": null,
-      "priority": 0,
-      "priorityLabel": "P0 open IPO",
-      "completenessPct": 95.5,
-      "expectedFieldCount": 22,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/om-galaxy-limited/"
-    },
-    {
-      "id": "century-business-media-limited",
-      "company": "CENTURY BUSINESS MEDIA LIMITED",
-      "symbol": "CENTURYOOH",
-      "stage": "open",
-      "openDate": "2026-09-11",
-      "closeDate": "2026-09-16",
-      "listingDate": null,
-      "priority": 0,
-      "priorityLabel": "P0 open IPO",
-      "completenessPct": 95.5,
-      "expectedFieldCount": 22,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/century-business-media-limited/"
-    },
-    {
       "id": "injecto-polymers-limited",
       "company": "INJECTO POLYMERS LIMITED",
       "symbol": "INJECTO",
@@ -165,44 +129,6 @@
       "profilePath": "ipo/shakti-polytarp-limited/"
     },
     {
-      "id": "jsipl",
-      "company": "Jindal Supreme (India) Limited",
-      "symbol": "JSIPL",
-      "stage": "upcoming",
-      "openDate": "2026-09-16",
-      "closeDate": "2026-09-18",
-      "listingDate": null,
-      "priority": 1,
-      "priorityLabel": "P1 upcoming IPO",
-      "completenessPct": 88.9,
-      "expectedFieldCount": 18,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.lotSize",
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/jsipl/"
-    },
-    {
-      "id": "ssretail",
-      "company": "SS Retail Limited",
-      "symbol": "SSRETAIL",
-      "stage": "upcoming",
-      "openDate": "2026-09-16",
-      "closeDate": "2026-09-18",
-      "listingDate": null,
-      "priority": 1,
-      "priorityLabel": "P1 upcoming IPO",
-      "completenessPct": 88.9,
-      "expectedFieldCount": 18,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.lotSize",
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/ssretail/"
-    },
-    {
       "id": "vama-wovenfab-limited",
       "company": "Vama Wovenfab Limited",
       "symbol": "VAMAWOVEN",
@@ -221,9 +147,9 @@
       "profilePath": "ipo/vama-wovenfab-limited/"
     },
     {
-      "id": "heromotors",
-      "company": "Hero Motors Limited",
-      "symbol": "HEROMOTORS",
+      "id": "jsipl",
+      "company": "Jindal Supreme (India) Limited",
+      "symbol": "JSIPL",
       "stage": "upcoming",
       "openDate": "2026-09-16",
       "closeDate": "2026-09-18",
@@ -234,9 +160,27 @@
       "expectedFieldCount": 18,
       "missingFieldCount": 1,
       "missingFields": [
-        "offer.promoterShareholding"
+        "exchange.lotSize"
       ],
-      "profilePath": "ipo/heromotors/"
+      "profilePath": "ipo/jsipl/"
+    },
+    {
+      "id": "ssretail",
+      "company": "SS Retail Limited",
+      "symbol": "SSRETAIL",
+      "stage": "upcoming",
+      "openDate": "2026-09-16",
+      "closeDate": "2026-09-18",
+      "listingDate": null,
+      "priority": 1,
+      "priorityLabel": "P1 upcoming IPO",
+      "completenessPct": 94.4,
+      "expectedFieldCount": 18,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/ssretail/"
     },
     {
       "id": "prasolchem",
@@ -5981,6 +5925,60 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/bagdigital/"
+    },
+    {
+      "id": "bmwventltd",
+      "company": "BMW Ventures Limited",
+      "symbol": "BMWVENTLTD",
+      "stage": "listed",
+      "openDate": "2025-09-24",
+      "closeDate": "2025-09-26",
+      "listingDate": "2025-10-01",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/bmwventltd/"
+    },
+    {
+      "id": "bhadora",
+      "company": "Bhadora Industries Limited",
+      "symbol": "BHADORA",
+      "stage": "listed",
+      "openDate": "2025-08-04",
+      "closeDate": "2025-08-06",
+      "listingDate": "2025-08-11",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/bhadora/"
+    },
+    {
+      "id": "groww",
+      "company": "Billionbrains Garage Ventures Limited",
+      "symbol": "GROWW",
+      "stage": "listed",
+      "openDate": "2025-11-04",
+      "closeDate": "2025-11-07",
+      "listingDate": "2025-11-12",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/groww/"
     }
   ],
   "notes": [

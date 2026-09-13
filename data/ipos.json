@@ -98,30 +98,32 @@
       "Critical-backfill": {
         "ok": true,
         "records": 20,
-        "asOf": "2026-09-13T07:32:14+05:30"
+        "asOf": "2026-09-13T07:43:43+05:30"
       },
       "SEBI-document-links": {
         "ok": true,
         "records": 0,
         "attempted": 7,
-        "asOf": "2026-09-13T07:30:19+05:30",
+        "asOf": "2026-09-13T07:39:31+05:30",
         "errors": []
       },
       "Offer-docs": {
         "ok": true,
-        "records": 6,
-        "attempted": 6,
+        "records": 12,
+        "attempted": 12,
         "failed": 0
       },
       "Issuer-offer-docs": {
-        "ok": true,
-        "records": 4,
+        "ok": false,
+        "records": 3,
         "attempted": 4,
-        "updated": 0,
+        "updated": 2,
         "deepScanned": 0,
-        "failed": 0,
-        "asOf": "2026-09-13T07:32:13+05:30",
-        "errors": []
+        "failed": 1,
+        "asOf": "2026-09-13T07:43:42+05:30",
+        "errors": [
+          "INJECTO POLYMERS LIMITED: HTTPSConnectionPool(host='injectopolymers.in', port=443): Max retries exceeded with url: /wp-content/uploads/2026/09/1.-RHP_07.09.2026.pdf (Caused by ConnectTimeoutError(<HTTPSConnection(host='injectopolymers.in', port=443) at 0x7f0c6dee0770>, 'Connection to injectopolymers.in timed out. (connect timeout=45)'))"
+        ]
       },
       "NSE-primary-market-reports": {
         "ok": true,
@@ -146,12 +148,12 @@
     "errors": [],
     "offerDocumentHealth": {
       "ok": true,
-      "attempted": 6,
-      "extracted": 6,
+      "attempted": 12,
+      "extracted": 12,
       "failed": 0,
-      "eligibleRemaining": 0,
-      "parserVersion": 6,
-      "asOf": "2026-09-13T07:30:33+05:30",
+      "eligibleRemaining": 3,
+      "parserVersion": 8,
+      "asOf": "2026-09-13T07:40:11+05:30",
       "errors": []
     },
     "subscriptionHealth": {
@@ -196,20 +198,20 @@
       "ok": true,
       "targetCount": 20,
       "priorityMax": 2,
-      "asOf": "2026-09-13T07:32:14+05:30",
+      "asOf": "2026-09-13T07:43:43+05:30",
       "documents": {
         "ok": true,
-        "attempted": 3,
-        "extracted": 3,
+        "attempted": 0,
+        "extracted": 0,
         "failed": 0,
         "documentsDiscovered": 0,
         "discoveryHealth": {
           "ok": false,
           "records": 0,
-          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f253bc54800>, 'Connection to www.bsesme.com time"
+          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f40d00c3200>, 'Connection to www.bsesme.com time"
         },
         "errors": [],
-        "asOf": "2026-09-13T07:36:01+05:30"
+        "asOf": "2026-09-13T07:44:18+05:30"
       }
     },
     "sebiDocumentLinkHealth": {
@@ -218,32 +220,34 @@
       "resolvedPages": 7,
       "linksAdded": 0,
       "failed": 0,
-      "asOf": "2026-09-13T07:30:19+05:30",
+      "asOf": "2026-09-13T07:39:31+05:30",
       "errors": []
     },
     "issuerOfferDocumentHealth": {
-      "ok": true,
+      "ok": false,
       "attempted": 4,
-      "extracted": 4,
-      "updated": 0,
+      "extracted": 3,
+      "updated": 2,
       "deepScanned": 0,
-      "failed": 0,
-      "asOf": "2026-09-13T07:32:13+05:30",
-      "errors": []
+      "failed": 1,
+      "asOf": "2026-09-13T07:43:42+05:30",
+      "errors": [
+        "INJECTO POLYMERS LIMITED: HTTPSConnectionPool(host='injectopolymers.in', port=443): Max retries exceeded with url: /wp-content/uploads/2026/09/1.-RHP_07.09.2026.pdf (Caused by ConnectTimeoutError(<HTTPSConnection(host='injectopolymers.in', port=443) at 0x7f0c6dee0770>, 'Connection to injectopolymers.in timed out. (connect timeout=45)'))"
+      ]
     },
     "criticalOfferDocumentHealth": {
       "ok": true,
-      "attempted": 3,
-      "extracted": 3,
+      "attempted": 0,
+      "extracted": 0,
       "failed": 0,
       "documentsDiscovered": 0,
       "discoveryHealth": {
         "ok": false,
         "records": 0,
-        "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f253bc54800>, 'Connection to www.bsesme.com time"
+        "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f40d00c3200>, 'Connection to www.bsesme.com time"
       },
       "errors": [],
-      "asOf": "2026-09-13T07:36:01+05:30"
+      "asOf": "2026-09-13T07:44:18+05:30"
     }
   },
   "ipos": [
@@ -473,7 +477,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 6,
+        "parserVersion": 8,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Sonaselection%20India%20Limited%20%20-%20AP_p.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "SONASELECTION INDIA LIMITED - Abridged Prospectus",
@@ -490,7 +494,7 @@
           "objectsOfIssue",
           "shareholding"
         ],
-        "extractedAt": "2026-09-13T04:53:41+05:30",
+        "extractedAt": "2026-09-13T07:39:37+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/sona/",
@@ -596,34 +600,44 @@
         "unit": "₹ crore",
         "periods": [
           {
-            "period": "FY2024",
-            "revenueCr": 4.503,
-            "ebitdaCr": 56.502,
-            "patCr": 10.0,
-            "netWorthCr": 3.26,
-            "ronwPct": 32.6,
-            "roePct": 30.2,
-            "eps": 3.0
-          },
-          {
             "period": "FY2026",
-            "revenueCr": 4.713,
+            "revenueCr": 2351.031,
             "ebitdaCr": 125.149,
-            "patCr": 10.0,
-            "netWorthCr": 3.1,
-            "ronwPct": 31.0,
+            "netWorthCr": 225.707,
+            "ronwPct": 32.6,
+            "eps": 9.11,
             "roePct": 30.6,
-            "eps": 31.0
+            "patCr": 1.1
           },
           {
             "period": "FY2025",
-            "revenueCr": 202.6,
+            "revenueCr": 1597.931,
             "ebitdaCr": 80.441,
-            "patCr": 18.9,
-            "netWorthCr": 202.6,
-            "ronwPct": 2026.0,
+            "netWorthCr": 141.369,
+            "ronwPct": 32.82,
+            "eps": 6.13,
             "roePct": 30.94,
-            "eps": 2026.0
+            "patCr": 18.3
+          },
+          {
+            "period": "FY2024",
+            "revenueCr": 1206.743,
+            "ebitdaCr": 56.502,
+            "netWorthCr": 101.508,
+            "ronwPct": 30.21,
+            "eps": 4.1,
+            "roePct": 30.2,
+            "patCr": 0.8
+          },
+          {
+            "period": "FY2027",
+            "revenueCr": 59.282,
+            "ebitdaCr": 81.451,
+            "patCr": 1.0,
+            "netWorthCr": 3.433,
+            "ronwPct": 34.33,
+            "roePct": 29.3,
+            "eps": 34.33
           }
         ]
       },
@@ -637,23 +651,24 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 6,
-        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788946092145.pdf",
-        "documentType": "RHP",
-        "documentTitle": "SEBI RHP",
+        "parserVersion": 8,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/SS%20RETAIL%20LIMITED%20-%20AP_p.pdf",
+        "documentType": "PROSPECTUS",
+        "documentTitle": "SS RETAIL LIMITED - Abridged Prospectus",
         "documentFiledDate": null,
-        "sha256": "695637dcfdc34c556075ec33ee7573342474f33d8587a95cf6eef442c62299fd",
-        "pagesRead": 520,
-        "pageCount": 646,
+        "sha256": "526cb7494350982da3ce16c9079573ececb0dbf35bab4342adfbc776e52976d6",
+        "pagesRead": 15,
+        "pageCount": 15,
         "extractedFields": [
           "leadManagers",
           "registrar",
           "promoters",
           "issueComposition",
           "financials",
-          "objectsOfIssue"
+          "objectsOfIssue",
+          "shareholding"
         ],
-        "extractedAt": "2026-09-13T07:35:00+05:30",
+        "extractedAt": "2026-09-13T07:39:40+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/ssretail/",
@@ -663,67 +678,67 @@
         "BSE Limited",
         "India Limited"
       ],
-      "registrar": "LOGO KFin Technologies Limited",
+      "registrar": "India Limited",
       "promoters": [
-        "ANALYSIS OF FINANCIAL CONDITION",
-        "OTHER MATERIAL DEVELOPMENTS .......................................... 540 GOVERNMENT",
-        "ABBREVIATIONS This Red Herring Prospectus uses certain definitions",
-        "abbreviations which",
-        "unless the context otherwise indicates or implies",
-        "or unless otherwise specified",
-        "shall have the meaning as provided below. References to any legislations",
-        "act",
-        "statutes",
-        "regulations",
-        "rules",
-        "guidelines"
+        "SIDDHARTH GUNV ANT SHAH",
+        "DEEPA SIDDHARTH SHAH",
+        "HARSHAL KISHOR PAREKH",
+        "BHA VINI HARSHAL PAREKH"
       ],
       "objectsOfIssue": [
         {
-          "purpose": "BASIS FOR THE OFFER PRICE",
-          "amountCr": 183.0
+          "purpose": "in Fiscal 2027 and Fiscal",
+          "amountCr": 202.8
         },
         {
-          "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
-          "amountCr": 199.0
+          "purpose": "General corporate purposes(1)",
+          "amountCr": null
         },
         {
-          "purpose": "SECTION V: ABOUT THE COMPANY",
-          "amountCr": 207.0
+          "purpose": "Net Proceeds(1)",
+          "amountCr": null
         },
         {
-          "purpose": "INDUSTRY OVERVIEW",
-          "amountCr": 207.0
+          "purpose": "Pre and post offer shareholding of our Promoters, members of the Promoter Group and top",
+          "amountCr": 1.0
         },
         {
-          "purpose": "OUR BUSINESS",
-          "amountCr": 290.0
+          "purpose": "33,608,600 51.03 [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "KEY REGULATIONS AND POLICIES",
-          "amountCr": 330.0
+          "purpose": "8,740,150 13.27 [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
-          "amountCr": 338.0
+          "purpose": "5,559,850 8.44 [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "OUR SUBSIDIARIES",
-          "amountCr": 362.0
+          "purpose": "1,950,000 2.96 [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "OUR MANAGEMENT",
-          "amountCr": 366.0
+          "purpose": "Sub-total (A) 49,858,600 75.70 [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
-          "amountCr": 392.0
+          "purpose": "25,000 0.04 [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "DIVIDEND POLICY",
-          "amountCr": 398.0
+          "purpose": "Sub-total (B) 25,000 0.04 [●] [●] [●]",
+          "amountCr": null
+        },
+        {
+          "purpose": "4,875,000 7.40 [●] [●] [●]",
+          "amountCr": null
         }
-      ]
+      ],
+      "shareholding": {
+        "promoters": [],
+        "promoterPreIssuePct": 75.74
+      }
     },
     {
       "id": "jsipl",
@@ -820,7 +835,8 @@
       "freshIssueCr": 99.89,
       "ofsCr": 99.89,
       "promoters": [
-        "ABHISHEK JINDAL & SONAM JINDAL"
+        "are Abhishek Jindal",
+        "Sonam Jindal"
       ],
       "financials": {
         "unit": "₹ crore",
@@ -829,31 +845,41 @@
             "period": "FY2026",
             "revenueCr": 19093.65,
             "ebitdaCr": 1375.5,
-            "netWorthCr": 9682.48,
+            "netWorthCr": 10502.18,
+            "ronwPct": 8.2,
+            "eps": 9.0,
             "roePct": 11.0,
-            "eps": 2.05,
-            "ronwPct": 2024.0,
-            "patCr": 0.05
+            "patCr": 0.04
           },
           {
             "period": "FY2025",
             "revenueCr": 67538.72,
-            "ebitdaCr": 1017.13,
-            "netWorthCr": 19700.08,
+            "ebitdaCr": 4162.9,
+            "netWorthCr": 9682.48,
+            "ronwPct": 26.28,
+            "eps": 2.05,
             "roePct": 8.2,
-            "eps": 1.66,
-            "ronwPct": 27.98,
-            "patCr": 0.06
+            "patCr": 8.2758
           },
           {
             "period": "FY2024",
             "revenueCr": 58639.93,
-            "ebitdaCr": 9514.4,
-            "netWorthCr": 105360.7,
+            "ebitdaCr": 2592.17,
+            "netWorthCr": 7463.71,
+            "ronwPct": 38.85,
+            "eps": 5.59,
             "roePct": 26.28,
-            "eps": 1.92,
-            "ronwPct": 1.0,
-            "patCr": 0.07
+            "patCr": 22.5291
+          },
+          {
+            "period": "FY2021",
+            "revenueCr": 645.4398,
+            "ebitdaCr": 25.9217,
+            "roePct": 38.85,
+            "eps": 6.02,
+            "netWorthCr": 50.3109,
+            "ronwPct": 27.98,
+            "patCr": 24.2684
           }
         ]
       },
@@ -867,78 +893,74 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 6,
-        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788843844738.PDF",
-        "documentType": "RHP",
-        "documentTitle": "SEBI RHP",
+        "parserVersion": 8,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Jindal%20Supreme%20(India)%20Limited%20-%20AP_p.PDF",
+        "documentType": "PROSPECTUS",
+        "documentTitle": "Jindal Supreme (India) Limited - Abridged Prospectus",
         "documentFiledDate": null,
-        "sha256": "360eded96fcff4cb1a87599d135235d3c19fdb6e4e634cce248f206e26c9f875",
-        "pagesRead": 400,
-        "pageCount": 400,
+        "sha256": "b9e553798fefad161f7738f0487a65a8d06156dd21991fbb051155240d1b502d",
+        "pagesRead": 12,
+        "pageCount": 12,
         "extractedFields": [
           "leadManagers",
           "registrar",
           "promoters",
           "issueComposition",
           "financials",
-          "objectsOfIssue"
+          "objectsOfIssue",
+          "shareholding"
         ],
-        "extractedAt": "2026-09-13T07:33:36+05:30",
+        "extractedAt": "2026-09-13T07:39:49+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/jsipl/",
       "leadManagers": [
         "BSE Limited",
-        "India Limited",
-        "Email Sarthi Capital Advisors Private Limited"
+        "India Limited"
       ],
       "registrar": "Email Bigshare Services Private Limited",
       "objectsOfIssue": [
         {
-          "purpose": "BASIS FOR OFFER PRICE",
-          "amountCr": 101.0
+          "purpose": "Company",
+          "amountCr": 71.0
         },
         {
-          "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
-          "amountCr": 111.0
+          "purpose": "Pre-Offer and post-Offer shareholding of our Promoters, members of the Promoter Group and top",
+          "amountCr": 0.1
         },
         {
-          "purpose": "SECTION IV: ABOUT OUR COMPANY",
-          "amountCr": 113.0
+          "purpose": "Abhishek Jindal 3,26,15,661 80.97 % [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "INDUSTRY OVERVIEW",
-          "amountCr": 113.0
+          "purpose": "36,66,600 9.10 % [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "OUR BUSINESS",
-          "amountCr": 161.0
+          "purpose": "35,61,259 8.84 % [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "KEY REGULATIONS AND POLICIES",
-          "amountCr": 186.0
+          "purpose": "Abhishek Jindal HUF 10,500 0.03 % [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
-          "amountCr": 197.0
+          "purpose": "Janak Raj Jindal 100 negligible [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "OUR MANAGEMENT",
-          "amountCr": 202.0
+          "purpose": "Jayshree Jindal 100 negligible [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
-          "amountCr": 217.0
-        },
-        {
-          "purpose": "OUR GROUP COMPANIES",
-          "amountCr": 221.0
-        },
-        {
-          "purpose": "DIVIDEND POLICY",
-          "amountCr": 223.0
+          "purpose": "NIL NIL NIL [●] [●] [●]",
+          "amountCr": null
         }
-      ]
+      ],
+      "shareholding": {
+        "promoters": [],
+        "promoterPreIssuePct": 100.0
+      }
     },
     {
       "id": "heromotors",
@@ -1079,61 +1101,78 @@
       "promoters": [
         "ARE PANKAJ MUNJAL",
         "CHARU MUNJAL",
-        "ABHISH EK MUNJAL"
+        "ABHISHEK"
       ],
       "financials": {
         "unit": "₹ crore",
         "periods": [
           {
             "period": "FY2026",
-            "patCr": 0.175,
-            "netWorthCr": 1.977,
-            "roePct": 9.08,
-            "revenueCr": 0.595
+            "revenueCr": 1188.351,
+            "ebitdaCr": 147.782,
+            "patCr": 41.168,
+            "netWorthCr": 482.448,
+            "ronwPct": 8.53,
+            "roePct": 8.56,
+            "eps": 1.15
+          },
+          {
+            "period": "FY2022",
+            "revenueCr": 1089.593,
+            "ebitdaCr": 114.004,
+            "patCr": 14.817,
+            "netWorthCr": 0.774,
+            "ronwPct": 7.74,
+            "roePct": 7.7
+          },
+          {
+            "period": "FY2021",
+            "revenueCr": 1064.386,
+            "ebitdaCr": 86.276,
+            "patCr": 39.462,
+            "netWorthCr": 0.442,
+            "ronwPct": 4.42,
+            "roePct": 4.54
           },
           {
             "period": "FY2025",
-            "patCr": 0.185,
-            "netWorthCr": 1.884,
-            "roePct": 8.19,
-            "revenueCr": 0.587
-          },
-          {
-            "period": "FY2024",
-            "patCr": 0.266,
-            "netWorthCr": 2.323,
-            "roePct": 4.78,
-            "revenueCr": 0.567
+            "revenueCr": 147.782,
+            "ebitdaCr": 1.244,
+            "patCr": 202.6,
+            "netWorthCr": 1.272,
+            "ronwPct": 12.72,
+            "roePct": 19.77
           }
         ]
       },
       "issueComposition": {
         "freshShares": null,
         "ofsShares": null,
-        "freshIssueCr": 400.0,
+        "freshIssueCr": 600.0,
         "ofsCr": 400.0,
         "totalIssueSizeCr": 600.0,
         "valuationPriceUsed": 84.0
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 6,
-        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789013295445.pdf",
-        "documentType": "RHP",
-        "documentTitle": "SEBI RHP",
+        "parserVersion": 8,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/HERO%20MOTORS%20LIMITED%20-%20AP_p.pdf",
+        "documentType": "PROSPECTUS",
+        "documentTitle": "HERO MOTORS LIMITED - Abridged Prospectus",
         "documentFiledDate": null,
-        "sha256": "a355417b9a9734283b7df8eb35d703a74a1673de1e3284653004da02789c944a",
-        "pagesRead": 520,
-        "pageCount": 582,
+        "sha256": "e2e39e1b5fd0632748586b09063278774960673b8edd4c29a8a67891213c8b6b",
+        "pagesRead": 14,
+        "pageCount": 14,
         "extractedFields": [
           "leadManagers",
           "registrar",
           "promoters",
           "issueComposition",
           "financials",
-          "objectsOfIssue"
+          "objectsOfIssue",
+          "shareholding"
         ],
-        "extractedAt": "2026-09-13T07:36:01+05:30",
+        "extractedAt": "2026-09-13T07:39:52+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/heromotors/",
@@ -1151,50 +1190,58 @@
       "ofsCr": 600.0,
       "objectsOfIssue": [
         {
-          "purpose": "BASIS FOR OFFER PRICE",
-          "amountCr": 126.0
+          "purpose": "Net Proceeds(2)",
+          "amountCr": null
         },
         {
-          "purpose": "STATEMENTS OF SPECIAL TAX BENEFITS",
-          "amountCr": 136.0
+          "purpose": "273,123,055 70.60% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "SECTION IV: ABOUT OUR COMPANY",
-          "amountCr": 148.0
+          "purpose": "Pankaj Munjal 9,400,436 2.43% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "INDUSTRY OVERVIEW",
-          "amountCr": 148.0
+          "purpose": "Charu Munjal 942,425 0.24% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "OUR BUSINESS",
-          "amountCr": 253.0
+          "purpose": "Abhishek Munjal 706,210 0.18% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "KEY REGULATIONS AND POLICIES IN INDIA",
-          "amountCr": 293.0
+          "purpose": "7,752,750 2.00% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
-          "amountCr": 301.0
+          "purpose": "Aditya Munjal 707,022 0.18% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "OUR MANAGEMENT",
-          "amountCr": 315.0
+          "purpose": "23,978,804 6.20% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
-          "amountCr": 336.0
+          "purpose": "392,344 0.10% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "OUR GROUP COMPANIES",
-          "amountCr": 342.0
+          "purpose": "10,537,140 2.72% [●] [●] [●]",
+          "amountCr": null
         },
         {
-          "purpose": "DIVIDEND POLICY",
-          "amountCr": 346.0
+          "purpose": "Invest LLC 46,855,307 12.11% [●] [●] [●]",
+          "amountCr": null
+        },
+        {
+          "purpose": "Amit Gupta 5,584,167 1.44% [●] [●] [●]",
+          "amountCr": null
         }
-      ]
+      ],
+      "shareholding": {
+        "promoters": [],
+        "promoterPreIssuePct": 84.65
+      }
     },
     {
       "id": "vama-wovenfab-limited",
@@ -1352,7 +1399,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 6,
+        "parserVersion": 8,
         "documentUrl": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260911-17/20260911-17.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "Shakti Polytarp Limited BSE Bid Details Cumulative Bid Details BSE Demand Schedule Cumulative Demand Schedule BSE Demand Graph Cumulative Demand Graph Security Type Equity Symbol SHAKTIPOLY Issue Period 15 Sep 2026 to 17 Sep 2026 Issue Size – No. of Shares 45,64,000 Price Band 56.00-59.00 Price-Band Advertisement Click Here IPO Categories FI, IC, MF, FII, OTH, CO, IND, NOH UPI Categories IND Face Value 10.00 Tick Size 1.00 Market Lot 2000 Minimum Bid Quantity 4000 Maximum Bid Quantity for Qualified Institutional Investors 43,34,000 Maximum Bid Quantity for Non-Institutional Investors 29,48,000 Book Running Lead Manager NEXGEN Financial Solutions Private Limited Registrar Skyline Financial Services Private Limited Sponsor Bank AXIS BANK Prospectus & GID Click Here Blank ASBA Form Click Here Online ASBA Form Click Here Revised Online ASBA Form Click Here Registrars to an Issue and Share Transfer Agents/Depository Participants Click Here Exchange Notices 1) Public Issue of  SHAKTI POLYTARP LIMITED Allocation to Anchor Investors Branches of SCSBs where syndicate / sub syndicate member to submit ASBA form Click Here List of SCSBs for Syndicate ASBA and under ASBA facility Click Here Self Certified Syndicate Banks eligible as Issuer Banks for UPI Click Here ISFormat 0",
@@ -1363,7 +1410,7 @@
         "extractedFields": [
           "issueComposition"
         ],
-        "extractedAt": "2026-09-13T07:30:33+05:30",
+        "extractedAt": "2026-09-13T07:39:52+05:30",
         "source": "BSE"
       }
     },
@@ -1541,7 +1588,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 6,
+        "parserVersion": 8,
         "documentUrl": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260910-50/20260910-50.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "Manika Plastech Limited BSE Bid Details Cumulative Bid Details BSE Demand Schedule Cumulative Demand Schedule BSE Demand Graph Cumulative Demand Graph Security Type Equity Symbol MANIKA Issue Period 11 Sep 2026 to 16 Sep 2026 Issue Size – No. of Shares 2,13,86,919 Price Band 40.00-43.00 Price-Band Advertisement Click Here IPO Categories FI, IC, MF, FII, OTH, IND, NOH UPI Categories IND Cut off Amount (Rs.) IND - 200000 Face Value 2.00 Tick Size 1.00 Market Lot 348 Minimum Bid Quantity 348 Maximum Bid Quantity for Qualified Institutional Investors 2,13,86,688 Maximum Bid Quantity for Non-Institutional Investors 1,53,99,696 Book Running Lead Manager Pantomath Capital Advisors Private Limited Registrar MUFG Intime India Private Limited Sponsor Bank 1) ICICI BANK 2) AXIS BANK LIMITED Prospectus & GID Click Here Blank ASBA Form Click Here Online ASBA Form Click Here Revised Online ASBA Form Click Here Registrars to an Issue and Share Transfer Agents/Depository Participants Click Here Exchange Notices 1) Public Issue of MANIKA PLASTECH LIMITED  - Allocation to Anchor Investors Branches of SCSBs where syndicate / sub syndicate member to submit ASBA form Click Here List of SCSBs for Syndicate ASBA and under ASBA facility Click Here Self Certified Syndicate Banks eligible as Issuer Banks for UPI Click Here",
@@ -1552,7 +1599,7 @@
         "extractedFields": [
           "issueComposition"
         ],
-        "extractedAt": "2026-09-13T07:30:20+05:30",
+        "extractedAt": "2026-09-13T07:39:32+05:30",
         "source": "BSE"
       }
     },
@@ -1991,7 +2038,7 @@
       ],
       "issuerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 7,
+        "parserVersion": 8,
         "documentUrl": "https://centurymedia.in/wp-content/uploads/2026/09/Red-Herring-Prospectus.pdf",
         "documentType": "RHP",
         "documentTitle": "Red Herring Prospectus",
@@ -2005,10 +2052,13 @@
           "promoters",
           "issueComposition",
           "financials",
-          "objectsOfIssue"
+          "objectsOfIssue",
+          "shareholding"
         ],
-        "changedFields": [],
-        "extractedAt": "2026-09-13T07:31:50+05:30",
+        "changedFields": [
+          "shareholding"
+        ],
+        "extractedAt": "2026-09-13T07:41:24+05:30",
         "source": "Issuer website"
       },
       "financials": {
@@ -2051,6 +2101,10 @@
             "eps": 2026.0
           }
         ]
+      },
+      "shareholding": {
+        "promoters": [],
+        "promoterPreIssuePct": 69.88
       }
     },
     {
@@ -2227,7 +2281,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 6,
+        "parserVersion": 8,
         "documentUrl": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260909-41/20260909-41.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "VEEGALAND DEVELOPERS LIMITED BSE Bid Details Cumulative Bid Details BSE Demand Schedule Cumulative Demand Schedule BSE Demand Graph Cumulative Demand Graph Security Type Equity Symbol VEEGALAND Issue Period 10 Sep 2026 to 15 Sep 2026 IPO Market Timings 10.00 am to 5.00 pm Cut-off time for UPI Mandate Confirmation 15 th September 2026 (Upto 5.00 Pm) Issue Size – No. of Shares 1,13,07,692 Price Band 130.00-140.00 Price-Band Advertisement Click Here IPO Categories FI, IC, MF, FII, OTH, CO, IND, NOH UPI Categories IND Cut off Amount (Rs.) IND - 200000 Face Value 10.00 Tick Size 1.00 Market Lot 107 Minimum Bid Quantity 107 Maximum Bid Quantity for Qualified Institutional Investors 1,13,07,653 Maximum Bid Quantity for Non-Institutional Investors 80,76,895 Book Running Lead Manager Cumulative Capital Private Limited Registrar MUFG Intime India Private Limited Sponsor Bank AXIS BANK Prospectus & GID Click Here Corrigendum Click Here Blank ASBA Form Click Here Online ASBA Form Click Here Revised Online ASBA Form Click Here Registrars to an Issue and Share Transfer Agents/Depository Participants Click Here Exchange Notices 1) Public Issue of VEEGALAND DEVELOPERS LIMITED - Allocation to Anchor Investors 2) Processing of ASBA applications in Public Issue of Equity Shares and Convertibles Notes As per SEBI circular no SEBI/HO/CFD/DIL2/CIR/P/2019/76 dated June 28 2019 all are requested to comply with the provisions of the aforementioned circular which states as below: Intermediaries shall retain physical application forms submitted by retail individual investors with UPI as a payment mechanism, for a period of six months and thereafter forward the same to the issuer/ Registrar to Issue. However in case of Electronic forms printouts of such applications need not be retained or sent to the issuer. Intermediaries shall at all times maintain the electronic records relating to such forms for a minimum period of three years. Branches of SCSBs where syndicate / sub syndicate member to submit ASBA form Click Here List of SCSBs for Syndicate ASBA and under ASBA facility Click Here Self Certified Syndicate Banks eligible as Issuer Banks for UPI Click Here",
@@ -2238,7 +2292,7 @@
         "extractedFields": [
           "issueComposition"
         ],
-        "extractedAt": "2026-09-13T07:30:20+05:30",
+        "extractedAt": "2026-09-13T07:39:32+05:30",
         "source": "BSE"
       }
     },
@@ -2637,7 +2691,7 @@
       ],
       "issuerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 7,
+        "parserVersion": 8,
         "documentUrl": "https://omgalaxymould.com/wp-content/uploads/2026/09/Project-Om_-RHP_with_RFS.pdf",
         "documentType": "RHP",
         "documentTitle": "Red Herring Prospectus",
@@ -2650,10 +2704,13 @@
           "promoters",
           "issueComposition",
           "financials",
-          "objectsOfIssue"
+          "objectsOfIssue",
+          "shareholding"
         ],
-        "changedFields": [],
-        "extractedAt": "2026-09-13T07:31:32+05:30",
+        "changedFields": [
+          "shareholding"
+        ],
+        "extractedAt": "2026-09-13T07:41:07+05:30",
         "source": "Issuer website"
       },
       "promoters": [
@@ -2691,6 +2748,10 @@
             "eps": 43.22
           }
         ]
+      },
+      "shareholding": {
+        "promoters": [],
+        "promoterPreIssuePct": 14.55
       }
     },
     {
@@ -2860,7 +2921,7 @@
       ],
       "issuerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 7,
+        "parserVersion": 8,
         "documentUrl": "https://speedexind.com/wp-content/uploads/2026/09/SPeedex-RHP.pdf",
         "documentType": "RHP",
         "documentTitle": "Red Herring Prospectus",
@@ -2876,7 +2937,7 @@
           "objectsOfIssue"
         ],
         "changedFields": [],
-        "extractedAt": "2026-09-13T07:31:00+05:30",
+        "extractedAt": "2026-09-13T07:40:37+05:30",
         "source": "Issuer website"
       },
       "financials": {
@@ -3088,7 +3149,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 6,
+        "parserVersion": 8,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788934492263.pdf",
         "documentType": "RHP",
         "documentTitle": "SEBI RHP",
@@ -3101,7 +3162,7 @@
           "promoters",
           "issueComposition"
         ],
-        "extractedAt": "2026-09-13T04:54:14+05:30",
+        "extractedAt": "2026-09-13T07:40:11+05:30",
         "source": "SEBI"
       }
     },
@@ -82237,7 +82298,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 6,
+        "parserVersion": 8,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Torrent%20Gas%20Limited%20-%20DAP_p.pdf",
         "documentType": "DRHP",
         "documentTitle": "Torrent Gas Limited - Draft Abridged Prospectus",
@@ -82253,7 +82314,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T04:53:59+05:30",
+        "extractedAt": "2026-09-13T07:39:55+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/torrent-gas-limited/",
@@ -82415,7 +82476,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 6,
+        "parserVersion": 8,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/NATIONAL%20STOCK%20EXCHANGE%20OF%20INDIA%20LIMITED%20-%20AP_p.pdf",
         "documentType": "DRHP",
         "documentTitle": "NATIONAL STOCK EXCHANGE OF INDIA LIMITED - Draft Abridged Prospectus",
@@ -82430,7 +82491,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T04:54:03+05:30",
+        "extractedAt": "2026-09-13T07:39:59+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/national-stock-exchange-of-india-limited/",
@@ -82644,7 +82705,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 6,
+        "parserVersion": 8,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/NOPAPERFORMS%20SOLUTIONS%20LIMITED%20-%20DAP_p.pdf",
         "documentType": "DRHP",
         "documentTitle": "NOPAPERFORMS SOLUTIONS LIMITED - Draft Abridged Prospectus",
@@ -82660,7 +82721,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T04:54:07+05:30",
+        "extractedAt": "2026-09-13T07:40:03+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/nopaperforms-solutions-limited/",
@@ -82840,7 +82901,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 6,
+        "parserVersion": 8,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/M%20K%20C%20AGRO%20FRESH%20LIMITED%20-%20DAP_p.pdf",
         "documentType": "DRHP",
         "documentTitle": "M K C AGRO FRESH LIMITED - Draft Abridged prospectus",
@@ -82856,7 +82917,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T04:54:10+05:30",
+        "extractedAt": "2026-09-13T07:40:06+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/m-k-c-agro-fresh-limited/",
