@@ -1,14 +1,14 @@
 # IPO Tracker Data Quality
 
-Generated: **2026-09-14T05:14:13+05:30**  
+Generated: **2026-09-14T05:24:31+05:30**  
 Records audited: **1,354**
 
 ## Completeness scores
 
 | Area | Score | Records in denominator |
 | --- | ---: | ---: |
-| Actionable exchange terms | 82.5% | 1,347 |
-| Recent exchange terms (2Y) | 96.6% | 438 |
+| Actionable exchange terms | 82.6% | 1,347 |
+| Recent exchange terms (2Y) | 96.8% | 438 |
 | Offer-document intelligence | 100.0% | 73 |
 | Live subscription categories | 100.0% | 7 |
 | Matured lifecycle dates | 97.5% | 1,316 |
@@ -24,7 +24,7 @@ Records audited: **1,354**
 | openDate | 1,347 | 1,347 | 0 | 100.0% |
 | closeDate | 1,347 | 1,347 | 0 | 100.0% |
 | priceBand | 1,334 | 1,347 | 13 | 99.0% |
-| lotSize | 318 | 1,347 | 1,029 | 23.6% |
+| lotSize | 323 | 1,347 | 1,024 | 24.0% |
 | issueSizeCr | 436 | 1,347 | 911 | 32.4% |
 | issueComposition | 433 | 438 | 5 | 98.9% |
 
@@ -38,7 +38,7 @@ Records audited: **1,354**
 | openDate | 438 | 438 | 0 | 100.0% |
 | closeDate | 438 | 438 | 0 | 100.0% |
 | priceBand | 438 | 438 | 0 | 100.0% |
-| lotSize | 315 | 438 | 123 | 71.9% |
+| lotSize | 320 | 438 | 118 | 73.1% |
 | issueSizeCr | 433 | 438 | 5 | 98.9% |
 | issueComposition | 433 | 438 | 5 | 98.9% |
 

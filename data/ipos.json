@@ -420,6 +420,26 @@
           "issueComposition": 7
         },
         "checkedAt": "2026-09-14T04:48:01+05:30"
+      },
+      "SEBI-other-doc-lot-backfill": {
+        "targets": 118,
+        "selected": 118,
+        "matchedPages": 8,
+        "discoveredDocuments": 8,
+        "attemptedDocuments": 8,
+        "updated": 5,
+        "failed": 1,
+        "updatedIds": [
+          "vmobile",
+          "shreedhar",
+          "nfpsampoor",
+          "eximroutes",
+          "armour"
+        ],
+        "errors": [
+          "Jayesh Logistics Limited Jayesh Logistics Limited: ('Connection broken: IncompleteRead(8085751 bytes read, 1938015 more expected)', IncompleteRead(8085751 bytes read, 1938015 more expected))"
+        ],
+        "asOf": "2026-09-14T05:24:29+05:30"
       }
     },
     "errors": [],
@@ -16036,6 +16056,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-08/Primary_Market_data__July26_20260814112232.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "SEBI public issue other document",
+          "kind": "regulator",
+          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/vinit-mobile-limited_104253.html",
+          "asOf": "2026-09-14T05:21:10+05:30"
         }
       ],
       "source": {
@@ -16054,15 +16080,34 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "SEBIOtherDocument": {
+          "lotSize": 1600,
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788435005522_1347.pdf",
+          "sourcePage": "https://www.sebi.gov.in/filings/public-issues/sep-2026/vinit-mobile-limited_104253.html",
+          "filedDate": null,
+          "pagesRead": 20,
+          "pageCount": 372,
+          "parserVersion": 2
         }
       },
-      "documents": [],
+      "documents": [
+        {
+          "type": "OTHER",
+          "title": "Vinit Mobile limited",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788435005522_1347.pdf",
+          "sourcePage": "https://www.sebi.gov.in/filings/public-issues/sep-2026/vinit-mobile-limited_104253.html",
+          "filedDate": null,
+          "source": "SEBI"
+        }
+      ],
       "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-14T04:43:43+05:30",
+        "status": "verified",
+        "checkedAt": "2026-09-14T05:21:10+05:30",
         "checks": [],
         "independentSources": [
-          "NSE"
+          "NSE",
+          "SEBI"
         ]
       },
       "profilePath": "ipo/vmobile/",
@@ -16094,7 +16139,9 @@
         "lastAttemptAt": "2026-09-14T02:11:24+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
-      }
+      },
+      "lotSize": 1600,
+      "minInvestment": 252800.0
     },
     {
       "id": "teja",
@@ -17114,6 +17161,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-08/Primary_Market_data__July26_20260814112232.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "SEBI public issue other document",
+          "kind": "regulator",
+          "url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/shreedhar-spinners-limited_102615.html",
+          "asOf": "2026-09-14T05:21:28+05:30"
         }
       ],
       "source": {
@@ -17132,15 +17185,34 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "SEBIOtherDocument": {
+          "lotSize": 4000,
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1783337424176_1302.pdf",
+          "sourcePage": "https://www.sebi.gov.in/filings/public-issues/jul-2026/shreedhar-spinners-limited_102615.html",
+          "filedDate": null,
+          "pagesRead": 20,
+          "pageCount": 369,
+          "parserVersion": 2
         }
       },
-      "documents": [],
+      "documents": [
+        {
+          "type": "OTHER",
+          "title": "Shreedhar Spinners Limited",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1783337424176_1302.pdf",
+          "sourcePage": "https://www.sebi.gov.in/filings/public-issues/jul-2026/shreedhar-spinners-limited_102615.html",
+          "filedDate": null,
+          "source": "SEBI"
+        }
+      ],
       "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-14T04:43:43+05:30",
+        "status": "verified",
+        "checkedAt": "2026-09-14T05:21:28+05:30",
         "checks": [],
         "independentSources": [
-          "NSE"
+          "NSE",
+          "SEBI"
         ]
       },
       "profilePath": "ipo/shreedhar/",
@@ -17172,7 +17244,9 @@
         "lastAttemptAt": "2026-09-14T02:11:26+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
-      }
+      },
+      "lotSize": 4000,
+      "minInvestment": 212000.0
     },
     {
       "id": "rambhajo",
@@ -18610,6 +18684,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-06/Exchange_Data_Primary_Market_20260612135555.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "SEBI public issue other document",
+          "kind": "regulator",
+          "url": "https://www.sebi.gov.in/filings/public-issues/jun-2026/nfp-sampoorna-foods-limited_102065.html",
+          "asOf": "2026-09-14T05:21:51+05:30"
         }
       ],
       "source": {
@@ -18628,15 +18708,34 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "SEBIOtherDocument": {
+          "lotSize": 4000,
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781177415072_1282.pdf",
+          "sourcePage": "https://www.sebi.gov.in/filings/public-issues/jun-2026/nfp-sampoorna-foods-limited_102065.html",
+          "filedDate": null,
+          "pagesRead": 20,
+          "pageCount": 343,
+          "parserVersion": 2
         }
       },
-      "documents": [],
+      "documents": [
+        {
+          "type": "OTHER",
+          "title": "NFP Sampoorna Foods Limited",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781177415072_1282.pdf",
+          "sourcePage": "https://www.sebi.gov.in/filings/public-issues/jun-2026/nfp-sampoorna-foods-limited_102065.html",
+          "filedDate": null,
+          "source": "SEBI"
+        }
+      ],
       "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-14T04:43:43+05:30",
+        "status": "verified",
+        "checkedAt": "2026-09-14T05:21:51+05:30",
         "checks": [],
         "independentSources": [
-          "NSE"
+          "NSE",
+          "SEBI"
         ]
       },
       "profilePath": "ipo/nfpsampoor/",
@@ -18668,7 +18767,9 @@
         "lastAttemptAt": "2026-09-14T02:20:39+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
-      }
+      },
+      "lotSize": 4000,
+      "minInvestment": 220000.0
     },
     {
       "id": "rfbl",
@@ -24427,6 +24528,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-02/Primary_Market_Jan2026_20260217133243.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "SEBI public issue other document",
+          "kind": "regulator",
+          "url": "https://www.sebi.gov.in/filings/public-issues/jun-2026/armour-security-india-ltd_102040.html",
+          "asOf": "2026-09-14T05:22:42+05:30"
         }
       ],
       "source": {
@@ -24445,15 +24552,34 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "SEBIOtherDocument": {
+          "lotSize": 2000,
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781091011695_1278.pdf",
+          "sourcePage": "https://www.sebi.gov.in/filings/public-issues/jun-2026/armour-security-india-ltd_102040.html",
+          "filedDate": null,
+          "pagesRead": 20,
+          "pageCount": 382,
+          "parserVersion": 2
         }
       },
-      "documents": [],
+      "documents": [
+        {
+          "type": "OTHER",
+          "title": "ARMOUR SECURITY INDIA LTD",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781091011695_1278.pdf",
+          "sourcePage": "https://www.sebi.gov.in/filings/public-issues/jun-2026/armour-security-india-ltd_102040.html",
+          "filedDate": null,
+          "source": "SEBI"
+        }
+      ],
       "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-14T04:43:43+05:30",
+        "status": "verified",
+        "checkedAt": "2026-09-14T05:22:42+05:30",
         "checks": [],
         "independentSources": [
-          "NSE"
+          "NSE",
+          "SEBI"
         ]
       },
       "profilePath": "ipo/armour/",
@@ -24485,7 +24611,9 @@
         "lastAttemptAt": "2026-09-14T03:08:49+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
-      }
+      },
+      "lotSize": 2000,
+      "minInvestment": 114000.0
     },
     {
       "id": "amagi",
@@ -25655,6 +25783,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-01/Primary_Market_Monthly_Report_-_December_2025_20260112185519.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "SEBI public issue other document",
+          "kind": "regulator",
+          "url": "https://www.sebi.gov.in/filings/public-issues/jun-2026/exim-routes-limited_102063.html",
+          "asOf": "2026-09-14T05:22:18+05:30"
         }
       ],
       "source": {
@@ -25673,15 +25807,34 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "SEBIOtherDocument": {
+          "lotSize": 1600,
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781177415072_1281.pdf",
+          "sourcePage": "https://www.sebi.gov.in/filings/public-issues/jun-2026/exim-routes-limited_102063.html",
+          "filedDate": null,
+          "pagesRead": 20,
+          "pageCount": 560,
+          "parserVersion": 2
         }
       },
-      "documents": [],
+      "documents": [
+        {
+          "type": "OTHER",
+          "title": "Exim Routes Limited",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781177415072_1281.pdf",
+          "sourcePage": "https://www.sebi.gov.in/filings/public-issues/jun-2026/exim-routes-limited_102063.html",
+          "filedDate": null,
+          "source": "SEBI"
+        }
+      ],
       "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-14T04:43:43+05:30",
+        "status": "verified",
+        "checkedAt": "2026-09-14T05:22:18+05:30",
         "checks": [],
         "independentSources": [
-          "NSE"
+          "NSE",
+          "SEBI"
         ]
       },
       "profilePath": "ipo/eximroutes/",
@@ -25706,7 +25859,9 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=EXIMROUTES&series=SME",
         "lotSize": null,
         "error": null
-      }
+      },
+      "lotSize": 1600,
+      "minInvestment": 140800.0
     },
     {
       "id": "ashwini",

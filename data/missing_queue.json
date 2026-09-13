@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-09-14T05:14:13+05:30",
+  "generatedAt": "2026-09-14T05:24:31+05:30",
   "asOfDate": "2026-09-14",
   "recordCount": 1354,
-  "queueCount": 1025,
+  "queueCount": 1020,
   "priorityCounts": {
-    "P4 recent history (2y)": 118,
+    "P4 recent history (2y)": 113,
     "P5 historical backfill": 907
   },
   "fieldGapCounts": {
-    "exchange.lotSize": 1024,
+    "exchange.lotSize": 1019,
     "exchange.issueSizeCr": 906,
     "lifecycle.listingDate": 28,
     "exchange.priceBand": 13,
@@ -265,26 +265,6 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/arisinfra/"
-    },
-    {
-      "id": "armour",
-      "company": "Armour Security (India). Ltd",
-      "symbol": "ARMOUR",
-      "stage": "listed",
-      "openDate": "2026-01-14",
-      "closeDate": "2026-01-19",
-      "listingDate": "2026-01-22",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/armour/"
     },
     {
       "id": "ashwini",
@@ -765,26 +745,6 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/encompas/"
-    },
-    {
-      "id": "eximroutes",
-      "company": "Exim Routes Limited",
-      "symbol": "EXIMROUTES",
-      "stage": "listed",
-      "openDate": "2025-12-12",
-      "closeDate": "2025-12-16",
-      "listingDate": "2025-12-19",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/eximroutes/"
     },
     {
       "id": "fascinate",
@@ -1347,26 +1307,6 @@
       "profilePath": "ipo/munish/"
     },
     {
-      "id": "nfpsampoor",
-      "company": "NFP Sampoorna Foods Limited",
-      "symbol": "NFPSAMPOOR",
-      "stage": "listed",
-      "openDate": "2026-05-18",
-      "closeDate": "2026-05-20",
-      "listingDate": "2026-05-25",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/nfpsampoor/"
-    },
-    {
       "id": "neochem",
       "company": "Neochem Bio Solutions Limited",
       "symbol": "NEOCHEM",
@@ -1785,26 +1725,6 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/shivashrit/"
-    },
-    {
-      "id": "shreedhar",
-      "company": "Shreedhar Spinners Limited",
-      "symbol": "SHREEDHAR",
-      "stage": "listed",
-      "openDate": "2026-06-23",
-      "closeDate": "2026-06-25",
-      "listingDate": "2026-07-01",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/shreedhar/"
     },
     {
       "id": "shethji",
@@ -2305,26 +2225,6 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/vijaypd/"
-    },
-    {
-      "id": "vmobile",
-      "company": "Vinit Mobile Limited",
-      "symbol": "VMOBILE",
-      "stage": "listed",
-      "openDate": "2026-06-30",
-      "closeDate": "2026-07-02",
-      "listingDate": "2026-07-07",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/vmobile/"
     },
     {
       "id": "vividel",
@@ -6247,6 +6147,111 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/cello/"
+    },
+    {
+      "id": "cdsl",
+      "company": "Central Depository Services (India) Limited",
+      "symbol": "CDSL",
+      "stage": "listed",
+      "openDate": "2017-06-19",
+      "closeDate": "2017-06-21",
+      "listingDate": "2017-06-30",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/cdsl/"
+    },
+    {
+      "id": "chalet",
+      "company": "Chalet Hotels Limited",
+      "symbol": "CHALET",
+      "stage": "listed",
+      "openDate": "2019-01-29",
+      "closeDate": "2019-01-31",
+      "listingDate": "2019-02-07",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/chalet/"
+    },
+    {
+      "id": "cml",
+      "company": "Chaman Metallics Limited",
+      "symbol": "CML",
+      "stage": "listed",
+      "openDate": "2023-01-04",
+      "closeDate": "2023-01-06",
+      "listingDate": "2023-01-16",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/cml/"
+    },
+    {
+      "id": "chavda",
+      "company": "Chavda Infra Limited",
+      "symbol": "CHAVDA",
+      "stage": "listed",
+      "openDate": "2023-09-12",
+      "closeDate": "2023-09-14",
+      "listingDate": "2023-09-25",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/chavda/"
+    },
+    {
+      "id": "chemcon",
+      "company": "Chemcon Speciality Chemicals Limited",
+      "symbol": "CHEMCON",
+      "stage": "listed",
+      "openDate": "2020-09-21",
+      "closeDate": "2020-09-23",
+      "listingDate": "2020-10-01",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/chemcon/"
     }
   ],
   "resolvedUnavailable": [
