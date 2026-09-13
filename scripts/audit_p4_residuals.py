@@ -29,7 +29,10 @@ import build_missing_queue as queue_rules  # noqa: E402
 
 DATA_FILE = ROOT / "data" / "ipos.json"
 COUPON_STYLE = re.compile(r"^\d{2,4}[A-Z][A-Z0-9]{1,14}\d{2}$")
-MATURITY_SUFFIX = re.compile(r"^[A-Z][A-Z0-9]{2,14}\d{2}$")
+# Restrict maturity-like suffixes to plausible 20xx/30xx shorthand years so
+# legitimate issuer symbols such as VALUE360 are not flagged merely for ending
+# in digits.
+MATURITY_SUFFIX = re.compile(r"^[A-Z][A-Z0-9]{2,14}(?:2[0-9]|3[0-9])$")
 NON_EQUITY_WORDS = ("debt", "ncd", "bond", "debenture", "preference share", "preference shares")
 WITHDRAWN_WORDS = ("withdrawn", "withdraw", "cancelled", "canceled")
 POSTPONED_WORDS = ("postponed", "deferred", "rescheduled")
@@ -38,6 +41,18 @@ POSTPONED_WORDS = ("postponed", "deferred", "rescheduled")
 def _attempt_status(record: dict[str, Any], key: str) -> str | None:
     attempt = record.get(key) or {}
     return attempt.get("status") if isinstance(attempt, dict) else None
+
+
+def _source_refs(record: dict[str, Any]) -> list[dict[str, str]]:
+    refs: list[dict[str, str]] = []
+    for source in record.get("sources") or []:
+        if not isinstance(source, dict):
+            continue
+        name = str(source.get("name") or "").strip()
+        url = str(source.get("url") or "").strip()
+        if name or url:
+            refs.append({"name": name, "url": url})
+    return refs[-8:]
 
 
 def compact(record: dict[str, Any]) -> dict[str, Any]:
@@ -56,6 +71,7 @@ def compact(record: dict[str, Any]) -> dict[str, Any]:
         "nseLotAttempt": _attempt_status(record, "nseIssueInfoLotBackfill"),
         "bseLotAttempt": _attempt_status(record, "p4LotSizeBackfill"),
         "termAttempt": _attempt_status(record, "nseIssueInfoTermsBackfill"),
+        "sourceRefs": _source_refs(record),
     }
 
 
@@ -193,6 +209,7 @@ def main() -> int:
             "Classification flags are diagnostic hints only and never suppress a queue gap by themselves.",
             "A blank becomes non-actionable only through a source-backed dataAvailability resolution accepted by build_missing_queue.py.",
             "NSE and BSE lot-attempt status counts are reported separately so endpoint/matcher failures are distinguishable from genuinely unattempted records.",
+            "Compact residual rows include recent source references to support source-aware classification decisions.",
         ],
     }
     print(json.dumps(report, indent=2, ensure_ascii=False))
