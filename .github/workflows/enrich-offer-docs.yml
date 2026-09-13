@@ -32,6 +32,7 @@ on:
       - "scripts/enrich_recent_offer_terms.py"
       - "scripts/apply_verified_lot_sizes.py"
       - "scripts/apply_verified_recent_issue_terms.py"
+      - "scripts/apply_verified_recent_offer_fields.py"
       - "scripts/critical_backfill.py"
       - "scripts/audit_data_completeness.py"
       - "scripts/build_missing_queue.py"
@@ -54,6 +55,7 @@ on:
       - "tests/test_recent_offer_terms.py"
       - "tests/test_verified_lot_sizes.py"
       - "tests/test_verified_recent_issue_terms.py"
+      - "tests/test_verified_recent_offer_fields.py"
       - "tests/test_critical_backfill.py"
       - "tests/test_data_completeness.py"
       - "tests/test_missing_queue.py"
@@ -124,6 +126,8 @@ jobs:
         run: uv run python -m unittest discover -s tests -p "test_verified_lot_sizes.py" -v
       - name: Run verified recent issue-term tests
         run: uv run python -m unittest discover -s tests -p "test_verified_recent_issue_terms.py" -v
+      - name: Run verified recent offer-field tests
+        run: uv run python -m unittest discover -s tests -p "test_verified_recent_offer_fields.py" -v
       - name: Run critical-backfill tests
         run: uv run python -m unittest discover -s tests -p "test_critical_backfill.py" -v
       - name: Run completeness-audit tests
@@ -147,7 +151,7 @@ jobs:
           else
             DOC_LIMIT=12
             LINK_LIMIT=40
-            ISSUER_LIMIT=10
+            ISSUER_LIMIT=20
             CRITICAL_LIMIT=20
             SEARCH_LIMIT=40
             TERMS_LIMIT=40
@@ -163,7 +167,11 @@ jobs:
           uv run python scripts/apply_verified_recent_issue_terms.py
 
           uv run python scripts/run_offer_docs_v11.py --limit "$DOC_LIMIT"
+          # Official issuer/registrar/NSE/BSE mirror documents get first chance.
           uv run python scripts/run_issuer_offer_docs.py --priority-max 2 --limit "$ISSUER_LIMIT"
+          # Only fields still missing after official-document parsing are bridged.
+          uv run python scripts/apply_verified_recent_offer_fields.py
+
           uv run python scripts/audit_data_completeness.py
           uv run python scripts/build_missing_queue.py
           uv run python scripts/run_critical_offer_backfill.py --documents-only --priority-max 2 --limit "$CRITICAL_LIMIT"
