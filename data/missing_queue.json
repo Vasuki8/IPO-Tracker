@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-09-14T02:45:05+05:30",
+  "generatedAt": "2026-09-14T02:56:11+05:30",
   "asOfDate": "2026-09-14",
   "recordCount": 1354,
-  "queueCount": 1069,
+  "queueCount": 1068,
   "priorityCounts": {
-    "P4 recent history (2y)": 162,
+    "P4 recent history (2y)": 161,
     "P5 historical backfill": 907
   },
   "fieldGapCounts": {
@@ -12,13 +12,13 @@
     "exchange.issueSizeCr": 938,
     "exchange.issueComposition": 33,
     "lifecycle.listingDate": 28,
-    "offer.promoterShareholding": 14,
+    "offer.promoterShareholding": 13,
     "exchange.priceBand": 13,
-    "offer.registrar": 12,
-    "offer.objectsOfIssue": 11,
-    "offer.leadManagers": 10,
-    "offer.promoters": 9,
-    "offer.financials": 9,
+    "offer.registrar": 11,
+    "offer.objectsOfIssue": 10,
+    "offer.leadManagers": 9,
+    "offer.promoters": 8,
+    "offer.financials": 8,
     "provenance.sources": 1
   },
   "resolvedUnavailableRecordCount": 5,
@@ -56,31 +56,6 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/lcl/"
-    },
-    {
-      "id": "mvelectro",
-      "company": "MV Electrosystems Limited",
-      "symbol": "MVELECTRO",
-      "stage": "listed",
-      "openDate": "2026-07-30",
-      "closeDate": "2026-08-03",
-      "listingDate": "2026-08-06",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 68.4,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 6,
-      "missingFields": [
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.promoters",
-        "offer.objectsOfIssue",
-        "offer.financials",
-        "offer.promoterShareholding"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/mvelectro/"
     },
     {
       "id": "manipalhos",
@@ -6296,6 +6271,27 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/banka/"
+    },
+    {
+      "id": "bansal",
+      "company": "Bansal Multiflex Limited",
+      "symbol": "BANSAL",
+      "stage": "listed",
+      "openDate": "2017-06-30",
+      "closeDate": "2017-07-04",
+      "listingDate": "2017-07-12",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/bansal/"
     }
   ],
   "resolvedUnavailable": [
