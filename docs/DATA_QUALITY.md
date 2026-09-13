@@ -1,15 +1,15 @@
 # IPO Tracker Data Quality
 
-Generated: **2026-09-14T02:12:08+05:30**  
+Generated: **2026-09-14T02:20:10+05:30**  
 Records audited: **1,354**
 
 ## Completeness scores
 
 | Area | Score | Records in denominator |
 | --- | ---: | ---: |
-| Actionable exchange terms | 81.9% | 1,347 |
-| Recent exchange terms (2Y) | 94.8% | 438 |
-| Offer-document intelligence | 62.8% | 73 |
+| Actionable exchange terms | 82.0% | 1,347 |
+| Recent exchange terms (2Y) | 95.0% | 438 |
+| Offer-document intelligence | 72.4% | 73 |
 | Live subscription categories | 100.0% | 7 |
 | Matured lifecycle dates | 97.5% | 1,316 |
 | Source/provenance trail | 100.0% | 1,354 |
@@ -24,9 +24,9 @@ Records audited: **1,354**
 | openDate | 1,347 | 1,347 | 0 | 100.0% |
 | closeDate | 1,347 | 1,347 | 0 | 100.0% |
 | priceBand | 1,334 | 1,347 | 13 | 99.0% |
-| lotSize | 316 | 1,347 | 1,031 | 23.5% |
-| issueSizeCr | 401 | 1,347 | 946 | 29.8% |
-| issueComposition | 398 | 438 | 40 | 90.9% |
+| lotSize | 318 | 1,347 | 1,029 | 23.6% |
+| issueSizeCr | 404 | 1,347 | 943 | 30.0% |
+| issueComposition | 400 | 438 | 38 | 91.3% |
 
 ## Recent exchange fields — last 2 years
 
@@ -38,9 +38,9 @@ Records audited: **1,354**
 | openDate | 438 | 438 | 0 | 100.0% |
 | closeDate | 438 | 438 | 0 | 100.0% |
 | priceBand | 438 | 438 | 0 | 100.0% |
-| lotSize | 313 | 438 | 125 | 71.5% |
-| issueSizeCr | 398 | 438 | 40 | 90.9% |
-| issueComposition | 398 | 438 | 40 | 90.9% |
+| lotSize | 315 | 438 | 123 | 71.9% |
+| issueSizeCr | 401 | 438 | 37 | 91.6% |
+| issueComposition | 400 | 438 | 38 | 91.3% |
 
 ## Historical exchange fields
 
@@ -59,12 +59,12 @@ Records audited: **1,354**
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| registrar | 46 | 73 | 27 | 63.0% |
-| leadManagers | 46 | 73 | 27 | 63.0% |
-| promoters | 46 | 73 | 27 | 63.0% |
-| objectsOfIssue | 46 | 73 | 27 | 63.0% |
-| financials | 46 | 73 | 27 | 63.0% |
-| promoterShareholding | 45 | 73 | 28 | 61.6% |
+| registrar | 52 | 73 | 21 | 71.2% |
+| leadManagers | 53 | 73 | 20 | 72.6% |
+| promoters | 54 | 73 | 19 | 74.0% |
+| objectsOfIssue | 53 | 73 | 20 | 72.6% |
+| financials | 54 | 73 | 19 | 74.0% |
+| promoterShareholding | 51 | 73 | 22 | 69.9% |
 
 ## Open IPO subscription fields
 

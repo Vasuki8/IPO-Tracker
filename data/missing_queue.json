@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-09-14T02:12:08+05:30",
+  "generatedAt": "2026-09-14T02:20:10+05:30",
   "asOfDate": "2026-09-14",
   "recordCount": 1354,
-  "queueCount": 1081,
+  "queueCount": 1077,
   "priorityCounts": {
-    "P4 recent history (2y)": 174,
+    "P4 recent history (2y)": 170,
     "P5 historical backfill": 907
   },
   "fieldGapCounts": {
-    "exchange.lotSize": 1026,
-    "exchange.issueSizeCr": 941,
-    "exchange.issueComposition": 35,
-    "offer.promoterShareholding": 28,
+    "exchange.lotSize": 1024,
+    "exchange.issueSizeCr": 938,
+    "exchange.issueComposition": 33,
     "lifecycle.listingDate": 28,
-    "offer.registrar": 27,
-    "offer.leadManagers": 27,
-    "offer.promoters": 27,
-    "offer.objectsOfIssue": 27,
-    "offer.financials": 27,
+    "offer.promoterShareholding": 22,
+    "offer.registrar": 21,
+    "offer.leadManagers": 20,
+    "offer.objectsOfIssue": 20,
+    "offer.promoters": 19,
+    "offer.financials": 19,
     "exchange.priceBand": 13,
     "provenance.sources": 1
   },
@@ -32,213 +32,6 @@
     "lifecycle.listingDate": 5
   },
   "queue": [
-    {
-      "id": "leap",
-      "company": "Leap India Limited",
-      "symbol": "LEAP",
-      "stage": "listed",
-      "openDate": "2026-08-07",
-      "closeDate": "2026-08-11",
-      "listingDate": "2026-08-14",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 52.6,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 9,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.promoters",
-        "offer.objectsOfIssue",
-        "offer.financials",
-        "offer.promoterShareholding"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/leap/"
-    },
-    {
-      "id": "propshop",
-      "company": "Propshop Events and Exhibitions Limited",
-      "symbol": "PROPSHOP",
-      "stage": "listed",
-      "openDate": "2026-07-27",
-      "closeDate": "2026-07-29",
-      "listingDate": "2026-08-03",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 52.6,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 9,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.promoters",
-        "offer.objectsOfIssue",
-        "offer.financials",
-        "offer.promoterShareholding"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/propshop/"
-    },
-    {
-      "id": "ardee",
-      "company": "Ardee Industries Limited",
-      "symbol": "ARDEE",
-      "stage": "listed",
-      "openDate": "2026-08-05",
-      "closeDate": "2026-08-07",
-      "listingDate": "2026-08-12",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 63.2,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 7,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.promoters",
-        "offer.objectsOfIssue",
-        "offer.financials",
-        "offer.promoterShareholding"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/ardee/"
-    },
-    {
-      "id": "aastha",
-      "company": "Aastha Spintex Limited",
-      "symbol": "AASTHA",
-      "stage": "listed",
-      "openDate": "2026-06-29",
-      "closeDate": "2026-07-01",
-      "listingDate": "2026-07-06",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 68.4,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 6,
-      "missingFields": [
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.promoters",
-        "offer.objectsOfIssue",
-        "offer.financials",
-        "offer.promoterShareholding"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/aastha/"
-    },
-    {
-      "id": "rambhajo",
-      "company": "Advit Jewels Limited",
-      "symbol": "RAMBHAJO",
-      "stage": "listed",
-      "openDate": "2026-06-23",
-      "closeDate": "2026-06-25",
-      "listingDate": "2026-07-01",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 68.4,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 6,
-      "missingFields": [
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.promoters",
-        "offer.objectsOfIssue",
-        "offer.financials",
-        "offer.promoterShareholding"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/rambhajo/"
-    },
-    {
-      "id": "alpinetex",
-      "company": "Alpine Texworld Limited",
-      "symbol": "ALPINETEX",
-      "stage": "listed",
-      "openDate": "2026-07-14",
-      "closeDate": "2026-07-16",
-      "listingDate": "2026-07-21",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 68.4,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 6,
-      "missingFields": [
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.promoters",
-        "offer.objectsOfIssue",
-        "offer.financials",
-        "offer.promoterShareholding"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/alpinetex/"
-    },
-    {
-      "id": "aye",
-      "company": "Aye Finance Limited",
-      "symbol": "AYE",
-      "stage": "listed",
-      "openDate": "2026-02-09",
-      "closeDate": "2026-02-11",
-      "listingDate": "2026-02-16",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 68.4,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 6,
-      "missingFields": [
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.promoters",
-        "offer.objectsOfIssue",
-        "offer.financials",
-        "offer.promoterShareholding"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/aye/"
-    },
-    {
-      "id": "csm",
-      "company": "CSM Technologies Limited",
-      "symbol": "CSM",
-      "stage": "listed",
-      "openDate": "2026-06-24",
-      "closeDate": "2026-06-29",
-      "listingDate": "2026-07-02",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 68.4,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 6,
-      "missingFields": [
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.promoters",
-        "offer.objectsOfIssue",
-        "offer.financials",
-        "offer.promoterShareholding"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/csm/"
-    },
     {
       "id": "cmll",
       "company": "Caliber Mining and Logistics Limited",
@@ -914,6 +707,27 @@
       "profilePath": "ipo/rajputana/"
     },
     {
+      "id": "aastha",
+      "company": "Aastha Spintex Limited",
+      "symbol": "AASTHA",
+      "stage": "listed",
+      "openDate": "2026-06-29",
+      "closeDate": "2026-07-01",
+      "listingDate": "2026-07-06",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 89.5,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "offer.registrar",
+        "offer.promoterShareholding"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/aastha/"
+    },
+    {
       "id": "abhapower",
       "company": "Abha Power and Steel Limited",
       "symbol": "ABHAPOWER",
@@ -996,6 +810,27 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/c2c/"
+    },
+    {
+      "id": "csm",
+      "company": "CSM Technologies Limited",
+      "symbol": "CSM",
+      "stage": "listed",
+      "openDate": "2026-06-24",
+      "closeDate": "2026-06-29",
+      "listingDate": "2026-07-02",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 89.5,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "offer.registrar",
+        "offer.leadManagers"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/csm/"
     },
     {
       "id": "carraro",
@@ -1413,6 +1248,26 @@
       "profilePath": "ipo/adisoft/"
     },
     {
+      "id": "rambhajo",
+      "company": "Advit Jewels Limited",
+      "symbol": "RAMBHAJO",
+      "stage": "listed",
+      "openDate": "2026-06-23",
+      "closeDate": "2026-06-25",
+      "listingDate": "2026-07-01",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 94.7,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "offer.objectsOfIssue"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/rambhajo/"
+    },
+    {
       "id": "ambaauto",
       "company": "Amba Auto Sales and Services Limited",
       "symbol": "AMBAAUTO",
@@ -1611,6 +1466,26 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/avience/"
+    },
+    {
+      "id": "aye",
+      "company": "Aye Finance Limited",
+      "symbol": "AYE",
+      "stage": "listed",
+      "openDate": "2026-02-09",
+      "closeDate": "2026-02-11",
+      "listingDate": "2026-02-16",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 94.7,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "offer.promoterShareholding"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/aye/"
     },
     {
       "id": "bagdigital",
@@ -6377,6 +6252,90 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/avonmpl/"
+    },
+    {
+      "id": "awfis",
+      "company": "Awfis Space Solutions Limited",
+      "symbol": "AWFIS",
+      "stage": "listed",
+      "openDate": "2024-05-22",
+      "closeDate": "2024-05-27",
+      "listingDate": "2024-05-30",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/awfis/"
+    },
+    {
+      "id": "azad",
+      "company": "Azad Engineering Limited",
+      "symbol": "AZAD",
+      "stage": "listed",
+      "openDate": "2023-12-20",
+      "closeDate": "2023-12-22",
+      "listingDate": "2023-12-28",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/azad/"
+    },
+    {
+      "id": "bbtcl",
+      "company": "B&B Triplewall Containers Limited",
+      "symbol": "BBTCL",
+      "stage": "listed",
+      "openDate": "2018-09-28",
+      "closeDate": "2018-10-05",
+      "listingDate": "2022-11-23",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/bbtcl/"
+    },
+    {
+      "id": "bewltd",
+      "company": "BEW Engineering Limited",
+      "symbol": "BEWLTD",
+      "stage": "listed",
+      "openDate": "2021-09-02",
+      "closeDate": "2021-09-07",
+      "listingDate": "2021-09-16",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/bewltd/"
     }
   ],
   "resolvedUnavailable": [
