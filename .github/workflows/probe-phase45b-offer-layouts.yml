@@ -58,7 +58,8 @@ jobs:
               "glasswall",
               "tempsens",
           }
-          records = json.loads(Path("data/ipos.json").read_text(encoding="utf-8"))
+          payload = json.loads(Path("data/ipos.json").read_text(encoding="utf-8"))
+          records = [row for row in (payload.get("ipos") or []) if isinstance(row, dict)]
           session = requests.Session()
           session.headers.update({"User-Agent": "Mozilla/5.0 Phase45B-layout-probe"})
 
