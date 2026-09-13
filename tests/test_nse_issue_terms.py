@@ -3,6 +3,7 @@ import sys
 import unittest
 from datetime import date
 from pathlib import Path
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT_DIR = ROOT / "scripts"
@@ -83,6 +84,32 @@ class NSEIssueTermsTests(unittest.TestCase):
         record["issueSizeCr"] = 405.0
         record["freshIssueCr"] = 270.0
         self.assertFalse(mod.is_candidate(record, date(2026, 9, 13), 730))
+
+    def test_recent_attempt_obeys_retry_cooldown(self):
+        record = self.record()
+        record[mod.ATTEMPT_KEY] = {
+            "status": "no-terms",
+            "lastAttemptAt": "2026-09-13T12:00:00+05:30",
+        }
+        self.assertFalse(mod.is_candidate(record, date(2026, 9, 13), 730, 14))
+        self.assertTrue(mod.is_candidate(record, date(2026, 9, 13), 730, 0))
+
+    def test_mark_attempt_persists_status_and_parsed_terms(self):
+        record = self.record()
+        terms = {"freshIssueCr": 270.0, "ofsCr": 135.0, "issueSizeCr": 405.0}
+        with patch.object(mod.core, "now_ist") as now_ist:
+            now_ist.return_value.isoformat.return_value = "2026-09-13T12:00:00+05:30"
+            mod.mark_attempt(
+                record,
+                status="filled",
+                page_url="https://www.nseindia.com/issue",
+                api_url="https://www.nseindia.com/api/ipo-detail",
+                parsed_terms=terms,
+            )
+        attempt = record[mod.ATTEMPT_KEY]
+        self.assertEqual(attempt["status"], "filled")
+        self.assertEqual(attempt["issueSizeCr"], 405.0)
+        self.assertEqual(attempt["freshIssueCr"], 270.0)
 
     def test_merge_is_fill_only_and_keeps_provenance(self):
         value = (
