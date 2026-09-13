@@ -34,37 +34,61 @@ jobs:
       - name: Inspect scripts links forms and likely data endpoints
         shell: python
         run: |
-          from bs4 import BeautifulSoup
+          from html.parser import HTMLParser
           from urllib.parse import urljoin
+          import html as html_lib
           import re
 
           base = "https://www.bseindia.com/markets/PublicIssues/Issuesummary.aspx"
-          html = open("/tmp/bse-isd.html", encoding="utf-8", errors="ignore").read()
-          soup = BeautifulSoup(html, "html.parser")
+          raw = open("/tmp/bse-isd.html", encoding="utf-8", errors="ignore").read()
 
-          print("TITLE:", soup.title.get_text(" ", strip=True) if soup.title else "")
+          class Probe(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.forms = []
+                  self.scripts = []
+                  self.links = []
+                  self._href = None
+                  self._text = []
+              def handle_starttag(self, tag, attrs):
+                  attrs = dict(attrs)
+                  if tag == "form":
+                      self.forms.append((attrs.get("id"), attrs.get("method"), attrs.get("action")))
+                  elif tag == "script" and attrs.get("src"):
+                      self.scripts.append(urljoin(base, attrs["src"]))
+                  elif tag == "a" and attrs.get("href"):
+                      self._href = urljoin(base, attrs["href"])
+                      self._text = []
+              def handle_data(self, data):
+                  if self._href:
+                      self._text.append(data)
+              def handle_endtag(self, tag):
+                  if tag == "a" and self._href:
+                      self.links.append((" ".join(" ".join(self._text).split()), self._href))
+                      self._href = None
+                      self._text = []
+
+          probe = Probe()
+          probe.feed(raw)
+
           print("FORMS:")
-          for form in soup.find_all("form")[:10]:
-              print(form.get("id"), form.get("method"), form.get("action"))
+          for item in probe.forms[:10]:
+              print(item)
 
           print("\nSCRIPTS:")
-          for script in soup.find_all("script"):
-              src = script.get("src")
-              if src:
-                  print(urljoin(base, src))
+          for src in probe.scripts:
+              print(src)
 
-          print("\nLINKS CONTAINING DETAIL/XBRL/XML/XLSX/ISD:")
+          print("\nLINKS CONTAINING DETAIL/XBRL/XML/XLSX/ISD/ISSUE:")
           seen = set()
-          for a in soup.select("a[href]"):
-              href = urljoin(base, a.get("href", ""))
-              text = " ".join(a.stripped_strings)
+          for text, href in probe.links:
               ctx = f"{href} {text}".lower()
-              if any(token in ctx for token in ("detail", "xbrl", ".xml", ".xlsx", "isd", "issue")):
-                  if href not in seen:
-                      seen.add(href)
-                      print(text[:100], "=>", href)
+              if any(token in ctx for token in ("detail", "xbrl", ".xml", ".xlsx", "isd", "issue")) and href not in seen:
+                  seen.add(href)
+                  print(text[:120], "=>", href)
 
           print("\nINLINE ENDPOINT-LIKE STRINGS:")
+          decoded = html_lib.unescape(raw)
           patterns = [
               r"https?://[^\"'<>\s]+",
               r"/[A-Za-z0-9_./-]+(?:api|Api|API|Issue|issue|XBRL|xbrl)[A-Za-z0-9_./?=&%-]*",
@@ -72,15 +96,14 @@ jobs:
           ]
           found = []
           for pat in patterns:
-              for value in re.findall(pat, html):
-                  value = value.replace("&amp;", "&")
+              for value in re.findall(pat, decoded):
                   if value not in found:
                       found.append(value)
-          for value in found[:300]:
+          for value in found[:400]:
               print(value)
 
-          print("\nVISIBLE ROW SAMPLE:")
-          for tr in soup.find_all("tr")[:80]:
-              cells = [" ".join(td.stripped_strings) for td in tr.find_all(["th", "td"], recursive=False)]
-              if cells:
-                  print(cells)
+          print("\nKEY HTML LINES:")
+          for line in raw.splitlines():
+              low = line.lower()
+              if any(token in low for token in ("xbrl", "issue", "api", "view detail", "xml", "ajax")):
+                  print(" ".join(line.split())[:1000])
