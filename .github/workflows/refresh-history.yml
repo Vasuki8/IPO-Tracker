@@ -15,6 +15,7 @@ on:
       - "scripts/apply_verified_lot_sizes.py"
       - "scripts/apply_verified_recent_issue_terms.py"
       - "scripts/apply_verified_recent_offer_fields.py"
+      - "scripts/apply_verified_filing_offer_fields.py"
       - "scripts/audit_data_completeness.py"
       - "scripts/build_missing_queue.py"
       - "scripts/normalize_source_health.py"
@@ -26,6 +27,7 @@ on:
       - "tests/test_verified_lot_sizes.py"
       - "tests/test_verified_recent_issue_terms.py"
       - "tests/test_verified_recent_offer_fields.py"
+      - "tests/test_verified_filing_offer_fields.py"
       - "tests/test_data_completeness.py"
       - "tests/test_missing_queue.py"
       - "tests/test_source_health.py"
@@ -84,6 +86,9 @@ jobs:
       - name: Run verified recent offer-field tests
         run: uv run python -m unittest discover -s tests -p "test_verified_recent_offer_fields.py" -v
 
+      - name: Run verified filing offer-field tests
+        run: uv run python -m unittest discover -s tests -p "test_verified_filing_offer_fields.py" -v
+
       - name: Run source-health tests
         run: uv run python -m unittest discover -s tests -p "test_source_health.py" -v
 
@@ -136,11 +141,12 @@ jobs:
           uv run python scripts/backfill_bse_history_v2.py --history-days 730 --limit 80
 
           # Strict fill-only bridges run only after automated exchange sources.
-          # Exact id + symbol + company + open-date guards prevent cross-issue
-          # application, while retaining per-entry verification provenance.
+          # Exact record-identity guards prevent cross-issue application while
+          # retaining per-entry filing and verification provenance.
           uv run python scripts/apply_verified_lot_sizes.py
           uv run python scripts/apply_verified_recent_issue_terms.py
           uv run python scripts/apply_verified_recent_offer_fields.py
+          uv run python scripts/apply_verified_filing_offer_fields.py
 
           # Phase 4.5D archival sweep: progressively walk the older official BSE
           # archive for recoverable exchange-core fields. Attempt markers + a
