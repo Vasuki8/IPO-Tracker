@@ -23,6 +23,10 @@ class IssuerOfferDocsV3Tests(unittest.TestCase):
             "alpinetex": "Alpine Texworld Limited",
             "aastha": "Aastha Spintex Limited",
             "rambhajo": "Advit Jewels Limited",
+            "csm": "CSM Technologies Limited",
+            "cleanmax": "Clean Max Enviro Energy Solutions Limited",
+            "gspcrop": "GSP Crop Science Limited",
+            "hexagon": "Hexagon Nutrition Limited",
         }
         for record_id, company in expected.items():
             doc = mod.base.ISSUER_DOCUMENTS[record_id]
