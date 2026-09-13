@@ -1,4 +1,5 @@
 import importlib.util
+import inspect
 import sys
 import unittest
 from pathlib import Path
@@ -13,6 +14,12 @@ spec.loader.exec_module(mod)
 class IssuerOfferDocsV4Tests(unittest.TestCase):
     def test_current_parser_is_v14(self):
         self.assertEqual(mod.base.PARSER_VERSION, 14)
+
+    def test_issuer_specific_deep_scan_contract_is_preserved(self):
+        params = inspect.signature(mod.base._extract_targeted_full_text).parameters
+        self.assertIn("need_financials", params)
+        self.assertIn("need_shareholding", params)
+        self.assertIn("max_scan_pages", params)
 
     def test_new_official_sebi_fallbacks(self):
         expected = {
