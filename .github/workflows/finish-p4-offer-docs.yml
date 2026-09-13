@@ -34,12 +34,12 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  finish-p4-offer-docs:
+  verified-p4-fast-path:
     if: >-
       github.event_name != 'workflow_run' ||
       github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
-    timeout-minutes: 55
+    timeout-minutes: 35
     steps:
       - name: Checkout latest main
         uses: actions/checkout@v7.0.1
@@ -57,15 +57,13 @@ jobs:
       - name: Sync dependencies
         run: uv sync
 
-      - name: Run final P4 parser regressions
+      - name: Run P4 parser and repair regressions
         run: |
           uv run python -m unittest discover -s tests -p "test_p4_record_repairs.py" -v
           uv run python -m unittest discover -s tests -p "test_p4_record_repairs_v2.py" -v
           uv run python -m unittest discover -s tests -p "test_offer_docs_v13.py" -v
           uv run python -m unittest discover -s tests -p "test_issuer_offer_docs_v3.py" -v
           uv run python -m unittest discover -s tests -p "test_issuer_offer_docs_v4.py" -v
-          uv run python -m unittest discover -s tests -p "test_sebi_document_links.py" -v
-          uv run python -m unittest discover -s tests -p "test_sebi_priority_registers_v2.py" -v
           uv run python -m unittest discover -s tests -p "test_verified_lot_sizes.py" -v
           uv run python -m unittest discover -s tests -p "test_verified_recent_issue_terms.py" -v
           uv run python -m unittest discover -s tests -p "test_verified_recent_offer_fields.py" -v
@@ -75,24 +73,20 @@ jobs:
       - name: Record starting data revision
         run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
 
-      - name: Exhaust P4 official offer-document paths
+      - name: Apply verified P4 fast path
         shell: bash
         run: |
-          # Zero means unbounded in these established deep-pass scripts. Discovery
-          # remains constrained to priority <= 4, so P5 historical rows are not
-          # pulled into this P4 completion run.
+          # Apply deterministic/source-registered repairs first. These paths are
+          # bounded and should publish independently of slower discovery scans.
           uv run python scripts/apply_p4_record_repairs_v2.py
-          uv run python scripts/enrich_sebi_priority_registers_v2.py --priority-max 4 --search-limit 0
-          uv run python scripts/enrich_sebi_document_links.py --priority-max 4 --limit 0
           uv run python scripts/apply_verified_lot_sizes.py
           uv run python scripts/apply_verified_recent_issue_terms.py
-          uv run python scripts/run_offer_docs_v13.py --limit 0
           uv run python scripts/run_issuer_offer_docs_v4.py --priority-max 4 --limit 0
           uv run python scripts/apply_verified_recent_offer_fields.py
           uv run python scripts/audit_data_completeness.py
           uv run python scripts/build_missing_queue.py
 
-      - name: Publish final P4 document gains safely
+      - name: Publish verified P4 gains safely
         shell: bash
         run: |
           cp data/ipos.json /tmp/generated-ipos.json
@@ -101,7 +95,7 @@ jobs:
           git fetch origin main
           REMOTE_DATA="$(git rev-parse origin/main:data/ipos.json)"
           if [ "$REMOTE_DATA" != "$BASE_DATA" ]; then
-            echo "Remote IPO data changed during final P4 document run; refusing stale publication."
+            echo "Remote IPO data changed during verified P4 pass; refusing stale publication."
             exit 0
           fi
 
@@ -112,14 +106,80 @@ jobs:
           uv run python scripts/build_missing_queue.py
 
           if [ -z "$(git status --porcelain -- data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md ipo/)" ]; then
-            echo "No final P4 document gains to publish"
+            echo "No verified P4 gains to publish"
             exit 0
           fi
 
           git config user.name "ipo-tracker-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md ipo/
-          git commit -m "data: finish P4 offer-document backfill"
+          git commit -m "data: apply verified P4 fast path"
+          git push origin HEAD:main
+
+  bounded-p4-residual-discovery:
+    needs: verified-p4-fast-path
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout freshly updated main
+        uses: actions/checkout@v7.0.1
+        with:
+          ref: main
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.1.0
+        with:
+          version: "latest-known"
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Sync dependencies
+        run: uv sync
+
+      - name: Record starting data revision
+        run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
+
+      - name: Run bounded residual discovery
+        shell: bash
+        run: |
+          # Generic network discovery is deliberately bounded. The previous
+          # unbounded mode could spend 30 seconds per unresolved issuer and hit
+          # the workflow timeout before verified documents were ever published.
+          uv run python scripts/enrich_sebi_priority_registers_v2.py --priority-max 4 --search-limit 12
+          uv run python scripts/enrich_sebi_document_links.py --priority-max 4 --limit 24
+          uv run python scripts/run_offer_docs_v13.py --limit 12
+          uv run python scripts/audit_data_completeness.py
+          uv run python scripts/build_missing_queue.py
+
+      - name: Publish bounded residual gains safely
+        shell: bash
+        run: |
+          cp data/ipos.json /tmp/generated-ipos.json
+          BASE_DATA="$(cat /tmp/base-data-blob)"
+
+          git fetch origin main
+          REMOTE_DATA="$(git rev-parse origin/main:data/ipos.json)"
+          if [ "$REMOTE_DATA" != "$BASE_DATA" ]; then
+            echo "Remote IPO data changed during residual P4 discovery; refusing stale publication."
+            exit 0
+          fi
+
+          git reset --hard origin/main
+          cp /tmp/generated-ipos.json data/ipos.json
+          uv run python scripts/build_company_pages.py
+          uv run python scripts/audit_data_completeness.py
+          uv run python scripts/build_missing_queue.py
+
+          if [ -z "$(git status --porcelain -- data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md ipo/)" ]; then
+            echo "No bounded residual P4 gains to publish"
+            exit 0
+          fi
+
+          git config user.name "ipo-tracker-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md ipo/
+          git commit -m "data: advance bounded P4 residual discovery"
           git push origin HEAD:main
 
       - name: Report P4 completion metrics
