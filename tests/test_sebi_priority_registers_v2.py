@@ -48,6 +48,19 @@ class SebiPriorityRegisterV2Tests(unittest.TestCase):
         record["documents"].append({"type": "RHP", "url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/example-rhp.html"})
         self.assertTrue(mod.has_primary_landing(record))
 
+    def test_bounded_search_rotates_unattempted_then_oldest_attempts(self):
+        records = [
+            {"id": "new-attempt", "openDate": "2026-08-20", mod.ATTEMPT_KEY: {"lastAttemptAt": "2026-09-13T12:00:00+05:30"}},
+            {"id": "older-unattempted", "openDate": "2026-07-01"},
+            {"id": "old-attempt", "openDate": "2026-08-10", mod.ATTEMPT_KEY: {"lastAttemptAt": "2026-09-12T12:00:00+05:30"}},
+            {"id": "newer-unattempted", "openDate": "2026-08-01"},
+        ]
+        ordered = sorted(records, key=mod.search_candidate_sort_key)
+        self.assertEqual(
+            [row["id"] for row in ordered],
+            ["newer-unattempted", "older-unattempted", "old-attempt", "new-attempt"],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
