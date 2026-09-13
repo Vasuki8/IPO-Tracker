@@ -138,6 +138,37 @@ class IssuerOfferDocsV4Tests(unittest.TestCase):
         }
         self.assertEqual(mod._identity_safe_targets(payload, queue, 4, 10), [])
 
+    def test_parser_version_change_reenables_partial_previous_success(self):
+        spec_entry = mod.base.ISSUER_DOCUMENTS["ardee"]
+        payload = {
+            "ipos": [
+                {
+                    "id": "ardee",
+                    "company": "Ardee Industries Limited",
+                    "issuerDocumentExtraction": {
+                        "status": "extracted",
+                        "parserVersion": mod.base.PARSER_VERSION - 1,
+                        "documentUrl": spec_entry["url"],
+                        "extractedFields": ["leadManagers"],
+                    },
+                }
+            ]
+        }
+        queue = {
+            "queue": [
+                {
+                    "id": "ardee",
+                    "company": "Ardee Industries Limited",
+                    "priority": 4,
+                    "missingFields": ["offer.financials"],
+                }
+            ]
+        }
+
+        targets = mod._identity_safe_targets(payload, queue, priority_max=4, limit=10)
+        self.assertEqual(len(targets), 1)
+        self.assertEqual(targets[0][0]["id"], "ardee")
+
     def test_previous_batch_failure_moves_behind_fresh_candidate(self):
         payload = {
             "meta": {
