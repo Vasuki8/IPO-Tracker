@@ -40,7 +40,7 @@ jobs:
       github.event_name != 'workflow_run' ||
       github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - name: Checkout latest main
         uses: actions/checkout@v7.0.1
@@ -77,14 +77,14 @@ jobs:
           # IPOs. The independent cooldown makes every scheduled run advance.
           uv run python scripts/enrich_nse_issue_information.py \
             --history-days 730 \
-            --limit 120 \
+            --limit 200 \
             --retry-days 14
 
           # Secondary: keep the conservative official BSE historical-detail
           # path for records the NSE source did not fill.
           uv run python scripts/backfill_p4_lot_sizes.py \
             --history-days 730 \
-            --limit 120 \
+            --limit 200 \
             --core-only \
             --retry-days 14
 
