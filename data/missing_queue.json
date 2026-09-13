@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-13T07:52:07+05:30",
+  "generatedAt": "2026-09-13T08:02:44+05:30",
   "asOfDate": "2026-09-13",
   "recordCount": 1371,
-  "queueCount": 1364,
+  "queueCount": 1361,
   "priorityCounts": {
-    "P0 open IPO": 4,
-    "P1 upcoming IPO": 4,
+    "P0 open IPO": 2,
+    "P1 upcoming IPO": 3,
     "P2 recent IPO (30d)": 34,
     "P3 filing pipeline": 4,
     "P4 recent history (2y)": 411,
@@ -14,79 +14,14 @@
   "fieldGapCounts": {
     "exchange.lotSize": 1353,
     "exchange.issueSizeCr": 1160,
-    "exchange.issueComposition": 263,
+    "exchange.issueComposition": 260,
     "lifecycle.listingDate": 35,
     "exchange.priceBand": 23,
-    "offer.promoterShareholding": 12,
-    "offer.promoters": 3,
-    "offer.objectsOfIssue": 3,
-    "offer.financials": 3,
+    "offer.promoterShareholding": 9,
     "offer.leadManagers": 1,
     "provenance.sources": 1
   },
   "queue": [
-    {
-      "id": "veegaland",
-      "company": "Veegaland Developers Limited",
-      "symbol": "VEEGALAND",
-      "stage": "open",
-      "openDate": "2026-09-10",
-      "closeDate": "2026-09-15",
-      "listingDate": null,
-      "priority": 0,
-      "priorityLabel": "P0 open IPO",
-      "completenessPct": 77.3,
-      "expectedFieldCount": 22,
-      "missingFieldCount": 5,
-      "missingFields": [
-        "exchange.issueComposition",
-        "offer.promoters",
-        "offer.objectsOfIssue",
-        "offer.financials",
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/veegaland/"
-    },
-    {
-      "id": "manika",
-      "company": "Manika Plastech Limited",
-      "symbol": "MANIKA",
-      "stage": "open",
-      "openDate": "2026-09-11",
-      "closeDate": "2026-09-16",
-      "listingDate": null,
-      "priority": 0,
-      "priorityLabel": "P0 open IPO",
-      "completenessPct": 77.3,
-      "expectedFieldCount": 22,
-      "missingFieldCount": 5,
-      "missingFields": [
-        "exchange.issueComposition",
-        "offer.promoters",
-        "offer.objectsOfIssue",
-        "offer.financials",
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/manika/"
-    },
-    {
-      "id": "maharaja-speedex-india-limited",
-      "company": "Maharaja & Speedex India Limited",
-      "symbol": "SPEEDEX",
-      "stage": "open",
-      "openDate": "2026-09-10",
-      "closeDate": "2026-09-15",
-      "listingDate": null,
-      "priority": 0,
-      "priorityLabel": "P0 open IPO",
-      "completenessPct": 95.5,
-      "expectedFieldCount": 22,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/maharaja-speedex-india-limited/"
-    },
     {
       "id": "injecto-polymers-limited",
       "company": "INJECTO POLYMERS LIMITED",
@@ -106,26 +41,22 @@
       "profilePath": "ipo/injecto-polymers-limited/"
     },
     {
-      "id": "shakti-polytarp-limited",
-      "company": "Shakti Polytarp Limited",
-      "symbol": "SHAKTIPOLY",
-      "stage": "upcoming",
-      "openDate": "2026-09-15",
-      "closeDate": "2026-09-17",
+      "id": "manika",
+      "company": "Manika Plastech Limited",
+      "symbol": "MANIKA",
+      "stage": "open",
+      "openDate": "2026-09-11",
+      "closeDate": "2026-09-16",
       "listingDate": null,
-      "priority": 1,
-      "priorityLabel": "P1 upcoming IPO",
-      "completenessPct": 72.2,
-      "expectedFieldCount": 18,
-      "missingFieldCount": 5,
+      "priority": 0,
+      "priorityLabel": "P0 open IPO",
+      "completenessPct": 95.5,
+      "expectedFieldCount": 22,
+      "missingFieldCount": 1,
       "missingFields": [
-        "exchange.issueComposition",
-        "offer.promoters",
-        "offer.objectsOfIssue",
-        "offer.financials",
         "offer.promoterShareholding"
       ],
-      "profilePath": "ipo/shakti-polytarp-limited/"
+      "profilePath": "ipo/manika/"
     },
     {
       "id": "vama-wovenfab-limited",
@@ -5971,6 +5902,60 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/groww/"
+    },
+    {
+      "id": "bluestone",
+      "company": "BlueStone Jewellery and Lifestyle Limited",
+      "symbol": "BLUESTONE",
+      "stage": "listed",
+      "openDate": "2025-08-11",
+      "closeDate": "2025-08-13",
+      "listingDate": "2025-08-19",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/bluestone/"
+    },
+    {
+      "id": "brighotel",
+      "company": "Brigade Hotel Ventures Limited",
+      "symbol": "BRIGHOTEL",
+      "stage": "listed",
+      "openDate": "2025-07-24",
+      "closeDate": "2025-07-28",
+      "listingDate": "2025-07-31",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/brighotel/"
+    },
+    {
+      "id": "cmrgreen",
+      "company": "CMR Green Technologies Limited",
+      "symbol": "CMRGREEN",
+      "stage": "listed",
+      "openDate": "2026-06-03",
+      "closeDate": "2026-06-05",
+      "listingDate": "2026-06-10",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/cmrgreen/"
     }
   ],
   "notes": [
