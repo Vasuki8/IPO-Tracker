@@ -9,7 +9,7 @@
       "BSE India"
     ],
     "seed": false,
-    "recordCount": 1365,
+    "recordCount": 1357,
     "historyStart": "2024-09-13",
     "sourceHealth": {
       "NSE-live": {
@@ -211,6 +211,70 @@
         "historyDays": 730,
         "retryDays": 14,
         "errors": []
+      },
+      "P4-legacy-debt-symbol-cleanup": {
+        "ok": true,
+        "historyDays": 730,
+        "removedCount": 8,
+        "removed": [
+          {
+            "id": "935iifl33",
+            "company": "IIFL Finance Limited",
+            "symbol": "935IIFL33",
+            "openDate": "2026-02-17",
+            "exchange": "NSE"
+          },
+          {
+            "id": "815chli36",
+            "company": "Canara HSBC Life Insurance Company Limited",
+            "symbol": "815CHLI36",
+            "openDate": "2025-10-10",
+            "exchange": "NSE"
+          },
+          {
+            "id": "805taca29",
+            "company": "Tata Capital Limited",
+            "symbol": "805TACA29",
+            "openDate": "2025-10-06",
+            "exchange": "NSE"
+          },
+          {
+            "id": "1305dccl29",
+            "company": "Dar Credit & Capital Limited",
+            "symbol": "1305DCCL29",
+            "openDate": "2025-05-21",
+            "exchange": "NSE Emerge"
+          },
+          {
+            "id": "975scl35",
+            "company": "Sammaan Capital Limited",
+            "symbol": "975SCL35",
+            "openDate": "2025-02-27",
+            "exchange": "NSE"
+          },
+          {
+            "id": "790ihfl27",
+            "company": "IIFL Home Finance Limited",
+            "symbol": "790IHFL27",
+            "openDate": "2024-12-06",
+            "exchange": "NSE"
+          },
+          {
+            "id": "727ngel36",
+            "company": "NTPC Green Energy Limited",
+            "symbol": "727NGEL36",
+            "openDate": "2024-11-19",
+            "exchange": "NSE"
+          },
+          {
+            "id": "904nacl28",
+            "company": "Northern Arc Capital Limited",
+            "symbol": "904NACL28",
+            "openDate": "2024-09-16",
+            "exchange": "NSE"
+          }
+        ],
+        "checkedOn": "2026-09-13"
       }
     },
     "errors": [],
@@ -18372,63 +18436,6 @@
       }
     },
     {
-      "id": "935iifl33",
-      "matchKey": "IIFLFINANCE",
-      "symbol": "935IIFL33",
-      "company": "IIFL Finance Limited",
-      "board": "Mainboard",
-      "exchange": "NSE",
-      "status": "listed",
-      "listingDate": "2026-09-11",
-      "lifecycle": {
-        "stage": "exchange",
-        "stageDate": "2026-02-17"
-      },
-      "sources": [
-        {
-          "name": "NSE historical",
-          "kind": "exchange",
-          "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
-          "asOf": "2026-09-12T08:19:17+05:30"
-        }
-      ],
-      "source": {
-        "name": "NSE historical",
-        "kind": "exchange",
-        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
-        "asOf": "2026-09-12T08:19:17+05:30"
-      },
-      "observations": {
-        "NSE": {
-          "openDate": "2026-02-17",
-          "closeDate": "2026-03-04",
-          "priceBand": null,
-          "lotSize": null,
-          "issueSizeCr": null
-        }
-      },
-      "documents": [],
-      "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
-        "checks": [],
-        "independentSources": [
-          "NSE"
-        ]
-      },
-      "profilePath": "ipo/935iifl33/",
-      "openDate": "2026-02-17",
-      "closeDate": "2026-03-04",
-      "nseIssueInfoLotBackfill": {
-        "status": "identity-mismatch",
-        "lastAttemptAt": "2026-09-13T17:14:36+05:30",
-        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=935IIFL33&type=Past",
-        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=935IIFL33&series=EQ",
-        "lotSize": null,
-        "error": null
-      }
-    },
-    {
       "id": "marushika",
       "matchKey": "MARUSHIKATECHNOLOGY",
       "symbol": "MARUSHIKA",
@@ -23268,73 +23275,6 @@
       }
     },
     {
-      "id": "815chli36",
-      "matchKey": "CANARAHSBCLIFEINSURANCECOMPANY",
-      "symbol": "815CHLI36",
-      "company": "Canara HSBC Life Insurance Company Limited",
-      "board": "Mainboard",
-      "exchange": "NSE",
-      "status": "listed",
-      "listingDate": "2026-03-17",
-      "lifecycle": {
-        "stage": "exchange",
-        "stageDate": "2025-10-10"
-      },
-      "sources": [
-        {
-          "name": "NSE historical",
-          "kind": "exchange",
-          "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
-          "asOf": "2026-09-12T08:19:30+05:30"
-        },
-        {
-          "name": "NSE primary-market monthly report",
-          "kind": "exchange",
-          "url": "https://nsearchives.nseindia.com/web/sites/default/files/inline-files/Listing%20October%20Data%202025.xlsx",
-          "asOf": "2026-09-13T05:08:29+05:30"
-        }
-      ],
-      "source": {
-        "name": "NSE historical",
-        "kind": "exchange",
-        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
-        "asOf": "2026-09-12T08:19:30+05:30"
-      },
-      "observations": {
-        "NSE": {
-          "openDate": "2025-10-10",
-          "closeDate": "2025-10-14",
-          "priceBand": null,
-          "lotSize": null,
-          "issueSizeCr": null
-        }
-      },
-      "documents": [],
-      "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
-        "checks": [],
-        "independentSources": [
-          "NSE"
-        ]
-      },
-      "profilePath": "ipo/815chli36/",
-      "openDate": "2025-10-10",
-      "closeDate": "2025-10-14",
-      "sharesOffered": 237500000,
-      "issueSizeCr": 2515.95,
-      "freshIssueCr": 0.0,
-      "ofsCr": 2517.5,
-      "issueComposition": {
-        "freshShares": 0,
-        "ofsShares": 237500000,
-        "freshIssueCr": 0.0,
-        "ofsCr": 2517.5,
-        "totalIssueSizeCr": 2515.95,
-        "valuationPriceUsed": 106.0
-      }
-    },
-    {
       "id": "rubicon",
       "matchKey": "RUBICONRESEARCH",
       "symbol": "RUBICON",
@@ -23611,73 +23551,6 @@
       "profilePath": "ipo/anantam/",
       "openDate": "2025-10-07",
       "closeDate": "2025-10-09"
-    },
-    {
-      "id": "805taca29",
-      "matchKey": "TATACAPITAL",
-      "symbol": "805TACA29",
-      "company": "Tata Capital Limited",
-      "board": "Mainboard",
-      "exchange": "NSE",
-      "status": "listed",
-      "listingDate": "2026-09-10",
-      "lifecycle": {
-        "stage": "exchange",
-        "stageDate": "2025-10-06"
-      },
-      "sources": [
-        {
-          "name": "NSE historical",
-          "kind": "exchange",
-          "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
-          "asOf": "2026-09-12T08:19:30+05:30"
-        },
-        {
-          "name": "NSE primary-market monthly report",
-          "kind": "exchange",
-          "url": "https://nsearchives.nseindia.com/web/sites/default/files/inline-files/Listing%20October%20Data%202025.xlsx",
-          "asOf": "2026-09-13T05:08:29+05:30"
-        }
-      ],
-      "source": {
-        "name": "NSE historical",
-        "kind": "exchange",
-        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
-        "asOf": "2026-09-12T08:19:30+05:30"
-      },
-      "observations": {
-        "NSE": {
-          "openDate": "2025-10-06",
-          "closeDate": "2025-10-08",
-          "priceBand": null,
-          "lotSize": null,
-          "issueSizeCr": null
-        }
-      },
-      "documents": [],
-      "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
-        "checks": [],
-        "independentSources": [
-          "NSE"
-        ]
-      },
-      "profilePath": "ipo/805taca29/",
-      "openDate": "2025-10-06",
-      "closeDate": "2025-10-08",
-      "sharesOffered": 475824280,
-      "issueSizeCr": 15511.871528,
-      "freshIssueCr": 6846.0,
-      "ofsCr": 8665.8715,
-      "issueComposition": {
-        "freshShares": 210000000,
-        "ofsShares": 265824280,
-        "freshIssueCr": 6846.0,
-        "ofsCr": 8665.8715,
-        "totalIssueSizeCr": 15511.871528,
-        "valuationPriceUsed": 326.0
-      }
     },
     {
       "id": "wework",
@@ -33329,80 +33202,6 @@
       }
     },
     {
-      "id": "1305dccl29",
-      "matchKey": "DARCREDITANDCAPITAL",
-      "symbol": "1305DCCL29",
-      "company": "Dar Credit & Capital Limited",
-      "board": "SME",
-      "exchange": "NSE Emerge",
-      "status": "listed",
-      "listingDate": "2026-08-12",
-      "priceBand": {
-        "min": 10000.0,
-        "max": 10000.0
-      },
-      "lifecycle": {
-        "stage": "exchange",
-        "stageDate": "2025-05-21"
-      },
-      "sources": [
-        {
-          "name": "NSE historical",
-          "kind": "exchange",
-          "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
-          "asOf": "2026-09-12T08:19:29+05:30"
-        },
-        {
-          "name": "NSE primary-market monthly report",
-          "kind": "exchange",
-          "url": "https://nsearchives.nseindia.com/web/sites/default/files/inline-files/Primary%20Market%20Monthly%20Report%20-%20May%202025_0.xlsx",
-          "asOf": "2026-09-13T16:13:10+05:30"
-        }
-      ],
-      "source": {
-        "name": "NSE historical",
-        "kind": "exchange",
-        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
-        "asOf": "2026-09-12T08:19:29+05:30"
-      },
-      "observations": {
-        "NSE": {
-          "openDate": "2025-05-21",
-          "closeDate": "2025-05-23",
-          "priceBand": {
-            "min": 10000.0,
-            "max": 10000.0
-          },
-          "lotSize": null,
-          "issueSizeCr": 25.66
-        }
-      },
-      "documents": [],
-      "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
-        "checks": [],
-        "independentSources": [
-          "NSE"
-        ]
-      },
-      "profilePath": "ipo/1305dccl29/",
-      "openDate": "2025-05-21",
-      "closeDate": "2025-05-23",
-      "sharesOffered": 4276000,
-      "issueSizeCr": 25.66,
-      "freshIssueCr": 25.656,
-      "ofsCr": 0.0,
-      "issueComposition": {
-        "freshShares": 4276000,
-        "ofsShares": 0,
-        "freshIssueCr": 25.656,
-        "ofsCr": 0.0,
-        "totalIssueSizeCr": 25.66,
-        "valuationPriceUsed": 60.0
-      }
-    },
-    {
       "id": "belrise",
       "matchKey": "BELRISEINDUSTRIES",
       "symbol": "BELRISE",
@@ -34584,55 +34383,6 @@
         "totalIssueSizeCr": 50.106,
         "valuationPriceUsed": 70.0
       }
-    },
-    {
-      "id": "975scl35",
-      "matchKey": "SAMMAANCAPITAL",
-      "symbol": "975SCL35",
-      "company": "Sammaan Capital Limited",
-      "board": "Mainboard",
-      "exchange": "NSE",
-      "status": "listed",
-      "listingDate": "2026-03-09",
-      "lifecycle": {
-        "stage": "exchange",
-        "stageDate": "2025-02-27"
-      },
-      "sources": [
-        {
-          "name": "NSE historical",
-          "kind": "exchange",
-          "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
-          "asOf": "2026-09-12T08:19:27+05:30"
-        }
-      ],
-      "source": {
-        "name": "NSE historical",
-        "kind": "exchange",
-        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
-        "asOf": "2026-09-12T08:19:27+05:30"
-      },
-      "observations": {
-        "NSE": {
-          "openDate": "2025-02-27",
-          "closeDate": "2025-03-12",
-          "priceBand": null,
-          "lotSize": null,
-          "issueSizeCr": null
-        }
-      },
-      "documents": [],
-      "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
-        "checks": [],
-        "independentSources": [
-          "NSE"
-        ]
-      },
-      "profilePath": "ipo/975scl35/",
-      "openDate": "2025-02-27",
-      "closeDate": "2025-03-12"
     },
     {
       "id": "hptl",
@@ -37827,55 +37577,6 @@
       "closeDate": "2024-12-11"
     },
     {
-      "id": "790ihfl27",
-      "matchKey": "IIFLHOMEFINANCE",
-      "symbol": "790IHFL27",
-      "company": "IIFL Home Finance Limited",
-      "board": "Mainboard",
-      "exchange": "NSE",
-      "status": "listed",
-      "listingDate": "2025-12-02",
-      "lifecycle": {
-        "stage": "exchange",
-        "stageDate": "2024-12-06"
-      },
-      "sources": [
-        {
-          "name": "NSE historical",
-          "kind": "exchange",
-          "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
-          "asOf": "2026-09-12T08:19:19+05:30"
-        }
-      ],
-      "source": {
-        "name": "NSE historical",
-        "kind": "exchange",
-        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
-        "asOf": "2026-09-12T08:19:19+05:30"
-      },
-      "observations": {
-        "NSE": {
-          "openDate": "2024-12-06",
-          "closeDate": "2024-12-19",
-          "priceBand": null,
-          "lotSize": null,
-          "issueSizeCr": null
-        }
-      },
-      "documents": [],
-      "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
-        "checks": [],
-        "independentSources": [
-          "NSE"
-        ]
-      },
-      "profilePath": "ipo/790ihfl27/",
-      "openDate": "2024-12-06",
-      "closeDate": "2024-12-19"
-    },
-    {
       "id": "etml",
       "matchKey": "EMERALDTYREMANUFACTURERS",
       "symbol": "ETML",
@@ -38524,73 +38225,6 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 61.2,
         "valuationPriceUsed": 200.0
-      }
-    },
-    {
-      "id": "727ngel36",
-      "matchKey": "NTPCGREENENERGY",
-      "symbol": "727NGEL36",
-      "company": "NTPC Green Energy Limited",
-      "board": "Mainboard",
-      "exchange": "NSE",
-      "status": "listed",
-      "listingDate": "2026-07-13",
-      "lifecycle": {
-        "stage": "exchange",
-        "stageDate": "2024-11-19"
-      },
-      "sources": [
-        {
-          "name": "NSE historical",
-          "kind": "exchange",
-          "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
-          "asOf": "2026-09-12T08:19:27+05:30"
-        },
-        {
-          "name": "NSE primary-market monthly report",
-          "kind": "exchange",
-          "url": "https://nsearchives.nseindia.com/web/sites/default/files/inline-files/Primary%20Market%20Monthly%20Report%20-%20November%202024.xlsx",
-          "asOf": "2026-09-13T16:13:10+05:30"
-        }
-      ],
-      "source": {
-        "name": "NSE historical",
-        "kind": "exchange",
-        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
-        "asOf": "2026-09-12T08:19:27+05:30"
-      },
-      "observations": {
-        "NSE": {
-          "openDate": "2024-11-19",
-          "closeDate": "2024-11-22",
-          "priceBand": null,
-          "lotSize": null,
-          "issueSizeCr": 10000.0
-        }
-      },
-      "documents": [],
-      "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
-        "checks": [],
-        "independentSources": [
-          "NSE"
-        ]
-      },
-      "profilePath": "ipo/727ngel36/",
-      "openDate": "2024-11-19",
-      "closeDate": "2024-11-22",
-      "sharesOffered": 926329669,
-      "issueSizeCr": 10000.0,
-      "freshIssueCr": 10004.3604,
-      "ofsCr": 0.0,
-      "issueComposition": {
-        "freshShares": 926329669,
-        "ofsShares": 0,
-        "freshIssueCr": 10004.3604,
-        "ofsCr": 0.0,
-        "totalIssueSizeCr": 10000.0,
-        "valuationPriceUsed": 108.0
       }
     },
     {
@@ -41766,73 +41400,6 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 70.66,
         "valuationPriceUsed": 160.0
-      }
-    },
-    {
-      "id": "904nacl28",
-      "matchKey": "NORTHERNARCCAPITAL",
-      "symbol": "904NACL28",
-      "company": "Northern Arc Capital Limited",
-      "board": "Mainboard",
-      "exchange": "NSE",
-      "status": "listed",
-      "listingDate": "2026-08-05",
-      "lifecycle": {
-        "stage": "exchange",
-        "stageDate": "2024-09-16"
-      },
-      "sources": [
-        {
-          "name": "NSE historical",
-          "kind": "exchange",
-          "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
-          "asOf": "2026-09-12T08:19:27+05:30"
-        },
-        {
-          "name": "NSE primary-market monthly report",
-          "kind": "exchange",
-          "url": "https://nsearchives.nseindia.com/web/sites/default/files/inline-files/Primary%20Market%20Monthly%20Report%20-%20September%202024.xlsx",
-          "asOf": "2026-09-13T16:13:10+05:30"
-        }
-      ],
-      "source": {
-        "name": "NSE historical",
-        "kind": "exchange",
-        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
-        "asOf": "2026-09-12T08:19:27+05:30"
-      },
-      "observations": {
-        "NSE": {
-          "openDate": "2024-09-16",
-          "closeDate": "2024-09-19",
-          "priceBand": null,
-          "lotSize": null,
-          "issueSizeCr": 777.0
-        }
-      },
-      "documents": [],
-      "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
-        "checks": [],
-        "independentSources": [
-          "NSE"
-        ]
-      },
-      "profilePath": "ipo/904nacl28/",
-      "openDate": "2024-09-16",
-      "closeDate": "2024-09-19",
-      "sharesOffered": 29597646,
-      "issueSizeCr": 777.0,
-      "freshIssueCr": 501.4181,
-      "ofsCr": 277.0,
-      "issueComposition": {
-        "freshShares": 19065326,
-        "ofsShares": 10532320,
-        "freshIssueCr": 501.4181,
-        "ofsCr": 277.0,
-        "totalIssueSizeCr": 777.0,
-        "valuationPriceUsed": 263.0
       }
     },
     {

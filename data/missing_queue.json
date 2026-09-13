@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-09-13T17:18:16+05:30",
+  "generatedAt": "2026-09-13T17:18:32+05:30",
   "asOfDate": "2026-09-13",
-  "recordCount": 1365,
-  "queueCount": 1283,
+  "recordCount": 1357,
+  "queueCount": 1275,
   "priorityCounts": {
-    "P4 recent history (2y)": 376,
+    "P4 recent history (2y)": 368,
     "P5 historical backfill": 907
   },
   "fieldGapCounts": {
-    "exchange.lotSize": 1252,
-    "exchange.issueSizeCr": 961,
-    "exchange.issueComposition": 55,
+    "exchange.lotSize": 1244,
+    "exchange.issueSizeCr": 958,
+    "exchange.issueComposition": 52,
     "lifecycle.listingDate": 33,
     "offer.promoterShareholding": 28,
     "offer.registrar": 27,
@@ -18,7 +18,7 @@
     "offer.promoters": 27,
     "offer.objectsOfIssue": 27,
     "offer.financials": 27,
-    "exchange.priceBand": 22,
+    "exchange.priceBand": 15,
     "provenance.sources": 1
   },
   "queue": [
@@ -700,48 +700,6 @@
       "profilePath": "ipo/icel/"
     },
     {
-      "id": "935iifl33",
-      "company": "IIFL Finance Limited",
-      "symbol": "935IIFL33",
-      "stage": "listed",
-      "openDate": "2026-02-17",
-      "closeDate": "2026-03-04",
-      "listingDate": "2026-09-11",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 66.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 4,
-      "missingFields": [
-        "exchange.priceBand",
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/935iifl33/"
-    },
-    {
-      "id": "790ihfl27",
-      "company": "IIFL Home Finance Limited",
-      "symbol": "790IHFL27",
-      "stage": "listed",
-      "openDate": "2024-12-06",
-      "closeDate": "2024-12-19",
-      "listingDate": "2025-12-02",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 66.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 4,
-      "missingFields": [
-        "exchange.priceBand",
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/790ihfl27/"
-    },
-    {
       "id": "sampoorna",
       "company": "NFP Sampoorna Foods Limited-Issue Withdrawn",
       "symbol": "SAMPOORNA",
@@ -803,27 +761,6 @@
         "lifecycle.listingDate"
       ],
       "profilePath": "ipo/rsl--b3cf3e5b/"
-    },
-    {
-      "id": "975scl35",
-      "company": "Sammaan Capital Limited",
-      "symbol": "975SCL35",
-      "stage": "listed",
-      "openDate": "2025-02-27",
-      "closeDate": "2025-03-12",
-      "listingDate": "2026-03-09",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 66.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 4,
-      "missingFields": [
-        "exchange.priceBand",
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/975scl35/"
     },
     {
       "id": "spgcl",
@@ -1624,25 +1561,6 @@
       "profilePath": "ipo/bagmane/"
     },
     {
-      "id": "815chli36",
-      "company": "Canara HSBC Life Insurance Company Limited",
-      "symbol": "815CHLI36",
-      "stage": "listed",
-      "openDate": "2025-10-10",
-      "closeDate": "2025-10-14",
-      "listingDate": "2026-03-17",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.priceBand",
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/815chli36/"
-    },
-    {
       "id": "citiusinvt",
       "company": "Citius Transnet Investment Trust",
       "symbol": "CITIUSINVT",
@@ -1681,44 +1599,6 @@
       "profilePath": "ipo/cubeinvit/"
     },
     {
-      "id": "727ngel36",
-      "company": "NTPC Green Energy Limited",
-      "symbol": "727NGEL36",
-      "stage": "listed",
-      "openDate": "2024-11-19",
-      "closeDate": "2024-11-22",
-      "listingDate": "2026-07-13",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.priceBand",
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/727ngel36/"
-    },
-    {
-      "id": "904nacl28",
-      "company": "Northern Arc Capital Limited",
-      "symbol": "904NACL28",
-      "stage": "listed",
-      "openDate": "2024-09-16",
-      "closeDate": "2024-09-19",
-      "listingDate": "2026-08-05",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.priceBand",
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/904nacl28/"
-    },
-    {
       "id": "riit",
       "company": "Raajmarg Infra Investment Trust",
       "symbol": "RIIT",
@@ -1736,25 +1616,6 @@
         "exchange.issueComposition"
       ],
       "profilePath": "ipo/riit/"
-    },
-    {
-      "id": "805taca29",
-      "company": "Tata Capital Limited",
-      "symbol": "805TACA29",
-      "stage": "listed",
-      "openDate": "2025-10-06",
-      "closeDate": "2025-10-08",
-      "listingDate": "2026-09-10",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.priceBand",
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/805taca29/"
     },
     {
       "id": "acmesolar",
@@ -2889,24 +2750,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/danish/"
-    },
-    {
-      "id": "1305dccl29",
-      "company": "Dar Credit & Capital Limited",
-      "symbol": "1305DCCL29",
-      "stage": "listed",
-      "openDate": "2025-05-21",
-      "closeDate": "2025-05-23",
-      "listingDate": "2026-08-12",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/1305dccl29/"
     },
     {
       "id": "deccantran",
@@ -5679,6 +5522,150 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/samay/"
+    },
+    {
+      "id": "sambhv",
+      "company": "Sambhv Steel Tubes Limited",
+      "symbol": "SAMBHV",
+      "stage": "listed",
+      "openDate": "2025-06-25",
+      "closeDate": "2025-06-27",
+      "listingDate": "2025-07-02",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/sambhv/"
+    },
+    {
+      "id": "satkartar",
+      "company": "Sat Kartar Shopping Limited",
+      "symbol": "SATKARTAR",
+      "stage": "listed",
+      "openDate": "2025-01-10",
+      "closeDate": "2025-01-14",
+      "listingDate": "2025-01-17",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/satkartar/"
+    },
+    {
+      "id": "sattvaengg",
+      "company": "Sattva Engineering Construction Limited",
+      "symbol": "SATTVAENGG",
+      "stage": "listed",
+      "openDate": "2025-08-26",
+      "closeDate": "2025-08-29",
+      "listingDate": "2025-09-03",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/sattvaengg/"
+    },
+    {
+      "id": "savy",
+      "company": "Savy Infra and Logistics Limited",
+      "symbol": "SAVY",
+      "stage": "listed",
+      "openDate": "2025-07-21",
+      "closeDate": "2025-07-23",
+      "listingDate": "2025-07-28",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/savy/"
+    },
+    {
+      "id": "sawaliya",
+      "company": "Sawaliya Food Products Limited",
+      "symbol": "SAWALIYA",
+      "stage": "listed",
+      "openDate": "2025-08-07",
+      "closeDate": "2025-08-11",
+      "listingDate": "2025-08-14",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/sawaliya/"
+    },
+    {
+      "id": "theleela",
+      "company": "Schloss Bangalore Limited",
+      "symbol": "THELEELA",
+      "stage": "listed",
+      "openDate": "2025-05-26",
+      "closeDate": "2025-05-28",
+      "listingDate": "2025-06-02",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/theleela/"
+    },
+    {
+      "id": "scodatubes",
+      "company": "Scoda Tubes Limited",
+      "symbol": "SCODATUBES",
+      "stage": "listed",
+      "openDate": "2025-05-28",
+      "closeDate": "2025-05-30",
+      "listingDate": "2025-06-04",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/scodatubes/"
+    },
+    {
+      "id": "sellowrap",
+      "company": "Sellowrap Industries Limited",
+      "symbol": "SELLOWRAP",
+      "stage": "listed",
+      "openDate": "2025-07-25",
+      "closeDate": "2025-07-29",
+      "listingDate": "2025-08-01",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/sellowrap/"
     }
   ],
   "notes": [
