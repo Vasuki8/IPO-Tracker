@@ -19,49 +19,23 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Fetch BSE Issue Summary bundle
-        shell: bash
-        run: |
-          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/152 Safari/537.36"
-          curl --http1.1 -fL --retry 3 --retry-all-errors --retry-delay 2 -A "$UA" \
-            -H "Referer: https://www.bseindia.com/markets/PublicIssues/Issuesummary.aspx" \
-            "https://www.bseindia.com/assets/includenew/js/main-5C6S24SS.js" -o /tmp/main.js
-          wc -c /tmp/main.js
-
-      - name: Inspect BSE public-issue route context
-        shell: python
-        run: |
-          raw = open("/tmp/main.js", encoding="utf-8", errors="ignore").read()
-          for needle in ("GetPublicIssue_par_updated", "BSE_Domain_APIUrl", "Get_issuetype_dropdown"):
-              print(f"\n=== {needle} ===")
-              start = 0
-              count = 0
-              while True:
-                  pos = raw.find(needle, start)
-                  if pos < 0:
-                      break
-                  print(raw[max(0, pos-700):pos+1100])
-                  count += 1
-                  start = pos + len(needle)
-                  if count >= 5:
-                      break
-
-      - name: Probe likely BSE public-issue API URLs
+      - name: Probe BSE historical IPO API rows
         shell: bash
         continue-on-error: true
         run: |
           UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/152 Safari/537.36"
           for URL in \
-            "https://api.bseindia.com/BseIndiaAPI/api/GetPublicIssue_par_updated/w?flag=1" \
-            "https://api.bseindia.com/BseIndiaAPI/api/GetPublicIssue_par_updated/w?flag=1&status=H" \
-            "https://api.bseindia.com/BseIndiaAPI/api/GetPublicIssue_par_updated/w?flag=1&status=L" \
-            "https://api.bseindia.com/BseIndiaAPI/api/Get_issuetype_dropdown/w"; do
+            "https://api.bseindia.com/BseIndiaAPI/api/IPOTrackerN/w?Fromdt=2026" \
+            "https://api.bseindia.com/BseIndiaAPI/api/IPOTrackerN/w?Fromdt=2025" \
+            "https://api.bseindia.com/BseIndiaAPI/api/IPOTrackerN/w?Fromdt=2024" \
+            "https://api.bseindia.com/BseIndiaAPI/api/MoreCompanyN/w?Fromdt=2025&company=&flag=1&type=2" \
+            "https://api.bseindia.com/BseIndiaAPI/api/MoreCompanyN/w?Fromdt=2024&company=&flag=1&type=2"; do
             echo "=== $URL ==="
             curl --http1.1 -sS -L --max-time 25 -A "$UA" \
               -H "Accept: application/json, text/plain, */*" \
               -H "Origin: https://www.bseindia.com" \
               -H "Referer: https://www.bseindia.com/" \
               -w "\nHTTP:%{http_code} SIZE:%{size_download}\n" \
-              "$URL" | head -c 8000
+              "$URL" | head -c 12000
             echo
           done
