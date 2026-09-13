@@ -97,33 +97,31 @@
       },
       "Critical-backfill": {
         "ok": true,
-        "records": 11,
-        "asOf": "2026-09-13T05:33:28+05:30"
+        "records": 20,
+        "asOf": "2026-09-13T07:32:14+05:30"
       },
       "SEBI-document-links": {
         "ok": true,
         "records": 0,
         "attempted": 7,
-        "asOf": "2026-09-13T04:53:36+05:30",
+        "asOf": "2026-09-13T07:30:19+05:30",
         "errors": []
       },
       "Offer-docs": {
         "ok": true,
-        "records": 12,
-        "attempted": 12,
+        "records": 6,
+        "attempted": 6,
         "failed": 0
       },
       "Issuer-offer-docs": {
-        "ok": false,
-        "records": 3,
+        "ok": true,
+        "records": 4,
         "attempted": 4,
         "updated": 0,
         "deepScanned": 0,
-        "failed": 1,
-        "asOf": "2026-09-13T04:58:47+05:30",
-        "errors": [
-          "INJECTO POLYMERS LIMITED: HTTPSConnectionPool(host='injectopolymers.in', port=443): Max retries exceeded with url: /wp-content/uploads/2026/09/1.-RHP_07.09.2026.pdf (Caused by ConnectTimeoutError(<HTTPSConnection(host='injectopolymers.in', port=443) at 0x7f31ca0b2180>, 'Connection to injectopolymers.in timed out. (connect timeout=45)'))"
-        ]
+        "failed": 0,
+        "asOf": "2026-09-13T07:32:13+05:30",
+        "errors": []
       },
       "NSE-primary-market-reports": {
         "ok": true,
@@ -148,12 +146,12 @@
     "errors": [],
     "offerDocumentHealth": {
       "ok": true,
-      "attempted": 12,
-      "extracted": 12,
+      "attempted": 6,
+      "extracted": 6,
       "failed": 0,
       "eligibleRemaining": 0,
       "parserVersion": 6,
-      "asOf": "2026-09-13T04:55:19+05:30",
+      "asOf": "2026-09-13T07:30:33+05:30",
       "errors": []
     },
     "subscriptionHealth": {
@@ -196,36 +194,56 @@
     },
     "criticalBackfillHealth": {
       "ok": true,
-      "targetCount": 11,
-      "priorityMax": 1,
-      "asOf": "2026-09-13T05:33:28+05:30",
-      "exchange": {
+      "targetCount": 20,
+      "priorityMax": 2,
+      "asOf": "2026-09-13T07:32:14+05:30",
+      "documents": {
         "ok": true,
-        "attempted": 0,
-        "matched": 0,
-        "updated": 0,
+        "attempted": 3,
+        "extracted": 3,
         "failed": 0,
-        "pageHealth": {
-          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
-            "ok": true,
-            "records": 0
-          },
-          "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
-            "ok": true,
-            "records": 11
-          },
-          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P": {
-            "ok": true,
-            "records": 0
-          },
-          "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2": {
-            "ok": false,
-            "records": 0,
-            "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f1baa06a7e0>, 'Connection to www.bsesme.c"
-          }
+        "documentsDiscovered": 0,
+        "discoveryHealth": {
+          "ok": false,
+          "records": 0,
+          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f253bc54800>, 'Connection to www.bsesme.com time"
         },
-        "errors": []
+        "errors": [],
+        "asOf": "2026-09-13T07:36:01+05:30"
       }
+    },
+    "sebiDocumentLinkHealth": {
+      "ok": true,
+      "attempted": 7,
+      "resolvedPages": 7,
+      "linksAdded": 0,
+      "failed": 0,
+      "asOf": "2026-09-13T07:30:19+05:30",
+      "errors": []
+    },
+    "issuerOfferDocumentHealth": {
+      "ok": true,
+      "attempted": 4,
+      "extracted": 4,
+      "updated": 0,
+      "deepScanned": 0,
+      "failed": 0,
+      "asOf": "2026-09-13T07:32:13+05:30",
+      "errors": []
+    },
+    "criticalOfferDocumentHealth": {
+      "ok": true,
+      "attempted": 3,
+      "extracted": 3,
+      "failed": 0,
+      "documentsDiscovered": 0,
+      "discoveryHealth": {
+        "ok": false,
+        "records": 0,
+        "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f253bc54800>, 'Connection to www.bsesme.com time"
+      },
+      "errors": [],
+      "asOf": "2026-09-13T07:36:01+05:30"
     }
   },
   "ipos": [
@@ -635,7 +653,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T05:01:45+05:30",
+        "extractedAt": "2026-09-13T07:35:00+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/ssretail/",
@@ -865,7 +883,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T05:00:14+05:30",
+        "extractedAt": "2026-09-13T07:33:36+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/jsipl/",
@@ -1115,7 +1133,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T05:02:53+05:30",
+        "extractedAt": "2026-09-13T07:36:01+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/heromotors/",
@@ -1323,7 +1341,31 @@
       ],
       "minimumBidQuantity": 4000,
       "marketLot": 2000,
-      "profilePath": "ipo/shakti-polytarp-limited/"
+      "profilePath": "ipo/shakti-polytarp-limited/",
+      "issueComposition": {
+        "freshShares": null,
+        "ofsShares": null,
+        "freshIssueCr": null,
+        "ofsCr": null,
+        "totalIssueSizeCr": null,
+        "valuationPriceUsed": 59.0
+      },
+      "offerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 6,
+        "documentUrl": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260911-17/20260911-17.pdf",
+        "documentType": "PROSPECTUS",
+        "documentTitle": "Shakti Polytarp Limited BSE Bid Details Cumulative Bid Details BSE Demand Schedule Cumulative Demand Schedule BSE Demand Graph Cumulative Demand Graph Security Type Equity Symbol SHAKTIPOLY Issue Period 15 Sep 2026 to 17 Sep 2026 Issue Size – No. of Shares 45,64,000 Price Band 56.00-59.00 Price-Band Advertisement Click Here IPO Categories FI, IC, MF, FII, OTH, CO, IND, NOH UPI Categories IND Face Value 10.00 Tick Size 1.00 Market Lot 2000 Minimum Bid Quantity 4000 Maximum Bid Quantity for Qualified Institutional Investors 43,34,000 Maximum Bid Quantity for Non-Institutional Investors 29,48,000 Book Running Lead Manager NEXGEN Financial Solutions Private Limited Registrar Skyline Financial Services Private Limited Sponsor Bank AXIS BANK Prospectus & GID Click Here Blank ASBA Form Click Here Online ASBA Form Click Here Revised Online ASBA Form Click Here Registrars to an Issue and Share Transfer Agents/Depository Participants Click Here Exchange Notices 1) Public Issue of  SHAKTI POLYTARP LIMITED Allocation to Anchor Investors Branches of SCSBs where syndicate / sub syndicate member to submit ASBA form Click Here List of SCSBs for Syndicate ASBA and under ASBA facility Click Here Self Certified Syndicate Banks eligible as Issuer Banks for UPI Click Here ISFormat 0",
+        "documentFiledDate": null,
+        "sha256": "98972eaeb27d791aeaee5ce4fd65ff6662e488ab2efe8cc35dfe7f44e71c2425",
+        "pagesRead": 2,
+        "pageCount": 2,
+        "extractedFields": [
+          "issueComposition"
+        ],
+        "extractedAt": "2026-09-13T07:30:33+05:30",
+        "source": "BSE"
+      }
     },
     {
       "id": "manika",
@@ -1488,7 +1530,31 @@
         "Pantomath Capital Advisors Private Limited"
       ],
       "minimumBidQuantity": 348,
-      "marketLot": 348
+      "marketLot": 348,
+      "issueComposition": {
+        "freshShares": null,
+        "ofsShares": null,
+        "freshIssueCr": null,
+        "ofsCr": null,
+        "totalIssueSizeCr": null,
+        "valuationPriceUsed": 43.0
+      },
+      "offerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 6,
+        "documentUrl": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260910-50/20260910-50.pdf",
+        "documentType": "PROSPECTUS",
+        "documentTitle": "Manika Plastech Limited BSE Bid Details Cumulative Bid Details BSE Demand Schedule Cumulative Demand Schedule BSE Demand Graph Cumulative Demand Graph Security Type Equity Symbol MANIKA Issue Period 11 Sep 2026 to 16 Sep 2026 Issue Size – No. of Shares 2,13,86,919 Price Band 40.00-43.00 Price-Band Advertisement Click Here IPO Categories FI, IC, MF, FII, OTH, IND, NOH UPI Categories IND Cut off Amount (Rs.) IND - 200000 Face Value 2.00 Tick Size 1.00 Market Lot 348 Minimum Bid Quantity 348 Maximum Bid Quantity for Qualified Institutional Investors 2,13,86,688 Maximum Bid Quantity for Non-Institutional Investors 1,53,99,696 Book Running Lead Manager Pantomath Capital Advisors Private Limited Registrar MUFG Intime India Private Limited Sponsor Bank 1) ICICI BANK 2) AXIS BANK LIMITED Prospectus & GID Click Here Blank ASBA Form Click Here Online ASBA Form Click Here Revised Online ASBA Form Click Here Registrars to an Issue and Share Transfer Agents/Depository Participants Click Here Exchange Notices 1) Public Issue of MANIKA PLASTECH LIMITED  - Allocation to Anchor Investors Branches of SCSBs where syndicate / sub syndicate member to submit ASBA form Click Here List of SCSBs for Syndicate ASBA and under ASBA facility Click Here Self Certified Syndicate Banks eligible as Issuer Banks for UPI Click Here",
+        "documentFiledDate": null,
+        "sha256": "5c5a1ba64e7f1d0d17d2b0d88a5cac0b82214539bcb8975e3f38140400c66297",
+        "pagesRead": 2,
+        "pageCount": 2,
+        "extractedFields": [
+          "issueComposition"
+        ],
+        "extractedAt": "2026-09-13T07:30:20+05:30",
+        "source": "BSE"
+      }
     },
     {
       "id": "injecto-polymers-limited",
@@ -1655,7 +1721,7 @@
       ],
       "issuerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 5,
+        "parserVersion": 7,
         "documentUrl": "https://injectopolymers.in/wp-content/uploads/2026/09/1.-RHP_07.09.2026.pdf",
         "documentType": "RHP",
         "documentTitle": "Red Herring Prospectus",
@@ -1671,10 +1737,8 @@
           "financials",
           "objectsOfIssue"
         ],
-        "changedFields": [
-          "financials"
-        ],
-        "extractedAt": "2026-09-13T04:35:44+05:30",
+        "changedFields": [],
+        "extractedAt": "2026-09-13T07:32:13+05:30",
         "source": "Issuer website"
       },
       "financials": {
@@ -1927,7 +1991,7 @@
       ],
       "issuerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 6,
+        "parserVersion": 7,
         "documentUrl": "https://centurymedia.in/wp-content/uploads/2026/09/Red-Herring-Prospectus.pdf",
         "documentType": "RHP",
         "documentTitle": "Red Herring Prospectus",
@@ -1944,7 +2008,7 @@
           "objectsOfIssue"
         ],
         "changedFields": [],
-        "extractedAt": "2026-09-13T04:56:29+05:30",
+        "extractedAt": "2026-09-13T07:31:50+05:30",
         "source": "Issuer website"
       },
       "financials": {
@@ -2152,7 +2216,31 @@
         "Cumulative Capital Private Limited"
       ],
       "minimumBidQuantity": 107,
-      "marketLot": 107
+      "marketLot": 107,
+      "issueComposition": {
+        "freshShares": null,
+        "ofsShares": null,
+        "freshIssueCr": null,
+        "ofsCr": null,
+        "totalIssueSizeCr": null,
+        "valuationPriceUsed": 140.0
+      },
+      "offerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 6,
+        "documentUrl": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260909-41/20260909-41.pdf",
+        "documentType": "PROSPECTUS",
+        "documentTitle": "VEEGALAND DEVELOPERS LIMITED BSE Bid Details Cumulative Bid Details BSE Demand Schedule Cumulative Demand Schedule BSE Demand Graph Cumulative Demand Graph Security Type Equity Symbol VEEGALAND Issue Period 10 Sep 2026 to 15 Sep 2026 IPO Market Timings 10.00 am to 5.00 pm Cut-off time for UPI Mandate Confirmation 15 th September 2026 (Upto 5.00 Pm) Issue Size – No. of Shares 1,13,07,692 Price Band 130.00-140.00 Price-Band Advertisement Click Here IPO Categories FI, IC, MF, FII, OTH, CO, IND, NOH UPI Categories IND Cut off Amount (Rs.) IND - 200000 Face Value 10.00 Tick Size 1.00 Market Lot 107 Minimum Bid Quantity 107 Maximum Bid Quantity for Qualified Institutional Investors 1,13,07,653 Maximum Bid Quantity for Non-Institutional Investors 80,76,895 Book Running Lead Manager Cumulative Capital Private Limited Registrar MUFG Intime India Private Limited Sponsor Bank AXIS BANK Prospectus & GID Click Here Corrigendum Click Here Blank ASBA Form Click Here Online ASBA Form Click Here Revised Online ASBA Form Click Here Registrars to an Issue and Share Transfer Agents/Depository Participants Click Here Exchange Notices 1) Public Issue of VEEGALAND DEVELOPERS LIMITED - Allocation to Anchor Investors 2) Processing of ASBA applications in Public Issue of Equity Shares and Convertibles Notes As per SEBI circular no SEBI/HO/CFD/DIL2/CIR/P/2019/76 dated June 28 2019 all are requested to comply with the provisions of the aforementioned circular which states as below: Intermediaries shall retain physical application forms submitted by retail individual investors with UPI as a payment mechanism, for a period of six months and thereafter forward the same to the issuer/ Registrar to Issue. However in case of Electronic forms printouts of such applications need not be retained or sent to the issuer. Intermediaries shall at all times maintain the electronic records relating to such forms for a minimum period of three years. Branches of SCSBs where syndicate / sub syndicate member to submit ASBA form Click Here List of SCSBs for Syndicate ASBA and under ASBA facility Click Here Self Certified Syndicate Banks eligible as Issuer Banks for UPI Click Here",
+        "documentFiledDate": null,
+        "sha256": "73200701f768d581a5e671e2873909dc262fd414d3715e6b7fa193247c760d10",
+        "pagesRead": 2,
+        "pageCount": 2,
+        "extractedFields": [
+          "issueComposition"
+        ],
+        "extractedAt": "2026-09-13T07:30:20+05:30",
+        "source": "BSE"
+      }
     },
     {
       "id": "raksan-transformers-limited",
@@ -2549,7 +2637,7 @@
       ],
       "issuerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 6,
+        "parserVersion": 7,
         "documentUrl": "https://omgalaxymould.com/wp-content/uploads/2026/09/Project-Om_-RHP_with_RFS.pdf",
         "documentType": "RHP",
         "documentTitle": "Red Herring Prospectus",
@@ -2565,7 +2653,7 @@
           "objectsOfIssue"
         ],
         "changedFields": [],
-        "extractedAt": "2026-09-13T04:56:14+05:30",
+        "extractedAt": "2026-09-13T07:31:32+05:30",
         "source": "Issuer website"
       },
       "promoters": [
@@ -2772,7 +2860,7 @@
       ],
       "issuerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 6,
+        "parserVersion": 7,
         "documentUrl": "https://speedexind.com/wp-content/uploads/2026/09/SPeedex-RHP.pdf",
         "documentType": "RHP",
         "documentTitle": "Red Herring Prospectus",
@@ -2788,7 +2876,7 @@
           "objectsOfIssue"
         ],
         "changedFields": [],
-        "extractedAt": "2026-09-13T04:55:44+05:30",
+        "extractedAt": "2026-09-13T07:31:00+05:30",
         "source": "Issuer website"
       },
       "financials": {
