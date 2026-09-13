@@ -9,7 +9,8 @@ newer filing date, but they are not substitutes for the actual offer document.
 v9 excludes supplemental notices from primary offer-document selection. If a
 record has only supplemental notices, no document is selected rather than
 extracting incomplete facts from a notice. The SEBI link resolver separately
-recovers the canonical RHP filing pages for known priority gaps.
+recovers the canonical RHP filing pages for known priority gaps, and those
+canonical links are re-resolved safely from the latest data baseline.
 """
 from __future__ import annotations
 
