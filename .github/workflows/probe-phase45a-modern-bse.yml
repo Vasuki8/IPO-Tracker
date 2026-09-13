@@ -15,51 +15,45 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Probe BSE 2026 historical IPO list
+      - name: Fetch BSE production JS
         shell: bash
         run: |
           UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/152 Safari/537.36"
-          BASE="https://api.bseindia.com/BseIndiaAPI/api/MoreCompanyN/w"
-          for QS in \
-            "?Fromdt=2026&company=&flag=1&type=2" \
-            "?Fromdt=2026&company=&flag=2&type=2" \
-            "?Fromdt=2026&company=&flag=&type=1"; do
-            echo "=== $QS ==="
-            curl --http1.1 -sS -L --max-time 30 -A "$UA" \
-              -H "Accept: application/json, text/plain, */*" \
-              -H "Origin: https://www.bseindia.com" \
-              -H "Referer: https://www.bseindia.com/markets/PublicIssues/IPOIssues" \
-              -w "\nHTTP:%{http_code} SIZE:%{size_download}\n" \
-              "$BASE$QS" | head -c 60000
-            echo
-          done
+          curl --http1.1 -fL --retry 3 --retry-all-errors --retry-delay 2 -A "$UA" \
+            -H "Referer: https://www.bseindia.com/markets/PublicIssues/DisplayIPO" \
+            "https://www.bseindia.com/assets/includenew/js/main-5C6S24SS.js" -o /tmp/main.js
 
-      - name: Check P2 issuer hits
+      - name: Locate DisplayIPO detail component API calls
         shell: python
         run: |
-          import json, urllib.parse, urllib.request
-          names = [
-            'ABH HEALTHCARE','ANNU PROJECTS','ASHUTOSH FIBRE','AUGMONT ENTERPRISES','DEEPA JEWELLERS',
-            'ESDS SOFTWARE','GAJA ALTERNATIVE','HORIZON INDUSTRIAL','HY-TECH ENGINEERS','KANOHAR ELECTRICALS',
-            'LALITHAA JEWELLERY','LUMINO INDUSTRIES','MADHUR KNIT','PRANAV CONSTRUCTIONS','PRIORITY JEWELS',
-            'PURPLE STYLE','QUALIANCE INTERNATIONAL','RAYS OF BELIEF','SHANKESH JEWELLERS','SHANTI INORGANICS',
-            'SKYTECH INFINITE','SKYWAYS AIR','SUMAX ENGINEERING','SUNSHINE PICTURES','SYMBIOTEC PHARMALAB',
-            'ASSET RECONSTRUCTION COMPANY','GLASS WALL SYSTEMS','KARAMTARA ENGINEERING','LCC PROJECTS',
-            'MANIPAL PAYMENT','PRASOL CHEMICALS','STEAMHOUSE INDIA'
-          ]
-          headers={'User-Agent':'Mozilla/5.0','Referer':'https://www.bseindia.com/markets/PublicIssues/IPOIssues','Origin':'https://www.bseindia.com','Accept':'application/json'}
-          all_rows=[]
-          for flag in ('1','2'):
-            url=f'https://api.bseindia.com/BseIndiaAPI/api/MoreCompanyN/w?Fromdt=2026&company=&flag={flag}&type=2'
-            req=urllib.request.Request(url,headers=headers)
-            data=json.loads(urllib.request.urlopen(req,timeout=30).read().decode())
-            rows=data.get('Table') or []
-            print('flag',flag,'rows',len(rows),'keys',sorted(rows[0].keys()) if rows else [])
-            all_rows.extend(rows)
-          hits=0
-          for row in all_rows:
-            company=str(row.get('Scrip_Name') or row.get('Scrip_name') or row.get('Company_Name') or row.get('COMPANY') or '').upper()
-            if any(n in company or (company and company in n) for n in names):
-              hits += 1
-              print('HIT',company,row)
-          print('hits',hits)
+          import re
+          raw=open('/tmp/main.js',encoding='utf-8',errors='ignore').read()
+          needles=['Minimum Bid Quantity','Market Lot','Issue Size – No. of Shares','Blank ASBA Form','Sponsor Bank','Cut off Amount']
+          seen=set()
+          for needle in needles:
+            start=0
+            while True:
+              pos=raw.find(needle,start)
+              if pos<0: break
+              chunk=raw[max(0,pos-7000):pos+12000]
+              apis=sorted(set(re.findall(r'["\'](/?[A-Za-z0-9_./-]+/w(?:\?[^"\']*)?)["\']',chunk)))
+              key=tuple(apis)
+              if key and key not in seen:
+                seen.add(key)
+                print('===',needle,'===')
+                print('\n'.join(apis))
+                print(chunk)
+              start=pos+len(needle)
+
+      - name: Print API-like strings near query parameter names
+        shell: python
+        run: |
+          import re
+          raw=open('/tmp/main.js',encoding='utf-8',errors='ignore').read()
+          for needle in ['IPONo','Scrip_cd','startdt','idtype']:
+            print('###',needle)
+            for m in list(re.finditer(needle,raw))[:40]:
+              chunk=raw[max(0,m.start()-1800):m.start()+3500]
+              apis=sorted(set(re.findall(r'["\']([^"\']+/w[^"\']*)["\']',chunk)))
+              if apis:
+                print('\n'.join(apis))
