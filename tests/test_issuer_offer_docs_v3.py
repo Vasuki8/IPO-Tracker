@@ -27,6 +27,9 @@ class IssuerOfferDocsV3Tests(unittest.TestCase):
             "cleanmax": "Clean Max Enviro Energy Solutions Limited",
             "gspcrop": "GSP Crop Science Limited",
             "hexagon": "Hexagon Nutrition Limited",
+            "cmpdi": "Central Mine Planning & Design Institute Limited",
+            "innovision": "Innovision Limited",
+            "jnpr": "Juniper Green Energy Limited",
         }
         for record_id, company in expected.items():
             doc = mod.base.ISSUER_DOCUMENTS[record_id]
