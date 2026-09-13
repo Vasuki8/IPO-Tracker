@@ -1,0 +1,55 @@
+name: Probe Phase 4.5A modern BSE history API
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/probe-phase45a-modern-bse.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Fetch BSE production JS
+        shell: bash
+        run: |
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/152 Safari/537.36"
+          curl --http1.1 -fL --retry 3 --retry-all-errors --retry-delay 2 -A "$UA" \
+            -H "Referer: https://www.bseindia.com/markets/PublicIssues/IPOIssues" \
+            "https://www.bseindia.com/assets/includenew/js/main-5C6S24SS.js" -o /tmp/main.js
+
+      - name: Print likely public-issue API names
+        shell: python
+        run: |
+          import re
+          raw = open('/tmp/main.js', encoding='utf-8', errors='ignore').read()
+          needles = ['DisplayIPO','IPOIssues','PublicIssues','IPO_NO','startdt','IPONo','IssueSummary','IPO_HomePageDetail']
+          seen = set()
+          for needle in needles:
+              start = 0
+              while True:
+                  pos = raw.find(needle, start)
+                  if pos < 0: break
+                  chunk = raw[max(0,pos-2200):pos+4000]
+                  apis = sorted(set(re.findall(r'["\'](/?[A-Za-z0-9_./-]+/w(?:\?[^"\']*)?)["\']', chunk)))
+                  key = (needle, tuple(apis))
+                  if apis and key not in seen:
+                      seen.add(key)
+                      print(f'=== {needle} ===')
+                      print('\n'.join(apis))
+                      print(chunk)
+                  start = pos + len(needle)
+
+      - name: Probe candidate API strings globally
+        shell: python
+        run: |
+          import re
+          raw = open('/tmp/main.js', encoding='utf-8', errors='ignore').read()
+          vals = sorted(set(re.findall(r'["\']([^"\']*(?:IPO|PublicIssue|IssueSummary)[^"\']*/w[^"\']*)["\']', raw, re.I)))
+          for v in vals:
+              print(v)
