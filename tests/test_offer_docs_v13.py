@@ -27,6 +27,7 @@ class FakeReader:
 class OfferDocsV13Tests(unittest.TestCase):
     def test_parser_version_is_bumped(self):
         self.assertEqual(mod.PARSER_VERSION, 13)
+        self.assertEqual(mod.base.PARSER_VERSION, 13)
 
     def test_exact_lot_page_outranks_generic_price_page(self):
         lot = mod._offer_term_page_score(
@@ -85,6 +86,8 @@ class OfferDocsV13Tests(unittest.TestCase):
         mod.apply_enrichment(record, parsed, doc, "hash", 40, 100)
         self.assertEqual(record["lotSize"], 100)
         self.assertEqual(record["priceBand"], {"min": 94.0, "max": 99.0})
+        self.assertEqual(record["offerDocumentExtraction"]["parserVersion"], 13)
+        self.assertEqual(record["observations"]["SEBI-offer"]["parserVersion"], 13)
 
 
 if __name__ == "__main__":
