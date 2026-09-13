@@ -1,0 +1,118 @@
+name: Resolve P4 lot sizes now
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/resolve-p4-lot-sizes-now.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ipo-data-refresh
+  cancel-in-progress: false
+
+jobs:
+  resolve-p4-lot-sizes-now:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v7.0.1
+        with:
+          ref: main
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.1.0
+        with:
+          version: "latest-known"
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Sync dependencies
+        run: uv sync
+
+      - name: Test official lot-size collectors
+        run: |
+          uv run python -m unittest discover -s tests -p "test_nse_issue_information.py" -v
+          uv run python -m unittest discover -s tests -p "test_exchange_details_v2.py" -v
+          uv run python -m unittest discover -s tests -p "test_bse_history_backfill.py" -v
+          uv run python -m unittest discover -s tests -p "test_p4_lot_backfill.py" -v
+          uv run python -m unittest discover -s tests -p "test_data_completeness.py" -v
+          uv run python -m unittest discover -s tests -p "test_missing_queue.py" -v
+
+      - name: Record starting data revision
+        run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
+
+      - name: Force fresh official P4 lot-size pass
+        run: |
+          # Dedicated cleanup pass: bypass only the retry cooldown. All existing
+          # exact symbol/company, debt rejection and fill-only guards remain.
+          uv run python scripts/enrich_nse_issue_information.py \
+            --history-days 730 \
+            --limit 250 \
+            --retry-days 0
+
+          # Secondary official BSE detail path, also forced fresh for current
+          # residuals while remaining lot-size-only through its P4 wrapper.
+          uv run python scripts/backfill_p4_lot_sizes.py \
+            --history-days 730 \
+            --limit 250 \
+            --core-only \
+            --retry-days 0
+
+          uv run python scripts/audit_data_completeness.py
+          uv run python scripts/build_missing_queue.py
+
+      - name: Publish official lot-size gains safely
+        shell: bash
+        run: |
+          cp data/ipos.json /tmp/generated-ipos.json
+          BASE_DATA="$(cat /tmp/base-data-blob)"
+          git fetch origin main
+          REMOTE_DATA="$(git rev-parse origin/main:data/ipos.json)"
+          if [ "$REMOTE_DATA" != "$BASE_DATA" ]; then
+            echo "Remote IPO data changed during forced P4 lot-size pass; refusing stale publication."
+            exit 0
+          fi
+
+          git reset --hard origin/main
+          cp /tmp/generated-ipos.json data/ipos.json
+          uv run python scripts/build_company_pages.py
+          uv run python scripts/audit_data_completeness.py
+          uv run python scripts/build_missing_queue.py
+
+          if [ -z "$(git status --porcelain -- data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md ipo/)" ]; then
+            echo "No P4 lot-size gains to publish"
+            exit 0
+          fi
+
+          git config user.name "ipo-tracker-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md ipo/
+          git commit -m "data: advance forced P4 lot-size pass"
+          git push origin HEAD:main
+
+      - name: Report exact P4 lot-size residuals
+        shell: bash
+        run: |
+          git fetch origin main
+          git show origin/main:data/missing_queue.json > /tmp/current-missing-queue.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          payload = json.loads(Path('/tmp/current-missing-queue.json').read_text(encoding='utf-8'))
+          p4 = [
+              row for row in payload.get('queue') or []
+              if row.get('priorityLabel') == 'P4 recent history (2y)'
+          ]
+          rows = [row for row in p4 if 'exchange.lotSize' in (row.get('missingFields') or [])]
+          print('P4 lotSize gaps:', len(rows))
+          print('P4 queue count:', len(p4))
+          print('Lot-size residuals:', [(row.get('id'), row.get('symbol'), row.get('openDate')) for row in rows])
+          PY
