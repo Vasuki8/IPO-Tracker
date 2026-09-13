@@ -4,9 +4,9 @@
 The generic critical_backfill module also handles exchange/subscription work.
 For PDF extraction we use stricter selection: only a direct official PDF (or a
 SEBI viewer URL whose file parameter is a PDF) is eligible. This prevents an
-HTML filing landing page from ever being handed to pypdf. Parser v10 is used for
+HTML filing landing page from ever being handed to pypdf. Parser v11 is used for
 the actual extraction, including separate deep financial/shareholding page
-budgets, supplemental-notice rejection, explicit A+B ownership totals and
+budgets, supplemental-notice rejection, final combined-ownership layouts and
 bounded retries for truncated PDF transfers.
 """
 from __future__ import annotations
@@ -20,10 +20,10 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 import critical_backfill as base  # noqa: E402
-import run_offer_docs_v10 as parser_v10  # noqa: E402
+import run_offer_docs_v11 as parser_v11  # noqa: E402
 
-# Use the v10-patched base parser for full-document fallbacks too.
-base.offer = parser_v10.base
+# Use the v11-patched base parser for full-document fallbacks too.
+base.offer = parser_v11.base
 
 
 def _direct_pdf_url(url: str) -> str | None:
@@ -46,7 +46,7 @@ def safe_choose_fallback_document(record, *, exclude_url=None):
     rank = {"PROSPECTUS": 4, "RHP": 3, "UDRHP": 2, "DRHP": 1, "DOCUMENT": 0}
     candidates = []
     for doc in record.get("documents") or []:
-        if not isinstance(doc, dict) or parser_v10.v9.is_supplemental_document(doc):
+        if not isinstance(doc, dict) or parser_v11.v10.v9.is_supplemental_document(doc):
             continue
         original_url = str(doc.get("url") or "").strip()
         direct = _direct_pdf_url(original_url)

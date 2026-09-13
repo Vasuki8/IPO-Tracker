@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the validated issuer-document fallback with the current Phase 4.5 parser."""
+"""Run validated priority offer-document fallbacks with the current parser."""
 from __future__ import annotations
 
 import sys
@@ -10,17 +10,70 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 import enrich_issuer_offer_docs as base  # noqa: E402
-import run_offer_docs_v10 as parser_v10  # noqa: E402
+import run_offer_docs_v11 as parser_v11  # noqa: E402
 
-# Route issuer-hosted fallbacks through the current parser while retaining the
-# base module's host + issuer-identity gates.
-base.parser_v4 = parser_v10
-base.PARSER_VERSION = parser_v10.PARSER_VERSION
-base._extract_targeted_full_text = parser_v10.extract_targeted_pdf_text
+# Route validated fallbacks through the current parser while retaining the base
+# module's exact-host, PDF-magic, issuer-identity and fill-only merge gates.
+base.parser_v4 = parser_v11
+base.PARSER_VERSION = parser_v11.PARSER_VERSION
+base._extract_targeted_full_text = parser_v11.extract_targeted_pdf_text
 
-# These links resolve to the issuers' own websites. The base module still
-# validates host, PDF magic and company identity at runtime before accepting any
-# fields, and merge logic remains fill-only so official exchange/SEBI values win.
+_ORIGINAL_MERGE = base.merge_issuer_enrichment
+
+
+def merge_validated_offer_enrichment(
+    record,
+    parsed,
+    doc,
+    *,
+    pdf_hash,
+    pages_read,
+    page_count,
+):
+    """Reuse the safe fill-only merge but preserve non-issuer provenance exactly."""
+    changed = _ORIGINAL_MERGE(
+        record,
+        parsed,
+        doc,
+        pdf_hash=pdf_hash,
+        pages_read=pages_read,
+        page_count=page_count,
+    )
+
+    extraction_source = str(doc.get("extractionSource") or "").strip()
+    document_source = str(doc.get("documentSource") or "").strip()
+    source_name = str(doc.get("sourceName") or "").strip()
+    source_kind = str(doc.get("sourceKind") or "").strip()
+    source_page = str(doc.get("sourcePage") or doc.get("url") or "")
+    url = str(doc.get("url") or "")
+
+    if extraction_source and isinstance(record.get("issuerDocumentExtraction"), dict):
+        record["issuerDocumentExtraction"]["source"] = extraction_source
+
+    if document_source:
+        for item in record.get("documents") or []:
+            if isinstance(item, dict) and str(item.get("url") or "") == url:
+                item["source"] = document_source
+
+    if source_name or source_kind:
+        for source in record.get("sources") or []:
+            if not isinstance(source, dict) or str(source.get("url") or "") != source_page:
+                continue
+            if source_name:
+                source["name"] = source_name
+            if source_kind:
+                source["kind"] = source_kind
+
+    return changed
+
+
+base.merge_issuer_enrichment = merge_validated_offer_enrichment
+
+# Most entries are issuer-hosted PDFs. Injecto is intentionally different: its
+# issuer host repeatedly times out in GitHub Actions, while the IPO's official
+# registrar publishes the same RHP from its own IPO-document register. Manika's
+# full SEBI RHP is also registered because the abridged prospectus does not carry
+# the combined promoter/promoter-group ownership row needed for the final gap.
 base.ISSUER_DOCUMENTS.update(
     {
         "om-galaxy-limited": {
@@ -33,11 +86,27 @@ base.ISSUER_DOCUMENTS.update(
         },
         "injecto-polymers-limited": {
             "company": "Injecto Polymers Limited",
-            "url": "https://injectopolymers.in/wp-content/uploads/2026/09/1.-RHP_07.09.2026.pdf",
-            "host": "injectopolymers.in",
+            "url": "https://ipostatus.integratedregistry.in/PDFFILES/INJECTORHP.pdf",
+            "host": "ipostatus.integratedregistry.in",
             "type": "RHP",
             "title": "Red Herring Prospectus",
-            "sourcePage": "https://injectopolymers.in/",
+            "sourcePage": "https://ipostatus.integratedregistry.in/RegistrarsToSTANew.aspx",
+            "extractionSource": "Registrar website",
+            "documentSource": "Integrated Registry",
+            "sourceName": "Integrated Registry offer document",
+            "sourceKind": "registrar-filing",
+        },
+        "manika": {
+            "company": "Manika Plastech Limited",
+            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788774340354.pdf",
+            "host": "www.sebi.gov.in",
+            "type": "RHP",
+            "title": "Red Herring Prospectus",
+            "sourcePage": "https://www.sebi.gov.in/filings/public-issues/sep-2026/manika-plastech-limited-rhp_104296.html",
+            "extractionSource": "SEBI",
+            "documentSource": "SEBI",
+            "sourceName": "SEBI Red Herring Prospectus",
+            "sourceKind": "regulatory-filing",
         },
         "shakti-polytarp-limited": {
             "company": "Shakti Polytarp Limited",
@@ -46,6 +115,14 @@ base.ISSUER_DOCUMENTS.update(
             "type": "DRHP",
             "title": "Draft Red Herring Prospectus",
             "sourcePage": "https://shaktipolytarp.com/ipo-drhp-and-industry-report/",
+        },
+        "vama-wovenfab-limited": {
+            "company": "Vama Wovenfab Limited",
+            "url": "https://vamawoven.com/wp-content/uploads/2026/09/RHP_VamaWovenfabLimited-2.pdf",
+            "host": "vamawoven.com",
+            "type": "RHP",
+            "title": "Red Herring Prospectus",
+            "sourcePage": "https://vamawoven.com/rhp/",
         },
     }
 )
