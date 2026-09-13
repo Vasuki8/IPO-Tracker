@@ -3,8 +3,8 @@
 
 The base verified-field runner remains authoritative for exact identity guards,
 fill-only semantics, source stamping, validation rebuilding and health metadata.
-This layer adds only fields independently confirmed in official SEBI/NSE
-documents for records that remained partial after parser-v13 extraction.
+This layer adds only fields independently confirmed in official SEBI/NSE or
+issuer-hosted offer documents for records that remained partial after parsing.
 """
 from __future__ import annotations
 
@@ -36,9 +36,10 @@ base.VERIFIED_RECENT_OFFER_FIELDS.update(
             "Aastha Spintex Limited",
             "AASTHA",
             "2026-06-29",
-            "SEBI Aastha Spintex issue announcement registrar",
-            "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781090594066.pdf",
+            "Aastha Spintex issuer-hosted RHP offer terms",
+            "https://aasthaspintex.com/pdf/RHP/RHP_Aastha.pdf",
             registrar="Bigshare Services Private Limited",
+            shareholding={"promoterPreIssuePct": 74.23},
         ),
         "aye": base._entry(
             "Aye Finance Limited",
@@ -61,21 +62,39 @@ base.VERIFIED_RECENT_OFFER_FIELDS.update(
             "Innovision Limited",
             "INNOVISION",
             "2026-03-10",
-            "NSE Innovision statement of issue-proceeds objects",
-            "https://nsearchives.nseindia.com/corporate/INNOVISION2007_13052026170308_Reg_32_1_-_Statement_of_Deviation_and_variation_signed.pdf",
+            "Innovision issuer-hosted offer documents",
+            "https://www.innovision.co.in/public/uploads/631573851.pdf",
             objectsOfIssue=[
                 "Repayment or prepayment, in part or full of all or certain borrowings availed by the Company",
                 "Funding working capital requirements of the Company",
                 "General corporate purposes",
             ],
+            shareholding={"promoterPreIssuePct": 100.0},
         ),
         "jnpr": base._entry(
             "Juniper Green Energy Limited",
             "JNPR",
             "2026-07-30",
-            "NSE Juniper Green Energy DRHP registrar",
-            "https://nsearchives.nseindia.com/corporate/Registration_28062025043935_JuniperGreenEnergyLimitedDRHP.pdf",
+            "Juniper Green Energy issuer-hosted DRHP offer terms",
+            "https://www.junipergreenenergy.com/wp-content/uploads/2025/06/JuniperGreenEnergyLimitedDRHP.pdf",
             registrar="KFin Technologies Limited",
+            shareholding={"promoterPreIssuePct": 100.0},
+        ),
+        "rsl": base._entry(
+            "Rajputana Stainless Limited",
+            "RSL",
+            "2026-03-09",
+            "Rajputana Stainless issuer-hosted final Prospectus shareholding",
+            "https://www.rajputanastainless.com/public/frontend/assets/pdf/RSL_Prospectus_Project-Steel_Final.pdf",
+            shareholding={"promoterPreIssuePct": 78.22},
+        ),
+        "shiprocket": base._entry(
+            "Shiprocket Limited",
+            "SHIPROCKET",
+            "2026-08-12",
+            "Shiprocket issuer financial statements promoter status",
+            "https://sr-website-01.shiprocket.in/sr-website/1.%20Shiprocket%20Standalone%20financials%20FY%2024-25-ulD9o9.pdf",
+            shareholding={"promoterPreIssuePct": 0.0},
         ),
     }
 )
