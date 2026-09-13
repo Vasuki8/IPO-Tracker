@@ -58,6 +58,16 @@ jobs:
         run: |
           cp data/ipos.json /tmp/generated-ipos.json
           BASE_DATA="$(cat /tmp/base-data-blob)"
+          GENERATED_DATA="$(git hash-object /tmp/generated-ipos.json)"
+
+          # Audit/queue generators update timestamps even when the IPO dataset did
+          # not change. Never publish a data commit unless data/ipos.json itself
+          # gained information.
+          if [ "$GENERATED_DATA" = "$BASE_DATA" ]; then
+            echo "No genuine NSE P4 lot-size gains; IPO dataset is unchanged."
+            exit 0
+          fi
+
           git fetch origin main
           REMOTE_DATA="$(git rev-parse origin/main:data/ipos.json)"
           if [ "$REMOTE_DATA" != "$BASE_DATA" ]; then
@@ -71,8 +81,10 @@ jobs:
           uv run python scripts/audit_data_completeness.py
           uv run python scripts/build_missing_queue.py
 
-          if [ -z "$(git status --porcelain -- data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md ipo/)" ]; then
-            echo "No NSE P4 lot-size gains to publish"
+          # Require the canonical IPO data file itself to be changed. This avoids
+          # timestamp-only commits from completeness/missing-queue regeneration.
+          if git diff --quiet -- data/ipos.json; then
+            echo "No genuine NSE P4 lot-size gains after rebasing on main."
             exit 0
           fi
 
