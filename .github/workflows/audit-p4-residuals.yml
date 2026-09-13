@@ -8,12 +8,18 @@ on:
     paths:
       - "scripts/audit_p4_residuals.py"
       - ".github/workflows/audit-p4-residuals.yml"
+  workflow_run:
+    workflows:
+      - "Finish P4 offer-document gaps"
+    types:
+      - completed
 
 permissions:
   contents: read
 
 jobs:
   audit:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
