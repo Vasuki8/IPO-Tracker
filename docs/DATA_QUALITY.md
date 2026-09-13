@@ -1,6 +1,6 @@
 # IPO Tracker Data Quality
 
-Generated: **2026-09-13T09:50:09+05:30**  
+Generated: **2026-09-13T10:27:39+05:30**  
 Records audited: **1,371**
 
 ## Completeness scores
