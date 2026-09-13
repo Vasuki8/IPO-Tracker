@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Run validated P4 offer-document fallbacks with duplicate-id-safe targeting.
 
-Version 4 layers three source-backed fallbacks on top of v3 and replaces the
-base target selector so duplicate exchange symbols cannot silently redirect an
-offer document to an auxiliary event row. All download, PDF-magic, issuer-
-identity, parser-v13 and fill-only merge gates remain owned by the established
-base runner.
+Version 4 layers source-backed regulatory/exchange fallbacks on top of v3 and
+replaces the base target selector so duplicate exchange symbols cannot silently
+redirect an offer document to an auxiliary event row. All download, PDF-magic,
+issuer-identity, parser-v13 and fill-only merge gates remain owned by the
+established base runner.
 """
 from __future__ import annotations
 
@@ -58,6 +58,30 @@ base.ISSUER_DOCUMENTS.update(
             "documentSource": "SEBI",
             "sourceName": "SEBI final Prospectus",
             "sourceKind": "regulatory-filing",
+        },
+        "ardee": {
+            "company": "Ardee Industries Limited",
+            "url": "https://nsearchives.nseindia.com/corporate/Registration_29092025064558_Ardee_Industries_Limited.pdf",
+            "host": "nsearchives.nseindia.com",
+            "type": "DRHP",
+            "title": "Draft Red Herring Prospectus",
+            "sourcePage": "https://nsearchives.nseindia.com/corporate/Registration_29092025064558_Ardee_Industries_Limited.pdf",
+            "extractionSource": "NSE",
+            "documentSource": "NSE",
+            "sourceName": "NSE Draft Red Herring Prospectus",
+            "sourceKind": "exchange-filing",
+        },
+        "powerica": {
+            "company": "Powerica Limited",
+            "url": "https://nsearchives.nseindia.com/corporate/FP_INE921L01032_30MAR2026.pdf",
+            "host": "nsearchives.nseindia.com",
+            "type": "Prospectus",
+            "title": "Prospectus",
+            "sourcePage": "https://nsearchives.nseindia.com/corporate/FP_INE921L01032_30MAR2026.pdf",
+            "extractionSource": "NSE",
+            "documentSource": "NSE",
+            "sourceName": "NSE final Prospectus",
+            "sourceKind": "exchange-filing",
         },
     }
 )
