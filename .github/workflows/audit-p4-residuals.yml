@@ -31,5 +31,25 @@ jobs:
         uses: actions/checkout@v7.0.1
         with:
           ref: main
-      - name: Print residual P4 audit
-        run: python scripts/audit_p4_residuals.py
+      - name: Build residual P4 audit
+        run: python scripts/audit_p4_residuals.py > p4-residuals.json
+      - name: Print residual P4 summary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path("p4-residuals.json").read_text(encoding="utf-8"))
+          print("P4 actionable records:", report["actionableRecordCount"])
+          print("P4 actionable field gaps:", report["actionableFieldGapCounts"])
+          print("Classification candidates:", report["classificationCandidateCount"])
+          print("Lot attempt statuses:", report["lotAttemptStatusCountsForMissingLots"])
+          print("Term attempt statuses:", report["termAttemptStatusCountsForTermGaps"])
+          print("Resolved unavailable records:", report["resolvedUnavailableRecordCount"])
+          PY
+      - name: Upload residual P4 audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: p4-residuals-${{ github.run_id }}
+          path: p4-residuals.json
+          if-no-files-found: error
+          retention-days: 14
