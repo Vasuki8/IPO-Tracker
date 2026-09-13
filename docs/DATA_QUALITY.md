@@ -1,6 +1,6 @@
 # IPO Tracker Data Quality
 
-Generated: **2026-09-13T08:30:31+05:30**  
+Generated: **2026-09-13T08:37:58+05:30**  
 Records audited: **1,371**
 
 ## Completeness scores
@@ -24,7 +24,7 @@ Records audited: **1,371**
 | openDate | 1,364 | 1,364 | 0 | 100.0% |
 | closeDate | 1,364 | 1,364 | 0 | 100.0% |
 | priceBand | 1,341 | 1,364 | 23 | 98.3% |
-| lotSize | 11 | 1,364 | 1,353 | 0.8% |
+| lotSize | 13 | 1,364 | 1,351 | 1.0% |
 | issueSizeCr | 204 | 1,364 | 1,160 | 15.0% |
 | issueComposition | 199 | 458 | 259 | 43.4% |
 
@@ -38,7 +38,7 @@ Records audited: **1,371**
 | openDate | 458 | 458 | 0 | 100.0% |
 | closeDate | 458 | 458 | 0 | 100.0% |
 | priceBand | 448 | 458 | 10 | 97.8% |
-| lotSize | 11 | 458 | 447 | 2.4% |
+| lotSize | 13 | 458 | 445 | 2.8% |
 | issueSizeCr | 204 | 458 | 254 | 44.5% |
 | issueComposition | 199 | 458 | 259 | 43.4% |
 
