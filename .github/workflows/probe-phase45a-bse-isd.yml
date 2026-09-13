@@ -19,91 +19,41 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Fetch BSE Issue Summary page
+      - name: Fetch BSE Issue Summary app shell and bundles
         shell: bash
         run: |
-          curl --http1.1 -fL --retry 3 --retry-all-errors --retry-delay 2 \
-            -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/152 Safari/537.36" \
-            -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" \
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/152 Safari/537.36"
+          curl --http1.1 -fL --retry 3 --retry-all-errors --retry-delay 2 -A "$UA" \
             -H "Referer: https://www.bseindia.com/" \
-            "https://www.bseindia.com/markets/PublicIssues/Issuesummary.aspx" \
-            -o /tmp/bse-isd.html
-          test -s /tmp/bse-isd.html
-          wc -c /tmp/bse-isd.html
+            "https://www.bseindia.com/markets/PublicIssues/Issuesummary.aspx" -o /tmp/bse-isd.html
+          curl --http1.1 -fL --retry 3 --retry-all-errors --retry-delay 2 -A "$UA" \
+            -H "Referer: https://www.bseindia.com/markets/PublicIssues/Issuesummary.aspx" \
+            "https://www.bseindia.com/markets/PublicIssues/env.js" -o /tmp/env.js
+          curl --http1.1 -fL --retry 3 --retry-all-errors --retry-delay 2 -A "$UA" \
+            -H "Referer: https://www.bseindia.com/markets/PublicIssues/Issuesummary.aspx" \
+            "https://www.bseindia.com/assets/includenew/js/main-5C6S24SS.js" -o /tmp/main.js
+          wc -c /tmp/bse-isd.html /tmp/env.js /tmp/main.js
 
-      - name: Inspect scripts links forms and likely data endpoints
+      - name: Inspect BSE API routes
         shell: python
         run: |
-          from html.parser import HTMLParser
-          from urllib.parse import urljoin
-          import html as html_lib
           import re
 
-          base = "https://www.bseindia.com/markets/PublicIssues/Issuesummary.aspx"
-          raw = open("/tmp/bse-isd.html", encoding="utf-8", errors="ignore").read()
-
-          class Probe(HTMLParser):
-              def __init__(self):
-                  super().__init__()
-                  self.forms = []
-                  self.scripts = []
-                  self.links = []
-                  self._href = None
-                  self._text = []
-              def handle_starttag(self, tag, attrs):
-                  attrs = dict(attrs)
-                  if tag == "form":
-                      self.forms.append((attrs.get("id"), attrs.get("method"), attrs.get("action")))
-                  elif tag == "script" and attrs.get("src"):
-                      self.scripts.append(urljoin(base, attrs["src"]))
-                  elif tag == "a" and attrs.get("href"):
-                      self._href = urljoin(base, attrs["href"])
-                      self._text = []
-              def handle_data(self, data):
-                  if self._href:
-                      self._text.append(data)
-              def handle_endtag(self, tag):
-                  if tag == "a" and self._href:
-                      self.links.append((" ".join(" ".join(self._text).split()), self._href))
-                      self._href = None
-                      self._text = []
-
-          probe = Probe()
-          probe.feed(raw)
-
-          print("FORMS:")
-          for item in probe.forms[:10]:
-              print(item)
-
-          print("\nSCRIPTS:")
-          for src in probe.scripts:
-              print(src)
-
-          print("\nLINKS CONTAINING DETAIL/XBRL/XML/XLSX/ISD/ISSUE:")
-          seen = set()
-          for text, href in probe.links:
-              ctx = f"{href} {text}".lower()
-              if any(token in ctx for token in ("detail", "xbrl", ".xml", ".xlsx", "isd", "issue")) and href not in seen:
-                  seen.add(href)
-                  print(text[:120], "=>", href)
-
-          print("\nINLINE ENDPOINT-LIKE STRINGS:")
-          decoded = html_lib.unescape(raw)
-          patterns = [
-              r"https?://[^\"'<>\s]+",
-              r"/[A-Za-z0-9_./-]+(?:api|Api|API|Issue|issue|XBRL|xbrl)[A-Za-z0-9_./?=&%-]*",
-              r"[A-Za-z0-9_./-]+\.aspx(?:\?[^\"'<>\s]*)?",
-          ]
-          found = []
-          for pat in patterns:
-              for value in re.findall(pat, decoded):
-                  if value not in found:
-                      found.append(value)
-          for value in found[:400]:
-              print(value)
-
-          print("\nKEY HTML LINES:")
-          for line in raw.splitlines():
-              low = line.lower()
-              if any(token in low for token in ("xbrl", "issue", "api", "view detail", "xml", "ajax")):
-                  print(" ".join(line.split())[:1000])
+          for path in ("/tmp/env.js", "/tmp/main.js"):
+              raw = open(path, encoding="utf-8", errors="ignore").read()
+              print(f"\n=== {path} ===")
+              patterns = [
+                  r"https?://api\.bseindia\.com[^\"'`\s<>()]+",
+                  r"[\"'`]([^\"'`]{0,100}(?:issue|Issue|ISD|isd|xbrl|XBRL)[^\"'`]{0,160})[\"'`]",
+                  r"[\"'`]([^\"'`]{0,100}(?:api|Api|API)[^\"'`]{0,160})[\"'`]",
+              ]
+              seen = set()
+              for pattern in patterns:
+                  for match in re.findall(pattern, raw):
+                      value = match if isinstance(match, str) else match[0]
+                      if value in seen:
+                          continue
+                      seen.add(value)
+                      if any(token in value.lower() for token in ("issue", "isd", "xbrl", "api.bseindia")):
+                          print(value[:500])
+              print("matches:", len(seen))
