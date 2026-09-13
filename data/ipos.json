@@ -275,15 +275,15 @@
       },
       "NSE-issue-info-terms": {
         "ok": true,
-        "candidates": 0,
-        "attempted": 0,
+        "candidates": 42,
+        "attempted": 42,
         "updated": 0,
-        "identityMismatches": 0,
-        "noTerms": 0,
-        "noChange": 0,
+        "identityMismatches": 8,
+        "noTerms": 25,
+        "noChange": 9,
         "failed": 0,
         "historyDays": 730,
-        "retryDays": 14,
+        "retryDays": 0,
         "errors": []
       },
       "P4-verified-non-IPO-cleanup": {
@@ -330,6 +330,19 @@
         "availabilityRecordsUpdated": 0,
         "missingOrAmbiguous": 3,
         "checkedAt": "2026-09-14T03:33:10+05:30"
+      },
+      "SEBI-offer-issue-terms": {
+        "ok": true,
+        "priorityMax": 4,
+        "targets": 37,
+        "attempted": 0,
+        "extracted": 0,
+        "updated": 0,
+        "failed": 0,
+        "noDocument": 37,
+        "fields": {},
+        "asOf": "2026-09-14T03:39:42+05:30",
+        "errors": []
       }
     },
     "errors": [],
@@ -10081,7 +10094,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:19:40+05:30",
+        "lastAttemptAt": "2026-09-14T03:36:21+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=CREDENT&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CREDENT&series=SME",
         "freshIssueCr": null,
@@ -10379,7 +10392,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:19:45+05:30",
+        "lastAttemptAt": "2026-09-14T03:36:21+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=PRAMODINI&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=PRAMODINI&series=SME",
         "freshIssueCr": null,
@@ -10922,7 +10935,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:19:50+05:30",
+        "lastAttemptAt": "2026-09-14T03:36:22+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=FASCINATE&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=FASCINATE&series=SME",
         "freshIssueCr": null,
@@ -11641,7 +11654,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:19:55+05:30",
+        "lastAttemptAt": "2026-09-14T03:36:28+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=OPTIMYSTIX&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=OPTIMYSTIX&series=SME",
         "freshIssueCr": null,
@@ -12300,7 +12313,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:20:12+05:30",
+        "lastAttemptAt": "2026-09-14T03:36:28+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=ANAWIL&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ANAWIL&series=SME",
         "freshIssueCr": null,
@@ -14086,7 +14099,7 @@
       "issueSizeCr": 5000.0,
       "nseIssueInfoTermsBackfill": {
         "status": "no-change",
-        "lastAttemptAt": "2026-09-13T22:20:22+05:30",
+        "lastAttemptAt": "2026-09-14T03:36:35+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CUBEINVIT&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CUBEINVIT&series=EQ",
         "freshIssueCr": null,
@@ -16315,7 +16328,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "identity-mismatch",
-        "lastAttemptAt": "2026-09-13T22:20:28+05:30",
+        "lastAttemptAt": "2026-09-14T03:36:40+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=ICEL&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ICEL&series=SME",
         "freshIssueCr": null,
@@ -16435,7 +16448,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "identity-mismatch",
-        "lastAttemptAt": "2026-09-13T22:20:33+05:30",
+        "lastAttemptAt": "2026-09-14T03:36:45+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SPGCL&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SPGCL&series=SME",
         "freshIssueCr": null,
@@ -19285,7 +19298,7 @@
       "issueSizeCr": 1105.0,
       "nseIssueInfoTermsBackfill": {
         "status": "no-change",
-        "lastAttemptAt": "2026-09-13T22:20:39+05:30",
+        "lastAttemptAt": "2026-09-14T03:36:50+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CITIUSINVT&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CITIUSINVT&series=EQ",
         "freshIssueCr": null,
@@ -20672,7 +20685,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "identity-mismatch",
-        "lastAttemptAt": "2026-09-13T22:20:44+05:30",
+        "lastAttemptAt": "2026-09-14T03:36:55+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=RSL&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=RSL&series=EQ",
         "freshIssueCr": null,
@@ -20793,7 +20806,7 @@
       "issueSizeCr": 6000.0,
       "nseIssueInfoTermsBackfill": {
         "status": "no-change",
-        "lastAttemptAt": "2026-09-13T22:20:50+05:30",
+        "lastAttemptAt": "2026-09-14T03:37:00+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=RIIT&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=RIIT&series=EQ",
         "freshIssueCr": null,
@@ -23599,7 +23612,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "identity-mismatch",
-        "lastAttemptAt": "2026-09-13T22:20:56+05:30",
+        "lastAttemptAt": "2026-09-14T03:37:05+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SAMPOORNA&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SAMPOORNA&series=SME",
         "freshIssueCr": null,
@@ -28547,7 +28560,7 @@
       "issueSizeCr": 400.0,
       "nseIssueInfoTermsBackfill": {
         "status": "no-change",
-        "lastAttemptAt": "2026-09-13T22:21:08+05:30",
+        "lastAttemptAt": "2026-09-14T03:37:10+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=ANANTAM&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ANANTAM&series=EQ",
         "freshIssueCr": null,
@@ -34449,7 +34462,7 @@
       "issueSizeCr": 4800.0,
       "nseIssueInfoTermsBackfill": {
         "status": "no-change",
-        "lastAttemptAt": "2026-09-13T22:21:14+05:30",
+        "lastAttemptAt": "2026-09-14T03:37:16+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=KRT&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=KRT&series=EQ",
         "freshIssueCr": null,
@@ -35278,7 +35291,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "identity-mismatch",
-        "lastAttemptAt": "2026-09-13T22:21:20+05:30",
+        "lastAttemptAt": "2026-09-14T03:37:21+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=NSDL&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=NSDL&series=EQ",
         "freshIssueCr": null,
@@ -43703,7 +43716,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "identity-mismatch",
-        "lastAttemptAt": "2026-09-13T22:21:26+05:30",
+        "lastAttemptAt": "2026-09-14T03:37:26+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CAPINVIT&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CAPINVIT&series=EQ",
         "freshIssueCr": null,
@@ -44050,7 +44063,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:21:31+05:30",
+        "lastAttemptAt": "2026-09-14T03:37:31+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=UNIMECH&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=UNIMECH&series=EQ",
         "freshIssueCr": null,
@@ -44133,7 +44146,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:21:38+05:30",
+        "lastAttemptAt": "2026-09-14T03:37:36+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=VENTIVE&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=VENTIVE&series=EQ",
         "freshIssueCr": null,
@@ -44216,7 +44229,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:21:44+05:30",
+        "lastAttemptAt": "2026-09-14T03:37:41+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SENORES&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SENORES&series=EQ",
         "freshIssueCr": null,
@@ -44299,7 +44312,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:21:50+05:30",
+        "lastAttemptAt": "2026-09-14T03:37:47+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CARRARO&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CARRARO&series=EQ",
         "freshIssueCr": null,
@@ -44383,7 +44396,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-change",
-        "lastAttemptAt": "2026-09-13T22:21:56+05:30",
+        "lastAttemptAt": "2026-09-14T03:37:52+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=TRANSRAILL&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=TRANSRAILL&series=EQ",
         "freshIssueCr": 400.0,
@@ -44467,7 +44480,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-change",
-        "lastAttemptAt": "2026-09-13T22:22:02+05:30",
+        "lastAttemptAt": "2026-09-14T03:37:57+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SANATHAN&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SANATHAN&series=EQ",
         "freshIssueCr": 400.0,
@@ -44550,7 +44563,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:22:09+05:30",
+        "lastAttemptAt": "2026-09-14T03:38:02+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=NMSTEEL&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=NMSTEEL&series=SME",
         "freshIssueCr": null,
@@ -44633,7 +44646,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:22:15+05:30",
+        "lastAttemptAt": "2026-09-14T03:38:08+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MAMATA&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=MAMATA&series=EQ",
         "freshIssueCr": null,
@@ -44716,7 +44729,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:22:21+05:30",
+        "lastAttemptAt": "2026-09-14T03:38:14+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=DAMCAPITAL&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=DAMCAPITAL&series=EQ",
         "freshIssueCr": null,
@@ -44800,7 +44813,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-change",
-        "lastAttemptAt": "2026-09-13T22:22:27+05:30",
+        "lastAttemptAt": "2026-09-14T03:38:19+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CEWATER&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CEWATER&series=EQ",
         "freshIssueCr": 175.0,
@@ -44883,7 +44896,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:22:32+05:30",
+        "lastAttemptAt": "2026-09-14T03:38:24+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=IDENTICAL&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=IDENTICAL&series=SME",
         "freshIssueCr": null,
@@ -44957,7 +44970,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "identity-mismatch",
-        "lastAttemptAt": "2026-09-13T22:22:38+05:30",
+        "lastAttemptAt": "2026-09-14T03:38:29+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=IGIL&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=IGIL&series=EQ",
         "freshIssueCr": null,
@@ -45040,7 +45053,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:22:43+05:30",
+        "lastAttemptAt": "2026-09-14T03:38:34+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=IKS&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=IKS&series=EQ",
         "freshIssueCr": null,
@@ -45198,7 +45211,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:22:49+05:30",
+        "lastAttemptAt": "2026-09-14T03:38:40+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SFML&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SFML&series=SME",
         "freshIssueCr": null,
@@ -45282,7 +45295,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-change",
-        "lastAttemptAt": "2026-09-13T22:22:55+05:30",
+        "lastAttemptAt": "2026-09-14T03:38:45+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SAILIFE&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SAILIFE&series=EQ",
         "freshIssueCr": 950.0,
@@ -45365,7 +45378,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:23:00+05:30",
+        "lastAttemptAt": "2026-09-14T03:38:51+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=PURPLEUTED&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=PURPLEUTED&series=SME",
         "freshIssueCr": null,
@@ -45523,7 +45536,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:23:06+05:30",
+        "lastAttemptAt": "2026-09-14T03:38:56+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=DHANLAXMI&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=DHANLAXMI&series=SME",
         "freshIssueCr": null,
@@ -45606,7 +45619,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:23:11+05:30",
+        "lastAttemptAt": "2026-09-14T03:39:01+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=ETML&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ETML&series=SME",
         "freshIssueCr": null,
@@ -45689,7 +45702,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:23:17+05:30",
+        "lastAttemptAt": "2026-09-14T03:39:06+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SURAKSHA&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SURAKSHA&series=EQ",
         "freshIssueCr": null,
@@ -45772,7 +45785,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:23:22+05:30",
+        "lastAttemptAt": "2026-09-14T03:39:11+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=GANESHIN&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=GANESHIN&series=SME",
         "freshIssueCr": null,
@@ -45855,7 +45868,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:23:27+05:30",
+        "lastAttemptAt": "2026-09-14T03:39:16+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=AGARWALTUF&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=AGARWALTUF&series=SME",
         "freshIssueCr": null,
@@ -45938,7 +45951,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:23:33+05:30",
+        "lastAttemptAt": "2026-09-14T03:39:21+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=APEXECO&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=APEXECO&series=SME",
         "freshIssueCr": null,
@@ -46021,7 +46034,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:23:38+05:30",
+        "lastAttemptAt": "2026-09-14T03:39:27+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=ABHAPOWER&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ABHAPOWER&series=SME",
         "freshIssueCr": null,
@@ -46095,7 +46108,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:23:43+05:30",
+        "lastAttemptAt": "2026-09-14T03:39:32+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=RAJPUTANA&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=RAJPUTANA&series=SME",
         "freshIssueCr": null,
@@ -46185,7 +46198,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "identity-mismatch",
-        "lastAttemptAt": "2026-09-13T22:23:49+05:30",
+        "lastAttemptAt": "2026-09-14T03:39:37+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=C2CW&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=C2CW&series=SME",
         "freshIssueCr": null,
@@ -46389,7 +46402,7 @@
       },
       "nseIssueInfoTermsBackfill": {
         "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:23:54+05:30",
+        "lastAttemptAt": "2026-09-14T03:39:42+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=C2C&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=C2C&series=SME",
         "freshIssueCr": null,
