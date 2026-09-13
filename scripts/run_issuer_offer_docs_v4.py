@@ -27,11 +27,12 @@ import run_offer_docs_v14 as parser_v14  # noqa: E402
 
 base = legacy_v3.base
 
-# v3 establishes the broad official-document registry. Override only its parser
-# wiring so this exact-identity verified runner can benefit from v14 recognition.
+# v3 establishes the broad official-document registry. Override only the parser
+# module and version. Keep enrich_issuer_offer_docs' own targeted full-document
+# financial/shareholding scanner: its calling contract and purpose are distinct
+# from the generic offer-parser targeted-page helper.
 base.parser_v4 = parser_v14
 base.PARSER_VERSION = parser_v14.PARSER_VERSION
-base._extract_targeted_full_text = parser_v14.extract_targeted_pdf_text
 
 base.ISSUER_DOCUMENTS.update(
     {
