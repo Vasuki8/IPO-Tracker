@@ -88,7 +88,7 @@
       "Critical-backfill": {
         "ok": true,
         "records": 0,
-        "asOf": "2026-09-13T16:29:58+05:30"
+        "asOf": "2026-09-13T16:31:31+05:30"
       },
       "SEBI-document-links": {
         "ok": true,
@@ -289,21 +289,34 @@
     "criticalBackfillHealth": {
       "ok": true,
       "targetCount": 0,
-      "priorityMax": 3,
-      "asOf": "2026-09-13T16:29:58+05:30",
-      "documents": {
+      "priorityMax": 1,
+      "asOf": "2026-09-13T16:31:31+05:30",
+      "exchange": {
         "ok": true,
         "attempted": 0,
-        "extracted": 0,
+        "matched": 0,
+        "updated": 0,
         "failed": 0,
-        "documentsDiscovered": 0,
-        "discoveryHealth": {
-          "ok": false,
-          "records": 0,
-          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7fa16fd310a0>, 'Connection to www.bsesme.com time"
+        "pageHealth": {
+          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+            "ok": true,
+            "records": 0
+          },
+          "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+            "ok": true,
+            "records": 11
+          },
+          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P": {
+            "ok": true,
+            "records": 0
+          },
+          "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2": {
+            "ok": false,
+            "records": 0,
+            "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7fe2b11f07a0>, 'Connection to www.bsesme.c"
+          }
         },
-        "errors": [],
-        "asOf": "2026-09-13T16:30:33+05:30"
+        "errors": []
       }
     }
   },
