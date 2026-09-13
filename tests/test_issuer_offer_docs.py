@@ -10,6 +10,15 @@ sys.modules[spec.name] = mod
 spec.loader.exec_module(mod)
 
 
+def load_runner():
+    runner_path = Path(__file__).resolve().parents[1] / "scripts" / "run_issuer_offer_docs.py"
+    runner_spec = importlib.util.spec_from_file_location("run_issuer_offer_docs", runner_path)
+    runner = importlib.util.module_from_spec(runner_spec)
+    sys.modules[runner_spec.name] = runner
+    runner_spec.loader.exec_module(runner)
+    return runner
+
+
 class IssuerOfferDocumentTests(unittest.TestCase):
     def test_registry_uses_exact_whitelisted_hosts(self):
         for entry in mod.ISSUER_DOCUMENTS.values():
@@ -148,16 +157,59 @@ class IssuerOfferDocumentTests(unittest.TestCase):
         self.assertEqual(targets[0][0]["id"], "raksan-transformers-limited")
 
     def test_runner_registers_official_shakti_drhp(self):
-        runner_path = Path(__file__).resolve().parents[1] / "scripts" / "run_issuer_offer_docs.py"
-        runner_spec = importlib.util.spec_from_file_location("run_issuer_offer_docs", runner_path)
-        runner = importlib.util.module_from_spec(runner_spec)
-        sys.modules[runner_spec.name] = runner
-        runner_spec.loader.exec_module(runner)
+        runner = load_runner()
         entry = runner.base.ISSUER_DOCUMENTS["shakti-polytarp-limited"]
         self.assertEqual(entry["host"], "shaktipolytarp.com")
         self.assertEqual(entry["type"], "DRHP")
         self.assertTrue(mod._host_matches(entry["url"], entry["host"]))
         self.assertIn("DRHP_Shakti_29092025.pdf", entry["url"])
+
+    def test_runner_registers_current_vama_rhp(self):
+        runner = load_runner()
+        entry = runner.base.ISSUER_DOCUMENTS["vama-wovenfab-limited"]
+        self.assertEqual(entry["host"], "vamawoven.com")
+        self.assertEqual(entry["type"], "RHP")
+        self.assertTrue(mod._host_matches(entry["url"], entry["host"]))
+        self.assertIn("RHP_VamaWovenfabLimited-2.pdf", entry["url"])
+        self.assertEqual(entry["sourcePage"], "https://vamawoven.com/rhp/")
+
+    def test_injecto_registrar_fallback_keeps_registrar_provenance(self):
+        runner = load_runner()
+        entry = runner.base.ISSUER_DOCUMENTS["injecto-polymers-limited"]
+        self.assertEqual(entry["host"], "ipostatus.integratedregistry.in")
+        self.assertEqual(entry["extractionSource"], "Registrar website")
+        self.assertEqual(entry["sourceKind"], "registrar-filing")
+
+        record = {
+            "company": "INJECTO POLYMERS LIMITED",
+            "sources": [],
+            "documents": [],
+        }
+        parsed = {
+            "issueComposition": {},
+            "registrar": None,
+            "leadManagers": [],
+            "promoters": [],
+            "financials": None,
+            "objectsOfIssue": [],
+            "shareholding": {"promoters": [], "promoterPreIssuePct": 88.14},
+            "extractedFields": ["shareholding"],
+        }
+        changed = runner.merge_validated_offer_enrichment(
+            record,
+            parsed,
+            entry,
+            pdf_hash="abc",
+            pages_read=120,
+            page_count=400,
+        )
+        self.assertIn("shareholding", changed)
+        self.assertEqual(record["issuerDocumentExtraction"]["source"], "Registrar website")
+        matching_docs = [d for d in record["documents"] if d.get("url") == entry["url"]]
+        self.assertEqual(matching_docs[0]["source"], "Integrated Registry")
+        matching_sources = [s for s in record["sources"] if s.get("url") == entry["sourcePage"]]
+        self.assertEqual(matching_sources[0]["name"], "Integrated Registry offer document")
+        self.assertEqual(matching_sources[0]["kind"], "registrar-filing")
 
 
 if __name__ == "__main__":
