@@ -5,6 +5,11 @@ SEBI listing pages often link to a filing HTML page. That filing page, in turn,
 contains an Abridged Prospectus PDF plus a viewer URL whose ``file`` parameter is
 the full RHP/DRHP/Prospectus PDF. This script resolves those official links and
 adds them to the existing record without replacing any data.
+
+A very small canonical filing-page registry is also maintained for priority
+records where a later addendum/announcement displaced the original RHP landing
+page in upstream discovery. The registry stores only official SEBI filing-page
+URLs; the PDF links are still resolved from SEBI at runtime.
 """
 from __future__ import annotations
 
@@ -30,6 +35,26 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = core.DATA_FILE
 QUEUE_FILE = ROOT / "data" / "missing_queue.json"
 SEBI_HOSTS = {"sebi.gov.in", "www.sebi.gov.in"}
+
+# Official SEBI filing pages verified from the public-issues register. These are
+# intentionally landing pages, not copied PDF URLs, so runtime resolution still
+# discovers the current Abridged Prospectus + full RHP directly from SEBI.
+CANONICAL_FILING_PAGES: dict[str, dict[str, str]] = {
+    "rentomojo": {
+        "type": "RHP",
+        "title": "Rentomojo Limited - RHP",
+        "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/rentomojo-limited-rhp_104269.html",
+        "filedDate": "2026-09-04",
+        "source": "SEBI",
+    },
+    "prasolchem": {
+        "type": "RHP",
+        "title": "Prasol Chemicals Limited - RHP",
+        "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/prasol-chemicals-limited-rhp_104222.html",
+        "filedDate": "2026-09-03",
+        "source": "SEBI",
+    },
+}
 
 
 def is_sebi_url(url: str) -> bool:
@@ -59,6 +84,10 @@ def direct_pdf_from_url(url: str) -> str | None:
 
 def infer_type(text: str, fallback: str | None = None) -> str:
     value = str(text or "").upper()
+    # Supplemental notices must never masquerade as the underlying RHP merely
+    # because their title contains the letters "RHP".
+    if any(token in value for token in ("ADDENDUM", "CORRIGENDUM", "PUBLIC ANNOUNCEMENT")):
+        return "ADDENDUM"
     if "UDRHP" in value or "UPDATED DRAFT" in value:
         return "UDRHP"
     if "DRHP" in value or "DRAFT RED HERRING" in value:
@@ -125,6 +154,18 @@ def extract_pdf_links(html: str, landing_url: str, *, fallback_type: str | None 
     return out
 
 
+def seed_canonical_filing_page(record: dict[str, Any], docs: list[dict[str, Any]]) -> bool:
+    """Add a missing official filing landing page for a known priority record."""
+    canonical = CANONICAL_FILING_PAGES.get(str(record.get("id") or ""))
+    if not canonical:
+        return False
+    url = canonical["url"]
+    if any(str(existing.get("url") or "") == url for existing in docs):
+        return False
+    docs.append(dict(canonical))
+    return True
+
+
 def priority_ids(queue_payload: dict[str, Any], priority_max: int) -> set[str]:
     ids: set[str] = set()
     for item in queue_payload.get("queue") or []:
@@ -142,7 +183,7 @@ def priority_ids(queue_payload: dict[str, Any], priority_max: int) -> set[str]:
 def enrich_payload(payload: dict[str, Any], session: requests.Session, *, priority_max: int = 2, limit: int = 40):
     queue = json.loads(QUEUE_FILE.read_text(encoding="utf-8")) if QUEUE_FILE.exists() else {"queue": []}
     ids = priority_ids(queue, priority_max)
-    attempted = resolved_pages = added = failed = 0
+    attempted = resolved_pages = added = failed = seeded_pages = 0
     errors: list[str] = []
 
     records = [r for r in payload.get("ipos") or [] if isinstance(r, dict) and str(r.get("id")) in ids]
@@ -151,6 +192,9 @@ def enrich_payload(payload: dict[str, Any], session: requests.Session, *, priori
 
     for record in records:
         docs = [d for d in (record.get("documents") or []) if isinstance(d, dict)]
+        if seed_canonical_filing_page(record, docs):
+            seeded_pages += 1
+
         landing_docs = []
         for doc in docs:
             url = str(doc.get("url") or "")
@@ -174,6 +218,7 @@ def enrich_payload(payload: dict[str, Any], session: requests.Session, *, priori
                     resolved_pages += 1
                 for link in links:
                     link["filedDate"] = doc.get("filedDate")
+                    link["sourcePage"] = url
                     if any(str(existing.get("url") or "") == link["url"] for existing in docs):
                         continue
                     docs.append(link)
@@ -187,6 +232,7 @@ def enrich_payload(payload: dict[str, Any], session: requests.Session, *, priori
         "ok": failed == 0,
         "attempted": attempted,
         "resolvedPages": resolved_pages,
+        "seededPages": seeded_pages,
         "linksAdded": added,
         "failed": failed,
         "asOf": core.now_ist().isoformat(timespec="seconds"),
@@ -218,7 +264,7 @@ def main() -> int:
     print(
         "SEBI document links: "
         f"attempted={health['attempted']} resolved={health['resolvedPages']} "
-        f"added={health['linksAdded']} failed={health['failed']}"
+        f"seeded={health['seededPages']} added={health['linksAdded']} failed={health['failed']}"
     )
     return 0
 
