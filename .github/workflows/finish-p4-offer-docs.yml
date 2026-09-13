@@ -9,13 +9,19 @@ on:
       - "scripts/apply_p4_record_repairs.py"
       - "scripts/apply_p4_record_repairs_v2.py"
       - "scripts/enrich_issuer_offer_docs.py"
+      - "scripts/enrich_sebi_priority_registers_v2.py"
+      - "scripts/enrich_sebi_document_links.py"
+      - "scripts/run_offer_docs_v13.py"
       - "scripts/run_issuer_offer_docs.py"
       - "scripts/run_issuer_offer_docs_v3.py"
       - "scripts/run_issuer_offer_docs_v4.py"
       - "tests/test_p4_record_repairs.py"
       - "tests/test_p4_record_repairs_v2.py"
+      - "tests/test_offer_docs_v13.py"
       - "tests/test_issuer_offer_docs_v3.py"
       - "tests/test_issuer_offer_docs_v4.py"
+      - "tests/test_sebi_document_links.py"
+      - "tests/test_sebi_priority_registers_v2.py"
       - ".github/workflows/finish-p4-offer-docs.yml"
   workflow_run:
     workflows:
@@ -136,6 +142,12 @@ jobs:
 
       - name: Sync dependencies
         run: uv sync
+
+      - name: Run residual discovery regressions
+        run: |
+          uv run python -m unittest discover -s tests -p "test_sebi_priority_registers_v2.py" -v
+          uv run python -m unittest discover -s tests -p "test_sebi_document_links.py" -v
+          uv run python -m unittest discover -s tests -p "test_offer_docs_v13.py" -v
 
       - name: Record starting data revision
         run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
