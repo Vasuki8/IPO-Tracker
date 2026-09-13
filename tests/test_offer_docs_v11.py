@@ -16,8 +16,8 @@ class OfferDocsV11Tests(unittest.TestCase):
 
     def test_injecto_combined_promoter_group_row_is_parsed(self):
         text = """
-        Shareholding Pattern
-        Pre-Issue Shareholding as at the date of Advertisement
+        Shareholding, as a % assuming full conversion of convertible securities
+        No. of Equity Shares held in dematerialized form
         Number of Voting Rights Total as a % of (A+B+C)
         Total (A) Promoter and Promoter Group 15 1,33,77,200 - -
         1,33,77,200 88.14 13377200 - 13377200 88.14 - 88.14
@@ -34,7 +34,16 @@ class OfferDocsV11Tests(unittest.TestCase):
         Promoter Group
         Total (A) Promoter and Promoter Group 15 1,33,77,200 88.14
         """
-        self.assertEqual(mod._explicit_combined_ownership(text), 88.14)
+        self.assertIsNone(mod._explicit_combined_ownership(text))
+
+    def test_injecto_requires_following_public_row(self):
+        text = """
+        Shareholding Pattern
+        Number of Voting Rights Total as a % of (A+B+C)
+        Total (A) Promoter and Promoter Group 15 1,33,77,200 - -
+        1,33,77,200 88.14
+        """
+        self.assertIsNone(mod._explicit_combined_ownership(text))
 
     def test_manika_total_c_a_plus_b_row_is_parsed(self):
         text = """
