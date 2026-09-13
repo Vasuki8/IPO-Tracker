@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-09-13T17:18:32+05:30",
+  "generatedAt": "2026-09-13T17:29:31+05:30",
   "asOfDate": "2026-09-13",
   "recordCount": 1357,
-  "queueCount": 1275,
+  "queueCount": 1209,
   "priorityCounts": {
-    "P4 recent history (2y)": 368,
+    "P4 recent history (2y)": 302,
     "P5 historical backfill": 907
   },
   "fieldGapCounts": {
-    "exchange.lotSize": 1244,
+    "exchange.lotSize": 1176,
     "exchange.issueSizeCr": 958,
     "exchange.issueComposition": 52,
     "lifecycle.listingDate": 33,
@@ -844,26 +844,6 @@
       "profilePath": "ipo/agarwaltuf/"
     },
     {
-      "id": "anantam",
-      "company": "Anantam Highways Trust",
-      "symbol": "ANANTAM",
-      "stage": "listed",
-      "openDate": "2025-10-07",
-      "closeDate": "2025-10-09",
-      "listingDate": "2025-10-16",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/anantam/"
-    },
-    {
       "id": "anawil",
       "company": "Anawil Wire and Engineering Limited",
       "symbol": "ANAWIL",
@@ -1162,26 +1142,6 @@
         "exchange.issueComposition"
       ],
       "profilePath": "ipo/iks/"
-    },
-    {
-      "id": "krt",
-      "company": "Knowledge Realty Trust",
-      "symbol": "KRT",
-      "stage": "listed",
-      "openDate": "2025-08-05",
-      "closeDate": "2025-08-07",
-      "listingDate": "2025-08-18",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/krt/"
     },
     {
       "id": "mamata",
@@ -1542,6 +1502,25 @@
       "profilePath": "ipo/84ail28/"
     },
     {
+      "id": "anantam",
+      "company": "Anantam Highways Trust",
+      "symbol": "ANANTAM",
+      "stage": "listed",
+      "openDate": "2025-10-07",
+      "closeDate": "2025-10-09",
+      "listingDate": "2025-10-16",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 83.3,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.issueSizeCr",
+        "exchange.issueComposition"
+      ],
+      "profilePath": "ipo/anantam/"
+    },
+    {
       "id": "bagmane",
       "company": "Bagmane Prime Office REIT",
       "symbol": "BAGMANE",
@@ -1597,6 +1576,25 @@
         "exchange.issueComposition"
       ],
       "profilePath": "ipo/cubeinvit/"
+    },
+    {
+      "id": "krt",
+      "company": "Knowledge Realty Trust",
+      "symbol": "KRT",
+      "stage": "listed",
+      "openDate": "2025-08-05",
+      "closeDate": "2025-08-07",
+      "listingDate": "2025-08-18",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 83.3,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.issueSizeCr",
+        "exchange.issueComposition"
+      ],
+      "profilePath": "ipo/krt/"
     },
     {
       "id": "riit",
@@ -1798,42 +1796,6 @@
       "profilePath": "ipo/adisoft/"
     },
     {
-      "id": "cpplus",
-      "company": "Aditya Infotech Limited",
-      "symbol": "CPPLUS",
-      "stage": "listed",
-      "openDate": "2025-07-29",
-      "closeDate": "2025-07-31",
-      "listingDate": "2025-08-05",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/cpplus/"
-    },
-    {
-      "id": "advance",
-      "company": "Advance Agrolife Limited",
-      "symbol": "ADVANCE",
-      "stage": "listed",
-      "openDate": "2025-09-30",
-      "closeDate": "2025-10-03",
-      "listingDate": "2025-10-08",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/advance/"
-    },
-    {
       "id": "ajaxengg",
       "company": "Ajax Engineering Limited",
       "symbol": "AJAXENGG",
@@ -1850,42 +1812,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/ajaxengg/"
-    },
-    {
-      "id": "alltime",
-      "company": "All Time Plastics Limited",
-      "symbol": "ALLTIME",
-      "stage": "listed",
-      "openDate": "2025-08-07",
-      "closeDate": "2025-08-11",
-      "listingDate": "2025-08-14",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/alltime/"
-    },
-    {
-      "id": "amanta",
-      "company": "Amanta Healthcare Limited",
-      "symbol": "AMANTA",
-      "stage": "listed",
-      "openDate": "2025-09-01",
-      "closeDate": "2025-09-03",
-      "listingDate": "2025-09-09",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/amanta/"
     },
     {
       "id": "ambaauto",
@@ -1924,42 +1850,6 @@
       "profilePath": "ipo/amirchand/"
     },
     {
-      "id": "arssbl",
-      "company": "Anand Rathi Share and Stock Brokers Limited",
-      "symbol": "ARSSBL",
-      "stage": "listed",
-      "openDate": "2025-09-23",
-      "closeDate": "2025-09-25",
-      "listingDate": "2025-09-30",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/arssbl/"
-    },
-    {
-      "id": "ahcl",
-      "company": "Anlon Healthcare Limited",
-      "symbol": "AHCL",
-      "stage": "listed",
-      "openDate": "2025-08-26",
-      "closeDate": "2025-08-29",
-      "listingDate": "2025-09-03",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/ahcl/"
-    },
-    {
       "id": "anondita",
       "company": "Anondita Medicare Limited",
       "symbol": "ANONDITA",
@@ -1976,24 +1866,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/anondita/"
-    },
-    {
-      "id": "anthem",
-      "company": "Anthem Biosciences Limited",
-      "symbol": "ANTHEM",
-      "stage": "listed",
-      "openDate": "2025-07-14",
-      "closeDate": "2025-07-16",
-      "listingDate": "2025-07-21",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/anthem/"
     },
     {
       "id": "anya",
@@ -2140,24 +2012,6 @@
       "profilePath": "ipo/atherenerg/"
     },
     {
-      "id": "atlantaele",
-      "company": "Atlanta Electricals Limited",
-      "symbol": "ATLANTAELE",
-      "stage": "listed",
-      "openDate": "2025-09-22",
-      "closeDate": "2025-09-24",
-      "listingDate": "2025-09-29",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/atlantaele/"
-    },
-    {
       "id": "avana",
       "company": "Avana Electrosystems Limited",
       "symbol": "AVANA",
@@ -2228,24 +2082,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/bagdigital/"
-    },
-    {
-      "id": "bmwventltd",
-      "company": "BMW Ventures Limited",
-      "symbol": "BMWVENTLTD",
-      "stage": "listed",
-      "openDate": "2025-09-24",
-      "closeDate": "2025-09-26",
-      "listingDate": "2025-10-01",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/bmwventltd/"
     },
     {
       "id": "balajiphos",
@@ -2338,24 +2174,6 @@
       "profilePath": "ipo/bikewo/"
     },
     {
-      "id": "groww",
-      "company": "Billionbrains Garage Ventures Limited",
-      "symbol": "GROWW",
-      "stage": "listed",
-      "openDate": "2025-11-04",
-      "closeDate": "2025-11-07",
-      "listingDate": "2025-11-12",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/groww/"
-    },
-    {
       "id": "bmll",
       "company": "Bio Medica Laboratories Limited",
       "symbol": "BMLL",
@@ -2410,24 +2228,6 @@
       "profilePath": "ipo/bluewater/"
     },
     {
-      "id": "bluestone",
-      "company": "BlueStone Jewellery and Lifestyle Limited",
-      "symbol": "BLUESTONE",
-      "stage": "listed",
-      "openDate": "2025-08-11",
-      "closeDate": "2025-08-13",
-      "listingDate": "2025-08-19",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/bluestone/"
-    },
-    {
       "id": "borana",
       "company": "Borana Weaves Limited",
       "symbol": "BORANA",
@@ -2464,24 +2264,6 @@
       "profilePath": "ipo/brandman/"
     },
     {
-      "id": "brighotel",
-      "company": "Brigade Hotel Ventures Limited",
-      "symbol": "BRIGHOTEL",
-      "stage": "listed",
-      "openDate": "2025-07-24",
-      "closeDate": "2025-07-28",
-      "listingDate": "2025-07-31",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/brighotel/"
-    },
-    {
       "id": "ckkretail",
       "company": "C K K Retail Mart Limited",
       "symbol": "CKKRETAIL",
@@ -2498,60 +2280,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/ckkretail/"
-    },
-    {
-      "id": "crizac",
-      "company": "CRIZAC LIMITED",
-      "symbol": "CRIZAC",
-      "stage": "listed",
-      "openDate": "2025-07-02",
-      "closeDate": "2025-07-04",
-      "listingDate": "2025-07-09",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/crizac/"
-    },
-    {
-      "id": "cramc",
-      "company": "Canara Robeco Asset Management Company Limited",
-      "symbol": "CRAMC",
-      "stage": "listed",
-      "openDate": "2025-10-09",
-      "closeDate": "2025-10-13",
-      "listingDate": "2025-10-16",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/cramc/"
-    },
-    {
-      "id": "capillary",
-      "company": "Capillary Technologies India Limited",
-      "symbol": "CAPILLARY",
-      "stage": "listed",
-      "openDate": "2025-11-14",
-      "closeDate": "2025-11-18",
-      "listingDate": "2025-11-21",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/capillary/"
     },
     {
       "id": "cudml",
@@ -2824,24 +2552,6 @@
       "profilePath": "ipo/denta/"
     },
     {
-      "id": "devx",
-      "company": "Dev Accelerator Limited",
-      "symbol": "DEVX",
-      "stage": "listed",
-      "openDate": "2025-09-10",
-      "closeDate": "2025-09-12",
-      "listingDate": "2025-09-17",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/devx/"
-    },
-    {
       "id": "dhararail",
       "company": "Dhara Rail Projects Limited",
       "symbol": "DHARARAIL",
@@ -3040,24 +2750,6 @@
       "profilePath": "ipo/ellen/"
     },
     {
-      "id": "emmvee",
-      "company": "Emmvee Photovoltaic Power Limited",
-      "symbol": "EMMVEE",
-      "stage": "listed",
-      "openDate": "2025-11-11",
-      "closeDate": "2025-11-13",
-      "listingDate": "2025-11-18",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/emmvee/"
-    },
-    {
       "id": "encompas",
       "company": "Encompass Design India Limited",
       "symbol": "ENCOMPAS",
@@ -3112,24 +2804,6 @@
       "profilePath": "ipo/enviro/"
     },
     {
-      "id": "epackpeb",
-      "company": "Epack Prefab Technologies Limited",
-      "symbol": "EPACKPEB",
-      "stage": "listed",
-      "openDate": "2025-09-24",
-      "closeDate": "2025-09-26",
-      "listingDate": "2025-10-01",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/epackpeb/"
-    },
-    {
       "id": "eepl",
       "company": "Eppeltone Engineers Limited",
       "symbol": "EEPL",
@@ -3148,42 +2822,6 @@
       "profilePath": "ipo/eepl/"
     },
     {
-      "id": "europratik",
-      "company": "Euro Pratik Sales Limited",
-      "symbol": "EUROPRATIK",
-      "stage": "listed",
-      "openDate": "2025-09-16",
-      "closeDate": "2025-09-18",
-      "listingDate": "2025-09-23",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/europratik/"
-    },
-    {
-      "id": "excelsoft",
-      "company": "Excelsoft Technologies Limited",
-      "symbol": "EXCELSOFT",
-      "stage": "listed",
-      "openDate": "2025-11-19",
-      "closeDate": "2025-11-21",
-      "listingDate": "2025-11-26",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/excelsoft/"
-    },
-    {
       "id": "eximroutes",
       "company": "Exim Routes Limited",
       "symbol": "EXIMROUTES",
@@ -3200,24 +2838,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/eximroutes/"
-    },
-    {
-      "id": "fabtech",
-      "company": "Fabtech Technologies Limited",
-      "symbol": "FABTECH",
-      "stage": "listed",
-      "openDate": "2025-09-29",
-      "closeDate": "2025-10-01",
-      "listingDate": "2025-10-07",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/fabtech/"
     },
     {
       "id": "finbud",
@@ -3310,60 +2930,6 @@
       "profilePath": "ipo/freshara/"
     },
     {
-      "id": "utlsolar",
-      "company": "Fujiyama Power Systems Limited",
-      "symbol": "UTLSOLAR",
-      "stage": "listed",
-      "openDate": "2025-11-13",
-      "closeDate": "2025-11-17",
-      "listingDate": "2025-11-20",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/utlsolar/"
-    },
-    {
-      "id": "gkenergy",
-      "company": "GK Energy Limited",
-      "symbol": "GKENERGY",
-      "stage": "listed",
-      "openDate": "2025-09-19",
-      "closeDate": "2025-09-23",
-      "listingDate": "2025-09-26",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/gkenergy/"
-    },
-    {
-      "id": "ebgng",
-      "company": "GNG Electronics Limited",
-      "symbol": "EBGNG",
-      "stage": "listed",
-      "openDate": "2025-07-23",
-      "closeDate": "2025-07-25",
-      "listingDate": "2025-07-30",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/ebgng/"
-    },
-    {
       "id": "gml",
       "company": "Galaxy Medicare Limited",
       "symbol": "GML",
@@ -3380,24 +2946,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/gml/"
-    },
-    {
-      "id": "ganeshcp",
-      "company": "Ganesh Consumer Products Limited",
-      "symbol": "GANESHCP",
-      "stage": "listed",
-      "openDate": "2025-09-22",
-      "closeDate": "2025-09-24",
-      "listingDate": "2025-09-29",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/ganeshcp/"
     },
     {
       "id": "gangabath",
@@ -3436,24 +2984,6 @@
       "profilePath": "ipo/garuda/"
     },
     {
-      "id": "gemaroma",
-      "company": "Gem Aromatics Limited",
-      "symbol": "GEMAROMA",
-      "stage": "listed",
-      "openDate": "2025-08-19",
-      "closeDate": "2025-08-21",
-      "listingDate": "2025-08-26",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/gemaroma/"
-    },
-    {
       "id": "genxai",
       "company": "GenXAI Analytics Limited",
       "symbol": "GENXAI",
@@ -3488,24 +3018,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/globecivil/"
-    },
-    {
-      "id": "glottis",
-      "company": "Glottis Limited",
-      "symbol": "GLOTTIS",
-      "stage": "listed",
-      "openDate": "2025-09-29",
-      "closeDate": "2025-10-01",
-      "listingDate": "2025-10-07",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/glottis/"
     },
     {
       "id": "godavarib",
@@ -3688,24 +3200,6 @@
       "profilePath": "ipo/hext/"
     },
     {
-      "id": "hilinfra",
-      "company": "Highway Infrastructure Limited",
-      "symbol": "HILINFRA",
-      "stage": "listed",
-      "openDate": "2025-08-05",
-      "closeDate": "2025-08-07",
-      "listingDate": "2025-08-12",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/hilinfra/"
-    },
-    {
       "id": "hvax",
       "company": "Hvax Technologies Limited",
       "symbol": "HVAX",
@@ -3758,24 +3252,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/icelco/"
-    },
-    {
-      "id": "indiqube",
-      "company": "Indiqube Spaces Limited",
-      "symbol": "INDIQUBE",
-      "stage": "listed",
-      "openDate": "2025-07-23",
-      "closeDate": "2025-07-25",
-      "listingDate": "2025-07-30",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/indiqube/"
     },
     {
       "id": "indofarm",
@@ -3868,24 +3344,6 @@
       "profilePath": "ipo/invicta/"
     },
     {
-      "id": "ivalue",
-      "company": "Ivalue Infosolutions Limited",
-      "symbol": "IVALUE",
-      "stage": "listed",
-      "openDate": "2025-09-18",
-      "closeDate": "2025-09-22",
-      "listingDate": "2025-09-25",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/ivalue/"
-    },
-    {
       "id": "iware",
       "company": "Iware Supplychain Services Limited",
       "symbol": "IWARE",
@@ -3902,42 +3360,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/iware/"
-    },
-    {
-      "id": "jswcement",
-      "company": "JSW Cement Limited",
-      "symbol": "JSWCEMENT",
-      "stage": "listed",
-      "openDate": "2025-08-07",
-      "closeDate": "2025-08-11",
-      "listingDate": "2025-08-14",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/jswcement/"
-    },
-    {
-      "id": "jainrec",
-      "company": "Jain Resource Recycling Limited",
-      "symbol": "JAINREC",
-      "stage": "listed",
-      "openDate": "2025-09-24",
-      "closeDate": "2025-09-26",
-      "listingDate": "2025-10-01",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/jainrec/"
     },
     {
       "id": "jainik",
@@ -3958,24 +3380,6 @@
       "profilePath": "ipo/jainik/"
     },
     {
-      "id": "jaro",
-      "company": "Jaro Institute of Technology Management and Research Limited",
-      "symbol": "JARO",
-      "stage": "listed",
-      "openDate": "2025-09-23",
-      "closeDate": "2025-09-25",
-      "listingDate": "2025-09-30",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/jaro/"
-    },
-    {
       "id": "jayesh",
       "company": "Jayesh Logistics Limited",
       "symbol": "JAYESH",
@@ -3992,24 +3396,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/jayesh/"
-    },
-    {
-      "id": "jkipl",
-      "company": "Jinkushal Industries Limited",
-      "symbol": "JKIPL",
-      "stage": "listed",
-      "openDate": "2025-09-25",
-      "closeDate": "2025-09-29",
-      "listingDate": "2025-10-03",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/jkipl/"
     },
     {
       "id": "jyotiglobl",
@@ -4156,24 +3542,6 @@
       "profilePath": "ipo/ken/"
     },
     {
-      "id": "lgeindia",
-      "company": "LG Electronics India Limited",
-      "symbol": "LGEINDIA",
-      "stage": "listed",
-      "openDate": "2025-10-07",
-      "closeDate": "2025-10-09",
-      "listingDate": "2025-10-14",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/lgeindia/"
-    },
-    {
       "id": "lakshya",
       "company": "Lakshya Powertech Limited",
       "symbol": "LAKSHYA",
@@ -4228,60 +3596,6 @@
       "profilePath": "ipo/laxmidentl/"
     },
     {
-      "id": "laxmiindia",
-      "company": "Laxmi India Finance Limited",
-      "symbol": "LAXMIINDIA",
-      "stage": "listed",
-      "openDate": "2025-07-29",
-      "closeDate": "2025-07-31",
-      "listingDate": "2025-08-05",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/laxmiindia/"
-    },
-    {
-      "id": "lenskart",
-      "company": "Lenskart Solutions Limited",
-      "symbol": "LENSKART",
-      "stage": "listed",
-      "openDate": "2025-10-31",
-      "closeDate": "2025-11-04",
-      "listingDate": "2025-11-10",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/lenskart/"
-    },
-    {
-      "id": "mbel",
-      "company": "M&B Engineering Limited",
-      "symbol": "MBEL",
-      "stage": "listed",
-      "openDate": "2025-07-30",
-      "closeDate": "2025-08-01",
-      "listingDate": "2025-08-06",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/mbel/"
-    },
-    {
       "id": "mril",
       "company": "Mahendra Realtors & Infrastructure Limited",
       "symbol": "MRIL",
@@ -4334,24 +3648,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/manba/"
-    },
-    {
-      "id": "meil",
-      "company": "Mangal Electrical Industries Limited",
-      "symbol": "MEIL",
-      "stage": "listed",
-      "openDate": "2025-08-20",
-      "closeDate": "2025-08-22",
-      "listingDate": "2025-08-28",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/meil/"
     },
     {
       "id": "manilam",
@@ -4496,24 +3792,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/metalic/"
-    },
-    {
-      "id": "midwestltd",
-      "company": "Midwest Limited",
-      "symbol": "MIDWESTLTD",
-      "stage": "listed",
-      "openDate": "2025-10-15",
-      "closeDate": "2025-10-17",
-      "listingDate": "2025-10-24",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/midwestltd/"
     },
     {
       "id": "mobilise",
@@ -4750,24 +4028,6 @@
       "profilePath": "ipo/onyx/"
     },
     {
-      "id": "omfreight",
-      "company": "Om Freight Forwarders Limited",
-      "symbol": "OMFREIGHT",
-      "stage": "listed",
-      "openDate": "2025-09-29",
-      "closeDate": "2025-10-03",
-      "listingDate": "2025-10-08",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/omfreight/"
-    },
-    {
       "id": "optivalue",
       "company": "Optivalue Tek Consulting Limited",
       "symbol": "OPTIVALUE",
@@ -4784,24 +4044,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/optivalue/"
-    },
-    {
-      "id": "orklaindia",
-      "company": "Orkla India Limited",
-      "symbol": "ORKLAINDIA",
-      "stage": "listed",
-      "openDate": "2025-10-29",
-      "closeDate": "2025-10-31",
-      "listingDate": "2025-11-06",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/orklaindia/"
     },
     {
       "id": "oseldevice",
@@ -4876,24 +4118,6 @@
       "profilePath": "ipo/profx/"
     },
     {
-      "id": "pacedigitk",
-      "company": "Pace Digitek Limited",
-      "symbol": "PACEDIGITK",
-      "stage": "listed",
-      "openDate": "2025-09-26",
-      "closeDate": "2025-09-30",
-      "listingDate": "2025-10-06",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/pacedigitk/"
-    },
-    {
       "id": "paramount",
       "company": "Paramount Dye Tec Limited",
       "symbol": "PARAMOUNT",
@@ -4948,24 +4172,6 @@
       "profilePath": "ipo/parth/"
     },
     {
-      "id": "patelrmart",
-      "company": "Patel Retail Limited",
-      "symbol": "PATELRMART",
-      "stage": "listed",
-      "openDate": "2025-08-19",
-      "closeDate": "2025-08-21",
-      "listingDate": "2025-08-26",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/patelrmart/"
-    },
-    {
       "id": "patilautom",
       "company": "Patil Automation Limited",
       "symbol": "PATILAUTOM",
@@ -5018,42 +4224,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/phoglobal/"
-    },
-    {
-      "id": "pwl",
-      "company": "Physicswallah Limited",
-      "symbol": "PWL",
-      "stage": "listed",
-      "openDate": "2025-11-11",
-      "closeDate": "2025-11-13",
-      "listingDate": "2025-11-18",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/pwl/"
-    },
-    {
-      "id": "pinelabs",
-      "company": "Pine Labs Limited",
-      "symbol": "PINELABS",
-      "stage": "listed",
-      "openDate": "2025-11-07",
-      "closeDate": "2025-11-11",
-      "listingDate": "2025-11-14",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/pinelabs/"
     },
     {
       "id": "pranik",
@@ -5290,24 +4460,6 @@
       "profilePath": "ipo/readymix/"
     },
     {
-      "id": "regaal",
-      "company": "Regaal Resources Limited",
-      "symbol": "REGAAL",
-      "stage": "listed",
-      "openDate": "2025-08-12",
-      "closeDate": "2025-08-14",
-      "listingDate": "2025-08-20",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/regaal/"
-    },
-    {
       "id": "rnpl",
       "company": "Renol Polychem Limited",
       "symbol": "RNPL",
@@ -5360,24 +4512,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/royalarc/"
-    },
-    {
-      "id": "rubicon",
-      "company": "Rubicon Research Limited",
-      "symbol": "RUBICON",
-      "stage": "listed",
-      "openDate": "2025-10-09",
-      "closeDate": "2025-10-13",
-      "listingDate": "2025-10-16",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/rubicon/"
     },
     {
       "id": "sdreams",
@@ -5666,6 +4800,870 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/sellowrap/"
+    },
+    {
+      "id": "sheel",
+      "company": "Sheel Biotech Limited",
+      "symbol": "SHEEL",
+      "stage": "listed",
+      "openDate": "2025-09-30",
+      "closeDate": "2025-10-03",
+      "listingDate": "2025-10-08",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/sheel/"
+    },
+    {
+      "id": "shiprocket",
+      "company": "Shiprocket Limited",
+      "symbol": "SHIPROCKET",
+      "stage": "listed",
+      "openDate": "2026-08-12",
+      "closeDate": "2026-08-14",
+      "listingDate": "2026-08-19",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 94.7,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "offer.promoterShareholding"
+      ],
+      "profilePath": "ipo/shiprocket/"
+    },
+    {
+      "id": "shivashrit",
+      "company": "Shivashrit Foods Limited",
+      "symbol": "SHIVASHRIT",
+      "stage": "listed",
+      "openDate": "2025-08-22",
+      "closeDate": "2025-08-26",
+      "listingDate": "2025-09-01",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/shivashrit/"
+    },
+    {
+      "id": "shreedhar",
+      "company": "Shreedhar Spinners Limited",
+      "symbol": "SHREEDHAR",
+      "stage": "listed",
+      "openDate": "2026-06-23",
+      "closeDate": "2026-06-25",
+      "listingDate": "2026-07-01",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/shreedhar/"
+    },
+    {
+      "id": "shethji",
+      "company": "Shreeji Global FMCG Limited",
+      "symbol": "SHETHJI",
+      "stage": "listed",
+      "openDate": "2025-11-04",
+      "closeDate": "2025-11-07",
+      "listingDate": "2025-11-12",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/shethji/"
+    },
+    {
+      "id": "shriahimsa",
+      "company": "Shri Ahimsa Naturals Limited",
+      "symbol": "SHRIAHIMSA",
+      "stage": "listed",
+      "openDate": "2025-03-25",
+      "closeDate": "2025-03-27",
+      "listingDate": "2025-04-02",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/shriahimsa/"
+    },
+    {
+      "id": "shksil",
+      "company": "Shri Hare-Krishna Sponge Iron Limited",
+      "symbol": "SHKSIL",
+      "stage": "listed",
+      "openDate": "2025-06-24",
+      "closeDate": "2025-06-26",
+      "listingDate": "2025-07-01",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/shksil/"
+    },
+    {
+      "id": "shrikanha",
+      "company": "Shri Kanha Stainless Limited",
+      "symbol": "SHRIKANHA",
+      "stage": "listed",
+      "openDate": "2025-12-03",
+      "closeDate": "2025-12-05",
+      "listingDate": "2025-12-10",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/shrikanha/"
+    },
+    {
+      "id": "shyamdhani",
+      "company": "Shyam Dhani Industries Limited",
+      "symbol": "SHYAMDHANI",
+      "stage": "listed",
+      "openDate": "2025-12-22",
+      "closeDate": "2025-12-24",
+      "listingDate": "2025-12-30",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/shyamdhani/"
+    },
+    {
+      "id": "siddhicots",
+      "company": "Siddhi Cotspin Limited",
+      "symbol": "SIDDHICOTS",
+      "stage": "listed",
+      "openDate": "2025-09-19",
+      "closeDate": "2025-09-23",
+      "listingDate": "2025-09-26",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/siddhicots/"
+    },
+    {
+      "id": "simca",
+      "company": "Simca Advertising Limited",
+      "symbol": "SIMCA",
+      "stage": "listed",
+      "openDate": "2026-05-08",
+      "closeDate": "2026-05-12",
+      "listingDate": "2026-05-15",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/simca/"
+    },
+    {
+      "id": "smarten",
+      "company": "Smarten Power Systems Limited",
+      "symbol": "SMARTEN",
+      "stage": "listed",
+      "openDate": "2025-07-07",
+      "closeDate": "2025-07-09",
+      "listingDate": "2025-07-14",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/smarten/"
+    },
+    {
+      "id": "snehaa",
+      "company": "Snehaa Organics Limited",
+      "symbol": "SNEHAA",
+      "stage": "listed",
+      "openDate": "2025-08-29",
+      "closeDate": "2025-09-02",
+      "listingDate": "2025-09-05",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/snehaa/"
+    },
+    {
+      "id": "speb",
+      "company": "Speb Adhesives Limited",
+      "symbol": "SPEB",
+      "stage": "listed",
+      "openDate": "2025-12-01",
+      "closeDate": "2025-12-03",
+      "listingDate": "2025-12-08",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/speb/"
+    },
+    {
+      "id": "spunweb",
+      "company": "Spunweb Nonwoven Limited",
+      "symbol": "SPUNWEB",
+      "stage": "listed",
+      "openDate": "2025-07-14",
+      "closeDate": "2025-07-16",
+      "listingDate": "2025-07-21",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/spunweb/"
+    },
+    {
+      "id": "spcon",
+      "company": "Srinibas Pradhan Constructions Limited",
+      "symbol": "SPCON",
+      "stage": "listed",
+      "openDate": "2026-03-06",
+      "closeDate": "2026-03-10",
+      "listingDate": "2026-03-13",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/spcon/"
+    },
+    {
+      "id": "stallion",
+      "company": "Stallion India Fluorochemicals Limited",
+      "symbol": "STALLION",
+      "stage": "listed",
+      "openDate": "2025-01-16",
+      "closeDate": "2025-01-20",
+      "listingDate": "2025-01-23",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/stallion/"
+    },
+    {
+      "id": "sgltl",
+      "company": "Standard Glass Lining Technology Limited",
+      "symbol": "SGLTL",
+      "stage": "listed",
+      "openDate": "2025-01-06",
+      "closeDate": "2025-01-08",
+      "listingDate": "2025-01-13",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/sgltl/"
+    },
+    {
+      "id": "striders",
+      "company": "Striders Impex Limited",
+      "symbol": "STRIDERS",
+      "stage": "listed",
+      "openDate": "2026-02-26",
+      "closeDate": "2026-03-02",
+      "listingDate": "2026-03-06",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/striders/"
+    },
+    {
+      "id": "studiolsd",
+      "company": "Studio LSD Limited",
+      "symbol": "STUDIOLSD",
+      "stage": "listed",
+      "openDate": "2025-08-18",
+      "closeDate": "2025-08-20",
+      "listingDate": "2025-08-25",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/studiolsd/"
+    },
+    {
+      "id": "subahotels",
+      "company": "Suba Hotels Limited",
+      "symbol": "SUBAHOTELS",
+      "stage": "listed",
+      "openDate": "2025-09-29",
+      "closeDate": "2025-10-01",
+      "listingDate": "2025-10-07",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/subahotels/"
+    },
+    {
+      "id": "socl",
+      "company": "Sundrex Oil Company Limited",
+      "symbol": "SOCL",
+      "stage": "listed",
+      "openDate": "2025-12-22",
+      "closeDate": "2025-12-24",
+      "listingDate": "2025-12-30",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/socl/"
+    },
+    {
+      "id": "suntech",
+      "company": "Suntech Infra Solutions Limited",
+      "symbol": "SUNTECH",
+      "stage": "listed",
+      "openDate": "2025-06-25",
+      "closeDate": "2025-06-27",
+      "listingDate": "2025-07-02",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/suntech/"
+    },
+    {
+      "id": "swiggy",
+      "company": "Swiggy Limited",
+      "symbol": "SWIGGY",
+      "stage": "listed",
+      "openDate": "2024-11-06",
+      "closeDate": "2024-11-08",
+      "listingDate": "2024-11-13",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/swiggy/"
+    },
+    {
+      "id": "tsc",
+      "company": "TSC India Limited",
+      "symbol": "TSC",
+      "stage": "listed",
+      "openDate": "2025-07-23",
+      "closeDate": "2025-07-25",
+      "listingDate": "2025-07-30",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/tsc/"
+    },
+    {
+      "id": "tankup",
+      "company": "Tankup Engineers Limited",
+      "symbol": "TANKUP",
+      "stage": "listed",
+      "openDate": "2025-04-23",
+      "closeDate": "2025-04-25",
+      "listingDate": "2025-04-30",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/tankup/"
+    },
+    {
+      "id": "taurian",
+      "company": "Taurian MPS Limited",
+      "symbol": "TAURIAN",
+      "stage": "listed",
+      "openDate": "2025-09-09",
+      "closeDate": "2025-09-11",
+      "listingDate": "2025-09-16",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/taurian/"
+    },
+    {
+      "id": "teamtech",
+      "company": "Teamtech Formwork Solutions Limited",
+      "symbol": "TEAMTECH",
+      "stage": "listed",
+      "openDate": "2026-05-19",
+      "closeDate": "2026-05-21",
+      "listingDate": "2026-05-26",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/teamtech/"
+    },
+    {
+      "id": "techd",
+      "company": "TechD Cybersecurity Limited",
+      "symbol": "TECHD",
+      "stage": "listed",
+      "openDate": "2025-09-15",
+      "closeDate": "2025-09-17",
+      "listingDate": "2025-09-22",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/techd/"
+    },
+    {
+      "id": "techera",
+      "company": "Techera Engineering (India) Limited",
+      "symbol": "TECHERA",
+      "stage": "listed",
+      "openDate": "2024-09-25",
+      "closeDate": "2024-09-27",
+      "listingDate": "2024-10-03",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/techera/"
+    },
+    {
+      "id": "teja",
+      "company": "Teja Engineering Industries Limited",
+      "symbol": "TEJA",
+      "stage": "listed",
+      "openDate": "2026-06-30",
+      "closeDate": "2026-07-02",
+      "listingDate": "2026-07-07",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/teja/"
+    },
+    {
+      "id": "tejascargo",
+      "company": "Tejas Cargo India Limited",
+      "symbol": "TEJASCARGO",
+      "stage": "listed",
+      "openDate": "2025-02-14",
+      "closeDate": "2025-02-18",
+      "listingDate": "2025-02-24",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/tejascargo/"
+    },
+    {
+      "id": "thesl",
+      "company": "Thinking Hats Entertainment Solutions Limited",
+      "symbol": "THESL",
+      "stage": "listed",
+      "openDate": "2024-09-25",
+      "closeDate": "2024-09-27",
+      "listingDate": "2024-10-03",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/thesl/"
+    },
+    {
+      "id": "unilex",
+      "company": "Unilex Colours and Chemicals Limited",
+      "symbol": "UNILEX",
+      "stage": "listed",
+      "openDate": "2024-09-25",
+      "closeDate": "2024-09-27",
+      "listingDate": "2024-10-03",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/unilex/"
+    },
+    {
+      "id": "uhtl",
+      "company": "United Heat Transfer Limited",
+      "symbol": "UHTL",
+      "stage": "listed",
+      "openDate": "2024-10-22",
+      "closeDate": "2024-10-24",
+      "listingDate": "2024-10-29",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/uhtl/"
+    },
+    {
+      "id": "ushafin",
+      "company": "Usha Financial Services Limited",
+      "symbol": "USHAFIN",
+      "stage": "listed",
+      "openDate": "2024-10-24",
+      "closeDate": "2024-10-28",
+      "listingDate": "2024-10-31",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/ushafin/"
+    },
+    {
+      "id": "utkal",
+      "company": "Utkal Speciality Industries India Limited",
+      "symbol": "UTKAL",
+      "stage": "listed",
+      "openDate": "2026-06-10",
+      "closeDate": "2026-06-12",
+      "listingDate": "2026-06-17",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/utkal/"
+    },
+    {
+      "id": "value360",
+      "company": "Value 360 Communications Limited",
+      "symbol": "VALUE360",
+      "stage": "listed",
+      "openDate": "2026-05-04",
+      "closeDate": "2026-05-06",
+      "listingDate": "2026-05-11",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/value360/"
+    },
+    {
+      "id": "victoryev",
+      "company": "Victory Electric Vehicles International Limited",
+      "symbol": "VICTORYEV",
+      "stage": "listed",
+      "openDate": "2026-01-07",
+      "closeDate": "2026-01-09",
+      "listingDate": "2026-01-14",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/victoryev/"
+    },
+    {
+      "id": "vigor",
+      "company": "Vigor Plast India Limited",
+      "symbol": "VIGOR",
+      "stage": "listed",
+      "openDate": "2025-09-04",
+      "closeDate": "2025-09-09",
+      "listingDate": "2025-09-12",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/vigor/"
+    },
+    {
+      "id": "vijaypd",
+      "company": "Vijaypd Ceutical Limited",
+      "symbol": "VIJAYPD",
+      "stage": "listed",
+      "openDate": "2025-09-29",
+      "closeDate": "2025-10-01",
+      "listingDate": "2025-10-07",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/vijaypd/"
+    },
+    {
+      "id": "vmobile",
+      "company": "Vinit Mobile Limited",
+      "symbol": "VMOBILE",
+      "stage": "listed",
+      "openDate": "2026-06-30",
+      "closeDate": "2026-07-02",
+      "listingDate": "2026-07-07",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/vmobile/"
+    },
+    {
+      "id": "vginfotech",
+      "company": "Virtual Galaxy Infotech Limited",
+      "symbol": "VGINFOTECH",
+      "stage": "listed",
+      "openDate": "2025-05-09",
+      "closeDate": "2025-05-14",
+      "listingDate": "2025-05-19",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/vginfotech/"
+    },
+    {
+      "id": "vividel",
+      "company": "Vivid Electromech Limited",
+      "symbol": "VIVIDEL",
+      "stage": "listed",
+      "openDate": "2026-03-25",
+      "closeDate": "2026-03-30",
+      "listingDate": "2026-04-07",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/vividel/"
+    },
+    {
+      "id": "volercar",
+      "company": "Voler Car Limited",
+      "symbol": "VOLERCAR",
+      "stage": "listed",
+      "openDate": "2025-02-12",
+      "closeDate": "2025-02-14",
+      "listingDate": "2025-02-19",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/volercar/"
+    },
+    {
+      "id": "wol3d",
+      "company": "WOL 3D India Limited",
+      "symbol": "WOL3D",
+      "stage": "listed",
+      "openDate": "2024-09-23",
+      "closeDate": "2024-09-25",
+      "listingDate": "2024-09-30",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/wol3d/"
+    },
+    {
+      "id": "waareeener",
+      "company": "Waaree Energies Limited",
+      "symbol": "WAAREEENER",
+      "stage": "listed",
+      "openDate": "2024-10-21",
+      "closeDate": "2024-10-23",
+      "listingDate": "2024-10-28",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/waareeener/"
+    },
+    {
+      "id": "wcil",
+      "company": "Western Carriers (India) Limited",
+      "symbol": "WCIL",
+      "stage": "listed",
+      "openDate": "2024-09-13",
+      "closeDate": "2024-09-19",
+      "listingDate": "2024-09-24",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/wcil/"
     }
   ],
   "notes": [
