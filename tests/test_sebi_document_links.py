@@ -63,6 +63,16 @@ class SebiDocumentLinkTests(unittest.TestCase):
         self.assertFalse(mod.seed_canonical_filing_page(record, docs))
         self.assertEqual(len(docs), 2)
 
+    def test_p0_canonical_rhp_registry_contains_verified_filing_pages(self):
+        veegaland = mod.CANONICAL_FILING_PAGES["veegaland"]
+        manika = mod.CANONICAL_FILING_PAGES["manika"]
+        self.assertEqual(veegaland["type"], "RHP")
+        self.assertEqual(veegaland["filedDate"], "2026-08-31")
+        self.assertIn("veegaland-developers-ltd-rhp_104160.html", veegaland["url"])
+        self.assertEqual(manika["type"], "RHP")
+        self.assertEqual(manika["filedDate"], "2026-09-07")
+        self.assertIn("manika-plastech-limited-rhp_104296.html", manika["url"])
+
     def test_unregistered_record_is_not_seeded(self):
         docs = []
         self.assertFalse(mod.seed_canonical_filing_page({"id": "other"}, docs))
