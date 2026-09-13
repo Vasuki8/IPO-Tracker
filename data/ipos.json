@@ -88,7 +88,7 @@
       "Critical-backfill": {
         "ok": true,
         "records": 0,
-        "asOf": "2026-09-13T20:27:27+05:30"
+        "asOf": "2026-09-14T02:27:34+05:30"
       },
       "SEBI-document-links": {
         "ok": true,
@@ -402,6 +402,39 @@
       "failed": 0,
       "asOf": "2026-09-14T02:20:43+05:30",
       "errors": []
+    },
+    "criticalBackfillHealth": {
+      "ok": true,
+      "targetCount": 0,
+      "priorityMax": 1,
+      "asOf": "2026-09-14T02:27:34+05:30",
+      "exchange": {
+        "ok": true,
+        "attempted": 0,
+        "matched": 0,
+        "updated": 0,
+        "failed": 0,
+        "pageHealth": {
+          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+            "ok": true,
+            "records": 0
+          },
+          "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+            "ok": true,
+            "records": 12
+          },
+          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P": {
+            "ok": true,
+            "records": 0
+          },
+          "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2": {
+            "ok": false,
+            "records": 0,
+            "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7fae9e8d2720>, 'Connection to www.bsesme.c"
+          }
+        },
+        "errors": []
+      }
     }
   },
   "ipos": [
