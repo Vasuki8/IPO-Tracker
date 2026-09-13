@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
-      - name: Fetch BSE Issue Summary and detail pages
+      - name: Fetch BSE public-issue SPA
         shell: bash
         run: |
           UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/152 Safari/537.36"
@@ -22,73 +22,97 @@ jobs:
             -H "Accept: text/html,application/xhtml+xml,*/*" \
             "https://www.bseindia.com/markets/PublicIssues/Issuesummary.aspx" \
             -o /tmp/issue-summary.html
-          curl --http1.1 -sS -L --max-time 30 -A "$UA" \
-            -H "Referer: https://www.bseindia.com/markets/PublicIssues/Issuesummary" \
-            "https://www.bseindia.com/markets/publicIssues/DisplayIPO.aspx?IPONo=7273&id=4128&idtype=1&startdt=04%2F09%2F2025&status=L&type=IPO" \
-            -o /tmp/detail.html
           echo "SUMMARY SIZE $(wc -c </tmp/issue-summary.html)"
-          echo "DETAIL SIZE $(wc -c </tmp/detail.html)"
 
-      - name: Inspect HTML links, scripts and signals
+      - name: Discover and download SPA assets
+        shell: python
+        run: |
+          import re
+          import subprocess
+          from pathlib import Path
+          from urllib.parse import urljoin
+
+          root = "https://www.bseindia.com/markets/PublicIssues/Issuesummary.aspx"
+          raw = Path('/tmp/issue-summary.html').read_text(encoding='utf-8', errors='ignore')
+          assets = [urljoin(root, s) for s in re.findall(r'<script[^>]+src=["\']([^"\']+)', raw, re.I)]
+          print('ASSETS', len(assets))
+          for index, url in enumerate(assets):
+              print(index, url)
+              subprocess.run([
+                  'curl', '--http1.1', '-sS', '-L', '--max-time', '30',
+                  '-A', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/152 Safari/537.36',
+                  url, '-o', f'/tmp/asset-{index}.js'
+              ], check=False)
+          Path('/tmp/assets.txt').write_text('\n'.join(assets), encoding='utf-8')
+
+      - name: Extract API bases and public-issue route strings
         shell: python
         run: |
           import re
           from pathlib import Path
-          from urllib.parse import urljoin
 
-          root = "https://www.bseindia.com/markets/PublicIssues/Issuesummary"
-          raw = Path('/tmp/issue-summary.html').read_text(encoding='utf-8', errors='ignore')
-          detail = Path('/tmp/detail.html').read_text(encoding='utf-8', errors='ignore')
-          print('DISPLAY LINKS')
-          links = re.findall(r'href=["\']([^"\']*DisplayIPO[^"\']*)', raw, re.I)
-          for href in links[:30]:
-              print(urljoin(root, href.replace('&amp;', '&')))
-          print('DISPLAY COUNT', len(links))
-          print('SCRIPTS')
-          scripts = [urljoin(root, s) for s in re.findall(r'<script[^>]+src=["\']([^"\']+)', raw, re.I)]
-          for script in scripts[-30:]:
-              print(script)
-          Path('/tmp/scripts.txt').write_text('\n'.join(scripts[-30:]), encoding='utf-8')
-          print('SUMMARY SIGNALS')
-          for needle in ('DisplayIPO', 'IssueSummary', 'BseIndiaAPI', 'api/', 'IPO_HomePageDetail'):
-              pos = raw.lower().find(needle.lower())
-              if pos >= 0:
-                  print(needle, raw[max(0,pos-400):pos+1200].replace('\n',' ')[:1600])
-          print('DETAIL SIGNALS')
-          text = re.sub(r'<[^>]+>', ' ', detail)
-          text = re.sub(r'\s+', ' ', text)
-          for needle in ('SHARVAYA', 'Market Lot', 'Minimum Bid Quantity', 'Price Band', 'Security Type'):
-              pos = text.lower().find(needle.lower())
-              print(needle, text[max(0,pos-150):pos+400] if pos >= 0 else 'NOT FOUND')
+          assets = Path('/tmp/assets.txt').read_text(encoding='utf-8').splitlines()
+          needles = (
+              'issue', 'ipo', 'publicissue', 'publicissues', 'displayipo',
+              'issuesummary', 'homepage', 'bseindiaapi', 'apiurl', 'baseurl'
+          )
+          for index, url in enumerate(assets):
+              path = Path(f'/tmp/asset-{index}.js')
+              if not path.exists():
+                  continue
+              raw = path.read_text(encoding='utf-8', errors='ignore')
+              print('\n===', index, url, 'bytes=', len(raw), '===')
+              if url.lower().endswith('/env.js'):
+                  print('ENV CONTENT')
+                  print(raw[:20000])
 
-      - name: Inspect BSE scripts for issue-summary API signatures
+              # Absolute URLs are especially useful because Angular production
+              # bundles often concatenate the API base with short endpoint names.
+              urls = []
+              for match in re.findall(r'https?://[^"\'`\\\s)]+', raw, re.I):
+                  value = match.rstrip(';,}')
+                  if value not in urls:
+                      urls.append(value)
+              print('ABSOLUTE URLS')
+              for value in urls[:100]:
+                  print(value)
+
+              lower = raw.lower()
+              emitted = set()
+              print('ROUTE CONTEXT')
+              for needle in needles:
+                  start = 0
+                  while True:
+                      pos = lower.find(needle, start)
+                      if pos < 0:
+                          break
+                      snippet = raw[max(0, pos-700):pos+1800]
+                      key = snippet[:250]
+                      if key not in emitted:
+                          emitted.add(key)
+                          print('NEEDLE', needle, snippet[:2500])
+                      start = pos + len(needle)
+                      if len(emitted) >= 80:
+                          break
+                  if len(emitted) >= 80:
+                      break
+
+      - name: Probe likely modern public-issue endpoints
         shell: bash
         continue-on-error: true
         run: |
           UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/152 Safari/537.36"
-          i=0
-          while read -r JS; do
-            [ -z "$JS" ] && continue
-            i=$((i+1))
-            curl --http1.1 -sS -L --max-time 20 -A "$UA" "$JS" -o "/tmp/js-$i" || continue
-            python - "$JS" "/tmp/js-$i" <<'PY'
-          import sys
-          from pathlib import Path
-          url, path = sys.argv[1], sys.argv[2]
-          raw = Path(path).read_text(encoding='utf-8', errors='ignore')
-          needles = ('IssueSummary', 'IPO_HomePageDetail', 'DisplayIPO', 'PublicIssues')
-          hits = []
-          for needle in needles:
-              start = 0
-              while True:
-                  pos = raw.find(needle, start)
-                  if pos < 0:
-                      break
-                  hits.append(raw[max(0,pos-1000):pos+2500])
-                  start = pos + len(needle)
-          if hits:
-              print('=== JS', url, '===')
-              for hit in hits[:8]:
-                  print(hit[:3500])
-          PY
-          done < /tmp/scripts.txt
+          for URL in \
+            "https://api.bseindia.com/BseIndiaAPI/api/IPO_HomePageDetail/w" \
+            "https://api.bseindia.com/BseIndiaAPI/api/IssueSummary/w" \
+            "https://api.bseindia.com/BseIndiaAPI/api/IPOProcessStatus/w" \
+            "https://api.bseindia.com/BseIndiaAPI/api/PublicIssue/w"; do
+            echo "=== $URL ==="
+            curl --http1.1 -sS -L --max-time 20 -A "$UA" \
+              -H "Origin: https://www.bseindia.com" \
+              -H "Referer: https://www.bseindia.com/markets/PublicIssues/Issuesummary.aspx" \
+              -D /tmp/probe-h.txt "$URL" -o /tmp/probe-b.txt || true
+            head -5 /tmp/probe-h.txt || true
+            head -c 1200 /tmp/probe-b.txt || true
+            echo
+          done
