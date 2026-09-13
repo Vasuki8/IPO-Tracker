@@ -10,6 +10,10 @@ A very small canonical filing-page registry is also maintained for priority
 records where a later addendum/announcement displaced the original RHP landing
 page in upstream discovery. The registry stores only official SEBI filing-page
 URLs; the PDF links are still resolved from SEBI at runtime.
+
+Bounded runs select only records with an unresolved landing page. Attempt state
+is persisted so never-attempted records are processed first and older failures
+rotate ahead of newer retries.
 """
 from __future__ import annotations
 
@@ -35,6 +39,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = core.DATA_FILE
 QUEUE_FILE = ROOT / "data" / "missing_queue.json"
 SEBI_HOSTS = {"sebi.gov.in", "www.sebi.gov.in"}
+ATTEMPT_KEY = "sebiDocumentLinkResolution"
 
 # Official SEBI filing pages verified from the public-issues register. These are
 # intentionally landing pages, not copied PDF URLs, so runtime resolution still
@@ -194,35 +199,108 @@ def priority_ids(queue_payload: dict[str, Any], priority_max: int) -> set[str]:
     return ids
 
 
+def _landing_candidate(doc: dict[str, Any]) -> bool:
+    url = str(doc.get("url") or "")
+    if not is_sebi_url(url) or direct_pdf_from_url(url):
+        return False
+    title = str(doc.get("title") or "")
+    context = f"{title} {url}".upper()
+    return any(token in context for token in ("RHP", "DRHP", "PROSPECTUS", "/FILINGS/PUBLIC-ISSUES/"))
+
+
+def _resolved_source_pages(docs: list[dict[str, Any]]) -> set[str]:
+    return {
+        str(doc.get("sourcePage") or "")
+        for doc in docs
+        if direct_pdf_from_url(str(doc.get("url") or "")) and str(doc.get("sourcePage") or "")
+    }
+
+
+def record_needs_resolution(record: dict[str, Any]) -> bool:
+    """True only when an official landing page still lacks a resolved direct PDF."""
+    docs = [d for d in (record.get("documents") or []) if isinstance(d, dict)]
+    canonical = CANONICAL_FILING_PAGES.get(str(record.get("id") or ""))
+    existing_urls = {str(d.get("url") or "") for d in docs}
+    if canonical and canonical["url"] not in existing_urls:
+        return True
+
+    resolved_pages = _resolved_source_pages(docs)
+    return any(
+        _landing_candidate(doc) and str(doc.get("url") or "") not in resolved_pages
+        for doc in docs
+    )
+
+
+def _date_number(value: Any) -> int:
+    digits = re.sub(r"\D", "", str(value or ""))
+    try:
+        return int(digits[:8]) if digits else 0
+    except ValueError:
+        return 0
+
+
+def resolution_candidate_sort_key(record: dict[str, Any]) -> tuple[int, str, int]:
+    attempt = record.get(ATTEMPT_KEY)
+    last_attempt = str(attempt.get("lastAttemptAt") or "") if isinstance(attempt, dict) else ""
+    return (
+        1 if last_attempt else 0,
+        last_attempt,
+        -_date_number(record.get("openDate")),
+    )
+
+
+def _stamp_attempt(
+    record: dict[str, Any],
+    *,
+    status: str,
+    pages_attempted: int,
+    links_added: int,
+    failed: int,
+    error: str | None = None,
+) -> None:
+    entry: dict[str, Any] = {
+        "status": status,
+        "pagesAttempted": pages_attempted,
+        "linksAdded": links_added,
+        "failed": failed,
+        "lastAttemptAt": core.now_ist().isoformat(timespec="seconds"),
+    }
+    if error:
+        entry["error"] = str(error)[:300]
+    record[ATTEMPT_KEY] = entry
+
+
 def enrich_payload(payload: dict[str, Any], session: requests.Session, *, priority_max: int = 2, limit: int = 40):
     queue = json.loads(QUEUE_FILE.read_text(encoding="utf-8")) if QUEUE_FILE.exists() else {"queue": []}
     ids = priority_ids(queue, priority_max)
-    attempted = resolved_pages = added = failed = seeded_pages = 0
+    attempted = resolved_pages = added = failed = seeded_pages = attempted_records = 0
     errors: list[str] = []
 
     records = [r for r in payload.get("ipos") or [] if isinstance(r, dict) and str(r.get("id")) in ids]
+    records = [r for r in records if record_needs_resolution(r)]
+    records.sort(key=resolution_candidate_sort_key)
     if limit > 0:
         records = records[:limit]
 
     for record in records:
+        attempted_records += 1
         docs = [d for d in (record.get("documents") or []) if isinstance(d, dict)]
         if seed_canonical_filing_page(record, docs):
             seeded_pages += 1
 
-        landing_docs = []
-        for doc in docs:
-            url = str(doc.get("url") or "")
-            if not is_sebi_url(url) or direct_pdf_from_url(url):
-                continue
-            # Only resolve filing pages/offer-document-looking SEBI links.
-            title = str(doc.get("title") or "")
-            context = f"{title} {url}".upper()
-            if not any(token in context for token in ("RHP", "DRHP", "PROSPECTUS", "/FILINGS/PUBLIC-ISSUES/")):
-                continue
-            landing_docs.append(doc)
+        resolved_source_pages = _resolved_source_pages(docs)
+        landing_docs = [
+            doc
+            for doc in docs
+            if _landing_candidate(doc) and str(doc.get("url") or "") not in resolved_source_pages
+        ]
 
+        record_attempted = record_added = record_failed = 0
+        record_resolved_pages = 0
+        record_errors: list[str] = []
         for doc in landing_docs:
             attempted += 1
+            record_attempted += 1
             url = str(doc.get("url") or "")
             try:
                 response = session.get(url, timeout=30)
@@ -230,6 +308,7 @@ def enrich_payload(payload: dict[str, Any], session: requests.Session, *, priori
                 links = extract_pdf_links(response.text, url, fallback_type=str(doc.get("type") or "DOCUMENT"))
                 if links:
                     resolved_pages += 1
+                    record_resolved_pages += 1
                 for link in links:
                     link["filedDate"] = doc.get("filedDate")
                     link["sourcePage"] = url
@@ -237,13 +316,34 @@ def enrich_payload(payload: dict[str, Any], session: requests.Session, *, priori
                         continue
                     docs.append(link)
                     added += 1
+                    record_added += 1
             except Exception as exc:
                 failed += 1
-                errors.append(f"{record.get('company')}: {exc}")
+                record_failed += 1
+                message = f"{record.get('company')}: {exc}"
+                errors.append(message)
+                record_errors.append(str(exc))
         record["documents"] = core.dedupe_dicts(docs, ("url", "type"))
+
+        status = (
+            "resolved"
+            if record_resolved_pages > 0
+            else "error"
+            if record_failed > 0
+            else "no-links"
+        )
+        _stamp_attempt(
+            record,
+            status=status,
+            pages_attempted=record_attempted,
+            links_added=record_added,
+            failed=record_failed,
+            error="; ".join(record_errors[:2]) if record_errors else None,
+        )
 
     health = {
         "ok": failed == 0,
+        "attemptedRecords": attempted_records,
         "attempted": attempted,
         "resolvedPages": resolved_pages,
         "seededPages": seeded_pages,
@@ -257,6 +357,7 @@ def enrich_payload(payload: dict[str, Any], session: requests.Session, *, priori
     meta.setdefault("sourceHealth", {})["SEBI-document-links"] = {
         "ok": health["ok"],
         "records": added,
+        "attemptedRecords": attempted_records,
         "attempted": attempted,
         "asOf": health["asOf"],
         "errors": errors[:5],
@@ -277,8 +378,9 @@ def main() -> int:
     DATA_FILE.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(
         "SEBI document links: "
-        f"attempted={health['attempted']} resolved={health['resolvedPages']} "
-        f"seeded={health['seededPages']} added={health['linksAdded']} failed={health['failed']}"
+        f"records={health['attemptedRecords']} attempted={health['attempted']} "
+        f"resolved={health['resolvedPages']} seeded={health['seededPages']} "
+        f"added={health['linksAdded']} failed={health['failed']}"
     )
     return 0
 
