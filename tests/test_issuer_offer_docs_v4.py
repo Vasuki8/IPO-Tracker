@@ -35,8 +35,8 @@ class IssuerOfferDocsV4Tests(unittest.TestCase):
         expected = {
             "ardee": (
                 "Ardee Industries Limited",
-                "DRHP",
-                "Registration_29092025064558_Ardee_Industries_Limited.pdf",
+                "Prospectus",
+                "FP_INE0XNF01022_10AUG2026.pdf",
             ),
             "powerica": (
                 "Powerica Limited",
