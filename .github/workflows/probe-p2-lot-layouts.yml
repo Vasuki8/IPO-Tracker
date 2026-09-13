@@ -1,0 +1,67 @@
+name: Probe P2 prospectus lot layouts
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/probe-p2-lot-layouts.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.1.0
+        with:
+          version: "latest-known"
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Sync dependencies
+        run: uv sync
+
+      - name: Print real P2 bid-lot excerpts
+        shell: bash
+        run: |
+          uv run python - <<'PY'
+          import io, json, re, requests
+          from pypdf import PdfReader
+          import scripts.enrich_recent_offer_terms as terms
+          import scripts.update_data as core
+
+          payload=json.load(open('data/ipos.json',encoding='utf-8'))
+          wanted={'deepa','annu','gaja','htel','lalithaa','lumino','priority','skyways','augmont','glasswall','prasolchem','rentomojo'}
+          s=requests.Session(); s.headers.update(core.HEADERS)
+          for r in payload['ipos']:
+            if r.get('id') not in wanted: continue
+            doc=terms.choose_full_document(r)
+            print('\n\n###',r.get('id'),r.get('company'),'DOC=',json.dumps(doc,ensure_ascii=False))
+            if not doc:
+              continue
+            try:
+              data=terms.offer.base.download_pdf(s,doc['url'])
+              reader=PdfReader(io.BytesIO(data))
+              hits=[]
+              for i,page in enumerate(reader.pages[:80]):
+                text=page.extract_text() or ''
+                flat=re.sub(r'\s+',' ',text)
+                for m in re.finditer(r'(?i)(?:bid\s+lot|minimum\s+(?:bid|application)|application\s+lot|minimum\s+order)',flat):
+                  excerpt=flat[max(0,m.start()-280):m.start()+650]
+                  if excerpt not in [x[1] for x in hits]: hits.append((i+1,excerpt))
+                  if len(hits)>=8: break
+                if len(hits)>=8: break
+              print('PARSER_LOT=',terms.extract_lot_size('\n'.join((p.extract_text() or '') for p in reader.pages[:35])))
+              for page,excerpt in hits:
+                print('PAGE',page,excerpt)
+            except Exception as e:
+              print('ERROR',type(e).__name__,str(e)[:300])
+          PY
