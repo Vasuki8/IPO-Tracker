@@ -209,6 +209,16 @@
           "shareholding": 11
         },
         "checkedAt": "2026-09-13T15:30:33+05:30"
+      },
+      "verified-filing-offer-fields": {
+        "ok": true,
+        "entries": 4,
+        "updated": 4,
+        "fields": {
+          "leadManagers": 1,
+          "shareholding": 4
+        },
+        "checkedAt": "2026-09-13T15:43:58+05:30"
       }
     },
     "errors": [
@@ -86777,6 +86787,12 @@
           "kind": "regulator",
           "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&sid=3&smid=0&ssid=0",
           "asOf": "2026-09-12T08:20:12+05:30"
+        },
+        {
+          "name": "Torrent Gas UDRHP shareholding disclosure",
+          "kind": "validated-offer-document-term",
+          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/torrent-gas-limited-udrhp-i_104350.html",
+          "asOf": "2026-09-13T15:43:58+05:30"
         }
       ],
       "observations": {
@@ -86784,6 +86800,14 @@
           "stage": "udrhp",
           "filedDate": null,
           "documentCount": 2
+        },
+        "VerifiedFilingOfferFields": {
+          "filingUrl": "https://www.sebi.gov.in/filings/public-issues/sep-2026/torrent-gas-limited-udrhp-i_104350.html",
+          "verificationUrl": "https://www.mfnewsdaily.in/torrent-gas-files-updated-drhp-for-public-issue-promoter-torrent-investments-to-offload-up-to-33-5-crore-shares-via-pure-ofs/",
+          "sourceKind": "validated-offer-document-term",
+          "fields": [
+            "shareholding"
+          ]
         }
       },
       "lifecycle": {
@@ -86798,11 +86822,12 @@
         "asOf": "2026-09-12T08:20:12+05:30"
       },
       "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T10:27:00+05:30",
+        "status": "verified",
+        "checkedAt": "2026-09-13T15:43:58+05:30",
         "checks": [],
         "independentSources": [
-          "SEBI"
+          "SEBI",
+          "Torrent"
         ]
       },
       "promoters": [
@@ -86878,7 +86903,10 @@
           "purpose": "1,675,000,000 100.00 [●] [●] [●]",
           "amountCr": null
         }
-      ]
+      ],
+      "shareholding": {
+        "promoterPreIssuePct": 100.0
+      }
     },
     {
       "id": "runwal-enterprises-limited-addendum-to",
@@ -86995,13 +87023,20 @@
           "kind": "regulator",
           "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&sid=3&smid=0&ssid=0",
           "asOf": "2026-09-12T08:20:12+05:30"
+        },
+        {
+          "name": "NSE RHP filing disclosures",
+          "kind": "validated-offer-document-term",
+          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/national-stock-exchange-of-india-limited-rhp_104428.html",
+          "asOf": "2026-09-13T15:43:58+05:30"
         }
       ],
       "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T10:27:00+05:30",
+        "status": "verified",
+        "checkedAt": "2026-09-13T15:43:58+05:30",
         "checks": [],
         "independentSources": [
+          "NSE",
           "SEBI"
         ]
       },
@@ -87010,6 +87045,15 @@
           "stage": "drhp",
           "filedDate": null,
           "documentCount": 2
+        },
+        "VerifiedFilingOfferFields": {
+          "filingUrl": "https://www.sebi.gov.in/filings/public-issues/sep-2026/national-stock-exchange-of-india-limited-rhp_104428.html",
+          "verificationUrl": "https://timesglobalnews.com/2026/09/11/national-stock-exchange-of-india-limiteds-initial-public-offering-to-open-on-17th-september-2026-price-band-set-at-rs-1700-rs-1785-per-equity-share-of-face-value-of-rs-1-each/",
+          "sourceKind": "validated-offer-document-term",
+          "fields": [
+            "leadManagers",
+            "shareholding"
+          ]
         }
       },
       "allotmentDate": null,
@@ -87129,7 +87173,33 @@
           "purpose": "50 [●] [●] [●]",
           "amountCr": null
         }
-      ]
+      ],
+      "leadManagers": [
+        "Kotak Mahindra Capital Company Limited",
+        "JM Financial Limited",
+        "Morgan Stanley India Company Private Limited",
+        "Citigroup Global Markets India Private Limited",
+        "HSBC Securities & Capital Markets (India) Private Limited",
+        "J.P. Morgan India Private Limited",
+        "SBI Capital Markets Limited",
+        "Anand Rathi Advisors Limited",
+        "Avendus Capital Private Limited",
+        "Axis Capital Limited",
+        "DAM Capital Advisors Limited",
+        "Equirus Capital Limited",
+        "HDFC Bank Limited",
+        "ICICI Securities Limited",
+        "IDBI Capital Markets & Securities Limited",
+        "IIFL Capital Services Limited",
+        "Motilal Oswal Investment Advisors Limited",
+        "Nuvama Wealth Management Limited",
+        "Pantomath Capital Advisors Private Limited",
+        "360 ONE WAM Limited"
+      ],
+      "shareholding": {
+        "promoterPreIssuePct": 0.0,
+        "promoterStatus": "No identifiable promoter"
+      }
     },
     {
       "id": "nopaperforms-solutions-limited",
@@ -87171,6 +87241,12 @@
           "kind": "regulator",
           "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&sid=3&smid=0&ssid=0",
           "asOf": "2026-09-12T08:20:12+05:30"
+        },
+        {
+          "name": "NoPaperForms Solutions UDRHP shareholding disclosure",
+          "kind": "validated-offer-document-term",
+          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/nopaperforms-solutions-limited-udrhp-1_104427.html",
+          "asOf": "2026-09-13T15:43:58+05:30"
         }
       ],
       "observations": {
@@ -87178,6 +87254,14 @@
           "stage": "udrhp",
           "filedDate": null,
           "documentCount": 2
+        },
+        "VerifiedFilingOfferFields": {
+          "filingUrl": "https://www.sebi.gov.in/filings/public-issues/sep-2026/nopaperforms-solutions-limited-udrhp-1_104427.html",
+          "verificationUrl": "https://ipobarta.ai/ipo/upcoming-ipos/company/nopaperforms-solutions-ipo/2796",
+          "sourceKind": "validated-offer-document-term",
+          "fields": [
+            "shareholding"
+          ]
         }
       },
       "lifecycle": {
@@ -87192,10 +87276,11 @@
         "asOf": "2026-09-12T08:20:12+05:30"
       },
       "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T10:27:00+05:30",
+        "status": "verified",
+        "checkedAt": "2026-09-13T15:43:58+05:30",
         "checks": [],
         "independentSources": [
+          "NoPaperForms",
           "SEBI"
         ]
       },
@@ -87335,7 +87420,10 @@
           "purpose": "130 6,906 777,920 0.36% [●]",
           "amountCr": null
         }
-      ]
+      ],
+      "shareholding": {
+        "promoterPreIssuePct": 30.19
+      }
     },
     {
       "id": "m-k-c-agro-fresh-limited",
@@ -87377,6 +87465,12 @@
           "kind": "regulator",
           "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&sid=3&smid=0&ssid=0",
           "asOf": "2026-09-12T08:20:12+05:30"
+        },
+        {
+          "name": "M K C Agro Fresh DRHP shareholding disclosure",
+          "kind": "validated-offer-document-term",
+          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/m-k-c-agro-fresh-limited-drhp_104430.html",
+          "asOf": "2026-09-13T15:43:58+05:30"
         }
       ],
       "observations": {
@@ -87384,6 +87478,14 @@
           "stage": "drhp",
           "filedDate": null,
           "documentCount": 2
+        },
+        "VerifiedFilingOfferFields": {
+          "filingUrl": "https://www.sebi.gov.in/filings/public-issues/sep-2026/m-k-c-agro-fresh-limited-drhp_104430.html",
+          "verificationUrl": "https://www.ipoplatform.com/ipo/mkc-agro-fresh-ipo/4803",
+          "sourceKind": "validated-offer-document-term",
+          "fields": [
+            "shareholding"
+          ]
         }
       },
       "lifecycle": {
@@ -87398,10 +87500,11 @@
         "asOf": "2026-09-12T08:20:12+05:30"
       },
       "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T10:27:00+05:30",
+        "status": "verified",
+        "checkedAt": "2026-09-13T15:43:58+05:30",
         "checks": [],
         "independentSources": [
+          "M",
           "SEBI"
         ]
       },
@@ -87524,7 +87627,10 @@
           "purpose": "Amna 14,57,123 4.92% [●] [●] [●]",
           "amountCr": null
         }
-      ]
+      ],
+      "shareholding": {
+        "promoterPreIssuePct": 28.54
+      }
     },
     {
       "id": "incred-holdings-limited-corrigendum-to",

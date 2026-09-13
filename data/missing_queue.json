@@ -1,10 +1,9 @@
 {
-  "generatedAt": "2026-09-13T15:30:33+05:30",
+  "generatedAt": "2026-09-13T15:43:58+05:30",
   "asOfDate": "2026-09-13",
   "recordCount": 1371,
-  "queueCount": 1322,
+  "queueCount": 1318,
   "priorityCounts": {
-    "P3 filing pipeline": 4,
     "P4 recent history (2y)": 411,
     "P5 historical backfill": 907
   },
@@ -14,84 +13,9 @@
     "exchange.issueComposition": 229,
     "lifecycle.listingDate": 35,
     "exchange.priceBand": 23,
-    "offer.promoterShareholding": 4,
-    "offer.leadManagers": 1,
     "provenance.sources": 1
   },
   "queue": [
-    {
-      "id": "national-stock-exchange-of-india-limited",
-      "company": "National Stock Exchange of India Limited",
-      "symbol": null,
-      "stage": "filing-pipeline",
-      "openDate": null,
-      "closeDate": null,
-      "listingDate": null,
-      "priority": 3,
-      "priorityLabel": "P3 filing pipeline",
-      "completenessPct": 77.8,
-      "expectedFieldCount": 9,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "offer.leadManagers",
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/national-stock-exchange-of-india-limited/"
-    },
-    {
-      "id": "m-k-c-agro-fresh-limited",
-      "company": "M K C AGRO FRESH LIMITED",
-      "symbol": null,
-      "stage": "filing-pipeline",
-      "openDate": null,
-      "closeDate": null,
-      "listingDate": null,
-      "priority": 3,
-      "priorityLabel": "P3 filing pipeline",
-      "completenessPct": 88.9,
-      "expectedFieldCount": 9,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/m-k-c-agro-fresh-limited/"
-    },
-    {
-      "id": "nopaperforms-solutions-limited",
-      "company": "NOPAPERFORMS SOLUTIONS LIMITED",
-      "symbol": null,
-      "stage": "filing-pipeline",
-      "openDate": null,
-      "closeDate": null,
-      "listingDate": null,
-      "priority": 3,
-      "priorityLabel": "P3 filing pipeline",
-      "completenessPct": 88.9,
-      "expectedFieldCount": 9,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/nopaperforms-solutions-limited/"
-    },
-    {
-      "id": "torrent-gas-limited",
-      "company": "Torrent Gas Limited",
-      "symbol": null,
-      "stage": "filing-pipeline",
-      "openDate": null,
-      "closeDate": null,
-      "listingDate": null,
-      "priority": 3,
-      "priorityLabel": "P3 filing pipeline",
-      "completenessPct": 88.9,
-      "expectedFieldCount": 9,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/torrent-gas-limited/"
-    },
     {
       "id": "avtl29",
       "company": "Aegis Vopak Terminals Limited",
@@ -5895,6 +5819,78 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/greenleaf/"
+    },
+    {
+      "id": "gksl",
+      "company": "Gujarat Kidney and Super Speciality Limited",
+      "symbol": "GKSL",
+      "stage": "listed",
+      "openDate": "2025-12-22",
+      "closeDate": "2025-12-24",
+      "listingDate": "2025-12-30",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/gksl/"
+    },
+    {
+      "id": "gurunanak",
+      "company": "Gurunanak Agriculture India Limited",
+      "symbol": "GURUNANAK",
+      "stage": "listed",
+      "openDate": "2025-09-24",
+      "closeDate": "2025-09-26",
+      "listingDate": "2025-10-01",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/gurunanak/"
+    },
+    {
+      "id": "hdbfs",
+      "company": "HDB Financial Services Limited",
+      "symbol": "HDBFS",
+      "stage": "listed",
+      "openDate": "2025-06-25",
+      "closeDate": "2025-06-27",
+      "listingDate": "2025-07-02",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/hdbfs/"
+    },
+    {
+      "id": "whiteforce",
+      "company": "Happy Square Outsourcing Services Limited",
+      "symbol": "WHITEFORCE",
+      "stage": "listed",
+      "openDate": "2025-07-03",
+      "closeDate": "2025-07-07",
+      "listingDate": "2025-07-10",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/whiteforce/"
     }
   ],
   "notes": [
