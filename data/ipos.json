@@ -88,7 +88,7 @@
       "Critical-backfill": {
         "ok": true,
         "records": 0,
-        "asOf": "2026-09-13T15:52:24+05:30"
+        "asOf": "2026-09-13T16:01:23+05:30"
       },
       "SEBI-document-links": {
         "ok": false,
@@ -305,6 +305,39 @@
         "INJECTO POLYMERS LIMITED: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7968&status=H · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · ); used explicitly labelled IPO Dhamaka subscription (secondary)"
       ],
       "errors": []
+    },
+    "criticalBackfillHealth": {
+      "ok": true,
+      "targetCount": 0,
+      "priorityMax": 1,
+      "asOf": "2026-09-13T16:01:23+05:30",
+      "exchange": {
+        "ok": true,
+        "attempted": 0,
+        "matched": 0,
+        "updated": 0,
+        "failed": 0,
+        "pageHealth": {
+          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+            "ok": true,
+            "records": 0
+          },
+          "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+            "ok": true,
+            "records": 11
+          },
+          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P": {
+            "ok": true,
+            "records": 0
+          },
+          "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2": {
+            "ok": false,
+            "records": 0,
+            "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f72dad4e1b0>, 'Connection to www.bsesme.c"
+          }
+        },
+        "errors": []
+      }
     }
   },
   "ipos": [
