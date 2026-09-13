@@ -88,6 +88,72 @@ class P4RecordRepairsTests(unittest.TestCase):
             self.assertTrue(resolution["reason"])
         self.assertTrue(any(s.get("name") == entry["sourceName"] for s in record["sources"]))
 
+    def test_current_postponed_and_withdrawn_rows_are_registered(self):
+        expected = {
+            "icel": {
+                "company": "IC Electricals Company Limited-Issue postponed",
+                "symbol": "ICEL",
+                "openDate": "2026-06-25",
+                "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=ICEL&type=Active",
+            },
+            "spgcl": {
+                "company": "Sri Priyanka Geo Commex Limited-Issue Withdrawn",
+                "symbol": "SPGCL",
+                "openDate": "2026-06-24",
+                "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SPGCL&type=Active",
+            },
+        }
+        for record_id, values in expected.items():
+            entry = mod.AVAILABILITY_RESOLUTIONS[record_id]
+            for key, value in values.items():
+                self.assertEqual(entry[key], value)
+            self.assertEqual(entry["fields"], mod._EVENT_IPO_FIELDS)
+
+    def test_postponed_and_withdrawn_rows_resolve_all_structural_gaps(self):
+        rows = (
+            (
+                "icel",
+                "IC Electricals Company Limited-Issue postponed",
+                "ICEL",
+                "2026-06-25",
+            ),
+            (
+                "spgcl",
+                "Sri Priyanka Geo Commex Limited-Issue Withdrawn",
+                "SPGCL",
+                "2026-06-24",
+            ),
+        )
+        for record_id, company, symbol, open_date in rows:
+            record = {
+                "id": record_id,
+                "company": company,
+                "symbol": symbol,
+                "openDate": open_date,
+                "sources": [],
+                "observations": {},
+            }
+            entry = mod.AVAILABILITY_RESOLUTIONS[record_id]
+            changed = mod.apply_availability_resolution(record_id, record, entry)
+            self.assertEqual(set(changed), set(mod._EVENT_IPO_FIELDS))
+            self.assertTrue(all(
+                record["dataAvailability"][field]["status"] == "not-applicable"
+                for field in mod._EVENT_IPO_FIELDS
+            ))
+
+    def test_postponed_icel_registry_does_not_match_later_canonical_issue(self):
+        entry = mod.AVAILABILITY_RESOLUTIONS["icel"]
+        later_issue = {
+            "id": "icel",
+            "company": "IC Electricals Company Limited",
+            "symbol": "ICEL",
+            "openDate": "2026-07-03",
+            "sources": [],
+            "observations": {},
+        }
+        self.assertEqual(mod.apply_availability_resolution("icel", later_issue, entry), [])
+        self.assertNotIn("dataAvailability", later_issue)
+
     def test_existing_availability_decision_is_not_overwritten(self):
         entry = mod.AVAILABILITY_RESOLUTIONS["adanienpp1"]
         record = {
