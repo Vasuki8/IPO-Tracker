@@ -87,5 +87,73 @@ class BSESMECoreCoverageTests(unittest.TestCase):
         self.assertEqual([row["company"] for row in rows], ["Panchatv Bharat Limited"])
 
 
+class P4NSEHistoryGuardTests(unittest.TestCase):
+    def test_equity_history_row_is_accepted(self):
+        row = {
+            "companyName": "Example Limited",
+            "securityType": "EQ",
+            "issueType": "IPO",
+        }
+        self.assertEqual(mod.classify_nse_historical_issue(row), "equity-ipo")
+
+    def test_explicit_ncd_row_is_rejected_even_when_issue_type_says_ipo(self):
+        row = {
+            "companyName": "Example Finance Limited",
+            "securityType": "NCD",
+            "issueType": "IPO",
+        }
+        self.assertEqual(mod.classify_nse_historical_issue(row), "non-equity")
+
+    def test_zero_coupon_debt_descriptor_is_rejected(self):
+        row = {
+            "companyName": "Example Finance Limited (Zero Coupon NCD)",
+            "issueType": "Public Issue",
+        }
+        self.assertEqual(mod.classify_nse_historical_issue(row), "non-equity")
+
+    def test_unknown_history_row_is_kept_for_conservative_validation(self):
+        row = {"companyName": "Unclassified Example Limited"}
+        self.assertEqual(mod.classify_nse_historical_issue(row), "unknown")
+
+    def test_history_client_has_p4_guard_installed(self):
+        self.assertTrue(getattr(mod.core.NSEClient.past, "_p4_ipo_guard", False))
+
+    def test_exact_debt_symbol_matches_legacy_row(self):
+        raw = {
+            "companyName": "Example Finance Limited",
+            "smSymbol": "935EXAMPLE33",
+            "ipoStartDate": "17-Feb-2026",
+            "ipoEndDate": "04-Mar-2026",
+            "securityType": "NCD",
+        }
+        identity = mod.excluded_identity(raw, mod.core)
+        stored = {
+            "company": "Example Finance Limited",
+            "matchKey": mod.canonical_company("Example Finance Limited"),
+            "symbol": "935EXAMPLE33",
+            "openDate": "2026-02-17",
+            "closeDate": "2026-03-04",
+        }
+        self.assertTrue(mod.record_matches_excluded(stored, identity, mod.core))
+
+    def test_same_issuer_equity_ipo_is_not_removed_by_debt_identity(self):
+        raw = {
+            "companyName": "Example Energy Limited",
+            "smSymbol": "727EXAMPLE36",
+            "ipoStartDate": "01-Jul-2026",
+            "ipoEndDate": "10-Jul-2026",
+            "securityType": "NCD",
+        }
+        identity = mod.excluded_identity(raw, mod.core)
+        stored_equity = {
+            "company": "Example Energy Limited",
+            "matchKey": mod.canonical_company("Example Energy Limited"),
+            "symbol": "EXAMPLE",
+            "openDate": "2024-11-19",
+            "closeDate": "2024-11-22",
+        }
+        self.assertFalse(mod.record_matches_excluded(stored_equity, identity, mod.core))
+
+
 if __name__ == "__main__":
     unittest.main()
