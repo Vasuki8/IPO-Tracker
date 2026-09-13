@@ -275,6 +275,17 @@
           }
         ],
         "checkedOn": "2026-09-13"
+      },
+      "NSE-issue-info-terms": {
+        "ok": true,
+        "candidates": 52,
+        "attempted": 52,
+        "updated": 16,
+        "identityMismatches": 9,
+        "noTerms": 27,
+        "failed": 0,
+        "historyDays": 730,
+        "errors": []
       }
     },
     "errors": [],
@@ -11567,7 +11578,7 @@
           "name": "NSE issue information",
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=ARDEE&type=Past",
-          "asOf": "2026-09-13T17:08:42+05:30"
+          "asOf": "2026-09-13T17:30:12+05:30"
         }
       ],
       "source": {
@@ -11594,6 +11605,13 @@
           "bidLot": 281,
           "minimumOrderQuantity": 281,
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=ARDEE&type=Past"
+        },
+        "NSE-issue-info-terms": {
+          "symbol": "ARDEE",
+          "freshIssueCr": 320.0,
+          "ofsCr": null,
+          "issueSizeCr": null,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=ARDEE&type=Past"
         }
       },
       "documents": [
@@ -11616,7 +11634,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T17:08:42+05:30",
+        "checkedAt": "2026-09-13T17:30:12+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -11635,7 +11653,8 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ARDEE&series=EQ",
         "lotSize": 281,
         "error": null
-      }
+      },
+      "freshIssueCr": 320.0
     },
     {
       "id": "anawil",
@@ -11729,7 +11748,7 @@
           "name": "NSE issue information",
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MVELECTRO&type=Past",
-          "asOf": "2026-09-13T17:08:51+05:30"
+          "asOf": "2026-09-13T17:30:23+05:30"
         }
       ],
       "source": {
@@ -11756,6 +11775,13 @@
           "bidLot": 34,
           "minimumOrderQuantity": 34,
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MVELECTRO&type=Past"
+        },
+        "NSE-issue-info-terms": {
+          "symbol": "MVELECTRO",
+          "freshIssueCr": 290.0,
+          "ofsCr": null,
+          "issueSizeCr": 290.0,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MVELECTRO&type=Past"
         }
       },
       "documents": [
@@ -11778,7 +11804,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T17:08:51+05:30",
+        "checkedAt": "2026-09-13T17:30:23+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -11797,7 +11823,9 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=MVELECTRO&series=EQ",
         "lotSize": 34,
         "error": null
-      }
+      },
+      "freshIssueCr": 290.0,
+      "issueSizeCr": 290.0
     },
     {
       "id": "jnpr",
@@ -11827,7 +11855,7 @@
           "name": "NSE issue information",
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=JNPR&type=Past",
-          "asOf": "2026-09-13T17:08:56+05:30"
+          "asOf": "2026-09-13T17:30:29+05:30"
         }
       ],
       "source": {
@@ -11854,6 +11882,13 @@
           "bidLot": 66,
           "minimumOrderQuantity": 66,
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=JNPR&type=Past"
+        },
+        "NSE-issue-info-terms": {
+          "symbol": "JNPR",
+          "freshIssueCr": 1800.0,
+          "ofsCr": null,
+          "issueSizeCr": 1800.0,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=JNPR&type=Past"
         }
       },
       "documents": [
@@ -11876,7 +11911,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T17:08:56+05:30",
+        "checkedAt": "2026-09-13T17:30:29+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -11895,7 +11930,9 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=JNPR&series=EQ",
         "lotSize": 66,
         "error": null
-      }
+      },
+      "freshIssueCr": 1800.0,
+      "issueSizeCr": 1800.0
     },
     {
       "id": "manipalhos",
@@ -11925,7 +11962,7 @@
           "name": "NSE issue information",
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MANIPALHOS&type=Past",
-          "asOf": "2026-09-13T17:09:02+05:30"
+          "asOf": "2026-09-13T17:30:34+05:30"
         }
       ],
       "source": {
@@ -11952,6 +11989,13 @@
           "bidLot": 25,
           "minimumOrderQuantity": 25,
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MANIPALHOS&type=Past"
+        },
+        "NSE-issue-info-terms": {
+          "symbol": "MANIPALHOS",
+          "freshIssueCr": 8000.0,
+          "ofsCr": 15.0,
+          "issueSizeCr": 8015.0,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MANIPALHOS&type=Past"
         }
       },
       "documents": [
@@ -11974,7 +12018,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T17:09:02+05:30",
+        "checkedAt": "2026-09-13T17:30:34+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -11993,7 +12037,10 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=MANIPALHOS&series=EQ",
         "lotSize": 25,
         "error": null
-      }
+      },
+      "freshIssueCr": 8000.0,
+      "ofsCr": 15.0,
+      "issueSizeCr": 8015.0
     },
     {
       "id": "propshop",
@@ -12443,7 +12490,7 @@
           "name": "NSE issue information",
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CUBEINVIT&type=Past",
-          "asOf": "2026-09-13T17:09:27+05:30"
+          "asOf": "2026-09-13T17:30:44+05:30"
         }
       ],
       "source": {
@@ -12470,12 +12517,19 @@
           "bidLot": 95,
           "minimumOrderQuantity": 95,
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CUBEINVIT&type=Past"
+        },
+        "NSE-issue-info-terms": {
+          "symbol": "CUBEINVIT",
+          "freshIssueCr": null,
+          "ofsCr": null,
+          "issueSizeCr": 5000.0,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CUBEINVIT&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T17:09:27+05:30",
+        "checkedAt": "2026-09-13T17:30:44+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -12494,7 +12548,8 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CUBEINVIT&series=EQ",
         "lotSize": 95,
         "error": null
-      }
+      },
+      "issueSizeCr": 5000.0
     },
     {
       "id": "metalic",
@@ -15521,7 +15576,7 @@
           "name": "NSE issue information",
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=BAGMANE&type=Past",
-          "asOf": "2026-09-13T17:12:08+05:30"
+          "asOf": "2026-09-13T17:31:00+05:30"
         }
       ],
       "source": {
@@ -15548,12 +15603,19 @@
           "bidLot": 150,
           "minimumOrderQuantity": 150,
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=BAGMANE&type=Past"
+        },
+        "NSE-issue-info-terms": {
+          "symbol": "BAGMANE",
+          "freshIssueCr": 2390.0,
+          "ofsCr": 1015.0,
+          "issueSizeCr": 3405.0,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=BAGMANE&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T17:12:08+05:30",
+        "checkedAt": "2026-09-13T17:31:00+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -15572,7 +15634,10 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=BAGMANE&series=EQ",
         "lotSize": 150,
         "error": null
-      }
+      },
+      "freshIssueCr": 2390.0,
+      "ofsCr": 1015.0,
+      "issueSizeCr": 3405.0
     },
     {
       "id": "value360",
@@ -15980,7 +16045,7 @@
           "name": "NSE issue information",
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CITIUSINVT&type=Past",
-          "asOf": "2026-09-13T17:12:34+05:30"
+          "asOf": "2026-09-13T17:31:06+05:30"
         }
       ],
       "source": {
@@ -16007,12 +16072,19 @@
           "bidLot": 150,
           "minimumOrderQuantity": 150,
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CITIUSINVT&type=Past"
+        },
+        "NSE-issue-info-terms": {
+          "symbol": "CITIUSINVT",
+          "freshIssueCr": null,
+          "ofsCr": null,
+          "issueSizeCr": 1105.0,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CITIUSINVT&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T17:12:34+05:30",
+        "checkedAt": "2026-09-13T17:31:06+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -16031,7 +16103,8 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CITIUSINVT&series=EQ",
         "lotSize": 150,
         "error": null
-      }
+      },
+      "issueSizeCr": 1105.0
     },
     {
       "id": "ompower",
@@ -16899,7 +16972,7 @@
           "name": "NSE issue information",
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=RIIT&type=Past",
-          "asOf": "2026-09-13T17:13:19+05:30"
+          "asOf": "2026-09-13T17:31:16+05:30"
         }
       ],
       "source": {
@@ -16926,12 +16999,19 @@
           "bidLot": 150,
           "minimumOrderQuantity": 150,
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=RIIT&type=Past"
+        },
+        "NSE-issue-info-terms": {
+          "symbol": "RIIT",
+          "freshIssueCr": null,
+          "ofsCr": null,
+          "issueSizeCr": 6000.0,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=RIIT&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T17:13:19+05:30",
+        "checkedAt": "2026-09-13T17:31:16+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -16950,7 +17030,8 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=RIIT&series=EQ",
         "lotSize": 150,
         "error": null
-      }
+      },
+      "issueSizeCr": 6000.0
     },
     {
       "id": "apsisaero",
@@ -23972,7 +24053,7 @@
           "name": "NSE issue information",
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=ANANTAM&type=Past",
-          "asOf": "2026-09-13T17:21:05+05:30"
+          "asOf": "2026-09-13T17:31:33+05:30"
         }
       ],
       "source": {
@@ -23999,12 +24080,19 @@
           "bidLot": 150,
           "minimumOrderQuantity": 150,
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=ANANTAM&type=Past"
+        },
+        "NSE-issue-info-terms": {
+          "symbol": "ANANTAM",
+          "freshIssueCr": null,
+          "ofsCr": null,
+          "issueSizeCr": 400.0,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=ANANTAM&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T17:21:05+05:30",
+        "checkedAt": "2026-09-13T17:31:33+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -24023,7 +24111,8 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ANANTAM&series=EQ",
         "lotSize": 150,
         "error": null
-      }
+      },
+      "issueSizeCr": 400.0
     },
     {
       "id": "wework",
@@ -30159,7 +30248,7 @@
           "name": "NSE issue information",
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=KRT&type=Past",
-          "asOf": "2026-09-13T17:26:59+05:30"
+          "asOf": "2026-09-13T17:31:38+05:30"
         }
       ],
       "source": {
@@ -30186,12 +30275,19 @@
           "bidLot": 150,
           "minimumOrderQuantity": 150,
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=KRT&type=Past"
+        },
+        "NSE-issue-info-terms": {
+          "symbol": "KRT",
+          "freshIssueCr": null,
+          "ofsCr": null,
+          "issueSizeCr": 4800.0,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=KRT&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T17:26:59+05:30",
+        "checkedAt": "2026-09-13T17:31:38+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -30210,7 +30306,8 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=KRT&series=EQ",
         "lotSize": 150,
         "error": null
-      }
+      },
+      "issueSizeCr": 4800.0
     },
     {
       "id": "hilinfra",
@@ -38875,6 +38972,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:28+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=TRANSRAILL&type=Past",
+          "asOf": "2026-09-13T17:32:14+05:30"
         }
       ],
       "source": {
@@ -38893,12 +38996,19 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "NSE-issue-info-terms": {
+          "symbol": "TRANSRAILL",
+          "freshIssueCr": 400.0,
+          "ofsCr": null,
+          "issueSizeCr": null,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=TRANSRAILL&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:32:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -38906,7 +39016,8 @@
       },
       "profilePath": "ipo/transraill/",
       "openDate": "2024-12-19",
-      "closeDate": "2024-12-23"
+      "closeDate": "2024-12-23",
+      "freshIssueCr": 400.0
     },
     {
       "id": "sanathan",
@@ -38931,6 +39042,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:28+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SANATHAN&type=Past",
+          "asOf": "2026-09-13T17:32:19+05:30"
         }
       ],
       "source": {
@@ -38949,12 +39066,19 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "NSE-issue-info-terms": {
+          "symbol": "SANATHAN",
+          "freshIssueCr": 400.0,
+          "ofsCr": null,
+          "issueSizeCr": null,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SANATHAN&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:32:19+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -38962,7 +39086,8 @@
       },
       "profilePath": "ipo/sanathan/",
       "openDate": "2024-12-19",
-      "closeDate": "2024-12-23"
+      "closeDate": "2024-12-23",
+      "freshIssueCr": 400.0
     },
     {
       "id": "nmsteel",
@@ -39155,6 +39280,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:28+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CEWATER&type=Past",
+          "asOf": "2026-09-13T17:32:40+05:30"
         }
       ],
       "source": {
@@ -39173,12 +39304,19 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "NSE-issue-info-terms": {
+          "symbol": "CEWATER",
+          "freshIssueCr": 175.0,
+          "ofsCr": null,
+          "issueSizeCr": null,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CEWATER&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:32:40+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -39186,7 +39324,8 @@
       },
       "profilePath": "ipo/cewater/",
       "openDate": "2024-12-19",
-      "closeDate": "2024-12-23"
+      "closeDate": "2024-12-23",
+      "freshIssueCr": 175.0
     },
     {
       "id": "identical",
@@ -39379,6 +39518,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:28+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=VMM&type=Past",
+          "asOf": "2026-09-13T17:33:01+05:30"
         }
       ],
       "source": {
@@ -39397,12 +39542,19 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "NSE-issue-info-terms": {
+          "symbol": "VMM",
+          "freshIssueCr": null,
+          "ofsCr": 8000.0,
+          "issueSizeCr": 8000.0,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=VMM&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:33:01+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -39410,7 +39562,9 @@
       },
       "profilePath": "ipo/vmm/",
       "openDate": "2024-12-11",
-      "closeDate": "2024-12-13"
+      "closeDate": "2024-12-13",
+      "ofsCr": 8000.0,
+      "issueSizeCr": 8000.0
     },
     {
       "id": "sfml",
@@ -39491,6 +39645,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:28+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SAILIFE&type=Past",
+          "asOf": "2026-09-13T17:33:11+05:30"
         }
       ],
       "source": {
@@ -39509,12 +39669,19 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "NSE-issue-info-terms": {
+          "symbol": "SAILIFE",
+          "freshIssueCr": 950.0,
+          "ofsCr": null,
+          "issueSizeCr": null,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SAILIFE&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:33:11+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -39522,7 +39689,8 @@
       },
       "profilePath": "ipo/sailife/",
       "openDate": "2024-12-11",
-      "closeDate": "2024-12-13"
+      "closeDate": "2024-12-13",
+      "freshIssueCr": 950.0
     },
     {
       "id": "purpleuted",
@@ -39603,6 +39771,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:28+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MOBIKWIK&type=Past",
+          "asOf": "2026-09-13T17:33:22+05:30"
         }
       ],
       "source": {
@@ -39621,12 +39795,19 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "NSE-issue-info-terms": {
+          "symbol": "MOBIKWIK",
+          "freshIssueCr": 572.0,
+          "ofsCr": null,
+          "issueSizeCr": 572.0,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MOBIKWIK&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:33:22+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -39634,7 +39815,9 @@
       },
       "profilePath": "ipo/mobikwik/",
       "openDate": "2024-12-11",
-      "closeDate": "2024-12-13"
+      "closeDate": "2024-12-13",
+      "freshIssueCr": 572.0,
+      "issueSizeCr": 572.0
     },
     {
       "id": "dhanlaxmi",

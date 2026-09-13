@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-09-13T17:29:31+05:30",
+  "generatedAt": "2026-09-13T17:34:14+05:30",
   "asOfDate": "2026-09-13",
   "recordCount": 1357,
-  "queueCount": 1209,
+  "queueCount": 1208,
   "priorityCounts": {
-    "P4 recent history (2y)": 302,
+    "P4 recent history (2y)": 301,
     "P5 historical backfill": 907
   },
   "fieldGapCounts": {
     "exchange.lotSize": 1176,
-    "exchange.issueSizeCr": 958,
-    "exchange.issueComposition": 52,
+    "exchange.issueSizeCr": 947,
+    "exchange.issueComposition": 41,
     "lifecycle.listingDate": 33,
     "offer.promoterShareholding": 28,
     "offer.registrar": 27,
@@ -84,12 +84,11 @@
       "listingDate": "2026-08-12",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 57.9,
+      "completenessPct": 63.2,
       "expectedFieldCount": 19,
-      "missingFieldCount": 8,
+      "missingFieldCount": 7,
       "missingFields": [
         "exchange.issueSizeCr",
-        "exchange.issueComposition",
         "offer.registrar",
         "offer.leadManagers",
         "offer.promoters",
@@ -98,81 +97,6 @@
         "offer.promoterShareholding"
       ],
       "profilePath": "ipo/ardee/"
-    },
-    {
-      "id": "jnpr",
-      "company": "Juniper Green Energy Limited",
-      "symbol": "JNPR",
-      "stage": "listed",
-      "openDate": "2026-07-30",
-      "closeDate": "2026-08-03",
-      "listingDate": "2026-08-06",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 57.9,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 8,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.promoters",
-        "offer.objectsOfIssue",
-        "offer.financials",
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/jnpr/"
-    },
-    {
-      "id": "mvelectro",
-      "company": "MV Electrosystems Limited",
-      "symbol": "MVELECTRO",
-      "stage": "listed",
-      "openDate": "2026-07-30",
-      "closeDate": "2026-08-03",
-      "listingDate": "2026-08-06",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 57.9,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 8,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.promoters",
-        "offer.objectsOfIssue",
-        "offer.financials",
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/mvelectro/"
-    },
-    {
-      "id": "manipalhos",
-      "company": "Manipal Health Enterprises Limited",
-      "symbol": "MANIPALHOS",
-      "stage": "listed",
-      "openDate": "2026-07-29",
-      "closeDate": "2026-07-31",
-      "listingDate": "2026-08-05",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 57.9,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 8,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.promoters",
-        "offer.objectsOfIssue",
-        "offer.financials",
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/manipalhos/"
     },
     {
       "id": "aastha",
@@ -451,6 +375,29 @@
       "profilePath": "ipo/innovision/"
     },
     {
+      "id": "jnpr",
+      "company": "Juniper Green Energy Limited",
+      "symbol": "JNPR",
+      "stage": "listed",
+      "openDate": "2026-07-30",
+      "closeDate": "2026-08-03",
+      "listingDate": "2026-08-06",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 68.4,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 6,
+      "missingFields": [
+        "offer.registrar",
+        "offer.leadManagers",
+        "offer.promoters",
+        "offer.objectsOfIssue",
+        "offer.financials",
+        "offer.promoterShareholding"
+      ],
+      "profilePath": "ipo/jnpr/"
+    },
+    {
       "id": "knack",
       "company": "Knack Packaging Limited",
       "symbol": "KNACK",
@@ -518,6 +465,52 @@
         "offer.promoterShareholding"
       ],
       "profilePath": "ipo/lcl/"
+    },
+    {
+      "id": "mvelectro",
+      "company": "MV Electrosystems Limited",
+      "symbol": "MVELECTRO",
+      "stage": "listed",
+      "openDate": "2026-07-30",
+      "closeDate": "2026-08-03",
+      "listingDate": "2026-08-06",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 68.4,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 6,
+      "missingFields": [
+        "offer.registrar",
+        "offer.leadManagers",
+        "offer.promoters",
+        "offer.objectsOfIssue",
+        "offer.financials",
+        "offer.promoterShareholding"
+      ],
+      "profilePath": "ipo/mvelectro/"
+    },
+    {
+      "id": "manipalhos",
+      "company": "Manipal Health Enterprises Limited",
+      "symbol": "MANIPALHOS",
+      "stage": "listed",
+      "openDate": "2026-07-29",
+      "closeDate": "2026-07-31",
+      "listingDate": "2026-08-05",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 68.4,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 6,
+      "missingFields": [
+        "offer.registrar",
+        "offer.leadManagers",
+        "offer.promoters",
+        "offer.objectsOfIssue",
+        "offer.financials",
+        "offer.promoterShareholding"
+      ],
+      "profilePath": "ipo/manipalhos/"
     },
     {
       "id": "ompower",
@@ -944,26 +937,6 @@
       "profilePath": "ipo/carraro/"
     },
     {
-      "id": "cewater",
-      "company": "Concord Enviro Systems Limited",
-      "symbol": "CEWATER",
-      "stage": "listed",
-      "openDate": "2024-12-19",
-      "closeDate": "2024-12-23",
-      "listingDate": "2024-12-27",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/cewater/"
-    },
-    {
       "id": "credent",
       "company": "Credent Connect N Care Limited",
       "symbol": "CREDENT",
@@ -1184,26 +1157,6 @@
       "profilePath": "ipo/nmsteel/"
     },
     {
-      "id": "mobikwik",
-      "company": "One MobiKwik Systems Limited",
-      "symbol": "MOBIKWIK",
-      "stage": "listed",
-      "openDate": "2024-12-11",
-      "closeDate": "2024-12-13",
-      "listingDate": "2024-12-18",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/mobikwik/"
-    },
-    {
       "id": "optimystix",
       "company": "Optimystix Entertainment India Limited",
       "symbol": "OPTIMYSTIX",
@@ -1284,46 +1237,6 @@
       "profilePath": "ipo/rajputana/"
     },
     {
-      "id": "sailife",
-      "company": "Sai Life Sciences Limited",
-      "symbol": "SAILIFE",
-      "stage": "listed",
-      "openDate": "2024-12-11",
-      "closeDate": "2024-12-13",
-      "listingDate": "2024-12-18",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/sailife/"
-    },
-    {
-      "id": "sanathan",
-      "company": "Sanathan Textiles Limited",
-      "symbol": "SANATHAN",
-      "stage": "listed",
-      "openDate": "2024-12-19",
-      "closeDate": "2024-12-23",
-      "listingDate": "2024-12-27",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/sanathan/"
-    },
-    {
       "id": "senores",
       "company": "Senores Pharmaceuticals Limited",
       "symbol": "SENORES",
@@ -1384,26 +1297,6 @@
       "profilePath": "ipo/suraksha/"
     },
     {
-      "id": "transraill",
-      "company": "Transrail Lighting Limited",
-      "symbol": "TRANSRAILL",
-      "stage": "listed",
-      "openDate": "2024-12-19",
-      "closeDate": "2024-12-23",
-      "listingDate": "2024-12-27",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/transraill/"
-    },
-    {
       "id": "unimech",
       "company": "Unimech Aerospace and Manufacturing Limited",
       "symbol": "UNIMECH",
@@ -1444,26 +1337,6 @@
       "profilePath": "ipo/ventive/"
     },
     {
-      "id": "vmm",
-      "company": "Vishal Mega Mart Limited",
-      "symbol": "VMM",
-      "stage": "listed",
-      "openDate": "2024-12-11",
-      "closeDate": "2024-12-13",
-      "listingDate": "2024-12-18",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/vmm/"
-    },
-    {
       "id": "avtl29",
       "company": "Aegis Vopak Terminals Limited",
       "symbol": "AVTL29",
@@ -1502,118 +1375,80 @@
       "profilePath": "ipo/84ail28/"
     },
     {
-      "id": "anantam",
-      "company": "Anantam Highways Trust",
-      "symbol": "ANANTAM",
+      "id": "cewater",
+      "company": "Concord Enviro Systems Limited",
+      "symbol": "CEWATER",
       "stage": "listed",
-      "openDate": "2025-10-07",
-      "closeDate": "2025-10-09",
-      "listingDate": "2025-10-16",
+      "openDate": "2024-12-19",
+      "closeDate": "2024-12-23",
+      "listingDate": "2024-12-27",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
       "completenessPct": 83.3,
       "expectedFieldCount": 12,
       "missingFieldCount": 2,
       "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
       ],
-      "profilePath": "ipo/anantam/"
+      "profilePath": "ipo/cewater/"
     },
     {
-      "id": "bagmane",
-      "company": "Bagmane Prime Office REIT",
-      "symbol": "BAGMANE",
+      "id": "sailife",
+      "company": "Sai Life Sciences Limited",
+      "symbol": "SAILIFE",
       "stage": "listed",
-      "openDate": "2026-05-05",
-      "closeDate": "2026-05-07",
-      "listingDate": "2026-05-14",
+      "openDate": "2024-12-11",
+      "closeDate": "2024-12-13",
+      "listingDate": "2024-12-18",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
       "completenessPct": 83.3,
       "expectedFieldCount": 12,
       "missingFieldCount": 2,
       "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
       ],
-      "profilePath": "ipo/bagmane/"
+      "profilePath": "ipo/sailife/"
     },
     {
-      "id": "citiusinvt",
-      "company": "Citius Transnet Investment Trust",
-      "symbol": "CITIUSINVT",
+      "id": "sanathan",
+      "company": "Sanathan Textiles Limited",
+      "symbol": "SANATHAN",
       "stage": "listed",
-      "openDate": "2026-04-17",
-      "closeDate": "2026-04-21",
-      "listingDate": "2026-04-29",
+      "openDate": "2024-12-19",
+      "closeDate": "2024-12-23",
+      "listingDate": "2024-12-27",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
       "completenessPct": 83.3,
       "expectedFieldCount": 12,
       "missingFieldCount": 2,
       "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
       ],
-      "profilePath": "ipo/citiusinvt/"
+      "profilePath": "ipo/sanathan/"
     },
     {
-      "id": "cubeinvit",
-      "company": "Cube Highways Trust",
-      "symbol": "CUBEINVIT",
+      "id": "transraill",
+      "company": "Transrail Lighting Limited",
+      "symbol": "TRANSRAILL",
       "stage": "listed",
-      "openDate": "2026-07-22",
-      "closeDate": "2026-07-24",
-      "listingDate": "2026-07-31",
+      "openDate": "2024-12-19",
+      "closeDate": "2024-12-23",
+      "listingDate": "2024-12-27",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
       "completenessPct": 83.3,
       "expectedFieldCount": 12,
       "missingFieldCount": 2,
       "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
       ],
-      "profilePath": "ipo/cubeinvit/"
-    },
-    {
-      "id": "krt",
-      "company": "Knowledge Realty Trust",
-      "symbol": "KRT",
-      "stage": "listed",
-      "openDate": "2025-08-05",
-      "closeDate": "2025-08-07",
-      "listingDate": "2025-08-18",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/krt/"
-    },
-    {
-      "id": "riit",
-      "company": "Raajmarg Infra Investment Trust",
-      "symbol": "RIIT",
-      "stage": "listed",
-      "openDate": "2026-03-11",
-      "closeDate": "2026-03-13",
-      "listingDate": "2026-03-24",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/riit/"
+      "profilePath": "ipo/transraill/"
     },
     {
       "id": "acmesolar",
@@ -1848,6 +1683,24 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/amirchand/"
+    },
+    {
+      "id": "anantam",
+      "company": "Anantam Highways Trust",
+      "symbol": "ANANTAM",
+      "stage": "listed",
+      "openDate": "2025-10-07",
+      "closeDate": "2025-10-09",
+      "listingDate": "2025-10-16",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.issueComposition"
+      ],
+      "profilePath": "ipo/anantam/"
     },
     {
       "id": "anondita",
@@ -2354,6 +2207,24 @@
       "profilePath": "ipo/chandan/"
     },
     {
+      "id": "citiusinvt",
+      "company": "Citius Transnet Investment Trust",
+      "symbol": "CITIUSINVT",
+      "stage": "listed",
+      "openDate": "2026-04-17",
+      "closeDate": "2026-04-21",
+      "listingDate": "2026-04-29",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.issueComposition"
+      ],
+      "profilePath": "ipo/citiusinvt/"
+    },
+    {
       "id": "classiceil",
       "company": "Classic Electrodes (India) Limited",
       "symbol": "CLASSICEIL",
@@ -2424,6 +2295,24 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/connplex/"
+    },
+    {
+      "id": "cubeinvit",
+      "company": "Cube Highways Trust",
+      "symbol": "CUBEINVIT",
+      "stage": "listed",
+      "openDate": "2026-07-22",
+      "closeDate": "2026-07-24",
+      "listingDate": "2026-07-31",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.issueComposition"
+      ],
+      "profilePath": "ipo/cubeinvit/"
     },
     {
       "id": "curis",
@@ -3542,6 +3431,24 @@
       "profilePath": "ipo/ken/"
     },
     {
+      "id": "krt",
+      "company": "Knowledge Realty Trust",
+      "symbol": "KRT",
+      "stage": "listed",
+      "openDate": "2025-08-05",
+      "closeDate": "2025-08-07",
+      "listingDate": "2025-08-18",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.issueComposition"
+      ],
+      "profilePath": "ipo/krt/"
+    },
+    {
       "id": "lakshya",
       "company": "Lakshya Powertech Limited",
       "symbol": "LAKSHYA",
@@ -4028,6 +3935,24 @@
       "profilePath": "ipo/onyx/"
     },
     {
+      "id": "mobikwik",
+      "company": "One MobiKwik Systems Limited",
+      "symbol": "MOBIKWIK",
+      "stage": "listed",
+      "openDate": "2024-12-11",
+      "closeDate": "2024-12-13",
+      "listingDate": "2024-12-18",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/mobikwik/"
+    },
+    {
       "id": "optivalue",
       "company": "Optivalue Tek Consulting Limited",
       "symbol": "OPTIVALUE",
@@ -4386,6 +4311,24 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/rfbl/"
+    },
+    {
+      "id": "riit",
+      "company": "Raajmarg Infra Investment Trust",
+      "symbol": "RIIT",
+      "stage": "listed",
+      "openDate": "2026-03-11",
+      "closeDate": "2026-03-13",
+      "listingDate": "2026-03-24",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.issueComposition"
+      ],
+      "profilePath": "ipo/riit/"
     },
     {
       "id": "rtl",
@@ -5576,6 +5519,24 @@
       "profilePath": "ipo/vginfotech/"
     },
     {
+      "id": "vmm",
+      "company": "Vishal Mega Mart Limited",
+      "symbol": "VMM",
+      "stage": "listed",
+      "openDate": "2024-12-11",
+      "closeDate": "2024-12-13",
+      "listingDate": "2024-12-18",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/vmm/"
+    },
+    {
       "id": "vividel",
       "company": "Vivid Electromech Limited",
       "symbol": "VIVIDEL",
@@ -5664,6 +5625,24 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/wcil/"
+    },
+    {
+      "id": "yaap",
+      "company": "Yaap Digital Limited",
+      "symbol": "YAAP",
+      "stage": "listed",
+      "openDate": "2026-02-25",
+      "closeDate": "2026-02-27",
+      "listingDate": "2026-03-05",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/yaap/"
     }
   ],
   "notes": [
