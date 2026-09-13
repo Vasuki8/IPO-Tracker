@@ -10,6 +10,7 @@ on:
       - "scripts/p4_history_guard.py"
       - "scripts/enrich_nse_primary_market_reports.py"
       - "scripts/enrich_nse_primary_market_reports_v2.py"
+      - "scripts/enrich_nse_primary_market_reports_v3.py"
       - "scripts/enrich_exchange_details_v2.py"
       - "scripts/backfill_bse_history.py"
       - "scripts/backfill_bse_history_v2.py"
@@ -25,6 +26,7 @@ on:
       - "tests/test_update_data_v2.py"
       - "tests/test_nse_primary_market_reports.py"
       - "tests/test_nse_primary_market_reports_v2.py"
+      - "tests/test_nse_primary_market_reports_v3.py"
       - "tests/test_exchange_details_v2.py"
       - "tests/test_bse_history_backfill.py"
       - "tests/test_offer_docs_v12.py"
@@ -78,6 +80,9 @@ jobs:
 
       - name: Run Phase 4.5A NSE discovery v2 tests
         run: uv run python -m unittest discover -s tests -p "test_nse_primary_market_reports_v2.py" -v
+
+      - name: Run Phase 4.5A NSE layout/matching v3 tests
+        run: uv run python -m unittest discover -s tests -p "test_nse_primary_market_reports_v3.py" -v
 
       - name: Run Phase 4.5A exchange-detail v2 tests
         run: uv run python -m unittest discover -s tests -p "test_exchange_details_v2.py" -v
@@ -140,9 +145,10 @@ jobs:
           cp /tmp/generated-ipos.json data/ipos.json
 
           # Phase 4.5A source 1: NSE's official monthly Primary Market XLSX
-          # reports expose issue size, total/fresh/OFS shares and listing dates
-          # across recent IPO history. Existing normalized values are fill-only.
-          uv run python scripts/enrich_nse_primary_market_reports_v2.py \
+          # reports expose issue size, total/fresh/OFS shares and listing dates.
+          # v3 handles symbol-less 2024/2026 layouts and exact issuer+symbol rows
+          # whose workbook issue date is malformed; normalized values stay fill-only.
+          uv run python scripts/enrich_nse_primary_market_reports_v3.py \
             --history-days 730 \
             --max-reports 30
 
