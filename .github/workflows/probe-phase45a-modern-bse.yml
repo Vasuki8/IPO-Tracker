@@ -1,4 +1,4 @@
-name: Probe Phase 4.5A NSE past issue fields
+name: Probe P2 official document coverage
 
 on:
   push:
@@ -18,35 +18,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7.0.1
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v10.1.0
-        with:
-          version: "latest-known"
-
-      - name: Set up Python
-        run: uv python install 3.12
-
-      - name: Sync dependencies
-        run: uv sync
-
-      - name: Inspect raw NSE past issue records
-        shell: bash
+      - name: Inspect P2 documents
+        shell: python
         run: |
-          uv run python - <<'PY'
           import json
-          from datetime import date
-          import scripts.update_data as core
-
-          client=core.NSEClient()
-          rows=client.past(date(2026,8,1), date(2026,9,13))
-          print('ROWS',len(rows))
-          targets={'ABH','ANNU','ASHUTOSH','AUGMONT','DEEPA','ESDS','GAJA','HORIZONIND','HTEL','KANOHAR','LALITHAA','LUMINO','MADHURKNIT','PRANAV','PRIORITY','PERNIASPOP','QUALIANCE','MOMSBELIEF','SHANKESH','SHANTIINOR','SKYTECH','SKYWAYS','SUMAX','SUNSHINE','SYMBIOTEC','ARCIL','GLASSWALL','KARAMTARA','LCCPROJECT','MPIMANIPAL','PRASOLCHEM','STEAMHOUSE'}
-          for row in rows:
-            symbol=str(row.get('symbol') or row.get('nseSymbol') or row.get('securitySymbol') or '').upper()
-            company=str(row.get('companyName') or row.get('company') or row.get('issuerName') or row.get('name') or '')
-            key=core.canonical_company(company)
-            if symbol in targets or any(t in key or key in t for t in targets if len(t)>5):
-              print('\n===',symbol,company,'===')
-              print(json.dumps(row,indent=2,ensure_ascii=False,sort_keys=True))
-              print('NORMALIZED',json.dumps(core.normalize_nse_record(row,'past'),indent=2,ensure_ascii=False))
-          PY
+          payload=json.load(open('data/ipos.json',encoding='utf-8'))
+          queue=json.load(open('data/missing_queue.json',encoding='utf-8'))
+          p2=[q for q in queue['queue'] if q.get('priority')==2]
+          by_id={r.get('id'):r for r in payload['ipos']}
+          print('P2',len(p2))
+          with_docs=0
+          for q in p2:
+            r=by_id.get(q['id'],{})
+            docs=r.get('documents') or []
+            if docs: with_docs+=1
+            print('\n===',q['id'],q['company'],'missing=',q['missingFields'],'docs=',len(docs),'===')
+            for d in docs:
+              print(json.dumps({k:d.get(k) for k in ('type','title','url','source','filedDate','sourcePage')},ensure_ascii=False))
+          print('WITH_DOCS',with_docs,'NO_DOCS',len(p2)-with_docs)
