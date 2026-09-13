@@ -10,13 +10,13 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 import enrich_issuer_offer_docs as base  # noqa: E402
-import run_offer_docs_v6 as parser_v6  # noqa: E402
+import run_offer_docs_v7 as parser_v7  # noqa: E402
 
-# The base issuer module predates parser v6. Route its runtime parser/deep scan
-# through v6 while retaining the base module's host + issuer-identity gates.
-base.parser_v4 = parser_v6
-base.PARSER_VERSION = parser_v6.PARSER_VERSION
-base._extract_targeted_full_text = parser_v6.extract_targeted_pdf_text
+# Route issuer-hosted fallbacks through the current parser while retaining the
+# base module's host + issuer-identity gates.
+base.parser_v4 = parser_v7
+base.PARSER_VERSION = parser_v7.PARSER_VERSION
+base._extract_targeted_full_text = parser_v7.extract_targeted_pdf_text
 
 # Both links resolve to the issuer's own website. The base module still validates
 # host, PDF magic and company identity at runtime before accepting any fields.
