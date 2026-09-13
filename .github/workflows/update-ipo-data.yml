@@ -20,6 +20,7 @@ on:
       - "scripts/update_data.py"
       - "scripts/run_update.py"
       - "scripts/run_update_v2.py"
+      - "scripts/p4_history_guard.py"
       - "scripts/normalize_source_health.py"
       - "scripts/enrich_exchange_details.py"
       - "scripts/critical_backfill.py"
@@ -102,7 +103,7 @@ jobs:
             EXTRA="$EXTRA --bootstrap-history --history-from 2000-01-01"
           else
             # Hourly runs only reconcile the newest history window. A separate
-            # daily workflow performs the broader 365-day historical refresh.
+            # daily workflow performs the full 730-day P4 historical refresh.
             EXTRA="$EXTRA --history-days 1"
           fi
           if [ "${{ github.event.inputs.deep_sebi_scan }}" = "true" ]; then
