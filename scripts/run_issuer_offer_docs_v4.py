@@ -7,8 +7,10 @@ bounded progressive batches. Documents already extracted by the current parser
 are skipped, while issuers that failed in the previous batch are moved behind
 never-attempted work so one slow/broken PDF cannot block the registry.
 
-All download, PDF-magic, issuer-identity, parser-v13 and fill-only merge gates
-remain owned by the established base runner.
+The verified issuer path uses parser v14, which retains v13's bounded deep-page
+selection and fill-only gates while recognizing a narrow official-prospectus
+cover-table intermediary layout. All download, PDF-magic and issuer-identity
+validation remains owned by the established base runner.
 """
 from __future__ import annotations
 
@@ -21,8 +23,15 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 import run_issuer_offer_docs_v3 as legacy_v3  # noqa: E402
+import run_offer_docs_v14 as parser_v14  # noqa: E402
 
 base = legacy_v3.base
+
+# v3 establishes the broad official-document registry. Override only its parser
+# wiring so this exact-identity verified runner can benefit from v14 recognition.
+base.parser_v4 = parser_v14
+base.PARSER_VERSION = parser_v14.PARSER_VERSION
+base._extract_targeted_full_text = parser_v14.extract_targeted_pdf_text
 
 base.ISSUER_DOCUMENTS.update(
     {
