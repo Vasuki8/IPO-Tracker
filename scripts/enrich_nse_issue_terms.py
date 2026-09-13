@@ -6,6 +6,10 @@ NSE's official `/api/ipo-detail` payload includes an `Issue Size` narrative in
 amounts explicitly (for example in Rs million). This collector converts those
 amounts to crore and fills only missing fields after exact symbol + issuer
 identity validation using the existing NSE issue-information collector.
+
+Per-record attempt markers and a retry cooldown make scheduled runs progressive:
+records that return no terms or an identity mismatch do not monopolize every
+limited sweep while older unattempted P4 records wait behind them.
 """
 from __future__ import annotations
 
@@ -122,7 +126,30 @@ def has_composition(record: dict[str, Any]) -> bool:
     )
 
 
-def is_candidate(record: dict[str, Any], today: date, history_days: int) -> bool:
+def _attempt_date(record: dict[str, Any]) -> date | None:
+    attempt = record.get(ATTEMPT_KEY) or {}
+    raw = attempt.get("lastAttemptAt") if isinstance(attempt, dict) else None
+    if not raw:
+        return None
+    try:
+        return date.fromisoformat(str(raw)[:10])
+    except ValueError:
+        return None
+
+
+def attempted_recently(record: dict[str, Any], today: date, retry_days: int) -> bool:
+    if retry_days <= 0:
+        return False
+    attempted = _attempt_date(record)
+    return bool(attempted and attempted >= today - timedelta(days=retry_days))
+
+
+def is_candidate(
+    record: dict[str, Any],
+    today: date,
+    history_days: int,
+    retry_days: int = 0,
+) -> bool:
     if record.get("issueSizeCr") not in (None, "", [], {}) and has_composition(record):
         return False
     if "NSE" not in str(record.get("exchange") or "").upper():
@@ -134,7 +161,31 @@ def is_candidate(record: dict[str, Any], today: date, history_days: int) -> bool
         opened = date.fromisoformat(raw)
     except ValueError:
         return False
-    return today - timedelta(days=max(0, history_days)) <= opened <= today + timedelta(days=90)
+    if not (today - timedelta(days=max(0, history_days)) <= opened <= today + timedelta(days=90)):
+        return False
+    return not attempted_recently(record, today, retry_days)
+
+
+def mark_attempt(
+    record: dict[str, Any],
+    *,
+    status: str,
+    page_url: str,
+    api_url: str,
+    parsed_terms: dict[str, float | None] | None = None,
+    error: str | None = None,
+) -> None:
+    terms = parsed_terms or {}
+    record[ATTEMPT_KEY] = {
+        "status": status,
+        "lastAttemptAt": core.now_ist().isoformat(timespec="seconds"),
+        "pageUrl": page_url,
+        "apiUrl": api_url,
+        "freshIssueCr": terms.get("freshIssueCr"),
+        "ofsCr": terms.get("ofsCr"),
+        "issueSizeCr": terms.get("issueSizeCr"),
+        "error": str(error)[:300] if error else None,
+    }
 
 
 def merge_terms(record: dict[str, Any], payload: dict[str, Any], *, page_url: str) -> bool:
@@ -176,42 +227,83 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--history-days", type=int, default=730)
     parser.add_argument("--limit", type=int, default=60)
+    parser.add_argument("--retry-days", type=int, default=14)
     parser.add_argument("--sleep", type=float, default=0.08)
     args = parser.parse_args()
 
     payload = json.loads(DATA_FILE.read_text(encoding="utf-8"))
     records = [row for row in payload.get("ipos") or [] if isinstance(row, dict)]
     today = core.now_ist().date()
-    candidates = [row for row in records if is_candidate(row, today, args.history_days)]
+    candidates = [
+        row for row in records
+        if is_candidate(row, today, args.history_days, args.retry_days)
+    ]
     candidates.sort(key=lambda row: str(row.get("openDate") or ""), reverse=True)
     if args.limit > 0:
         candidates = candidates[: args.limit]
 
     session = __import__("requests").Session()
     session.headers.update(core.HEADERS)
-    attempted = updated = unmatched = no_terms = failed = 0
+    attempted = updated = unmatched = no_terms = no_change = failed = 0
     errors: list[str] = []
 
     for record in candidates:
         symbol = str(record.get("symbol") or "").strip().upper()
         series = issue_info.series_for(record)
         page_url = issue_info.issue_page_url(symbol, series)
+        api_url = issue_info.issue_api_url(symbol, series)
         attempted += 1
         try:
-            detail, page_url, _ = issue_info.fetch_detail(session, symbol, series)
+            detail, page_url, api_url = issue_info.fetch_detail(session, symbol, series)
             if not issue_info.identity_matches(record, detail):
                 unmatched += 1
+                mark_attempt(
+                    record,
+                    status="identity-mismatch",
+                    page_url=page_url,
+                    api_url=api_url,
+                )
             else:
                 terms = parse_issue_terms(detail)
                 if not any(value is not None for value in terms.values()):
                     no_terms += 1
+                    mark_attempt(
+                        record,
+                        status="no-terms",
+                        page_url=page_url,
+                        api_url=api_url,
+                        parsed_terms=terms,
+                    )
                 elif merge_terms(record, detail, page_url=page_url):
                     updated += 1
+                    mark_attempt(
+                        record,
+                        status="filled",
+                        page_url=page_url,
+                        api_url=api_url,
+                        parsed_terms=terms,
+                    )
+                else:
+                    no_change += 1
+                    mark_attempt(
+                        record,
+                        status="no-change",
+                        page_url=page_url,
+                        api_url=api_url,
+                        parsed_terms=terms,
+                    )
             if args.sleep > 0:
                 time.sleep(args.sleep)
         except Exception as exc:
             failed += 1
             errors.append(f"{record.get('company')} ({symbol}/{series}): {exc}")
+            mark_attempt(
+                record,
+                status="error",
+                page_url=page_url,
+                api_url=api_url,
+                error=str(exc),
+            )
 
     payload.setdefault("meta", {}).setdefault("sourceHealth", {})["NSE-issue-info-terms"] = {
         "ok": failed == 0 if attempted else True,
@@ -220,15 +312,18 @@ def main() -> int:
         "updated": updated,
         "identityMismatches": unmatched,
         "noTerms": no_terms,
+        "noChange": no_change,
         "failed": failed,
         "historyDays": args.history_days,
+        "retryDays": args.retry_days,
         "errors": errors[:10],
     }
     DATA_FILE.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(
         "NSE issue-information terms backfill: "
         f"candidates={len(candidates)}, attempted={attempted}, updated={updated}, "
-        f"identity_mismatch={unmatched}, no_terms={no_terms}, failed={failed}"
+        f"identity_mismatch={unmatched}, no_terms={no_terms}, "
+        f"no_change={no_change}, failed={failed}"
     )
     return 0
 
