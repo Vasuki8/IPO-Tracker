@@ -1,0 +1,117 @@
+name: Finish P4 offer-document gaps
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/finish-p4-offer-docs.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ipo-data-refresh
+  cancel-in-progress: false
+
+jobs:
+  finish-p4-offer-docs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v7.0.1
+        with:
+          ref: main
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.1.0
+        with:
+          version: "latest-known"
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Sync dependencies
+        run: uv sync
+
+      - name: Run final P4 parser regressions
+        run: |
+          uv run python -m unittest discover -s tests -p "test_offer_docs_v13.py" -v
+          uv run python -m unittest discover -s tests -p "test_issuer_offer_docs_v3.py" -v
+          uv run python -m unittest discover -s tests -p "test_sebi_document_links.py" -v
+          uv run python -m unittest discover -s tests -p "test_sebi_priority_registers_v2.py" -v
+          uv run python -m unittest discover -s tests -p "test_verified_lot_sizes.py" -v
+          uv run python -m unittest discover -s tests -p "test_verified_recent_issue_terms.py" -v
+          uv run python -m unittest discover -s tests -p "test_verified_recent_offer_fields.py" -v
+          uv run python -m unittest discover -s tests -p "test_data_completeness.py" -v
+          uv run python -m unittest discover -s tests -p "test_missing_queue.py" -v
+
+      - name: Record starting data revision
+        run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
+
+      - name: Exhaust P4 official offer-document paths
+        shell: bash
+        run: |
+          # Zero means unbounded in these established deep-pass scripts. Discovery
+          # remains constrained to priority <= 4, so P5 historical rows are not
+          # pulled into this P4 completion run.
+          uv run python scripts/enrich_sebi_priority_registers_v2.py --priority-max 4 --search-limit 0
+          uv run python scripts/enrich_sebi_document_links.py --priority-max 4 --limit 0
+          uv run python scripts/apply_verified_lot_sizes.py
+          uv run python scripts/apply_verified_recent_issue_terms.py
+          uv run python scripts/run_offer_docs_v13.py --limit 0
+          uv run python scripts/run_issuer_offer_docs_v3.py --priority-max 4 --limit 0
+          uv run python scripts/apply_verified_recent_offer_fields.py
+          uv run python scripts/audit_data_completeness.py
+          uv run python scripts/build_missing_queue.py
+
+      - name: Publish final P4 document gains safely
+        shell: bash
+        run: |
+          cp data/ipos.json /tmp/generated-ipos.json
+          BASE_DATA="$(cat /tmp/base-data-blob)"
+
+          git fetch origin main
+          REMOTE_DATA="$(git rev-parse origin/main:data/ipos.json)"
+          if [ "$REMOTE_DATA" != "$BASE_DATA" ]; then
+            echo "Remote IPO data changed during final P4 document run; refusing stale publication."
+            exit 0
+          fi
+
+          git reset --hard origin/main
+          cp /tmp/generated-ipos.json data/ipos.json
+          uv run python scripts/build_company_pages.py
+          uv run python scripts/audit_data_completeness.py
+          uv run python scripts/build_missing_queue.py
+
+          if [ -z "$(git status --porcelain -- data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md ipo/)" ]; then
+            echo "No final P4 document gains to publish"
+            exit 0
+          fi
+
+          git config user.name "ipo-tracker-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md ipo/
+          git commit -m "data: finish P4 offer-document backfill"
+          git push origin HEAD:main
+
+      - name: Report P4 completion metrics
+        shell: bash
+        run: |
+          git fetch origin main
+          git show origin/main:data/completeness.json > /tmp/current-completeness.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          payload = json.loads(Path('/tmp/current-completeness.json').read_text(encoding='utf-8'))
+          recent = ((payload.get('coverage') or {}).get('recentExchange2Y') or {})
+          offer = ((payload.get('coverage') or {}).get('offerDocumentEligible') or {})
+          print('P4 score:', (payload.get('scores') or {}).get('recentExchange2Y'))
+          for key in ('priceBand', 'lotSize', 'issueSizeCr', 'issueComposition'):
+              print(key, recent.get(key))
+          for key in ('registrar', 'leadManagers', 'promoters', 'objectsOfIssue', 'financials', 'promoterShareholding'):
+              print(key, offer.get(key))
+          PY
