@@ -1,4 +1,4 @@
-name: Validate Phase 4.5B parser v7
+name: Validate Phase 4.5B parser v8
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: phase45b-v7-ci
+  group: phase45b-v8-ci
   cancel-in-progress: true
 
 jobs:
@@ -33,36 +33,25 @@ jobs:
       - name: Sync dependencies
         run: uv sync
 
-      - name: Run parser v7 regression tests
+      - name: Run parser v8 regression tests
+        run: uv run python -m unittest discover -s tests -p "test_offer_docs_v8.py" -v
+
+      - name: Run parser v7 regressions
         run: uv run python -m unittest discover -s tests -p "test_offer_docs_v7.py" -v
 
       - name: Run parser v6 regressions
         run: uv run python -m unittest discover -s tests -p "test_offer_docs_v6.py" -v
 
-      - name: Run critical offer fallback regressions
-        run: uv run python -m unittest discover -s tests -p "test_critical_offer_backfill.py" -v
-
-      - name: Run issuer fallback regressions
-        run: uv run python -m unittest discover -s tests -p "test_issuer_offer_docs.py" -v
-
-      - name: Preview v7 enrichment coverage without publishing
+      - name: Preview v8 enrichment coverage without publishing
         shell: bash
         run: |
-          uv run python scripts/run_offer_docs_v7.py --limit 0
+          uv run python scripts/run_offer_docs_v8.py --limit 0
           uv run python scripts/audit_data_completeness.py
           uv run python - <<'PY'
           import json
           from pathlib import Path
 
-          payload = json.loads(Path("data/ipos.json").read_text(encoding="utf-8"))
           audit = json.loads(Path("data/completeness.json").read_text(encoding="utf-8"))
           stat = audit["coverage"]["offerDocumentEligible"]["promoterShareholding"]
           print("PROMOTER_SHAREHOLDING_COVERAGE", json.dumps(stat, sort_keys=True))
-          print("PROMOTER_SHAREHOLDING_VALUES")
-          for row in payload.get("ipos") or []:
-              if not isinstance(row, dict):
-                  continue
-              value = row.get("promoterShareholding")
-              if isinstance(value, dict) and value.get("promoterPreIssuePct") is not None:
-                  print(row.get("id"), row.get("company"), value.get("promoterPreIssuePct"))
           PY
