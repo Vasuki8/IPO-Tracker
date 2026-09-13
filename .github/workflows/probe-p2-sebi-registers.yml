@@ -25,28 +25,43 @@ jobs:
         run: uv python install 3.12
       - name: Sync dependencies
         run: uv sync
-      - name: Inspect SEBI pagination implementation
+      - name: Validate SEBI register POST pagination
         shell: bash
         run: |
           uv run python - <<'PY'
-          import re,requests,sys
+          import requests,sys
           from bs4 import BeautifulSoup
+          from urllib.parse import urljoin
           sys.path.insert(0,'scripts')
           import update_data as core
-          url='https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=12&ssid=15'
+          base='https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=12&ssid=15'
           s=requests.Session(); s.headers.update(core.HEADERS)
-          r=s.get(url,timeout=30); r.raise_for_status(); raw=r.text
-          print('LEN',len(raw))
-          for needle in ('function searchFormNewsList','searchFormNewsList =','searchFormNewsList('):
-              pos=raw.find(needle)
-              if pos>=0:
-                  print('=== FUNCTION CONTEXT ===')
-                  print(raw[max(0,pos-2500):pos+7000])
-                  break
-          soup=BeautifulSoup(raw,'html.parser')
-          print('=== FORMS ===')
-          for form in soup.find_all('form'):
-              print('FORM',form.get('id'),form.get('name'),form.get('method'),form.get('action'))
-              for tag in form.find_all(['input','select']):
-                  print(tag.name,tag.get('type'),tag.get('id'),tag.get('name'),tag.get('value'))
+          r=s.get(base,timeout=30); r.raise_for_status()
+          soup=BeautifulSoup(r.text,'html.parser')
+          form=soup.find('form',attrs={'name':'homeForm'}) or soup.find('form')
+          action=urljoin(base, form.get('action') or '/sebiweb/home/HomeAction.do')
+          data={}
+          for inp in form.find_all('input'):
+              name=inp.get('name')
+              if name and inp.get('type') in ('hidden','text'):
+                  data[name]=inp.get('value') or ''
+          for sel in form.find_all('select'):
+              name=sel.get('name')
+              if not name: continue
+              opt=sel.find('option',selected=True)
+              data[name]=(opt.get('value') if opt else '-1')
+          data.update({'sid':'3','ssid':'15','smid':'12','ssidhidden':'15','smidhidden':'12','nextValue':'1','sectName':'Filings'})
+          print('ACTION',action)
+          print('DATA',{k:v for k,v in data.items() if 'TOKEN' not in k and 'captcha' not in k.lower() and 'password' not in k.lower()})
+          p=s.post(action,params={'doListing':'yes'},data=data,timeout=30); print('POST',p.status_code,p.url,len(p.text)); p.raise_for_status()
+          for label,html in [('PAGE1',r.text),('PAGE2',p.text)]:
+              sp=BeautifulSoup(html,'html.parser')
+              rows=[]
+              for tr in sp.select('table tbody tr'):
+                  tds=tr.find_all('td')
+                  a=tr.select_one('a[href*="/filings/public-issues/"]')
+                  if a:
+                      rows.append((' '.join(tds[0].stripped_strings) if tds else '', ' '.join(a.stripped_strings), a.get('href')))
+              print(label,'COUNT',len(rows))
+              for row in rows[:6]: print(label,row)
           PY
