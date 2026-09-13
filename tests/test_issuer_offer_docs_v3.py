@@ -30,6 +30,16 @@ class IssuerOfferDocsV3Tests(unittest.TestCase):
             "cmpdi": "Central Mine Planning & Design Institute Limited",
             "innovision": "Innovision Limited",
             "jnpr": "Juniper Green Energy Limited",
+            "aye": "Aye Finance Limited",
+            "cmll": "Caliber Mining and Logistics Limited",
+            "lcl": "Lohia Corp Limited",
+            "mvelectro": "MV Electrosystems Limited",
+            "manipalhos": "Manipal Health Enterprises Limited",
+            "ompower": "Om Power Transmission Limited",
+            "kissht": "Onemi Technology Solutions Limited",
+            "kusumgar": "Kusumgar Limited",
+            "knack": "Knack Packaging Limited",
+            "pngsreva": "PNGS Reva Diamond Jewellery Limited",
         }
         for record_id, company in expected.items():
             doc = mod.base.ISSUER_DOCUMENTS[record_id]
