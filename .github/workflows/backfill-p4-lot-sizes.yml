@@ -8,9 +8,11 @@ on:
     paths:
       - "scripts/backfill_bse_history.py"
       - "scripts/backfill_bse_history_v2.py"
+      - "scripts/backfill_p4_lot_sizes.py"
       - "scripts/enrich_exchange_details.py"
       - "scripts/enrich_exchange_details_v2.py"
       - "tests/test_bse_history_backfill.py"
+      - "tests/test_p4_lot_backfill.py"
       - "tests/test_exchange_details_v2.py"
       - ".github/workflows/backfill-p4-lot-sizes.yml"
   workflow_run:
@@ -58,6 +60,7 @@ jobs:
         run: |
           uv run python -m unittest discover -s tests -p "test_exchange_details_v2.py" -v
           uv run python -m unittest discover -s tests -p "test_bse_history_backfill.py" -v
+          uv run python -m unittest discover -s tests -p "test_p4_lot_backfill.py" -v
           uv run python -m unittest discover -s tests -p "test_data_completeness.py" -v
           uv run python -m unittest discover -s tests -p "test_missing_queue.py" -v
 
@@ -66,11 +69,10 @@ jobs:
 
       - name: Advance P4 lot-size backfill
         run: |
-          # The historical BSE detail source exposes Market Lot / Bid Lot /
-          # Minimum Bid Quantity. Progressive mode marks every considered record
-          # and applies a cooldown so the next run advances instead of repeatedly
-          # checking the same newest unresolved IPOs.
-          uv run python scripts/backfill_bse_history_v2.py \
+          # BSE historical details expose Market Lot / Bid Lot / Minimum Bid
+          # Quantity. P4 has an independent cooldown marker so Phase 4.5D's
+          # full-history attempts cannot suppress this dedicated recent sweep.
+          uv run python scripts/backfill_p4_lot_sizes.py \
             --history-days 730 \
             --limit 120 \
             --core-only \
@@ -121,7 +123,11 @@ jobs:
           from pathlib import Path
 
           payload = json.loads(Path('/tmp/current-completeness.json').read_text(encoding='utf-8'))
-          recent = payload.get('recent2y') or payload.get('recentTwoYears') or {}
-          print('Current P4 completeness snapshot:')
-          print(json.dumps(recent, indent=2, ensure_ascii=False))
+          recent = ((payload.get('coverage') or {}).get('recentExchange2Y') or {})
+          lot = recent.get('lotSize') or {}
+          print(
+              'P4 lot-size coverage: '
+              f"{lot.get('present', 0)}/{lot.get('expected', 0)} "
+              f"({lot.get('pct', 0)}%), missing={lot.get('missing', 0)}"
+          )
           PY
