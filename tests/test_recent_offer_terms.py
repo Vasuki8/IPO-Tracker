@@ -19,6 +19,14 @@ class RecentOfferTermsTests(unittest.TestCase):
         text = "Bids can be made for a minimum of 151 Equity Shares and in multiples of 151 Equity Shares thereafter."
         self.assertEqual(mod.extract_lot_size(text), 151)
 
+    def test_real_prospectus_glossary_bid_lot_row(self):
+        text = "Bid Lot 151 Equity Shares of face value ₹ 10 each and in multiples of 151 Equity Shares of face value ₹ 10 each thereafter."
+        self.assertEqual(mod.extract_lot_size(text), 151)
+
+    def test_rhp_placeholder_lot_is_not_invented(self):
+        text = "Bid Lot [●] Equity Shares and in multiples of [●] Equity Shares thereafter."
+        self.assertIsNone(mod.extract_lot_size(text))
+
     def test_minimum_application_size_wording(self):
         text = "The minimum application size shall be 2,000 Equity Shares and thereafter in multiples of 2,000 Equity Shares."
         self.assertEqual(mod.extract_lot_size(text), 2000)
