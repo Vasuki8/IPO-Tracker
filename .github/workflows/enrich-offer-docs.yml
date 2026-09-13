@@ -30,6 +30,7 @@ on:
       - "scripts/enrich_sebi_priority_registers.py"
       - "scripts/enrich_sebi_priority_registers_v2.py"
       - "scripts/enrich_recent_offer_terms.py"
+      - "scripts/apply_verified_lot_sizes.py"
       - "scripts/critical_backfill.py"
       - "scripts/audit_data_completeness.py"
       - "scripts/build_missing_queue.py"
@@ -50,6 +51,7 @@ on:
       - "tests/test_sebi_priority_registers.py"
       - "tests/test_sebi_priority_registers_v2.py"
       - "tests/test_recent_offer_terms.py"
+      - "tests/test_verified_lot_sizes.py"
       - "tests/test_critical_backfill.py"
       - "tests/test_data_completeness.py"
       - "tests/test_missing_queue.py"
@@ -132,6 +134,9 @@ jobs:
       - name: Run recent offer-term tests
         run: uv run python -m unittest discover -s tests -p "test_recent_offer_terms.py" -v
 
+      - name: Run verified lot-size tests
+        run: uv run python -m unittest discover -s tests -p "test_verified_lot_sizes.py" -v
+
       - name: Run critical-backfill tests
         run: uv run python -m unittest discover -s tests -p "test_critical_backfill.py" -v
 
@@ -159,22 +164,18 @@ jobs:
             LINK_LIMIT=40
             ISSUER_LIMIT=10
             CRITICAL_LIMIT=20
-            # P2 currently contains 34 recent IPOs. Cover the full batch in one
-            # normal run so official SEBI discovery + term extraction can reduce
-            # the queue immediately instead of advancing only 16 records/day.
             SEARCH_LIMIT=40
             TERMS_LIMIT=40
           fi
-          # Current SEBI RHP/Prospectus registers cover the newest filings. For
-          # priority records just beyond the first page, v2 uses SEBI's GET-based
-          # exact-issuer search and accepts only RHP/Prospectus results.
           uv run python scripts/enrich_sebi_priority_registers_v2.py --priority-max 2 --search-limit "$SEARCH_LIMIT"
           uv run python scripts/enrich_sebi_document_links.py --priority-max 2 --limit "$LINK_LIMIT"
-
-          # Full official offer documents can recover final lot size from a
-          # Prospectus and issue size/composition from RHP/Prospectus. Merges are
-          # fill-only and lot-only RHPs are skipped when their lot is still [●].
           uv run python scripts/enrich_recent_offer_terms.py --priority-max 2 --limit "$TERMS_LIMIT"
+
+          # SEBI's PDF host can intermittently present an incomplete TLS chain to
+          # GitHub-hosted runners. Never disable certificate verification. This
+          # strict fill-only registry bridges only already-finalized lot terms,
+          # guarded by exact id + symbol + open date + company identity.
+          uv run python scripts/apply_verified_lot_sizes.py
 
           uv run python scripts/run_offer_docs_v11.py --limit "$DOC_LIMIT"
           uv run python scripts/run_issuer_offer_docs.py --priority-max 2 --limit "$ISSUER_LIMIT"
