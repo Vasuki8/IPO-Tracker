@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-13T08:37:58+05:30",
+  "generatedAt": "2026-09-13T09:25:37+05:30",
   "asOfDate": "2026-09-13",
   "recordCount": 1371,
   "queueCount": 1356,
@@ -11,15 +11,92 @@
   },
   "fieldGapCounts": {
     "exchange.lotSize": 1351,
-    "exchange.issueSizeCr": 1160,
-    "exchange.issueComposition": 259,
+    "exchange.issueSizeCr": 1149,
+    "exchange.issueComposition": 243,
     "lifecycle.listingDate": 35,
     "exchange.priceBand": 23,
-    "offer.promoterShareholding": 7,
-    "offer.leadManagers": 1,
+    "offer.promoterShareholding": 15,
+    "offer.registrar": 4,
+    "offer.leadManagers": 3,
+    "offer.promoters": 2,
+    "offer.objectsOfIssue": 2,
+    "offer.financials": 2,
     "provenance.sources": 1
   },
   "queue": [
+    {
+      "id": "sunshine",
+      "company": "Sunshine Pictures Limited",
+      "symbol": "SUNSHINE",
+      "stage": "listed",
+      "openDate": "2026-08-18",
+      "closeDate": "2026-08-20",
+      "listingDate": "2026-08-25",
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 52.6,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 9,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr",
+        "exchange.issueComposition",
+        "offer.registrar",
+        "offer.leadManagers",
+        "offer.promoters",
+        "offer.objectsOfIssue",
+        "offer.financials",
+        "offer.promoterShareholding"
+      ],
+      "profilePath": "ipo/sunshine/"
+    },
+    {
+      "id": "symbiotec",
+      "company": "Symbiotec Pharmalab Limited",
+      "symbol": "SYMBIOTEC",
+      "stage": "listed",
+      "openDate": "2026-08-24",
+      "closeDate": "2026-08-27",
+      "listingDate": "2026-09-01",
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 52.6,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 9,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr",
+        "exchange.issueComposition",
+        "offer.registrar",
+        "offer.leadManagers",
+        "offer.promoters",
+        "offer.objectsOfIssue",
+        "offer.financials",
+        "offer.promoterShareholding"
+      ],
+      "profilePath": "ipo/symbiotec/"
+    },
+    {
+      "id": "lumino",
+      "company": "Lumino Industries Limited",
+      "symbol": "LUMINO",
+      "stage": "listed",
+      "openDate": "2026-08-27",
+      "closeDate": "2026-08-31",
+      "listingDate": "2026-09-03",
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 77.8,
+      "expectedFieldCount": 18,
+      "missingFieldCount": 4,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr",
+        "exchange.issueComposition",
+        "offer.promoterShareholding"
+      ],
+      "profilePath": "ipo/lumino/"
+    },
     {
       "id": "abh",
       "company": "ABH Healthcare Limited",
@@ -39,26 +116,6 @@
         "exchange.issueComposition"
       ],
       "profilePath": "ipo/abh/"
-    },
-    {
-      "id": "annu",
-      "company": "Annu Projects Limited",
-      "symbol": "ANNU",
-      "stage": "listed",
-      "openDate": "2026-08-25",
-      "closeDate": "2026-08-28",
-      "listingDate": "2026-09-02",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/annu/"
     },
     {
       "id": "ashutosh",
@@ -81,86 +138,6 @@
       "profilePath": "ipo/ashutosh/"
     },
     {
-      "id": "augmont",
-      "company": "Augmont Enterprises Limited",
-      "symbol": "AUGMONT",
-      "stage": "listed",
-      "openDate": "2026-08-21",
-      "closeDate": "2026-08-25",
-      "listingDate": "2026-08-31",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/augmont/"
-    },
-    {
-      "id": "deepa",
-      "company": "Deepa Jewellers Limited",
-      "symbol": "DEEPA",
-      "stage": "listed",
-      "openDate": "2026-09-01",
-      "closeDate": "2026-09-03",
-      "listingDate": "2026-09-08",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 72.7,
-      "expectedFieldCount": 11,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/deepa/"
-    },
-    {
-      "id": "esds",
-      "company": "ESDS Software Solution Limited",
-      "symbol": "ESDS",
-      "stage": "listed",
-      "openDate": "2026-08-28",
-      "closeDate": "2026-09-01",
-      "listingDate": "2026-09-04",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 72.7,
-      "expectedFieldCount": 11,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/esds/"
-    },
-    {
-      "id": "gaja",
-      "company": "Gaja Alternative Asset Management Limited",
-      "symbol": "GAJA",
-      "stage": "listed",
-      "openDate": "2026-08-19",
-      "closeDate": "2026-08-21",
-      "listingDate": "2026-08-26",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/gaja/"
-    },
-    {
       "id": "horizonind",
       "company": "Horizon Industrial Parks Limited",
       "symbol": "HORIZONIND",
@@ -179,86 +156,6 @@
         "exchange.issueComposition"
       ],
       "profilePath": "ipo/horizonind/"
-    },
-    {
-      "id": "htel",
-      "company": "Hy-Tech Engineers Limited",
-      "symbol": "HTEL",
-      "stage": "listed",
-      "openDate": "2026-08-24",
-      "closeDate": "2026-08-27",
-      "listingDate": "2026-09-01",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/htel/"
-    },
-    {
-      "id": "kanohar",
-      "company": "Kanohar Electricals Limited",
-      "symbol": "KANOHAR",
-      "stage": "closed",
-      "openDate": "2026-09-08",
-      "closeDate": "2026-09-10",
-      "listingDate": null,
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 72.7,
-      "expectedFieldCount": 11,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/kanohar/"
-    },
-    {
-      "id": "lalithaa",
-      "company": "Lalithaa Jewellery Mart Limited",
-      "symbol": "LALITHAA",
-      "stage": "listed",
-      "openDate": "2026-08-17",
-      "closeDate": "2026-08-19",
-      "listingDate": "2026-08-24",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/lalithaa/"
-    },
-    {
-      "id": "lumino",
-      "company": "Lumino Industries Limited",
-      "symbol": "LUMINO",
-      "stage": "listed",
-      "openDate": "2026-08-27",
-      "closeDate": "2026-08-31",
-      "listingDate": "2026-09-03",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 72.7,
-      "expectedFieldCount": 11,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/lumino/"
     },
     {
       "id": "madhurknit",
@@ -290,35 +187,15 @@
       "listingDate": null,
       "priority": 2,
       "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 72.7,
-      "expectedFieldCount": 11,
+      "completenessPct": 83.3,
+      "expectedFieldCount": 18,
       "missingFieldCount": 3,
       "missingFields": [
         "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
+        "offer.registrar",
+        "offer.promoterShareholding"
       ],
       "profilePath": "ipo/pranav/"
-    },
-    {
-      "id": "priority",
-      "company": "Priority Jewels Limited",
-      "symbol": "PRIORITY",
-      "stage": "listed",
-      "openDate": "2026-08-28",
-      "closeDate": "2026-09-01",
-      "listingDate": "2026-09-04",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 72.7,
-      "expectedFieldCount": 11,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/priority/"
     },
     {
       "id": "perniaspop",
@@ -441,26 +318,6 @@
       "profilePath": "ipo/skytech/"
     },
     {
-      "id": "skyways",
-      "company": "Skyways Air Services Limited",
-      "symbol": "SKYWAYS",
-      "stage": "listed",
-      "openDate": "2026-08-24",
-      "closeDate": "2026-08-27",
-      "listingDate": "2026-09-01",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/skyways/"
-    },
-    {
       "id": "sumax",
       "company": "Sumax Engineering Limited",
       "symbol": "SUMAX",
@@ -481,46 +338,6 @@
       "profilePath": "ipo/sumax/"
     },
     {
-      "id": "sunshine",
-      "company": "Sunshine Pictures Limited",
-      "symbol": "SUNSHINE",
-      "stage": "listed",
-      "openDate": "2026-08-18",
-      "closeDate": "2026-08-20",
-      "listingDate": "2026-08-25",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/sunshine/"
-    },
-    {
-      "id": "symbiotec",
-      "company": "Symbiotec Pharmalab Limited",
-      "symbol": "SYMBIOTEC",
-      "stage": "listed",
-      "openDate": "2026-08-24",
-      "closeDate": "2026-08-27",
-      "listingDate": "2026-09-01",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/symbiotec/"
-    },
-    {
       "id": "arcil",
       "company": "Asset Reconstruction Company (India) Limited",
       "symbol": "ARCIL",
@@ -530,14 +347,33 @@
       "listingDate": null,
       "priority": 2,
       "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 81.8,
-      "expectedFieldCount": 11,
+      "completenessPct": 88.9,
+      "expectedFieldCount": 18,
       "missingFieldCount": 2,
       "missingFields": [
         "exchange.lotSize",
-        "exchange.issueComposition"
+        "offer.promoterShareholding"
       ],
       "profilePath": "ipo/arcil/"
+    },
+    {
+      "id": "augmont",
+      "company": "Augmont Enterprises Limited",
+      "symbol": "AUGMONT",
+      "stage": "listed",
+      "openDate": "2026-08-21",
+      "closeDate": "2026-08-25",
+      "listingDate": "2026-08-31",
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 89.5,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "offer.promoterShareholding"
+      ],
+      "profilePath": "ipo/augmont/"
     },
     {
       "id": "glasswall",
@@ -559,25 +395,6 @@
       "profilePath": "ipo/glasswall/"
     },
     {
-      "id": "karamtara",
-      "company": "Karamtara Engineering Limited",
-      "symbol": "KARAMTARA",
-      "stage": "closed",
-      "openDate": "2026-09-09",
-      "closeDate": "2026-09-11",
-      "listingDate": null,
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 81.8,
-      "expectedFieldCount": 11,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/karamtara/"
-    },
-    {
       "id": "lccproject",
       "company": "LCC Projects Limited",
       "symbol": "LCCPROJECT",
@@ -587,12 +404,12 @@
       "listingDate": null,
       "priority": 2,
       "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 81.8,
-      "expectedFieldCount": 11,
+      "completenessPct": 88.9,
+      "expectedFieldCount": 18,
       "missingFieldCount": 2,
       "missingFields": [
         "exchange.lotSize",
-        "exchange.issueComposition"
+        "offer.promoterShareholding"
       ],
       "profilePath": "ipo/lccproject/"
     },
@@ -606,12 +423,12 @@
       "listingDate": null,
       "priority": 2,
       "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 81.8,
-      "expectedFieldCount": 11,
+      "completenessPct": 88.9,
+      "expectedFieldCount": 18,
       "missingFieldCount": 2,
       "missingFields": [
         "exchange.lotSize",
-        "exchange.issueComposition"
+        "offer.promoterShareholding"
       ],
       "profilePath": "ipo/mpimanipal/"
     },
@@ -644,12 +461,12 @@
       "listingDate": null,
       "priority": 2,
       "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 81.8,
-      "expectedFieldCount": 11,
+      "completenessPct": 88.9,
+      "expectedFieldCount": 18,
       "missingFieldCount": 2,
       "missingFields": [
         "exchange.lotSize",
-        "exchange.issueComposition"
+        "offer.registrar"
       ],
       "profilePath": "ipo/steamhouse/"
     },
@@ -673,6 +490,168 @@
       "profilePath": "ipo/tempsens/"
     },
     {
+      "id": "annu",
+      "company": "Annu Projects Limited",
+      "symbol": "ANNU",
+      "stage": "listed",
+      "openDate": "2026-08-25",
+      "closeDate": "2026-08-28",
+      "listingDate": "2026-09-02",
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 94.7,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/annu/"
+    },
+    {
+      "id": "deepa",
+      "company": "Deepa Jewellers Limited",
+      "symbol": "DEEPA",
+      "stage": "listed",
+      "openDate": "2026-09-01",
+      "closeDate": "2026-09-03",
+      "listingDate": "2026-09-08",
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 94.4,
+      "expectedFieldCount": 18,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/deepa/"
+    },
+    {
+      "id": "esds",
+      "company": "ESDS Software Solution Limited",
+      "symbol": "ESDS",
+      "stage": "listed",
+      "openDate": "2026-08-28",
+      "closeDate": "2026-09-01",
+      "listingDate": "2026-09-04",
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 94.4,
+      "expectedFieldCount": 18,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/esds/"
+    },
+    {
+      "id": "gaja",
+      "company": "Gaja Alternative Asset Management Limited",
+      "symbol": "GAJA",
+      "stage": "listed",
+      "openDate": "2026-08-19",
+      "closeDate": "2026-08-21",
+      "listingDate": "2026-08-26",
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 94.7,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/gaja/"
+    },
+    {
+      "id": "htel",
+      "company": "Hy-Tech Engineers Limited",
+      "symbol": "HTEL",
+      "stage": "listed",
+      "openDate": "2026-08-24",
+      "closeDate": "2026-08-27",
+      "listingDate": "2026-09-01",
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 94.7,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/htel/"
+    },
+    {
+      "id": "kanohar",
+      "company": "Kanohar Electricals Limited",
+      "symbol": "KANOHAR",
+      "stage": "closed",
+      "openDate": "2026-09-08",
+      "closeDate": "2026-09-10",
+      "listingDate": null,
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 94.4,
+      "expectedFieldCount": 18,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/kanohar/"
+    },
+    {
+      "id": "karamtara",
+      "company": "Karamtara Engineering Limited",
+      "symbol": "KARAMTARA",
+      "stage": "closed",
+      "openDate": "2026-09-09",
+      "closeDate": "2026-09-11",
+      "listingDate": null,
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 94.4,
+      "expectedFieldCount": 18,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/karamtara/"
+    },
+    {
+      "id": "lalithaa",
+      "company": "Lalithaa Jewellery Mart Limited",
+      "symbol": "LALITHAA",
+      "stage": "listed",
+      "openDate": "2026-08-17",
+      "closeDate": "2026-08-19",
+      "listingDate": "2026-08-24",
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 94.7,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/lalithaa/"
+    },
+    {
+      "id": "priority",
+      "company": "Priority Jewels Limited",
+      "symbol": "PRIORITY",
+      "stage": "listed",
+      "openDate": "2026-08-28",
+      "closeDate": "2026-09-01",
+      "listingDate": "2026-09-04",
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 94.4,
+      "expectedFieldCount": 18,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/priority/"
+    },
+    {
       "id": "rentomojo",
       "company": "Rentomojo Limited",
       "symbol": "RENTOMOJO",
@@ -689,6 +668,24 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/rentomojo/"
+    },
+    {
+      "id": "skyways",
+      "company": "Skyways Air Services Limited",
+      "symbol": "SKYWAYS",
+      "stage": "listed",
+      "openDate": "2026-08-24",
+      "closeDate": "2026-08-27",
+      "listingDate": "2026-09-01",
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 94.7,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/skyways/"
     },
     {
       "id": "national-stock-exchange-of-india-limited",

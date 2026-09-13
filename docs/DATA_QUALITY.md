@@ -1,15 +1,15 @@
 # IPO Tracker Data Quality
 
-Generated: **2026-09-13T08:37:58+05:30**  
+Generated: **2026-09-13T09:25:36+05:30**  
 Records audited: **1,371**
 
 ## Completeness scores
 
 | Area | Score | Records in denominator |
 | --- | ---: | ---: |
-| Actionable exchange terms | 75.4% | 1,364 |
-| Recent exchange terms (2Y) | 76.5% | 458 |
-| Offer-document intelligence | 93.7% | 21 |
+| Actionable exchange terms | 75.7% | 1,364 |
+| Recent exchange terms (2Y) | 77.2% | 458 |
+| Offer-document intelligence | 88.3% | 40 |
 | Live subscription categories | 100.0% | 7 |
 | Matured lifecycle dates | 97.4% | 1,332 |
 | Source/provenance trail | 100.0% | 1,371 |
@@ -25,8 +25,8 @@ Records audited: **1,371**
 | closeDate | 1,364 | 1,364 | 0 | 100.0% |
 | priceBand | 1,341 | 1,364 | 23 | 98.3% |
 | lotSize | 13 | 1,364 | 1,351 | 1.0% |
-| issueSizeCr | 204 | 1,364 | 1,160 | 15.0% |
-| issueComposition | 199 | 458 | 259 | 43.4% |
+| issueSizeCr | 215 | 1,364 | 1,149 | 15.8% |
+| issueComposition | 215 | 458 | 243 | 46.9% |
 
 ## Recent exchange fields — last 2 years
 
@@ -39,8 +39,8 @@ Records audited: **1,371**
 | closeDate | 458 | 458 | 0 | 100.0% |
 | priceBand | 448 | 458 | 10 | 97.8% |
 | lotSize | 13 | 458 | 445 | 2.8% |
-| issueSizeCr | 204 | 458 | 254 | 44.5% |
-| issueComposition | 199 | 458 | 259 | 43.4% |
+| issueSizeCr | 215 | 458 | 243 | 46.9% |
+| issueComposition | 215 | 458 | 243 | 46.9% |
 
 ## Historical exchange fields
 
@@ -59,12 +59,12 @@ Records audited: **1,371**
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| registrar | 21 | 21 | 0 | 100.0% |
-| leadManagers | 20 | 21 | 1 | 95.2% |
-| promoters | 21 | 21 | 0 | 100.0% |
-| objectsOfIssue | 21 | 21 | 0 | 100.0% |
-| financials | 21 | 21 | 0 | 100.0% |
-| promoterShareholding | 14 | 21 | 7 | 66.7% |
+| registrar | 36 | 40 | 4 | 90.0% |
+| leadManagers | 37 | 40 | 3 | 92.5% |
+| promoters | 38 | 40 | 2 | 95.0% |
+| objectsOfIssue | 38 | 40 | 2 | 95.0% |
+| financials | 38 | 40 | 2 | 95.0% |
+| promoterShareholding | 25 | 40 | 15 | 62.5% |
 
 ## Open IPO subscription fields
 

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-13T08:37:58+05:30",
+  "generatedAt": "2026-09-13T09:25:36+05:30",
   "asOfDate": "2026-09-13",
   "recordCount": 1371,
   "stageCounts": {
@@ -15,14 +15,14 @@
     "exchangeStage": 1364,
     "recentExchange2Y": 458,
     "historicalExchange": 906,
-    "offerDocumentEligible": 21,
+    "offerDocumentEligible": 40,
     "openNow": 7,
     "maturedClosed": 1332
   },
   "scores": {
-    "exchangeStage": 75.4,
-    "recentExchange2Y": 76.5,
-    "offerDocumentEligible": 93.7,
+    "exchangeStage": 75.7,
+    "recentExchange2Y": 77.2,
+    "offerDocumentEligible": 88.3,
     "openSubscription": 100.0,
     "maturedLifecycle": 97.4,
     "provenance": 100.0
@@ -72,16 +72,16 @@
         "pct": 1.0
       },
       "issueSizeCr": {
-        "present": 204,
+        "present": 215,
         "expected": 1364,
-        "missing": 1160,
-        "pct": 15.0
+        "missing": 1149,
+        "pct": 15.8
       },
       "issueComposition": {
-        "present": 199,
+        "present": 215,
         "expected": 458,
-        "missing": 259,
-        "pct": 43.4
+        "missing": 243,
+        "pct": 46.9
       }
     },
     "recentExchange2Y": {
@@ -128,16 +128,16 @@
         "pct": 2.8
       },
       "issueSizeCr": {
-        "present": 204,
+        "present": 215,
         "expected": 458,
-        "missing": 254,
-        "pct": 44.5
+        "missing": 243,
+        "pct": 46.9
       },
       "issueComposition": {
-        "present": 199,
+        "present": 215,
         "expected": 458,
-        "missing": 259,
-        "pct": 43.4
+        "missing": 243,
+        "pct": 46.9
       }
     },
     "historicalExchange": {
@@ -192,40 +192,40 @@
     },
     "offerDocumentEligible": {
       "registrar": {
-        "present": 21,
-        "expected": 21,
-        "missing": 0,
-        "pct": 100.0
+        "present": 36,
+        "expected": 40,
+        "missing": 4,
+        "pct": 90.0
       },
       "leadManagers": {
-        "present": 20,
-        "expected": 21,
-        "missing": 1,
-        "pct": 95.2
+        "present": 37,
+        "expected": 40,
+        "missing": 3,
+        "pct": 92.5
       },
       "promoters": {
-        "present": 21,
-        "expected": 21,
-        "missing": 0,
-        "pct": 100.0
+        "present": 38,
+        "expected": 40,
+        "missing": 2,
+        "pct": 95.0
       },
       "objectsOfIssue": {
-        "present": 21,
-        "expected": 21,
-        "missing": 0,
-        "pct": 100.0
+        "present": 38,
+        "expected": 40,
+        "missing": 2,
+        "pct": 95.0
       },
       "financials": {
-        "present": 21,
-        "expected": 21,
-        "missing": 0,
-        "pct": 100.0
+        "present": 38,
+        "expected": 40,
+        "missing": 2,
+        "pct": 95.0
       },
       "promoterShareholding": {
-        "present": 14,
-        "expected": 21,
-        "missing": 7,
-        "pct": 66.7
+        "present": 25,
+        "expected": 40,
+        "missing": 15,
+        "pct": 62.5
       }
     },
     "openSubscription": {
@@ -284,8 +284,8 @@
         "pct": 100.0
       },
       "documents": {
-        "present": 23,
-        "expected": 23,
+        "present": 42,
+        "expected": 42,
         "missing": 0,
         "pct": 100.0
       }
@@ -454,27 +454,9 @@
       ],
       "issueSizeCr": [
         {
-          "id": "kanohar",
-          "company": "Kanohar Electricals Limited",
-          "openDate": "2026-09-08",
-          "stage": "closed"
-        },
-        {
-          "id": "pranav",
-          "company": "Pranav Constructions Limited",
-          "openDate": "2026-09-07",
-          "stage": "closed"
-        },
-        {
           "id": "qualiance",
           "company": "Qualiance International Limited",
           "openDate": "2026-09-04",
-          "stage": "listed"
-        },
-        {
-          "id": "deepa",
-          "company": "Deepa Jewellers Limited",
-          "openDate": "2026-09-01",
           "stage": "listed"
         },
         {
@@ -499,18 +481,6 @@
           "id": "ashutosh",
           "company": "Ashutosh Fibre Limited",
           "openDate": "2026-08-31",
-          "stage": "listed"
-        },
-        {
-          "id": "priority",
-          "company": "Priority Jewels Limited",
-          "openDate": "2026-08-28",
-          "stage": "listed"
-        },
-        {
-          "id": "esds",
-          "company": "ESDS Software Solution Limited",
-          "openDate": "2026-08-28",
           "stage": "listed"
         },
         {
@@ -526,77 +496,59 @@
           "stage": "listed"
         },
         {
-          "id": "annu",
-          "company": "Annu Projects Limited",
-          "openDate": "2026-08-25",
-          "stage": "listed"
-        },
-        {
           "id": "symbiotec",
           "company": "Symbiotec Pharmalab Limited",
           "openDate": "2026-08-24",
           "stage": "listed"
         },
         {
-          "id": "skyways",
-          "company": "Skyways Air Services Limited",
+          "id": "madhurknit",
+          "company": "Madhur Knit Crafts Limited",
           "openDate": "2026-08-24",
+          "stage": "listed"
+        },
+        {
+          "id": "abh",
+          "company": "ABH Healthcare Limited",
+          "openDate": "2026-08-24",
+          "stage": "listed"
+        },
+        {
+          "id": "sunshine",
+          "company": "Sunshine Pictures Limited",
+          "openDate": "2026-08-18",
+          "stage": "listed"
+        },
+        {
+          "id": "shankesh",
+          "company": "Shankesh Jewellers Limited",
+          "openDate": "2026-08-18",
+          "stage": "listed"
+        },
+        {
+          "id": "horizonind",
+          "company": "Horizon Industrial Parks Limited",
+          "openDate": "2026-08-17",
+          "stage": "listed"
+        },
+        {
+          "id": "skytech",
+          "company": "Skytech Infinite Platform Limited",
+          "openDate": "2026-08-14",
+          "stage": "listed"
+        },
+        {
+          "id": "credent",
+          "company": "Credent Connect N Care Limited",
+          "openDate": "2026-08-13",
           "stage": "listed"
         }
       ],
       "issueComposition": [
         {
-          "id": "steamhouse",
-          "company": "Steamhouse India Limited",
-          "openDate": "2026-09-09",
-          "stage": "closed"
-        },
-        {
-          "id": "mpimanipal",
-          "company": "Manipal Payment and Identity Solutions Limited",
-          "openDate": "2026-09-09",
-          "stage": "closed"
-        },
-        {
-          "id": "lccproject",
-          "company": "LCC Projects Limited",
-          "openDate": "2026-09-09",
-          "stage": "closed"
-        },
-        {
-          "id": "karamtara",
-          "company": "Karamtara Engineering Limited",
-          "openDate": "2026-09-09",
-          "stage": "closed"
-        },
-        {
-          "id": "arcil",
-          "company": "Asset Reconstruction Company (India) Limited",
-          "openDate": "2026-09-09",
-          "stage": "closed"
-        },
-        {
-          "id": "kanohar",
-          "company": "Kanohar Electricals Limited",
-          "openDate": "2026-09-08",
-          "stage": "closed"
-        },
-        {
-          "id": "pranav",
-          "company": "Pranav Constructions Limited",
-          "openDate": "2026-09-07",
-          "stage": "closed"
-        },
-        {
           "id": "qualiance",
           "company": "Qualiance International Limited",
           "openDate": "2026-09-04",
-          "stage": "listed"
-        },
-        {
-          "id": "deepa",
-          "company": "Deepa Jewellers Limited",
-          "openDate": "2026-09-01",
           "stage": "listed"
         },
         {
@@ -624,22 +576,107 @@
           "stage": "listed"
         },
         {
-          "id": "priority",
-          "company": "Priority Jewels Limited",
-          "openDate": "2026-08-28",
+          "id": "lumino",
+          "company": "Lumino Industries Limited",
+          "openDate": "2026-08-27",
           "stage": "listed"
         },
         {
-          "id": "esds",
-          "company": "ESDS Software Solution Limited",
-          "openDate": "2026-08-28",
+          "id": "sumax",
+          "company": "Sumax Engineering Limited",
+          "openDate": "2026-08-25",
+          "stage": "listed"
+        },
+        {
+          "id": "symbiotec",
+          "company": "Symbiotec Pharmalab Limited",
+          "openDate": "2026-08-24",
+          "stage": "listed"
+        },
+        {
+          "id": "madhurknit",
+          "company": "Madhur Knit Crafts Limited",
+          "openDate": "2026-08-24",
+          "stage": "listed"
+        },
+        {
+          "id": "abh",
+          "company": "ABH Healthcare Limited",
+          "openDate": "2026-08-24",
+          "stage": "listed"
+        },
+        {
+          "id": "sunshine",
+          "company": "Sunshine Pictures Limited",
+          "openDate": "2026-08-18",
+          "stage": "listed"
+        },
+        {
+          "id": "shankesh",
+          "company": "Shankesh Jewellers Limited",
+          "openDate": "2026-08-18",
+          "stage": "listed"
+        },
+        {
+          "id": "horizonind",
+          "company": "Horizon Industrial Parks Limited",
+          "openDate": "2026-08-17",
+          "stage": "listed"
+        },
+        {
+          "id": "skytech",
+          "company": "Skytech Infinite Platform Limited",
+          "openDate": "2026-08-14",
+          "stage": "listed"
+        },
+        {
+          "id": "credent",
+          "company": "Credent Connect N Care Limited",
+          "openDate": "2026-08-13",
           "stage": "listed"
         }
       ]
     },
     "offerDocumentEligible": {
-      "registrar": [],
+      "registrar": [
+        {
+          "id": "steamhouse",
+          "company": "Steamhouse India Limited",
+          "openDate": "2026-09-09",
+          "stage": "closed"
+        },
+        {
+          "id": "pranav",
+          "company": "Pranav Constructions Limited",
+          "openDate": "2026-09-07",
+          "stage": "closed"
+        },
+        {
+          "id": "symbiotec",
+          "company": "Symbiotec Pharmalab Limited",
+          "openDate": "2026-08-24",
+          "stage": "listed"
+        },
+        {
+          "id": "sunshine",
+          "company": "Sunshine Pictures Limited",
+          "openDate": "2026-08-18",
+          "stage": "listed"
+        }
+      ],
       "leadManagers": [
+        {
+          "id": "symbiotec",
+          "company": "Symbiotec Pharmalab Limited",
+          "openDate": "2026-08-24",
+          "stage": "listed"
+        },
+        {
+          "id": "sunshine",
+          "company": "Sunshine Pictures Limited",
+          "openDate": "2026-08-18",
+          "stage": "listed"
+        },
         {
           "id": "national-stock-exchange-of-india-limited",
           "company": "National Stock Exchange of India Limited",
@@ -647,10 +684,67 @@
           "stage": "filing-pipeline"
         }
       ],
-      "promoters": [],
-      "objectsOfIssue": [],
-      "financials": [],
+      "promoters": [
+        {
+          "id": "symbiotec",
+          "company": "Symbiotec Pharmalab Limited",
+          "openDate": "2026-08-24",
+          "stage": "listed"
+        },
+        {
+          "id": "sunshine",
+          "company": "Sunshine Pictures Limited",
+          "openDate": "2026-08-18",
+          "stage": "listed"
+        }
+      ],
+      "objectsOfIssue": [
+        {
+          "id": "symbiotec",
+          "company": "Symbiotec Pharmalab Limited",
+          "openDate": "2026-08-24",
+          "stage": "listed"
+        },
+        {
+          "id": "sunshine",
+          "company": "Sunshine Pictures Limited",
+          "openDate": "2026-08-18",
+          "stage": "listed"
+        }
+      ],
+      "financials": [
+        {
+          "id": "symbiotec",
+          "company": "Symbiotec Pharmalab Limited",
+          "openDate": "2026-08-24",
+          "stage": "listed"
+        },
+        {
+          "id": "sunshine",
+          "company": "Sunshine Pictures Limited",
+          "openDate": "2026-08-18",
+          "stage": "listed"
+        }
+      ],
       "promoterShareholding": [
+        {
+          "id": "mpimanipal",
+          "company": "Manipal Payment and Identity Solutions Limited",
+          "openDate": "2026-09-09",
+          "stage": "closed"
+        },
+        {
+          "id": "lccproject",
+          "company": "LCC Projects Limited",
+          "openDate": "2026-09-09",
+          "stage": "closed"
+        },
+        {
+          "id": "arcil",
+          "company": "Asset Reconstruction Company (India) Limited",
+          "openDate": "2026-09-09",
+          "stage": "closed"
+        },
         {
           "id": "prasolchem",
           "company": "Prasol Chemicals Limited",
@@ -664,9 +758,39 @@
           "stage": "closed"
         },
         {
+          "id": "pranav",
+          "company": "Pranav Constructions Limited",
+          "openDate": "2026-09-07",
+          "stage": "closed"
+        },
+        {
+          "id": "lumino",
+          "company": "Lumino Industries Limited",
+          "openDate": "2026-08-27",
+          "stage": "listed"
+        },
+        {
+          "id": "symbiotec",
+          "company": "Symbiotec Pharmalab Limited",
+          "openDate": "2026-08-24",
+          "stage": "listed"
+        },
+        {
+          "id": "augmont",
+          "company": "Augmont Enterprises Limited",
+          "openDate": "2026-08-21",
+          "stage": "listed"
+        },
+        {
           "id": "tempsens",
           "company": "Tempsens Instruments (India) Limited",
           "openDate": "2026-08-20",
+          "stage": "listed"
+        },
+        {
+          "id": "sunshine",
+          "company": "Sunshine Pictures Limited",
+          "openDate": "2026-08-18",
           "stage": "listed"
         },
         {
