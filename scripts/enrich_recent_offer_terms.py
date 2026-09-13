@@ -2,13 +2,14 @@
 """Fill recent priority IPO terms from full official SEBI offer documents.
 
 This is a focused bridge for fields that exchange endpoints do not reliably
-expose inside GitHub Actions.  It consumes only full SEBI RHP/Prospectus PDFs
+expose inside GitHub Actions. It consumes only full SEBI RHP/Prospectus PDFs
 already attached to a priority record, reads the early offer-document pages,
 and fills missing application lot / issue composition / issue size facts.
 
 Safety rules:
 - full official SEBI PDFs only; abridged and supplemental documents are rejected;
 - lot size requires explicit Equity Share application-lot wording;
+- lot-only records require a final Prospectus, because RHPs commonly retain [●];
 - priority queue controls scope;
 - all merges are fill-only;
 - the source is labelled as a regulator offer document, never as an exchange;
@@ -73,14 +74,21 @@ def choose_full_document(record: dict[str, Any]) -> dict[str, Any] | None:
             continue
         if typ not in rank:
             continue
-        # SEBI commondocs / explicit abridged links are intentionally skipped;
-        # application-lot wording normally lives in the full offer document.
         if "ABRIDGED" in context or "/COMMONDOCS/" in url.upper() or "AP_" in url.upper():
             continue
         candidates.append((rank[typ], str(doc.get("filedDate") or ""), int("/attachdocs/" in url.lower()), doc))
     if not candidates:
         return None
     return max(candidates, key=lambda item: (item[0], item[1], item[2]))[3]
+
+
+def should_attempt_document(gaps: set[str], doc: dict[str, Any] | None) -> bool:
+    """Avoid downloading an RHP when the only unresolved fact is final lot size."""
+    if not doc:
+        return False
+    if gaps == {"exchange.lotSize"}:
+        return str(doc.get("type") or "").upper() == "PROSPECTUS"
+    return True
 
 
 def _valid_lot(value: str | int | float | None) -> int | None:
@@ -108,8 +116,6 @@ def extract_lot_size(text: str) -> int | None:
             if lot is not None:
                 return lot
 
-    # Fallback requires the named Bid Lot followed directly by an Equity Share
-    # quantity and rejects anchor-investor / employee-specific local contexts.
     for match in re.finditer(r"\bBid\s+Lot\b.{0,90}?([\d,]{1,6})\s+Equity\s+Shares\b", flat, re.I):
         before = flat[max(0, match.start() - 120):match.start()].lower()
         if "anchor investor" in before or "employee" in before:
@@ -215,12 +221,16 @@ def enrich_payload(payload: dict[str, Any], session: requests.Session, *, priori
     if limit > 0:
         records = records[:limit]
 
-    attempted = extracted = updated = failed = 0
+    attempted = extracted = updated = failed = skipped_lot_only_rhp = 0
     field_counts: dict[str, int] = {}
     errors: list[str] = []
     for record in records:
+        record_id = str(record.get("id") or "")
+        gaps = targets.get(record_id, set())
         doc = choose_full_document(record)
-        if not doc:
+        if not should_attempt_document(gaps, doc):
+            if doc and gaps == {"exchange.lotSize"}:
+                skipped_lot_only_rhp += 1
             continue
         attempted += 1
         try:
@@ -259,6 +269,7 @@ def enrich_payload(payload: dict[str, Any], session: requests.Session, *, priori
         "extracted": extracted,
         "updated": updated,
         "failed": failed,
+        "skippedLotOnlyRhp": skipped_lot_only_rhp,
         "fields": field_counts,
         "asOf": as_of,
         "errors": errors[:10],
@@ -281,7 +292,8 @@ def main() -> int:
     print(
         "SEBI recent offer terms: "
         f"targets={health['targets']} attempted={health['attempted']} extracted={health['extracted']} "
-        f"updated={health['updated']} failed={health['failed']} fields={health['fields']}"
+        f"updated={health['updated']} failed={health['failed']} skipped_lot_only_rhp={health['skippedLotOnlyRhp']} "
+        f"fields={health['fields']}"
     )
     return 0
 
