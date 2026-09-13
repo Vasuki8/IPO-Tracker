@@ -34,8 +34,9 @@ jobs:
         run: uv sync
 
       - name: Inspect real shareholding layouts
-        shell: python
+        shell: bash
         run: |
+          uv run python - <<'PY'
           import io
           import json
           import re
@@ -103,3 +104,4 @@ jobs:
                   print(text[:4500])
 
           print("\nPHASE45B_LAYOUT_PROBE_DONE")
+          PY
