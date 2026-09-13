@@ -27,6 +27,9 @@ on:
       - "scripts/run_issuer_offer_docs.py"
       - "scripts/run_critical_offer_backfill.py"
       - "scripts/enrich_sebi_document_links.py"
+      - "scripts/enrich_sebi_priority_registers.py"
+      - "scripts/enrich_sebi_priority_registers_v2.py"
+      - "scripts/enrich_recent_offer_terms.py"
       - "scripts/critical_backfill.py"
       - "scripts/audit_data_completeness.py"
       - "scripts/build_missing_queue.py"
@@ -44,6 +47,9 @@ on:
       - "tests/test_issuer_offer_docs.py"
       - "tests/test_critical_offer_backfill.py"
       - "tests/test_sebi_document_links.py"
+      - "tests/test_sebi_priority_registers.py"
+      - "tests/test_sebi_priority_registers_v2.py"
+      - "tests/test_recent_offer_terms.py"
       - "tests/test_critical_backfill.py"
       - "tests/test_data_completeness.py"
       - "tests/test_missing_queue.py"
@@ -62,7 +68,7 @@ concurrency:
 jobs:
   enrich:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 55
     steps:
       - name: Checkout
         uses: actions/checkout@v7.0.1
@@ -117,6 +123,15 @@ jobs:
       - name: Run SEBI document-link tests
         run: uv run python -m unittest discover -s tests -p "test_sebi_document_links.py" -v
 
+      - name: Run SEBI priority-register tests
+        run: uv run python -m unittest discover -s tests -p "test_sebi_priority_registers.py" -v
+
+      - name: Run SEBI priority-search v2 tests
+        run: uv run python -m unittest discover -s tests -p "test_sebi_priority_registers_v2.py" -v
+
+      - name: Run recent offer-term tests
+        run: uv run python -m unittest discover -s tests -p "test_recent_offer_terms.py" -v
+
       - name: Run critical-backfill tests
         run: uv run python -m unittest discover -s tests -p "test_critical_backfill.py" -v
 
@@ -137,13 +152,27 @@ jobs:
             LINK_LIMIT=0
             ISSUER_LIMIT=0
             CRITICAL_LIMIT=0
+            SEARCH_LIMIT=0
+            TERMS_LIMIT=0
           else
             DOC_LIMIT=12
             LINK_LIMIT=40
             ISSUER_LIMIT=10
             CRITICAL_LIMIT=20
+            SEARCH_LIMIT=30
+            TERMS_LIMIT=16
           fi
+          # Current SEBI RHP/Prospectus registers cover the newest filings. For
+          # priority records just beyond the first page, v2 uses SEBI's GET-based
+          # exact-issuer search and accepts only RHP/Prospectus results.
+          uv run python scripts/enrich_sebi_priority_registers_v2.py --priority-max 2 --search-limit "$SEARCH_LIMIT"
           uv run python scripts/enrich_sebi_document_links.py --priority-max 2 --limit "$LINK_LIMIT"
+
+          # Full official offer documents can recover final lot size from a
+          # Prospectus and issue size/composition from RHP/Prospectus. Merges are
+          # fill-only and lot-only RHPs are skipped when their lot is still [●].
+          uv run python scripts/enrich_recent_offer_terms.py --priority-max 2 --limit "$TERMS_LIMIT"
+
           uv run python scripts/run_offer_docs_v11.py --limit "$DOC_LIMIT"
           uv run python scripts/run_issuer_offer_docs.py --priority-max 2 --limit "$ISSUER_LIMIT"
           uv run python scripts/audit_data_completeness.py
