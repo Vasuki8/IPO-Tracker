@@ -28,7 +28,7 @@ jobs:
   backfill-p4-issue-terms:
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 35
     steps:
       - name: Checkout latest main
         uses: actions/checkout@v7.0.1
@@ -58,7 +58,7 @@ jobs:
 
       - name: Backfill P4 issue size and composition
         run: |
-          uv run python scripts/enrich_nse_issue_terms.py --history-days 730 --limit 60
+          uv run python scripts/enrich_nse_issue_terms.py --history-days 730 --limit 200
           uv run python scripts/audit_data_completeness.py
           uv run python scripts/build_missing_queue.py
 
