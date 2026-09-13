@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-09-13T23:21:13+05:30",
+  "generatedAt": "2026-09-13T23:21:30+05:30",
   "asOfDate": "2026-09-13",
-  "recordCount": 1357,
-  "queueCount": 1089,
+  "recordCount": 1354,
+  "queueCount": 1086,
   "priorityCounts": {
-    "P4 recent history (2y)": 182,
+    "P4 recent history (2y)": 179,
     "P5 historical backfill": 907
   },
   "fieldGapCounts": {
-    "exchange.lotSize": 1034,
-    "exchange.issueSizeCr": 947,
-    "exchange.issueComposition": 41,
+    "exchange.lotSize": 1031,
+    "exchange.issueSizeCr": 946,
+    "exchange.issueComposition": 40,
     "lifecycle.listingDate": 33,
     "offer.promoterShareholding": 28,
     "offer.registrar": 27,
@@ -18,7 +18,7 @@
     "offer.promoters": 27,
     "offer.objectsOfIssue": 27,
     "offer.financials": 27,
-    "exchange.priceBand": 15,
+    "exchange.priceBand": 13,
     "provenance.sources": 1
   },
   "resolvedUnavailableRecordCount": 0,
@@ -846,28 +846,6 @@
       "profilePath": "ipo/spgcl/"
     },
     {
-      "id": "adanienpp1",
-      "company": "Adani Enterprises Limited",
-      "symbol": "ADANIENPP1",
-      "stage": "listed",
-      "openDate": "2026-01-06",
-      "closeDate": "2026-01-08",
-      "listingDate": "2026-02-10",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/adanienpp1/"
-    },
-    {
       "id": "anawil",
       "company": "Anawil Wire and Engineering Limited",
       "symbol": "ANAWIL",
@@ -1063,48 +1041,6 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/abhapower/"
-    },
-    {
-      "id": "avtl29",
-      "company": "Aegis Vopak Terminals Limited",
-      "symbol": "AVTL29",
-      "stage": "listed",
-      "openDate": "2025-05-26",
-      "closeDate": "2025-05-28",
-      "listingDate": "2026-01-08",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.priceBand",
-        "exchange.lotSize"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/avtl29/"
-    },
-    {
-      "id": "84ail28",
-      "company": "Afcons Infrastructure Limited",
-      "symbol": "84AIL28",
-      "stage": "listed",
-      "openDate": "2024-10-25",
-      "closeDate": "2024-10-29",
-      "listingDate": "2025-10-17",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.priceBand",
-        "exchange.lotSize"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/84ail28/"
     },
     {
       "id": "agarwaltuf",
@@ -6381,6 +6317,69 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/astron/"
+    },
+    {
+      "id": "atalreal",
+      "company": "Atal Realtech Limited",
+      "symbol": "ATALREAL",
+      "stage": "listed",
+      "openDate": "2020-09-30",
+      "closeDate": "2020-10-07",
+      "listingDate": "2020-10-15",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/atalreal/"
+    },
+    {
+      "id": "atmastco",
+      "company": "Atmastco Limited",
+      "symbol": "ATMASTCO",
+      "stage": "listed",
+      "openDate": "2024-02-15",
+      "closeDate": "2024-02-20",
+      "listingDate": "2024-02-23",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/atmastco/"
+    },
+    {
+      "id": "aurdis",
+      "company": "Aurangabad Distillery Limited",
+      "symbol": "AURDIS",
+      "stage": "listed",
+      "openDate": "2016-09-30",
+      "closeDate": "2016-10-06",
+      "listingDate": "2016-10-17",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/aurdis/"
     }
   ],
   "resolvedUnavailable": [],

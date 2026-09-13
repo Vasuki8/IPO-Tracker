@@ -9,7 +9,7 @@
       "BSE India"
     ],
     "seed": false,
-    "recordCount": 1357,
+    "recordCount": 1354,
     "historyStart": "2024-09-13",
     "sourceHealth": {
       "NSE-live": {
@@ -282,6 +282,41 @@
         "historyDays": 730,
         "retryDays": 14,
         "errors": []
+      },
+      "P4-verified-non-IPO-cleanup": {
+        "ok": true,
+        "historyDays": 730,
+        "checkedOn": "2026-09-13",
+        "removedCount": 3,
+        "removed": [
+          {
+            "id": "adanienpp1",
+            "company": "Adani Enterprises Limited",
+            "symbol": "ADANIENPP1",
+            "openDate": "2026-01-06",
+            "reason": "ADANIENPP1 is a partly-paid rights equity security, while 6-Jan-2026 is the opening date of AEL's public NCD issue; the stored row is not an IPO identity.",
+            "evidence": "https://nsearchives.nseindia.com/content/circulars/CML72630.pdf",
+            "evidence2": "https://www.adani.com/newsroom/media-releases/adani-enterprises-launches-its-3rd-public-issue-of-ncds-of-rs1000-crore"
+          },
+          {
+            "id": "avtl29",
+            "company": "Aegis Vopak Terminals Limited",
+            "symbol": "AVTL29",
+            "openDate": "2025-05-26",
+            "reason": "NSE identifies AVTL29 as Series N0, AVTL Floating Rate 2029 debt security.",
+            "evidence": "https://nsearchives.nseindia.com/content/circulars/CML72192.pdf",
+            "evidence2": null
+          },
+          {
+            "id": "84ail28",
+            "company": "Afcons Infrastructure Limited",
+            "symbol": "84AIL28",
+            "openDate": "2024-10-25",
+            "reason": "NSE identifies the AIL 8.40% 2028 security as debt; AFCONS is the equity IPO symbol.",
+            "evidence": "https://nsearchives.nseindia.com/content/circulars/CML70872.pdf",
+            "evidence2": null
+          }
+        ]
       }
     },
     "errors": [],
@@ -19477,80 +19512,6 @@
       }
     },
     {
-      "id": "adanienpp1",
-      "matchKey": "ADANIENTERPRISES",
-      "symbol": "ADANIENPP1",
-      "company": "Adani Enterprises Limited",
-      "board": "Mainboard",
-      "exchange": "NSE",
-      "status": "listed",
-      "priceBand": {
-        "min": 450.0,
-        "max": 450.0
-      },
-      "lifecycle": {
-        "stage": "exchange",
-        "stageDate": "2026-01-06"
-      },
-      "sources": [
-        {
-          "name": "NSE historical",
-          "kind": "exchange",
-          "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
-          "asOf": "2026-09-12T08:19:23+05:30"
-        }
-      ],
-      "source": {
-        "name": "NSE historical",
-        "kind": "exchange",
-        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
-        "asOf": "2026-09-12T08:19:23+05:30"
-      },
-      "observations": {
-        "NSE": {
-          "openDate": "2026-01-06",
-          "closeDate": "2026-01-08",
-          "priceBand": {
-            "min": 450.0,
-            "max": 450.0
-          },
-          "lotSize": null,
-          "issueSizeCr": null
-        }
-      },
-      "documents": [],
-      "listingDate": "2026-02-10",
-      "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
-        "checks": [],
-        "independentSources": [
-          "NSE"
-        ]
-      },
-      "profilePath": "ipo/adanienpp1/",
-      "openDate": "2026-01-06",
-      "closeDate": "2026-01-08",
-      "nseIssueInfoLotBackfill": {
-        "status": "no-lot",
-        "lastAttemptAt": "2026-09-13T17:15:59+05:30",
-        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=ADANIENPP1&type=Past",
-        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ADANIENPP1&series=EQ",
-        "lotSize": null,
-        "error": null
-      },
-      "nseIssueInfoTermsBackfill": {
-        "status": "no-terms",
-        "lastAttemptAt": "2026-09-13T22:21:02+05:30",
-        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=ADANIENPP1&type=Past",
-        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ADANIENPP1&series=EQ",
-        "freshIssueCr": null,
-        "ofsCr": null,
-        "issueSizeCr": null,
-        "error": null
-      }
-    },
-    {
       "id": "e2erail",
       "matchKey": "ETOETRANSPORTATIONINFRASTRUCTURE",
       "symbol": "E2ERAIL",
@@ -34929,81 +34890,6 @@
       }
     },
     {
-      "id": "avtl29",
-      "matchKey": "AEGISVOPAKTERMINALS",
-      "symbol": "AVTL29",
-      "company": "Aegis Vopak Terminals Limited",
-      "board": "Mainboard",
-      "exchange": "NSE",
-      "status": "listed",
-      "listingDate": "2026-01-08",
-      "lifecycle": {
-        "stage": "exchange",
-        "stageDate": "2025-05-26"
-      },
-      "sources": [
-        {
-          "name": "NSE historical",
-          "kind": "exchange",
-          "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
-          "asOf": "2026-09-12T08:19:29+05:30"
-        },
-        {
-          "name": "NSE primary-market monthly report",
-          "kind": "exchange",
-          "url": "https://nsearchives.nseindia.com/web/sites/default/files/inline-files/Primary%20Market%20Monthly%20Report%20-%20June%202025.xlsx",
-          "asOf": "2026-09-13T16:13:10+05:30"
-        }
-      ],
-      "source": {
-        "name": "NSE historical",
-        "kind": "exchange",
-        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
-        "asOf": "2026-09-12T08:19:29+05:30"
-      },
-      "observations": {
-        "NSE": {
-          "openDate": "2025-05-26",
-          "closeDate": "2025-05-28",
-          "priceBand": null,
-          "lotSize": null,
-          "issueSizeCr": null
-        }
-      },
-      "documents": [],
-      "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
-        "checks": [],
-        "independentSources": [
-          "NSE"
-        ]
-      },
-      "profilePath": "ipo/avtl29/",
-      "openDate": "2025-05-26",
-      "closeDate": "2025-05-28",
-      "sharesOffered": 119148936,
-      "issueSizeCr": 2800.0,
-      "freshIssueCr": 2800.0,
-      "ofsCr": 0.0,
-      "issueComposition": {
-        "freshShares": 119148936,
-        "ofsShares": 0,
-        "freshIssueCr": 2800.0,
-        "ofsCr": 0.0,
-        "totalIssueSizeCr": 2800.0,
-        "valuationPriceUsed": 235.0
-      },
-      "nseIssueInfoLotBackfill": {
-        "status": "identity-mismatch",
-        "lastAttemptAt": "2026-09-13T18:38:46+05:30",
-        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=AVTL29&type=Past",
-        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=AVTL29&series=EQ",
-        "lotSize": null,
-        "error": null
-      }
-    },
-    {
       "id": "belrise",
       "matchKey": "BELRISEINDUSTRIES",
       "symbol": "BELRISE",
@@ -42134,81 +42020,6 @@
         "lastAttemptAt": "2026-09-13T18:46:07+05:30",
         "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SAGILITY&type=Past",
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SAGILITY&series=EQ",
-        "lotSize": null,
-        "error": null
-      }
-    },
-    {
-      "id": "84ail28",
-      "matchKey": "AFCONSINFRASTRUCTURE",
-      "symbol": "84AIL28",
-      "company": "Afcons Infrastructure Limited",
-      "board": "Mainboard",
-      "exchange": "NSE",
-      "status": "listed",
-      "listingDate": "2025-10-17",
-      "lifecycle": {
-        "stage": "exchange",
-        "stageDate": "2024-10-25"
-      },
-      "sources": [
-        {
-          "name": "NSE historical",
-          "kind": "exchange",
-          "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
-          "asOf": "2026-09-12T08:19:27+05:30"
-        },
-        {
-          "name": "NSE primary-market monthly report",
-          "kind": "exchange",
-          "url": "https://nsearchives.nseindia.com/web/sites/default/files/inline-files/Primary%20Market%20Monthly%20Report%20-%20November%202024.xlsx",
-          "asOf": "2026-09-13T16:13:10+05:30"
-        }
-      ],
-      "source": {
-        "name": "NSE historical",
-        "kind": "exchange",
-        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
-        "asOf": "2026-09-12T08:19:27+05:30"
-      },
-      "observations": {
-        "NSE": {
-          "openDate": "2024-10-25",
-          "closeDate": "2024-10-29",
-          "priceBand": null,
-          "lotSize": null,
-          "issueSizeCr": null
-        }
-      },
-      "documents": [],
-      "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
-        "checks": [],
-        "independentSources": [
-          "NSE"
-        ]
-      },
-      "profilePath": "ipo/84ail28/",
-      "openDate": "2024-10-25",
-      "closeDate": "2024-10-29",
-      "sharesOffered": 117327139,
-      "issueSizeCr": 5430.0,
-      "freshIssueCr": 1252.2466,
-      "ofsCr": 4180.0,
-      "issueComposition": {
-        "freshShares": 27046362,
-        "ofsShares": 90280777,
-        "freshIssueCr": 1252.2466,
-        "ofsCr": 4180.0,
-        "totalIssueSizeCr": 5430.0,
-        "valuationPriceUsed": 463.0
-      },
-      "nseIssueInfoLotBackfill": {
-        "status": "identity-mismatch",
-        "lastAttemptAt": "2026-09-13T18:46:12+05:30",
-        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=84AIL28&type=Past",
-        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=84AIL28&series=EQ",
         "lotSize": null,
         "error": null
       }
