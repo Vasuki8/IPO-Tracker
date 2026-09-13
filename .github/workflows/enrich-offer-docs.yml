@@ -159,8 +159,11 @@ jobs:
             LINK_LIMIT=40
             ISSUER_LIMIT=10
             CRITICAL_LIMIT=20
-            SEARCH_LIMIT=30
-            TERMS_LIMIT=16
+            # P2 currently contains 34 recent IPOs. Cover the full batch in one
+            # normal run so official SEBI discovery + term extraction can reduce
+            # the queue immediately instead of advancing only 16 records/day.
+            SEARCH_LIMIT=40
+            TERMS_LIMIT=40
           fi
           # Current SEBI RHP/Prospectus registers cover the newest filings. For
           # priority records just beyond the first page, v2 uses SEBI's GET-based
