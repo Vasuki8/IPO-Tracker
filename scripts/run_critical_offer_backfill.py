@@ -4,7 +4,7 @@
 The generic critical_backfill module also handles exchange/subscription work.
 For PDF extraction we use stricter selection: only a direct official PDF (or a
 SEBI viewer URL whose file parameter is a PDF) is eligible. This prevents an
-HTML filing landing page from ever being handed to pypdf. Parser v6 is used for
+HTML filing landing page from ever being handed to pypdf. Parser v7 is used for
 the actual extraction, including ranked deep financial/shareholding pages and
 bounded retries for truncated PDF transfers.
 """
@@ -19,10 +19,10 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 import critical_backfill as base  # noqa: E402
-import run_offer_docs_v6 as parser_v6  # noqa: E402
+import run_offer_docs_v7 as parser_v7  # noqa: E402
 
-# Use the v6-patched base parser for full-document fallbacks too.
-base.offer = parser_v6.base
+# Use the v7-patched base parser for full-document fallbacks too.
+base.offer = parser_v7.base
 
 
 def _direct_pdf_url(url: str) -> str | None:
