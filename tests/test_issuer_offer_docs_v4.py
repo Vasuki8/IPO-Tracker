@@ -111,6 +111,96 @@ class IssuerOfferDocsV4Tests(unittest.TestCase):
         }
         self.assertEqual(mod._identity_safe_targets(payload, queue, 4, 10), [])
 
+    def test_current_parser_success_for_same_document_is_skipped(self):
+        spec_entry = mod.base.ISSUER_DOCUMENTS["ardee"]
+        payload = {
+            "ipos": [
+                {
+                    "id": "ardee",
+                    "company": "Ardee Industries Limited",
+                    "issuerDocumentExtraction": {
+                        "status": "extracted",
+                        "parserVersion": mod.base.PARSER_VERSION,
+                        "documentUrl": spec_entry["url"],
+                    },
+                }
+            ]
+        }
+        queue = {
+            "queue": [
+                {
+                    "id": "ardee",
+                    "company": "Ardee Industries Limited",
+                    "priority": 4,
+                    "missingFields": ["offer.financials"],
+                }
+            ]
+        }
+        self.assertEqual(mod._identity_safe_targets(payload, queue, 4, 10), [])
+
+    def test_previous_batch_failure_moves_behind_fresh_candidate(self):
+        payload = {
+            "meta": {
+                "issuerOfferDocumentHealth": {
+                    "errors": ["Ardee Industries Limited: read timeout"]
+                }
+            },
+            "ipos": [
+                {"id": "ardee", "company": "Ardee Industries Limited"},
+                {"id": "indomim", "company": "INDO-MIM Limited"},
+            ],
+        }
+        queue = {
+            "queue": [
+                {
+                    "id": "ardee",
+                    "company": "Ardee Industries Limited",
+                    "priority": 4,
+                    "missingFields": ["offer.financials"],
+                },
+                {
+                    "id": "indomim",
+                    "company": "INDO-MIM Limited",
+                    "priority": 4,
+                    "missingFields": ["offer.financials"],
+                },
+            ]
+        }
+
+        targets = mod._identity_safe_targets(payload, queue, priority_max=4, limit=1)
+        self.assertEqual(len(targets), 1)
+        self.assertEqual(targets[0][0]["id"], "indomim")
+
+    def test_document_change_reenables_previous_success(self):
+        spec_entry = mod.base.ISSUER_DOCUMENTS["ardee"]
+        payload = {
+            "ipos": [
+                {
+                    "id": "ardee",
+                    "company": "Ardee Industries Limited",
+                    "issuerDocumentExtraction": {
+                        "status": "extracted",
+                        "parserVersion": mod.base.PARSER_VERSION,
+                        "documentUrl": "https://example.invalid/old-ardee.pdf",
+                    },
+                }
+            ]
+        }
+        queue = {
+            "queue": [
+                {
+                    "id": "ardee",
+                    "company": "Ardee Industries Limited",
+                    "priority": 4,
+                    "missingFields": ["exchange.issueComposition"],
+                }
+            ]
+        }
+
+        targets = mod._identity_safe_targets(payload, queue, priority_max=4, limit=10)
+        self.assertEqual(len(targets), 1)
+        self.assertEqual(targets[0][2]["url"], spec_entry["url"])
+
 
 if __name__ == "__main__":
     unittest.main()
