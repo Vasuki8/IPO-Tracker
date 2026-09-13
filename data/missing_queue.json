@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-09-14T03:51:34+05:30",
+  "generatedAt": "2026-09-14T04:08:07+05:30",
   "asOfDate": "2026-09-14",
   "recordCount": 1354,
-  "queueCount": 1042,
+  "queueCount": 1038,
   "priorityCounts": {
-    "P4 recent history (2y)": 135,
+    "P4 recent history (2y)": 131,
     "P5 historical backfill": 907
   },
   "fieldGapCounts": {
     "exchange.lotSize": 1024,
-    "exchange.issueSizeCr": 925,
+    "exchange.issueSizeCr": 921,
     "lifecycle.listingDate": 28,
-    "exchange.issueComposition": 26,
+    "exchange.issueComposition": 22,
     "exchange.priceBand": 13,
     "provenance.sources": 1
   },
@@ -204,69 +204,6 @@
       "profilePath": "ipo/rajputana/"
     },
     {
-      "id": "abhapower",
-      "company": "Abha Power and Steel Limited",
-      "symbol": "ABHAPOWER",
-      "stage": "listed",
-      "openDate": "2024-11-27",
-      "closeDate": "2024-11-29",
-      "listingDate": "2024-12-04",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/abhapower/"
-    },
-    {
-      "id": "agarwaltuf",
-      "company": "Agarwal Toughened Glass India Limited",
-      "symbol": "AGARWALTUF",
-      "stage": "listed",
-      "openDate": "2024-11-28",
-      "closeDate": "2024-12-02",
-      "listingDate": "2024-12-05",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/agarwaltuf/"
-    },
-    {
-      "id": "apexeco",
-      "company": "Apex Ecotech Limited",
-      "symbol": "APEXECO",
-      "stage": "listed",
-      "openDate": "2024-11-27",
-      "closeDate": "2024-11-29",
-      "listingDate": "2024-12-04",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/apexeco/"
-    },
-    {
       "id": "c2c",
       "company": "C2C Advanced Systems Limited",
       "symbol": "C2C",
@@ -286,27 +223,6 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/c2c/"
-    },
-    {
-      "id": "dhanlaxmi",
-      "company": "Dhanlaxmi Crop Science Limited",
-      "symbol": "DHANLAXMI",
-      "stage": "listed",
-      "openDate": "2024-12-09",
-      "closeDate": "2024-12-11",
-      "listingDate": "2024-12-16",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/dhanlaxmi/"
     },
     {
       "id": "etml",
@@ -6259,6 +6175,90 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/burgerking/"
+    },
+    {
+      "id": "cps",
+      "company": "C P S Shapers Limited",
+      "symbol": "CPS",
+      "stage": "listed",
+      "openDate": "2023-08-29",
+      "closeDate": "2023-08-31",
+      "listingDate": "2023-09-07",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/cps/"
+    },
+    {
+      "id": "mapmyindia",
+      "company": "C.E. Info Systems Limited",
+      "symbol": "MAPMYINDIA",
+      "stage": "listed",
+      "openDate": "2021-12-09",
+      "closeDate": "2021-12-13",
+      "listingDate": "2021-12-21",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/mapmyindia/"
+    },
+    {
+      "id": "ckpleisure",
+      "company": "CKP Leisure Limited",
+      "symbol": "CKPLEISURE",
+      "stage": "listed",
+      "openDate": "2018-02-21",
+      "closeDate": "2018-02-23",
+      "listingDate": "2018-03-06",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/ckpleisure/"
+    },
+    {
+      "id": "ckpproduct",
+      "company": "CKP Products Limited",
+      "symbol": "CKPPRODUCT",
+      "stage": "listed",
+      "openDate": "2017-04-26",
+      "closeDate": "2017-04-28",
+      "listingDate": "2017-05-09",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/ckpproduct/"
     }
   ],
   "resolvedUnavailable": [
