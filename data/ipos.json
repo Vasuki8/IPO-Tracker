@@ -408,6 +408,18 @@
           "issueComposition": 2
         },
         "checkedAt": "2026-09-14T04:29:55+05:30"
+      },
+      "verified-p4-final-composition": {
+        "ok": true,
+        "entries": 7,
+        "updated": 7,
+        "rejected": 0,
+        "fields": {
+          "freshIssueCr": 7,
+          "ofsCr": 7,
+          "issueComposition": 7
+        },
+        "checkedAt": "2026-09-14T04:48:01+05:30"
       }
     },
     "errors": [],
@@ -14251,6 +14263,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CUBEINVIT&type=Past",
           "asOf": "2026-09-13T17:30:44+05:30"
+        },
+        {
+          "name": "NSE Cube Highways Trust offer filing",
+          "kind": "exchange",
+          "url": "https://nsearchives.nseindia.com/corporate/CUBEINVIT_18032026004707_IntimationCHTDOD.pdf",
+          "asOf": "2026-09-14T04:48:01+05:30"
         }
       ],
       "source": {
@@ -14269,12 +14287,23 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4FinalComposition": {
+          "issueSizeCr": 5000.0,
+          "freshIssueCr": 0.0,
+          "ofsCr": 5000.0,
+          "mode": "pure-ofs",
+          "openDate": "2026-07-22",
+          "sourceBasis": "NSE filing explicitly defines the public conversion offer as an offer for sale of existing units by Selling Unitholders; the already source-backed issueSizeCr is retained as the OFS amount.",
+          "sourceUrls": [
+            "https://nsearchives.nseindia.com/corporate/CUBEINVIT_18032026004707_IntimationCHTDOD.pdf"
+          ]
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-14T04:43:43+05:30",
+        "checkedAt": "2026-09-14T04:48:01+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -14311,6 +14340,14 @@
         "lastAttemptAt": "2026-09-14T02:11:20+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "freshIssueCr": 0.0,
+      "ofsCr": 5000.0,
+      "issueComposition": {
+        "freshIssueCr": 0.0,
+        "ofsCr": 5000.0,
+        "totalIssueSizeCr": 5000.0,
+        "sourceBasis": "NSE filing explicitly defines the public conversion offer as an offer for sale of existing units by Selling Unitholders; the already source-backed issueSizeCr is retained as the OFS amount."
       }
     },
     {
@@ -19452,6 +19489,18 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CITIUSINVT&type=Past",
           "asOf": "2026-09-13T17:31:06+05:30"
+        },
+        {
+          "name": "NSE Citius Issue Information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=IV&symbol=CITIUSINVT&type=Forthcoming",
+          "asOf": "2026-09-14T04:48:01+05:30"
+        },
+        {
+          "name": "NSE Citius post-listing financial filing",
+          "kind": "exchange",
+          "url": "https://nsearchives.nseindia.com/corporate/ixbrl/INTEGRATED_FILING_RESULTIR_187641_14082026191348_iXBRL_WEB.html",
+          "asOf": "2026-09-14T04:48:01+05:30"
         }
       ],
       "source": {
@@ -19470,12 +19519,24 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4FinalComposition": {
+          "issueSizeCr": 1105.0,
+          "freshIssueCr": 1105.0,
+          "ofsCr": 0.0,
+          "mode": "pure-fresh",
+          "openDate": "2026-04-17",
+          "sourceBasis": "NSE Issue Information fixes the IPO at Rs 11,050 million; post-listing filing records 110,500,000 units issued at Rs 100 for the IPO.",
+          "sourceUrls": [
+            "https://www.nseindia.com/market-data/issue-information?series=IV&symbol=CITIUSINVT&type=Forthcoming",
+            "https://nsearchives.nseindia.com/corporate/ixbrl/INTEGRATED_FILING_RESULTIR_187641_14082026191348_iXBRL_WEB.html"
+          ]
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-14T04:43:43+05:30",
+        "checkedAt": "2026-09-14T04:48:01+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -19512,6 +19573,14 @@
         "lastAttemptAt": "2026-09-14T02:45:42+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "freshIssueCr": 1105.0,
+      "ofsCr": 0.0,
+      "issueComposition": {
+        "freshIssueCr": 1105.0,
+        "ofsCr": 0.0,
+        "totalIssueSizeCr": 1105.0,
+        "sourceBasis": "NSE Issue Information fixes the IPO at Rs 11,050 million; post-listing filing records 110,500,000 units issued at Rs 100 for the IPO."
       }
     },
     {
@@ -20963,6 +21032,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=RIIT&type=Past",
           "asOf": "2026-09-13T17:31:16+05:30"
+        },
+        {
+          "name": "NSE Raajmarg audited financial filing",
+          "kind": "exchange",
+          "url": "https://nsearchives.nseindia.com/corporate/ixbrl/INTEGRATED_FILING_RESULTIR_167138_15062026123648_iXBRL_WEB.html",
+          "asOf": "2026-09-14T04:48:01+05:30"
         }
       ],
       "source": {
@@ -20981,12 +21056,23 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4FinalComposition": {
+          "issueSizeCr": 6000.0,
+          "freshIssueCr": 6000.0,
+          "ofsCr": 0.0,
+          "mode": "pure-fresh",
+          "openDate": "2026-03-11",
+          "sourceBasis": "NSE audited filing records 600,000,000 units and Rs 600,000 lakh proceeds from issuing units for the IPO fresh issue.",
+          "sourceUrls": [
+            "https://nsearchives.nseindia.com/corporate/ixbrl/INTEGRATED_FILING_RESULTIR_167138_15062026123648_iXBRL_WEB.html"
+          ]
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-14T04:43:43+05:30",
+        "checkedAt": "2026-09-14T04:48:01+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -21023,6 +21109,14 @@
         "lastAttemptAt": "2026-09-14T02:45:46+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "freshIssueCr": 6000.0,
+      "ofsCr": 0.0,
+      "issueComposition": {
+        "freshIssueCr": 6000.0,
+        "ofsCr": 0.0,
+        "totalIssueSizeCr": 6000.0,
+        "sourceBasis": "NSE audited filing records 600,000,000 units and Rs 600,000 lakh proceeds from issuing units for the IPO fresh issue."
       }
     },
     {
@@ -28720,6 +28814,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=ANANTAM&type=Past",
           "asOf": "2026-09-13T17:31:33+05:30"
+        },
+        {
+          "name": "NSE Anantam audited filing",
+          "kind": "exchange",
+          "url": "https://nsearchives.nseindia.com/corporate/ixbrl/INTEGRATED_FILING_RESULTIR_125924_11112025151939_iXBRL_WEB.html",
+          "asOf": "2026-09-14T04:48:01+05:30"
         }
       ],
       "source": {
@@ -28738,12 +28838,23 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4FinalComposition": {
+          "issueSizeCr": 400.0,
+          "freshIssueCr": 400.0,
+          "ofsCr": 0.0,
+          "mode": "pure-fresh",
+          "openDate": "2025-10-07",
+          "sourceBasis": "NSE filing records 40,000,000 units at Rs 100 each and explicitly identifies the IPO allotment as Fresh Issue.",
+          "sourceUrls": [
+            "https://nsearchives.nseindia.com/corporate/ixbrl/INTEGRATED_FILING_RESULTIR_125924_11112025151939_iXBRL_WEB.html"
+          ]
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-14T04:43:43+05:30",
+        "checkedAt": "2026-09-14T04:48:01+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -28773,6 +28884,14 @@
         "ofsCr": null,
         "issueSizeCr": 400.0,
         "error": null
+      },
+      "freshIssueCr": 400.0,
+      "ofsCr": 0.0,
+      "issueComposition": {
+        "freshIssueCr": 400.0,
+        "ofsCr": 0.0,
+        "totalIssueSizeCr": 400.0,
+        "sourceBasis": "NSE filing records 40,000,000 units at Rs 100 each and explicitly identifies the IPO allotment as Fresh Issue."
       }
     },
     {
@@ -34622,6 +34741,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=KRT&type=Past",
           "asOf": "2026-09-13T17:31:38+05:30"
+        },
+        {
+          "name": "NSE Knowledge Realty Trust audited annual filing",
+          "kind": "exchange",
+          "url": "https://nsearchives.nseindia.com/corporate/KRT_17062026122333_Outcome_of_BM_17_June_2026_1.pdf",
+          "asOf": "2026-09-14T04:48:01+05:30"
         }
       ],
       "source": {
@@ -34640,12 +34765,23 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4FinalComposition": {
+          "issueSizeCr": 4800.0,
+          "freshIssueCr": 4800.0,
+          "ofsCr": 0.0,
+          "mode": "pure-fresh",
+          "openDate": "2025-08-05",
+          "sourceBasis": "NSE-hosted audited filing records 480,000,000 IPO units, issued/subscribed/fully paid in cash, amount Rs 48,000 million.",
+          "sourceUrls": [
+            "https://nsearchives.nseindia.com/corporate/KRT_17062026122333_Outcome_of_BM_17_June_2026_1.pdf"
+          ]
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-14T04:43:43+05:30",
+        "checkedAt": "2026-09-14T04:48:01+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -34675,6 +34811,14 @@
         "ofsCr": null,
         "issueSizeCr": 4800.0,
         "error": null
+      },
+      "freshIssueCr": 4800.0,
+      "ofsCr": 0.0,
+      "issueComposition": {
+        "freshIssueCr": 4800.0,
+        "ofsCr": 0.0,
+        "totalIssueSizeCr": 4800.0,
+        "sourceBasis": "NSE-hosted audited filing records 480,000,000 IPO units, issued/subscribed/fully paid in cash, amount Rs 48,000 million."
       }
     },
     {
@@ -45448,6 +45592,12 @@
           "kind": "regulator",
           "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jan-2025/1736249404881_639.pdf",
           "asOf": "2026-09-14T03:51:33+05:30"
+        },
+        {
+          "name": "NSE IGI Basis of Allotment",
+          "kind": "exchange",
+          "url": "https://nsearchives.nseindia.com/web/sites/default/files/inline-files/BasisofAllotment_international.pdf",
+          "asOf": "2026-09-14T04:48:01+05:30"
         }
       ],
       "source": {
@@ -45474,12 +45624,23 @@
           "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jan-2025/1736249404881_639.pdf",
           "sourceKind": "regulator",
           "openDate": "2024-12-13"
+        },
+        "VerifiedP4FinalComposition": {
+          "issueSizeCr": 4225.0,
+          "freshIssueCr": 1475.0,
+          "ofsCr": 2750.0,
+          "mode": "mixed",
+          "openDate": "2024-12-13",
+          "sourceBasis": "NSE Basis of Allotment: Rs 42,250 million offer = Rs 14,750 million fresh issue + Rs 27,500 million OFS.",
+          "sourceUrls": [
+            "https://nsearchives.nseindia.com/web/sites/default/files/inline-files/BasisofAllotment_international.pdf"
+          ]
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-14T04:43:43+05:30",
+        "checkedAt": "2026-09-14T04:48:01+05:30",
         "checks": [],
         "independentSources": [
           "NSE",
@@ -45507,7 +45668,15 @@
         "issueSizeCr": null,
         "error": null
       },
-      "issueSizeCr": 4225.0
+      "issueSizeCr": 4225.0,
+      "freshIssueCr": 1475.0,
+      "ofsCr": 2750.0,
+      "issueComposition": {
+        "freshIssueCr": 1475.0,
+        "ofsCr": 2750.0,
+        "totalIssueSizeCr": 4225.0,
+        "sourceBasis": "NSE Basis of Allotment: Rs 42,250 million offer = Rs 14,750 million fresh issue + Rs 27,500 million OFS."
+      }
     },
     {
       "id": "iks",
@@ -45544,6 +45713,12 @@
           "kind": "regulator",
           "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2025/1739791805392_693.pdf",
           "asOf": "2026-09-14T03:51:33+05:30"
+        },
+        {
+          "name": "NSE IKS Basis of Allotment",
+          "kind": "exchange",
+          "url": "https://nsearchives.nseindia.com/corporate/ADV_INE115Q01022_18DEC2024.pdf",
+          "asOf": "2026-09-14T04:48:01+05:30"
         }
       ],
       "source": {
@@ -45570,12 +45745,23 @@
           "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2025/1739791805392_693.pdf",
           "sourceKind": "regulator",
           "openDate": "2024-12-12"
+        },
+        "VerifiedP4FinalComposition": {
+          "issueSizeCr": 2497.923,
+          "freshIssueCr": 0.0,
+          "ofsCr": 2497.923,
+          "mode": "pure-ofs",
+          "openDate": "2024-12-12",
+          "sourceBasis": "NSE Basis of Allotment states the entire Rs 24,979.23 million offer is through an offer for sale.",
+          "sourceUrls": [
+            "https://nsearchives.nseindia.com/corporate/ADV_INE115Q01022_18DEC2024.pdf"
+          ]
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-14T04:43:43+05:30",
+        "checkedAt": "2026-09-14T04:48:01+05:30",
         "checks": [],
         "independentSources": [
           "NSE",
@@ -45606,7 +45792,15 @@
         "issueSizeCr": null,
         "error": null
       },
-      "issueSizeCr": 2497.923
+      "issueSizeCr": 2497.923,
+      "freshIssueCr": 0.0,
+      "ofsCr": 2497.923,
+      "issueComposition": {
+        "freshIssueCr": 0.0,
+        "ofsCr": 2497.923,
+        "totalIssueSizeCr": 2497.923,
+        "sourceBasis": "NSE Basis of Allotment states the entire Rs 24,979.23 million offer is through an offer for sale."
+      }
     },
     {
       "id": "vmm",

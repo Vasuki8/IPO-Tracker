@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-09-14T04:44:22+05:30",
+  "generatedAt": "2026-09-14T04:48:02+05:30",
   "asOfDate": "2026-09-14",
   "recordCount": 1354,
-  "queueCount": 1031,
+  "queueCount": 1025,
   "priorityCounts": {
-    "P4 recent history (2y)": 124,
+    "P4 recent history (2y)": 118,
     "P5 historical backfill": 907
   },
   "fieldGapCounts": {
@@ -12,7 +12,6 @@
     "exchange.issueSizeCr": 906,
     "lifecycle.listingDate": 28,
     "exchange.priceBand": 13,
-    "exchange.issueComposition": 7,
     "provenance.sources": 1
   },
   "resolvedUnavailableRecordCount": 5,
@@ -26,27 +25,6 @@
     "lifecycle.listingDate": 5
   },
   "queue": [
-    {
-      "id": "igil",
-      "company": "International Gemmological Institute (India) Limited",
-      "symbol": "IGIL",
-      "stage": "listed",
-      "openDate": "2024-12-13",
-      "closeDate": "2024-12-17",
-      "listingDate": "2024-12-20",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/igil/"
-    },
     {
       "id": "nsdl",
       "company": "National Securities Depository Limited",
@@ -207,26 +185,6 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/amirchand/"
-    },
-    {
-      "id": "anantam",
-      "company": "Anantam Highways Trust",
-      "symbol": "ANANTAM",
-      "stage": "listed",
-      "openDate": "2025-10-07",
-      "closeDate": "2025-10-09",
-      "listingDate": "2025-10-16",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/anantam/"
     },
     {
       "id": "anawil",
@@ -549,26 +507,6 @@
       "profilePath": "ipo/cudml/"
     },
     {
-      "id": "citiusinvt",
-      "company": "Citius Transnet Investment Trust",
-      "symbol": "CITIUSINVT",
-      "stage": "listed",
-      "openDate": "2026-04-17",
-      "closeDate": "2026-04-21",
-      "listingDate": "2026-04-29",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/citiusinvt/"
-    },
-    {
       "id": "classiceil",
       "company": "Classic Electrodes (India) Limited",
       "symbol": "CLASSICEIL",
@@ -667,26 +605,6 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/credent/"
-    },
-    {
-      "id": "cubeinvit",
-      "company": "Cube Highways Trust",
-      "symbol": "CUBEINVIT",
-      "stage": "listed",
-      "openDate": "2026-07-22",
-      "closeDate": "2026-07-24",
-      "listingDate": "2026-07-31",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/cubeinvit/"
     },
     {
       "id": "curis",
@@ -1109,24 +1027,24 @@
       "profilePath": "ipo/icelco/"
     },
     {
-      "id": "iks",
-      "company": "Inventurus Knowledge Solutions Limited",
-      "symbol": "IKS",
+      "id": "igil",
+      "company": "International Gemmological Institute (India) Limited",
+      "symbol": "IGIL",
       "stage": "listed",
-      "openDate": "2024-12-12",
-      "closeDate": "2024-12-16",
-      "listingDate": "2024-12-19",
+      "openDate": "2024-12-13",
+      "closeDate": "2024-12-17",
+      "listingDate": "2024-12-20",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
       "completenessPct": 91.7,
       "expectedFieldCount": 12,
       "missingFieldCount": 1,
       "missingFields": [
-        "exchange.issueComposition"
+        "exchange.lotSize"
       ],
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
-      "profilePath": "ipo/iks/"
+      "profilePath": "ipo/igil/"
     },
     {
       "id": "invicta",
@@ -1227,26 +1145,6 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/kaytex/"
-    },
-    {
-      "id": "krt",
-      "company": "Knowledge Realty Trust",
-      "symbol": "KRT",
-      "stage": "listed",
-      "openDate": "2025-08-05",
-      "closeDate": "2025-08-07",
-      "listingDate": "2025-08-18",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/krt/"
     },
     {
       "id": "mril",
@@ -1647,26 +1545,6 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/rfbl/"
-    },
-    {
-      "id": "riit",
-      "company": "Raajmarg Infra Investment Trust",
-      "symbol": "RIIT",
-      "stage": "listed",
-      "openDate": "2026-03-11",
-      "closeDate": "2026-03-13",
-      "listingDate": "2026-03-24",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/riit/"
     },
     {
       "id": "rajputana",
@@ -6243,6 +6121,132 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/capacite/"
+    },
+    {
+      "id": "capitalsfb",
+      "company": "Capital Small Finance Bank Limited",
+      "symbol": "CAPITALSFB",
+      "stage": "listed",
+      "openDate": "2024-02-07",
+      "closeDate": "2024-02-09",
+      "listingDate": "2024-02-14",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/capitalsfb/"
+    },
+    {
+      "id": "cartrade",
+      "company": "CarTrade Tech Limited",
+      "symbol": "CARTRADE",
+      "stage": "listed",
+      "openDate": "2021-08-09",
+      "closeDate": "2021-08-11",
+      "listingDate": "2021-08-20",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/cartrade/"
+    },
+    {
+      "id": "ceigall",
+      "company": "Ceigall India Limited",
+      "symbol": "CEIGALL",
+      "stage": "listed",
+      "openDate": "2024-08-01",
+      "closeDate": "2024-08-05",
+      "listingDate": "2024-08-08",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/ceigall/"
+    },
+    {
+      "id": "cellpoint",
+      "company": "Cell Point (India) Limited",
+      "symbol": "CELLPOINT",
+      "stage": "listed",
+      "openDate": "2023-06-15",
+      "closeDate": "2023-06-20",
+      "listingDate": "2023-06-28",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/cellpoint/"
+    },
+    {
+      "id": "cellecor",
+      "company": "Cellecor Gadgets Limited",
+      "symbol": "CELLECOR",
+      "stage": "listed",
+      "openDate": "2023-09-15",
+      "closeDate": "2023-09-20",
+      "listingDate": "2023-09-28",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/cellecor/"
+    },
+    {
+      "id": "cello",
+      "company": "Cello World Limited",
+      "symbol": "CELLO",
+      "stage": "listed",
+      "openDate": "2023-10-30",
+      "closeDate": "2023-11-01",
+      "listingDate": "2023-11-06",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/cello/"
     }
   ],
   "resolvedUnavailable": [
