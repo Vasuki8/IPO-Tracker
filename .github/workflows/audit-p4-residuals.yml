@@ -17,6 +17,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ipo-data-refresh
+  cancel-in-progress: false
+
 jobs:
   audit:
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
