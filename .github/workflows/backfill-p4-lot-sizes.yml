@@ -6,11 +6,13 @@ on:
     branches:
       - main
     paths:
+      - "scripts/enrich_nse_issue_information.py"
       - "scripts/backfill_bse_history.py"
       - "scripts/backfill_bse_history_v2.py"
       - "scripts/backfill_p4_lot_sizes.py"
       - "scripts/enrich_exchange_details.py"
       - "scripts/enrich_exchange_details_v2.py"
+      - "tests/test_nse_issue_information.py"
       - "tests/test_bse_history_backfill.py"
       - "tests/test_p4_lot_backfill.py"
       - "tests/test_exchange_details_v2.py"
@@ -38,7 +40,7 @@ jobs:
       github.event_name != 'workflow_run' ||
       github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 45
     steps:
       - name: Checkout latest main
         uses: actions/checkout@v7.0.1
@@ -56,8 +58,9 @@ jobs:
       - name: Sync dependencies
         run: uv sync
 
-      - name: Run BSE lot-size regression tests
+      - name: Run lot-size regression tests
         run: |
+          uv run python -m unittest discover -s tests -p "test_nse_issue_information.py" -v
           uv run python -m unittest discover -s tests -p "test_exchange_details_v2.py" -v
           uv run python -m unittest discover -s tests -p "test_bse_history_backfill.py" -v
           uv run python -m unittest discover -s tests -p "test_p4_lot_backfill.py" -v
@@ -69,9 +72,16 @@ jobs:
 
       - name: Advance P4 lot-size backfill
         run: |
-          # BSE historical details expose Market Lot / Bid Lot / Minimum Bid
-          # Quantity. P4 has an independent cooldown marker so Phase 4.5D's
-          # full-history attempts cannot suppress this dedicated recent sweep.
+          # Primary: official NSE Issue Information is keyed by the exact NSE
+          # symbol/series and exposes Bid Lot + Minimum Order Quantity for past
+          # IPOs. The independent cooldown makes every scheduled run advance.
+          uv run python scripts/enrich_nse_issue_information.py \
+            --history-days 730 \
+            --limit 120 \
+            --retry-days 14
+
+          # Secondary: keep the conservative official BSE historical-detail
+          # path for records the NSE source did not fill.
           uv run python scripts/backfill_p4_lot_sizes.py \
             --history-days 730 \
             --limit 120 \
