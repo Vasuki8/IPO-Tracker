@@ -110,10 +110,10 @@
         "ok": true,
         "records": 10,
         "attempted": 10,
-        "updated": 10,
+        "updated": 9,
         "deepScanned": 1,
         "failed": 0,
-        "asOf": "2026-09-14T02:45:03+05:30",
+        "asOf": "2026-09-14T03:08:22+05:30",
         "errors": []
       },
       "NSE-primary-market-reports": {
@@ -165,21 +165,21 @@
         "ok": true,
         "entries": 36,
         "updated": 0,
-        "checkedAt": "2026-09-14T02:33:43+05:30"
+        "checkedAt": "2026-09-14T02:56:26+05:30"
       },
       "verified-recent-issue-terms": {
         "ok": true,
         "entries": 14,
         "updated": 0,
         "fields": {},
-        "checkedAt": "2026-09-14T02:33:43+05:30"
+        "checkedAt": "2026-09-14T02:56:26+05:30"
       },
       "verified-recent-offer-fields": {
         "ok": true,
         "entries": 12,
         "updated": 0,
         "fields": {},
-        "checkedAt": "2026-09-14T02:45:04+05:30"
+        "checkedAt": "2026-09-14T03:08:22+05:30"
       },
       "verified-filing-offer-fields": {
         "ok": true,
@@ -329,7 +329,7 @@
         "availabilityEntries": 6,
         "availabilityRecordsUpdated": 0,
         "missingOrAmbiguous": 3,
-        "checkedAt": "2026-09-14T02:33:43+05:30"
+        "checkedAt": "2026-09-14T02:56:25+05:30"
       }
     },
     "errors": [],
@@ -386,10 +386,10 @@
       "ok": true,
       "attempted": 10,
       "extracted": 10,
-      "updated": 10,
+      "updated": 9,
       "deepScanned": 1,
       "failed": 0,
-      "asOf": "2026-09-14T02:45:03+05:30",
+      "asOf": "2026-09-14T03:08:22+05:30",
       "errors": []
     },
     "sebiDocumentLinkHealth": {
@@ -12835,6 +12835,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MANIPALHOS&type=Past",
           "asOf": "2026-09-13T17:30:34+05:30"
+        },
+        {
+          "name": "SEBI final Prospectus",
+          "kind": "regulatory-filing",
+          "url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/manipal-health-enterprises-limited-prospectus_103300.html",
+          "asOf": "2026-09-14T03:00:58+05:30"
         }
       ],
       "source": {
@@ -12853,6 +12859,18 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "Offer-document": {
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1785732646843.pdf",
+          "documentType": "Prospectus",
+          "documentFiledDate": null,
+          "parserVersion": 13,
+          "source": "SEBI",
+          "lotSize": 25,
+          "priceBand": {
+            "min": 560.0,
+            "max": 590.0
+          }
         }
       },
       "documents": [
@@ -12897,7 +12915,131 @@
       },
       "freshIssueCr": 8000.0,
       "ofsCr": 15.0,
-      "issueSizeCr": 8015.0
+      "issueSizeCr": 8015.0,
+      "issueComposition": {
+        "ofsShares": 10808861,
+        "freshIssueCr": 100.0,
+        "ofsCr": 637.72,
+        "totalIssueSizeCr": 737.72,
+        "valuationPriceUsed": 590.0
+      },
+      "registrar": "DBS Bank India Limited",
+      "leadManagers": [
+        "BSE Limited",
+        "India Limited"
+      ],
+      "promoters": [
+        "ARE DR. RANJAN RAMDAS PAI",
+        "MANIPAL GLOBAL HEALTH SERVICES",
+        "MEMG"
+      ],
+      "financials": {
+        "unit": "₹ crore",
+        "periods": [
+          {
+            "period": "FY2026",
+            "revenueCr": 10935.618,
+            "ebitdaCr": 2928.465,
+            "patCr": 0.3,
+            "netWorthCr": 3.1,
+            "ronwPct": 31.0,
+            "eps": 31.0
+          },
+          {
+            "period": "FY2025",
+            "revenueCr": 10335.751,
+            "ebitdaCr": 2795.937,
+            "patCr": 0.4,
+            "netWorthCr": 202.6,
+            "ronwPct": 2026.0,
+            "eps": 2026.0
+          },
+          {
+            "period": "FY2024",
+            "revenueCr": 9263.556,
+            "ebitdaCr": 2468.378,
+            "patCr": 3.1,
+            "netWorthCr": 1.057,
+            "ronwPct": 10.57,
+            "eps": 7.71
+          }
+        ]
+      },
+      "objectsOfIssue": [
+        {
+          "purpose": "BASIS FOR OFFER PRICE",
+          "amountCr": 158.0
+        },
+        {
+          "purpose": "REPORT ON STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
+          "amountCr": 171.0
+        },
+        {
+          "purpose": "INDUSTRY OVERVIEW",
+          "amountCr": 178.0
+        },
+        {
+          "purpose": "OUR BUSINESS",
+          "amountCr": 223.0
+        },
+        {
+          "purpose": "KEY REGULATIONS AND POLICIES",
+          "amountCr": 251.0
+        },
+        {
+          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+          "amountCr": 265.0
+        },
+        {
+          "purpose": "OUR MANAGEMENT",
+          "amountCr": 294.0
+        },
+        {
+          "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
+          "amountCr": 313.0
+        },
+        {
+          "purpose": "DIVIDEND POLICY",
+          "amountCr": 321.0
+        }
+      ],
+      "shareholding": {
+        "promoters": [],
+        "promoterPreIssuePct": 1.0
+      },
+      "issuerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 13,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1785732646843.pdf",
+        "documentType": "Prospectus",
+        "documentTitle": "Prospectus",
+        "sourcePage": "https://www.sebi.gov.in/filings/public-issues/aug-2026/manipal-health-enterprises-limited-prospectus_103300.html",
+        "sha256": "f858d9be21b0a92ba8b71e79f6a32f6bf8dba607643f5bffb6f7a2a0317b208c",
+        "pagesRead": 520,
+        "pageCount": 717,
+        "extractedFields": [
+          "leadManagers",
+          "registrar",
+          "promoters",
+          "issueComposition",
+          "financials",
+          "objectsOfIssue",
+          "shareholding",
+          "lotSize",
+          "priceBand"
+        ],
+        "changedFields": [
+          "issueComposition",
+          "registrar",
+          "leadManagers",
+          "promoters",
+          "financials",
+          "objectsOfIssue",
+          "shareholding"
+        ],
+        "extractedAt": "2026-09-14T03:00:58+05:30",
+        "source": "SEBI"
+      }
     },
     {
       "id": "propshop",
@@ -13265,6 +13407,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=LCL&type=Past",
           "asOf": "2026-09-13T17:09:17+05:30"
+        },
+        {
+          "name": "SEBI final Prospectus",
+          "kind": "regulatory-filing",
+          "url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/lohia-corp-limited-prospectus_103075.html",
+          "asOf": "2026-09-14T02:59:30+05:30"
         }
       ],
       "source": {
@@ -13283,6 +13431,18 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "Offer-document": {
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1785231911524.pdf",
+          "documentType": "Prospectus",
+          "documentFiledDate": null,
+          "parserVersion": 13,
+          "source": "SEBI",
+          "lotSize": 35,
+          "priceBand": {
+            "min": 404.0,
+            "max": 425.0
+          }
         }
       },
       "documents": [
@@ -13336,6 +13496,130 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=LCL&series=EQ",
         "lotSize": 35,
         "error": null
+      },
+      "registrar": "CONTACT PERSON TELEPHONE AND E- MAIL MUFG Intime India Private Limited",
+      "leadManagers": [
+        "BSE Limited",
+        "India Limited"
+      ],
+      "promoters": [
+        "namely",
+        "Raj Kumar Lohia",
+        "Amit Kumar Lohia",
+        "Gaurav Lohia"
+      ],
+      "financials": {
+        "unit": "₹ crore",
+        "periods": [
+          {
+            "period": "FY2025",
+            "eps": 2026.0,
+            "revenueCr": 1376.872,
+            "ebitdaCr": 228.602,
+            "patCr": 117.841,
+            "netWorthCr": 202.6,
+            "ronwPct": 2026.0,
+            "roePct": 31.71
+          },
+          {
+            "period": "FY2024",
+            "revenueCr": 1716.995,
+            "ebitdaCr": 339.451,
+            "patCr": 193.452,
+            "netWorthCr": 3.1,
+            "ronwPct": 31.0,
+            "roePct": 36.8,
+            "eps": 31.0
+          },
+          {
+            "period": "FY2026",
+            "revenueCr": 1165.808,
+            "ebitdaCr": 105.962,
+            "patCr": 29.758,
+            "netWorthCr": 7.295,
+            "ronwPct": 72.95,
+            "roePct": 11.92,
+            "eps": 18.31
+          }
+        ]
+      },
+      "objectsOfIssue": [
+        {
+          "purpose": "BASIS FOR OFFER PRICE",
+          "amountCr": 129.0
+        },
+        {
+          "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
+          "amountCr": 140.0
+        },
+        {
+          "purpose": "SECTION IV: ABOUT OUR COMPANY",
+          "amountCr": 150.0
+        },
+        {
+          "purpose": "INDUSTRY OVERVIEW",
+          "amountCr": 150.0
+        },
+        {
+          "purpose": "OUR BUSINESS",
+          "amountCr": 202.0
+        },
+        {
+          "purpose": "KEY REGULATIONS AND POLICIES",
+          "amountCr": 236.0
+        },
+        {
+          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+          "amountCr": 242.0
+        },
+        {
+          "purpose": "OUR MANAGEMENT",
+          "amountCr": 254.0
+        },
+        {
+          "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
+          "amountCr": 271.0
+        },
+        {
+          "purpose": "DIVIDEND POLICY",
+          "amountCr": 276.0
+        }
+      ],
+      "shareholding": {
+        "promoters": [],
+        "promoterPreIssuePct": 89.04
+      },
+      "issuerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 13,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1785231911524.pdf",
+        "documentType": "Prospectus",
+        "documentTitle": "Prospectus",
+        "sourcePage": "https://www.sebi.gov.in/filings/public-issues/jul-2026/lohia-corp-limited-prospectus_103075.html",
+        "sha256": "25af6a670535048c5e5386c45032e772bf79877b7102edbcebdd167b413503cf",
+        "pagesRead": 520,
+        "pageCount": 533,
+        "extractedFields": [
+          "leadManagers",
+          "registrar",
+          "promoters",
+          "issueComposition",
+          "financials",
+          "objectsOfIssue",
+          "shareholding",
+          "lotSize",
+          "priceBand"
+        ],
+        "changedFields": [
+          "registrar",
+          "leadManagers",
+          "promoters",
+          "financials",
+          "objectsOfIssue",
+          "shareholding"
+        ],
+        "extractedAt": "2026-09-14T02:59:30+05:30",
+        "source": "SEBI"
       }
     },
     {
@@ -15426,6 +15710,12 @@
           "kind": "regulatory-filing",
           "url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/aastha-spintex-limited-prospectus_103092.html",
           "asOf": "2026-09-14T02:16:03+05:30"
+        },
+        {
+          "name": "SEBI final Prospectus",
+          "kind": "regulatory-filing",
+          "url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/aastha-spintex-limited-prospectus_103092.html",
+          "asOf": "2026-09-14T03:07:26+05:30"
         }
       ],
       "source": {
@@ -15621,13 +15911,8 @@
           "lotSize",
           "priceBand"
         ],
-        "changedFields": [
-          "leadManagers",
-          "promoters",
-          "financials",
-          "objectsOfIssue"
-        ],
-        "extractedAt": "2026-09-14T02:16:03+05:30",
+        "changedFields": [],
+        "extractedAt": "2026-09-14T03:07:26+05:30",
         "source": "SEBI"
       }
     },
@@ -15912,6 +16197,12 @@
           "kind": "regulatory-filing",
           "url": "https://www.sebi.gov.in/filings/public-issues/jun-2026/csm-technologies-limited-prospectus_102473.html",
           "asOf": "2026-09-14T02:20:09+05:30"
+        },
+        {
+          "name": "SEBI final Prospectus",
+          "kind": "regulatory-filing",
+          "url": "https://www.sebi.gov.in/filings/public-issues/jun-2026/csm-technologies-limited-prospectus_102473.html",
+          "asOf": "2026-09-14T03:08:22+05:30"
         }
       ],
       "source": {
@@ -16127,17 +16418,21 @@
           "objectsOfIssue",
           "shareholding",
           "lotSize",
-          "priceBand"
+          "priceBand",
+          "leadManagers",
+          "registrar"
         ],
         "changedFields": [
-          "promoters",
-          "financials",
-          "objectsOfIssue",
-          "shareholding"
+          "registrar",
+          "leadManagers"
         ],
-        "extractedAt": "2026-09-14T02:20:09+05:30",
+        "extractedAt": "2026-09-14T03:08:22+05:30",
         "source": "SEBI"
-      }
+      },
+      "registrar": "KFin Technologies Limited",
+      "leadManagers": [
+        "Keynote Financial Services Limited"
+      ]
     },
     {
       "id": "cordelia",
@@ -18094,6 +18389,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=KISSHT&type=Past",
           "asOf": "2026-09-13T17:12:18+05:30"
+        },
+        {
+          "name": "SEBI final Prospectus",
+          "kind": "regulatory-filing",
+          "url": "https://www.sebi.gov.in/filings/public-issues/may-2026/onemi-technology-solutions-limited-prospectus_102192.html",
+          "asOf": "2026-09-14T03:04:01+05:30"
         }
       ],
       "source": {
@@ -18112,6 +18413,18 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "Offer-document": {
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "documentType": "Prospectus",
+          "documentFiledDate": null,
+          "parserVersion": 13,
+          "source": "SEBI",
+          "lotSize": 87,
+          "priceBand": {
+            "min": 162.0,
+            "max": 171.0
+          }
         }
       },
       "documents": [
@@ -18181,6 +18494,132 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=KISSHT&series=EQ",
         "lotSize": 87,
         "error": null
+      },
+      "registrar": "KFin Technologies Limited",
+      "leadManagers": [
+        "BSE Limited",
+        "India Limited",
+        "THE BRLMS CONTACT PERSON TELEPHONE AND E-MAIL JM Financial Limited",
+        "India) Private Limited",
+        "Nuvama Wealth Management Limited"
+      ],
+      "promoters": [
+        "ARE RANVIR SINGH",
+        "KRISHNAN VISHWANATHAN"
+      ],
+      "financials": {
+        "unit": "₹ crore",
+        "periods": [
+          {
+            "period": "FY2024",
+            "revenueCr": 2.3,
+            "ebitdaCr": 488.453,
+            "patCr": 199.269,
+            "netWorthCr": 2.118,
+            "ronwPct": 21.18,
+            "eps": 31.0
+          },
+          {
+            "period": "FY2025",
+            "revenueCr": 1674.463,
+            "ebitdaCr": 403.368,
+            "patCr": 160.621,
+            "netWorthCr": 1.597,
+            "ronwPct": 15.97,
+            "eps": 2023.0
+          },
+          {
+            "period": "FY2023",
+            "revenueCr": -0.017,
+            "ebitdaCr": 358.958,
+            "patCr": 197.29,
+            "netWorthCr": 2.452,
+            "ronwPct": 24.52,
+            "eps": 49.0
+          }
+        ]
+      },
+      "objectsOfIssue": [
+        {
+          "purpose": "BASIS FOR OFFER PRICE",
+          "amountCr": 122.0
+        },
+        {
+          "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
+          "amountCr": 138.0
+        },
+        {
+          "purpose": "SECTION IV: ABOUT OUR COMPANY",
+          "amountCr": 145.0
+        },
+        {
+          "purpose": "INDUSTRY OVERVIEW",
+          "amountCr": 145.0
+        },
+        {
+          "purpose": "OUR BUSINESS",
+          "amountCr": 177.0
+        },
+        {
+          "purpose": "KEY REGULATIONS AND POLICIES",
+          "amountCr": 208.0
+        },
+        {
+          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+          "amountCr": 225.0
+        },
+        {
+          "purpose": "OUR MANAGEMENT",
+          "amountCr": 237.0
+        },
+        {
+          "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
+          "amountCr": 251.0
+        },
+        {
+          "purpose": "OUR GROUP COMPANIES",
+          "amountCr": 254.0
+        },
+        {
+          "purpose": "DIVIDEND POLICY",
+          "amountCr": 255.0
+        }
+      ],
+      "shareholding": {
+        "promoters": [],
+        "promoterPreIssuePct": 22.0
+      },
+      "issuerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 13,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+        "documentType": "Prospectus",
+        "documentTitle": "Prospectus",
+        "sourcePage": "https://www.sebi.gov.in/filings/public-issues/may-2026/onemi-technology-solutions-limited-prospectus_102192.html",
+        "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+        "pagesRead": 464,
+        "pageCount": 464,
+        "extractedFields": [
+          "leadManagers",
+          "registrar",
+          "promoters",
+          "issueComposition",
+          "financials",
+          "objectsOfIssue",
+          "shareholding",
+          "lotSize",
+          "priceBand"
+        ],
+        "changedFields": [
+          "registrar",
+          "leadManagers",
+          "promoters",
+          "financials",
+          "objectsOfIssue",
+          "shareholding"
+        ],
+        "extractedAt": "2026-09-14T03:04:01+05:30",
+        "source": "SEBI"
       }
     },
     {
@@ -18487,6 +18926,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=OMPOWER&type=Past",
           "asOf": "2026-09-13T17:12:39+05:30"
+        },
+        {
+          "name": "SEBI final Prospectus",
+          "kind": "regulatory-filing",
+          "url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/om-power-transmission-limited-prospectus_100928.html",
+          "asOf": "2026-09-14T03:01:51+05:30"
         }
       ],
       "source": {
@@ -18505,6 +18950,18 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "Offer-document": {
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2026/1776237369286.pdf",
+          "documentType": "Prospectus",
+          "documentFiledDate": null,
+          "parserVersion": 13,
+          "source": "SEBI",
+          "lotSize": 85,
+          "priceBand": {
+            "min": 166.0,
+            "max": 175.0
+          }
         }
       },
       "documents": [
@@ -18574,6 +19031,131 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=OMPOWER&series=EQ",
         "lotSize": 85,
         "error": null
+      },
+      "registrar": "Om Power Transmission Private Limited",
+      "leadManagers": [
+        "India Limited",
+        "BSE Limited"
+      ],
+      "promoters": [
+        "in terms of Regulation 2( 1) (oo) of the SEBI ICDR"
+      ],
+      "financials": {
+        "unit": "₹ crore",
+        "periods": [
+          {
+            "period": "FY2025",
+            "revenueCr": 276.5019,
+            "ebitdaCr": 1.66,
+            "patCr": 23.368,
+            "netWorthCr": 20.25,
+            "ronwPct": 2025.0,
+            "roePct": 24.28,
+            "eps": 5.0
+          },
+          {
+            "period": "FY2024",
+            "revenueCr": 281.6477,
+            "ebitdaCr": 1.75,
+            "patCr": 22.0848,
+            "netWorthCr": 0.304,
+            "ronwPct": 30.4,
+            "roePct": 35.83,
+            "eps": 6.0
+          },
+          {
+            "period": "FY2023",
+            "revenueCr": 184.3945,
+            "ebitdaCr": 1.75,
+            "patCr": 7.4124,
+            "netWorthCr": 0.03,
+            "ronwPct": 3.0,
+            "roePct": 15.77,
+            "eps": 23.0
+          }
+        ]
+      },
+      "objectsOfIssue": [
+        {
+          "purpose": "BASIS FOR OFFER PRICE",
+          "amountCr": 134.0
+        },
+        {
+          "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
+          "amountCr": 150.0
+        },
+        {
+          "purpose": "SECTION IV: ABOUT OUR COMPANY",
+          "amountCr": 155.0
+        },
+        {
+          "purpose": "INDUSTRY OVERVIEW",
+          "amountCr": 155.0
+        },
+        {
+          "purpose": "OUR BUSINESS",
+          "amountCr": 239.0
+        },
+        {
+          "purpose": "KEY REGULATIONS AND POLICIES IN INDIA",
+          "amountCr": 264.0
+        },
+        {
+          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+          "amountCr": 271.0
+        },
+        {
+          "purpose": "OUR MANAGEMENT",
+          "amountCr": 278.0
+        },
+        {
+          "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
+          "amountCr": 297.0
+        },
+        {
+          "purpose": "OUR GROUP COMPANY",
+          "amountCr": 303.0
+        },
+        {
+          "purpose": "DIVIDEND POLICY",
+          "amountCr": 306.0
+        }
+      ],
+      "shareholding": {
+        "promoters": [],
+        "promoterPreIssuePct": 92.24
+      },
+      "issuerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 13,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2026/1776237369286.pdf",
+        "documentType": "Prospectus",
+        "documentTitle": "Prospectus",
+        "sourcePage": "https://www.sebi.gov.in/filings/public-issues/apr-2026/om-power-transmission-limited-prospectus_100928.html",
+        "sha256": "55c6e82dbb6a95d399d3ea0bdf83c29f05c49edc297f6b30bf1bfe715ba37eaf",
+        "pagesRead": 520,
+        "pageCount": 529,
+        "extractedFields": [
+          "leadManagers",
+          "registrar",
+          "promoters",
+          "issueComposition",
+          "financials",
+          "objectsOfIssue",
+          "shareholding",
+          "lotSize",
+          "priceBand"
+        ],
+        "changedFields": [
+          "registrar",
+          "leadManagers",
+          "promoters",
+          "financials",
+          "objectsOfIssue",
+          "shareholding"
+        ],
+        "extractedAt": "2026-09-14T03:01:51+05:30",
+        "source": "SEBI"
       }
     },
     {
@@ -18791,6 +19373,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=POWERICA&type=Past",
           "asOf": "2026-09-13T17:12:54+05:30"
+        },
+        {
+          "name": "NSE final Prospectus",
+          "kind": "exchange-filing",
+          "url": "https://nsearchives.nseindia.com/corporate/FP_INE921L01032_30MAR2026.pdf",
+          "asOf": "2026-09-14T03:05:22+05:30"
         }
       ],
       "source": {
@@ -18809,6 +19397,18 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "Offer-document": {
+          "documentUrl": "https://nsearchives.nseindia.com/corporate/FP_INE921L01032_30MAR2026.pdf",
+          "documentType": "Prospectus",
+          "documentFiledDate": null,
+          "parserVersion": 13,
+          "source": "NSE",
+          "lotSize": 37,
+          "priceBand": {
+            "min": 375.0,
+            "max": 395.0
+          }
         }
       },
       "documents": [
@@ -18827,6 +19427,13 @@
           "source": "SEBI",
           "filedDate": "2026-03-17",
           "sourcePage": "https://www.sebi.gov.in/filings/public-issues/mar-2026/powerica-limited-rhp_100434.html"
+        },
+        {
+          "type": "Prospectus",
+          "title": "Prospectus",
+          "url": "https://nsearchives.nseindia.com/corporate/FP_INE921L01032_30MAR2026.pdf",
+          "filedDate": null,
+          "source": "NSE"
         }
       ],
       "validation": {
@@ -18862,6 +19469,134 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=POWERICA&series=EQ",
         "lotSize": 37,
         "error": null
+      },
+      "registrar": "MUFG Intime India Private Limited",
+      "leadManagers": [
+        "BSE Limited",
+        "India Limited"
+      ],
+      "promoters": [
+        "BHARAT OBEROI",
+        "RENU NARESH OBEROI",
+        "JAI RAM OBEROI",
+        "NARESH"
+      ],
+      "financials": {
+        "unit": "₹ crore",
+        "periods": [
+          {
+            "period": "FY2025",
+            "revenueCr": 1447.44,
+            "ebitdaCr": 220.42,
+            "roePct": 11.6,
+            "netWorthCr": 31.0,
+            "ronwPct": 31.0,
+            "eps": 31.0,
+            "patCr": 134.55
+          },
+          {
+            "period": "FY2024",
+            "revenueCr": 2653.27,
+            "ebitdaCr": 345.66,
+            "netWorthCr": 2023.0,
+            "ronwPct": 2023.0,
+            "roePct": 17.53,
+            "eps": 2023.0,
+            "patCr": 175.83
+          },
+          {
+            "period": "FY2023",
+            "revenueCr": 2210.0,
+            "ebitdaCr": 362.45,
+            "netWorthCr": 13.4,
+            "ronwPct": 13.4,
+            "roePct": 26.5,
+            "eps": 6.32,
+            "patCr": 226.11
+          }
+        ]
+      },
+      "objectsOfIssue": [
+        {
+          "purpose": "BASIS FOR OFFER PRICE",
+          "amountCr": 128.0
+        },
+        {
+          "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
+          "amountCr": 143.0
+        },
+        {
+          "purpose": "SECTION IV: ABOUT OUR COMPANY",
+          "amountCr": 151.0
+        },
+        {
+          "purpose": "INDUSTRY OVERVIEW – STANDBY POWER AND DG MARKET",
+          "amountCr": 151.0
+        },
+        {
+          "purpose": "INDUSTRY OVERVIEW – INDIAN RENEWABLE ENERGY INDUSTRY",
+          "amountCr": 183.0
+        },
+        {
+          "purpose": "OUR BUSINESS",
+          "amountCr": 233.0
+        },
+        {
+          "purpose": "KEY REGULATIONS AND POLICIES IN INDIA",
+          "amountCr": 269.0
+        },
+        {
+          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+          "amountCr": 279.0
+        },
+        {
+          "purpose": "OUR MANAGEMENT",
+          "amountCr": 291.0
+        },
+        {
+          "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
+          "amountCr": 308.0
+        },
+        {
+          "purpose": "DIVIDEND POLICY",
+          "amountCr": 313.0
+        }
+      ],
+      "shareholding": {
+        "promoters": [],
+        "promoterPreIssuePct": 0.47
+      },
+      "issuerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 13,
+        "documentUrl": "https://nsearchives.nseindia.com/corporate/FP_INE921L01032_30MAR2026.pdf",
+        "documentType": "Prospectus",
+        "documentTitle": "Prospectus",
+        "sourcePage": "https://nsearchives.nseindia.com/corporate/FP_INE921L01032_30MAR2026.pdf",
+        "sha256": "e5d1cdd20531e276bbd8ea6973f1d7efcd823f7ea73385387b732aa852bf66cf",
+        "pagesRead": 508,
+        "pageCount": 508,
+        "extractedFields": [
+          "leadManagers",
+          "registrar",
+          "promoters",
+          "issueComposition",
+          "financials",
+          "objectsOfIssue",
+          "shareholding",
+          "lotSize",
+          "priceBand"
+        ],
+        "changedFields": [
+          "registrar",
+          "leadManagers",
+          "promoters",
+          "financials",
+          "objectsOfIssue",
+          "shareholding"
+        ],
+        "extractedAt": "2026-09-14T03:05:22+05:30",
+        "source": "NSE"
       }
     },
     {
@@ -19998,6 +20733,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=RSL&type=Past",
           "asOf": "2026-09-13T17:13:30+05:30"
+        },
+        {
+          "name": "SEBI final Prospectus",
+          "kind": "regulatory-filing",
+          "url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/rajputana-stainless-limited-prospectus_100791.html",
+          "asOf": "2026-09-14T03:06:34+05:30"
         }
       ],
       "source": {
@@ -20016,6 +20757,18 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "Offer-document": {
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2026/1775629467259.pdf",
+          "documentType": "Prospectus",
+          "documentFiledDate": null,
+          "parserVersion": 13,
+          "source": "SEBI",
+          "lotSize": 110,
+          "priceBand": {
+            "min": 116.0,
+            "max": 122.0
+          }
         }
       },
       "documents": [
@@ -20085,6 +20838,137 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=RSL&series=EQ",
         "lotSize": 110,
         "error": null
+      },
+      "registrar": "KFin Technologies Limited",
+      "leadManagers": [
+        "Nirbhay Capital Services Private Limited",
+        "Private Limited",
+        "Rajputana Steel Castings Private Limited",
+        "Rajputana Steel Castings Limited"
+      ],
+      "promoters": [
+        "being Shankarlal Deepchand Mehta"
+      ],
+      "financials": {
+        "unit": "₹ crore",
+        "periods": [
+          {
+            "period": "FY2025",
+            "patCr": 2006.0,
+            "revenueCr": 932.1558,
+            "ebitdaCr": 73.7878,
+            "netWorthCr": 20.25,
+            "ronwPct": 2025.0,
+            "roePct": 30.17,
+            "eps": 2025.0
+          },
+          {
+            "period": "FY2024",
+            "patCr": 3.0,
+            "revenueCr": 909.808,
+            "ebitdaCr": 59.4097,
+            "netWorthCr": 0.1382,
+            "ronwPct": 13.82,
+            "roePct": 32.7,
+            "eps": 3.54
+          },
+          {
+            "period": "FY2023",
+            "patCr": 985.14,
+            "revenueCr": 947.6744,
+            "ebitdaCr": 43.8458,
+            "netWorthCr": 0.2744,
+            "ronwPct": 27.44,
+            "roePct": 34.62,
+            "eps": 5.0
+          },
+          {
+            "period": "FY2022",
+            "revenueCr": 501.5294,
+            "ebitdaCr": 45.9241,
+            "netWorthCr": 0.3,
+            "ronwPct": 30.0,
+            "roePct": 14.86,
+            "eps": 30.0,
+            "patCr": 24.4096
+          }
+        ]
+      },
+      "objectsOfIssue": [
+        {
+          "purpose": "BASIS FOR THE OFFER PRICE",
+          "amountCr": 174.0
+        },
+        {
+          "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
+          "amountCr": 184.0
+        },
+        {
+          "purpose": "SECTION – IV ABOUT OUR COMPANY",
+          "amountCr": 192.0
+        },
+        {
+          "purpose": "INDUSTRY OVERVIEW",
+          "amountCr": 192.0
+        },
+        {
+          "purpose": "OUR BUSINESS",
+          "amountCr": 234.0
+        },
+        {
+          "purpose": "KEY REGULATIONS AND POLICIES IN INDIA",
+          "amountCr": 265.0
+        },
+        {
+          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+          "amountCr": 275.0
+        },
+        {
+          "purpose": "OUR MANAGEMENT",
+          "amountCr": 280.0
+        },
+        {
+          "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
+          "amountCr": 295.0
+        },
+        {
+          "purpose": "OUR GROUP COMPANIES",
+          "amountCr": 302.0
+        },
+        {
+          "purpose": "DIVIDEND POLICY",
+          "amountCr": 307.0
+        }
+      ],
+      "issuerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 13,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2026/1775629467259.pdf",
+        "documentType": "Prospectus",
+        "documentTitle": "Prospectus",
+        "sourcePage": "https://www.sebi.gov.in/filings/public-issues/apr-2026/rajputana-stainless-limited-prospectus_100791.html",
+        "sha256": "906f5db6f2548ce58bfd92532e12f8d573d9d54aaafc00c781cf9114445ed7a8",
+        "pagesRead": 520,
+        "pageCount": 539,
+        "extractedFields": [
+          "leadManagers",
+          "registrar",
+          "promoters",
+          "issueComposition",
+          "financials",
+          "objectsOfIssue",
+          "lotSize",
+          "priceBand"
+        ],
+        "changedFields": [
+          "registrar",
+          "leadManagers",
+          "promoters",
+          "financials",
+          "objectsOfIssue"
+        ],
+        "extractedAt": "2026-09-14T03:06:34+05:30",
+        "source": "SEBI"
       }
     },
     {
@@ -20569,6 +21453,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=OMNI&type=Past",
           "asOf": "2026-09-13T17:14:00+05:30"
+        },
+        {
+          "name": "SEBI Red Herring Prospectus",
+          "kind": "regulatory-filing",
+          "url": "https://www.sebi.gov.in/filings/public-issues/feb-2026/omnitech-engineering-limited-rhp_99941.html",
+          "asOf": "2026-09-14T03:02:47+05:30"
         }
       ],
       "source": {
@@ -20640,6 +21530,102 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=OMNI&series=EQ",
         "lotSize": 66,
         "error": null
+      },
+      "registrar": "LOGO MUFG Intime India Private Limited",
+      "leadManagers": [
+        "BSE Limited",
+        "India Limited",
+        "ICICI Securities Limited"
+      ],
+      "promoters": [
+        "are Udaykumar Arunkumar Parekh",
+        "Dharmi A. Parekh. For details",
+        "see ‘Our"
+      ],
+      "financials": {
+        "unit": "₹ crore",
+        "periods": [
+          {
+            "period": "FY2025",
+            "ebitdaCr": 700.84,
+            "patCr": 277.79,
+            "roePct": 12.07,
+            "revenueCr": 228.17,
+            "eps": 7.0
+          },
+          {
+            "period": "FY2024",
+            "ebitdaCr": 1176.47,
+            "patCr": 438.65,
+            "roePct": 21.55,
+            "revenueCr": 342.913,
+            "eps": 18.0
+          },
+          {
+            "period": "FY2023",
+            "ebitdaCr": 649.36,
+            "patCr": 189.08,
+            "roePct": 23.79,
+            "revenueCr": 178.18,
+            "eps": 2026.0
+          }
+        ]
+      },
+      "objectsOfIssue": [
+        {
+          "purpose": "Offer of Equity Shares(1) Up to [●] Equity Shares of face value of ₹ 5 each",
+          "amountCr": null
+        },
+        {
+          "purpose": "Fresh Issue(1) Up to [●] Equity Shares of face value of ₹ 5 each",
+          "amountCr": null
+        },
+        {
+          "purpose": "B) Non-Institutional Portion(5) Not less than [●] Equity Shares of face value of ₹",
+          "amountCr": 0.5
+        },
+        {
+          "purpose": "C) Retail Portion (4) (6) Not less than [●] Equity Shares of face value of ₹",
+          "amountCr": 0.5
+        },
+        {
+          "purpose": "Udaykumar Arunkumar Parekh February 9, 2026",
+          "amountCr": 165.0
+        }
+      ],
+      "shareholding": {
+        "promoters": [],
+        "promoterPreIssuePct": 94.08
+      },
+      "issuerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 13,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2026/1771933506852.pdf",
+        "documentType": "RHP",
+        "documentTitle": "Red Herring Prospectus",
+        "sourcePage": "https://www.sebi.gov.in/filings/public-issues/feb-2026/omnitech-engineering-limited-rhp_99941.html",
+        "sha256": "f9c89cacfeaf82871d578be87eda19f23ee5b6289923f49657a91e4487de37ed",
+        "pagesRead": 520,
+        "pageCount": 570,
+        "extractedFields": [
+          "leadManagers",
+          "registrar",
+          "promoters",
+          "issueComposition",
+          "financials",
+          "objectsOfIssue",
+          "shareholding"
+        ],
+        "changedFields": [
+          "registrar",
+          "leadManagers",
+          "promoters",
+          "financials",
+          "objectsOfIssue",
+          "shareholding"
+        ],
+        "extractedAt": "2026-09-14T03:02:47+05:30",
+        "source": "SEBI"
       }
     },
     {
@@ -20677,6 +21663,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=PNGSREVA&type=Past",
           "asOf": "2026-09-13T17:14:05+05:30"
+        },
+        {
+          "name": "SEBI final Prospectus",
+          "kind": "regulatory-filing",
+          "url": "https://www.sebi.gov.in/filings/public-issues/feb-2026/pngs-reva-diamond-jewellery-limited_100068.html",
+          "asOf": "2026-09-14T03:04:45+05:30"
         }
       ],
       "source": {
@@ -20695,6 +21687,18 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "Offer-document": {
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2026/1772433551022.pdf",
+          "documentType": "Prospectus",
+          "documentFiledDate": null,
+          "parserVersion": 13,
+          "source": "SEBI",
+          "lotSize": 32,
+          "priceBand": {
+            "min": 367.0,
+            "max": 386.0
+          }
         }
       },
       "documents": [
@@ -20713,6 +21717,13 @@
           "source": "SEBI",
           "filedDate": "2026-02-10",
           "sourcePage": "https://www.sebi.gov.in/filings/public-issues/feb-2026/pngs-reva-diamond-jewellery-limited-rhp_99676.html"
+        },
+        {
+          "type": "Prospectus",
+          "title": "Prospectus",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2026/1772433551022.pdf",
+          "filedDate": null,
+          "source": "SEBI"
         }
       ],
       "validation": {
@@ -20748,6 +21759,133 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=PNGSREVA&series=EQ",
         "lotSize": 32,
         "error": null
+      },
+      "registrar": "Book Built Issue Bigshare Services Private Limited",
+      "leadManagers": [
+        "BSE Limited",
+        "India Limited",
+        "CONTACT PERSON TELEPHONE AND EMAIL Smart Horizon Capital Advisors Private Limited",
+        "Shreni Capital Advisors Private Limited"
+      ],
+      "promoters": [
+        "namely",
+        "P. N. Gadgil & Sons Limited",
+        "Govind"
+      ],
+      "financials": {
+        "unit": "₹ crore",
+        "periods": [
+          {
+            "period": "FY2025",
+            "ebitdaCr": 30.792,
+            "patCr": 20.133,
+            "netWorthCr": 1.673,
+            "ronwPct": 16.73,
+            "eps": 31.0
+          },
+          {
+            "period": "FY2024",
+            "ebitdaCr": 79.611,
+            "patCr": 59.474,
+            "netWorthCr": 5.936,
+            "ronwPct": 59.36,
+            "eps": 2024.0
+          },
+          {
+            "period": "FY2023",
+            "ebitdaCr": 56.139,
+            "patCr": 42.414,
+            "netWorthCr": -14.884,
+            "ronwPct": -148.84,
+            "eps": 31.0
+          }
+        ]
+      },
+      "objectsOfIssue": [
+        {
+          "purpose": "BASIS FOR ISSUE PRICE",
+          "amountCr": 144.0
+        },
+        {
+          "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
+          "amountCr": 156.0
+        },
+        {
+          "purpose": "SECTION IV – ABOUT OUR COMPANY",
+          "amountCr": 162.0
+        },
+        {
+          "purpose": "INDUSTRY OVERVIEW",
+          "amountCr": 162.0
+        },
+        {
+          "purpose": "OUR BUSINESS",
+          "amountCr": 216.0
+        },
+        {
+          "purpose": "KEY REGULATIONS AND POLICIES IN INDIA",
+          "amountCr": 235.0
+        },
+        {
+          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+          "amountCr": 242.0
+        },
+        {
+          "purpose": "OUR MANAGEMENT",
+          "amountCr": 247.0
+        },
+        {
+          "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
+          "amountCr": 263.0
+        },
+        {
+          "purpose": "DIVIDEND POLICY",
+          "amountCr": 268.0
+        },
+        {
+          "purpose": "SECTION V – FINANCIAL INFORMATION",
+          "amountCr": 269.0
+        },
+        {
+          "purpose": "RESTATED FINANCIAL INFORMATION",
+          "amountCr": 269.0
+        }
+      ],
+      "shareholding": {
+        "promoters": [],
+        "promoterPreIssuePct": 87.45
+      },
+      "issuerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 13,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2026/1772433551022.pdf",
+        "documentType": "Prospectus",
+        "documentTitle": "Prospectus",
+        "sourcePage": "https://www.sebi.gov.in/filings/public-issues/feb-2026/pngs-reva-diamond-jewellery-limited_100068.html",
+        "sha256": "99cedc3c1c9db3bb8b2eba984864705998aaceb562db5d0e38408d6f2019517b",
+        "pagesRead": 477,
+        "pageCount": 477,
+        "extractedFields": [
+          "leadManagers",
+          "registrar",
+          "promoters",
+          "issueComposition",
+          "financials",
+          "objectsOfIssue",
+          "shareholding",
+          "lotSize",
+          "priceBand"
+        ],
+        "changedFields": [
+          "registrar",
+          "leadManagers",
+          "promoters",
+          "financials",
+          "objectsOfIssue",
+          "shareholding"
+        ],
+        "extractedAt": "2026-09-14T03:04:45+05:30",
+        "source": "SEBI"
       }
     },
     {
