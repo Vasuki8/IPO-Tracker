@@ -372,16 +372,16 @@
       },
       "verified-p4-official-issue-terms": {
         "ok": true,
-        "entries": 7,
-        "updated": 7,
+        "entries": 13,
+        "updated": 6,
         "identityRejected": 0,
         "fields": {
-          "issueSizeCr": 7,
-          "freshIssueCr": 4,
-          "ofsCr": 4,
-          "issueComposition": 4
+          "issueSizeCr": 6,
+          "freshIssueCr": 3,
+          "ofsCr": 3,
+          "issueComposition": 3
         },
-        "checkedAt": "2026-09-14T03:45:28+05:30"
+        "checkedAt": "2026-09-14T03:51:33+05:30"
       }
     },
     "errors": [],
@@ -44164,6 +44164,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=VENTIVE&type=Past",
           "asOf": "2026-09-13T18:43:00+05:30"
+        },
+        {
+          "name": "SEBI Ventive Hospitality final Prospectus",
+          "kind": "regulator",
+          "url": "https://www.sebi.gov.in/filings/public-issues/dec-2024/ventive-hospitality-limited-prospectus_90212.html",
+          "asOf": "2026-09-14T03:51:33+05:30"
         }
       ],
       "source": {
@@ -44182,15 +44188,24 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4OfficialIssueTerms": {
+          "issueSizeCr": 1600.0,
+          "freshIssueCr": 1600.0,
+          "ofsCr": 0.0,
+          "sourceUrl": "https://www.sebi.gov.in/filings/public-issues/dec-2024/ventive-hospitality-limited-prospectus_90212.html",
+          "sourceKind": "regulator",
+          "openDate": "2024-12-20"
         }
       },
       "documents": [],
       "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "status": "verified",
+        "checkedAt": "2026-09-14T03:51:33+05:30",
         "checks": [],
         "independentSources": [
-          "NSE"
+          "NSE",
+          "SEBI"
         ]
       },
       "profilePath": "ipo/ventive/",
@@ -44216,6 +44231,15 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
+      },
+      "issueSizeCr": 1600.0,
+      "freshIssueCr": 1600.0,
+      "ofsCr": 0.0,
+      "issueComposition": {
+        "freshIssueCr": 1600.0,
+        "ofsCr": 0.0,
+        "totalIssueSizeCr": 1600.0,
+        "sourceBasis": "official SEBI final offer terms"
       }
     },
     {
@@ -44851,6 +44875,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=DAMCAPITAL&type=Past",
           "asOf": "2026-09-13T18:43:36+05:30"
+        },
+        {
+          "name": "SEBI DAM Capital Advisors final Prospectus",
+          "kind": "regulator",
+          "url": "https://www.sebi.gov.in/filings/public-issues/dec-2024/dam-capital-advisors-limited-prospectus_90232.html",
+          "asOf": "2026-09-14T03:51:33+05:30"
         }
       ],
       "source": {
@@ -44869,15 +44899,24 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4OfficialIssueTerms": {
+          "issueSizeCr": 840.252,
+          "freshIssueCr": 0.0,
+          "ofsCr": 840.252,
+          "sourceUrl": "https://www.sebi.gov.in/filings/public-issues/dec-2024/dam-capital-advisors-limited-prospectus_90232.html",
+          "sourceKind": "regulator",
+          "openDate": "2024-12-19"
         }
       },
       "documents": [],
       "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "status": "verified",
+        "checkedAt": "2026-09-14T03:51:33+05:30",
         "checks": [],
         "independentSources": [
-          "NSE"
+          "NSE",
+          "SEBI"
         ]
       },
       "profilePath": "ipo/damcapital/",
@@ -44903,6 +44942,15 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
+      },
+      "issueSizeCr": 840.252,
+      "freshIssueCr": 0.0,
+      "ofsCr": 840.252,
+      "issueComposition": {
+        "freshIssueCr": 0.0,
+        "ofsCr": 840.252,
+        "totalIssueSizeCr": 840.252,
+        "sourceBasis": "official SEBI final offer terms"
       }
     },
     {
@@ -44934,6 +44982,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CEWATER&type=Past",
           "asOf": "2026-09-13T18:43:42+05:30"
+        },
+        {
+          "name": "SEBI-hosted BRLM disclosure for Concord Enviro Systems",
+          "kind": "regulator",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1759368606185_979.pdf",
+          "asOf": "2026-09-14T03:51:33+05:30"
         }
       ],
       "source": {
@@ -44952,15 +45006,24 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4OfficialIssueTerms": {
+          "issueSizeCr": 500.326,
+          "freshIssueCr": null,
+          "ofsCr": null,
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1759368606185_979.pdf",
+          "sourceKind": "regulator",
+          "openDate": "2024-12-19"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "checkedAt": "2026-09-14T03:51:33+05:30",
         "checks": [],
         "independentSources": [
-          "NSE"
+          "NSE",
+          "SEBI-hosted"
         ]
       },
       "profilePath": "ipo/cewater/",
@@ -44987,7 +45050,8 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
-      }
+      },
+      "issueSizeCr": 500.326
     },
     {
       "id": "identical",
@@ -45095,6 +45159,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:28+05:30"
+        },
+        {
+          "name": "SEBI-hosted BRLM disclosure for International Gemmological Institute",
+          "kind": "regulator",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jan-2025/1736249404881_639.pdf",
+          "asOf": "2026-09-14T03:51:33+05:30"
         }
       ],
       "source": {
@@ -45113,15 +45183,24 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4OfficialIssueTerms": {
+          "issueSizeCr": 4225.0,
+          "freshIssueCr": null,
+          "ofsCr": null,
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jan-2025/1736249404881_639.pdf",
+          "sourceKind": "regulator",
+          "openDate": "2024-12-13"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "checkedAt": "2026-09-14T03:51:33+05:30",
         "checks": [],
         "independentSources": [
-          "NSE"
+          "NSE",
+          "SEBI-hosted"
         ]
       },
       "profilePath": "ipo/igil/",
@@ -45144,7 +45223,8 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
-      }
+      },
+      "issueSizeCr": 4225.0
     },
     {
       "id": "iks",
@@ -45175,6 +45255,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=IKS&type=Past",
           "asOf": "2026-09-13T18:43:58+05:30"
+        },
+        {
+          "name": "SEBI-hosted BRLM disclosure for Inventurus Knowledge Solutions",
+          "kind": "regulator",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2025/1739791805392_693.pdf",
+          "asOf": "2026-09-14T03:51:33+05:30"
         }
       ],
       "source": {
@@ -45193,15 +45279,24 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4OfficialIssueTerms": {
+          "issueSizeCr": 2497.923,
+          "freshIssueCr": null,
+          "ofsCr": null,
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2025/1739791805392_693.pdf",
+          "sourceKind": "regulator",
+          "openDate": "2024-12-12"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "checkedAt": "2026-09-14T03:51:33+05:30",
         "checks": [],
         "independentSources": [
-          "NSE"
+          "NSE",
+          "SEBI-hosted"
         ]
       },
       "profilePath": "ipo/iks/",
@@ -45227,7 +45322,8 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
-      }
+      },
+      "issueSizeCr": 2497.923
     },
     {
       "id": "vmm",
@@ -45840,6 +45936,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SURAKSHA&type=Past",
           "asOf": "2026-09-13T18:44:42+05:30"
+        },
+        {
+          "name": "SEBI Suraksha Diagnostic final Prospectus",
+          "kind": "regulator",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1733378164227.pdf",
+          "asOf": "2026-09-14T03:51:33+05:30"
         }
       ],
       "source": {
@@ -45858,15 +45960,24 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4OfficialIssueTerms": {
+          "issueSizeCr": 846.249,
+          "freshIssueCr": 0.0,
+          "ofsCr": 846.249,
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1733378164227.pdf",
+          "sourceKind": "regulator",
+          "openDate": "2024-11-29"
         }
       },
       "documents": [],
       "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "status": "verified",
+        "checkedAt": "2026-09-14T03:51:33+05:30",
         "checks": [],
         "independentSources": [
-          "NSE"
+          "NSE",
+          "SEBI"
         ]
       },
       "profilePath": "ipo/suraksha/",
@@ -45892,6 +46003,15 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
+      },
+      "issueSizeCr": 846.249,
+      "freshIssueCr": 0.0,
+      "ofsCr": 846.249,
+      "issueComposition": {
+        "freshIssueCr": 0.0,
+        "ofsCr": 846.249,
+        "totalIssueSizeCr": 846.249,
+        "sourceBasis": "official SEBI final offer terms"
       }
     },
     {
