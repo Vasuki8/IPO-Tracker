@@ -19,7 +19,7 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v7.0.1
@@ -35,7 +35,9 @@ jobs:
         run: uv run python -m unittest discover -s tests -p "test_issuer_offer_docs.py" -v
       - name: Run parser v10 regressions
         run: uv run python -m unittest discover -s tests -p "test_offer_docs_v10.py" -v
-      - name: Preview P0 and P1 validated fallbacks
+      - name: Run parser v11 regressions
+        run: uv run python -m unittest discover -s tests -p "test_offer_docs_v11.py" -v
+      - name: Preview final P0 and P1 offer-document fixes
         shell: bash
         run: |
           uv run python scripts/run_issuer_offer_docs.py --priority-max 1 --limit 0
@@ -52,7 +54,12 @@ jobs:
           q_by_id = {str(r.get("id")): r for r in queue.get("queue") or []}
 
           print("OFFER_SCORE", audit["scores"]["offerDocumentEligible"])
-          for record_id in ("injecto-polymers-limited", "vama-wovenfab-limited"):
+          print("PRIORITIES", json.dumps(queue.get("priorityCounts"), sort_keys=True))
+          for record_id in (
+              "injecto-polymers-limited",
+              "manika",
+              "vama-wovenfab-limited",
+          ):
               row = by_id.get(record_id, {})
               item = q_by_id.get(record_id, {})
               print(
@@ -65,4 +72,11 @@ jobs:
                   "missing=", item.get("missingFields"),
                   "extraction=", row.get("issuerDocumentExtraction"),
               )
+
+          assert by_id["injecto-polymers-limited"].get("shareholding"), "Injecto shareholding still missing"
+          assert by_id["manika"].get("shareholding"), "Manika shareholding still missing"
+          assert by_id["vama-wovenfab-limited"].get("issueComposition"), "Vama issue composition still missing"
+          assert not q_by_id.get("injecto-polymers-limited"), "Injecto still queued"
+          assert not q_by_id.get("manika"), "Manika still queued"
+          assert not q_by_id.get("vama-wovenfab-limited"), "Vama still queued"
           PY
