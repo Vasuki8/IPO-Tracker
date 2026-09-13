@@ -143,6 +143,22 @@ VERIFIED_RECENT_OFFER_FIELDS: dict[str, dict[str, Any]] = {
         "https://nsearchives.nseindia.com/corporate/FP_INE1KZI01025_25AUG2026.pdf",
         shareholding={"promoterPreIssuePct": 80.52},
     ),
+    "rambhajo": _entry(
+        "Advit Jewels Limited", "RAMBHAJO", "2026-06-23",
+        "SEBI Advit Jewels Abridged Prospectus objects",
+        "https://www.sebi.gov.in/sebi_data/commondocs/jun-2026/Advit%20Jewels%20Limited%20-%20APR_p.pdf",
+        objectsOfIssue=[
+            "Funding incremental working capital requirements of the Company",
+            "Repayment or prepayment, in full or in part, of certain outstanding borrowings availed by the Company from a scheduled commercial bank",
+            "General corporate purposes",
+        ],
+    ),
+    "aastha": _entry(
+        "Aastha Spintex Limited", "AASTHA", "2026-06-29",
+        "SEBI Aastha Spintex issue announcement registrar",
+        "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781090594066.pdf",
+        registrar="Bigshare Services Private Limited",
+    ),
 }
 
 
