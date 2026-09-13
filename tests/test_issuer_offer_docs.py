@@ -147,6 +147,18 @@ class IssuerOfferDocumentTests(unittest.TestCase):
         self.assertEqual(len(targets), 1)
         self.assertEqual(targets[0][0]["id"], "raksan-transformers-limited")
 
+    def test_runner_registers_official_shakti_drhp(self):
+        runner_path = Path(__file__).resolve().parents[1] / "scripts" / "run_issuer_offer_docs.py"
+        runner_spec = importlib.util.spec_from_file_location("run_issuer_offer_docs", runner_path)
+        runner = importlib.util.module_from_spec(runner_spec)
+        sys.modules[runner_spec.name] = runner
+        runner_spec.loader.exec_module(runner)
+        entry = runner.base.ISSUER_DOCUMENTS["shakti-polytarp-limited"]
+        self.assertEqual(entry["host"], "shaktipolytarp.com")
+        self.assertEqual(entry["type"], "DRHP")
+        self.assertTrue(mod._host_matches(entry["url"], entry["host"]))
+        self.assertIn("DRHP_Shakti_29092025.pdf", entry["url"])
+
 
 if __name__ == "__main__":
     unittest.main()
