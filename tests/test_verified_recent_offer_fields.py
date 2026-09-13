@@ -15,6 +15,7 @@ class VerifiedRecentOfferFieldTests(unittest.TestCase):
         expected = {
             "sunshine", "symbiotec", "pranav", "arcil", "augmont", "glasswall",
             "lccproject", "lumino", "mpimanipal", "prasolchem", "steamhouse", "tempsens",
+            "rambhajo", "aastha",
         }
         self.assertEqual(set(mod.VERIFIED_RECENT_OFFER_FIELDS), expected)
 
@@ -69,6 +70,42 @@ class VerifiedRecentOfferFieldTests(unittest.TestCase):
         required = {"registrar", "leadManagers", "promoters", "objectsOfIssue", "financials", "shareholding"}
         for record_id in ("sunshine", "symbiotec"):
             self.assertTrue(required.issubset(mod.VERIFIED_RECENT_OFFER_FIELDS[record_id]["fields"]))
+
+    def test_advit_objects_are_from_official_sebi_abridged_prospectus(self):
+        entry = mod.VERIFIED_RECENT_OFFER_FIELDS["rambhajo"]
+        self.assertEqual(entry["company"], "Advit Jewels Limited")
+        self.assertEqual(entry["symbol"], "RAMBHAJO")
+        self.assertEqual(entry["openDate"], "2026-06-23")
+        self.assertIn("sebi.gov.in/sebi_data/commondocs/", entry["sourceUrl"])
+        objects = entry["fields"]["objectsOfIssue"]
+        self.assertEqual(len(objects), 3)
+        self.assertTrue(any("working capital" in item.lower() for item in objects))
+        self.assertTrue(any("borrowings" in item.lower() for item in objects))
+        self.assertTrue(any("general corporate" in item.lower() for item in objects))
+
+    def test_aastha_registrar_is_official_and_fill_only(self):
+        entry = mod.VERIFIED_RECENT_OFFER_FIELDS["aastha"]
+        self.assertEqual(entry["company"], "Aastha Spintex Limited")
+        self.assertEqual(entry["symbol"], "AASTHA")
+        self.assertEqual(entry["openDate"], "2026-06-29")
+        self.assertEqual(entry["fields"]["registrar"], "Bigshare Services Private Limited")
+        self.assertIn("sebi.gov.in/sebi_data/attachdocs/", entry["sourceUrl"])
+
+        record = {
+            "id": "aastha",
+            "company": "Aastha Spintex Limited",
+            "symbol": "AASTHA",
+            "openDate": "2026-06-29",
+            "registrar": None,
+            "sources": [],
+            "observations": {},
+        }
+        self.assertEqual(mod.apply_verified_offer_fields(record, entry), ["registrar"])
+        self.assertEqual(record["registrar"], "Bigshare Services Private Limited")
+
+        record["registrar"] = "Existing Registrar"
+        self.assertEqual(mod.apply_verified_offer_fields(record, entry), [])
+        self.assertEqual(record["registrar"], "Existing Registrar")
 
 
 if __name__ == "__main__":
