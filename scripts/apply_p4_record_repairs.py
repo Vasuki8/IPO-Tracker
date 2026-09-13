@@ -100,6 +100,14 @@ def _resolution_entry(
     }
 
 
+_EVENT_IPO_FIELDS = (
+    "exchange.lotSize",
+    "exchange.issueSizeCr",
+    "exchange.issueComposition",
+    "lifecycle.listingDate",
+)
+
+
 AVAILABILITY_RESOLUTIONS: dict[str, dict[str, Any]] = {
     "adanienpp1": _resolution_entry(
         "Adani Enterprises Limited",
@@ -114,12 +122,7 @@ AVAILABILITY_RESOLUTIONS: dict[str, dict[str, Any]] = {
         "Rajputana Stainless Limited-Special Withdrawal Option",
         "RSL",
         "2026-03-12",
-        (
-            "exchange.lotSize",
-            "exchange.issueSizeCr",
-            "exchange.issueComposition",
-            "lifecycle.listingDate",
-        ),
+        _EVENT_IPO_FIELDS,
         "Auxiliary investor-withdrawal-option event row; the actual Rajputana Stainless IPO is a separate equity listing.",
         "NSE Rajputana Stainless withdrawal notice",
         "https://nsearchives.nseindia.com/corporate/IRMENERGY_13032026170101_Cover_SE_Intimation_signed.pdf",
@@ -128,12 +131,7 @@ AVAILABILITY_RESOLUTIONS: dict[str, dict[str, Any]] = {
         "C2C Advanced Systems Limited- Withdrawal Window",
         "C2CW",
         "2024-11-26",
-        (
-            "exchange.lotSize",
-            "exchange.issueSizeCr",
-            "exchange.issueComposition",
-            "lifecycle.listingDate",
-        ),
+        _EVENT_IPO_FIELDS,
         "Auxiliary withdrawal-window event row; the actual C2C Advanced Systems SME IPO listed under symbol C2C.",
         "NSE C2C Advanced Systems SME-IPO listing release",
         "https://nsearchives.nseindia.com/web/sites/default/files/2024-12/PR_List_02122024.pdf",
@@ -142,15 +140,28 @@ AVAILABILITY_RESOLUTIONS: dict[str, dict[str, Any]] = {
         "NFP Sampoorna Foods Limited-Issue Withdrawn",
         "SAMPOORNA",
         "2026-02-04",
-        (
-            "exchange.lotSize",
-            "exchange.issueSizeCr",
-            "exchange.issueComposition",
-            "lifecycle.listingDate",
-        ),
+        _EVENT_IPO_FIELDS,
         "Withdrawn February event row; the later completed NFP Sampoorna Foods IPO is a separate issue under symbol NFPSAMPOOR.",
         "NSE NFP Sampoorna Foods completed IPO issue information",
         "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=NFPSAMPOOR&type=Active",
+    ),
+    "icel": _resolution_entry(
+        "IC Electricals Company Limited-Issue postponed",
+        "ICEL",
+        "2026-06-25",
+        _EVENT_IPO_FIELDS,
+        "Postponed June 2026 issue event row. IC Electricals later returned with a separate completed NSE SME issue, so this structural row must not inherit the later issue terms or listing date.",
+        "NSE IC Electricals issue information",
+        "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=ICEL&type=Active",
+    ),
+    "spgcl": _resolution_entry(
+        "Sri Priyanka Geo Commex Limited-Issue Withdrawn",
+        "SPGCL",
+        "2026-06-24",
+        _EVENT_IPO_FIELDS,
+        "Withdrawn June 2026 NSE SME issue event row; IPO-specific completion and listing fields are not actionable for this withdrawn event record.",
+        "NSE Sri Priyanka Geo Commex issue information",
+        "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SPGCL&type=Active",
     ),
 }
 
