@@ -54,6 +54,7 @@ jobs:
           by_id = {str(r.get("id")): r for r in payload.get("ipos") or []}
           session = requests.Session()
           session.headers.update(core.HEADERS)
+          score_shareholding_page = parser.v9.v8._shareholding_page_score
 
           def fetch_pdf(label, url):
               print(f"=== {label} ===")
@@ -75,7 +76,7 @@ jobs:
                   except Exception:
                       text = ""
                   cache[idx] = text
-                  score = parser.v8._shareholding_page_score(text)
+                  score = score_shareholding_page(text)
                   if score > 0:
                       ranked.append((score, idx))
               ranked.sort(reverse=True)
@@ -102,17 +103,12 @@ jobs:
               print(label, "PRODUCTION_ISSUE", parsed.get("issueComposition"))
               print(label, "PRODUCTION_PAGES", pages_read, page_count)
 
-          # Official registrar-hosted Injecto RHP discovered from the registrar's
-          # own dowloadfmpdf('INJECTORHP.pdf') entry.
           injecto = fetch_pdf(
               "INJECTO_REGISTRAR_RHP",
               "https://ipostatus.integratedregistry.in/PDFFILES/INJECTORHP.pdf",
           )
           probe_shareholding("INJECTO", injecto)
 
-          # Manika's SEBI record now has both Abridged and full RHP links. Probe
-          # the full non-abridged RHP explicitly because the Abridged document is
-          # intentionally preferred by the normal first-pass selector.
           manika = by_id["manika"]
           print("=== MANIKA_DOCUMENTS ===")
           full_candidates = []
@@ -135,7 +131,6 @@ jobs:
           manika_pdf = fetch_pdf("MANIKA_FULL_SEBI_RHP", full_candidates[0][1])
           probe_shareholding("MANIKA", manika_pdf)
 
-          # Current official issuer-hosted Vama RHP.
           vama = fetch_pdf(
               "VAMA_ISSUER_RHP",
               "https://vamawoven.com/wp-content/uploads/2026/09/RHP_VamaWovenfabLimited-2.pdf",
