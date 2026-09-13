@@ -1,0 +1,25 @@
+name: Audit P4 residuals
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/audit_p4_residuals.py"
+      - ".github/workflows/audit-p4-residuals.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v7.0.1
+        with:
+          ref: main
+      - name: Print residual P4 audit
+        run: python scripts/audit_p4_residuals.py
