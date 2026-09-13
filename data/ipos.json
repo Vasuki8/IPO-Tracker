@@ -92,10 +92,10 @@
       },
       "SEBI-document-links": {
         "ok": true,
-        "records": 4,
-        "attemptedRecords": 2,
-        "attempted": 4,
-        "asOf": "2026-09-14T02:11:28+05:30",
+        "records": 0,
+        "attemptedRecords": 0,
+        "attempted": 0,
+        "asOf": "2026-09-14T02:20:43+05:30",
         "errors": []
       },
       "Offer-docs": {
@@ -145,7 +145,7 @@
         "searchMatchedRecords": 0,
         "searchLinksAdded": 0,
         "failed": 0,
-        "asOf": "2026-09-14T02:11:26+05:30",
+        "asOf": "2026-09-14T02:20:43+05:30",
         "errors": []
       },
       "SEBI-offer-terms": {
@@ -338,10 +338,10 @@
       "attempted": 12,
       "extracted": 12,
       "failed": 0,
-      "eligibleRemaining": 47,
+      "eligibleRemaining": 35,
       "parserVersion": 13,
       "schedulerVersion": 1,
-      "asOf": "2026-09-14T02:12:07+05:30",
+      "asOf": "2026-09-14T02:26:56+05:30",
       "errors": []
     },
     "subscriptionHealth": {
@@ -394,13 +394,13 @@
     },
     "sebiDocumentLinkHealth": {
       "ok": true,
-      "attemptedRecords": 2,
-      "attempted": 4,
-      "resolvedPages": 4,
+      "attemptedRecords": 0,
+      "attempted": 0,
+      "resolvedPages": 0,
       "seededPages": 0,
-      "linksAdded": 4,
+      "linksAdded": 0,
       "failed": 0,
-      "asOf": "2026-09-14T02:11:28+05:30",
+      "asOf": "2026-09-14T02:20:43+05:30",
       "errors": []
     }
   },
@@ -6207,7 +6207,7 @@
       ],
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 12,
+        "parserVersion": 13,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/PRANAV%20CONSTRUCTIONS%20LIMITED%20-%20AP_p.pdf",
         "documentType": "RHP",
         "documentTitle": "PRANAV CONSTRUCTIONS LIMITED - Abridged Prospectus",
@@ -6222,7 +6222,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T16:16:55+05:30",
+        "extractedAt": "2026-09-14T02:20:47+05:30",
         "source": "SEBI"
       },
       "lotSize": 120,
@@ -6611,7 +6611,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 12,
+        "parserVersion": 13,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Deepa%20Jewellers%20Ltd.%20-%20Abridged%20Prospectus_p.pdf",
         "documentType": "RHP",
         "documentTitle": "Deepa Jewellers Limited - Abridged Prospectus",
@@ -6628,7 +6628,7 @@
           "objectsOfIssue",
           "shareholding"
         ],
-        "extractedAt": "2026-09-13T16:16:59+05:30",
+        "extractedAt": "2026-09-14T02:20:51+05:30",
         "source": "SEBI"
       },
       "lotSize": 84,
@@ -6909,6 +6909,17 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "SEBI-offer": {
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788323000985.pdf",
+          "documentType": "PROSPECTUS",
+          "documentFiledDate": "2026-09-02",
+          "parserVersion": 13,
+          "lotSize": 75,
+          "priceBand": {
+            "min": 190.0,
+            "max": 200.0
+          }
         }
       },
       "documents": [
@@ -7048,12 +7059,12 @@
         "ofsShares": 0,
         "freshIssueCr": 0.825,
         "ofsCr": 0.0,
-        "totalIssueSizeCr": 91.5,
+        "totalIssueSizeCr": 0.825,
         "valuationPriceUsed": 200.0
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 12,
+        "parserVersion": 13,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788323000985.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "SEBI PROSPECTUS",
@@ -7072,7 +7083,7 @@
           "lotSize",
           "priceBand"
         ],
-        "extractedAt": "2026-09-13T16:18:31+05:30",
+        "extractedAt": "2026-09-14T02:22:03+05:30",
         "source": "SEBI"
       },
       "lotSize": 75,
@@ -7274,7 +7285,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 12,
+        "parserVersion": 13,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/ESDS%20Software%20Solution%20Limited%20-%20Abridged%20Prospectus_p.pdf",
         "documentType": "RHP",
         "documentTitle": "ESDS Software Solution Limited - Abridged Prospectus",
@@ -7291,7 +7302,7 @@
           "objectsOfIssue",
           "shareholding"
         ],
-        "extractedAt": "2026-09-13T16:18:36+05:30",
+        "extractedAt": "2026-09-14T02:22:07+05:30",
         "source": "SEBI"
       },
       "lotSize": 34,
@@ -7495,7 +7506,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 12,
+        "parserVersion": 13,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Lumino%20Industries%20Limited%20-%20Abridged%20Prospectus_p.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "Lumino Industries Limited - Abridged prospectus",
@@ -7511,7 +7522,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T16:18:39+05:30",
+        "extractedAt": "2026-09-14T02:22:10+05:30",
         "source": "SEBI"
       },
       "lotSize": 182,
@@ -7650,6 +7661,17 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "SEBI-offer": {
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1788150561832.pdf",
+          "documentType": "PROSPECTUS",
+          "documentFiledDate": "2026-08-31",
+          "parserVersion": 13,
+          "lotSize": 151,
+          "priceBand": {
+            "min": 94.0,
+            "max": 99.0
+          }
         }
       },
       "documents": [
@@ -7803,11 +7825,27 @@
         "valuationPriceUsed": 99.0
       },
       "offerDocumentExtraction": {
-        "status": "error",
-        "parserVersion": 12,
+        "status": "extracted",
+        "parserVersion": 13,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1788150561832.pdf",
-        "lastAttemptAt": "2026-09-13T16:19:38+05:30",
-        "error": "('Connection broken: IncompleteRead(7798831 bytes read, 2234893 more expected)', IncompleteRead(7798831 bytes read, 2234893 more expected))",
+        "documentType": "PROSPECTUS",
+        "documentTitle": "SEBI PROSPECTUS",
+        "documentFiledDate": "2026-08-31",
+        "sha256": "a83ce724b2e53f5f01ca0df0c19dc1e7b050ea1cb2d0d0885e5bbbc0e8915a65",
+        "pagesRead": 462,
+        "pageCount": 462,
+        "extractedFields": [
+          "leadManagers",
+          "registrar",
+          "promoters",
+          "issueComposition",
+          "financials",
+          "objectsOfIssue",
+          "shareholding",
+          "lotSize",
+          "priceBand"
+        ],
+        "extractedAt": "2026-09-14T02:23:09+05:30",
         "source": "SEBI"
       },
       "lotSize": 151,
@@ -7921,7 +7959,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 12,
+        "parserVersion": 13,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/SYMBIOTEC%20PHARMALAB%20LIMITED%20-%20AP_p.pdf",
         "documentType": "RHP",
         "documentTitle": "SYMBIOTEC PHARMALAB LIMITED – Abridged Prospectus",
@@ -7938,7 +7976,7 @@
           "objectsOfIssue",
           "shareholding"
         ],
-        "extractedAt": "2026-09-13T16:19:42+05:30",
+        "extractedAt": "2026-09-14T02:23:13+05:30",
         "source": "SEBI"
       },
       "registrar": "Formerly Link Intime India Private Limited",
@@ -8087,6 +8125,16 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "SEBI-offer": {
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787916423171.pdf",
+          "documentType": "PROSPECTUS",
+          "documentFiledDate": "2026-08-28",
+          "parserVersion": 13,
+          "priceBand": {
+            "min": 138.0,
+            "max": 138.0
+          }
         }
       },
       "documents": [
@@ -8194,7 +8242,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 12,
+        "parserVersion": 13,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787916423171.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "SEBI PROSPECTUS",
@@ -8212,7 +8260,7 @@
           "shareholding",
           "priceBand"
         ],
-        "extractedAt": "2026-09-13T16:20:43+05:30",
+        "extractedAt": "2026-09-14T02:24:05+05:30",
         "source": "SEBI"
       },
       "lotSize": 100,
@@ -8339,6 +8387,17 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "SEBI-offer": {
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "documentType": "PROSPECTUS",
+          "documentFiledDate": "2026-08-28",
+          "parserVersion": 13,
+          "lotSize": 283,
+          "priceBand": {
+            "min": 50.0,
+            "max": 53.0
+          }
         }
       },
       "documents": [
@@ -8486,7 +8545,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 12,
+        "parserVersion": 13,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "SEBI PROSPECTUS",
@@ -8502,9 +8561,10 @@
           "financials",
           "objectsOfIssue",
           "shareholding",
+          "lotSize",
           "priceBand"
         ],
-        "extractedAt": "2026-09-13T16:21:38+05:30",
+        "extractedAt": "2026-09-14T02:24:52+05:30",
         "source": "SEBI"
       },
       "lotSize": 283,
@@ -8637,6 +8697,17 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "SEBI-offer": {
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787821632446.pdf",
+          "documentType": "PROSPECTUS",
+          "documentFiledDate": "2026-08-27",
+          "parserVersion": 13,
+          "lotSize": 19,
+          "priceBand": {
+            "min": 750.0,
+            "max": 788.0
+          }
         }
       },
       "documents": [
@@ -8690,7 +8761,8 @@
         "periods": [
           {
             "period": "FY2026",
-            "revenueCr": 94186.212,
+            "revenueCr": 2.0,
+            "eps": 2026.0,
             "ebitdaCr": 385.95,
             "patCr": 0.037,
             "netWorthCr": 0.5,
@@ -8762,15 +8834,15 @@
       ],
       "issueComposition": {
         "freshShares": 7868019,
-        "ofsShares": 7868019,
+        "ofsShares": 2601521,
         "freshIssueCr": 620.0,
         "ofsCr": 4.0,
-        "totalIssueSizeCr": 620.0,
+        "totalIssueSizeCr": 825.0,
         "valuationPriceUsed": 788.0
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 12,
+        "parserVersion": 13,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787821632446.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "SEBI PROSPECTUS",
@@ -8788,7 +8860,7 @@
           "lotSize",
           "priceBand"
         ],
-        "extractedAt": "2026-09-13T16:22:56+05:30",
+        "extractedAt": "2026-09-14T02:25:58+05:30",
         "source": "SEBI"
       },
       "lotSize": 19,
@@ -8953,7 +9025,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 12,
+        "parserVersion": 13,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Tempsens%20Instruments%20(India)%20Limited%20-%20AP_p.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "Tempsens Instruments (India) Limited - Abridged Prospectus",
@@ -8970,7 +9042,7 @@
           "objectsOfIssue",
           "shareholding"
         ],
-        "extractedAt": "2026-09-13T16:22:59+05:30",
+        "extractedAt": "2026-09-14T02:26:01+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/tempsens/",
@@ -9085,6 +9157,17 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "SEBI-offer": {
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787551388728.pdf",
+          "documentType": "PROSPECTUS",
+          "documentFiledDate": "2026-08-24",
+          "parserVersion": 13,
+          "lotSize": 93,
+          "priceBand": {
+            "min": 152.0,
+            "max": 160.0
+          }
         }
       },
       "documents": [
@@ -9219,7 +9302,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 12,
+        "parserVersion": 13,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787551388728.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "SEBI PROSPECTUS",
@@ -9238,7 +9321,7 @@
           "lotSize",
           "priceBand"
         ],
-        "extractedAt": "2026-09-13T16:24:03+05:30",
+        "extractedAt": "2026-09-14T02:26:56+05:30",
         "source": "SEBI"
       },
       "lotSize": 93,
@@ -15619,6 +15702,13 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=AVIENCE&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T02:20:32+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
       }
     },
     {
@@ -15701,6 +15791,13 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CLAYCRAFT&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T02:20:33+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
       }
     },
     {
@@ -15783,6 +15880,13 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=UTKAL&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T02:20:34+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
       }
     },
     {
@@ -15989,6 +16093,13 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=GENXAI&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T02:20:35+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
       }
     },
     {
@@ -16162,6 +16273,13 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=QLINE&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T02:20:36+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
       }
     },
     {
@@ -16244,6 +16362,13 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=BMLL&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T02:20:37+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
       }
     },
     {
@@ -16326,6 +16451,13 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=TEAMTECH&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T02:20:38+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
       }
     },
     {
@@ -16408,6 +16540,13 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=NFPSAMPOOR&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T02:20:39+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
       }
     },
     {
@@ -16490,6 +16629,13 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=RFBL&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T02:20:40+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
       }
     },
     {
@@ -16572,6 +16718,13 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SIMCA&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T02:20:41+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
       }
     },
     {
@@ -16730,6 +16883,13 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=VALUE360&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T02:20:42+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
       }
     },
     {
@@ -16936,6 +17096,13 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=AMBAAUTO&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T02:20:43+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
       }
     },
     {
