@@ -40,6 +40,20 @@ SEBI_HOSTS = {"sebi.gov.in", "www.sebi.gov.in"}
 # intentionally landing pages, not copied PDF URLs, so runtime resolution still
 # discovers the current Abridged Prospectus + full RHP directly from SEBI.
 CANONICAL_FILING_PAGES: dict[str, dict[str, str]] = {
+    "veegaland": {
+        "type": "RHP",
+        "title": "Veegaland Developers Ltd. - RHP",
+        "url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/veegaland-developers-ltd-rhp_104160.html",
+        "filedDate": "2026-08-31",
+        "source": "SEBI",
+    },
+    "manika": {
+        "type": "RHP",
+        "title": "Manika Plastech Limited - RHP",
+        "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/manika-plastech-limited-rhp_104296.html",
+        "filedDate": "2026-09-07",
+        "source": "SEBI",
+    },
     "rentomojo": {
         "type": "RHP",
         "title": "Rentomojo Limited - RHP",
