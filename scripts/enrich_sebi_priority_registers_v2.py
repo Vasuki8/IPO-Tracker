@@ -2,13 +2,17 @@
 """Phase 2 dedicated SEBI priority filing discovery.
 
 v1 discovers priority RHP/Prospectus landing pages from the newest dedicated
-register pages.  SEBI's POST pagination is blocked from GitHub Actions, but the
-GET-based all-list search endpoint remains accessible.  v2 uses that search
-only for priority issuers still lacking a primary RHP/Prospectus landing page.
+register pages. SEBI's POST pagination is blocked from GitHub Actions, but the
+GET-based all-list search endpoint remains accessible. v2 uses that search only
+for priority issuers still lacking a primary RHP/Prospectus landing page.
 
-Only final-stage RHP or Prospectus search results are accepted here.  DRHP and
+Only final-stage RHP or Prospectus search results are accepted here. DRHP and
 UDRHP results are deliberately ignored because recent exchange terms such as
 lot size and final issue composition may not yet be fixed in draft documents.
+
+Search attempts are persisted per record. Bounded runs therefore process never-
+attempted issuers first, then retry the oldest attempts, instead of repeatedly
+spending the daily budget on the same newest no-match records.
 """
 from __future__ import annotations
 
@@ -34,6 +38,7 @@ DATA_FILE = core.DATA_FILE
 QUEUE_FILE = v1.QUEUE_FILE
 SEARCH_URL = "https://www.sebi.gov.in/sebiweb/home/HomeAction.do"
 PARSER_VERSION = 2
+ATTEMPT_KEY = "sebiPriorityRegisterSearch"
 
 
 def infer_primary_type(title: str) -> str | None:
@@ -121,6 +126,44 @@ def _attach_matches(record: dict[str, Any], matches: list[dict[str, str]]) -> in
     return added
 
 
+def _date_number(value: Any) -> int:
+    digits = re.sub(r"\D", "", str(value or ""))
+    try:
+        return int(digits[:8]) if digits else 0
+    except ValueError:
+        return 0
+
+
+def search_candidate_sort_key(record: dict[str, Any]) -> tuple[int, str, int]:
+    """Never-attempted first; otherwise oldest attempt first; newest IPO as tie-break."""
+    attempt = record.get(ATTEMPT_KEY)
+    last_attempt = str(attempt.get("lastAttemptAt") or "") if isinstance(attempt, dict) else ""
+    return (
+        1 if last_attempt else 0,
+        last_attempt,
+        -_date_number(record.get("openDate")),
+    )
+
+
+def _stamp_attempt(
+    record: dict[str, Any],
+    *,
+    status: str,
+    links_added: int = 0,
+    error: str | None = None,
+) -> None:
+    entry: dict[str, Any] = {
+        "status": status,
+        "linksAdded": links_added,
+        "lastAttemptAt": core.now_ist().isoformat(timespec="seconds"),
+        "sourceUrl": SEARCH_URL,
+        "parserVersion": PARSER_VERSION,
+    }
+    if error:
+        entry["error"] = str(error)[:300]
+    record[ATTEMPT_KEY] = entry
+
+
 def enrich_payload(
     payload: dict[str, Any],
     session: requests.Session,
@@ -133,7 +176,7 @@ def enrich_payload(
     ids = v1.priority_ids(queue, priority_max)
     records = [r for r in payload.get("ipos") or [] if isinstance(r, dict) and str(r.get("id") or "") in ids]
     records = [r for r in records if not has_primary_landing(r)]
-    records.sort(key=lambda r: str(r.get("openDate") or ""), reverse=True)
+    records.sort(key=search_candidate_sort_key)
     if search_limit > 0:
         records = records[:search_limit]
 
@@ -151,12 +194,14 @@ def enrich_payload(
             candidates = parse_search_html(response.text)
             matches = v1.match_record(record, candidates)
             added = _attach_matches(record, matches)
+            _stamp_attempt(record, status="matched" if added else "no-match", links_added=added)
             if added:
                 matched_records += 1
                 links_added += added
         except Exception as exc:
             failed += 1
             errors.append(f"{record.get('company')}: {exc}")
+            _stamp_attempt(record, status="error", error=str(exc))
 
     as_of = core.now_ist().isoformat(timespec="seconds")
     health = {

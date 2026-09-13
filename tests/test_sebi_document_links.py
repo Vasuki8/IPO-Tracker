@@ -78,6 +78,53 @@ class SebiDocumentLinkTests(unittest.TestCase):
         self.assertFalse(mod.seed_canonical_filing_page({"id": "other"}, docs))
         self.assertEqual(docs, [])
 
+    def test_resolution_budget_only_includes_unresolved_landing_pages(self):
+        landing = "https://www.sebi.gov.in/filings/public-issues/aug-2026/example-rhp.html"
+        record = {
+            "id": "example",
+            "documents": [{"type": "RHP", "title": "Example - RHP", "url": landing}],
+        }
+        self.assertTrue(mod.record_needs_resolution(record))
+
+        record["documents"].append(
+            {
+                "type": "RHP",
+                "title": "Example RHP",
+                "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/123.pdf",
+                "sourcePage": landing,
+            }
+        )
+        self.assertFalse(mod.record_needs_resolution(record))
+
+    def test_direct_pdf_without_landing_does_not_consume_resolution_budget(self):
+        record = {
+            "id": "other",
+            "documents": [
+                {
+                    "type": "RHP",
+                    "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/123.pdf",
+                }
+            ],
+        }
+        self.assertFalse(mod.record_needs_resolution(record))
+
+    def test_missing_canonical_page_is_eligible_for_resolution(self):
+        record = {"id": "rentomojo", "documents": []}
+        self.assertTrue(mod.record_needs_resolution(record))
+
+    def test_bounded_resolution_rotates_unattempted_then_oldest_attempts(self):
+        records = [
+            {"id": "new-attempt", "openDate": "2026-08-20", mod.ATTEMPT_KEY: {"lastAttemptAt": "2026-09-13T12:00:00+05:30"}},
+            {"id": "older-unattempted", "openDate": "2026-07-01"},
+            {"id": "old-attempt", "openDate": "2026-08-10", mod.ATTEMPT_KEY: {"lastAttemptAt": "2026-09-12T12:00:00+05:30"}},
+            {"id": "newer-unattempted", "openDate": "2026-08-01"},
+        ]
+        ordered = sorted(records, key=mod.resolution_candidate_sort_key)
+        self.assertEqual(
+            [row["id"] for row in ordered],
+            ["newer-unattempted", "older-unattempted", "old-attempt", "new-attempt"],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
