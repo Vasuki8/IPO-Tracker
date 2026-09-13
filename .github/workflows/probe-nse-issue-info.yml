@@ -29,99 +29,48 @@ jobs:
       - name: Sync dependencies
         run: uv sync
 
-      - name: Inspect official NSE issue-information assets
+      - name: Probe official NSE IPO detail API
         shell: bash
         run: |
           uv run python - <<'PY'
-          import re
+          import json
           from pathlib import Path
-          from urllib.parse import urljoin
-
           import requests
-          from bs4 import BeautifulSoup
 
           HOME = "https://www.nseindia.com"
           PAGE = HOME + "/market-data/issue-information?series=EQ&symbol=SENCO&type=Past"
+          API = HOME + "/api/ipo-detail?symbol=SENCO&series=EQ"
           headers = {
               "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/152 Safari/537.36",
-              "Accept": "text/html,application/xhtml+xml,application/json,text/plain,*/*",
+              "Accept": "application/json,text/plain,*/*",
               "Accept-Language": "en-US,en;q=0.9",
           }
           session = requests.Session()
           session.headers.update(headers)
 
-          lines = []
+          # The issue-information page reliably establishes the cookies needed by
+          # the API even when the NSE home page rejects a cloud IP.
+          page = session.get(PAGE, timeout=30, headers={"Referer": HOME + "/"})
+          api = session.get(API, timeout=30, headers={"Referer": PAGE})
+
+          result = {
+              "pageStatus": page.status_code,
+              "pageBytes": len(page.content),
+              "apiStatus": api.status_code,
+              "apiBytes": len(api.content),
+              "apiUrl": api.url,
+          }
           try:
-              home = session.get(HOME, timeout=25)
-              lines.append(f"HOME status={home.status_code} bytes={len(home.content)}")
-          except Exception as exc:
-              lines.append(f"HOME error={exc}")
+              payload = api.json()
+              result["payloadType"] = type(payload).__name__
+              result["payload"] = payload
+          except Exception:
+              result["bodyPrefix"] = api.text[:3000]
 
-          response = session.get(PAGE, timeout=30, headers={"Referer": HOME + "/"})
-          lines.append(f"PAGE status={response.status_code} bytes={len(response.content)} url={response.url}")
-          response.raise_for_status()
-
-          soup = BeautifulSoup(response.text, "html.parser")
-          script_urls = []
-          for script in soup.find_all("script", src=True):
-              url = urljoin(PAGE, str(script.get("src") or ""))
-              if url and url not in script_urls:
-                  script_urls.append(url)
-          lines.append(f"SCRIPTS count={len(script_urls)}")
-
-          endpoint_re = re.compile(r"(?:https?://www\.nseindia\.com)?/api/[A-Za-z0-9_?&=.$%{}:/+-]+")
-          needles = (
-              "issue-information",
-              "public-past-issues",
-              "ipo-current-issue",
-              "bidlot",
-              "bid lot",
-              "minimumorderquantity",
-              "minimum bid",
-              "marketlot",
-              "market lot",
+          Path("docs/NSE_ISSUE_INFO_PROBE.json").write_text(
+              json.dumps(result, indent=2, ensure_ascii=False) + "\n",
+              encoding="utf-8",
           )
-          endpoints = set()
-          snippets = []
-
-          for index, url in enumerate(script_urls):
-              try:
-                  js = session.get(url, timeout=30, headers={"Referer": PAGE})
-                  text = js.text if js.ok else ""
-                  if not text:
-                      continue
-                  lower = text.lower()
-                  matched = any(needle in lower for needle in needles)
-                  found = set(endpoint_re.findall(text))
-                  if found:
-                      endpoints.update(found)
-                  if matched or found:
-                      lines.append(f"ASSET[{index}] status={js.status_code} bytes={len(js.content)} url={url}")
-                  for needle in needles:
-                      start = 0
-                      while True:
-                          pos = lower.find(needle, start)
-                          if pos < 0:
-                              break
-                          left = max(0, pos - 280)
-                          right = min(len(text), pos + len(needle) + 420)
-                          snippet = re.sub(r"\s+", " ", text[left:right])
-                          snippets.append(f"[{url}] ...{snippet}...")
-                          start = pos + len(needle)
-                          if len(snippets) >= 120:
-                              break
-                      if len(snippets) >= 120:
-                          break
-                  if len(snippets) >= 120:
-                      break
-              except Exception as exc:
-                  lines.append(f"ASSET[{index}] error={exc} url={url}")
-
-          lines.append("ENDPOINTS")
-          lines.extend(sorted(endpoints))
-          lines.append("SNIPPETS")
-          lines.extend(snippets)
-          Path("docs/NSE_ISSUE_INFO_PROBE.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
           PY
 
       - name: Publish probe result
@@ -129,6 +78,6 @@ jobs:
         run: |
           git config user.name "ipo-tracker-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/NSE_ISSUE_INFO_PROBE.txt
-          git commit -m "debug: record NSE issue-information probe" || exit 0
+          git add docs/NSE_ISSUE_INFO_PROBE.json
+          git commit -m "debug: record NSE IPO detail schema" || exit 0
           git push origin HEAD:main
