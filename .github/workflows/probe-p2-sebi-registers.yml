@@ -1,0 +1,79 @@
+name: Probe P2 SEBI filing registers
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/probe-p2-sebi-registers.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.1.0
+        with:
+          version: "latest-known"
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Sync dependencies
+        run: uv sync
+
+      - name: Probe dedicated SEBI registers
+        shell: bash
+        run: |
+          uv run python - <<'PY'
+          import json, re, requests, sys
+          from bs4 import BeautifulSoup
+          from urllib.parse import urljoin
+          sys.path.insert(0, 'scripts')
+          import update_data as core
+
+          q=json.load(open('data/missing_queue.json'))
+          p2=[x for x in q['queue'] if x.get('priority')==2]
+          targets={core.canonical_company(x['company']): x for x in p2}
+          urls={
+            'RHP':'https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=11&ssid=15',
+            'PROSPECTUS':'https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=12&ssid=15',
+          }
+          s=requests.Session(); s.headers.update(core.HEADERS)
+          found={}
+          for typ, base in urls.items():
+              for page in range(1,5):
+                  r=s.get(base, params={'page':page}, timeout=30); r.raise_for_status()
+                  soup=BeautifulSoup(r.text,'html.parser')
+                  print('REGISTER', typ, 'PAGE', page, 'ANCHORS', len(soup.select('a[href]')))
+                  for a in soup.select('a[href]'):
+                      title=' '.join(a.stripped_strings).strip()
+                      if not title: continue
+                      href=urljoin('https://www.sebi.gov.in', a.get('href'))
+                      if '/filings/public-issues/' not in href: continue
+                      company=re.sub(r'\s*[-–:]?\s*(?:UDRHP|DRHP|RHP|RED HERRING PROSPECTUS|PROSPECTUS|ABRIDGED PROSPECTUS|ADDENDUM|CORRIGENDUM).*','',title,flags=re.I).strip()
+                      key=core.canonical_company(company)
+                      # fuzzy fallback against target names
+                      match=None
+                      if key in targets: match=key
+                      else:
+                          from difflib import SequenceMatcher
+                          scores=[(SequenceMatcher(None,key,k).ratio(),k) for k in targets if key and k]
+                          if scores:
+                              score,k=max(scores)
+                              if score>=0.86: match=k
+                      if match:
+                          item=targets[match]
+                          found.setdefault(item['id'],[]).append((typ,title,href,page))
+          print('P2_TARGETS',len(p2),'MATCHED',len(found))
+          for item in p2:
+              docs=found.get(item['id']) or []
+              print(item['id'],'|',item['company'],'|',len(docs),'|',docs[:4])
+          PY
