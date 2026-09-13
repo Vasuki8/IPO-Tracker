@@ -17,7 +17,7 @@ concurrency:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v7.0.1
@@ -44,3 +44,25 @@ jobs:
 
       - name: Run issuer fallback regressions
         run: uv run python -m unittest discover -s tests -p "test_issuer_offer_docs.py" -v
+
+      - name: Preview v7 enrichment coverage without publishing
+        shell: bash
+        run: |
+          uv run python scripts/run_offer_docs_v7.py --limit 0
+          uv run python scripts/audit_data_completeness.py
+          uv run python - <<'PY'
+          import json
+          from pathlib import Path
+
+          payload = json.loads(Path("data/ipos.json").read_text(encoding="utf-8"))
+          audit = json.loads(Path("data/completeness.json").read_text(encoding="utf-8"))
+          stat = audit["coverage"]["offerDocumentEligible"]["promoterShareholding"]
+          print("PROMOTER_SHAREHOLDING_COVERAGE", json.dumps(stat, sort_keys=True))
+          print("PROMOTER_SHAREHOLDING_VALUES")
+          for row in payload.get("ipos") or []:
+              if not isinstance(row, dict):
+                  continue
+              value = row.get("promoterShareholding")
+              if isinstance(value, dict) and value.get("promoterPreIssuePct") is not None:
+                  print(row.get("id"), row.get("company"), value.get("promoterPreIssuePct"))
+          PY
