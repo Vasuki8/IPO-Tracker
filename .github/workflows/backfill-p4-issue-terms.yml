@@ -9,6 +9,11 @@ on:
       - "scripts/enrich_nse_issue_terms.py"
       - "tests/test_nse_issue_terms.py"
       - ".github/workflows/backfill-p4-issue-terms.yml"
+  workflow_run:
+    workflows:
+      - "P4 progressive lot-size backfill"
+    types:
+      - completed
   schedule:
     - cron: "07 16 * * *"
 
@@ -21,6 +26,7 @@ concurrency:
 
 jobs:
   backfill-p4-issue-terms:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
