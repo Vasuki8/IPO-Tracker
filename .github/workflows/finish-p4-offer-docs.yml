@@ -6,6 +6,8 @@ on:
     branches:
       - main
     paths:
+      - "scripts/apply_p4_record_repairs.py"
+      - "tests/test_p4_record_repairs.py"
       - ".github/workflows/finish-p4-offer-docs.yml"
   workflow_run:
     workflows:
@@ -49,6 +51,7 @@ jobs:
 
       - name: Run final P4 parser regressions
         run: |
+          uv run python -m unittest discover -s tests -p "test_p4_record_repairs.py" -v
           uv run python -m unittest discover -s tests -p "test_offer_docs_v13.py" -v
           uv run python -m unittest discover -s tests -p "test_issuer_offer_docs_v3.py" -v
           uv run python -m unittest discover -s tests -p "test_sebi_document_links.py" -v
@@ -68,6 +71,7 @@ jobs:
           # Zero means unbounded in these established deep-pass scripts. Discovery
           # remains constrained to priority <= 4, so P5 historical rows are not
           # pulled into this P4 completion run.
+          uv run python scripts/apply_p4_record_repairs.py
           uv run python scripts/enrich_sebi_priority_registers_v2.py --priority-max 4 --search-limit 0
           uv run python scripts/enrich_sebi_document_links.py --priority-max 4 --limit 0
           uv run python scripts/apply_verified_lot_sizes.py
