@@ -27,34 +27,38 @@ jobs:
             -H "Referer: https://www.bseindia.com/markets/PublicIssues/DisplayIPO" \
             "https://www.bseindia.com/assets/includenew/js/main-5C6S24SS.js" -o /tmp/main.js
 
-      - name: Trace DisplayIPO component and API methods
+      - name: Find IPO_HomePageDetail call signature
         shell: python
         run: |
-          import re
           raw = open("/tmp/main.js", encoding="utf-8", errors="ignore").read()
+          needle = "IPO_HomePageDetail"
+          start = 0
+          while True:
+              pos = raw.find(needle, start)
+              if pos < 0:
+                  break
+              print("\n=== MATCH ===")
+              print(raw[max(0, pos-3500):pos+6000])
+              start = pos + len(needle)
 
-          methods = sorted(set(re.findall(r"/[A-Za-z0-9_]+/w(?:\?[^\"'` ]*)?", raw)))
-          print("=== ALL /w METHODS NEAR IPO/DISPLAY CONTEXT ===")
-          for needle in ("DisplayIPO", "Minimum Bid Quantity", "Market Lot", "Issue Period", "Book Running Lead Manager", "Registrar", "IPO_NO", "Scrip_cd"):
-              print(f"\n=== {needle} ===")
-              start = 0
-              seen = 0
-              while True:
-                  pos = raw.find(needle, start)
-                  if pos < 0:
-                      break
-                  chunk = raw[max(0, pos-2200):pos+4200]
-                  api_methods = sorted(set(re.findall(r"/[A-Za-z0-9_]+/w(?:\?[^\"'` ]*)?", chunk)))
-                  if api_methods or "BSE_Domain_APIUrl" in chunk:
-                      print("METHODS:", api_methods)
-                      print(chunk)
-                      seen += 1
-                  start = pos + len(needle)
-                  if seen >= 6:
-                      break
-
-          print("\n=== CANDIDATE METHOD NAMES ===")
-          for method in methods:
-              low = method.lower()
-              if any(token in low for token in ("ipo", "bid", "registr", "merchant", "book", "public", "issue", "rta")):
-                  print(method)
+      - name: Probe likely IPO detail parameter shapes
+        shell: bash
+        continue-on-error: true
+        run: |
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/152 Safari/537.36"
+          BASE="https://api.bseindia.com/BseIndiaAPI/api/IPO_HomePageDetail/w"
+          for QS in \
+            "?id=4810&flag=IPO" \
+            "?id=4810&type=IPO&status=L&IPONo=7959" \
+            "?Scrip_cd=4810&IPO_NO=7959" \
+            "?scripcode=4810&ipono=7959" \
+            "?id=4810&IPONo=7959&startdt=10/Sep/2026"; do
+            echo "=== $QS ==="
+            curl --http1.1 -sS -L --max-time 25 -A "$UA" \
+              -H "Accept: application/json, text/plain, */*" \
+              -H "Origin: https://www.bseindia.com" \
+              -H "Referer: https://www.bseindia.com/markets/PublicIssues/DisplayIPO" \
+              -w "\nHTTP:%{http_code} SIZE:%{size_download}\n" \
+              "$BASE$QS" | head -c 10000
+            echo
+          done
