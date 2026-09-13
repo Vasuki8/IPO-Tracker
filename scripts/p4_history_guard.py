@@ -2,7 +2,7 @@
 """Guard the IPO database from non-equity rows in NSE's broad history feed.
 
 NSE's live and upcoming endpoints are IPO-scoped, but /public-past-issues can
-contain debt/NCD public issues alongside equity IPOs.  This module deliberately
+contain debt/NCD public issues alongside equity IPOs. This module deliberately
 uses conservative, explicit classification signals. Unknown rows are retained;
 only rows with strong non-equity evidence are excluded.
 
@@ -49,6 +49,20 @@ _DESCRIPTOR_FIELDS = (
     "issuerName",
     "name",
 )
+_SYMBOL_FIELDS = (
+    "symbol",
+    "smSymbol",
+    "nseSymbol",
+    "securitySymbol",
+    "tradingSymbol",
+)
+
+# NSE debt securities commonly encode coupon + issuer + maturity in the trading
+# symbol, e.g. 935IIFL33 = 9.35% IIFL ... 2033. The generic past-issues feed can
+# still label such rows as "IPO", so text-only classification is insufficient.
+# Requiring BOTH a 3/4-digit coupon prefix and a 2-digit maturity suffix keeps
+# legitimate numeric equity tickers such as 3MINDIA and 360ONE out of this rule.
+_DEBT_COUPON_MATURITY_SYMBOL = re.compile(r"^\d{3,4}[A-Z][A-Z0-9]{1,14}\d{2}$")
 
 _state: dict[str, Any] = {
     "seen": 0,
@@ -69,12 +83,26 @@ def _has_non_equity_marker(text: str) -> bool:
     return any(pattern.search(text or "") for pattern in _NON_EQUITY_PATTERNS)
 
 
+def _symbol(row: dict[str, Any]) -> str:
+    for field in _SYMBOL_FIELDS:
+        value = _text(row.get(field))
+        if value:
+            return re.sub(r"[^A-Z0-9]", "", value)
+    return ""
+
+
+def _has_debt_security_symbol(row: dict[str, Any]) -> bool:
+    symbol = _symbol(row)
+    return bool(symbol and _DEBT_COUPON_MATURITY_SYMBOL.fullmatch(symbol))
+
+
 def classify_nse_historical_issue(row: dict[str, Any]) -> str:
     """Return equity-ipo, non-equity or unknown for one NSE history row.
 
-    Explicit debt/security descriptors always win. Unknown rows are intentionally
-    kept because silently dropping an unclassified equity IPO is worse than
-    leaving it for later validation.
+    Explicit debt/security descriptors and unmistakable coupon/maturity debt
+    symbols always win. Unknown rows are intentionally kept because silently
+    dropping an unclassified equity IPO is worse than leaving it for later
+    validation.
     """
     row = row or {}
     security = _joined(row, _SECURITY_FIELDS)
@@ -83,6 +111,12 @@ def classify_nse_historical_issue(row: dict[str, Any]) -> str:
     combined = " | ".join(value for value in (security, issue, descriptor) if value)
 
     if _has_non_equity_marker(combined):
+        return "non-equity"
+
+    # The past-issues API sometimes calls a public NCD offering an "IPO" even
+    # when the security symbol itself encodes coupon and maturity. Treat that
+    # symbol as stronger evidence than the broad issue-type label.
+    if _has_debt_security_symbol(row):
         return "non-equity"
 
     security_tokens = {
