@@ -33,7 +33,7 @@ jobs:
       - name: Sync dependencies
         run: uv sync
 
-      - name: Discover hidden official offer-document URLs
+      - name: Resolve Injecto registrar and Vama RHP URLs
         shell: bash
         run: |
           uv run python - <<'PY'
@@ -44,83 +44,101 @@ jobs:
           import requests
           from bs4 import BeautifulSoup
 
-          headers = {
+          session = requests.Session()
+          session.headers.update({
               "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/152 Safari/537.36",
               "Accept": "text/html,application/xhtml+xml,application/pdf;q=0.9,*/*;q=0.8",
-          }
-          session = requests.Session()
-          session.headers.update(headers)
-
-          pages = [
-              (
-                  "injecto-registrar",
-                  "https://ipostatus.integratedregistry.in/RegistrarsToSTANew.aspx",
-                  ("INJECTO", "RHP", ".pdf"),
-              ),
-              (
-                  "vama-issuer-drhp",
-                  "https://vamawoven.com/drhp/",
-                  ("VAMA", "DRHP", ".pdf"),
-              ),
-              (
-                  "vama-gretex-offer-docs",
-                  "https://gretexcorporate.com/offer-documents/ipo/",
-                  ("VAMA", "RHP", ".pdf"),
-              ),
-          ]
+          })
 
           def compact(value):
               return re.sub(r"\s+", " ", str(value or "")).strip()
 
-          for label, url, needles in pages:
-              print(f"=== {label} ===")
+          # Integrated Registry uses JavaScript onclick handlers rather than
+          # anchors. Print the download helper body and test the discovered
+          # Injecto filename against any path prefix referenced by that helper.
+          registrar_url = "https://ipostatus.integratedregistry.in/RegistrarsToSTANew.aspx"
+          response = session.get(registrar_url, timeout=40)
+          response.raise_for_status()
+          source = html.unescape(response.text)
+          print("=== INJECTO REGISTRAR ===")
+          for pattern in (
+              r"function\s+dowloadfmpdf\s*\([^)]*\)\s*\{.{0,1800}?\}",
+              r"dowloadfmpdf\s*=\s*function\s*\([^)]*\)\s*\{.{0,1800}?\}",
+          ):
+              match = re.search(pattern, source, re.I | re.S)
+              if match:
+                  print("DOWNLOAD_FUNCTION", compact(match.group(0)))
+
+          row = re.search(
+              r"INJECTO\s+POLYMERS\s+LIMITED.{0,2200}?dowloadfmpdf\('([^']*RHP[^']*\.pdf)'\)",
+              source,
+              re.I | re.S,
+          )
+          filename = row.group(1) if row else "INJECTORHP.pdf"
+          print("INJECTO_FILENAME", filename)
+
+          prefixes = {"", "PDF/", "PDFs/", "pdf/", "Downloads/", "Download/", "Upload/", "Uploads/", "OfferDocuments/", "OfferDocument/"}
+          # Harvest literal path fragments containing PDF from the helper/page.
+          for literal in re.findall(r"['\"]([^'\"]*(?:PDF|pdf|Download|Upload)[^'\"]*/)['\"]", source):
+              if len(literal) < 180:
+                  prefixes.add(literal.lstrip("/"))
+          for prefix in sorted(prefixes):
+              candidate = urljoin(registrar_url, prefix + filename)
               try:
-                  response = session.get(url, timeout=40)
-                  print("STATUS", response.status_code, "FINAL", response.url, "BYTES", len(response.content))
-                  response.raise_for_status()
+                  probe = session.get(candidate, timeout=20, allow_redirects=True)
+                  head = probe.content[:5]
+                  print("INJECTO_CANDIDATE", probe.status_code, len(probe.content), head, probe.url)
+                  if probe.status_code == 200 and head.startswith(b"%PDF"):
+                      print("INJECTO_OFFICIAL_RHP", probe.url)
               except Exception as exc:
-                  print("FETCH_ERROR", repr(exc))
-                  continue
+                  print("INJECTO_CANDIDATE_ERROR", candidate, repr(exc))
 
-              text = response.text
-              decoded = html.unescape(text)
-              soup = BeautifulSoup(text, "html.parser")
-
+          # Vama's live issuer page has a dedicated RHP/AP page. Resolve every
+          # PDF from that page and verify which ones are real PDFs.
+          print("=== VAMA RHP PAGE ===")
+          rhp_page = "https://vamawoven.com/rhp/"
+          try:
+              vama = session.get(rhp_page, timeout=40)
+              print("VAMA_PAGE", vama.status_code, vama.url, len(vama.content))
+              vama.raise_for_status()
+              soup = BeautifulSoup(vama.text, "html.parser")
               candidates = set()
               for tag in soup.find_all(True):
-                  attrs = " ".join(f"{k}={v}" for k, v in tag.attrs.items())
-                  visible = compact(tag.get_text(" ", strip=True))
-                  combined = f"{visible} {attrs}"
-                  if any(n.lower() in combined.lower() for n in needles):
-                      print("MATCH_TAG", compact(combined)[:1800])
-                  for attr in ("href", "src", "data-href", "data-url", "onclick", "value"):
+                  for attr in ("href", "src", "data-href", "data-url"):
                       raw = tag.get(attr)
-                      if raw:
-                          value = " ".join(raw) if isinstance(raw, list) else str(raw)
-                          if ".pdf" in value.lower():
-                              for pdf in re.findall(r"(?:https?://[^\s'\"<>]+|[^\s'\"<>]+\.pdf(?:\?[^\s'\"<>]*)?)", value, re.I):
-                                  candidates.add(urljoin(response.url, html.unescape(pdf)))
-
-              for match in re.findall(r"https?://[^\s'\"<>]+?\.pdf(?:\?[^\s'\"<>]*)?", decoded, re.I):
-                  candidates.add(match)
-              for match in re.findall(r"(?:[A-Za-z0-9_./%-]+\.pdf)(?:\?[^\s'\"<>]*)?", decoded, re.I):
-                  candidates.add(urljoin(response.url, match))
-
-              print("PDF_CANDIDATES")
+                      if raw and ".pdf" in str(raw).lower():
+                          candidates.add(urljoin(vama.url, str(raw)))
+              decoded = html.unescape(vama.text)
+              for pdf in re.findall(r"https?://[^\s'\"<>]+?\.pdf(?:\?[^\s'\"<>]*)?", decoded, re.I):
+                  candidates.add(pdf)
               for candidate in sorted(candidates):
-                  print(candidate)
+                  try:
+                      pdf = session.get(candidate, timeout=30, allow_redirects=True)
+                      print("VAMA_CANDIDATE", pdf.status_code, len(pdf.content), pdf.content[:5], pdf.url)
+                      if pdf.status_code == 200 and pdf.content.startswith(b"%PDF"):
+                          print("VAMA_OFFICIAL_DOCUMENT", pdf.url)
+                  except Exception as exc:
+                      print("VAMA_CANDIDATE_ERROR", candidate, repr(exc))
+              target = re.search(r"(?:Red Herring Prospectus|RHP).{0,1800}", decoded, re.I | re.S)
+              if target:
+                  print("VAMA_RHP_WINDOW", compact(target.group(0))[:1800])
+          except Exception as exc:
+              print("VAMA_RHP_PAGE_ERROR", repr(exc))
 
-              # Print short source windows around the target name; ASP.NET and
-              # WordPress often hide the real PDF in onclick/script attributes.
-              upper = decoded.upper()
-              target = needles[0].upper()
-              cursor = 0
-              shown = 0
-              while shown < 8:
-                  pos = upper.find(target, cursor)
-                  if pos < 0:
-                      break
-                  print("SOURCE_WINDOW", compact(decoded[max(0, pos - 900):pos + 2200])[:3000])
-                  cursor = pos + len(target)
-                  shown += 1
+          # The BRLM listing has a Vama detail page. Resolve any PDF there too.
+          print("=== VAMA GRETEX DETAIL ===")
+          gretex_url = "https://gretexcorporate.com/offer-documents/ipo/vama-womenfab-limited"
+          try:
+              gretex = session.get(gretex_url, timeout=40)
+              print("GRETEX_PAGE", gretex.status_code, gretex.url, len(gretex.content))
+              gretex.raise_for_status()
+              soup = BeautifulSoup(gretex.text, "html.parser")
+              for tag in soup.find_all(True):
+                  for attr in ("href", "src", "data-href", "data-url"):
+                      raw = tag.get(attr)
+                      if raw and ".pdf" in str(raw).lower():
+                          candidate = urljoin(gretex.url, str(raw))
+                          print("GRETEX_PDF", candidate)
+          except Exception as exc:
+              print("GRETEX_ERROR", repr(exc))
           PY
