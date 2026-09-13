@@ -8,6 +8,7 @@ on:
     paths:
       - "scripts/apply_p4_record_repairs.py"
       - "scripts/apply_p4_record_repairs_v2.py"
+      - "scripts/apply_verified_offer_residuals_v2.py"
       - "scripts/enrich_issuer_offer_docs.py"
       - "scripts/enrich_sebi_priority_registers_v2.py"
       - "scripts/enrich_sebi_document_links.py"
@@ -24,6 +25,7 @@ on:
       - "tests/test_offer_docs_progressive.py"
       - "tests/test_issuer_offer_docs_v3.py"
       - "tests/test_issuer_offer_docs_v4.py"
+      - "tests/test_verified_offer_residuals_v2.py"
       - "tests/test_sebi_document_links.py"
       - "tests/test_sebi_priority_registers_v2.py"
       - ".github/workflows/finish-p4-offer-docs.yml"
@@ -83,6 +85,7 @@ jobs:
           uv run python -m unittest discover -s tests -p "test_verified_lot_sizes.py" -v
           uv run python -m unittest discover -s tests -p "test_verified_recent_issue_terms.py" -v
           uv run python -m unittest discover -s tests -p "test_verified_recent_offer_fields.py" -v
+          uv run python -m unittest discover -s tests -p "test_verified_offer_residuals_v2.py" -v
           uv run python -m unittest discover -s tests -p "test_data_completeness.py" -v
           uv run python -m unittest discover -s tests -p "test_missing_queue.py" -v
 
@@ -102,7 +105,7 @@ jobs:
           uv run python scripts/apply_verified_lot_sizes.py
           uv run python scripts/apply_verified_recent_issue_terms.py
           uv run python scripts/run_issuer_offer_docs_v4.py --priority-max 4 --limit 10
-          uv run python scripts/apply_verified_recent_offer_fields.py
+          uv run python scripts/apply_verified_offer_residuals_v2.py
           uv run python scripts/audit_data_completeness.py
           uv run python scripts/build_missing_queue.py
 
