@@ -20,6 +20,9 @@ class IssuerOfferDocsV3Tests(unittest.TestCase):
         expected = {
             "leap": "Leap India Limited",
             "propshop": "Propshop Events and Exhibitions Limited",
+            "alpinetex": "Alpine Texworld Limited",
+            "aastha": "Aastha Spintex Limited",
+            "rambhajo": "Advit Jewels Limited",
         }
         for record_id, company in expected.items():
             doc = mod.base.ISSUER_DOCUMENTS[record_id]
@@ -30,6 +33,7 @@ class IssuerOfferDocsV3Tests(unittest.TestCase):
             self.assertEqual(doc["extractionSource"], "SEBI")
             self.assertEqual(doc["documentSource"], "SEBI")
             self.assertEqual(doc["sourceKind"], "regulatory-filing")
+            self.assertTrue(doc["sourcePage"].startswith("https://www.sebi.gov.in/filings/public-issues/"))
 
     def test_validated_terms_remain_fill_only_and_stamp_v13(self):
         record = {
