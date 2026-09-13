@@ -1,0 +1,65 @@
+name: Probe P4 modern BSE history
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/probe-p4-bse-modern.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Inspect BSE Issue Summary HTML and scripts
+        shell: bash
+        run: |
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/152 Safari/537.36"
+          URL="https://www.bseindia.com/markets/PublicIssues/Issuesummary.aspx"
+          curl --http1.1 -sS -L --max-time 30 -A "$UA" \
+            -H "Accept: text/html,application/xhtml+xml,*/*" \
+            -H "Referer: https://www.bseindia.com/markets/PublicIssues/" \
+            -D /tmp/headers.txt "$URL" -o /tmp/issue-summary.html
+          echo "=== RESPONSE ==="
+          head -30 /tmp/headers.txt
+          wc -c /tmp/issue-summary.html
+          echo "=== DISPLAY / API / SCRIPT SIGNALS ==="
+          grep -Eoi '.{0,180}(DisplayIPO|IssueSummary|IPO_HomePageDetail|BseIndiaAPI|api/[^"'"' ]+|\.js).{0,300}' /tmp/issue-summary.html | head -80 || true
+          echo "=== FIRST DISPLAYIPO LINKS ==="
+          grep -Eo 'href=["'"'][^"'"']*DisplayIPO[^"'"']*["'"']' /tmp/issue-summary.html | head -30 || true
+
+      - name: Probe current BSE JS for issue-summary API signatures
+        shell: bash
+        continue-on-error: true
+        run: |
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/152 Safari/537.36"
+          grep -Eo '<script[^>]+src=["'"'][^"'"']+' /tmp/issue-summary.html \
+            | sed -E 's/.*src=["'"']//I' \
+            | sed 's#^//#https://#; s#^/#https://www.bseindia.com/#' \
+            | grep -E '\.js($|\?)' \
+            | tail -25 > /tmp/scripts.txt || true
+          cat /tmp/scripts.txt
+          i=0
+          while read -r JS; do
+            [ -z "$JS" ] && continue
+            i=$((i+1))
+            curl --http1.1 -sS -L --max-time 20 -A "$UA" "$JS" -o "/tmp/js-$i" || continue
+            if grep -Eqi 'IssueSummary|IPO_HomePage|DisplayIPO|PublicIssues|IPO.*Detail' "/tmp/js-$i"; then
+              echo "=== JS $JS ==="
+              grep -Eoi '.{0,500}(IssueSummary|IPO_HomePageDetail|DisplayIPO|PublicIssues|IPO[^"'"' ]*Detail).{0,1200}' "/tmp/js-$i" | head -30 || true
+            fi
+          done < /tmp/scripts.txt
+
+      - name: Probe indexed BSE detail URL directly
+        shell: bash
+        run: |
+          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/152 Safari/537.36"
+          URL="https://www.bseindia.com/markets/publicIssues/DisplayIPO.aspx?IPONo=7273&id=4128&idtype=1&startdt=04%2F09%2F2025&status=L&type=IPO"
+          curl --http1.1 -sS -L --max-time 30 -A "$UA" \
+            -H "Referer: https://www.bseindia.com/markets/PublicIssues/Issuesummary.aspx" \
+            "$URL" -o /tmp/detail.html
+          echo "DETAIL SIZE $(wc -c </tmp/detail.html)"
+          grep -Eoi '.{0,150}(SHARVAYA|Market Lot|Minimum Bid Quantity|Price Band|Security Type).{0,250}' /tmp/detail.html | head -40 || true
