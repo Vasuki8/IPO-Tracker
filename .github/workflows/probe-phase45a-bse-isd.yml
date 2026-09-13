@@ -19,23 +19,39 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Probe BSE historical IPO API rows
+      - name: Fetch BSE production bundle
         shell: bash
-        continue-on-error: true
         run: |
           UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/152 Safari/537.36"
-          for URL in \
-            "https://api.bseindia.com/BseIndiaAPI/api/IPOTrackerN/w?Fromdt=2026" \
-            "https://api.bseindia.com/BseIndiaAPI/api/IPOTrackerN/w?Fromdt=2025" \
-            "https://api.bseindia.com/BseIndiaAPI/api/IPOTrackerN/w?Fromdt=2024" \
-            "https://api.bseindia.com/BseIndiaAPI/api/MoreCompanyN/w?Fromdt=2025&company=&flag=1&type=2" \
-            "https://api.bseindia.com/BseIndiaAPI/api/MoreCompanyN/w?Fromdt=2024&company=&flag=1&type=2"; do
-            echo "=== $URL ==="
-            curl --http1.1 -sS -L --max-time 25 -A "$UA" \
-              -H "Accept: application/json, text/plain, */*" \
-              -H "Origin: https://www.bseindia.com" \
-              -H "Referer: https://www.bseindia.com/" \
-              -w "\nHTTP:%{http_code} SIZE:%{size_download}\n" \
-              "$URL" | head -c 12000
-            echo
-          done
+          curl --http1.1 -fL --retry 3 --retry-all-errors --retry-delay 2 -A "$UA" \
+            -H "Referer: https://www.bseindia.com/markets/PublicIssues/Issuesummary.aspx" \
+            "https://www.bseindia.com/assets/includenew/js/main-5C6S24SS.js" -o /tmp/main.js
+
+      - name: Find Issue Summary API methods and route context
+        shell: python
+        run: |
+          import re
+          raw = open("/tmp/main.js", encoding="utf-8", errors="ignore").read()
+
+          print("=== API-looking /w methods containing issue-related terms ===")
+          methods = sorted(set(re.findall(r"/[A-Za-z0-9_]+/w(?:\?[^\"'` ]*)?", raw)))
+          for method in methods:
+              low = method.lower()
+              if any(token in low for token in ("issue", "ipo", "isd", "summary", "public")):
+                  print(method)
+
+          for needle in ("Issuesummary", "Issue Summary Document", "issueSize", "Issue Size", "app-issue"):
+              print(f"\n=== CONTEXT {needle} ===")
+              start = 0
+              count = 0
+              while True:
+                  pos = raw.find(needle, start)
+                  if pos < 0:
+                      break
+                  chunk = raw[max(0, pos-1400):pos+2200]
+                  if "/w" in chunk or "BSE_Domain_APIUrl" in chunk or needle in ("Issuesummary", "Issue Summary Document"):
+                      print(chunk)
+                      count += 1
+                  start = pos + len(needle)
+                  if count >= 8:
+                      break
