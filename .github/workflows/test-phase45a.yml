@@ -9,10 +9,12 @@ on:
       - "scripts/enrich_nse_primary_market_reports_v2.py"
       - "scripts/enrich_exchange_details_v2.py"
       - "scripts/backfill_bse_history_v2.py"
+      - "scripts/apply_verified_lot_sizes.py"
       - "tests/test_nse_primary_market_reports.py"
       - "tests/test_nse_primary_market_reports_v2.py"
       - "tests/test_exchange_details_v2.py"
       - "tests/test_bse_history_backfill.py"
+      - "tests/test_verified_lot_sizes.py"
       - ".github/workflows/test-phase45a.yml"
   workflow_dispatch:
 
@@ -53,3 +55,6 @@ jobs:
 
       - name: Test BSE historical backfill integration
         run: uv run python -m unittest discover -s tests -p "test_bse_history_backfill.py" -v
+
+      - name: Test verified upcoming lot-size registry
+        run: uv run python -m unittest discover -s tests -p "test_verified_lot_sizes.py" -v
