@@ -1,0 +1,127 @@
+name: P4 progressive lot-size backfill
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/backfill_bse_history.py"
+      - "scripts/backfill_bse_history_v2.py"
+      - "scripts/enrich_exchange_details.py"
+      - "scripts/enrich_exchange_details_v2.py"
+      - "tests/test_bse_history_backfill.py"
+      - "tests/test_exchange_details_v2.py"
+      - ".github/workflows/backfill-p4-lot-sizes.yml"
+  workflow_run:
+    workflows:
+      - "Daily IPO history refresh"
+    types:
+      - completed
+  schedule:
+    # Independent daily fallback after the normal history refresh window.
+    - cron: "37 15 * * *"
+
+permissions:
+  contents: write
+
+# Serialize with every workflow that can write data/ipos.json.
+concurrency:
+  group: ipo-data-refresh
+  cancel-in-progress: false
+
+jobs:
+  backfill-p4-lot-sizes:
+    if: >-
+      github.event_name != 'workflow_run' ||
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v7.0.1
+        with:
+          ref: main
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.1.0
+        with:
+          version: "latest-known"
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Sync dependencies
+        run: uv sync
+
+      - name: Run BSE lot-size regression tests
+        run: |
+          uv run python -m unittest discover -s tests -p "test_exchange_details_v2.py" -v
+          uv run python -m unittest discover -s tests -p "test_bse_history_backfill.py" -v
+          uv run python -m unittest discover -s tests -p "test_data_completeness.py" -v
+          uv run python -m unittest discover -s tests -p "test_missing_queue.py" -v
+
+      - name: Record starting data revision
+        run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
+
+      - name: Advance P4 lot-size backfill
+        run: |
+          # The historical BSE detail source exposes Market Lot / Bid Lot /
+          # Minimum Bid Quantity. Progressive mode marks every considered record
+          # and applies a cooldown so the next run advances instead of repeatedly
+          # checking the same newest unresolved IPOs.
+          uv run python scripts/backfill_bse_history_v2.py \
+            --history-days 730 \
+            --limit 120 \
+            --core-only \
+            --retry-days 14
+
+          uv run python scripts/audit_data_completeness.py
+          uv run python scripts/build_missing_queue.py
+
+      - name: Publish P4 progress safely
+        shell: bash
+        run: |
+          cp data/ipos.json /tmp/generated-ipos.json
+          BASE_DATA="$(cat /tmp/base-data-blob)"
+
+          git fetch origin main
+          REMOTE_DATA="$(git rev-parse origin/main:data/ipos.json)"
+          if [ "$REMOTE_DATA" != "$BASE_DATA" ]; then
+            echo "Remote IPO data changed during the P4 lot-size run; refusing stale publication."
+            exit 0
+          fi
+
+          # Rebase onto the latest code-only commits, then rebuild every derived
+          # artifact from the authoritative generated IPO payload.
+          git reset --hard origin/main
+          cp /tmp/generated-ipos.json data/ipos.json
+          uv run python scripts/build_company_pages.py
+          uv run python scripts/audit_data_completeness.py
+          uv run python scripts/build_missing_queue.py
+
+          if [ -z "$(git status --porcelain -- data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md ipo/)" ]; then
+            echo "No P4 lot-size progress to publish"
+            exit 0
+          fi
+
+          git config user.name "ipo-tracker-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md ipo/
+          git commit -m "data: advance P4 lot-size backfill"
+          git push origin HEAD:main
+
+      - name: Report P4 lot-size coverage
+        shell: bash
+        run: |
+          git fetch origin main
+          git show origin/main:data/completeness.json > /tmp/current-completeness.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          payload = json.loads(Path('/tmp/current-completeness.json').read_text(encoding='utf-8'))
+          recent = payload.get('recent2y') or payload.get('recentTwoYears') or {}
+          print('Current P4 completeness snapshot:')
+          print(json.dumps(recent, indent=2, ensure_ascii=False))
+          PY
