@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-13T07:44:19+05:30",
+  "generatedAt": "2026-09-13T07:52:06+05:30",
   "asOfDate": "2026-09-13",
   "recordCount": 1371,
   "stageCounts": {
@@ -21,8 +21,8 @@
   },
   "scores": {
     "exchangeStage": 75.4,
-    "recentExchange2Y": 76.3,
-    "offerDocumentEligible": 77.5,
+    "recentExchange2Y": 76.4,
+    "offerDocumentEligible": 81.7,
     "openSubscription": 100.0,
     "maturedLifecycle": 97.4,
     "provenance": 100.0
@@ -72,16 +72,16 @@
         "pct": 0.8
       },
       "issueSizeCr": {
-        "present": 203,
+        "present": 204,
         "expected": 1364,
-        "missing": 1161,
-        "pct": 14.9
+        "missing": 1160,
+        "pct": 15.0
       },
       "issueComposition": {
-        "present": 194,
+        "present": 195,
         "expected": 458,
-        "missing": 264,
-        "pct": 42.4
+        "missing": 263,
+        "pct": 42.6
       }
     },
     "recentExchange2Y": {
@@ -128,16 +128,16 @@
         "pct": 2.4
       },
       "issueSizeCr": {
-        "present": 203,
+        "present": 204,
         "expected": 458,
-        "missing": 255,
-        "pct": 44.3
+        "missing": 254,
+        "pct": 44.5
       },
       "issueComposition": {
-        "present": 194,
+        "present": 195,
         "expected": 458,
-        "missing": 264,
-        "pct": 42.4
+        "missing": 263,
+        "pct": 42.6
       }
     },
     "historicalExchange": {
@@ -192,10 +192,10 @@
     },
     "offerDocumentEligible": {
       "registrar": {
-        "present": 19,
+        "present": 20,
         "expected": 20,
-        "missing": 1,
-        "pct": 95.0
+        "missing": 0,
+        "pct": 100.0
       },
       "leadManagers": {
         "present": 19,
@@ -210,22 +210,22 @@
         "pct": 85.0
       },
       "objectsOfIssue": {
-        "present": 16,
+        "present": 17,
         "expected": 20,
-        "missing": 4,
-        "pct": 80.0
+        "missing": 3,
+        "pct": 85.0
       },
       "financials": {
-        "present": 15,
+        "present": 17,
         "expected": 20,
-        "missing": 5,
-        "pct": 75.0
+        "missing": 3,
+        "pct": 85.0
       },
       "promoterShareholding": {
-        "present": 7,
+        "present": 8,
         "expected": 20,
-        "missing": 13,
-        "pct": 35.0
+        "missing": 12,
+        "pct": 40.0
       }
     },
     "openSubscription": {
@@ -454,12 +454,6 @@
       ],
       "issueSizeCr": [
         {
-          "id": "prasolchem",
-          "company": "Prasol Chemicals Limited",
-          "openDate": "2026-09-08",
-          "stage": "closed"
-        },
-        {
           "id": "kanohar",
           "company": "Kanohar Electricals Limited",
           "openDate": "2026-09-08",
@@ -542,6 +536,12 @@
           "company": "Symbiotec Pharmalab Limited",
           "openDate": "2026-08-24",
           "stage": "listed"
+        },
+        {
+          "id": "skyways",
+          "company": "Skyways Air Services Limited",
+          "openDate": "2026-08-24",
+          "stage": "listed"
         }
       ],
       "issueComposition": [
@@ -600,12 +600,6 @@
           "stage": "closed"
         },
         {
-          "id": "prasolchem",
-          "company": "Prasol Chemicals Limited",
-          "openDate": "2026-09-08",
-          "stage": "closed"
-        },
-        {
           "id": "kanohar",
           "company": "Kanohar Electricals Limited",
           "openDate": "2026-09-08",
@@ -634,18 +628,17 @@
           "company": "Rays of Belief Limited- For Profit Social Enterprise (FPSE)",
           "openDate": "2026-09-01",
           "stage": "closed"
+        },
+        {
+          "id": "shantiinor",
+          "company": "Shanti Inorganics Limited",
+          "openDate": "2026-08-31",
+          "stage": "listed"
         }
       ]
     },
     "offerDocumentEligible": {
-      "registrar": [
-        {
-          "id": "rentomojo",
-          "company": "Rentomojo Limited",
-          "openDate": "2026-09-09",
-          "stage": "closed"
-        }
-      ],
+      "registrar": [],
       "leadManagers": [
         {
           "id": "national-stock-exchange-of-india-limited",
@@ -692,12 +685,6 @@
           "company": "Veegaland Developers Limited",
           "openDate": "2026-09-10",
           "stage": "open"
-        },
-        {
-          "id": "rentomojo",
-          "company": "Rentomojo Limited",
-          "openDate": "2026-09-09",
-          "stage": "closed"
         }
       ],
       "financials": [
@@ -718,18 +705,6 @@
           "company": "Veegaland Developers Limited",
           "openDate": "2026-09-10",
           "stage": "open"
-        },
-        {
-          "id": "rentomojo",
-          "company": "Rentomojo Limited",
-          "openDate": "2026-09-09",
-          "stage": "closed"
-        },
-        {
-          "id": "prasolchem",
-          "company": "Prasol Chemicals Limited",
-          "openDate": "2026-09-08",
-          "stage": "closed"
         }
       ],
       "promoterShareholding": [
@@ -762,12 +737,6 @@
           "company": "Maharaja & Speedex India Limited",
           "openDate": "2026-09-10",
           "stage": "open"
-        },
-        {
-          "id": "rentomojo",
-          "company": "Rentomojo Limited",
-          "openDate": "2026-09-09",
-          "stage": "closed"
         },
         {
           "id": "prasolchem",
