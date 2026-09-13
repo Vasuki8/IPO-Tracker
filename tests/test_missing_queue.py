@@ -124,6 +124,60 @@ class MissingQueueTests(unittest.TestCase):
         queue = mod.build_queue(records, today)
         self.assertEqual(queue[0]["id"], "open")
 
+    def test_exhausted_official_source_gap_is_not_actionable(self):
+        record = {
+            "id": "resolved-gap",
+            "company": "Resolved Gap Limited",
+            "symbol": "RESOLVED",
+            "board": "Mainboard",
+            "exchange": "NSE",
+            "openDate": "2026-04-01",
+            "closeDate": "2026-04-03",
+            "listingDate": "2026-04-10",
+            "priceBand": {"min": 100, "max": 110},
+            "lotSize": None,
+            "issueSizeCr": 500,
+            "freshIssueCr": 500,
+            "sources": [{"name": "NSE"}],
+            "validation": {"status": "single-source"},
+            "dataAvailability": {
+                "exchange.lotSize": {
+                    "status": "exhausted-official-sources",
+                    "reason": "NSE issue information and offer documents checked",
+                }
+            },
+        }
+        self.assertIsNone(mod.queue_entry(record, date(2026, 9, 12)))
+        resolved = mod.resolved_availability_entries([record], date(2026, 9, 12))
+        self.assertEqual(len(resolved), 1)
+        self.assertEqual(resolved[0]["resolvedFields"], ["exchange.lotSize"])
+
+    def test_resolution_does_not_hide_other_actionable_fields(self):
+        record = {
+            "id": "partial",
+            "company": "Partial Limited",
+            "symbol": "PARTIAL",
+            "board": "Mainboard",
+            "exchange": "NSE",
+            "openDate": "2026-04-01",
+            "closeDate": "2026-04-03",
+            "listingDate": "2026-04-10",
+            "priceBand": {"min": 100, "max": 110},
+            "lotSize": None,
+            "issueSizeCr": None,
+            "sources": [{"name": "NSE"}],
+            "validation": {"status": "single-source"},
+            "dataAvailability": {
+                "exchange.lotSize": "source-unavailable",
+            },
+        }
+        entry = mod.queue_entry(record, date(2026, 9, 12))
+        self.assertIsNotNone(entry)
+        self.assertNotIn("exchange.lotSize", entry["missingFields"])
+        self.assertIn("exchange.issueSizeCr", entry["missingFields"])
+        self.assertIn("exchange.issueComposition", entry["missingFields"])
+        self.assertIn("exchange.lotSize", entry["resolvedUnavailableFields"])
+
 
 if __name__ == "__main__":
     unittest.main()
