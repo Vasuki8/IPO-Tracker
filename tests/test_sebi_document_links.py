@@ -41,6 +41,33 @@ class SebiDocumentLinkTests(unittest.TestCase):
     def test_non_sebi_pdf_is_rejected(self):
         self.assertIsNone(mod.direct_pdf_from_url("https://example.com/fake.pdf"))
 
+    def test_addendum_to_rhp_is_not_classified_as_rhp(self):
+        self.assertEqual(mod.infer_type("Rentomojo Limited - Addendum to RHP"), "ADDENDUM")
+        self.assertEqual(mod.infer_type("Prasol Chemicals - Corrigendum to RHP"), "ADDENDUM")
+
+    def test_priority_canonical_filing_page_is_seeded_fill_only(self):
+        docs = [
+            {
+                "type": "RHP",
+                "title": "Rentomojo Limited - Addendum to RHP",
+                "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/addendum.pdf",
+                "source": "SEBI",
+            }
+        ]
+        record = {"id": "rentomojo", "company": "Rentomojo Limited"}
+        self.assertTrue(mod.seed_canonical_filing_page(record, docs))
+        self.assertEqual(len(docs), 2)
+        canonical = [d for d in docs if "/filings/public-issues/" in d["url"]][0]
+        self.assertEqual(canonical["type"], "RHP")
+        self.assertEqual(canonical["filedDate"], "2026-09-04")
+        self.assertFalse(mod.seed_canonical_filing_page(record, docs))
+        self.assertEqual(len(docs), 2)
+
+    def test_unregistered_record_is_not_seeded(self):
+        docs = []
+        self.assertFalse(mod.seed_canonical_filing_page({"id": "other"}, docs))
+        self.assertEqual(docs, [])
+
 
 if __name__ == "__main__":
     unittest.main()
