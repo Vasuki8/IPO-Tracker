@@ -13,6 +13,8 @@ on:
       - "scripts/enrich_exchange_details_v2.py"
       - "scripts/backfill_bse_history.py"
       - "scripts/backfill_bse_history_v2.py"
+      - "scripts/run_offer_docs_v12.py"
+      - "scripts/run_issuer_offer_docs_v2.py"
       - "scripts/apply_verified_lot_sizes.py"
       - "scripts/apply_verified_recent_issue_terms.py"
       - "scripts/apply_verified_recent_offer_fields.py"
@@ -25,6 +27,8 @@ on:
       - "tests/test_nse_primary_market_reports_v2.py"
       - "tests/test_exchange_details_v2.py"
       - "tests/test_bse_history_backfill.py"
+      - "tests/test_offer_docs_v12.py"
+      - "tests/test_issuer_offer_docs_v2.py"
       - "tests/test_verified_lot_sizes.py"
       - "tests/test_verified_recent_issue_terms.py"
       - "tests/test_verified_recent_offer_fields.py"
@@ -77,6 +81,12 @@ jobs:
 
       - name: Run Phase 4.5A exchange-detail v2 tests
         run: uv run python -m unittest discover -s tests -p "test_exchange_details_v2.py" -v
+
+      - name: Run P4 offer-document term tests
+        run: uv run python -m unittest discover -s tests -p "test_offer_docs_v12.py" -v
+
+      - name: Run P4 validated-document term tests
+        run: uv run python -m unittest discover -s tests -p "test_issuer_offer_docs_v2.py" -v
 
       - name: Run verified upcoming lot-size tests
         run: uv run python -m unittest discover -s tests -p "test_verified_lot_sizes.py" -v
@@ -142,7 +152,13 @@ jobs:
           uv run python scripts/enrich_exchange_details_v2.py --limit 30 --history-days 730
           uv run python scripts/backfill_bse_history_v2.py --history-days 730 --limit 80
 
-          # Strict fill-only bridges run only after automated exchange sources.
+          # P4 source 3: finalized official offer documents. v12 reads explicit
+          # minimum bid lot and price-band wording from the exact PDF, records the
+          # document observation, and only fills exchange fields that are missing.
+          uv run python scripts/run_offer_docs_v12.py --limit 8
+          uv run python scripts/run_issuer_offer_docs_v2.py --priority-max 4 --limit 10
+
+          # Strict fill-only bridges run only after automated official sources.
           # Exact record-identity guards prevent cross-issue application while
           # retaining per-entry filing and verification provenance.
           uv run python scripts/apply_verified_lot_sizes.py
