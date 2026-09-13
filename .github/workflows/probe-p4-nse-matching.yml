@@ -20,72 +20,34 @@ jobs:
           version: "latest-known"
       - run: uv python install 3.12
       - run: uv sync
-      - name: Compare P4 records with NSE monthly report rows
+      - name: Inspect raw NSE monthly workbook layouts
         shell: bash
         run: |
           uv run python - <<'PY'
           import json
           import sys
-          from datetime import date, timedelta
           from pathlib import Path
 
           sys.path.insert(0, str(Path('scripts').resolve()))
           import enrich_nse_primary_market_reports_v2 as mod
 
-          payload = json.loads(Path('data/ipos.json').read_text(encoding='utf-8'))
-          today = mod.base.core.now_ist().date()
-          candidates = [r for r in payload.get('ipos', []) if isinstance(r, dict) and mod.is_candidate(r, today, 730)]
-
           session = mod.base.requests.Session()
           session.headers.update(mod.base.core.HEADERS)
           urls = mod.discover_report_urls(session, 30)
-          rows = []
+
           for url in urls:
-              data = mod.download_report(session, url)
-              parsed = mod.parse_report_rows(mod.read_xlsx_rows(data), url)
-              print('REPORT', url.rsplit('/', 1)[-1], 'ROWS', len(parsed))
-              rows.extend(parsed)
-
-          ckeys = {}
-          csyms = {}
-          for rec in candidates:
-              key = mod.base.core.canonical_company(str(rec.get('company') or ''))
-              if key:
-                  ckeys.setdefault(key, []).append(rec)
-              sym = str(rec.get('symbol') or '').strip().upper()
-              if sym:
-                  csyms.setdefault(sym, []).append(rec)
-
-          rkeys = {}
-          rsyms = {}
-          for row in rows:
-              key = str(row.get('matchKey') or '')
-              if key:
-                  rkeys.setdefault(key, []).append(row)
-              sym = str(row.get('symbol') or '').strip().upper()
-              if sym:
-                  rsyms.setdefault(sym, []).append(row)
-
-          key_intersection = sorted(set(ckeys) & set(rkeys))
-          sym_intersection = sorted(set(csyms) & set(rsyms))
-          print('SUMMARY candidates=', len(candidates), 'rows=', len(rows), 'key_intersection=', len(key_intersection), 'symbol_intersection=', len(sym_intersection))
-
-          for key in key_intersection[:30]:
-              rec = ckeys[key][0]
-              row = rkeys[key][0]
-              print('KEYMATCH', repr(rec.get('company')), rec.get('symbol'), rec.get('openDate'), '=>', repr(row.get('company')), row.get('symbol'), row.get('openDate'))
-          for sym in sym_intersection[:30]:
-              rec = csyms[sym][0]
-              row = rsyms[sym][0]
-              print('SYMMATCH', sym, repr(rec.get('company')), rec.get('openDate'), '=>', repr(row.get('company')), row.get('openDate'))
-
-          unmatched_candidate_samples = []
-          for rec in candidates:
-              key = mod.base.core.canonical_company(str(rec.get('company') or ''))
-              sym = str(rec.get('symbol') or '').strip().upper()
-              if key not in rkeys and sym not in rsyms:
-                  unmatched_candidate_samples.append((rec.get('company'), sym, rec.get('openDate')))
-          print('UNMATCHED CANDIDATE SAMPLE')
-          for item in unmatched_candidate_samples[:30]:
-              print(item)
+              name = url.rsplit('/', 1)[-1]
+              if not any(token in name.lower() for token in ('july%202025', 'july_2025', 'september%202024', 'sep2024')):
+                  continue
+              raw_rows = mod.read_xlsx_rows(mod.download_report(session, url))
+              parsed = mod.parse_report_rows(raw_rows, url)
+              print('\n===', name, 'RAW', len(raw_rows), 'PARSED', len(parsed), '===')
+              for idx, row in enumerate(raw_rows[:18]):
+                  print('RAWROW', idx, row)
+              for idx, row in enumerate(raw_rows):
+                  joined = ' | '.join(row).lower()
+                  if 'highway infrastructure' in joined:
+                      print('HIGHWAY RAW INDEX', idx, row)
+              for row in parsed[:8]:
+                  print('PARSEDROW', row)
           PY
