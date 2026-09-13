@@ -17,46 +17,36 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7.0.1
-
       - name: Install uv
         uses: astral-sh/setup-uv@v10.1.0
         with:
           version: "latest-known"
-
       - name: Set up Python
         run: uv python install 3.12
-
       - name: Sync dependencies
         run: uv sync
-
-      - name: Inspect dedicated SEBI register pagination
+      - name: Inspect SEBI pagination implementation
         shell: bash
         run: |
           uv run python - <<'PY'
-          import requests, sys
+          import re,requests,sys
           from bs4 import BeautifulSoup
-          from urllib.parse import urljoin
-          sys.path.insert(0, 'scripts')
+          sys.path.insert(0,'scripts')
           import update_data as core
-
-          urls={
-            'RHP':'https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=11&ssid=15',
-            'PROSPECTUS':'https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=12&ssid=15',
-          }
+          url='https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=12&ssid=15'
           s=requests.Session(); s.headers.update(core.HEADERS)
-          for typ, base in urls.items():
-              r=s.get(base, timeout=30); r.raise_for_status()
-              soup=BeautifulSoup(r.text,'html.parser')
-              print('===',typ,'===')
-              for a in soup.select('a[href]'):
-                  text=' '.join(a.stripped_strings).strip()
-                  href=urljoin(base, a.get('href'))
-                  low=(text+' '+href).lower()
-                  if any(x in low for x in ('next','page','start','record','pageno','pagination')) or text in {'2','3','4','5','6'}:
-                      print(repr(text), href)
-              for tag in soup.select('input,select,option,form'):
-                  attrs={k:v for k,v in tag.attrs.items() if k in ('name','value','action','id')}
-                  raw=str(attrs).lower()
-                  if any(x in raw for x in ('page','start','record','offset','pageno')):
-                      print(tag.name, attrs)
+          r=s.get(url,timeout=30); r.raise_for_status(); raw=r.text
+          print('LEN',len(raw))
+          for needle in ('function searchFormNewsList','searchFormNewsList =','searchFormNewsList('):
+              pos=raw.find(needle)
+              if pos>=0:
+                  print('=== FUNCTION CONTEXT ===')
+                  print(raw[max(0,pos-2500):pos+7000])
+                  break
+          soup=BeautifulSoup(raw,'html.parser')
+          print('=== FORMS ===')
+          for form in soup.find_all('form'):
+              print('FORM',form.get('id'),form.get('name'),form.get('method'),form.get('action'))
+              for tag in form.find_all(['input','select']):
+                  print(tag.name,tag.get('type'),tag.get('id'),tag.get('name'),tag.get('value'))
           PY
