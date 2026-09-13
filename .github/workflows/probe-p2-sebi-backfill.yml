@@ -13,7 +13,7 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 50
     steps:
       - name: Checkout
         uses: actions/checkout@v7.0.1
@@ -27,6 +27,8 @@ jobs:
         run: uv sync
       - name: Test dedicated SEBI register discovery
         run: uv run python -m unittest discover -s tests -p "test_sebi_priority_registers.py" -v
+      - name: Test SEBI GET-search fallback
+        run: uv run python -m unittest discover -s tests -p "test_sebi_priority_registers_v2.py" -v
       - name: Test recent offer-term parser
         run: uv run python -m unittest discover -s tests -p "test_recent_offer_terms.py" -v
       - name: Preview P2 register discovery and terms extraction
@@ -42,7 +44,7 @@ jobs:
           print('P2_GAPS',dict(Counter(f for x in p2 for f in x.get('missingFields',[]))))
           PY
 
-          uv run python scripts/enrich_sebi_priority_registers.py --priority-max 2
+          uv run python scripts/enrich_sebi_priority_registers_v2.py --priority-max 2 --search-limit 30
           uv run python scripts/enrich_sebi_document_links.py --priority-max 2 --limit 0
           uv run python scripts/enrich_recent_offer_terms.py --priority-max 2 --limit 0
           uv run python scripts/audit_data_completeness.py
