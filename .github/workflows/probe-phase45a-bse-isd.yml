@@ -24,34 +24,37 @@ jobs:
         run: |
           UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/152 Safari/537.36"
           curl --http1.1 -fL --retry 3 --retry-all-errors --retry-delay 2 -A "$UA" \
-            -H "Referer: https://www.bseindia.com/markets/PublicIssues/Issuesummary.aspx" \
+            -H "Referer: https://www.bseindia.com/markets/PublicIssues/DisplayIPO" \
             "https://www.bseindia.com/assets/includenew/js/main-5C6S24SS.js" -o /tmp/main.js
 
-      - name: Find Issue Summary API methods and route context
+      - name: Trace DisplayIPO component and API methods
         shell: python
         run: |
           import re
           raw = open("/tmp/main.js", encoding="utf-8", errors="ignore").read()
 
-          print("=== API-looking /w methods containing issue-related terms ===")
           methods = sorted(set(re.findall(r"/[A-Za-z0-9_]+/w(?:\?[^\"'` ]*)?", raw)))
-          for method in methods:
-              low = method.lower()
-              if any(token in low for token in ("issue", "ipo", "isd", "summary", "public")):
-                  print(method)
-
-          for needle in ("Issuesummary", "Issue Summary Document", "issueSize", "Issue Size", "app-issue"):
-              print(f"\n=== CONTEXT {needle} ===")
+          print("=== ALL /w METHODS NEAR IPO/DISPLAY CONTEXT ===")
+          for needle in ("DisplayIPO", "Minimum Bid Quantity", "Market Lot", "Issue Period", "Book Running Lead Manager", "Registrar", "IPO_NO", "Scrip_cd"):
+              print(f"\n=== {needle} ===")
               start = 0
-              count = 0
+              seen = 0
               while True:
                   pos = raw.find(needle, start)
                   if pos < 0:
                       break
-                  chunk = raw[max(0, pos-1400):pos+2200]
-                  if "/w" in chunk or "BSE_Domain_APIUrl" in chunk or needle in ("Issuesummary", "Issue Summary Document"):
+                  chunk = raw[max(0, pos-2200):pos+4200]
+                  api_methods = sorted(set(re.findall(r"/[A-Za-z0-9_]+/w(?:\?[^\"'` ]*)?", chunk)))
+                  if api_methods or "BSE_Domain_APIUrl" in chunk:
+                      print("METHODS:", api_methods)
                       print(chunk)
-                      count += 1
+                      seen += 1
                   start = pos + len(needle)
-                  if count >= 8:
+                  if seen >= 6:
                       break
+
+          print("\n=== CANDIDATE METHOD NAMES ===")
+          for method in methods:
+              low = method.lower()
+              if any(token in low for token in ("ipo", "bid", "registr", "merchant", "book", "public", "issue", "rta")):
+                  print(method)
