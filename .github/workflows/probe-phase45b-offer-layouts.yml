@@ -101,3 +101,5 @@ jobs:
               for score, idx, text in scored[:5]:
                   print(f"--- page {idx + 1} score={score} ---")
                   print(text[:4500])
+
+          print("\nPHASE45B_LAYOUT_PROBE_DONE")
