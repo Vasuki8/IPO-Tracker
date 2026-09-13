@@ -1,4 +1,4 @@
-name: Probe Phase 4.5B priority offer layouts
+name: Probe Phase 4.5B priority document URLs
 
 on:
   push:
@@ -17,7 +17,7 @@ concurrency:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v7.0.1
@@ -33,98 +33,94 @@ jobs:
       - name: Sync dependencies
         run: uv sync
 
-      - name: Run parser v9 regression tests
-        run: uv run python -m unittest discover -s tests -p "test_offer_docs_v9.py" -v
-
-      - name: Probe remaining P0 and P1 official issuer documents
+      - name: Discover hidden official offer-document URLs
         shell: bash
         run: |
           uv run python - <<'PY'
-          import io
+          import html
           import re
-          import sys
-          from pathlib import Path
+          from urllib.parse import urljoin
 
           import requests
-          from pypdf import PdfReader
+          from bs4 import BeautifulSoup
 
-          sys.path.insert(0, str(Path("scripts").resolve()))
-          import run_offer_docs_v9 as parser
-          import update_data as core
+          headers = {
+              "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/152 Safari/537.36",
+              "Accept": "text/html,application/xhtml+xml,application/pdf;q=0.9,*/*;q=0.8",
+          }
+          session = requests.Session()
+          session.headers.update(headers)
 
-          targets = [
+          pages = [
               (
-                  "maharaja-speedex-india-limited",
-                  "https://speedexind.com/wp-content/uploads/2026/09/SPeedex-RHP.pdf",
+                  "injecto-registrar",
+                  "https://ipostatus.integratedregistry.in/RegistrarsToSTANew.aspx",
+                  ("INJECTO", "RHP", ".pdf"),
               ),
               (
-                  "injecto-polymers-limited",
-                  "https://injectopolymers.in/wp-content/uploads/2026/09/1.-RHP_07.09.2026.pdf",
+                  "vama-issuer-drhp",
+                  "https://vamawoven.com/drhp/",
+                  ("VAMA", "DRHP", ".pdf"),
               ),
               (
-                  "shakti-polytarp-limited",
-                  "https://shaktipolytarp.com/wp-content/uploads/2025/10/DRHP_Shakti_29092025.pdf",
+                  "vama-gretex-offer-docs",
+                  "https://gretexcorporate.com/offer-documents/ipo/",
+                  ("VAMA", "RHP", ".pdf"),
               ),
           ]
 
-          session = requests.Session()
-          session.headers.update(core.HEADERS)
+          def compact(value):
+              return re.sub(r"\s+", " ", str(value or "")).strip()
 
-          for record_id, url in targets:
-              print(f"=== TARGET {record_id} ===")
-              response = session.get(url, timeout=60)
-              response.raise_for_status()
-              data = response.content
-              print("BYTES", len(data))
-              reader = PdfReader(io.BytesIO(data))
-              print("PAGES", len(reader.pages))
+          for label, url, needles in pages:
+              print(f"=== {label} ===")
+              try:
+                  response = session.get(url, timeout=40)
+                  print("STATUS", response.status_code, "FINAL", response.url, "BYTES", len(response.content))
+                  response.raise_for_status()
+              except Exception as exc:
+                  print("FETCH_ERROR", repr(exc))
+                  continue
 
-              ranked = []
-              page_cache = {}
-              for idx, page in enumerate(reader.pages[:520]):
-                  try:
-                      text = page.extract_text() or ""
-                  except Exception:
-                      text = ""
-                  page_cache[idx] = text
-                  score = parser.v8._shareholding_page_score(text)
-                  if score > 0:
-                      ranked.append((score, idx))
+              text = response.text
+              decoded = html.unescape(text)
+              soup = BeautifulSoup(text, "html.parser")
 
-              ranked.sort(reverse=True)
-              print("TOP_SHARE_PAGES", ranked[:10])
-              selected = set()
-              for _score, idx in ranked[:8]:
-                  for page_idx in range(max(0, idx - 1), min(len(reader.pages), idx + 2)):
-                      selected.add(page_idx)
+              candidates = set()
+              for tag in soup.find_all(True):
+                  attrs = " ".join(f"{k}={v}" for k, v in tag.attrs.items())
+                  visible = compact(tag.get_text(" ", strip=True))
+                  combined = f"{visible} {attrs}"
+                  if any(n.lower() in combined.lower() for n in needles):
+                      print("MATCH_TAG", compact(combined)[:1800])
+                  for attr in ("href", "src", "data-href", "data-url", "onclick", "value"):
+                      raw = tag.get(attr)
+                      if raw:
+                          value = " ".join(raw) if isinstance(raw, list) else str(raw)
+                          if ".pdf" in value.lower():
+                              for pdf in re.findall(r"(?:https?://[^\s'\"<>]+|[^\s'\"<>]+\.pdf(?:\?[^\s'\"<>]*)?)", value, re.I):
+                                  candidates.add(urljoin(response.url, html.unescape(pdf)))
 
-              blocks = []
-              for idx in sorted(selected):
-                  text = page_cache.get(idx)
-                  if text is None:
-                      try:
-                          text = reader.pages[idx].extract_text() or ""
-                      except Exception:
-                          text = ""
-                  blocks.append(text)
-                  flat = re.sub(r"\s+", " ", text).strip()
-                  marker = re.search(
-                      r"(?:promoter.{0,30}promoter group|shareholding pattern|pre[- ]?(?:issue|offer)|capital structure)",
-                      flat,
-                      re.I,
-                  )
-                  start = max(0, (marker.start() if marker else 0) - 500)
-                  print(f"PAGE {idx + 1} SCORE {parser.v8._shareholding_page_score(text)}")
-                  print(flat[start : start + 2400])
+              for match in re.findall(r"https?://[^\s'\"<>]+?\.pdf(?:\?[^\s'\"<>]*)?", decoded, re.I):
+                  candidates.add(match)
+              for match in re.findall(r"(?:[A-Za-z0-9_./%-]+\.pdf)(?:\?[^\s'\"<>]*)?", decoded, re.I):
+                  candidates.add(urljoin(response.url, match))
 
-              combined = "\n".join(blocks)
-              print("SHAREHOLDING_PARSE", parser.extract_promoter_shareholding(combined))
+              print("PDF_CANDIDATES")
+              for candidate in sorted(candidates):
+                  print(candidate)
 
-              # Run the actual production extraction path too. This shows whether
-              # the document can close any non-shareholding gaps without writes.
-              extracted_text, pages_read, page_count = parser.extract_pdf_text(data)
-              parsed = parser.parse_document_text(extracted_text, None)
-              print("PRODUCTION_FIELDS", parsed.get("extractedFields"))
-              print("PRODUCTION_SHAREHOLDING", parsed.get("shareholding"))
-              print("PRODUCTION_PAGES", pages_read, page_count)
+              # Print short source windows around the target name; ASP.NET and
+              # WordPress often hide the real PDF in onclick/script attributes.
+              upper = decoded.upper()
+              target = needles[0].upper()
+              cursor = 0
+              shown = 0
+              while shown < 8:
+                  pos = upper.find(target, cursor)
+                  if pos < 0:
+                      break
+                  print("SOURCE_WINDOW", compact(decoded[max(0, pos - 900):pos + 2200])[:3000])
+                  cursor = pos + len(target)
+                  shown += 1
           PY
