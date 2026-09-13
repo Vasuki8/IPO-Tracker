@@ -33,6 +33,7 @@ on:
       - "scripts/apply_verified_lot_sizes.py"
       - "scripts/apply_verified_recent_issue_terms.py"
       - "scripts/apply_verified_recent_offer_fields.py"
+      - "scripts/apply_verified_filing_offer_fields.py"
       - "scripts/critical_backfill.py"
       - "scripts/audit_data_completeness.py"
       - "scripts/build_missing_queue.py"
@@ -56,6 +57,7 @@ on:
       - "tests/test_verified_lot_sizes.py"
       - "tests/test_verified_recent_issue_terms.py"
       - "tests/test_verified_recent_offer_fields.py"
+      - "tests/test_verified_filing_offer_fields.py"
       - "tests/test_critical_backfill.py"
       - "tests/test_data_completeness.py"
       - "tests/test_missing_queue.py"
@@ -128,6 +130,8 @@ jobs:
         run: uv run python -m unittest discover -s tests -p "test_verified_recent_issue_terms.py" -v
       - name: Run verified recent offer-field tests
         run: uv run python -m unittest discover -s tests -p "test_verified_recent_offer_fields.py" -v
+      - name: Run verified filing offer-field tests
+        run: uv run python -m unittest discover -s tests -p "test_verified_filing_offer_fields.py" -v
       - name: Run critical-backfill tests
         run: uv run python -m unittest discover -s tests -p "test_critical_backfill.py" -v
       - name: Run completeness-audit tests
@@ -173,6 +177,7 @@ jobs:
           uv run python scripts/run_issuer_offer_docs.py --priority-max 3 --limit "$ISSUER_LIMIT"
           # Only fields still missing after official-document parsing are bridged.
           uv run python scripts/apply_verified_recent_offer_fields.py
+          uv run python scripts/apply_verified_filing_offer_fields.py
 
           uv run python scripts/audit_data_completeness.py
           uv run python scripts/build_missing_queue.py
