@@ -88,26 +88,20 @@
       "Critical-backfill": {
         "ok": true,
         "records": 0,
-        "asOf": "2026-09-13T16:01:23+05:30"
+        "asOf": "2026-09-13T16:06:10+05:30"
       },
       "SEBI-document-links": {
-        "ok": false,
+        "ok": true,
         "records": 0,
-        "attempted": 14,
-        "asOf": "2026-09-13T09:48:16+05:30",
-        "errors": [
-          "Steamhouse India Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /filings/public-issues/sep-2026/steamhouse-india-limited-rhp_104262.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
-          "Manipal Payment and Identity Solutions Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /filings/public-issues/sep-2026/manipal-payment-and-identity-solutions-limited-rhp_104270.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
-          "LCC Projects Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /filings/public-issues/sep-2026/lcc-projects-limited-rhp_104283.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
-          "Asset Reconstruction Company (India) Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /filings/public-issues/sep-2026/asset-reconstruction-company-india-limited-rhp_104202.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
-          "Prasol Chemicals Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /filings/public-issues/sep-2026/prasol-chemicals-limited-addendum-to-rhp_104322.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))"
-        ]
+        "attempted": 0,
+        "asOf": "2026-09-13T16:05:27+05:30",
+        "errors": []
       },
       "Offer-docs": {
-        "ok": false,
-        "records": 0,
-        "attempted": 3,
-        "failed": 3
+        "ok": true,
+        "records": 12,
+        "attempted": 12,
+        "failed": 0
       },
       "Issuer-offer-docs": {
         "ok": true,
@@ -116,7 +110,7 @@
         "updated": 0,
         "deepScanned": 0,
         "failed": 0,
-        "asOf": "2026-09-13T09:48:45+05:30",
+        "asOf": "2026-09-13T16:06:09+05:30",
         "errors": []
       },
       "NSE-primary-market-reports": {
@@ -139,72 +133,57 @@
         "checkedAt": "2026-09-13T08:37:57+05:30"
       },
       "SEBI-priority-registers": {
-        "ok": false,
+        "ok": true,
         "parserVersion": 2,
-        "priorityMax": 2,
+        "priorityMax": 3,
         "firstPageMatched": 0,
         "firstPageLinks": 0,
-        "searchedRecords": 11,
+        "searchedRecords": 0,
         "searchMatchedRecords": 0,
         "searchLinksAdded": 0,
-        "failed": 11,
-        "asOf": "2026-09-13T09:48:09+05:30",
-        "errors": [
-          "Qualiance International Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebiweb/home/HomeAction.do?doListingAll=yes&search=Qualiance+International+Limited (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
-          "Rays of Belief Limited- For Profit Social Enterprise (FPSE): HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebiweb/home/HomeAction.do?doListingAll=yes&search=Rays+of+Belief+Limited-+For+Profit+Social+Enterprise+%28FPSE%29 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
-          "Shanti Inorganics Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebiweb/home/HomeAction.do?doListingAll=yes&search=Shanti+Inorganics+Limited (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
-          "Purple Style Labs Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebiweb/home/HomeAction.do?doListingAll=yes&search=Purple+Style+Labs+Limited (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
-          "Ashutosh Fibre Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebiweb/home/HomeAction.do?doListingAll=yes&search=Ashutosh+Fibre+Limited (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
-          "Sumax Engineering Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebiweb/home/HomeAction.do?doListingAll=yes&search=Sumax+Engineering+Limited (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
-          "Madhur Knit Crafts Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebiweb/home/HomeAction.do?doListingAll=yes&search=Madhur+Knit+Crafts+Limited (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
-          "ABH Healthcare Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebiweb/home/HomeAction.do?doListingAll=yes&search=ABH+Healthcare+Limited (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
-          "Shankesh Jewellers Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebiweb/home/HomeAction.do?doListingAll=yes&search=Shankesh+Jewellers+Limited (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
-          "Horizon Industrial Parks Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebiweb/home/HomeAction.do?doListingAll=yes&search=Horizon+Industrial+Parks+Limited (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))"
-        ]
+        "failed": 0,
+        "asOf": "2026-09-13T16:05:27+05:30",
+        "errors": []
       },
       "SEBI-offer-terms": {
-        "ok": false,
-        "priorityMax": 2,
-        "targets": 14,
-        "attempted": 3,
+        "ok": true,
+        "priorityMax": 3,
+        "targets": 0,
+        "attempted": 0,
         "extracted": 0,
         "updated": 0,
-        "failed": 3,
+        "failed": 0,
         "skippedLotOnlyRhp": 0,
         "fields": {},
-        "asOf": "2026-09-13T09:48:30+05:30",
-        "errors": [
-          "Lumino Industries Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/sep-2026/1788760904072.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
-          "Symbiotec Pharmalab Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/aug-2026/1787119258529.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
-          "Sunshine Pictures Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/aug-2026/1786509141250.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))"
-        ]
+        "asOf": "2026-09-13T16:05:27+05:30",
+        "errors": []
       },
       "verified-lot-sizes": {
         "ok": true,
         "entries": 36,
         "updated": 0,
-        "checkedAt": "2026-09-13T15:59:49+05:30"
+        "checkedAt": "2026-09-13T16:05:27+05:30"
       },
       "verified-recent-issue-terms": {
         "ok": true,
         "entries": 14,
         "updated": 0,
         "fields": {},
-        "checkedAt": "2026-09-13T15:59:49+05:30"
+        "checkedAt": "2026-09-13T16:05:27+05:30"
       },
       "verified-recent-offer-fields": {
         "ok": true,
         "entries": 12,
         "updated": 0,
         "fields": {},
-        "checkedAt": "2026-09-13T15:59:49+05:30"
+        "checkedAt": "2026-09-13T16:06:09+05:30"
       },
       "verified-filing-offer-fields": {
         "ok": true,
         "entries": 4,
         "updated": 0,
         "fields": {},
-        "checkedAt": "2026-09-13T15:59:50+05:30"
+        "checkedAt": "2026-09-13T16:06:09+05:30"
       },
       "NSE-history-IPO-filter": {
         "ok": true,
@@ -255,18 +234,14 @@
     },
     "errors": [],
     "offerDocumentHealth": {
-      "ok": false,
-      "attempted": 3,
-      "extracted": 0,
-      "failed": 3,
-      "eligibleRemaining": 3,
-      "parserVersion": 11,
-      "asOf": "2026-09-13T09:48:44+05:30",
-      "errors": [
-        "Symbiotec Pharmalab Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/commondocs/aug-2026/SYMBIOTEC%20PHARMALAB%20LIMITED%20-%20AP_p.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
-        "Tempsens Instruments (India) Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/commondocs/sep-2026/Tempsens%20Instruments%20(India)%20Limited%20-%20AP_p.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
-        "Sunshine Pictures Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/aug-2026/1786509141250.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))"
-      ]
+      "ok": true,
+      "attempted": 12,
+      "extracted": 12,
+      "failed": 0,
+      "eligibleRemaining": 22,
+      "parserVersion": 12,
+      "asOf": "2026-09-13T16:06:09+05:30",
+      "errors": []
     },
     "subscriptionHealth": {
       "ok": true,
@@ -309,35 +284,56 @@
     "criticalBackfillHealth": {
       "ok": true,
       "targetCount": 0,
-      "priorityMax": 1,
-      "asOf": "2026-09-13T16:01:23+05:30",
-      "exchange": {
+      "priorityMax": 3,
+      "asOf": "2026-09-13T16:06:10+05:30",
+      "documents": {
         "ok": true,
         "attempted": 0,
-        "matched": 0,
-        "updated": 0,
+        "extracted": 0,
         "failed": 0,
-        "pageHealth": {
-          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
-            "ok": true,
-            "records": 0
-          },
-          "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
-            "ok": true,
-            "records": 11
-          },
-          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P": {
-            "ok": true,
-            "records": 0
-          },
-          "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2": {
-            "ok": false,
-            "records": 0,
-            "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f72dad4e1b0>, 'Connection to www.bsesme.c"
-          }
+        "documentsDiscovered": 0,
+        "discoveryHealth": {
+          "ok": false,
+          "records": 0,
+          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7fb8685ca900>, 'Connection to www.bsesme.com time"
         },
-        "errors": []
+        "errors": [],
+        "asOf": "2026-09-13T16:06:45+05:30"
       }
+    },
+    "sebiDocumentLinkHealth": {
+      "ok": true,
+      "attempted": 0,
+      "resolvedPages": 0,
+      "seededPages": 0,
+      "linksAdded": 0,
+      "failed": 0,
+      "asOf": "2026-09-13T16:05:27+05:30",
+      "errors": []
+    },
+    "issuerOfferDocumentHealth": {
+      "ok": true,
+      "attempted": 0,
+      "extracted": 0,
+      "updated": 0,
+      "deepScanned": 0,
+      "failed": 0,
+      "asOf": "2026-09-13T16:06:09+05:30",
+      "errors": []
+    },
+    "criticalOfferDocumentHealth": {
+      "ok": true,
+      "attempted": 0,
+      "extracted": 0,
+      "failed": 0,
+      "documentsDiscovered": 0,
+      "discoveryHealth": {
+        "ok": false,
+        "records": 0,
+        "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7fb8685ca900>, 'Connection to www.bsesme.com time"
+      },
+      "errors": [],
+      "asOf": "2026-09-13T16:06:45+05:30"
     }
   },
   "ipos": [
@@ -567,7 +563,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 11,
+        "parserVersion": 12,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Sonaselection%20India%20Limited%20%20-%20AP_p.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "SONASELECTION INDIA LIMITED - Abridged Prospectus",
@@ -584,7 +580,7 @@
           "objectsOfIssue",
           "shareholding"
         ],
-        "extractedAt": "2026-09-13T08:27:06+05:30",
+        "extractedAt": "2026-09-13T16:05:39+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/sona/",
@@ -748,7 +744,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 11,
+        "parserVersion": 12,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/SS%20RETAIL%20LIMITED%20-%20AP_p.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "SS RETAIL LIMITED - Abridged Prospectus",
@@ -765,7 +761,7 @@
           "objectsOfIssue",
           "shareholding"
         ],
-        "extractedAt": "2026-09-13T08:27:09+05:30",
+        "extractedAt": "2026-09-13T16:05:42+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/ssretail/",
@@ -999,7 +995,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 11,
+        "parserVersion": 12,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Jindal%20Supreme%20(India)%20Limited%20-%20AP_p.PDF",
         "documentType": "PROSPECTUS",
         "documentTitle": "Jindal Supreme (India) Limited - Abridged Prospectus",
@@ -1016,7 +1012,7 @@
           "objectsOfIssue",
           "shareholding"
         ],
-        "extractedAt": "2026-09-13T08:27:16+05:30",
+        "extractedAt": "2026-09-13T16:05:50+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/jsipl/",
@@ -1263,7 +1259,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 11,
+        "parserVersion": 12,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/HERO%20MOTORS%20LIMITED%20-%20AP_p.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "HERO MOTORS LIMITED - Abridged Prospectus",
@@ -1280,7 +1276,7 @@
           "objectsOfIssue",
           "shareholding"
         ],
-        "extractedAt": "2026-09-13T08:27:19+05:30",
+        "extractedAt": "2026-09-13T16:05:52+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/heromotors/",
@@ -1615,7 +1611,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 11,
+        "parserVersion": 12,
         "documentUrl": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260911-17/20260911-17.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "Shakti Polytarp Limited BSE Bid Details Cumulative Bid Details BSE Demand Schedule Cumulative Demand Schedule BSE Demand Graph Cumulative Demand Graph Security Type Equity Symbol SHAKTIPOLY Issue Period 15 Sep 2026 to 17 Sep 2026 Issue Size – No. of Shares 45,64,000 Price Band 56.00-59.00 Price-Band Advertisement Click Here IPO Categories FI, IC, MF, FII, OTH, CO, IND, NOH UPI Categories IND Face Value 10.00 Tick Size 1.00 Market Lot 2000 Minimum Bid Quantity 4000 Maximum Bid Quantity for Qualified Institutional Investors 43,34,000 Maximum Bid Quantity for Non-Institutional Investors 29,48,000 Book Running Lead Manager NEXGEN Financial Solutions Private Limited Registrar Skyline Financial Services Private Limited Sponsor Bank AXIS BANK Prospectus & GID Click Here Blank ASBA Form Click Here Online ASBA Form Click Here Revised Online ASBA Form Click Here Registrars to an Issue and Share Transfer Agents/Depository Participants Click Here Exchange Notices 1) Public Issue of  SHAKTI POLYTARP LIMITED Allocation to Anchor Investors Branches of SCSBs where syndicate / sub syndicate member to submit ASBA form Click Here List of SCSBs for Syndicate ASBA and under ASBA facility Click Here Self Certified Syndicate Banks eligible as Issuer Banks for UPI Click Here ISFormat 0",
@@ -1626,7 +1622,7 @@
         "extractedFields": [
           "issueComposition"
         ],
-        "extractedAt": "2026-09-13T08:27:19+05:30",
+        "extractedAt": "2026-09-13T16:05:53+05:30",
         "source": "BSE"
       },
       "freshIssueCr": 31.77,
@@ -1948,7 +1944,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 11,
+        "parserVersion": 12,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Manika%20IPO%20-%20Abridged%20Prospectus_p.pdf",
         "documentType": "RHP",
         "documentTitle": "Manika Plastech Limited  - Abridged Prospectus",
@@ -1964,7 +1960,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T08:26:55+05:30",
+        "extractedAt": "2026-09-13T16:05:32+05:30",
         "source": "SEBI"
       },
       "promoters": [
@@ -2787,7 +2783,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 11,
+        "parserVersion": 12,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Veegaland%20Developers%20Ltd.%20-%20Abridged%20Prospectus_p.pdf",
         "documentType": "RHP",
         "documentTitle": "Veegaland Developers Ltd. - Abridged Prospectus",
@@ -2803,7 +2799,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T08:27:03+05:30",
+        "extractedAt": "2026-09-13T16:05:36+05:30",
         "source": "SEBI"
       },
       "promoters": [
@@ -3807,7 +3803,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 11,
+        "parserVersion": 12,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Steamhouse%20India%20Limited%20-%20AP_p.pdf",
         "documentType": "RHP",
         "documentTitle": "Steamhouse India Limited - Abridged Prospectus",
@@ -3823,7 +3819,7 @@
           "objectsOfIssue",
           "shareholding"
         ],
-        "extractedAt": "2026-09-13T09:16:42+05:30",
+        "extractedAt": "2026-09-13T16:06:09+05:30",
         "source": "SEBI"
       },
       "minInvestment": 14985.0,
@@ -86262,7 +86258,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 11,
+        "parserVersion": 12,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Torrent%20Gas%20Limited%20-%20DAP_p.pdf",
         "documentType": "DRHP",
         "documentTitle": "Torrent Gas Limited - Draft Abridged Prospectus",
@@ -86278,7 +86274,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T08:27:22+05:30",
+        "extractedAt": "2026-09-13T16:05:56+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/torrent-gas-limited/",
@@ -86459,7 +86455,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 11,
+        "parserVersion": 12,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/NATIONAL%20STOCK%20EXCHANGE%20OF%20INDIA%20LIMITED%20-%20AP_p.pdf",
         "documentType": "DRHP",
         "documentTitle": "NATIONAL STOCK EXCHANGE OF INDIA LIMITED - Draft Abridged Prospectus",
@@ -86474,7 +86470,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T08:27:27+05:30",
+        "extractedAt": "2026-09-13T16:06:00+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/national-stock-exchange-of-india-limited/",
@@ -86729,7 +86725,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 11,
+        "parserVersion": 12,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/NOPAPERFORMS%20SOLUTIONS%20LIMITED%20-%20DAP_p.pdf",
         "documentType": "DRHP",
         "documentTitle": "NOPAPERFORMS SOLUTIONS LIMITED - Draft Abridged Prospectus",
@@ -86745,7 +86741,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T08:27:30+05:30",
+        "extractedAt": "2026-09-13T16:06:03+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/nopaperforms-solutions-limited/",
@@ -86943,7 +86939,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 11,
+        "parserVersion": 12,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/M%20K%20C%20AGRO%20FRESH%20LIMITED%20-%20DAP_p.pdf",
         "documentType": "DRHP",
         "documentTitle": "M K C AGRO FRESH LIMITED - Draft Abridged prospectus",
@@ -86959,7 +86955,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-13T08:27:33+05:30",
+        "extractedAt": "2026-09-13T16:06:06+05:30",
         "source": "SEBI"
       },
       "profilePath": "ipo/m-k-c-agro-fresh-limited/",
