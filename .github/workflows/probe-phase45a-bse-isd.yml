@@ -1,0 +1,86 @@
+name: Probe Phase 4.5A BSE Issue Summary
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/probe-phase45a-bse-isd.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: phase45a-bse-isd-probe
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Fetch BSE Issue Summary page
+        shell: bash
+        run: |
+          curl --http1.1 -fL --retry 3 --retry-all-errors --retry-delay 2 \
+            -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/152 Safari/537.36" \
+            -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" \
+            -H "Referer: https://www.bseindia.com/" \
+            "https://www.bseindia.com/markets/PublicIssues/Issuesummary.aspx" \
+            -o /tmp/bse-isd.html
+          test -s /tmp/bse-isd.html
+          wc -c /tmp/bse-isd.html
+
+      - name: Inspect scripts links forms and likely data endpoints
+        shell: python
+        run: |
+          from bs4 import BeautifulSoup
+          from urllib.parse import urljoin
+          import re
+
+          base = "https://www.bseindia.com/markets/PublicIssues/Issuesummary.aspx"
+          html = open("/tmp/bse-isd.html", encoding="utf-8", errors="ignore").read()
+          soup = BeautifulSoup(html, "html.parser")
+
+          print("TITLE:", soup.title.get_text(" ", strip=True) if soup.title else "")
+          print("FORMS:")
+          for form in soup.find_all("form")[:10]:
+              print(form.get("id"), form.get("method"), form.get("action"))
+
+          print("\nSCRIPTS:")
+          for script in soup.find_all("script"):
+              src = script.get("src")
+              if src:
+                  print(urljoin(base, src))
+
+          print("\nLINKS CONTAINING DETAIL/XBRL/XML/XLSX/ISD:")
+          seen = set()
+          for a in soup.select("a[href]"):
+              href = urljoin(base, a.get("href", ""))
+              text = " ".join(a.stripped_strings)
+              ctx = f"{href} {text}".lower()
+              if any(token in ctx for token in ("detail", "xbrl", ".xml", ".xlsx", "isd", "issue")):
+                  if href not in seen:
+                      seen.add(href)
+                      print(text[:100], "=>", href)
+
+          print("\nINLINE ENDPOINT-LIKE STRINGS:")
+          patterns = [
+              r"https?://[^\"'<>\s]+",
+              r"/[A-Za-z0-9_./-]+(?:api|Api|API|Issue|issue|XBRL|xbrl)[A-Za-z0-9_./?=&%-]*",
+              r"[A-Za-z0-9_./-]+\.aspx(?:\?[^\"'<>\s]*)?",
+          ]
+          found = []
+          for pat in patterns:
+              for value in re.findall(pat, html):
+                  value = value.replace("&amp;", "&")
+                  if value not in found:
+                      found.append(value)
+          for value in found[:300]:
+              print(value)
+
+          print("\nVISIBLE ROW SAMPLE:")
+          for tr in soup.find_all("tr")[:80]:
+              cells = [" ".join(td.stripped_strings) for td in tr.find_all(["th", "td"], recursive=False)]
+              if cells:
+                  print(cells)
