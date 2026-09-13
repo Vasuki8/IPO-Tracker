@@ -1,4 +1,4 @@
-name: Probe Phase 4.5B offer layouts
+name: Validate Phase 4.5B parser v7
 
 on:
   push:
@@ -11,13 +11,13 @@ permissions:
   contents: read
 
 concurrency:
-  group: phase45b-layout-probe
+  group: phase45b-v7-ci
   cancel-in-progress: true
 
 jobs:
-  probe:
+  validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v7.0.1
@@ -33,76 +33,14 @@ jobs:
       - name: Sync dependencies
         run: uv sync
 
-      - name: Inspect real shareholding layouts
-        shell: bash
-        run: |
-          uv run python - <<'PY'
-          import io
-          import json
-          import re
-          import sys
-          from pathlib import Path
+      - name: Run parser v7 regression tests
+        run: uv run python -m unittest discover -s tests -p "test_offer_docs_v7.py" -v
 
-          import requests
-          from pypdf import PdfReader
+      - name: Run parser v6 regressions
+        run: uv run python -m unittest discover -s tests -p "test_offer_docs_v6.py" -v
 
-          sys.path.insert(0, str(Path("scripts").resolve()))
-          import run_offer_docs_v6 as parser
+      - name: Run critical offer fallback regressions
+        run: uv run python -m unittest discover -s tests -p "test_critical_offer_backfill.py" -v
 
-          wanted = {
-              "ssretail",
-              "jsipl",
-              "heromotors",
-              "rentomojo",
-              "prasolchem",
-              "glasswall",
-              "tempsens",
-          }
-          payload = json.loads(Path("data/ipos.json").read_text(encoding="utf-8"))
-          records = [row for row in (payload.get("ipos") or []) if isinstance(row, dict)]
-          session = requests.Session()
-          session.headers.update({"User-Agent": "Mozilla/5.0 Phase45B-layout-probe"})
-
-          def compact(text):
-              return re.sub(r"\s+", " ", text or " ").strip()
-
-          for record in records:
-              if record.get("id") not in wanted:
-                  continue
-              company = record.get("company") or record.get("name") or record.get("id")
-              doc = parser.choose_document(record)
-              print(f"\n===== {company} ({record.get('id')}) =====")
-              if not doc:
-                  print("NO ELIGIBLE DOCUMENT")
-                  continue
-              print("DOC", doc.get("source"), doc.get("type"), doc.get("url"))
-              try:
-                  data = parser.download_pdf(session, doc.get("url"), attempts=2, retry_delay=0.5)
-              except Exception as exc:
-                  print("DOWNLOAD ERROR", repr(exc))
-                  continue
-
-              try:
-                  reader = PdfReader(io.BytesIO(data))
-              except Exception as exc:
-                  print("PDF ERROR", repr(exc))
-                  continue
-
-              scored = []
-              for idx, page in enumerate(reader.pages[:520]):
-                  try:
-                      text = page.extract_text() or ""
-                  except Exception:
-                      text = ""
-                  score = parser.v5._shareholding_page_score(text)
-                  if score:
-                      scored.append((score, idx, compact(text)))
-
-              scored.sort(key=lambda item: (item[0], item[1]), reverse=True)
-              print("PAGES", len(reader.pages), "HITS", len(scored))
-              for score, idx, text in scored[:5]:
-                  print(f"--- page {idx + 1} score={score} ---")
-                  print(text[:4500])
-
-          print("\nPHASE45B_LAYOUT_PROBE_DONE")
-          PY
+      - name: Run issuer fallback regressions
+        run: uv run python -m unittest discover -s tests -p "test_issuer_offer_docs.py" -v
