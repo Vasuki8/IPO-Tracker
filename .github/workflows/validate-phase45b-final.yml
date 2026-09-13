@@ -1,0 +1,33 @@
+name: Validate final Phase 4.5B priority fallbacks
+
+on:
+  push:
+    branches:
+      - phase45b-final-priority-fixes
+    paths:
+      - "scripts/run_issuer_offer_docs.py"
+      - "scripts/run_offer_docs_v10.py"
+      - "scripts/run_offer_docs_v11.py"
+      - "tests/test_issuer_offer_docs.py"
+      - "tests/test_offer_docs_v10.py"
+      - "tests/test_offer_docs_v11.py"
+      - ".github/workflows/validate-phase45b-final.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: astral-sh/setup-uv@v10.1.0
+        with:
+          version: "latest-known"
+      - run: uv python install 3.12
+      - run: uv sync
+      - name: Run issuer fallback regressions
+        run: uv run python -m unittest discover -s tests -p "test_issuer_offer_docs.py" -v
+      - name: Run parser v10 regressions
+        run: uv run python -m unittest discover -s tests -p "test_offer_docs_v10.py" -v
