@@ -7,6 +7,14 @@ on:
       - main
     paths:
       - ".github/workflows/finish-p4-offer-docs.yml"
+  workflow_run:
+    workflows:
+      - "P4 NSE issue-term backfill"
+    types:
+      - completed
+  schedule:
+    # Daily fallback after the lot-size and issue-term maintenance windows.
+    - cron: "37 16 * * *"
 
 permissions:
   contents: write
@@ -17,6 +25,9 @@ concurrency:
 
 jobs:
   finish-p4-offer-docs:
+    if: >-
+      github.event_name != 'workflow_run' ||
+      github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 55
     steps:
