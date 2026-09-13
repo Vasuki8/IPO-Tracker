@@ -161,17 +161,22 @@ jobs:
             SEARCH_LIMIT=0
             TERMS_LIMIT=0
           else
-            DOC_LIMIT=12
-            LINK_LIMIT=40
-            ISSUER_LIMIT=20
+            # P4 history now participates in exact SEBI RHP/Prospectus discovery.
+            # The limits make each daily run advance through the recent-history
+            # queue without turning one slow SEBI response into a brittle job.
+            DOC_LIMIT=20
+            LINK_LIMIT=60
+            ISSUER_LIMIT=30
             CRITICAL_LIMIT=20
-            SEARCH_LIMIT=40
+            SEARCH_LIMIT=60
             TERMS_LIMIT=40
           fi
-          # Include P3 filing-pipeline records so newly filed DRHP/UDRHP/RHP
-          # documents are discovered and enriched automatically every day.
-          uv run python scripts/enrich_sebi_priority_registers_v2.py --priority-max 3 --search-limit "$SEARCH_LIMIT"
-          uv run python scripts/enrich_sebi_document_links.py --priority-max 3 --limit "$LINK_LIMIT"
+          # Priority 4 is the recent two-year historical exchange backlog. The
+          # v2 register search accepts only final RHP/Prospectus landing pages,
+          # exact-matches them to the issuer and then resolves PDFs from SEBI.
+          uv run python scripts/enrich_sebi_priority_registers_v2.py --priority-max 4 --search-limit "$SEARCH_LIMIT"
+          uv run python scripts/enrich_sebi_document_links.py --priority-max 4 --limit "$LINK_LIMIT"
+          # Recent live/filing term discovery remains scoped to P0-P3.
           uv run python scripts/enrich_recent_offer_terms.py --priority-max 3 --limit "$TERMS_LIMIT"
 
           # Never disable certificate verification for SEBI's intermittently
@@ -183,8 +188,8 @@ jobs:
           # v12 adds conservative lot-size and finalized price-band extraction
           # from the exact official document while keeping exchange data fill-only.
           uv run python scripts/run_offer_docs_v12.py --limit "$DOC_LIMIT"
-          # Official issuer/registrar/NSE/BSE mirror documents get first chance.
-          uv run python scripts/run_issuer_offer_docs_v2.py --priority-max 3 --limit "$ISSUER_LIMIT"
+          # Official issuer/registrar/NSE/BSE mirror documents can also cover P4.
+          uv run python scripts/run_issuer_offer_docs_v2.py --priority-max 4 --limit "$ISSUER_LIMIT"
           # Only fields still missing after official-document parsing are bridged.
           uv run python scripts/apply_verified_recent_offer_fields.py
           uv run python scripts/apply_verified_filing_offer_fields.py
@@ -196,28 +201,40 @@ jobs:
       - name: Publish changed offer-document data and audit safely
         shell: bash
         run: |
-          cp data/ipos.json /tmp/generated-ipos.json
           BASE_DATA="$(cat /tmp/base-data-blob)"
-          git fetch origin main
-          REMOTE_DATA="$(git rev-parse origin/main:data/ipos.json)"
-
-          if [ "$REMOTE_DATA" != "$BASE_DATA" ]; then
-            echo "Remote IPO data changed during this run; skipping stale offer-document publication."
-            exit 0
-          fi
-
-          git reset --hard origin/main
-          cp /tmp/generated-ipos.json data/ipos.json
-          uv run python scripts/audit_data_completeness.py
-          uv run python scripts/build_missing_queue.py
-
-          if [ -z "$(git status --porcelain -- data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md)" ]; then
-            echo "No offer-document, audit or repair-queue changes"
-            exit 0
-          fi
-
+          cp data/ipos.json /tmp/final-ipos.json
           git config user.name "ipo-tracker-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md
-          git commit -m "data: resolve and backfill priority offer documents"
-          git push origin HEAD:main
+
+          # Code-only commits may land while SEBI PDFs are being processed. Rebase
+          # onto them and rebuild derived artifacts. A concurrent IPO-data change
+          # is different: abort rather than trying to merge two generated datasets.
+          for attempt in 1 2 3; do
+            echo "Offer-document publish attempt $attempt/3"
+            git fetch origin main
+            REMOTE_DATA="$(git rev-parse origin/main:data/ipos.json)"
+            if [ "$REMOTE_DATA" != "$BASE_DATA" ]; then
+              echo "Remote IPO data changed during this run; skipping stale offer-document publication."
+              exit 0
+            fi
+
+            git reset --hard origin/main
+            cp /tmp/final-ipos.json data/ipos.json
+            uv run python scripts/audit_data_completeness.py
+            uv run python scripts/build_missing_queue.py
+
+            if [ -z "$(git status --porcelain -- data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md)" ]; then
+              echo "No offer-document, audit or repair-queue changes"
+              exit 0
+            fi
+
+            git add data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md
+            git commit -m "data: resolve and backfill priority offer documents"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push raced with a code-only commit; retrying safely."
+          done
+
+          echo "Unable to publish offer-document data after 3 race-safe attempts."
+          exit 1
