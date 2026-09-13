@@ -1,11 +1,10 @@
 {
-  "generatedAt": "2026-09-13T08:02:44+05:30",
+  "generatedAt": "2026-09-13T08:30:31+05:30",
   "asOfDate": "2026-09-13",
   "recordCount": 1371,
-  "queueCount": 1361,
+  "queueCount": 1358,
   "priorityCounts": {
-    "P0 open IPO": 2,
-    "P1 upcoming IPO": 3,
+    "P1 upcoming IPO": 2,
     "P2 recent IPO (30d)": 34,
     "P3 filing pipeline": 4,
     "P4 recent history (2y)": 411,
@@ -14,68 +13,14 @@
   "fieldGapCounts": {
     "exchange.lotSize": 1353,
     "exchange.issueSizeCr": 1160,
-    "exchange.issueComposition": 260,
+    "exchange.issueComposition": 259,
     "lifecycle.listingDate": 35,
     "exchange.priceBand": 23,
-    "offer.promoterShareholding": 9,
+    "offer.promoterShareholding": 7,
     "offer.leadManagers": 1,
     "provenance.sources": 1
   },
   "queue": [
-    {
-      "id": "injecto-polymers-limited",
-      "company": "INJECTO POLYMERS LIMITED",
-      "symbol": "INJECTO",
-      "stage": "open",
-      "openDate": "2026-09-11",
-      "closeDate": "2026-09-16",
-      "listingDate": null,
-      "priority": 0,
-      "priorityLabel": "P0 open IPO",
-      "completenessPct": 95.5,
-      "expectedFieldCount": 22,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/injecto-polymers-limited/"
-    },
-    {
-      "id": "manika",
-      "company": "Manika Plastech Limited",
-      "symbol": "MANIKA",
-      "stage": "open",
-      "openDate": "2026-09-11",
-      "closeDate": "2026-09-16",
-      "listingDate": null,
-      "priority": 0,
-      "priorityLabel": "P0 open IPO",
-      "completenessPct": 95.5,
-      "expectedFieldCount": 22,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/manika/"
-    },
-    {
-      "id": "vama-wovenfab-limited",
-      "company": "Vama Wovenfab Limited",
-      "symbol": "VAMAWOVEN",
-      "stage": "upcoming",
-      "openDate": "2026-09-15",
-      "closeDate": "2026-09-17",
-      "listingDate": null,
-      "priority": 1,
-      "priorityLabel": "P1 upcoming IPO",
-      "completenessPct": 90.9,
-      "expectedFieldCount": 11,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/vama-wovenfab-limited/"
-    },
     {
       "id": "jsipl",
       "company": "Jindal Supreme (India) Limited",
@@ -5956,6 +5901,60 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/cmrgreen/"
+    },
+    {
+      "id": "crizac",
+      "company": "CRIZAC LIMITED",
+      "symbol": "CRIZAC",
+      "stage": "listed",
+      "openDate": "2025-07-02",
+      "closeDate": "2025-07-04",
+      "listingDate": "2025-07-09",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/crizac/"
+    },
+    {
+      "id": "csm",
+      "company": "CSM Technologies Limited",
+      "symbol": "CSM",
+      "stage": "listed",
+      "openDate": "2026-06-24",
+      "closeDate": "2026-06-29",
+      "listingDate": "2026-07-02",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/csm/"
+    },
+    {
+      "id": "cmll",
+      "company": "Caliber Mining and Logistics Limited",
+      "symbol": "CMLL",
+      "stage": "listed",
+      "openDate": "2026-07-17",
+      "closeDate": "2026-07-21",
+      "listingDate": "2026-07-24",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/cmll/"
     }
   ],
   "notes": [
