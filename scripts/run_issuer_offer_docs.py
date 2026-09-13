@@ -10,13 +10,13 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 import enrich_issuer_offer_docs as base  # noqa: E402
-import run_offer_docs_v10 as parser_v10  # noqa: E402
+import run_offer_docs_v11 as parser_v11  # noqa: E402
 
 # Route validated fallbacks through the current parser while retaining the base
 # module's exact-host, PDF-magic, issuer-identity and fill-only merge gates.
-base.parser_v4 = parser_v10
-base.PARSER_VERSION = parser_v10.PARSER_VERSION
-base._extract_targeted_full_text = parser_v10.extract_targeted_pdf_text
+base.parser_v4 = parser_v11
+base.PARSER_VERSION = parser_v11.PARSER_VERSION
+base._extract_targeted_full_text = parser_v11.extract_targeted_pdf_text
 
 _ORIGINAL_MERGE = base.merge_issuer_enrichment
 
@@ -71,9 +71,9 @@ base.merge_issuer_enrichment = merge_validated_offer_enrichment
 
 # Most entries are issuer-hosted PDFs. Injecto is intentionally different: its
 # issuer host repeatedly times out in GitHub Actions, while the IPO's official
-# registrar publishes the same RHP from its own IPO-document register. That
-# registrar copy is explicitly labelled as such below rather than being
-# misrepresented as an issuer source.
+# registrar publishes the same RHP from its own IPO-document register. Manika's
+# full SEBI RHP is also registered because the abridged prospectus does not carry
+# the combined promoter/promoter-group ownership row needed for the final gap.
 base.ISSUER_DOCUMENTS.update(
     {
         "om-galaxy-limited": {
@@ -95,6 +95,18 @@ base.ISSUER_DOCUMENTS.update(
             "documentSource": "Integrated Registry",
             "sourceName": "Integrated Registry offer document",
             "sourceKind": "registrar-filing",
+        },
+        "manika": {
+            "company": "Manika Plastech Limited",
+            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788774340354.pdf",
+            "host": "www.sebi.gov.in",
+            "type": "RHP",
+            "title": "Red Herring Prospectus",
+            "sourcePage": "https://www.sebi.gov.in/filings/public-issues/sep-2026/manika-plastech-limited-rhp_104296.html",
+            "extractionSource": "SEBI",
+            "documentSource": "SEBI",
+            "sourceName": "SEBI Red Herring Prospectus",
+            "sourceKind": "regulatory-filing",
         },
         "shakti-polytarp-limited": {
             "company": "Shakti Polytarp Limited",
