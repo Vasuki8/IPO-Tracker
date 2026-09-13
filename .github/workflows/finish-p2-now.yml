@@ -1,0 +1,91 @@
+name: Finish P2 now
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/finish-p2-now.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ipo-p2-finish-now
+  cancel-in-progress: false
+
+jobs:
+  finish-p2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.1.0
+        with:
+          version: "latest-known"
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Sync dependencies
+        run: uv sync
+
+      - name: Test strict recent offer-field registry
+        run: uv run python -m unittest discover -s tests -p "test_verified_recent_offer_fields.py" -v
+
+      - name: Test audit and queue rules
+        run: |
+          uv run python -m unittest discover -s tests -p "test_data_completeness.py" -v
+          uv run python -m unittest discover -s tests -p "test_missing_queue.py" -v
+
+      - name: Record starting data revision
+        run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
+
+      - name: Apply P2 offer fields and rebuild audit
+        run: |
+          uv run python scripts/apply_verified_recent_offer_fields.py
+          uv run python scripts/audit_data_completeness.py
+          uv run python scripts/build_missing_queue.py
+
+      - name: Require P2 zero
+        run: |
+          uv run python - <<'PY'
+          import json
+          from pathlib import Path
+          q = json.loads(Path('data/missing_queue.json').read_text())
+          count = int((q.get('priorityCounts') or {}).get('P2 recent IPO (30d)', 0))
+          print(f'P2 count after strict offer backfill: {count}')
+          if count != 0:
+              raise SystemExit(f'P2 is not zero: {count}')
+          PY
+
+      - name: Publish P2 completion safely
+        shell: bash
+        run: |
+          cp data/ipos.json /tmp/generated-ipos.json
+          cp data/completeness.json /tmp/generated-completeness.json
+          cp data/missing_queue.json /tmp/generated-queue.json
+          cp docs/DATA_QUALITY.md /tmp/generated-quality.md
+          BASE_DATA="$(cat /tmp/base-data-blob)"
+          git fetch origin main
+          REMOTE_DATA="$(git rev-parse origin/main:data/ipos.json)"
+
+          if [ "$REMOTE_DATA" != "$BASE_DATA" ]; then
+            echo "Remote IPO data changed during this run; refusing stale P2 publication."
+            exit 1
+          fi
+
+          git reset --hard origin/main
+          cp /tmp/generated-ipos.json data/ipos.json
+          cp /tmp/generated-completeness.json data/completeness.json
+          cp /tmp/generated-queue.json data/missing_queue.json
+          cp /tmp/generated-quality.md docs/DATA_QUALITY.md
+
+          git config user.name "ipo-tracker-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md
+          git commit -m "data: close P2 recent IPO gaps"
+          git push origin HEAD:main
