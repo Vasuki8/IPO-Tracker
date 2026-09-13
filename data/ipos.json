@@ -108,12 +108,12 @@
       },
       "Issuer-offer-docs": {
         "ok": true,
-        "records": 10,
-        "attempted": 10,
-        "updated": 9,
-        "deepScanned": 1,
+        "records": 5,
+        "attempted": 5,
+        "updated": 0,
+        "deepScanned": 3,
         "failed": 0,
-        "asOf": "2026-09-14T03:08:22+05:30",
+        "asOf": "2026-09-14T03:20:50+05:30",
         "errors": []
       },
       "NSE-primary-market-reports": {
@@ -165,21 +165,25 @@
         "ok": true,
         "entries": 36,
         "updated": 0,
-        "checkedAt": "2026-09-14T02:56:26+05:30"
+        "checkedAt": "2026-09-14T03:14:47+05:30"
       },
       "verified-recent-issue-terms": {
         "ok": true,
         "entries": 14,
         "updated": 0,
         "fields": {},
-        "checkedAt": "2026-09-14T02:56:26+05:30"
+        "checkedAt": "2026-09-14T03:14:47+05:30"
       },
       "verified-recent-offer-fields": {
         "ok": true,
-        "entries": 12,
-        "updated": 0,
-        "fields": {},
-        "checkedAt": "2026-09-14T03:08:22+05:30"
+        "entries": 18,
+        "updated": 4,
+        "fields": {
+          "registrar": 2,
+          "shareholding": 1,
+          "objectsOfIssue": 1
+        },
+        "checkedAt": "2026-09-14T03:20:51+05:30"
       },
       "verified-filing-offer-fields": {
         "ok": true,
@@ -329,7 +333,7 @@
         "availabilityEntries": 6,
         "availabilityRecordsUpdated": 0,
         "missingOrAmbiguous": 3,
-        "checkedAt": "2026-09-14T02:56:25+05:30"
+        "checkedAt": "2026-09-14T03:14:46+05:30"
       }
     },
     "errors": [],
@@ -386,12 +390,12 @@
     },
     "issuerOfferDocumentHealth": {
       "ok": true,
-      "attempted": 10,
-      "extracted": 10,
-      "updated": 9,
-      "deepScanned": 1,
+      "attempted": 5,
+      "extracted": 5,
+      "updated": 0,
+      "deepScanned": 3,
       "failed": 0,
-      "asOf": "2026-09-14T03:08:22+05:30",
+      "asOf": "2026-09-14T03:20:50+05:30",
       "errors": []
     },
     "sebiDocumentLinkHealth": {
@@ -12568,6 +12572,12 @@
           "kind": "regulatory-filing",
           "url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/juniper-green-energy-limited-prospectus_103747.html",
           "asOf": "2026-09-14T02:42:56+05:30"
+        },
+        {
+          "name": "NSE Juniper Green Energy DRHP registrar",
+          "kind": "validated-offer-document-term",
+          "url": "https://nsearchives.nseindia.com/corporate/Registration_28062025043935_JuniperGreenEnergyLimitedDRHP.pdf",
+          "asOf": "2026-09-14T03:20:51+05:30"
         }
       ],
       "source": {
@@ -12609,6 +12619,14 @@
             "min": 214.0,
             "max": 225.0
           }
+        },
+        "VerifiedOfferFields": {
+          "openDate": "2026-07-30",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/Registration_28062025043935_JuniperGreenEnergyLimitedDRHP.pdf",
+          "sourceKind": "validated-offer-document-term",
+          "fields": [
+            "registrar"
+          ]
         }
       },
       "documents": [
@@ -12630,11 +12648,12 @@
         }
       ],
       "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "status": "verified",
+        "checkedAt": "2026-09-14T03:20:51+05:30",
         "checks": [],
         "independentSources": [
-          "NSE"
+          "NSE",
+          "SEBI"
         ]
       },
       "profilePath": "ipo/jnpr/",
@@ -12774,15 +12793,8 @@
           "lotSize",
           "priceBand"
         ],
-        "changedFields": [
-          "ofsCr",
-          "issueComposition",
-          "leadManagers",
-          "promoters",
-          "financials",
-          "objectsOfIssue"
-        ],
-        "extractedAt": "2026-09-14T02:42:56+05:30",
+        "changedFields": [],
+        "extractedAt": "2026-09-14T03:18:11+05:30",
         "source": "SEBI"
       },
       "offerDocumentExtraction": {
@@ -12806,7 +12818,8 @@
         ],
         "extractedAt": "2026-09-14T02:56:10+05:30",
         "source": "SEBI"
-      }
+      },
+      "registrar": "KFin Technologies Limited"
     },
     {
       "id": "manipalhos",
@@ -15938,10 +15951,10 @@
           "asOf": "2026-09-14T02:16:03+05:30"
         },
         {
-          "name": "SEBI final Prospectus",
-          "kind": "regulatory-filing",
-          "url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/aastha-spintex-limited-prospectus_103092.html",
-          "asOf": "2026-09-14T03:07:26+05:30"
+          "name": "SEBI Aastha Spintex issue announcement registrar",
+          "kind": "validated-offer-document-term",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781090594066.pdf",
+          "asOf": "2026-09-14T03:20:51+05:30"
         }
       ],
       "source": {
@@ -15983,6 +15996,14 @@
             "min": 125.0,
             "max": 136.0
           }
+        },
+        "VerifiedOfferFields": {
+          "openDate": "2026-06-29",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781090594066.pdf",
+          "sourceKind": "validated-offer-document-term",
+          "fields": [
+            "registrar"
+          ]
         }
       },
       "documents": [
@@ -16004,11 +16025,12 @@
         }
       ],
       "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "status": "verified",
+        "checkedAt": "2026-09-14T03:20:51+05:30",
         "checks": [],
         "independentSources": [
-          "NSE"
+          "NSE",
+          "SEBI"
         ]
       },
       "profilePath": "ipo/aastha/",
@@ -16149,7 +16171,7 @@
           "priceBand"
         ],
         "changedFields": [],
-        "extractedAt": "2026-09-14T03:07:26+05:30",
+        "extractedAt": "2026-09-14T03:15:40+05:30",
         "source": "SEBI"
       },
       "offerDocumentExtraction": {
@@ -16173,7 +16195,8 @@
         ],
         "extractedAt": "2026-09-14T03:13:27+05:30",
         "source": "SEBI"
-      }
+      },
+      "registrar": "Bigshare Services Private Limited"
     },
     {
       "id": "icel",
@@ -20880,6 +20903,12 @@
           "kind": "regulatory-filing",
           "url": "https://www.sebi.gov.in/filings/public-issues/mar-2026/innovision-limited-prospectus_100489.html",
           "asOf": "2026-09-14T02:41:32+05:30"
+        },
+        {
+          "name": "NSE Innovision statement of issue-proceeds objects",
+          "kind": "validated-offer-document-term",
+          "url": "https://nsearchives.nseindia.com/corporate/INNOVISION2007_13052026170308_Reg_32_1_-_Statement_of_Deviation_and_variation_signed.pdf",
+          "asOf": "2026-09-14T03:20:51+05:30"
         }
       ],
       "source": {
@@ -20910,6 +20939,14 @@
             "min": 494.0,
             "max": 519.0
           }
+        },
+        "VerifiedOfferFields": {
+          "openDate": "2026-03-10",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/INNOVISION2007_13052026170308_Reg_32_1_-_Statement_of_Deviation_and_variation_signed.pdf",
+          "sourceKind": "validated-offer-document-term",
+          "fields": [
+            "objectsOfIssue"
+          ]
         }
       },
       "documents": [
@@ -20947,11 +20984,12 @@
         }
       ],
       "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "status": "verified",
+        "checkedAt": "2026-09-14T03:20:51+05:30",
         "checks": [],
         "independentSources": [
-          "NSE"
+          "NSE",
+          "SEBI"
         ]
       },
       "profilePath": "ipo/innovision/",
@@ -21039,15 +21077,15 @@
           "lotSize",
           "priceBand"
         ],
-        "changedFields": [
-          "registrar",
-          "leadManagers",
-          "promoters",
-          "financials"
-        ],
-        "extractedAt": "2026-09-14T02:41:32+05:30",
+        "changedFields": [],
+        "extractedAt": "2026-09-14T03:16:30+05:30",
         "source": "SEBI"
-      }
+      },
+      "objectsOfIssue": [
+        "Repayment or prepayment, in part or full of all or certain borrowings availed by the Company",
+        "Funding working capital requirements of the Company",
+        "General corporate purposes"
+      ]
     },
     {
       "id": "rsl",
@@ -21090,6 +21128,12 @@
           "kind": "regulatory-filing",
           "url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/rajputana-stainless-limited-prospectus_100791.html",
           "asOf": "2026-09-14T03:06:34+05:30"
+        },
+        {
+          "name": "SEBI final Prospectus",
+          "kind": "regulatory-filing",
+          "url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/rajputana-stainless-limited-prospectus_100791.html",
+          "asOf": "2026-09-14T03:20:50+05:30"
         }
       ],
       "source": {
@@ -21311,14 +21355,8 @@
           "lotSize",
           "priceBand"
         ],
-        "changedFields": [
-          "registrar",
-          "leadManagers",
-          "promoters",
-          "financials",
-          "objectsOfIssue"
-        ],
-        "extractedAt": "2026-09-14T03:06:34+05:30",
+        "changedFields": [],
+        "extractedAt": "2026-09-14T03:20:50+05:30",
         "source": "SEBI"
       }
     },
@@ -23091,6 +23129,12 @@
           "kind": "regulatory-filing",
           "url": "https://www.sebi.gov.in/filings/public-issues/feb-2026/aye-finance-limited-prospectus_99708.html",
           "asOf": "2026-09-14T02:19:11+05:30"
+        },
+        {
+          "name": "NSE Aye Finance Basis of Allotment promoter status",
+          "kind": "validated-offer-document-term",
+          "url": "https://nsearchives.nseindia.com/corporate/ADV_INE501X01029_13FEB2026.pdf",
+          "asOf": "2026-09-14T03:20:51+05:30"
         }
       ],
       "source": {
@@ -23121,6 +23165,14 @@
             "min": 122.0,
             "max": 129.0
           }
+        },
+        "VerifiedOfferFields": {
+          "openDate": "2026-02-09",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/ADV_INE501X01029_13FEB2026.pdf",
+          "sourceKind": "validated-offer-document-term",
+          "fields": [
+            "shareholding"
+          ]
         }
       },
       "documents": [
@@ -23158,11 +23210,12 @@
         }
       ],
       "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "status": "verified",
+        "checkedAt": "2026-09-14T03:20:51+05:30",
         "checks": [],
         "independentSources": [
-          "NSE"
+          "NSE",
+          "SEBI"
         ]
       },
       "profilePath": "ipo/aye/",
@@ -23308,15 +23361,12 @@
           "lotSize",
           "priceBand"
         ],
-        "changedFields": [
-          "registrar",
-          "leadManagers",
-          "promoters",
-          "financials",
-          "objectsOfIssue"
-        ],
-        "extractedAt": "2026-09-14T02:19:11+05:30",
+        "changedFields": [],
+        "extractedAt": "2026-09-14T03:19:36+05:30",
         "source": "SEBI"
+      },
+      "shareholding": {
+        "promoterPreIssuePct": 0.0
       }
     },
     {
