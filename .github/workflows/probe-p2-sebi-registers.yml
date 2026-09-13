@@ -25,43 +25,27 @@ jobs:
         run: uv python install 3.12
       - name: Sync dependencies
         run: uv sync
-      - name: Validate SEBI register POST pagination
+      - name: Validate GET-based SEBI issuer search
         shell: bash
         run: |
           uv run python - <<'PY'
           import requests,sys
           from bs4 import BeautifulSoup
-          from urllib.parse import urljoin
           sys.path.insert(0,'scripts')
           import update_data as core
-          base='https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=12&ssid=15'
           s=requests.Session(); s.headers.update(core.HEADERS)
-          r=s.get(base,timeout=30); r.raise_for_status()
-          soup=BeautifulSoup(r.text,'html.parser')
-          form=soup.find('form',attrs={'name':'homeForm'}) or soup.find('form')
-          action=urljoin(base, form.get('action') or '/sebiweb/home/HomeAction.do')
-          data={}
-          for inp in form.find_all('input'):
-              name=inp.get('name')
-              if name and inp.get('type') in ('hidden','text'):
-                  data[name]=inp.get('value') or ''
-          for sel in form.find_all('select'):
-              name=sel.get('name')
-              if not name: continue
-              opt=sel.find('option',selected=True)
-              data[name]=(opt.get('value') if opt else '-1')
-          data.update({'sid':'3','ssid':'15','smid':'12','ssidhidden':'15','smidhidden':'12','nextValue':'1','sectName':'Filings'})
-          print('ACTION',action)
-          print('DATA',{k:v for k,v in data.items() if 'TOKEN' not in k and 'captcha' not in k.lower() and 'password' not in k.lower()})
-          p=s.post(action,params={'doListing':'yes'},data=data,timeout=30); print('POST',p.status_code,p.url,len(p.text)); p.raise_for_status()
-          for label,html in [('PAGE1',r.text),('PAGE2',p.text)]:
-              sp=BeautifulSoup(html,'html.parser')
+          base='https://www.sebi.gov.in/sebiweb/home/HomeAction.do'
+          for company in ('SYMBIOTEC PHARMALAB LIMITED','Rays of Belief Limited','Sunshine Pictures Limited','HORIZON INDUSTRIAL PARKS LIMITED','Purple Style Labs Limited'):
+              print('\n===',company,'===')
+              r=s.get(base,params={'doListingAll':'yes','search':company},timeout=30)
+              print('HTTP',r.status_code,r.url,'LEN',len(r.text)); r.raise_for_status()
+              soup=BeautifulSoup(r.text,'html.parser')
               rows=[]
-              for tr in sp.select('table tbody tr'):
-                  tds=tr.find_all('td')
+              for tr in soup.select('table tbody tr'):
                   a=tr.select_one('a[href*="/filings/public-issues/"]')
-                  if a:
-                      rows.append((' '.join(tds[0].stripped_strings) if tds else '', ' '.join(a.stripped_strings), a.get('href')))
-              print(label,'COUNT',len(rows))
-              for row in rows[:6]: print(label,row)
+                  if not a: continue
+                  cells=[' '.join(td.stripped_strings) for td in tr.find_all('td')]
+                  rows.append((cells,' '.join(a.stripped_strings),a.get('href')))
+              print('ROWS',len(rows))
+              for row in rows[:10]: print(row)
           PY
