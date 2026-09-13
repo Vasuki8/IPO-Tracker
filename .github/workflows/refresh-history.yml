@@ -7,6 +7,7 @@ on:
       - main
     paths:
       - "scripts/run_update_v2.py"
+      - "scripts/p4_history_guard.py"
       - "scripts/enrich_nse_primary_market_reports.py"
       - "scripts/enrich_nse_primary_market_reports_v2.py"
       - "scripts/enrich_exchange_details_v2.py"
@@ -104,11 +105,12 @@ jobs:
       - name: Record starting data revision
         run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
 
-      - name: Reconcile recent IPO history
-        # The one-time full repair has populated historical open/close dates.
-        # Routine jobs only need the most recent year to catch later corrections.
+      - name: Reconcile full P4 recent-history window
+        # P4 is defined as the most recent two years. Reconcile the same 730-day
+        # window every day so corrected equity IPO rows replace any older broad
+        # public-issue observations and the P4 debt/NCD guard can clean legacy rows.
         run: |
-          uv run python scripts/run_update_v2.py --history-days 365 --sebi-pages 1
+          uv run python scripts/run_update_v2.py --history-days 730 --sebi-pages 1
           uv run python scripts/normalize_source_health.py
 
       - name: Publish historical reconciliation and progressive detail backfill safely
