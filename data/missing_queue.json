@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-09-13T09:34:39+05:30",
+  "generatedAt": "2026-09-13T09:50:09+05:30",
   "asOfDate": "2026-09-13",
   "recordCount": 1371,
-  "queueCount": 1345,
+  "queueCount": 1334,
   "priorityCounts": {
-    "P2 recent IPO (30d)": 23,
+    "P2 recent IPO (30d)": 12,
     "P3 filing pipeline": 4,
     "P4 recent history (2y)": 411,
     "P5 historical backfill": 907
   },
   "fieldGapCounts": {
     "exchange.lotSize": 1317,
-    "exchange.issueSizeCr": 1149,
-    "exchange.issueComposition": 243,
+    "exchange.issueSizeCr": 1135,
+    "exchange.issueComposition": 229,
     "lifecycle.listingDate": 35,
     "exchange.priceBand": 23,
     "offer.promoterShareholding": 15,
@@ -34,12 +34,10 @@
       "listingDate": "2026-08-25",
       "priority": 2,
       "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 57.9,
+      "completenessPct": 68.4,
       "expectedFieldCount": 19,
-      "missingFieldCount": 8,
+      "missingFieldCount": 6,
       "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
         "offer.registrar",
         "offer.leadManagers",
         "offer.promoters",
@@ -59,12 +57,10 @@
       "listingDate": "2026-09-01",
       "priority": 2,
       "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 57.9,
+      "completenessPct": 68.4,
       "expectedFieldCount": 19,
-      "missingFieldCount": 8,
+      "missingFieldCount": 6,
       "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
         "offer.registrar",
         "offer.leadManagers",
         "offer.promoters",
@@ -73,102 +69,6 @@
         "offer.promoterShareholding"
       ],
       "profilePath": "ipo/symbiotec/"
-    },
-    {
-      "id": "lumino",
-      "company": "Lumino Industries Limited",
-      "symbol": "LUMINO",
-      "stage": "listed",
-      "openDate": "2026-08-27",
-      "closeDate": "2026-08-31",
-      "listingDate": "2026-09-03",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 18,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/lumino/"
-    },
-    {
-      "id": "abh",
-      "company": "ABH Healthcare Limited",
-      "symbol": "ABH",
-      "stage": "listed",
-      "openDate": "2026-08-24",
-      "closeDate": "2026-08-27",
-      "listingDate": "2026-09-01",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/abh/"
-    },
-    {
-      "id": "ashutosh",
-      "company": "Ashutosh Fibre Limited",
-      "symbol": "ASHUTOSH",
-      "stage": "listed",
-      "openDate": "2026-08-31",
-      "closeDate": "2026-09-02",
-      "listingDate": "2026-09-07",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 81.8,
-      "expectedFieldCount": 11,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/ashutosh/"
-    },
-    {
-      "id": "horizonind",
-      "company": "Horizon Industrial Parks Limited",
-      "symbol": "HORIZONIND",
-      "stage": "listed",
-      "openDate": "2026-08-17",
-      "closeDate": "2026-08-19",
-      "listingDate": "2026-08-24",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/horizonind/"
-    },
-    {
-      "id": "madhurknit",
-      "company": "Madhur Knit Crafts Limited",
-      "symbol": "MADHURKNIT",
-      "stage": "listed",
-      "openDate": "2026-08-24",
-      "closeDate": "2026-08-27",
-      "listingDate": "2026-09-01",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/madhurknit/"
     },
     {
       "id": "pranav",
@@ -188,139 +88,6 @@
         "offer.promoterShareholding"
       ],
       "profilePath": "ipo/pranav/"
-    },
-    {
-      "id": "perniaspop",
-      "company": "Purple Style Labs Limited",
-      "symbol": "PERNIASPOP",
-      "stage": "listed",
-      "openDate": "2026-08-31",
-      "closeDate": "2026-09-02",
-      "listingDate": "2026-09-07",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 81.8,
-      "expectedFieldCount": 11,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/perniaspop/"
-    },
-    {
-      "id": "qualiance",
-      "company": "Qualiance International Limited",
-      "symbol": "QUALIANCE",
-      "stage": "listed",
-      "openDate": "2026-09-04",
-      "closeDate": "2026-09-08",
-      "listingDate": "2026-09-11",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 81.8,
-      "expectedFieldCount": 11,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/qualiance/"
-    },
-    {
-      "id": "momsbelief",
-      "company": "Rays of Belief Limited- For Profit Social Enterprise (FPSE)",
-      "symbol": "MOMSBELIEF",
-      "stage": "closed",
-      "openDate": "2026-09-01",
-      "closeDate": "2026-09-03",
-      "listingDate": null,
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 81.8,
-      "expectedFieldCount": 11,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/momsbelief/"
-    },
-    {
-      "id": "shankesh",
-      "company": "Shankesh Jewellers Limited",
-      "symbol": "SHANKESH",
-      "stage": "listed",
-      "openDate": "2026-08-18",
-      "closeDate": "2026-08-20",
-      "listingDate": "2026-08-25",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/shankesh/"
-    },
-    {
-      "id": "shantiinor",
-      "company": "Shanti Inorganics Limited",
-      "symbol": "SHANTIINOR",
-      "stage": "listed",
-      "openDate": "2026-08-31",
-      "closeDate": "2026-09-02",
-      "listingDate": "2026-09-07",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 81.8,
-      "expectedFieldCount": 11,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/shantiinor/"
-    },
-    {
-      "id": "skytech",
-      "company": "Skytech Infinite Platform Limited",
-      "symbol": "SKYTECH",
-      "stage": "listed",
-      "openDate": "2026-08-14",
-      "closeDate": "2026-08-18",
-      "listingDate": "2026-08-21",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/skytech/"
-    },
-    {
-      "id": "sumax",
-      "company": "Sumax Engineering Limited",
-      "symbol": "SUMAX",
-      "stage": "listed",
-      "openDate": "2026-08-25",
-      "closeDate": "2026-08-28",
-      "listingDate": "2026-09-02",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/sumax/"
     },
     {
       "id": "arcil",
@@ -393,6 +160,24 @@
         "offer.promoterShareholding"
       ],
       "profilePath": "ipo/lccproject/"
+    },
+    {
+      "id": "lumino",
+      "company": "Lumino Industries Limited",
+      "symbol": "LUMINO",
+      "stage": "listed",
+      "openDate": "2026-08-27",
+      "closeDate": "2026-08-31",
+      "listingDate": "2026-09-03",
+      "priority": 2,
+      "priorityLabel": "P2 recent IPO (30d)",
+      "completenessPct": 94.4,
+      "expectedFieldCount": 18,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "offer.promoterShareholding"
+      ],
+      "profilePath": "ipo/lumino/"
     },
     {
       "id": "mpimanipal",
@@ -5928,6 +5713,204 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/dhararail/"
+    },
+    {
+      "id": "epwindia",
+      "company": "EPW India Limited",
+      "symbol": "EPWINDIA",
+      "stage": "listed",
+      "openDate": "2025-12-22",
+      "closeDate": "2025-12-24",
+      "listingDate": "2025-12-30",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/epwindia/"
+    },
+    {
+      "id": "ecoline",
+      "company": "Ecoline Exim Limited",
+      "symbol": "ECOLINE",
+      "stage": "listed",
+      "openDate": "2025-09-23",
+      "closeDate": "2025-09-25",
+      "listingDate": "2025-09-30",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/ecoline/"
+    },
+    {
+      "id": "ellen",
+      "company": "Ellenbarrie Industrial Gases Limited",
+      "symbol": "ELLEN",
+      "stage": "listed",
+      "openDate": "2025-06-24",
+      "closeDate": "2025-06-26",
+      "listingDate": "2025-07-01",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/ellen/"
+    },
+    {
+      "id": "emmvee",
+      "company": "Emmvee Photovoltaic Power Limited",
+      "symbol": "EMMVEE",
+      "stage": "listed",
+      "openDate": "2025-11-11",
+      "closeDate": "2025-11-13",
+      "listingDate": "2025-11-18",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/emmvee/"
+    },
+    {
+      "id": "encompas",
+      "company": "Encompass Design India Limited",
+      "symbol": "ENCOMPAS",
+      "stage": "listed",
+      "openDate": "2025-12-05",
+      "closeDate": "2025-12-09",
+      "listingDate": "2025-12-12",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/encompas/"
+    },
+    {
+      "id": "epackpeb",
+      "company": "Epack Prefab Technologies Limited",
+      "symbol": "EPACKPEB",
+      "stage": "listed",
+      "openDate": "2025-09-24",
+      "closeDate": "2025-09-26",
+      "listingDate": "2025-10-01",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/epackpeb/"
+    },
+    {
+      "id": "europratik",
+      "company": "Euro Pratik Sales Limited",
+      "symbol": "EUROPRATIK",
+      "stage": "listed",
+      "openDate": "2025-09-16",
+      "closeDate": "2025-09-18",
+      "listingDate": "2025-09-23",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/europratik/"
+    },
+    {
+      "id": "excelsoft",
+      "company": "Excelsoft Technologies Limited",
+      "symbol": "EXCELSOFT",
+      "stage": "listed",
+      "openDate": "2025-11-19",
+      "closeDate": "2025-11-21",
+      "listingDate": "2025-11-26",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/excelsoft/"
+    },
+    {
+      "id": "eximroutes",
+      "company": "Exim Routes Limited",
+      "symbol": "EXIMROUTES",
+      "stage": "listed",
+      "openDate": "2025-12-12",
+      "closeDate": "2025-12-16",
+      "listingDate": "2025-12-19",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/eximroutes/"
+    },
+    {
+      "id": "fabtech",
+      "company": "Fabtech Technologies Limited",
+      "symbol": "FABTECH",
+      "stage": "listed",
+      "openDate": "2025-09-29",
+      "closeDate": "2025-10-01",
+      "listingDate": "2025-10-07",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/fabtech/"
+    },
+    {
+      "id": "finbud",
+      "company": "Finbud Financial Services Limited",
+      "symbol": "FINBUD",
+      "stage": "listed",
+      "openDate": "2025-11-06",
+      "closeDate": "2025-11-10",
+      "listingDate": "2025-11-13",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/finbud/"
     }
   ],
   "notes": [

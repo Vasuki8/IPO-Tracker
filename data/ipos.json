@@ -86,21 +86,27 @@
       },
       "Critical-backfill": {
         "ok": false,
-        "records": 20,
-        "asOf": "2026-09-13T09:18:31+05:30"
+        "records": 12,
+        "asOf": "2026-09-13T09:48:45+05:30"
       },
       "SEBI-document-links": {
-        "ok": true,
-        "records": 33,
-        "attempted": 27,
-        "asOf": "2026-09-13T09:09:42+05:30",
-        "errors": []
+        "ok": false,
+        "records": 0,
+        "attempted": 14,
+        "asOf": "2026-09-13T09:48:16+05:30",
+        "errors": [
+          "Steamhouse India Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /filings/public-issues/sep-2026/steamhouse-india-limited-rhp_104262.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+          "Manipal Payment and Identity Solutions Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /filings/public-issues/sep-2026/manipal-payment-and-identity-solutions-limited-rhp_104270.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+          "LCC Projects Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /filings/public-issues/sep-2026/lcc-projects-limited-rhp_104283.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+          "Asset Reconstruction Company (India) Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /filings/public-issues/sep-2026/asset-reconstruction-company-india-limited-rhp_104202.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+          "Prasol Chemicals Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /filings/public-issues/sep-2026/prasol-chemicals-limited-addendum-to-rhp_104322.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))"
+        ]
       },
       "Offer-docs": {
-        "ok": true,
-        "records": 12,
-        "attempted": 12,
-        "failed": 0
+        "ok": false,
+        "records": 0,
+        "attempted": 3,
+        "failed": 3
       },
       "Issuer-offer-docs": {
         "ok": true,
@@ -109,7 +115,7 @@
         "updated": 0,
         "deepScanned": 0,
         "failed": 0,
-        "asOf": "2026-09-13T09:18:31+05:30",
+        "asOf": "2026-09-13T09:48:45+05:30",
         "errors": []
       },
       "NSE-primary-market-reports": {
@@ -132,55 +138,81 @@
         "checkedAt": "2026-09-13T08:37:57+05:30"
       },
       "SEBI-priority-registers": {
-        "ok": true,
+        "ok": false,
         "parserVersion": 2,
         "priorityMax": 2,
-        "firstPageMatched": 18,
-        "firstPageLinks": 19,
-        "searchedRecords": 13,
-        "searchMatchedRecords": 2,
-        "searchLinksAdded": 2,
-        "failed": 0,
-        "asOf": "2026-09-13T09:09:34+05:30",
-        "errors": []
+        "firstPageMatched": 0,
+        "firstPageLinks": 0,
+        "searchedRecords": 11,
+        "searchMatchedRecords": 0,
+        "searchLinksAdded": 0,
+        "failed": 11,
+        "asOf": "2026-09-13T09:48:09+05:30",
+        "errors": [
+          "Qualiance International Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebiweb/home/HomeAction.do?doListingAll=yes&search=Qualiance+International+Limited (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+          "Rays of Belief Limited- For Profit Social Enterprise (FPSE): HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebiweb/home/HomeAction.do?doListingAll=yes&search=Rays+of+Belief+Limited-+For+Profit+Social+Enterprise+%28FPSE%29 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+          "Shanti Inorganics Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebiweb/home/HomeAction.do?doListingAll=yes&search=Shanti+Inorganics+Limited (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+          "Purple Style Labs Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebiweb/home/HomeAction.do?doListingAll=yes&search=Purple+Style+Labs+Limited (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+          "Ashutosh Fibre Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebiweb/home/HomeAction.do?doListingAll=yes&search=Ashutosh+Fibre+Limited (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+          "Sumax Engineering Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebiweb/home/HomeAction.do?doListingAll=yes&search=Sumax+Engineering+Limited (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+          "Madhur Knit Crafts Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebiweb/home/HomeAction.do?doListingAll=yes&search=Madhur+Knit+Crafts+Limited (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+          "ABH Healthcare Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebiweb/home/HomeAction.do?doListingAll=yes&search=ABH+Healthcare+Limited (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+          "Shankesh Jewellers Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebiweb/home/HomeAction.do?doListingAll=yes&search=Shankesh+Jewellers+Limited (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+          "Horizon Industrial Parks Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebiweb/home/HomeAction.do?doListingAll=yes&search=Horizon+Industrial+Parks+Limited (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))"
+        ]
       },
       "SEBI-offer-terms": {
-        "ok": true,
+        "ok": false,
         "priorityMax": 2,
-        "targets": 34,
-        "attempted": 9,
-        "extracted": 9,
-        "updated": 8,
-        "failed": 0,
-        "skippedLotOnlyRhp": 2,
-        "fields": {
-          "freshIssueCr": 8,
-          "ofsCr": 8,
-          "issueComposition": 8,
-          "issueSizeCr": 3
-        },
-        "asOf": "2026-09-13T09:16:37+05:30",
-        "errors": []
+        "targets": 14,
+        "attempted": 3,
+        "extracted": 0,
+        "updated": 0,
+        "failed": 3,
+        "skippedLotOnlyRhp": 0,
+        "fields": {},
+        "asOf": "2026-09-13T09:48:30+05:30",
+        "errors": [
+          "Lumino Industries Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/sep-2026/1788760904072.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+          "Symbiotec Pharmalab Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/aug-2026/1787119258529.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+          "Sunshine Pictures Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/aug-2026/1786509141250.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))"
+        ]
       },
       "verified-lot-sizes": {
         "ok": true,
         "entries": 36,
-        "updated": 34,
-        "checkedAt": "2026-09-13T09:34:39+05:30"
+        "updated": 0,
+        "checkedAt": "2026-09-13T09:48:30+05:30"
+      },
+      "verified-recent-issue-terms": {
+        "ok": true,
+        "entries": 14,
+        "updated": 14,
+        "fields": {
+          "issueSizeCr": 14,
+          "freshIssueCr": 14,
+          "ofsCr": 14,
+          "issueComposition": 13
+        },
+        "checkedAt": "2026-09-13T09:48:30+05:30"
       }
     },
     "errors": [
       "SEBI filings: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebiweb/home/HomeAction.do?doListingAll=yes&sid=3&smid=0&ssid=0&page=1 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))"
     ],
     "offerDocumentHealth": {
-      "ok": true,
-      "attempted": 12,
-      "extracted": 12,
-      "failed": 0,
-      "eligibleRemaining": 10,
+      "ok": false,
+      "attempted": 3,
+      "extracted": 0,
+      "failed": 3,
+      "eligibleRemaining": 3,
       "parserVersion": 11,
-      "asOf": "2026-09-13T09:18:31+05:30",
-      "errors": []
+      "asOf": "2026-09-13T09:48:44+05:30",
+      "errors": [
+        "Symbiotec Pharmalab Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/commondocs/aug-2026/SYMBIOTEC%20PHARMALAB%20LIMITED%20-%20AP_p.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+        "Tempsens Instruments (India) Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/commondocs/sep-2026/Tempsens%20Instruments%20(India)%20Limited%20-%20AP_p.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+        "Sunshine Pictures Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/aug-2026/1786509141250.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))"
+      ]
     },
     "subscriptionHealth": {
       "ok": true,
@@ -219,6 +251,93 @@
         "INJECTO POLYMERS LIMITED: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7968&status=H · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · ); used explicitly labelled IPO Dhamaka subscription (secondary)"
       ],
       "errors": []
+    },
+    "sebiDocumentLinkHealth": {
+      "ok": false,
+      "attempted": 14,
+      "resolvedPages": 0,
+      "seededPages": 0,
+      "linksAdded": 0,
+      "failed": 14,
+      "asOf": "2026-09-13T09:48:16+05:30",
+      "errors": [
+        "Steamhouse India Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /filings/public-issues/sep-2026/steamhouse-india-limited-rhp_104262.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+        "Manipal Payment and Identity Solutions Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /filings/public-issues/sep-2026/manipal-payment-and-identity-solutions-limited-rhp_104270.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+        "LCC Projects Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /filings/public-issues/sep-2026/lcc-projects-limited-rhp_104283.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+        "Asset Reconstruction Company (India) Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /filings/public-issues/sep-2026/asset-reconstruction-company-india-limited-rhp_104202.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+        "Prasol Chemicals Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /filings/public-issues/sep-2026/prasol-chemicals-limited-addendum-to-rhp_104322.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+        "Prasol Chemicals Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /filings/public-issues/sep-2026/prasol-chemicals-limited-rhp_104222.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+        "Glass Wall Systems (India) Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /filings/public-issues/sep-2026/glass-wall-systems-india-limited-prospectus_104426.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+        "Glass Wall Systems (India) Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /filings/public-issues/sep-2026/glass-wall-systems-india-limited-rhp_104226.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+        "Pranav Constructions Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /filings/public-issues/sep-2026/pranav-constructions-limited-rhp_104168.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+        "Lumino Industries Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /filings/public-issues/sep-2026/lumino-industries-limited-prospectus_104288.html (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))"
+      ]
+    },
+    "issuerOfferDocumentHealth": {
+      "ok": true,
+      "attempted": 0,
+      "extracted": 0,
+      "updated": 0,
+      "deepScanned": 0,
+      "failed": 0,
+      "asOf": "2026-09-13T09:48:45+05:30",
+      "errors": []
+    },
+    "criticalOfferDocumentHealth": {
+      "ok": false,
+      "attempted": 11,
+      "extracted": 0,
+      "failed": 11,
+      "documentsDiscovered": 0,
+      "discoveryHealth": {
+        "ok": false,
+        "records": 0,
+        "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f42d2745e50>, 'Connection to www.bsesme.com time"
+      },
+      "errors": [
+        "Sunshine Pictures Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/aug-2026/1786509141250.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+        "Symbiotec Pharmalab Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/commondocs/aug-2026/SYMBIOTEC%20PHARMALAB%20LIMITED%20-%20AP_p.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+        "Pranav Constructions Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/sep-2026/1788254751266.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+        "Asset Reconstruction Company (India) Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/sep-2026/1788331195841.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+        "Glass Wall Systems (India) Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/sep-2026/1789099730206.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+        "LCC Projects Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/sep-2026/1788524729720.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+        "Lumino Industries Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/sep-2026/1788760904072.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+        "Manipal Payment and Identity Solutions Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/sep-2026/1788501782616.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+        "Prasol Chemicals Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/sep-2026/1788411848709.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+        "Steamhouse India Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/sep-2026/1788494159227.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))"
+      ],
+      "asOf": "2026-09-13T09:50:08+05:30"
+    },
+    "criticalBackfillHealth": {
+      "ok": false,
+      "targetCount": 12,
+      "priorityMax": 2,
+      "asOf": "2026-09-13T09:48:45+05:30",
+      "documents": {
+        "ok": false,
+        "attempted": 11,
+        "extracted": 0,
+        "failed": 11,
+        "documentsDiscovered": 0,
+        "discoveryHealth": {
+          "ok": false,
+          "records": 0,
+          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/SMEIPODRHP.aspx (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f42d2745e50>, 'Connection to www.bsesme.com time"
+        },
+        "errors": [
+          "Sunshine Pictures Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/aug-2026/1786509141250.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+          "Symbiotec Pharmalab Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/commondocs/aug-2026/SYMBIOTEC%20PHARMALAB%20LIMITED%20-%20AP_p.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+          "Pranav Constructions Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/sep-2026/1788254751266.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+          "Asset Reconstruction Company (India) Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/sep-2026/1788331195841.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+          "Glass Wall Systems (India) Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/sep-2026/1789099730206.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+          "LCC Projects Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/sep-2026/1788524729720.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+          "Lumino Industries Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/sep-2026/1788760904072.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+          "Manipal Payment and Identity Solutions Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/sep-2026/1788501782616.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+          "Prasol Chemicals Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/sep-2026/1788411848709.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+          "Steamhouse India Limited: HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/sep-2026/1788494159227.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))"
+        ],
+        "asOf": "2026-09-13T09:50:08+05:30"
+      }
     }
   },
   "ipos": [
@@ -5925,9 +6044,9 @@
         },
         {
           "name": "Qualiance International final IPO terms",
-          "kind": "validated-market-terms",
-          "url": "https://www.finsso.co.in/sme_ipo_detail.php?ipo=MTgwNA%3D%3D",
-          "asOf": "2026-09-13T09:34:39+05:30"
+          "kind": "validated-final-ipo-terms",
+          "url": "https://www.moneycontrol.com/ipo/qualiance-international-qil-ipodetail",
+          "asOf": "2026-09-13T09:48:30+05:30"
         }
       ],
       "source": {
@@ -5952,12 +6071,20 @@
           "openDate": "2026-09-04",
           "sourceUrl": "https://www.finsso.co.in/sme_ipo_detail.php?ipo=MTgwNA%3D%3D",
           "sourceKind": "validated-market-terms"
+        },
+        "VerifiedIssueTerms": {
+          "issueSizeCr": 45.11,
+          "freshIssueCr": 45.11,
+          "ofsCr": 0.0,
+          "openDate": "2026-09-04",
+          "sourceUrl": "https://www.moneycontrol.com/ipo/qualiance-international-qil-ipodetail",
+          "sourceKind": "validated-final-ipo-terms"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T09:34:39+05:30",
+        "checkedAt": "2026-09-13T09:48:30+05:30",
         "checks": [],
         "independentSources": [
           "NSE",
@@ -5968,7 +6095,16 @@
       "openDate": "2026-09-04",
       "closeDate": "2026-09-08",
       "lotSize": 1000,
-      "minInvestment": 127000.0
+      "minInvestment": 127000.0,
+      "issueSizeCr": 45.11,
+      "freshIssueCr": 45.11,
+      "ofsCr": 0.0,
+      "issueComposition": {
+        "freshIssueCr": 45.11,
+        "ofsCr": 0.0,
+        "totalIssueSizeCr": 45.11,
+        "sourceBasis": "finalized IPO terms"
+      }
     },
     {
       "id": "momsbelief",
@@ -5995,9 +6131,9 @@
         },
         {
           "name": "Rays of Belief final IPO terms",
-          "kind": "validated-market-terms",
-          "url": "https://www.rrfinance.com/OurProducts/PublicIssues/Ongoing-Public-Issue-Details.aspx?sch_code=SCH-1471",
-          "asOf": "2026-09-13T09:34:39+05:30"
+          "kind": "validated-final-ipo-terms",
+          "url": "https://www.business-standard.com/markets/ipo/rays-of-belief-ltd-ipo-96457",
+          "asOf": "2026-09-13T09:48:30+05:30"
         }
       ],
       "source": {
@@ -6022,12 +6158,20 @@
           "openDate": "2026-09-01",
           "sourceUrl": "https://www.rrfinance.com/OurProducts/PublicIssues/Ongoing-Public-Issue-Details.aspx?sch_code=SCH-1471",
           "sourceKind": "validated-market-terms"
+        },
+        "VerifiedIssueTerms": {
+          "issueSizeCr": 125.0,
+          "freshIssueCr": 125.0,
+          "ofsCr": 0.0,
+          "openDate": "2026-09-01",
+          "sourceUrl": "https://www.business-standard.com/markets/ipo/rays-of-belief-ltd-ipo-96457",
+          "sourceKind": "validated-final-ipo-terms"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T09:34:39+05:30",
+        "checkedAt": "2026-09-13T09:48:30+05:30",
         "checks": [],
         "independentSources": [
           "NSE",
@@ -6038,7 +6182,16 @@
       "openDate": "2026-09-01",
       "closeDate": "2026-09-03",
       "lotSize": 62,
-      "minInvestment": 14818.0
+      "minInvestment": 14818.0,
+      "issueSizeCr": 125.0,
+      "freshIssueCr": 125.0,
+      "ofsCr": 0.0,
+      "issueComposition": {
+        "freshIssueCr": 125.0,
+        "ofsCr": 0.0,
+        "totalIssueSizeCr": 125.0,
+        "sourceBasis": "finalized IPO terms"
+      }
     },
     {
       "id": "deepa",
@@ -6327,9 +6480,9 @@
         },
         {
           "name": "Shanti Inorganics final IPO terms",
-          "kind": "validated-market-terms",
-          "url": "https://idbidirect.in/Markets/ipo/Iposynopsis.aspx?code=95929&compname=Shanti-Inorganics-Ltd&pagename=ForthComing-Issues",
-          "asOf": "2026-09-13T09:34:39+05:30"
+          "kind": "validated-final-ipo-terms",
+          "url": "https://www.moneycontrol.com/ipo/shanti-inorganics-sil34-ipodetail/",
+          "asOf": "2026-09-13T09:48:30+05:30"
         }
       ],
       "source": {
@@ -6354,12 +6507,20 @@
           "openDate": "2026-08-31",
           "sourceUrl": "https://idbidirect.in/Markets/ipo/Iposynopsis.aspx?code=95929&compname=Shanti-Inorganics-Ltd&pagename=ForthComing-Issues",
           "sourceKind": "validated-market-terms"
+        },
+        "VerifiedIssueTerms": {
+          "issueSizeCr": 47.24,
+          "freshIssueCr": 47.24,
+          "ofsCr": 0.0,
+          "openDate": "2026-08-31",
+          "sourceUrl": "https://www.moneycontrol.com/ipo/shanti-inorganics-sil34-ipodetail/",
+          "sourceKind": "validated-final-ipo-terms"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T09:34:39+05:30",
+        "checkedAt": "2026-09-13T09:48:30+05:30",
         "checks": [],
         "independentSources": [
           "NSE",
@@ -6370,7 +6531,16 @@
       "openDate": "2026-08-31",
       "closeDate": "2026-09-02",
       "lotSize": 1600,
-      "minInvestment": 132800.0
+      "minInvestment": 132800.0,
+      "issueSizeCr": 47.24,
+      "freshIssueCr": 47.24,
+      "ofsCr": 0.0,
+      "issueComposition": {
+        "freshIssueCr": 47.24,
+        "ofsCr": 0.0,
+        "totalIssueSizeCr": 47.24,
+        "sourceBasis": "finalized IPO terms"
+      }
     },
     {
       "id": "perniaspop",
@@ -6401,6 +6571,12 @@
           "kind": "validated-market-terms",
           "url": "https://www.pninews.com/purple-style-labs-limiteds-initial-public-offering-ipo-opens-on-monday-august-31-2026-price-band-has-been-fixed-at-rs-546-to-rs-575-per-equity-share/",
           "asOf": "2026-09-13T09:34:39+05:30"
+        },
+        {
+          "name": "Purple Style Labs RHP-derived IPO terms",
+          "kind": "validated-final-ipo-terms",
+          "url": "https://www.merchantbanker.in/blog/ipo-details/purple-style-labs-limited-ipo-analysis",
+          "asOf": "2026-09-13T09:48:30+05:30"
         }
       ],
       "source": {
@@ -6425,12 +6601,20 @@
           "openDate": "2026-08-31",
           "sourceUrl": "https://www.pninews.com/purple-style-labs-limiteds-initial-public-offering-ipo-opens-on-monday-august-31-2026-price-band-has-been-fixed-at-rs-546-to-rs-575-per-equity-share/",
           "sourceKind": "validated-market-terms"
+        },
+        "VerifiedIssueTerms": {
+          "issueSizeCr": 680.0,
+          "freshIssueCr": 680.0,
+          "ofsCr": 0.0,
+          "openDate": "2026-08-31",
+          "sourceUrl": "https://www.merchantbanker.in/blog/ipo-details/purple-style-labs-limited-ipo-analysis",
+          "sourceKind": "validated-final-ipo-terms"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T09:34:39+05:30",
+        "checkedAt": "2026-09-13T09:48:30+05:30",
         "checks": [],
         "independentSources": [
           "NSE",
@@ -6441,7 +6625,16 @@
       "openDate": "2026-08-31",
       "closeDate": "2026-09-02",
       "lotSize": 26,
-      "minInvestment": 14950.0
+      "minInvestment": 14950.0,
+      "issueSizeCr": 680.0,
+      "freshIssueCr": 680.0,
+      "ofsCr": 0.0,
+      "issueComposition": {
+        "freshIssueCr": 680.0,
+        "ofsCr": 0.0,
+        "totalIssueSizeCr": 680.0,
+        "sourceBasis": "finalized IPO terms"
+      }
     },
     {
       "id": "ashutosh",
@@ -6469,9 +6662,9 @@
         },
         {
           "name": "Ashutosh Fibre final IPO terms",
-          "kind": "validated-market-terms",
-          "url": "https://www.plindia.com/ipo/ashutosh-fibre-limited-ipo/",
-          "asOf": "2026-09-13T09:34:39+05:30"
+          "kind": "validated-final-ipo-terms",
+          "url": "https://www.moneycontrol.com/ipo/ashutosh-fibre-ltd-ipo-afl05-ipodetail",
+          "asOf": "2026-09-13T09:48:30+05:30"
         }
       ],
       "source": {
@@ -6496,12 +6689,20 @@
           "openDate": "2026-08-31",
           "sourceUrl": "https://www.plindia.com/ipo/ashutosh-fibre-limited-ipo/",
           "sourceKind": "validated-market-terms"
+        },
+        "VerifiedIssueTerms": {
+          "issueSizeCr": 56.35,
+          "freshIssueCr": 56.35,
+          "ofsCr": 0.0,
+          "openDate": "2026-08-31",
+          "sourceUrl": "https://www.moneycontrol.com/ipo/ashutosh-fibre-ltd-ipo-afl05-ipodetail",
+          "sourceKind": "validated-final-ipo-terms"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T09:34:39+05:30",
+        "checkedAt": "2026-09-13T09:48:30+05:30",
         "checks": [],
         "independentSources": [
           "Ashutosh",
@@ -6512,7 +6713,16 @@
       "openDate": "2026-08-31",
       "closeDate": "2026-09-02",
       "lotSize": 1200,
-      "minInvestment": 110400.0
+      "minInvestment": 110400.0,
+      "issueSizeCr": 56.35,
+      "freshIssueCr": 56.35,
+      "ofsCr": 0.0,
+      "issueComposition": {
+        "freshIssueCr": 56.35,
+        "ofsCr": 0.0,
+        "totalIssueSizeCr": 56.35,
+        "sourceBasis": "finalized IPO terms"
+      }
     },
     {
       "id": "priority",
@@ -6988,6 +7198,12 @@
           "kind": "validated-market-terms",
           "url": "https://www.orientpublication.com/2026/08/lumino-industries-limiteds-initial.html?m=1",
           "asOf": "2026-09-13T09:34:39+05:30"
+        },
+        {
+          "name": "Lumino Industries final IPO terms",
+          "kind": "validated-final-ipo-terms",
+          "url": "https://economictimes.indiatimes.com/lumino-industries-ltd/ipos/companyid-2253079.cms",
+          "asOf": "2026-09-13T09:48:30+05:30"
         }
       ],
       "source": {
@@ -7012,6 +7228,14 @@
           "openDate": "2026-08-27",
           "sourceUrl": "https://www.orientpublication.com/2026/08/lumino-industries-limiteds-initial.html?m=1",
           "sourceKind": "validated-market-terms"
+        },
+        "VerifiedIssueTerms": {
+          "issueSizeCr": 700.0,
+          "freshIssueCr": 500.0,
+          "ofsCr": 200.0,
+          "openDate": "2026-08-27",
+          "sourceUrl": "https://economictimes.indiatimes.com/lumino-industries-ltd/ipos/companyid-2253079.cms",
+          "sourceKind": "validated-final-ipo-terms"
         }
       },
       "documents": [
@@ -7042,7 +7266,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T09:34:39+05:30",
+        "checkedAt": "2026-09-13T09:48:30+05:30",
         "checks": [],
         "independentSources": [
           "Lumino",
@@ -7171,7 +7395,10 @@
         "source": "SEBI"
       },
       "lotSize": 182,
-      "minInvestment": 14924.0
+      "minInvestment": 14924.0,
+      "issueSizeCr": 700.0,
+      "freshIssueCr": 500.0,
+      "ofsCr": 200.0
     },
     {
       "id": "sumax",
@@ -7202,6 +7429,12 @@
           "kind": "validated-market-terms",
           "url": "https://www.livemint.com/market/ipo/sumax-engineering-ltd-ipo-ipo1292",
           "asOf": "2026-09-13T09:34:39+05:30"
+        },
+        {
+          "name": "Sumax Engineering RHP-derived IPO terms",
+          "kind": "validated-final-ipo-terms",
+          "url": "https://www.merchantbanker.in/blog/ipo-details/sumax-engineering-limited-ipo-details",
+          "asOf": "2026-09-13T09:48:30+05:30"
         }
       ],
       "source": {
@@ -7226,12 +7459,20 @@
           "openDate": "2026-08-25",
           "sourceUrl": "https://www.livemint.com/market/ipo/sumax-engineering-ltd-ipo-ipo1292",
           "sourceKind": "validated-market-terms"
+        },
+        "VerifiedIssueTerms": {
+          "issueSizeCr": 53.4,
+          "freshIssueCr": 43.34,
+          "ofsCr": 10.06,
+          "openDate": "2026-08-25",
+          "sourceUrl": "https://www.merchantbanker.in/blog/ipo-details/sumax-engineering-limited-ipo-details",
+          "sourceKind": "validated-final-ipo-terms"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T09:34:39+05:30",
+        "checkedAt": "2026-09-13T09:48:30+05:30",
         "checks": [],
         "independentSources": [
           "NSE",
@@ -7242,7 +7483,16 @@
       "openDate": "2026-08-25",
       "closeDate": "2026-08-28",
       "lotSize": 1200,
-      "minInvestment": 121200.0
+      "minInvestment": 121200.0,
+      "issueSizeCr": 53.4,
+      "freshIssueCr": 43.34,
+      "ofsCr": 10.06,
+      "issueComposition": {
+        "freshIssueCr": 43.34,
+        "ofsCr": 10.06,
+        "totalIssueSizeCr": 53.4,
+        "sourceBasis": "finalized IPO terms"
+      }
     },
     {
       "id": "annu",
@@ -7500,9 +7750,9 @@
         },
         {
           "name": "Symbiotec Pharmalab final IPO terms",
-          "kind": "validated-market-terms",
-          "url": "https://www.rrfinance.com/OurProducts/PublicIssues/Ongoing-Public-Issue-Details.aspx?Pname=Symbiotec+Pharmalab+Limited&sch_code=SCH-1460",
-          "asOf": "2026-09-13T09:34:39+05:30"
+          "kind": "validated-final-ipo-terms",
+          "url": "https://www.equentis.com/ipos/symbiotec-pharma-ipo_36114",
+          "asOf": "2026-09-13T09:48:30+05:30"
         }
       ],
       "source": {
@@ -7527,6 +7777,14 @@
           "openDate": "2026-08-24",
           "sourceUrl": "https://www.rrfinance.com/OurProducts/PublicIssues/Ongoing-Public-Issue-Details.aspx?Pname=Symbiotec+Pharmalab+Limited&sch_code=SCH-1460",
           "sourceKind": "validated-market-terms"
+        },
+        "VerifiedIssueTerms": {
+          "issueSizeCr": 1757.0,
+          "freshIssueCr": 150.0,
+          "ofsCr": 1607.0,
+          "openDate": "2026-08-24",
+          "sourceUrl": "https://www.equentis.com/ipos/symbiotec-pharma-ipo_36114",
+          "sourceKind": "validated-final-ipo-terms"
         }
       },
       "documents": [
@@ -7557,7 +7815,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T09:34:39+05:30",
+        "checkedAt": "2026-09-13T09:48:30+05:30",
         "checks": [],
         "independentSources": [
           "NSE",
@@ -7568,7 +7826,24 @@
       "openDate": "2026-08-24",
       "closeDate": "2026-08-27",
       "lotSize": 15,
-      "minInvestment": 14820.0
+      "minInvestment": 14820.0,
+      "issueSizeCr": 1757.0,
+      "freshIssueCr": 150.0,
+      "ofsCr": 1607.0,
+      "issueComposition": {
+        "freshIssueCr": 150.0,
+        "ofsCr": 1607.0,
+        "totalIssueSizeCr": 1757.0,
+        "sourceBasis": "finalized IPO terms"
+      },
+      "offerDocumentExtraction": {
+        "status": "error",
+        "parserVersion": 11,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/SYMBIOTEC%20PHARMALAB%20LIMITED%20-%20AP_p.pdf",
+        "lastAttemptAt": "2026-09-13T09:48:35+05:30",
+        "error": "HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/commondocs/aug-2026/SYMBIOTEC%20PHARMALAB%20LIMITED%20-%20AP_p.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer ",
+        "source": "SEBI"
+      }
     },
     {
       "id": "skyways",
@@ -7779,9 +8054,9 @@
         },
         {
           "name": "Madhur Knit Crafts final IPO terms",
-          "kind": "validated-market-terms",
+          "kind": "validated-final-ipo-terms",
           "url": "https://www.business-standard.com/markets/ipo/madhur-knit-crafts-ltd-ipo-96159",
-          "asOf": "2026-09-13T09:34:39+05:30"
+          "asOf": "2026-09-13T09:48:30+05:30"
         }
       ],
       "source": {
@@ -7806,12 +8081,20 @@
           "openDate": "2026-08-24",
           "sourceUrl": "https://www.business-standard.com/markets/ipo/madhur-knit-crafts-ltd-ipo-96159",
           "sourceKind": "validated-market-terms"
+        },
+        "VerifiedIssueTerms": {
+          "issueSizeCr": 53.27,
+          "freshIssueCr": 53.27,
+          "ofsCr": 0.0,
+          "openDate": "2026-08-24",
+          "sourceUrl": "https://www.business-standard.com/markets/ipo/madhur-knit-crafts-ltd-ipo-96159",
+          "sourceKind": "validated-final-ipo-terms"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T09:34:39+05:30",
+        "checkedAt": "2026-09-13T09:48:30+05:30",
         "checks": [],
         "independentSources": [
           "Madhur",
@@ -7822,7 +8105,16 @@
       "openDate": "2026-08-24",
       "closeDate": "2026-08-27",
       "lotSize": 1200,
-      "minInvestment": 120000.0
+      "minInvestment": 120000.0,
+      "issueSizeCr": 53.27,
+      "freshIssueCr": 53.27,
+      "ofsCr": 0.0,
+      "issueComposition": {
+        "freshIssueCr": 53.27,
+        "ofsCr": 0.0,
+        "totalIssueSizeCr": 53.27,
+        "sourceBasis": "finalized IPO terms"
+      }
     },
     {
       "id": "htel",
@@ -8073,9 +8365,9 @@
         },
         {
           "name": "ABH Healthcare final IPO terms",
-          "kind": "validated-market-terms",
-          "url": "https://www.business-standard.com/markets/ipo/abh-healthcare-ltd-ipo-95591",
-          "asOf": "2026-09-13T09:34:39+05:30"
+          "kind": "validated-final-ipo-terms",
+          "url": "https://economictimes.indiatimes.com/abh-healthcare-ltd/ipos/companyid-2468180.cms",
+          "asOf": "2026-09-13T09:48:30+05:30"
         }
       ],
       "source": {
@@ -8100,12 +8392,20 @@
           "openDate": "2026-08-24",
           "sourceUrl": "https://www.business-standard.com/markets/ipo/abh-healthcare-ltd-ipo-95591",
           "sourceKind": "validated-market-terms"
+        },
+        "VerifiedIssueTerms": {
+          "issueSizeCr": 34.98,
+          "freshIssueCr": 34.98,
+          "ofsCr": 0.0,
+          "openDate": "2026-08-24",
+          "sourceUrl": "https://economictimes.indiatimes.com/abh-healthcare-ltd/ipos/companyid-2468180.cms",
+          "sourceKind": "validated-final-ipo-terms"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T09:34:39+05:30",
+        "checkedAt": "2026-09-13T09:48:30+05:30",
         "checks": [],
         "independentSources": [
           "ABH",
@@ -8116,7 +8416,16 @@
       "openDate": "2026-08-24",
       "closeDate": "2026-08-27",
       "lotSize": 1200,
-      "minInvestment": 122400.0
+      "minInvestment": 122400.0,
+      "issueSizeCr": 34.98,
+      "freshIssueCr": 34.98,
+      "ofsCr": 0.0,
+      "issueComposition": {
+        "freshIssueCr": 34.98,
+        "ofsCr": 0.0,
+        "totalIssueSizeCr": 34.98,
+        "sourceBasis": "finalized IPO terms"
+      }
     },
     {
       "id": "augmont",
@@ -8475,24 +8784,11 @@
         "valuationPriceUsed": 300.0
       },
       "offerDocumentExtraction": {
-        "status": "extracted",
-        "parserVersion": 6,
+        "status": "error",
+        "parserVersion": 11,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Tempsens%20Instruments%20(India)%20Limited%20-%20AP_p.pdf",
-        "documentType": "PROSPECTUS",
-        "documentTitle": "Tempsens Instruments (India) Limited - Abridged Prospectus",
-        "documentFiledDate": null,
-        "sha256": "de2437cfb0b283e66af76432c13bc9c796ef4a1147aa3a595ec6419d65331c1d",
-        "pagesRead": 16,
-        "pageCount": 16,
-        "extractedFields": [
-          "leadManagers",
-          "registrar",
-          "promoters",
-          "issueComposition",
-          "financials",
-          "objectsOfIssue"
-        ],
-        "extractedAt": "2026-09-13T04:55:19+05:30",
+        "lastAttemptAt": "2026-09-13T09:48:40+05:30",
+        "error": "HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/commondocs/sep-2026/Tempsens%20Instruments%20(India)%20Limited%20-%20AP_p.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get lo",
         "source": "SEBI"
       },
       "profilePath": "ipo/tempsens/",
@@ -8792,9 +9088,9 @@
         },
         {
           "name": "Sunshine Pictures final IPO terms",
-          "kind": "validated-market-terms",
-          "url": "https://zerodha.com/ipo/413196/sunshine-pictures/",
-          "asOf": "2026-09-13T09:34:39+05:30"
+          "kind": "validated-final-ipo-terms",
+          "url": "https://economictimes.indiatimes.com/sunshine-pictures-ltd/ipos/companyid-2252698.cms",
+          "asOf": "2026-09-13T09:48:30+05:30"
         }
       ],
       "source": {
@@ -8819,6 +9115,14 @@
           "openDate": "2026-08-18",
           "sourceUrl": "https://zerodha.com/ipo/413196/sunshine-pictures/",
           "sourceKind": "validated-market-terms"
+        },
+        "VerifiedIssueTerms": {
+          "issueSizeCr": 282.14,
+          "freshIssueCr": 172.8,
+          "ofsCr": 109.34,
+          "openDate": "2026-08-18",
+          "sourceUrl": "https://economictimes.indiatimes.com/sunshine-pictures-ltd/ipos/companyid-2252698.cms",
+          "sourceKind": "validated-final-ipo-terms"
         }
       },
       "documents": [
@@ -8841,7 +9145,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T09:34:39+05:30",
+        "checkedAt": "2026-09-13T09:48:30+05:30",
         "checks": [],
         "independentSources": [
           "NSE",
@@ -8852,7 +9156,24 @@
       "openDate": "2026-08-18",
       "closeDate": "2026-08-20",
       "lotSize": 41,
-      "minInvestment": 14760.0
+      "minInvestment": 14760.0,
+      "issueSizeCr": 282.14,
+      "freshIssueCr": 172.8,
+      "ofsCr": 109.34,
+      "issueComposition": {
+        "freshIssueCr": 172.8,
+        "ofsCr": 109.34,
+        "totalIssueSizeCr": 282.14,
+        "sourceBasis": "finalized IPO terms"
+      },
+      "offerDocumentExtraction": {
+        "status": "error",
+        "parserVersion": 11,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1786509141250.pdf",
+        "lastAttemptAt": "2026-09-13T09:48:44+05:30",
+        "error": "HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/aug-2026/1786509141250.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+        "source": "SEBI"
+      }
     },
     {
       "id": "shankesh",
@@ -8880,9 +9201,9 @@
         },
         {
           "name": "Shankesh Jewellers final IPO terms",
-          "kind": "validated-market-terms",
-          "url": "https://anandrathi.com/blog/shankesh-jewellers-ipo-details",
-          "asOf": "2026-09-13T09:34:39+05:30"
+          "kind": "validated-final-ipo-terms",
+          "url": "https://www.muthootsecurities.com/IPO/IPO-Synopsis/Shankesh-Jewellers-Ltd/2/96152",
+          "asOf": "2026-09-13T09:48:30+05:30"
         }
       ],
       "source": {
@@ -8907,12 +9228,20 @@
           "openDate": "2026-08-18",
           "sourceUrl": "https://anandrathi.com/blog/shankesh-jewellers-ipo-details",
           "sourceKind": "validated-market-terms"
+        },
+        "VerifiedIssueTerms": {
+          "issueSizeCr": 367.18,
+          "freshIssueCr": 274.18,
+          "ofsCr": 93.0,
+          "openDate": "2026-08-18",
+          "sourceUrl": "https://www.muthootsecurities.com/IPO/IPO-Synopsis/Shankesh-Jewellers-Ltd/2/96152",
+          "sourceKind": "validated-final-ipo-terms"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T09:34:39+05:30",
+        "checkedAt": "2026-09-13T09:48:30+05:30",
         "checks": [],
         "independentSources": [
           "NSE",
@@ -8923,7 +9252,16 @@
       "openDate": "2026-08-18",
       "closeDate": "2026-08-20",
       "lotSize": 160,
-      "minInvestment": 14880.0
+      "minInvestment": 14880.0,
+      "issueSizeCr": 367.18,
+      "freshIssueCr": 274.18,
+      "ofsCr": 93.0,
+      "issueComposition": {
+        "freshIssueCr": 274.18,
+        "ofsCr": 93.0,
+        "totalIssueSizeCr": 367.18,
+        "sourceBasis": "finalized IPO terms"
+      }
     },
     {
       "id": "lalithaa",
@@ -9166,6 +9504,12 @@
           "kind": "issuer-announcement",
           "url": "https://www.hiparks.com/press-release/horizon-industrial-parks-limiteds-initial-public-offer-to-open-on-monday-august-17-2026",
           "asOf": "2026-09-13T09:34:39+05:30"
+        },
+        {
+          "name": "Horizon Industrial Parks RHP-derived IPO terms",
+          "kind": "validated-final-ipo-terms",
+          "url": "https://groww.in/blog/horizon-industrial-parks-ipo-to-open-on-august-17-2026",
+          "asOf": "2026-09-13T09:48:30+05:30"
         }
       ],
       "source": {
@@ -9190,12 +9534,20 @@
           "openDate": "2026-08-17",
           "sourceUrl": "https://www.hiparks.com/press-release/horizon-industrial-parks-limiteds-initial-public-offer-to-open-on-monday-august-17-2026",
           "sourceKind": "issuer-announcement"
+        },
+        "VerifiedIssueTerms": {
+          "issueSizeCr": 2600.0,
+          "freshIssueCr": 2600.0,
+          "ofsCr": 0.0,
+          "openDate": "2026-08-17",
+          "sourceUrl": "https://groww.in/blog/horizon-industrial-parks-ipo-to-open-on-august-17-2026",
+          "sourceKind": "validated-final-ipo-terms"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T09:34:39+05:30",
+        "checkedAt": "2026-09-13T09:48:30+05:30",
         "checks": [],
         "independentSources": [
           "Horizon",
@@ -9206,7 +9558,16 @@
       "openDate": "2026-08-17",
       "closeDate": "2026-08-19",
       "lotSize": 250,
-      "minInvestment": 15000.0
+      "minInvestment": 15000.0,
+      "issueSizeCr": 2600.0,
+      "freshIssueCr": 2600.0,
+      "ofsCr": 0.0,
+      "issueComposition": {
+        "freshIssueCr": 2600.0,
+        "ofsCr": 0.0,
+        "totalIssueSizeCr": 2600.0,
+        "sourceBasis": "finalized IPO terms"
+      }
     },
     {
       "id": "skytech",
@@ -9234,9 +9595,9 @@
         },
         {
           "name": "Skytech Infinite Platform final IPO terms",
-          "kind": "validated-market-terms",
-          "url": "https://www.vocartsecurities.com/ipo-details?id=219",
-          "asOf": "2026-09-13T09:34:39+05:30"
+          "kind": "validated-final-ipo-terms",
+          "url": "https://economictimes.indiatimes.com/skytech-infinite-platform-ltd/ipos/companyid-2467594.cms",
+          "asOf": "2026-09-13T09:48:30+05:30"
         }
       ],
       "source": {
@@ -9261,12 +9622,20 @@
           "openDate": "2026-08-14",
           "sourceUrl": "https://www.vocartsecurities.com/ipo-details?id=219",
           "sourceKind": "validated-market-terms"
+        },
+        "VerifiedIssueTerms": {
+          "issueSizeCr": 22.68,
+          "freshIssueCr": 22.68,
+          "ofsCr": 0.0,
+          "openDate": "2026-08-14",
+          "sourceUrl": "https://economictimes.indiatimes.com/skytech-infinite-platform-ltd/ipos/companyid-2467594.cms",
+          "sourceKind": "validated-final-ipo-terms"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T09:34:39+05:30",
+        "checkedAt": "2026-09-13T09:48:30+05:30",
         "checks": [],
         "independentSources": [
           "NSE",
@@ -9277,7 +9646,16 @@
       "openDate": "2026-08-14",
       "closeDate": "2026-08-18",
       "lotSize": 1600,
-      "minInvestment": 123200.0
+      "minInvestment": 123200.0,
+      "issueSizeCr": 22.68,
+      "freshIssueCr": 22.68,
+      "ofsCr": 0.0,
+      "issueComposition": {
+        "freshIssueCr": 22.68,
+        "ofsCr": 0.0,
+        "totalIssueSizeCr": 22.68,
+        "sourceBasis": "finalized IPO terms"
+      }
     },
     {
       "id": "credent",
