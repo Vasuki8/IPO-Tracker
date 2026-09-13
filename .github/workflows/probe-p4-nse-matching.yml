@@ -20,11 +20,10 @@ jobs:
           version: "latest-known"
       - run: uv python install 3.12
       - run: uv sync
-      - name: Inspect raw NSE monthly workbook layouts
+      - name: Inspect remaining NSE workbook variants
         shell: bash
         run: |
           uv run python - <<'PY'
-          import json
           import sys
           from pathlib import Path
 
@@ -37,17 +36,18 @@ jobs:
 
           for url in urls:
               name = url.rsplit('/', 1)[-1]
-              if not any(token in name.lower() for token in ('july%202025', 'july_2025', 'september%202024', 'sep2024')):
+              lname = name.lower()
+              if not any(token in lname for token in ('august%202025', 'jan2026', 'feb2026')):
                   continue
               raw_rows = mod.read_xlsx_rows(mod.download_report(session, url))
               parsed = mod.parse_report_rows(raw_rows, url)
               print('\n===', name, 'RAW', len(raw_rows), 'PARSED', len(parsed), '===')
-              for idx, row in enumerate(raw_rows[:18]):
+              for idx, row in enumerate(raw_rows[:8]):
                   print('RAWROW', idx, row)
               for idx, row in enumerate(raw_rows):
-                  joined = ' | '.join(row).lower()
-                  if 'highway infrastructure' in joined:
+                  if 'highway infrastructure' in ' | '.join(row).lower():
                       print('HIGHWAY RAW INDEX', idx, row)
-              for row in parsed[:8]:
-                  print('PARSEDROW', row)
+              for row in parsed:
+                  if 'highway infrastructure' in str(row.get('company', '')).lower():
+                      print('HIGHWAY PARSED', row)
           PY
