@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
-"""Run validated P4 offer-document fallbacks with duplicate-id-safe targeting.
+"""Run validated P4 offer-document fallbacks with safe progressive targeting.
 
-Version 4 layers source-backed regulatory/exchange fallbacks on top of v3 and
-replaces the base target selector so duplicate exchange symbols cannot silently
-redirect an offer document to an auxiliary event row. All download, PDF-magic,
-issuer-identity, parser-v13 and fill-only merge gates remain owned by the
-established base runner.
+Version 4 layers source-backed regulatory/exchange fallbacks on top of v3,
+keeps duplicate-id-safe issuer matching, and schedules verified documents in
+bounded progressive batches. Documents already extracted by the current parser
+are skipped, while issuers that failed in the previous batch are moved behind
+never-attempted work so one slow/broken PDF cannot block the registry.
+
+All download, PDF-magic, issuer-identity, parser-v13 and fill-only merge gates
+remain owned by the established base runner.
 """
 from __future__ import annotations
 
@@ -87,19 +90,46 @@ base.ISSUER_DOCUMENTS.update(
 )
 
 
+def _previous_failed_companies(payload: dict[str, Any]) -> set[str]:
+    """Return canonical issuer names from the immediately previous runner errors."""
+    health = (payload.get("meta") or {}).get("issuerOfferDocumentHealth") or {}
+    failed: set[str] = set()
+    for raw in health.get("errors") or []:
+        company = str(raw or "").split(":", 1)[0].strip()
+        canonical = base.core.canonical_company(company)
+        if canonical:
+            failed.add(canonical)
+    return failed
+
+
+def _already_extracted(record: dict[str, Any], spec: dict[str, Any]) -> bool:
+    previous = record.get("issuerDocumentExtraction")
+    if not isinstance(previous, dict):
+        return False
+    return bool(
+        previous.get("status") == "extracted"
+        and previous.get("parserVersion") == base.PARSER_VERSION
+        and str(previous.get("documentUrl") or "") == str(spec.get("url") or "")
+    )
+
+
 def _identity_safe_targets(
     payload: dict[str, Any],
     queue: dict[str, Any],
     priority_max: int,
     limit: int,
 ):
-    """Select a registered target by both record id and canonical issuer name.
+    """Select exact issuers progressively, applying the limit after scheduling.
 
     Exchange history can legitimately contain multiple rows with the same symbol
     (for example an IPO plus a later withdrawal-option event). Collapsing those
     rows into a single id->record mapping can route a filing to the wrong row.
-    This selector keeps every candidate and requires exactly one issuer-identity
-    match before allowing the established parser/downloader to run.
+    This selector therefore requires exactly one issuer-identity match.
+
+    Current-parser successes for the same document are skipped. Issuers reported
+    as failures by the previous verified-document batch are sorted behind fresh
+    candidates, preventing the bounded fast path from repeatedly spending its
+    whole budget on the same slow or temporarily unavailable PDFs.
     """
     by_id: dict[str, list[dict[str, Any]]] = {}
     for record in payload.get("ipos") or []:
@@ -107,8 +137,10 @@ def _identity_safe_targets(
             continue
         by_id.setdefault(str(record.get("id")), []).append(record)
 
-    selected = []
-    for item in queue.get("queue") or []:
+    previous_failures = _previous_failed_companies(payload)
+    candidates: list[tuple[tuple[int, int], dict[str, Any], dict[str, Any], dict[str, Any]]] = []
+
+    for queue_index, item in enumerate(queue.get("queue") or []):
         if not isinstance(item, dict):
             continue
         try:
@@ -134,9 +166,23 @@ def _identity_safe_targets(
         if len(matches) != 1:
             continue
 
-        selected.append((matches[0], item, spec))
-        if limit > 0 and len(selected) >= limit:
-            break
+        record = matches[0]
+        if _already_extracted(record, spec):
+            continue
+
+        candidates.append(
+            (
+                (1 if expected_company in previous_failures else 0, queue_index),
+                record,
+                item,
+                spec,
+            )
+        )
+
+    candidates.sort(key=lambda entry: entry[0])
+    selected = [(record, item, spec) for _, record, item, spec in candidates]
+    if limit > 0:
+        selected = selected[:limit]
     return selected
 
 
