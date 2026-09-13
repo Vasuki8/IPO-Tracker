@@ -69,11 +69,10 @@ def merge_validated_offer_enrichment(
 
 base.merge_issuer_enrichment = merge_validated_offer_enrichment
 
-# Most entries are issuer-hosted PDFs. Injecto is intentionally different: its
-# issuer host repeatedly times out in GitHub Actions, while the IPO's official
-# registrar publishes the same RHP from its own IPO-document register. Manika's
-# full SEBI RHP is also registered because the abridged prospectus does not carry
-# the combined promoter/promoter-group ownership row needed for the final gap.
+# Most entries are issuer-hosted PDFs. Some priority records deliberately use
+# official exchange or registrar mirrors when the SEBI PDF host is unavailable.
+# Every fallback still goes through exact-host, PDF-magic, issuer-identity and
+# fill-only gates before any value is merged.
 base.ISSUER_DOCUMENTS.update(
     {
         "om-galaxy-limited": {
@@ -123,6 +122,66 @@ base.ISSUER_DOCUMENTS.update(
             "type": "RHP",
             "title": "Red Herring Prospectus",
             "sourcePage": "https://vamawoven.com/rhp/",
+        },
+        "sunshine": {
+            "company": "Sunshine Pictures Limited",
+            "url": "https://www.bseindia.com/downloads/ipo/361148/ipo_T3/Prospectus_20260821184134.pdf",
+            "host": "www.bseindia.com",
+            "type": "Prospectus",
+            "title": "Prospectus",
+            "sourcePage": "https://www.bseindia.com/downloads/ipo/361148/ipo_T3/Prospectus_20260821184134.pdf",
+            "extractionSource": "BSE",
+            "documentSource": "BSE",
+            "sourceName": "BSE final Prospectus",
+            "sourceKind": "exchange-filing",
+        },
+        "symbiotec": {
+            "company": "Symbiotec Pharmalab Limited",
+            "url": "https://nsearchives.nseindia.com/corporate/FP_INE899I01028_31AUG2026.pdf",
+            "host": "nsearchives.nseindia.com",
+            "type": "Prospectus",
+            "title": "Prospectus",
+            "sourcePage": "https://nsearchives.nseindia.com/corporate/FP_INE899I01028_31AUG2026.pdf",
+            "extractionSource": "NSE",
+            "documentSource": "NSE",
+            "sourceName": "NSE final Prospectus",
+            "sourceKind": "exchange-filing",
+        },
+        "pranav": {
+            "company": "Pranav Constructions Limited",
+            "url": "https://www.bseindia.com/downloads/ipo/335516/IPO%20Open/6RHPSigned_20260903150028.pdf",
+            "host": "www.bseindia.com",
+            "type": "RHP",
+            "title": "Red Herring Prospectus",
+            "sourcePage": "https://www.bseindia.com/downloads/ipo/335516/IPO%20Open/6RHPSigned_20260903150028.pdf",
+            "extractionSource": "BSE",
+            "documentSource": "BSE",
+            "sourceName": "BSE Red Herring Prospectus",
+            "sourceKind": "exchange-filing",
+        },
+        "augmont": {
+            "company": "Augmont Enterprises Limited",
+            "url": "https://nsearchives.nseindia.com/corporate/FP_INE16W401027_27AUG2026.pdf",
+            "host": "nsearchives.nseindia.com",
+            "type": "Prospectus",
+            "title": "Prospectus",
+            "sourcePage": "https://nsearchives.nseindia.com/corporate/FP_INE16W401027_27AUG2026.pdf",
+            "extractionSource": "NSE",
+            "documentSource": "NSE",
+            "sourceName": "NSE final Prospectus",
+            "sourceKind": "exchange-filing",
+        },
+        "tempsens": {
+            "company": "Tempsens Instruments (India) Limited",
+            "url": "https://nsearchives.nseindia.com/corporate/FP_INE1KZI01025_25AUG2026.pdf",
+            "host": "nsearchives.nseindia.com",
+            "type": "Prospectus",
+            "title": "Prospectus",
+            "sourcePage": "https://nsearchives.nseindia.com/corporate/FP_INE1KZI01025_25AUG2026.pdf",
+            "extractionSource": "NSE",
+            "documentSource": "NSE",
+            "sourceName": "NSE final Prospectus",
+            "sourceKind": "exchange-filing",
         },
     }
 )
