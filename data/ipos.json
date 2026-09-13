@@ -385,16 +385,16 @@
       },
       "verified-p4-nse-issue-terms": {
         "ok": true,
-        "entries": 15,
-        "updated": 4,
+        "entries": 17,
+        "updated": 2,
         "rejected": 0,
         "fields": {
-          "issueSizeCr": 4,
-          "freshIssueCr": 4,
-          "ofsCr": 4,
-          "issueComposition": 4
+          "issueSizeCr": 2,
+          "freshIssueCr": 2,
+          "ofsCr": 2,
+          "issueComposition": 2
         },
-        "checkedAt": "2026-09-14T04:22:20+05:30"
+        "checkedAt": "2026-09-14T04:26:04+05:30"
       }
     },
     "errors": [],
@@ -11716,6 +11716,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:31+05:30"
+        },
+        {
+          "name": "NSE Emerge Optimystix Entertainment India final Prospectus",
+          "kind": "exchange",
+          "url": "https://nsearchives.nseindia.com/emerge/corporates/content/OptimystixEntertainmentIndiaLimited_PROSP.pdf",
+          "asOf": "2026-09-14T04:26:04+05:30"
         }
       ],
       "source": {
@@ -11734,12 +11740,23 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4NSEIssueTerms": {
+          "issueSizeCr": 108.5,
+          "freshIssueCr": 87.5,
+          "ofsCr": 21.0,
+          "openDate": "2026-08-07",
+          "sourceUrls": [
+            "https://nsearchives.nseindia.com/emerge/corporates/content/OptimystixEntertainmentIndiaLimited_PROSP.pdf"
+          ],
+          "sourceKind": "exchange",
+          "sourceBasis": "NSE final Prospectus: 62,00,000 shares at Rs 175; fresh 50,00,000 shares Rs 87.50 cr plus OFS 12,00,000 shares Rs 21.00 cr"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "checkedAt": "2026-09-14T04:26:04+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -11772,6 +11789,15 @@
         "lastAttemptAt": "2026-09-14T02:11:18+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "issueSizeCr": 108.5,
+      "freshIssueCr": 87.5,
+      "ofsCr": 21.0,
+      "issueComposition": {
+        "freshIssueCr": 87.5,
+        "ofsCr": 21.0,
+        "totalIssueSizeCr": 108.5,
+        "sourceBasis": "NSE final Prospectus: 62,00,000 shares at Rs 175; fresh 50,00,000 shares Rs 87.50 cr plus OFS 12,00,000 shares Rs 21.00 cr"
       }
     },
     {
@@ -35353,6 +35379,18 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:29+05:30"
+        },
+        {
+          "name": "NSE-hosted NSDL RHP and BRLM track record (1)",
+          "kind": "exchange",
+          "url": "https://nsearchives.nseindia.com/content/equities/NSDL_RHP.pdf",
+          "asOf": "2026-09-14T04:26:04+05:30"
+        },
+        {
+          "name": "NSE-hosted NSDL RHP and BRLM track record (2)",
+          "kind": "exchange",
+          "url": "https://nsearchives.nseindia.com/corporate/Registration_14082025225322_RSBDRHP.pdf",
+          "asOf": "2026-09-14T04:26:04+05:30"
         }
       ],
       "source": {
@@ -35371,15 +35409,29 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4NSEIssueTerms": {
+          "issueSizeCr": 4010.954,
+          "freshIssueCr": 0.0,
+          "ofsCr": 4010.954,
+          "openDate": "2025-07-30",
+          "sourceUrls": [
+            "https://nsearchives.nseindia.com/content/equities/NSDL_RHP.pdf",
+            "https://nsearchives.nseindia.com/corporate/Registration_14082025225322_RSBDRHP.pdf"
+          ],
+          "sourceKind": "exchange",
+          "sourceBasis": "NSDL RHP confirms the entire offer is OFS; NSE-hosted BRLM track record reports final issue size Rs 40,109.54 million at Rs 800, including the employee discount effect",
+          "officialNote": "Using the official aggregate issue size avoids overstating the offer by multiplying every reserved employee share by the undiscounted Rs 800 offer price."
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "checkedAt": "2026-09-14T04:26:04+05:30",
         "checks": [],
         "independentSources": [
-          "NSE"
+          "NSE",
+          "NSE-hosted"
         ]
       },
       "profilePath": "ipo/nsdl/",
@@ -35402,6 +35454,16 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
+      },
+      "issueSizeCr": 4010.954,
+      "freshIssueCr": 0.0,
+      "ofsCr": 4010.954,
+      "issueComposition": {
+        "freshIssueCr": 0.0,
+        "ofsCr": 4010.954,
+        "totalIssueSizeCr": 4010.954,
+        "sourceBasis": "NSDL RHP confirms the entire offer is OFS; NSE-hosted BRLM track record reports final issue size Rs 40,109.54 million at Rs 800, including the employee discount effect",
+        "officialNote": "Using the official aggregate issue size avoids overstating the offer by multiplying every reserved employee share by the undiscounted Rs 800 offer price."
       }
     },
     {

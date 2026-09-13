@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-14T04:22:21+05:30",
+  "generatedAt": "2026-09-14T04:26:05+05:30",
   "asOfDate": "2026-09-14",
   "recordCount": 1354,
   "queueCount": 1031,
@@ -9,10 +9,10 @@
   },
   "fieldGapCounts": {
     "exchange.lotSize": 1024,
-    "exchange.issueSizeCr": 910,
+    "exchange.issueSizeCr": 908,
     "lifecycle.listingDate": 28,
     "exchange.priceBand": 13,
-    "exchange.issueComposition": 11,
+    "exchange.issueComposition": 9,
     "provenance.sources": 1
   },
   "resolvedUnavailableRecordCount": 5,
@@ -26,29 +26,6 @@
     "lifecycle.listingDate": 5
   },
   "queue": [
-    {
-      "id": "nsdl",
-      "company": "National Securities Depository Limited",
-      "symbol": "NSDL",
-      "stage": "closed",
-      "openDate": "2025-07-30",
-      "closeDate": "2025-08-01",
-      "listingDate": null,
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 66.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 4,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.listingDate"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/nsdl/"
-    },
     {
       "id": "anawil",
       "company": "Anawil Wire and Engineering Limited",
@@ -94,28 +71,6 @@
       "profilePath": "ipo/fascinate/"
     },
     {
-      "id": "optimystix",
-      "company": "Optimystix Entertainment India Limited",
-      "symbol": "OPTIMYSTIX",
-      "stage": "listed",
-      "openDate": "2026-08-07",
-      "closeDate": "2026-08-11",
-      "listingDate": "2026-08-14",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/optimystix/"
-    },
-    {
       "id": "igil",
       "company": "International Gemmological Institute (India) Limited",
       "symbol": "IGIL",
@@ -135,6 +90,27 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/igil/"
+    },
+    {
+      "id": "nsdl",
+      "company": "National Securities Depository Limited",
+      "symbol": "NSDL",
+      "stage": "closed",
+      "openDate": "2025-07-30",
+      "closeDate": "2025-08-01",
+      "listingDate": null,
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 83.3,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "lifecycle.listingDate"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/nsdl/"
     },
     {
       "id": "amcl",
@@ -1535,6 +1511,26 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/nikita/"
+    },
+    {
+      "id": "optimystix",
+      "company": "Optimystix Entertainment India Limited",
+      "symbol": "OPTIMYSTIX",
+      "stage": "listed",
+      "openDate": "2026-08-07",
+      "closeDate": "2026-08-11",
+      "listingDate": "2026-08-14",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/optimystix/"
     },
     {
       "id": "optivalue",
