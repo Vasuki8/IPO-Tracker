@@ -10,8 +10,10 @@ on:
       - "scripts/enrich_issuer_offer_docs.py"
       - "scripts/run_issuer_offer_docs.py"
       - "scripts/run_issuer_offer_docs_v3.py"
+      - "scripts/run_issuer_offer_docs_v4.py"
       - "tests/test_p4_record_repairs.py"
       - "tests/test_issuer_offer_docs_v3.py"
+      - "tests/test_issuer_offer_docs_v4.py"
       - ".github/workflows/finish-p4-offer-docs.yml"
   workflow_run:
     workflows:
@@ -58,6 +60,7 @@ jobs:
           uv run python -m unittest discover -s tests -p "test_p4_record_repairs.py" -v
           uv run python -m unittest discover -s tests -p "test_offer_docs_v13.py" -v
           uv run python -m unittest discover -s tests -p "test_issuer_offer_docs_v3.py" -v
+          uv run python -m unittest discover -s tests -p "test_issuer_offer_docs_v4.py" -v
           uv run python -m unittest discover -s tests -p "test_sebi_document_links.py" -v
           uv run python -m unittest discover -s tests -p "test_sebi_priority_registers_v2.py" -v
           uv run python -m unittest discover -s tests -p "test_verified_lot_sizes.py" -v
@@ -81,7 +84,7 @@ jobs:
           uv run python scripts/apply_verified_lot_sizes.py
           uv run python scripts/apply_verified_recent_issue_terms.py
           uv run python scripts/run_offer_docs_v13.py --limit 0
-          uv run python scripts/run_issuer_offer_docs_v3.py --priority-max 4 --limit 0
+          uv run python scripts/run_issuer_offer_docs_v4.py --priority-max 4 --limit 0
           uv run python scripts/apply_verified_recent_offer_fields.py
           uv run python scripts/audit_data_completeness.py
           uv run python scripts/build_missing_queue.py
