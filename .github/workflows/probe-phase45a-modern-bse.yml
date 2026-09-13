@@ -1,4 +1,4 @@
-name: Probe Phase 4.5A NSE monthly ordering
+name: Probe Phase 4.5A NSE past issue fields
 
 on:
   push:
@@ -13,7 +13,7 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v7.0.1
@@ -29,28 +29,24 @@ jobs:
       - name: Sync dependencies
         run: uv sync
 
-      - name: Inspect discovered NSE monthly reports and parsed date ranges
+      - name: Inspect raw NSE past issue records
         shell: bash
         run: |
           uv run python - <<'PY'
-          import requests
-          from scripts import enrich_nse_primary_market_reports_v2 as v2
-          import scripts.enrich_nse_primary_market_reports as base
+          import json
+          from datetime import date
           import scripts.update_data as core
 
-          s=requests.Session(); s.headers.update(core.HEADERS)
-          urls=v2.discover_report_urls(s, 0)
-          print('DISCOVERED',len(urls))
-          for i,u in enumerate(urls[:80]): print(i,u)
-          print('--- FIRST 30 PARSED ---')
-          for i,u in enumerate(urls[:30]):
-            try:
-              rows=base.parse_report_rows(base.read_xlsx_rows(base.download_report(s,u)),u)
-              dates=sorted([r.get('openDate') for r in rows if r.get('openDate')])
-              print(i,'rows',len(rows),'min',dates[0] if dates else None,'max',dates[-1] if dates else None,u)
-              for r in rows:
-                if r.get('openDate','').startswith('2026-08') or r.get('openDate','').startswith('2026-09'):
-                  print('  RECENT',r.get('symbol'),r.get('company'),r.get('openDate'))
-            except Exception as e:
-              print(i,'ERR',type(e).__name__,str(e)[:180],u)
+          client=core.NSEClient()
+          rows=client.past(date(2026,8,1), date(2026,9,13))
+          print('ROWS',len(rows))
+          targets={'ABH','ANNU','ASHUTOSH','AUGMONT','DEEPA','ESDS','GAJA','HORIZONIND','HTEL','KANOHAR','LALITHAA','LUMINO','MADHURKNIT','PRANAV','PRIORITY','PERNIASPOP','QUALIANCE','MOMSBELIEF','SHANKESH','SHANTIINOR','SKYTECH','SKYWAYS','SUMAX','SUNSHINE','SYMBIOTEC','ARCIL','GLASSWALL','KARAMTARA','LCCPROJECT','MPIMANIPAL','PRASOLCHEM','STEAMHOUSE'}
+          for row in rows:
+            symbol=str(row.get('symbol') or row.get('nseSymbol') or row.get('securitySymbol') or '').upper()
+            company=str(row.get('companyName') or row.get('company') or row.get('issuerName') or row.get('name') or '')
+            key=core.canonical_company(company)
+            if symbol in targets or any(t in key or key in t for t in targets if len(t)>5):
+              print('\n===',symbol,company,'===')
+              print(json.dumps(row,indent=2,ensure_ascii=False,sort_keys=True))
+              print('NORMALIZED',json.dumps(core.normalize_nse_record(row,'past'),indent=2,ensure_ascii=False))
           PY
