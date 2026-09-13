@@ -195,6 +195,20 @@
           "issueComposition": 13
         },
         "checkedAt": "2026-09-13T09:48:30+05:30"
+      },
+      "verified-recent-offer-fields": {
+        "ok": true,
+        "entries": 12,
+        "updated": 12,
+        "fields": {
+          "registrar": 4,
+          "leadManagers": 2,
+          "promoters": 2,
+          "objectsOfIssue": 2,
+          "financials": 2,
+          "shareholding": 11
+        },
+        "checkedAt": "2026-09-13T15:30:33+05:30"
       }
     },
     "errors": [
@@ -3575,11 +3589,17 @@
           "kind": "validated-market-terms",
           "url": "https://ipocentral.in/steamhouse-india-ipo-gmp-price-date-allotment/",
           "asOf": "2026-09-13T09:34:39+05:30"
+        },
+        {
+          "name": "Steamhouse India RHP registrar",
+          "kind": "validated-offer-document-term",
+          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/steamhouse-india-limited-rhp_104262.html",
+          "asOf": "2026-09-13T15:30:33+05:30"
         }
       ],
       "validation": {
         "status": "verified",
-        "checkedAt": "2026-09-13T10:27:00+05:30",
+        "checkedAt": "2026-09-13T15:30:33+05:30",
         "checks": [],
         "independentSources": [
           "NSE",
@@ -3609,6 +3629,14 @@
           "openDate": "2026-09-09",
           "sourceUrl": "https://ipocentral.in/steamhouse-india-ipo-gmp-price-date-allotment/",
           "sourceKind": "validated-market-terms"
+        },
+        "VerifiedOfferFields": {
+          "openDate": "2026-09-09",
+          "sourceUrl": "https://www.sebi.gov.in/filings/public-issues/sep-2026/steamhouse-india-limited-rhp_104262.html",
+          "sourceKind": "validated-offer-document-term",
+          "fields": [
+            "registrar"
+          ]
         }
       },
       "sharesOffered": 37636363,
@@ -3734,7 +3762,8 @@
         "extractedAt": "2026-09-13T09:16:42+05:30",
         "source": "SEBI"
       },
-      "minInvestment": 14985.0
+      "minInvestment": 14985.0,
+      "registrar": "KFin Technologies Limited"
     },
     {
       "id": "rentomojo",
@@ -4037,6 +4066,12 @@
           "kind": "validated-market-terms",
           "url": "https://www.acml.in/market/IPO/NewIssueDetail/1731106",
           "asOf": "2026-09-13T09:34:39+05:30"
+        },
+        {
+          "name": "Manipal Payment and Identity Solutions RHP-derived shareholding",
+          "kind": "validated-offer-document-term",
+          "url": "https://www.alphave.in/ipo/manipal-payment-and-identity-solutions/shareholding",
+          "asOf": "2026-09-13T15:30:33+05:30"
         }
       ],
       "source": {
@@ -4067,6 +4102,14 @@
           "openDate": "2026-09-09",
           "sourceUrl": "https://www.acml.in/market/IPO/NewIssueDetail/1731106",
           "sourceKind": "validated-market-terms"
+        },
+        "VerifiedOfferFields": {
+          "openDate": "2026-09-09",
+          "sourceUrl": "https://www.alphave.in/ipo/manipal-payment-and-identity-solutions/shareholding",
+          "sourceKind": "validated-offer-document-term",
+          "fields": [
+            "shareholding"
+          ]
         }
       },
       "documents": [
@@ -4097,7 +4140,7 @@
       ],
       "validation": {
         "status": "verified",
-        "checkedAt": "2026-09-13T10:27:00+05:30",
+        "checkedAt": "2026-09-13T15:30:33+05:30",
         "checks": [],
         "independentSources": [
           "Manipal",
@@ -4257,7 +4300,10 @@
         "source": "SEBI"
       },
       "lotSize": 44,
-      "minInvestment": 14916.0
+      "minInvestment": 14916.0,
+      "shareholding": {
+        "promoterPreIssuePct": 62.65
+      }
     },
     {
       "id": "lccproject",
@@ -4296,6 +4342,12 @@
           "kind": "validated-market-terms",
           "url": "https://www.idbidirect.in/Markets/ipo/Iposynopsis.aspx?code=85600&compname=LCC-Projects-Ltd&pagename=ForthComing-Issues",
           "asOf": "2026-09-13T09:34:39+05:30"
+        },
+        {
+          "name": "LCC Projects RHP-derived shareholding",
+          "kind": "validated-offer-document-term",
+          "url": "https://www.alphave.in/ipo/lcc-projects",
+          "asOf": "2026-09-13T15:30:33+05:30"
         }
       ],
       "source": {
@@ -4326,6 +4378,14 @@
           "openDate": "2026-09-09",
           "sourceUrl": "https://www.idbidirect.in/Markets/ipo/Iposynopsis.aspx?code=85600&compname=LCC-Projects-Ltd&pagename=ForthComing-Issues",
           "sourceKind": "validated-market-terms"
+        },
+        "VerifiedOfferFields": {
+          "openDate": "2026-09-09",
+          "sourceUrl": "https://www.alphave.in/ipo/lcc-projects",
+          "sourceKind": "validated-offer-document-term",
+          "fields": [
+            "shareholding"
+          ]
         }
       },
       "documents": [
@@ -4356,7 +4416,7 @@
       ],
       "validation": {
         "status": "verified",
-        "checkedAt": "2026-09-13T10:27:00+05:30",
+        "checkedAt": "2026-09-13T15:30:33+05:30",
         "checks": [],
         "independentSources": [
           "LCC",
@@ -4504,7 +4564,10 @@
         "source": "SEBI"
       },
       "lotSize": 102,
-      "minInvestment": 14892.0
+      "minInvestment": 14892.0,
+      "shareholding": {
+        "promoterPreIssuePct": 100.0
+      }
     },
     {
       "id": "karamtara",
@@ -4804,6 +4867,12 @@
           "kind": "validated-market-terms",
           "url": "https://www.ifinltd.in/ipo/new-issue-details/1731103/47",
           "asOf": "2026-09-13T09:34:39+05:30"
+        },
+        {
+          "name": "ARCIL RHP-derived shareholding",
+          "kind": "validated-offer-document-term",
+          "url": "https://nsearchives.nseindia.com/content/ipo/RHP_ARCIL.zip",
+          "asOf": "2026-09-13T15:30:33+05:30"
         }
       ],
       "source": {
@@ -4834,6 +4903,14 @@
           "openDate": "2026-09-09",
           "sourceUrl": "https://www.ifinltd.in/ipo/new-issue-details/1731103/47",
           "sourceKind": "validated-market-terms"
+        },
+        "VerifiedOfferFields": {
+          "openDate": "2026-09-09",
+          "sourceUrl": "https://nsearchives.nseindia.com/content/ipo/RHP_ARCIL.zip",
+          "sourceKind": "validated-offer-document-term",
+          "fields": [
+            "shareholding"
+          ]
         }
       },
       "documents": [
@@ -4864,7 +4941,7 @@
       ],
       "validation": {
         "status": "verified",
-        "checkedAt": "2026-09-13T10:27:00+05:30",
+        "checkedAt": "2026-09-13T15:30:33+05:30",
         "checks": [],
         "independentSources": [
           "ARCIL",
@@ -4988,7 +5065,10 @@
         "source": "SEBI"
       },
       "lotSize": 107,
-      "minInvestment": 14873.0
+      "minInvestment": 14873.0,
+      "shareholding": {
+        "promoterPreIssuePct": 89.68
+      }
     },
     {
       "id": "prasolchem",
@@ -5024,6 +5104,12 @@
           "kind": "validated-market-terms",
           "url": "https://www.finsso.co.in/ipo_detail.php?ipo=Mzk3",
           "asOf": "2026-09-13T09:34:39+05:30"
+        },
+        {
+          "name": "Prasol Chemicals RHP-derived shareholding",
+          "kind": "validated-offer-document-term",
+          "url": "https://www.alphave.in/ipo/prasol-chemicals/shareholding",
+          "asOf": "2026-09-13T15:30:33+05:30"
         }
       ],
       "source": {
@@ -5048,6 +5134,14 @@
           "openDate": "2026-09-08",
           "sourceUrl": "https://www.finsso.co.in/ipo_detail.php?ipo=Mzk3",
           "sourceKind": "validated-market-terms"
+        },
+        "VerifiedOfferFields": {
+          "openDate": "2026-09-08",
+          "sourceUrl": "https://www.alphave.in/ipo/prasol-chemicals/shareholding",
+          "sourceKind": "validated-offer-document-term",
+          "fields": [
+            "shareholding"
+          ]
         }
       },
       "documents": [
@@ -5092,7 +5186,7 @@
       ],
       "validation": {
         "status": "verified",
-        "checkedAt": "2026-09-13T10:27:00+05:30",
+        "checkedAt": "2026-09-13T15:30:33+05:30",
         "checks": [],
         "independentSources": [
           "NSE",
@@ -5222,7 +5316,10 @@
         ]
       },
       "lotSize": 22,
-      "minInvestment": 14872.0
+      "minInvestment": 14872.0,
+      "shareholding": {
+        "promoterPreIssuePct": 89.2
+      }
     },
     {
       "id": "kanohar",
@@ -5512,6 +5609,12 @@
           "kind": "validated-market-terms",
           "url": "https://mtinews.in/glass-wall-systems-india-limiteds-initial-public-offering-to-open-on-tuesday-september-8-2026-price-band-of-%E2%82%B9172-%E2%82%B9182-per-equity-share-of-face-value-of/",
           "asOf": "2026-09-13T09:34:39+05:30"
+        },
+        {
+          "name": "Glass Wall Systems final offer-document shareholding",
+          "kind": "validated-offer-document-term",
+          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/glass-wall-systems-india-limited-prospectus_104426.html",
+          "asOf": "2026-09-13T15:30:33+05:30"
         }
       ],
       "source": {
@@ -5536,6 +5639,14 @@
           "openDate": "2026-09-08",
           "sourceUrl": "https://mtinews.in/glass-wall-systems-india-limiteds-initial-public-offering-to-open-on-tuesday-september-8-2026-price-band-of-%E2%82%B9172-%E2%82%B9182-per-equity-share-of-face-value-of/",
           "sourceKind": "validated-market-terms"
+        },
+        "VerifiedOfferFields": {
+          "openDate": "2026-09-08",
+          "sourceUrl": "https://www.sebi.gov.in/filings/public-issues/sep-2026/glass-wall-systems-india-limited-prospectus_104426.html",
+          "sourceKind": "validated-offer-document-term",
+          "fields": [
+            "shareholding"
+          ]
         }
       },
       "documents": [
@@ -5581,7 +5692,7 @@
       ],
       "validation": {
         "status": "verified",
-        "checkedAt": "2026-09-13T10:27:00+05:30",
+        "checkedAt": "2026-09-13T15:30:33+05:30",
         "checks": [],
         "independentSources": [
           "Glass",
@@ -5721,7 +5832,10 @@
         ]
       },
       "lotSize": 82,
-      "minInvestment": 14924.0
+      "minInvestment": 14924.0,
+      "shareholding": {
+        "promoterPreIssuePct": 61.53
+      }
     },
     {
       "id": "pranav",
@@ -5757,6 +5871,12 @@
           "kind": "validated-market-terms",
           "url": "https://english.metrovaartha.com/economy/market/pranav-constructions-limiteds-initial-public-offering-to-open-on-monday-september-07-2026-price-band-set-at-118-to-124-per-equity-share",
           "asOf": "2026-09-13T09:34:39+05:30"
+        },
+        {
+          "name": "Pranav Constructions RHP-derived offer terms",
+          "kind": "validated-offer-document-term",
+          "url": "https://www.bseindia.com/downloads/ipo/335516/IPO%20Open/6RHPSigned_20260903150028.pdf",
+          "asOf": "2026-09-13T15:30:33+05:30"
         }
       ],
       "source": {
@@ -5781,6 +5901,15 @@
           "openDate": "2026-09-07",
           "sourceUrl": "https://english.metrovaartha.com/economy/market/pranav-constructions-limiteds-initial-public-offering-to-open-on-monday-september-07-2026-price-band-set-at-118-to-124-per-equity-share",
           "sourceKind": "validated-market-terms"
+        },
+        "VerifiedOfferFields": {
+          "openDate": "2026-09-07",
+          "sourceUrl": "https://www.bseindia.com/downloads/ipo/335516/IPO%20Open/6RHPSigned_20260903150028.pdf",
+          "sourceKind": "validated-offer-document-term",
+          "fields": [
+            "registrar",
+            "shareholding"
+          ]
         }
       },
       "documents": [
@@ -5811,7 +5940,7 @@
       ],
       "validation": {
         "status": "verified",
-        "checkedAt": "2026-09-13T10:27:00+05:30",
+        "checkedAt": "2026-09-13T15:30:33+05:30",
         "checks": [],
         "independentSources": [
           "NSE",
@@ -5962,7 +6091,11 @@
         "source": "SEBI"
       },
       "lotSize": 120,
-      "minInvestment": 14880.0
+      "minInvestment": 14880.0,
+      "registrar": "KFin Technologies Limited",
+      "shareholding": {
+        "promoterPreIssuePct": 63.35
+      }
     },
     {
       "id": "qualiance",
@@ -7150,6 +7283,12 @@
           "kind": "validated-final-ipo-terms",
           "url": "https://economictimes.indiatimes.com/lumino-industries-ltd/ipos/companyid-2253079.cms",
           "asOf": "2026-09-13T09:48:30+05:30"
+        },
+        {
+          "name": "Lumino Industries RHP-derived shareholding",
+          "kind": "validated-offer-document-term",
+          "url": "https://ipowatch.in/lumino-industries-ipo/",
+          "asOf": "2026-09-13T15:30:33+05:30"
         }
       ],
       "source": {
@@ -7182,6 +7321,14 @@
           "openDate": "2026-08-27",
           "sourceUrl": "https://economictimes.indiatimes.com/lumino-industries-ltd/ipos/companyid-2253079.cms",
           "sourceKind": "validated-final-ipo-terms"
+        },
+        "VerifiedOfferFields": {
+          "openDate": "2026-08-27",
+          "sourceUrl": "https://ipowatch.in/lumino-industries-ipo/",
+          "sourceKind": "validated-offer-document-term",
+          "fields": [
+            "shareholding"
+          ]
         }
       },
       "documents": [
@@ -7212,7 +7359,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T10:27:00+05:30",
+        "checkedAt": "2026-09-13T15:30:33+05:30",
         "checks": [],
         "independentSources": [
           "Lumino",
@@ -7344,7 +7491,10 @@
       "minInvestment": 14924.0,
       "issueSizeCr": 700.0,
       "freshIssueCr": 500.0,
-      "ofsCr": 200.0
+      "ofsCr": 200.0,
+      "shareholding": {
+        "promoterPreIssuePct": 100.0
+      }
     },
     {
       "id": "sumax",
@@ -7699,6 +7849,12 @@
           "kind": "validated-final-ipo-terms",
           "url": "https://www.equentis.com/ipos/symbiotec-pharma-ipo_36114",
           "asOf": "2026-09-13T09:48:30+05:30"
+        },
+        {
+          "name": "Symbiotec Pharmalab final NSE Prospectus terms",
+          "kind": "validated-offer-document-term",
+          "url": "https://nsearchives.nseindia.com/corporate/FP_INE899I01028_31AUG2026.pdf",
+          "asOf": "2026-09-13T15:30:33+05:30"
         }
       ],
       "source": {
@@ -7731,6 +7887,19 @@
           "openDate": "2026-08-24",
           "sourceUrl": "https://www.equentis.com/ipos/symbiotec-pharma-ipo_36114",
           "sourceKind": "validated-final-ipo-terms"
+        },
+        "VerifiedOfferFields": {
+          "openDate": "2026-08-24",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE899I01028_31AUG2026.pdf",
+          "sourceKind": "validated-offer-document-term",
+          "fields": [
+            "financials",
+            "leadManagers",
+            "objectsOfIssue",
+            "promoters",
+            "registrar",
+            "shareholding"
+          ]
         }
       },
       "documents": [
@@ -7761,7 +7930,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T10:27:00+05:30",
+        "checkedAt": "2026-09-13T15:30:33+05:30",
         "checks": [],
         "independentSources": [
           "NSE",
@@ -7789,6 +7958,52 @@
         "lastAttemptAt": "2026-09-13T09:48:35+05:30",
         "error": "HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/commondocs/aug-2026/SYMBIOTEC%20PHARMALAB%20LIMITED%20-%20AP_p.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer ",
         "source": "SEBI"
+      },
+      "registrar": "MUFG Intime India Private Limited",
+      "leadManagers": [
+        "JM Financial Limited",
+        "Avendus Capital Private Limited",
+        "Motilal Oswal Investment Advisors Limited",
+        "Nomura Financial Advisory and Securities (India) Private Limited"
+      ],
+      "promoters": [
+        "Anil Satwani",
+        "Kashish Satwani",
+        "Sushil Satwani",
+        "Satwani Holdings LLP"
+      ],
+      "objectsOfIssue": [
+        "Prepayment and/or repayment, in full or in part, of all or a portion of certain outstanding borrowings availed by the Company",
+        "General corporate purposes"
+      ],
+      "financials": {
+        "periods": [
+          {
+            "period": "FY2026",
+            "revenueCr": 872.26,
+            "ebitdaCr": 231.97,
+            "patCr": 109.9,
+            "netWorthCr": 1158.64,
+            "eps": 17.82
+          },
+          {
+            "period": "FY2025",
+            "revenueCr": 755.98,
+            "ebitdaCr": 206.11,
+            "patCr": 96.79,
+            "netWorthCr": 821.15
+          },
+          {
+            "period": "FY2024",
+            "revenueCr": 723.33,
+            "ebitdaCr": 177.04,
+            "patCr": 100.06,
+            "netWorthCr": 720.68
+          }
+        ]
+      },
+      "shareholding": {
+        "promoterPreIssuePct": 34.47
       }
     },
     {
@@ -8402,6 +8617,12 @@
           "kind": "validated-market-terms",
           "url": "https://www.rrfinance.com/OurProducts/PublicIssues/Ongoing-Public-Issue-Details.aspx?sch_code=SCH-1457",
           "asOf": "2026-09-13T09:34:39+05:30"
+        },
+        {
+          "name": "Augmont Enterprises final Prospectus shareholding",
+          "kind": "validated-offer-document-term",
+          "url": "https://nsearchives.nseindia.com/corporate/FP_INE16W401027_27AUG2026.pdf",
+          "asOf": "2026-09-13T15:30:33+05:30"
         }
       ],
       "source": {
@@ -8426,6 +8647,14 @@
           "openDate": "2026-08-21",
           "sourceUrl": "https://www.rrfinance.com/OurProducts/PublicIssues/Ongoing-Public-Issue-Details.aspx?sch_code=SCH-1457",
           "sourceKind": "validated-market-terms"
+        },
+        "VerifiedOfferFields": {
+          "openDate": "2026-08-21",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE16W401027_27AUG2026.pdf",
+          "sourceKind": "validated-offer-document-term",
+          "fields": [
+            "shareholding"
+          ]
         }
       },
       "documents": [
@@ -8448,7 +8677,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T10:27:00+05:30",
+        "checkedAt": "2026-09-13T15:30:33+05:30",
         "checks": [],
         "independentSources": [
           "Augmont",
@@ -8579,7 +8808,10 @@
         "source": "SEBI"
       },
       "lotSize": 19,
-      "minInvestment": 14972.0
+      "minInvestment": 14972.0,
+      "shareholding": {
+        "promoterPreIssuePct": 93.38
+      }
     },
     {
       "id": "tempsens",
@@ -8616,6 +8848,12 @@
           "kind": "validated-market-terms",
           "url": "https://www.sushilfinance.com/blogs/IPO-Note/Tempsens-Instruments-India-Limited-IPO",
           "asOf": "2026-09-13T09:34:39+05:30"
+        },
+        {
+          "name": "Tempsens Instruments final NSE Prospectus shareholding",
+          "kind": "validated-offer-document-term",
+          "url": "https://nsearchives.nseindia.com/corporate/FP_INE1KZI01025_25AUG2026.pdf",
+          "asOf": "2026-09-13T15:30:33+05:30"
         }
       ],
       "source": {
@@ -8640,6 +8878,14 @@
           "openDate": "2026-08-20",
           "sourceUrl": "https://www.sushilfinance.com/blogs/IPO-Note/Tempsens-Instruments-India-Limited-IPO",
           "sourceKind": "validated-market-terms"
+        },
+        "VerifiedOfferFields": {
+          "openDate": "2026-08-20",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1KZI01025_25AUG2026.pdf",
+          "sourceKind": "validated-offer-document-term",
+          "fields": [
+            "shareholding"
+          ]
         }
       },
       "documents": [
@@ -8669,7 +8915,7 @@
       ],
       "validation": {
         "status": "verified",
-        "checkedAt": "2026-09-13T10:27:00+05:30",
+        "checkedAt": "2026-09-13T15:30:33+05:30",
         "checks": [],
         "independentSources": [
           "NSE",
@@ -8796,7 +9042,10 @@
         }
       ],
       "lotSize": 50,
-      "minInvestment": 15000.0
+      "minInvestment": 15000.0,
+      "shareholding": {
+        "promoterPreIssuePct": 80.52
+      }
     },
     {
       "id": "gaja",
@@ -9037,6 +9286,12 @@
           "kind": "validated-final-ipo-terms",
           "url": "https://economictimes.indiatimes.com/sunshine-pictures-ltd/ipos/companyid-2252698.cms",
           "asOf": "2026-09-13T09:48:30+05:30"
+        },
+        {
+          "name": "Sunshine Pictures final BSE Prospectus terms",
+          "kind": "validated-offer-document-term",
+          "url": "https://www.bseindia.com/downloads/ipo/361148/ipo_T3/Prospectus_20260821184134.pdf",
+          "asOf": "2026-09-13T15:30:33+05:30"
         }
       ],
       "source": {
@@ -9069,6 +9324,19 @@
           "openDate": "2026-08-18",
           "sourceUrl": "https://economictimes.indiatimes.com/sunshine-pictures-ltd/ipos/companyid-2252698.cms",
           "sourceKind": "validated-final-ipo-terms"
+        },
+        "VerifiedOfferFields": {
+          "openDate": "2026-08-18",
+          "sourceUrl": "https://www.bseindia.com/downloads/ipo/361148/ipo_T3/Prospectus_20260821184134.pdf",
+          "sourceKind": "validated-offer-document-term",
+          "fields": [
+            "financials",
+            "leadManagers",
+            "objectsOfIssue",
+            "promoters",
+            "registrar",
+            "shareholding"
+          ]
         }
       },
       "documents": [
@@ -9091,7 +9359,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T10:27:00+05:30",
+        "checkedAt": "2026-09-13T15:30:33+05:30",
         "checks": [],
         "independentSources": [
           "NSE",
@@ -9119,6 +9387,48 @@
         "lastAttemptAt": "2026-09-13T09:48:44+05:30",
         "error": "HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Max retries exceeded with url: /sebi_data/attachdocs/aug-2026/1786509141250.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
         "source": "SEBI"
+      },
+      "registrar": "Bigshare Services Private Limited",
+      "leadManagers": [
+        "GYR Capital Advisors Private Limited"
+      ],
+      "promoters": [
+        "Vipul Amrutlal Shah",
+        "Shefali Vipul Shah",
+        "Aryaman Vipul Shah",
+        "Maurya Vipul Shah"
+      ],
+      "objectsOfIssue": [
+        "Funding the working capital requirements of the Company",
+        "General corporate purposes"
+      ],
+      "financials": {
+        "periods": [
+          {
+            "period": "FY2026",
+            "revenueCr": 76.2749,
+            "ebitdaCr": 58.5481,
+            "patCr": 40.0224,
+            "netWorthCr": 145.1346
+          },
+          {
+            "period": "FY2025",
+            "revenueCr": 105.8,
+            "ebitdaCr": 50.76,
+            "patCr": 34.46,
+            "netWorthCr": 105.07
+          },
+          {
+            "period": "FY2024",
+            "revenueCr": 139.46,
+            "ebitdaCr": 73.97,
+            "patCr": 53.35,
+            "netWorthCr": 70.6
+          }
+        ]
+      },
+      "shareholding": {
+        "promoterPreIssuePct": 100.0
       }
     },
     {

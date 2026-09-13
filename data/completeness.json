@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-13T10:27:39+05:30",
+  "generatedAt": "2026-09-13T15:30:33+05:30",
   "asOfDate": "2026-09-13",
   "recordCount": 1371,
   "stageCounts": {
@@ -22,7 +22,7 @@
   "scores": {
     "exchangeStage": 76.2,
     "recentExchange2Y": 78.7,
-    "offerDocumentEligible": 88.3,
+    "offerDocumentEligible": 97.9,
     "openSubscription": 100.0,
     "maturedLifecycle": 97.4,
     "provenance": 100.0
@@ -192,40 +192,40 @@
     },
     "offerDocumentEligible": {
       "registrar": {
+        "present": 40,
+        "expected": 40,
+        "missing": 0,
+        "pct": 100.0
+      },
+      "leadManagers": {
+        "present": 39,
+        "expected": 40,
+        "missing": 1,
+        "pct": 97.5
+      },
+      "promoters": {
+        "present": 40,
+        "expected": 40,
+        "missing": 0,
+        "pct": 100.0
+      },
+      "objectsOfIssue": {
+        "present": 40,
+        "expected": 40,
+        "missing": 0,
+        "pct": 100.0
+      },
+      "financials": {
+        "present": 40,
+        "expected": 40,
+        "missing": 0,
+        "pct": 100.0
+      },
+      "promoterShareholding": {
         "present": 36,
         "expected": 40,
         "missing": 4,
         "pct": 90.0
-      },
-      "leadManagers": {
-        "present": 37,
-        "expected": 40,
-        "missing": 3,
-        "pct": 92.5
-      },
-      "promoters": {
-        "present": 38,
-        "expected": 40,
-        "missing": 2,
-        "pct": 95.0
-      },
-      "objectsOfIssue": {
-        "present": 38,
-        "expected": 40,
-        "missing": 2,
-        "pct": 95.0
-      },
-      "financials": {
-        "present": 38,
-        "expected": 40,
-        "missing": 2,
-        "pct": 95.0
-      },
-      "promoterShareholding": {
-        "present": 25,
-        "expected": 40,
-        "missing": 15,
-        "pct": 62.5
       }
     },
     "openSubscription": {
@@ -638,45 +638,8 @@
       ]
     },
     "offerDocumentEligible": {
-      "registrar": [
-        {
-          "id": "steamhouse",
-          "company": "Steamhouse India Limited",
-          "openDate": "2026-09-09",
-          "stage": "closed"
-        },
-        {
-          "id": "pranav",
-          "company": "Pranav Constructions Limited",
-          "openDate": "2026-09-07",
-          "stage": "closed"
-        },
-        {
-          "id": "symbiotec",
-          "company": "Symbiotec Pharmalab Limited",
-          "openDate": "2026-08-24",
-          "stage": "listed"
-        },
-        {
-          "id": "sunshine",
-          "company": "Sunshine Pictures Limited",
-          "openDate": "2026-08-18",
-          "stage": "listed"
-        }
-      ],
+      "registrar": [],
       "leadManagers": [
-        {
-          "id": "symbiotec",
-          "company": "Symbiotec Pharmalab Limited",
-          "openDate": "2026-08-24",
-          "stage": "listed"
-        },
-        {
-          "id": "sunshine",
-          "company": "Sunshine Pictures Limited",
-          "openDate": "2026-08-18",
-          "stage": "listed"
-        },
         {
           "id": "national-stock-exchange-of-india-limited",
           "company": "National Stock Exchange of India Limited",
@@ -684,115 +647,10 @@
           "stage": "filing-pipeline"
         }
       ],
-      "promoters": [
-        {
-          "id": "symbiotec",
-          "company": "Symbiotec Pharmalab Limited",
-          "openDate": "2026-08-24",
-          "stage": "listed"
-        },
-        {
-          "id": "sunshine",
-          "company": "Sunshine Pictures Limited",
-          "openDate": "2026-08-18",
-          "stage": "listed"
-        }
-      ],
-      "objectsOfIssue": [
-        {
-          "id": "symbiotec",
-          "company": "Symbiotec Pharmalab Limited",
-          "openDate": "2026-08-24",
-          "stage": "listed"
-        },
-        {
-          "id": "sunshine",
-          "company": "Sunshine Pictures Limited",
-          "openDate": "2026-08-18",
-          "stage": "listed"
-        }
-      ],
-      "financials": [
-        {
-          "id": "symbiotec",
-          "company": "Symbiotec Pharmalab Limited",
-          "openDate": "2026-08-24",
-          "stage": "listed"
-        },
-        {
-          "id": "sunshine",
-          "company": "Sunshine Pictures Limited",
-          "openDate": "2026-08-18",
-          "stage": "listed"
-        }
-      ],
+      "promoters": [],
+      "objectsOfIssue": [],
+      "financials": [],
       "promoterShareholding": [
-        {
-          "id": "mpimanipal",
-          "company": "Manipal Payment and Identity Solutions Limited",
-          "openDate": "2026-09-09",
-          "stage": "closed"
-        },
-        {
-          "id": "lccproject",
-          "company": "LCC Projects Limited",
-          "openDate": "2026-09-09",
-          "stage": "closed"
-        },
-        {
-          "id": "arcil",
-          "company": "Asset Reconstruction Company (India) Limited",
-          "openDate": "2026-09-09",
-          "stage": "closed"
-        },
-        {
-          "id": "prasolchem",
-          "company": "Prasol Chemicals Limited",
-          "openDate": "2026-09-08",
-          "stage": "closed"
-        },
-        {
-          "id": "glasswall",
-          "company": "Glass Wall Systems (India) Limited",
-          "openDate": "2026-09-08",
-          "stage": "closed"
-        },
-        {
-          "id": "pranav",
-          "company": "Pranav Constructions Limited",
-          "openDate": "2026-09-07",
-          "stage": "closed"
-        },
-        {
-          "id": "lumino",
-          "company": "Lumino Industries Limited",
-          "openDate": "2026-08-27",
-          "stage": "listed"
-        },
-        {
-          "id": "symbiotec",
-          "company": "Symbiotec Pharmalab Limited",
-          "openDate": "2026-08-24",
-          "stage": "listed"
-        },
-        {
-          "id": "augmont",
-          "company": "Augmont Enterprises Limited",
-          "openDate": "2026-08-21",
-          "stage": "listed"
-        },
-        {
-          "id": "tempsens",
-          "company": "Tempsens Instruments (India) Limited",
-          "openDate": "2026-08-20",
-          "stage": "listed"
-        },
-        {
-          "id": "sunshine",
-          "company": "Sunshine Pictures Limited",
-          "openDate": "2026-08-18",
-          "stage": "listed"
-        },
         {
           "id": "torrent-gas-limited",
           "company": "Torrent Gas Limited",

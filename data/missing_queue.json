@@ -1,10 +1,9 @@
 {
-  "generatedAt": "2026-09-13T10:27:39+05:30",
+  "generatedAt": "2026-09-13T15:30:33+05:30",
   "asOfDate": "2026-09-13",
   "recordCount": 1371,
-  "queueCount": 1334,
+  "queueCount": 1322,
   "priorityCounts": {
-    "P2 recent IPO (30d)": 12,
     "P3 filing pipeline": 4,
     "P4 recent history (2y)": 411,
     "P5 historical backfill": 907
@@ -15,242 +14,11 @@
     "exchange.issueComposition": 229,
     "lifecycle.listingDate": 35,
     "exchange.priceBand": 23,
-    "offer.promoterShareholding": 15,
-    "offer.registrar": 4,
-    "offer.leadManagers": 3,
-    "offer.promoters": 2,
-    "offer.objectsOfIssue": 2,
-    "offer.financials": 2,
+    "offer.promoterShareholding": 4,
+    "offer.leadManagers": 1,
     "provenance.sources": 1
   },
   "queue": [
-    {
-      "id": "sunshine",
-      "company": "Sunshine Pictures Limited",
-      "symbol": "SUNSHINE",
-      "stage": "listed",
-      "openDate": "2026-08-18",
-      "closeDate": "2026-08-20",
-      "listingDate": "2026-08-25",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 68.4,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 6,
-      "missingFields": [
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.promoters",
-        "offer.objectsOfIssue",
-        "offer.financials",
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/sunshine/"
-    },
-    {
-      "id": "symbiotec",
-      "company": "Symbiotec Pharmalab Limited",
-      "symbol": "SYMBIOTEC",
-      "stage": "listed",
-      "openDate": "2026-08-24",
-      "closeDate": "2026-08-27",
-      "listingDate": "2026-09-01",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 68.4,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 6,
-      "missingFields": [
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.promoters",
-        "offer.objectsOfIssue",
-        "offer.financials",
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/symbiotec/"
-    },
-    {
-      "id": "pranav",
-      "company": "Pranav Constructions Limited",
-      "symbol": "PRANAV",
-      "stage": "closed",
-      "openDate": "2026-09-07",
-      "closeDate": "2026-09-09",
-      "listingDate": null,
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 88.9,
-      "expectedFieldCount": 18,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "offer.registrar",
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/pranav/"
-    },
-    {
-      "id": "arcil",
-      "company": "Asset Reconstruction Company (India) Limited",
-      "symbol": "ARCIL",
-      "stage": "closed",
-      "openDate": "2026-09-09",
-      "closeDate": "2026-09-11",
-      "listingDate": null,
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 94.4,
-      "expectedFieldCount": 18,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/arcil/"
-    },
-    {
-      "id": "augmont",
-      "company": "Augmont Enterprises Limited",
-      "symbol": "AUGMONT",
-      "stage": "listed",
-      "openDate": "2026-08-21",
-      "closeDate": "2026-08-25",
-      "listingDate": "2026-08-31",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 94.7,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/augmont/"
-    },
-    {
-      "id": "glasswall",
-      "company": "Glass Wall Systems (India) Limited",
-      "symbol": "GLASSWALL",
-      "stage": "closed",
-      "openDate": "2026-09-08",
-      "closeDate": "2026-09-10",
-      "listingDate": null,
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 94.4,
-      "expectedFieldCount": 18,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/glasswall/"
-    },
-    {
-      "id": "lccproject",
-      "company": "LCC Projects Limited",
-      "symbol": "LCCPROJECT",
-      "stage": "closed",
-      "openDate": "2026-09-09",
-      "closeDate": "2026-09-11",
-      "listingDate": null,
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 94.4,
-      "expectedFieldCount": 18,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/lccproject/"
-    },
-    {
-      "id": "lumino",
-      "company": "Lumino Industries Limited",
-      "symbol": "LUMINO",
-      "stage": "listed",
-      "openDate": "2026-08-27",
-      "closeDate": "2026-08-31",
-      "listingDate": "2026-09-03",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 94.4,
-      "expectedFieldCount": 18,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/lumino/"
-    },
-    {
-      "id": "mpimanipal",
-      "company": "Manipal Payment and Identity Solutions Limited",
-      "symbol": "MPIMANIPAL",
-      "stage": "closed",
-      "openDate": "2026-09-09",
-      "closeDate": "2026-09-11",
-      "listingDate": null,
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 94.4,
-      "expectedFieldCount": 18,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/mpimanipal/"
-    },
-    {
-      "id": "prasolchem",
-      "company": "Prasol Chemicals Limited",
-      "symbol": "PRASOLCHEM",
-      "stage": "closed",
-      "openDate": "2026-09-08",
-      "closeDate": "2026-09-10",
-      "listingDate": null,
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 94.4,
-      "expectedFieldCount": 18,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/prasolchem/"
-    },
-    {
-      "id": "steamhouse",
-      "company": "Steamhouse India Limited",
-      "symbol": "STEAMHOUSE",
-      "stage": "closed",
-      "openDate": "2026-09-09",
-      "closeDate": "2026-09-11",
-      "listingDate": null,
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 94.4,
-      "expectedFieldCount": 18,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.registrar"
-      ],
-      "profilePath": "ipo/steamhouse/"
-    },
-    {
-      "id": "tempsens",
-      "company": "Tempsens Instruments (India) Limited",
-      "symbol": "TEMPSENS",
-      "stage": "listed",
-      "openDate": "2026-08-20",
-      "closeDate": "2026-08-24",
-      "listingDate": "2026-08-28",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 94.7,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/tempsens/"
-    },
     {
       "id": "national-stock-exchange-of-india-limited",
       "company": "National Stock Exchange of India Limited",
@@ -5911,6 +5679,222 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/finbud/"
+    },
+    {
+      "id": "flysbs",
+      "company": "FlySBS Aviation Limited",
+      "symbol": "FLYSBS",
+      "stage": "listed",
+      "openDate": "2025-08-01",
+      "closeDate": "2025-08-05",
+      "listingDate": "2025-08-08",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/flysbs/"
+    },
+    {
+      "id": "fwstc",
+      "company": "Flywings Simulator Training Centre Limited",
+      "symbol": "FWSTC",
+      "stage": "listed",
+      "openDate": "2025-12-05",
+      "closeDate": "2025-12-09",
+      "listingDate": "2025-12-12",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/fwstc/"
+    },
+    {
+      "id": "utlsolar",
+      "company": "Fujiyama Power Systems Limited",
+      "symbol": "UTLSOLAR",
+      "stage": "listed",
+      "openDate": "2025-11-13",
+      "closeDate": "2025-11-17",
+      "listingDate": "2025-11-20",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/utlsolar/"
+    },
+    {
+      "id": "gkenergy",
+      "company": "GK Energy Limited",
+      "symbol": "GKENERGY",
+      "stage": "listed",
+      "openDate": "2025-09-19",
+      "closeDate": "2025-09-23",
+      "listingDate": "2025-09-26",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/gkenergy/"
+    },
+    {
+      "id": "ebgng",
+      "company": "GNG Electronics Limited",
+      "symbol": "EBGNG",
+      "stage": "listed",
+      "openDate": "2025-07-23",
+      "closeDate": "2025-07-25",
+      "listingDate": "2025-07-30",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/ebgng/"
+    },
+    {
+      "id": "gml",
+      "company": "Galaxy Medicare Limited",
+      "symbol": "GML",
+      "stage": "listed",
+      "openDate": "2025-09-10",
+      "closeDate": "2025-09-12",
+      "listingDate": "2025-09-17",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/gml/"
+    },
+    {
+      "id": "ganeshcp",
+      "company": "Ganesh Consumer Products Limited",
+      "symbol": "GANESHCP",
+      "stage": "listed",
+      "openDate": "2025-09-22",
+      "closeDate": "2025-09-24",
+      "listingDate": "2025-09-29",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/ganeshcp/"
+    },
+    {
+      "id": "gemaroma",
+      "company": "Gem Aromatics Limited",
+      "symbol": "GEMAROMA",
+      "stage": "listed",
+      "openDate": "2025-08-19",
+      "closeDate": "2025-08-21",
+      "listingDate": "2025-08-26",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/gemaroma/"
+    },
+    {
+      "id": "genxai",
+      "company": "GenXAI Analytics Limited",
+      "symbol": "GENXAI",
+      "stage": "listed",
+      "openDate": "2026-06-05",
+      "closeDate": "2026-06-09",
+      "listingDate": "2026-06-12",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/genxai/"
+    },
+    {
+      "id": "globecivil",
+      "company": "Globe Civil Projects Limited",
+      "symbol": "GLOBECIVIL",
+      "stage": "listed",
+      "openDate": "2025-06-24",
+      "closeDate": "2025-06-26",
+      "listingDate": "2025-07-01",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/globecivil/"
+    },
+    {
+      "id": "glottis",
+      "company": "Glottis Limited",
+      "symbol": "GLOTTIS",
+      "stage": "listed",
+      "openDate": "2025-09-29",
+      "closeDate": "2025-10-01",
+      "listingDate": "2025-10-07",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/glottis/"
+    },
+    {
+      "id": "greenleaf",
+      "company": "Greenleaf Envirotech Limited",
+      "symbol": "GREENLEAF",
+      "stage": "listed",
+      "openDate": "2025-09-30",
+      "closeDate": "2025-10-06",
+      "listingDate": "2025-10-09",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/greenleaf/"
     }
   ],
   "notes": [
