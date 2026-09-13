@@ -15,41 +15,55 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Fetch BSE production JS
+      - name: Probe BSE modern historical IPO API
         shell: bash
         run: |
           UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/152 Safari/537.36"
-          curl --http1.1 -fL --retry 3 --retry-all-errors --retry-delay 2 -A "$UA" \
-            -H "Referer: https://www.bseindia.com/markets/PublicIssues/IPOIssues" \
-            "https://www.bseindia.com/assets/includenew/js/main-5C6S24SS.js" -o /tmp/main.js
+          BASE="https://api.bseindia.com/BseIndiaAPI/api/GetPublicIssue_par_updated/w"
+          for QS in \
+            "?flag=1&status=H&exchange=&ir_flag=IPO" \
+            "?flag=1&status=H&exchange=Mainboard&ir_flag=IPO" \
+            "?flag=1&status=H&exchange=SME&ir_flag=IPO"; do
+            echo "=== $QS ==="
+            curl --http1.1 -sS -L --max-time 30 -A "$UA" \
+              -H "Accept: application/json, text/plain, */*" \
+              -H "Origin: https://www.bseindia.com" \
+              -H "Referer: https://www.bseindia.com/markets/PublicIssues/IPOIssues" \
+              -w "\nHTTP:%{http_code} SIZE:%{size_download}\n" \
+              "$BASE$QS" | tee /tmp/out.json | head -c 40000
+            echo
+          done
 
-      - name: Print likely public-issue API names
+      - name: Check P2 issuer hits and reconstruct DisplayIPO URLs
         shell: python
         run: |
-          import re
-          raw = open('/tmp/main.js', encoding='utf-8', errors='ignore').read()
-          needles = ['DisplayIPO','IPOIssues','PublicIssues','IPO_NO','startdt','IPONo','IssueSummary','IPO_HomePageDetail']
-          seen = set()
-          for needle in needles:
-              start = 0
-              while True:
-                  pos = raw.find(needle, start)
-                  if pos < 0: break
-                  chunk = raw[max(0,pos-2200):pos+4000]
-                  apis = sorted(set(re.findall(r'["\'](/?[A-Za-z0-9_./-]+/w(?:\?[^"\']*)?)["\']', chunk)))
-                  key = (needle, tuple(apis))
-                  if apis and key not in seen:
-                      seen.add(key)
-                      print(f'=== {needle} ===')
-                      print('\n'.join(apis))
-                      print(chunk)
-                  start = pos + len(needle)
-
-      - name: Probe candidate API strings globally
-        shell: python
-        run: |
-          import re
-          raw = open('/tmp/main.js', encoding='utf-8', errors='ignore').read()
-          vals = sorted(set(re.findall(r'["\']([^"\']*(?:IPO|PublicIssue|IssueSummary)[^"\']*/w[^"\']*)["\']', raw, re.I)))
-          for v in vals:
-              print(v)
+          import json, urllib.parse, urllib.request
+          names = [
+            'ABH HEALTHCARE','ANNU PROJECTS','ASHUTOSH FIBRE','AUGMONT ENTERPRISES','DEEPA JEWELLERS',
+            'ESDS SOFTWARE','GAJA ALTERNATIVE','HORIZON INDUSTRIAL','HY-TECH ENGINEERS','KANOHAR ELECTRICALS',
+            'LALITHAA JEWELLERY','LUMINO INDUSTRIES','MADHUR KNIT','PRANAV CONSTRUCTIONS','PRIORITY JEWELS',
+            'PURPLE STYLE','QUALIANCE INTERNATIONAL','RAYS OF BELIEF','SHANKESH JEWELLERS','SHANTI INORGANICS',
+            'SKYTECH INFINITE','SKYWAYS AIR','SUMAX ENGINEERING','SUNSHINE PICTURES','SYMBIOTEC PHARMALAB',
+            'ASSET RECONSTRUCTION COMPANY','GLASS WALL SYSTEMS','KARAMTARA ENGINEERING','LCC PROJECTS',
+            'MANIPAL PAYMENT','PRASOL CHEMICALS','STEAMHOUSE INDIA'
+          ]
+          url = 'https://api.bseindia.com/BseIndiaAPI/api/GetPublicIssue_par_updated/w?flag=1&status=H&exchange=&ir_flag=IPO'
+          req = urllib.request.Request(url, headers={'User-Agent':'Mozilla/5.0','Referer':'https://www.bseindia.com/markets/PublicIssues/IPOIssues','Origin':'https://www.bseindia.com','Accept':'application/json'})
+          data = json.loads(urllib.request.urlopen(req, timeout=30).read().decode())
+          rows = data.get('Table') or []
+          print('rows', len(rows))
+          for row in rows:
+            company = str(row.get('Scrip_Name') or row.get('Scrip_name') or '').upper()
+            if any(n in company or company in n for n in names):
+              start = str(row.get('Start_Dt') or '')[:10]
+              if start:
+                y,m,d = start.split('-')
+                startdt = f'{d}/{m}/{y}'
+              else:
+                startdt = ''
+              qs = urllib.parse.urlencode({
+                'id': row.get('Scrip_cd'), 'type': row.get('IR_flag'), 'status': row.get('Status'),
+                'IPONo': row.get('IPO_NO'), 'startdt': startdt
+              })
+              print(company, row)
+              print('URL=https://www.bseindia.com/markets/publicIssues/DisplayIPO.aspx?'+qs)
