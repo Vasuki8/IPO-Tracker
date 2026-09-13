@@ -111,6 +111,27 @@ class P4NSEHistoryGuardTests(unittest.TestCase):
         }
         self.assertEqual(mod.classify_nse_historical_issue(row), "non-equity")
 
+    def test_coupon_maturity_debt_symbols_are_rejected_even_when_labeled_ipo(self):
+        for symbol in ("935IIFL33", "790IHFL27", "975SCL35"):
+            with self.subTest(symbol=symbol):
+                row = {
+                    "companyName": "Example Finance Limited",
+                    "smSymbol": symbol,
+                    "issueType": "IPO",
+                }
+                self.assertEqual(mod.classify_nse_historical_issue(row), "non-equity")
+
+    def test_legitimate_numeric_equity_tickers_are_not_treated_as_debt(self):
+        for symbol in ("3MINDIA", "360ONE"):
+            with self.subTest(symbol=symbol):
+                row = {
+                    "companyName": "Example Equity Limited",
+                    "smSymbol": symbol,
+                    "securityType": "EQ",
+                    "issueType": "IPO",
+                }
+                self.assertEqual(mod.classify_nse_historical_issue(row), "equity-ipo")
+
     def test_unknown_history_row_is_kept_for_conservative_validation(self):
         row = {"companyName": "Unclassified Example Limited"}
         self.assertEqual(mod.classify_nse_historical_issue(row), "unknown")
