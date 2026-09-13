@@ -1,0 +1,72 @@
+name: Probe P2 SEBI backfill
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/probe-p2-sebi-backfill.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.1.0
+        with:
+          version: "latest-known"
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Sync dependencies
+        run: uv sync
+
+      - name: Preview wider SEBI discovery and offer extraction
+        shell: bash
+        run: |
+          echo '=== BASELINE ==='
+          uv run python - <<'PY'
+          import json
+          q=json.load(open('data/missing_queue.json'))
+          p2=[x for x in q['queue'] if x.get('priority')==2]
+          print('P2_COUNT', len(p2))
+          from collections import Counter
+          print('P2_GAPS', dict(Counter(f for x in p2 for f in x.get('missingFields',[]))))
+          PY
+
+          echo '=== CORE UPDATE WITH 6 SEBI PAGES ==='
+          uv run python scripts/run_update_v2.py --history-days 365 --sebi-pages 6
+
+          echo '=== RESOLVE SEBI LANDING PAGES ==='
+          uv run python scripts/enrich_sebi_document_links.py --priority-max 2 --limit 0
+
+          echo '=== V11 OFFER EXTRACTION ==='
+          uv run python scripts/run_offer_docs_v11.py --limit 0
+
+          uv run python scripts/audit_data_completeness.py
+          uv run python scripts/build_missing_queue.py
+
+          echo '=== PREVIEW RESULT ==='
+          uv run python - <<'PY'
+          import json
+          from collections import Counter
+          q=json.load(open('data/missing_queue.json'))
+          p2=[x for x in q['queue'] if x.get('priority')==2]
+          print('P2_COUNT', len(p2))
+          print('P2_GAPS', dict(Counter(f for x in p2 for f in x.get('missingFields',[]))))
+          for x in p2:
+              print(x['id'], '|', x['company'], '|', ','.join(x.get('missingFields',[])))
+          d=json.load(open('data/ipos.json'))
+          health=(d.get('meta') or {}).get('sourceHealth') or {}
+          print('SEBI_HEALTH', json.dumps(health.get('SEBI'), default=str))
+          print('SEBI_LINK_HEALTH', json.dumps(health.get('SEBI-document-links'), default=str))
+          print('OFFER_HEALTH', json.dumps(health.get('Offer-docs'), default=str))
+          PY
