@@ -12,6 +12,7 @@ on:
       - "scripts/enrich_sebi_priority_registers_v2.py"
       - "scripts/enrich_sebi_document_links.py"
       - "scripts/run_offer_docs_v13.py"
+      - "scripts/run_offer_docs_v14.py"
       - "scripts/run_offer_docs_progressive.py"
       - "scripts/run_issuer_offer_docs.py"
       - "scripts/run_issuer_offer_docs_v3.py"
@@ -19,6 +20,7 @@ on:
       - "tests/test_p4_record_repairs.py"
       - "tests/test_p4_record_repairs_v2.py"
       - "tests/test_offer_docs_v13.py"
+      - "tests/test_offer_docs_v14.py"
       - "tests/test_offer_docs_progressive.py"
       - "tests/test_issuer_offer_docs_v3.py"
       - "tests/test_issuer_offer_docs_v4.py"
@@ -75,6 +77,7 @@ jobs:
           uv run python -m unittest discover -s tests -p "test_p4_record_repairs.py" -v
           uv run python -m unittest discover -s tests -p "test_p4_record_repairs_v2.py" -v
           uv run python -m unittest discover -s tests -p "test_offer_docs_v13.py" -v
+          uv run python -m unittest discover -s tests -p "test_offer_docs_v14.py" -v
           uv run python -m unittest discover -s tests -p "test_issuer_offer_docs_v3.py" -v
           uv run python -m unittest discover -s tests -p "test_issuer_offer_docs_v4.py" -v
           uv run python -m unittest discover -s tests -p "test_verified_lot_sizes.py" -v

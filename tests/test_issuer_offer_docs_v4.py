@@ -11,8 +11,8 @@ spec.loader.exec_module(mod)
 
 
 class IssuerOfferDocsV4Tests(unittest.TestCase):
-    def test_current_parser_remains_v13(self):
-        self.assertEqual(mod.base.PARSER_VERSION, 13)
+    def test_current_parser_is_v14(self):
+        self.assertEqual(mod.base.PARSER_VERSION, 14)
 
     def test_new_official_sebi_fallbacks(self):
         expected = {
