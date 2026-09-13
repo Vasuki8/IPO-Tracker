@@ -19,7 +19,7 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - name: Checkout
         uses: actions/checkout@v7.0.1
@@ -35,3 +35,34 @@ jobs:
         run: uv run python -m unittest discover -s tests -p "test_issuer_offer_docs.py" -v
       - name: Run parser v10 regressions
         run: uv run python -m unittest discover -s tests -p "test_offer_docs_v10.py" -v
+      - name: Preview P0 and P1 validated fallbacks
+        shell: bash
+        run: |
+          uv run python scripts/run_issuer_offer_docs.py --priority-max 1 --limit 0
+          uv run python scripts/audit_data_completeness.py
+          uv run python scripts/build_missing_queue.py
+          uv run python - <<'PY'
+          import json
+          from pathlib import Path
+
+          payload = json.loads(Path("data/ipos.json").read_text(encoding="utf-8"))
+          queue = json.loads(Path("data/missing_queue.json").read_text(encoding="utf-8"))
+          audit = json.loads(Path("data/completeness.json").read_text(encoding="utf-8"))
+          by_id = {str(r.get("id")): r for r in payload.get("ipos") or []}
+          q_by_id = {str(r.get("id")): r for r in queue.get("queue") or []}
+
+          print("OFFER_SCORE", audit["scores"]["offerDocumentEligible"])
+          for record_id in ("injecto-polymers-limited", "vama-wovenfab-limited"):
+              row = by_id.get(record_id, {})
+              item = q_by_id.get(record_id, {})
+              print(
+                  "TARGET",
+                  record_id,
+                  "shareholding=", row.get("shareholding"),
+                  "issueComposition=", row.get("issueComposition"),
+                  "freshIssueCr=", row.get("freshIssueCr"),
+                  "ofsCr=", row.get("ofsCr"),
+                  "missing=", item.get("missingFields"),
+                  "extraction=", row.get("issuerDocumentExtraction"),
+              )
+          PY
