@@ -7,10 +7,12 @@ ownership layouts observed in the remaining priority official RHPs:
 * Injecto: ``Total (A) Promoter and Promoter Group ... 88.14``
 * Manika: ``Total – C (A+B) ... 100.00``
 
-Both rules require an explicit pre-Issue/pre-Offer ownership context and a
-Promoter Group marker in the same bounded window. They therefore read stated
-combined ownership directly and do not infer from promoter-contribution,
-lock-in, director shareholding or risk-factor percentages.
+The Manika rule still requires explicit pre-Offer context. The Injecto rule is
+bound to the SEBI shareholding-pattern schema itself: it requires the combined
+(A) Promoter and Promoter Group row, the share-count column shape, nearby
+shareholding/voting-rights headers, and the following (B) Public row. This keeps
+shareholder counts, promoter-contribution percentages and narrative risk-factor
+percentages out of the ownership field.
 """
 from __future__ import annotations
 
@@ -53,6 +55,19 @@ def _safe_context(flat: str, start: int, end: int) -> str | None:
     return block
 
 
+def _injecto_shareholding_context(flat: str, start: int, end: int) -> bool:
+    """Require the explicit SEBI shareholding-pattern table around Injecto's row."""
+    before = flat[max(0, start - 3200) : start]
+    after = flat[end : min(len(flat), end + 900)]
+    if not re.search(r"shareholding", before, re.I):
+        return False
+    if not re.search(r"(?:voting\s+rights|A\s*\+\s*B\s*\+\s*C|dematerialized)", before, re.I):
+        return False
+    if not re.search(r"\(\s*B\s*\)\s+Public\b", after, re.I):
+        return False
+    return True
+
+
 def _explicit_combined_ownership(text: str):
     flat = re.sub(r"\s+", " ", base.norm_space(text)).strip()
 
@@ -70,17 +85,19 @@ def _explicit_combined_ownership(text: str):
         if pct is not None:
             return pct
 
-    # Injecto-style shareholding-pattern aggregate row:
-    # Total (A) Promoter and Promoter Group 15 1,33,77,200 ... 88.14 ...
-    # Require either a decimal percentage or 100.x so shareholder counts and
-    # share quantities before the percentage cannot be mistaken for ownership.
+    # Injecto-style SEBI shareholding-pattern aggregate row:
+    # Total (A) Promoter and Promoter Group 15 1,33,77,200 - -
+    # 1,33,77,200 88.14 ... (B) Public ...
+    # The row shape deliberately skips the shareholder count and share quantities
+    # before capturing the first percentage column.
     for match in re.finditer(
-        r"Total\s*\(\s*A\s*\)\s+Promoter\s+and\s+Promoter\s+Group"
-        r".{0,260}?\b(100(?:\.0+)?|\d{1,2}\.\d+)\b",
+        r"Total\s*\(\s*A\s*\)\s+Promoter\s+and\s+Promoter\s+Group\s+"
+        r"\d{1,4}\s+[\d,]{4,}\s+(?:-\s+){0,3}[\d,]{4,}\s+"
+        r"(100(?:\.0+)?|\d{1,2}\.\d+)\b",
         flat,
         re.I,
     ):
-        if _safe_context(flat, match.start(), match.end()) is None:
+        if not _injecto_shareholding_context(flat, match.start(), match.end()):
             continue
         pct = _valid_pct(match.group(1))
         if pct is not None:
