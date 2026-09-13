@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-09-14T04:14:19+05:30",
+  "generatedAt": "2026-09-14T04:22:21+05:30",
   "asOfDate": "2026-09-14",
   "recordCount": 1354,
-  "queueCount": 1032,
+  "queueCount": 1031,
   "priorityCounts": {
-    "P4 recent history (2y)": 125,
+    "P4 recent history (2y)": 124,
     "P5 historical backfill": 907
   },
   "fieldGapCounts": {
     "exchange.lotSize": 1024,
-    "exchange.issueSizeCr": 914,
+    "exchange.issueSizeCr": 910,
     "lifecycle.listingDate": 28,
-    "exchange.issueComposition": 15,
     "exchange.priceBand": 13,
+    "exchange.issueComposition": 11,
     "provenance.sources": 1
   },
   "resolvedUnavailableRecordCount": 5,
@@ -72,50 +72,6 @@
       "profilePath": "ipo/anawil/"
     },
     {
-      "id": "capinvit",
-      "company": "Capital Infra Trust",
-      "symbol": "CAPINVIT",
-      "stage": "listed",
-      "openDate": "2025-01-07",
-      "closeDate": "2025-01-09",
-      "listingDate": "2025-01-17",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/capinvit/"
-    },
-    {
-      "id": "credent",
-      "company": "Credent Connect N Care Limited",
-      "symbol": "CREDENT",
-      "stage": "listed",
-      "openDate": "2026-08-13",
-      "closeDate": "2026-08-17",
-      "listingDate": "2026-08-20",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/credent/"
-    },
-    {
       "id": "fascinate",
       "company": "Fascinate Textiles Limited",
       "symbol": "FASCINATE",
@@ -158,49 +114,6 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/optimystix/"
-    },
-    {
-      "id": "pramodini",
-      "company": "Pramodini Medicare Limited",
-      "symbol": "PRAMODINI",
-      "stage": "listed",
-      "openDate": "2026-08-12",
-      "closeDate": "2026-08-14",
-      "listingDate": "2026-08-19",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/pramodini/"
-    },
-    {
-      "id": "identical",
-      "company": "Identical Brains Studios Limited",
-      "symbol": "IDENTICAL",
-      "stage": "listed",
-      "openDate": "2024-12-18",
-      "closeDate": "2024-12-20",
-      "listingDate": "2024-12-26",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/identical/"
     },
     {
       "id": "igil",
@@ -644,6 +557,26 @@
       "profilePath": "ipo/ckkretail/"
     },
     {
+      "id": "capinvit",
+      "company": "Capital Infra Trust",
+      "symbol": "CAPINVIT",
+      "stage": "listed",
+      "openDate": "2025-01-07",
+      "closeDate": "2025-01-09",
+      "listingDate": "2025-01-17",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/capinvit/"
+    },
+    {
       "id": "cudml",
       "company": "Cash Ur Drive Marketing Limited",
       "symbol": "CUDML",
@@ -762,6 +695,26 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/connplex/"
+    },
+    {
+      "id": "credent",
+      "company": "Credent Connect N Care Limited",
+      "symbol": "CREDENT",
+      "stage": "listed",
+      "openDate": "2026-08-13",
+      "closeDate": "2026-08-17",
+      "listingDate": "2026-08-20",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/credent/"
     },
     {
       "id": "cubeinvit",
@@ -1622,6 +1575,26 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/parth/"
+    },
+    {
+      "id": "pramodini",
+      "company": "Pramodini Medicare Limited",
+      "symbol": "PRAMODINI",
+      "stage": "listed",
+      "openDate": "2026-08-12",
+      "closeDate": "2026-08-14",
+      "listingDate": "2026-08-19",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/pramodini/"
     },
     {
       "id": "primecab",
@@ -6257,6 +6230,27 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/canarys/"
+    },
+    {
+      "id": "capacite",
+      "company": "Capacit'e Infraprojects Limited",
+      "symbol": "CAPACITE",
+      "stage": "listed",
+      "openDate": "2017-09-13",
+      "closeDate": "2017-09-15",
+      "listingDate": "2017-09-25",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/capacite/"
     }
   ],
   "resolvedUnavailable": [
