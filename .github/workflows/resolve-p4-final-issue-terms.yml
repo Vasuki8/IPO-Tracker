@@ -1,0 +1,101 @@
+name: Resolve P4 final issue terms
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/apply_verified_p4_final_issue_terms.py"
+      - "tests/test_verified_p4_final_issue_terms.py"
+      - ".github/workflows/resolve-p4-final-issue-terms.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p4-final-issue-terms
+  cancel-in-progress: false
+
+jobs:
+  apply-final-issue-terms:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v7.0.1
+        with:
+          ref: main
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.1.0
+        with:
+          version: "latest-known"
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Sync dependencies
+        run: uv sync
+
+      - name: Test final issue-term closeout
+        run: |
+          uv run python -m unittest discover -s tests -p "test_verified_p4_final_issue_terms.py" -v
+          uv run python -m unittest discover -s tests -p "test_data_completeness.py" -v
+          uv run python -m unittest discover -s tests -p "test_missing_queue.py" -v
+
+      - name: Record starting data revision
+        run: git rev-parse HEAD:data/ipos.json > /tmp/base-data-blob
+
+      - name: Apply final P4 issue terms
+        run: |
+          uv run python scripts/apply_verified_p4_final_issue_terms.py
+          uv run python scripts/audit_data_completeness.py
+          uv run python scripts/build_missing_queue.py
+
+      - name: Publish final issue-term gains safely
+        shell: bash
+        run: |
+          cp data/ipos.json /tmp/generated-ipos.json
+          BASE_DATA="$(cat /tmp/base-data-blob)"
+          git fetch origin main
+          REMOTE_DATA="$(git rev-parse origin/main:data/ipos.json)"
+          if [ "$REMOTE_DATA" != "$BASE_DATA" ]; then
+            echo "Remote IPO data changed during final issue-term pass; refusing stale publication."
+            exit 0
+          fi
+          git reset --hard origin/main
+          cp /tmp/generated-ipos.json data/ipos.json
+          uv run python scripts/build_company_pages.py
+          uv run python scripts/audit_data_completeness.py
+          uv run python scripts/build_missing_queue.py
+          if [ -z "$(git status --porcelain -- data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md ipo/)" ]; then
+            echo "No final issue-term gains to publish"
+            exit 0
+          fi
+          git config user.name "ipo-tracker-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ipos.json data/completeness.json data/missing_queue.json docs/DATA_QUALITY.md ipo/
+          git commit -m "data: close final P4 issue-size residuals"
+          git push origin HEAD:main
+
+      - name: Prove issue-size zero and report composition residuals
+        shell: bash
+        run: |
+          git fetch origin main
+          git show origin/main:data/missing_queue.json > /tmp/current-missing-queue.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          payload = json.loads(Path('/tmp/current-missing-queue.json').read_text(encoding='utf-8'))
+          p4 = [row for row in payload.get('queue') or [] if row.get('priorityLabel') == 'P4 recent history (2y)']
+          size_rows = [row for row in p4 if 'exchange.issueSizeCr' in (row.get('missingFields') or [])]
+          composition_rows = [row for row in p4 if 'exchange.issueComposition' in (row.get('missingFields') or [])]
+          print('P4 issueSizeCr gaps:', len(size_rows))
+          print('P4 issueComposition gaps:', len(composition_rows))
+          print('P4 queue count:', len(p4))
+          print('Issue-size residuals:', [(row.get('id'), row.get('symbol')) for row in size_rows])
+          print('Composition residuals:', [(row.get('id'), row.get('symbol')) for row in composition_rows])
+          if size_rows:
+              raise SystemExit('P4 issue size is not zero')
+          PY
