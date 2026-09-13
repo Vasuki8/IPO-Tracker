@@ -7,7 +7,11 @@ on:
       - main
     paths:
       - "scripts/apply_p4_record_repairs.py"
+      - "scripts/enrich_issuer_offer_docs.py"
+      - "scripts/run_issuer_offer_docs.py"
+      - "scripts/run_issuer_offer_docs_v3.py"
       - "tests/test_p4_record_repairs.py"
+      - "tests/test_issuer_offer_docs_v3.py"
       - ".github/workflows/finish-p4-offer-docs.yml"
   workflow_run:
     workflows:
