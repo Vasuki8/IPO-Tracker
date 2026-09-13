@@ -95,9 +95,11 @@ def _shareholding_windows(flat: str) -> list[str]:
 def _combined_pattern_pct(block: str):
     """Read a direct combined Promoter + Promoter Group pre-Offer percentage."""
     # Full shareholding-pattern tables commonly emit the category marker first:
-    # `(A) Promoter and Promoter Group ... 61.53%`.
+    # `(A) Promoter and Promoter Group ... 61.53%`.  Requiring A prevents a
+    # section heading such as `Promoters and Promoter Group` from borrowing the
+    # first individual promoter percentage that follows it.
     row = re.search(
-        r"(?:\(\s*A\s*\)|\bA\b)?\s*Promoters?\s+(?:and|&|/)\s+Promoter\s+Group"
+        r"(?:\(\s*A\s*\)|\bA\b)\s*Promoters?\s+(?:and|&|/)\s+Promoter\s+Group"
         r".{0,650}?([0-9]+(?:\.[0-9]+)?)\s*%",
         block,
         re.I,
