@@ -395,6 +395,19 @@
           "issueComposition": 2
         },
         "checkedAt": "2026-09-14T04:26:04+05:30"
+      },
+      "verified-p4-final-issue-terms": {
+        "ok": true,
+        "entries": 2,
+        "updated": 2,
+        "rejected": 0,
+        "fields": {
+          "issueSizeCr": 2,
+          "freshIssueCr": 2,
+          "ofsCr": 2,
+          "issueComposition": 2
+        },
+        "checkedAt": "2026-09-14T04:29:55+05:30"
       }
     },
     "errors": [],
@@ -10997,6 +11010,18 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:31+05:30"
+        },
+        {
+          "name": "NSE Fascinate Textiles final RHP package",
+          "kind": "offer-document",
+          "url": "https://nsearchives.nseindia.com/emerge/corporates/content/Fascinate%20Textiles%20Limited_RHP.zip",
+          "asOf": "2026-09-14T04:29:55+05:30"
+        },
+        {
+          "name": "NSE listing circular CML75891",
+          "kind": "exchange",
+          "url": "https://nsearchives.nseindia.com/content/circulars/CML75891.zip",
+          "asOf": "2026-09-14T04:29:55+05:30"
         }
       ],
       "source": {
@@ -11015,12 +11040,26 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4FinalIssueTerms": {
+          "issuePrice": 151.0,
+          "freshShares": 3457600,
+          "ofsShares": 836000,
+          "issueSizeCr": 64.83336,
+          "freshIssueCr": 52.20976,
+          "ofsCr": 12.6236,
+          "openDate": "2026-08-11",
+          "sourceBasis": "Final RHP structure: 34,57,600 fresh shares plus 8,36,000 OFS shares; NSE listing circular fixes final issue price at Rs 151 per share.",
+          "sourceUrls": [
+            "https://nsearchives.nseindia.com/emerge/corporates/content/Fascinate%20Textiles%20Limited_RHP.zip",
+            "https://nsearchives.nseindia.com/content/circulars/CML75891.zip"
+          ]
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "checkedAt": "2026-09-14T04:29:55+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -11053,6 +11092,15 @@
         "lastAttemptAt": "2026-09-14T02:11:17+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "issueSizeCr": 64.83336,
+      "freshIssueCr": 52.20976,
+      "ofsCr": 12.6236,
+      "issueComposition": {
+        "freshIssueCr": 52.20976,
+        "ofsCr": 12.6236,
+        "totalIssueSizeCr": 64.83336,
+        "sourceBasis": "Final RHP structure: 34,57,600 fresh shares plus 8,36,000 OFS shares; NSE listing circular fixes final issue price at Rs 151 per share."
       }
     },
     {
@@ -12401,6 +12449,18 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:31+05:30"
+        },
+        {
+          "name": "Anawil Wire and Engineering final RHP",
+          "kind": "offer-document",
+          "url": "https://anawilvapi.in/uploads/investors/RHP-Anawil%20Wire%20and%20Engineering%20Limited.pdf",
+          "asOf": "2026-09-14T04:29:55+05:30"
+        },
+        {
+          "name": "NSE listing circular CML75648",
+          "kind": "exchange",
+          "url": "https://nsearchives.nseindia.com/content/circulars/CML75648.zip",
+          "asOf": "2026-09-14T04:29:55+05:30"
         }
       ],
       "source": {
@@ -12419,14 +12479,29 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4FinalIssueTerms": {
+          "issuePrice": 270.0,
+          "freshShares": 5284800,
+          "ofsShares": 1300800,
+          "issueSizeCr": 177.8112,
+          "freshIssueCr": 142.6896,
+          "ofsCr": 35.1216,
+          "openDate": "2026-08-03",
+          "sourceBasis": "Final RHP structure: 52,84,800 fresh shares plus 13,00,800 OFS shares; NSE listing circular fixes final issue price at Rs 270 per share.",
+          "sourceUrls": [
+            "https://anawilvapi.in/uploads/investors/RHP-Anawil%20Wire%20and%20Engineering%20Limited.pdf",
+            "https://nsearchives.nseindia.com/content/circulars/CML75648.zip"
+          ]
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "checkedAt": "2026-09-14T04:29:55+05:30",
         "checks": [],
         "independentSources": [
+          "Anawil",
           "NSE"
         ]
       },
@@ -12457,6 +12532,15 @@
         "lastAttemptAt": "2026-09-14T02:11:19+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "issueSizeCr": 177.8112,
+      "freshIssueCr": 142.6896,
+      "ofsCr": 35.1216,
+      "issueComposition": {
+        "freshIssueCr": 142.6896,
+        "ofsCr": 35.1216,
+        "totalIssueSizeCr": 177.8112,
+        "sourceBasis": "Final RHP structure: 52,84,800 fresh shares plus 13,00,800 OFS shares; NSE listing circular fixes final issue price at Rs 270 per share."
       }
     },
     {
