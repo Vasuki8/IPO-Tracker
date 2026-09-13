@@ -89,12 +89,15 @@ jobs:
       - name: Apply verified P4 fast path
         shell: bash
         run: |
-          # Apply deterministic/source-registered repairs first. These paths are
-          # bounded and should publish independently of slower discovery scans.
+          # Apply deterministic/source-registered repairs first. Verified offer
+          # documents are deliberately bounded because deep extraction can scan
+          # hundreds of pages per issuer. The v4 scheduler skips current-parser
+          # successes and moves previous-batch failures behind fresh candidates,
+          # so repeated runs progress through the registry instead of stalling.
           uv run python scripts/apply_p4_record_repairs_v2.py
           uv run python scripts/apply_verified_lot_sizes.py
           uv run python scripts/apply_verified_recent_issue_terms.py
-          uv run python scripts/run_issuer_offer_docs_v4.py --priority-max 4 --limit 0
+          uv run python scripts/run_issuer_offer_docs_v4.py --priority-max 4 --limit 8
           uv run python scripts/apply_verified_recent_offer_fields.py
           uv run python scripts/audit_data_completeness.py
           uv run python scripts/build_missing_queue.py
