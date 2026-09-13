@@ -369,6 +369,19 @@
         },
         "asOf": "2026-09-14T03:41:10+05:30",
         "errors": []
+      },
+      "verified-p4-official-issue-terms": {
+        "ok": true,
+        "entries": 7,
+        "updated": 7,
+        "identityRejected": 0,
+        "fields": {
+          "issueSizeCr": 7,
+          "freshIssueCr": 4,
+          "ofsCr": 4,
+          "issueComposition": 4
+        },
+        "checkedAt": "2026-09-14T03:45:28+05:30"
       }
     },
     "errors": [],
@@ -44044,6 +44057,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=UNIMECH&type=Past",
           "asOf": "2026-09-13T18:42:55+05:30"
+        },
+        {
+          "name": "SEBI Unimech Aerospace and Manufacturing final Prospectus",
+          "kind": "regulator",
+          "url": "https://www.sebi.gov.in/filings/public-issues/dec-2024/unimech-aerospace-and-manufacturing-limited-prospectus_90272.html",
+          "asOf": "2026-09-14T03:45:28+05:30"
         }
       ],
       "source": {
@@ -44062,15 +44081,24 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4OfficialIssueTerms": {
+          "issueSizeCr": 500.0,
+          "freshIssueCr": 250.0,
+          "ofsCr": 250.0,
+          "sourceUrl": "https://www.sebi.gov.in/filings/public-issues/dec-2024/unimech-aerospace-and-manufacturing-limited-prospectus_90272.html",
+          "sourceKind": "regulator",
+          "openDate": "2024-12-23"
         }
       },
       "documents": [],
       "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "status": "verified",
+        "checkedAt": "2026-09-14T03:45:28+05:30",
         "checks": [],
         "independentSources": [
-          "NSE"
+          "NSE",
+          "SEBI"
         ]
       },
       "profilePath": "ipo/unimech/",
@@ -44096,6 +44124,15 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
+      },
+      "issueSizeCr": 500.0,
+      "freshIssueCr": 250.0,
+      "ofsCr": 250.0,
+      "issueComposition": {
+        "freshIssueCr": 250.0,
+        "ofsCr": 250.0,
+        "totalIssueSizeCr": 500.0,
+        "sourceBasis": "official SEBI final offer terms"
       }
     },
     {
@@ -44210,6 +44247,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SENORES&type=Past",
           "asOf": "2026-09-13T18:43:05+05:30"
+        },
+        {
+          "name": "SEBI Senores Pharmaceuticals final Prospectus",
+          "kind": "regulator",
+          "url": "https://www.sebi.gov.in/filings/public-issues/dec-2024/senores-pharmaceuticals-limited-prospectus_90178.html",
+          "asOf": "2026-09-14T03:45:28+05:30"
         }
       ],
       "source": {
@@ -44228,15 +44271,24 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4OfficialIssueTerms": {
+          "issueSizeCr": 582.11,
+          "freshIssueCr": 500.0,
+          "ofsCr": 82.11,
+          "sourceUrl": "https://www.sebi.gov.in/filings/public-issues/dec-2024/senores-pharmaceuticals-limited-prospectus_90178.html",
+          "sourceKind": "regulator",
+          "openDate": "2024-12-20"
         }
       },
       "documents": [],
       "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "status": "verified",
+        "checkedAt": "2026-09-14T03:45:28+05:30",
         "checks": [],
         "independentSources": [
-          "NSE"
+          "NSE",
+          "SEBI"
         ]
       },
       "profilePath": "ipo/senores/",
@@ -44262,6 +44314,15 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
+      },
+      "issueSizeCr": 582.11,
+      "freshIssueCr": 500.0,
+      "ofsCr": 82.11,
+      "issueComposition": {
+        "freshIssueCr": 500.0,
+        "ofsCr": 82.11,
+        "totalIssueSizeCr": 582.11,
+        "sourceBasis": "official SEBI final offer terms"
       }
     },
     {
@@ -44293,6 +44354,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CARRARO&type=Past",
           "asOf": "2026-09-13T18:43:10+05:30"
+        },
+        {
+          "name": "SEBI Carraro India final Prospectus",
+          "kind": "regulator",
+          "url": "https://www.sebi.gov.in/filings/public-issues/dec-2024/carraro-india-limited-prospectus_91769.html",
+          "asOf": "2026-09-14T03:45:28+05:30"
         }
       ],
       "source": {
@@ -44311,15 +44378,24 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4OfficialIssueTerms": {
+          "issueSizeCr": 1250.0,
+          "freshIssueCr": 0.0,
+          "ofsCr": 1250.0,
+          "sourceUrl": "https://www.sebi.gov.in/filings/public-issues/dec-2024/carraro-india-limited-prospectus_91769.html",
+          "sourceKind": "regulator",
+          "openDate": "2024-12-20"
         }
       },
       "documents": [],
       "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "status": "verified",
+        "checkedAt": "2026-09-14T03:45:28+05:30",
         "checks": [],
         "independentSources": [
-          "NSE"
+          "NSE",
+          "SEBI"
         ]
       },
       "profilePath": "ipo/carraro/",
@@ -44345,6 +44421,15 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
+      },
+      "issueSizeCr": 1250.0,
+      "freshIssueCr": 0.0,
+      "ofsCr": 1250.0,
+      "issueComposition": {
+        "freshIssueCr": 0.0,
+        "ofsCr": 1250.0,
+        "totalIssueSizeCr": 1250.0,
+        "sourceBasis": "official SEBI final offer terms"
       }
     },
     {
@@ -44376,6 +44461,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=TRANSRAILL&type=Past",
           "asOf": "2026-09-13T18:43:15+05:30"
+        },
+        {
+          "name": "SEBI-hosted BRLM disclosure citing Transrail Prospectus",
+          "kind": "regulator",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1752651007576_865.pdf",
+          "asOf": "2026-09-14T03:45:28+05:30"
         }
       ],
       "source": {
@@ -44394,15 +44485,24 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4OfficialIssueTerms": {
+          "issueSizeCr": 838.912,
+          "freshIssueCr": null,
+          "ofsCr": null,
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1752651007576_865.pdf",
+          "sourceKind": "regulator",
+          "openDate": "2024-12-19"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "checkedAt": "2026-09-14T03:45:28+05:30",
         "checks": [],
         "independentSources": [
-          "NSE"
+          "NSE",
+          "SEBI-hosted"
         ]
       },
       "profilePath": "ipo/transraill/",
@@ -44429,7 +44529,8 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
-      }
+      },
+      "issueSizeCr": 838.912
     },
     {
       "id": "sanathan",
@@ -44460,6 +44561,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SANATHAN&type=Past",
           "asOf": "2026-09-13T18:43:20+05:30"
+        },
+        {
+          "name": "SEBI Sanathan Textiles final Prospectus",
+          "kind": "regulator",
+          "url": "https://www.sebi.gov.in/filings/public-issues/dec-2024/sanathan-textiles-limited-prospectus_90156.html",
+          "asOf": "2026-09-14T03:45:28+05:30"
         }
       ],
       "source": {
@@ -44478,15 +44585,24 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4OfficialIssueTerms": {
+          "issueSizeCr": 550.0,
+          "freshIssueCr": null,
+          "ofsCr": null,
+          "sourceUrl": "https://www.sebi.gov.in/filings/public-issues/dec-2024/sanathan-textiles-limited-prospectus_90156.html",
+          "sourceKind": "regulator",
+          "openDate": "2024-12-19"
         }
       },
       "documents": [],
       "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "status": "verified",
+        "checkedAt": "2026-09-14T03:45:28+05:30",
         "checks": [],
         "independentSources": [
-          "NSE"
+          "NSE",
+          "SEBI"
         ]
       },
       "profilePath": "ipo/sanathan/",
@@ -44513,7 +44629,8 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
-      }
+      },
+      "issueSizeCr": 550.0
     },
     {
       "id": "nmsteel",
@@ -44627,6 +44744,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MAMATA&type=Past",
           "asOf": "2026-09-13T18:43:31+05:30"
+        },
+        {
+          "name": "SEBI Mamata Machinery final Prospectus",
+          "kind": "regulator",
+          "url": "https://www.sebi.gov.in/filings/public-issues/dec-2024/mamata-machinery-limited-prospectus_90144.html",
+          "asOf": "2026-09-14T03:45:28+05:30"
         }
       ],
       "source": {
@@ -44645,15 +44768,24 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4OfficialIssueTerms": {
+          "issueSizeCr": 179.349,
+          "freshIssueCr": 0.0,
+          "ofsCr": 179.349,
+          "sourceUrl": "https://www.sebi.gov.in/filings/public-issues/dec-2024/mamata-machinery-limited-prospectus_90144.html",
+          "sourceKind": "regulator",
+          "openDate": "2024-12-19"
         }
       },
       "documents": [],
       "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "status": "verified",
+        "checkedAt": "2026-09-14T03:45:28+05:30",
         "checks": [],
         "independentSources": [
-          "NSE"
+          "NSE",
+          "SEBI"
         ]
       },
       "profilePath": "ipo/mamata/",
@@ -44679,6 +44811,15 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
+      },
+      "issueSizeCr": 179.349,
+      "freshIssueCr": 0.0,
+      "ofsCr": 179.349,
+      "issueComposition": {
+        "freshIssueCr": 0.0,
+        "ofsCr": 179.349,
+        "totalIssueSizeCr": 179.349,
+        "sourceBasis": "official SEBI final offer terms"
       }
     },
     {
@@ -45275,6 +45416,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SAILIFE&type=Past",
           "asOf": "2026-09-13T18:44:14+05:30"
+        },
+        {
+          "name": "SEBI Sai Life Sciences final Prospectus",
+          "kind": "regulator",
+          "url": "https://www.sebi.gov.in/filings/public-issues/dec-2024/sai-life-sciences-limited-prospectus_91998.html",
+          "asOf": "2026-09-14T03:45:28+05:30"
         }
       ],
       "source": {
@@ -45293,15 +45440,24 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "VerifiedP4OfficialIssueTerms": {
+          "issueSizeCr": 3042.62,
+          "freshIssueCr": null,
+          "ofsCr": null,
+          "sourceUrl": "https://www.sebi.gov.in/filings/public-issues/dec-2024/sai-life-sciences-limited-prospectus_91998.html",
+          "sourceKind": "regulator",
+          "openDate": "2024-12-11"
         }
       },
       "documents": [],
       "validation": {
-        "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "status": "verified",
+        "checkedAt": "2026-09-14T03:45:28+05:30",
         "checks": [],
         "independentSources": [
-          "NSE"
+          "NSE",
+          "SEBI"
         ]
       },
       "profilePath": "ipo/sailife/",
@@ -45328,7 +45484,8 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
-      }
+      },
+      "issueSizeCr": 3042.62
     },
     {
       "id": "purpleuted",

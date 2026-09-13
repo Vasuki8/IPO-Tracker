@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-09-14T03:41:12+05:30",
+  "generatedAt": "2026-09-14T03:45:29+05:30",
   "asOfDate": "2026-09-14",
   "recordCount": 1354,
-  "queueCount": 1053,
+  "queueCount": 1046,
   "priorityCounts": {
-    "P4 recent history (2y)": 146,
+    "P4 recent history (2y)": 139,
     "P5 historical backfill": 907
   },
   "fieldGapCounts": {
     "exchange.lotSize": 1024,
-    "exchange.issueSizeCr": 938,
-    "exchange.issueComposition": 33,
+    "exchange.issueSizeCr": 931,
+    "exchange.issueComposition": 29,
     "lifecycle.listingDate": 28,
     "exchange.priceBand": 13,
     "provenance.sources": 1
@@ -310,27 +310,6 @@
       "profilePath": "ipo/c2c/"
     },
     {
-      "id": "carraro",
-      "company": "Carraro India Limited",
-      "symbol": "CARRARO",
-      "stage": "listed",
-      "openDate": "2024-12-20",
-      "closeDate": "2024-12-24",
-      "listingDate": "2024-12-30",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/carraro/"
-    },
-    {
       "id": "damcapital",
       "company": "DAM Capital Advisors Limited",
       "symbol": "DAMCAPITAL",
@@ -457,27 +436,6 @@
       "profilePath": "ipo/iks/"
     },
     {
-      "id": "mamata",
-      "company": "Mamata Machinery Limited",
-      "symbol": "MAMATA",
-      "stage": "listed",
-      "openDate": "2024-12-19",
-      "closeDate": "2024-12-23",
-      "listingDate": "2024-12-27",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/mamata/"
-    },
-    {
       "id": "nmsteel",
       "company": "NewMalayalam Steel Limited",
       "symbol": "NMSTEEL",
@@ -520,27 +478,6 @@
       "profilePath": "ipo/purpleuted/"
     },
     {
-      "id": "senores",
-      "company": "Senores Pharmaceuticals Limited",
-      "symbol": "SENORES",
-      "stage": "listed",
-      "openDate": "2024-12-20",
-      "closeDate": "2024-12-24",
-      "listingDate": "2024-12-30",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/senores/"
-    },
-    {
       "id": "sfml",
       "company": "Supreme Facility Management Limited",
       "symbol": "SFML",
@@ -581,27 +518,6 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/suraksha/"
-    },
-    {
-      "id": "unimech",
-      "company": "Unimech Aerospace and Manufacturing Limited",
-      "symbol": "UNIMECH",
-      "stage": "listed",
-      "openDate": "2024-12-23",
-      "closeDate": "2024-12-26",
-      "listingDate": "2024-12-31",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/unimech/"
     },
     {
       "id": "ventive",
@@ -2165,46 +2081,6 @@
       "profilePath": "ipo/sagility/"
     },
     {
-      "id": "sailife",
-      "company": "Sai Life Sciences Limited",
-      "symbol": "SAILIFE",
-      "stage": "listed",
-      "openDate": "2024-12-11",
-      "closeDate": "2024-12-13",
-      "listingDate": "2024-12-18",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.issueSizeCr"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/sailife/"
-    },
-    {
-      "id": "sanathan",
-      "company": "Sanathan Textiles Limited",
-      "symbol": "SANATHAN",
-      "stage": "listed",
-      "openDate": "2024-12-19",
-      "closeDate": "2024-12-23",
-      "listingDate": "2024-12-27",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.issueSizeCr"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/sanathan/"
-    },
-    {
       "id": "satkartar",
       "company": "Sat Kartar Shopping Limited",
       "symbol": "SATKARTAR",
@@ -2783,26 +2659,6 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/teja/"
-    },
-    {
-      "id": "transraill",
-      "company": "Transrail Lighting Limited",
-      "symbol": "TRANSRAILL",
-      "stage": "listed",
-      "openDate": "2024-12-19",
-      "closeDate": "2024-12-23",
-      "listingDate": "2024-12-27",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.issueSizeCr"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/transraill/"
     },
     {
       "id": "utkal",
@@ -6257,6 +6113,153 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/btml/"
+    },
+    {
+      "id": "bohraind",
+      "company": "Bohra Industries Limited",
+      "symbol": "BOHRAIND",
+      "stage": "listed",
+      "openDate": "2017-03-23",
+      "closeDate": "2017-03-27",
+      "listingDate": "2022-10-27",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/bohraind/"
+    },
+    {
+      "id": "bmetrics",
+      "company": "Bombay Metrics Supply Chain Limited",
+      "symbol": "BMETRICS",
+      "stage": "listed",
+      "openDate": "2021-09-30",
+      "closeDate": "2021-10-04",
+      "listingDate": "2021-10-12",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/bmetrics/"
+    },
+    {
+      "id": "bshsl",
+      "company": "Bombay Super Hybrid Seeds Limited",
+      "symbol": "BSHSL",
+      "stage": "listed",
+      "openDate": "2018-04-12",
+      "closeDate": "2018-04-17",
+      "listingDate": "2020-10-28",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/bshsl/"
+    },
+    {
+      "id": "boss",
+      "company": "Boss Packaging Solutions Limited",
+      "symbol": "BOSS",
+      "stage": "listed",
+      "openDate": "2024-08-30",
+      "closeDate": "2024-09-03",
+      "listingDate": "2024-09-06",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/boss/"
+    },
+    {
+      "id": "braceport",
+      "company": "Brace Port Logistics Limited",
+      "symbol": "BRACEPORT",
+      "stage": "listed",
+      "openDate": "2024-08-19",
+      "closeDate": "2024-08-21",
+      "listingDate": "2024-08-26",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/braceport/"
+    },
+    {
+      "id": "firstcry",
+      "company": "Brainbees Solutions Limited",
+      "symbol": "FIRSTCRY",
+      "stage": "listed",
+      "openDate": "2024-08-06",
+      "closeDate": "2024-08-08",
+      "listingDate": "2024-08-13",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/firstcry/"
+    },
+    {
+      "id": "bconcepts",
+      "company": "Brand Concepts Limited",
+      "symbol": "BCONCEPTS",
+      "stage": "listed",
+      "openDate": "2017-12-29",
+      "closeDate": "2018-01-02",
+      "listingDate": "2022-01-11",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/bconcepts/"
     }
   ],
   "resolvedUnavailable": [
