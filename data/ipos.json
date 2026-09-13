@@ -199,6 +199,18 @@
         "legacyRowsRemoved": 0,
         "removed": [],
         "checkedAt": "2026-09-13T16:13:04+05:30"
+      },
+      "NSE-issue-info": {
+        "ok": true,
+        "candidates": 120,
+        "attempted": 120,
+        "updated": 57,
+        "identityMismatches": 7,
+        "noLot": 56,
+        "failed": 0,
+        "historyDays": 730,
+        "retryDays": 14,
+        "errors": []
       }
     },
     "errors": [],
@@ -9843,7 +9855,15 @@
       },
       "profilePath": "ipo/credent/",
       "openDate": "2026-08-13",
-      "closeDate": "2026-08-17"
+      "closeDate": "2026-08-17",
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:08:13+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=CREDENT&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CREDENT&series=SME",
+        "lotSize": null,
+        "error": null
+      }
     },
     {
       "id": "shiprocket",
@@ -10101,7 +10121,15 @@
       },
       "profilePath": "ipo/pramodini/",
       "openDate": "2026-08-12",
-      "closeDate": "2026-08-14"
+      "closeDate": "2026-08-14",
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:08:13+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=PRAMODINI&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=PRAMODINI&series=SME",
+        "lotSize": null,
+        "error": null
+      }
     },
     {
       "id": "blel",
@@ -10126,6 +10154,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:32+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=BLEL&type=Past",
+          "asOf": "2026-09-13T17:08:14+05:30"
         }
       ],
       "source": {
@@ -10142,8 +10176,16 @@
             "min": 285.0,
             "max": 285.0
           },
-          "lotSize": null,
+          "lotSize": 52,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "BLEL",
+          "series": "EQ",
+          "lotSize": 52,
+          "bidLot": 52,
+          "minimumOrderQuantity": 52,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=BLEL&type=Past"
         }
       },
       "documents": [
@@ -10174,7 +10216,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:08:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -10317,6 +10359,17 @@
         ],
         "extractedAt": "2026-09-13T16:27:31+05:30",
         "source": "SEBI"
+      },
+      "lotSize": 52,
+      "minimumBidQuantity": 52,
+      "marketLot": 52,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:08:14+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=BLEL&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=BLEL&series=EQ",
+        "lotSize": 52,
+        "error": null
       }
     },
     {
@@ -10342,6 +10395,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:31+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MILKYMIST&type=Past",
+          "asOf": "2026-09-13T17:08:20+05:30"
         }
       ],
       "source": {
@@ -10358,8 +10417,16 @@
             "min": 140.0,
             "max": 140.0
           },
-          "lotSize": null,
+          "lotSize": 107,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "MILKYMIST",
+          "series": "EQ",
+          "lotSize": 107,
+          "bidLot": 107,
+          "minimumOrderQuantity": 107,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MILKYMIST&type=Past"
         }
       },
       "documents": [
@@ -10390,7 +10457,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:08:20+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -10529,6 +10596,17 @@
         ],
         "extractedAt": "2026-09-13T16:27:35+05:30",
         "source": "SEBI"
+      },
+      "lotSize": 107,
+      "minimumBidQuantity": 107,
+      "marketLot": 107,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:08:20+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MILKYMIST&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=MILKYMIST&series=EQ",
+        "lotSize": 107,
+        "error": null
       }
     },
     {
@@ -10585,7 +10663,15 @@
       },
       "profilePath": "ipo/fascinate/",
       "openDate": "2026-08-11",
-      "closeDate": "2026-08-19"
+      "closeDate": "2026-08-19",
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:08:20+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=FASCINATE&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=FASCINATE&series=SME",
+        "lotSize": null,
+        "error": null
+      }
     },
     {
       "id": "molbio",
@@ -10610,6 +10696,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:31+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MOLBIO&type=Past",
+          "asOf": "2026-09-13T17:08:21+05:30"
         }
       ],
       "source": {
@@ -10626,8 +10718,16 @@
             "min": 807.0,
             "max": 807.0
           },
-          "lotSize": null,
+          "lotSize": 18,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "MOLBIO",
+          "series": "EQ",
+          "lotSize": 18,
+          "bidLot": 18,
+          "minimumOrderQuantity": 18,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MOLBIO&type=Past"
         }
       },
       "documents": [
@@ -10650,7 +10750,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:08:21+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -10777,6 +10877,17 @@
         ],
         "extractedAt": "2026-09-13T16:28:41+05:30",
         "source": "SEBI"
+      },
+      "lotSize": 18,
+      "minimumBidQuantity": 18,
+      "marketLot": 18,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:08:21+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MOLBIO&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=MOLBIO&series=EQ",
+        "lotSize": 18,
+        "error": null
       }
     },
     {
@@ -11017,6 +11128,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:31+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=TECHNOCRAF&type=Past",
+          "asOf": "2026-09-13T17:08:26+05:30"
         }
       ],
       "source": {
@@ -11033,8 +11150,16 @@
             "min": 212.0,
             "max": 212.0
           },
-          "lotSize": null,
+          "lotSize": 70,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "TECHNOCRAF",
+          "series": "EQ",
+          "lotSize": 70,
+          "bidLot": 70,
+          "minimumOrderQuantity": 70,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=TECHNOCRAF&type=Past"
         }
       },
       "documents": [
@@ -11065,7 +11190,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:08:26+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -11192,6 +11317,17 @@
         ],
         "extractedAt": "2026-09-13T16:29:57+05:30",
         "source": "SEBI"
+      },
+      "lotSize": 70,
+      "minimumBidQuantity": 70,
+      "marketLot": 70,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:08:26+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=TECHNOCRAF&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=TECHNOCRAF&series=EQ",
+        "lotSize": 70,
+        "error": null
       }
     },
     {
@@ -11248,7 +11384,15 @@
       },
       "profilePath": "ipo/optimystix/",
       "openDate": "2026-08-07",
-      "closeDate": "2026-08-11"
+      "closeDate": "2026-08-11",
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:08:31+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=OPTIMYSTIX&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=OPTIMYSTIX&series=SME",
+        "lotSize": null,
+        "error": null
+      }
     },
     {
       "id": "leap",
@@ -11321,7 +11465,15 @@
       },
       "profilePath": "ipo/leap/",
       "openDate": "2026-08-07",
-      "closeDate": "2026-08-11"
+      "closeDate": "2026-08-11",
+      "nseIssueInfoLotBackfill": {
+        "status": "identity-mismatch",
+        "lastAttemptAt": "2026-09-13T17:08:37+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=LEAP&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=LEAP&series=EQ",
+        "lotSize": null,
+        "error": null
+      }
     },
     {
       "id": "ardee",
@@ -11346,6 +11498,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:31+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=ARDEE&type=Past",
+          "asOf": "2026-09-13T17:08:42+05:30"
         }
       ],
       "source": {
@@ -11362,8 +11520,16 @@
             "min": 53.0,
             "max": 53.0
           },
-          "lotSize": null,
+          "lotSize": 281,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "ARDEE",
+          "series": "EQ",
+          "lotSize": 281,
+          "bidLot": 281,
+          "minimumOrderQuantity": 281,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=ARDEE&type=Past"
         }
       },
       "documents": [
@@ -11386,7 +11552,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:08:42+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -11394,7 +11560,18 @@
       },
       "profilePath": "ipo/ardee/",
       "openDate": "2026-08-05",
-      "closeDate": "2026-08-07"
+      "closeDate": "2026-08-07",
+      "lotSize": 281,
+      "minimumBidQuantity": 281,
+      "marketLot": 281,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:08:42+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=ARDEE&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ARDEE&series=EQ",
+        "lotSize": 281,
+        "error": null
+      }
     },
     {
       "id": "anawil",
@@ -11450,7 +11627,15 @@
       },
       "profilePath": "ipo/anawil/",
       "openDate": "2026-08-03",
-      "closeDate": "2026-08-05"
+      "closeDate": "2026-08-05",
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:08:47+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=ANAWIL&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ANAWIL&series=SME",
+        "lotSize": null,
+        "error": null
+      }
     },
     {
       "id": "mvelectro",
@@ -11475,6 +11660,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:31+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MVELECTRO&type=Past",
+          "asOf": "2026-09-13T17:08:51+05:30"
         }
       ],
       "source": {
@@ -11491,8 +11682,16 @@
             "min": 425.0,
             "max": 425.0
           },
-          "lotSize": null,
+          "lotSize": 34,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "MVELECTRO",
+          "series": "EQ",
+          "lotSize": 34,
+          "bidLot": 34,
+          "minimumOrderQuantity": 34,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MVELECTRO&type=Past"
         }
       },
       "documents": [
@@ -11515,7 +11714,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:08:51+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -11523,7 +11722,18 @@
       },
       "profilePath": "ipo/mvelectro/",
       "openDate": "2026-07-30",
-      "closeDate": "2026-08-03"
+      "closeDate": "2026-08-03",
+      "lotSize": 34,
+      "minimumBidQuantity": 34,
+      "marketLot": 34,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:08:51+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MVELECTRO&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=MVELECTRO&series=EQ",
+        "lotSize": 34,
+        "error": null
+      }
     },
     {
       "id": "jnpr",
@@ -11548,6 +11758,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:31+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=JNPR&type=Past",
+          "asOf": "2026-09-13T17:08:56+05:30"
         }
       ],
       "source": {
@@ -11564,8 +11780,16 @@
             "min": 225.0,
             "max": 225.0
           },
-          "lotSize": null,
+          "lotSize": 66,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "JNPR",
+          "series": "EQ",
+          "lotSize": 66,
+          "bidLot": 66,
+          "minimumOrderQuantity": 66,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=JNPR&type=Past"
         }
       },
       "documents": [
@@ -11588,7 +11812,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:08:56+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -11596,7 +11820,18 @@
       },
       "profilePath": "ipo/jnpr/",
       "openDate": "2026-07-30",
-      "closeDate": "2026-08-03"
+      "closeDate": "2026-08-03",
+      "lotSize": 66,
+      "minimumBidQuantity": 66,
+      "marketLot": 66,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:08:56+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=JNPR&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=JNPR&series=EQ",
+        "lotSize": 66,
+        "error": null
+      }
     },
     {
       "id": "manipalhos",
@@ -11621,6 +11856,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:31+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MANIPALHOS&type=Past",
+          "asOf": "2026-09-13T17:09:02+05:30"
         }
       ],
       "source": {
@@ -11637,8 +11878,16 @@
             "min": 590.0,
             "max": 590.0
           },
-          "lotSize": null,
+          "lotSize": 25,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "MANIPALHOS",
+          "series": "EQ",
+          "lotSize": 25,
+          "bidLot": 25,
+          "minimumOrderQuantity": 25,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MANIPALHOS&type=Past"
         }
       },
       "documents": [
@@ -11661,7 +11910,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:09:02+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -11669,7 +11918,18 @@
       },
       "profilePath": "ipo/manipalhos/",
       "openDate": "2026-07-29",
-      "closeDate": "2026-07-31"
+      "closeDate": "2026-07-31",
+      "lotSize": 25,
+      "minimumBidQuantity": 25,
+      "marketLot": 25,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:09:02+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MANIPALHOS&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=MANIPALHOS&series=EQ",
+        "lotSize": 25,
+        "error": null
+      }
     },
     {
       "id": "propshop",
@@ -11742,7 +12002,15 @@
       },
       "profilePath": "ipo/propshop/",
       "openDate": "2026-07-27",
-      "closeDate": "2026-07-29"
+      "closeDate": "2026-07-29",
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:09:07+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=PROPSHOP&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=PROPSHOP&series=SME",
+        "lotSize": null,
+        "error": null
+      }
     },
     {
       "id": "xtranet",
@@ -11773,6 +12041,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-08/Primary_Market_data__July26_20260814112232.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=XTRANET&type=Past",
+          "asOf": "2026-09-13T17:09:12+05:30"
         }
       ],
       "source": {
@@ -11789,14 +12063,22 @@
             "min": 127.0,
             "max": 127.0
           },
-          "lotSize": null,
+          "lotSize": 110,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "XTRANET",
+          "series": "EQ",
+          "lotSize": 110,
+          "bidLot": 110,
+          "minimumOrderQuantity": 110,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=XTRANET&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:09:12+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -11816,6 +12098,17 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 166.8,
         "valuationPriceUsed": 127.0
+      },
+      "lotSize": 110,
+      "minimumBidQuantity": 110,
+      "marketLot": 110,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:09:12+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=XTRANET&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=XTRANET&series=EQ",
+        "lotSize": 110,
+        "error": null
       }
     },
     {
@@ -11847,6 +12140,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-08/Primary_Market_data__July26_20260814112232.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=LCL&type=Past",
+          "asOf": "2026-09-13T17:09:17+05:30"
         }
       ],
       "source": {
@@ -11863,8 +12162,16 @@
             "min": 425.0,
             "max": 425.0
           },
-          "lotSize": null,
+          "lotSize": 35,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "LCL",
+          "series": "EQ",
+          "lotSize": 35,
+          "bidLot": 35,
+          "minimumOrderQuantity": 35,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=LCL&type=Past"
         }
       },
       "documents": [
@@ -11887,7 +12194,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:09:17+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -11907,6 +12214,17 @@
         "ofsCr": 1102.0848,
         "totalIssueSizeCr": 1101.28,
         "valuationPriceUsed": 425.0
+      },
+      "lotSize": 35,
+      "minimumBidQuantity": 35,
+      "marketLot": 35,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:09:17+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=LCL&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=LCL&series=EQ",
+        "lotSize": 35,
+        "error": null
       }
     },
     {
@@ -11938,6 +12256,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-08/Primary_Market_data__July26_20260814112232.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=INDOMIM&type=Past",
+          "asOf": "2026-09-13T17:09:22+05:30"
         }
       ],
       "source": {
@@ -11954,8 +12278,16 @@
             "min": 485.0,
             "max": 485.0
           },
-          "lotSize": null,
+          "lotSize": 30,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "INDOMIM",
+          "series": "EQ",
+          "lotSize": 30,
+          "bidLot": 30,
+          "minimumOrderQuantity": 30,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=INDOMIM&type=Past"
         }
       },
       "documents": [
@@ -11986,7 +12318,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:09:22+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -12006,6 +12338,17 @@
         "ofsCr": 3312.1146,
         "totalIssueSizeCr": 3812.11,
         "valuationPriceUsed": 485.0
+      },
+      "lotSize": 30,
+      "minimumBidQuantity": 30,
+      "marketLot": 30,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:09:22+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=INDOMIM&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=INDOMIM&series=EQ",
+        "lotSize": 30,
+        "error": null
       }
     },
     {
@@ -12031,6 +12374,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:31+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CUBEINVIT&type=Past",
+          "asOf": "2026-09-13T17:09:27+05:30"
         }
       ],
       "source": {
@@ -12047,14 +12396,22 @@
             "min": 156.0,
             "max": 156.0
           },
-          "lotSize": null,
+          "lotSize": 95,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "CUBEINVIT",
+          "series": "EQ",
+          "lotSize": 95,
+          "bidLot": 95,
+          "minimumOrderQuantity": 95,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CUBEINVIT&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:09:27+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -12062,7 +12419,18 @@
       },
       "profilePath": "ipo/cubeinvit/",
       "openDate": "2026-07-22",
-      "closeDate": "2026-07-24"
+      "closeDate": "2026-07-24",
+      "lotSize": 95,
+      "minimumBidQuantity": 95,
+      "marketLot": 95,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:09:27+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CUBEINVIT&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CUBEINVIT&series=EQ",
+        "lotSize": 95,
+        "error": null
+      }
     },
     {
       "id": "metalic",
@@ -12136,6 +12504,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 49.96,
         "valuationPriceUsed": 77.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:09:32+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=METALIC&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=METALIC&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -12167,6 +12543,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-08/Primary_Market_data__July26_20260814112232.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CMLL&type=Past",
+          "asOf": "2026-09-13T17:09:37+05:30"
         }
       ],
       "source": {
@@ -12183,8 +12565,16 @@
             "min": 424.0,
             "max": 424.0
           },
-          "lotSize": null,
+          "lotSize": 35,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "CMLL",
+          "series": "EQ",
+          "lotSize": 35,
+          "bidLot": 35,
+          "minimumOrderQuantity": 35,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CMLL&type=Past"
         }
       },
       "documents": [
@@ -12231,7 +12621,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:09:37+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -12251,6 +12641,17 @@
         "ofsCr": 49.9999,
         "totalIssueSizeCr": 450.0,
         "valuationPriceUsed": 424.0
+      },
+      "lotSize": 35,
+      "minimumBidQuantity": 35,
+      "marketLot": 35,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:09:37+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CMLL&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CMLL&series=EQ",
+        "lotSize": 35,
+        "error": null
       }
     },
     {
@@ -12282,6 +12683,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-08/Primary_Market_data__July26_20260814112232.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SBIFUNDS&type=Past",
+          "asOf": "2026-09-13T17:09:42+05:30"
         }
       ],
       "source": {
@@ -12298,14 +12705,22 @@
             "min": 574.0,
             "max": 574.0
           },
-          "lotSize": null,
+          "lotSize": 26,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "SBIFUNDS",
+          "series": "EQ",
+          "lotSize": 26,
+          "bidLot": 26,
+          "minimumOrderQuantity": 26,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SBIFUNDS&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:09:42+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -12325,6 +12740,17 @@
         "ofsCr": 9812.9106,
         "totalIssueSizeCr": 9795.32,
         "valuationPriceUsed": 574.0
+      },
+      "lotSize": 26,
+      "minimumBidQuantity": 26,
+      "marketLot": 26,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:09:42+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SBIFUNDS&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SBIFUNDS&series=EQ",
+        "lotSize": 26,
+        "error": null
       }
     },
     {
@@ -12356,6 +12782,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-08/Primary_Market_data__July26_20260814112232.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=ALPINETEX&type=Past",
+          "asOf": "2026-09-13T17:09:47+05:30"
         }
       ],
       "source": {
@@ -12372,8 +12804,16 @@
             "min": 105.0,
             "max": 105.0
           },
-          "lotSize": null,
+          "lotSize": 142,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "ALPINETEX",
+          "series": "EQ",
+          "lotSize": 142,
+          "bidLot": 142,
+          "minimumOrderQuantity": 142,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=ALPINETEX&type=Past"
         }
       },
       "documents": [
@@ -12396,7 +12836,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:09:47+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -12416,6 +12856,17 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 126.25,
         "valuationPriceUsed": 105.0
+      },
+      "lotSize": 142,
+      "minimumBidQuantity": 142,
+      "marketLot": 142,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:09:47+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=ALPINETEX&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ALPINETEX&series=EQ",
+        "lotSize": 142,
+        "error": null
       }
     },
     {
@@ -12447,6 +12898,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-08/Primary_Market_data__July26_20260814112232.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=LASERPOWER&type=Past",
+          "asOf": "2026-09-13T17:09:52+05:30"
         }
       ],
       "source": {
@@ -12463,14 +12920,22 @@
             "min": 214.0,
             "max": 214.0
           },
-          "lotSize": null,
+          "lotSize": 70,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "LASERPOWER",
+          "series": "EQ",
+          "lotSize": 70,
+          "bidLot": 70,
+          "minimumOrderQuantity": 70,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=LASERPOWER&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:09:52+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -12490,6 +12955,17 @@
         "ofsCr": 200.0,
         "totalIssueSizeCr": 742.0,
         "valuationPriceUsed": 214.0
+      },
+      "lotSize": 70,
+      "minimumBidQuantity": 70,
+      "marketLot": 70,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:09:52+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=LASERPOWER&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=LASERPOWER&series=EQ",
+        "lotSize": 70,
+        "error": null
       }
     },
     {
@@ -12564,6 +13040,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 25.0,
         "valuationPriceUsed": 66.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:09:57+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=HAPPY&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=HAPPY&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -12595,6 +13079,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-08/Primary_Market_data__July26_20260814112232.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=KUSUMGAR&type=Past",
+          "asOf": "2026-09-13T17:10:02+05:30"
         }
       ],
       "source": {
@@ -12611,8 +13101,16 @@
             "min": 419.0,
             "max": 419.0
           },
-          "lotSize": null,
+          "lotSize": 35,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "KUSUMGAR",
+          "series": "EQ",
+          "lotSize": 35,
+          "bidLot": 35,
+          "minimumOrderQuantity": 35,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=KUSUMGAR&type=Past"
         }
       },
       "documents": [
@@ -12659,7 +13157,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:10:02+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -12679,6 +13177,17 @@
         "ofsCr": 650.3446,
         "totalIssueSizeCr": 650.0,
         "valuationPriceUsed": 419.0
+      },
+      "lotSize": 35,
+      "minimumBidQuantity": 35,
+      "marketLot": 35,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:10:02+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=KUSUMGAR&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=KUSUMGAR&series=EQ",
+        "lotSize": 35,
+        "error": null
       }
     },
     {
@@ -12753,6 +13262,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 47.91,
         "valuationPriceUsed": 99.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:10:08+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=ICELCO&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ICELCO&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -12784,6 +13301,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-08/Primary_Market_data__July26_20260814112232.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=KNACK&type=Past",
+          "asOf": "2026-09-13T17:10:13+05:30"
         }
       ],
       "source": {
@@ -12800,8 +13323,16 @@
             "min": 170.0,
             "max": 170.0
           },
-          "lotSize": null,
+          "lotSize": 88,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "KNACK",
+          "series": "EQ",
+          "lotSize": 88,
+          "bidLot": 88,
+          "minimumOrderQuantity": 88,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=KNACK&type=Past"
         }
       },
       "documents": [
@@ -12848,7 +13379,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:10:13+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -12868,6 +13399,17 @@
         "ofsCr": 59.5,
         "totalIssueSizeCr": 439.5,
         "valuationPriceUsed": 170.0
+      },
+      "lotSize": 88,
+      "minimumBidQuantity": 88,
+      "marketLot": 88,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:10:13+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=KNACK&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=KNACK&series=EQ",
+        "lotSize": 88,
+        "error": null
       }
     },
     {
@@ -12942,6 +13484,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 34.13,
         "valuationPriceUsed": 158.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:10:18+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=VMOBILE&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=VMOBILE&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -13016,6 +13566,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 37.36,
         "valuationPriceUsed": 220.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:10:24+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=TEJA&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=TEJA&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -13047,6 +13605,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-08/Primary_Market_data__July26_20260814112232.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=AASTHA&type=Past",
+          "asOf": "2026-09-13T17:10:29+05:30"
         }
       ],
       "source": {
@@ -13063,8 +13627,16 @@
             "min": 136.0,
             "max": 136.0
           },
-          "lotSize": null,
+          "lotSize": 110,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "AASTHA",
+          "series": "EQ",
+          "lotSize": 110,
+          "bidLot": 110,
+          "minimumOrderQuantity": 110,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=AASTHA&type=Past"
         }
       },
       "documents": [
@@ -13087,7 +13659,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:10:29+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -13107,6 +13679,17 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 170.0,
         "valuationPriceUsed": 136.0
+      },
+      "lotSize": 110,
+      "minimumBidQuantity": 110,
+      "marketLot": 110,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:10:29+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=AASTHA&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=AASTHA&series=EQ",
+        "lotSize": 110,
+        "error": null
       }
     },
     {
@@ -13162,7 +13745,15 @@
       },
       "profilePath": "ipo/icel/",
       "openDate": "2026-06-25",
-      "closeDate": "2026-06-30"
+      "closeDate": "2026-06-30",
+      "nseIssueInfoLotBackfill": {
+        "status": "identity-mismatch",
+        "lastAttemptAt": "2026-09-13T17:10:30+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=ICEL&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ICEL&series=SME",
+        "lotSize": null,
+        "error": null
+      }
     },
     {
       "id": "spgcl",
@@ -13217,7 +13808,15 @@
       },
       "profilePath": "ipo/spgcl/",
       "openDate": "2026-06-24",
-      "closeDate": "2026-06-29"
+      "closeDate": "2026-06-29",
+      "nseIssueInfoLotBackfill": {
+        "status": "identity-mismatch",
+        "lastAttemptAt": "2026-09-13T17:10:35+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SPGCL&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SPGCL&series=SME",
+        "lotSize": null,
+        "error": null
+      }
     },
     {
       "id": "csm",
@@ -13248,6 +13847,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-08/Primary_Market_data__July26_20260814112232.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CSM&type=Past",
+          "asOf": "2026-09-13T17:10:40+05:30"
         }
       ],
       "source": {
@@ -13264,8 +13869,16 @@
             "min": 113.0,
             "max": 113.0
           },
-          "lotSize": null,
+          "lotSize": 132,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "CSM",
+          "series": "EQ",
+          "lotSize": 132,
+          "bidLot": 132,
+          "minimumOrderQuantity": 132,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CSM&type=Past"
         }
       },
       "documents": [
@@ -13312,7 +13925,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:10:40+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -13332,6 +13945,17 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 145.78,
         "valuationPriceUsed": 113.0
+      },
+      "lotSize": 132,
+      "minimumBidQuantity": 132,
+      "marketLot": 132,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:10:40+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CSM&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CSM&series=EQ",
+        "lotSize": 132,
+        "error": null
       }
     },
     {
@@ -13363,6 +13987,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-08/Primary_Market_data__July26_20260814112232.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CORDELIA&type=Past",
+          "asOf": "2026-09-13T17:10:45+05:30"
         }
       ],
       "source": {
@@ -13379,14 +14009,22 @@
             "min": 808.0,
             "max": 808.0
           },
-          "lotSize": null,
+          "lotSize": 18,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "CORDELIA",
+          "series": "EQ",
+          "lotSize": 18,
+          "bidLot": 18,
+          "minimumOrderQuantity": 18,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CORDELIA&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:10:45+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -13406,6 +14044,17 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 585.0,
         "valuationPriceUsed": 808.0
+      },
+      "lotSize": 18,
+      "minimumBidQuantity": 18,
+      "marketLot": 18,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:10:45+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CORDELIA&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CORDELIA&series=EQ",
+        "lotSize": 18,
+        "error": null
       }
     },
     {
@@ -13480,6 +14129,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 30.68,
         "valuationPriceUsed": 53.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:10:50+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SHREEDHAR&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SHREEDHAR&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -13511,6 +14168,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-08/Primary_Market_data__July26_20260814112232.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=RAMBHAJO&type=Past",
+          "asOf": "2026-09-13T17:10:55+05:30"
         }
       ],
       "source": {
@@ -13527,8 +14190,16 @@
             "min": 138.0,
             "max": 138.0
           },
-          "lotSize": null,
+          "lotSize": 100,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "RAMBHAJO",
+          "series": "EQ",
+          "lotSize": 100,
+          "bidLot": 100,
+          "minimumOrderQuantity": 100,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=RAMBHAJO&type=Past"
         }
       },
       "documents": [
@@ -13575,7 +14246,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:10:55+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -13595,6 +14266,17 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 165.16,
         "valuationPriceUsed": 138.0
+      },
+      "lotSize": 100,
+      "minimumBidQuantity": 100,
+      "marketLot": 100,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:10:55+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=RAMBHAJO&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=RAMBHAJO&series=EQ",
+        "lotSize": 100,
+        "error": null
       }
     },
     {
@@ -13626,6 +14308,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-07/Primary_Market_data__June26_20260717144111.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=TURTLEMINT&type=Past",
+          "asOf": "2026-09-13T17:11:01+05:30"
         }
       ],
       "source": {
@@ -13642,14 +14330,22 @@
             "min": 152.0,
             "max": 152.0
           },
-          "lotSize": null,
+          "lotSize": 98,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "TURTLEMINT",
+          "series": "EQ",
+          "lotSize": 98,
+          "bidLot": 98,
+          "minimumOrderQuantity": 98,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=TURTLEMINT&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:11:01+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -13669,6 +14365,17 @@
         "ofsCr": 221.9481,
         "totalIssueSizeCr": 882.67,
         "valuationPriceUsed": 152.0
+      },
+      "lotSize": 98,
+      "minimumBidQuantity": 98,
+      "marketLot": 98,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:11:01+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=TURTLEMINT&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=TURTLEMINT&series=EQ",
+        "lotSize": 98,
+        "error": null
       }
     },
     {
@@ -13743,6 +14450,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 30.24,
         "valuationPriceUsed": 208.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:11:06+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=AVIENCE&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=AVIENCE&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -13817,6 +14532,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 110.11,
         "valuationPriceUsed": 203.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:11:11+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=CLAYCRAFT&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CLAYCRAFT&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -13891,6 +14614,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 34.54,
         "valuationPriceUsed": 66.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:11:16+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=UTKAL&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=UTKAL&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -13922,6 +14653,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-07/Primary_Market_data__June26_20260717144111.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=HEXAGON&type=Past",
+          "asOf": "2026-09-13T17:11:21+05:30"
         }
       ],
       "source": {
@@ -13938,8 +14675,16 @@
             "min": 45.0,
             "max": 45.0
           },
-          "lotSize": null,
+          "lotSize": 333,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "HEXAGON",
+          "series": "EQ",
+          "lotSize": 333,
+          "bidLot": 333,
+          "minimumOrderQuantity": 333,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=HEXAGON&type=Past"
         }
       },
       "documents": [
@@ -13978,7 +14723,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:11:21+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -13998,6 +14743,17 @@
         "ofsCr": 138.8687,
         "totalIssueSizeCr": 138.87,
         "valuationPriceUsed": 45.0
+      },
+      "lotSize": 333,
+      "minimumBidQuantity": 333,
+      "marketLot": 333,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:11:21+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=HEXAGON&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=HEXAGON&series=EQ",
+        "lotSize": 333,
+        "error": null
       }
     },
     {
@@ -14072,6 +14828,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 54.66,
         "valuationPriceUsed": 116.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:11:26+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=GENXAI&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=GENXAI&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -14103,6 +14867,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-07/Primary_Market_data__June26_20260717144111.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CMRGREEN&type=Past",
+          "asOf": "2026-09-13T17:11:32+05:30"
         }
       ],
       "source": {
@@ -14119,14 +14889,22 @@
             "min": 192.0,
             "max": 192.0
           },
-          "lotSize": null,
+          "lotSize": 78,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "CMRGREEN",
+          "series": "EQ",
+          "lotSize": 78,
+          "bidLot": 78,
+          "minimumOrderQuantity": 78,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CMRGREEN&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:11:32+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -14146,6 +14924,17 @@
         "ofsCr": 630.8798,
         "totalIssueSizeCr": 630.62,
         "valuationPriceUsed": 192.0
+      },
+      "lotSize": 78,
+      "minimumBidQuantity": 78,
+      "marketLot": 78,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:11:32+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CMRGREEN&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CMRGREEN&series=EQ",
+        "lotSize": 78,
+        "error": null
       }
     },
     {
@@ -14220,6 +15009,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 214.48,
         "valuationPriceUsed": 343.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:11:37+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=QLINE&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=QLINE&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -14294,6 +15091,14 @@
         "ofsCr": 5.2403,
         "totalIssueSizeCr": 52.43,
         "valuationPriceUsed": 139.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:11:42+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=BMLL&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=BMLL&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -14368,6 +15173,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 50.15,
         "valuationPriceUsed": 63.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:11:47+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=TEAMTECH&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=TEAMTECH&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -14442,6 +15255,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 24.53,
         "valuationPriceUsed": 55.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:11:53+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=NFPSAMPOOR&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=NFPSAMPOOR&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -14516,6 +15337,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 35.33,
         "valuationPriceUsed": 50.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:11:58+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=RFBL&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=RFBL&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -14590,6 +15419,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 58.04,
         "valuationPriceUsed": 183.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:12:03+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SIMCA&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SIMCA&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -14615,6 +15452,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:31+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=BAGMANE&type=Past",
+          "asOf": "2026-09-13T17:12:08+05:30"
         }
       ],
       "source": {
@@ -14631,14 +15474,22 @@
             "min": 100.0,
             "max": 100.0
           },
-          "lotSize": null,
+          "lotSize": 150,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "BAGMANE",
+          "series": "EQ",
+          "lotSize": 150,
+          "bidLot": 150,
+          "minimumOrderQuantity": 150,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=BAGMANE&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:12:08+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -14646,7 +15497,18 @@
       },
       "profilePath": "ipo/bagmane/",
       "openDate": "2026-05-05",
-      "closeDate": "2026-05-07"
+      "closeDate": "2026-05-07",
+      "lotSize": 150,
+      "minimumBidQuantity": 150,
+      "marketLot": 150,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:12:08+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=BAGMANE&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=BAGMANE&series=EQ",
+        "lotSize": 150,
+        "error": null
+      }
     },
     {
       "id": "value360",
@@ -14720,6 +15582,14 @@
         "ofsCr": 4.163,
         "totalIssueSizeCr": 41.69,
         "valuationPriceUsed": 98.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:12:13+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=VALUE360&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=VALUE360&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -14751,6 +15621,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-06/Exchange_Data_Primary_Market_20260612135555.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=KISSHT&type=Past",
+          "asOf": "2026-09-13T17:12:18+05:30"
         }
       ],
       "source": {
@@ -14767,8 +15643,16 @@
             "min": 171.0,
             "max": 171.0
           },
-          "lotSize": null,
+          "lotSize": 87,
           "issueSizeCr": 925.92
+        },
+        "NSE-issue-info": {
+          "symbol": "KISSHT",
+          "series": "EQ",
+          "lotSize": 87,
+          "bidLot": 87,
+          "minimumOrderQuantity": 87,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=KISSHT&type=Past"
         }
       },
       "documents": [
@@ -14807,7 +15691,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:12:18+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -14827,6 +15711,17 @@
         "ofsCr": 75.9204,
         "totalIssueSizeCr": 925.92,
         "valuationPriceUsed": 171.0
+      },
+      "lotSize": 87,
+      "minimumBidQuantity": 87,
+      "marketLot": 87,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:12:18+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=KISSHT&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=KISSHT&series=EQ",
+        "lotSize": 87,
+        "error": null
       }
     },
     {
@@ -14901,6 +15796,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 65.12,
         "valuationPriceUsed": 135.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:12:23+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=AMBAAUTO&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=AMBAAUTO&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -14975,6 +15878,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 74.1,
         "valuationPriceUsed": 172.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:12:28+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=ADISOFT&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ADISOFT&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -15000,6 +15911,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:31+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CITIUSINVT&type=Past",
+          "asOf": "2026-09-13T17:12:34+05:30"
         }
       ],
       "source": {
@@ -15016,14 +15933,22 @@
             "min": 100.0,
             "max": 100.0
           },
-          "lotSize": null,
+          "lotSize": 150,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "CITIUSINVT",
+          "series": "EQ",
+          "lotSize": 150,
+          "bidLot": 150,
+          "minimumOrderQuantity": 150,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CITIUSINVT&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:12:34+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -15031,7 +15956,18 @@
       },
       "profilePath": "ipo/citiusinvt/",
       "openDate": "2026-04-17",
-      "closeDate": "2026-04-21"
+      "closeDate": "2026-04-21",
+      "lotSize": 150,
+      "minimumBidQuantity": 150,
+      "marketLot": 150,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:12:34+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CITIUSINVT&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CITIUSINVT&series=EQ",
+        "lotSize": 150,
+        "error": null
+      }
     },
     {
       "id": "ompower",
@@ -15062,6 +15998,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-05/Exchange_data_Primary_Market__20260512102406.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=OMPOWER&type=Past",
+          "asOf": "2026-09-13T17:12:39+05:30"
         }
       ],
       "source": {
@@ -15078,8 +16020,16 @@
             "min": 175.0,
             "max": 175.0
           },
-          "lotSize": null,
+          "lotSize": 85,
           "issueSizeCr": 150.06
+        },
+        "NSE-issue-info": {
+          "symbol": "OMPOWER",
+          "series": "EQ",
+          "lotSize": 85,
+          "bidLot": 85,
+          "minimumOrderQuantity": 85,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=OMPOWER&type=Past"
         }
       },
       "documents": [
@@ -15118,7 +16068,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:12:39+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -15138,6 +16088,17 @@
         "ofsCr": 17.5,
         "totalIssueSizeCr": 150.06,
         "valuationPriceUsed": 175.0
+      },
+      "lotSize": 85,
+      "minimumBidQuantity": 85,
+      "marketLot": 85,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:12:39+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=OMPOWER&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=OMPOWER&series=EQ",
+        "lotSize": 85,
+        "error": null
       }
     },
     {
@@ -15212,6 +16173,14 @@
         "ofsCr": 25.974,
         "totalIssueSizeCr": 130.54,
         "valuationPriceUsed": 555.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:12:44+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=VIVIDEL&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=VIVIDEL&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -15243,6 +16212,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-05/Exchange_data_Primary_Market__20260512102406.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SAIPARENT&type=Past",
+          "asOf": "2026-09-13T17:12:49+05:30"
         }
       ],
       "source": {
@@ -15259,14 +16234,22 @@
             "min": 392.0,
             "max": 392.0
           },
-          "lotSize": null,
+          "lotSize": 38,
           "issueSizeCr": 408.79
+        },
+        "NSE-issue-info": {
+          "symbol": "SAIPARENT",
+          "series": "EQ",
+          "lotSize": 38,
+          "bidLot": 38,
+          "minimumOrderQuantity": 38,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SAIPARENT&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:12:49+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -15286,6 +16269,17 @@
         "ofsCr": 123.7889,
         "totalIssueSizeCr": 408.79,
         "valuationPriceUsed": 392.0
+      },
+      "lotSize": 38,
+      "minimumBidQuantity": 38,
+      "marketLot": 38,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:12:49+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SAIPARENT&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SAIPARENT&series=EQ",
+        "lotSize": 38,
+        "error": null
       }
     },
     {
@@ -15317,6 +16311,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-05/Exchange_data_Primary_Market__20260512102406.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=POWERICA&type=Past",
+          "asOf": "2026-09-13T17:12:54+05:30"
         }
       ],
       "source": {
@@ -15333,8 +16333,16 @@
             "min": 395.0,
             "max": 395.0
           },
-          "lotSize": null,
+          "lotSize": 37,
           "issueSizeCr": 1100.0
+        },
+        "NSE-issue-info": {
+          "symbol": "POWERICA",
+          "series": "EQ",
+          "lotSize": 37,
+          "bidLot": 37,
+          "minimumOrderQuantity": 37,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=POWERICA&type=Past"
         }
       },
       "documents": [
@@ -15357,7 +16365,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:12:54+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -15377,6 +16385,17 @@
         "ofsCr": 399.9999,
         "totalIssueSizeCr": 1100.0,
         "valuationPriceUsed": 395.0
+      },
+      "lotSize": 37,
+      "minimumBidQuantity": 37,
+      "marketLot": 37,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:12:54+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=POWERICA&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=POWERICA&series=EQ",
+        "lotSize": 37,
+        "error": null
       }
     },
     {
@@ -15451,6 +16470,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 440.0,
         "valuationPriceUsed": 212.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "identity-mismatch",
+        "lastAttemptAt": "2026-09-13T17:12:59+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=AMIRCHAND&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=AMIRCHAND&series=EQ",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -15482,6 +16509,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-04/Primary_Market_data__March_2026_20260413152145.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CMPDI&type=Past",
+          "asOf": "2026-09-13T17:13:04+05:30"
         }
       ],
       "source": {
@@ -15498,8 +16531,16 @@
             "min": 172.0,
             "max": 172.0
           },
-          "lotSize": null,
+          "lotSize": 80,
           "issueSizeCr": 1841.45
+        },
+        "NSE-issue-info": {
+          "symbol": "CMPDI",
+          "series": "EQ",
+          "lotSize": 80,
+          "bidLot": 80,
+          "minimumOrderQuantity": 80,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CMPDI&type=Past"
         }
       },
       "documents": [
@@ -15538,7 +16579,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:13:04+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -15558,6 +16599,17 @@
         "ofsCr": 1842.12,
         "totalIssueSizeCr": 1841.45,
         "valuationPriceUsed": 172.0
+      },
+      "lotSize": 80,
+      "minimumBidQuantity": 80,
+      "marketLot": 80,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:13:04+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CMPDI&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CMPDI&series=EQ",
+        "lotSize": 80,
+        "error": null
       }
     },
     {
@@ -15589,6 +16641,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-04/Primary_Market_data__March_2026_20260413152145.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=GSPCROP&type=Past",
+          "asOf": "2026-09-13T17:13:09+05:30"
         }
       ],
       "source": {
@@ -15605,8 +16663,16 @@
             "min": 320.0,
             "max": 320.0
           },
-          "lotSize": null,
+          "lotSize": 46,
           "issueSizeCr": 400.0
+        },
+        "NSE-issue-info": {
+          "symbol": "GSPCROP",
+          "series": "EQ",
+          "lotSize": 46,
+          "bidLot": 46,
+          "minimumOrderQuantity": 46,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=GSPCROP&type=Past"
         }
       },
       "documents": [
@@ -15645,7 +16711,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:13:09+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -15665,6 +16731,17 @@
         "ofsCr": 160.0,
         "totalIssueSizeCr": 400.0,
         "valuationPriceUsed": 320.0
+      },
+      "lotSize": 46,
+      "minimumBidQuantity": 46,
+      "marketLot": 46,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:13:09+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=GSPCROP&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=GSPCROP&series=EQ",
+        "lotSize": 46,
+        "error": null
       }
     },
     {
@@ -15720,7 +16797,15 @@
       },
       "profilePath": "ipo/rsl--b3cf3e5b/",
       "openDate": "2026-03-12",
-      "closeDate": "2026-03-16"
+      "closeDate": "2026-03-16",
+      "nseIssueInfoLotBackfill": {
+        "status": "identity-mismatch",
+        "lastAttemptAt": "2026-09-13T17:13:14+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=RSL&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=RSL&series=EQ",
+        "lotSize": null,
+        "error": null
+      }
     },
     {
       "id": "riit",
@@ -15745,6 +16830,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:31+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=RIIT&type=Past",
+          "asOf": "2026-09-13T17:13:19+05:30"
         }
       ],
       "source": {
@@ -15761,14 +16852,22 @@
             "min": 100.0,
             "max": 100.0
           },
-          "lotSize": null,
+          "lotSize": 150,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "RIIT",
+          "series": "EQ",
+          "lotSize": 150,
+          "bidLot": 150,
+          "minimumOrderQuantity": 150,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=RIIT&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:13:19+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -15776,7 +16875,18 @@
       },
       "profilePath": "ipo/riit/",
       "openDate": "2026-03-11",
-      "closeDate": "2026-03-13"
+      "closeDate": "2026-03-13",
+      "lotSize": 150,
+      "minimumBidQuantity": 150,
+      "marketLot": 150,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:13:19+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=RIIT&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=RIIT&series=EQ",
+        "lotSize": 150,
+        "error": null
+      }
     },
     {
       "id": "apsisaero",
@@ -15850,6 +16960,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 35.77,
         "valuationPriceUsed": 110.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:13:24+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=APSISAERO&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=APSISAERO&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -15881,6 +16999,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-04/Primary_Market_data__March_2026_20260413152145.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=INNOVISION&type=Past",
+          "asOf": "2026-09-13T17:13:29+05:30"
         }
       ],
       "source": {
@@ -15897,8 +17021,16 @@
             "min": 519.0,
             "max": 519.0
           },
-          "lotSize": null,
+          "lotSize": 27,
           "issueSizeCr": 319.25
+        },
+        "NSE-issue-info": {
+          "symbol": "INNOVISION",
+          "series": "EQ",
+          "lotSize": 27,
+          "bidLot": 27,
+          "minimumOrderQuantity": 27,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=INNOVISION&type=Past"
         }
       },
       "documents": [
@@ -15937,7 +17069,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:13:29+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -15957,6 +17089,17 @@
         "ofsCr": 64.2522,
         "totalIssueSizeCr": 319.25,
         "valuationPriceUsed": 519.0
+      },
+      "lotSize": 27,
+      "minimumBidQuantity": 27,
+      "marketLot": 27,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:13:29+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=INNOVISION&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=INNOVISION&series=EQ",
+        "lotSize": 27,
+        "error": null
       }
     },
     {
@@ -15988,6 +17131,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-04/Primary_Market_data__March_2026_20260413152145.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=RSL&type=Past",
+          "asOf": "2026-09-13T17:13:30+05:30"
         }
       ],
       "source": {
@@ -16004,8 +17153,16 @@
             "min": 122.0,
             "max": 122.0
           },
-          "lotSize": null,
+          "lotSize": 110,
           "issueSizeCr": 254.98
+        },
+        "NSE-issue-info": {
+          "symbol": "RSL",
+          "series": "EQ",
+          "lotSize": 110,
+          "bidLot": 110,
+          "minimumOrderQuantity": 110,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=RSL&type=Past"
         }
       },
       "documents": [
@@ -16044,7 +17201,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:13:30+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -16064,6 +17221,17 @@
         "ofsCr": 76.25,
         "totalIssueSizeCr": 254.98,
         "valuationPriceUsed": 122.0
+      },
+      "lotSize": 110,
+      "minimumBidQuantity": 110,
+      "marketLot": 110,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:13:30+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=RSL&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=RSL&series=EQ",
+        "lotSize": 110,
+        "error": null
       }
     },
     {
@@ -16138,6 +17306,14 @@
         "ofsCr": 3.528,
         "totalIssueSizeCr": 20.32,
         "valuationPriceUsed": 98.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:13:35+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SPCON&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SPCON&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -16169,6 +17345,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-04/Primary_Market_data__March_2026_20260413152145.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SEDEMAC&type=Past",
+          "asOf": "2026-09-13T17:13:40+05:30"
         }
       ],
       "source": {
@@ -16185,14 +17367,22 @@
             "min": 1352.0,
             "max": 1352.0
           },
-          "lotSize": null,
+          "lotSize": 11,
           "issueSizeCr": 1087.35
+        },
+        "NSE-issue-info": {
+          "symbol": "SEDEMAC",
+          "series": "EQ",
+          "lotSize": 11,
+          "bidLot": 11,
+          "minimumOrderQuantity": 11,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SEDEMAC&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:13:40+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -16212,6 +17402,17 @@
         "ofsCr": 1087.4542,
         "totalIssueSizeCr": 1087.35,
         "valuationPriceUsed": 1352.0
+      },
+      "lotSize": 11,
+      "minimumBidQuantity": 11,
+      "marketLot": 11,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:13:40+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SEDEMAC&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SEDEMAC&series=EQ",
+        "lotSize": 11,
+        "error": null
       }
     },
     {
@@ -16286,6 +17487,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 48.95,
         "valuationPriceUsed": 112.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:13:45+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=ACETEC&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ACETEC&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -16360,6 +17569,14 @@
         "ofsCr": 3.6634,
         "totalIssueSizeCr": 36.29,
         "valuationPriceUsed": 72.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:13:50+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=STRIDERS&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=STRIDERS&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -16434,6 +17651,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 80.11,
         "valuationPriceUsed": 145.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:13:55+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=YAAP&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=YAAP&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -16465,6 +17690,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-04/Primary_Market_data__March_2026_20260413152145.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=OMNI&type=Past",
+          "asOf": "2026-09-13T17:14:00+05:30"
         }
       ],
       "source": {
@@ -16481,8 +17712,16 @@
             "min": 227.0,
             "max": 227.0
           },
-          "lotSize": null,
+          "lotSize": 66,
           "issueSizeCr": 583.0
+        },
+        "NSE-issue-info": {
+          "symbol": "OMNI",
+          "series": "EQ",
+          "lotSize": 66,
+          "bidLot": 66,
+          "minimumOrderQuantity": 66,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=OMNI&type=Past"
         }
       },
       "documents": [
@@ -16505,7 +17744,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:14:00+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -16525,6 +17764,17 @@
         "ofsCr": 165.0,
         "totalIssueSizeCr": 583.0,
         "valuationPriceUsed": 227.0
+      },
+      "lotSize": 66,
+      "minimumBidQuantity": 66,
+      "marketLot": 66,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:14:00+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=OMNI&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=OMNI&series=EQ",
+        "lotSize": 66,
+        "error": null
       }
     },
     {
@@ -16556,6 +17806,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-04/Primary_Market_data__March_2026_20260413152145.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=PNGSREVA&type=Past",
+          "asOf": "2026-09-13T17:14:05+05:30"
         }
       ],
       "source": {
@@ -16572,8 +17828,16 @@
             "min": 386.0,
             "max": 386.0
           },
-          "lotSize": null,
+          "lotSize": 32,
           "issueSizeCr": 379.52
+        },
+        "NSE-issue-info": {
+          "symbol": "PNGSREVA",
+          "series": "EQ",
+          "lotSize": 32,
+          "bidLot": 32,
+          "minimumOrderQuantity": 32,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=PNGSREVA&type=Past"
         }
       },
       "documents": [
@@ -16596,7 +17860,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:14:05+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -16616,6 +17880,17 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 379.52,
         "valuationPriceUsed": 386.0
+      },
+      "lotSize": 32,
+      "minimumBidQuantity": 32,
+      "marketLot": 32,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:14:05+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=PNGSREVA&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=PNGSREVA&series=EQ",
+        "lotSize": 32,
+        "error": null
       }
     },
     {
@@ -16647,6 +17922,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-04/Primary_Market_data__March_2026_20260413152145.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SRTL&type=Past",
+          "asOf": "2026-09-13T17:14:10+05:30"
         }
       ],
       "source": {
@@ -16663,14 +17944,22 @@
             "min": 104.0,
             "max": 104.0
           },
-          "lotSize": null,
+          "lotSize": 144,
           "issueSizeCr": 110.24
+        },
+        "NSE-issue-info": {
+          "symbol": "SRTL",
+          "series": "EQ",
+          "lotSize": 144,
+          "bidLot": 144,
+          "minimumOrderQuantity": 144,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SRTL&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:14:10+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -16690,6 +17979,17 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 110.24,
         "valuationPriceUsed": 104.0
+      },
+      "lotSize": 144,
+      "minimumBidQuantity": 144,
+      "marketLot": 144,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:14:10+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SRTL&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SRTL&series=EQ",
+        "lotSize": 144,
+        "error": null
       }
     },
     {
@@ -16764,6 +18064,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 20.1,
         "valuationPriceUsed": 80.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:14:15+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=MOBILISE&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=MOBILISE&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -16795,6 +18103,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-04/Primary_Market_data__March_2026_20260413152145.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CLEANMAX&type=Past",
+          "asOf": "2026-09-13T17:14:20+05:30"
         }
       ],
       "source": {
@@ -16811,8 +18125,16 @@
             "min": 1053.0,
             "max": 1053.0
           },
-          "lotSize": null,
+          "lotSize": 14,
           "issueSizeCr": 3079.88
+        },
+        "NSE-issue-info": {
+          "symbol": "CLEANMAX",
+          "series": "EQ",
+          "lotSize": 14,
+          "bidLot": 14,
+          "minimumOrderQuantity": 14,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CLEANMAX&type=Past"
         }
       },
       "documents": [
@@ -16835,7 +18157,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:14:20+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -16855,6 +18177,17 @@
         "ofsCr": 1876.9063,
         "totalIssueSizeCr": 3079.88,
         "valuationPriceUsed": 1053.0
+      },
+      "lotSize": 14,
+      "minimumBidQuantity": 14,
+      "marketLot": 14,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:14:20+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CLEANMAX&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CLEANMAX&series=EQ",
+        "lotSize": 14,
+        "error": null
       }
     },
     {
@@ -16929,6 +18262,14 @@
         "ofsCr": 7.5348,
         "totalIssueSizeCr": 39.95,
         "valuationPriceUsed": 69.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:14:25+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=MANILAM&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=MANILAM&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -16960,6 +18301,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-03/PSS_Data__Feb2026_20260318134046.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=GAUDIUMIVF&type=Past",
+          "asOf": "2026-09-13T17:14:30+05:30"
         }
       ],
       "source": {
@@ -16976,14 +18323,22 @@
             "min": 79.0,
             "max": 79.0
           },
-          "lotSize": null,
+          "lotSize": 189,
           "issueSizeCr": 165.0
+        },
+        "NSE-issue-info": {
+          "symbol": "GAUDIUMIVF",
+          "series": "EQ",
+          "lotSize": 189,
+          "bidLot": 189,
+          "minimumOrderQuantity": 189,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=GAUDIUMIVF&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:14:30+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -17003,6 +18358,17 @@
         "ofsCr": 75.0002,
         "totalIssueSizeCr": 165.0,
         "valuationPriceUsed": 79.0
+      },
+      "lotSize": 189,
+      "minimumBidQuantity": 189,
+      "marketLot": 189,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:14:30+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=GAUDIUMIVF&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=GAUDIUMIVF&series=EQ",
+        "lotSize": 189,
+        "error": null
       }
     },
     {
@@ -17052,7 +18418,15 @@
       },
       "profilePath": "ipo/935iifl33/",
       "openDate": "2026-02-17",
-      "closeDate": "2026-03-04"
+      "closeDate": "2026-03-04",
+      "nseIssueInfoLotBackfill": {
+        "status": "identity-mismatch",
+        "lastAttemptAt": "2026-09-13T17:14:36+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=935IIFL33&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=935IIFL33&series=EQ",
+        "lotSize": null,
+        "error": null
+      }
     },
     {
       "id": "marushika",
@@ -17126,6 +18500,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 26.97,
         "valuationPriceUsed": 117.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:14:41+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=MARUSHIKA&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=MARUSHIKA&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -17157,6 +18539,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-03/PSS_Data__Feb2026_20260318134046.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=FRACTAL&type=Past",
+          "asOf": "2026-09-13T17:14:46+05:30"
         }
       ],
       "source": {
@@ -17173,14 +18561,22 @@
             "min": 900.0,
             "max": 900.0
           },
-          "lotSize": null,
+          "lotSize": 16,
           "issueSizeCr": 2833.9
+        },
+        "NSE-issue-info": {
+          "symbol": "FRACTAL",
+          "series": "EQ",
+          "lotSize": 16,
+          "bidLot": 16,
+          "minimumOrderQuantity": 16,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=FRACTAL&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:14:46+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -17200,6 +18596,17 @@
         "ofsCr": 1810.3999,
         "totalIssueSizeCr": 2833.9,
         "valuationPriceUsed": 900.0
+      },
+      "lotSize": 16,
+      "minimumBidQuantity": 16,
+      "marketLot": 16,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:14:46+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=FRACTAL&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=FRACTAL&series=EQ",
+        "lotSize": 16,
+        "error": null
       }
     },
     {
@@ -17231,6 +18638,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-03/PSS_Data__Feb2026_20260318134046.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=AYE&type=Past",
+          "asOf": "2026-09-13T17:14:51+05:30"
         }
       ],
       "source": {
@@ -17247,8 +18660,16 @@
             "min": 129.0,
             "max": 129.0
           },
-          "lotSize": null,
+          "lotSize": 116,
           "issueSizeCr": 1010.0
+        },
+        "NSE-issue-info": {
+          "symbol": "AYE",
+          "series": "EQ",
+          "lotSize": 116,
+          "bidLot": 116,
+          "minimumOrderQuantity": 116,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=AYE&type=Past"
         }
       },
       "documents": [
@@ -17271,7 +18692,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:14:51+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -17291,6 +18712,17 @@
         "ofsCr": 300.0,
         "totalIssueSizeCr": 1010.0,
         "valuationPriceUsed": 129.0
+      },
+      "lotSize": 116,
+      "minimumBidQuantity": 116,
+      "marketLot": 116,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:14:51+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=AYE&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=AYE&series=EQ",
+        "lotSize": 116,
+        "error": null
       }
     },
     {
@@ -17365,6 +18797,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 31.26,
         "valuationPriceUsed": 108.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:14:56+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=BIOPOL&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=BIOPOL&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -17420,7 +18860,15 @@
       },
       "profilePath": "ipo/sampoorna/",
       "openDate": "2026-02-04",
-      "closeDate": "2026-02-06"
+      "closeDate": "2026-02-06",
+      "nseIssueInfoLotBackfill": {
+        "status": "identity-mismatch",
+        "lastAttemptAt": "2026-09-13T17:15:01+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SAMPOORNA&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SAMPOORNA&series=SME",
+        "lotSize": null,
+        "error": null
+      }
     },
     {
       "id": "gjl",
@@ -17494,6 +18942,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 33.83,
         "valuationPriceUsed": 88.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:15:06+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=GJL&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=GJL&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -17568,6 +19024,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 86.09,
         "valuationPriceUsed": 176.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:15:11+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=BRANDMAN&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=BRANDMAN&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -17642,6 +19106,14 @@
         "ofsCr": 16.1696,
         "totalIssueSizeCr": 88.02,
         "valuationPriceUsed": 163.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:15:16+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=CKKRETAIL&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CKKRETAIL&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -17716,6 +19188,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 77.49,
         "valuationPriceUsed": 135.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:15:22+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=KRMAYURVED&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=KRMAYURVED&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -17747,6 +19227,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-02/Primary_Market_Jan2026_20260217133243.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SHADOWFAX&type=Past",
+          "asOf": "2026-09-13T17:15:27+05:30"
         }
       ],
       "source": {
@@ -17763,14 +19249,22 @@
             "min": 124.0,
             "max": 124.0
           },
-          "lotSize": null,
+          "lotSize": 120,
           "issueSizeCr": 1907.27
+        },
+        "NSE-issue-info": {
+          "symbol": "SHADOWFAX",
+          "series": "EQ",
+          "lotSize": 120,
+          "bidLot": 120,
+          "minimumOrderQuantity": 120,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SHADOWFAX&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:15:27+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -17790,6 +19284,17 @@
         "ofsCr": 907.269,
         "totalIssueSizeCr": 1907.27,
         "valuationPriceUsed": 124.0
+      },
+      "lotSize": 120,
+      "minimumBidQuantity": 120,
+      "marketLot": 120,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:15:27+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=SHADOWFAX&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SHADOWFAX&series=EQ",
+        "lotSize": 120,
+        "error": null
       }
     },
     {
@@ -17864,6 +19369,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 26.51,
         "valuationPriceUsed": 57.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:15:32+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=ARMOUR&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ARMOUR&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -17895,6 +19408,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-02/Primary_Market_Jan2026_20260217133243.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=AMAGI&type=Past",
+          "asOf": "2026-09-13T17:15:37+05:30"
         }
       ],
       "source": {
@@ -17911,14 +19430,22 @@
             "min": 361.0,
             "max": 361.0
           },
-          "lotSize": null,
+          "lotSize": 41,
           "issueSizeCr": 1788.62
+        },
+        "NSE-issue-info": {
+          "symbol": "AMAGI",
+          "series": "EQ",
+          "lotSize": 41,
+          "bidLot": 41,
+          "minimumOrderQuantity": 41,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=AMAGI&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:15:37+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -17938,6 +19465,17 @@
         "ofsCr": 972.6186,
         "totalIssueSizeCr": 1788.62,
         "valuationPriceUsed": 361.0
+      },
+      "lotSize": 41,
+      "minimumBidQuantity": 41,
+      "marketLot": 41,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:15:37+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=AMAGI&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=AMAGI&series=EQ",
+        "lotSize": 41,
+        "error": null
       }
     },
     {
@@ -18012,6 +19550,14 @@
         "ofsCr": 4.6846,
         "totalIssueSizeCr": 35.22,
         "valuationPriceUsed": 59.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:15:42+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=AVANA&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=AVANA&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -18043,6 +19589,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-02/Primary_Market_Jan2026_20260217133243.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=BHARATCOAL&type=Past",
+          "asOf": "2026-09-13T17:15:48+05:30"
         }
       ],
       "source": {
@@ -18059,14 +19611,22 @@
             "min": 23.0,
             "max": 23.0
           },
-          "lotSize": null,
+          "lotSize": 600,
           "issueSizeCr": 1068.78
+        },
+        "NSE-issue-info": {
+          "symbol": "BHARATCOAL",
+          "series": "EQ",
+          "lotSize": 600,
+          "bidLot": 600,
+          "minimumOrderQuantity": 600,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=BHARATCOAL&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:15:48+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -18086,6 +19646,17 @@
         "ofsCr": 1071.11,
         "totalIssueSizeCr": 1068.78,
         "valuationPriceUsed": 23.0
+      },
+      "lotSize": 600,
+      "minimumBidQuantity": 600,
+      "marketLot": 600,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:15:48+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=BHARATCOAL&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=BHARATCOAL&series=EQ",
+        "lotSize": 600,
+        "error": null
       }
     },
     {
@@ -18160,6 +19731,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 34.56,
         "valuationPriceUsed": 41.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:15:53+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=VICTORYEV&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=VICTORYEV&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -18216,7 +19795,15 @@
       },
       "profilePath": "ipo/adanienpp1/",
       "openDate": "2026-01-06",
-      "closeDate": "2026-01-08"
+      "closeDate": "2026-01-08",
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:15:59+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=ADANIENPP1&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ADANIENPP1&series=EQ",
+        "lotSize": null,
+        "error": null
+      }
     },
     {
       "id": "e2erail",
@@ -18290,6 +19877,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 84.22,
         "valuationPriceUsed": 174.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:16:04+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=E2ERAIL&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=E2ERAIL&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -18364,6 +19959,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 50.2,
         "valuationPriceUsed": 126.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:16:09+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=DHARARAIL&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=DHARARAIL&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -18438,6 +20041,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 32.24,
         "valuationPriceUsed": 86.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:16:14+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SOCL&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SOCL&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -18512,6 +20123,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 38.49,
         "valuationPriceUsed": 70.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:16:19+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SHYAMDHANI&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SHYAMDHANI&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -18543,6 +20162,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-01/Primary_Market_Monthly_Report_-_December_2025_20260112185519.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=GKSL&type=Past",
+          "asOf": "2026-09-13T17:16:25+05:30"
         }
       ],
       "source": {
@@ -18559,14 +20184,22 @@
             "min": 114.0,
             "max": 114.0
           },
-          "lotSize": null,
+          "lotSize": 128,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "GKSL",
+          "series": "EQ",
+          "lotSize": 128,
+          "bidLot": 128,
+          "minimumOrderQuantity": 128,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=GKSL&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:16:25+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -18586,6 +20219,17 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 250.8,
         "valuationPriceUsed": 114.0
+      },
+      "lotSize": 128,
+      "minimumBidQuantity": 128,
+      "marketLot": 128,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:16:25+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=GKSL&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=GKSL&series=EQ",
+        "lotSize": 128,
+        "error": null
       }
     },
     {
@@ -18660,6 +20304,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 31.81,
         "valuationPriceUsed": 97.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:16:30+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=EPWINDIA&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=EPWINDIA&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -18734,6 +20386,14 @@
         "ofsCr": 8.4593,
         "totalIssueSizeCr": 42.59,
         "valuationPriceUsed": 93.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:16:31+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=MARC&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=MARC&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -18765,6 +20425,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-01/Primary_Market_Monthly_Report_-_December_2025_20260112185519.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=KSHINTL&type=Past",
+          "asOf": "2026-09-13T17:16:37+05:30"
         }
       ],
       "source": {
@@ -18781,14 +20447,22 @@
             "min": 384.0,
             "max": 384.0
           },
-          "lotSize": null,
+          "lotSize": 39,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "KSHINTL",
+          "series": "EQ",
+          "lotSize": 39,
+          "bidLot": 39,
+          "minimumOrderQuantity": 39,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=KSHINTL&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:16:37+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -18808,6 +20482,17 @@
         "ofsCr": 206.354,
         "totalIssueSizeCr": 626.35,
         "valuationPriceUsed": 384.0
+      },
+      "lotSize": 39,
+      "minimumBidQuantity": 39,
+      "marketLot": 39,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:16:37+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=KSHINTL&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=KSHINTL&series=EQ",
+        "lotSize": 39,
+        "error": null
       }
     },
     {
@@ -18839,6 +20524,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-01/Primary_Market_Monthly_Report_-_December_2025_20260112185519.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=ICICIAMC&type=Past",
+          "asOf": "2026-09-13T17:16:42+05:30"
         }
       ],
       "source": {
@@ -18855,14 +20546,22 @@
             "min": 2165.0,
             "max": 2165.0
           },
-          "lotSize": null,
+          "lotSize": 6,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "ICICIAMC",
+          "series": "EQ",
+          "lotSize": 6,
+          "bidLot": 6,
+          "minimumOrderQuantity": 6,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=ICICIAMC&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:16:42+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -18882,6 +20581,17 @@
         "ofsCr": 10602.6532,
         "totalIssueSizeCr": 10602.65,
         "valuationPriceUsed": 2165.0
+      },
+      "lotSize": 6,
+      "minimumBidQuantity": 6,
+      "marketLot": 6,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:16:42+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=ICICIAMC&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ICICIAMC&series=EQ",
+        "lotSize": 6,
+        "error": null
       }
     },
     {
@@ -18956,6 +20666,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 43.73,
         "valuationPriceUsed": 88.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:16:47+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=EXIMROUTES&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=EXIMROUTES&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -19030,6 +20748,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 71.0,
         "valuationPriceUsed": 142.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:16:52+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=ASHWINI&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ASHWINI&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -19061,6 +20787,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-01/Primary_Market_Monthly_Report_-_December_2025_20260112185519.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=PARKHOSPS&type=Past",
+          "asOf": "2026-09-13T17:16:57+05:30"
         }
       ],
       "source": {
@@ -19077,14 +20809,22 @@
             "min": 162.0,
             "max": 162.0
           },
-          "lotSize": null,
+          "lotSize": 92,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "PARKHOSPS",
+          "series": "EQ",
+          "lotSize": 92,
+          "bidLot": 92,
+          "minimumOrderQuantity": 92,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=PARKHOSPS&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:16:57+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -19104,6 +20844,17 @@
         "ofsCr": 150.0,
         "totalIssueSizeCr": 920.0,
         "valuationPriceUsed": 162.0
+      },
+      "lotSize": 92,
+      "minimumBidQuantity": 92,
+      "marketLot": 92,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:16:57+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=PARKHOSPS&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=PARKHOSPS&series=EQ",
+        "lotSize": 92,
+        "error": null
       }
     },
     {
@@ -19135,6 +20886,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-01/Primary_Market_Monthly_Report_-_December_2025_20260112185519.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=NEPHROPLUS&type=Past",
+          "asOf": "2026-09-13T17:17:02+05:30"
         }
       ],
       "source": {
@@ -19151,14 +20908,22 @@
             "min": 460.0,
             "max": 460.0
           },
-          "lotSize": null,
+          "lotSize": 32,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "NEPHROPLUS",
+          "series": "EQ",
+          "lotSize": 32,
+          "bidLot": 32,
+          "minimumOrderQuantity": 32,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=NEPHROPLUS&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:17:02+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -19178,6 +20943,17 @@
         "ofsCr": 517.6427,
         "totalIssueSizeCr": 871.05,
         "valuationPriceUsed": 460.0
+      },
+      "lotSize": 32,
+      "minimumBidQuantity": 32,
+      "marketLot": 32,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:17:02+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=NEPHROPLUS&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=NEPHROPLUS&series=EQ",
+        "lotSize": 32,
+        "error": null
       }
     },
     {
@@ -19209,6 +20985,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-01/Primary_Market_Monthly_Report_-_December_2025_20260112185519.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=WAKEFIT&type=Past",
+          "asOf": "2026-09-13T17:17:08+05:30"
         }
       ],
       "source": {
@@ -19225,14 +21007,22 @@
             "min": 195.0,
             "max": 195.0
           },
-          "lotSize": null,
+          "lotSize": 76,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "WAKEFIT",
+          "series": "EQ",
+          "lotSize": 76,
+          "bidLot": 76,
+          "minimumOrderQuantity": 76,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=WAKEFIT&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:17:08+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -19252,6 +21042,17 @@
         "ofsCr": 911.7109,
         "totalIssueSizeCr": 1288.89,
         "valuationPriceUsed": 195.0
+      },
+      "lotSize": 76,
+      "minimumBidQuantity": 76,
+      "marketLot": 76,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:17:08+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=WAKEFIT&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=WAKEFIT&series=EQ",
+        "lotSize": 76,
+        "error": null
       }
     },
     {
@@ -19283,6 +21084,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-01/Primary_Market_Monthly_Report_-_December_2025_20260112185519.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CORONA&type=Past",
+          "asOf": "2026-09-13T17:17:13+05:30"
         }
       ],
       "source": {
@@ -19299,14 +21106,22 @@
             "min": 1062.0,
             "max": 1062.0
           },
-          "lotSize": null,
+          "lotSize": 14,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "CORONA",
+          "series": "EQ",
+          "lotSize": 14,
+          "bidLot": 14,
+          "minimumOrderQuantity": 14,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CORONA&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:17:13+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -19326,6 +21141,17 @@
         "ofsCr": 655.6842,
         "totalIssueSizeCr": 655.37,
         "valuationPriceUsed": 1062.0
+      },
+      "lotSize": 14,
+      "minimumBidQuantity": 14,
+      "marketLot": 14,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:17:13+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=CORONA&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CORONA&series=EQ",
+        "lotSize": 14,
+        "error": null
       }
     },
     {
@@ -19400,6 +21226,14 @@
         "ofsCr": 9.0534,
         "totalIssueSizeCr": 57.05,
         "valuationPriceUsed": 191.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:17:18+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=FWSTC&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=FWSTC&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -19474,6 +21308,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 40.21,
         "valuationPriceUsed": 107.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:17:23+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=ENCOMPAS&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ENCOMPAS&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -19505,6 +21347,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-01/Primary_Market_Monthly_Report_-_December_2025_20260112185519.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=VIDYAWIRES&type=Past",
+          "asOf": "2026-09-13T17:17:28+05:30"
         }
       ],
       "source": {
@@ -19521,14 +21369,22 @@
             "min": 52.0,
             "max": 52.0
           },
-          "lotSize": null,
+          "lotSize": 288,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "VIDYAWIRES",
+          "series": "EQ",
+          "lotSize": 288,
+          "bidLot": 288,
+          "minimumOrderQuantity": 288,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=VIDYAWIRES&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:17:28+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -19548,6 +21404,17 @@
         "ofsCr": 26.0052,
         "totalIssueSizeCr": 300.01,
         "valuationPriceUsed": 52.0
+      },
+      "lotSize": 288,
+      "minimumBidQuantity": 288,
+      "marketLot": 288,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:17:28+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=VIDYAWIRES&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=VIDYAWIRES&series=EQ",
+        "lotSize": 288,
+        "error": null
       }
     },
     {
@@ -19622,6 +21489,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 46.28,
         "valuationPriceUsed": 90.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:17:33+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SHRIKANHA&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SHRIKANHA&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -19653,6 +21528,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-01/Primary_Market_Monthly_Report_-_December_2025_20260112185519.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MEESHO&type=Past",
+          "asOf": "2026-09-13T17:17:38+05:30"
         }
       ],
       "source": {
@@ -19669,14 +21550,22 @@
             "min": 111.0,
             "max": 111.0
           },
-          "lotSize": null,
+          "lotSize": 135,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "MEESHO",
+          "series": "EQ",
+          "lotSize": 135,
+          "bidLot": 135,
+          "minimumOrderQuantity": 135,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MEESHO&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:17:38+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -19696,6 +21585,17 @@
         "ofsCr": 1171.2036,
         "totalIssueSizeCr": 5421.2,
         "valuationPriceUsed": 111.0
+      },
+      "lotSize": 135,
+      "minimumBidQuantity": 135,
+      "marketLot": 135,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:17:38+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MEESHO&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=MEESHO&series=EQ",
+        "lotSize": 135,
+        "error": null
       }
     },
     {
@@ -19727,6 +21627,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-01/Primary_Market_Monthly_Report_-_December_2025_20260112185519.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=AEQUS&type=Past",
+          "asOf": "2026-09-13T17:17:43+05:30"
         }
       ],
       "source": {
@@ -19743,14 +21649,22 @@
             "min": 124.0,
             "max": 124.0
           },
-          "lotSize": null,
+          "lotSize": 120,
           "issueSizeCr": null
+        },
+        "NSE-issue-info": {
+          "symbol": "AEQUS",
+          "series": "EQ",
+          "lotSize": 120,
+          "bidLot": 120,
+          "minimumOrderQuantity": 120,
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=AEQUS&type=Past"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T16:50:05+05:30",
+        "checkedAt": "2026-09-13T17:17:43+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -19770,6 +21684,17 @@
         "ofsCr": 251.8117,
         "totalIssueSizeCr": 921.81,
         "valuationPriceUsed": 124.0
+      },
+      "lotSize": 120,
+      "minimumBidQuantity": 120,
+      "marketLot": 120,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:17:43+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=AEQUS&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=AEQUS&series=EQ",
+        "lotSize": 120,
+        "error": null
       }
     },
     {
@@ -19844,6 +21769,14 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 44.97,
         "valuationPriceUsed": 98.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:17:48+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=NEOCHEM&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=NEOCHEM&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {
@@ -19918,6 +21851,14 @@
         "ofsCr": 6.552,
         "totalIssueSizeCr": 33.73,
         "valuationPriceUsed": 56.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-13T17:17:53+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SPEB&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SPEB&series=SME",
+        "lotSize": null,
+        "error": null
       }
     },
     {

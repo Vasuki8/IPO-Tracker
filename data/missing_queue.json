@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-09-13T17:01:57+05:30",
+  "generatedAt": "2026-09-13T17:18:16+05:30",
   "asOfDate": "2026-09-13",
   "recordCount": 1365,
-  "queueCount": 1311,
+  "queueCount": 1283,
   "priorityCounts": {
-    "P4 recent history (2y)": 404,
+    "P4 recent history (2y)": 376,
     "P5 historical backfill": 907
   },
   "fieldGapCounts": {
-    "exchange.lotSize": 1309,
+    "exchange.lotSize": 1252,
     "exchange.issueSizeCr": 961,
     "exchange.issueComposition": 55,
     "lifecycle.listingDate": 33,
@@ -22,58 +22,6 @@
     "provenance.sources": 1
   },
   "queue": [
-    {
-      "id": "ardee",
-      "company": "Ardee Industries Limited",
-      "symbol": "ARDEE",
-      "stage": "listed",
-      "openDate": "2026-08-05",
-      "closeDate": "2026-08-07",
-      "listingDate": "2026-08-12",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 52.6,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 9,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.promoters",
-        "offer.objectsOfIssue",
-        "offer.financials",
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/ardee/"
-    },
-    {
-      "id": "jnpr",
-      "company": "Juniper Green Energy Limited",
-      "symbol": "JNPR",
-      "stage": "listed",
-      "openDate": "2026-07-30",
-      "closeDate": "2026-08-03",
-      "listingDate": "2026-08-06",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 52.6,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 9,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.promoters",
-        "offer.objectsOfIssue",
-        "offer.financials",
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/jnpr/"
-    },
     {
       "id": "leap",
       "company": "Leap India Limited",
@@ -99,58 +47,6 @@
         "offer.promoterShareholding"
       ],
       "profilePath": "ipo/leap/"
-    },
-    {
-      "id": "mvelectro",
-      "company": "MV Electrosystems Limited",
-      "symbol": "MVELECTRO",
-      "stage": "listed",
-      "openDate": "2026-07-30",
-      "closeDate": "2026-08-03",
-      "listingDate": "2026-08-06",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 52.6,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 9,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.promoters",
-        "offer.objectsOfIssue",
-        "offer.financials",
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/mvelectro/"
-    },
-    {
-      "id": "manipalhos",
-      "company": "Manipal Health Enterprises Limited",
-      "symbol": "MANIPALHOS",
-      "stage": "listed",
-      "openDate": "2026-07-29",
-      "closeDate": "2026-07-31",
-      "listingDate": "2026-08-05",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 52.6,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 9,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "offer.registrar",
-        "offer.leadManagers",
-        "offer.promoters",
-        "offer.objectsOfIssue",
-        "offer.financials",
-        "offer.promoterShareholding"
-      ],
-      "profilePath": "ipo/manipalhos/"
     },
     {
       "id": "propshop",
@@ -179,6 +75,106 @@
       "profilePath": "ipo/propshop/"
     },
     {
+      "id": "ardee",
+      "company": "Ardee Industries Limited",
+      "symbol": "ARDEE",
+      "stage": "listed",
+      "openDate": "2026-08-05",
+      "closeDate": "2026-08-07",
+      "listingDate": "2026-08-12",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 57.9,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 8,
+      "missingFields": [
+        "exchange.issueSizeCr",
+        "exchange.issueComposition",
+        "offer.registrar",
+        "offer.leadManagers",
+        "offer.promoters",
+        "offer.objectsOfIssue",
+        "offer.financials",
+        "offer.promoterShareholding"
+      ],
+      "profilePath": "ipo/ardee/"
+    },
+    {
+      "id": "jnpr",
+      "company": "Juniper Green Energy Limited",
+      "symbol": "JNPR",
+      "stage": "listed",
+      "openDate": "2026-07-30",
+      "closeDate": "2026-08-03",
+      "listingDate": "2026-08-06",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 57.9,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 8,
+      "missingFields": [
+        "exchange.issueSizeCr",
+        "exchange.issueComposition",
+        "offer.registrar",
+        "offer.leadManagers",
+        "offer.promoters",
+        "offer.objectsOfIssue",
+        "offer.financials",
+        "offer.promoterShareholding"
+      ],
+      "profilePath": "ipo/jnpr/"
+    },
+    {
+      "id": "mvelectro",
+      "company": "MV Electrosystems Limited",
+      "symbol": "MVELECTRO",
+      "stage": "listed",
+      "openDate": "2026-07-30",
+      "closeDate": "2026-08-03",
+      "listingDate": "2026-08-06",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 57.9,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 8,
+      "missingFields": [
+        "exchange.issueSizeCr",
+        "exchange.issueComposition",
+        "offer.registrar",
+        "offer.leadManagers",
+        "offer.promoters",
+        "offer.objectsOfIssue",
+        "offer.financials",
+        "offer.promoterShareholding"
+      ],
+      "profilePath": "ipo/mvelectro/"
+    },
+    {
+      "id": "manipalhos",
+      "company": "Manipal Health Enterprises Limited",
+      "symbol": "MANIPALHOS",
+      "stage": "listed",
+      "openDate": "2026-07-29",
+      "closeDate": "2026-07-31",
+      "listingDate": "2026-08-05",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 57.9,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 8,
+      "missingFields": [
+        "exchange.issueSizeCr",
+        "exchange.issueComposition",
+        "offer.registrar",
+        "offer.leadManagers",
+        "offer.promoters",
+        "offer.objectsOfIssue",
+        "offer.financials",
+        "offer.promoterShareholding"
+      ],
+      "profilePath": "ipo/manipalhos/"
+    },
+    {
       "id": "aastha",
       "company": "Aastha Spintex Limited",
       "symbol": "AASTHA",
@@ -188,11 +184,10 @@
       "listingDate": "2026-07-06",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 63.2,
+      "completenessPct": 68.4,
       "expectedFieldCount": 19,
-      "missingFieldCount": 7,
+      "missingFieldCount": 6,
       "missingFields": [
-        "exchange.lotSize",
         "offer.registrar",
         "offer.leadManagers",
         "offer.promoters",
@@ -212,11 +207,10 @@
       "listingDate": "2026-07-01",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 63.2,
+      "completenessPct": 68.4,
       "expectedFieldCount": 19,
-      "missingFieldCount": 7,
+      "missingFieldCount": 6,
       "missingFields": [
-        "exchange.lotSize",
         "offer.registrar",
         "offer.leadManagers",
         "offer.promoters",
@@ -236,11 +230,10 @@
       "listingDate": "2026-07-21",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 63.2,
+      "completenessPct": 68.4,
       "expectedFieldCount": 19,
-      "missingFieldCount": 7,
+      "missingFieldCount": 6,
       "missingFields": [
-        "exchange.lotSize",
         "offer.registrar",
         "offer.leadManagers",
         "offer.promoters",
@@ -260,11 +253,10 @@
       "listingDate": "2026-02-16",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 63.2,
+      "completenessPct": 68.4,
       "expectedFieldCount": 19,
-      "missingFieldCount": 7,
+      "missingFieldCount": 6,
       "missingFields": [
-        "exchange.lotSize",
         "offer.registrar",
         "offer.leadManagers",
         "offer.promoters",
@@ -284,11 +276,10 @@
       "listingDate": "2026-07-02",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 63.2,
+      "completenessPct": 68.4,
       "expectedFieldCount": 19,
-      "missingFieldCount": 7,
+      "missingFieldCount": 6,
       "missingFields": [
-        "exchange.lotSize",
         "offer.registrar",
         "offer.leadManagers",
         "offer.promoters",
@@ -308,11 +299,10 @@
       "listingDate": "2026-07-24",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 63.2,
+      "completenessPct": 68.4,
       "expectedFieldCount": 19,
-      "missingFieldCount": 7,
+      "missingFieldCount": 6,
       "missingFields": [
-        "exchange.lotSize",
         "offer.registrar",
         "offer.leadManagers",
         "offer.promoters",
@@ -332,11 +322,10 @@
       "listingDate": "2026-03-30",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 63.2,
+      "completenessPct": 68.4,
       "expectedFieldCount": 19,
-      "missingFieldCount": 7,
+      "missingFieldCount": 6,
       "missingFields": [
-        "exchange.lotSize",
         "offer.registrar",
         "offer.leadManagers",
         "offer.promoters",
@@ -356,11 +345,10 @@
       "listingDate": "2026-03-02",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 63.2,
+      "completenessPct": 68.4,
       "expectedFieldCount": 19,
-      "missingFieldCount": 7,
+      "missingFieldCount": 6,
       "missingFields": [
-        "exchange.lotSize",
         "offer.registrar",
         "offer.leadManagers",
         "offer.promoters",
@@ -380,11 +368,10 @@
       "listingDate": "2026-03-24",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 63.2,
+      "completenessPct": 68.4,
       "expectedFieldCount": 19,
-      "missingFieldCount": 7,
+      "missingFieldCount": 6,
       "missingFields": [
-        "exchange.lotSize",
         "offer.registrar",
         "offer.leadManagers",
         "offer.promoters",
@@ -404,11 +391,10 @@
       "listingDate": "2026-06-12",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 63.2,
+      "completenessPct": 68.4,
       "expectedFieldCount": 19,
-      "missingFieldCount": 7,
+      "missingFieldCount": 6,
       "missingFields": [
-        "exchange.lotSize",
         "offer.registrar",
         "offer.leadManagers",
         "offer.promoters",
@@ -428,11 +414,10 @@
       "listingDate": "2026-07-30",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 63.2,
+      "completenessPct": 68.4,
       "expectedFieldCount": 19,
-      "missingFieldCount": 7,
+      "missingFieldCount": 6,
       "missingFields": [
-        "exchange.lotSize",
         "offer.registrar",
         "offer.leadManagers",
         "offer.promoters",
@@ -452,11 +437,10 @@
       "listingDate": "2026-03-23",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 63.2,
+      "completenessPct": 68.4,
       "expectedFieldCount": 19,
-      "missingFieldCount": 7,
+      "missingFieldCount": 6,
       "missingFields": [
-        "exchange.lotSize",
         "offer.registrar",
         "offer.leadManagers",
         "offer.promoters",
@@ -476,11 +460,10 @@
       "listingDate": "2026-07-08",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 63.2,
+      "completenessPct": 68.4,
       "expectedFieldCount": 19,
-      "missingFieldCount": 7,
+      "missingFieldCount": 6,
       "missingFields": [
-        "exchange.lotSize",
         "offer.registrar",
         "offer.leadManagers",
         "offer.promoters",
@@ -500,11 +483,10 @@
       "listingDate": "2026-07-15",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 63.2,
+      "completenessPct": 68.4,
       "expectedFieldCount": 19,
-      "missingFieldCount": 7,
+      "missingFieldCount": 6,
       "missingFields": [
-        "exchange.lotSize",
         "offer.registrar",
         "offer.leadManagers",
         "offer.promoters",
@@ -524,11 +506,10 @@
       "listingDate": "2026-07-30",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 63.2,
+      "completenessPct": 68.4,
       "expectedFieldCount": 19,
-      "missingFieldCount": 7,
+      "missingFieldCount": 6,
       "missingFields": [
-        "exchange.lotSize",
         "offer.registrar",
         "offer.leadManagers",
         "offer.promoters",
@@ -548,11 +529,10 @@
       "listingDate": "2026-04-17",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 63.2,
+      "completenessPct": 68.4,
       "expectedFieldCount": 19,
-      "missingFieldCount": 7,
+      "missingFieldCount": 6,
       "missingFields": [
-        "exchange.lotSize",
         "offer.registrar",
         "offer.leadManagers",
         "offer.promoters",
@@ -572,11 +552,10 @@
       "listingDate": "2026-03-05",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 63.2,
+      "completenessPct": 68.4,
       "expectedFieldCount": 19,
-      "missingFieldCount": 7,
+      "missingFieldCount": 6,
       "missingFields": [
-        "exchange.lotSize",
         "offer.registrar",
         "offer.leadManagers",
         "offer.promoters",
@@ -596,11 +575,10 @@
       "listingDate": "2026-05-08",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 63.2,
+      "completenessPct": 68.4,
       "expectedFieldCount": 19,
-      "missingFieldCount": 7,
+      "missingFieldCount": 6,
       "missingFields": [
-        "exchange.lotSize",
         "offer.registrar",
         "offer.leadManagers",
         "offer.promoters",
@@ -620,11 +598,10 @@
       "listingDate": "2026-03-04",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 63.2,
+      "completenessPct": 68.4,
       "expectedFieldCount": 19,
-      "missingFieldCount": 7,
+      "missingFieldCount": 6,
       "missingFields": [
-        "exchange.lotSize",
         "offer.registrar",
         "offer.leadManagers",
         "offer.promoters",
@@ -644,11 +621,10 @@
       "listingDate": "2026-04-02",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 63.2,
+      "completenessPct": 68.4,
       "expectedFieldCount": 19,
-      "missingFieldCount": 7,
+      "missingFieldCount": 6,
       "missingFields": [
-        "exchange.lotSize",
         "offer.registrar",
         "offer.leadManagers",
         "offer.promoters",
@@ -668,11 +644,10 @@
       "listingDate": "2026-03-19",
       "priority": 4,
       "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 63.2,
+      "completenessPct": 68.4,
       "expectedFieldCount": 19,
-      "missingFieldCount": 7,
+      "missingFieldCount": 6,
       "missingFields": [
-        "exchange.lotSize",
         "offer.registrar",
         "offer.leadManagers",
         "offer.promoters",
@@ -992,26 +967,6 @@
       "profilePath": "ipo/apexeco/"
     },
     {
-      "id": "bagmane",
-      "company": "Bagmane Prime Office REIT",
-      "symbol": "BAGMANE",
-      "stage": "listed",
-      "openDate": "2026-05-05",
-      "closeDate": "2026-05-07",
-      "listingDate": "2026-05-14",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/bagmane/"
-    },
-    {
       "id": "c2c",
       "company": "C2C Advanced Systems Limited",
       "symbol": "C2C",
@@ -1072,26 +1027,6 @@
       "profilePath": "ipo/carraro/"
     },
     {
-      "id": "citiusinvt",
-      "company": "Citius Transnet Investment Trust",
-      "symbol": "CITIUSINVT",
-      "stage": "listed",
-      "openDate": "2026-04-17",
-      "closeDate": "2026-04-21",
-      "listingDate": "2026-04-29",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/citiusinvt/"
-    },
-    {
       "id": "cewater",
       "company": "Concord Enviro Systems Limited",
       "symbol": "CEWATER",
@@ -1130,26 +1065,6 @@
         "exchange.issueComposition"
       ],
       "profilePath": "ipo/credent/"
-    },
-    {
-      "id": "cubeinvit",
-      "company": "Cube Highways Trust",
-      "symbol": "CUBEINVIT",
-      "stage": "listed",
-      "openDate": "2026-07-22",
-      "closeDate": "2026-07-24",
-      "listingDate": "2026-07-31",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/cubeinvit/"
     },
     {
       "id": "damcapital",
@@ -1452,26 +1367,6 @@
       "profilePath": "ipo/purpleuted/"
     },
     {
-      "id": "riit",
-      "company": "Raajmarg Infra Investment Trust",
-      "symbol": "RIIT",
-      "stage": "listed",
-      "openDate": "2026-03-11",
-      "closeDate": "2026-03-13",
-      "listingDate": "2026-03-24",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 75.0,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 3,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition"
-      ],
-      "profilePath": "ipo/riit/"
-    },
-    {
       "id": "rajputana",
       "company": "Rajputana Biodiesel Limited",
       "symbol": "RAJPUTANA",
@@ -1710,6 +1605,25 @@
       "profilePath": "ipo/84ail28/"
     },
     {
+      "id": "bagmane",
+      "company": "Bagmane Prime Office REIT",
+      "symbol": "BAGMANE",
+      "stage": "listed",
+      "openDate": "2026-05-05",
+      "closeDate": "2026-05-07",
+      "listingDate": "2026-05-14",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 83.3,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.issueSizeCr",
+        "exchange.issueComposition"
+      ],
+      "profilePath": "ipo/bagmane/"
+    },
+    {
       "id": "815chli36",
       "company": "Canara HSBC Life Insurance Company Limited",
       "symbol": "815CHLI36",
@@ -1727,6 +1641,44 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/815chli36/"
+    },
+    {
+      "id": "citiusinvt",
+      "company": "Citius Transnet Investment Trust",
+      "symbol": "CITIUSINVT",
+      "stage": "listed",
+      "openDate": "2026-04-17",
+      "closeDate": "2026-04-21",
+      "listingDate": "2026-04-29",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 83.3,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.issueSizeCr",
+        "exchange.issueComposition"
+      ],
+      "profilePath": "ipo/citiusinvt/"
+    },
+    {
+      "id": "cubeinvit",
+      "company": "Cube Highways Trust",
+      "symbol": "CUBEINVIT",
+      "stage": "listed",
+      "openDate": "2026-07-22",
+      "closeDate": "2026-07-24",
+      "listingDate": "2026-07-31",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 83.3,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.issueSizeCr",
+        "exchange.issueComposition"
+      ],
+      "profilePath": "ipo/cubeinvit/"
     },
     {
       "id": "727ngel36",
@@ -1765,6 +1717,25 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/904nacl28/"
+    },
+    {
+      "id": "riit",
+      "company": "Raajmarg Infra Investment Trust",
+      "symbol": "RIIT",
+      "stage": "listed",
+      "openDate": "2026-03-11",
+      "closeDate": "2026-03-13",
+      "listingDate": "2026-03-24",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 83.3,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.issueSizeCr",
+        "exchange.issueComposition"
+      ],
+      "profilePath": "ipo/riit/"
     },
     {
       "id": "805taca29",
@@ -2002,24 +1973,6 @@
       "profilePath": "ipo/advance/"
     },
     {
-      "id": "aequs",
-      "company": "Aequs Limited",
-      "symbol": "AEQUS",
-      "stage": "listed",
-      "openDate": "2025-12-03",
-      "closeDate": "2025-12-05",
-      "listingDate": "2025-12-10",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/aequs/"
-    },
-    {
       "id": "ajaxengg",
       "company": "Ajax Engineering Limited",
       "symbol": "AJAXENGG",
@@ -2054,24 +2007,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/alltime/"
-    },
-    {
-      "id": "amagi",
-      "company": "Amagi Media Labs Limited",
-      "symbol": "AMAGI",
-      "stage": "listed",
-      "openDate": "2026-01-13",
-      "closeDate": "2026-01-16",
-      "listingDate": "2026-01-21",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/amagi/"
     },
     {
       "id": "amanta",
@@ -2488,24 +2423,6 @@
       "profilePath": "ipo/barflex/"
     },
     {
-      "id": "blel",
-      "company": "Behari Lal Engineering Limited",
-      "symbol": "BLEL",
-      "stage": "listed",
-      "openDate": "2026-08-12",
-      "closeDate": "2026-08-14",
-      "listingDate": "2026-08-19",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 94.7,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/blel/"
-    },
-    {
       "id": "belrise",
       "company": "Belrise Industries Limited",
       "symbol": "BELRISE",
@@ -2540,24 +2457,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/bhadora/"
-    },
-    {
-      "id": "bharatcoal",
-      "company": "Bharat Coking Coal Limited",
-      "symbol": "BHARATCOAL",
-      "stage": "listed",
-      "openDate": "2026-01-09",
-      "closeDate": "2026-01-13",
-      "listingDate": "2026-01-19",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/bharatcoal/"
     },
     {
       "id": "bikewo",
@@ -2738,24 +2637,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/ckkretail/"
-    },
-    {
-      "id": "cmrgreen",
-      "company": "CMR Green Technologies Limited",
-      "symbol": "CMRGREEN",
-      "stage": "listed",
-      "openDate": "2026-06-03",
-      "closeDate": "2026-06-05",
-      "listingDate": "2026-06-10",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/cmrgreen/"
     },
     {
       "id": "crizac",
@@ -2954,24 +2835,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/connplex/"
-    },
-    {
-      "id": "corona",
-      "company": "Corona Remedies Limited",
-      "symbol": "CORONA",
-      "stage": "listed",
-      "openDate": "2025-12-08",
-      "closeDate": "2025-12-10",
-      "listingDate": "2025-12-15",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/corona/"
     },
     {
       "id": "curis",
@@ -3586,24 +3449,6 @@
       "profilePath": "ipo/forgeauto/"
     },
     {
-      "id": "fractal",
-      "company": "Fractal Analytics Limited",
-      "symbol": "FRACTAL",
-      "stage": "listed",
-      "openDate": "2026-02-09",
-      "closeDate": "2026-02-11",
-      "listingDate": "2026-02-16",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/fractal/"
-    },
-    {
       "id": "freshara",
       "company": "Freshara Agro Exports Limited",
       "symbol": "FRESHARA",
@@ -3748,24 +3593,6 @@
       "profilePath": "ipo/garuda/"
     },
     {
-      "id": "gaudiumivf",
-      "company": "Gaudium IVF and Women Health Limited",
-      "symbol": "GAUDIUMIVF",
-      "stage": "listed",
-      "openDate": "2026-02-20",
-      "closeDate": "2026-02-24",
-      "listingDate": "2026-02-27",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/gaudiumivf/"
-    },
-    {
       "id": "gemaroma",
       "company": "Gem Aromatics Limited",
       "symbol": "GEMAROMA",
@@ -3908,24 +3735,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/gjl/"
-    },
-    {
-      "id": "gksl",
-      "company": "Gujarat Kidney and Super Speciality Limited",
-      "symbol": "GKSL",
-      "stage": "listed",
-      "openDate": "2025-12-22",
-      "closeDate": "2025-12-24",
-      "listingDate": "2025-12-30",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/gksl/"
     },
     {
       "id": "gurunanak",
@@ -4106,24 +3915,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/icelco/"
-    },
-    {
-      "id": "iciciamc",
-      "company": "ICICI Prudential Asset Management Company Limited",
-      "symbol": "ICICIAMC",
-      "stage": "listed",
-      "openDate": "2025-12-12",
-      "closeDate": "2025-12-16",
-      "listingDate": "2025-12-19",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/iciciamc/"
     },
     {
       "id": "indiqube",
@@ -4432,24 +4223,6 @@
       "profilePath": "ipo/krn/"
     },
     {
-      "id": "kshintl",
-      "company": "KSH International Limited",
-      "symbol": "KSHINTL",
-      "stage": "listed",
-      "openDate": "2025-12-16",
-      "closeDate": "2025-12-18",
-      "listingDate": "2025-12-23",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/kshintl/"
-    },
-    {
       "id": "kkjewels",
       "company": "Kabra Jewels Limited",
       "symbol": "KKJEWELS",
@@ -4592,24 +4365,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/lamosaic/"
-    },
-    {
-      "id": "laserpower",
-      "company": "Laser Power & Infra Limited",
-      "symbol": "LASERPOWER",
-      "stage": "listed",
-      "openDate": "2026-07-09",
-      "closeDate": "2026-07-13",
-      "listingDate": "2026-07-16",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/laserpower/"
     },
     {
       "id": "laxmidentl",
@@ -4882,24 +4637,6 @@
       "profilePath": "ipo/medistep/"
     },
     {
-      "id": "meesho",
-      "company": "Meesho Limited",
-      "symbol": "MEESHO",
-      "stage": "listed",
-      "openDate": "2025-12-03",
-      "closeDate": "2025-12-05",
-      "listingDate": "2025-12-10",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/meesho/"
-    },
-    {
       "id": "metalic",
       "company": "Metalic Technoforge Limited",
       "symbol": "METALIC",
@@ -4936,24 +4673,6 @@
       "profilePath": "ipo/midwestltd/"
     },
     {
-      "id": "milkymist",
-      "company": "Milky Mist Dairy Food Limited",
-      "symbol": "MILKYMIST",
-      "stage": "listed",
-      "openDate": "2026-08-11",
-      "closeDate": "2026-08-13",
-      "listingDate": "2026-08-18",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 94.7,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/milkymist/"
-    },
-    {
       "id": "mobilise",
       "company": "Mobilise App Lab Limited",
       "symbol": "MOBILISE",
@@ -4970,24 +4689,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/mobilise/"
-    },
-    {
-      "id": "molbio",
-      "company": "Molbio Diagnostics Limited",
-      "symbol": "MOLBIO",
-      "stage": "listed",
-      "openDate": "2026-08-10",
-      "closeDate": "2026-08-12",
-      "listingDate": "2026-08-17",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 94.7,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/molbio/"
     },
     {
       "id": "monolith",
@@ -5114,24 +4815,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/neochem/"
-    },
-    {
-      "id": "nephroplus",
-      "company": "Nephrocare Health Services Limited",
-      "symbol": "NEPHROPLUS",
-      "stage": "listed",
-      "openDate": "2025-12-10",
-      "closeDate": "2025-12-12",
-      "listingDate": "2025-12-17",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/nephroplus/"
     },
     {
       "id": "neptune",
@@ -5402,24 +5085,6 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/psfl/"
-    },
-    {
-      "id": "parkhosps",
-      "company": "Park Medi World Limited",
-      "symbol": "PARKHOSPS",
-      "stage": "listed",
-      "openDate": "2025-12-10",
-      "closeDate": "2025-12-12",
-      "listingDate": "2025-12-17",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "profilePath": "ipo/parkhosps/"
     },
     {
       "id": "parth",
@@ -5708,6 +5373,312 @@
         "exchange.lotSize"
       ],
       "profilePath": "ipo/rfbl/"
+    },
+    {
+      "id": "rtl",
+      "company": "Rama Telecom Limited",
+      "symbol": "RTL",
+      "stage": "listed",
+      "openDate": "2025-06-25",
+      "closeDate": "2025-06-27",
+      "listingDate": "2025-07-02",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/rtl/"
+    },
+    {
+      "id": "rapidfleet",
+      "company": "Rapid Fleet Management Services Limited",
+      "symbol": "RAPIDFLEET",
+      "stage": "listed",
+      "openDate": "2025-03-21",
+      "closeDate": "2025-03-25",
+      "listingDate": "2025-03-28",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/rapidfleet/"
+    },
+    {
+      "id": "rappid",
+      "company": "Rappid Valves (India) Limited",
+      "symbol": "RAPPID",
+      "stage": "listed",
+      "openDate": "2024-09-23",
+      "closeDate": "2024-09-25",
+      "listingDate": "2024-09-30",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/rappid/"
+    },
+    {
+      "id": "readymix",
+      "company": "Readymix Construction Machinery Limited",
+      "symbol": "READYMIX",
+      "stage": "listed",
+      "openDate": "2025-02-06",
+      "closeDate": "2025-02-10",
+      "listingDate": "2025-02-13",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/readymix/"
+    },
+    {
+      "id": "regaal",
+      "company": "Regaal Resources Limited",
+      "symbol": "REGAAL",
+      "stage": "listed",
+      "openDate": "2025-08-12",
+      "closeDate": "2025-08-14",
+      "listingDate": "2025-08-20",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/regaal/"
+    },
+    {
+      "id": "rnpl",
+      "company": "Renol Polychem Limited",
+      "symbol": "RNPL",
+      "stage": "listed",
+      "openDate": "2025-07-31",
+      "closeDate": "2025-08-04",
+      "listingDate": "2025-08-07",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/rnpl/"
+    },
+    {
+      "id": "rexpro",
+      "company": "Rexpro Enterprises Limited",
+      "symbol": "REXPRO",
+      "stage": "listed",
+      "openDate": "2025-01-22",
+      "closeDate": "2025-01-24",
+      "listingDate": "2025-01-29",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/rexpro/"
+    },
+    {
+      "id": "royalarc",
+      "company": "Royal Arc Electrodes Limited",
+      "symbol": "ROYALARC",
+      "stage": "listed",
+      "openDate": "2025-02-14",
+      "closeDate": "2025-02-18",
+      "listingDate": "2025-02-24",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/royalarc/"
+    },
+    {
+      "id": "rubicon",
+      "company": "Rubicon Research Limited",
+      "symbol": "RUBICON",
+      "stage": "listed",
+      "openDate": "2025-10-09",
+      "closeDate": "2025-10-13",
+      "listingDate": "2025-10-16",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/rubicon/"
+    },
+    {
+      "id": "sdreams",
+      "company": "S D Retail Limited",
+      "symbol": "SDREAMS",
+      "stage": "listed",
+      "openDate": "2024-09-20",
+      "closeDate": "2024-09-24",
+      "listingDate": "2024-09-27",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/sdreams/"
+    },
+    {
+      "id": "saatvik",
+      "company": "Saatvik Green Energy Limited",
+      "symbol": "SAATVIK",
+      "stage": "listed",
+      "openDate": "2025-09-19",
+      "closeDate": "2025-09-23",
+      "listingDate": "2025-09-26",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/saatvik/"
+    },
+    {
+      "id": "sacheerome",
+      "company": "Sacheerome Limited",
+      "symbol": "SACHEEROME",
+      "stage": "listed",
+      "openDate": "2025-06-09",
+      "closeDate": "2025-06-11",
+      "listingDate": "2025-06-16",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/sacheerome/"
+    },
+    {
+      "id": "safeentp",
+      "company": "Safe Enterprises Retail Fixtures Limited",
+      "symbol": "SAFEENTP",
+      "stage": "listed",
+      "openDate": "2025-06-20",
+      "closeDate": "2025-06-24",
+      "listingDate": "2025-06-27",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/safeentp/"
+    },
+    {
+      "id": "sagility",
+      "company": "Sagility India Limited",
+      "symbol": "SAGILITY",
+      "stage": "listed",
+      "openDate": "2024-11-05",
+      "closeDate": "2024-11-07",
+      "listingDate": "2024-11-12",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/sagility/"
+    },
+    {
+      "id": "sahasra",
+      "company": "Sahasra Electronic Solutions Limited",
+      "symbol": "SAHASRA",
+      "stage": "listed",
+      "openDate": "2024-09-26",
+      "closeDate": "2024-09-30",
+      "listingDate": "2024-10-04",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/sahasra/"
+    },
+    {
+      "id": "sajhotels",
+      "company": "Saj Hotels Limited",
+      "symbol": "SAJHOTELS",
+      "stage": "listed",
+      "openDate": "2024-09-27",
+      "closeDate": "2024-10-01",
+      "listingDate": "2024-10-07",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/sajhotels/"
+    },
+    {
+      "id": "samay",
+      "company": "Samay Project Services Limited",
+      "symbol": "SAMAY",
+      "stage": "listed",
+      "openDate": "2025-06-16",
+      "closeDate": "2025-06-18",
+      "listingDate": "2025-06-23",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 91.7,
+      "expectedFieldCount": 12,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "profilePath": "ipo/samay/"
     }
   ],
   "notes": [
