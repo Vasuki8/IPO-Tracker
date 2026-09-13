@@ -72,17 +72,16 @@ def _explicit_combined_ownership(text: str):
 
     # Injecto-style shareholding-pattern aggregate row:
     # Total (A) Promoter and Promoter Group 15 1,33,77,200 ... 88.14 ...
-    # Allow a bounded set of numeric columns before the first stated percentage.
+    # Require either a decimal percentage or 100.x so shareholder counts and
+    # share quantities before the percentage cannot be mistaken for ownership.
     for match in re.finditer(
         r"Total\s*\(\s*A\s*\)\s+Promoter\s+and\s+Promoter\s+Group"
-        r".{0,260}?\b(100(?:\.0+)?|\d{1,2}(?:\.\d+)?)\b",
+        r".{0,260}?\b(100(?:\.0+)?|\d{1,2}\.\d+)\b",
         flat,
         re.I,
     ):
         if _safe_context(flat, match.start(), match.end()) is None:
             continue
-        # The first decimal/percentage-looking value after the combined label is
-        # the pre-issue shareholding percentage in the SEBI shareholding schema.
         pct = _valid_pct(match.group(1))
         if pct is not None:
             return pct
