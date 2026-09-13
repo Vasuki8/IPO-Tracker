@@ -1,4 +1,4 @@
-name: Validate Phase 4.5B parser v9
+name: Probe Phase 4.5B priority offer layouts
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: phase45b-v9-ci
+  group: phase45b-priority-probe
   cancel-in-progress: true
 
 jobs:
@@ -36,47 +36,95 @@ jobs:
       - name: Run parser v9 regression tests
         run: uv run python -m unittest discover -s tests -p "test_offer_docs_v9.py" -v
 
-      - name: Run parser v8 regressions
-        run: uv run python -m unittest discover -s tests -p "test_offer_docs_v8.py" -v
-
-      - name: Run SEBI document-link regressions
-        run: uv run python -m unittest discover -s tests -p "test_sebi_document_links.py" -v
-
-      - name: Preview canonical RHP recovery and v9 enrichment without publishing
+      - name: Probe remaining P0 and P1 official issuer documents
         shell: bash
         run: |
-          uv run python scripts/enrich_sebi_document_links.py --priority-max 2 --limit 0
           uv run python - <<'PY'
-          import json
-          from pathlib import Path
-          payload = json.loads(Path("data/ipos.json").read_text(encoding="utf-8"))
-          for row in payload.get("ipos") or []:
-              if row.get("id") not in {"rentomojo", "prasolchem"}:
-                  continue
-              print("DOCS", row.get("id"))
-              for doc in row.get("documents") or []:
-                  if doc.get("source") == "SEBI":
-                      print(doc.get("type"), doc.get("title"), doc.get("filedDate"), doc.get("url"))
-          PY
-          uv run python scripts/run_offer_docs_v9.py --limit 0
-          uv run python scripts/audit_data_completeness.py
-          uv run python - <<'PY'
-          import json
+          import io
+          import re
+          import sys
           from pathlib import Path
 
-          payload = json.loads(Path("data/ipos.json").read_text(encoding="utf-8"))
-          audit = json.loads(Path("data/completeness.json").read_text(encoding="utf-8"))
-          print("OFFER_DOC_SCORE", audit["scores"]["offerDocumentEligible"])
-          print("PROMOTER_SHAREHOLDING_COVERAGE", json.dumps(audit["coverage"]["offerDocumentEligible"]["promoterShareholding"], sort_keys=True))
-          for row in payload.get("ipos") or []:
-              if row.get("id") in {"rentomojo", "prasolchem"}:
-                  print(
-                      "FIELDS",
-                      row.get("id"),
-                      "registrar=", bool(row.get("registrar")),
-                      "financials=", bool(row.get("financials")),
-                      "shareholding=", row.get("promoterShareholding"),
-                      "objects=", bool(row.get("objectsOfIssue")),
-                      "extraction=", row.get("offerDocumentExtraction"),
+          import requests
+          from pypdf import PdfReader
+
+          sys.path.insert(0, str(Path("scripts").resolve()))
+          import run_offer_docs_v9 as parser
+          import update_data as core
+
+          targets = [
+              (
+                  "maharaja-speedex-india-limited",
+                  "https://speedexind.com/wp-content/uploads/2026/09/SPeedex-RHP.pdf",
+              ),
+              (
+                  "injecto-polymers-limited",
+                  "https://injectopolymers.in/wp-content/uploads/2026/09/1.-RHP_07.09.2026.pdf",
+              ),
+              (
+                  "shakti-polytarp-limited",
+                  "https://shaktipolytarp.com/wp-content/uploads/2025/10/DRHP_Shakti_29092025.pdf",
+              ),
+          ]
+
+          session = requests.Session()
+          session.headers.update(core.HEADERS)
+
+          for record_id, url in targets:
+              print(f"=== TARGET {record_id} ===")
+              response = session.get(url, timeout=60)
+              response.raise_for_status()
+              data = response.content
+              print("BYTES", len(data))
+              reader = PdfReader(io.BytesIO(data))
+              print("PAGES", len(reader.pages))
+
+              ranked = []
+              page_cache = {}
+              for idx, page in enumerate(reader.pages[:520]):
+                  try:
+                      text = page.extract_text() or ""
+                  except Exception:
+                      text = ""
+                  page_cache[idx] = text
+                  score = parser.v8._shareholding_page_score(text)
+                  if score > 0:
+                      ranked.append((score, idx))
+
+              ranked.sort(reverse=True)
+              print("TOP_SHARE_PAGES", ranked[:10])
+              selected = set()
+              for _score, idx in ranked[:8]:
+                  for page_idx in range(max(0, idx - 1), min(len(reader.pages), idx + 2)):
+                      selected.add(page_idx)
+
+              blocks = []
+              for idx in sorted(selected):
+                  text = page_cache.get(idx)
+                  if text is None:
+                      try:
+                          text = reader.pages[idx].extract_text() or ""
+                      except Exception:
+                          text = ""
+                  blocks.append(text)
+                  flat = re.sub(r"\s+", " ", text).strip()
+                  marker = re.search(
+                      r"(?:promoter.{0,30}promoter group|shareholding pattern|pre[- ]?(?:issue|offer)|capital structure)",
+                      flat,
+                      re.I,
                   )
+                  start = max(0, (marker.start() if marker else 0) - 500)
+                  print(f"PAGE {idx + 1} SCORE {parser.v8._shareholding_page_score(text)}")
+                  print(flat[start : start + 2400])
+
+              combined = "\n".join(blocks)
+              print("SHAREHOLDING_PARSE", parser.extract_promoter_shareholding(combined))
+
+              # Run the actual production extraction path too. This shows whether
+              # the document can close any non-shareholding gaps without writes.
+              extracted_text, pages_read, page_count = parser.extract_pdf_text(data)
+              parsed = parser.parse_document_text(extracted_text, None)
+              print("PRODUCTION_FIELDS", parsed.get("extractedFields"))
+              print("PRODUCTION_SHAREHOLDING", parsed.get("shareholding"))
+              print("PRODUCTION_PAGES", pages_read, page_count)
           PY
