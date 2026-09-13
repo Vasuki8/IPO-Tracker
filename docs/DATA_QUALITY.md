@@ -1,6 +1,6 @@
 # IPO Tracker Data Quality
 
-Generated: **2026-09-13T23:22:05+05:30**  
+Generated: **2026-09-14T01:59:11+05:30**  
 Records audited: **1,354**
 
 ## Completeness scores
@@ -8,10 +8,10 @@ Records audited: **1,354**
 | Area | Score | Records in denominator |
 | --- | ---: | ---: |
 | Actionable exchange terms | 81.9% | 1,347 |
-| Recent exchange terms (2Y) | 94.8% | 441 |
+| Recent exchange terms (2Y) | 94.8% | 438 |
 | Offer-document intelligence | 62.8% | 73 |
 | Live subscription categories | 100.0% | 7 |
-| Matured lifecycle dates | 97.5% | 1,315 |
+| Matured lifecycle dates | 97.5% | 1,316 |
 | Source/provenance trail | 100.0% | 1,354 |
 
 ## Actionable exchange fields
@@ -26,34 +26,34 @@ Records audited: **1,354**
 | priceBand | 1,334 | 1,347 | 13 | 99.0% |
 | lotSize | 316 | 1,347 | 1,031 | 23.5% |
 | issueSizeCr | 401 | 1,347 | 946 | 29.8% |
-| issueComposition | 401 | 441 | 40 | 90.9% |
+| issueComposition | 398 | 438 | 40 | 90.9% |
 
 ## Recent exchange fields — last 2 years
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| symbol | 441 | 441 | 0 | 100.0% |
-| board | 441 | 441 | 0 | 100.0% |
-| exchange | 441 | 441 | 0 | 100.0% |
-| openDate | 441 | 441 | 0 | 100.0% |
-| closeDate | 441 | 441 | 0 | 100.0% |
-| priceBand | 441 | 441 | 0 | 100.0% |
-| lotSize | 316 | 441 | 125 | 71.7% |
-| issueSizeCr | 401 | 441 | 40 | 90.9% |
-| issueComposition | 401 | 441 | 40 | 90.9% |
+| symbol | 438 | 438 | 0 | 100.0% |
+| board | 438 | 438 | 0 | 100.0% |
+| exchange | 438 | 438 | 0 | 100.0% |
+| openDate | 438 | 438 | 0 | 100.0% |
+| closeDate | 438 | 438 | 0 | 100.0% |
+| priceBand | 438 | 438 | 0 | 100.0% |
+| lotSize | 313 | 438 | 125 | 71.5% |
+| issueSizeCr | 398 | 438 | 40 | 90.9% |
+| issueComposition | 398 | 438 | 40 | 90.9% |
 
 ## Historical exchange fields
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| symbol | 906 | 906 | 0 | 100.0% |
-| board | 906 | 906 | 0 | 100.0% |
-| exchange | 906 | 906 | 0 | 100.0% |
-| openDate | 906 | 906 | 0 | 100.0% |
-| closeDate | 906 | 906 | 0 | 100.0% |
-| priceBand | 893 | 906 | 13 | 98.6% |
-| lotSize | 0 | 906 | 906 | 0.0% |
-| issueSizeCr | 0 | 906 | 906 | 0.0% |
+| symbol | 909 | 909 | 0 | 100.0% |
+| board | 909 | 909 | 0 | 100.0% |
+| exchange | 909 | 909 | 0 | 100.0% |
+| openDate | 909 | 909 | 0 | 100.0% |
+| closeDate | 909 | 909 | 0 | 100.0% |
+| priceBand | 896 | 909 | 13 | 98.6% |
+| lotSize | 3 | 909 | 906 | 0.3% |
+| issueSizeCr | 3 | 909 | 906 | 0.3% |
 
 ## Offer-document fields
 
@@ -79,13 +79,13 @@ Records audited: **1,354**
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| listingDate | 1,282 | 1,315 | 33 | 97.5% |
+| listingDate | 1,283 | 1,316 | 33 | 97.5% |
 
 ## Optional lifecycle observations
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| allotmentDate | 0 | 1,315 | 1,315 | 0.0% |
+| allotmentDate | 0 | 1,316 | 1,316 | 0.0% |
 
 ## Interpretation
 

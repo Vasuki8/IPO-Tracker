@@ -317,6 +317,16 @@
             "evidence2": null
           }
         ]
+      },
+      "P4-verified-record-repairs": {
+        "ok": false,
+        "selectorVersion": 2,
+        "identityRepairEntries": 2,
+        "identityRecordsUpdated": 0,
+        "availabilityEntries": 6,
+        "availabilityRecordsUpdated": 5,
+        "missingOrAmbiguous": 3,
+        "checkedAt": "2026-09-14T01:59:10+05:30"
       }
     },
     "errors": [],
@@ -13700,6 +13710,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:31+05:30"
+        },
+        {
+          "name": "NSE IC Electricals issue information",
+          "kind": "availability-resolution",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=ICEL&type=Active",
+          "asOf": "2026-09-14T01:59:10+05:30"
         }
       ],
       "source": {
@@ -13718,12 +13734,23 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "P4AvailabilityResolution": {
+          "fields": [
+            "exchange.lotSize",
+            "exchange.issueSizeCr",
+            "exchange.issueComposition",
+            "lifecycle.listingDate"
+          ],
+          "status": "not-applicable",
+          "reason": "Postponed June 2026 issue event row. IC Electricals later returned with a separate completed NSE SME issue, so this structural row must not inherit the later issue terms or listing date.",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=ICEL&type=Active"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "checkedAt": "2026-09-14T01:59:10+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -13749,6 +13776,36 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
+      },
+      "dataAvailability": {
+        "exchange.lotSize": {
+          "status": "not-applicable",
+          "reason": "Postponed June 2026 issue event row. IC Electricals later returned with a separate completed NSE SME issue, so this structural row must not inherit the later issue terms or listing date.",
+          "sourceName": "NSE IC Electricals issue information",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=ICEL&type=Active",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "exchange.issueSizeCr": {
+          "status": "not-applicable",
+          "reason": "Postponed June 2026 issue event row. IC Electricals later returned with a separate completed NSE SME issue, so this structural row must not inherit the later issue terms or listing date.",
+          "sourceName": "NSE IC Electricals issue information",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=ICEL&type=Active",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "exchange.issueComposition": {
+          "status": "not-applicable",
+          "reason": "Postponed June 2026 issue event row. IC Electricals later returned with a separate completed NSE SME issue, so this structural row must not inherit the later issue terms or listing date.",
+          "sourceName": "NSE IC Electricals issue information",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=ICEL&type=Active",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "lifecycle.listingDate": {
+          "status": "not-applicable",
+          "reason": "Postponed June 2026 issue event row. IC Electricals later returned with a separate completed NSE SME issue, so this structural row must not inherit the later issue terms or listing date.",
+          "sourceName": "NSE IC Electricals issue information",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=ICEL&type=Active",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        }
       }
     },
     {
@@ -13773,6 +13830,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:31+05:30"
+        },
+        {
+          "name": "NSE Sri Priyanka Geo Commex issue information",
+          "kind": "availability-resolution",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SPGCL&type=Active",
+          "asOf": "2026-09-14T01:59:10+05:30"
         }
       ],
       "source": {
@@ -13791,12 +13854,23 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "P4AvailabilityResolution": {
+          "fields": [
+            "exchange.lotSize",
+            "exchange.issueSizeCr",
+            "exchange.issueComposition",
+            "lifecycle.listingDate"
+          ],
+          "status": "not-applicable",
+          "reason": "Withdrawn June 2026 NSE SME issue event row; IPO-specific completion and listing fields are not actionable for this withdrawn event record.",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SPGCL&type=Active"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "checkedAt": "2026-09-14T01:59:10+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -13822,6 +13896,36 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
+      },
+      "dataAvailability": {
+        "exchange.lotSize": {
+          "status": "not-applicable",
+          "reason": "Withdrawn June 2026 NSE SME issue event row; IPO-specific completion and listing fields are not actionable for this withdrawn event record.",
+          "sourceName": "NSE Sri Priyanka Geo Commex issue information",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SPGCL&type=Active",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "exchange.issueSizeCr": {
+          "status": "not-applicable",
+          "reason": "Withdrawn June 2026 NSE SME issue event row; IPO-specific completion and listing fields are not actionable for this withdrawn event record.",
+          "sourceName": "NSE Sri Priyanka Geo Commex issue information",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SPGCL&type=Active",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "exchange.issueComposition": {
+          "status": "not-applicable",
+          "reason": "Withdrawn June 2026 NSE SME issue event row; IPO-specific completion and listing fields are not actionable for this withdrawn event record.",
+          "sourceName": "NSE Sri Priyanka Geo Commex issue information",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SPGCL&type=Active",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "lifecycle.listingDate": {
+          "status": "not-applicable",
+          "reason": "Withdrawn June 2026 NSE SME issue event row; IPO-specific completion and listing fields are not actionable for this withdrawn event record.",
+          "sourceName": "NSE Sri Priyanka Geo Commex issue information",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SPGCL&type=Active",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        }
       }
     },
     {
@@ -16674,6 +16778,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:31+05:30"
+        },
+        {
+          "name": "NSE Rajputana Stainless withdrawal notice",
+          "kind": "availability-resolution",
+          "url": "https://nsearchives.nseindia.com/corporate/IRMENERGY_13032026170101_Cover_SE_Intimation_signed.pdf",
+          "asOf": "2026-09-14T01:59:10+05:30"
         }
       ],
       "source": {
@@ -16692,12 +16802,23 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "P4AvailabilityResolution": {
+          "fields": [
+            "exchange.lotSize",
+            "exchange.issueSizeCr",
+            "exchange.issueComposition",
+            "lifecycle.listingDate"
+          ],
+          "status": "not-applicable",
+          "reason": "Auxiliary investor-withdrawal-option event row; the actual Rajputana Stainless IPO is a separate equity listing.",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/IRMENERGY_13032026170101_Cover_SE_Intimation_signed.pdf"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "checkedAt": "2026-09-14T01:59:10+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -16723,6 +16844,36 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
+      },
+      "dataAvailability": {
+        "exchange.lotSize": {
+          "status": "not-applicable",
+          "reason": "Auxiliary investor-withdrawal-option event row; the actual Rajputana Stainless IPO is a separate equity listing.",
+          "sourceName": "NSE Rajputana Stainless withdrawal notice",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/IRMENERGY_13032026170101_Cover_SE_Intimation_signed.pdf",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "exchange.issueSizeCr": {
+          "status": "not-applicable",
+          "reason": "Auxiliary investor-withdrawal-option event row; the actual Rajputana Stainless IPO is a separate equity listing.",
+          "sourceName": "NSE Rajputana Stainless withdrawal notice",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/IRMENERGY_13032026170101_Cover_SE_Intimation_signed.pdf",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "exchange.issueComposition": {
+          "status": "not-applicable",
+          "reason": "Auxiliary investor-withdrawal-option event row; the actual Rajputana Stainless IPO is a separate equity listing.",
+          "sourceName": "NSE Rajputana Stainless withdrawal notice",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/IRMENERGY_13032026170101_Cover_SE_Intimation_signed.pdf",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "lifecycle.listingDate": {
+          "status": "not-applicable",
+          "reason": "Auxiliary investor-withdrawal-option event row; the actual Rajputana Stainless IPO is a separate equity listing.",
+          "sourceName": "NSE Rajputana Stainless withdrawal notice",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/IRMENERGY_13032026170101_Cover_SE_Intimation_signed.pdf",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        }
       }
     },
     {
@@ -18613,6 +18764,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:30+05:30"
+        },
+        {
+          "name": "NSE NFP Sampoorna Foods completed IPO issue information",
+          "kind": "availability-resolution",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=NFPSAMPOOR&type=Active",
+          "asOf": "2026-09-14T01:59:10+05:30"
         }
       ],
       "source": {
@@ -18631,12 +18788,23 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "P4AvailabilityResolution": {
+          "fields": [
+            "exchange.lotSize",
+            "exchange.issueSizeCr",
+            "exchange.issueComposition",
+            "lifecycle.listingDate"
+          ],
+          "status": "not-applicable",
+          "reason": "Withdrawn February event row; the later completed NFP Sampoorna Foods IPO is a separate issue under symbol NFPSAMPOOR.",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=NFPSAMPOOR&type=Active"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "checkedAt": "2026-09-14T01:59:10+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -18662,6 +18830,36 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
+      },
+      "dataAvailability": {
+        "exchange.lotSize": {
+          "status": "not-applicable",
+          "reason": "Withdrawn February event row; the later completed NFP Sampoorna Foods IPO is a separate issue under symbol NFPSAMPOOR.",
+          "sourceName": "NSE NFP Sampoorna Foods completed IPO issue information",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=NFPSAMPOOR&type=Active",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "exchange.issueSizeCr": {
+          "status": "not-applicable",
+          "reason": "Withdrawn February event row; the later completed NFP Sampoorna Foods IPO is a separate issue under symbol NFPSAMPOOR.",
+          "sourceName": "NSE NFP Sampoorna Foods completed IPO issue information",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=NFPSAMPOOR&type=Active",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "exchange.issueComposition": {
+          "status": "not-applicable",
+          "reason": "Withdrawn February event row; the later completed NFP Sampoorna Foods IPO is a separate issue under symbol NFPSAMPOOR.",
+          "sourceName": "NSE NFP Sampoorna Foods completed IPO issue information",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=NFPSAMPOOR&type=Active",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "lifecycle.listingDate": {
+          "status": "not-applicable",
+          "reason": "Withdrawn February event row; the later completed NFP Sampoorna Foods IPO is a separate issue under symbol NFPSAMPOOR.",
+          "sourceName": "NSE NFP Sampoorna Foods completed IPO issue information",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=NFPSAMPOOR&type=Active",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        }
       }
     },
     {
@@ -41089,6 +41287,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-12T08:19:28+05:30"
+        },
+        {
+          "name": "NSE C2C Advanced Systems SME-IPO listing release",
+          "kind": "availability-resolution",
+          "url": "https://nsearchives.nseindia.com/web/sites/default/files/2024-12/PR_List_02122024.pdf",
+          "asOf": "2026-09-14T01:59:10+05:30"
         }
       ],
       "source": {
@@ -41107,12 +41311,23 @@
           },
           "lotSize": null,
           "issueSizeCr": null
+        },
+        "P4AvailabilityResolution": {
+          "fields": [
+            "exchange.lotSize",
+            "exchange.issueSizeCr",
+            "exchange.issueComposition",
+            "lifecycle.listingDate"
+          ],
+          "status": "not-applicable",
+          "reason": "Auxiliary withdrawal-window event row; the actual C2C Advanced Systems SME IPO listed under symbol C2C.",
+          "sourceUrl": "https://nsearchives.nseindia.com/web/sites/default/files/2024-12/PR_List_02122024.pdf"
         }
       },
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-13T23:20:20+05:30",
+        "checkedAt": "2026-09-14T01:59:10+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -41138,6 +41353,36 @@
         "ofsCr": null,
         "issueSizeCr": null,
         "error": null
+      },
+      "dataAvailability": {
+        "exchange.lotSize": {
+          "status": "not-applicable",
+          "reason": "Auxiliary withdrawal-window event row; the actual C2C Advanced Systems SME IPO listed under symbol C2C.",
+          "sourceName": "NSE C2C Advanced Systems SME-IPO listing release",
+          "sourceUrl": "https://nsearchives.nseindia.com/web/sites/default/files/2024-12/PR_List_02122024.pdf",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "exchange.issueSizeCr": {
+          "status": "not-applicable",
+          "reason": "Auxiliary withdrawal-window event row; the actual C2C Advanced Systems SME IPO listed under symbol C2C.",
+          "sourceName": "NSE C2C Advanced Systems SME-IPO listing release",
+          "sourceUrl": "https://nsearchives.nseindia.com/web/sites/default/files/2024-12/PR_List_02122024.pdf",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "exchange.issueComposition": {
+          "status": "not-applicable",
+          "reason": "Auxiliary withdrawal-window event row; the actual C2C Advanced Systems SME IPO listed under symbol C2C.",
+          "sourceName": "NSE C2C Advanced Systems SME-IPO listing release",
+          "sourceUrl": "https://nsearchives.nseindia.com/web/sites/default/files/2024-12/PR_List_02122024.pdf",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "lifecycle.listingDate": {
+          "status": "not-applicable",
+          "reason": "Auxiliary withdrawal-window event row; the actual C2C Advanced Systems SME IPO listed under symbol C2C.",
+          "sourceName": "NSE C2C Advanced Systems SME-IPO listing release",
+          "sourceUrl": "https://nsearchives.nseindia.com/web/sites/default/files/2024-12/PR_List_02122024.pdf",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        }
       }
     },
     {

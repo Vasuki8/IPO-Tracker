@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-09-13T23:22:05+05:30",
-  "asOfDate": "2026-09-13",
+  "generatedAt": "2026-09-14T01:59:11+05:30",
+  "asOfDate": "2026-09-14",
   "recordCount": 1354,
-  "queueCount": 1086,
+  "queueCount": 1081,
   "priorityCounts": {
-    "P4 recent history (2y)": 179,
+    "P4 recent history (2y)": 174,
     "P5 historical backfill": 907
   },
   "fieldGapCounts": {
-    "exchange.lotSize": 1031,
-    "exchange.issueSizeCr": 946,
-    "exchange.issueComposition": 40,
-    "lifecycle.listingDate": 33,
+    "exchange.lotSize": 1026,
+    "exchange.issueSizeCr": 941,
+    "exchange.issueComposition": 35,
     "offer.promoterShareholding": 28,
+    "lifecycle.listingDate": 28,
     "offer.registrar": 27,
     "offer.leadManagers": 27,
     "offer.promoters": 27,
@@ -21,9 +21,16 @@
     "exchange.priceBand": 13,
     "provenance.sources": 1
   },
-  "resolvedUnavailableRecordCount": 0,
-  "resolvedUnavailablePriorityCounts": {},
-  "resolvedUnavailableFieldCounts": {},
+  "resolvedUnavailableRecordCount": 5,
+  "resolvedUnavailablePriorityCounts": {
+    "P4 recent history (2y)": 5
+  },
+  "resolvedUnavailableFieldCounts": {
+    "exchange.lotSize": 5,
+    "exchange.issueSizeCr": 5,
+    "exchange.issueComposition": 5,
+    "lifecycle.listingDate": 5
+  },
   "queue": [
     {
       "id": "leap",
@@ -708,75 +715,6 @@
       "profilePath": "ipo/rsl--ab39dbaf/"
     },
     {
-      "id": "c2cw",
-      "company": "C2C Advanced Systems Limited- Withdrawal Window",
-      "symbol": "C2CW",
-      "stage": "closed",
-      "openDate": "2024-11-26",
-      "closeDate": "2024-11-29",
-      "listingDate": null,
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 66.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 4,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.listingDate"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/c2cw/"
-    },
-    {
-      "id": "icel",
-      "company": "IC Electricals Company Limited-Issue postponed",
-      "symbol": "ICEL",
-      "stage": "closed",
-      "openDate": "2026-06-25",
-      "closeDate": "2026-06-30",
-      "listingDate": null,
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 66.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 4,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.listingDate"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/icel/"
-    },
-    {
-      "id": "sampoorna",
-      "company": "NFP Sampoorna Foods Limited-Issue Withdrawn",
-      "symbol": "SAMPOORNA",
-      "stage": "closed",
-      "openDate": "2026-02-04",
-      "closeDate": "2026-02-06",
-      "listingDate": null,
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 66.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 4,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.listingDate"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/sampoorna/"
-    },
-    {
       "id": "nsdl",
       "company": "National Securities Depository Limited",
       "symbol": "NSDL",
@@ -798,52 +736,6 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/nsdl/"
-    },
-    {
-      "id": "rsl",
-      "company": "Rajputana Stainless Limited-Special Withdrawal Option",
-      "symbol": "RSL",
-      "stage": "closed",
-      "openDate": "2026-03-12",
-      "closeDate": "2026-03-16",
-      "listingDate": null,
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 66.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 4,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.listingDate"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/rsl--b3cf3e5b/"
-    },
-    {
-      "id": "spgcl",
-      "company": "Sri Priyanka Geo Commex Limited-Issue Withdrawn",
-      "symbol": "SPGCL",
-      "stage": "closed",
-      "openDate": "2026-06-24",
-      "closeDate": "2026-06-29",
-      "listingDate": null,
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 66.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 4,
-      "missingFields": [
-        "exchange.lotSize",
-        "exchange.issueSizeCr",
-        "exchange.issueComposition",
-        "lifecycle.listingDate"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/spgcl/"
     },
     {
       "id": "anawil",
@@ -6380,9 +6272,335 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/aurdis/"
+    },
+    {
+      "id": "auroimpex",
+      "company": "Auro Impex & Chemicals Limited",
+      "symbol": "AUROIMPEX",
+      "stage": "listed",
+      "openDate": "2023-05-11",
+      "closeDate": "2023-05-15",
+      "listingDate": "2023-05-23",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/auroimpex/"
+    },
+    {
+      "id": "aps",
+      "company": "Australian Premium Solar (India) Limited",
+      "symbol": "APS",
+      "stage": "listed",
+      "openDate": "2024-01-11",
+      "closeDate": "2024-01-15",
+      "listingDate": "2024-01-18",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/aps/"
+    },
+    {
+      "id": "avalon",
+      "company": "Avalon Technologies Limited",
+      "symbol": "AVALON",
+      "stage": "listed",
+      "openDate": "2023-04-03",
+      "closeDate": "2023-04-06",
+      "listingDate": "2023-04-18",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/avalon/"
+    },
+    {
+      "id": "dmart",
+      "company": "Avenue Supermarts Limited",
+      "symbol": "DMART",
+      "stage": "listed",
+      "openDate": "2017-03-08",
+      "closeDate": "2017-03-10",
+      "listingDate": "2017-03-21",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/dmart/"
+    },
+    {
+      "id": "avonmpl",
+      "company": "Avon Moldplast Limited",
+      "symbol": "AVONMPL",
+      "stage": "listed",
+      "openDate": "2018-07-12",
+      "closeDate": "2018-07-18",
+      "listingDate": "2018-07-26",
+      "priority": 5,
+      "priorityLabel": "P5 historical backfill",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 2,
+      "missingFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/avonmpl/"
     }
   ],
-  "resolvedUnavailable": [],
+  "resolvedUnavailable": [
+    {
+      "id": "c2cw",
+      "company": "C2C Advanced Systems Limited- Withdrawal Window",
+      "symbol": "C2CW",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "resolvedFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr",
+        "exchange.issueComposition",
+        "lifecycle.listingDate"
+      ],
+      "resolutions": {
+        "exchange.lotSize": {
+          "status": "not-applicable",
+          "reason": "Auxiliary withdrawal-window event row; the actual C2C Advanced Systems SME IPO listed under symbol C2C.",
+          "sourceName": "NSE C2C Advanced Systems SME-IPO listing release",
+          "sourceUrl": "https://nsearchives.nseindia.com/web/sites/default/files/2024-12/PR_List_02122024.pdf",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "exchange.issueSizeCr": {
+          "status": "not-applicable",
+          "reason": "Auxiliary withdrawal-window event row; the actual C2C Advanced Systems SME IPO listed under symbol C2C.",
+          "sourceName": "NSE C2C Advanced Systems SME-IPO listing release",
+          "sourceUrl": "https://nsearchives.nseindia.com/web/sites/default/files/2024-12/PR_List_02122024.pdf",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "exchange.issueComposition": {
+          "status": "not-applicable",
+          "reason": "Auxiliary withdrawal-window event row; the actual C2C Advanced Systems SME IPO listed under symbol C2C.",
+          "sourceName": "NSE C2C Advanced Systems SME-IPO listing release",
+          "sourceUrl": "https://nsearchives.nseindia.com/web/sites/default/files/2024-12/PR_List_02122024.pdf",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "lifecycle.listingDate": {
+          "status": "not-applicable",
+          "reason": "Auxiliary withdrawal-window event row; the actual C2C Advanced Systems SME IPO listed under symbol C2C.",
+          "sourceName": "NSE C2C Advanced Systems SME-IPO listing release",
+          "sourceUrl": "https://nsearchives.nseindia.com/web/sites/default/files/2024-12/PR_List_02122024.pdf",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        }
+      },
+      "profilePath": "ipo/c2cw/"
+    },
+    {
+      "id": "icel",
+      "company": "IC Electricals Company Limited-Issue postponed",
+      "symbol": "ICEL",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "resolvedFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr",
+        "exchange.issueComposition",
+        "lifecycle.listingDate"
+      ],
+      "resolutions": {
+        "exchange.lotSize": {
+          "status": "not-applicable",
+          "reason": "Postponed June 2026 issue event row. IC Electricals later returned with a separate completed NSE SME issue, so this structural row must not inherit the later issue terms or listing date.",
+          "sourceName": "NSE IC Electricals issue information",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=ICEL&type=Active",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "exchange.issueSizeCr": {
+          "status": "not-applicable",
+          "reason": "Postponed June 2026 issue event row. IC Electricals later returned with a separate completed NSE SME issue, so this structural row must not inherit the later issue terms or listing date.",
+          "sourceName": "NSE IC Electricals issue information",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=ICEL&type=Active",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "exchange.issueComposition": {
+          "status": "not-applicable",
+          "reason": "Postponed June 2026 issue event row. IC Electricals later returned with a separate completed NSE SME issue, so this structural row must not inherit the later issue terms or listing date.",
+          "sourceName": "NSE IC Electricals issue information",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=ICEL&type=Active",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "lifecycle.listingDate": {
+          "status": "not-applicable",
+          "reason": "Postponed June 2026 issue event row. IC Electricals later returned with a separate completed NSE SME issue, so this structural row must not inherit the later issue terms or listing date.",
+          "sourceName": "NSE IC Electricals issue information",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=ICEL&type=Active",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        }
+      },
+      "profilePath": "ipo/icel/"
+    },
+    {
+      "id": "sampoorna",
+      "company": "NFP Sampoorna Foods Limited-Issue Withdrawn",
+      "symbol": "SAMPOORNA",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "resolvedFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr",
+        "exchange.issueComposition",
+        "lifecycle.listingDate"
+      ],
+      "resolutions": {
+        "exchange.lotSize": {
+          "status": "not-applicable",
+          "reason": "Withdrawn February event row; the later completed NFP Sampoorna Foods IPO is a separate issue under symbol NFPSAMPOOR.",
+          "sourceName": "NSE NFP Sampoorna Foods completed IPO issue information",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=NFPSAMPOOR&type=Active",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "exchange.issueSizeCr": {
+          "status": "not-applicable",
+          "reason": "Withdrawn February event row; the later completed NFP Sampoorna Foods IPO is a separate issue under symbol NFPSAMPOOR.",
+          "sourceName": "NSE NFP Sampoorna Foods completed IPO issue information",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=NFPSAMPOOR&type=Active",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "exchange.issueComposition": {
+          "status": "not-applicable",
+          "reason": "Withdrawn February event row; the later completed NFP Sampoorna Foods IPO is a separate issue under symbol NFPSAMPOOR.",
+          "sourceName": "NSE NFP Sampoorna Foods completed IPO issue information",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=NFPSAMPOOR&type=Active",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "lifecycle.listingDate": {
+          "status": "not-applicable",
+          "reason": "Withdrawn February event row; the later completed NFP Sampoorna Foods IPO is a separate issue under symbol NFPSAMPOOR.",
+          "sourceName": "NSE NFP Sampoorna Foods completed IPO issue information",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=NFPSAMPOOR&type=Active",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        }
+      },
+      "profilePath": "ipo/sampoorna/"
+    },
+    {
+      "id": "rsl",
+      "company": "Rajputana Stainless Limited-Special Withdrawal Option",
+      "symbol": "RSL",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "resolvedFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr",
+        "exchange.issueComposition",
+        "lifecycle.listingDate"
+      ],
+      "resolutions": {
+        "exchange.lotSize": {
+          "status": "not-applicable",
+          "reason": "Auxiliary investor-withdrawal-option event row; the actual Rajputana Stainless IPO is a separate equity listing.",
+          "sourceName": "NSE Rajputana Stainless withdrawal notice",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/IRMENERGY_13032026170101_Cover_SE_Intimation_signed.pdf",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "exchange.issueSizeCr": {
+          "status": "not-applicable",
+          "reason": "Auxiliary investor-withdrawal-option event row; the actual Rajputana Stainless IPO is a separate equity listing.",
+          "sourceName": "NSE Rajputana Stainless withdrawal notice",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/IRMENERGY_13032026170101_Cover_SE_Intimation_signed.pdf",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "exchange.issueComposition": {
+          "status": "not-applicable",
+          "reason": "Auxiliary investor-withdrawal-option event row; the actual Rajputana Stainless IPO is a separate equity listing.",
+          "sourceName": "NSE Rajputana Stainless withdrawal notice",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/IRMENERGY_13032026170101_Cover_SE_Intimation_signed.pdf",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "lifecycle.listingDate": {
+          "status": "not-applicable",
+          "reason": "Auxiliary investor-withdrawal-option event row; the actual Rajputana Stainless IPO is a separate equity listing.",
+          "sourceName": "NSE Rajputana Stainless withdrawal notice",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/IRMENERGY_13032026170101_Cover_SE_Intimation_signed.pdf",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        }
+      },
+      "profilePath": "ipo/rsl--b3cf3e5b/"
+    },
+    {
+      "id": "spgcl",
+      "company": "Sri Priyanka Geo Commex Limited-Issue Withdrawn",
+      "symbol": "SPGCL",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "resolvedFields": [
+        "exchange.lotSize",
+        "exchange.issueSizeCr",
+        "exchange.issueComposition",
+        "lifecycle.listingDate"
+      ],
+      "resolutions": {
+        "exchange.lotSize": {
+          "status": "not-applicable",
+          "reason": "Withdrawn June 2026 NSE SME issue event row; IPO-specific completion and listing fields are not actionable for this withdrawn event record.",
+          "sourceName": "NSE Sri Priyanka Geo Commex issue information",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SPGCL&type=Active",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "exchange.issueSizeCr": {
+          "status": "not-applicable",
+          "reason": "Withdrawn June 2026 NSE SME issue event row; IPO-specific completion and listing fields are not actionable for this withdrawn event record.",
+          "sourceName": "NSE Sri Priyanka Geo Commex issue information",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SPGCL&type=Active",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "exchange.issueComposition": {
+          "status": "not-applicable",
+          "reason": "Withdrawn June 2026 NSE SME issue event row; IPO-specific completion and listing fields are not actionable for this withdrawn event record.",
+          "sourceName": "NSE Sri Priyanka Geo Commex issue information",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SPGCL&type=Active",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        },
+        "lifecycle.listingDate": {
+          "status": "not-applicable",
+          "reason": "Withdrawn June 2026 NSE SME issue event row; IPO-specific completion and listing fields are not actionable for this withdrawn event record.",
+          "sourceName": "NSE Sri Priyanka Geo Commex issue information",
+          "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SPGCL&type=Active",
+          "checkedAt": "2026-09-14T01:59:10+05:30"
+        }
+      },
+      "profilePath": "ipo/spgcl/"
+    }
+  ],
   "notes": [
     "P0/P1 records are repaired before historical records.",
     "Only lifecycle- and source-appropriate missing fields enter the actionable queue.",
