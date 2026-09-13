@@ -13,6 +13,8 @@ on:
       - "scripts/backfill_bse_history.py"
       - "scripts/backfill_bse_history_v2.py"
       - "scripts/apply_verified_lot_sizes.py"
+      - "scripts/apply_verified_recent_issue_terms.py"
+      - "scripts/apply_verified_recent_offer_fields.py"
       - "scripts/audit_data_completeness.py"
       - "scripts/build_missing_queue.py"
       - "scripts/normalize_source_health.py"
@@ -22,6 +24,8 @@ on:
       - "tests/test_exchange_details_v2.py"
       - "tests/test_bse_history_backfill.py"
       - "tests/test_verified_lot_sizes.py"
+      - "tests/test_verified_recent_issue_terms.py"
+      - "tests/test_verified_recent_offer_fields.py"
       - "tests/test_data_completeness.py"
       - "tests/test_missing_queue.py"
       - "tests/test_source_health.py"
@@ -74,6 +78,12 @@ jobs:
       - name: Run verified upcoming lot-size tests
         run: uv run python -m unittest discover -s tests -p "test_verified_lot_sizes.py" -v
 
+      - name: Run verified recent issue-term tests
+        run: uv run python -m unittest discover -s tests -p "test_verified_recent_issue_terms.py" -v
+
+      - name: Run verified recent offer-field tests
+        run: uv run python -m unittest discover -s tests -p "test_verified_recent_offer_fields.py" -v
+
       - name: Run source-health tests
         run: uv run python -m unittest discover -s tests -p "test_source_health.py" -v
 
@@ -125,11 +135,12 @@ jobs:
           uv run python scripts/enrich_exchange_details_v2.py --limit 30 --history-days 730
           uv run python scripts/backfill_bse_history_v2.py --history-days 730 --limit 80
 
-          # Narrow fill-only bridge for announced upcoming lots that are not yet
-          # exposed by the automated exchange-detail feed. Exact id + symbol +
-          # open-date guards prevent cross-issue application, and automated BSE
-          # detail enrichment always gets first chance to populate the field.
+          # Strict fill-only bridges run only after automated exchange sources.
+          # Exact id + symbol + company + open-date guards prevent cross-issue
+          # application, while retaining per-entry verification provenance.
           uv run python scripts/apply_verified_lot_sizes.py
+          uv run python scripts/apply_verified_recent_issue_terms.py
+          uv run python scripts/apply_verified_recent_offer_fields.py
 
           # Phase 4.5D archival sweep: progressively walk the older official BSE
           # archive for recoverable exchange-core fields. Attempt markers + a
