@@ -38,7 +38,12 @@ permissions:
   contents: write
 
 concurrency:
-  group: ipo-data-refresh
+  # Keep duplicate Finish-P4 runs serialized without competing with unrelated
+  # IPO data workflows. GitHub retains at most one pending run per concurrency
+  # group even when cancel-in-progress is false, so the old shared
+  # `ipo-data-refresh` group allowed other workflows to evict this one before
+  # a job ever started. Publication steps already guard against stale data.
+  group: finish-p4-offer-docs
   cancel-in-progress: false
 
 jobs:
