@@ -1,4 +1,4 @@
-name: Probe Phase 4.5A modern BSE history API
+name: Probe Phase 4.5A NSE monthly ordering
 
 on:
   push:
@@ -13,47 +13,44 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
     steps:
-      - name: Fetch BSE production JS
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.1.0
+        with:
+          version: "latest-known"
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Sync dependencies
+        run: uv sync
+
+      - name: Inspect discovered NSE monthly reports and parsed date ranges
         shell: bash
         run: |
-          UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/152 Safari/537.36"
-          curl --http1.1 -fL --retry 3 --retry-all-errors --retry-delay 2 -A "$UA" \
-            -H "Referer: https://www.bseindia.com/markets/PublicIssues/DisplayIPO" \
-            "https://www.bseindia.com/assets/includenew/js/main-5C6S24SS.js" -o /tmp/main.js
+          uv run python - <<'PY'
+          import requests
+          from scripts import enrich_nse_primary_market_reports_v2 as v2
+          import scripts.enrich_nse_primary_market_reports as base
+          import scripts.update_data as core
 
-      - name: Locate DisplayIPO detail component API calls
-        shell: python
-        run: |
-          import re
-          raw=open('/tmp/main.js',encoding='utf-8',errors='ignore').read()
-          needles=['Minimum Bid Quantity','Market Lot','Issue Size – No. of Shares','Blank ASBA Form','Sponsor Bank','Cut off Amount']
-          seen=set()
-          for needle in needles:
-            start=0
-            while True:
-              pos=raw.find(needle,start)
-              if pos<0: break
-              chunk=raw[max(0,pos-7000):pos+12000]
-              apis=sorted(set(re.findall(r'["\'](/?[A-Za-z0-9_./-]+/w(?:\?[^"\']*)?)["\']',chunk)))
-              key=tuple(apis)
-              if key and key not in seen:
-                seen.add(key)
-                print('===',needle,'===')
-                print('\n'.join(apis))
-                print(chunk)
-              start=pos+len(needle)
-
-      - name: Print API-like strings near query parameter names
-        shell: python
-        run: |
-          import re
-          raw=open('/tmp/main.js',encoding='utf-8',errors='ignore').read()
-          for needle in ['IPONo','Scrip_cd','startdt','idtype']:
-            print('###',needle)
-            for m in list(re.finditer(needle,raw))[:40]:
-              chunk=raw[max(0,m.start()-1800):m.start()+3500]
-              apis=sorted(set(re.findall(r'["\']([^"\']+/w[^"\']*)["\']',chunk)))
-              if apis:
-                print('\n'.join(apis))
+          s=requests.Session(); s.headers.update(core.HEADERS)
+          urls=v2.discover_report_urls(s, 0)
+          print('DISCOVERED',len(urls))
+          for i,u in enumerate(urls[:80]): print(i,u)
+          print('--- FIRST 30 PARSED ---')
+          for i,u in enumerate(urls[:30]):
+            try:
+              rows=base.parse_report_rows(base.read_xlsx_rows(base.download_report(s,u)),u)
+              dates=sorted([r.get('openDate') for r in rows if r.get('openDate')])
+              print(i,'rows',len(rows),'min',dates[0] if dates else None,'max',dates[-1] if dates else None,u)
+              for r in rows:
+                if r.get('openDate','').startswith('2026-08') or r.get('openDate','').startswith('2026-09'):
+                  print('  RECENT',r.get('symbol'),r.get('company'),r.get('openDate'))
+            except Exception as e:
+              print(i,'ERR',type(e).__name__,str(e)[:180],u)
+          PY
