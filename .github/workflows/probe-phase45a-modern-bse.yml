@@ -15,26 +15,26 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Probe BSE modern historical IPO API
+      - name: Probe BSE 2026 historical IPO list
         shell: bash
         run: |
           UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/152 Safari/537.36"
-          BASE="https://api.bseindia.com/BseIndiaAPI/api/GetPublicIssue_par_updated/w"
+          BASE="https://api.bseindia.com/BseIndiaAPI/api/MoreCompanyN/w"
           for QS in \
-            "?flag=1&status=H&exchange=&ir_flag=IPO" \
-            "?flag=1&status=H&exchange=Mainboard&ir_flag=IPO" \
-            "?flag=1&status=H&exchange=SME&ir_flag=IPO"; do
+            "?Fromdt=2026&company=&flag=1&type=2" \
+            "?Fromdt=2026&company=&flag=2&type=2" \
+            "?Fromdt=2026&company=&flag=&type=1"; do
             echo "=== $QS ==="
             curl --http1.1 -sS -L --max-time 30 -A "$UA" \
               -H "Accept: application/json, text/plain, */*" \
               -H "Origin: https://www.bseindia.com" \
               -H "Referer: https://www.bseindia.com/markets/PublicIssues/IPOIssues" \
               -w "\nHTTP:%{http_code} SIZE:%{size_download}\n" \
-              "$BASE$QS" | tee /tmp/out.json | head -c 40000
+              "$BASE$QS" | head -c 60000
             echo
           done
 
-      - name: Check P2 issuer hits and reconstruct DisplayIPO URLs
+      - name: Check P2 issuer hits
         shell: python
         run: |
           import json, urllib.parse, urllib.request
@@ -47,23 +47,19 @@ jobs:
             'ASSET RECONSTRUCTION COMPANY','GLASS WALL SYSTEMS','KARAMTARA ENGINEERING','LCC PROJECTS',
             'MANIPAL PAYMENT','PRASOL CHEMICALS','STEAMHOUSE INDIA'
           ]
-          url = 'https://api.bseindia.com/BseIndiaAPI/api/GetPublicIssue_par_updated/w?flag=1&status=H&exchange=&ir_flag=IPO'
-          req = urllib.request.Request(url, headers={'User-Agent':'Mozilla/5.0','Referer':'https://www.bseindia.com/markets/PublicIssues/IPOIssues','Origin':'https://www.bseindia.com','Accept':'application/json'})
-          data = json.loads(urllib.request.urlopen(req, timeout=30).read().decode())
-          rows = data.get('Table') or []
-          print('rows', len(rows))
-          for row in rows:
-            company = str(row.get('Scrip_Name') or row.get('Scrip_name') or '').upper()
-            if any(n in company or company in n for n in names):
-              start = str(row.get('Start_Dt') or '')[:10]
-              if start:
-                y,m,d = start.split('-')
-                startdt = f'{d}/{m}/{y}'
-              else:
-                startdt = ''
-              qs = urllib.parse.urlencode({
-                'id': row.get('Scrip_cd'), 'type': row.get('IR_flag'), 'status': row.get('Status'),
-                'IPONo': row.get('IPO_NO'), 'startdt': startdt
-              })
-              print(company, row)
-              print('URL=https://www.bseindia.com/markets/publicIssues/DisplayIPO.aspx?'+qs)
+          headers={'User-Agent':'Mozilla/5.0','Referer':'https://www.bseindia.com/markets/PublicIssues/IPOIssues','Origin':'https://www.bseindia.com','Accept':'application/json'}
+          all_rows=[]
+          for flag in ('1','2'):
+            url=f'https://api.bseindia.com/BseIndiaAPI/api/MoreCompanyN/w?Fromdt=2026&company=&flag={flag}&type=2'
+            req=urllib.request.Request(url,headers=headers)
+            data=json.loads(urllib.request.urlopen(req,timeout=30).read().decode())
+            rows=data.get('Table') or []
+            print('flag',flag,'rows',len(rows),'keys',sorted(rows[0].keys()) if rows else [])
+            all_rows.extend(rows)
+          hits=0
+          for row in all_rows:
+            company=str(row.get('Scrip_Name') or row.get('Scrip_name') or row.get('Company_Name') or row.get('COMPANY') or '').upper()
+            if any(n in company or (company and company in n) for n in names):
+              hits += 1
+              print('HIT',company,row)
+          print('hits',hits)
