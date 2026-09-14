@@ -26,15 +26,27 @@ def main():
             response = session.get(url, timeout=30)
             response.raise_for_status()
             content = response.text[:2_000_000]
-            routes = sorted(set(re.findall(r"/api/[A-Za-z0-9_/?=&.-]+", content)))
+            routes = sorted({route for route in re.findall(r"/api/[A-Za-z0-9_/?=&.-]+", content) if "offer" in route.lower()})
             contexts = []
-            for match in re.finditer(r"issue.summary|finalListing|marketLot|finalIssuePrice|issuer.offer", content, re.I):
+            for match in re.finditer(r"offer-documents\?|offer-documents-abridged|offerdocs/equity/companylist|offerdocs/sme/companylist|pan_no|marketLot|finalIssuePrice", content, re.I):
                 contexts.append(content[max(0, match.start() - 200):match.end() + 300])
-                if len(contexts) >= 15:
+                if len(contexts) >= 24:
                     break
             report["integrationScripts"].append({"url": url, "apiRoutes": routes, "contexts": contexts})
         except Exception as exc:
             report["integrationScripts"].append({"url": url, "error": str(exc)[:250]})
+    report["companyLists"] = []
+    for route in ("/api/corporates/offerdocs/equity/companylist", "/api/corporates/offerdocs/sme/companylist", "/api/corporates/offerdocs/companylist"):
+        url = "https://www.nseindia.com" + route
+        try:
+            response = session.get(url, timeout=30, headers={"Referer": PAGE})
+            response.raise_for_status()
+            payload = response.json()
+            records = payload if isinstance(payload, list) else payload.get("data", [])
+            matches = [row for row in records if re.search(r"ANB Metal|Aaradhya Disposal|National Securities Depository|Acetech", json.dumps(row), re.I)]
+            report["companyLists"].append({"url": url, "keys": list(payload)[:10] if isinstance(payload, dict) else None, "count": len(records), "samples": records[:2], "matches": matches[:10]})
+        except Exception as exc:
+            report["companyLists"].append({"url": url, "error": str(exc)[:250]})
     print("OFFICIAL_SOURCE_DIAGNOSTIC " + json.dumps(report), flush=True)
 
 
