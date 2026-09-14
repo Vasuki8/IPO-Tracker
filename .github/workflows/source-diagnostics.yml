@@ -1,0 +1,21 @@
+name: Inspect official issuer sources
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [probe-nse-issue-summary]
+    paths: ['scripts/inspect_official_sources.py', '.github/workflows/source-diagnostics.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: astral-sh/setup-uv@v10.1.0
+      - run: uv python install 3.12
+      - run: uv sync --frozen
+      - run: uv run --frozen python scripts/inspect_official_sources.py
