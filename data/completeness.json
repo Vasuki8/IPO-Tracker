@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-14T15:00:22+05:30",
+  "generatedAt": "2026-09-14T17:54:03+05:30",
   "asOfDate": "2026-09-14",
   "recordCount": 1354,
   "stageCounts": {
-    "closed": 44,
+    "closed": 48,
     "filing-pipeline": 6,
-    "listed": 1290,
+    "listed": 1286,
     "open": 7,
     "unknown": 1,
     "upcoming": 6
@@ -15,16 +15,16 @@
     "exchangeStage": 1347,
     "recentExchange2Y": 438,
     "historicalExchange": 909,
-    "offerDocumentEligible": 73,
+    "offerDocumentEligible": 78,
     "openNow": 7,
     "maturedClosed": 1316
   },
   "scores": {
     "exchangeStage": 82.6,
     "recentExchange2Y": 96.8,
-    "offerDocumentEligible": 100.0,
+    "offerDocumentEligible": 94.2,
     "openSubscription": 100.0,
-    "maturedLifecycle": 97.5,
+    "maturedLifecycle": 97.2,
     "provenance": 100.0
   },
   "coverage": {
@@ -192,40 +192,40 @@
     },
     "offerDocumentEligible": {
       "registrar": {
-        "present": 73,
-        "expected": 73,
-        "missing": 0,
-        "pct": 100.0
+        "present": 69,
+        "expected": 78,
+        "missing": 9,
+        "pct": 88.5
       },
       "leadManagers": {
-        "present": 73,
-        "expected": 73,
-        "missing": 0,
-        "pct": 100.0
+        "present": 70,
+        "expected": 78,
+        "missing": 8,
+        "pct": 89.7
       },
       "promoters": {
-        "present": 73,
-        "expected": 73,
+        "present": 78,
+        "expected": 78,
         "missing": 0,
         "pct": 100.0
       },
       "objectsOfIssue": {
-        "present": 73,
-        "expected": 73,
-        "missing": 0,
-        "pct": 100.0
+        "present": 77,
+        "expected": 78,
+        "missing": 1,
+        "pct": 98.7
       },
       "financials": {
-        "present": 73,
-        "expected": 73,
-        "missing": 0,
-        "pct": 100.0
+        "present": 74,
+        "expected": 78,
+        "missing": 4,
+        "pct": 94.9
       },
       "promoterShareholding": {
         "present": 73,
-        "expected": 73,
-        "missing": 0,
-        "pct": 100.0
+        "expected": 78,
+        "missing": 5,
+        "pct": 93.6
       }
     },
     "openSubscription": {
@@ -256,10 +256,10 @@
     },
     "maturedLifecycle": {
       "listingDate": {
-        "present": 1283,
+        "present": 1279,
         "expected": 1316,
-        "missing": 33,
-        "pct": 97.5
+        "missing": 37,
+        "pct": 97.2
       }
     },
     "optionalLifecycle": {
@@ -284,8 +284,8 @@
         "pct": 100.0
       },
       "documents": {
-        "present": 75,
-        "expected": 75,
+        "present": 80,
+        "expected": 80,
         "missing": 0,
         "pct": 100.0
       }
@@ -361,7 +361,7 @@
           "stage": "closed"
         },
         {
-          "id": "spgcl",
+          "id": "spgcl-withdrawn-2026-06-24",
           "company": "Sri Priyanka Geo Commex Limited-Issue Withdrawn",
           "openDate": "2026-06-24",
           "stage": "closed"
@@ -399,19 +399,19 @@
           "stage": "closed"
         },
         {
-          "id": "spgcl",
+          "id": "spgcl-withdrawn-2026-06-24",
           "company": "Sri Priyanka Geo Commex Limited-Issue Withdrawn",
           "openDate": "2026-06-24",
           "stage": "closed"
         },
         {
-          "id": "rsl",
+          "id": "rsl-withdrawal-option-2026-03-12",
           "company": "Rajputana Stainless Limited-Special Withdrawal Option",
           "openDate": "2026-03-12",
           "stage": "closed"
         },
         {
-          "id": "sampoorna",
+          "id": "sampoorna-withdrawn-2026-02-04",
           "company": "NFP Sampoorna Foods Limited-Issue Withdrawn",
           "openDate": "2026-02-04",
           "stage": "closed"
@@ -431,19 +431,19 @@
           "stage": "closed"
         },
         {
-          "id": "spgcl",
+          "id": "spgcl-withdrawn-2026-06-24",
           "company": "Sri Priyanka Geo Commex Limited-Issue Withdrawn",
           "openDate": "2026-06-24",
           "stage": "closed"
         },
         {
-          "id": "rsl",
+          "id": "rsl-withdrawal-option-2026-03-12",
           "company": "Rajputana Stainless Limited-Special Withdrawal Option",
           "openDate": "2026-03-12",
           "stage": "closed"
         },
         {
-          "id": "sampoorna",
+          "id": "sampoorna-withdrawn-2026-02-04",
           "company": "NFP Sampoorna Foods Limited-Issue Withdrawn",
           "openDate": "2026-02-04",
           "stage": "closed"
@@ -457,12 +457,179 @@
       ]
     },
     "offerDocumentEligible": {
-      "registrar": [],
-      "leadManagers": [],
+      "registrar": [
+        {
+          "id": "ssretail",
+          "company": "SS Retail Limited",
+          "openDate": "2026-09-16",
+          "stage": "upcoming"
+        },
+        {
+          "id": "vama-wovenfab-limited",
+          "company": "Vama Wovenfab Limited",
+          "openDate": "2026-09-15",
+          "stage": "upcoming"
+        },
+        {
+          "id": "injecto-polymers-limited",
+          "company": "INJECTO POLYMERS LIMITED",
+          "openDate": "2026-09-11",
+          "stage": "open"
+        },
+        {
+          "id": "maharaja-speedex-india-limited",
+          "company": "Maharaja & Speedex India Limited",
+          "openDate": "2026-09-10",
+          "stage": "open"
+        },
+        {
+          "id": "skyways",
+          "company": "Skyways Air Services Limited",
+          "openDate": "2026-08-24",
+          "stage": "listed"
+        },
+        {
+          "id": "rambhajo",
+          "company": "Advit Jewels Limited",
+          "openDate": "2026-06-23",
+          "stage": "listed"
+        },
+        {
+          "id": "omni",
+          "company": "Omnitech Engineering Limited",
+          "openDate": "2026-02-25",
+          "stage": "listed"
+        },
+        {
+          "id": "pngsreva",
+          "company": "PNGS Reva Diamond Jewellery Limited",
+          "openDate": "2026-02-24",
+          "stage": "listed"
+        },
+        {
+          "id": "eximroutes",
+          "company": "Exim Routes Limited",
+          "openDate": "2025-12-12",
+          "stage": "listed"
+        }
+      ],
+      "leadManagers": [
+        {
+          "id": "priority",
+          "company": "Priority Jewels Limited",
+          "openDate": "2026-08-28",
+          "stage": "listed"
+        },
+        {
+          "id": "esds",
+          "company": "ESDS Software Solution Limited",
+          "openDate": "2026-08-28",
+          "stage": "listed"
+        },
+        {
+          "id": "tempsens",
+          "company": "Tempsens Instruments (India) Limited",
+          "openDate": "2026-08-20",
+          "stage": "listed"
+        },
+        {
+          "id": "sunshine",
+          "company": "Sunshine Pictures Limited",
+          "openDate": "2026-08-18",
+          "stage": "listed"
+        },
+        {
+          "id": "rambhajo",
+          "company": "Advit Jewels Limited",
+          "openDate": "2026-06-23",
+          "stage": "listed"
+        },
+        {
+          "id": "powerica",
+          "company": "Powerica Limited",
+          "openDate": "2026-03-24",
+          "stage": "listed"
+        },
+        {
+          "id": "aye",
+          "company": "Aye Finance Limited",
+          "openDate": "2026-02-09",
+          "stage": "listed"
+        },
+        {
+          "id": "eximroutes",
+          "company": "Exim Routes Limited",
+          "openDate": "2025-12-12",
+          "stage": "listed"
+        }
+      ],
       "promoters": [],
-      "objectsOfIssue": [],
-      "financials": [],
-      "promoterShareholding": []
+      "objectsOfIssue": [
+        {
+          "id": "vmobile",
+          "company": "Vinit Mobile Limited",
+          "openDate": "2026-06-30",
+          "stage": "listed"
+        }
+      ],
+      "financials": [
+        {
+          "id": "vmobile",
+          "company": "Vinit Mobile Limited",
+          "openDate": "2026-06-30",
+          "stage": "listed"
+        },
+        {
+          "id": "nfpsampoor",
+          "company": "NFP Sampoorna Foods Limited",
+          "openDate": "2026-05-18",
+          "stage": "listed"
+        },
+        {
+          "id": "armour",
+          "company": "Armour Security (India). Ltd",
+          "openDate": "2026-01-14",
+          "stage": "listed"
+        },
+        {
+          "id": "eximroutes",
+          "company": "Exim Routes Limited",
+          "openDate": "2025-12-12",
+          "stage": "listed"
+        }
+      ],
+      "promoterShareholding": [
+        {
+          "id": "vmobile",
+          "company": "Vinit Mobile Limited",
+          "openDate": "2026-06-30",
+          "stage": "listed"
+        },
+        {
+          "id": "shreedhar",
+          "company": "Shreedhar Spinners Limited",
+          "openDate": "2026-06-23",
+          "stage": "listed"
+        },
+        {
+          "id": "nfpsampoor",
+          "company": "NFP Sampoorna Foods Limited",
+          "openDate": "2026-05-18",
+          "stage": "listed"
+        },
+        {
+          "id": "armour",
+          "company": "Armour Security (India). Ltd",
+          "openDate": "2026-01-14",
+          "stage": "listed"
+        },
+        {
+          "id": "eximroutes",
+          "company": "Exim Routes Limited",
+          "openDate": "2025-12-12",
+          "stage": "listed"
+        }
+      ]
     },
     "openSubscription": {
       "qib": [],
@@ -479,19 +646,19 @@
           "stage": "closed"
         },
         {
-          "id": "spgcl",
+          "id": "spgcl-withdrawn-2026-06-24",
           "company": "Sri Priyanka Geo Commex Limited-Issue Withdrawn",
           "openDate": "2026-06-24",
           "stage": "closed"
         },
         {
-          "id": "rsl",
+          "id": "rsl-withdrawal-option-2026-03-12",
           "company": "Rajputana Stainless Limited-Special Withdrawal Option",
           "openDate": "2026-03-12",
           "stage": "closed"
         },
         {
-          "id": "sampoorna",
+          "id": "sampoorna-withdrawn-2026-02-04",
           "company": "NFP Sampoorna Foods Limited-Issue Withdrawn",
           "openDate": "2026-02-04",
           "stage": "closed"
@@ -509,7 +676,13 @@
           "stage": "closed"
         },
         {
-          "id": "pkh",
+          "id": "sartelefpo",
+          "company": "SAR Televenture Limited - FPO",
+          "openDate": "2024-07-22",
+          "stage": "closed"
+        },
+        {
+          "id": "pkh-withdrawn-2023-06-30",
           "company": "PKH Ventures Limited - Issue Withdrawn",
           "openDate": "2023-06-30",
           "stage": "closed"
@@ -524,6 +697,12 @@
           "id": "dcx",
           "company": "DCX System limited",
           "openDate": "2022-10-31",
+          "stage": "closed"
+        },
+        {
+          "id": "ruchisoya",
+          "company": "Ruchi Soya Industries Limited",
+          "openDate": "2022-03-24",
           "stage": "closed"
         },
         {
@@ -548,18 +727,6 @@
           "id": "dkegl",
           "company": "D. K. Enterprises Global Limited",
           "openDate": "2021-10-07",
-          "stage": "closed"
-        },
-        {
-          "id": "dynamic",
-          "company": "Dynamic Services & Security Ltd.",
-          "openDate": "2021-09-30",
-          "stage": "closed"
-        },
-        {
-          "id": "jmfpiv",
-          "company": "JM Financial Products Limited",
-          "openDate": "2021-09-23",
           "stage": "closed"
         }
       ]
