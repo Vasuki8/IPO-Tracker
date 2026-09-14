@@ -13,7 +13,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data/ipos.json'
-MEANINGFUL_FIELDS = ('id', 'symbol', 'company', 'openDate', 'closeDate', 'listingDate', 'priceBand', 'lotSize', 'issueSizeCr', 'issueComposition', 'leadManagers', 'registrar', 'financials', 'shareholding', 'subscription', 'performance')
+MEANINGFUL_FIELDS = ('id', 'symbol', 'company', 'openDate', 'closeDate', 'listingDate', 'priceBand', 'lotSize', 'issueSizeCr', 'issueComposition', 'leadManagers', 'registrar', 'financials', 'shareholding', 'subscription', 'listing', 'performance')
 
 
 def content_hash(payload):
@@ -80,20 +80,27 @@ def main():
     if args.mode == 'subscriptions':
         step('run_priority_subscriptions_v3.py', '--limit', '30', timeout=900)
     if args.mode in {'maintenance', 'repair'}:
-        step('run_offer_documents.py', '--limit', '12', '--workers', '2', timeout=1500)
+        step('run_offer_documents.py', '--limit', '100' if args.mode == 'repair' else '12', '--workers', '4' if args.mode == 'repair' else '2', timeout=2400 if args.mode == 'repair' else 1500)
+        step('collect_final_issue_prices.py', '--history-days', '730', '--max-reports', '36', timeout=600)
     if args.mode in {'maintenance', 'filings'}:
         maintain_filings()
     rebuild()
     if args.mode in {'maintenance', 'p4'}:
+        step('enrich_nse_issue_information.py', '--limit', '30', '--history-days', '730', '--retry-days', '7', timeout=600)
         step('backfill_recent_sebi_other_docs_lot_sizes.py', '--limit', '125', '--max-listing-pages', '40', timeout=600)
         step('backfill_recent_nse_lot_sizes.py', '--limit', '25', timeout=500)
         step('backfill_p4_lot_sizes.py', '--history-days', '730', '--limit', '30', '--core-only', '--retry-days', '1', timeout=600)
         rebuild()
     phase = json.loads((ROOT / 'data/phase_status.json').read_text())
     if args.mode in {'maintenance', 'p5'} and phase['p5']['status'] == 'enabled':
+        step('collect_final_issue_prices.py', '--history-days', '10000', '--max-reports', '100', timeout=900)
+        step('enrich_nse_primary_market_reports_v3.py', '--history-days', '10000', '--max-reports', '100', timeout=900)
         step('backfill_bse_history.py', '--history-days', '10000', '--limit', '40', '--core-only', '--oldest-first', '--retry-days', '7', timeout=600)
     if args.mode in {'maintenance', 'performance'} and phase['p4']['status'] == 'complete':
+        step('collect_final_issue_prices.py', '--history-days', '730', '--max-reports', '36', timeout=600)
+        step('collect_price_history.py', '--limit', '30', timeout=600)
         step('performance_tracking.py', '--limit', '20', timeout=300)
+    step('record_integrity.py')
     rebuild()
 
 

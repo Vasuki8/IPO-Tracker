@@ -46,3 +46,13 @@ Performance observations require an exact NSE symbol, a positive price and an of
 ## Verification
 
 Run `uv run --frozen python -m unittest discover -s tests -q`, then apply the correction registry and run `scripts/validate_data.py --strict`. Regression tests cover source year alignment, footnotes, negative/missing cells, unsupported/interim layouts, intermediary contacts and former names, concurrent publication, complete queues, migration preconditions and performance-date/identity rules.
+
+## Final issue prices and historical observations
+
+`collect_final_issue_prices.py` reads the explicit Issue_Price field in official NSE monthly workbooks. It requires the same canonical issuer, exact issue opening date, compatible symbol and closing date, and a price consistent with any established band. It persists the final value with the report URL, document hash and matched issuer/date. Already reviewed NSE listing-circular observations can supply the same baseline. Conflicting dates or prices remain unresolved.
+
+Repair mode processes up to 100 documents per run and collects recent final-price baselines. P5 also uses the NSE monthly archive after the P4 gate passes, supplementing the BSE historical source. All source stages retain bounded budgets.
+
+`collect_price_history.py` reads official dated NSE daily equity and index CSV reports, collecting the listing-day open and close plus subsequent daily closes. Date-only reports retain date precision. NIFTY 50 excess returns compare listing-day close with a matching later close; a later daily open cannot become the listing price. This collector runs in the existing performance phase after P4 passes. Unadjusted returns do not account for splits, dividends or other corporate actions.
+
+`source-review.yml` is a read-only preview for parser changes. It runs the full test suite, applies source repairs to an ephemeral dataset, and retains proposed values and validation findings as an artifact. It cannot publish data. Review the source results before merging parser changes.

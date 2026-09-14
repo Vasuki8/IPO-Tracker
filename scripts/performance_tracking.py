@@ -59,7 +59,9 @@ def apply_quote(record, quote):
         raise ValueError('Quote observation is in the future')
     if record.get('listingDate') and when[:10] < record['listingDate']:
         raise ValueError('Quote observation precedes this IPO listing')
-    if previous.get('observedAt') and datetime.fromisoformat(previous['observedAt']) > observed:
+    if previous.get('priceType') == 'official daily close' and str(previous.get('observedAt', ''))[:10] >= when[:10]:
+        return False
+    if previous.get('observedAt') and datetime.fromisoformat(observed_time(previous['observedAt'])) > observed:
         return False
     observation = {'price': last, 'observedAt': when, 'collectedAt': datetime.now(IST).isoformat(timespec='seconds'), 'source': 'NSE equity quote', 'sourceUrl': url}
     history = performance.setdefault('observations', [])

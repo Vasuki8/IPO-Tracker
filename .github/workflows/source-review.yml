@@ -35,3 +35,30 @@ jobs:
             data/source_review.json
             data/ipos.json
           retention-days: 14
+
+  baselines:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: astral-sh/setup-uv@v10.1.0
+      - run: uv python install 3.12
+      - run: uv sync --frozen
+      - name: Test baseline collectors
+        run: uv run --frozen python -m unittest discover -s tests -q
+      - name: Preview official final prices and dated history
+        run: |
+          uv run --frozen python scripts/collect_final_issue_prices.py --history-days 730 --max-reports 36
+          uv run --frozen python scripts/collect_price_history.py --limit 30
+          uv run --frozen python scripts/validate_data.py --strict
+          uv run --frozen python scripts/build_performance_summary.py
+          uv run --frozen python -c 'import json; p=json.load(open("data/ipos.json")); [print("BASELINE_RECORD " + json.dumps({k:r.get(k) for k in ("id","listing","performance")})) for r in p["ipos"] if r.get("listing") or r.get("performance")]'
+      - uses: actions/upload-artifact@v4.6.2
+        if: always()
+        with:
+          name: baseline-preview-${{ github.run_id }}
+          path: |
+            data/ipos.json
+            data/performance_summary.json
+          retention-days: 14

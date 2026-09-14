@@ -49,6 +49,18 @@ def validate_record(record):
             add("priceBand." + key, "Price must be a finite positive number")
     if numeric(band.get("min")) and numeric(band.get("max")) and band["min"] > band["max"]:
         add("priceBand", "Floor exceeds cap")
+    listing = record.get("listing") or {}
+    for key in ("issuePrice", "listPrice", "closePrice"):
+        value = listing.get(key)
+        if value is not None and (not numeric(value) or value <= 0):
+            add("listing." + key, "Listing price must be finite and positive")
+    final_price = listing.get("issuePrice")
+    final_evidence = listing.get("issuePriceEvidence") or {}
+    if final_price is not None:
+        if not final_evidence:
+            add("listing.issuePrice", "Final issue price needs source evidence", "review")
+        elif final_evidence.get("value") != final_price or not final_evidence.get("sourceUrl") or final_evidence.get("issueOpenDate") != record.get("openDate"):
+            add("listing.issuePrice", "Final issue price does not match its source evidence")
     dates = {}
     for field in ("openDate", "closeDate", "listingDate", "allotmentDate"):
         if record.get(field):

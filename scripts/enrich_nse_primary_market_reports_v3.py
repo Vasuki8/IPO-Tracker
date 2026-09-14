@@ -24,7 +24,8 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
-import enrich_nse_primary_market_reports_v2 as v2  # noqa: E402
+from parser_loader import isolated_module
+v2 = isolated_module("enrich_nse_primary_market_reports_v2")
 
 base = v2.base
 core = base.core

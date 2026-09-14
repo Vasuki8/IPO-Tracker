@@ -40,7 +40,7 @@ def main():
                 try:
                     text, _, _ = parser.extract_pdf_text(documents.pdf_bytes(doc))
                     snippets = []
-                    for page in text.split("\f")[:30]:
+                    for page in text.split("\f")[:45]:
                         lines = page.splitlines()
                         for i, line in enumerate(lines):
                             if parser._HEADING.search(line) and not re.search(r"\.{3,}", line):

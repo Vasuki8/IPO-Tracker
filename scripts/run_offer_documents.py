@@ -10,6 +10,7 @@ import argparse
 import copy
 import hashlib
 import json
+import re
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta, timezone
@@ -32,7 +33,23 @@ def timestamp():
 
 def document_for(record):
     previous = record.get("offerDocumentExtraction") or {}
-    selected = parser.choose_document(record)
+    candidate = copy.deepcopy(record)
+    candidate.setdefault("documents", [])
+    # Some reviewed exchange PDFs were retained only in the source registry.
+    # The normal opening-page issuer check still applies before any extraction.
+    for source in record.get("sources", []):
+        url = str(source.get("url") or "")
+        path = urlparse(url).path
+        if urlparse(url).hostname not in {"nsearchives.nseindia.com", "archives.nseindia.com", "www.sebi.gov.in"} or not path.lower().endswith(".pdf"):
+            continue
+        if not re.search(r"(?:_RHP|_PROSP|Prospectus)", path, re.I):
+            continue
+        if not any(doc.get("url") == url for doc in candidate["documents"]):
+            candidate["documents"].append({"url": url, "type": "PROSPECTUS" if "prosp" in path.lower() else "RHP", "title": source.get("name"), "source": "NSE" if "nseindia" in url else "SEBI"})
+    eligible = [doc for doc in candidate["documents"] if urlparse(str(doc.get("url") or "")).scheme == "https" and urlparse(str(doc.get("url") or "")).path.lower().endswith(".pdf")]
+    ranks = {"PROSPECTUS": 3, "RHP": 2, "UDRHP": 1, "DRHP": 0}
+    eligible.sort(key=lambda doc: (str(doc.get("filedDate") or ""), ranks.get(doc.get("type"), -1), "abridged" in str(doc.get("title", "")).lower()), reverse=True)
+    selected = eligible[0] if eligible else None
     if selected and (not previous.get('documentUrl') or str(selected.get('filedDate') or '') > str(previous.get('documentFiledDate') or '')):
         return selected
     if previous.get("documentUrl"):
