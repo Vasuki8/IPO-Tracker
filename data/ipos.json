@@ -71,18 +71,16 @@
       },
       "IPO-subscription": {
         "ok": true,
-        "degraded": true,
-        "records": 5,
-        "attempted": 5,
-        "snapshotsAdded": 5,
+        "degraded": false,
+        "records": 0,
+        "attempted": 0,
+        "snapshotsAdded": 0,
         "failed": 0,
         "nseRecords": 0,
         "bseFallbackRecords": 0,
-        "secondaryFallbackRecords": 5,
-        "secondarySources": {
-          "IPO Dhamaka subscription (secondary)": 5
-        },
-        "asOf": "2026-09-13T03:21:46+05:30",
+        "secondaryFallbackRecords": 0,
+        "secondarySources": {},
+        "asOf": "2026-09-14T15:00:22+05:30",
         "errors": []
       },
       "Critical-backfill": {
@@ -458,18 +456,16 @@
     },
     "subscriptionHealth": {
       "ok": true,
-      "degraded": true,
-      "attempted": 5,
-      "updated": 5,
-      "snapshotsAdded": 5,
+      "degraded": false,
+      "attempted": 0,
+      "updated": 0,
+      "snapshotsAdded": 0,
       "failed": 0,
       "nseRecords": 0,
       "bseFallbackRecords": 0,
-      "secondaryFallbackRecords": 5,
-      "secondarySources": {
-        "IPO Dhamaka subscription (secondary)": 5
-      },
-      "asOf": "2026-09-13T03:21:46+05:30",
+      "secondaryFallbackRecords": 0,
+      "secondarySources": {},
+      "asOf": "2026-09-14T15:00:22+05:30",
       "pageHealth": {
         "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
           "ok": true,
@@ -477,21 +473,15 @@
         },
         "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
           "ok": true,
-          "records": 28
+          "records": 30
         },
         "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2": {
           "ok": false,
           "records": 0,
-          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f5655b317c0>, 'Connection to www.bsesme.c"
+          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f3e01c7c380>, 'Connection to www.bsesme.c"
         }
       },
-      "warnings": [
-        "Maharaja & Speedex India Limited: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7962&status=H · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · ); used explicitly labelled IPO Dhamaka subscription (secondary)",
-        "OM GALAXY LIMITED: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7960&status=H · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · ); used explicitly labelled IPO Dhamaka subscription (secondary)",
-        "RAKSAN TRANSFORMERS LIMITED: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7958&status=H · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · ); used explicitly labelled IPO Dhamaka subscription (secondary)",
-        "CENTURY BUSINESS MEDIA LIMITED: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7961&status=H · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · ); used explicitly labelled IPO Dhamaka subscription (secondary)",
-        "INJECTO POLYMERS LIMITED: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7968&status=H · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · ); used explicitly labelled IPO Dhamaka subscription (secondary)"
-      ],
+      "warnings": [],
       "errors": []
     },
     "criticalBackfillHealth": {
