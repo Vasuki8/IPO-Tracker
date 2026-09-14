@@ -3,7 +3,7 @@ name: Preview source repairs
 on:
   workflow_dispatch:
   pull_request:
-    paths: ['scripts/offer_parser.py', 'scripts/run_offer_documents.py', 'scripts/review_source_repairs.py', '.github/workflows/source-review.yml']
+    paths: ['scripts/offer_parser.py', 'scripts/run_offer_documents.py', 'scripts/review_source_repairs.py', 'scripts/collect_final_issue_prices.py', 'scripts/collect_price_history.py', 'scripts/performance_tracking.py', 'scripts/performance_metrics.py', 'scripts/enrich_nse_primary_market_reports*.py', 'scripts/validate_data.py', 'tests/test_*price*.py', 'tests/test_performance_tracking.py', '.github/workflows/source-review.yml']
 
 permissions:
   contents: read

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import json
 import math
 from collections import Counter
@@ -9,6 +10,7 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 
 from offer_parser import valid_manager, valid_registrar, PARSER_VERSION
+from performance_metrics import refresh_returns
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -50,6 +52,8 @@ def validate_record(record):
     if numeric(band.get("min")) and numeric(band.get("max")) and band["min"] > band["max"]:
         add("priceBand", "Floor exceeds cap")
     listing = record.get("listing") or {}
+    if listing.get("priceConflicts"):
+        add("listing", "Official listing-day prices disagree with retained values; source review required", "review")
     for key in ("issuePrice", "listPrice", "closePrice"):
         value = listing.get(key)
         if value is not None and (not numeric(value) or value <= 0):
@@ -72,6 +76,27 @@ def validate_record(record):
         add("closeDate", "Issue closes before it opens")
     if "listingDate" in dates and "openDate" in dates and dates["listingDate"] < dates["openDate"]:
         add("listingDate", "Listing precedes issue opening")
+    performance = record.get("performance") or {}
+    latest = performance.get("latest") or {}
+    observations = performance.get("observations") or []
+    for observation in observations + ([latest] if latest else []):
+        if not numeric(observation.get("price")) or observation["price"] <= 0:
+            add("performance.observations", "Observed price must be finite and positive")
+        try:
+            observed = datetime.fromisoformat(str(observation.get("observedAt")))
+            if "listingDate" in dates and observed.date() < dates["listingDate"]:
+                add("performance.observations", "Price observation precedes this IPO listing")
+        except ValueError:
+            add("performance.observations", "Price observation needs an ISO source date or timestamp")
+        if not observation.get("sourceUrl"):
+            add("performance.observations", "Price observation needs source evidence")
+    expected = copy.deepcopy(record)
+    refresh_returns(expected)
+    for section, fields in (("listing", ("gainPct",)), ("performance", ("returnSinceIssuePct", "benchmarkExcessReturnPct"))):
+        for field in fields:
+            value = (record.get(section) or {}).get(field)
+            if value is not None and (not numeric(value) or value != (expected.get(section) or {}).get(field)):
+                add(section + "." + field, "Return does not match its source prices and dated baselines")
     financials = record.get("financials") or {}
     evidence = (record.get("documentFieldProvenance") or {}).get("evidence", {}).get("financials", {})
     seen = set()

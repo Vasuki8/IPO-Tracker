@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-09-14T17:54:03+05:30",
-  "asOfDate": "2026-09-14",
+  "generatedAt": "2026-09-15T04:03:24+05:30",
+  "asOfDate": "2026-09-15",
   "recordCount": 1354,
-  "queueCount": 1039,
+  "queueCount": 1040,
   "priorityCounts": {
-    "P0 open IPO": 2,
-    "P1 upcoming IPO": 2,
+    "P0 open IPO": 4,
+    "P1 upcoming IPO": 1,
     "P2 recent IPO (30d)": 5,
     "P4 recent history (2y)": 123,
     "P5 historical backfill": 907
@@ -19,6 +19,10 @@
     "offer.leadManagers": 8,
     "offer.promoterShareholding": 5,
     "offer.financials": 4,
+    "subscription.qib": 2,
+    "subscription.nii": 2,
+    "subscription.retail": 2,
+    "subscription.total": 2,
     "offer.objectsOfIssue": 1,
     "provenance.sources": 1
   },
@@ -33,6 +37,53 @@
     "lifecycle.listingDate": 5
   },
   "queue": [
+    {
+      "id": "vama-wovenfab-limited",
+      "company": "Vama Wovenfab Limited",
+      "symbol": "VAMAWOVEN",
+      "stage": "open",
+      "openDate": "2026-09-15",
+      "closeDate": "2026-09-17",
+      "listingDate": null,
+      "priority": 0,
+      "priorityLabel": "P0 open IPO",
+      "completenessPct": 77.3,
+      "expectedFieldCount": 22,
+      "missingFieldCount": 5,
+      "missingFields": [
+        "offer.registrar",
+        "subscription.qib",
+        "subscription.nii",
+        "subscription.retail",
+        "subscription.total"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/vama-wovenfab-limited/"
+    },
+    {
+      "id": "shakti-polytarp-limited",
+      "company": "Shakti Polytarp Limited",
+      "symbol": "SHAKTIPOLY",
+      "stage": "open",
+      "openDate": "2026-09-15",
+      "closeDate": "2026-09-17",
+      "listingDate": null,
+      "priority": 0,
+      "priorityLabel": "P0 open IPO",
+      "completenessPct": 81.8,
+      "expectedFieldCount": 22,
+      "missingFieldCount": 4,
+      "missingFields": [
+        "subscription.qib",
+        "subscription.nii",
+        "subscription.retail",
+        "subscription.total"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/shakti-polytarp-limited/"
+    },
     {
       "id": "maharaja-speedex-india-limited",
       "company": "Maharaja & Speedex India Limited",
@@ -74,26 +125,6 @@
       "profilePath": "ipo/injecto-polymers-limited/"
     },
     {
-      "id": "vama-wovenfab-limited",
-      "company": "Vama Wovenfab Limited",
-      "symbol": "VAMAWOVEN",
-      "stage": "upcoming",
-      "openDate": "2026-09-15",
-      "closeDate": "2026-09-17",
-      "listingDate": null,
-      "priority": 1,
-      "priorityLabel": "P1 upcoming IPO",
-      "completenessPct": 94.4,
-      "expectedFieldCount": 18,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.registrar"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/vama-wovenfab-limited/"
-    },
-    {
       "id": "ssretail",
       "company": "SS Retail Limited",
       "symbol": "SSRETAIL",
@@ -123,8 +154,8 @@
       "listingDate": "2026-09-04",
       "priority": 2,
       "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 94.4,
-      "expectedFieldCount": 18,
+      "completenessPct": 94.7,
+      "expectedFieldCount": 19,
       "missingFieldCount": 1,
       "missingFields": [
         "offer.leadManagers"
@@ -143,8 +174,8 @@
       "listingDate": "2026-09-04",
       "priority": 2,
       "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 94.4,
-      "expectedFieldCount": 18,
+      "completenessPct": 94.7,
+      "expectedFieldCount": 19,
       "missingFieldCount": 1,
       "missingFields": [
         "offer.leadManagers"

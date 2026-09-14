@@ -1,6 +1,6 @@
 # IPO Tracker Data Quality
 
-Generated: **2026-09-14T17:54:03+05:30**
+Generated: **2026-09-15T04:03:24+05:30**
 
 Records audited: **1,354**
 
@@ -11,8 +11,8 @@ Records audited: **1,354**
 | Actionable exchange terms | 82.6% | 1,347 |
 | Recent exchange terms (2Y) | 96.8% | 438 |
 | Offer-document intelligence | 94.2% | 78 |
-| Live subscription categories | 100.0% | 7 |
-| Matured lifecycle dates | 97.2% | 1,316 |
+| Live subscription categories | 77.8% | 9 |
+| Matured lifecycle dates | 97.2% | 1,318 |
 | Source/provenance trail | 100.0% | 1,354 |
 
 ## Actionable exchange fields
@@ -71,22 +71,22 @@ Records audited: **1,354**
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| qib | 7 | 7 | 0 | 100.0% |
-| nii | 7 | 7 | 0 | 100.0% |
-| retail | 7 | 7 | 0 | 100.0% |
-| total | 7 | 7 | 0 | 100.0% |
+| qib | 7 | 9 | 2 | 77.8% |
+| nii | 7 | 9 | 2 | 77.8% |
+| retail | 7 | 9 | 2 | 77.8% |
+| total | 7 | 9 | 2 | 77.8% |
 
 ## Matured lifecycle fields
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| listingDate | 1,279 | 1,316 | 37 | 97.2% |
+| listingDate | 1,281 | 1,318 | 37 | 97.2% |
 
 ## Optional lifecycle observations
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| allotmentDate | 0 | 1,316 | 1,316 | 0.0% |
+| allotmentDate | 0 | 1,318 | 1,318 | 0.0% |
 
 ## Interpretation
 

@@ -14,6 +14,7 @@ from urllib.parse import urlencode
 
 import update_data as core
 from validate_data import numeric
+from performance_metrics import percentage, refresh_returns
 
 ROOT = Path(__file__).resolve().parents[1]
 IST = timezone(timedelta(hours=5, minutes=30))
@@ -32,13 +33,9 @@ def observed_time(value):
         return None
 
 
-def percentage(start, finish):
-    if not numeric(start) or not numeric(finish) or start <= 0 or finish < 0:
-        return None
-    return round((finish / start - 1) * 100, 4)
-
-
 def apply_quote(record, quote):
+    if record.get('issueEventType'):
+        return False
     symbol = str(record.get('symbol') or '').upper()
     actual = str((quote.get('info') or {}).get('symbol') or '').upper()
     if not symbol or actual != symbol:
@@ -63,6 +60,9 @@ def apply_quote(record, quote):
         return False
     if previous.get('observedAt') and datetime.fromisoformat(observed_time(previous['observedAt'])) > observed:
         return False
+    if previous.get('observedAt') == when and previous.get('price') == last:
+        refresh_returns(record)
+        return False
     observation = {'price': last, 'observedAt': when, 'collectedAt': datetime.now(IST).isoformat(timespec='seconds'), 'source': 'NSE equity quote', 'sourceUrl': url}
     history = performance.setdefault('observations', [])
     if not any(row.get('observedAt') == when and row.get('price') == last for row in history):
@@ -72,14 +72,10 @@ def apply_quote(record, quote):
     if listed and when[:10] == listed and issue_price:
         opening = core.number(price_info.get('open'))
         if opening and opening > 0:
-            record.setdefault('listing', {}).update(listPrice=opening, gainPct=percentage(issue_price, opening), sourceUrl=url, asOf=when, basis='Listing-day opening price versus final issue price')
-    baseline = performance.get('benchmarkBaseline') or {}
-    benchmark = performance.get('benchmarkLatest') or {}
-    if baseline.get('symbol') and baseline.get('symbol') == benchmark.get('symbol') and baseline.get('sourceUrl') and benchmark.get('sourceUrl') and baseline.get('date') == listed and benchmark.get('date') == when[:10] and str((record.get('listing') or {}).get('asOf', ''))[:10] == listed:
-        benchmark_return = percentage(baseline.get('value'), benchmark.get('value'))
-        own = percentage((record.get('listing') or {}).get('listPrice'), last)
-        if own is not None and benchmark_return is not None:
-            performance['benchmarkExcessReturnPct'] = round(own - benchmark_return, 4)
+            listing = record.setdefault('listing', {})
+            if listing.get('listPrice') is None:
+                listing.update(listPrice=opening, sourceUrl=url, asOf=when, basis='Listing-day opening price versus final issue price')
+    refresh_returns(record)
     return True
 
 

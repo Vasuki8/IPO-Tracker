@@ -17,6 +17,7 @@ import requests
 import update_data as core
 from parser_loader import isolated_module
 from validate_data import numeric
+from performance_metrics import refresh_returns
 
 reports = isolated_module("enrich_nse_primary_market_reports_v3")
 ROOT = Path(__file__).resolve().parents[1]
@@ -67,6 +68,7 @@ def accept_price(record, value, evidence):
     if listing.get("issuePrice") == value and listing.get("issuePriceEvidence"):
         return False
     record["listing"] = {**listing, "issuePrice": value, "issuePriceEvidence": {**evidence, "value": value, "checkedAt": datetime.now(timezone.utc).isoformat()}}
+    refresh_returns(record)
     return True
 
 

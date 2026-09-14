@@ -24,6 +24,14 @@ class FinalPriceTests(unittest.TestCase):
         self.assertIsNone(matched_report(self.record, [self.row]))
         self.assertNotIn("listing", self.record)
 
+    def test_late_final_price_refreshes_existing_returns(self):
+        self.record["listing"] = {"listPrice": 120}
+        self.record["performance"] = {"latest": {"price": 147}, "returnSinceIssuePct": None}
+        self.assertTrue(merge_price(self.record, self.row))
+        self.assertEqual(self.record["performance"]["issuePrice"], 98)
+        self.assertEqual(self.record["performance"]["returnSinceIssuePct"], 50)
+        self.assertEqual(self.record["listing"]["gainPct"], 22.449)
+
     def test_reused_symbol_wrong_date_or_issuer_rejected(self):
         for change in ({"openDate": "2024-08-01"}, {"symbol": "OTHER"}, {"matchKey": "OTHER"}, {"sourceUrl": "https://example.com/month.xlsx"}):
             self.assertIsNone(matched_report(self.record, [{**self.row, **change}]))

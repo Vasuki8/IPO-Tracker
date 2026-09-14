@@ -78,6 +78,17 @@ class PipelineIntegrityTests(unittest.TestCase):
         self.assertEqual(len(conflicts), 1)
         self.assertEqual(payload['ipos'][0]['lotSize'], 50)
 
+    def test_listing_baseline_and_returns_merge_as_one_group(self):
+        base = {'ipos': [{'id': 'a', 'listing': {'issuePrice': 100}, 'performance': {'returnSinceIssuePct': 20}}]}
+        proposed, current = copy.deepcopy(base), copy.deepcopy(base)
+        proposed['ipos'][0]['listing']['issuePrice'] = 110
+        proposed['ipos'][0]['performance']['returnSinceIssuePct'] = 9.0909
+        current['ipos'][0]['performance']['returnSinceIssuePct'] = 30
+        merged, conflicts = merge_payload(base, proposed, current)
+        self.assertEqual(merged['ipos'][0], current['ipos'][0])
+        self.assertEqual(conflicts[0]['path'][-1], 'priceSnapshot')
+        self.assertEqual(conflicts[0]['proposed']['listing']['issuePrice'], 110)
+
     def test_distinct_issue_events_cannot_collapse_during_publication(self):
         from record_integrity import repair
         payload = {'ipos': [{'id': 'rsl', 'company': 'Rajputana Stainless Limited-Special Withdrawal Option', 'openDate': '2026-03-12'}, {'id': 'rsl', 'company': 'Rajputana Stainless Limited', 'openDate': '2026-03-09'}]}
