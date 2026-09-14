@@ -1,0 +1,37 @@
+name: Preview source repairs
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths: ['scripts/offer_parser.py', 'scripts/run_offer_documents.py', 'scripts/review_source_repairs.py', '.github/workflows/source-review.yml']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: source-review-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: astral-sh/setup-uv@v10.1.0
+      - run: uv python install 3.12
+      - run: uv sync --frozen
+      - run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils
+      - name: Test parser before source preview
+        run: uv run --frozen python -m unittest discover -s tests -q
+      - name: Preview current document repairs
+        run: uv run --frozen python scripts/review_source_repairs.py --limit 100
+      - uses: actions/upload-artifact@v4.6.2
+        if: always()
+        with:
+          name: source-review-${{ github.run_id }}
+          path: |
+            data/source_review.json
+            data/ipos.json
+          retention-days: 14
