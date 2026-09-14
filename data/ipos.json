@@ -35,29 +35,15 @@
     },
     "documentRepairHealth": {
       "parserVersion": 18,
-      "attempted": 2,
+      "attempted": 0,
       "remaining": 0,
-      "changedFields": 2,
+      "changedFields": 0,
       "failed": 0,
-      "checkedAt": "2026-09-14T17:53:44+05:30",
-      "outcomes": [
-        {
-          "id": "manipalhos",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "registrar"
-          ]
-        },
-        {
-          "id": "shakti-polytarp-limited",
-          "status": "no_change",
-          "changedFields": []
-        }
-      ]
+      "checkedAt": "2026-09-14T23:38:21+05:30",
+      "outcomes": []
     },
     "errors": [],
-    "generatedAt": "2026-09-14T12:24:03.154653+00:00",
+    "generatedAt": "2026-09-14T18:08:38.116444+00:00",
     "historyStart": "2024-09-13",
     "initialSourceRepair": {
       "records": 1354,
@@ -97,11 +83,11 @@
     "pipelineStages": {
       "record_integrity.py": {
         "stage": "record_integrity.py",
-        "status": "updated",
+        "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.18,
-        "checkedAt": "2026-09-14T12:22:59.397182+00:00",
-        "diagnostics": "{\"integrityRepairs\": 10}\n"
+        "durationSeconds": 0.2,
+        "checkedAt": "2026-09-14T18:08:13.127524+00:00",
+        "diagnostics": "{\"integrityRepairs\": 0}\n"
       },
       "backfill_recent_sebi_other_docs_lot_sizes.py": {
         "stage": "backfill_recent_sebi_other_docs_lot_sizes.py",
@@ -129,24 +115,62 @@
       },
       "apply_corrections.py": {
         "stage": "apply_corrections.py",
-        "status": "updated",
+        "status": "no_change",
         "exitCode": 0,
         "durationSeconds": 0.2,
-        "checkedAt": "2026-09-14T12:22:59.717746+00:00",
-        "diagnostics": "{\"appliedFields\": 440, \"conflicts\": []}\n"
+        "checkedAt": "2026-09-14T18:08:13.463325+00:00",
+        "diagnostics": "{\"appliedFields\": 0, \"conflicts\": [{\"id\": \"shakti-polytarp-limited\", \"fields\": [\"documentRepair\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"manipalhos\", \"fields\": [\"dataCorrections\", \"documentRepair\", \"leadManagers\", \"registrar\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}]}\n"
       },
       "run_offer_documents.py": {
         "stage": "run_offer_documents.py",
-        "status": "updated",
+        "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 44.36,
-        "checkedAt": "2026-09-14T12:23:44.200784+00:00",
-        "diagnostics": "{\"id\": \"shakti-polytarp-limited\", \"status\": \"no_change\", \"changedFields\": []}\n{\"id\": \"manipalhos\", \"status\": \"updated\", \"changedFields\": [\"leadManagers\", \"registrar\"]}\n{\"parserVersion\": 18, \"attempted\": 2, \"remaining\": 0, \"changedFields\": 2, \"failed\": 0, \"checkedAt\": \"2026-09-14T17:53:44+05:30\"}\n"
+        "durationSeconds": 0.39,
+        "checkedAt": "2026-09-14T18:08:21.668274+00:00",
+        "diagnostics": "{\"parserVersion\": 18, \"attempted\": 0, \"remaining\": 0, \"changedFields\": 0, \"failed\": 0, \"checkedAt\": \"2026-09-14T23:38:21+05:30\"}\n"
+      },
+      "enrich_sebi_priority_registers_v2.py": {
+        "stage": "enrich_sebi_priority_registers_v2.py",
+        "status": "no_change",
+        "exitCode": 0,
+        "durationSeconds": 4.89,
+        "checkedAt": "2026-09-14T18:08:19.245178+00:00",
+        "diagnostics": "SEBI priority registers v2: first_page=0 searched=3 search_matched=0 search_links=0 failed=0\n"
+      },
+      "enrich_sebi_document_links.py": {
+        "stage": "enrich_sebi_document_links.py",
+        "status": "no_change",
+        "exitCode": 0,
+        "durationSeconds": 1.26,
+        "checkedAt": "2026-09-14T18:08:20.636305+00:00",
+        "diagnostics": "SEBI document links: records=2 attempted=2 resolved=2 seeded=0 added=0 failed=0\n"
+      },
+      "enrich_recent_offer_terms.py": {
+        "stage": "enrich_recent_offer_terms.py",
+        "status": "no_change",
+        "exitCode": 0,
+        "durationSeconds": 0.38,
+        "checkedAt": "2026-09-14T18:08:21.152961+00:00",
+        "diagnostics": "SEBI recent offer terms: targets=0 attempted=0 extracted=0 updated=0 failed=0 skipped_lot_only_rhp=0 fields={}\n"
+      },
+      "apply_verified_filing_offer_fields.py": {
+        "stage": "apply_verified_filing_offer_fields.py",
+        "status": "no_change",
+        "exitCode": 0,
+        "durationSeconds": 0.3,
+        "checkedAt": "2026-09-14T18:08:22.099650+00:00",
+        "diagnostics": "Verified filing offer fields: entries=4, updated=0, fields={}\n"
       }
+    },
+    "publication": {
+      "runId": "34878912824",
+      "collectorCommit": "99b7f7e68f220539c4792a7a0314039be19ea3d5",
+      "status": "published",
+      "pendingConflictCount": 0
     },
     "recordCount": 1354,
     "recordIntegrity": {
-      "checkedAt": "2026-09-14T12:24:03.309380+00:00",
+      "checkedAt": "2026-09-14T18:08:38.299755+00:00",
       "changedFields": 0
     },
     "reviewedCorrectionStatus": {
@@ -173,6 +197,17 @@
       ]
     },
     "schemaVersion": 5,
+    "sebiDocumentLinkHealth": {
+      "ok": true,
+      "attemptedRecords": 2,
+      "attempted": 2,
+      "resolvedPages": 2,
+      "seededPages": 0,
+      "linksAdded": 0,
+      "failed": 0,
+      "asOf": "2026-09-14T23:38:20+05:30",
+      "errors": []
+    },
     "seed": false,
     "sourceHealth": {
       "NSE-live": {
@@ -254,9 +289,9 @@
       "SEBI-document-links": {
         "ok": true,
         "records": 0,
-        "attemptedRecords": 0,
-        "attempted": 0,
-        "asOf": "2026-09-14T03:08:53+05:30",
+        "attemptedRecords": 2,
+        "attempted": 2,
+        "asOf": "2026-09-14T23:38:20+05:30",
         "errors": []
       },
       "Offer-docs": {
@@ -299,27 +334,27 @@
       "SEBI-priority-registers": {
         "ok": true,
         "parserVersion": 2,
-        "priorityMax": 4,
+        "priorityMax": 3,
         "firstPageMatched": 0,
         "firstPageLinks": 0,
-        "searchedRecords": 12,
+        "searchedRecords": 3,
         "searchMatchedRecords": 0,
         "searchLinksAdded": 0,
         "failed": 0,
-        "asOf": "2026-09-14T03:08:53+05:30",
+        "asOf": "2026-09-14T23:38:19+05:30",
         "errors": []
       },
       "SEBI-offer-terms": {
         "ok": true,
-        "priorityMax": 4,
-        "targets": 118,
+        "priorityMax": 3,
+        "targets": 0,
         "attempted": 0,
         "extracted": 0,
         "updated": 0,
         "failed": 0,
         "skippedLotOnlyRhp": 0,
         "fields": {},
-        "asOf": "2026-09-14T05:01:24+05:30",
+        "asOf": "2026-09-14T23:38:20+05:30",
         "errors": []
       },
       "verified-lot-sizes": {
@@ -347,7 +382,7 @@
         "entries": 4,
         "updated": 0,
         "fields": {},
-        "checkedAt": "2026-09-13T23:21:10+05:30"
+        "checkedAt": "2026-09-14T23:38:21+05:30"
       },
       "NSE-history-IPO-filter": {
         "ok": true,
@@ -638,13 +673,7 @@
       "warnings": [],
       "errors": []
     },
-    "timezone": "Asia/Kolkata",
-    "publication": {
-      "runId": "34843081550",
-      "collectorCommit": "f35c15f446a5796ef91b30ddb8d60e63ebd2715d",
-      "status": "published",
-      "pendingConflictCount": 0
-    }
+    "timezone": "Asia/Kolkata"
   },
   "ipos": [
     {
@@ -1553,6 +1582,13 @@
         "financialStatus": "validated",
         "lastAttemptAt": "2026-09-14T10:54:17+05:30",
         "parserVersion": 18
+      },
+      "sebiDocumentLinkResolution": {
+        "status": "resolved",
+        "pagesAttempted": 1,
+        "linksAdded": 0,
+        "failed": 0,
+        "lastAttemptAt": "2026-09-14T23:38:20+05:30"
       }
     },
     {
@@ -2532,7 +2568,14 @@
           "sha256": null,
           "correctedAt": "2026-09-14T12:16:27.134108+00:00"
         }
-      ]
+      ],
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T23:38:17+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
+      }
     },
     {
       "id": "shakti-polytarp-limited",
@@ -3418,7 +3461,14 @@
           "sha256": null,
           "correctedAt": "2026-09-14T12:16:27.134108+00:00"
         }
-      ]
+      ],
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T23:38:18+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
+      }
     },
     {
       "id": "century-business-limited",
@@ -4887,7 +4937,14 @@
           "sha256": null,
           "correctedAt": "2026-09-14T12:16:27.134108+00:00"
         }
-      ]
+      ],
+      "sebiPriorityRegisterSearch": {
+        "status": "no-match",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-14T23:38:19+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 2
+      }
     },
     {
       "id": "steamhouse",
@@ -13315,6 +13372,13 @@
         "financialStatus": "validated",
         "lastAttemptAt": "2026-09-14T10:54:23+05:30",
         "parserVersion": 18
+      },
+      "sebiDocumentLinkResolution": {
+        "status": "resolved",
+        "pagesAttempted": 1,
+        "linksAdded": 0,
+        "failed": 0,
+        "lastAttemptAt": "2026-09-14T23:38:20+05:30"
       }
     },
     {
