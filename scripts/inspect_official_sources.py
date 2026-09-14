@@ -28,7 +28,7 @@ def main():
             content = response.text[:2_000_000]
             routes = sorted({route for route in re.findall(r"/api/[A-Za-z0-9_/?=&.-]+", content) if "offer" in route.lower()})
             contexts = []
-            for match in re.finditer(r"offer-documents\?|offer-documents-abridged|offerdocs/equity/companylist|offerdocs/sme/companylist|pan_no|marketLot|finalIssuePrice", content, re.I):
+            for match in re.finditer(r"offerdocs\?index=sme|offerdocs\?index=equities|smeOfferCompany|selectkeyMappingAbridgedProspectus", content, re.I):
                 contexts.append(content[max(0, match.start() - 200):match.end() + 300])
                 if len(contexts) >= 24:
                     break
@@ -36,14 +36,16 @@ def main():
         except Exception as exc:
             report["integrationScripts"].append({"url": url, "error": str(exc)[:250]})
     report["companyLists"] = []
-    for route in ("/api/corporates/offerdocs/equity/companylist", "/api/corporates/offerdocs/sme/companylist", "/api/corporates/offerdocs/companylist"):
+    for route in ("/api/corporates/offerdocs/equity/companylist", "/api/corporates/offerdocs/sme/companylist", "/api/corporates/offerdocs/companylist", "/api/corporates/offerdocs?index=sme", "/api/corporates/offerdocs?index=equities"):
         url = "https://www.nseindia.com" + route
         try:
             response = session.get(url, timeout=30, headers={"Referer": PAGE})
             response.raise_for_status()
             payload = response.json()
-            records = payload if isinstance(payload, list) else payload.get("data", [])
+            records = payload if isinstance(payload, list) else payload.get("data", payload.get("IODraft", []))
             matches = [row for row in records if re.search(r"ANB Metal|Aaradhya Disposal|National Securities Depository|Acetech", json.dumps(row), re.I)]
+            if isinstance(records, dict):
+                records = [records]
             report["companyLists"].append({"url": url, "keys": list(payload)[:10] if isinstance(payload, dict) else None, "count": len(records), "samples": records[:2], "matches": matches[:10]})
         except Exception as exc:
             report["companyLists"].append({"url": url, "error": str(exc)[:250]})
