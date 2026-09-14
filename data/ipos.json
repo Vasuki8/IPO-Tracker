@@ -6,12 +6,34 @@
       "remaining": 0,
       "changedFields": 0,
       "failed": 0,
-      "checkedAt": "2026-09-15T00:10:50+05:30",
+      "checkedAt": "2026-09-15T00:22:41+05:30",
       "outcomes": []
     },
     "errors": [],
-    "generatedAt": "2026-09-14T18:41:09.212508+00:00",
+    "generatedAt": "2026-09-14T18:54:53.288810+00:00",
     "historyStart": "2024-09-13",
+    "initialSourceRepair": {
+      "records": 1354,
+      "sourceDocumentsAttempted": 72,
+      "sourceDocumentsRead": 70,
+      "sourceFailures": 2,
+      "changedRecordCount": 75,
+      "changedFields": 440,
+      "fieldCounts": {
+        "dataCorrections": 72,
+        "documentFieldProvenance": 70,
+        "documentRepair": 72,
+        "financials": 32,
+        "leadManagers": 69,
+        "offerDocumentExtraction": 70,
+        "registrar": 46,
+        "promoters": 5,
+        "objectsOfIssue": 4
+      },
+      "semanticErrors": 0,
+      "sourceReviewItems": 928,
+      "sourceReviewRecords": 60
+    },
     "offerDocumentHealth": {
       "ok": false,
       "attempted": 12,
@@ -38,8 +60,8 @@
         "stage": "record_integrity.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.19,
-        "checkedAt": "2026-09-14T18:40:40.547038+00:00",
+        "durationSeconds": 0.15,
+        "checkedAt": "2026-09-14T18:52:29.284531+00:00",
         "diagnostics": "{\"integrityRepairs\": 0}\n"
       },
       "normalize_source_health.py": {
@@ -54,71 +76,108 @@
         "stage": "enrich_sebi_priority_registers_v2.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 6.25,
-        "checkedAt": "2026-09-14T18:40:47.953326+00:00",
+        "durationSeconds": 7.69,
+        "checkedAt": "2026-09-14T18:52:38.315612+00:00",
         "diagnostics": "SEBI priority registers v2: first_page=0 searched=4 search_matched=0 search_links=0 failed=0\n"
       },
       "enrich_sebi_document_links.py": {
         "stage": "enrich_sebi_document_links.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 1.61,
-        "checkedAt": "2026-09-14T18:40:49.685477+00:00",
+        "durationSeconds": 2.51,
+        "checkedAt": "2026-09-14T18:52:40.924246+00:00",
         "diagnostics": "SEBI document links: records=2 attempted=2 resolved=2 seeded=0 added=0 failed=0\n"
       },
       "enrich_recent_offer_terms.py": {
         "stage": "enrich_recent_offer_terms.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.36,
-        "checkedAt": "2026-09-14T18:40:50.177465+00:00",
+        "durationSeconds": 0.29,
+        "checkedAt": "2026-09-14T18:52:41.309757+00:00",
         "diagnostics": "SEBI recent offer terms: targets=0 attempted=0 extracted=0 updated=0 failed=0 skipped_lot_only_rhp=0 fields={}\n"
       },
       "run_offer_documents.py": {
         "stage": "run_offer_documents.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.37,
-        "checkedAt": "2026-09-14T18:40:50.669876+00:00",
-        "diagnostics": "{\"parserVersion\": 18, \"attempted\": 0, \"remaining\": 0, \"changedFields\": 0, \"failed\": 0, \"checkedAt\": \"2026-09-15T00:10:50+05:30\"}\n"
+        "durationSeconds": 0.29,
+        "checkedAt": "2026-09-14T18:52:41.698526+00:00",
+        "diagnostics": "{\"parserVersion\": 18, \"attempted\": 0, \"remaining\": 0, \"changedFields\": 0, \"failed\": 0, \"checkedAt\": \"2026-09-15T00:22:41+05:30\"}\n"
       },
       "apply_verified_filing_offer_fields.py": {
         "stage": "apply_verified_filing_offer_fields.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.29,
-        "checkedAt": "2026-09-14T18:40:51.089824+00:00",
+        "durationSeconds": 0.23,
+        "checkedAt": "2026-09-14T18:52:42.030787+00:00",
         "diagnostics": "Verified filing offer fields: entries=4, updated=0, fields={}\n"
       },
       "backfill_recent_sebi_other_docs_lot_sizes.py": {
         "stage": "backfill_recent_sebi_other_docs_lot_sizes.py",
         "status": "source_blocked",
         "exitCode": 0,
-        "durationSeconds": 144.03,
-        "checkedAt": "2026-09-14T05:18:02.329039+00:00",
-        "diagnostics": "{\n  \"targets\": 113,\n  \"selected\": 113,\n  \"matchedPages\": 3,\n  \"discoveredDocuments\": 3,\n  \"attemptedDocuments\": 3,\n  \"updated\": 0,\n  \"failed\": 2,\n  \"updatedIds\": [],\n  \"errors\": [\n    \"Dhara Rail Projects Limited DHARA RAIL PROJECTS LIMITED: ('Connection broken: IncompleteRead(6974255 bytes read, 4066020 more expected)', IncompleteRead(6974255 bytes read, 4066020 more expected))\",\n    \"Jayesh Logistics Limited Jayesh Logistics Limited: ('Connection broken: IncompleteRead(5439423 bytes read, 4584343 more expected)', IncompleteRead(5439423 bytes read, 4584343 more expected))\"\n  ],\n  \"asOf\": \"2026-09-14T10:48:02+05:30\"\n}\n"
+        "durationSeconds": 109.46,
+        "checkedAt": "2026-09-14T18:54:32.161981+00:00",
+        "diagnostics": "{\n  \"targets\": 113,\n  \"selected\": 113,\n  \"matchedPages\": 3,\n  \"discoveredDocuments\": 2,\n  \"attemptedDocuments\": 2,\n  \"updated\": 0,\n  \"failed\": 1,\n  \"updatedIds\": [],\n  \"errors\": [\n    \"Jayesh Logistics Limited detail: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))\"\n  ],\n  \"asOf\": \"2026-09-15T00:24:32+05:30\"\n}\n"
       },
       "backfill_recent_nse_lot_sizes.py": {
         "stage": "backfill_recent_nse_lot_sizes.py",
-        "status": "no_change",
+        "status": "source_blocked",
         "exitCode": 0,
-        "durationSeconds": 127.9,
-        "checkedAt": "2026-09-14T05:20:10.342798+00:00",
-        "diagnostics": "NSE recent lot backfill: targets=113 selected=25 attempted=25 updated=0 failed=0 blockedRemaining=0\n"
+        "durationSeconds": 0.35,
+        "checkedAt": "2026-09-14T18:54:32.609997+00:00",
+        "diagnostics": "NSE lot backfill failed Credent Connect N Care Limited: 403 Client Error: Forbidden for url: https://www.nseindia.com/\nNSE lot backfill stopped early after persistent NSE access failure\nNSE recent lot backfill: targets=113 selected=25 attempted=1 updated=0 failed=1 blockedRemaining=25\n"
       },
       "backfill_p4_lot_sizes.py": {
         "stage": "backfill_p4_lot_sizes.py",
-        "status": "source_blocked",
+        "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 11.5,
-        "checkedAt": "2026-09-14T05:20:21.946187+00:00",
-        "diagnostics": "BSE historical detail unavailable: BSE historical archive unavailable on official hosts: https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P: 403 Client Error: Forbidden for url: https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P; https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P: 403 Client Error: Forbidden for url: https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P\n"
+        "durationSeconds": 1.47,
+        "checkedAt": "2026-09-14T18:54:34.180030+00:00",
+        "diagnostics": "BSE historical detail unavailable: BSE historical archive unavailable on official hosts: https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P: historical page did not contain its ASP.NET form; https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P: historical issue-type selector was not found\n"
+      },
+      "apply_corrections.py": {
+        "stage": "apply_corrections.py",
+        "status": "no_change",
+        "exitCode": 0,
+        "durationSeconds": 0.16,
+        "checkedAt": "2026-09-14T18:52:29.540178+00:00",
+        "diagnostics": "{\"appliedFields\": 0, \"conflicts\": [{\"id\": \"shakti-polytarp-limited\", \"fields\": [\"documentRepair\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"manipalhos\", \"fields\": [\"dataCorrections\", \"documentRepair\", \"leadManagers\", \"registrar\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}]}\n"
       }
+    },
+    "publication": {
+      "runId": "34883417085",
+      "collectorCommit": "fc6df7507fbe53d77b596fc45562d730cc4fc0b8",
+      "status": "published",
+      "pendingConflictCount": 0
     },
     "recordCount": 1354,
     "recordIntegrity": {
-      "checkedAt": "2026-09-14T18:41:09.399818+00:00",
+      "checkedAt": "2026-09-14T18:54:53.408434+00:00",
       "changedFields": 0
+    },
+    "reviewedCorrectionStatus": {
+      "registryRevision": "2026-09-14-source-repair",
+      "appliedFields": 0,
+      "conflicts": [
+        {
+          "id": "shakti-polytarp-limited",
+          "fields": [
+            "documentRepair"
+          ],
+          "reason": "Value changed since source review; preserving this record and its matching provenance"
+        },
+        {
+          "id": "manipalhos",
+          "fields": [
+            "dataCorrections",
+            "documentRepair",
+            "leadManagers",
+            "registrar"
+          ],
+          "reason": "Value changed since source review; preserving this record and its matching provenance"
+        }
+      ]
     },
     "schemaVersion": 5,
     "sebiDocumentLinkHealth": {
@@ -129,7 +188,7 @@
       "seededPages": 0,
       "linksAdded": 0,
       "failed": 0,
-      "asOf": "2026-09-15T00:10:49+05:30",
+      "asOf": "2026-09-15T00:22:40+05:30",
       "errors": []
     },
     "seed": false,
@@ -215,7 +274,7 @@
         "records": 0,
         "attemptedRecords": 2,
         "attempted": 2,
-        "asOf": "2026-09-15T00:10:49+05:30",
+        "asOf": "2026-09-15T00:22:40+05:30",
         "errors": []
       },
       "Offer-docs": {
@@ -265,7 +324,7 @@
         "searchMatchedRecords": 0,
         "searchLinksAdded": 0,
         "failed": 0,
-        "asOf": "2026-09-15T00:10:47+05:30",
+        "asOf": "2026-09-15T00:22:38+05:30",
         "errors": []
       },
       "SEBI-offer-terms": {
@@ -278,7 +337,7 @@
         "failed": 0,
         "skippedLotOnlyRhp": 0,
         "fields": {},
-        "asOf": "2026-09-15T00:10:50+05:30",
+        "asOf": "2026-09-15T00:22:41+05:30",
         "errors": []
       },
       "verified-lot-sizes": {
@@ -306,7 +365,7 @@
         "entries": 4,
         "updated": 0,
         "fields": {},
-        "checkedAt": "2026-09-15T00:10:50+05:30"
+        "checkedAt": "2026-09-15T00:22:41+05:30"
       },
       "NSE-history-IPO-filter": {
         "ok": true,
@@ -542,24 +601,32 @@
         "checkedAt": "2026-09-14T04:48:01+05:30"
       },
       "SEBI-other-doc-lot-backfill": {
-        "targets": 118,
-        "selected": 118,
-        "matchedPages": 8,
-        "discoveredDocuments": 8,
-        "attemptedDocuments": 8,
-        "updated": 5,
+        "targets": 113,
+        "selected": 113,
+        "matchedPages": 3,
+        "discoveredDocuments": 2,
+        "attemptedDocuments": 2,
+        "updated": 0,
         "failed": 1,
-        "updatedIds": [
-          "vmobile",
-          "shreedhar",
-          "nfpsampoor",
-          "eximroutes",
-          "armour"
-        ],
+        "updatedIds": [],
         "errors": [
-          "Jayesh Logistics Limited Jayesh Logistics Limited: ('Connection broken: IncompleteRead(8085751 bytes read, 1938015 more expected)', IncompleteRead(8085751 bytes read, 1938015 more expected))"
+          "Jayesh Logistics Limited detail: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
         ],
-        "asOf": "2026-09-14T05:24:29+05:30"
+        "asOf": "2026-09-15T00:24:32+05:30"
+      },
+      "NSE-lot-size-backfill": {
+        "ok": false,
+        "targets": 113,
+        "selected": 25,
+        "attempted": 1,
+        "updated": 0,
+        "failed": 1,
+        "blockedRemaining": 25,
+        "updatedIds": [],
+        "errors": [
+          "Credent Connect N Care Limited: 403 Client Error: Forbidden for url: https://www.nseindia.com/"
+        ],
+        "asOf": "2026-09-15T00:24:32+05:30"
       }
     },
     "sources": [
@@ -597,58 +664,7 @@
       "warnings": [],
       "errors": []
     },
-    "timezone": "Asia/Kolkata",
-    "publication": {
-      "runId": "34882129808",
-      "collectorCommit": "a7292eeafcc8044825bb626c21b02591ff4b38e2",
-      "status": "published",
-      "pendingConflictCount": 0
-    },
-    "reviewedCorrectionStatus": {
-      "registryRevision": "2026-09-14-source-repair",
-      "appliedFields": 0,
-      "conflicts": [
-        {
-          "id": "shakti-polytarp-limited",
-          "fields": [
-            "documentRepair"
-          ],
-          "reason": "Value changed since source review; preserving this record and its matching provenance"
-        },
-        {
-          "id": "manipalhos",
-          "fields": [
-            "dataCorrections",
-            "documentRepair",
-            "leadManagers",
-            "registrar"
-          ],
-          "reason": "Value changed since source review; preserving this record and its matching provenance"
-        }
-      ]
-    },
-    "initialSourceRepair": {
-      "records": 1354,
-      "sourceDocumentsAttempted": 72,
-      "sourceDocumentsRead": 70,
-      "sourceFailures": 2,
-      "changedRecordCount": 75,
-      "changedFields": 440,
-      "fieldCounts": {
-        "dataCorrections": 72,
-        "documentFieldProvenance": 70,
-        "documentRepair": 72,
-        "financials": 32,
-        "leadManagers": 69,
-        "offerDocumentExtraction": 70,
-        "registrar": 46,
-        "promoters": 5,
-        "objectsOfIssue": 4
-      },
-      "semanticErrors": 0,
-      "sourceReviewItems": 928,
-      "sourceReviewRecords": 60
-    }
+    "timezone": "Asia/Kolkata"
   },
   "ipos": [
     {
@@ -1563,7 +1579,7 @@
         "pagesAttempted": 1,
         "linksAdded": 0,
         "failed": 0,
-        "lastAttemptAt": "2026-09-15T00:10:49+05:30"
+        "lastAttemptAt": "2026-09-15T00:22:40+05:30"
       }
     },
     {
@@ -2591,7 +2607,7 @@
       "sebiPriorityRegisterSearch": {
         "status": "no-match",
         "linksAdded": 0,
-        "lastAttemptAt": "2026-09-15T00:10:45+05:30",
+        "lastAttemptAt": "2026-09-15T00:22:36+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
       }
@@ -2848,7 +2864,7 @@
       "sebiPriorityRegisterSearch": {
         "status": "no-match",
         "linksAdded": 0,
-        "lastAttemptAt": "2026-09-15T00:10:44+05:30",
+        "lastAttemptAt": "2026-09-15T00:22:35+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
       }
@@ -3491,7 +3507,7 @@
       "sebiPriorityRegisterSearch": {
         "status": "no-match",
         "linksAdded": 0,
-        "lastAttemptAt": "2026-09-15T00:10:46+05:30",
+        "lastAttemptAt": "2026-09-15T00:22:37+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
       }
@@ -4967,7 +4983,7 @@
       "sebiPriorityRegisterSearch": {
         "status": "no-match",
         "linksAdded": 0,
-        "lastAttemptAt": "2026-09-15T00:10:47+05:30",
+        "lastAttemptAt": "2026-09-15T00:22:38+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
       }
@@ -13404,7 +13420,7 @@
         "pagesAttempted": 1,
         "linksAdded": 0,
         "failed": 0,
-        "lastAttemptAt": "2026-09-15T00:10:49+05:30"
+        "lastAttemptAt": "2026-09-15T00:22:40+05:30"
       }
     },
     {
@@ -14837,6 +14853,18 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 93.8952,
         "sourceBasis": "NSE final Prospectus: Rs 9,389.52 lakh fresh issue; offer for sale nil"
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-15T00:24:32+05:30",
+        "status": "source_blocked",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information",
+        "symbol": "CREDENT",
+        "error": "403 Client Error: Forbidden for url: https://www.nseindia.com/"
       }
     },
     {
@@ -15348,6 +15376,11 @@
         "ofsCr": 5.9047,
         "totalIssueSizeCr": 69.0442,
         "sourceBasis": "NSE final Prospectus: Rs 6,313.94 lakh fresh issue plus Rs 590.47 lakh OFS; total Rs 6,904.42 lakh"
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -16366,6 +16399,11 @@
         "ofsCr": 12.6236,
         "totalIssueSizeCr": 64.83336,
         "sourceBasis": "Final RHP structure: 34,57,600 fresh shares plus 8,36,000 OFS shares; NSE listing circular fixes final issue price at Rs 151 per share."
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -17451,6 +17489,11 @@
         "ofsCr": 21.0,
         "totalIssueSizeCr": 108.5,
         "sourceBasis": "NSE final Prospectus: 62,00,000 shares at Rs 175; fresh 50,00,000 shares Rs 87.50 cr plus OFS 12,00,000 shares Rs 21.00 cr"
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -18525,6 +18568,11 @@
         "ofsCr": 35.1216,
         "totalIssueSizeCr": 177.8112,
         "sourceBasis": "Final RHP structure: 52,84,800 fresh shares plus 13,00,800 OFS shares; NSE listing circular fixes final issue price at Rs 270 per share."
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -21130,6 +21178,11 @@
         "lastAttemptAt": "2026-09-14T02:11:21+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -22311,6 +22364,11 @@
         "lastAttemptAt": "2026-09-14T02:11:22+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -22916,6 +22974,11 @@
         "lastAttemptAt": "2026-09-14T02:11:23+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -23740,6 +23803,11 @@
         "lastAttemptAt": "2026-09-14T02:11:25+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -25580,6 +25648,11 @@
         "lastAttemptAt": "2026-09-14T02:20:32+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -25669,6 +25742,11 @@
         "lastAttemptAt": "2026-09-14T02:20:33+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -25758,6 +25836,11 @@
         "lastAttemptAt": "2026-09-14T02:20:34+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -26194,6 +26277,11 @@
         "lastAttemptAt": "2026-09-14T02:20:35+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -26374,6 +26462,11 @@
         "lastAttemptAt": "2026-09-14T02:20:36+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -26463,6 +26556,11 @@
         "lastAttemptAt": "2026-09-14T02:20:37+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -26552,6 +26650,12 @@
         "lastAttemptAt": "2026-09-14T02:20:38+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_usable_lot_size",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15",
+        "sourcePage": "https://www.sebi.gov.in/filings/public-issues/jun-2026/teamtech-formwork-solutions-limited_102036.html"
       }
     },
     {
@@ -26872,6 +26976,11 @@
         "lastAttemptAt": "2026-09-14T02:20:40+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -26961,6 +27070,11 @@
         "lastAttemptAt": "2026-09-14T02:20:41+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -27126,6 +27240,11 @@
         "lastAttemptAt": "2026-09-14T02:20:42+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -27556,6 +27675,11 @@
         "lastAttemptAt": "2026-09-14T02:20:43+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -27645,6 +27769,11 @@
         "lastAttemptAt": "2026-09-14T02:45:41+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -28204,6 +28333,11 @@
         "lastAttemptAt": "2026-09-14T02:45:43+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -28700,6 +28834,11 @@
         "lastAttemptAt": "2026-09-14T02:45:44+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -29693,6 +29832,11 @@
         "lastAttemptAt": "2026-09-14T02:45:47+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -30432,6 +30576,11 @@
         "lastAttemptAt": "2026-09-14T02:45:48+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -30612,6 +30761,11 @@
         "lastAttemptAt": "2026-09-14T02:45:49+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -30701,6 +30855,11 @@
         "lastAttemptAt": "2026-09-14T02:45:50+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -30790,6 +30949,11 @@
         "lastAttemptAt": "2026-09-14T02:45:51+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -31574,6 +31738,11 @@
         "lastAttemptAt": "2026-09-14T02:45:52+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -32034,6 +32203,11 @@
         "lastAttemptAt": "2026-09-14T03:08:41+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -32214,6 +32388,11 @@
         "lastAttemptAt": "2026-09-14T03:08:42+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -32732,6 +32911,11 @@
         "lastAttemptAt": "2026-09-14T03:08:43+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -32943,6 +33127,11 @@
         "lastAttemptAt": "2026-09-14T03:08:44+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -33032,6 +33221,11 @@
         "lastAttemptAt": "2026-09-14T03:08:45+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -33121,6 +33315,11 @@
         "lastAttemptAt": "2026-09-14T03:08:46+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -33210,6 +33409,11 @@
         "lastAttemptAt": "2026-09-14T03:08:48+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -33731,6 +33935,11 @@
         "lastAttemptAt": "2026-09-14T03:08:50+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -33911,6 +34120,11 @@
         "lastAttemptAt": "2026-09-14T03:08:51+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -34000,6 +34214,11 @@
         "lastAttemptAt": "2026-09-14T03:08:52+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -34089,6 +34308,12 @@
         "lastAttemptAt": "2026-09-14T03:08:53+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_usable_lot_size",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15",
+        "sourcePage": "https://www.sebi.gov.in/filings/public-issues/jun-2026/dhara-rail-projects-limited_102032.html"
       }
     },
     {
@@ -34171,6 +34396,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SOCL&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -34253,6 +34483,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SHYAMDHANI&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -34426,6 +34661,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=EPWINDIA&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -34508,6 +34748,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=MARC&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -34985,6 +35230,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ASHWINI&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -35431,6 +35681,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=FWSTC&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -35513,6 +35768,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ENCOMPAS&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -35686,6 +35946,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SHRIKANHA&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -35950,6 +36215,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=NEOCHEM&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -36032,6 +36302,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SPEB&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -36114,6 +36389,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=INVICTA&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -36196,6 +36476,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CSSL&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -37006,6 +37291,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CURIS&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -37088,6 +37378,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=FINBUD&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -37170,6 +37465,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SHETHJI&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -37616,6 +37916,12 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=JAYESH&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "source_blocked",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15",
+        "error": "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
       }
     },
     {
@@ -38262,6 +38568,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SHEEL&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -38344,6 +38655,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=MUNISH&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -38426,6 +38742,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=GREENLEAF&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -38508,6 +38829,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=BAGDIGITAL&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -38681,6 +39007,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=VIJAYPD&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -38763,6 +39094,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SUBAHOTELS&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -39209,6 +39545,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=MPEL&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -39564,6 +39905,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=GURUNANAK&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -40010,6 +40356,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=MGSL&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -40183,6 +40534,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ECOLINE&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -40356,6 +40712,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=PRIMECAB&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -40620,6 +40981,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SIDDHICOTS&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -40702,6 +41068,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SAATVIK&series=EQ",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -41148,6 +41519,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=TECHD&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -41412,6 +41788,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=GML&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -41585,6 +41966,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=TAURIAN&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -41667,6 +42053,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=VIGOR&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -41749,6 +42140,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=OPTIVALUE&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -41922,6 +42318,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SNEHAA&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -42095,6 +42496,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SATTVAENGG&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -42177,6 +42583,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CURRENT&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -42350,6 +42761,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SHIVASHRIT&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -42432,6 +42848,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CLASSICEIL&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -42514,6 +42935,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ANONDITA&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -42596,6 +43022,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ARCIIL&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -43133,6 +43564,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=STUDIOLSD&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -43306,6 +43742,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=MRIL&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -43479,6 +43920,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=MEDISTEP&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -43561,6 +44007,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=AMCL&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -43643,6 +44094,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SAWALIYA&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -43816,6 +44272,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CONNPLEX&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -44189,6 +44650,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=PARTH&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -44271,6 +44737,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=JYOTIGLOBL&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -44353,6 +44824,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=BHADORA&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -44435,6 +44911,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=AARADHYA&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -44517,6 +44998,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=FLYSBS&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -44599,6 +45085,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=RNPL&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -44681,6 +45172,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=CUDML&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -44881,6 +45377,11 @@
         "totalIssueSizeCr": 4010.954,
         "sourceBasis": "NSDL RHP confirms the entire offer is OFS; NSE-hosted BRLM track record reports final issue size Rs 40,109.54 million at Rs 800, including the employee discount effect",
         "officialNote": "Using the official aggregate issue size avoids overstating the offer by multiplying every reserved employee share by the undiscounted Rs 800 offer price."
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -45145,6 +45646,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=KAYTEX&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -45409,6 +45915,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SELLOWRAP&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -45582,6 +46093,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=TSC&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -45846,6 +46362,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SAVY&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -45928,6 +46449,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SPUNWEB&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -46282,6 +46808,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SMARTEN&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -46364,6 +46895,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=WHITEFORCE&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -48175,6 +48711,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=ARISINFRA&series=EQ",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -49347,6 +49888,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=NIKITA&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -49520,6 +50066,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=THELEELA&series=EQ",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -52604,6 +53155,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=EMAIN&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -52959,6 +53515,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SATKARTAR&series=SME",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -53334,6 +53895,11 @@
         "totalIssueSizeCr": 1578.0,
         "sourceBasis": "NSE filing: 159,393,750 units at Rs 99; fresh 108,787,800 units (about Rs 1,077 cr) and OFS 50,605,950 units (about Rs 501 cr)",
         "officialNote": "Stored crore values use the official rounded offer terms Rs 1,077 cr fresh + Rs 501 cr OFS = Rs 1,578 cr total."
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -53416,6 +53982,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SGLTL&series=EQ",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -54873,6 +55444,11 @@
         "ofsCr": 2750.0,
         "totalIssueSizeCr": 4225.0,
         "sourceBasis": "NSE Basis of Allotment: Rs 42,250 million offer = Rs 14,750 million fresh issue + Rs 27,500 million OFS."
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -56342,6 +56918,11 @@
         "ofsCr": 0.0,
         "totalIssueSizeCr": 24.7,
         "sourceBasis": "NSE audited filing: company raised Rs 24.70 crore by issuing 19,00,000 shares; full proceeds allocated to issuer objects"
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -56835,6 +57416,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=BLACKBUCK&series=EQ",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
@@ -57372,6 +57958,11 @@
         "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SAGILITY&series=EQ",
         "lotSize": null,
         "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T00:23:06+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
       }
     },
     {
