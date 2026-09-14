@@ -22,8 +22,10 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
-import run_issuer_offer_docs_v3 as legacy_v3  # noqa: E402
-import run_offer_docs_v14 as parser_v14  # noqa: E402
+from parser_loader import isolated_module
+legacy_v3 = isolated_module("run_issuer_offer_docs_v3")
+from parser_loader import isolated_module
+parser_v14 = isolated_module("run_offer_docs_v14")
 
 base = legacy_v3.base
 

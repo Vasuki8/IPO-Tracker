@@ -27,7 +27,8 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
-import run_offer_docs_v4 as v4  # noqa: E402
+from parser_loader import isolated_module
+v4 = isolated_module("run_offer_docs_v4")
 
 base = v4.base
 PARSER_VERSION = 5

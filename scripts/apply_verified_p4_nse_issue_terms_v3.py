@@ -9,7 +9,8 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
-import apply_verified_p4_nse_issue_terms_v2 as v2  # noqa: E402
+from parser_loader import isolated_module
+v2 = isolated_module("apply_verified_p4_nse_issue_terms_v2")
 
 base = v2.base
 

@@ -205,8 +205,9 @@ def main() -> int:
         "resolvedUnavailableRecordCount": len(resolved),
         "resolvedUnavailablePriorityCounts": dict(resolved_priority_counts),
         "resolvedUnavailableFieldCounts": dict(resolved_field_counts.most_common()),
-        "queue": queue[:300],
-        "resolvedUnavailable": resolved[:300],
+        "queue": queue,
+        "queueIsComplete": True,
+        "resolvedUnavailable": resolved,
         "notes": [
             "P0/P1 records are repaired before historical records.",
             "Only lifecycle- and source-appropriate missing fields enter the actionable queue.",

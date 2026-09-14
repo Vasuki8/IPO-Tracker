@@ -15,6 +15,8 @@ from typing import Any
 from urllib.parse import urljoin
 from zoneinfo import ZoneInfo
 
+from record_integrity import issue_id
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -307,7 +309,7 @@ def normalize_nse_record(r, kind):
     size, shares_offered = nse_issue_metrics(r, band)
 
     return {
-        "id": slugify(str(symbol or company)),
+        "id": issue_id(slugify(str(symbol or company)), company, od),
         "matchKey": canonical_company(company),
         "symbol": str(symbol).strip() if symbol else None,
         "company": company,

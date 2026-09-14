@@ -9,8 +9,10 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
-import enrich_issuer_offer_docs as base  # noqa: E402
-import run_offer_docs_v11 as parser_v11  # noqa: E402
+from parser_loader import isolated_module
+base = isolated_module("enrich_issuer_offer_docs")
+from parser_loader import isolated_module
+parser_v11 = isolated_module("run_offer_docs_v11")
 
 # Route validated fallbacks through the current parser while retaining the base
 # module's exact-host, PDF-magic, issuer-identity and fill-only merge gates.

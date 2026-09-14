@@ -441,6 +441,7 @@ def apply_subscription(
     source_url: str,
     snapshot_source: str,
     force_snapshot=False,
+    observed_at=None,
 ):
     if not any(value is not None for value in parsed.values()):
         raise ValueError("Subscription source returned no headline category rows")
@@ -452,9 +453,12 @@ def apply_subscription(
             current[key] = value
     record["subscription"] = current
     record["subscriptionAsOf"] = captured_at
+    record["subscriptionCollectedAt"] = captured_at
+    record["subscriptionObservedAt"] = observed_at
+    record["subscriptionTimeBasis"] = "source-observation" if observed_at else "collection-only"
     record["subscriptionSource"] = source_name
 
-    snapshot = {"capturedAt": captured_at, "source": snapshot_source}
+    snapshot = {"capturedAt": captured_at, "observedAt": observed_at, "source": snapshot_source, "sourceUrl": source_url}
     snapshot.update({key: core.number(current.get(key)) for key in SNAPSHOT_KEYS})
     added = append_snapshot(record, snapshot, force=force_snapshot)
 
