@@ -15,7 +15,8 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
-import enrich_offer_docs as base  # noqa: E402
+from parser_loader import isolated_module
+base = isolated_module("enrich_offer_docs")
 
 PARSER_VERSION = 2
 base.PARSER_VERSION = PARSER_VERSION
@@ -67,6 +68,7 @@ def extract_intermediaries(text: str):
             2200,
         )
         registrar = _first_entity(block)
+    leads = [re.sub(r"^TO THE (?:ISSUE|OFFER)\s+", "", x, flags=re.I) for x in leads]
     return leads, registrar
 
 
@@ -173,6 +175,12 @@ def extract_issue_composition(text: str, price_band=None):
             issue["ofsCr"] = 0.0
         else:
             issue["ofsCr"] = _explicit_money_after(r"Offer\s+for\s+Sale", block)
+
+    # Explicit disclosed amounts take precedence over cap-price estimates.
+    for key, label in (("freshIssueCr", r"Fresh\s+Issue"), ("ofsCr", r"Offer\s+for\s+Sale"), ("totalIssueSizeCr", r"(?:Total\s+Issue(?:\s+Size)?|Total\s+Offer(?:\s+Size)?|Issue\s+Size)")):
+        explicit = _explicit_money_after(label, block)
+        if explicit is not None:
+            issue[key] = explicit
 
     if issue.get("totalIssueSizeCr") is None:
         fresh = issue.get("freshIssueCr")

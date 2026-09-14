@@ -25,7 +25,7 @@ Official source pages:
 
 ```powershell
 # from the project folder
-uv sync
+uv sync --frozen
 uv run python -m http.server 8000
 ```
 
@@ -36,9 +36,9 @@ Open `http://localhost:8000`.
 ## Refresh all official sources
 
 ```powershell
-uv run python scripts/run_update.py
-uv run python scripts/track_subscriptions.py --limit 30
-uv run python scripts/enrich_offer_docs.py --limit 8
+uv run --frozen python scripts/run_pipeline.py --mode core
+uv run --frozen python scripts/run_pipeline.py --mode subscriptions
+uv run --frozen python scripts/run_pipeline.py --mode maintenance
 ```
 
 The routine refresh performs:
@@ -65,7 +65,7 @@ uv run python scripts/run_update.py --sebi-pages 20
 ### Extract all eligible offer documents
 
 ```powershell
-uv run python scripts/enrich_offer_docs.py --limit 0
+uv run --frozen python scripts/run_offer_documents.py --limit 0
 ```
 
 The offer-document extractor is incremental. Once a PDF has been successfully parsed with the current parser version, routine hourly runs skip it unless a newer document becomes available. It intentionally prioritizes short official **Abridged Prospectus** PDFs rather than repeatedly downloading very large full RHP/DRHP files.
@@ -76,7 +76,7 @@ The offer-document extractor is incremental. Once a PDF has been successfully pa
 uv run python scripts/track_subscriptions.py --company "Company Name" --force-snapshot
 ```
 
-Routine subscription runs only inspect IPOs whose exchange bidding window is open. A new history row is stored when QIB/NII/Retail/Total values change; `subscriptionAsOf` records the latest successful official-exchange check even when the multiples are unchanged.
+Routine subscription runs only inspect IPOs whose exchange bidding window is open. A new history row is stored when QIB/NII/Retail/Total values change; `subscriptionAsOf` records the latest successful collection check even when the multiples are unchanged.
 
 ### Debug one source at a time
 
@@ -84,7 +84,7 @@ Routine subscription runs only inspect IPOs whose exchange bidding window is ope
 uv run python scripts/run_update.py --skip-sebi --skip-bse
 uv run python scripts/run_update.py --skip-bse
 uv run python scripts/run_update.py --skip-sebi
-uv run python scripts/enrich_offer_docs.py --company "Company Name" --force
+uv run --frozen python scripts/run_offer_documents.py --company "Company Name" --force
 ```
 
 ## GitHub Pages deployment
@@ -92,10 +92,10 @@ uv run python scripts/enrich_offer_docs.py --company "Company Name" --force
 1. Create a public GitHub repository and upload this project.
 2. In **Settings → Pages**, deploy from branch `main` and `/ (root)`.
 3. In **Settings → Actions → General → Workflow permissions**, allow **Read and write permissions**.
-4. Open **Actions → Update IPO data → Run workflow**.
+4. Open **Actions → Collect and publish IPO data → Run workflow**.
 5. Optional manual inputs can backfill NSE history, deepen the SEBI filing scan, or process all currently eligible offer documents.
 
-The workflow runs hourly and commits `data/ipos.json` only when the normalized database changes.
+One workflow collects sources and publishes through a serialized, validated merge. It preserves concurrent edits and pending conflicts, and explicitly requests a Pages rebuild. See [the operations guide](docs/OPERATIONS.md) for schedules, modes, repair semantics and phase gates.
 
 ## NSE website endpoints used
 
@@ -119,7 +119,7 @@ When available in the official SEBI Abridged Prospectus, records can include:
 - `shareholding.promoterPreIssuePct`
 - `offerDocumentExtraction` with source PDF, parser version, SHA-256, pages parsed and extraction timestamp
 
-Document-derived values fill missing fields but do not silently overwrite populated exchange values.
+Document terms fill missing exchange fields. Revalidated financial tables and intermediary roles can correct existing extracted values with before/after audit history and exact source evidence. Unsupported layouts remain flagged for review.
 
 ## Phase 4 subscription fields
 
@@ -129,8 +129,8 @@ For live/open issues, records can include:
 - `subscription.nii`
 - `subscription.retail` — also accepts NSE's newer SME `Individual Investor` terminology
 - `subscription.total`
-- `subscriptionAsOf` — timestamp of the latest successful official-exchange check
-- `subscriptionSource` — the official source used for the latest snapshot
+- `subscriptionAsOf` — timestamp of the latest successful collection check
+- `subscriptionSource` — the labelled source used for the latest snapshot
 - `subscriptionHistory[]` — changed snapshots with `capturedAt`, `qib`, `nii`, `retail`, `total` and source provenance
 
 The website detail panel displays the latest category multiples, a QIB/NII/Retail/Total line chart and the most recent stored snapshots. Exact duplicate values are not appended, which keeps the history compact while preserving changes throughout the bidding window.
@@ -144,7 +144,7 @@ The website detail panel displays the latest category multiples, a QIB/NII/Retai
 - BSE can fill missing fields, but conflicts are recorded instead of overwritten.
 - SEBI-only public-issue filings are marked as pre-exchange candidates until exchange data confirms them.
 - Offer-document extraction is official-source-only and provenance is retained per PDF.
-- Subscription history is official-exchange-only: NSE is preferred and BSE Cumulative Demand is the fallback; NII amount sub-buckets are not substituted for the aggregate NII row.
+- Subscription collectors prefer NSE and BSE Cumulative Demand; existing Groww and IPO Dhamaka fallback observations are explicitly labelled secondary/degraded. NII amount sub-buckets are not substituted for the aggregate NII row.
 - If a document or one live subscription detail request cannot be parsed, the error is recorded without blocking the core NSE/SEBI/BSE refresh.
 - If all core live sources fail, the updater preserves the existing healthy dataset.
 - `meta.sourceHealth` exposes source-level success/failure in the website.
@@ -152,7 +152,9 @@ The website detail panel displays the latest category multiples, a QIB/NII/Retai
 ## Next priorities
 
 1. Harden category parsing against additional NSE/BSE mainboard and SME bid-table layouts and accumulate several live IPO cycles of history.
-2. Add listing-day and post-listing market performance.
+2. Populate the gated official-price performance collector and verified listing-day baselines.
 3. Add per-IPO lifecycle timeline and downloadable CSV.
 4. Expand historical/final subscription coverage where an official exchange source exposes it.
 5. Add optional GMP only as a visually separate **unofficial/unregulated** source.
+
+Semantic validation and phase gates are independent of presence-based completeness. See [schema v5](docs/SCHEMA.md) and [operations](docs/OPERATIONS.md).

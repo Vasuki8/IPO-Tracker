@@ -272,6 +272,7 @@ def backfill(payload: dict[str, Any], client: NSEIssueDetailClient, *, limit: in
         and row.get("symbol")
     ]
     records.sort(key=lambda row: str(row.get("openDate") or ""), reverse=True)
+    records.sort(key=lambda row: (row.get('nseLotSizeAttempt') or {}).get('checkedAt', ''))
     if limit > 0:
         records = records[:limit]
 
@@ -281,9 +282,11 @@ def backfill(payload: dict[str, Any], client: NSEIssueDetailClient, *, limit: in
 
     for record in records:
         attempted += 1
+        record['nseLotSizeAttempt'] = {'checkedAt': core.now_ist().isoformat(timespec='seconds'), 'status': 'attempted', 'sourceUrl': NSE_DETAIL_PAGE, 'symbol': record.get('symbol')}
         try:
             detail, series = client.detail(str(record.get("symbol")), record.get("board"))
             changed = apply_lot_size(record, detail, series=series)
+            record['nseLotSizeAttempt']['status'] = 'updated' if changed else 'no_usable_lot_size'
             if changed:
                 updated += 1
                 updated_ids.append(str(record.get("id") or ""))
@@ -292,6 +295,7 @@ def backfill(payload: dict[str, Any], client: NSEIssueDetailClient, *, limit: in
                     f"lotSize={record.get('lotSize')} series={series}"
                 )
         except Exception as exc:  # one bad/blocked symbol must not corrupt data
+            record['nseLotSizeAttempt'].update(status='source_blocked', error=str(exc)[:250])
             failed += 1
             errors.append(f"{record.get('company')}: {exc}")
             print(f"NSE lot backfill failed {record.get('company')}: {exc}")
@@ -314,9 +318,7 @@ def backfill(payload: dict[str, Any], client: NSEIssueDetailClient, *, limit: in
         "errors": errors[:10],
         "asOf": core.now_ist().isoformat(timespec="seconds"),
     }
-    # Avoid timestamp-only data churn when this optional backfill produces no gain.
-    if updated:
-        payload.setdefault("meta", {}).setdefault("sourceHealth", {})["NSE-lot-size-backfill"] = health
+    payload.setdefault("meta", {}).setdefault("sourceHealth", {})["NSE-lot-size-backfill"] = health
     return health
 
 
@@ -328,7 +330,7 @@ def main() -> int:
 
     payload = json.loads(DATA_FILE.read_text(encoding="utf-8"))
     health = backfill(payload, NSEIssueDetailClient(), limit=args.limit, pause=max(0.0, args.pause))
-    if health["updated"]:
+    if health["attempted"]:
         DATA_FILE.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(
         "NSE recent lot backfill: "

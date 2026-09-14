@@ -1,0 +1,32 @@
+name: Validate IPO changes
+
+on:
+  pull_request:
+  push:
+    branches: [main, data-correctness-and-reliability]
+    paths: ['scripts/**', 'tests/**', '.github/workflows/**', 'pyproject.toml', 'uv.lock', 'data/verified_corrections.json']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: astral-sh/setup-uv@v10.1.0
+      - run: uv python install 3.12
+      - run: uv sync --frozen
+      - name: Run all regression tests together
+        run: uv run --frozen python -m unittest discover -s tests -v
+      - name: Validate reviewed data corrections
+        run: |
+          uv run --frozen python scripts/apply_corrections.py
+          uv run --frozen python scripts/validate_data.py --strict
+          uv run --frozen python scripts/build_missing_queue.py
+          uv run --frozen python scripts/phase_status.py

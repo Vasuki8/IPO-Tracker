@@ -1,0 +1,113 @@
+name: Collect and publish IPO data
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        type: choice
+        options: [core, subscriptions, filings, maintenance, repair, p4, p5, performance]
+        default: maintenance
+        description: Source collection stage
+  push:
+    branches: [main]
+    paths: ['scripts/**', '.github/workflows/refresh.yml', 'data/verified_corrections.json', 'uv.lock']
+  schedule:
+    - cron: '17 * * * *'
+    - cron: '0,30 4-12 * * 1-5'
+    - cron: '43 13 * * *'
+    - cron: '31 */6 * * *'
+
+permissions:
+  contents: read
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: astral-sh/setup-uv@v10.1.0
+      - run: uv python install 3.12
+      - run: uv sync --frozen
+      - name: Install bounded PDF table extraction
+        run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils
+      - name: Verify the collector
+        run: uv run --frozen python -m unittest discover -s tests -q
+      - name: Save collection baseline
+        run: |
+          mkdir -p /tmp/ipo-bundle
+          cp data/ipos.json /tmp/ipo-bundle/base.json
+          git rev-parse HEAD > /tmp/ipo-bundle/source-commit.txt
+      - name: Collect sources with explicit stage outcomes
+        env:
+          MODE: ${{ inputs.mode || (github.event_name == 'push' && 'repair') || (github.event.schedule == '0,30 4-12 * * 1-5' && 'subscriptions') || (github.event.schedule == '43 13 * * *' && 'maintenance') || (github.event.schedule == '31 */6 * * *' && 'filings') || 'core' }}
+        run: uv run --frozen python scripts/run_pipeline.py --mode "$MODE"
+      - name: Prepare collected snapshot
+        run: cp data/ipos.json /tmp/ipo-bundle/proposed.json
+      - uses: actions/upload-artifact@v4.6.2
+        with:
+          name: ipo-collection-${{ github.run_id }}
+          path: /tmp/ipo-bundle/
+          retention-days: 14
+
+  publish:
+    needs: collect
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      pages: write
+    concurrency:
+      group: ipo-publication
+      cancel-in-progress: false
+      queue: max
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v10.1.0
+      - run: uv python install 3.12
+      - run: uv sync --frozen
+      - uses: actions/download-artifact@v4.3.0
+        with:
+          name: ipo-collection-${{ github.run_id }}
+          path: /tmp/ipo-bundle/
+      - name: Merge, validate, and publish from current main
+        env:
+          RUN_ID: ${{ github.run_id }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name ipo-tracker-bot
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            uv sync --frozen
+            uv run --frozen python -m unittest discover -s tests -q
+            uv run --frozen python scripts/publish_transaction.py --base /tmp/ipo-bundle/base.json --proposed /tmp/ipo-bundle/proposed.json --run-id "$RUN_ID" --source-commit-file /tmp/ipo-bundle/source-commit.txt
+            uv run --frozen python scripts/apply_corrections.py
+            uv run --frozen python scripts/validate_data.py --strict
+            uv run --frozen python scripts/build_company_pages.py
+            uv run --frozen python scripts/audit_data_completeness.py
+            uv run --frozen python scripts/build_missing_queue.py
+            uv run --frozen python scripts/phase_status.py
+            uv run --frozen python scripts/build_performance_summary.py
+            git add data/ ipo/ docs/DATA_QUALITY.md
+            if git diff --cached --quiet; then
+              echo 'No accepted data changes to publish'
+              exit 0
+            fi
+            git commit -m 'data: publish validated IPO collection'
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+          done
+          echo 'Publication remains in the retained collection artifact for retry'
+          exit 1
+      - name: Request Pages rebuild after bot publication
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"

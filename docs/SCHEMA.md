@@ -1,4 +1,4 @@
-# Normalized IPO schema — v2
+# Normalized IPO schema — v5
 
 `data/ipos.json` is a source-aware normalized database. Missing values remain `null`; values are never guessed simply to complete a row.
 
@@ -89,3 +89,31 @@ Comparable fields currently include open date, close date, price band, lot size 
 ## Compatibility
 
 `source` is retained as the primary/legacy source object for the frontend, while `sources` is the v2 multi-source trail.
+
+
+## Version 5 additions
+
+The record-level `validation` object above describes exchange comparison only. It is separate from the dataset's semantic validation report.
+
+| Field or file | Meaning |
+| --- | --- |
+| `meta.schemaVersion` | 5 after a reviewed migration or publication |
+| `dataCorrections[]` | Before/after field values, reason, parser version and source URL/hash when available |
+| `documentFieldProvenance` | Source URL/hash, document date/type, parser version and field evidence |
+| `documentFieldProvenance.evidence.financials` | `FYyyyy.metric` → source page, row, header, original unit and normalized value |
+| `documentRepair` | Attempt time, status and `financialStatus` (`validated` or `needs_review`) |
+| `subscriptionCollectedAt` | Collector timestamp; compatibility `subscriptionAsOf` has this same meaning |
+| `subscriptionObservedAt` | Actual source observation time, or null when unavailable |
+| `subscriptionTimeBasis` | `source-observation` or `collection-only` |
+| `performance.latest` | Price, observation time, collection time and official source URL |
+| `performance.observations[]` | Deduplicated dated price observations |
+| `performance.returnSinceIssuePct` | Unadjusted price return from a confirmed final issue price, otherwise null |
+| `performance.benchmarkExcessReturnPct` | Return from listing versus a matching dated benchmark, otherwise null |
+| `meta.pipelineStages` | Stage status, exit code, duration, check time and bounded diagnostics |
+| `meta.publication` | Collector commit, publication run and pending-conflict count |
+| `data/validation.json` | Semantic errors and unresolved source-review items |
+| `data/missing_queue.json` | Complete priority queue, including every P5 row and explicit availability exclusions |
+| `data/phase_status.json` | Evidence gate for P4 completion and P5 activation |
+| `data/pending_updates.json` | Unaccepted concurrent proposals retained for source review |
+
+Financial currency values use ₹ crore; RONW/ROE use percentages and EPS uses rupees per share. Fiscal labels must come from table columns. Original source units remain in field evidence. Timestamps retain an explicit UTC offset; operational timestamps may use UTC or Asia/Kolkata.

@@ -393,7 +393,7 @@ def main() -> int:
 
     score = audit["scores"]
     report = "# IPO Tracker Data Quality\n\n"
-    report += f"Generated: **{audit['generatedAt']}**  \n"
+    report += f"Generated: **{audit['generatedAt']}**\n\n"
     report += f"Records audited: **{len(records):,}**\n\n"
     report += "## Completeness scores\n\n"
     report += "| Area | Score | Records in denominator |\n| --- | ---: | ---: |\n"
