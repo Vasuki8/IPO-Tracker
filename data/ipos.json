@@ -6,7 +6,7 @@
       "remaining": 0,
       "changedFields": 0,
       "failed": 0,
-      "checkedAt": "2026-09-15T22:18:41+05:30",
+      "checkedAt": "2026-09-15T22:41:55+05:30",
       "outcomes": []
     },
     "errors": [],
@@ -19,7 +19,7 @@
       "errors": [],
       "checkedAt": "2026-09-15T16:48:44.490190+00:00"
     },
-    "generatedAt": "2026-09-15T16:49:02.711903+00:00",
+    "generatedAt": "2026-09-15T17:12:14.846815+00:00",
     "historyStart": "2024-09-13",
     "initialSourceRepair": {
       "records": 1354,
@@ -70,7 +70,7 @@
         "status": "no_change",
         "exitCode": 0,
         "durationSeconds": 0.24,
-        "checkedAt": "2026-09-15T16:48:45.905261+00:00",
+        "checkedAt": "2026-09-15T17:11:57.870095+00:00",
         "diagnostics": "{\"integrityRepairs\": 0}\n"
       },
       "normalize_source_health.py": {
@@ -85,40 +85,40 @@
         "stage": "enrich_sebi_priority_registers_v2.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 7.76,
-        "checkedAt": "2026-09-15T13:37:11.437155+00:00",
-        "diagnostics": "SEBI priority registers v2: first_page=0 searched=5 search_matched=0 search_links=0 failed=0\n"
+        "durationSeconds": 6.03,
+        "checkedAt": "2026-09-15T17:11:54.642718+00:00",
+        "diagnostics": "SEBI priority registers v2: first_page=0 searched=3 search_matched=0 search_links=0 failed=0\n"
       },
       "enrich_sebi_document_links.py": {
         "stage": "enrich_sebi_document_links.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.22,
-        "checkedAt": "2026-09-15T13:37:11.774934+00:00",
+        "durationSeconds": 0.37,
+        "checkedAt": "2026-09-15T17:11:55.083183+00:00",
         "diagnostics": "SEBI document links: records=0 attempted=0 resolved=0 seeded=0 added=0 failed=0\n"
       },
       "enrich_recent_offer_terms.py": {
         "stage": "enrich_recent_offer_terms.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.27,
-        "checkedAt": "2026-09-15T13:37:12.152205+00:00",
-        "diagnostics": "SEBI recent offer terms: targets=2 attempted=0 extracted=0 updated=0 failed=0 skipped_lot_only_rhp=1 fields={}\n"
+        "durationSeconds": 0.43,
+        "checkedAt": "2026-09-15T17:11:55.569286+00:00",
+        "diagnostics": "SEBI recent offer terms: targets=0 attempted=0 extracted=0 updated=0 failed=0 skipped_lot_only_rhp=0 fields={}\n"
       },
       "run_offer_documents.py": {
         "stage": "run_offer_documents.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.52,
-        "checkedAt": "2026-09-15T16:48:41.496682+00:00",
-        "diagnostics": "{\"parserVersion\": 21, \"attempted\": 0, \"remaining\": 0, \"changedFields\": 0, \"failed\": 0, \"checkedAt\": \"2026-09-15T22:18:41+05:30\"}\n"
+        "durationSeconds": 0.53,
+        "checkedAt": "2026-09-15T17:11:56.155079+00:00",
+        "diagnostics": "{\"parserVersion\": 21, \"attempted\": 0, \"remaining\": 0, \"changedFields\": 0, \"failed\": 0, \"checkedAt\": \"2026-09-15T22:41:55+05:30\"}\n"
       },
       "apply_verified_filing_offer_fields.py": {
         "stage": "apply_verified_filing_offer_fields.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.21,
-        "checkedAt": "2026-09-15T13:37:33.535051+00:00",
+        "durationSeconds": 0.36,
+        "checkedAt": "2026-09-15T17:11:56.568762+00:00",
         "diagnostics": "Verified filing offer fields: missing record national-stock-exchange-of-india-limited\nVerified filing offer fields: entries=4, updated=0, fields={}\n"
       },
       "backfill_recent_sebi_other_docs_lot_sizes.py": {
@@ -149,8 +149,8 @@
         "stage": "apply_corrections.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.32,
-        "checkedAt": "2026-09-15T16:48:40.926354+00:00",
+        "durationSeconds": 0.29,
+        "checkedAt": "2026-09-15T17:11:47.522033+00:00",
         "diagnostics": "enance\", \"documentRepair\", \"offerDocumentExtraction\", \"registrar\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"cleanmax\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"aye\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"armour\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"eximroutes\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"torrent-gas-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"national-stock-exchange-of-india-limited\", \"reason\": \"Issuer record no longer exists\"}, {\"id\": \"nopaperforms-solutions-limited\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"m-k-c-agro-fresh-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}]}\n"
       },
       "collect_final_issue_prices.py": {
@@ -171,14 +171,14 @@
       }
     },
     "publication": {
-      "runId": "34997300436",
-      "collectorCommit": "33d02167003a6377e2621038d51e0b3f5b7cd219",
+      "runId": "34999684392",
+      "collectorCommit": "1481f89933b042ba9a5154b6bc1d92d89333412b",
       "status": "published",
       "pendingConflictCount": 0
     },
     "recordCount": 1356,
     "recordIntegrity": {
-      "checkedAt": "2026-09-15T16:49:02.892507+00:00",
+      "checkedAt": "2026-09-15T17:12:14.996728+00:00",
       "changedFields": 0
     },
     "reviewedCorrectionStatus": {
@@ -951,7 +951,7 @@
       "seededPages": 0,
       "linksAdded": 0,
       "failed": 0,
-      "asOf": "2026-09-15T19:07:11+05:30",
+      "asOf": "2026-09-15T22:41:54+05:30",
       "errors": []
     },
     "seed": false,
@@ -1040,7 +1040,7 @@
         "records": 0,
         "attemptedRecords": 0,
         "attempted": 0,
-        "asOf": "2026-09-15T19:07:11+05:30",
+        "asOf": "2026-09-15T22:41:54+05:30",
         "errors": []
       },
       "Offer-docs": {
@@ -1086,24 +1086,24 @@
         "priorityMax": 3,
         "firstPageMatched": 0,
         "firstPageLinks": 0,
-        "searchedRecords": 5,
+        "searchedRecords": 3,
         "searchMatchedRecords": 0,
         "searchLinksAdded": 0,
         "failed": 0,
-        "asOf": "2026-09-15T19:07:11+05:30",
+        "asOf": "2026-09-15T22:41:54+05:30",
         "errors": []
       },
       "SEBI-offer-terms": {
         "ok": true,
         "priorityMax": 3,
-        "targets": 2,
+        "targets": 0,
         "attempted": 0,
         "extracted": 0,
         "updated": 0,
         "failed": 0,
-        "skippedLotOnlyRhp": 1,
+        "skippedLotOnlyRhp": 0,
         "fields": {},
-        "asOf": "2026-09-15T19:07:12+05:30",
+        "asOf": "2026-09-15T22:41:55+05:30",
         "errors": []
       },
       "verified-lot-sizes": {
@@ -1131,7 +1131,7 @@
         "entries": 4,
         "updated": 0,
         "fields": {},
-        "checkedAt": "2026-09-15T19:07:33+05:30"
+        "checkedAt": "2026-09-15T22:41:56+05:30"
       },
       "NSE-history-IPO-filter": {
         "ok": true,
@@ -3946,7 +3946,7 @@
       "sebiPriorityRegisterSearch": {
         "status": "no-match",
         "linksAdded": 0,
-        "lastAttemptAt": "2026-09-15T19:07:10+05:30",
+        "lastAttemptAt": "2026-09-15T22:41:53+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
       },
@@ -4444,7 +4444,7 @@
       "sebiPriorityRegisterSearch": {
         "status": "no-match",
         "linksAdded": 0,
-        "lastAttemptAt": "2026-09-15T19:07:08+05:30",
+        "lastAttemptAt": "2026-09-15T22:41:51+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
       }
@@ -8444,7 +8444,7 @@
       "sebiPriorityRegisterSearch": {
         "status": "no-match",
         "linksAdded": 0,
-        "lastAttemptAt": "2026-09-15T19:07:11+05:30",
+        "lastAttemptAt": "2026-09-15T22:41:54+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
       },
