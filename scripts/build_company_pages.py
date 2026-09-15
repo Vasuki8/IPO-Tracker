@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
-"""Generate clean static GitHub Pages routes for every IPO record.
+"""Generate permanent IPO routes plus a compact public dashboard index.
 
-Each route is tiny and loads the live record from data/ipos.json, so issue terms,
-subscription history and financials stay current without rebuilding page HTML on
-every data change. New company IDs get routes automatically during the core
-refresh workflow.
+The canonical collector dataset remains data/ipos.json. Browser-facing pages use:
+- data/ipos-summary.json for the dashboard list/stats/filter view.
+- a compact JSON profile embedded in each permanent ipo/<slug>/ route.
+
+Embedding one profile in its existing route avoids a second per-company data file,
+lets permanent pages render without downloading the multi-megabyte master dataset,
+and lets the dashboard lazily fetch only one route when a user opens details.
 """
 from __future__ import annotations
 
@@ -16,12 +19,17 @@ import re
 import shutil
 import unicodedata
 from pathlib import Path
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "ipos.json"
+SUMMARY_FILE = ROOT / "data" / "ipos-summary.json"
 OUT_DIR = ROOT / "ipo"
 MANIFEST = OUT_DIR / "routes.json"
-ROUTE_TEMPLATE_VERSION = 2
+
+ROUTE_TEMPLATE_VERSION = 3
+PUBLIC_SUMMARY_VERSION = 1
+PROFILE_SCRIPT_ID = "ipo-profile-data"
 
 
 def route_slug(value: str) -> str:
@@ -32,7 +40,7 @@ def route_slug(value: str) -> str:
     return text or "ipo"
 
 
-def _identity(record: dict) -> str:
+def _identity(record: dict[str, Any]) -> str:
     fields = (
         record.get("id"),
         record.get("company"),
@@ -45,12 +53,12 @@ def _identity(record: dict) -> str:
     return "|".join(str(value or "") for value in fields)
 
 
-def assign_routes(records: list[dict]) -> list[tuple[dict, str]]:
+def assign_routes(records: list[dict[str, Any]]) -> list[tuple[dict[str, Any], str]]:
     """Assign stable clean routes and add profilePath to every record."""
     bases = [route_slug(str(row.get("id") or row.get("company") or "")) for row in records]
     counts = Counter(bases)
     used: set[str] = set()
-    assigned: list[tuple[dict, str]] = []
+    assigned: list[tuple[dict[str, Any], str]] = []
 
     for record, base in zip(records, bases):
         route = base
@@ -71,7 +79,179 @@ def assign_routes(records: list[dict]) -> list[tuple[dict, str]]:
     return assigned
 
 
-def page_html(record: dict, route: str) -> str:
+def _compact(value: Any) -> Any:
+    """Recursively drop empty/null values while preserving 0 and False."""
+    if isinstance(value, dict):
+        out = {key: _compact(item) for key, item in value.items()}
+        return {
+            key: item
+            for key, item in out.items()
+            if item is not None and item != "" and item != [] and item != {}
+        }
+    if isinstance(value, list):
+        out = [_compact(item) for item in value]
+        return [item for item in out if item is not None and item != "" and item != [] and item != {}]
+    return value
+
+
+def _pick(mapping: Any, fields: tuple[str, ...]) -> dict[str, Any]:
+    if not isinstance(mapping, dict):
+        return {}
+    return _compact({field: mapping.get(field) for field in fields})
+
+
+def _pick_rows(rows: Any, fields: tuple[str, ...]) -> list[dict[str, Any]]:
+    if not isinstance(rows, list):
+        return []
+    return [
+        selected
+        for row in rows
+        if isinstance(row, dict)
+        and (selected := _pick(row, fields))
+    ]
+
+
+def source_count(record: dict[str, Any]) -> int:
+    sources = record.get("sources") or ([record["source"]] if isinstance(record.get("source"), dict) else [])
+    families = {
+        str(source.get("name") or "").split(" ")[0]
+        for source in sources
+        if isinstance(source, dict) and source.get("name")
+    }
+    return len(families)
+
+
+def public_summary_record(record: dict[str, Any]) -> dict[str, Any]:
+    """Return only fields needed to render/filter the dashboard table."""
+    subscription = _pick(record.get("subscription"), ("total",))
+    listing = _pick(record.get("listing"), ("gainPct",))
+    lifecycle = _pick(record.get("lifecycle"), ("stage", "stageDate"))
+    validation = _pick(record.get("validation"), ("status",))
+    documents = _pick_rows(record.get("documents"), ("type",))
+    price_band = _pick(record.get("priceBand"), ("min", "max"))
+
+    return _compact(
+        {
+            "id": record.get("id"),
+            "company": record.get("company"),
+            "symbol": record.get("symbol"),
+            "board": record.get("board"),
+            "exchange": record.get("exchange"),
+            "status": record.get("status"),
+            "openDate": record.get("openDate"),
+            "closeDate": record.get("closeDate"),
+            "listingDate": record.get("listingDate"),
+            "priceBand": price_band,
+            "issueSizeCr": record.get("issueSizeCr"),
+            "subscription": subscription,
+            "listing": listing,
+            "validation": validation,
+            "lifecycle": lifecycle,
+            "documents": documents,
+            "sourceCount": source_count(record),
+            "profilePath": record.get("profilePath"),
+        }
+    )
+
+
+def public_profile_record(record: dict[str, Any]) -> dict[str, Any]:
+    """Return the compact, display-only record embedded in a permanent route."""
+    sources = record.get("sources") or ([record["source"]] if isinstance(record.get("source"), dict) else [])
+    profile = {
+        "id": record.get("id"),
+        "company": record.get("company"),
+        "symbol": record.get("symbol"),
+        "board": record.get("board"),
+        "exchange": record.get("exchange"),
+        "status": record.get("status"),
+        "issueType": record.get("issueType"),
+        "openDate": record.get("openDate"),
+        "closeDate": record.get("closeDate"),
+        "allotmentDate": record.get("allotmentDate"),
+        "listingDate": record.get("listingDate"),
+        "lotSize": record.get("lotSize"),
+        "issueSizeCr": record.get("issueSizeCr"),
+        "freshIssueCr": record.get("freshIssueCr"),
+        "ofsCr": record.get("ofsCr"),
+        "subscriptionAsOf": record.get("subscriptionAsOf"),
+        "subscriptionSource": record.get("subscriptionSource"),
+        "profilePath": record.get("profilePath"),
+        "priceBand": _pick(record.get("priceBand"), ("min", "max")),
+        "subscription": _pick(record.get("subscription"), ("qib", "nii", "retail", "total")),
+        "subscriptionHistory": _pick_rows(
+            record.get("subscriptionHistory"),
+            ("capturedAt", "qib", "nii", "retail", "total", "source"),
+        ),
+        "listing": _pick(record.get("listing"), ("issuePrice", "listPrice", "gainPct")),
+        "lifecycle": _pick(record.get("lifecycle"), ("stage", "stageDate")),
+        "documents": _pick_rows(record.get("documents"), ("type", "title", "url", "filedDate")),
+        "sources": _pick_rows(sources, ("name", "asOf", "url")),
+        "validation": {
+            **_pick(record.get("validation"), ("status",)),
+            "checks": _pick_rows(
+                (record.get("validation") or {}).get("checks") if isinstance(record.get("validation"), dict) else [],
+                ("field", "match", "nse", "bse"),
+            ),
+        },
+        "offerDocumentExtraction": _pick(
+            record.get("offerDocumentExtraction"),
+            ("status", "documentUrl", "documentType", "pagesRead", "pageCount", "extractedAt"),
+        ),
+        "issueComposition": _pick(
+            record.get("issueComposition"),
+            ("freshShares", "ofsShares", "freshValueCr", "ofsValueCr", "valuationPriceUsed"),
+        ),
+        "leadManagers": record.get("leadManagers"),
+        "registrar": record.get("registrar"),
+        "promoters": record.get("promoters"),
+        "objectsOfIssue": _pick_rows(record.get("objectsOfIssue"), ("purpose", "amountCr")),
+        "financials": {
+            "periods": _pick_rows(
+                (record.get("financials") or {}).get("periods") if isinstance(record.get("financials"), dict) else [],
+                ("period", "revenueCr", "ebitdaCr", "patCr", "netWorthCr", "ronwPct", "roePct", "eps"),
+            )
+        },
+        "shareholding": _pick(record.get("shareholding"), ("promoterPreIssuePct",)),
+    }
+    return _compact(profile)
+
+
+def public_summary_payload(payload: dict[str, Any], records: list[dict[str, Any]]) -> dict[str, Any]:
+    meta = payload.get("meta") if isinstance(payload.get("meta"), dict) else {}
+    public_meta = _compact(
+        {
+            "generatedAt": meta.get("generatedAt"),
+            "schemaVersion": meta.get("schemaVersion"),
+            "seed": meta.get("seed"),
+            "sourceHealth": meta.get("sourceHealth"),
+            "errors": meta.get("errors"),
+            "recordCount": len(records),
+            "publicSummaryVersion": PUBLIC_SUMMARY_VERSION,
+        }
+    )
+    return {"meta": public_meta, "ipos": [public_summary_record(record) for record in records]}
+
+
+def _json_text(value: Any) -> str:
+    return json.dumps(value, ensure_ascii=False, separators=(",", ":"))
+
+
+def _script_json(value: Any) -> str:
+    # Prevent embedded data from ever closing the application/json script tag.
+    return _json_text(value).replace("<", "\\u003c").replace("\u2028", "\\u2028").replace("\u2029", "\\u2029")
+
+
+def route_digest(record: dict[str, Any], route: str) -> str:
+    """Fingerprint only bytes that can affect one generated route."""
+    value = {
+        "templateVersion": ROUTE_TEMPLATE_VERSION,
+        "route": route,
+        "profile": public_profile_record(record),
+    }
+    return hashlib.sha256(_json_text(value).encode("utf-8")).hexdigest()[:16]
+
+
+def page_html(record: dict[str, Any], route: str) -> str:
     company = str(record.get("company") or "Indian IPO")
     symbol = str(record.get("symbol") or record.get("exchange") or "IPO")
     title = html.escape(f"{company} IPO | India IPO Tracker", quote=True)
@@ -84,8 +264,9 @@ def page_html(record: dict, route: str) -> str:
     record_id = html.escape(str(record.get("id") or ""), quote=True)
     profile_path = html.escape(str(record.get("profilePath") or f"ipo/{route}/"), quote=True)
     route_html = html.escape(route, quote=True)
+    embedded_profile = _script_json({"ipo": public_profile_record(record)})
 
-    return f'''<!doctype html>
+    return f"""<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -131,14 +312,15 @@ def page_html(record: dict, route: str) -> str:
     </footer>
   </div>
 
+  <script id="{PROFILE_SCRIPT_ID}" type="application/json">{embedded_profile}</script>
   <script src="company-page.js" defer></script>
   <script src="company.js" defer></script>
 </body>
 </html>
-'''
+"""
 
 
-def load_manifest() -> dict:
+def load_manifest() -> dict[str, Any]:
     try:
         payload = json.loads(MANIFEST.read_text(encoding="utf-8"))
         return payload if isinstance(payload, dict) else {}
@@ -150,30 +332,9 @@ def write_text_if_changed(path: Path, content: str) -> bool:
     """Write text only when bytes would actually change."""
     if path.exists() and path.read_text(encoding="utf-8") == content:
         return False
+    path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(content, encoding="utf-8")
     return True
-
-
-def route_content_digest(assigned: list[tuple[dict, str]]) -> str:
-    """Digest only fields embedded in static route HTML.
-
-    Live IPO facts are intentionally excluded because company-page.js reads them
-    from data/ipos.json at runtime; changing those facts must not rebuild 1,000+
-    route shells.
-    """
-    digest = hashlib.sha256()
-    for record, route in sorted(assigned, key=lambda item: item[1]):
-        fields = (
-            route,
-            record.get("id"),
-            record.get("company"),
-            record.get("symbol"),
-            record.get("exchange"),
-            record.get("profilePath"),
-        )
-        digest.update("\0".join(str(value or "") for value in fields).encode("utf-8"))
-        digest.update(b"\n")
-    return digest.hexdigest()
 
 
 def main() -> int:
@@ -183,6 +344,10 @@ def main() -> int:
 
     previous_manifest = load_manifest()
     previous = set(previous_manifest.get("routes") or [])
+    previous_digests = previous_manifest.get("routeDigests") or {}
+    if not isinstance(previous_digests, dict):
+        previous_digests = {}
+
     old_profile_paths = {id(record): record.get("profilePath") for record in records}
     assigned = assign_routes(records)
     current = {route for _, route in assigned}
@@ -191,33 +356,27 @@ def main() -> int:
         for record, _route in assigned
     )
 
-    # Avoid serializing/writing the 4.7 MB dataset on every refresh when route
-    # assignments are unchanged.
     if profile_paths_changed:
         DATA_FILE.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
-    digest = route_content_digest(assigned)
-    manifest_matches = (
-        previous == current
-        and previous_manifest.get("templateVersion") == ROUTE_TEMPLATE_VERSION
-        and previous_manifest.get("contentDigest") == digest
-    )
+    summary_content = _json_text(public_summary_payload(payload, records)) + "\n"
+    summary_changed = write_text_if_changed(SUMMARY_FILE, summary_content)
 
     written = unchanged = 0
-    if manifest_matches:
-        # A committed manifest and route tree move together, so there is no need
-        # to open and compare every generated index.html on every data refresh.
-        unchanged = len(current)
-    else:
-        for record, route in assigned:
-            target_dir = OUT_DIR / route
-            target_dir.mkdir(parents=True, exist_ok=True)
-            target = target_dir / "index.html"
-            content = page_html(record, route)
-            if write_text_if_changed(target, content):
-                written += 1
-            else:
-                unchanged += 1
+    route_digests: dict[str, str] = {}
+    for record, route in assigned:
+        digest = route_digest(record, route)
+        route_digests[route] = digest
+        target_dir = OUT_DIR / route
+        target = target_dir / "index.html"
+        if previous_digests.get(route) == digest and target.exists():
+            unchanged += 1
+            continue
+        target_dir.mkdir(parents=True, exist_ok=True)
+        if write_text_if_changed(target, page_html(record, route)):
+            written += 1
+        else:
+            unchanged += 1
 
     removed = 0
     for stale in sorted(previous - current):
@@ -228,11 +387,12 @@ def main() -> int:
 
     manifest = {
         "generatedFrom": "data/ipos.json",
+        "publicIndex": "data/ipos-summary.json",
         "recordCount": len(records),
         "routeCount": len(current),
         "templateVersion": ROUTE_TEMPLATE_VERSION,
-        "contentDigest": digest,
         "routes": sorted(current),
+        "routeDigests": route_digests,
     }
     manifest_content = json.dumps(manifest, indent=2, ensure_ascii=False) + "\n"
     write_text_if_changed(MANIFEST, manifest_content)
@@ -240,7 +400,9 @@ def main() -> int:
     print(
         f"Company routes: records={len(records)}, routes={len(current)}, "
         f"written={written}, unchanged={unchanged}, removed={removed}, "
-        f"dataRewrite={'yes' if profile_paths_changed else 'no'}"
+        f"dataRewrite={'yes' if profile_paths_changed else 'no'}, "
+        f"summaryWrite={'yes' if summary_changed else 'no'}, "
+        f"summaryBytes={len(summary_content.encode('utf-8'))}"
     )
     if len(current) != len(records):
         raise RuntimeError("Permanent-route count does not match IPO record count")
