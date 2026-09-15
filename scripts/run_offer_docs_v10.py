@@ -6,7 +6,6 @@ historical imports and parser-version assertions stable while avoiding another
 copy of the parser stack.
 """
 import legacy_offer_parser as _canonical
-import run_offer_docs_v9 as v9
 from legacy_offer_parser import *  # noqa: F401,F403
 
 PARSER_VERSION = 10
