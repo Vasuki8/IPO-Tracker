@@ -164,7 +164,10 @@ def run(mode: str):
         step("normalize_source_health.py")
         maintain_filings()
 
-    if mode == "subscriptions":
+    # Repair runs are triggered after script changes on main. Refreshing the same
+    # bounded set of currently open IPOs here makes subscription fixes/data-source
+    # changes take effect immediately rather than waiting for the next timed run.
+    if mode in {"subscriptions", "repair"}:
         step("run_priority_subscriptions_v3.py", "--limit", "30", timeout=900)
 
     if mode in {"maintenance", "repair"}:
