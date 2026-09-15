@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
-"""Capture subscription data for P0 open IPOs using official exchange links.
+"""Capture live subscription data for every currently open IPO.
 
 NSE remains preferred. When its WAF blocks GitHub Actions, BSE is used. For SME
 issues we do not assume that DisplayIPO's IPONo is always the cumulative-demand
 ID: the collector first opens the official DisplayIPO page and follows any real
 CummDemandSchedule link exposed there, then tries the constructed route and the
 same official route on BSE's primary/beta hosts.
+
+Open issues are refreshed on every subscription run even when they already have
+a snapshot. Subscription multiples change throughout the bidding window, so a
+missing-data queue is not a valid freshness scheduler for live demand data.
 """
 from __future__ import annotations
 
@@ -162,7 +166,10 @@ def diagnose_demand_html(html: str) -> str:
         classes = ".".join(table.get("class") or []) or "-"
         rows = []
         for tr in table.select("tr")[:10]:
-            cells = [re.sub(r"\s+", " ", cell.get_text(" ", strip=True))[:100] for cell in tr.find_all(["th", "td"], recursive=False)]
+            cells = [
+                re.sub(r"\s+", " ", cell.get_text(" ", strip=True))[:100]
+                for cell in tr.find_all(["th", "td"], recursive=False)
+            ]
             if cells:
                 rows.append(" | ".join(cells))
         if rows:
@@ -207,37 +214,36 @@ def fetch_demand(session: requests.Session, rows: list[IssueLink]):
     attempts: list[str] = []
     for url in urls:
         try:
-            response = session.get(url, timeout=25, headers={"Referer": rows[0].index_url if rows else core.BSE_URL})
+            response = session.get(
+                url,
+                timeout=25,
+                headers={"Referer": rows[0].index_url if rows else core.BSE_URL},
+            )
             response.raise_for_status()
             parsed = sub.parse_bse_demand_html(response.text)
             if any(value is not None for value in parsed.values()):
                 return parsed, url, diagnostics + attempts
             soup = BeautifulSoup(response.text, "html.parser")
             title = " ".join(soup.title.stripped_strings).strip() if soup.title else "no title"
-            attempts.append(f"no categories {url} · {title} · {diagnose_demand_html(response.text)}")
+            attempts.append(
+                f"no categories {url} · {title} · {diagnose_demand_html(response.text)}"
+            )
         except Exception as exc:
             attempts.append(f"fetch failed {url}: {exc}")
     raise ValueError("; ".join((diagnostics + attempts)[-6:]) or "no BSE demand candidates")
 
 
 def priority_open_targets(payload: dict[str, Any], queue_payload: dict[str, Any], limit: int):
-    by_id = {
-        str(record.get("id")): record
-        for record in payload.get("ipos") or []
-        if isinstance(record, dict) and record.get("id")
-    }
-    out = []
-    for item in queue_payload.get("queue") or []:
-        if not isinstance(item, dict) or int(item.get("priority", 99)) != 0:
-            continue
-        if not any(str(field).startswith("subscription.") for field in (item.get("missingFields") or [])):
-            continue
-        record = by_id.get(str(item.get("id")))
-        if record:
-            out.append(record)
-        if limit > 0 and len(out) >= limit:
-            break
-    return out
+    """Refresh every currently open issue, not only records with missing fields.
+
+    The missing-data queue is useful for structural gaps, but live subscription
+    multiples can change many times after their first successful snapshot. Using
+    queue membership as the target gate made already-populated issues silently
+    stale. Keep the parameter for compatibility with existing runner versions,
+    while delegating eligibility to the date-aware subscription scheduler.
+    """
+    del queue_payload
+    return sub.candidate_records(payload, limit=limit)
 
 
 def main() -> int:
@@ -247,7 +253,9 @@ def main() -> int:
     args = parser.parse_args()
 
     payload = json.loads(DATA_FILE.read_text(encoding="utf-8"))
-    queue_payload = json.loads(QUEUE_FILE.read_text(encoding="utf-8")) if QUEUE_FILE.exists() else {"queue": []}
+    queue_payload = (
+        json.loads(QUEUE_FILE.read_text(encoding="utf-8")) if QUEUE_FILE.exists() else {"queue": []}
+    )
     targets = priority_open_targets(payload, queue_payload, args.limit)
 
     nse = sub.NSESubscriptionClient()
@@ -272,8 +280,15 @@ def main() -> int:
         company = str(record.get("company") or "")
         try:
             try:
-                detail, series = nse.detail(str(record.get("symbol") or "").strip(), record.get("board"))
-                added = sub.update_record(record, detail, series=series, force_snapshot=args.force_snapshot)
+                detail, series = nse.detail(
+                    str(record.get("symbol") or "").strip(), record.get("board")
+                )
+                added = sub.update_record(
+                    record,
+                    detail,
+                    series=series,
+                    force_snapshot=args.force_snapshot,
+                )
                 source_used = "NSE"
                 nse_records += 1
             except Exception as nse_exc:
@@ -334,7 +349,9 @@ def main() -> int:
         "asOf": as_of,
         "errors": errors[:5],
     }
-    DATA_FILE.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    DATA_FILE.write_text(
+        json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+    )
     print(
         "Priority subscriptions: "
         f"attempted={attempted} updated={updated} snapshots_added={snapshots_added} "
