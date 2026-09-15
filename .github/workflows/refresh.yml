@@ -29,8 +29,46 @@ jobs:
       - uses: astral-sh/setup-uv@v10.1.0
       - run: uv python install 3.12
       - run: uv sync --frozen
-      - name: Install bounded PDF table extraction
-        run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils
+      - name: Resolve collection mode
+        id: collection-mode
+        env:
+          REQUESTED_MODE: ${{ inputs.mode || '' }}
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_SCHEDULE: ${{ github.event.schedule || '' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mode="$REQUESTED_MODE"
+          if [[ -z "$mode" ]]; then
+            if [[ "$EVENT_NAME" == "push" ]]; then
+              mode="repair"
+            elif [[ "$EVENT_SCHEDULE" == "0,30 4-12 * * 1-5" ]]; then
+              mode="subscriptions"
+            elif [[ "$EVENT_SCHEDULE" == "43 13 * * *" ]]; then
+              mode="maintenance"
+            elif [[ "$EVENT_SCHEDULE" == "31 */6 * * *" ]]; then
+              mode="filings"
+            else
+              mode="core"
+            fi
+          fi
+          echo "value=$mode" >> "$GITHUB_OUTPUT"
+          echo "Collection mode: $mode"
+      - name: Install bounded PDF table extraction when needed
+        env:
+          MODE: ${{ steps.collection-mode.outputs.value }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          case "$MODE" in
+            core|filings|maintenance|repair)
+              sudo apt-get update -qq
+              sudo apt-get install -y poppler-utils
+              ;;
+            *)
+              echo "Skipping poppler-utils for $MODE mode"
+              ;;
+          esac
       - name: Verify the collector
         run: uv run --frozen python -m unittest discover -s tests -q
       - name: Save collection baseline
@@ -40,7 +78,7 @@ jobs:
           git rev-parse HEAD > /tmp/ipo-bundle/source-commit.txt
       - name: Collect sources with explicit stage outcomes
         env:
-          MODE: ${{ inputs.mode || (github.event_name == 'push' && 'repair') || (github.event.schedule == '0,30 4-12 * * 1-5' && 'subscriptions') || (github.event.schedule == '43 13 * * *' && 'maintenance') || (github.event.schedule == '31 */6 * * *' && 'filings') || 'core' }}
+          MODE: ${{ steps.collection-mode.outputs.value }}
         run: uv run --frozen python scripts/run_pipeline.py --mode "$MODE"
       - name: Prepare collected snapshot
         run: cp data/ipos.json /tmp/ipo-bundle/proposed.json
@@ -69,7 +107,6 @@ jobs:
           fetch-depth: 0
       - uses: astral-sh/setup-uv@v10.1.0
       - run: uv python install 3.12
-      - run: uv sync --frozen
       - uses: actions/download-artifact@v4.3.0
         with:
           name: ipo-collection-${{ github.run_id }}
@@ -86,7 +123,6 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             uv sync --frozen
-            uv run --frozen python -m unittest discover -s tests -q
             uv run --frozen python scripts/publish_transaction.py --base /tmp/ipo-bundle/base.json --proposed /tmp/ipo-bundle/proposed.json --run-id "$RUN_ID" --source-commit-file /tmp/ipo-bundle/source-commit.txt
             uv run --frozen python scripts/apply_corrections.py
             uv run --frozen python scripts/validate_data.py --strict
