@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-09-15T23:43:01+05:30",
+  "generatedAt": "2026-09-15T23:45:39+05:30",
   "asOfDate": "2026-09-15",
-  "recordCount": 1356,
+  "recordCount": 1357,
   "stageCounts": {
     "closed": 47,
     "filing-pipeline": 6,
     "listed": 1287,
     "open": 9,
     "unknown": 1,
-    "upcoming": 6
+    "upcoming": 7
   },
   "segmentCounts": {
-    "allRecords": 1356,
-    "exchangeStage": 1349,
-    "recentExchange2Y": 440,
+    "allRecords": 1357,
+    "exchangeStage": 1350,
+    "recentExchange2Y": 441,
     "historicalExchange": 909,
     "offerDocumentEligible": 90,
     "openNow": 9,
@@ -30,114 +30,114 @@
   "coverage": {
     "exchangeStage": {
       "symbol": {
-        "present": 1349,
-        "expected": 1349,
+        "present": 1350,
+        "expected": 1350,
         "missing": 0,
         "pct": 100.0
       },
       "board": {
-        "present": 1349,
-        "expected": 1349,
+        "present": 1350,
+        "expected": 1350,
         "missing": 0,
         "pct": 100.0
       },
       "exchange": {
-        "present": 1349,
-        "expected": 1349,
+        "present": 1350,
+        "expected": 1350,
         "missing": 0,
         "pct": 100.0
       },
       "openDate": {
-        "present": 1349,
-        "expected": 1349,
+        "present": 1350,
+        "expected": 1350,
         "missing": 0,
         "pct": 100.0
       },
       "closeDate": {
-        "present": 1349,
-        "expected": 1349,
+        "present": 1350,
+        "expected": 1350,
         "missing": 0,
         "pct": 100.0
       },
       "priceBand": {
-        "present": 1336,
-        "expected": 1349,
+        "present": 1337,
+        "expected": 1350,
         "missing": 13,
         "pct": 99.0
       },
       "lotSize": {
-        "present": 328,
-        "expected": 1349,
+        "present": 329,
+        "expected": 1350,
         "missing": 1021,
-        "pct": 24.3
+        "pct": 24.4
       },
       "issueSizeCr": {
-        "present": 438,
-        "expected": 1349,
+        "present": 439,
+        "expected": 1350,
         "missing": 911,
         "pct": 32.5
       },
       "issueComposition": {
         "present": 435,
-        "expected": 440,
-        "missing": 5,
-        "pct": 98.9
+        "expected": 441,
+        "missing": 6,
+        "pct": 98.6
       }
     },
     "recentExchange2Y": {
       "symbol": {
-        "present": 440,
-        "expected": 440,
+        "present": 441,
+        "expected": 441,
         "missing": 0,
         "pct": 100.0
       },
       "board": {
-        "present": 440,
-        "expected": 440,
+        "present": 441,
+        "expected": 441,
         "missing": 0,
         "pct": 100.0
       },
       "exchange": {
-        "present": 440,
-        "expected": 440,
+        "present": 441,
+        "expected": 441,
         "missing": 0,
         "pct": 100.0
       },
       "openDate": {
-        "present": 440,
-        "expected": 440,
+        "present": 441,
+        "expected": 441,
         "missing": 0,
         "pct": 100.0
       },
       "closeDate": {
-        "present": 440,
-        "expected": 440,
+        "present": 441,
+        "expected": 441,
         "missing": 0,
         "pct": 100.0
       },
       "priceBand": {
-        "present": 440,
-        "expected": 440,
+        "present": 441,
+        "expected": 441,
         "missing": 0,
         "pct": 100.0
       },
       "lotSize": {
-        "present": 325,
-        "expected": 440,
+        "present": 326,
+        "expected": 441,
         "missing": 115,
         "pct": 73.9
       },
       "issueSizeCr": {
-        "present": 435,
-        "expected": 440,
+        "present": 436,
+        "expected": 441,
         "missing": 5,
         "pct": 98.9
       },
       "issueComposition": {
         "present": 435,
-        "expected": 440,
-        "missing": 5,
-        "pct": 98.9
+        "expected": 441,
+        "missing": 6,
+        "pct": 98.6
       }
     },
     "historicalExchange": {
@@ -272,14 +272,14 @@
     },
     "provenance": {
       "sources": {
-        "present": 1355,
-        "expected": 1356,
+        "present": 1356,
+        "expected": 1357,
         "missing": 1,
         "pct": 99.9
       },
       "validation": {
-        "present": 1356,
-        "expected": 1356,
+        "present": 1357,
+        "expected": 1357,
         "missing": 0,
         "pct": 100.0
       },
@@ -424,6 +424,12 @@
         }
       ],
       "issueComposition": [
+        {
+          "id": "spectraa",
+          "company": "SpectraA Technology Solutions Limited",
+          "openDate": "2026-09-17",
+          "stage": "upcoming"
+        },
         {
           "id": "icel",
           "company": "IC Electricals Company Limited-Issue postponed",
