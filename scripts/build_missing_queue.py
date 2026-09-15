@@ -8,6 +8,10 @@ information should normally be recoverable from an official source.
 A record may also carry a ``dataAvailability`` resolution for a genuinely blank
 field after the official-source paths have been exhausted. Such blanks remain
 visible in completeness coverage, but no longer masquerade as actionable work.
+
+The persisted queue is a compact operational projection. Rich resolution evidence
+remains in each canonical IPO record's ``dataAvailability`` field, avoiding a
+second copy of that evidence in the generated queue artifact.
 """
 from __future__ import annotations
 
@@ -28,6 +32,7 @@ NON_ACTIONABLE_AVAILABILITY = {
     "not-applicable",
     "exhausted-official-sources",
 }
+QUEUE_FORMAT_VERSION = 2
 
 
 def profile_path(record: dict[str, Any]) -> str | None:
@@ -181,6 +186,29 @@ def _resolved_entry_from_analysis(record: dict[str, Any], analysis: dict[str, An
     }
 
 
+def operational_queue_entry(row: dict[str, Any]) -> dict[str, Any]:
+    """Persist only fields consumed by queue automation and the quality UI."""
+    keys = (
+        "id",
+        "company",
+        "stage",
+        "openDate",
+        "priority",
+        "priorityLabel",
+        "completenessPct",
+        "missingFieldCount",
+        "missingFields",
+        "profilePath",
+    )
+    return {key: row.get(key) for key in keys}
+
+
+def operational_resolved_entry(row: dict[str, Any]) -> dict[str, Any]:
+    """Keep a compact index; full resolution reasons live in data/ipos.json."""
+    keys = ("id", "company", "priority", "priorityLabel", "resolvedFields", "profilePath")
+    return {key: row.get(key) for key in keys}
+
+
 def queue_entry(record: dict[str, Any], today: date) -> dict[str, Any] | None:
     return _queue_entry_from_analysis(record, analyze_record(record, today))
 
@@ -259,6 +287,7 @@ def main() -> int:
         resolved_priority_counts[row["priorityLabel"]] += 1
 
     output = {
+        "formatVersion": QUEUE_FORMAT_VERSION,
         "generatedAt": now.isoformat(timespec="seconds"),
         "asOfDate": today.isoformat(),
         "recordCount": len(records),
@@ -268,19 +297,24 @@ def main() -> int:
         "resolvedUnavailableRecordCount": len(resolved),
         "resolvedUnavailablePriorityCounts": dict(resolved_priority_counts),
         "resolvedUnavailableFieldCounts": dict(resolved_field_counts.most_common()),
-        "queue": queue,
+        "queue": [operational_queue_entry(row) for row in queue],
         "queueIsComplete": True,
-        "resolvedUnavailable": resolved,
+        "resolvedUnavailable": [operational_resolved_entry(row) for row in resolved],
         "notes": [
             "P0/P1 records are repaired before historical records.",
             "Only lifecycle- and source-appropriate missing fields enter the actionable queue.",
-            "Fields marked source-unavailable/not-applicable/exhausted-official-sources remain blank in coverage but are tracked separately from actionable work.",
+            "Full non-actionable resolution evidence remains in canonical IPO dataAvailability fields.",
             "Older exchange-only records do not require Fresh/OFS composition when the official historical archive does not expose it.",
             "Allotment date is tracked as optional research coverage until a reliable official historical collector exists.",
             "Blank values are never guessed; backfill values must come from official sources.",
         ],
     }
-    OUTPUT_FILE.write_text(json.dumps(output, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    # This is an operational machine artifact; compact JSON avoids hundreds of
+    # kilobytes of indentation/duplicated null scaffolding on every checkout.
+    OUTPUT_FILE.write_text(
+        json.dumps(output, ensure_ascii=False, separators=(",", ":")) + "\n",
+        encoding="utf-8",
+    )
     print(
         f"Missing-data queue: records={len(records)}, queued={len(queue)}, "
         f"resolved-unavailable={len(resolved)}, "
