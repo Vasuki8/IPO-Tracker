@@ -15,7 +15,7 @@ from collections import OrderedDict
 from pypdf import PdfReader
 from parser_loader import isolated_module
 
-PARSER_VERSION = 20
+PARSER_VERSION = 21
 _legacy = isolated_module("run_offer_docs_v14")
 base = _legacy.base
 choose_document = _legacy.choose_document
@@ -40,8 +40,8 @@ _YEAR = re.compile(r"\b(?:Fiscal|FY)\s*(20\d{2})\b|(?:March\s+31|31\s+March)[,\s
 _TOKEN = re.compile(r"\(?[-+]?\d[\d,]*(?:\.\d+)?\)?%?|\[\s*[●•*]\s*\]|(?<!\w)[—–-](?!\w)")
 _UNIT = re.compile(r"(?:₹|Rs\.?|INR)\s*(?:in\s+)?(crores?|millions?|lakhs?|lacs?|thousands?)", re.I)
 _LEGAL = re.compile(r"\b(?:Private\s+Limited|Pvt\.?\s+Ltd\.?|Limited|Ltd\.?|LLP)\b", re.I)
-_ROLE = re.compile(r"^\s*(?:\d+[.)]\s+)?(?:BOOK\s+RUNNING\s+LEAD\s+MANAGERS?(?:\s+TO\s+THE\s+(?:ISSUE|OFFER))?|LEAD\s+MANAGERS?(?:\s+TO\s+THE\s+(?:ISSUE|OFFER))?|BRLMS?)\s*[:\-]?\s*$", re.I)
-_REGISTRAR = re.compile(r"^\s*(?:\d+[.)]\s+)?(?:DETAILS\s+OF\s+)?REGISTRAR\s+(?:TO\s+THE\s+(?:ISSUE|OFFER)|AND\s+SHARE\s+TRANSFER\s+AGENT)\s*[:\-]?\s*$", re.I)
+_ROLE = re.compile(r"^\s*(?:\d+[.)]\s+)?(?:DETAILS\s+OF\s+(?:THE\s+)?)?(?:BOOK\s+RUNNING\s+LEAD\s+MANAGERS?(?:\s+TO\s+THE\s+(?:ISSUE|OFFER))?|LEAD\s+MANAGERS?(?:\s+TO\s+THE\s+(?:ISSUE|OFFER))?|BRLMS?)\s*[:\-]?\s*$", re.I)
+_REGISTRAR = re.compile(r"^\s*(?:\d+[.)]\s+)?(?:DETAILS\s+OF\s+(?:THE\s+)?)?REGISTRAR\s+(?:TO\s+THE\s+(?:ISSUE|OFFER)|AND\s+SHARE\s+TRANSFER\s+AGENT)\s*[:\-]?\s*$", re.I)
 
 
 def valid_entity(name):
@@ -53,7 +53,7 @@ def valid_entity(name):
 
 
 def valid_manager(name):
-    return valid_entity(name) and bool(re.search(r'Capital|Securit|Financial|Advis|Invest|Corporate|Merchant|Markets|Bank|Fiscal|Broking|Brokers|Wealth|WAM|Management|Consult|Shares|Morgan\s+Stanley|J\.?\s*P\.?\s*Morgan|Jefferies|BNP\s+Paribas', str(name), re.I))
+    return valid_entity(name) and bool(re.search(r'Capital|Securit|Financial|Finserv|Advis|Invest|Corporate|Merchant|Markets|Bank|Fiscal|Broking|Brokers|Wealth|WAM|Management|Consult|Shares|Morgan\s+Stanley|J\.?\s*P\.?\s*Morgan|Jefferies|BNP\s+Paribas', str(name), re.I))
 
 
 def valid_registrar(name):
@@ -255,7 +255,7 @@ def extract_intermediaries(text):
         actual_lines = page.splitlines()
         lines = role_tail + actual_lines
         role_tail = []
-        for index in range(max(0, len(actual_lines) - 6), len(actual_lines)):
+        for index in range(max(0, len(actual_lines) - 12), len(actual_lines)):
             if _REGISTRAR.match(actual_lines[index]) or _ROLE.match(actual_lines[index]):
                 role_tail = actual_lines[index:]
                 break
@@ -284,16 +284,17 @@ def extract_intermediaries(text):
             for candidate in block:
                 if re.fullmatch(r"\s*(?:\[PAGE \d+\]|\d+)\s*", candidate):
                     continue
-                # A heading containing NAME is a column header, not part of a name.
-                if re.search(r"\bNAME\b|\bLOGO\b|CONTACT\s+PERSON|TELEPHONE\s*(?:AND|&)|E-?MAIL\s+(?:AND|&)", candidate, re.I):
-                    pending = ""
-                    continue
                 cut = max(0, contact - 8) if contact is not None else len(candidate)
                 # Never retain a truncated contact token at a column boundary.
                 if 0 < cut < len(candidate) and not candidate[cut - 1].isspace() and not candidate[cut].isspace():
                     cut = candidate.rfind(" ", 0, cut)
                 value = candidate[:cut] if contact is not None else re.split(r"\s{8,}", candidate.strip(), maxsplit=1)[0]
                 value = re.sub(r"\s+", " ", value).strip()
+                # A company cell can share a row with contact-column headings.
+                # Reject headers only after isolating the company column.
+                if re.search(r"\bNAME\b|\bLOGO\b|CONTACT\s+PERSON|TELEPHONE\s*(?:AND|&)|E-?MAIL\s+(?:AND|&)", value, re.I):
+                    pending = ""
+                    continue
                 if ')' in value and '(' not in value:
                     pending = ''
                     continue
