@@ -3,6 +3,22 @@
  * adaptive profile renderer expects, then renders that profile as a full page.
  */
 
+const IST_DATE_FORMATTER = new Intl.DateTimeFormat('en-IN', {
+  day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata'
+});
+const IST_DAY_FORMATTER = new Intl.DateTimeFormat('en-CA', {
+  year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'Asia/Kolkata'
+});
+const IST_TIMESTAMP_FORMATTER = new Intl.DateTimeFormat('en-IN', {
+  timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short'
+});
+const IST_TIME_FORMATTER = new Intl.DateTimeFormat('en-IN', {
+  timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit'
+});
+const IST_DATE_TIME_FORMATTER = new Intl.DateTimeFormat('en-IN', {
+  timeZone: 'Asia/Kolkata', day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit'
+});
+
 const money = value => value == null ? '—' : `₹${Number(value).toLocaleString('en-IN', { maximumFractionDigits: 2 })} Cr`;
 const rupees = value => value == null ? '—' : `₹${Number(value).toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
 const x = value => value == null ? '—' : `${Number(value).toLocaleString('en-IN', { maximumFractionDigits: 2 })}×`;
@@ -18,34 +34,29 @@ function prettyDate(value) {
   if (!value) return '—';
   const date = new Date(`${value}T00:00:00+05:30`);
   if (Number.isNaN(date.getTime())) return String(value);
-  return new Intl.DateTimeFormat('en-IN', {
-    day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata'
-  }).format(date);
+  return IST_DATE_FORMATTER.format(date);
 }
 
 function formatTimestamp(value) {
   if (!value) return '—';
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return String(value);
-  return date.toLocaleString('en-IN', {
-    timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short'
-  }) + ' IST';
+  return `${IST_TIMESTAMP_FORMATTER.format(date)} IST`;
 }
 
 function currentIstDate() {
-  const parts = new Intl.DateTimeFormat('en-CA', {
-    year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'Asia/Kolkata'
-  }).formatToParts(new Date());
+  const parts = IST_DAY_FORMATTER.formatToParts(new Date());
   const map = Object.fromEntries(parts.map(part => [part.type, part.value]));
   return `${map.year}-${map.month}-${map.day}`;
 }
 
+const TODAY_IST = currentIstDate();
+
 function derivedStatus(ipo) {
-  const today = currentIstDate();
-  if (ipo.openDate && today < ipo.openDate) return 'upcoming';
-  if (ipo.openDate && ipo.closeDate && today >= ipo.openDate && today <= ipo.closeDate) return 'open';
-  if (ipo.listingDate && today >= ipo.listingDate) return 'listed';
-  if (ipo.closeDate && today > ipo.closeDate) return 'closed';
+  if (ipo.openDate && TODAY_IST < ipo.openDate) return 'upcoming';
+  if (ipo.openDate && ipo.closeDate && TODAY_IST >= ipo.openDate && TODAY_IST <= ipo.closeDate) return 'open';
+  if (ipo.listingDate && TODAY_IST >= ipo.listingDate) return 'listed';
+  if (ipo.closeDate && TODAY_IST > ipo.closeDate) return 'closed';
   return ipo.status || 'upcoming';
 }
 
@@ -111,13 +122,8 @@ function p4Latest(ipo, history) {
 function p4TimeLabel(value, includeDate = false) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return String(value || '—');
-  return date.toLocaleString('en-IN', {
-    timeZone: 'Asia/Kolkata',
-    day: includeDate ? '2-digit' : undefined,
-    month: includeDate ? 'short' : undefined,
-    hour: '2-digit',
-    minute: '2-digit'
-  }).replace(',', '');
+  const formatter = includeDate ? IST_DATE_TIME_FORMATTER : IST_TIME_FORMATTER;
+  return formatter.format(date).replace(',', '');
 }
 
 function p4Chart(history) {
@@ -213,7 +219,7 @@ async function initCompanyRoute() {
   const freshness = document.getElementById('routeFreshness');
   const ipoId = document.body.dataset.ipoId;
   try {
-    const response = await fetch(`data/ipos.json?v=${Date.now()}`);
+    const response = await fetch('data/ipos.json', { cache: 'no-cache' });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const payload = await response.json();
     const ipo = (payload.ipos || []).find(item => String(item.id) === String(ipoId));
