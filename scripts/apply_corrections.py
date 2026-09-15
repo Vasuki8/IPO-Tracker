@@ -1,9 +1,12 @@
 """Apply reviewed field corrections only to their exact prior values."""
 import argparse
+import copy
 import hashlib
 import json
 from collections import defaultdict
+from datetime import date
 from pathlib import Path
+from urllib.parse import urlparse
 from record_integrity import repair
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -11,6 +14,47 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def fingerprint(value):
     return hashlib.sha256(json.dumps(value, sort_keys=True, ensure_ascii=False, separators=(',', ':')).encode()).hexdigest()
+
+
+def fill_reviewed_fields(rows, entries):
+    """Fill final-notice gaps independently of earlier full-record migrations."""
+    applied, conflicts = 0, []
+    for entry in entries:
+        identity, field, value = entry['identity'], entry['field'], entry['value']
+        source = entry['source']
+        if not all(identity.get(key) for key in ('id', 'company', 'symbol', 'openDate')):
+            raise ValueError('A reviewed final notice requires the exact issuer and offer identity')
+        if urlparse(source['url']).scheme != 'https' or not source.get('name') or not entry.get('evidence'):
+            raise ValueError('A reviewed final notice requires HTTPS source evidence')
+        if field == 'lotSize':
+            if type(value) is not int or not 0 < value <= 100000:
+                raise ValueError('Invalid reviewed lot size')
+        elif field == 'listingDate':
+            if date.fromisoformat(value) < date.fromisoformat(identity['openDate']):
+                raise ValueError('Listing precedes this offer')
+        else:
+            raise ValueError('Unsupported reviewed final-notice field')
+        row = rows.get(identity['id'])
+        if row is None or any(row.get(key) != expected for key, expected in identity.items()):
+            conflicts.append({'id': identity['id'], 'field': field, 'reason': 'Final-notice issuer or offer identity changed'})
+            continue
+        before = row.get(field)
+        if before == value:
+            continue
+        if before not in (None, ''):
+            conflicts.append({'id': identity['id'], 'field': field, 'reason': 'Preserved existing value instead of replacing it with a reviewed final notice'})
+            continue
+        row[field] = value
+        row.setdefault('dataCorrections', []).append({
+            'field': field, 'before': before, 'after': value,
+            'reason': 'Filled from a reviewed final offer or listing notice',
+            'sourceUrl': source['url'], 'evidence': copy.deepcopy(entry['evidence']),
+            'correctedAt': entry['reviewedAt'],
+        })
+        if not any(item.get('url') == source['url'] for item in row.get('sources', [])):
+            row.setdefault('sources', []).append({**copy.deepcopy(source), 'asOf': entry['reviewedAt']})
+        applied += 1
+    return applied, conflicts
 
 
 def apply(payload, registry):
@@ -34,6 +78,9 @@ def apply(payload, registry):
             if row.get(field) != correction['after']:
                 row[field] = correction['after']
                 applied += 1
+    filled, fill_conflicts = fill_reviewed_fields(rows, registry.get('fillMissing', []))
+    applied += filled
+    conflicts.extend(fill_conflicts)
     payload.setdefault('meta', {})['schemaVersion'] = max(5, payload.get('meta', {}).get('schemaVersion', 0))
     payload.setdefault('meta', {})['reviewedCorrectionStatus'] = {'registryRevision': registry.get('revision'), 'appliedFields': applied, 'conflicts': conflicts}
     payload['meta']['initialSourceRepair'] = registry.get('summary', {})
