@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-09-15T23:45:39+05:30",
-  "asOfDate": "2026-09-15",
+  "generatedAt": "2026-09-16T00:02:39+05:30",
+  "asOfDate": "2026-09-16",
   "recordCount": 1357,
   "stageCounts": {
-    "closed": 47,
+    "closed": 51,
     "filing-pipeline": 6,
     "listed": 1287,
-    "open": 9,
+    "open": 8,
     "unknown": 1,
-    "upcoming": 7
+    "upcoming": 4
   },
   "segmentCounts": {
     "allRecords": 1357,
@@ -16,14 +16,14 @@
     "recentExchange2Y": 441,
     "historicalExchange": 909,
     "offerDocumentEligible": 90,
-    "openNow": 9,
-    "maturedClosed": 1318
+    "openNow": 8,
+    "maturedClosed": 1321
   },
   "scores": {
     "exchangeStage": 82.6,
     "recentExchange2Y": 96.8,
     "offerDocumentEligible": 91.5,
-    "openSubscription": 77.8,
+    "openSubscription": 100.0,
     "maturedLifecycle": 97.3,
     "provenance": 99.5
   },
@@ -230,34 +230,34 @@
     },
     "openSubscription": {
       "qib": {
-        "present": 7,
-        "expected": 9,
-        "missing": 2,
-        "pct": 77.8
+        "present": 8,
+        "expected": 8,
+        "missing": 0,
+        "pct": 100.0
       },
       "nii": {
-        "present": 7,
-        "expected": 9,
-        "missing": 2,
-        "pct": 77.8
+        "present": 8,
+        "expected": 8,
+        "missing": 0,
+        "pct": 100.0
       },
       "retail": {
-        "present": 7,
-        "expected": 9,
-        "missing": 2,
-        "pct": 77.8
+        "present": 8,
+        "expected": 8,
+        "missing": 0,
+        "pct": 100.0
       },
       "total": {
-        "present": 7,
-        "expected": 9,
-        "missing": 2,
-        "pct": 77.8
+        "present": 8,
+        "expected": 8,
+        "missing": 0,
+        "pct": 100.0
       }
     },
     "maturedLifecycle": {
       "listingDate": {
-        "present": 1282,
-        "expected": 1318,
+        "present": 1285,
+        "expected": 1321,
         "missing": 36,
         "pct": 97.3
       }
@@ -265,8 +265,8 @@
     "optionalLifecycle": {
       "allotmentDate": {
         "present": 0,
-        "expected": 1318,
-        "missing": 1318,
+        "expected": 1321,
+        "missing": 1321,
         "pct": 0.0
       }
     },
@@ -474,7 +474,7 @@
           "id": "maharaja-speedex-india-limited",
           "company": "Maharaja & Speedex India Limited",
           "openDate": "2026-09-10",
-          "stage": "open"
+          "stage": "closed"
         },
         {
           "id": "optimystix",
@@ -741,62 +741,10 @@
       ]
     },
     "openSubscription": {
-      "qib": [
-        {
-          "id": "vama-wovenfab-limited",
-          "company": "Vama Wovenfab Limited",
-          "openDate": "2026-09-15",
-          "stage": "open"
-        },
-        {
-          "id": "shakti-polytarp-limited",
-          "company": "Shakti Polytarp Limited",
-          "openDate": "2026-09-15",
-          "stage": "open"
-        }
-      ],
-      "nii": [
-        {
-          "id": "vama-wovenfab-limited",
-          "company": "Vama Wovenfab Limited",
-          "openDate": "2026-09-15",
-          "stage": "open"
-        },
-        {
-          "id": "shakti-polytarp-limited",
-          "company": "Shakti Polytarp Limited",
-          "openDate": "2026-09-15",
-          "stage": "open"
-        }
-      ],
-      "retail": [
-        {
-          "id": "vama-wovenfab-limited",
-          "company": "Vama Wovenfab Limited",
-          "openDate": "2026-09-15",
-          "stage": "open"
-        },
-        {
-          "id": "shakti-polytarp-limited",
-          "company": "Shakti Polytarp Limited",
-          "openDate": "2026-09-15",
-          "stage": "open"
-        }
-      ],
-      "total": [
-        {
-          "id": "vama-wovenfab-limited",
-          "company": "Vama Wovenfab Limited",
-          "openDate": "2026-09-15",
-          "stage": "open"
-        },
-        {
-          "id": "shakti-polytarp-limited",
-          "company": "Shakti Polytarp Limited",
-          "openDate": "2026-09-15",
-          "stage": "open"
-        }
-      ]
+      "qib": [],
+      "nii": [],
+      "retail": [],
+      "total": []
     },
     "maturedLifecycle": {
       "listingDate": [
