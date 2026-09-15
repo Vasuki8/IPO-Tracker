@@ -58,7 +58,7 @@ function companyKpis(ipo) {
   const cards = [
     ['Price band', priceBand(ipo), ipo.priceBand?.max != null ? `Cap ${rupees(ipo.priceBand.max)}` : 'Issue pricing'],
     ['Issue size', money(ipo.issueSizeCr), 'Total issue'],
-    ['Lot size', ipo.lotSize ? `${Number(ipo.lotSize).toLocaleString('en-IN')} shares` : '—', 'Minimum bid lot'],
+    ['Lot size', ipo.lotSize ? `${Number(ipo.lotSize).toLocaleString('en-IN')} shares` : '—', 'Shares per lot'],
     ['Subscription', x(totalSub), ipo.subscriptionAsOf ? `As of ${formatTimestamp(ipo.subscriptionAsOf)}` : 'Overall demand'],
     ['Listing return', listingGain == null ? '—' : `${listingGain > 0 ? '+' : ''}${Number(listingGain).toFixed(2)}%`, ipo.listingDate ? prettyDate(ipo.listingDate) : 'After listing']
   ];

@@ -1,5 +1,5 @@
 {
-  "revision": "2026-09-14-source-repair",
+  "revision": "2026-09-15-upcoming-and-final-notices",
   "basedOnCommit": "eef493b2eec6b0f0ab9cefad8b45b9d5759bc86b",
   "generatedAt": "2026-09-14T12:16:27.134108+00:00",
   "parserVersion": 18,
@@ -13912,6 +13912,244 @@
         "extractedAt": "2026-09-14T10:53:53+05:30",
         "conflicts": []
       }
+    },
+    {
+      "id": "nse",
+      "identity": {
+        "id": "nse",
+        "company": "National Stock Exchange of India Limited",
+        "symbol": "NSE",
+        "openDate": "2026-09-17"
+      },
+      "field": "exchange",
+      "beforeHash": "7ddf04b3d408f2c0abe29baeb2bfbe015b3340f0342df41b138a03d4b6b93486",
+      "after": "BSE",
+      "source": {
+        "name": "NSE issuer final price-band advertisement",
+        "url": "https://nsearchives.nseindia.com//web/banner/2026-09/Stat_Ad-NSE_20260913174411.pdf",
+        "kind": "offer-document"
+      },
+      "evidence": {
+        "page": 1,
+        "sha256": "d3bed46674ba2b63439df2511d4c946112556ad962db67492c11ab41d5967b71",
+        "basis": "Final notice: bids in 8 shares and multiples of 8; entire offer comprises 126,436,650 OFS shares; BSE listing. At the cap price, OFS amount is INR 225,615.74 million, accounting for the INR 170 employee discount."
+      },
+      "reviewedAt": "2026-09-15T13:52:32+00:00",
+      "reason": "Corrected the fresh/OFS allocation, listing exchange and cap-price offer size against the issuer final advertisement, including employee discount"
+    },
+    {
+      "id": "nse",
+      "identity": {
+        "id": "nse",
+        "company": "National Stock Exchange of India Limited",
+        "symbol": "NSE",
+        "openDate": "2026-09-17"
+      },
+      "field": "issueSizeCr",
+      "beforeHash": "08b988a21b23a7a26a1226ebaee7c62456e9e8a76dc88edc6e54f807b34485f6",
+      "after": 22561.574,
+      "source": {
+        "name": "NSE issuer final price-band advertisement",
+        "url": "https://nsearchives.nseindia.com//web/banner/2026-09/Stat_Ad-NSE_20260913174411.pdf",
+        "kind": "offer-document"
+      },
+      "evidence": {
+        "page": 1,
+        "sha256": "d3bed46674ba2b63439df2511d4c946112556ad962db67492c11ab41d5967b71",
+        "basis": "Final notice: bids in 8 shares and multiples of 8; entire offer comprises 126,436,650 OFS shares; BSE listing. At the cap price, OFS amount is INR 225,615.74 million, accounting for the INR 170 employee discount."
+      },
+      "reviewedAt": "2026-09-15T13:52:32+00:00",
+      "reason": "Corrected the fresh/OFS allocation, listing exchange and cap-price offer size against the issuer final advertisement, including employee discount"
+    },
+    {
+      "id": "nse",
+      "identity": {
+        "id": "nse",
+        "company": "National Stock Exchange of India Limited",
+        "symbol": "NSE",
+        "openDate": "2026-09-17"
+      },
+      "field": "freshIssueCr",
+      "beforeHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+      "after": 0.0,
+      "source": {
+        "name": "NSE issuer final price-band advertisement",
+        "url": "https://nsearchives.nseindia.com//web/banner/2026-09/Stat_Ad-NSE_20260913174411.pdf",
+        "kind": "offer-document"
+      },
+      "evidence": {
+        "page": 1,
+        "sha256": "d3bed46674ba2b63439df2511d4c946112556ad962db67492c11ab41d5967b71",
+        "basis": "Final notice: bids in 8 shares and multiples of 8; entire offer comprises 126,436,650 OFS shares; BSE listing. At the cap price, OFS amount is INR 225,615.74 million, accounting for the INR 170 employee discount."
+      },
+      "reviewedAt": "2026-09-15T13:52:32+00:00",
+      "reason": "Corrected the fresh/OFS allocation, listing exchange and cap-price offer size against the issuer final advertisement, including employee discount"
+    },
+    {
+      "id": "nse",
+      "identity": {
+        "id": "nse",
+        "company": "National Stock Exchange of India Limited",
+        "symbol": "NSE",
+        "openDate": "2026-09-17"
+      },
+      "field": "ofsCr",
+      "beforeHash": "8aed642bf5118b9d3c859bd4be35ecac75b6e873cce34e7b6f554b06f75550d7",
+      "after": 22561.574,
+      "source": {
+        "name": "NSE issuer final price-band advertisement",
+        "url": "https://nsearchives.nseindia.com//web/banner/2026-09/Stat_Ad-NSE_20260913174411.pdf",
+        "kind": "offer-document"
+      },
+      "evidence": {
+        "page": 1,
+        "sha256": "d3bed46674ba2b63439df2511d4c946112556ad962db67492c11ab41d5967b71",
+        "basis": "Final notice: bids in 8 shares and multiples of 8; entire offer comprises 126,436,650 OFS shares; BSE listing. At the cap price, OFS amount is INR 225,615.74 million, accounting for the INR 170 employee discount."
+      },
+      "reviewedAt": "2026-09-15T13:52:32+00:00",
+      "reason": "Corrected the fresh/OFS allocation, listing exchange and cap-price offer size against the issuer final advertisement, including employee discount"
+    },
+    {
+      "id": "nse",
+      "identity": {
+        "id": "nse",
+        "company": "National Stock Exchange of India Limited",
+        "symbol": "NSE",
+        "openDate": "2026-09-17"
+      },
+      "field": "issueComposition",
+      "beforeHash": "82e2720b1d5b4f0e2c07fd98350182c170ae71676819623c2286ee0917ab7fc5",
+      "after": {
+        "freshShares": 0,
+        "ofsShares": 126436650,
+        "freshIssueCr": 0.0,
+        "ofsCr": 22561.574,
+        "totalIssueSizeCr": 22561.574,
+        "valuationPriceUsed": 1785.0
+      },
+      "source": {
+        "name": "NSE issuer final price-band advertisement",
+        "url": "https://nsearchives.nseindia.com//web/banner/2026-09/Stat_Ad-NSE_20260913174411.pdf",
+        "kind": "offer-document"
+      },
+      "evidence": {
+        "page": 1,
+        "sha256": "d3bed46674ba2b63439df2511d4c946112556ad962db67492c11ab41d5967b71",
+        "basis": "Final notice: bids in 8 shares and multiples of 8; entire offer comprises 126,436,650 OFS shares; BSE listing. At the cap price, OFS amount is INR 225,615.74 million, accounting for the INR 170 employee discount."
+      },
+      "reviewedAt": "2026-09-15T13:52:32+00:00",
+      "reason": "Corrected the fresh/OFS allocation, listing exchange and cap-price offer size against the issuer final advertisement, including employee discount"
+    }
+  ],
+  "fillMissing": [
+    {
+      "identity": {
+        "id": "nsdl",
+        "company": "National Securities Depository Limited",
+        "symbol": "NSDL",
+        "openDate": "2025-07-30"
+      },
+      "field": "lotSize",
+      "value": 18,
+      "source": {
+        "name": "NSDL final price-band notice",
+        "url": "https://nsdl.com/nsdl/2026-03/Intimation_of_Price_Band_with_ad_final.pdf",
+        "kind": "offer-document"
+      },
+      "evidence": {
+        "page": 2,
+        "sha256": "865050f660a0b3a396951f9943a55fb66b6e1aaafce970c7cf8418e6783bd6e8",
+        "basis": "Minimum bid and subsequent increments are both 18 equity shares."
+      },
+      "reviewedAt": "2026-09-15T04:40:00+00:00"
+    },
+    {
+      "identity": {
+        "id": "nsdl",
+        "company": "National Securities Depository Limited",
+        "symbol": "NSDL",
+        "openDate": "2025-07-30"
+      },
+      "field": "listingDate",
+      "value": "2025-08-06",
+      "source": {
+        "name": "BSE NSDL listing notice 20250805-54",
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250805-54",
+        "kind": "exchange"
+      },
+      "evidence": {
+        "noticeNumber": "20250805-54",
+        "noticeDate": "2025-08-05",
+        "basis": "The notice admits National Securities Depository Limited, scrip 544467, ISIN INE301O01023, to trading effective August 6, 2025."
+      },
+      "reviewedAt": "2026-09-15T04:40:00+00:00"
+    },
+    {
+      "identity": {
+        "id": "anawil",
+        "company": "Anawil Wire and Engineering Limited",
+        "symbol": "ANAWIL",
+        "openDate": "2026-08-03"
+      },
+      "field": "lotSize",
+      "value": 400,
+      "source": {
+        "name": "Anawil final prospectus dated August 6, 2026",
+        "url": "https://anawilvapi.in/uploads/investors/Prospectus.pdf",
+        "kind": "offer-document"
+      },
+      "evidence": {
+        "page": 9,
+        "printedPage": 6,
+        "sha256": "ac20c1e1fa125b530e156dccf08600968194a7f42c003d875cb1f5bff29fe21f",
+        "basis": "The definitions table explicitly states a lot size of 400 equity shares. The individual minimum application is two lots; it is not the lot size."
+      },
+      "reviewedAt": "2026-09-15T04:40:00+00:00"
+    },
+    {
+      "identity": {
+        "id": "nse",
+        "company": "National Stock Exchange of India Limited",
+        "symbol": "NSE",
+        "openDate": "2026-09-17"
+      },
+      "field": "lotSize",
+      "value": 8,
+      "source": {
+        "name": "NSE issuer final price-band advertisement",
+        "url": "https://nsearchives.nseindia.com//web/banner/2026-09/Stat_Ad-NSE_20260913174411.pdf",
+        "kind": "offer-document"
+      },
+      "evidence": {
+        "page": 1,
+        "sha256": "d3bed46674ba2b63439df2511d4c946112556ad962db67492c11ab41d5967b71",
+        "basis": "Final notice: bids in 8 shares and multiples of 8; entire offer comprises 126,436,650 OFS shares; BSE listing. At the cap price, OFS amount is INR 225,615.74 million, accounting for the INR 170 employee discount."
+      },
+      "reviewedAt": "2026-09-15T13:52:32+00:00"
+    },
+    {
+      "identity": {
+        "id": "kheriaauto",
+        "company": "Kheria Autocomp Limited",
+        "symbol": "KHERIAAUTO",
+        "openDate": "2026-09-17"
+      },
+      "field": "issueComposition",
+      "value": {
+        "freshShares": 4598400,
+        "ofsShares": 0
+      },
+      "source": {
+        "name": "Kheria Autocomp RHP dated September 9, 2026",
+        "url": "https://www.kheria.com/documents/issue-documents/rhp.pdf",
+        "kind": "offer-document"
+      },
+      "evidence": {
+        "page": 1,
+        "sha256": "7f971a611de7d46c64073906677d014530b1806fca859ca69cd16d92b60f1f3c",
+        "basis": "Cover issue table: up to 4,598,400 fresh equity shares; OFS is NIL. The same page confirms the September 17–21, 2026 offer dates."
+      },
+      "reviewedAt": "2026-09-15T13:52:32+00:00"
     }
   ]
 }
