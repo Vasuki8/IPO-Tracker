@@ -1,15 +1,16 @@
 {
-  "generatedAt": "2026-09-15T10:42:00+05:30",
+  "generatedAt": "2026-09-15T13:20:59+05:30",
   "asOfDate": "2026-09-15",
-  "recordCount": 1354,
-  "queueCount": 1036,
+  "recordCount": 1356,
+  "queueCount": 1038,
   "priorityCounts": {
     "P0 open IPO": 3,
+    "P1 upcoming IPO": 2,
     "P4 recent history (2y)": 126,
     "P5 historical backfill": 907
   },
   "fieldGapCounts": {
-    "exchange.lotSize": 1018,
+    "exchange.lotSize": 1019,
     "exchange.issueSizeCr": 906,
     "lifecycle.listingDate": 32,
     "offer.promoterShareholding": 17,
@@ -24,6 +25,7 @@
     "subscription.retail": 2,
     "subscription.total": 2,
     "offer.promoters": 2,
+    "exchange.issueComposition": 1,
     "provenance.sources": 1
   },
   "resolvedUnavailableRecordCount": 5,
@@ -103,6 +105,46 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/maharaja-speedex-india-limited/"
+    },
+    {
+      "id": "kheriaauto",
+      "company": "Kheria Autocomp Limited",
+      "symbol": "KHERIAAUTO",
+      "stage": "upcoming",
+      "openDate": "2026-09-17",
+      "closeDate": "2026-09-21",
+      "listingDate": null,
+      "priority": 1,
+      "priorityLabel": "P1 upcoming IPO",
+      "completenessPct": 90.9,
+      "expectedFieldCount": 11,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.issueComposition"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/kheriaauto/"
+    },
+    {
+      "id": "nse",
+      "company": "National Stock Exchange of India Limited",
+      "symbol": "NSE",
+      "stage": "upcoming",
+      "openDate": "2026-09-17",
+      "closeDate": "2026-09-21",
+      "listingDate": null,
+      "priority": 1,
+      "priorityLabel": "P1 upcoming IPO",
+      "completenessPct": 94.4,
+      "expectedFieldCount": 18,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.lotSize"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/nse/"
     },
     {
       "id": "dhanlaxmi",
