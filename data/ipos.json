@@ -2,36 +2,24 @@
   "meta": {
     "documentRepairHealth": {
       "parserVersion": 21,
-      "attempted": 3,
+      "attempted": 1,
       "remaining": 0,
-      "changedFields": 1,
+      "changedFields": 0,
       "failed": 1,
-      "checkedAt": "2026-09-15T13:20:40+05:30",
+      "checkedAt": "2026-09-15T17:29:19+05:30",
       "outcomes": [
-        {
-          "id": "kissht",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers"
-          ]
-        },
         {
           "id": "knack",
           "status": "source_blocked",
-          "lastAttemptAt": "2026-09-15T13:20:40+05:30",
+          "lastAttemptAt": "2026-09-15T17:29:19+05:30",
           "parserVersion": 21,
           "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1783319397647.pdf",
-          "error": "('Connection broken: IncompleteRead(11706687 bytes read, 2018533 more expected)', IncompleteRead(11706687 bytes read, 2018533 more expected))"
-        },
-        {
-          "id": "propshop",
-          "status": "no_change",
-          "changedFields": []
+          "error": "('Connection broken: IncompleteRead(6389727 bytes read, 7335493 more expected)', IncompleteRead(6389727 bytes read, 7335493 more expected))"
         }
       ]
     },
     "errors": [],
-    "generatedAt": "2026-09-15T09:21:43.820327+00:00",
+    "generatedAt": "2026-09-15T11:59:37.863188+00:00",
     "historyStart": "2024-09-13",
     "initialSourceRepair": {
       "records": 1354,
@@ -82,7 +70,7 @@
         "status": "no_change",
         "exitCode": 0,
         "durationSeconds": 0.23,
-        "checkedAt": "2026-09-15T09:21:25.767715+00:00",
+        "checkedAt": "2026-09-15T11:59:21.149691+00:00",
         "diagnostics": "{\"integrityRepairs\": 0}\n"
       },
       "normalize_source_health.py": {
@@ -97,40 +85,40 @@
         "stage": "enrich_sebi_priority_registers_v2.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 8.34,
-        "checkedAt": "2026-09-15T07:49:01.245194+00:00",
+        "durationSeconds": 10.26,
+        "checkedAt": "2026-09-15T11:58:53.616145+00:00",
         "diagnostics": "SEBI priority registers v2: first_page=0 searched=5 search_matched=0 search_links=0 failed=0\n"
       },
       "enrich_sebi_document_links.py": {
         "stage": "enrich_sebi_document_links.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 1.38,
-        "checkedAt": "2026-09-15T07:49:02.765115+00:00",
-        "diagnostics": "SEBI document links: records=1 attempted=1 resolved=1 seeded=0 added=1 failed=0\n"
+        "durationSeconds": 0.34,
+        "checkedAt": "2026-09-15T11:58:54.115652+00:00",
+        "diagnostics": "SEBI document links: records=0 attempted=0 resolved=0 seeded=0 added=0 failed=0\n"
       },
       "enrich_recent_offer_terms.py": {
         "stage": "enrich_recent_offer_terms.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.37,
-        "checkedAt": "2026-09-15T07:49:03.274948+00:00",
+        "durationSeconds": 0.4,
+        "checkedAt": "2026-09-15T11:58:54.681110+00:00",
         "diagnostics": "SEBI recent offer terms: targets=2 attempted=0 extracted=0 updated=0 failed=0 skipped_lot_only_rhp=1 fields={}\n"
       },
       "run_offer_documents.py": {
         "stage": "run_offer_documents.py",
-        "status": "updated",
+        "status": "source_blocked",
         "exitCode": 0,
-        "durationSeconds": 97.3,
-        "checkedAt": "2026-09-15T07:50:40.708012+00:00",
-        "diagnostics": "{\"id\": \"propshop\", \"status\": \"no_change\", \"changedFields\": []}\n{\"id\": \"kissht\", \"status\": \"updated\", \"changedFields\": [\"leadManagers\"]}\n{\"id\": \"knack\", \"status\": \"source_blocked\", \"lastAttemptAt\": \"2026-09-15T13:20:40+05:30\", \"parserVersion\": 21, \"sourceUrl\": \"https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1783319397647.pdf\", \"error\": \"('Connection broken: IncompleteRead(11706687 bytes read, 2018533 more expected)', IncompleteRead(11706687 bytes read, 2018533 more expected))\"}\n{\"parserVersion\": 21, \"attempted\": 3, \"remaining\": 0, \"changedFields\": 1, \"failed\": 1, \"checkedAt\": \"2026-09-15T13:20:40+05:30\"}\n"
+        "durationSeconds": 24.62,
+        "checkedAt": "2026-09-15T11:59:19.459625+00:00",
+        "diagnostics": "{\"id\": \"knack\", \"status\": \"source_blocked\", \"lastAttemptAt\": \"2026-09-15T17:29:19+05:30\", \"parserVersion\": 21, \"sourceUrl\": \"https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1783319397647.pdf\", \"error\": \"('Connection broken: IncompleteRead(6389727 bytes read, 7335493 more expected)', IncompleteRead(6389727 bytes read, 7335493 more expected))\"}\n{\"parserVersion\": 21, \"attempted\": 1, \"remaining\": 0, \"changedFields\": 0, \"failed\": 1, \"checkedAt\": \"2026-09-15T17:29:19+05:30\"}\n"
       },
       "apply_verified_filing_offer_fields.py": {
         "stage": "apply_verified_filing_offer_fields.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.3,
-        "checkedAt": "2026-09-15T07:50:41.142350+00:00",
+        "durationSeconds": 0.33,
+        "checkedAt": "2026-09-15T11:59:19.952329+00:00",
         "diagnostics": "Verified filing offer fields: missing record national-stock-exchange-of-india-limited\nVerified filing offer fields: entries=4, updated=0, fields={}\n"
       },
       "backfill_recent_sebi_other_docs_lot_sizes.py": {
@@ -161,8 +149,8 @@
         "stage": "apply_corrections.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.25,
-        "checkedAt": "2026-09-15T09:20:27.556978+00:00",
+        "durationSeconds": 0.24,
+        "checkedAt": "2026-09-15T11:58:42.372875+00:00",
         "diagnostics": "enance\", \"documentRepair\", \"offerDocumentExtraction\", \"registrar\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"cleanmax\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"aye\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"armour\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"eximroutes\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"torrent-gas-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"national-stock-exchange-of-india-limited\", \"reason\": \"Issuer record no longer exists\"}, {\"id\": \"nopaperforms-solutions-limited\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"m-k-c-agro-fresh-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}]}\n"
       },
       "run_priority_subscriptions_v3.py": {
@@ -175,14 +163,14 @@
       }
     },
     "publication": {
-      "runId": "34951973525",
-      "collectorCommit": "6acdc5c01b234a86117bf3801182a2674c835d9f",
+      "runId": "34966193455",
+      "collectorCommit": "6d38056e049456e28cf5045079e98292277904fa",
       "status": "published",
       "pendingConflictCount": 0
     },
     "recordCount": 1356,
     "recordIntegrity": {
-      "checkedAt": "2026-09-15T09:21:44.038024+00:00",
+      "checkedAt": "2026-09-15T11:59:38.094124+00:00",
       "changedFields": 0
     },
     "reviewedCorrectionStatus": {
@@ -944,13 +932,13 @@
     "schemaVersion": 5,
     "sebiDocumentLinkHealth": {
       "ok": true,
-      "attemptedRecords": 1,
-      "attempted": 1,
-      "resolvedPages": 1,
+      "attemptedRecords": 0,
+      "attempted": 0,
+      "resolvedPages": 0,
       "seededPages": 0,
-      "linksAdded": 1,
+      "linksAdded": 0,
       "failed": 0,
-      "asOf": "2026-09-15T13:19:02+05:30",
+      "asOf": "2026-09-15T17:28:53+05:30",
       "errors": []
     },
     "seed": false,
@@ -1036,10 +1024,10 @@
       },
       "SEBI-document-links": {
         "ok": true,
-        "records": 1,
-        "attemptedRecords": 1,
-        "attempted": 1,
-        "asOf": "2026-09-15T13:19:02+05:30",
+        "records": 0,
+        "attemptedRecords": 0,
+        "attempted": 0,
+        "asOf": "2026-09-15T17:28:53+05:30",
         "errors": []
       },
       "Offer-docs": {
@@ -1089,7 +1077,7 @@
         "searchMatchedRecords": 0,
         "searchLinksAdded": 0,
         "failed": 0,
-        "asOf": "2026-09-15T13:19:01+05:30",
+        "asOf": "2026-09-15T17:28:53+05:30",
         "errors": []
       },
       "SEBI-offer-terms": {
@@ -1102,7 +1090,7 @@
         "failed": 0,
         "skippedLotOnlyRhp": 1,
         "fields": {},
-        "asOf": "2026-09-15T13:19:03+05:30",
+        "asOf": "2026-09-15T17:28:54+05:30",
         "errors": []
       },
       "verified-lot-sizes": {
@@ -1130,7 +1118,7 @@
         "entries": 4,
         "updated": 0,
         "fields": {},
-        "checkedAt": "2026-09-15T13:20:40+05:30"
+        "checkedAt": "2026-09-15T17:29:19+05:30"
       },
       "NSE-history-IPO-filter": {
         "ok": true,
@@ -3945,7 +3933,7 @@
       "sebiPriorityRegisterSearch": {
         "status": "no-match",
         "linksAdded": 0,
-        "lastAttemptAt": "2026-09-15T13:18:59+05:30",
+        "lastAttemptAt": "2026-09-15T17:28:52+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
       },
@@ -4443,7 +4431,7 @@
       "sebiPriorityRegisterSearch": {
         "status": "no-match",
         "linksAdded": 0,
-        "lastAttemptAt": "2026-09-15T13:18:58+05:30",
+        "lastAttemptAt": "2026-09-15T17:28:51+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
       }
@@ -8443,7 +8431,7 @@
       "sebiPriorityRegisterSearch": {
         "status": "no-match",
         "linksAdded": 0,
-        "lastAttemptAt": "2026-09-15T13:19:01+05:30",
+        "lastAttemptAt": "2026-09-15T17:28:53+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
       },
@@ -32844,10 +32832,10 @@
       },
       "documentRepair": {
         "status": "source_blocked",
-        "lastAttemptAt": "2026-09-15T13:20:40+05:30",
+        "lastAttemptAt": "2026-09-15T17:29:19+05:30",
         "parserVersion": 21,
         "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1783319397647.pdf",
-        "error": "('Connection broken: IncompleteRead(11706687 bytes read, 2018533 more expected)', IncompleteRead(11706687 bytes read, 2018533 more expected))"
+        "error": "('Connection broken: IncompleteRead(6389727 bytes read, 7335493 more expected)', IncompleteRead(6389727 bytes read, 7335493 more expected))"
       },
       "listing": {
         "issuePrice": 170.0,
@@ -135662,7 +135650,7 @@
       "sebiPriorityRegisterSearch": {
         "status": "no-match",
         "linksAdded": 0,
-        "lastAttemptAt": "2026-09-15T13:18:56+05:30",
+        "lastAttemptAt": "2026-09-15T17:28:48+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
       },
@@ -135733,7 +135721,7 @@
       "sebiPriorityRegisterSearch": {
         "status": "no-match",
         "linksAdded": 0,
-        "lastAttemptAt": "2026-09-15T13:18:57+05:30",
+        "lastAttemptAt": "2026-09-15T17:28:49+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
       },
