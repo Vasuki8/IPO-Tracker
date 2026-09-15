@@ -24,11 +24,32 @@ class _BaseProxy:
 base = _BaseProxy()
 
 
-def extract_targeted_pdf_text(data, base_text, **kwargs):
+def extract_targeted_pdf_text(
+    data,
+    base_text,
+    *,
+    need_financials=True,
+    need_shareholding=True,
+    need_offer_terms=True,
+    max_scan_pages=520,
+    max_hits=16,
+    term_hits=12,
+    context_pages=2,
+):
     previous = _canonical.PdfReader
     _canonical.PdfReader = PdfReader
     try:
-        return _canonical.extract_targeted_pdf_text(data, base_text, **kwargs)
+        return _canonical.extract_targeted_pdf_text(
+            data,
+            base_text,
+            need_financials=need_financials,
+            need_shareholding=need_shareholding,
+            need_offer_terms=need_offer_terms,
+            max_scan_pages=max_scan_pages,
+            max_hits=max_hits,
+            term_hits=term_hits,
+            context_pages=context_pages,
+        )
     finally:
         _canonical.PdfReader = previous
 
