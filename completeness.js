@@ -65,8 +65,8 @@ function renderQualityDashboard(audit, queue) {
 async function initQualityDashboard() {
   try {
     const [auditResponse, queueResponse] = await Promise.all([
-      fetch(`data/completeness.json?v=${Date.now()}`),
-      fetch(`data/missing_queue.json?v=${Date.now()}`)
+      fetch('data/completeness.json', { cache: 'no-cache' }),
+      fetch('data/missing_queue.json', { cache: 'no-cache' })
     ]);
     if (!auditResponse.ok || !queueResponse.ok) return;
     const [audit, queue] = await Promise.all([auditResponse.json(), queueResponse.json()]);
