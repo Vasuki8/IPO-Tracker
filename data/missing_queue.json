@@ -1,29 +1,29 @@
 {
-  "generatedAt": "2026-09-15T07:02:19+05:30",
+  "generatedAt": "2026-09-15T10:36:26+05:30",
   "asOfDate": "2026-09-15",
   "recordCount": 1354,
-  "queueCount": 1040,
+  "queueCount": 1036,
   "priorityCounts": {
-    "P0 open IPO": 4,
-    "P1 upcoming IPO": 1,
-    "P2 recent IPO (30d)": 5,
-    "P4 recent history (2y)": 123,
+    "P0 open IPO": 3,
+    "P4 recent history (2y)": 126,
     "P5 historical backfill": 907
   },
   "fieldGapCounts": {
-    "exchange.lotSize": 1019,
+    "exchange.lotSize": 1018,
     "exchange.issueSizeCr": 906,
     "lifecycle.listingDate": 32,
+    "offer.promoterShareholding": 17,
     "exchange.priceBand": 13,
-    "offer.registrar": 9,
-    "offer.leadManagers": 8,
-    "offer.promoterShareholding": 5,
-    "offer.financials": 4,
+    "provenance.documents": 12,
+    "offer.financials": 10,
+    "offer.registrar": 7,
+    "offer.leadManagers": 6,
+    "offer.objectsOfIssue": 4,
     "subscription.qib": 2,
     "subscription.nii": 2,
     "subscription.retail": 2,
     "subscription.total": 2,
-    "offer.objectsOfIssue": 1,
+    "offer.promoters": 2,
     "provenance.sources": 1
   },
   "resolvedUnavailableRecordCount": 5,
@@ -105,144 +105,123 @@
       "profilePath": "ipo/maharaja-speedex-india-limited/"
     },
     {
-      "id": "injecto-polymers-limited",
-      "company": "INJECTO POLYMERS LIMITED",
-      "symbol": "INJECTO",
-      "stage": "open",
-      "openDate": "2026-09-11",
-      "closeDate": "2026-09-16",
+      "id": "dhanlaxmi",
+      "company": "Dhanlaxmi Crop Science Limited",
+      "symbol": "DHANLAXMI",
+      "stage": "listed",
+      "openDate": "2024-12-09",
+      "closeDate": "2024-12-11",
+      "listingDate": "2024-12-16",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 68.4,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 6,
+      "missingFields": [
+        "offer.registrar",
+        "offer.leadManagers",
+        "offer.objectsOfIssue",
+        "offer.financials",
+        "offer.promoterShareholding",
+        "provenance.documents"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/dhanlaxmi/"
+    },
+    {
+      "id": "etml",
+      "company": "Emerald Tyre Manufacturers Limited",
+      "symbol": "ETML",
+      "stage": "listed",
+      "openDate": "2024-12-05",
+      "closeDate": "2024-12-09",
+      "listingDate": "2024-12-12",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 73.7,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 5,
+      "missingFields": [
+        "offer.registrar",
+        "offer.leadManagers",
+        "offer.promoters",
+        "offer.promoterShareholding",
+        "provenance.documents"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/etml/"
+    },
+    {
+      "id": "nsdl",
+      "company": "National Securities Depository Limited",
+      "symbol": "NSDL",
+      "stage": "closed",
+      "openDate": "2025-07-30",
+      "closeDate": "2025-08-01",
       "listingDate": null,
-      "priority": 0,
-      "priorityLabel": "P0 open IPO",
-      "completenessPct": 95.5,
-      "expectedFieldCount": 22,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.registrar"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/injecto-polymers-limited/"
-    },
-    {
-      "id": "ssretail",
-      "company": "SS Retail Limited",
-      "symbol": "SSRETAIL",
-      "stage": "upcoming",
-      "openDate": "2026-09-16",
-      "closeDate": "2026-09-18",
-      "listingDate": null,
-      "priority": 1,
-      "priorityLabel": "P1 upcoming IPO",
-      "completenessPct": 94.4,
-      "expectedFieldCount": 18,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.registrar"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/ssretail/"
-    },
-    {
-      "id": "esds",
-      "company": "ESDS Software Solution Limited",
-      "symbol": "ESDS",
-      "stage": "listed",
-      "openDate": "2026-08-28",
-      "closeDate": "2026-09-01",
-      "listingDate": "2026-09-04",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 94.7,
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 73.7,
       "expectedFieldCount": 19,
-      "missingFieldCount": 1,
+      "missingFieldCount": 5,
       "missingFields": [
-        "offer.leadManagers"
+        "exchange.lotSize",
+        "offer.leadManagers",
+        "offer.promoterShareholding",
+        "lifecycle.listingDate",
+        "provenance.documents"
       ],
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
-      "profilePath": "ipo/esds/"
+      "profilePath": "ipo/nsdl/"
     },
     {
-      "id": "priority",
-      "company": "Priority Jewels Limited",
-      "symbol": "PRIORITY",
+      "id": "apexeco",
+      "company": "Apex Ecotech Limited",
+      "symbol": "APEXECO",
       "stage": "listed",
-      "openDate": "2026-08-28",
-      "closeDate": "2026-09-01",
-      "listingDate": "2026-09-04",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 94.7,
+      "openDate": "2024-11-27",
+      "closeDate": "2024-11-29",
+      "listingDate": "2024-12-04",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 78.9,
       "expectedFieldCount": 19,
-      "missingFieldCount": 1,
+      "missingFieldCount": 4,
       "missingFields": [
-        "offer.leadManagers"
+        "offer.registrar",
+        "offer.financials",
+        "offer.promoterShareholding",
+        "provenance.documents"
       ],
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
-      "profilePath": "ipo/priority/"
+      "profilePath": "ipo/apexeco/"
     },
     {
-      "id": "skyways",
-      "company": "Skyways Air Services Limited",
-      "symbol": "SKYWAYS",
+      "id": "c2c",
+      "company": "C2C Advanced Systems Limited",
+      "symbol": "C2C",
       "stage": "listed",
-      "openDate": "2026-08-24",
-      "closeDate": "2026-08-27",
-      "listingDate": "2026-09-01",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 94.7,
+      "openDate": "2024-11-22",
+      "closeDate": "2024-11-26",
+      "listingDate": "2024-12-03",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 78.9,
       "expectedFieldCount": 19,
-      "missingFieldCount": 1,
+      "missingFieldCount": 4,
       "missingFields": [
-        "offer.registrar"
+        "offer.leadManagers",
+        "offer.financials",
+        "offer.promoterShareholding",
+        "provenance.documents"
       ],
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
-      "profilePath": "ipo/skyways/"
-    },
-    {
-      "id": "sunshine",
-      "company": "Sunshine Pictures Limited",
-      "symbol": "SUNSHINE",
-      "stage": "listed",
-      "openDate": "2026-08-18",
-      "closeDate": "2026-08-20",
-      "listingDate": "2026-08-25",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 94.7,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.leadManagers"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/sunshine/"
-    },
-    {
-      "id": "tempsens",
-      "company": "Tempsens Instruments (India) Limited",
-      "symbol": "TEMPSENS",
-      "stage": "listed",
-      "openDate": "2026-08-20",
-      "closeDate": "2026-08-24",
-      "listingDate": "2026-08-28",
-      "priority": 2,
-      "priorityLabel": "P2 recent IPO (30d)",
-      "completenessPct": 94.7,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.leadManagers"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/tempsens/"
+      "profilePath": "ipo/c2c/"
     },
     {
       "id": "eximroutes",
@@ -268,6 +247,163 @@
       "profilePath": "ipo/eximroutes/"
     },
     {
+      "id": "ganeshin",
+      "company": "Ganesh Infraworld Limited",
+      "symbol": "GANESHIN",
+      "stage": "listed",
+      "openDate": "2024-11-29",
+      "closeDate": "2024-12-03",
+      "listingDate": "2024-12-06",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 78.9,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 4,
+      "missingFields": [
+        "offer.objectsOfIssue",
+        "offer.financials",
+        "offer.promoterShareholding",
+        "provenance.documents"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/ganeshin/"
+    },
+    {
+      "id": "identical",
+      "company": "Identical Brains Studios Limited",
+      "symbol": "IDENTICAL",
+      "stage": "listed",
+      "openDate": "2024-12-18",
+      "closeDate": "2024-12-20",
+      "listingDate": "2024-12-26",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 78.9,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 4,
+      "missingFields": [
+        "offer.leadManagers",
+        "offer.financials",
+        "offer.promoterShareholding",
+        "provenance.documents"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/identical/"
+    },
+    {
+      "id": "optimystix",
+      "company": "Optimystix Entertainment India Limited",
+      "symbol": "OPTIMYSTIX",
+      "stage": "listed",
+      "openDate": "2026-08-07",
+      "closeDate": "2026-08-11",
+      "listingDate": "2026-08-14",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 78.9,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 4,
+      "missingFields": [
+        "offer.registrar",
+        "offer.objectsOfIssue",
+        "offer.promoterShareholding",
+        "provenance.documents"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/optimystix/"
+    },
+    {
+      "id": "abhapower",
+      "company": "Abha Power and Steel Limited",
+      "symbol": "ABHAPOWER",
+      "stage": "listed",
+      "openDate": "2024-11-27",
+      "closeDate": "2024-11-29",
+      "listingDate": "2024-12-04",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 84.2,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 3,
+      "missingFields": [
+        "offer.financials",
+        "offer.promoterShareholding",
+        "provenance.documents"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/abhapower/"
+    },
+    {
+      "id": "credent",
+      "company": "Credent Connect N Care Limited",
+      "symbol": "CREDENT",
+      "stage": "listed",
+      "openDate": "2026-08-13",
+      "closeDate": "2026-08-17",
+      "listingDate": "2026-08-20",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 84.2,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 3,
+      "missingFields": [
+        "exchange.lotSize",
+        "offer.promoterShareholding",
+        "provenance.documents"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/credent/"
+    },
+    {
+      "id": "nmsteel",
+      "company": "NewMalayalam Steel Limited",
+      "symbol": "NMSTEEL",
+      "stage": "listed",
+      "openDate": "2024-12-19",
+      "closeDate": "2024-12-23",
+      "listingDate": "2024-12-27",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 84.2,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 3,
+      "missingFields": [
+        "offer.promoters",
+        "offer.promoterShareholding",
+        "provenance.documents"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/nmsteel/"
+    },
+    {
+      "id": "pramodini",
+      "company": "Pramodini Medicare Limited",
+      "symbol": "PRAMODINI",
+      "stage": "listed",
+      "openDate": "2026-08-12",
+      "closeDate": "2026-08-14",
+      "listingDate": "2026-08-19",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 84.2,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 3,
+      "missingFields": [
+        "exchange.lotSize",
+        "offer.promoterShareholding",
+        "provenance.documents"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/pramodini/"
+    },
+    {
       "id": "vmobile",
       "company": "Vinit Mobile Limited",
       "symbol": "VMOBILE",
@@ -288,27 +424,6 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/vmobile/"
-    },
-    {
-      "id": "rambhajo",
-      "company": "Advit Jewels Limited",
-      "symbol": "RAMBHAJO",
-      "stage": "listed",
-      "openDate": "2026-06-23",
-      "closeDate": "2026-06-25",
-      "listingDate": "2026-07-01",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 89.5,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "offer.registrar",
-        "offer.leadManagers"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/rambhajo/"
     },
     {
       "id": "armour",
@@ -351,27 +466,6 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/nfpsampoor/"
-    },
-    {
-      "id": "nsdl",
-      "company": "National Securities Depository Limited",
-      "symbol": "NSDL",
-      "stage": "closed",
-      "openDate": "2025-07-30",
-      "closeDate": "2025-08-01",
-      "listingDate": null,
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 83.3,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 2,
-      "missingFields": [
-        "exchange.lotSize",
-        "lifecycle.listingDate"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/nsdl/"
     },
     {
       "id": "amcl",
@@ -654,26 +748,6 @@
       "profilePath": "ipo/avience/"
     },
     {
-      "id": "aye",
-      "company": "Aye Finance Limited",
-      "symbol": "AYE",
-      "stage": "listed",
-      "openDate": "2026-02-09",
-      "closeDate": "2026-02-11",
-      "listingDate": "2026-02-16",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 94.7,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.leadManagers"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/aye/"
-    },
-    {
       "id": "bagdigital",
       "company": "B.A.G. Convergence Limited",
       "symbol": "BAGDIGITAL",
@@ -912,26 +986,6 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/connplex/"
-    },
-    {
-      "id": "credent",
-      "company": "Credent Connect N Care Limited",
-      "symbol": "CREDENT",
-      "stage": "listed",
-      "openDate": "2026-08-13",
-      "closeDate": "2026-08-17",
-      "listingDate": "2026-08-20",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/credent/"
     },
     {
       "id": "curis",
@@ -1694,46 +1748,6 @@
       "profilePath": "ipo/nikita/"
     },
     {
-      "id": "omni",
-      "company": "Omnitech Engineering Limited",
-      "symbol": "OMNI",
-      "stage": "listed",
-      "openDate": "2026-02-25",
-      "closeDate": "2026-02-27",
-      "listingDate": "2026-03-05",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 94.7,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.registrar"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/omni/"
-    },
-    {
-      "id": "optimystix",
-      "company": "Optimystix Entertainment India Limited",
-      "symbol": "OPTIMYSTIX",
-      "stage": "listed",
-      "openDate": "2026-08-07",
-      "closeDate": "2026-08-11",
-      "listingDate": "2026-08-14",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/optimystix/"
-    },
-    {
       "id": "optivalue",
       "company": "Optivalue Tek Consulting Limited",
       "symbol": "OPTIVALUE",
@@ -1754,26 +1768,6 @@
       "profilePath": "ipo/optivalue/"
     },
     {
-      "id": "pngsreva",
-      "company": "PNGS Reva Diamond Jewellery Limited",
-      "symbol": "PNGSREVA",
-      "stage": "listed",
-      "openDate": "2026-02-24",
-      "closeDate": "2026-02-26",
-      "listingDate": "2026-03-04",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 94.7,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.registrar"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/pngsreva/"
-    },
-    {
       "id": "parth",
       "company": "Parth Electricals & Engineering Limited",
       "symbol": "PARTH",
@@ -1792,46 +1786,6 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/parth/"
-    },
-    {
-      "id": "powerica",
-      "company": "Powerica Limited",
-      "symbol": "POWERICA",
-      "stage": "listed",
-      "openDate": "2026-03-24",
-      "closeDate": "2026-03-27",
-      "listingDate": "2026-04-02",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 94.7,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "offer.leadManagers"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/powerica/"
-    },
-    {
-      "id": "pramodini",
-      "company": "Pramodini Medicare Limited",
-      "symbol": "PRAMODINI",
-      "stage": "listed",
-      "openDate": "2026-08-12",
-      "closeDate": "2026-08-14",
-      "listingDate": "2026-08-19",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/pramodini/"
     },
     {
       "id": "primecab",
