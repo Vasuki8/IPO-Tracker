@@ -2,642 +2,60 @@
   "meta": {
     "documentRepairHealth": {
       "parserVersion": 21,
-      "attempted": 90,
-      "remaining": 0,
-      "changedFields": 93,
-      "failed": 10,
-      "checkedAt": "2026-09-15T10:35:56+05:30",
+      "attempted": 8,
+      "remaining": 2,
+      "changedFields": 3,
+      "failed": 1,
+      "checkedAt": "2026-09-15T10:41:42+05:30",
       "outcomes": [
         {
           "id": "aastha",
-          "status": "source_blocked",
-          "lastAttemptAt": "2026-09-15T10:27:54+05:30",
-          "parserVersion": 21,
-          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1785320834804.pdf",
-          "error": "('Connection broken: IncompleteRead(329216 bytes read, 8540937 more expected)', IncompleteRead(329216 bytes read, 8540937 more expected))"
-        },
-        {
-          "id": "abhapower",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "registrar"
-          ]
-        },
-        {
-          "id": "alpinetex",
           "status": "no_change",
           "changedFields": []
-        },
-        {
-          "id": "annu",
-          "status": "updated",
-          "changedFields": [
-            "financials"
-          ]
-        },
-        {
-          "id": "apexeco",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers"
-          ]
-        },
-        {
-          "id": "arcil",
-          "status": "no_change",
-          "changedFields": []
-        },
-        {
-          "id": "ardee",
-          "status": "updated",
-          "changedFields": [
-            "financials"
-          ]
-        },
-        {
-          "id": "armour",
-          "status": "no_change",
-          "changedFields": []
-        },
-        {
-          "id": "augmont",
-          "status": "no_change",
-          "changedFields": []
-        },
-        {
-          "id": "aye",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers"
-          ]
-        },
-        {
-          "id": "blel",
-          "status": "updated",
-          "changedFields": [
-            "financials"
-          ]
-        },
-        {
-          "id": "c2c",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "registrar"
-          ]
-        },
-        {
-          "id": "century-business-media-limited",
-          "status": "updated",
-          "changedFields": [
-            "registrar",
-            "financials"
-          ]
-        },
-        {
-          "id": "cleanmax",
-          "status": "no_change",
-          "changedFields": []
-        },
-        {
-          "id": "cmll",
-          "status": "updated",
-          "changedFields": [
-            "financials"
-          ]
         },
         {
           "id": "cmpdi",
-          "status": "source_blocked",
-          "lastAttemptAt": "2026-09-15T10:29:34+05:30",
-          "parserVersion": 21,
-          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2026/1775128471900.pdf",
-          "error": "('Connection broken: IncompleteRead(2203103 bytes read, 16780510 more expected)', IncompleteRead(2203103 bytes read, 16780510 more expected))"
-        },
-        {
-          "id": "credent",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "registrar",
-            "financials"
-          ]
-        },
-        {
-          "id": "csm",
-          "status": "updated",
-          "changedFields": [
-            "financials"
-          ]
-        },
-        {
-          "id": "deepa",
-          "status": "updated",
-          "changedFields": [
-            "financials"
-          ]
-        },
-        {
-          "id": "dhanlaxmi",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers"
-          ]
-        },
-        {
-          "id": "dhoottrans",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers"
-          ]
-        },
-        {
-          "id": "esds",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers"
-          ]
-        },
-        {
-          "id": "etml",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "financials"
-          ]
-        },
-        {
-          "id": "eximroutes",
           "status": "no_change",
           "changedFields": []
-        },
-        {
-          "id": "gaja",
-          "status": "updated",
-          "changedFields": [
-            "financials"
-          ]
-        },
-        {
-          "id": "ganeshin",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "registrar"
-          ]
-        },
-        {
-          "id": "glasswall",
-          "status": "updated",
-          "changedFields": [
-            "financials"
-          ]
-        },
-        {
-          "id": "gspcrop",
-          "status": "updated",
-          "changedFields": [
-            "financials"
-          ]
-        },
-        {
-          "id": "heromotors",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "financials"
-          ]
-        },
-        {
-          "id": "hexagon",
-          "status": "no_change",
-          "changedFields": []
-        },
-        {
-          "id": "htel",
-          "status": "no_change",
-          "changedFields": []
-        },
-        {
-          "id": "identical",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "registrar"
-          ]
-        },
-        {
-          "id": "indomim",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "financials"
-          ]
-        },
-        {
-          "id": "injecto-polymers-limited",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "registrar",
-            "financials"
-          ]
-        },
-        {
-          "id": "innovision",
-          "status": "no_change",
-          "changedFields": []
-        },
-        {
-          "id": "jnpr",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers"
-          ]
-        },
-        {
-          "id": "jsipl",
-          "status": "no_change",
-          "changedFields": []
-        },
-        {
-          "id": "kanohar",
-          "status": "updated",
-          "changedFields": [
-            "financials"
-          ]
-        },
-        {
-          "id": "karamtara",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "financials"
-          ]
-        },
-        {
-          "id": "kissht",
-          "status": "source_blocked",
-          "lastAttemptAt": "2026-09-15T10:33:37+05:30",
-          "parserVersion": 21,
-          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
-          "error": "('Connection broken: IncompleteRead(12803263 bytes read, 776595 more expected)', IncompleteRead(12803263 bytes read, 776595 more expected))"
         },
         {
           "id": "knack",
           "status": "source_blocked",
-          "lastAttemptAt": "2026-09-15T10:30:42+05:30",
+          "lastAttemptAt": "2026-09-15T10:40:13+05:30",
           "parserVersion": 21,
           "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1783319397647.pdf",
-          "error": "('Connection broken: IncompleteRead(7769871 bytes read, 5955349 more expected)', IncompleteRead(7769871 bytes read, 5955349 more expected))"
+          "error": "('Connection broken: IncompleteRead(9994287 bytes read, 3730933 more expected)', IncompleteRead(9994287 bytes read, 3730933 more expected))"
         },
         {
           "id": "kusumgar",
-          "status": "source_blocked",
-          "lastAttemptAt": "2026-09-15T10:30:38+05:30",
-          "parserVersion": 21,
-          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1784001026291.pdf",
-          "error": "('Connection broken: IncompleteRead(5880288 bytes read, 3397049 more expected)', IncompleteRead(5880288 bytes read, 3397049 more expected))"
+          "status": "updated",
+          "changedFields": [
+            "financials"
+          ]
         },
         {
           "id": "lalithaa",
-          "status": "source_blocked",
-          "lastAttemptAt": "2026-09-15T10:31:43+05:30",
-          "parserVersion": 21,
-          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787208957787.pdf",
-          "error": "('Connection broken: IncompleteRead(4250279 bytes read, 6778890 more expected)', IncompleteRead(4250279 bytes read, 6778890 more expected))"
-        },
-        {
-          "id": "lccproject",
           "status": "no_change",
           "changedFields": []
         },
         {
           "id": "lcl",
-          "status": "source_blocked",
-          "lastAttemptAt": "2026-09-15T10:32:44+05:30",
-          "parserVersion": 21,
-          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1785231911524.pdf",
-          "error": "('Connection broken: IncompleteRead(10209887 bytes read, 11792445 more expected)', IncompleteRead(10209887 bytes read, 11792445 more expected))"
+          "status": "no_change",
+          "changedFields": []
         },
         {
           "id": "leap",
-          "status": "source_blocked",
-          "lastAttemptAt": "2026-09-15T10:31:59+05:30",
-          "parserVersion": 21,
-          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1786535192735.pdf",
-          "error": "('Connection broken: IncompleteRead(7981696 bytes read, 102443 more expected)', IncompleteRead(7981696 bytes read, 102443 more expected))"
-        },
-        {
-          "id": "lumino",
           "status": "updated",
           "changedFields": [
-            "leadManagers",
-            "financials"
-          ]
-        },
-        {
-          "id": "m-k-c-agro-fresh-limited",
-          "status": "no_change",
-          "changedFields": []
-        },
-        {
-          "id": "maharaja-speedex-india-limited",
-          "status": "updated",
-          "changedFields": [
-            "financials"
-          ]
-        },
-        {
-          "id": "manika",
-          "status": "updated",
-          "changedFields": [
-            "financials"
-          ]
-        },
-        {
-          "id": "manipalhos",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers"
-          ]
-        },
-        {
-          "id": "milkymist",
-          "status": "no_change",
-          "changedFields": []
-        },
-        {
-          "id": "molbio",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers"
-          ]
-        },
-        {
-          "id": "mpimanipal",
-          "status": "updated",
-          "changedFields": [
-            "financials"
-          ]
-        },
-        {
-          "id": "mvelectro",
-          "status": "no_change",
-          "changedFields": []
-        },
-        {
-          "id": "national-stock-exchange-of-india-limited",
-          "status": "no_change",
-          "changedFields": []
-        },
-        {
-          "id": "nfpsampoor",
-          "status": "no_change",
-          "changedFields": []
-        },
-        {
-          "id": "nmsteel",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "registrar",
-            "financials"
-          ]
-        },
-        {
-          "id": "nopaperforms-solutions-limited",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "financials"
-          ]
-        },
-        {
-          "id": "nsdl",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "registrar",
-            "financials"
-          ]
-        },
-        {
-          "id": "om-galaxy-limited",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "registrar",
-            "financials"
-          ]
-        },
-        {
-          "id": "omni",
-          "status": "updated",
-          "changedFields": [
-            "registrar",
             "financials"
           ]
         },
         {
           "id": "ompower",
-          "status": "source_blocked",
-          "lastAttemptAt": "2026-09-15T10:32:59+05:30",
-          "parserVersion": 21,
-          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2026/1776237369286.pdf",
-          "error": "('Connection broken: IncompleteRead(6949192 bytes read, 665630 more expected)', IncompleteRead(6949192 bytes read, 665630 more expected))"
-        },
-        {
-          "id": "optimystix",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "financials"
-          ]
-        },
-        {
-          "id": "pngsreva",
-          "status": "updated",
-          "changedFields": [
-            "registrar"
-          ]
-        },
-        {
-          "id": "powerica",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "financials"
-          ]
-        },
-        {
-          "id": "pramodini",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "registrar",
-            "financials"
-          ]
-        },
-        {
-          "id": "pranav",
-          "status": "no_change",
-          "changedFields": []
-        },
-        {
-          "id": "prasolchem",
-          "status": "no_change",
-          "changedFields": []
-        },
-        {
-          "id": "priority",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers"
-          ]
-        },
-        {
-          "id": "propshop",
-          "status": "source_blocked",
-          "lastAttemptAt": "2026-09-15T10:34:03+05:30",
-          "parserVersion": 21,
-          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1785404948142.pdf",
-          "error": "('Connection broken: IncompleteRead(12105103 bytes read, 162951 more expected)', IncompleteRead(12105103 bytes read, 162951 more expected))"
-        },
-        {
-          "id": "raksan-transformers-limited",
-          "status": "updated",
-          "changedFields": [
-            "registrar",
-            "financials"
-          ]
-        },
-        {
-          "id": "rambhajo",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "registrar"
-          ]
-        },
-        {
-          "id": "rentomojo",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "financials"
-          ]
-        },
-        {
-          "id": "rsl",
           "status": "updated",
           "changedFields": [
             "financials"
           ]
-        },
-        {
-          "id": "shakti-polytarp-limited",
-          "status": "no_change",
-          "changedFields": []
-        },
-        {
-          "id": "shiprocket",
-          "status": "updated",
-          "changedFields": [
-            "financials"
-          ]
-        },
-        {
-          "id": "shreedhar",
-          "status": "updated",
-          "changedFields": [
-            "financials"
-          ]
-        },
-        {
-          "id": "skyways",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "registrar"
-          ]
-        },
-        {
-          "id": "sona",
-          "status": "no_change",
-          "changedFields": []
-        },
-        {
-          "id": "ssretail",
-          "status": "updated",
-          "changedFields": [
-            "registrar",
-            "financials"
-          ]
-        },
-        {
-          "id": "steamhouse",
-          "status": "updated",
-          "changedFields": [
-            "financials"
-          ]
-        },
-        {
-          "id": "sunshine",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "financials"
-          ]
-        },
-        {
-          "id": "symbiotec",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "financials"
-          ]
-        },
-        {
-          "id": "technocraf",
-          "status": "updated",
-          "changedFields": [
-            "financials"
-          ]
-        },
-        {
-          "id": "tempsens",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "financials"
-          ]
-        },
-        {
-          "id": "torrent-gas-limited",
-          "status": "no_change",
-          "changedFields": []
-        },
-        {
-          "id": "vama-wovenfab-limited",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "financials"
-          ]
-        },
-        {
-          "id": "veegaland",
-          "status": "updated",
-          "changedFields": [
-            "financials"
-          ]
-        },
-        {
-          "id": "vmobile",
-          "status": "no_change",
-          "changedFields": []
         }
       ]
     },
@@ -651,7 +69,7 @@
       "errors": [],
       "checkedAt": "2026-09-15T05:06:02.684035+00:00"
     },
-    "generatedAt": "2026-09-15T05:06:24.991404+00:00",
+    "generatedAt": "2026-09-15T05:11:59.402797+00:00",
     "historyStart": "2024-09-13",
     "initialSourceRepair": {
       "records": 1354,
@@ -701,8 +119,8 @@
         "stage": "record_integrity.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.21,
-        "checkedAt": "2026-09-15T05:06:04.033456+00:00",
+        "durationSeconds": 0.23,
+        "checkedAt": "2026-09-15T05:11:44.882457+00:00",
         "diagnostics": "{\"integrityRepairs\": 0}\n"
       },
       "normalize_source_health.py": {
@@ -717,40 +135,40 @@
         "stage": "enrich_sebi_priority_registers_v2.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 7.07,
-        "checkedAt": "2026-09-15T01:31:59.326751+00:00",
-        "diagnostics": "SEBI priority registers v2: first_page=0 searched=4 search_matched=0 search_links=0 failed=0\n"
+        "durationSeconds": 5.21,
+        "checkedAt": "2026-09-15T05:08:35.783817+00:00",
+        "diagnostics": "SEBI priority registers v2: first_page=0 searched=3 search_matched=0 search_links=0 failed=0\n"
       },
       "enrich_sebi_document_links.py": {
         "stage": "enrich_sebi_document_links.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 1.46,
-        "checkedAt": "2026-09-15T01:32:00.902153+00:00",
-        "diagnostics": "SEBI document links: records=2 attempted=2 resolved=2 seeded=0 added=0 failed=0\n"
+        "durationSeconds": 0.34,
+        "checkedAt": "2026-09-15T05:08:36.285462+00:00",
+        "diagnostics": "SEBI document links: records=0 attempted=0 resolved=0 seeded=0 added=0 failed=0\n"
       },
       "enrich_recent_offer_terms.py": {
         "stage": "enrich_recent_offer_terms.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.35,
-        "checkedAt": "2026-09-15T01:32:01.366872+00:00",
+        "durationSeconds": 0.41,
+        "checkedAt": "2026-09-15T05:08:36.857195+00:00",
         "diagnostics": "SEBI recent offer terms: targets=0 attempted=0 extracted=0 updated=0 failed=0 skipped_lot_only_rhp=0 fields={}\n"
       },
       "run_offer_documents.py": {
         "stage": "run_offer_documents.py",
         "status": "updated",
         "exitCode": 0,
-        "durationSeconds": 522.4,
-        "checkedAt": "2026-09-15T05:05:56.233624+00:00",
-        "diagnostics": "\"updated\", \"changedFields\": [\"leadManagers\", \"financials\"]}\n{\"id\": \"symbiotec\", \"status\": \"updated\", \"changedFields\": [\"leadManagers\", \"financials\"]}\n{\"id\": \"technocraf\", \"status\": \"updated\", \"changedFields\": [\"financials\"]}\n{\"id\": \"tempsens\", \"status\": \"updated\", \"changedFields\": [\"leadManagers\", \"financials\"]}\n{\"id\": \"torrent-gas-limited\", \"status\": \"no_change\", \"changedFields\": []}\n{\"id\": \"shreedhar\", \"status\": \"updated\", \"changedFields\": [\"financials\"]}\n{\"id\": \"veegaland\", \"status\": \"updated\", \"changedFields\": [\"financials\"]}\n{\"id\": \"propshop\", \"status\": \"source_blocked\", \"lastAttemptAt\": \"2026-09-15T10:34:03+05:30\", \"parserVersion\": 21, \"sourceUrl\": \"https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1785404948142.pdf\", \"error\": \"('Connection broken: IncompleteRead(12105103 bytes read, 162951 more expected)', IncompleteRead(12105103 bytes read, 162951 more expected))\"}\n{\"id\": \"skyways\", \"status\": \"updated\", \"changedFields\": [\"leadManagers\", \"registrar\"]}\n{\"id\": \"vmobile\", \"status\": \"no_change\", \"changedFields\": []}\n{\"id\": \"priority\", \"status\": \"updated\", \"changedFields\": [\"leadManagers\"]}\n{\"id\": \"shiprocket\", \"status\": \"updated\", \"changedFields\": [\"financials\"]}\n{\"id\": \"national-stock-exchange-of-india-limited\", \"status\": \"no_change\", \"changedFields\": []}\n{\"id\": \"shakti-polytarp-limited\", \"status\": \"no_change\", \"changedFields\": []}\n{\"id\": \"sunshine\", \"status\": \"updated\", \"changedFields\": [\"leadManagers\", \"financials\"]}\n{\"id\": \"dhoottrans\", \"status\": \"updated\", \"changedFields\": [\"leadManagers\"]}\n{\"id\": \"manipalhos\", \"status\": \"updated\", \"changedFields\": [\"leadManagers\"]}\n{\"id\": \"cleanmax\", \"status\": \"no_change\", \"changedFields\": []}\n{\"parserVersion\": 21, \"attempted\": 90, \"remaining\": 0, \"changedFields\": 93, \"failed\": 10, \"checkedAt\": \"2026-09-15T10:35:56+05:30\"}\n"
+        "durationSeconds": 186.1,
+        "checkedAt": "2026-09-15T05:11:43.111544+00:00",
+        "diagnostics": "{\"id\": \"aastha\", \"status\": \"no_change\", \"changedFields\": []}\n{\"id\": \"cmpdi\", \"status\": \"no_change\", \"changedFields\": []}\n{\"id\": \"kusumgar\", \"status\": \"updated\", \"changedFields\": [\"financials\"]}\n{\"id\": \"knack\", \"status\": \"source_blocked\", \"lastAttemptAt\": \"2026-09-15T10:40:13+05:30\", \"parserVersion\": 21, \"sourceUrl\": \"https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1783319397647.pdf\", \"error\": \"('Connection broken: IncompleteRead(9994287 bytes read, 3730933 more expected)', IncompleteRead(9994287 bytes read, 3730933 more expected))\"}\n{\"id\": \"lalithaa\", \"status\": \"no_change\", \"changedFields\": []}\n{\"id\": \"leap\", \"status\": \"updated\", \"changedFields\": [\"financials\"]}\n{\"id\": \"ompower\", \"status\": \"updated\", \"changedFields\": [\"financials\"]}\n{\"id\": \"lcl\", \"status\": \"no_change\", \"changedFields\": []}\n{\"parserVersion\": 21, \"attempted\": 8, \"remaining\": 2, \"changedFields\": 3, \"failed\": 1, \"checkedAt\": \"2026-09-15T10:41:42+05:30\"}\n"
       },
       "apply_verified_filing_offer_fields.py": {
         "stage": "apply_verified_filing_offer_fields.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.28,
-        "checkedAt": "2026-09-15T01:32:02.225048+00:00",
+        "durationSeconds": 0.35,
+        "checkedAt": "2026-09-15T05:11:43.623566+00:00",
         "diagnostics": "Verified filing offer fields: entries=4, updated=0, fields={}\n"
       },
       "backfill_recent_sebi_other_docs_lot_sizes.py": {
@@ -781,9 +199,9 @@
         "stage": "apply_corrections.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.19,
-        "checkedAt": "2026-09-15T04:57:13.715860+00:00",
-        "diagnostics": "{\"appliedFields\": 0, \"conflicts\": [{\"id\": \"shakti-polytarp-limited\", \"fields\": [\"documentRepair\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"manipalhos\", \"fields\": [\"dataCorrections\", \"documentRepair\", \"leadManagers\", \"registrar\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}]}\n"
+        "durationSeconds": 0.25,
+        "checkedAt": "2026-09-15T05:08:29.594039+00:00",
+        "diagnostics": "d its matching provenance\"}, {\"id\": \"cleanmax\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"aye\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"armour\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"eximroutes\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"torrent-gas-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"national-stock-exchange-of-india-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"nopaperforms-solutions-limited\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"m-k-c-agro-fresh-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}]}\n"
       },
       "collect_final_issue_prices.py": {
         "stage": "collect_final_issue_prices.py",
@@ -795,14 +213,14 @@
       }
     },
     "publication": {
-      "runId": "34930784064",
-      "collectorCommit": "d94833150a024e929ee42efe0c31273c0277e424",
+      "runId": "34931516877",
+      "collectorCommit": "670c268ba40f5cf94462d73c2dcd6e9aa1baba0b",
       "status": "published",
       "pendingConflictCount": 0
     },
     "recordCount": 1354,
     "recordIntegrity": {
-      "checkedAt": "2026-09-15T05:06:25.206263+00:00",
+      "checkedAt": "2026-09-15T05:11:59.620943+00:00",
       "changedFields": 0
     },
     "reviewedCorrectionStatus": {
@@ -1138,7 +556,9 @@
         {
           "id": "lalithaa",
           "fields": [
-            "documentRepair"
+            "documentFieldProvenance",
+            "documentRepair",
+            "offerDocumentExtraction"
           ],
           "reason": "Value changed since source review; preserving this record and its matching provenance"
         },
@@ -1209,7 +629,11 @@
         {
           "id": "leap",
           "fields": [
-            "documentRepair"
+            "dataCorrections",
+            "documentFieldProvenance",
+            "documentRepair",
+            "financials",
+            "offerDocumentExtraction"
           ],
           "reason": "Value changed since source review; preserving this record and its matching provenance"
         },
@@ -1264,7 +688,9 @@
         {
           "id": "lcl",
           "fields": [
-            "documentRepair"
+            "documentFieldProvenance",
+            "documentRepair",
+            "offerDocumentExtraction"
           ],
           "reason": "Value changed since source review; preserving this record and its matching provenance"
         },
@@ -1303,7 +729,11 @@
         {
           "id": "kusumgar",
           "fields": [
-            "documentRepair"
+            "dataCorrections",
+            "documentFieldProvenance",
+            "documentRepair",
+            "financials",
+            "offerDocumentExtraction"
           ],
           "reason": "Value changed since source review; preserving this record and its matching provenance"
         },
@@ -1326,7 +756,9 @@
         {
           "id": "aastha",
           "fields": [
-            "documentRepair"
+            "documentFieldProvenance",
+            "documentRepair",
+            "offerDocumentExtraction"
           ],
           "reason": "Value changed since source review; preserving this record and its matching provenance"
         },
@@ -1390,7 +822,10 @@
         {
           "id": "ompower",
           "fields": [
-            "documentRepair"
+            "dataCorrections",
+            "documentFieldProvenance",
+            "documentRepair",
+            "offerDocumentExtraction"
           ],
           "reason": "Value changed since source review; preserving this record and its matching provenance"
         },
@@ -1408,7 +843,9 @@
         {
           "id": "cmpdi",
           "fields": [
-            "documentRepair"
+            "documentFieldProvenance",
+            "documentRepair",
+            "offerDocumentExtraction"
           ],
           "reason": "Value changed since source review; preserving this record and its matching provenance"
         },
@@ -1544,13 +981,13 @@
     "schemaVersion": 5,
     "sebiDocumentLinkHealth": {
       "ok": true,
-      "attemptedRecords": 2,
-      "attempted": 2,
-      "resolvedPages": 2,
+      "attemptedRecords": 0,
+      "attempted": 0,
+      "resolvedPages": 0,
       "seededPages": 0,
       "linksAdded": 0,
       "failed": 0,
-      "asOf": "2026-09-15T07:02:00+05:30",
+      "asOf": "2026-09-15T10:38:36+05:30",
       "errors": []
     },
     "seed": false,
@@ -1634,9 +1071,9 @@
       "SEBI-document-links": {
         "ok": true,
         "records": 0,
-        "attemptedRecords": 2,
-        "attempted": 2,
-        "asOf": "2026-09-15T07:02:00+05:30",
+        "attemptedRecords": 0,
+        "attempted": 0,
+        "asOf": "2026-09-15T10:38:36+05:30",
         "errors": []
       },
       "Offer-docs": {
@@ -1682,11 +1119,11 @@
         "priorityMax": 3,
         "firstPageMatched": 0,
         "firstPageLinks": 0,
-        "searchedRecords": 4,
+        "searchedRecords": 3,
         "searchMatchedRecords": 0,
         "searchLinksAdded": 0,
         "failed": 0,
-        "asOf": "2026-09-15T07:01:59+05:30",
+        "asOf": "2026-09-15T10:38:35+05:30",
         "errors": []
       },
       "SEBI-offer-terms": {
@@ -1699,7 +1136,7 @@
         "failed": 0,
         "skippedLotOnlyRhp": 0,
         "fields": {},
-        "asOf": "2026-09-15T07:02:01+05:30",
+        "asOf": "2026-09-15T10:38:36+05:30",
         "errors": []
       },
       "verified-lot-sizes": {
@@ -1727,7 +1164,7 @@
         "entries": 4,
         "updated": 0,
         "fields": {},
-        "checkedAt": "2026-09-15T07:02:02+05:30"
+        "checkedAt": "2026-09-15T10:41:43+05:30"
       },
       "NSE-history-IPO-filter": {
         "ok": true,
@@ -4545,7 +3982,7 @@
       "sebiPriorityRegisterSearch": {
         "status": "no-match",
         "linksAdded": 0,
-        "lastAttemptAt": "2026-09-15T07:01:56+05:30",
+        "lastAttemptAt": "2026-09-15T10:38:34+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
       },
@@ -5043,7 +4480,7 @@
       "sebiPriorityRegisterSearch": {
         "status": "no-match",
         "linksAdded": 0,
-        "lastAttemptAt": "2026-09-15T07:01:55+05:30",
+        "lastAttemptAt": "2026-09-15T10:38:33+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
       }
@@ -9043,7 +8480,7 @@
       "sebiPriorityRegisterSearch": {
         "status": "no-match",
         "linksAdded": 0,
-        "lastAttemptAt": "2026-09-15T07:01:59+05:30",
+        "lastAttemptAt": "2026-09-15T10:38:35+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
       },
@@ -21441,7 +20878,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 18,
+        "parserVersion": 21,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787208957787.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "SEBI PROSPECTUS",
@@ -21458,12 +20895,15 @@
           "lotSize",
           "priceBand"
         ],
-        "extractedAt": "2026-09-14T10:53:58+05:30",
+        "extractedAt": "2026-09-15T10:40:25+05:30",
         "conflicts": [
+          "FY2024.dilutedEps",
           "FY2024.eps",
           "FY2024.revenueCr",
+          "FY2025.dilutedEps",
           "FY2025.eps",
           "FY2025.revenueCr",
+          "FY2026.dilutedEps",
           "FY2026.eps",
           "FY2026.revenueCr"
         ]
@@ -21509,8 +20949,8 @@
         "documentType": "PROSPECTUS",
         "documentDate": "2026-08-20",
         "sha256": "31f388d19e66c68b2a8bae128ced3f6d0edc2869ebb25fdf5e46096c41d84cf6",
-        "parserVersion": 18,
-        "checkedAt": "2026-09-14T10:53:58+05:30",
+        "parserVersion": 21,
+        "checkedAt": "2026-09-15T10:40:25+05:30",
         "evidence": {
           "financials": {},
           "leadManagers": {
@@ -21531,11 +20971,10 @@
         }
       },
       "documentRepair": {
-        "status": "source_blocked",
-        "lastAttemptAt": "2026-09-15T10:31:43+05:30",
-        "parserVersion": 21,
-        "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787208957787.pdf",
-        "error": "('Connection broken: IncompleteRead(4250279 bytes read, 6778890 more expected)', IncompleteRead(4250279 bytes read, 6778890 more expected))"
+        "status": "no_change",
+        "financialStatus": "needs_review",
+        "lastAttemptAt": "2026-09-15T10:40:25+05:30",
+        "parserVersion": 21
       }
     },
     {
@@ -26228,23 +25667,32 @@
         "periods": [
           {
             "period": "FY2026",
-            "revenueCr": 747.355,
+            "totalIncomeCr": 747.355,
             "ebitdaCr": 378.829,
             "roePct": 6.48,
+            "patCr": 1.826,
+            "eps": 24.9,
+            "dilutedEps": 24.9,
             "netWorthCr": 1006.332
           },
           {
             "period": "FY2025",
-            "revenueCr": 485.031,
+            "totalIncomeCr": 485.031,
             "ebitdaCr": 273.797,
             "roePct": 4.6,
+            "patCr": -2.049,
+            "eps": -27.95,
+            "dilutedEps": -27.95,
             "netWorthCr": 917.348
           },
           {
             "period": "FY2024",
-            "revenueCr": 371.944,
+            "totalIncomeCr": 371.944,
             "ebitdaCr": 209.918,
             "roePct": 5.79,
+            "patCr": -3.73,
+            "eps": -50.87,
+            "dilutedEps": -50.87,
             "netWorthCr": 714.178
           }
         ]
@@ -26335,7 +25783,7 @@
       "lotSize": 94,
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 18,
+        "parserVersion": 21,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1786535192735.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "SEBI PROSPECTUS",
@@ -26353,12 +25801,8 @@
           "lotSize",
           "priceBand"
         ],
-        "extractedAt": "2026-09-14T10:53:59+05:30",
-        "conflicts": [
-          "FY2024.patCr",
-          "FY2025.patCr",
-          "FY2026.patCr"
-        ]
+        "extractedAt": "2026-09-15T10:40:40+05:30",
+        "conflicts": []
       },
       "dataCorrections": [
         {
@@ -26457,6 +25901,75 @@
           "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1786535192735.pdf",
           "sha256": "857589a7e9a43cf04ae7e9801ba11c09a102674f82d96ee1341224e799d3b613",
           "correctedAt": "2026-09-14T12:16:27.134108+00:00"
+        },
+        {
+          "field": "financials",
+          "before": {
+            "unit": "₹ crore",
+            "periods": [
+              {
+                "period": "FY2026",
+                "revenueCr": 747.355,
+                "ebitdaCr": 378.829,
+                "roePct": 6.48,
+                "netWorthCr": 1006.332
+              },
+              {
+                "period": "FY2025",
+                "revenueCr": 485.031,
+                "ebitdaCr": 273.797,
+                "roePct": 4.6,
+                "netWorthCr": 917.348
+              },
+              {
+                "period": "FY2024",
+                "revenueCr": 371.944,
+                "ebitdaCr": 209.918,
+                "roePct": 5.79,
+                "netWorthCr": 714.178
+              }
+            ]
+          },
+          "after": {
+            "unit": "₹ crore",
+            "periods": [
+              {
+                "period": "FY2026",
+                "totalIncomeCr": 747.355,
+                "ebitdaCr": 378.829,
+                "roePct": 6.48,
+                "patCr": 1.826,
+                "eps": 24.9,
+                "dilutedEps": 24.9,
+                "netWorthCr": 1006.332
+              },
+              {
+                "period": "FY2025",
+                "totalIncomeCr": 485.031,
+                "ebitdaCr": 273.797,
+                "roePct": 4.6,
+                "patCr": -2.049,
+                "eps": -27.95,
+                "dilutedEps": -27.95,
+                "netWorthCr": 917.348
+              },
+              {
+                "period": "FY2024",
+                "totalIncomeCr": 371.944,
+                "ebitdaCr": 209.918,
+                "roePct": 5.79,
+                "patCr": -3.73,
+                "eps": -50.87,
+                "dilutedEps": -50.87,
+                "netWorthCr": 714.178
+              }
+            ]
+          },
+          "reason": "Revalidated financial table or intermediary role against source document",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1786535192735.pdf",
+          "sha256": "857589a7e9a43cf04ae7e9801ba11c09a102674f82d96ee1341224e799d3b613",
+          "parserVersion": 21,
+          "correctedAt": "2026-09-15T10:40:40+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -26464,92 +25977,281 @@
         "documentType": "PROSPECTUS",
         "documentDate": "2026-08-12",
         "sha256": "857589a7e9a43cf04ae7e9801ba11c09a102674f82d96ee1341224e799d3b613",
-        "parserVersion": 18,
-        "checkedAt": "2026-09-14T10:53:59+05:30",
+        "parserVersion": 21,
+        "checkedAt": "2026-09-15T10:40:40+05:30",
         "evidence": {
           "financials": {
-            "FY2026.revenueCr": {
+            "FY2026.totalIncomeCr": {
               "page": 133,
-              "header": "S. No.     Key Performance Indicators                                              Units             Fiscal 2026       Fiscal 2025        Fiscal 2024",
+              "header": "at have been used historically by our Company to understand and analyse the business performance,\n                              which    in  result,  help   us  in  analysing     the  growth     of  business    of  the  Company       in  comparison      to  its peers,   and   other\n                              relevant and material KPIs of the business of our Company that have a bearing for arriving at the basis for the Offer\n                              Price.\n\n                                S. No.     Key Performance Indicators                                              Units             Fiscal 2026       Fiscal 2025        Fiscal 2024",
               "row": "3.       Total Income(5)                                                       ₹ million               7,473.55          4,850.31          3,719.44",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
               "normalizedValue": 747.355,
+              "scope": "unspecified",
               "originalUnit": "million"
             },
-            "FY2025.revenueCr": {
+            "FY2025.totalIncomeCr": {
               "page": 133,
-              "header": "S. No.     Key Performance Indicators                                              Units             Fiscal 2026       Fiscal 2025        Fiscal 2024",
+              "header": "at have been used historically by our Company to understand and analyse the business performance,\n                              which    in  result,  help   us  in  analysing     the  growth     of  business    of  the  Company       in  comparison      to  its peers,   and   other\n                              relevant and material KPIs of the business of our Company that have a bearing for arriving at the basis for the Offer\n                              Price.\n\n                                S. No.     Key Performance Indicators                                              Units             Fiscal 2026       Fiscal 2025        Fiscal 2024",
               "row": "3.       Total Income(5)                                                       ₹ million               7,473.55          4,850.31          3,719.44",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
               "normalizedValue": 485.031,
+              "scope": "unspecified",
               "originalUnit": "million"
             },
-            "FY2024.revenueCr": {
+            "FY2024.totalIncomeCr": {
               "page": 133,
-              "header": "S. No.     Key Performance Indicators                                              Units             Fiscal 2026       Fiscal 2025        Fiscal 2024",
+              "header": "at have been used historically by our Company to understand and analyse the business performance,\n                              which    in  result,  help   us  in  analysing     the  growth     of  business    of  the  Company       in  comparison      to  its peers,   and   other\n                              relevant and material KPIs of the business of our Company that have a bearing for arriving at the basis for the Offer\n                              Price.\n\n                                S. No.     Key Performance Indicators                                              Units             Fiscal 2026       Fiscal 2025        Fiscal 2024",
               "row": "3.       Total Income(5)                                                       ₹ million               7,473.55          4,850.31          3,719.44",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
               "normalizedValue": 371.944,
+              "scope": "unspecified",
               "originalUnit": "million"
             },
             "FY2026.ebitdaCr": {
               "page": 133,
-              "header": "S. No.     Key Performance Indicators                                              Units             Fiscal 2026       Fiscal 2025        Fiscal 2024",
+              "header": "at have been used historically by our Company to understand and analyse the business performance,\n                              which    in  result,  help   us  in  analysing     the  growth     of  business    of  the  Company       in  comparison      to  its peers,   and   other\n                              relevant and material KPIs of the business of our Company that have a bearing for arriving at the basis for the Offer\n                              Price.\n\n                                S. No.     Key Performance Indicators                                              Units             Fiscal 2026       Fiscal 2025        Fiscal 2024",
               "row": "6.       EBITDA(10)                                                            ₹ million               3,788.29          2,737.97          2,099.18",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
               "normalizedValue": 378.829,
+              "scope": "unspecified",
               "originalUnit": "million"
             },
             "FY2025.ebitdaCr": {
               "page": 133,
-              "header": "S. No.     Key Performance Indicators                                              Units             Fiscal 2026       Fiscal 2025        Fiscal 2024",
+              "header": "at have been used historically by our Company to understand and analyse the business performance,\n                              which    in  result,  help   us  in  analysing     the  growth     of  business    of  the  Company       in  comparison      to  its peers,   and   other\n                              relevant and material KPIs of the business of our Company that have a bearing for arriving at the basis for the Offer\n                              Price.\n\n                                S. No.     Key Performance Indicators                                              Units             Fiscal 2026       Fiscal 2025        Fiscal 2024",
               "row": "6.       EBITDA(10)                                                            ₹ million               3,788.29          2,737.97          2,099.18",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
               "normalizedValue": 273.797,
+              "scope": "unspecified",
               "originalUnit": "million"
             },
             "FY2024.ebitdaCr": {
               "page": 133,
-              "header": "S. No.     Key Performance Indicators                                              Units             Fiscal 2026       Fiscal 2025        Fiscal 2024",
+              "header": "at have been used historically by our Company to understand and analyse the business performance,\n                              which    in  result,  help   us  in  analysing     the  growth     of  business    of  the  Company       in  comparison      to  its peers,   and   other\n                              relevant and material KPIs of the business of our Company that have a bearing for arriving at the basis for the Offer\n                              Price.\n\n                                S. No.     Key Performance Indicators                                              Units             Fiscal 2026       Fiscal 2025        Fiscal 2024",
               "row": "6.       EBITDA(10)                                                            ₹ million               3,788.29          2,737.97          2,099.18",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
               "normalizedValue": 209.918,
+              "scope": "unspecified",
               "originalUnit": "million"
             },
             "FY2026.roePct": {
               "page": 133,
-              "header": "S. No.     Key Performance Indicators                                              Units             Fiscal 2026       Fiscal 2025        Fiscal 2024",
+              "header": "at have been used historically by our Company to understand and analyse the business performance,\n                              which    in  result,  help   us  in  analysing     the  growth     of  business    of  the  Company       in  comparison      to  its peers,   and   other\n                              relevant and material KPIs of the business of our Company that have a bearing for arriving at the basis for the Offer\n                              Price.\n\n                                S. No.     Key Performance Indicators                                              Units             Fiscal 2026       Fiscal 2025        Fiscal 2024",
               "row": "12.       Return on Equity(16)                                                      %                      6.48%             4.60%             5.79%",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
               "normalizedValue": 6.48,
+              "scope": "unspecified",
               "originalUnit": "percent"
             },
             "FY2025.roePct": {
               "page": 133,
-              "header": "S. No.     Key Performance Indicators                                              Units             Fiscal 2026       Fiscal 2025        Fiscal 2024",
+              "header": "at have been used historically by our Company to understand and analyse the business performance,\n                              which    in  result,  help   us  in  analysing     the  growth     of  business    of  the  Company       in  comparison      to  its peers,   and   other\n                              relevant and material KPIs of the business of our Company that have a bearing for arriving at the basis for the Offer\n                              Price.\n\n                                S. No.     Key Performance Indicators                                              Units             Fiscal 2026       Fiscal 2025        Fiscal 2024",
               "row": "12.       Return on Equity(16)                                                      %                      6.48%             4.60%             5.79%",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
               "normalizedValue": 4.6,
+              "scope": "unspecified",
               "originalUnit": "percent"
             },
             "FY2024.roePct": {
               "page": 133,
-              "header": "S. No.     Key Performance Indicators                                              Units             Fiscal 2026       Fiscal 2025        Fiscal 2024",
+              "header": "at have been used historically by our Company to understand and analyse the business performance,\n                              which    in  result,  help   us  in  analysing     the  growth     of  business    of  the  Company       in  comparison      to  its peers,   and   other\n                              relevant and material KPIs of the business of our Company that have a bearing for arriving at the basis for the Offer\n                              Price.\n\n                                S. No.     Key Performance Indicators                                              Units             Fiscal 2026       Fiscal 2025        Fiscal 2024",
               "row": "12.       Return on Equity(16)                                                      %                      6.48%             4.60%             5.79%",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
               "normalizedValue": 5.79,
+              "scope": "unspecified",
               "originalUnit": "percent"
+            },
+            "FY2026.patCr": {
+              "page": 254,
+              "header": "*\n                   As a nominee on behalf of our Company.\n\n                  Financial information\n                                                                                                                                                  (in ₹ millions unless stated otherwise)\n                     Sr. No.                        Particulars                                Fiscal 2026                       Fiscal 2025                      Fiscal 2024",
+              "row": "4.          Profit/ (loss) after tax                                                     18.26                          (20.49)                           (37.30)",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 1.826,
+              "scope": "unspecified",
+              "originalUnit": "million"
+            },
+            "FY2025.patCr": {
+              "page": 254,
+              "header": "*\n                   As a nominee on behalf of our Company.\n\n                  Financial information\n                                                                                                                                                  (in ₹ millions unless stated otherwise)\n                     Sr. No.                        Particulars                                Fiscal 2026                       Fiscal 2025                      Fiscal 2024",
+              "row": "4.          Profit/ (loss) after tax                                                     18.26                          (20.49)                           (37.30)",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": -2.049,
+              "scope": "unspecified",
+              "originalUnit": "million"
+            },
+            "FY2024.patCr": {
+              "page": 254,
+              "header": "*\n                   As a nominee on behalf of our Company.\n\n                  Financial information\n                                                                                                                                                  (in ₹ millions unless stated otherwise)\n                     Sr. No.                        Particulars                                Fiscal 2026                       Fiscal 2025                      Fiscal 2024",
+              "row": "4.          Profit/ (loss) after tax                                                     18.26                          (20.49)                           (37.30)",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": -3.73,
+              "scope": "unspecified",
+              "originalUnit": "million"
+            },
+            "FY2026.eps": {
+              "page": 254,
+              "header": "*\n                   As a nominee on behalf of our Company.\n\n                  Financial information\n                                                                                                                                                  (in ₹ millions unless stated otherwise)\n                     Sr. No.                        Particulars                                Fiscal 2026                       Fiscal 2025                      Fiscal 2024",
+              "row": "5.          Basic earnings per share (in ₹)                                              24.90                          (27.95)                           (50.87)",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 24.9,
+              "scope": "unspecified",
+              "originalUnit": "rupees per share"
+            },
+            "FY2025.eps": {
+              "page": 254,
+              "header": "*\n                   As a nominee on behalf of our Company.\n\n                  Financial information\n                                                                                                                                                  (in ₹ millions unless stated otherwise)\n                     Sr. No.                        Particulars                                Fiscal 2026                       Fiscal 2025                      Fiscal 2024",
+              "row": "5.          Basic earnings per share (in ₹)                                              24.90                          (27.95)                           (50.87)",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": -27.95,
+              "scope": "unspecified",
+              "originalUnit": "rupees per share"
+            },
+            "FY2024.eps": {
+              "page": 254,
+              "header": "*\n                   As a nominee on behalf of our Company.\n\n                  Financial information\n                                                                                                                                                  (in ₹ millions unless stated otherwise)\n                     Sr. No.                        Particulars                                Fiscal 2026                       Fiscal 2025                      Fiscal 2024",
+              "row": "5.          Basic earnings per share (in ₹)                                              24.90                          (27.95)                           (50.87)",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": -50.87,
+              "scope": "unspecified",
+              "originalUnit": "rupees per share"
+            },
+            "FY2026.dilutedEps": {
+              "page": 254,
+              "header": "*\n                   As a nominee on behalf of our Company.\n\n                  Financial information\n                                                                                                                                                  (in ₹ millions unless stated otherwise)\n                     Sr. No.                        Particulars                                Fiscal 2026                       Fiscal 2025                      Fiscal 2024",
+              "row": "6.          Diluted earnings per share (in ₹)                                            24.90                          (27.95)                           (50.87)",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 24.9,
+              "scope": "unspecified",
+              "originalUnit": "rupees per share"
+            },
+            "FY2025.dilutedEps": {
+              "page": 254,
+              "header": "*\n                   As a nominee on behalf of our Company.\n\n                  Financial information\n                                                                                                                                                  (in ₹ millions unless stated otherwise)\n                     Sr. No.                        Particulars                                Fiscal 2026                       Fiscal 2025                      Fiscal 2024",
+              "row": "6.          Diluted earnings per share (in ₹)                                            24.90                          (27.95)                           (50.87)",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": -27.95,
+              "scope": "unspecified",
+              "originalUnit": "rupees per share"
+            },
+            "FY2024.dilutedEps": {
+              "page": 254,
+              "header": "*\n                   As a nominee on behalf of our Company.\n\n                  Financial information\n                                                                                                                                                  (in ₹ millions unless stated otherwise)\n                     Sr. No.                        Particulars                                Fiscal 2026                       Fiscal 2025                      Fiscal 2024",
+              "row": "6.          Diluted earnings per share (in ₹)                                            24.90                          (27.95)                           (50.87)",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": -50.87,
+              "scope": "unspecified",
+              "originalUnit": "rupees per share"
             },
             "FY2026.netWorthCr": {
               "page": 397,
-              "header": "Particulars                                          March 31, 2026               March 31, 2025              March 31, 2024",
+              "header": "rating profit, net worth, monetary assets, as restated and derived from the Restated\n                  Consolidated Financial Information in this Prospectus, as at and for the financial years ended March 31, 2026, March 31, 2025\n                  and March 31, 2024, is set forth below:\n                                                                                                                                                                            (in ₹ million)\n                                                    Particulars                                          March 31, 2026               March 31, 2025              March 31, 2024",
               "row": "Net worth(4)                                                                                     10,063.32                      9,173.48                    7,141.78",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
               "normalizedValue": 1006.332,
+              "scope": "consolidated",
               "originalUnit": "million"
             },
             "FY2025.netWorthCr": {
               "page": 397,
-              "header": "Particulars                                          March 31, 2026               March 31, 2025              March 31, 2024",
+              "header": "rating profit, net worth, monetary assets, as restated and derived from the Restated\n                  Consolidated Financial Information in this Prospectus, as at and for the financial years ended March 31, 2026, March 31, 2025\n                  and March 31, 2024, is set forth below:\n                                                                                                                                                                            (in ₹ million)\n                                                    Particulars                                          March 31, 2026               March 31, 2025              March 31, 2024",
               "row": "Net worth(4)                                                                                     10,063.32                      9,173.48                    7,141.78",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
               "normalizedValue": 917.348,
+              "scope": "consolidated",
               "originalUnit": "million"
             },
             "FY2024.netWorthCr": {
               "page": 397,
-              "header": "Particulars                                          March 31, 2026               March 31, 2025              March 31, 2024",
+              "header": "rating profit, net worth, monetary assets, as restated and derived from the Restated\n                  Consolidated Financial Information in this Prospectus, as at and for the financial years ended March 31, 2026, March 31, 2025\n                  and March 31, 2024, is set forth below:\n                                                                                                                                                                            (in ₹ million)\n                                                    Particulars                                          March 31, 2026               March 31, 2025              March 31, 2024",
               "row": "Net worth(4)                                                                                     10,063.32                      9,173.48                    7,141.78",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
               "normalizedValue": 714.178,
+              "scope": "consolidated",
               "originalUnit": "million"
             }
           },
@@ -26573,11 +26275,10 @@
         }
       },
       "documentRepair": {
-        "status": "source_blocked",
-        "lastAttemptAt": "2026-09-15T10:31:59+05:30",
-        "parserVersion": 21,
-        "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1786535192735.pdf",
-        "error": "('Connection broken: IncompleteRead(7981696 bytes read, 102443 more expected)', IncompleteRead(7981696 bytes read, 102443 more expected))"
+        "status": "updated",
+        "financialStatus": "validated",
+        "lastAttemptAt": "2026-09-15T10:40:40+05:30",
+        "parserVersion": 21
       }
     },
     {
@@ -29084,7 +28785,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 18,
+        "parserVersion": 21,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1785231911524.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "SEBI PROSPECTUS",
@@ -29097,16 +28798,11 @@
           "leadManagers",
           "registrar",
           "promoters",
-          "financials",
           "objectsOfIssue",
           "lotSize"
         ],
-        "extractedAt": "2026-09-14T10:54:06+05:30",
-        "conflicts": [
-          "FY2024.revenueCr",
-          "FY2025.revenueCr",
-          "FY2026.revenueCr"
-        ]
+        "extractedAt": "2026-09-15T10:41:42+05:30",
+        "conflicts": []
       },
       "dataCorrections": [
         {
@@ -29207,74 +28903,10 @@
         "documentType": "PROSPECTUS",
         "documentDate": "2026-07-28",
         "sha256": "25af6a670535048c5e5386c45032e772bf79877b7102edbcebdd167b413503cf",
-        "parserVersion": 18,
-        "checkedAt": "2026-09-14T10:54:06+05:30",
+        "parserVersion": 21,
+        "checkedAt": "2026-09-15T10:41:42+05:30",
         "evidence": {
-          "financials": {
-            "FY2026.ebitdaCr": {
-              "page": 135,
-              "header": "2026                         2025                              2024",
-              "row": "EBITDA                                    ₹ million                        3,394.51                        2,286.02                            1,059.62",
-              "normalizedValue": 339.451,
-              "originalUnit": "million"
-            },
-            "FY2025.ebitdaCr": {
-              "page": 135,
-              "header": "2026                         2025                              2024",
-              "row": "EBITDA                                    ₹ million                        3,394.51                        2,286.02                            1,059.62",
-              "normalizedValue": 228.602,
-              "originalUnit": "million"
-            },
-            "FY2024.ebitdaCr": {
-              "page": 135,
-              "header": "2026                         2025                              2024",
-              "row": "EBITDA                                    ₹ million                        3,394.51                        2,286.02                            1,059.62",
-              "normalizedValue": 105.962,
-              "originalUnit": "million"
-            },
-            "FY2026.patCr": {
-              "page": 135,
-              "header": "2026                         2025                              2024",
-              "row": "Profit for the year                       ₹ million                        1,934.52                        1,178.41                              297.58",
-              "normalizedValue": 193.452,
-              "originalUnit": "million"
-            },
-            "FY2025.patCr": {
-              "page": 135,
-              "header": "2026                         2025                              2024",
-              "row": "Profit for the year                       ₹ million                        1,934.52                        1,178.41                              297.58",
-              "normalizedValue": 117.841,
-              "originalUnit": "million"
-            },
-            "FY2024.patCr": {
-              "page": 135,
-              "header": "2026                         2025                              2024",
-              "row": "Profit for the year                       ₹ million                        1,934.52                        1,178.41                              297.58",
-              "normalizedValue": 29.758,
-              "originalUnit": "million"
-            },
-            "FY2026.roePct": {
-              "page": 135,
-              "header": "2026                         2025                              2024",
-              "row": "Return on Equity                              %                                36.80                          31.71                                11.92",
-              "normalizedValue": 36.8,
-              "originalUnit": "percent"
-            },
-            "FY2025.roePct": {
-              "page": 135,
-              "header": "2026                         2025                              2024",
-              "row": "Return on Equity                              %                                36.80                          31.71                                11.92",
-              "normalizedValue": 31.71,
-              "originalUnit": "percent"
-            },
-            "FY2024.roePct": {
-              "page": 135,
-              "header": "2026                         2025                              2024",
-              "row": "Return on Equity                              %                                36.80                          31.71                                11.92",
-              "normalizedValue": 11.92,
-              "originalUnit": "percent"
-            }
-          },
+          "financials": {},
           "leadManagers": {
             "page": 2,
             "heading": "BOOK RUNNING LEAD MANAGERS",
@@ -29293,11 +28925,10 @@
         }
       },
       "documentRepair": {
-        "status": "source_blocked",
-        "lastAttemptAt": "2026-09-15T10:32:44+05:30",
-        "parserVersion": 21,
-        "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1785231911524.pdf",
-        "error": "('Connection broken: IncompleteRead(10209887 bytes read, 11792445 more expected)', IncompleteRead(10209887 bytes read, 11792445 more expected))"
+        "status": "no_change",
+        "financialStatus": "needs_review",
+        "lastAttemptAt": "2026-09-15T10:41:42+05:30",
+        "parserVersion": 21
       },
       "listing": {
         "issuePrice": 425.0,
@@ -32012,24 +31643,24 @@
         "periods": [
           {
             "period": "FY2026",
-            "netWorthCr": 502.954,
             "revenueCr": 692.003,
             "ebitdaCr": 187.85,
-            "patCr": 98.2
+            "patCr": 98.2,
+            "roePct": 25.82
           },
           {
             "period": "FY2025",
-            "netWorthCr": 257.752,
             "revenueCr": 778.997,
             "ebitdaCr": 188.389,
-            "patCr": 111.988
+            "patCr": 111.988,
+            "roePct": 56.26
           },
           {
             "period": "FY2024",
-            "netWorthCr": 140.359,
             "revenueCr": 467.908,
             "ebitdaCr": 131.847,
-            "patCr": 84.396
+            "patCr": 84.396,
+            "roePct": 86.13
           }
         ]
       },
@@ -32121,23 +31752,24 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 18,
-        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/Kusumgar%20Limited%20-%20Abridged_p.pdf",
-        "documentType": "RHP",
-        "documentTitle": "KUSUMGAR LIMITED- Abridged Prospectus",
-        "documentFiledDate": "2026-07-02",
+        "parserVersion": 21,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1784001026291.pdf",
+        "documentType": "PROSPECTUS",
+        "documentTitle": "SEBI PROSPECTUS",
+        "documentFiledDate": "2026-07-14",
         "source": "SEBI",
-        "sha256": "ba20826ae0894b85bb92a4bfc206c1c7c10aa3bdb0eb3629975d51d52a39fb1e",
-        "pagesRead": 15,
-        "pageCount": 15,
+        "sha256": "bf59093791facdb51f1ef0bb2a7c4a8fdaa8f9766b37c7aaaf08903cfaec86bd",
+        "pagesRead": 495,
+        "pageCount": 495,
         "extractedFields": [
           "leadManagers",
           "registrar",
           "promoters",
           "financials",
-          "objectsOfIssue"
+          "objectsOfIssue",
+          "lotSize"
         ],
-        "extractedAt": "2026-09-14T10:53:43+05:30",
+        "extractedAt": "2026-09-15T10:39:41+05:30",
         "conflicts": []
       },
       "dataCorrections": [
@@ -32241,100 +31873,232 @@
           "sourceUrl": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/Kusumgar%20Limited%20-%20Abridged_p.pdf",
           "sha256": "ba20826ae0894b85bb92a4bfc206c1c7c10aa3bdb0eb3629975d51d52a39fb1e",
           "correctedAt": "2026-09-14T12:16:27.134108+00:00"
+        },
+        {
+          "field": "financials",
+          "before": {
+            "unit": "₹ crore",
+            "periods": [
+              {
+                "period": "FY2026",
+                "netWorthCr": 502.954,
+                "revenueCr": 692.003,
+                "ebitdaCr": 187.85,
+                "patCr": 98.2
+              },
+              {
+                "period": "FY2025",
+                "netWorthCr": 257.752,
+                "revenueCr": 778.997,
+                "ebitdaCr": 188.389,
+                "patCr": 111.988
+              },
+              {
+                "period": "FY2024",
+                "netWorthCr": 140.359,
+                "revenueCr": 467.908,
+                "ebitdaCr": 131.847,
+                "patCr": 84.396
+              }
+            ]
+          },
+          "after": {
+            "unit": "₹ crore",
+            "periods": [
+              {
+                "period": "FY2026",
+                "revenueCr": 692.003,
+                "ebitdaCr": 187.85,
+                "patCr": 98.2,
+                "roePct": 25.82
+              },
+              {
+                "period": "FY2025",
+                "revenueCr": 778.997,
+                "ebitdaCr": 188.389,
+                "patCr": 111.988,
+                "roePct": 56.26
+              },
+              {
+                "period": "FY2024",
+                "revenueCr": 467.908,
+                "ebitdaCr": 131.847,
+                "patCr": 84.396,
+                "roePct": 86.13
+              }
+            ]
+          },
+          "reason": "Revalidated financial table or intermediary role against source document",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1784001026291.pdf",
+          "sha256": "bf59093791facdb51f1ef0bb2a7c4a8fdaa8f9766b37c7aaaf08903cfaec86bd",
+          "parserVersion": 21,
+          "correctedAt": "2026-09-15T10:39:41+05:30"
         }
       ],
       "documentFieldProvenance": {
-        "sourceUrl": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/Kusumgar%20Limited%20-%20Abridged_p.pdf",
-        "documentType": "RHP",
-        "documentDate": "2026-07-02",
-        "sha256": "ba20826ae0894b85bb92a4bfc206c1c7c10aa3bdb0eb3629975d51d52a39fb1e",
-        "parserVersion": 18,
-        "checkedAt": "2026-09-14T10:53:43+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1784001026291.pdf",
+        "documentType": "PROSPECTUS",
+        "documentDate": "2026-07-14",
+        "sha256": "bf59093791facdb51f1ef0bb2a7c4a8fdaa8f9766b37c7aaaf08903cfaec86bd",
+        "parserVersion": 21,
+        "checkedAt": "2026-09-15T10:39:41+05:30",
         "evidence": {
           "financials": {
-            "FY2026.netWorthCr": {
-              "page": 9,
-              "header": "2026                             2025                             2024",
-              "row": "Net Worth      (1)",
-              "normalizedValue": 502.954,
-              "originalUnit": "million"
-            },
-            "FY2025.netWorthCr": {
-              "page": 9,
-              "header": "2026                             2025                             2024",
-              "row": "Net Worth      (1)",
-              "normalizedValue": 257.752,
-              "originalUnit": "million"
-            },
-            "FY2024.netWorthCr": {
-              "page": 9,
-              "header": "2026                             2025                             2024",
-              "row": "Net Worth      (1)",
-              "normalizedValue": 140.359,
-              "originalUnit": "million"
-            },
             "FY2026.revenueCr": {
-              "page": 9,
-              "header": "2026                             2025                             2024",
-              "row": "Revenue from Operations               (2)",
+              "page": 50,
+              "header": "   results   of  operations,     cash    flows   and    financial\n                        condition     could    be   materially     adversely     affected.    The    table   below     sets  forth   our   revenue      from    operations,\n                        EBITDA, EBITDA Margin, profit for the year, and PAT Margin for the periods indicated.\n\n                                                                                                                     Year ended March 31,\n                                                Particulars                                        2026                           2025                         2024",
+              "row": "Revenue from operations                                                          6,920.03                       7,789.97                   4,679.08",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
               "normalizedValue": 692.003,
+              "scope": "unspecified",
               "originalUnit": "million"
             },
             "FY2025.revenueCr": {
-              "page": 9,
-              "header": "2026                             2025                             2024",
-              "row": "Revenue from Operations               (2)",
+              "page": 50,
+              "header": "   results   of  operations,     cash    flows   and    financial\n                        condition     could    be   materially     adversely     affected.    The    table   below     sets  forth   our   revenue      from    operations,\n                        EBITDA, EBITDA Margin, profit for the year, and PAT Margin for the periods indicated.\n\n                                                                                                                     Year ended March 31,\n                                                Particulars                                        2026                           2025                         2024",
+              "row": "Revenue from operations                                                          6,920.03                       7,789.97                   4,679.08",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
               "normalizedValue": 778.997,
+              "scope": "unspecified",
               "originalUnit": "million"
             },
             "FY2024.revenueCr": {
-              "page": 9,
-              "header": "2026                             2025                             2024",
-              "row": "Revenue from Operations               (2)",
+              "page": 50,
+              "header": "   results   of  operations,     cash    flows   and    financial\n                        condition     could    be   materially     adversely     affected.    The    table   below     sets  forth   our   revenue      from    operations,\n                        EBITDA, EBITDA Margin, profit for the year, and PAT Margin for the periods indicated.\n\n                                                                                                                     Year ended March 31,\n                                                Particulars                                        2026                           2025                         2024",
+              "row": "Revenue from operations                                                          6,920.03                       7,789.97                   4,679.08",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
               "normalizedValue": 467.908,
+              "scope": "unspecified",
               "originalUnit": "million"
             },
             "FY2026.ebitdaCr": {
-              "page": 9,
-              "header": "2026                             2025                             2024",
-              "row": "EBITDA       (3)",
+              "page": 50,
+              "header": "   results   of  operations,     cash    flows   and    financial\n                        condition     could    be   materially     adversely     affected.    The    table   below     sets  forth   our   revenue      from    operations,\n                        EBITDA, EBITDA Margin, profit for the year, and PAT Margin for the periods indicated.\n\n                                                                                                                     Year ended March 31,\n                                                Particulars                                        2026                           2025                         2024",
+              "row": "EBITDA(1)(*)                                                                     1,878.50                       1,883.89                   1,318.47",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
               "normalizedValue": 187.85,
+              "scope": "unspecified",
               "originalUnit": "million"
             },
             "FY2025.ebitdaCr": {
-              "page": 9,
-              "header": "2026                             2025                             2024",
-              "row": "EBITDA       (3)",
+              "page": 50,
+              "header": "   results   of  operations,     cash    flows   and    financial\n                        condition     could    be   materially     adversely     affected.    The    table   below     sets  forth   our   revenue      from    operations,\n                        EBITDA, EBITDA Margin, profit for the year, and PAT Margin for the periods indicated.\n\n                                                                                                                     Year ended March 31,\n                                                Particulars                                        2026                           2025                         2024",
+              "row": "EBITDA(1)(*)                                                                     1,878.50                       1,883.89                   1,318.47",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
               "normalizedValue": 188.389,
+              "scope": "unspecified",
               "originalUnit": "million"
             },
             "FY2024.ebitdaCr": {
-              "page": 9,
-              "header": "2026                             2025                             2024",
-              "row": "EBITDA       (3)",
+              "page": 50,
+              "header": "   results   of  operations,     cash    flows   and    financial\n                        condition     could    be   materially     adversely     affected.    The    table   below     sets  forth   our   revenue      from    operations,\n                        EBITDA, EBITDA Margin, profit for the year, and PAT Margin for the periods indicated.\n\n                                                                                                                     Year ended March 31,\n                                                Particulars                                        2026                           2025                         2024",
+              "row": "EBITDA(1)(*)                                                                     1,878.50                       1,883.89                   1,318.47",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
               "normalizedValue": 131.847,
+              "scope": "unspecified",
               "originalUnit": "million"
             },
             "FY2026.patCr": {
-              "page": 9,
-              "header": "2026                             2025                             2024",
-              "row": "Profit after tax     (4)",
+              "page": 50,
+              "header": "   results   of  operations,     cash    flows   and    financial\n                        condition     could    be   materially     adversely     affected.    The    table   below     sets  forth   our   revenue      from    operations,\n                        EBITDA, EBITDA Margin, profit for the year, and PAT Margin for the periods indicated.\n\n                                                                                                                     Year ended March 31,\n                                                Particulars                                        2026                           2025                         2024",
+              "row": "Profit for the year                                                                982.00                       1,119.88                     843.96",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
               "normalizedValue": 98.2,
+              "scope": "unspecified",
               "originalUnit": "million"
             },
             "FY2025.patCr": {
-              "page": 9,
-              "header": "2026                             2025                             2024",
-              "row": "Profit after tax     (4)",
+              "page": 50,
+              "header": "   results   of  operations,     cash    flows   and    financial\n                        condition     could    be   materially     adversely     affected.    The    table   below     sets  forth   our   revenue      from    operations,\n                        EBITDA, EBITDA Margin, profit for the year, and PAT Margin for the periods indicated.\n\n                                                                                                                     Year ended March 31,\n                                                Particulars                                        2026                           2025                         2024",
+              "row": "Profit for the year                                                                982.00                       1,119.88                     843.96",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
               "normalizedValue": 111.988,
+              "scope": "unspecified",
               "originalUnit": "million"
             },
             "FY2024.patCr": {
-              "page": 9,
-              "header": "2026                             2025                             2024",
-              "row": "Profit after tax     (4)",
+              "page": 50,
+              "header": "   results   of  operations,     cash    flows   and    financial\n                        condition     could    be   materially     adversely     affected.    The    table   below     sets  forth   our   revenue      from    operations,\n                        EBITDA, EBITDA Margin, profit for the year, and PAT Margin for the periods indicated.\n\n                                                                                                                     Year ended March 31,\n                                                Particulars                                        2026                           2025                         2024",
+              "row": "Profit for the year                                                                982.00                       1,119.88                     843.96",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
               "normalizedValue": 84.396,
+              "scope": "unspecified",
               "originalUnit": "million"
+            },
+            "FY2026.roePct": {
+              "page": 191,
+              "header": "7.87%.\n\n                        The following table sets forth certain key financial measures as at the dates and for the fiscal years indicated:\n\n                                                                                                          As at and for the year ended March 31,\n                                                Particulars                                        2026                           2025                         2024",
+              "row": "Return on Equity(4)(*) (%)                                                        25.82%                         56.26%                     86.13%",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 25.82,
+              "scope": "unspecified",
+              "originalUnit": "percent"
+            },
+            "FY2025.roePct": {
+              "page": 191,
+              "header": "7.87%.\n\n                        The following table sets forth certain key financial measures as at the dates and for the fiscal years indicated:\n\n                                                                                                          As at and for the year ended March 31,\n                                                Particulars                                        2026                           2025                         2024",
+              "row": "Return on Equity(4)(*) (%)                                                        25.82%                         56.26%                     86.13%",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 56.26,
+              "scope": "unspecified",
+              "originalUnit": "percent"
+            },
+            "FY2024.roePct": {
+              "page": 191,
+              "header": "7.87%.\n\n                        The following table sets forth certain key financial measures as at the dates and for the fiscal years indicated:\n\n                                                                                                          As at and for the year ended March 31,\n                                                Particulars                                        2026                           2025                         2024",
+              "row": "Return on Equity(4)(*) (%)                                                        25.82%                         56.26%                     86.13%",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 86.13,
+              "scope": "unspecified",
+              "originalUnit": "percent"
             }
           },
           "leadManagers": {
@@ -32356,11 +32120,10 @@
         }
       },
       "documentRepair": {
-        "status": "source_blocked",
-        "lastAttemptAt": "2026-09-15T10:30:38+05:30",
-        "parserVersion": 21,
-        "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1784001026291.pdf",
-        "error": "('Connection broken: IncompleteRead(5880288 bytes read, 3397049 more expected)', IncompleteRead(5880288 bytes read, 3397049 more expected))"
+        "status": "updated",
+        "financialStatus": "validated",
+        "lastAttemptAt": "2026-09-15T10:39:41+05:30",
+        "parserVersion": 21
       },
       "listing": {
         "issuePrice": 419.0,
@@ -33043,10 +32806,10 @@
       },
       "documentRepair": {
         "status": "source_blocked",
-        "lastAttemptAt": "2026-09-15T10:30:42+05:30",
+        "lastAttemptAt": "2026-09-15T10:40:13+05:30",
         "parserVersion": 21,
         "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1783319397647.pdf",
-        "error": "('Connection broken: IncompleteRead(7769871 bytes read, 5955349 more expected)', IncompleteRead(7769871 bytes read, 5955349 more expected))"
+        "error": "('Connection broken: IncompleteRead(9994287 bytes read, 3730933 more expected)', IncompleteRead(9994287 bytes read, 3730933 more expected))"
       },
       "listing": {
         "issuePrice": 170.0,
@@ -33697,7 +33460,7 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 18,
+        "parserVersion": 21,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1785320834804.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "SEBI PROSPECTUS",
@@ -33714,7 +33477,7 @@
           "lotSize",
           "priceBand"
         ],
-        "extractedAt": "2026-09-14T10:53:16+05:30",
+        "extractedAt": "2026-09-15T10:39:08+05:30",
         "conflicts": []
       },
       "registrar": "Bigshare Services Private Limited",
@@ -33743,8 +33506,8 @@
         "documentType": "PROSPECTUS",
         "documentDate": "2026-07-29",
         "sha256": "83894c66ad7a76b09ce05a0fce3f205e4f33e59fd3f921c8ae958e07803febf1",
-        "parserVersion": 18,
-        "checkedAt": "2026-09-14T10:53:16+05:30",
+        "parserVersion": 21,
+        "checkedAt": "2026-09-15T10:39:08+05:30",
         "evidence": {
           "financials": {},
           "leadManagers": {
@@ -33764,11 +33527,10 @@
         }
       },
       "documentRepair": {
-        "status": "source_blocked",
-        "lastAttemptAt": "2026-09-15T10:27:54+05:30",
-        "parserVersion": 21,
-        "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1785320834804.pdf",
-        "error": "('Connection broken: IncompleteRead(329216 bytes read, 8540937 more expected)', IncompleteRead(329216 bytes read, 8540937 more expected))"
+        "status": "no_change",
+        "financialStatus": "needs_review",
+        "lastAttemptAt": "2026-09-15T10:39:08+05:30",
+        "parserVersion": 21
       },
       "listing": {
         "issuePrice": 136.0,
@@ -38700,33 +38462,27 @@
         "periods": [
           {
             "period": "FY2025",
-            "revenueCr": 276.5019,
-            "ebitdaCr": 1.66,
-            "patCr": 23.368,
-            "netWorthCr": 20.25,
-            "ronwPct": 2025.0,
-            "roePct": 24.28,
-            "eps": 5.0
+            "totalIncomeCr": 281.6477,
+            "patCr": 22.0848,
+            "ebitdaCr": 35.656,
+            "revenueCr": 279.4351,
+            "roePct": 35.83
           },
           {
             "period": "FY2024",
-            "revenueCr": 281.6477,
-            "ebitdaCr": 1.75,
-            "patCr": 22.0848,
-            "netWorthCr": 0.304,
-            "ronwPct": 30.4,
-            "roePct": 35.83,
-            "eps": 6.0
+            "totalIncomeCr": 184.3945,
+            "patCr": 7.4124,
+            "ebitdaCr": 14.4663,
+            "revenueCr": 182.7616,
+            "roePct": 15.77
           },
           {
             "period": "FY2023",
-            "revenueCr": 184.3945,
-            "ebitdaCr": 1.75,
-            "patCr": 7.4124,
-            "netWorthCr": 0.03,
-            "ronwPct": 3.0,
-            "roePct": 15.77,
-            "eps": 23.0
+            "totalIncomeCr": 121.7073,
+            "patCr": 6.2372,
+            "ebitdaCr": 11.9294,
+            "revenueCr": 120.2363,
+            "roePct": 15.18
           }
         ]
       },
@@ -38837,6 +38593,78 @@
           "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2026/1776237369286.pdf",
           "sha256": "55c6e82dbb6a95d399d3ea0bdf83c29f05c49edc297f6b30bf1bfe715ba37eaf",
           "correctedAt": "2026-09-14T12:16:27.134108+00:00"
+        },
+        {
+          "field": "financials",
+          "before": {
+            "unit": "₹ crore",
+            "periods": [
+              {
+                "period": "FY2025",
+                "revenueCr": 276.5019,
+                "ebitdaCr": 1.66,
+                "patCr": 23.368,
+                "netWorthCr": 20.25,
+                "ronwPct": 2025.0,
+                "roePct": 24.28,
+                "eps": 5.0
+              },
+              {
+                "period": "FY2024",
+                "revenueCr": 281.6477,
+                "ebitdaCr": 1.75,
+                "patCr": 22.0848,
+                "netWorthCr": 0.304,
+                "ronwPct": 30.4,
+                "roePct": 35.83,
+                "eps": 6.0
+              },
+              {
+                "period": "FY2023",
+                "revenueCr": 184.3945,
+                "ebitdaCr": 1.75,
+                "patCr": 7.4124,
+                "netWorthCr": 0.03,
+                "ronwPct": 3.0,
+                "roePct": 15.77,
+                "eps": 23.0
+              }
+            ]
+          },
+          "after": {
+            "unit": "₹ crore",
+            "periods": [
+              {
+                "period": "FY2025",
+                "totalIncomeCr": 281.6477,
+                "patCr": 22.0848,
+                "ebitdaCr": 35.656,
+                "revenueCr": 279.4351,
+                "roePct": 35.83
+              },
+              {
+                "period": "FY2024",
+                "totalIncomeCr": 184.3945,
+                "patCr": 7.4124,
+                "ebitdaCr": 14.4663,
+                "revenueCr": 182.7616,
+                "roePct": 15.77
+              },
+              {
+                "period": "FY2023",
+                "totalIncomeCr": 121.7073,
+                "patCr": 6.2372,
+                "ebitdaCr": 11.9294,
+                "revenueCr": 120.2363,
+                "roePct": 15.18
+              }
+            ]
+          },
+          "reason": "Revalidated financial table or intermediary role against source document",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2026/1776237369286.pdf",
+          "sha256": "55c6e82dbb6a95d399d3ea0bdf83c29f05c49edc297f6b30bf1bfe715ba37eaf",
+          "parserVersion": 21,
+          "correctedAt": "2026-09-15T10:41:12+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -38844,10 +38672,206 @@
         "documentType": "PROSPECTUS",
         "documentDate": "2026-04-15",
         "sha256": "55c6e82dbb6a95d399d3ea0bdf83c29f05c49edc297f6b30bf1bfe715ba37eaf",
-        "parserVersion": 18,
-        "checkedAt": "2026-09-14T10:54:11+05:30",
+        "parserVersion": 21,
+        "checkedAt": "2026-09-15T10:41:12+05:30",
         "evidence": {
-          "financials": {},
+          "financials": {
+            "FY2025.totalIncomeCr": {
+              "page": 252,
+              "header": "Details of KPIs for the nine months period ended December 31 2025 and for Fiscals 2025, 2024 and 2023:\n\n                                                                                                              As at and for the period/fiscal ended\n                     Sr\n                                         Particulars                         Unit               December\n                     No                                                                                              Fiscal 2025           Fiscal 2024          Fiscal 2023",
+              "row": "1.       Total Income(1)                           (in ₹ Lakhs)               27,650.19             28,164.77            18,439.45             12,170.73",
+              "sourceColumns": [
+                1,
+                2,
+                3
+              ],
+              "normalizedValue": 281.6477,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2024.totalIncomeCr": {
+              "page": 252,
+              "header": "Details of KPIs for the nine months period ended December 31 2025 and for Fiscals 2025, 2024 and 2023:\n\n                                                                                                              As at and for the period/fiscal ended\n                     Sr\n                                         Particulars                         Unit               December\n                     No                                                                                              Fiscal 2025           Fiscal 2024          Fiscal 2023",
+              "row": "1.       Total Income(1)                           (in ₹ Lakhs)               27,650.19             28,164.77            18,439.45             12,170.73",
+              "sourceColumns": [
+                1,
+                2,
+                3
+              ],
+              "normalizedValue": 184.3945,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2023.totalIncomeCr": {
+              "page": 252,
+              "header": "Details of KPIs for the nine months period ended December 31 2025 and for Fiscals 2025, 2024 and 2023:\n\n                                                                                                              As at and for the period/fiscal ended\n                     Sr\n                                         Particulars                         Unit               December\n                     No                                                                                              Fiscal 2025           Fiscal 2024          Fiscal 2023",
+              "row": "1.       Total Income(1)                           (in ₹ Lakhs)               27,650.19             28,164.77            18,439.45             12,170.73",
+              "sourceColumns": [
+                1,
+                2,
+                3
+              ],
+              "normalizedValue": 121.7073,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2025.patCr": {
+              "page": 252,
+              "header": "Details of KPIs for the nine months period ended December 31 2025 and for Fiscals 2025, 2024 and 2023:\n\n                                                                                                              As at and for the period/fiscal ended\n                     Sr\n                                         Particulars                         Unit               December\n                     No                                                                                              Fiscal 2025           Fiscal 2024          Fiscal 2023",
+              "row": "3.       Profit After Tax(3)                       (in ₹ Lakhs)                2,336.80              2,208.48                741.24                 623.72",
+              "sourceColumns": [
+                1,
+                2,
+                3
+              ],
+              "normalizedValue": 22.0848,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2024.patCr": {
+              "page": 252,
+              "header": "Details of KPIs for the nine months period ended December 31 2025 and for Fiscals 2025, 2024 and 2023:\n\n                                                                                                              As at and for the period/fiscal ended\n                     Sr\n                                         Particulars                         Unit               December\n                     No                                                                                              Fiscal 2025           Fiscal 2024          Fiscal 2023",
+              "row": "3.       Profit After Tax(3)                       (in ₹ Lakhs)                2,336.80              2,208.48                741.24                 623.72",
+              "sourceColumns": [
+                1,
+                2,
+                3
+              ],
+              "normalizedValue": 7.4124,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2023.patCr": {
+              "page": 252,
+              "header": "Details of KPIs for the nine months period ended December 31 2025 and for Fiscals 2025, 2024 and 2023:\n\n                                                                                                              As at and for the period/fiscal ended\n                     Sr\n                                         Particulars                         Unit               December\n                     No                                                                                              Fiscal 2025           Fiscal 2024          Fiscal 2023",
+              "row": "3.       Profit After Tax(3)                       (in ₹ Lakhs)                2,336.80              2,208.48                741.24                 623.72",
+              "sourceColumns": [
+                1,
+                2,
+                3
+              ],
+              "normalizedValue": 6.2372,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2025.ebitdaCr": {
+              "page": 252,
+              "header": "Details of KPIs for the nine months period ended December 31 2025 and for Fiscals 2025, 2024 and 2023:\n\n                                                                                                              As at and for the period/fiscal ended\n                     Sr\n                                         Particulars                         Unit               December\n                     No                                                                                              Fiscal 2025           Fiscal 2024          Fiscal 2023",
+              "row": "11.      EBITDA(11)                                (in ₹ Lakhs)                3,424.45              3,565.60              1,446.63              1,192.94",
+              "sourceColumns": [
+                1,
+                2,
+                3
+              ],
+              "normalizedValue": 35.656,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2024.ebitdaCr": {
+              "page": 252,
+              "header": "Details of KPIs for the nine months period ended December 31 2025 and for Fiscals 2025, 2024 and 2023:\n\n                                                                                                              As at and for the period/fiscal ended\n                     Sr\n                                         Particulars                         Unit               December\n                     No                                                                                              Fiscal 2025           Fiscal 2024          Fiscal 2023",
+              "row": "11.      EBITDA(11)                                (in ₹ Lakhs)                3,424.45              3,565.60              1,446.63              1,192.94",
+              "sourceColumns": [
+                1,
+                2,
+                3
+              ],
+              "normalizedValue": 14.4663,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2023.ebitdaCr": {
+              "page": 252,
+              "header": "Details of KPIs for the nine months period ended December 31 2025 and for Fiscals 2025, 2024 and 2023:\n\n                                                                                                              As at and for the period/fiscal ended\n                     Sr\n                                         Particulars                         Unit               December\n                     No                                                                                              Fiscal 2025           Fiscal 2024          Fiscal 2023",
+              "row": "11.      EBITDA(11)                                (in ₹ Lakhs)                3,424.45              3,565.60              1,446.63              1,192.94",
+              "sourceColumns": [
+                1,
+                2,
+                3
+              ],
+              "normalizedValue": 11.9294,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2025.revenueCr": {
+              "page": 387,
+              "header": ":\n                                                                                                                Om Power Transmission Limited\n                     Sr.                                                                                      As at and for the period/fiscal ended\n                                         Particulars                         Unit\n                     No.                                                                        December\n                                                                                                                     Fiscal 2025           Fiscal 2024          Fiscal 2023",
+              "row": "2.       Revenue from Operations                   (in ₹ Lakhs)               27,454.28             27,943.51            18,276.16             12,023.63",
+              "sourceColumns": [
+                1,
+                2,
+                3
+              ],
+              "normalizedValue": 279.4351,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2024.revenueCr": {
+              "page": 387,
+              "header": ":\n                                                                                                                Om Power Transmission Limited\n                     Sr.                                                                                      As at and for the period/fiscal ended\n                                         Particulars                         Unit\n                     No.                                                                        December\n                                                                                                                     Fiscal 2025           Fiscal 2024          Fiscal 2023",
+              "row": "2.       Revenue from Operations                   (in ₹ Lakhs)               27,454.28             27,943.51            18,276.16             12,023.63",
+              "sourceColumns": [
+                1,
+                2,
+                3
+              ],
+              "normalizedValue": 182.7616,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2023.revenueCr": {
+              "page": 387,
+              "header": ":\n                                                                                                                Om Power Transmission Limited\n                     Sr.                                                                                      As at and for the period/fiscal ended\n                                         Particulars                         Unit\n                     No.                                                                        December\n                                                                                                                     Fiscal 2025           Fiscal 2024          Fiscal 2023",
+              "row": "2.       Revenue from Operations                   (in ₹ Lakhs)               27,454.28             27,943.51            18,276.16             12,023.63",
+              "sourceColumns": [
+                1,
+                2,
+                3
+              ],
+              "normalizedValue": 120.2363,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2025.roePct": {
+              "page": 387,
+              "header": ":\n                                                                                                                Om Power Transmission Limited\n                     Sr.                                                                                      As at and for the period/fiscal ended\n                                         Particulars                         Unit\n                     No.                                                                        December\n                                                                                                                     Fiscal 2025           Fiscal 2024          Fiscal 2023",
+              "row": "13.      Return on Equity (RoE)                        (In %)                       24.28                35.83                 15.77                 15.18",
+              "sourceColumns": [
+                1,
+                2,
+                3
+              ],
+              "normalizedValue": 35.83,
+              "scope": "unspecified",
+              "originalUnit": "percent"
+            },
+            "FY2024.roePct": {
+              "page": 387,
+              "header": ":\n                                                                                                                Om Power Transmission Limited\n                     Sr.                                                                                      As at and for the period/fiscal ended\n                                         Particulars                         Unit\n                     No.                                                                        December\n                                                                                                                     Fiscal 2025           Fiscal 2024          Fiscal 2023",
+              "row": "13.      Return on Equity (RoE)                        (In %)                       24.28                35.83                 15.77                 15.18",
+              "sourceColumns": [
+                1,
+                2,
+                3
+              ],
+              "normalizedValue": 15.77,
+              "scope": "unspecified",
+              "originalUnit": "percent"
+            },
+            "FY2023.roePct": {
+              "page": 387,
+              "header": ":\n                                                                                                                Om Power Transmission Limited\n                     Sr.                                                                                      As at and for the period/fiscal ended\n                                         Particulars                         Unit\n                     No.                                                                        December\n                                                                                                                     Fiscal 2025           Fiscal 2024          Fiscal 2023",
+              "row": "13.      Return on Equity (RoE)                        (In %)                       24.28                35.83                 15.77                 15.18",
+              "sourceColumns": [
+                1,
+                2,
+                3
+              ],
+              "normalizedValue": 15.18,
+              "scope": "unspecified",
+              "originalUnit": "percent"
+            }
+          },
           "leadManagers": {
             "page": 2,
             "heading": "BOOK RUNNING LEAD MANAGER",
@@ -38865,15 +38889,14 @@
         }
       },
       "documentRepair": {
-        "status": "source_blocked",
-        "lastAttemptAt": "2026-09-15T10:32:59+05:30",
-        "parserVersion": 21,
-        "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2026/1776237369286.pdf",
-        "error": "('Connection broken: IncompleteRead(6949192 bytes read, 665630 more expected)', IncompleteRead(6949192 bytes read, 665630 more expected))"
+        "status": "updated",
+        "financialStatus": "validated",
+        "lastAttemptAt": "2026-09-15T10:41:12+05:30",
+        "parserVersion": 21
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 18,
+        "parserVersion": 21,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2026/1776237369286.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "SEBI PROSPECTUS",
@@ -38886,11 +38909,12 @@
           "leadManagers",
           "registrar",
           "promoters",
+          "financials",
           "objectsOfIssue",
           "lotSize",
           "priceBand"
         ],
-        "extractedAt": "2026-09-14T10:54:11+05:30",
+        "extractedAt": "2026-09-15T10:41:12+05:30",
         "conflicts": []
       },
       "listing": {
@@ -40077,8 +40101,8 @@
         "documentType": "PROSPECTUS",
         "documentDate": "2026-04-02",
         "sha256": "b23903df7ad745763f0a5d2ebff4d315d0446d88efef9b2d0969bbf0c62e55af",
-        "parserVersion": 18,
-        "checkedAt": "2026-09-14T10:53:29+05:30",
+        "parserVersion": 21,
+        "checkedAt": "2026-09-15T10:39:40+05:30",
         "evidence": {
           "financials": {},
           "leadManagers": {
@@ -40099,15 +40123,14 @@
         }
       },
       "documentRepair": {
-        "status": "source_blocked",
-        "lastAttemptAt": "2026-09-15T10:29:34+05:30",
-        "parserVersion": 21,
-        "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2026/1775128471900.pdf",
-        "error": "('Connection broken: IncompleteRead(2203103 bytes read, 16780510 more expected)', IncompleteRead(2203103 bytes read, 16780510 more expected))"
+        "status": "no_change",
+        "financialStatus": "needs_review",
+        "lastAttemptAt": "2026-09-15T10:39:40+05:30",
+        "parserVersion": 21
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 18,
+        "parserVersion": 21,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2026/1775128471900.pdf",
         "documentType": "PROSPECTUS",
         "documentTitle": "SEBI PROSPECTUS",
@@ -40124,7 +40147,7 @@
           "lotSize",
           "priceBand"
         ],
-        "extractedAt": "2026-09-14T10:53:29+05:30",
+        "extractedAt": "2026-09-15T10:39:40+05:30",
         "conflicts": []
       },
       "listing": {
