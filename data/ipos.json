@@ -6,7 +6,7 @@
       "remaining": 0,
       "changedFields": 0,
       "failed": 0,
-      "checkedAt": "2026-09-15T21:30:30+05:30",
+      "checkedAt": "2026-09-15T21:55:38+05:30",
       "outcomes": []
     },
     "errors": [],
@@ -17,9 +17,9 @@
       "reports": 36,
       "failed": 0,
       "errors": [],
-      "checkedAt": "2026-09-15T16:00:38.089729+00:00"
+      "checkedAt": "2026-09-15T16:25:43.656982+00:00"
     },
-    "generatedAt": "2026-09-15T16:00:55.624531+00:00",
+    "generatedAt": "2026-09-15T16:26:03.786622+00:00",
     "historyStart": "2024-09-13",
     "initialSourceRepair": {
       "records": 1354,
@@ -69,8 +69,8 @@
         "stage": "record_integrity.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.24,
-        "checkedAt": "2026-09-15T16:00:39.488515+00:00",
+        "durationSeconds": 0.25,
+        "checkedAt": "2026-09-15T16:25:45.028953+00:00",
         "diagnostics": "{\"integrityRepairs\": 0}\n"
       },
       "normalize_source_health.py": {
@@ -110,8 +110,8 @@
         "status": "no_change",
         "exitCode": 0,
         "durationSeconds": 0.5,
-        "checkedAt": "2026-09-15T16:00:31.030397+00:00",
-        "diagnostics": "{\"parserVersion\": 21, \"attempted\": 0, \"remaining\": 0, \"changedFields\": 0, \"failed\": 0, \"checkedAt\": \"2026-09-15T21:30:30+05:30\"}\n"
+        "checkedAt": "2026-09-15T16:25:38.551763+00:00",
+        "diagnostics": "{\"parserVersion\": 21, \"attempted\": 0, \"remaining\": 0, \"changedFields\": 0, \"failed\": 0, \"checkedAt\": \"2026-09-15T21:55:38+05:30\"}\n"
       },
       "apply_verified_filing_offer_fields.py": {
         "stage": "apply_verified_filing_offer_fields.py",
@@ -150,16 +150,16 @@
         "status": "no_change",
         "exitCode": 0,
         "durationSeconds": 0.26,
-        "checkedAt": "2026-09-15T16:00:30.370218+00:00",
+        "checkedAt": "2026-09-15T16:25:37.993883+00:00",
         "diagnostics": "enance\", \"documentRepair\", \"offerDocumentExtraction\", \"registrar\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"cleanmax\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"aye\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"armour\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"eximroutes\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"torrent-gas-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"national-stock-exchange-of-india-limited\", \"reason\": \"Issuer record no longer exists\"}, {\"id\": \"nopaperforms-solutions-limited\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"m-k-c-agro-fresh-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}]}\n"
       },
       "collect_final_issue_prices.py": {
         "stage": "collect_final_issue_prices.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 7.09,
-        "checkedAt": "2026-09-15T16:00:38.290190+00:00",
-        "diagnostics": "{\"updated\": 0, \"candidates\": 78, \"reportRows\": 586, \"reports\": 36, \"failed\": 0, \"errors\": [], \"checkedAt\": \"2026-09-15T16:00:38.089729+00:00\"}\n"
+        "durationSeconds": 5.27,
+        "checkedAt": "2026-09-15T16:25:43.873518+00:00",
+        "diagnostics": "{\"updated\": 0, \"candidates\": 78, \"reportRows\": 586, \"reports\": 36, \"failed\": 0, \"errors\": [], \"checkedAt\": \"2026-09-15T16:25:43.656982+00:00\"}\n"
       },
       "run_priority_subscriptions_v3.py": {
         "stage": "run_priority_subscriptions_v3.py",
@@ -171,14 +171,14 @@
       }
     },
     "publication": {
-      "runId": "34992140079",
-      "collectorCommit": "43743edc9c2f79a5420380cbbb1a15576b602014",
+      "runId": "34994875582",
+      "collectorCommit": "6e29ffc18d80fe81dccd964420ebe62532480e4e",
       "status": "published",
       "pendingConflictCount": 0
     },
     "recordCount": 1356,
     "recordIntegrity": {
-      "checkedAt": "2026-09-15T16:00:55.820232+00:00",
+      "checkedAt": "2026-09-15T16:26:04.008254+00:00",
       "changedFields": 0
     },
     "reviewedCorrectionStatus": {
