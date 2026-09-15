@@ -1,18 +1,17 @@
 {
-  "generatedAt": "2026-09-15T19:07:57+05:30",
+  "generatedAt": "2026-09-15T19:34:11+05:30",
   "asOfDate": "2026-09-15",
   "recordCount": 1356,
-  "queueCount": 1038,
+  "queueCount": 1035,
   "priorityCounts": {
     "P0 open IPO": 3,
-    "P1 upcoming IPO": 2,
-    "P4 recent history (2y)": 126,
+    "P4 recent history (2y)": 125,
     "P5 historical backfill": 907
   },
   "fieldGapCounts": {
-    "exchange.lotSize": 1019,
+    "exchange.lotSize": 1016,
     "exchange.issueSizeCr": 906,
-    "lifecycle.listingDate": 32,
+    "lifecycle.listingDate": 31,
     "offer.promoterShareholding": 17,
     "exchange.priceBand": 13,
     "provenance.documents": 12,
@@ -25,7 +24,6 @@
     "subscription.retail": 2,
     "subscription.total": 2,
     "offer.promoters": 2,
-    "exchange.issueComposition": 1,
     "provenance.sources": 1
   },
   "resolvedUnavailableRecordCount": 5,
@@ -107,46 +105,6 @@
       "profilePath": "ipo/maharaja-speedex-india-limited/"
     },
     {
-      "id": "kheriaauto",
-      "company": "Kheria Autocomp Limited",
-      "symbol": "KHERIAAUTO",
-      "stage": "upcoming",
-      "openDate": "2026-09-17",
-      "closeDate": "2026-09-21",
-      "listingDate": null,
-      "priority": 1,
-      "priorityLabel": "P1 upcoming IPO",
-      "completenessPct": 90.9,
-      "expectedFieldCount": 11,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.issueComposition"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/kheriaauto/"
-    },
-    {
-      "id": "nse",
-      "company": "National Stock Exchange of India Limited",
-      "symbol": "NSE",
-      "stage": "upcoming",
-      "openDate": "2026-09-17",
-      "closeDate": "2026-09-21",
-      "listingDate": null,
-      "priority": 1,
-      "priorityLabel": "P1 upcoming IPO",
-      "completenessPct": 94.4,
-      "expectedFieldCount": 18,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/nse/"
-    },
-    {
       "id": "dhanlaxmi",
       "company": "Dhanlaxmi Crop Science Limited",
       "symbol": "DHANLAXMI",
@@ -194,30 +152,6 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/etml/"
-    },
-    {
-      "id": "nsdl",
-      "company": "National Securities Depository Limited",
-      "symbol": "NSDL",
-      "stage": "closed",
-      "openDate": "2025-07-30",
-      "closeDate": "2025-08-01",
-      "listingDate": null,
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 73.7,
-      "expectedFieldCount": 19,
-      "missingFieldCount": 5,
-      "missingFields": [
-        "exchange.lotSize",
-        "offer.leadManagers",
-        "offer.promoterShareholding",
-        "lifecycle.listingDate",
-        "provenance.documents"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/nsdl/"
     },
     {
       "id": "apexeco",
@@ -400,6 +334,28 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/credent/"
+    },
+    {
+      "id": "nsdl",
+      "company": "National Securities Depository Limited",
+      "symbol": "NSDL",
+      "stage": "listed",
+      "openDate": "2025-07-30",
+      "closeDate": "2025-08-01",
+      "listingDate": "2025-08-06",
+      "priority": 4,
+      "priorityLabel": "P4 recent history (2y)",
+      "completenessPct": 84.2,
+      "expectedFieldCount": 19,
+      "missingFieldCount": 3,
+      "missingFields": [
+        "offer.leadManagers",
+        "offer.promoterShareholding",
+        "provenance.documents"
+      ],
+      "resolvedUnavailableFieldCount": 0,
+      "resolvedUnavailableFields": [],
+      "profilePath": "ipo/nsdl/"
     },
     {
       "id": "nmsteel",
@@ -648,26 +604,6 @@
       "resolvedUnavailableFieldCount": 0,
       "resolvedUnavailableFields": [],
       "profilePath": "ipo/amirchand/"
-    },
-    {
-      "id": "anawil",
-      "company": "Anawil Wire and Engineering Limited",
-      "symbol": "ANAWIL",
-      "stage": "listed",
-      "openDate": "2026-08-03",
-      "closeDate": "2026-08-05",
-      "listingDate": "2026-08-10",
-      "priority": 4,
-      "priorityLabel": "P4 recent history (2y)",
-      "completenessPct": 91.7,
-      "expectedFieldCount": 12,
-      "missingFieldCount": 1,
-      "missingFields": [
-        "exchange.lotSize"
-      ],
-      "resolvedUnavailableFieldCount": 0,
-      "resolvedUnavailableFields": [],
-      "profilePath": "ipo/anawil/"
     },
     {
       "id": "anondita",

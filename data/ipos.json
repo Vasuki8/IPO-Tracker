@@ -4,23 +4,55 @@
       "parserVersion": 21,
       "attempted": 1,
       "remaining": 0,
-      "changedFields": 0,
-      "failed": 1,
-      "checkedAt": "2026-09-15T19:07:33+05:30",
+      "changedFields": 3,
+      "failed": 0,
+      "checkedAt": "2026-09-15T19:33:49+05:30",
       "outcomes": [
         {
           "id": "knack",
-          "status": "source_blocked",
-          "lastAttemptAt": "2026-09-15T19:07:32+05:30",
-          "parserVersion": 21,
-          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1783319397647.pdf",
-          "error": "('Connection broken: IncompleteRead(5250639 bytes read, 8474581 more expected)', IncompleteRead(5250639 bytes read, 8474581 more expected))"
+          "status": "updated",
+          "changedFields": [
+            "leadManagers",
+            "registrar",
+            "financials"
+          ]
         }
       ]
     },
     "errors": [],
-    "generatedAt": "2026-09-15T13:37:56.232744+00:00",
+    "finalIssuePriceHealth": {
+      "updated": 0,
+      "candidates": 78,
+      "reportRows": 586,
+      "reports": 36,
+      "failed": 0,
+      "errors": [],
+      "checkedAt": "2026-09-15T14:03:53.498803+00:00"
+    },
+    "generatedAt": "2026-09-15T14:04:10.807149+00:00",
     "historyStart": "2024-09-13",
+    "initialSourceRepair": {
+      "records": 1354,
+      "sourceDocumentsAttempted": 72,
+      "sourceDocumentsRead": 70,
+      "sourceFailures": 2,
+      "changedRecordCount": 75,
+      "changedFields": 440,
+      "fieldCounts": {
+        "dataCorrections": 72,
+        "documentFieldProvenance": 70,
+        "documentRepair": 72,
+        "financials": 32,
+        "leadManagers": 69,
+        "offerDocumentExtraction": 70,
+        "registrar": 46,
+        "promoters": 5,
+        "objectsOfIssue": 4
+      },
+      "semanticErrors": 0,
+      "sourceReviewItems": 928,
+      "sourceReviewRecords": 60
+    },
     "offerDocumentHealth": {
       "ok": false,
       "attempted": 12,
@@ -47,8 +79,8 @@
         "stage": "record_integrity.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.14,
-        "checkedAt": "2026-09-15T13:37:34.313889+00:00",
+        "durationSeconds": 0.25,
+        "checkedAt": "2026-09-15T14:03:54.992700+00:00",
         "diagnostics": "{\"integrityRepairs\": 0}\n"
       },
       "normalize_source_health.py": {
@@ -85,11 +117,11 @@
       },
       "run_offer_documents.py": {
         "stage": "run_offer_documents.py",
-        "status": "source_blocked",
+        "status": "updated",
         "exitCode": 0,
-        "durationSeconds": 20.98,
-        "checkedAt": "2026-09-15T13:37:33.228124+00:00",
-        "diagnostics": "{\"id\": \"knack\", \"status\": \"source_blocked\", \"lastAttemptAt\": \"2026-09-15T19:07:32+05:30\", \"parserVersion\": 21, \"sourceUrl\": \"https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1783319397647.pdf\", \"error\": \"('Connection broken: IncompleteRead(5250639 bytes read, 8474581 more expected)', IncompleteRead(5250639 bytes read, 8474581 more expected))\"}\n{\"parserVersion\": 21, \"attempted\": 1, \"remaining\": 0, \"changedFields\": 0, \"failed\": 1, \"checkedAt\": \"2026-09-15T19:07:33+05:30\"}\n"
+        "durationSeconds": 47.17,
+        "checkedAt": "2026-09-15T14:03:49.348845+00:00",
+        "diagnostics": "{\"id\": \"knack\", \"status\": \"updated\", \"changedFields\": [\"leadManagers\", \"registrar\", \"financials\"]}\n{\"parserVersion\": 21, \"attempted\": 1, \"remaining\": 0, \"changedFields\": 3, \"failed\": 0, \"checkedAt\": \"2026-09-15T19:33:49+05:30\"}\n"
       },
       "apply_verified_filing_offer_fields.py": {
         "stage": "apply_verified_filing_offer_fields.py",
@@ -122,513 +154,37 @@
         "durationSeconds": 11.5,
         "checkedAt": "2026-09-14T05:20:21.946187+00:00",
         "diagnostics": "BSE historical detail unavailable: BSE historical archive unavailable on official hosts: https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P: 403 Client Error: Forbidden for url: https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P; https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P: 403 Client Error: Forbidden for url: https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P\n"
+      },
+      "apply_corrections.py": {
+        "stage": "apply_corrections.py",
+        "status": "updated",
+        "exitCode": 0,
+        "durationSeconds": 0.26,
+        "checkedAt": "2026-09-15T14:03:02.008811+00:00",
+        "diagnostics": "enance\", \"documentRepair\", \"offerDocumentExtraction\", \"registrar\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"cleanmax\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"aye\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"armour\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"eximroutes\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"torrent-gas-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"national-stock-exchange-of-india-limited\", \"reason\": \"Issuer record no longer exists\"}, {\"id\": \"nopaperforms-solutions-limited\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"m-k-c-agro-fresh-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}]}\n"
+      },
+      "collect_final_issue_prices.py": {
+        "stage": "collect_final_issue_prices.py",
+        "status": "no_change",
+        "exitCode": 0,
+        "durationSeconds": 4.2,
+        "checkedAt": "2026-09-15T14:03:53.713923+00:00",
+        "diagnostics": "{\"updated\": 0, \"candidates\": 78, \"reportRows\": 586, \"reports\": 36, \"failed\": 0, \"errors\": [], \"checkedAt\": \"2026-09-15T14:03:53.498803+00:00\"}\n"
       }
     },
-    "recordCount": 1356,
-    "recordIntegrity": {
-      "checkedAt": "2026-09-15T13:37:56.381928+00:00",
-      "changedFields": 0
-    },
-    "schemaVersion": 5,
-    "sebiDocumentLinkHealth": {
-      "ok": true,
-      "attemptedRecords": 0,
-      "attempted": 0,
-      "resolvedPages": 0,
-      "seededPages": 0,
-      "linksAdded": 0,
-      "failed": 0,
-      "asOf": "2026-09-15T19:07:11+05:30",
-      "errors": []
-    },
-    "seed": false,
-    "sourceHealth": {
-      "NSE-live": {
-        "ok": true,
-        "records": 10
-      },
-      "NSE-history": {
-        "ok": true,
-        "records": 0,
-        "status": "checked",
-        "note": "checked · 0 new rows"
-      },
-      "SEBI": {
-        "ok": true,
-        "records": 21,
-        "companiesAttached": 15
-      },
-      "BSE": {
-        "ok": true,
-        "records": 14,
-        "companiesAttached": 14
-      },
-      "BSE-detail": {
-        "ok": true,
-        "records": 0,
-        "indexRecords": 12,
-        "candidates": 30,
-        "matched": 0,
-        "attempted": 0,
-        "updated": 0,
-        "failed": 0,
-        "historyDays": 730,
-        "fieldsFilled": {},
-        "indexHealth": {
-          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
-            "ok": true,
-            "records": 0
-          },
-          "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
-            "ok": true,
-            "records": 12
-          },
-          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P": {
-            "ok": true,
-            "records": 0
-          }
-        },
-        "errors": []
-      },
-      "BSE-history-detail": {
-        "ok": false,
-        "records": 0,
-        "attempted": 0,
-        "hosts": [
-          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P",
-          "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P"
-        ],
-        "error": "BSE historical archive unavailable on official hosts: https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P: historical page did not contain its ASP.NET form; https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P: historical issue-type selector was not found"
-      },
-      "IPO-subscription": {
-        "ok": false,
-        "degraded": false,
-        "records": 0,
-        "attempted": 2,
-        "snapshotsAdded": 0,
-        "failed": 2,
-        "nseRecords": 0,
-        "bseFallbackRecords": 0,
-        "secondaryFallbackRecords": 0,
-        "secondarySources": {},
-        "asOf": "2026-09-15T14:51:24+05:30",
-        "errors": [
-          "Vama Wovenfab Limited: Groww IPO subscription (secondary): Groww IPO subscription (secondary) page contained no parseable table rows; IPO Dhamaka subscription (secondary): IPO Dhamaka subscription (secondary) row not found for Vama Wovenfab Limited",
-          "Shakti Polytarp Limited: Groww IPO subscription (secondary): Groww IPO subscription (secondary) page contained no parseable table rows; IPO Dhamaka subscription (secondary): IPO Dhamaka subscription (secondary) row not found for Shakti Polytarp Limited"
-        ]
-      },
-      "Critical-backfill": {
-        "ok": true,
-        "records": 0,
-        "asOf": "2026-09-14T11:57:31+05:30"
-      },
-      "SEBI-document-links": {
-        "ok": true,
-        "records": 0,
-        "attemptedRecords": 0,
-        "attempted": 0,
-        "asOf": "2026-09-15T19:07:11+05:30",
-        "errors": []
-      },
-      "Offer-docs": {
-        "ok": false,
-        "records": 11,
-        "attempted": 12,
-        "failed": 1,
-        "parserVersion": 13,
-        "schedulerVersion": 1
-      },
-      "Issuer-offer-docs": {
-        "ok": true,
-        "records": 0,
-        "attempted": 0,
-        "updated": 0,
-        "deepScanned": 0,
-        "failed": 0,
-        "asOf": "2026-09-14T03:33:11+05:30",
-        "errors": []
-      },
-      "NSE-primary-market-reports": {
-        "ok": true,
-        "indexUrl": "https://www.nseindia.com/static/regulations/segment-wise-historical-reports-capital-primary-market",
-        "reportsDiscovered": 30,
-        "reportRows": 534,
-        "candidates": 76,
-        "matched": 0,
-        "updated": 0,
-        "historyDays": 730,
-        "fieldsFilled": {},
-        "errors": [],
-        "asOf": "2026-09-13T23:20:35+05:30"
-      },
-      "verified-upcoming-lot-sizes": {
-        "ok": true,
-        "entries": 2,
-        "updated": 2,
-        "checkedAt": "2026-09-13T08:37:57+05:30"
-      },
-      "SEBI-priority-registers": {
-        "ok": true,
-        "parserVersion": 2,
-        "priorityMax": 3,
-        "firstPageMatched": 0,
-        "firstPageLinks": 0,
-        "searchedRecords": 5,
-        "searchMatchedRecords": 0,
-        "searchLinksAdded": 0,
-        "failed": 0,
-        "asOf": "2026-09-15T19:07:11+05:30",
-        "errors": []
-      },
-      "SEBI-offer-terms": {
-        "ok": true,
-        "priorityMax": 3,
-        "targets": 2,
-        "attempted": 0,
-        "extracted": 0,
-        "updated": 0,
-        "failed": 0,
-        "skippedLotOnlyRhp": 1,
-        "fields": {},
-        "asOf": "2026-09-15T19:07:12+05:30",
-        "errors": []
-      },
-      "verified-lot-sizes": {
-        "ok": true,
-        "entries": 36,
-        "updated": 0,
-        "checkedAt": "2026-09-14T03:33:10+05:30"
-      },
-      "verified-recent-issue-terms": {
-        "ok": true,
-        "entries": 14,
-        "updated": 0,
-        "fields": {},
-        "checkedAt": "2026-09-14T03:33:10+05:30"
-      },
-      "verified-recent-offer-fields": {
-        "ok": true,
-        "entries": 20,
-        "updated": 0,
-        "fields": {},
-        "checkedAt": "2026-09-14T03:33:11+05:30"
-      },
-      "verified-filing-offer-fields": {
-        "ok": true,
-        "entries": 4,
-        "updated": 0,
-        "fields": {},
-        "checkedAt": "2026-09-15T19:07:33+05:30"
-      },
-      "NSE-history-IPO-filter": {
-        "ok": true,
-        "seen": 472,
-        "kept": 435,
-        "excludedNonEquity": 37,
-        "legacyRowsRemoved": 0,
-        "removed": [],
-        "checkedAt": "2026-09-13T23:20:21+05:30"
-      },
-      "NSE-issue-info": {
-        "ok": true,
-        "candidates": 123,
-        "attempted": 123,
-        "updated": 0,
-        "identityMismatches": 18,
-        "noLot": 105,
-        "failed": 0,
-        "historyDays": 730,
-        "retryDays": 0,
-        "errors": []
-      },
-      "P4-legacy-debt-symbol-cleanup": {
-        "ok": true,
-        "historyDays": 730,
-        "removedCount": 8,
-        "removed": [
-          {
-            "id": "935iifl33",
-            "company": "IIFL Finance Limited",
-            "symbol": "935IIFL33",
-            "openDate": "2026-02-17",
-            "exchange": "NSE"
-          },
-          {
-            "id": "815chli36",
-            "company": "Canara HSBC Life Insurance Company Limited",
-            "symbol": "815CHLI36",
-            "openDate": "2025-10-10",
-            "exchange": "NSE"
-          },
-          {
-            "id": "805taca29",
-            "company": "Tata Capital Limited",
-            "symbol": "805TACA29",
-            "openDate": "2025-10-06",
-            "exchange": "NSE"
-          },
-          {
-            "id": "1305dccl29",
-            "company": "Dar Credit & Capital Limited",
-            "symbol": "1305DCCL29",
-            "openDate": "2025-05-21",
-            "exchange": "NSE Emerge"
-          },
-          {
-            "id": "975scl35",
-            "company": "Sammaan Capital Limited",
-            "symbol": "975SCL35",
-            "openDate": "2025-02-27",
-            "exchange": "NSE"
-          },
-          {
-            "id": "790ihfl27",
-            "company": "IIFL Home Finance Limited",
-            "symbol": "790IHFL27",
-            "openDate": "2024-12-06",
-            "exchange": "NSE"
-          },
-          {
-            "id": "727ngel36",
-            "company": "NTPC Green Energy Limited",
-            "symbol": "727NGEL36",
-            "openDate": "2024-11-19",
-            "exchange": "NSE"
-          },
-          {
-            "id": "904nacl28",
-            "company": "Northern Arc Capital Limited",
-            "symbol": "904NACL28",
-            "openDate": "2024-09-16",
-            "exchange": "NSE"
-          }
-        ],
-        "checkedOn": "2026-09-13"
-      },
-      "NSE-issue-info-terms": {
-        "ok": true,
-        "candidates": 42,
-        "attempted": 42,
-        "updated": 0,
-        "identityMismatches": 8,
-        "noTerms": 25,
-        "noChange": 9,
-        "failed": 0,
-        "historyDays": 730,
-        "retryDays": 0,
-        "errors": []
-      },
-      "P4-verified-non-IPO-cleanup": {
-        "ok": true,
-        "historyDays": 730,
-        "checkedOn": "2026-09-13",
-        "removedCount": 3,
-        "removed": [
-          {
-            "id": "adanienpp1",
-            "company": "Adani Enterprises Limited",
-            "symbol": "ADANIENPP1",
-            "openDate": "2026-01-06",
-            "reason": "ADANIENPP1 is a partly-paid rights equity security, while 6-Jan-2026 is the opening date of AEL's public NCD issue; the stored row is not an IPO identity.",
-            "evidence": "https://nsearchives.nseindia.com/content/circulars/CML72630.pdf",
-            "evidence2": "https://www.adani.com/newsroom/media-releases/adani-enterprises-launches-its-3rd-public-issue-of-ncds-of-rs1000-crore"
-          },
-          {
-            "id": "avtl29",
-            "company": "Aegis Vopak Terminals Limited",
-            "symbol": "AVTL29",
-            "openDate": "2025-05-26",
-            "reason": "NSE identifies AVTL29 as Series N0, AVTL Floating Rate 2029 debt security.",
-            "evidence": "https://nsearchives.nseindia.com/content/circulars/CML72192.pdf",
-            "evidence2": null
-          },
-          {
-            "id": "84ail28",
-            "company": "Afcons Infrastructure Limited",
-            "symbol": "84AIL28",
-            "openDate": "2024-10-25",
-            "reason": "NSE identifies the AIL 8.40% 2028 security as debt; AFCONS is the equity IPO symbol.",
-            "evidence": "https://nsearchives.nseindia.com/content/circulars/CML70872.pdf",
-            "evidence2": null
-          }
-        ]
-      },
-      "P4-verified-record-repairs": {
-        "ok": false,
-        "selectorVersion": 2,
-        "identityRepairEntries": 2,
-        "identityRecordsUpdated": 0,
-        "availabilityEntries": 6,
-        "availabilityRecordsUpdated": 0,
-        "missingOrAmbiguous": 3,
-        "checkedAt": "2026-09-14T03:33:10+05:30"
-      },
-      "SEBI-offer-issue-terms": {
-        "ok": true,
-        "priorityMax": 4,
-        "targets": 37,
-        "attempted": 0,
-        "extracted": 0,
-        "updated": 0,
-        "failed": 0,
-        "noDocument": 37,
-        "fields": {},
-        "asOf": "2026-09-14T03:39:42+05:30",
-        "errors": []
-      },
-      "BSE-P4-issue-terms": {
-        "ok": true,
-        "targets": 37,
-        "detailAttempted": 0,
-        "detailUpdated": 0,
-        "pdfAttempted": 0,
-        "pdfUpdated": 0,
-        "failed": 0,
-        "fields": {},
-        "indexHealth": {
-          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
-            "ok": true,
-            "records": 0
-          },
-          "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
-            "ok": true,
-            "records": 12
-          },
-          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P": {
-            "ok": true,
-            "records": 0
-          }
-        },
-        "asOf": "2026-09-14T03:41:10+05:30",
-        "errors": []
-      },
-      "verified-p4-official-issue-terms": {
-        "ok": true,
-        "entries": 13,
-        "updated": 6,
-        "identityRejected": 0,
-        "fields": {
-          "issueSizeCr": 6,
-          "freshIssueCr": 3,
-          "ofsCr": 3,
-          "issueComposition": 3
-        },
-        "checkedAt": "2026-09-14T03:51:33+05:30"
-      },
-      "verified-p4-nse-issue-terms": {
-        "ok": true,
-        "entries": 17,
-        "updated": 2,
-        "rejected": 0,
-        "fields": {
-          "issueSizeCr": 2,
-          "freshIssueCr": 2,
-          "ofsCr": 2,
-          "issueComposition": 2
-        },
-        "checkedAt": "2026-09-14T04:26:04+05:30"
-      },
-      "verified-p4-final-issue-terms": {
-        "ok": true,
-        "entries": 2,
-        "updated": 2,
-        "rejected": 0,
-        "fields": {
-          "issueSizeCr": 2,
-          "freshIssueCr": 2,
-          "ofsCr": 2,
-          "issueComposition": 2
-        },
-        "checkedAt": "2026-09-14T04:29:55+05:30"
-      },
-      "verified-p4-final-composition": {
-        "ok": true,
-        "entries": 7,
-        "updated": 7,
-        "rejected": 0,
-        "fields": {
-          "freshIssueCr": 7,
-          "ofsCr": 7,
-          "issueComposition": 7
-        },
-        "checkedAt": "2026-09-14T04:48:01+05:30"
-      },
-      "SEBI-other-doc-lot-backfill": {
-        "targets": 113,
-        "selected": 113,
-        "matchedPages": 3,
-        "discoveredDocuments": 2,
-        "attemptedDocuments": 2,
-        "updated": 0,
-        "failed": 1,
-        "updatedIds": [],
-        "errors": [
-          "Jayesh Logistics Limited detail: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
-        ],
-        "asOf": "2026-09-15T00:24:32+05:30"
-      },
-      "NSE-lot-size-backfill": {
-        "ok": false,
-        "targets": 113,
-        "selected": 25,
-        "attempted": 1,
-        "updated": 0,
-        "failed": 1,
-        "blockedRemaining": 25,
-        "updatedIds": [],
-        "errors": [
-          "Credent Connect N Care Limited: 403 Client Error: Forbidden for url: https://www.nseindia.com/"
-        ],
-        "asOf": "2026-09-15T00:24:32+05:30"
-      }
-    },
-    "sources": [
-      "NSE India",
-      "SEBI",
-      "BSE India"
-    ],
-    "subscriptionHealth": {
-      "ok": false,
-      "degraded": false,
-      "attempted": 2,
-      "updated": 0,
-      "snapshotsAdded": 0,
-      "failed": 2,
-      "nseRecords": 0,
-      "bseFallbackRecords": 0,
-      "secondaryFallbackRecords": 0,
-      "secondarySources": {},
-      "asOf": "2026-09-15T14:51:24+05:30",
-      "pageHealth": {
-        "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
-          "ok": true,
-          "records": 0
-        },
-        "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
-          "ok": true,
-          "records": 31
-        },
-        "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2": {
-          "ok": false,
-          "records": 0,
-          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f965a5bed50>, 'Connection to www.bsesme.c"
-        }
-      },
-      "warnings": [],
-      "errors": [
-        "Vama Wovenfab Limited: Groww IPO subscription (secondary): Groww IPO subscription (secondary) page contained no parseable table rows; IPO Dhamaka subscription (secondary): IPO Dhamaka subscription (secondary) row not found for Vama Wovenfab Limited",
-        "Shakti Polytarp Limited: Groww IPO subscription (secondary): Groww IPO subscription (secondary) page contained no parseable table rows; IPO Dhamaka subscription (secondary): IPO Dhamaka subscription (secondary) row not found for Shakti Polytarp Limited"
-      ]
-    },
-    "timezone": "Asia/Kolkata",
     "publication": {
-      "runId": "34976032673",
-      "collectorCommit": "34ba57b971cb445fe43d29a8242659829dcf799f",
+      "runId": "34978970292",
+      "collectorCommit": "8c6a40939770f18c576d916dd3097e05fa81a5e5",
       "status": "published",
       "pendingConflictCount": 0
     },
+    "recordCount": 1356,
+    "recordIntegrity": {
+      "checkedAt": "2026-09-15T14:04:10.987763+00:00",
+      "changedFields": 0
+    },
     "reviewedCorrectionStatus": {
-      "registryRevision": "2026-09-14-source-repair",
+      "registryRevision": "2026-09-15-upcoming-and-final-notices",
       "appliedFields": 0,
       "conflicts": [
         {
@@ -1146,7 +702,12 @@
         {
           "id": "knack",
           "fields": [
-            "documentRepair"
+            "dataCorrections",
+            "documentFieldProvenance",
+            "documentRepair",
+            "financials",
+            "leadManagers",
+            "offerDocumentExtraction"
           ],
           "reason": "Value changed since source review; preserving this record and its matching provenance"
         },
@@ -1383,28 +944,498 @@
         }
       ]
     },
-    "initialSourceRepair": {
-      "records": 1354,
-      "sourceDocumentsAttempted": 72,
-      "sourceDocumentsRead": 70,
-      "sourceFailures": 2,
-      "changedRecordCount": 75,
-      "changedFields": 440,
-      "fieldCounts": {
-        "dataCorrections": 72,
-        "documentFieldProvenance": 70,
-        "documentRepair": 72,
-        "financials": 32,
-        "leadManagers": 69,
-        "offerDocumentExtraction": 70,
-        "registrar": 46,
-        "promoters": 5,
-        "objectsOfIssue": 4
+    "schemaVersion": 5,
+    "sebiDocumentLinkHealth": {
+      "ok": true,
+      "attemptedRecords": 0,
+      "attempted": 0,
+      "resolvedPages": 0,
+      "seededPages": 0,
+      "linksAdded": 0,
+      "failed": 0,
+      "asOf": "2026-09-15T19:07:11+05:30",
+      "errors": []
+    },
+    "seed": false,
+    "sourceHealth": {
+      "NSE-live": {
+        "ok": true,
+        "records": 10
       },
-      "semanticErrors": 0,
-      "sourceReviewItems": 928,
-      "sourceReviewRecords": 60
-    }
+      "NSE-history": {
+        "ok": true,
+        "records": 0,
+        "status": "checked",
+        "note": "checked · 0 new rows"
+      },
+      "SEBI": {
+        "ok": true,
+        "records": 21,
+        "companiesAttached": 15
+      },
+      "BSE": {
+        "ok": true,
+        "records": 14,
+        "companiesAttached": 14
+      },
+      "BSE-detail": {
+        "ok": true,
+        "records": 0,
+        "indexRecords": 12,
+        "candidates": 30,
+        "matched": 0,
+        "attempted": 0,
+        "updated": 0,
+        "failed": 0,
+        "historyDays": 730,
+        "fieldsFilled": {},
+        "indexHealth": {
+          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+            "ok": true,
+            "records": 0
+          },
+          "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+            "ok": true,
+            "records": 12
+          },
+          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P": {
+            "ok": true,
+            "records": 0
+          }
+        },
+        "errors": []
+      },
+      "BSE-history-detail": {
+        "ok": false,
+        "records": 0,
+        "attempted": 0,
+        "hosts": [
+          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P",
+          "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P"
+        ],
+        "error": "BSE historical archive unavailable on official hosts: https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P: historical page did not contain its ASP.NET form; https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P: historical issue-type selector was not found"
+      },
+      "IPO-subscription": {
+        "ok": false,
+        "degraded": false,
+        "records": 0,
+        "attempted": 2,
+        "snapshotsAdded": 0,
+        "failed": 2,
+        "nseRecords": 0,
+        "bseFallbackRecords": 0,
+        "secondaryFallbackRecords": 0,
+        "secondarySources": {},
+        "asOf": "2026-09-15T14:51:24+05:30",
+        "errors": [
+          "Vama Wovenfab Limited: Groww IPO subscription (secondary): Groww IPO subscription (secondary) page contained no parseable table rows; IPO Dhamaka subscription (secondary): IPO Dhamaka subscription (secondary) row not found for Vama Wovenfab Limited",
+          "Shakti Polytarp Limited: Groww IPO subscription (secondary): Groww IPO subscription (secondary) page contained no parseable table rows; IPO Dhamaka subscription (secondary): IPO Dhamaka subscription (secondary) row not found for Shakti Polytarp Limited"
+        ]
+      },
+      "Critical-backfill": {
+        "ok": true,
+        "records": 0,
+        "asOf": "2026-09-14T11:57:31+05:30"
+      },
+      "SEBI-document-links": {
+        "ok": true,
+        "records": 0,
+        "attemptedRecords": 0,
+        "attempted": 0,
+        "asOf": "2026-09-15T19:07:11+05:30",
+        "errors": []
+      },
+      "Offer-docs": {
+        "ok": false,
+        "records": 11,
+        "attempted": 12,
+        "failed": 1,
+        "parserVersion": 13,
+        "schedulerVersion": 1
+      },
+      "Issuer-offer-docs": {
+        "ok": true,
+        "records": 0,
+        "attempted": 0,
+        "updated": 0,
+        "deepScanned": 0,
+        "failed": 0,
+        "asOf": "2026-09-14T03:33:11+05:30",
+        "errors": []
+      },
+      "NSE-primary-market-reports": {
+        "ok": true,
+        "indexUrl": "https://www.nseindia.com/static/regulations/segment-wise-historical-reports-capital-primary-market",
+        "reportsDiscovered": 30,
+        "reportRows": 534,
+        "candidates": 76,
+        "matched": 0,
+        "updated": 0,
+        "historyDays": 730,
+        "fieldsFilled": {},
+        "errors": [],
+        "asOf": "2026-09-13T23:20:35+05:30"
+      },
+      "verified-upcoming-lot-sizes": {
+        "ok": true,
+        "entries": 2,
+        "updated": 2,
+        "checkedAt": "2026-09-13T08:37:57+05:30"
+      },
+      "SEBI-priority-registers": {
+        "ok": true,
+        "parserVersion": 2,
+        "priorityMax": 3,
+        "firstPageMatched": 0,
+        "firstPageLinks": 0,
+        "searchedRecords": 5,
+        "searchMatchedRecords": 0,
+        "searchLinksAdded": 0,
+        "failed": 0,
+        "asOf": "2026-09-15T19:07:11+05:30",
+        "errors": []
+      },
+      "SEBI-offer-terms": {
+        "ok": true,
+        "priorityMax": 3,
+        "targets": 2,
+        "attempted": 0,
+        "extracted": 0,
+        "updated": 0,
+        "failed": 0,
+        "skippedLotOnlyRhp": 1,
+        "fields": {},
+        "asOf": "2026-09-15T19:07:12+05:30",
+        "errors": []
+      },
+      "verified-lot-sizes": {
+        "ok": true,
+        "entries": 36,
+        "updated": 0,
+        "checkedAt": "2026-09-14T03:33:10+05:30"
+      },
+      "verified-recent-issue-terms": {
+        "ok": true,
+        "entries": 14,
+        "updated": 0,
+        "fields": {},
+        "checkedAt": "2026-09-14T03:33:10+05:30"
+      },
+      "verified-recent-offer-fields": {
+        "ok": true,
+        "entries": 20,
+        "updated": 0,
+        "fields": {},
+        "checkedAt": "2026-09-14T03:33:11+05:30"
+      },
+      "verified-filing-offer-fields": {
+        "ok": true,
+        "entries": 4,
+        "updated": 0,
+        "fields": {},
+        "checkedAt": "2026-09-15T19:07:33+05:30"
+      },
+      "NSE-history-IPO-filter": {
+        "ok": true,
+        "seen": 472,
+        "kept": 435,
+        "excludedNonEquity": 37,
+        "legacyRowsRemoved": 0,
+        "removed": [],
+        "checkedAt": "2026-09-13T23:20:21+05:30"
+      },
+      "NSE-issue-info": {
+        "ok": true,
+        "candidates": 123,
+        "attempted": 123,
+        "updated": 0,
+        "identityMismatches": 18,
+        "noLot": 105,
+        "failed": 0,
+        "historyDays": 730,
+        "retryDays": 0,
+        "errors": []
+      },
+      "P4-legacy-debt-symbol-cleanup": {
+        "ok": true,
+        "historyDays": 730,
+        "removedCount": 8,
+        "removed": [
+          {
+            "id": "935iifl33",
+            "company": "IIFL Finance Limited",
+            "symbol": "935IIFL33",
+            "openDate": "2026-02-17",
+            "exchange": "NSE"
+          },
+          {
+            "id": "815chli36",
+            "company": "Canara HSBC Life Insurance Company Limited",
+            "symbol": "815CHLI36",
+            "openDate": "2025-10-10",
+            "exchange": "NSE"
+          },
+          {
+            "id": "805taca29",
+            "company": "Tata Capital Limited",
+            "symbol": "805TACA29",
+            "openDate": "2025-10-06",
+            "exchange": "NSE"
+          },
+          {
+            "id": "1305dccl29",
+            "company": "Dar Credit & Capital Limited",
+            "symbol": "1305DCCL29",
+            "openDate": "2025-05-21",
+            "exchange": "NSE Emerge"
+          },
+          {
+            "id": "975scl35",
+            "company": "Sammaan Capital Limited",
+            "symbol": "975SCL35",
+            "openDate": "2025-02-27",
+            "exchange": "NSE"
+          },
+          {
+            "id": "790ihfl27",
+            "company": "IIFL Home Finance Limited",
+            "symbol": "790IHFL27",
+            "openDate": "2024-12-06",
+            "exchange": "NSE"
+          },
+          {
+            "id": "727ngel36",
+            "company": "NTPC Green Energy Limited",
+            "symbol": "727NGEL36",
+            "openDate": "2024-11-19",
+            "exchange": "NSE"
+          },
+          {
+            "id": "904nacl28",
+            "company": "Northern Arc Capital Limited",
+            "symbol": "904NACL28",
+            "openDate": "2024-09-16",
+            "exchange": "NSE"
+          }
+        ],
+        "checkedOn": "2026-09-13"
+      },
+      "NSE-issue-info-terms": {
+        "ok": true,
+        "candidates": 42,
+        "attempted": 42,
+        "updated": 0,
+        "identityMismatches": 8,
+        "noTerms": 25,
+        "noChange": 9,
+        "failed": 0,
+        "historyDays": 730,
+        "retryDays": 0,
+        "errors": []
+      },
+      "P4-verified-non-IPO-cleanup": {
+        "ok": true,
+        "historyDays": 730,
+        "checkedOn": "2026-09-13",
+        "removedCount": 3,
+        "removed": [
+          {
+            "id": "adanienpp1",
+            "company": "Adani Enterprises Limited",
+            "symbol": "ADANIENPP1",
+            "openDate": "2026-01-06",
+            "reason": "ADANIENPP1 is a partly-paid rights equity security, while 6-Jan-2026 is the opening date of AEL's public NCD issue; the stored row is not an IPO identity.",
+            "evidence": "https://nsearchives.nseindia.com/content/circulars/CML72630.pdf",
+            "evidence2": "https://www.adani.com/newsroom/media-releases/adani-enterprises-launches-its-3rd-public-issue-of-ncds-of-rs1000-crore"
+          },
+          {
+            "id": "avtl29",
+            "company": "Aegis Vopak Terminals Limited",
+            "symbol": "AVTL29",
+            "openDate": "2025-05-26",
+            "reason": "NSE identifies AVTL29 as Series N0, AVTL Floating Rate 2029 debt security.",
+            "evidence": "https://nsearchives.nseindia.com/content/circulars/CML72192.pdf",
+            "evidence2": null
+          },
+          {
+            "id": "84ail28",
+            "company": "Afcons Infrastructure Limited",
+            "symbol": "84AIL28",
+            "openDate": "2024-10-25",
+            "reason": "NSE identifies the AIL 8.40% 2028 security as debt; AFCONS is the equity IPO symbol.",
+            "evidence": "https://nsearchives.nseindia.com/content/circulars/CML70872.pdf",
+            "evidence2": null
+          }
+        ]
+      },
+      "P4-verified-record-repairs": {
+        "ok": false,
+        "selectorVersion": 2,
+        "identityRepairEntries": 2,
+        "identityRecordsUpdated": 0,
+        "availabilityEntries": 6,
+        "availabilityRecordsUpdated": 0,
+        "missingOrAmbiguous": 3,
+        "checkedAt": "2026-09-14T03:33:10+05:30"
+      },
+      "SEBI-offer-issue-terms": {
+        "ok": true,
+        "priorityMax": 4,
+        "targets": 37,
+        "attempted": 0,
+        "extracted": 0,
+        "updated": 0,
+        "failed": 0,
+        "noDocument": 37,
+        "fields": {},
+        "asOf": "2026-09-14T03:39:42+05:30",
+        "errors": []
+      },
+      "BSE-P4-issue-terms": {
+        "ok": true,
+        "targets": 37,
+        "detailAttempted": 0,
+        "detailUpdated": 0,
+        "pdfAttempted": 0,
+        "pdfUpdated": 0,
+        "failed": 0,
+        "fields": {},
+        "indexHealth": {
+          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+            "ok": true,
+            "records": 0
+          },
+          "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+            "ok": true,
+            "records": 12
+          },
+          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P": {
+            "ok": true,
+            "records": 0
+          }
+        },
+        "asOf": "2026-09-14T03:41:10+05:30",
+        "errors": []
+      },
+      "verified-p4-official-issue-terms": {
+        "ok": true,
+        "entries": 13,
+        "updated": 6,
+        "identityRejected": 0,
+        "fields": {
+          "issueSizeCr": 6,
+          "freshIssueCr": 3,
+          "ofsCr": 3,
+          "issueComposition": 3
+        },
+        "checkedAt": "2026-09-14T03:51:33+05:30"
+      },
+      "verified-p4-nse-issue-terms": {
+        "ok": true,
+        "entries": 17,
+        "updated": 2,
+        "rejected": 0,
+        "fields": {
+          "issueSizeCr": 2,
+          "freshIssueCr": 2,
+          "ofsCr": 2,
+          "issueComposition": 2
+        },
+        "checkedAt": "2026-09-14T04:26:04+05:30"
+      },
+      "verified-p4-final-issue-terms": {
+        "ok": true,
+        "entries": 2,
+        "updated": 2,
+        "rejected": 0,
+        "fields": {
+          "issueSizeCr": 2,
+          "freshIssueCr": 2,
+          "ofsCr": 2,
+          "issueComposition": 2
+        },
+        "checkedAt": "2026-09-14T04:29:55+05:30"
+      },
+      "verified-p4-final-composition": {
+        "ok": true,
+        "entries": 7,
+        "updated": 7,
+        "rejected": 0,
+        "fields": {
+          "freshIssueCr": 7,
+          "ofsCr": 7,
+          "issueComposition": 7
+        },
+        "checkedAt": "2026-09-14T04:48:01+05:30"
+      },
+      "SEBI-other-doc-lot-backfill": {
+        "targets": 113,
+        "selected": 113,
+        "matchedPages": 3,
+        "discoveredDocuments": 2,
+        "attemptedDocuments": 2,
+        "updated": 0,
+        "failed": 1,
+        "updatedIds": [],
+        "errors": [
+          "Jayesh Logistics Limited detail: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
+        ],
+        "asOf": "2026-09-15T00:24:32+05:30"
+      },
+      "NSE-lot-size-backfill": {
+        "ok": false,
+        "targets": 113,
+        "selected": 25,
+        "attempted": 1,
+        "updated": 0,
+        "failed": 1,
+        "blockedRemaining": 25,
+        "updatedIds": [],
+        "errors": [
+          "Credent Connect N Care Limited: 403 Client Error: Forbidden for url: https://www.nseindia.com/"
+        ],
+        "asOf": "2026-09-15T00:24:32+05:30"
+      }
+    },
+    "sources": [
+      "NSE India",
+      "SEBI",
+      "BSE India"
+    ],
+    "subscriptionHealth": {
+      "ok": false,
+      "degraded": false,
+      "attempted": 2,
+      "updated": 0,
+      "snapshotsAdded": 0,
+      "failed": 2,
+      "nseRecords": 0,
+      "bseFallbackRecords": 0,
+      "secondaryFallbackRecords": 0,
+      "secondarySources": {},
+      "asOf": "2026-09-15T14:51:24+05:30",
+      "pageHealth": {
+        "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+          "ok": true,
+          "records": 0
+        },
+        "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+          "ok": true,
+          "records": 31
+        },
+        "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2": {
+          "ok": false,
+          "records": 0,
+          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f965a5bed50>, 'Connection to www.bsesme.c"
+        }
+      },
+      "warnings": [],
+      "errors": [
+        "Vama Wovenfab Limited: Groww IPO subscription (secondary): Groww IPO subscription (secondary) page contained no parseable table rows; IPO Dhamaka subscription (secondary): IPO Dhamaka subscription (secondary) row not found for Vama Wovenfab Limited",
+        "Shakti Polytarp Limited: Groww IPO subscription (secondary): Groww IPO subscription (secondary) page contained no parseable table rows; IPO Dhamaka subscription (secondary): IPO Dhamaka subscription (secondary) row not found for Shakti Polytarp Limited"
+      ]
+    },
+    "timezone": "Asia/Kolkata"
   },
   "ipos": [
     {
@@ -26943,6 +26974,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com/content/circulars/CML75648.zip",
           "asOf": "2026-09-14T04:29:55+05:30"
+        },
+        {
+          "name": "Anawil final prospectus dated August 6, 2026",
+          "url": "https://anawilvapi.in/uploads/investors/Prospectus.pdf",
+          "kind": "offer-document",
+          "asOf": "2026-09-15T04:40:00+00:00"
         }
       ],
       "source": {
@@ -27042,7 +27079,24 @@
           "checkedAt": "2026-09-15T05:05:56.573380+00:00"
         },
         "gainPct": null
-      }
+      },
+      "lotSize": 400,
+      "dataCorrections": [
+        {
+          "field": "lotSize",
+          "before": null,
+          "after": 400,
+          "reason": "Filled from a reviewed final offer or listing notice",
+          "sourceUrl": "https://anawilvapi.in/uploads/investors/Prospectus.pdf",
+          "evidence": {
+            "page": 9,
+            "printedPage": 6,
+            "sha256": "ac20c1e1fa125b530e156dccf08600968194a7f42c003d875cb1f5bff29fe21f",
+            "basis": "The definitions table explicitly states a lot size of 400 equity shares. The individual minimum application is two lots; it is not the lot size."
+          },
+          "correctedAt": "2026-09-15T04:40:00+00:00"
+        }
+      ]
     },
     {
       "id": "mvelectro",
@@ -32434,8 +32488,9 @@
         "lotSize": 88,
         "error": null
       },
-      "registrar": "Link Intime India Private Limited",
+      "registrar": "MUFG Intime India Private Limited",
       "leadManagers": [
+        "IDBI Capital Markets Securities Limited",
         "Pantomath Capital Advisors Private Limited"
       ],
       "promoters": [
@@ -32448,30 +32503,18 @@
         "periods": [
           {
             "period": "FY2026",
-            "netWorthCr": 308.185,
             "revenueCr": 823.434,
-            "ebitdaCr": 172.294,
-            "patCr": 92.724,
-            "eps": 9.27,
-            "ronwPct": 35.47
+            "roePct": 35.75
           },
           {
             "period": "FY2025",
-            "netWorthCr": 214.709,
             "revenueCr": 736.49,
-            "ebitdaCr": 144.337,
-            "patCr": 73.81,
-            "eps": 7.38,
-            "ronwPct": 41.54
+            "roePct": 41.7
           },
           {
             "period": "FY2024",
-            "netWorthCr": 140.622,
             "revenueCr": 654.559,
-            "ebitdaCr": 101.374,
-            "patCr": 45.977,
-            "eps": 4.6,
-            "ronwPct": 38.97
+            "roePct": 38.38
           }
         ]
       },
@@ -32563,22 +32606,24 @@
       },
       "offerDocumentExtraction": {
         "status": "extracted",
-        "parserVersion": 18,
-        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/KNACK%20PACKAGING%20LIMITED%20-%20AP_p.pdf",
-        "documentType": "RHP",
-        "documentTitle": "KNACK PACKAGING LIMITED - Abridged prospectus",
-        "documentFiledDate": "2026-06-24",
+        "parserVersion": 21,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1783319397647.pdf",
+        "documentType": "PROSPECTUS",
+        "documentTitle": "SEBI PROSPECTUS",
+        "documentFiledDate": "2026-07-06",
         "source": "SEBI",
-        "sha256": "29110256c430fe43b2c278c932c94dd55dd2c2ab4e8c1e88df3da11d7853d87c",
-        "pagesRead": 8,
-        "pageCount": 8,
+        "sha256": "37358c25c23910252c4cd3640c6a40716f1ee0547944df833dbb784bbf98277c",
+        "pagesRead": 520,
+        "pageCount": 531,
         "extractedFields": [
+          "leadManagers",
+          "registrar",
           "promoters",
           "financials",
           "objectsOfIssue",
-          "shareholding"
+          "lotSize"
         ],
-        "extractedAt": "2026-09-14T10:53:43+05:30",
+        "extractedAt": "2026-09-15T19:33:49+05:30",
         "conflicts": []
       },
       "dataCorrections": [
@@ -32674,152 +32719,203 @@
           "sourceUrl": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/KNACK%20PACKAGING%20LIMITED%20-%20AP_p.pdf",
           "sha256": "29110256c430fe43b2c278c932c94dd55dd2c2ab4e8c1e88df3da11d7853d87c",
           "correctedAt": "2026-09-14T12:16:27.134108+00:00"
+        },
+        {
+          "field": "leadManagers",
+          "before": [
+            "Pantomath Capital Advisors Private Limited"
+          ],
+          "after": [
+            "IDBI Capital Markets Securities Limited",
+            "Pantomath Capital Advisors Private Limited"
+          ],
+          "reason": "Revalidated financial table or intermediary role against source document",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1783319397647.pdf",
+          "sha256": "37358c25c23910252c4cd3640c6a40716f1ee0547944df833dbb784bbf98277c",
+          "parserVersion": 21,
+          "correctedAt": "2026-09-15T19:33:49+05:30"
+        },
+        {
+          "field": "registrar",
+          "before": "Link Intime India Private Limited",
+          "after": "MUFG Intime India Private Limited",
+          "reason": "Revalidated financial table or intermediary role against source document",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1783319397647.pdf",
+          "sha256": "37358c25c23910252c4cd3640c6a40716f1ee0547944df833dbb784bbf98277c",
+          "parserVersion": 21,
+          "correctedAt": "2026-09-15T19:33:49+05:30"
+        },
+        {
+          "field": "financials",
+          "before": {
+            "unit": "₹ crore",
+            "periods": [
+              {
+                "period": "FY2026",
+                "netWorthCr": 308.185,
+                "revenueCr": 823.434,
+                "ebitdaCr": 172.294,
+                "patCr": 92.724,
+                "eps": 9.27,
+                "ronwPct": 35.47
+              },
+              {
+                "period": "FY2025",
+                "netWorthCr": 214.709,
+                "revenueCr": 736.49,
+                "ebitdaCr": 144.337,
+                "patCr": 73.81,
+                "eps": 7.38,
+                "ronwPct": 41.54
+              },
+              {
+                "period": "FY2024",
+                "netWorthCr": 140.622,
+                "revenueCr": 654.559,
+                "ebitdaCr": 101.374,
+                "patCr": 45.977,
+                "eps": 4.6,
+                "ronwPct": 38.97
+              }
+            ]
+          },
+          "after": {
+            "unit": "₹ crore",
+            "periods": [
+              {
+                "period": "FY2026",
+                "revenueCr": 823.434,
+                "roePct": 35.75
+              },
+              {
+                "period": "FY2025",
+                "revenueCr": 736.49,
+                "roePct": 41.7
+              },
+              {
+                "period": "FY2024",
+                "revenueCr": 654.559,
+                "roePct": 38.38
+              }
+            ]
+          },
+          "reason": "Revalidated financial table or intermediary role against source document",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1783319397647.pdf",
+          "sha256": "37358c25c23910252c4cd3640c6a40716f1ee0547944df833dbb784bbf98277c",
+          "parserVersion": 21,
+          "correctedAt": "2026-09-15T19:33:49+05:30"
         }
       ],
       "documentFieldProvenance": {
-        "sourceUrl": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/KNACK%20PACKAGING%20LIMITED%20-%20AP_p.pdf",
-        "documentType": "RHP",
-        "documentDate": "2026-06-24",
-        "sha256": "29110256c430fe43b2c278c932c94dd55dd2c2ab4e8c1e88df3da11d7853d87c",
-        "parserVersion": 18,
-        "checkedAt": "2026-09-14T10:53:43+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1783319397647.pdf",
+        "documentType": "PROSPECTUS",
+        "documentDate": "2026-07-06",
+        "sha256": "37358c25c23910252c4cd3640c6a40716f1ee0547944df833dbb784bbf98277c",
+        "parserVersion": 21,
+        "checkedAt": "2026-09-15T19:33:49+05:30",
         "evidence": {
           "financials": {
-            "FY2026.netWorthCr": {
-              "page": 5,
-              "header": "ended March 31, 2026               ended March 31, 2025                ended March 31, 2024",
-              "row": "Net worth (6)                                                                          3,081.85                            2,147.09                           1,406.22",
-              "normalizedValue": 308.185,
-              "originalUnit": "million"
-            },
-            "FY2025.netWorthCr": {
-              "page": 5,
-              "header": "ended March 31, 2026               ended March 31, 2025                ended March 31, 2024",
-              "row": "Net worth (6)                                                                          3,081.85                            2,147.09                           1,406.22",
-              "normalizedValue": 214.709,
-              "originalUnit": "million"
-            },
-            "FY2024.netWorthCr": {
-              "page": 5,
-              "header": "ended March 31, 2026               ended March 31, 2025                ended March 31, 2024",
-              "row": "Net worth (6)                                                                          3,081.85                            2,147.09                           1,406.22",
-              "normalizedValue": 140.622,
-              "originalUnit": "million"
-            },
             "FY2026.revenueCr": {
-              "page": 5,
-              "header": "ended March 31, 2026               ended March 31, 2025                ended March 31, 2024",
-              "row": "Revenue from operations                                                                8,234.34                            7,364.90                           6,545.59",
+              "page": 32,
+              "header": "its recurring customer base.\n\n                              The table below sets forth the details of customer continuity rate for the periods stated below:\n\n                                                                                                                                (in ₹ millions, unless otherwise stated)\n                                           Particulars                             Fiscal 2026                        Fiscal 2025                        Fiscal 2024",
+              "row": "Revenue from operations                                    8,234.34                           7,364.90                           6,545.59",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
               "normalizedValue": 823.434,
+              "scope": "unspecified",
               "originalUnit": "million"
             },
             "FY2025.revenueCr": {
-              "page": 5,
-              "header": "ended March 31, 2026               ended March 31, 2025                ended March 31, 2024",
-              "row": "Revenue from operations                                                                8,234.34                            7,364.90                           6,545.59",
+              "page": 32,
+              "header": "its recurring customer base.\n\n                              The table below sets forth the details of customer continuity rate for the periods stated below:\n\n                                                                                                                                (in ₹ millions, unless otherwise stated)\n                                           Particulars                             Fiscal 2026                        Fiscal 2025                        Fiscal 2024",
+              "row": "Revenue from operations                                    8,234.34                           7,364.90                           6,545.59",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
               "normalizedValue": 736.49,
+              "scope": "unspecified",
               "originalUnit": "million"
             },
             "FY2024.revenueCr": {
-              "page": 5,
-              "header": "ended March 31, 2026               ended March 31, 2025                ended March 31, 2024",
-              "row": "Revenue from operations                                                                8,234.34                            7,364.90                           6,545.59",
+              "page": 32,
+              "header": "its recurring customer base.\n\n                              The table below sets forth the details of customer continuity rate for the periods stated below:\n\n                                                                                                                                (in ₹ millions, unless otherwise stated)\n                                           Particulars                             Fiscal 2026                        Fiscal 2025                        Fiscal 2024",
+              "row": "Revenue from operations                                    8,234.34                           7,364.90                           6,545.59",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
               "normalizedValue": 654.559,
+              "scope": "unspecified",
               "originalUnit": "million"
             },
-            "FY2026.ebitdaCr": {
-              "page": 5,
-              "header": "ended March 31, 2026               ended March 31, 2025                ended March 31, 2024",
-              "row": "EBITDA(5)                                                                              1,722.94                            1,443.37                           1,013.74",
-              "normalizedValue": 172.294,
-              "originalUnit": "million"
-            },
-            "FY2025.ebitdaCr": {
-              "page": 5,
-              "header": "ended March 31, 2026               ended March 31, 2025                ended March 31, 2024",
-              "row": "EBITDA(5)                                                                              1,722.94                            1,443.37                           1,013.74",
-              "normalizedValue": 144.337,
-              "originalUnit": "million"
-            },
-            "FY2024.ebitdaCr": {
-              "page": 5,
-              "header": "ended March 31, 2026               ended March 31, 2025                ended March 31, 2024",
-              "row": "EBITDA(5)                                                                              1,722.94                            1,443.37                           1,013.74",
-              "normalizedValue": 101.374,
-              "originalUnit": "million"
-            },
-            "FY2026.patCr": {
-              "page": 5,
-              "header": "ended March 31, 2026               ended March 31, 2025                ended March 31, 2024",
-              "row": "Profit/ (loss) after tax                                                                 927.24                             738.10                              459.77",
-              "normalizedValue": 92.724,
-              "originalUnit": "million"
-            },
-            "FY2025.patCr": {
-              "page": 5,
-              "header": "ended March 31, 2026               ended March 31, 2025                ended March 31, 2024",
-              "row": "Profit/ (loss) after tax                                                                 927.24                             738.10                              459.77",
-              "normalizedValue": 73.81,
-              "originalUnit": "million"
-            },
-            "FY2024.patCr": {
-              "page": 5,
-              "header": "ended March 31, 2026               ended March 31, 2025                ended March 31, 2024",
-              "row": "Profit/ (loss) after tax                                                                 927.24                             738.10                              459.77",
-              "normalizedValue": 45.977,
-              "originalUnit": "million"
-            },
-            "FY2026.eps": {
-              "page": 5,
-              "header": "ended March 31, 2026               ended March 31, 2025                ended March 31, 2024",
-              "row": "Diluted EPS(2) (₹)                                                                         9.27                                7.38                               4.60",
-              "normalizedValue": 9.27,
-              "originalUnit": "rupees per share"
-            },
-            "FY2025.eps": {
-              "page": 5,
-              "header": "ended March 31, 2026               ended March 31, 2025                ended March 31, 2024",
-              "row": "Diluted EPS(2) (₹)                                                                         9.27                                7.38                               4.60",
-              "normalizedValue": 7.38,
-              "originalUnit": "rupees per share"
-            },
-            "FY2024.eps": {
-              "page": 5,
-              "header": "ended March 31, 2026               ended March 31, 2025                ended March 31, 2024",
-              "row": "Diluted EPS(2) (₹)                                                                         9.27                                7.38                               4.60",
-              "normalizedValue": 4.6,
-              "originalUnit": "rupees per share"
-            },
-            "FY2026.ronwPct": {
-              "page": 5,
-              "header": "ended March 31, 2026               ended March 31, 2025                ended March 31, 2024",
-              "row": "Return on Net worth (3) (%)                                                               35.47                               41.54                              38.97",
-              "normalizedValue": 35.47,
+            "FY2026.roePct": {
+              "page": 250,
+              "header": "[PAGE 250]\n                        Our key performance indicators for Fiscals 2026, 2025 and 2024, based on the Restated Consolidated Financial\n                        Information, are set forth in the table below.\n\n                               Sr. No.                Particulars              Units             Fiscal 2026                 Fiscal 2025                 Fiscal 2024",
+              "row": "12             Return on Equity               (%)                  35.75                       41.70                       38.38",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 35.75,
+              "scope": "consolidated",
               "originalUnit": "percent"
             },
-            "FY2025.ronwPct": {
-              "page": 5,
-              "header": "ended March 31, 2026               ended March 31, 2025                ended March 31, 2024",
-              "row": "Return on Net worth (3) (%)                                                               35.47                               41.54                              38.97",
-              "normalizedValue": 41.54,
+            "FY2025.roePct": {
+              "page": 250,
+              "header": "[PAGE 250]\n                        Our key performance indicators for Fiscals 2026, 2025 and 2024, based on the Restated Consolidated Financial\n                        Information, are set forth in the table below.\n\n                               Sr. No.                Particulars              Units             Fiscal 2026                 Fiscal 2025                 Fiscal 2024",
+              "row": "12             Return on Equity               (%)                  35.75                       41.70                       38.38",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 41.7,
+              "scope": "consolidated",
               "originalUnit": "percent"
             },
-            "FY2024.ronwPct": {
-              "page": 5,
-              "header": "ended March 31, 2026               ended March 31, 2025                ended March 31, 2024",
-              "row": "Return on Net worth (3) (%)                                                               35.47                               41.54                              38.97",
-              "normalizedValue": 38.97,
+            "FY2024.roePct": {
+              "page": 250,
+              "header": "[PAGE 250]\n                        Our key performance indicators for Fiscals 2026, 2025 and 2024, based on the Restated Consolidated Financial\n                        Information, are set forth in the table below.\n\n                               Sr. No.                Particulars              Units             Fiscal 2026                 Fiscal 2025                 Fiscal 2024",
+              "row": "12             Return on Equity               (%)                  35.75                       41.70                       38.38",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 38.38,
+              "scope": "consolidated",
               "originalUnit": "percent"
             }
+          },
+          "leadManagers": {
+            "page": 2,
+            "heading": "DETAILS OF BOOK RUNNING LEAD MANAGERS",
+            "entities": [
+              "IDBI Capital Markets Securities Limited",
+              "Pantomath Capital Advisors Private Limited"
+            ]
+          },
+          "registrar": {
+            "page": 2,
+            "heading": "REGISTRAR TO THE OFFER",
+            "entities": [
+              "MUFG Intime India Private Limited"
+            ]
           }
         }
       },
       "documentRepair": {
-        "status": "source_blocked",
-        "lastAttemptAt": "2026-09-15T19:07:32+05:30",
-        "parserVersion": 21,
-        "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1783319397647.pdf",
-        "error": "('Connection broken: IncompleteRead(5250639 bytes read, 8474581 more expected)', IncompleteRead(5250639 bytes read, 8474581 more expected))"
+        "status": "updated",
+        "financialStatus": "validated",
+        "lastAttemptAt": "2026-09-15T19:33:49+05:30",
+        "parserVersion": 21
       },
       "listing": {
         "issuePrice": 170.0,
@@ -61051,6 +61147,18 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com/corporate/Registration_14082025225322_RSBDRHP.pdf",
           "asOf": "2026-09-14T04:26:04+05:30"
+        },
+        {
+          "name": "NSDL final price-band notice",
+          "url": "https://nsdl.com/nsdl/2026-03/Intimation_of_Price_Band_with_ad_final.pdf",
+          "kind": "offer-document",
+          "asOf": "2026-09-15T04:40:00+00:00"
+        },
+        {
+          "name": "BSE NSDL listing notice 20250805-54",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250805-54",
+          "kind": "exchange",
+          "asOf": "2026-09-15T04:40:00+00:00"
         }
       ],
       "source": {
@@ -61246,6 +61354,32 @@
           "sha256": "73f58366e63772ec93c8218aebd81c8580e6f4f80b92ed9c46d41f2fb4f9a794",
           "parserVersion": 21,
           "correctedAt": "2026-09-15T10:27:35+05:30"
+        },
+        {
+          "field": "lotSize",
+          "before": null,
+          "after": 18,
+          "reason": "Filled from a reviewed final offer or listing notice",
+          "sourceUrl": "https://nsdl.com/nsdl/2026-03/Intimation_of_Price_Band_with_ad_final.pdf",
+          "evidence": {
+            "page": 2,
+            "sha256": "865050f660a0b3a396951f9943a55fb66b6e1aaafce970c7cf8418e6783bd6e8",
+            "basis": "Minimum bid and subsequent increments are both 18 equity shares."
+          },
+          "correctedAt": "2026-09-15T04:40:00+00:00"
+        },
+        {
+          "field": "listingDate",
+          "before": null,
+          "after": "2025-08-06",
+          "reason": "Filled from a reviewed final offer or listing notice",
+          "sourceUrl": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250805-54",
+          "evidence": {
+            "noticeNumber": "20250805-54",
+            "noticeDate": "2025-08-05",
+            "basis": "The notice admits National Securities Depository Limited, scrip 544467, ISIN INE301O01023, to trading effective August 6, 2025."
+          },
+          "correctedAt": "2026-09-15T04:40:00+00:00"
         }
       ],
       "documentFieldProvenance": {
@@ -61370,7 +61504,9 @@
         "financialStatus": "validated",
         "lastAttemptAt": "2026-09-15T10:27:35+05:30",
         "parserVersion": 21
-      }
+      },
+      "lotSize": 18,
+      "listingDate": "2025-08-06"
     },
     {
       "id": "mbel",
@@ -135329,7 +135465,7 @@
       "symbol": "NSE",
       "company": "National Stock Exchange of India Limited",
       "board": "Mainboard",
-      "exchange": "NSE",
+      "exchange": "BSE",
       "status": "upcoming",
       "openDate": "2026-09-17",
       "closeDate": "2026-09-21",
@@ -135338,10 +135474,10 @@
         "min": 1700.0,
         "max": 1785.0
       },
-      "lotSize": null,
-      "issueSizeCr": 22568.94,
-      "freshIssueCr": null,
-      "ofsCr": 0.0,
+      "lotSize": 8,
+      "issueSizeCr": 22561.574,
+      "freshIssueCr": 0.0,
+      "ofsCr": 22561.574,
       "subscription": null,
       "listing": null,
       "source": {
@@ -135406,6 +135542,12 @@
           "kind": "exchange",
           "url": "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p",
           "asOf": "2026-09-15T19:06:32+05:30"
+        },
+        {
+          "name": "NSE issuer final price-band advertisement",
+          "url": "https://nsearchives.nseindia.com//web/banner/2026-09/Stat_Ad-NSE_20260913174411.pdf",
+          "kind": "offer-document",
+          "asOf": "2026-09-15T13:52:32+00:00"
         }
       ],
       "validation": {
@@ -135475,12 +135617,12 @@
       "sharesOffered": 126436650,
       "sharesBid": null,
       "issueComposition": {
-        "freshShares": 126436650,
-        "ofsShares": 0,
-        "freshIssueCr": null,
-        "ofsCr": 0.0,
-        "totalIssueSizeCr": null,
-        "valuationPriceUsed": null
+        "freshShares": 0,
+        "ofsShares": 126436650,
+        "freshIssueCr": 0.0,
+        "ofsCr": 22561.574,
+        "totalIssueSizeCr": 22561.574,
+        "valuationPriceUsed": 1785.0
       },
       "offerDocumentExtraction": {
         "status": "extracted",
@@ -135644,7 +135786,101 @@
         "linksAdded": 1,
         "failed": 0,
         "lastAttemptAt": "2026-09-15T13:19:02+05:30"
-      }
+      },
+      "dataCorrections": [
+        {
+          "field": "exchange",
+          "before": "NSE",
+          "after": "BSE",
+          "reason": "Corrected the fresh/OFS allocation, listing exchange and cap-price offer size against the issuer final advertisement, including employee discount",
+          "sourceUrl": "https://nsearchives.nseindia.com//web/banner/2026-09/Stat_Ad-NSE_20260913174411.pdf",
+          "evidence": {
+            "page": 1,
+            "sha256": "d3bed46674ba2b63439df2511d4c946112556ad962db67492c11ab41d5967b71",
+            "basis": "Final notice: bids in 8 shares and multiples of 8; entire offer comprises 126,436,650 OFS shares; BSE listing. At the cap price, OFS amount is INR 225,615.74 million, accounting for the INR 170 employee discount."
+          },
+          "correctedAt": "2026-09-15T13:52:32+00:00"
+        },
+        {
+          "field": "issueSizeCr",
+          "before": 22568.94,
+          "after": 22561.574,
+          "reason": "Corrected the fresh/OFS allocation, listing exchange and cap-price offer size against the issuer final advertisement, including employee discount",
+          "sourceUrl": "https://nsearchives.nseindia.com//web/banner/2026-09/Stat_Ad-NSE_20260913174411.pdf",
+          "evidence": {
+            "page": 1,
+            "sha256": "d3bed46674ba2b63439df2511d4c946112556ad962db67492c11ab41d5967b71",
+            "basis": "Final notice: bids in 8 shares and multiples of 8; entire offer comprises 126,436,650 OFS shares; BSE listing. At the cap price, OFS amount is INR 225,615.74 million, accounting for the INR 170 employee discount."
+          },
+          "correctedAt": "2026-09-15T13:52:32+00:00"
+        },
+        {
+          "field": "freshIssueCr",
+          "before": null,
+          "after": 0.0,
+          "reason": "Corrected the fresh/OFS allocation, listing exchange and cap-price offer size against the issuer final advertisement, including employee discount",
+          "sourceUrl": "https://nsearchives.nseindia.com//web/banner/2026-09/Stat_Ad-NSE_20260913174411.pdf",
+          "evidence": {
+            "page": 1,
+            "sha256": "d3bed46674ba2b63439df2511d4c946112556ad962db67492c11ab41d5967b71",
+            "basis": "Final notice: bids in 8 shares and multiples of 8; entire offer comprises 126,436,650 OFS shares; BSE listing. At the cap price, OFS amount is INR 225,615.74 million, accounting for the INR 170 employee discount."
+          },
+          "correctedAt": "2026-09-15T13:52:32+00:00"
+        },
+        {
+          "field": "ofsCr",
+          "before": 0.0,
+          "after": 22561.574,
+          "reason": "Corrected the fresh/OFS allocation, listing exchange and cap-price offer size against the issuer final advertisement, including employee discount",
+          "sourceUrl": "https://nsearchives.nseindia.com//web/banner/2026-09/Stat_Ad-NSE_20260913174411.pdf",
+          "evidence": {
+            "page": 1,
+            "sha256": "d3bed46674ba2b63439df2511d4c946112556ad962db67492c11ab41d5967b71",
+            "basis": "Final notice: bids in 8 shares and multiples of 8; entire offer comprises 126,436,650 OFS shares; BSE listing. At the cap price, OFS amount is INR 225,615.74 million, accounting for the INR 170 employee discount."
+          },
+          "correctedAt": "2026-09-15T13:52:32+00:00"
+        },
+        {
+          "field": "issueComposition",
+          "before": {
+            "freshShares": 126436650,
+            "ofsShares": 0,
+            "freshIssueCr": null,
+            "ofsCr": 0.0,
+            "totalIssueSizeCr": null,
+            "valuationPriceUsed": null
+          },
+          "after": {
+            "freshShares": 0,
+            "ofsShares": 126436650,
+            "freshIssueCr": 0.0,
+            "ofsCr": 22561.574,
+            "totalIssueSizeCr": 22561.574,
+            "valuationPriceUsed": 1785.0
+          },
+          "reason": "Corrected the fresh/OFS allocation, listing exchange and cap-price offer size against the issuer final advertisement, including employee discount",
+          "sourceUrl": "https://nsearchives.nseindia.com//web/banner/2026-09/Stat_Ad-NSE_20260913174411.pdf",
+          "evidence": {
+            "page": 1,
+            "sha256": "d3bed46674ba2b63439df2511d4c946112556ad962db67492c11ab41d5967b71",
+            "basis": "Final notice: bids in 8 shares and multiples of 8; entire offer comprises 126,436,650 OFS shares; BSE listing. At the cap price, OFS amount is INR 225,615.74 million, accounting for the INR 170 employee discount."
+          },
+          "correctedAt": "2026-09-15T13:52:32+00:00"
+        },
+        {
+          "field": "lotSize",
+          "before": null,
+          "after": 8,
+          "reason": "Filled from a reviewed final offer or listing notice",
+          "sourceUrl": "https://nsearchives.nseindia.com//web/banner/2026-09/Stat_Ad-NSE_20260913174411.pdf",
+          "evidence": {
+            "page": 1,
+            "sha256": "d3bed46674ba2b63439df2511d4c946112556ad962db67492c11ab41d5967b71",
+            "basis": "Final notice: bids in 8 shares and multiples of 8; entire offer comprises 126,436,650 OFS shares; BSE listing. At the cap price, OFS amount is INR 225,615.74 million, accounting for the INR 170 employee discount."
+          },
+          "correctedAt": "2026-09-15T13:52:32+00:00"
+        }
+      ]
     },
     {
       "id": "kheriaauto",
@@ -135673,6 +135909,12 @@
           "kind": "exchange",
           "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
           "asOf": "2026-09-15T13:18:09+05:30"
+        },
+        {
+          "name": "Kheria Autocomp RHP dated September 9, 2026",
+          "url": "https://www.kheria.com/documents/issue-documents/rhp.pdf",
+          "kind": "offer-document",
+          "asOf": "2026-09-15T13:52:32+00:00"
         }
       ],
       "source": {
@@ -135709,7 +135951,29 @@
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
       },
-      "profilePath": "ipo/kheriaauto/"
+      "profilePath": "ipo/kheriaauto/",
+      "issueComposition": {
+        "freshShares": 4598400,
+        "ofsShares": 0
+      },
+      "dataCorrections": [
+        {
+          "field": "issueComposition",
+          "before": null,
+          "after": {
+            "freshShares": 4598400,
+            "ofsShares": 0
+          },
+          "reason": "Filled from a reviewed final offer or listing notice",
+          "sourceUrl": "https://www.kheria.com/documents/issue-documents/rhp.pdf",
+          "evidence": {
+            "page": 1,
+            "sha256": "7f971a611de7d46c64073906677d014530b1806fca859ca69cd16d92b60f1f3c",
+            "basis": "Cover issue table: up to 4,598,400 fresh equity shares; OFS is NIL. The same page confirms the September 17–21, 2026 offer dates."
+          },
+          "correctedAt": "2026-09-15T13:52:32+00:00"
+        }
+      ]
     },
     {
       "id": "german-green-steel-and-power-limited-addendum-ii-to",
