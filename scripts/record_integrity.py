@@ -35,7 +35,9 @@ def repair(payload):
             row['listingDate'] = None
             row.setdefault('dataReview', {})['listingDate'] = 'Issue-specific listing date needs verification'
             change = {'field': 'listingDate', 'before': listed, 'after': None, 'reason': 'Quarantined date that predates this issue opening; original source observation retained'}
-            row.setdefault('dataCorrections', []).append(change)
+            history = row.setdefault('dataCorrections', [])
+            if change not in history:
+                history.append(change)
             changes.append(change)
     payload.setdefault('meta', {})['recordIntegrity'] = {'checkedAt': datetime.now(timezone.utc).isoformat(), 'changedFields': len(changes)}
     return changes

@@ -19,8 +19,9 @@ MISSING = object()
 FIELD_GROUPS = {
     'documentFields': ('financials', 'leadManagers', 'registrar', 'documentFieldProvenance', 'offerDocumentExtraction', 'documentRepair'),
     'subscriptionSnapshot': ('subscription', 'subscriptionSource', 'subscriptionSourceUrl', 'subscriptionAsOf', 'subscriptionCollectedAt', 'subscriptionObservedAt', 'subscriptionTimeBasis', 'subscriptionDegraded'),
+    'priceSnapshot': ('listing', 'performance'),
 }
-ATOMIC_FIELDS = {'financials', 'documentFieldProvenance', 'offerDocumentExtraction', 'performance', *FIELD_GROUPS}
+ATOMIC_FIELDS = {'financials', 'documentFieldProvenance', 'offerDocumentExtraction', 'performance', 'listing', *FIELD_GROUPS}
 
 
 def clone(value):

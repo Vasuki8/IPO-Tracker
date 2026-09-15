@@ -8,4 +8,5 @@ dependencies = [
   "fonttools>=4.59.0",
   "pypdf>=5.0.0",
   "requests>=2.32.0",
+  "tzdata>=2026.4 ; sys_platform == 'win32'",
 ]

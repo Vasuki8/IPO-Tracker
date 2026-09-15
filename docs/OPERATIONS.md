@@ -27,6 +27,8 @@ Collectors have read-only repository permissions. They retain a baseline, propos
 
 Conflicting proposals are retained in `data/pending_updates.json`; accepted values are preserved. `documentFields` and `subscriptionSnapshot` in a pending path name the atomic groups defined in `publish_transaction.py`. Review source evidence, then update or recollect the affected group. There is no automatic last-writer-wins conflict resolution. Failed publications retain their original collection artifact; rerun a failed publisher only when its code is still current, otherwise recollect on current main. Publication requests a Pages rebuild explicitly after a bot commit.
 
+`priceSnapshot` keeps listing prices, final-price evidence, observations and calculated returns together. If another collection changed any of those fields, the competing snapshot stays pending rather than mixing one baseline with another return.
+
 Previous ad-hoc writing workflows are retained under `.github/retired-workflows` for reference. They do not execute. Legacy parser entrypoints remain for regression compatibility; scheduled document extraction uses `run_offer_documents.py` and the isolated `offer_parser.py` API.
 
 ## Correctness and repairs
@@ -46,3 +48,17 @@ Performance observations require an exact NSE symbol, a positive price and an of
 ## Verification
 
 Run `uv run --frozen python -m unittest discover -s tests -q`, then apply the correction registry and run `scripts/validate_data.py --strict`. Regression tests cover source year alignment, footnotes, negative/missing cells, unsupported/interim layouts, intermediary contacts and former names, concurrent publication, complete queues, migration preconditions and performance-date/identity rules.
+
+## Final issue prices and historical observations
+
+`collect_final_issue_prices.py` reads the explicit Issue_Price field in official NSE monthly workbooks. It requires the same canonical issuer, exact issue opening date, compatible symbol and closing date, and a price consistent with any established band. It persists the final value with the report URL, document hash and matched issuer/date. Already reviewed NSE listing-circular observations can supply the same baseline. Conflicting dates or prices remain unresolved.
+
+Repair mode processes up to 100 documents per run and collects recent final-price baselines. P5 also uses the NSE monthly archive after the P4 gate passes, supplementing the BSE historical source. All source stages retain bounded budgets.
+
+`collect_price_history.py` reads official dated NSE daily equity and index CSV reports, collecting the listing-day open and close plus subsequent daily closes. Date-only reports retain date precision. NIFTY 50 excess returns compare listing-day close with a matching later close; a later daily open cannot become the listing price. This collector runs in the existing performance phase after P4 passes. Unadjusted returns do not account for splits, dividends or other corporate actions.
+
+Historical rows remain in the observation history even when a newer observation arrived first. An official daily close supersedes an intraday quote for the same date; collecting either again does not duplicate it. Later quotes clear close-based benchmark comparisons until a matching equity close is available. Final issue prices arriving after observations refresh the existing returns immediately.
+
+Missing index baselines are retried even when the listing-day equity close is already present. Empty or wrong-date responses are not retained as valid cached reports. Conflicting listing-day prices preserve the accepted value and its source, retain the proposed report in `listing.priceConflicts`, and keep a review item visible. Semantic validation checks observations and return calculations before publication.
+
+`source-review.yml` is a read-only preview for parser changes. It runs the full test suite, applies source repairs to an ephemeral dataset, and retains proposed values and validation findings as an artifact. It cannot publish data. Review the source results before merging parser changes.
