@@ -1,8 +1,8 @@
 """One operational entrypoint with bounded, independently reported stages.
 
-Stage diagnostics are accumulated in memory and flushed once at the end. This
-avoids rewriting the multi-megabyte canonical IPO dataset after every collector
-just to update meta.pipelineStages.
+Stage diagnostics are accumulated in memory and flushed once at the end. Support
+artifacts are rebuilt only when IPO records have changed since the last rebuild,
+so maintenance mode does not repeatedly rescan the same multi-megabyte dataset.
 """
 from __future__ import annotations
 
@@ -24,11 +24,20 @@ MEANINGFUL_FIELDS = (
     "financials", "shareholding", "subscription", "listing", "performance",
 )
 PIPELINE_REPORTS: dict[str, dict] = {}
+LAST_SUPPORT_REBUILD_HASH: str | None = None
 
 
 def content_hash(payload):
     rows = [{field: row.get(field) for field in MEANINGFUL_FIELDS} for row in payload.get("ipos", [])]
     return hashlib.sha256(json.dumps(rows, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+
+
+def support_hash(payload):
+    """Fingerprint all IPO record content while ignoring volatile top-level metadata."""
+    rows = payload.get("ipos") or []
+    return hashlib.sha256(
+        json.dumps(rows, sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode()
+    ).hexdigest()
 
 
 def _load_bytes(raw: bytes):
@@ -107,7 +116,15 @@ def flush_pipeline_reports():
     return True
 
 
-def rebuild():
+def rebuild(force: bool = False):
+    """Rebuild derived support files once per distinct IPO-record state."""
+    global LAST_SUPPORT_REBUILD_HASH
+    payload = json.loads(DATA.read_text(encoding="utf-8"))
+    current_hash = support_hash(payload)
+    if not force and current_hash == LAST_SUPPORT_REBUILD_HASH:
+        print("Support artifacts unchanged; skipping duplicate rebuild", flush=True)
+        return False
+
     for script in (
         "audit_data_completeness.py",
         "build_missing_queue.py",
@@ -116,6 +133,11 @@ def rebuild():
         "build_performance_summary.py",
     ):
         subprocess.run([sys.executable, str(ROOT / "scripts" / script)], cwd=ROOT, check=True)
+
+    # Derived builders do not intentionally mutate IPO records. Re-read before
+    # remembering the fingerprint so an unexpected mutation cannot hide work.
+    LAST_SUPPORT_REBUILD_HASH = support_hash(json.loads(DATA.read_text(encoding="utf-8")))
+    return True
 
 
 def maintain_filings():
@@ -131,6 +153,8 @@ def maintain_filings():
 
 
 def run(mode: str):
+    global LAST_SUPPORT_REBUILD_HASH
+    LAST_SUPPORT_REBUILD_HASH = None
     step("record_integrity.py")
     step("apply_corrections.py")
 
