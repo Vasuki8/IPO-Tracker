@@ -4,8 +4,9 @@
 Source order is deliberately strict:
 1. NSE ipo-detail (official)
 2. BSE cumulative demand / SME public-issue pages (official)
-3. Groww's public IPO subscription table (secondary)
-4. IPO Dhamaka's public subscription table (secondary)
+3. IPO Premium's timestamped live subscription table (secondary)
+4. Groww's public IPO subscription table (secondary)
+5. IPO Dhamaka's public subscription table (secondary)
 
 Secondary sources exist only because NSE blocks GitHub-hosted runners and BSE's
 2026 public-site migration currently returns an empty legacy cumulative-demand
@@ -19,6 +20,7 @@ import json
 import re
 import sys
 from collections import Counter
+from datetime import datetime, timedelta, timezone
 from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
@@ -38,12 +40,15 @@ core = base.core
 
 DATA_FILE = core.DATA_FILE
 QUEUE_FILE = base.QUEUE_FILE
+IPOPREMIUM_SUBSCRIPTION_URL = "https://www.ipopremium.in/view/subscription"
 GROWW_SUBSCRIPTION_URL = "https://groww.in/ipo/subscription"
 IPODHAMAKA_SUBSCRIPTION_URL = "https://ipodhamaka.in/subscription/"
+IPOPREMIUM_SOURCE_NAME = "IPO Premium subscription (secondary)"
 GROWW_SOURCE_NAME = "Groww IPO subscription (secondary)"
 IPODHAMAKA_SOURCE_NAME = "IPO Dhamaka subscription (secondary)"
 # Backwards-compatible alias used by older tests/data helpers.
 SECONDARY_SOURCE_NAME = GROWW_SOURCE_NAME
+IST = timezone(timedelta(hours=5, minutes=30))
 
 
 def _norm_header(value: str) -> str:
@@ -64,6 +69,13 @@ def _multiple(value: str | None) -> float | None:
 def _clean_secondary_company_name(value: str) -> str:
     """Remove exchange/board badges that some tables append to company names."""
     text = re.sub(r"\s+", " ", str(value or "")).strip()
+    text = re.sub(
+        r"\s*\((?:BSE|NSE)(?:\s*/?\s*SME)?\)\s*$",
+        "",
+        text,
+        flags=re.I,
+    ).strip()
+    text = re.sub(r"\s*\(Mainboard\)\s*$", "", text, flags=re.I).strip()
     text = re.sub(
         r"(?:NSE\s*/\s*BSE|BSE\s*/\s*SME|NSE\s*/\s*SME|BSE\s+SME|NSE\s+SME)\s*$",
         "",
@@ -183,6 +195,132 @@ def parse_ipodhamaka_subscription_html(html: str) -> list[dict[str, Any]]:
     )
 
 
+def _ipopremium_observed_at(value: str) -> str | None:
+    match = re.search(
+        r"Last\s+updated\s+on\s+(\d{1,2}-[A-Za-z]{3}-\d{4}\s+\d{1,2}:\d{2}:\d{2})",
+        value,
+        flags=re.I,
+    )
+    if not match:
+        return None
+    try:
+        parsed = datetime.strptime(match.group(1), "%d-%b-%Y %H:%M:%S")
+    except ValueError:
+        return None
+    return parsed.replace(tzinfo=IST).isoformat(timespec="seconds")
+
+
+def parse_ipopremium_subscription_html(html: str) -> list[dict[str, Any]]:
+    """Parse IPO Premium issue cards using explicit category labels and source time.
+
+    The provider publishes each issue as a separate card containing a company
+    heading, a ``Last updated on`` timestamp and a four-column subscription table.
+    We use only the aggregate QIB/HNI/Retail(or Individual)/Total rows and ignore
+    the bHNI/sHNI sub-buckets. If that structure disappears, this parser fails
+    closed rather than inferring category positions.
+    """
+    soup = BeautifulSoup(html, "html.parser")
+    tokens = [re.sub(r"\s+", " ", str(value)).strip() for value in soup.stripped_strings]
+    tokens = [value for value in tokens if value]
+    heading_indexes = [
+        index
+        for index, value in enumerate(tokens)
+        if re.search(r"\((?:BSE\s+SME|NSE\s+SME|Mainboard)\)\s*$", value, flags=re.I)
+    ]
+    rows: list[dict[str, Any]] = []
+    seen: set[str] = set()
+
+    for position, start in enumerate(heading_indexes):
+        end = heading_indexes[position + 1] if position + 1 < len(heading_indexes) else len(tokens)
+        block = tokens[start:end]
+        company = _clean_secondary_company_name(block[0])
+        key = core.canonical_company(company)
+        if not key or key in seen:
+            continue
+
+        observed_at = next(
+            (_ipopremium_observed_at(value) for value in block if "last updated on" in value.lower()),
+            None,
+        )
+        observed_at = observed_at if isinstance(observed_at, str) else None
+
+        try:
+            table_start = next(
+                index for index, value in enumerate(block) if value.lower().startswith("subscription details")
+            )
+        except StopIteration:
+            continue
+        table_end = next(
+            (
+                index
+                for index in range(table_start + 1, len(block))
+                if block[index].lower().startswith("application-wise breakup")
+            ),
+            len(block),
+        )
+        table = block[table_start + 1 : table_end]
+        parsed: dict[str, float | None] = {"qib": None, "nii": None, "retail": None, "total": None}
+
+        labels = {
+            "qibs": "qib",
+            "qib": "qib",
+            "hnis": "nii",
+            "hni": "nii",
+            "retail": "retail",
+            "individual": "retail",
+            "total": "total",
+        }
+        for index, value in enumerate(table):
+            field = labels.get(_norm_header(value))
+            if not field or parsed[field] is not None:
+                continue
+            # The source row is Category | Offered | Applied | Times. BeautifulSoup
+            # exposes table-cell strings sequentially, so the fourth item is the
+            # subscription multiple. Reject the row if that explicit cell is absent.
+            if index + 3 >= len(table):
+                continue
+            multiple = _multiple(table[index + 3])
+            if multiple is not None:
+                parsed[field] = multiple
+
+        if parsed["total"] is None or not any(parsed[key] is not None for key in ("qib", "nii", "retail")):
+            continue
+        seen.add(key)
+        rows.append(
+            {
+                "company": company,
+                "key": key,
+                "subscription": parsed,
+                "observedAt": observed_at,
+            }
+        )
+
+    return rows
+
+
+def _match_secondary_row(rows: list[dict[str, Any]], company: str, source_name: str):
+    needle = core.canonical_company(company)
+    if not needle:
+        raise ValueError(f"Cannot match empty company name: {company!r}")
+
+    exact = [row for row in rows if row["key"] == needle]
+    if exact:
+        return exact[0]
+
+    contained = [row for row in rows if needle in row["key"] or row["key"] in needle]
+    if contained:
+        return max(contained, key=lambda item: len(item["key"]))
+
+    scored = sorted(
+        ((SequenceMatcher(None, needle, row["key"]).ratio(), row) for row in rows),
+        key=lambda item: item[0],
+        reverse=True,
+    )
+    if not scored or scored[0][0] < 0.72:
+        raise ValueError(f"{source_name} row not found for {company}")
+    return scored[0][1]
+
+
 class _TableSubscriptionClient:
     source_url = ""
     source_name = ""
@@ -192,6 +330,7 @@ class _TableSubscriptionClient:
         self.s.headers.update(core.HEADERS)
         self._rows: list[dict[str, Any]] | None = None
         self._error: Exception | None = None
+        self.last_observed_at: str | None = None
 
     def parse(self, html: str) -> list[dict[str, Any]]:
         raise NotImplementedError
@@ -215,38 +354,27 @@ class _TableSubscriptionClient:
 
     def detail(self, company: str):
         self._load()
-        needle = core.canonical_company(company)
-        if not needle:
-            raise ValueError(f"Cannot match empty company name: {company!r}")
+        row = _match_secondary_row(self._rows or [], company, self.source_name)
+        self.last_observed_at = row.get("observedAt")
+        return row["subscription"], self.source_url
 
-        exact = [row for row in self._rows or [] if row["key"] == needle]
-        if exact:
-            row = exact[0]
-            return row["subscription"], self.source_url
 
-        contained = [
-            row for row in self._rows or []
-            if needle in row["key"] or row["key"] in needle
-        ]
-        if contained:
-            row = max(contained, key=lambda item: len(item["key"]))
-            return row["subscription"], self.source_url
+class IPOPremiumSubscriptionClient(_TableSubscriptionClient):
+    """Timestamped secondary fallback for live category subscription data."""
 
-        scored = sorted(
-            (
-                (SequenceMatcher(None, needle, row["key"]).ratio(), row)
-                for row in self._rows or []
-            ),
-            key=lambda item: item[0],
-            reverse=True,
-        )
-        if not scored or scored[0][0] < 0.72:
-            raise ValueError(f"{self.source_name} row not found for {company}")
-        return scored[0][1]["subscription"], self.source_url
+    source_url = IPOPREMIUM_SUBSCRIPTION_URL
+    source_name = IPOPREMIUM_SOURCE_NAME
+
+    def __init__(self):
+        super().__init__()
+        self.s.headers.update({"Referer": "https://www.ipopremium.in/"})
+
+    def parse(self, html: str) -> list[dict[str, Any]]:
+        return parse_ipopremium_subscription_html(html)
 
 
 class GrowwSubscriptionClient(_TableSubscriptionClient):
-    """Last-resort, explicitly secondary live-subscription source."""
+    """Explicitly secondary live-subscription source."""
 
     source_url = GROWW_SUBSCRIPTION_URL
     source_name = GROWW_SOURCE_NAME
@@ -260,7 +388,7 @@ class GrowwSubscriptionClient(_TableSubscriptionClient):
 
 
 class IPODhamakaSubscriptionClient(_TableSubscriptionClient):
-    """Static named-column fallback used only after official feeds and Groww."""
+    """Static named-column fallback used after the other live secondary sources."""
 
     source_url = IPODHAMAKA_SUBSCRIPTION_URL
     source_name = IPODHAMAKA_SOURCE_NAME
@@ -285,7 +413,7 @@ def _secondary_detail(clients: list[_TableSubscriptionClient], company: str):
     for client in clients:
         try:
             parsed, url = client.detail(company)
-            return parsed, url, client.source_name
+            return parsed, url, client.source_name, client.last_observed_at
         except Exception as exc:
             errors.append(f"{client.source_name}: {exc}")
     raise ValueError("; ".join(errors))
@@ -298,7 +426,9 @@ def main() -> int:
     args = parser.parse_args()
 
     payload = json.loads(DATA_FILE.read_text(encoding="utf-8"))
-    queue_payload = json.loads(QUEUE_FILE.read_text(encoding="utf-8")) if QUEUE_FILE.exists() else {"queue": []}
+    queue_payload = (
+        json.loads(QUEUE_FILE.read_text(encoding="utf-8")) if QUEUE_FILE.exists() else {"queue": []}
+    )
     targets = base.priority_open_targets(payload, queue_payload, args.limit)
 
     nse = sub.NSESubscriptionClient()
@@ -314,6 +444,7 @@ def main() -> int:
         index, page_health = [], {"error": str(exc)}
 
     secondary_clients: list[_TableSubscriptionClient] = [
+        IPOPremiumSubscriptionClient(),
         GrowwSubscriptionClient(),
         IPODhamakaSubscriptionClient(),
     ]
@@ -328,8 +459,15 @@ def main() -> int:
         company = str(record.get("company") or "")
         try:
             try:
-                detail, series = nse.detail(str(record.get("symbol") or "").strip(), record.get("board"))
-                added = sub.update_record(record, detail, series=series, force_snapshot=args.force_snapshot)
+                detail, series = nse.detail(
+                    str(record.get("symbol") or "").strip(), record.get("board")
+                )
+                added = sub.update_record(
+                    record,
+                    detail,
+                    series=series,
+                    force_snapshot=args.force_snapshot,
+                )
                 source_used = "NSE"
                 nse_records += 1
             except Exception as nse_exc:
@@ -351,7 +489,16 @@ def main() -> int:
                     if diagnostics:
                         warnings.append(f"{company}: " + " | ".join(diagnostics[-2:]))
                 except Exception as bse_exc:
-                    parsed, source_url, secondary_source_name = _secondary_detail(secondary_clients, company)
+                    try:
+                        parsed, source_url, secondary_source_name, observed_at = _secondary_detail(
+                            secondary_clients, company
+                        )
+                    except Exception as secondary_exc:
+                        raise ValueError(
+                            "official and secondary subscription feeds unavailable "
+                            f"(NSE: {str(nse_exc)[:140]}; BSE: {str(bse_exc)[:220]}; "
+                            f"secondary: {str(secondary_exc)[:360]})"
+                        ) from secondary_exc
                     added = sub.apply_subscription(
                         record,
                         parsed,
@@ -359,6 +506,7 @@ def main() -> int:
                         source_url=source_url,
                         snapshot_source=secondary_source_name,
                         force_snapshot=args.force_snapshot,
+                        observed_at=observed_at,
                     )
                     _mark_secondary_provenance(record, secondary_source_name)
                     source_used = secondary_source_name.replace(" subscription (secondary)", " secondary")
@@ -418,7 +566,9 @@ def main() -> int:
         "asOf": as_of,
         "errors": errors[:5],
     }
-    DATA_FILE.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    DATA_FILE.write_text(
+        json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+    )
     print(
         "Priority subscriptions v3: "
         f"attempted={attempted} updated={updated} snapshots_added={snapshots_added} "
