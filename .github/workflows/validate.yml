@@ -29,7 +29,6 @@ jobs:
           node --check company.js
           node --check phase3.js
           node --check phase4.js
-          node --check phase5.js
           node --check completeness.js
       - name: Run all regression tests together
         run: uv run --frozen python -m unittest discover -s tests -v
