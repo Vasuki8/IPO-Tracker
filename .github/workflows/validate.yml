@@ -74,3 +74,34 @@ jobs:
           uv run --frozen python scripts/validate_data.py --strict
           uv run --frozen python scripts/build_missing_queue.py
           uv run --frozen python scripts/phase_status.py
+          uv run --frozen python scripts/build_performance_summary.py
+      - name: Verify compact support artifacts
+        run: |
+          uv run --frozen python - <<'PY'
+          import json
+          from pathlib import Path
+
+          queue_path = Path('data/missing_queue.json')
+          performance_path = Path('data/performance_summary.json')
+          queue = json.loads(queue_path.read_text(encoding='utf-8'))
+          performance = json.loads(performance_path.read_text(encoding='utf-8'))
+
+          if queue.get('queueCount') != len(queue.get('queue') or []):
+              raise SystemExit('queueCount does not match persisted queue length')
+          if queue.get('formatVersion') != 2:
+              raise SystemExit('expected compact missing-queue format v2')
+          if performance.get('listedRecords') != len(performance.get('records') or []):
+              raise SystemExit('performance listedRecords does not match persisted records')
+          if performance.get('formatVersion') != 2:
+              raise SystemExit('expected compact performance-summary format v2')
+
+          queue_bytes = queue_path.stat().st_size
+          performance_bytes = performance_path.stat().st_size
+          # Pass-2 baselines were 642,593 and 402,413 bytes respectively.
+          if queue_bytes >= 642_593:
+              raise SystemExit(f'missing queue did not shrink: {queue_bytes:,} bytes')
+          if performance_bytes >= 402_413:
+              raise SystemExit(f'performance summary did not shrink: {performance_bytes:,} bytes')
+          print(f'Missing queue: {queue_bytes:,} bytes (baseline 642,593)')
+          print(f'Performance summary: {performance_bytes:,} bytes (baseline 402,413)')
+          PY

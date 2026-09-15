@@ -22,11 +22,13 @@ class PipelineIoTests(unittest.TestCase):
         self.original_data = mod.DATA
         mod.DATA = self.data
         mod.PIPELINE_REPORTS.clear()
+        mod.LAST_SUPPORT_REBUILD_HASH = None
         self.addCleanup(self._restore_module)
 
     def _restore_module(self):
         mod.DATA = self.original_data
         mod.PIPELINE_REPORTS.clear()
+        mod.LAST_SUPPORT_REBUILD_HASH = None
 
     def write_payload(self, payload):
         self.data.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
@@ -93,6 +95,33 @@ class PipelineIoTests(unittest.TestCase):
         self.assertEqual(stages["old.py"]["status"], "no_change")
         self.assertEqual(stages["a.py"]["status"], "updated")
         self.assertEqual(stages["b.py"]["status"], "no_change")
+
+    def test_duplicate_support_rebuild_is_skipped_until_records_change(self):
+        self.write_payload({"meta": {"volatile": 1}, "ipos": [{"id": "a", "company": "A"}]})
+        calls = []
+
+        def fake_run(command, **_kwargs):
+            calls.append(command[-1])
+            return SimpleNamespace(returncode=0)
+
+        with patch.object(mod.subprocess, "run", side_effect=fake_run):
+            self.assertTrue(mod.rebuild())
+            self.assertEqual(len(calls), 5)
+            self.assertFalse(mod.rebuild())
+            self.assertEqual(len(calls), 5)
+
+            # Top-level metadata changes do not invalidate derived record artifacts.
+            payload = json.loads(self.data.read_text())
+            payload["meta"]["volatile"] = 2
+            self.write_payload(payload)
+            self.assertFalse(mod.rebuild())
+            self.assertEqual(len(calls), 5)
+
+            payload = json.loads(self.data.read_text())
+            payload["ipos"][0]["company"] = "A Updated"
+            self.write_payload(payload)
+            self.assertTrue(mod.rebuild())
+            self.assertEqual(len(calls), 10)
 
 
 if __name__ == "__main__":
