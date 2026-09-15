@@ -29,7 +29,7 @@
       "errors": [],
       "checkedAt": "2026-09-15T14:03:53.498803+00:00"
     },
-    "generatedAt": "2026-09-15T14:04:10.807149+00:00",
+    "generatedAt": "2026-09-15T14:26:45.086335+00:00",
     "historyStart": "2024-09-13",
     "initialSourceRepair": {
       "records": 1354,
@@ -79,8 +79,8 @@
         "stage": "record_integrity.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.25,
-        "checkedAt": "2026-09-15T14:03:54.992700+00:00",
+        "durationSeconds": 0.23,
+        "checkedAt": "2026-09-15T14:26:28.920771+00:00",
         "diagnostics": "{\"integrityRepairs\": 0}\n"
       },
       "normalize_source_health.py": {
@@ -157,10 +157,10 @@
       },
       "apply_corrections.py": {
         "stage": "apply_corrections.py",
-        "status": "updated",
+        "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.26,
-        "checkedAt": "2026-09-15T14:03:02.008811+00:00",
+        "durationSeconds": 0.25,
+        "checkedAt": "2026-09-15T14:25:41.081543+00:00",
         "diagnostics": "enance\", \"documentRepair\", \"offerDocumentExtraction\", \"registrar\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"cleanmax\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"aye\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"armour\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"eximroutes\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"torrent-gas-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"national-stock-exchange-of-india-limited\", \"reason\": \"Issuer record no longer exists\"}, {\"id\": \"nopaperforms-solutions-limited\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"m-k-c-agro-fresh-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}]}\n"
       },
       "collect_final_issue_prices.py": {
@@ -170,17 +170,25 @@
         "durationSeconds": 4.2,
         "checkedAt": "2026-09-15T14:03:53.713923+00:00",
         "diagnostics": "{\"updated\": 0, \"candidates\": 78, \"reportRows\": 586, \"reports\": 36, \"failed\": 0, \"errors\": [], \"checkedAt\": \"2026-09-15T14:03:53.498803+00:00\"}\n"
+      },
+      "run_priority_subscriptions_v3.py": {
+        "stage": "run_priority_subscriptions_v3.py",
+        "status": "no_change",
+        "exitCode": 0,
+        "durationSeconds": 46.48,
+        "checkedAt": "2026-09-15T14:26:27.722487+00:00",
+        "diagnostics": "Priority subscription failed: Vama Wovenfab Limited: Groww IPO subscription (secondary): Groww IPO subscription (secondary) page contained no parseable table rows; IPO Dhamaka subscription (secondary): IPO Dhamaka subscription (secondary) row not found for Vama Wovenfab Limited\nPriority subscription failed: Shakti Polytarp Limited: Groww IPO subscription (secondary): Groww IPO subscription (secondary) page contained no parseable table rows; IPO Dhamaka subscription (secondary): IPO Dhamaka subscription (secondary) row not found for Shakti Polytarp Limited\nPriority BSE issue index: 31 links across 2 healthy pages\nIPO Dhamaka subscription (secondary): 3 parseable issues\nPriority subscriptions v3: attempted=2 updated=0 snapshots_added=0 failed=2 nse=0 bse=0 secondary=0 secondary_sources={}\n"
       }
     },
     "publication": {
-      "runId": "34978970292",
-      "collectorCommit": "8c6a40939770f18c576d916dd3097e05fa81a5e5",
+      "runId": "34981516567",
+      "collectorCommit": "2cff251e3fc8f477d568a436c1878acf0a50855f",
       "status": "published",
       "pendingConflictCount": 0
     },
     "recordCount": 1356,
     "recordIntegrity": {
-      "checkedAt": "2026-09-15T14:04:10.987763+00:00",
+      "checkedAt": "2026-09-15T14:26:45.311642+00:00",
       "changedFields": 0
     },
     "reviewedCorrectionStatus": {
@@ -1026,7 +1034,7 @@
         "bseFallbackRecords": 0,
         "secondaryFallbackRecords": 0,
         "secondarySources": {},
-        "asOf": "2026-09-15T14:51:24+05:30",
+        "asOf": "2026-09-15T19:56:27+05:30",
         "errors": [
           "Vama Wovenfab Limited: Groww IPO subscription (secondary): Groww IPO subscription (secondary) page contained no parseable table rows; IPO Dhamaka subscription (secondary): IPO Dhamaka subscription (secondary) row not found for Vama Wovenfab Limited",
           "Shakti Polytarp Limited: Groww IPO subscription (secondary): Groww IPO subscription (secondary) page contained no parseable table rows; IPO Dhamaka subscription (secondary): IPO Dhamaka subscription (secondary) row not found for Shakti Polytarp Limited"
@@ -1413,7 +1421,7 @@
       "bseFallbackRecords": 0,
       "secondaryFallbackRecords": 0,
       "secondarySources": {},
-      "asOf": "2026-09-15T14:51:24+05:30",
+      "asOf": "2026-09-15T19:56:27+05:30",
       "pageHealth": {
         "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
           "ok": true,
@@ -1426,7 +1434,7 @@
         "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2": {
           "ok": false,
           "records": 0,
-          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f965a5bed50>, 'Connection to www.bsesme.c"
+          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f90e5e0a960>, 'Connection to www.bsesme.c"
         }
       },
       "warnings": [],
