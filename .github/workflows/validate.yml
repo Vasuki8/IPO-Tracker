@@ -27,11 +27,47 @@ jobs:
           node --check app.js
           node --check company-page.js
           node --check company.js
+          node --check source-health.js
           node --check phase3.js
           node --check phase4.js
           node --check completeness.js
       - name: Run all regression tests together
         run: uv run --frozen python -m unittest discover -s tests -v
+      - name: Build and verify compact public browser payloads
+        run: |
+          uv run --frozen python scripts/build_company_pages.py
+          uv run --frozen python - <<'PY'
+          import json
+          from pathlib import Path
+
+          master_path = Path('data/ipos.json')
+          summary_path = Path('data/ipos-summary.json')
+          manifest_path = Path('ipo/routes.json')
+          master = json.loads(master_path.read_text(encoding='utf-8'))
+          summary = json.loads(summary_path.read_text(encoding='utf-8'))
+          manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+
+          master_count = len(master.get('ipos') or [])
+          summary_count = len(summary.get('ipos') or [])
+          if summary_count != master_count:
+              raise SystemExit(f'public summary count mismatch: {summary_count} != {master_count}')
+          if manifest.get('routeCount') != master_count:
+              raise SystemExit('company route count does not match master dataset')
+          routes = manifest.get('routes') or []
+          if not routes:
+              raise SystemExit('company route manifest is empty')
+          sample = Path('ipo') / routes[0] / 'index.html'
+          text = sample.read_text(encoding='utf-8')
+          if 'id="ipo-profile-data"' not in text:
+              raise SystemExit('generated company route is missing embedded profile data')
+
+          master_bytes = master_path.stat().st_size
+          summary_bytes = summary_path.stat().st_size
+          if summary_bytes >= master_bytes:
+              raise SystemExit('compact public summary is not smaller than the canonical dataset')
+          ratio = summary_bytes / master_bytes * 100 if master_bytes else 0
+          print(f'Public dashboard payload: {summary_bytes:,} bytes vs {master_bytes:,} bytes master ({ratio:.1f}%)')
+          PY
       - name: Validate reviewed data corrections
         run: |
           uv run --frozen python scripts/apply_corrections.py

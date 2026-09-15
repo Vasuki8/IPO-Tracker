@@ -1,0 +1,99 @@
+import importlib.util
+import json
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+from types import SimpleNamespace
+from unittest.mock import patch
+
+MODULE = Path(__file__).resolve().parents[1] / "scripts" / "run_pipeline.py"
+spec = importlib.util.spec_from_file_location("run_pipeline", MODULE)
+mod = importlib.util.module_from_spec(spec)
+sys.modules[spec.name] = mod
+spec.loader.exec_module(mod)
+
+
+class PipelineIoTests(unittest.TestCase):
+    def setUp(self):
+        self.tempdir = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tempdir.cleanup)
+        self.data = Path(self.tempdir.name) / "ipos.json"
+        self.original_data = mod.DATA
+        mod.DATA = self.data
+        mod.PIPELINE_REPORTS.clear()
+        self.addCleanup(self._restore_module)
+
+    def _restore_module(self):
+        mod.DATA = self.original_data
+        mod.PIPELINE_REPORTS.clear()
+
+    def write_payload(self, payload):
+        self.data.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+
+    def test_unchanged_stage_does_not_rewrite_dataset_for_diagnostics(self):
+        payload = {"meta": {}, "ipos": [{"id": "a", "company": "A"}]}
+        self.write_payload(payload)
+        before = self.data.read_bytes()
+
+        with patch.object(mod.subprocess, "run", return_value=SimpleNamespace(stdout="ok\n", returncode=0)):
+            report = mod.step("noop.py")
+
+        self.assertEqual(report["status"], "no_change")
+        self.assertEqual(self.data.read_bytes(), before)
+        self.assertIn("noop.py", mod.PIPELINE_REPORTS)
+        self.assertNotIn("pipelineStages", json.loads(self.data.read_text())["meta"])
+
+    def test_changed_stage_keeps_collector_write_without_extra_diagnostic_write(self):
+        original = {"meta": {}, "ipos": [{"id": "a", "company": "A", "issueSizeCr": 10}]}
+        changed = {"meta": {}, "ipos": [{"id": "a", "company": "A", "issueSizeCr": 11}]}
+        self.write_payload(original)
+        changed_bytes = (json.dumps(changed, separators=(",", ":")) + "\n").encode()
+
+        def collector(*_args, **_kwargs):
+            self.data.write_bytes(changed_bytes)
+            return SimpleNamespace(stdout="updated\n", returncode=0)
+
+        with patch.object(mod.subprocess, "run", side_effect=collector):
+            report = mod.step("collector.py")
+
+        self.assertEqual(report["status"], "updated")
+        self.assertEqual(self.data.read_bytes(), changed_bytes)
+        self.assertNotIn("pipelineStages", json.loads(self.data.read_text())["meta"])
+
+    def test_invalid_stage_output_restores_exact_previous_bytes(self):
+        payload = {"meta": {}, "ipos": [{"id": "a", "company": "A"}]}
+        self.write_payload(payload)
+        before = self.data.read_bytes()
+
+        def broken_collector(*_args, **_kwargs):
+            self.data.write_text("{broken", encoding="utf-8")
+            return SimpleNamespace(stdout="bad output\n", returncode=0)
+
+        with patch.object(mod.subprocess, "run", side_effect=broken_collector):
+            report = mod.step("broken.py")
+
+        self.assertEqual(report["status"], "failed")
+        self.assertEqual(report["exitCode"], 1)
+        self.assertEqual(self.data.read_bytes(), before)
+        self.assertIn("Restored the previous valid dataset", report["diagnostics"])
+
+    def test_flush_persists_all_reports_once(self):
+        self.write_payload({"meta": {"pipelineStages": {"old.py": {"status": "no_change"}}}, "ipos": []})
+        mod.PIPELINE_REPORTS.update(
+            {
+                "a.py": {"stage": "a.py", "status": "updated"},
+                "b.py": {"stage": "b.py", "status": "no_change"},
+            }
+        )
+
+        self.assertTrue(mod.flush_pipeline_reports())
+        payload = json.loads(self.data.read_text())
+        stages = payload["meta"]["pipelineStages"]
+        self.assertEqual(stages["old.py"]["status"], "no_change")
+        self.assertEqual(stages["a.py"]["status"], "updated")
+        self.assertEqual(stages["b.py"]["status"], "no_change")
+
+
+if __name__ == "__main__":
+    unittest.main()

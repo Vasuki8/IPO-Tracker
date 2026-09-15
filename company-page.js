@@ -1,6 +1,6 @@
-/* Dedicated permanent company route renderer.
- * Loaded before company.js. It supplies the shared formatting helpers that the
- * adaptive profile renderer expects, then renders that profile as a full page.
+/* Permanent company-route renderer.
+ * Route HTML embeds one compact public record, so profile pages no longer need
+ * to download and parse the multi-megabyte canonical IPO dataset.
  */
 
 const IST_DATE_FORMATTER = new Intl.DateTimeFormat('en-IN', {
@@ -25,7 +25,7 @@ const x = value => value == null ? '—' : `${Number(value).toLocaleString('en-I
 
 function escapeHtml(value) {
   return String(value ?? '').replace(/[&<>'"]/g, char => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+    '&':'&amp;', '<':'&lt;', '>':'&gt;', "'":'&#39;', '"':'&quot;'
   }[char]));
 }
 function escapeAttr(value) { return escapeHtml(value); }
@@ -33,21 +33,19 @@ function escapeAttr(value) { return escapeHtml(value); }
 function prettyDate(value) {
   if (!value) return '—';
   const date = new Date(`${value}T00:00:00+05:30`);
-  if (Number.isNaN(date.getTime())) return String(value);
-  return IST_DATE_FORMATTER.format(date);
+  return Number.isNaN(date.getTime()) ? String(value) : IST_DATE_FORMATTER.format(date);
 }
 
 function formatTimestamp(value) {
   if (!value) return '—';
   const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return String(value);
-  return `${IST_TIMESTAMP_FORMATTER.format(date)} IST`;
+  return Number.isNaN(date.getTime()) ? String(value) : `${IST_TIMESTAMP_FORMATTER.format(date)} IST`;
 }
 
 function currentIstDate() {
   const parts = IST_DAY_FORMATTER.formatToParts(new Date());
-  const map = Object.fromEntries(parts.map(part => [part.type, part.value]));
-  return `${map.year}-${map.month}-${map.day}`;
+  const values = Object.fromEntries(parts.map(part => [part.type, part.value]));
+  return `${values.year}-${values.month}-${values.day}`;
 }
 
 const TODAY_IST = currentIstDate();
@@ -74,18 +72,19 @@ function badge(status) {
 }
 
 function filingStage(ipo) {
-  const types = (ipo.documents || []).map(doc => String(doc.type || '').toUpperCase());
+  const types = (ipo.documents || []).map(doc => String(doc?.type || '').toUpperCase());
   if (types.some(type => type.includes('PROSPECTUS') && !type.includes('ABRIDGED'))) return 'Prospectus';
   if (types.some(type => type === 'RHP' || type.includes('RED HERRING'))) return 'RHP';
   if (types.some(type => type === 'UDRHP')) return 'UDRHP';
   if (types.some(type => type === 'DRHP')) return 'DRHP';
-  return ({ drhp: 'DRHP', udrhp: 'UDRHP', rhp: 'RHP', prospectus: 'Prospectus', exchange: 'Exchange' })[ipo.lifecycle?.stage] || '—';
+  return ({ drhp:'DRHP', udrhp:'UDRHP', rhp:'RHP', prospectus:'Prospectus', exchange:'Exchange' })[ipo.lifecycle?.stage] || '—';
 }
 
 function sourceCount(ipo) {
   const sources = ipo.sources || (ipo.source ? [ipo.source] : []);
-  const families = new Set(sources.map(source => String(source?.name || '').split(' ')[0]).filter(Boolean));
-  return families.size;
+  return new Set(
+    sources.map(source => String(source?.name || '').split(' ')[0]).filter(Boolean)
+  ).size;
 }
 
 function validationBadge(ipo) {
@@ -103,8 +102,7 @@ function validationCopy(ipo) {
 
 function formatObservation(value) {
   if (value == null) return '—';
-  if (typeof value === 'object') return JSON.stringify(value);
-  return String(value);
+  return typeof value === 'object' ? JSON.stringify(value) : String(value);
 }
 
 function p4History(ipo) {
@@ -115,37 +113,47 @@ function p4History(ipo) {
 }
 
 function p4Latest(ipo, history) {
-  if (history.length) return { ...(ipo.subscription || {}), ...history[history.length - 1] };
-  return ipo.subscription || {};
+  return history.length
+    ? { ...(ipo.subscription || {}), ...history[history.length - 1] }
+    : (ipo.subscription || {});
 }
 
 function p4TimeLabel(value, includeDate = false) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return String(value || '—');
-  const formatter = includeDate ? IST_DATE_TIME_FORMATTER : IST_TIME_FORMATTER;
-  return formatter.format(date).replace(',', '');
+  return (includeDate ? IST_DATE_TIME_FORMATTER : IST_TIME_FORMATTER).format(date).replace(',', '');
 }
 
 function p4Chart(history) {
   if (!history.length) return '';
-  const series = [['qib', 'QIB'], ['nii', 'NII / HNI'], ['retail', 'Retail / Individual'], ['total', 'Total']];
+  const series = [['qib','QIB'], ['nii','NII / HNI'], ['retail','Retail / Individual'], ['total','Total']];
   const width = 860;
   const height = 310;
-  const margin = { left: 58, right: 20, top: 22, bottom: 52 };
+  const margin = { left:58, right:20, top:22, bottom:52 };
   const plotW = width - margin.left - margin.right;
   const plotH = height - margin.top - margin.bottom;
-  const values = history.flatMap(row => series
-    .map(([key]) => row[key] == null ? null : Number(row[key]))
-    .filter(value => value != null && Number.isFinite(value)));
-  const maxValue = Math.max(1, ...values);
-  const roundedMax = maxValue <= 5 ? Math.ceil(maxValue * 2) / 2 : maxValue <= 20 ? Math.ceil(maxValue / 2) * 2 : Math.ceil(maxValue / 10) * 10;
-  const times = history.map(row => new Date(row.capturedAt).getTime());
+
+  let maxValue = 1;
+  const times = [];
+  for (const row of history) {
+    times.push(new Date(row.capturedAt).getTime());
+    for (const [key] of series) {
+      const value = Number(row[key]);
+      if (row[key] != null && Number.isFinite(value)) maxValue = Math.max(maxValue, value);
+    }
+  }
+  const roundedMax = maxValue <= 5
+    ? Math.ceil(maxValue * 2) / 2
+    : maxValue <= 20 ? Math.ceil(maxValue / 2) * 2 : Math.ceil(maxValue / 10) * 10;
   const validTimes = times.filter(Number.isFinite);
   const tMin = validTimes.length ? Math.min(...validTimes) : 0;
   const tMax = validTimes.length ? Math.max(...validTimes) : history.length - 1;
+
   const xAt = (row, index) => {
-    const t = new Date(row.capturedAt).getTime();
-    if (Number.isFinite(t) && tMax > tMin) return margin.left + ((t - tMin) / (tMax - tMin)) * plotW;
+    const time = times[index];
+    if (Number.isFinite(time) && tMax > tMin) {
+      return margin.left + ((time - tMin) / (tMax - tMin)) * plotW;
+    }
     return margin.left + (history.length <= 1 ? plotW / 2 : (index / (history.length - 1)) * plotW);
   };
   const yAt = value => margin.top + plotH - (Math.max(0, Number(value) || 0) / roundedMax) * plotH;
@@ -156,7 +164,13 @@ function p4Chart(history) {
     return `<line class="sub-grid" x1="${margin.left}" y1="${y.toFixed(1)}" x2="${width - margin.right}" y2="${y.toFixed(1)}"></line><text class="sub-axis-label" x="${margin.left - 10}" y="${(y + 4).toFixed(1)}" text-anchor="end">${escapeHtml(x(value))}</text>`;
   }).join('');
 
-  const indexes = [...new Set([0, Math.floor((history.length - 1) * .25), Math.floor((history.length - 1) * .5), Math.floor((history.length - 1) * .75), history.length - 1])].filter(index => index >= 0);
+  const indexes = [...new Set([
+    0,
+    Math.floor((history.length - 1) * .25),
+    Math.floor((history.length - 1) * .5),
+    Math.floor((history.length - 1) * .75),
+    history.length - 1
+  ])].filter(index => index >= 0);
   const xTicks = indexes.map(index => {
     const pointX = xAt(history[index], index);
     return `<text class="sub-axis-label" x="${pointX.toFixed(1)}" y="${height - 18}" text-anchor="middle">${escapeHtml(p4TimeLabel(history[index].capturedAt, true))}</text>`;
@@ -166,11 +180,13 @@ function p4Chart(history) {
     const points = history.map((row, index) => {
       if (row[key] == null) return null;
       const value = Number(row[key]);
-      return Number.isFinite(value) ? { x: xAt(row, index), y: yAt(value), value, row } : null;
+      return Number.isFinite(value) ? { x:xAt(row, index), y:yAt(value), value, row } : null;
     }).filter(Boolean);
     if (!points.length) return '';
     const polyline = points.map(point => `${point.x.toFixed(1)},${point.y.toFixed(1)}`).join(' ');
-    const dots = points.map(point => `<circle class="sub-point sub-${key}" cx="${point.x.toFixed(1)}" cy="${point.y.toFixed(1)}" r="4"><title>${escapeHtml(`${label}: ${x(point.value)} · ${formatTimestamp(point.row.capturedAt)}`)}</title></circle>`).join('');
+    const dots = points.map(point =>
+      `<circle class="sub-point sub-${key}" cx="${point.x.toFixed(1)}" cy="${point.y.toFixed(1)}" r="4"><title>${escapeHtml(`${label}: ${x(point.value)} · ${formatTimestamp(point.row.capturedAt)}`)}</title></circle>`
+    ).join('');
     return `<polyline class="sub-line sub-${key}" points="${polyline}"></polyline>${dots}`;
   }).join('');
 
@@ -195,11 +211,11 @@ function routeProfileHtml(ipo) {
 }
 
 function bindRouteNavigation(root) {
-  root.querySelectorAll('[data-company-target]').forEach(button => {
-    button.addEventListener('click', () => {
-      const target = root.querySelector(`#${CSS.escape(button.dataset.companyTarget)}`);
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
+  root.addEventListener('click', event => {
+    const button = event.target.closest('[data-company-target]');
+    if (!button || !root.contains(button)) return;
+    const target = root.querySelector(`#${CSS.escape(button.dataset.companyTarget)}`);
+    if (target) target.scrollIntoView({ behavior:'smooth', block:'start' });
   });
 }
 
@@ -214,24 +230,59 @@ async function copyPermanentLink(button) {
   }
 }
 
+function embeddedProfile() {
+  const node = document.getElementById('ipo-profile-data');
+  if (!node) return null;
+  try {
+    const payload = JSON.parse(node.textContent || '{}');
+    return payload?.ipo && typeof payload.ipo === 'object' ? payload.ipo : null;
+  } catch (error) {
+    console.warn('Could not parse embedded IPO profile', error);
+    return null;
+  }
+}
+
+function latestProfileTimestamp(ipo) {
+  let latest = '';
+  for (const source of ipo.sources || []) {
+    const value = String(source?.asOf || '');
+    if (value > latest) latest = value;
+  }
+  for (const value of [ipo.subscriptionAsOf, ipo.offerDocumentExtraction?.extractedAt]) {
+    if (value && String(value) > latest) latest = String(value);
+  }
+  return latest || null;
+}
+
+async function fallbackMasterRecord(ipoId) {
+  const response = await fetch('data/ipos.json', { cache:'no-cache' });
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  const payload = await response.json();
+  return (payload.ipos || []).find(item => String(item.id) === String(ipoId)) || null;
+}
+
 async function initCompanyRoute() {
   const root = document.getElementById('companyPage');
   const freshness = document.getElementById('routeFreshness');
   const ipoId = document.body.dataset.ipoId;
+
   try {
-    const response = await fetch('data/ipos.json', { cache: 'no-cache' });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const payload = await response.json();
-    const ipo = (payload.ipos || []).find(item => String(item.id) === String(ipoId));
+    // New routes are self-contained. The master fetch is only a temporary
+    // compatibility fallback for route files generated before template v3.
+    const ipo = embeddedProfile() || await fallbackMasterRecord(ipoId);
     if (!ipo) {
-      root.innerHTML = `<div class="company-route-error"><div class="eyebrow">IPO NOT FOUND</div><h1>This company route is no longer available.</h1><p>The company may have been renamed or merged into another official record.</p><a href="./">Return to IPO tracker</a></div>`;
+      root.innerHTML = '<div class="company-route-error"><div class="eyebrow">IPO NOT FOUND</div><h1>This company route is no longer available.</h1><p>The company may have been renamed or merged into another official record.</p><a href="./">Return to IPO tracker</a></div>';
       return;
     }
 
     document.title = `${ipo.company} IPO | India IPO Tracker`;
     const description = document.querySelector('meta[name="description"]');
-    if (description) description.content = `${ipo.company} IPO details, issue dates, price band, subscription, SEBI documents, financials and official source validation.`;
-    freshness.textContent = payload.meta?.generatedAt ? `Data updated ${formatTimestamp(payload.meta.generatedAt)}` : 'Official-source IPO profile';
+    if (description) {
+      description.content = `${ipo.company} IPO details, issue dates, price band, subscription, SEBI documents, financials and official source validation.`;
+    }
+
+    const updatedAt = latestProfileTimestamp(ipo);
+    freshness.textContent = updatedAt ? `Record updated ${formatTimestamp(updatedAt)}` : 'Official-source IPO profile';
     root.innerHTML = routeProfileHtml(ipo);
     bindRouteNavigation(root);
 
@@ -240,7 +291,7 @@ async function initCompanyRoute() {
   } catch (error) {
     console.error(error);
     freshness.textContent = 'Data load failed';
-    root.innerHTML = `<div class="company-route-error"><div class="eyebrow">DATA LOAD ERROR</div><h1>Could not load this IPO profile.</h1><p>Please retry in a moment.</p><a href="./">Return to IPO tracker</a></div>`;
+    root.innerHTML = '<div class="company-route-error"><div class="eyebrow">DATA LOAD ERROR</div><h1>Could not load this IPO profile.</h1><p>Please retry in a moment.</p><a href="./">Return to IPO tracker</a></div>';
   }
 }
 
