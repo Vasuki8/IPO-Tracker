@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Compatibility alias for legacy offer parser version 11."""
 import legacy_offer_parser as _canonical
-import run_offer_docs_v10 as v10
 from legacy_offer_parser import *  # noqa: F401,F403
 
 PARSER_VERSION = 11
