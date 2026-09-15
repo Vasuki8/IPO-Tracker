@@ -1,24 +1,35 @@
 #!/usr/bin/env python3
-"""Run validated priority offer-document fallbacks with the current parser."""
+"""Run verified issuer/regulator offer-document fallbacks through one stable path.
+
+The runner preserves the established exact-host, PDF-magic, issuer-identity and
+fill-only gates while using the final legacy parser contract (v14). Verified
+fallback registrations live separately in issuer_offer_registry.py so adding a
+source no longer requires another executable parser wrapper.
+"""
 from __future__ import annotations
 
 import sys
 from pathlib import Path
+from typing import Any
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
-from parser_loader import isolated_module
-base = isolated_module("enrich_issuer_offer_docs")
-from parser_loader import isolated_module
-parser_v11 = isolated_module("run_offer_docs_v11")
+import legacy_offer_parser as parser  # noqa: E402
+from issuer_offer_registry import VALIDATED_OFFER_DOCUMENTS  # noqa: E402
+from parser_loader import isolated_module  # noqa: E402
 
-# Route validated fallbacks through the current parser while retaining the base
-# module's exact-host, PDF-magic, issuer-identity and fill-only merge gates.
-base.parser_v4 = parser_v11
-base.PARSER_VERSION = parser_v11.PARSER_VERSION
-base._extract_targeted_full_text = parser_v11.extract_targeted_pdf_text
+base = isolated_module("enrich_issuer_offer_docs")
+
+# Preserve the final effective v4 behavior without traversing v2/v3/v4 or the
+# numbered offer-parser aliases. The generic targeted parser remains compatible
+# with the issuer runner's financial/shareholding call contract and also retains
+# the finalized lot/price deep-page recognition introduced before v14.
+base.parser_v4 = parser
+base.PARSER_VERSION = parser.PARSER_VERSION
+base._extract_targeted_full_text = parser.extract_targeted_pdf_text
+base.ISSUER_DOCUMENTS.update(VALIDATED_OFFER_DOCUMENTS)
 
 _ORIGINAL_MERGE = base.merge_issuer_enrichment
 
@@ -32,14 +43,17 @@ def merge_validated_offer_enrichment(
     pages_read,
     page_count,
 ):
-    """Reuse the safe fill-only merge but preserve non-issuer provenance exactly."""
-    changed = _ORIGINAL_MERGE(
-        record,
-        parsed,
-        doc,
-        pdf_hash=pdf_hash,
-        pages_read=pages_read,
-        page_count=page_count,
+    """Fill missing fields and preserve source-specific provenance observations."""
+    changed = list(
+        _ORIGINAL_MERGE(
+            record,
+            parsed,
+            doc,
+            pdf_hash=pdf_hash,
+            pages_read=pages_read,
+            page_count=page_count,
+        )
+        or []
     )
 
     extraction_source = str(doc.get("extractionSource") or "").strip()
@@ -49,8 +63,12 @@ def merge_validated_offer_enrichment(
     source_page = str(doc.get("sourcePage") or doc.get("url") or "")
     url = str(doc.get("url") or "")
 
-    if extraction_source and isinstance(record.get("issuerDocumentExtraction"), dict):
-        record["issuerDocumentExtraction"]["source"] = extraction_source
+    extraction = record.get("issuerDocumentExtraction")
+    if isinstance(extraction, dict):
+        extraction["parserVersion"] = parser.PARSER_VERSION
+        extraction["extractedFields"] = parsed.get("extractedFields") or []
+        if extraction_source:
+            extraction["source"] = extraction_source
 
     if document_source:
         for item in record.get("documents") or []:
@@ -66,127 +84,132 @@ def merge_validated_offer_enrichment(
             if source_kind:
                 source["kind"] = source_kind
 
-    return changed
+    lot_size = parsed.get("lotSize")
+    price_band = parsed.get("priceBand")
+    term_changes: list[str] = []
+    if record.get("lotSize") is None and lot_size is not None:
+        record["lotSize"] = lot_size
+        term_changes.append("lotSize")
+    if record.get("priceBand") in (None, {}, []) and price_band:
+        record["priceBand"] = price_band
+        term_changes.append("priceBand")
+
+    if lot_size is not None or price_band:
+        observation_source = str(
+            doc.get("extractionSource")
+            or doc.get("documentSource")
+            or "Issuer website"
+        )
+        observation = {
+            "documentUrl": doc.get("url"),
+            "documentType": doc.get("type"),
+            "documentFiledDate": doc.get("filedDate"),
+            "parserVersion": parser.PARSER_VERSION,
+            "source": observation_source,
+        }
+        if lot_size is not None:
+            observation["lotSize"] = lot_size
+        if price_band:
+            observation["priceBand"] = price_band
+        record.setdefault("observations", {})["Offer-document"] = observation
+
+    if isinstance(extraction, dict) and term_changes:
+        existing = list(extraction.get("changedFields") or [])
+        extraction["changedFields"] = list(dict.fromkeys(existing + term_changes))
+
+    return list(dict.fromkeys(changed + term_changes))
 
 
 base.merge_issuer_enrichment = merge_validated_offer_enrichment
 
-# Most entries are issuer-hosted PDFs. Some priority records deliberately use
-# official exchange or registrar mirrors when the SEBI PDF host is unavailable.
-# Every fallback still goes through exact-host, PDF-magic, issuer-identity and
-# fill-only gates before any value is merged.
-base.ISSUER_DOCUMENTS.update(
-    {
-        "om-galaxy-limited": {
-            "company": "OM Galaxy Limited",
-            "url": "https://omgalaxymould.com/wp-content/uploads/2026/09/Project-Om_-RHP_with_RFS.pdf",
-            "host": "omgalaxymould.com",
-            "type": "RHP",
-            "title": "Red Herring Prospectus",
-            "sourcePage": "https://omgalaxymould.com/",
-        },
-        "injecto-polymers-limited": {
-            "company": "Injecto Polymers Limited",
-            "url": "https://ipostatus.integratedregistry.in/PDFFILES/INJECTORHP.pdf",
-            "host": "ipostatus.integratedregistry.in",
-            "type": "RHP",
-            "title": "Red Herring Prospectus",
-            "sourcePage": "https://ipostatus.integratedregistry.in/RegistrarsToSTANew.aspx",
-            "extractionSource": "Registrar website",
-            "documentSource": "Integrated Registry",
-            "sourceName": "Integrated Registry offer document",
-            "sourceKind": "registrar-filing",
-        },
-        "manika": {
-            "company": "Manika Plastech Limited",
-            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788774340354.pdf",
-            "host": "www.sebi.gov.in",
-            "type": "RHP",
-            "title": "Red Herring Prospectus",
-            "sourcePage": "https://www.sebi.gov.in/filings/public-issues/sep-2026/manika-plastech-limited-rhp_104296.html",
-            "extractionSource": "SEBI",
-            "documentSource": "SEBI",
-            "sourceName": "SEBI Red Herring Prospectus",
-            "sourceKind": "regulatory-filing",
-        },
-        "shakti-polytarp-limited": {
-            "company": "Shakti Polytarp Limited",
-            "url": "https://shaktipolytarp.com/wp-content/uploads/2025/10/DRHP_Shakti_29092025.pdf",
-            "host": "shaktipolytarp.com",
-            "type": "DRHP",
-            "title": "Draft Red Herring Prospectus",
-            "sourcePage": "https://shaktipolytarp.com/ipo-drhp-and-industry-report/",
-        },
-        "vama-wovenfab-limited": {
-            "company": "Vama Wovenfab Limited",
-            "url": "https://vamawoven.com/wp-content/uploads/2026/09/RHP_VamaWovenfabLimited-2.pdf",
-            "host": "vamawoven.com",
-            "type": "RHP",
-            "title": "Red Herring Prospectus",
-            "sourcePage": "https://vamawoven.com/rhp/",
-        },
-        "sunshine": {
-            "company": "Sunshine Pictures Limited",
-            "url": "https://www.bseindia.com/downloads/ipo/361148/ipo_T3/Prospectus_20260821184134.pdf",
-            "host": "www.bseindia.com",
-            "type": "Prospectus",
-            "title": "Prospectus",
-            "sourcePage": "https://www.bseindia.com/downloads/ipo/361148/ipo_T3/Prospectus_20260821184134.pdf",
-            "extractionSource": "BSE",
-            "documentSource": "BSE",
-            "sourceName": "BSE final Prospectus",
-            "sourceKind": "exchange-filing",
-        },
-        "symbiotec": {
-            "company": "Symbiotec Pharmalab Limited",
-            "url": "https://nsearchives.nseindia.com/corporate/FP_INE899I01028_31AUG2026.pdf",
-            "host": "nsearchives.nseindia.com",
-            "type": "Prospectus",
-            "title": "Prospectus",
-            "sourcePage": "https://nsearchives.nseindia.com/corporate/FP_INE899I01028_31AUG2026.pdf",
-            "extractionSource": "NSE",
-            "documentSource": "NSE",
-            "sourceName": "NSE final Prospectus",
-            "sourceKind": "exchange-filing",
-        },
-        "pranav": {
-            "company": "Pranav Constructions Limited",
-            "url": "https://www.bseindia.com/downloads/ipo/335516/IPO%20Open/6RHPSigned_20260903150028.pdf",
-            "host": "www.bseindia.com",
-            "type": "RHP",
-            "title": "Red Herring Prospectus",
-            "sourcePage": "https://www.bseindia.com/downloads/ipo/335516/IPO%20Open/6RHPSigned_20260903150028.pdf",
-            "extractionSource": "BSE",
-            "documentSource": "BSE",
-            "sourceName": "BSE Red Herring Prospectus",
-            "sourceKind": "exchange-filing",
-        },
-        "augmont": {
-            "company": "Augmont Enterprises Limited",
-            "url": "https://nsearchives.nseindia.com/corporate/FP_INE16W401027_27AUG2026.pdf",
-            "host": "nsearchives.nseindia.com",
-            "type": "Prospectus",
-            "title": "Prospectus",
-            "sourcePage": "https://nsearchives.nseindia.com/corporate/FP_INE16W401027_27AUG2026.pdf",
-            "extractionSource": "NSE",
-            "documentSource": "NSE",
-            "sourceName": "NSE final Prospectus",
-            "sourceKind": "exchange-filing",
-        },
-        "tempsens": {
-            "company": "Tempsens Instruments (India) Limited",
-            "url": "https://nsearchives.nseindia.com/corporate/FP_INE1KZI01025_25AUG2026.pdf",
-            "host": "nsearchives.nseindia.com",
-            "type": "Prospectus",
-            "title": "Prospectus",
-            "sourcePage": "https://nsearchives.nseindia.com/corporate/FP_INE1KZI01025_25AUG2026.pdf",
-            "extractionSource": "NSE",
-            "documentSource": "NSE",
-            "sourceName": "NSE final Prospectus",
-            "sourceKind": "exchange-filing",
-        },
-    }
-)
+
+def _previous_failed_companies(payload: dict[str, Any]) -> set[str]:
+    """Return canonical issuer names from the immediately previous runner errors."""
+    health = (payload.get("meta") or {}).get("issuerOfferDocumentHealth") or {}
+    failed: set[str] = set()
+    for raw in health.get("errors") or []:
+        company = str(raw or "").split(":", 1)[0].strip()
+        canonical = base.core.canonical_company(company)
+        if canonical:
+            failed.add(canonical)
+    return failed
+
+
+def _already_extracted(record: dict[str, Any], spec: dict[str, Any]) -> bool:
+    previous = record.get("issuerDocumentExtraction")
+    if not isinstance(previous, dict):
+        return False
+    return bool(
+        previous.get("status") == "extracted"
+        and previous.get("parserVersion") == base.PARSER_VERSION
+        and str(previous.get("documentUrl") or "") == str(spec.get("url") or "")
+    )
+
+
+def _identity_safe_targets(
+    payload: dict[str, Any],
+    queue: dict[str, Any],
+    priority_max: int,
+    limit: int,
+):
+    """Select exactly one verified issuer per id and schedule fresh work first."""
+    by_id: dict[str, list[dict[str, Any]]] = {}
+    for record in payload.get("ipos") or []:
+        if not isinstance(record, dict) or not record.get("id"):
+            continue
+        by_id.setdefault(str(record.get("id")), []).append(record)
+
+    previous_failures = _previous_failed_companies(payload)
+    candidates: list[
+        tuple[tuple[int, int], dict[str, Any], dict[str, Any], dict[str, Any]]
+    ] = []
+
+    for queue_index, item in enumerate(queue.get("queue") or []):
+        if not isinstance(item, dict):
+            continue
+        try:
+            priority = int(item.get("priority"))
+        except (TypeError, ValueError):
+            continue
+
+        record_id = str(item.get("id") or "")
+        spec = base.ISSUER_DOCUMENTS.get(record_id)
+        if priority > priority_max or not spec or not base._has_priority_gap(item):
+            continue
+
+        expected_company = base.core.canonical_company(str(spec.get("company") or ""))
+        queue_company = base.core.canonical_company(str(item.get("company") or ""))
+        if queue_company and queue_company != expected_company:
+            continue
+
+        matches = [
+            record
+            for record in by_id.get(record_id, [])
+            if base.core.canonical_company(str(record.get("company") or ""))
+            == expected_company
+        ]
+        if len(matches) != 1:
+            continue
+
+        record = matches[0]
+        if _already_extracted(record, spec):
+            continue
+
+        candidates.append(
+            (
+                (1 if expected_company in previous_failures else 0, queue_index),
+                record,
+                item,
+                spec,
+            )
+        )
+
+    candidates.sort(key=lambda entry: entry[0])
+    selected = [(record, item, spec) for _, record, item, spec in candidates]
+    return selected[:limit] if limit > 0 else selected
+
+
+base._targets = _identity_safe_targets
 
 
 def main() -> int:
