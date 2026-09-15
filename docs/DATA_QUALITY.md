@@ -1,47 +1,47 @@
 # IPO Tracker Data Quality
 
-Generated: **2026-09-15T07:02:19+05:30**
+Generated: **2026-09-15T19:07:57+05:30**
 
-Records audited: **1,354**
+Records audited: **1,356**
 
 ## Completeness scores
 
 | Area | Score | Records in denominator |
 | --- | ---: | ---: |
-| Actionable exchange terms | 82.6% | 1,347 |
-| Recent exchange terms (2Y) | 96.8% | 438 |
-| Offer-document intelligence | 94.2% | 78 |
+| Actionable exchange terms | 82.6% | 1,349 |
+| Recent exchange terms (2Y) | 96.7% | 440 |
+| Offer-document intelligence | 91.5% | 90 |
 | Live subscription categories | 77.8% | 9 |
 | Matured lifecycle dates | 97.2% | 1,318 |
-| Source/provenance trail | 100.0% | 1,354 |
+| Source/provenance trail | 99.5% | 1,356 |
 
 ## Actionable exchange fields
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| symbol | 1,347 | 1,347 | 0 | 100.0% |
-| board | 1,347 | 1,347 | 0 | 100.0% |
-| exchange | 1,347 | 1,347 | 0 | 100.0% |
-| openDate | 1,347 | 1,347 | 0 | 100.0% |
-| closeDate | 1,347 | 1,347 | 0 | 100.0% |
-| priceBand | 1,334 | 1,347 | 13 | 99.0% |
-| lotSize | 323 | 1,347 | 1,024 | 24.0% |
-| issueSizeCr | 436 | 1,347 | 911 | 32.4% |
-| issueComposition | 433 | 438 | 5 | 98.9% |
+| symbol | 1,349 | 1,349 | 0 | 100.0% |
+| board | 1,349 | 1,349 | 0 | 100.0% |
+| exchange | 1,349 | 1,349 | 0 | 100.0% |
+| openDate | 1,349 | 1,349 | 0 | 100.0% |
+| closeDate | 1,349 | 1,349 | 0 | 100.0% |
+| priceBand | 1,336 | 1,349 | 13 | 99.0% |
+| lotSize | 325 | 1,349 | 1,024 | 24.1% |
+| issueSizeCr | 438 | 1,349 | 911 | 32.5% |
+| issueComposition | 434 | 440 | 6 | 98.6% |
 
 ## Recent exchange fields — last 2 years
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| symbol | 438 | 438 | 0 | 100.0% |
-| board | 438 | 438 | 0 | 100.0% |
-| exchange | 438 | 438 | 0 | 100.0% |
-| openDate | 438 | 438 | 0 | 100.0% |
-| closeDate | 438 | 438 | 0 | 100.0% |
-| priceBand | 438 | 438 | 0 | 100.0% |
-| lotSize | 320 | 438 | 118 | 73.1% |
-| issueSizeCr | 433 | 438 | 5 | 98.9% |
-| issueComposition | 433 | 438 | 5 | 98.9% |
+| symbol | 440 | 440 | 0 | 100.0% |
+| board | 440 | 440 | 0 | 100.0% |
+| exchange | 440 | 440 | 0 | 100.0% |
+| openDate | 440 | 440 | 0 | 100.0% |
+| closeDate | 440 | 440 | 0 | 100.0% |
+| priceBand | 440 | 440 | 0 | 100.0% |
+| lotSize | 322 | 440 | 118 | 73.2% |
+| issueSizeCr | 435 | 440 | 5 | 98.9% |
+| issueComposition | 434 | 440 | 6 | 98.6% |
 
 ## Historical exchange fields
 
@@ -60,12 +60,12 @@ Records audited: **1,354**
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| registrar | 69 | 78 | 9 | 88.5% |
-| leadManagers | 70 | 78 | 8 | 89.7% |
-| promoters | 78 | 78 | 0 | 100.0% |
-| objectsOfIssue | 77 | 78 | 1 | 98.7% |
-| financials | 74 | 78 | 4 | 94.9% |
-| promoterShareholding | 73 | 78 | 5 | 93.6% |
+| registrar | 83 | 90 | 7 | 92.2% |
+| leadManagers | 84 | 90 | 6 | 93.3% |
+| promoters | 88 | 90 | 2 | 97.8% |
+| objectsOfIssue | 86 | 90 | 4 | 95.6% |
+| financials | 80 | 90 | 10 | 88.9% |
+| promoterShareholding | 73 | 90 | 17 | 81.1% |
 
 ## Open IPO subscription fields
 
