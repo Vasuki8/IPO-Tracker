@@ -1,4 +1,6 @@
-const state = { data: [], activeStatus: 'all', search: '', board: 'all', year: 'all', meta: {} };
+const state = {
+  data: [], activeStatus: 'all', search: '', board: 'all', year: 'all', meta: {}, byId: new Map()
+};
 
 const els = {
   rows: document.getElementById('ipoRows'), stats: document.getElementById('stats'),
@@ -10,27 +12,38 @@ const els = {
   dialogClose: document.getElementById('dialogClose'), health: document.getElementById('sourceHealth')
 };
 
+const IST_DATE_FORMATTER = new Intl.DateTimeFormat('en-IN', {
+  day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata'
+});
+const IST_DAY_FORMATTER = new Intl.DateTimeFormat('en-CA', {
+  year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'Asia/Kolkata'
+});
+const IST_TIMESTAMP_FORMATTER = new Intl.DateTimeFormat('en-IN', {
+  timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short'
+});
+const COMPANY_COLLATOR = new Intl.Collator('en', { sensitivity: 'base' });
 const money = v => v == null ? '—' : `₹${Number(v).toLocaleString('en-IN', { maximumFractionDigits: 2 })} Cr`;
 const rupees = v => v == null ? '—' : `₹${Number(v).toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
 const x = v => v == null ? '—' : `${Number(v).toLocaleString('en-IN', { maximumFractionDigits: 2 })}×`;
 const prettyDate = v => {
   if (!v) return '—';
   const d = new Date(`${v}T00:00:00+05:30`);
-  return new Intl.DateTimeFormat('en-IN', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata' }).format(d);
+  return Number.isNaN(d.getTime()) ? String(v) : IST_DATE_FORMATTER.format(d);
 };
 
 function currentIstDate() {
-  const parts = new Intl.DateTimeFormat('en-CA', { year:'numeric', month:'2-digit', day:'2-digit', timeZone:'Asia/Kolkata' }).formatToParts(new Date());
+  const parts = IST_DAY_FORMATTER.formatToParts(new Date());
   const map = Object.fromEntries(parts.map(p => [p.type, p.value]));
   return `${map.year}-${map.month}-${map.day}`;
 }
 
+const TODAY_IST = currentIstDate();
+
 function derivedStatus(ipo) {
-  const today = currentIstDate();
-  if (ipo.openDate && today < ipo.openDate) return 'upcoming';
-  if (ipo.openDate && ipo.closeDate && today >= ipo.openDate && today <= ipo.closeDate) return 'open';
-  if (ipo.listingDate && today >= ipo.listingDate) return 'listed';
-  if (ipo.closeDate && today > ipo.closeDate) return 'closed';
+  if (ipo.openDate && TODAY_IST < ipo.openDate) return 'upcoming';
+  if (ipo.openDate && ipo.closeDate && TODAY_IST >= ipo.openDate && TODAY_IST <= ipo.closeDate) return 'open';
+  if (ipo.listingDate && TODAY_IST >= ipo.listingDate) return 'listed';
+  if (ipo.closeDate && TODAY_IST > ipo.closeDate) return 'closed';
   return ipo.status || 'upcoming';
 }
 
@@ -76,33 +89,35 @@ function sourceCount(ipo) {
 }
 
 function filtered() {
+  const search = state.search.trim().toLowerCase();
   return state.data.filter(ipo => {
     const status = derivedStatus(ipo);
     const matchesStatus = state.activeStatus === 'all' || status === state.activeStatus;
     const matchesBoard = state.board === 'all' || ipo.board === state.board;
-    const haystack = `${ipo.company || ''} ${ipo.symbol || ''}`.toLowerCase();
-    const matchesSearch = haystack.includes(state.search.toLowerCase());
+    const matchesSearch = !search || `${ipo.company || ''} ${ipo.symbol || ''}`.toLowerCase().includes(search);
     const year = (ipo.openDate || ipo.listingDate || ipo.lifecycle?.stageDate || '').slice(0, 4);
     const matchesYear = state.year === 'all' || year === state.year;
     return matchesStatus && matchesBoard && matchesSearch && matchesYear;
   }).sort((a,b) => {
-    // Strict opening-date order: latest opening date first. Records that do not
-    // yet have an exchange opening date (for example early SEBI filings) stay
-    // below all dated IPOs instead of being mixed in using filing/listing dates.
     const ad = a.openDate || '';
     const bd = b.openDate || '';
     if (ad && !bd) return -1;
     if (!ad && bd) return 1;
     if (ad !== bd) return bd.localeCompare(ad);
-    return String(a.company || '').localeCompare(String(b.company || ''), 'en', { sensitivity: 'base' });
+    return COMPANY_COLLATOR.compare(String(a.company || ''), String(b.company || ''));
   });
 }
 
 function renderStats() {
-  const counts = { open: 0, upcoming: 0, closed: 0, listed: 0, total: state.data.length };
-  state.data.forEach(i => { const s = derivedStatus(i); if (counts[s] != null) counts[s]++; });
-  const pipeline = state.data.filter(i => ['drhp','udrhp','rhp','prospectus'].includes(i.lifecycle?.stage) && !i.openDate).length;
-  const conflicts = state.data.filter(i => i.validation?.status === 'conflict').length;
+  const counts = { open: 0, upcoming: 0, closed: 0, listed: 0 };
+  let pipeline = 0;
+  let conflicts = 0;
+  for (const ipo of state.data) {
+    const status = derivedStatus(ipo);
+    if (counts[status] != null) counts[status]++;
+    if (['drhp','udrhp','rhp','prospectus'].includes(ipo.lifecycle?.stage) && !ipo.openDate) pipeline++;
+    if (ipo.validation?.status === 'conflict') conflicts++;
+  }
   const cards = [
     ['Open now', counts.open, 'Accepting bids'], ['Upcoming', counts.upcoming, 'Scheduled + filing pipeline'],
     ['SEBI pipeline', pipeline, 'Pre-exchange filings'], ['Listed', counts.listed, 'Historical listings'],
@@ -137,7 +152,6 @@ function renderTable() {
       <td>${x(ipo.subscription?.total)}</td><td>${listingReturn(ipo)}</td><td>${validationBadge(ipo)}<span class="source-count">${sources} source${sources === 1 ? '' : 's'}</span></td>
     </tr>`;
   }).join('');
-  els.rows.querySelectorAll('tr').forEach(row => row.addEventListener('click', () => openDetail(row.dataset.id)));
 }
 
 function renderYears() {
@@ -146,7 +160,7 @@ function renderYears() {
 }
 
 function openDetail(id) {
-  const ipo = state.data.find(i => i.id === id); if (!ipo) return;
+  const ipo = state.byId.get(String(id)); if (!ipo) return;
   const status = derivedStatus(ipo);
   els.dialogTitle.textContent = ipo.company;
   els.dialogBoard.textContent = `${ipo.board || 'IPO'} · ${status.toUpperCase()} · ${filingStage(ipo)}`;
@@ -195,20 +209,33 @@ function formatObservation(v) {
 function formatTimestamp(v) {
   const d = new Date(v);
   if (Number.isNaN(d.getTime())) return v;
-  return d.toLocaleString('en-IN', { timeZone:'Asia/Kolkata', dateStyle:'medium', timeStyle:'short' }) + ' IST';
+  return `${IST_TIMESTAMP_FORMATTER.format(d)} IST`;
 }
 
 function escapeHtml(str) { return String(str ?? '').replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c])); }
 function escapeAttr(str) { return escapeHtml(str); }
+
+let renderFrame = 0;
+function scheduleTableRender() {
+  if (renderFrame) cancelAnimationFrame(renderFrame);
+  renderFrame = requestAnimationFrame(() => {
+    renderFrame = 0;
+    renderTable();
+  });
+}
 
 function bind() {
   document.querySelectorAll('.tab').forEach(btn => btn.addEventListener('click', () => {
     document.querySelectorAll('.tab').forEach(b => b.classList.remove('active')); btn.classList.add('active');
     state.activeStatus = btn.dataset.status; renderTable();
   }));
-  els.search.addEventListener('input', e => { state.search = e.target.value; renderTable(); });
+  els.search.addEventListener('input', e => { state.search = e.target.value; scheduleTableRender(); });
   els.board.addEventListener('change', e => { state.board = e.target.value; renderTable(); });
   els.year.addEventListener('change', e => { state.year = e.target.value; renderTable(); });
+  els.rows.addEventListener('click', e => {
+    const row = e.target.closest('tr[data-id]');
+    if (row && els.rows.contains(row)) openDetail(row.dataset.id);
+  });
   els.dialogClose.addEventListener('click', () => els.dialog.close());
   els.dialog.addEventListener('click', e => { if (e.target === els.dialog) els.dialog.close(); });
 }
@@ -216,10 +243,12 @@ function bind() {
 async function init() {
   bind();
   try {
-    const res = await fetch(`data/ipos.json?v=${Date.now()}`);
+    const res = await fetch('data/ipos.json', { cache: 'no-cache' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const payload = await res.json();
-    state.data = payload.ipos || []; state.meta = payload.meta || {};
+    state.data = payload.ipos || [];
+    state.meta = payload.meta || {};
+    state.byId = new Map(state.data.map(ipo => [String(ipo.id), ipo]));
     renderYears(); renderStats(); renderSourceHealth(); renderTable();
     const generated = state.meta.generatedAt ? formatTimestamp(state.meta.generatedAt) : 'unknown';
     els.freshness.textContent = state.meta.seed ? `Preview data · ${generated}` : `Updated ${generated}`;

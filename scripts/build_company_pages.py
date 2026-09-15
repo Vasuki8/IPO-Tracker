@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "ipos.json"
 OUT_DIR = ROOT / "ipo"
 MANIFEST = OUT_DIR / "routes.json"
+ROUTE_TEMPLATE_VERSION = 2
 
 
 def route_slug(value: str) -> str:
@@ -45,12 +46,7 @@ def _identity(record: dict) -> str:
 
 
 def assign_routes(records: list[dict]) -> list[tuple[dict, str]]:
-    """Assign stable clean routes and add profilePath to every record.
-
-    Historical exchange identifiers are mostly URL-safe already, but a few
-    normalize to the same slug. Colliding bases get a stable short identity hash
-    so two different IPO records can never silently share one page.
-    """
+    """Assign stable clean routes and add profilePath to every record."""
     bases = [route_slug(str(row.get("id") or row.get("company") or "")) for row in records]
     counts = Counter(bases)
     used: set[str] = set()
@@ -62,8 +58,6 @@ def assign_routes(records: list[dict]) -> list[tuple[dict, str]]:
             digest = hashlib.sha1(_identity(record).encode("utf-8")).hexdigest()[:8]
             route = f"{base}--{digest}"
         if route in used:
-            # Only possible for exact duplicate identities. Keep the route unique
-            # without changing the stable base for normal records.
             suffix = 2
             candidate = f"{route}-{suffix}"
             while candidate in used:
@@ -144,12 +138,42 @@ def page_html(record: dict, route: str) -> str:
 '''
 
 
-def load_manifest() -> set[str]:
+def load_manifest() -> dict:
     try:
         payload = json.loads(MANIFEST.read_text(encoding="utf-8"))
-        return set(payload.get("routes") or [])
+        return payload if isinstance(payload, dict) else {}
     except Exception:
-        return set()
+        return {}
+
+
+def write_text_if_changed(path: Path, content: str) -> bool:
+    """Write text only when bytes would actually change."""
+    if path.exists() and path.read_text(encoding="utf-8") == content:
+        return False
+    path.write_text(content, encoding="utf-8")
+    return True
+
+
+def route_content_digest(assigned: list[tuple[dict, str]]) -> str:
+    """Digest only fields embedded in static route HTML.
+
+    Live IPO facts are intentionally excluded because company-page.js reads them
+    from data/ipos.json at runtime; changing those facts must not rebuild 1,000+
+    route shells.
+    """
+    digest = hashlib.sha256()
+    for record, route in sorted(assigned, key=lambda item: item[1]):
+        fields = (
+            route,
+            record.get("id"),
+            record.get("company"),
+            record.get("symbol"),
+            record.get("exchange"),
+            record.get("profilePath"),
+        )
+        digest.update("\0".join(str(value or "") for value in fields).encode("utf-8"))
+        digest.update(b"\n")
+    return digest.hexdigest()
 
 
 def main() -> int:
@@ -157,25 +181,43 @@ def main() -> int:
     records = [row for row in payload.get("ipos", []) if isinstance(row, dict) and row.get("id")]
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    previous = load_manifest()
+    previous_manifest = load_manifest()
+    previous = set(previous_manifest.get("routes") or [])
+    old_profile_paths = {id(record): record.get("profilePath") for record in records}
     assigned = assign_routes(records)
     current = {route for _, route in assigned}
+    profile_paths_changed = any(
+        old_profile_paths[id(record)] != record.get("profilePath")
+        for record, _route in assigned
+    )
+
+    # Avoid serializing/writing the 4.7 MB dataset on every refresh when route
+    # assignments are unchanged.
+    if profile_paths_changed:
+        DATA_FILE.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    digest = route_content_digest(assigned)
+    manifest_matches = (
+        previous == current
+        and previous_manifest.get("templateVersion") == ROUTE_TEMPLATE_VERSION
+        and previous_manifest.get("contentDigest") == digest
+    )
+
     written = unchanged = 0
-
-    # profilePath is part of the normalized public record so the dashboard can
-    # link to the exact route even when a collision needed a hash suffix.
-    DATA_FILE.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-
-    for record, route in assigned:
-        target_dir = OUT_DIR / route
-        target_dir.mkdir(parents=True, exist_ok=True)
-        target = target_dir / "index.html"
-        content = page_html(record, route)
-        if target.exists() and target.read_text(encoding="utf-8") == content:
-            unchanged += 1
-            continue
-        target.write_text(content, encoding="utf-8")
-        written += 1
+    if manifest_matches:
+        # A committed manifest and route tree move together, so there is no need
+        # to open and compare every generated index.html on every data refresh.
+        unchanged = len(current)
+    else:
+        for record, route in assigned:
+            target_dir = OUT_DIR / route
+            target_dir.mkdir(parents=True, exist_ok=True)
+            target = target_dir / "index.html"
+            content = page_html(record, route)
+            if write_text_if_changed(target, content):
+                written += 1
+            else:
+                unchanged += 1
 
     removed = 0
     for stale in sorted(previous - current):
@@ -188,12 +230,17 @@ def main() -> int:
         "generatedFrom": "data/ipos.json",
         "recordCount": len(records),
         "routeCount": len(current),
+        "templateVersion": ROUTE_TEMPLATE_VERSION,
+        "contentDigest": digest,
         "routes": sorted(current),
     }
-    MANIFEST.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    manifest_content = json.dumps(manifest, indent=2, ensure_ascii=False) + "\n"
+    write_text_if_changed(MANIFEST, manifest_content)
+
     print(
         f"Company routes: records={len(records)}, routes={len(current)}, "
-        f"written={written}, unchanged={unchanged}, removed={removed}"
+        f"written={written}, unchanged={unchanged}, removed={removed}, "
+        f"dataRewrite={'yes' if profile_paths_changed else 'no'}"
     )
     if len(current) != len(records):
         raise RuntimeError("Permanent-route count does not match IPO record count")

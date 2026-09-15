@@ -4,7 +4,7 @@ on:
   pull_request:
   push:
     branches: [main, data-correctness-and-reliability]
-    paths: ['scripts/**', 'tests/**', '.github/workflows/**', 'pyproject.toml', 'uv.lock', 'data/verified_corrections.json']
+    paths: ['scripts/**', 'tests/**', '*.js', '.github/workflows/**', 'pyproject.toml', 'uv.lock', 'data/verified_corrections.json']
 
 permissions:
   contents: read
@@ -22,6 +22,14 @@ jobs:
       - uses: astral-sh/setup-uv@v10.1.0
       - run: uv python install 3.12
       - run: uv sync --frozen
+      - name: Check frontend JavaScript syntax
+        run: |
+          node --check app.js
+          node --check company-page.js
+          node --check company.js
+          node --check phase3.js
+          node --check phase4.js
+          node --check completeness.js
       - name: Run all regression tests together
         run: uv run --frozen python -m unittest discover -s tests -v
       - name: Validate reviewed data corrections
