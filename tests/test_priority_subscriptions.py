@@ -56,22 +56,73 @@ class PrioritySubscriptionTests(unittest.TestCase):
         </table>
         """
         row = mod.IssueLink("EXAMPLE", None, first, "https://beta.bseindia.com/index")
-        parsed, url, _ = mod.fetch_demand(FakeSession({first: "<html>No data</html>", second: html}), [row])
+        parsed, url, _ = mod.fetch_demand(
+            FakeSession({first: "<html>No data</html>", second: html}), [row]
+        )
         self.assertEqual(url, second)
         self.assertEqual(parsed["qib"], 0.5)
         self.assertEqual(parsed["nii"], 0.75)
         self.assertEqual(parsed["retail"], 1.25)
         self.assertEqual(parsed["total"], 0.83)
 
-    def test_priority_targets_only_include_missing_subscription_open_issues(self):
-        payload = {"ipos": [{"id": "a"}, {"id": "b"}, {"id": "c"}]}
-        queue = {"queue": [
-            {"id": "a", "priority": 0, "missingFields": ["subscription.qib"]},
-            {"id": "b", "priority": 0, "missingFields": ["exchange.issueComposition"]},
-            {"id": "c", "priority": 1, "missingFields": ["subscription.qib"]},
-        ]}
+    def test_priority_targets_refresh_all_open_issues_even_when_subscription_exists(self):
+        payload = {
+            "ipos": [
+                {
+                    "id": "populated",
+                    "symbol": "POP",
+                    "status": "open",
+                    "company": "Already Populated Limited",
+                    "subscription": {"total": 2.5},
+                },
+                {
+                    "id": "missing",
+                    "symbol": "MISS",
+                    "status": "open",
+                    "company": "Missing Subscription Limited",
+                },
+                {
+                    "id": "future",
+                    "symbol": "FUT",
+                    "status": "upcoming",
+                    "company": "Future Limited",
+                },
+                {
+                    "id": "closed",
+                    "symbol": "CLOSED",
+                    "status": "closed",
+                    "company": "Closed Limited",
+                },
+                {
+                    "id": "no-symbol",
+                    "status": "open",
+                    "company": "No Symbol Limited",
+                },
+            ]
+        }
+        # The queue intentionally contains only the missing record. A populated
+        # open IPO must still be refreshed because live demand changes over time.
+        queue = {
+            "queue": [
+                {
+                    "id": "missing",
+                    "priority": 0,
+                    "missingFields": ["subscription.qib"],
+                }
+            ]
+        }
         rows = mod.priority_open_targets(payload, queue, 30)
-        self.assertEqual([r["id"] for r in rows], ["a"])
+        self.assertEqual([row["id"] for row in rows], ["populated", "missing"])
+
+    def test_priority_target_limit_applies_after_open_issue_selection(self):
+        payload = {
+            "ipos": [
+                {"id": "b", "symbol": "B", "status": "open", "company": "Beta Limited"},
+                {"id": "a", "symbol": "A", "status": "open", "company": "Alpha Limited"},
+            ]
+        }
+        rows = mod.priority_open_targets(payload, {"queue": []}, 1)
+        self.assertEqual(len(rows), 1)
 
 
 if __name__ == "__main__":

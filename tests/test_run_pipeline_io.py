@@ -123,6 +123,23 @@ class PipelineIoTests(unittest.TestCase):
             self.assertTrue(mod.rebuild())
             self.assertEqual(len(calls), 10)
 
+    def test_repair_mode_refreshes_live_subscriptions(self):
+        calls = []
+
+        def fake_step(script, *args, **kwargs):
+            calls.append((script, args, kwargs))
+            return {"stage": script, "status": "no_change"}
+
+        with patch.object(mod, "step", side_effect=fake_step), patch.object(
+            mod, "rebuild", return_value=False
+        ):
+            mod.run("repair")
+
+        scripts = [script for script, _args, _kwargs in calls]
+        self.assertIn("run_priority_subscriptions_v3.py", scripts)
+        subscription_call = next(call for call in calls if call[0] == "run_priority_subscriptions_v3.py")
+        self.assertEqual(subscription_call[1], ("--limit", "30"))
+
 
 if __name__ == "__main__":
     unittest.main()
