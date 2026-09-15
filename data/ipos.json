@@ -6,12 +6,34 @@
       "remaining": 0,
       "changedFields": 0,
       "failed": 0,
-      "checkedAt": "2026-09-16T02:58:18+05:30",
+      "checkedAt": "2026-09-16T03:07:39+05:30",
       "outcomes": []
     },
     "errors": [],
-    "generatedAt": "2026-09-15T21:28:39.527475+00:00",
+    "generatedAt": "2026-09-15T21:37:59.662719+00:00",
     "historyStart": "2024-09-13",
+    "initialSourceRepair": {
+      "records": 1354,
+      "sourceDocumentsAttempted": 72,
+      "sourceDocumentsRead": 70,
+      "sourceFailures": 2,
+      "changedRecordCount": 75,
+      "changedFields": 440,
+      "fieldCounts": {
+        "dataCorrections": 72,
+        "documentFieldProvenance": 70,
+        "documentRepair": 72,
+        "financials": 32,
+        "leadManagers": 69,
+        "offerDocumentExtraction": 70,
+        "registrar": 46,
+        "promoters": 5,
+        "objectsOfIssue": 4
+      },
+      "semanticErrors": 0,
+      "sourceReviewItems": 928,
+      "sourceReviewRecords": 60
+    },
     "offerDocumentHealth": {
       "ok": false,
       "attempted": 12,
@@ -30,16 +52,16 @@
         "stage": "record_integrity.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.18,
-        "checkedAt": "2026-09-15T21:28:19.768973+00:00",
+        "durationSeconds": 0.17,
+        "checkedAt": "2026-09-15T21:37:40.483160+00:00",
         "diagnostics": "{\"integrityRepairs\": 0}\n"
       },
       "apply_corrections.py": {
         "stage": "apply_corrections.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.2,
-        "checkedAt": "2026-09-15T21:27:31.021042+00:00",
+        "durationSeconds": 0.19,
+        "checkedAt": "2026-09-15T21:37:31.339734+00:00",
         "diagnostics": "enance\", \"documentRepair\", \"offerDocumentExtraction\", \"registrar\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"cleanmax\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"aye\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"armour\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"eximroutes\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"torrent-gas-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"national-stock-exchange-of-india-limited\", \"reason\": \"Issuer record no longer exists\"}, {\"id\": \"nopaperforms-solutions-limited\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"m-k-c-agro-fresh-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}]}\n"
       },
       "run_update_v2.py": {
@@ -62,16 +84,16 @@
         "stage": "enrich_sebi_priority_registers_v2.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 5.69,
-        "checkedAt": "2026-09-15T21:28:17.462054+00:00",
+        "durationSeconds": 6.15,
+        "checkedAt": "2026-09-15T21:37:38.232145+00:00",
         "diagnostics": "SEBI priority registers v2: first_page=0 searched=3 search_matched=0 search_links=0 failed=0\n"
       },
       "enrich_sebi_document_links.py": {
         "stage": "enrich_sebi_document_links.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.29,
-        "checkedAt": "2026-09-15T21:28:17.792785+00:00",
+        "durationSeconds": 0.3,
+        "checkedAt": "2026-09-15T21:37:38.576579+00:00",
         "diagnostics": "SEBI document links: records=0 attempted=0 resolved=0 seeded=0 added=0 failed=0\n"
       },
       "enrich_recent_offer_terms.py": {
@@ -79,23 +101,23 @@
         "status": "no_change",
         "exitCode": 0,
         "durationSeconds": 0.31,
-        "checkedAt": "2026-09-15T21:28:18.142462+00:00",
+        "checkedAt": "2026-09-15T21:37:38.915672+00:00",
         "diagnostics": "SEBI recent offer terms: targets=1 attempted=0 extracted=0 updated=0 failed=0 skipped_lot_only_rhp=0 fields={}\n"
       },
       "run_offer_documents.py": {
         "stage": "run_offer_documents.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.37,
-        "checkedAt": "2026-09-15T21:28:18.546164+00:00",
-        "diagnostics": "{\"parserVersion\": 21, \"attempted\": 0, \"remaining\": 0, \"changedFields\": 0, \"failed\": 0, \"checkedAt\": \"2026-09-16T02:58:18+05:30\"}\n"
+        "durationSeconds": 0.35,
+        "checkedAt": "2026-09-15T21:37:39.299658+00:00",
+        "diagnostics": "{\"parserVersion\": 21, \"attempted\": 0, \"remaining\": 0, \"changedFields\": 0, \"failed\": 0, \"checkedAt\": \"2026-09-16T03:07:39+05:30\"}\n"
       },
       "apply_verified_filing_offer_fields.py": {
         "stage": "apply_verified_filing_offer_fields.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.26,
-        "checkedAt": "2026-09-15T21:28:18.849258+00:00",
+        "durationSeconds": 0.25,
+        "checkedAt": "2026-09-15T21:37:39.588888+00:00",
         "diagnostics": "Verified filing offer fields: missing record national-stock-exchange-of-india-limited\nVerified filing offer fields: entries=4, updated=0, fields={}\n"
       },
       "backfill_recent_sebi_other_docs_lot_sizes.py": {
@@ -123,515 +145,20 @@
         "diagnostics": "BSE historical detail unavailable: BSE historical archive unavailable on official hosts: https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P: 403 Client Error: Forbidden for url: https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P; https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P: 403 Client Error: Forbidden for url: https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P\n"
       }
     },
-    "recordCount": 1357,
-    "recordIntegrity": {
-      "checkedAt": "2026-09-15T21:28:39.742696+00:00",
-      "changedFields": 0
-    },
-    "schemaVersion": 5,
-    "sebiDocumentLinkHealth": {
-      "ok": true,
-      "attemptedRecords": 0,
-      "attempted": 0,
-      "resolvedPages": 0,
-      "seededPages": 0,
-      "linksAdded": 0,
-      "failed": 0,
-      "asOf": "2026-09-16T02:58:17+05:30",
-      "errors": []
-    },
-    "seed": false,
-    "sourceHealth": {
-      "NSE-live": {
-        "ok": true,
-        "records": 13
-      },
-      "NSE-history": {
-        "ok": true,
-        "records": 0,
-        "status": "checked",
-        "note": "checked · 0 new rows"
-      },
-      "SEBI": {
-        "ok": true,
-        "records": 21,
-        "companiesAttached": 15
-      },
-      "BSE": {
-        "ok": true,
-        "records": 10,
-        "companiesAttached": 10
-      },
-      "BSE-detail": {
-        "ok": true,
-        "records": 0,
-        "indexRecords": 12,
-        "candidates": 30,
-        "matched": 0,
-        "attempted": 0,
-        "updated": 0,
-        "failed": 0,
-        "historyDays": 730,
-        "fieldsFilled": {},
-        "indexHealth": {
-          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
-            "ok": true,
-            "records": 0
-          },
-          "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
-            "ok": true,
-            "records": 12
-          },
-          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P": {
-            "ok": true,
-            "records": 0
-          }
-        },
-        "errors": []
-      },
-      "BSE-history-detail": {
-        "ok": false,
-        "records": 0,
-        "attempted": 0,
-        "hosts": [
-          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P",
-          "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P"
-        ],
-        "error": "BSE historical archive unavailable on official hosts: https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P: historical page did not contain its ASP.NET form; https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P: historical issue-type selector was not found"
-      },
-      "IPO-subscription": {
-        "ok": true,
-        "degraded": true,
-        "records": 8,
-        "attempted": 8,
-        "snapshotsAdded": 8,
-        "failed": 0,
-        "nseRecords": 0,
-        "bseFallbackRecords": 4,
-        "secondaryFallbackRecords": 4,
-        "secondarySources": {
-          "IPO Premium subscription (secondary)": 4
-        },
-        "asOf": "2026-09-16T00:02:11+05:30",
-        "errors": []
-      },
-      "Critical-backfill": {
-        "ok": true,
-        "records": 0,
-        "asOf": "2026-09-14T11:57:31+05:30"
-      },
-      "SEBI-document-links": {
-        "ok": true,
-        "records": 0,
-        "attemptedRecords": 0,
-        "attempted": 0,
-        "asOf": "2026-09-16T02:58:17+05:30",
-        "errors": []
-      },
-      "Offer-docs": {
-        "ok": false,
-        "records": 11,
-        "attempted": 12,
-        "failed": 1,
-        "parserVersion": 13,
-        "schedulerVersion": 1
-      },
-      "Issuer-offer-docs": {
-        "ok": true,
-        "records": 0,
-        "attempted": 0,
-        "updated": 0,
-        "deepScanned": 0,
-        "failed": 0,
-        "asOf": "2026-09-14T03:33:11+05:30",
-        "errors": []
-      },
-      "NSE-primary-market-reports": {
-        "ok": true,
-        "indexUrl": "https://www.nseindia.com/static/regulations/segment-wise-historical-reports-capital-primary-market",
-        "reportsDiscovered": 30,
-        "reportRows": 534,
-        "candidates": 76,
-        "matched": 0,
-        "updated": 0,
-        "historyDays": 730,
-        "fieldsFilled": {},
-        "errors": [],
-        "asOf": "2026-09-13T23:20:35+05:30"
-      },
-      "verified-upcoming-lot-sizes": {
-        "ok": true,
-        "entries": 2,
-        "updated": 2,
-        "checkedAt": "2026-09-13T08:37:57+05:30"
-      },
-      "SEBI-priority-registers": {
-        "ok": true,
-        "parserVersion": 2,
-        "priorityMax": 3,
-        "firstPageMatched": 0,
-        "firstPageLinks": 0,
-        "searchedRecords": 3,
-        "searchMatchedRecords": 0,
-        "searchLinksAdded": 0,
-        "failed": 0,
-        "asOf": "2026-09-16T02:58:17+05:30",
-        "errors": []
-      },
-      "SEBI-offer-terms": {
-        "ok": true,
-        "priorityMax": 3,
-        "targets": 1,
-        "attempted": 0,
-        "extracted": 0,
-        "updated": 0,
-        "failed": 0,
-        "skippedLotOnlyRhp": 0,
-        "fields": {},
-        "asOf": "2026-09-16T02:58:17+05:30",
-        "errors": []
-      },
-      "verified-lot-sizes": {
-        "ok": true,
-        "entries": 36,
-        "updated": 0,
-        "checkedAt": "2026-09-14T03:33:10+05:30"
-      },
-      "verified-recent-issue-terms": {
-        "ok": true,
-        "entries": 14,
-        "updated": 0,
-        "fields": {},
-        "checkedAt": "2026-09-14T03:33:10+05:30"
-      },
-      "verified-recent-offer-fields": {
-        "ok": true,
-        "entries": 20,
-        "updated": 0,
-        "fields": {},
-        "checkedAt": "2026-09-14T03:33:11+05:30"
-      },
-      "verified-filing-offer-fields": {
-        "ok": true,
-        "entries": 4,
-        "updated": 0,
-        "fields": {},
-        "checkedAt": "2026-09-16T02:58:18+05:30"
-      },
-      "NSE-history-IPO-filter": {
-        "ok": true,
-        "seen": 472,
-        "kept": 435,
-        "excludedNonEquity": 37,
-        "legacyRowsRemoved": 0,
-        "removed": [],
-        "checkedAt": "2026-09-13T23:20:21+05:30"
-      },
-      "NSE-issue-info": {
-        "ok": true,
-        "candidates": 0,
-        "attempted": 0,
-        "updated": 0,
-        "identityMismatches": 0,
-        "noLot": 0,
-        "failed": 0,
-        "historyDays": 730,
-        "retryDays": 7,
-        "errors": []
-      },
-      "P4-legacy-debt-symbol-cleanup": {
-        "ok": true,
-        "historyDays": 730,
-        "removedCount": 8,
-        "removed": [
-          {
-            "id": "935iifl33",
-            "company": "IIFL Finance Limited",
-            "symbol": "935IIFL33",
-            "openDate": "2026-02-17",
-            "exchange": "NSE"
-          },
-          {
-            "id": "815chli36",
-            "company": "Canara HSBC Life Insurance Company Limited",
-            "symbol": "815CHLI36",
-            "openDate": "2025-10-10",
-            "exchange": "NSE"
-          },
-          {
-            "id": "805taca29",
-            "company": "Tata Capital Limited",
-            "symbol": "805TACA29",
-            "openDate": "2025-10-06",
-            "exchange": "NSE"
-          },
-          {
-            "id": "1305dccl29",
-            "company": "Dar Credit & Capital Limited",
-            "symbol": "1305DCCL29",
-            "openDate": "2025-05-21",
-            "exchange": "NSE Emerge"
-          },
-          {
-            "id": "975scl35",
-            "company": "Sammaan Capital Limited",
-            "symbol": "975SCL35",
-            "openDate": "2025-02-27",
-            "exchange": "NSE"
-          },
-          {
-            "id": "790ihfl27",
-            "company": "IIFL Home Finance Limited",
-            "symbol": "790IHFL27",
-            "openDate": "2024-12-06",
-            "exchange": "NSE"
-          },
-          {
-            "id": "727ngel36",
-            "company": "NTPC Green Energy Limited",
-            "symbol": "727NGEL36",
-            "openDate": "2024-11-19",
-            "exchange": "NSE"
-          },
-          {
-            "id": "904nacl28",
-            "company": "Northern Arc Capital Limited",
-            "symbol": "904NACL28",
-            "openDate": "2024-09-16",
-            "exchange": "NSE"
-          }
-        ],
-        "checkedOn": "2026-09-13"
-      },
-      "NSE-issue-info-terms": {
-        "ok": true,
-        "candidates": 42,
-        "attempted": 42,
-        "updated": 0,
-        "identityMismatches": 8,
-        "noTerms": 25,
-        "noChange": 9,
-        "failed": 0,
-        "historyDays": 730,
-        "retryDays": 0,
-        "errors": []
-      },
-      "P4-verified-non-IPO-cleanup": {
-        "ok": true,
-        "historyDays": 730,
-        "checkedOn": "2026-09-13",
-        "removedCount": 3,
-        "removed": [
-          {
-            "id": "adanienpp1",
-            "company": "Adani Enterprises Limited",
-            "symbol": "ADANIENPP1",
-            "openDate": "2026-01-06",
-            "reason": "ADANIENPP1 is a partly-paid rights equity security, while 6-Jan-2026 is the opening date of AEL's public NCD issue; the stored row is not an IPO identity.",
-            "evidence": "https://nsearchives.nseindia.com/content/circulars/CML72630.pdf",
-            "evidence2": "https://www.adani.com/newsroom/media-releases/adani-enterprises-launches-its-3rd-public-issue-of-ncds-of-rs1000-crore"
-          },
-          {
-            "id": "avtl29",
-            "company": "Aegis Vopak Terminals Limited",
-            "symbol": "AVTL29",
-            "openDate": "2025-05-26",
-            "reason": "NSE identifies AVTL29 as Series N0, AVTL Floating Rate 2029 debt security.",
-            "evidence": "https://nsearchives.nseindia.com/content/circulars/CML72192.pdf",
-            "evidence2": null
-          },
-          {
-            "id": "84ail28",
-            "company": "Afcons Infrastructure Limited",
-            "symbol": "84AIL28",
-            "openDate": "2024-10-25",
-            "reason": "NSE identifies the AIL 8.40% 2028 security as debt; AFCONS is the equity IPO symbol.",
-            "evidence": "https://nsearchives.nseindia.com/content/circulars/CML70872.pdf",
-            "evidence2": null
-          }
-        ]
-      },
-      "P4-verified-record-repairs": {
-        "ok": false,
-        "selectorVersion": 2,
-        "identityRepairEntries": 2,
-        "identityRecordsUpdated": 0,
-        "availabilityEntries": 6,
-        "availabilityRecordsUpdated": 0,
-        "missingOrAmbiguous": 3,
-        "checkedAt": "2026-09-14T03:33:10+05:30"
-      },
-      "SEBI-offer-issue-terms": {
-        "ok": true,
-        "priorityMax": 4,
-        "targets": 37,
-        "attempted": 0,
-        "extracted": 0,
-        "updated": 0,
-        "failed": 0,
-        "noDocument": 37,
-        "fields": {},
-        "asOf": "2026-09-14T03:39:42+05:30",
-        "errors": []
-      },
-      "BSE-P4-issue-terms": {
-        "ok": true,
-        "targets": 37,
-        "detailAttempted": 0,
-        "detailUpdated": 0,
-        "pdfAttempted": 0,
-        "pdfUpdated": 0,
-        "failed": 0,
-        "fields": {},
-        "indexHealth": {
-          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
-            "ok": true,
-            "records": 0
-          },
-          "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
-            "ok": true,
-            "records": 12
-          },
-          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P": {
-            "ok": true,
-            "records": 0
-          }
-        },
-        "asOf": "2026-09-14T03:41:10+05:30",
-        "errors": []
-      },
-      "verified-p4-official-issue-terms": {
-        "ok": true,
-        "entries": 13,
-        "updated": 6,
-        "identityRejected": 0,
-        "fields": {
-          "issueSizeCr": 6,
-          "freshIssueCr": 3,
-          "ofsCr": 3,
-          "issueComposition": 3
-        },
-        "checkedAt": "2026-09-14T03:51:33+05:30"
-      },
-      "verified-p4-nse-issue-terms": {
-        "ok": true,
-        "entries": 17,
-        "updated": 2,
-        "rejected": 0,
-        "fields": {
-          "issueSizeCr": 2,
-          "freshIssueCr": 2,
-          "ofsCr": 2,
-          "issueComposition": 2
-        },
-        "checkedAt": "2026-09-14T04:26:04+05:30"
-      },
-      "verified-p4-final-issue-terms": {
-        "ok": true,
-        "entries": 2,
-        "updated": 2,
-        "rejected": 0,
-        "fields": {
-          "issueSizeCr": 2,
-          "freshIssueCr": 2,
-          "ofsCr": 2,
-          "issueComposition": 2
-        },
-        "checkedAt": "2026-09-14T04:29:55+05:30"
-      },
-      "verified-p4-final-composition": {
-        "ok": true,
-        "entries": 7,
-        "updated": 7,
-        "rejected": 0,
-        "fields": {
-          "freshIssueCr": 7,
-          "ofsCr": 7,
-          "issueComposition": 7
-        },
-        "checkedAt": "2026-09-14T04:48:01+05:30"
-      },
-      "SEBI-other-doc-lot-backfill": {
-        "targets": 110,
-        "selected": 110,
-        "matchedPages": 3,
-        "discoveredDocuments": 3,
-        "attemptedDocuments": 3,
-        "updated": 0,
-        "failed": 1,
-        "updatedIds": [],
-        "errors": [
-          "Jayesh Logistics Limited Jayesh Logistics Limited: ('Connection broken: IncompleteRead(7759815 bytes read, 2263951 more expected)', IncompleteRead(7759815 bytes read, 2263951 more expected))"
-        ],
-        "asOf": "2026-09-15T23:19:16+05:30"
-      },
-      "NSE-lot-size-backfill": {
-        "ok": false,
-        "targets": 110,
-        "selected": 25,
-        "attempted": 1,
-        "updated": 0,
-        "failed": 1,
-        "blockedRemaining": 25,
-        "updatedIds": [],
-        "errors": [
-          "Pramodini Medicare Limited: 403 Client Error: Forbidden for url: https://www.nseindia.com/"
-        ],
-        "asOf": "2026-09-15T23:19:17+05:30"
-      }
-    },
-    "sources": [
-      "NSE India",
-      "SEBI",
-      "BSE India"
-    ],
-    "subscriptionHealth": {
-      "ok": true,
-      "degraded": true,
-      "attempted": 8,
-      "updated": 8,
-      "snapshotsAdded": 8,
-      "failed": 0,
-      "nseRecords": 0,
-      "bseFallbackRecords": 4,
-      "secondaryFallbackRecords": 4,
-      "secondarySources": {
-        "IPO Premium subscription (secondary)": 4
-      },
-      "asOf": "2026-09-16T00:02:11+05:30",
-      "pageHealth": {
-        "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
-          "ok": true,
-          "records": 0
-        },
-        "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
-          "ok": true,
-          "records": 25
-        },
-        "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2": {
-          "ok": false,
-          "records": 0,
-          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f82aef095b0>, 'Connection to www.bsesme.c"
-        }
-      },
-      "warnings": [
-        "CENTURY BUSINESS MEDIA LIMITED: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7961&status=H · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · ); used explicitly labelled IPO Premium subscription (secondary)",
-        "INJECTO POLYMERS LIMITED: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7968&status=H · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · ); used explicitly labelled IPO Premium subscription (secondary)",
-        "Shakti Polytarp Limited: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7967&status=H · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · ); used explicitly labelled IPO Premium subscription (secondary)",
-        "Vama Wovenfab Limited: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7969&status=H · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · ); used explicitly labelled IPO Premium subscription (secondary)"
-      ],
-      "errors": []
-    },
-    "timezone": "Asia/Kolkata",
     "publication": {
-      "runId": "35025682524",
-      "collectorCommit": "1d2fa0abaeecfd82f3fc19f3d1eb010e89ccd0a5",
+      "runId": "35026626341",
+      "collectorCommit": "7b2f02bb5f67fb4cb618d1f83db33683a8a10bee",
       "status": "published",
       "pendingConflictCount": 0
     },
+    "recordCount": 1357,
+    "recordIntegrity": {
+      "checkedAt": "2026-09-15T21:37:59.884375+00:00",
+      "changedFields": 0
+    },
     "reviewedCorrectionStatus": {
       "registryRevision": "2026-09-15-upcoming-and-final-notices",
-      "appliedFields": 2,
+      "appliedFields": 0,
       "conflicts": [
         {
           "id": "sona",
@@ -1390,28 +917,501 @@
         }
       ]
     },
-    "initialSourceRepair": {
-      "records": 1354,
-      "sourceDocumentsAttempted": 72,
-      "sourceDocumentsRead": 70,
-      "sourceFailures": 2,
-      "changedRecordCount": 75,
-      "changedFields": 440,
-      "fieldCounts": {
-        "dataCorrections": 72,
-        "documentFieldProvenance": 70,
-        "documentRepair": 72,
-        "financials": 32,
-        "leadManagers": 69,
-        "offerDocumentExtraction": 70,
-        "registrar": 46,
-        "promoters": 5,
-        "objectsOfIssue": 4
+    "schemaVersion": 5,
+    "sebiDocumentLinkHealth": {
+      "ok": true,
+      "attemptedRecords": 0,
+      "attempted": 0,
+      "resolvedPages": 0,
+      "seededPages": 0,
+      "linksAdded": 0,
+      "failed": 0,
+      "asOf": "2026-09-16T03:07:38+05:30",
+      "errors": []
+    },
+    "seed": false,
+    "sourceHealth": {
+      "NSE-live": {
+        "ok": true,
+        "records": 13
       },
-      "semanticErrors": 0,
-      "sourceReviewItems": 928,
-      "sourceReviewRecords": 60
-    }
+      "NSE-history": {
+        "ok": true,
+        "records": 0,
+        "status": "checked",
+        "note": "checked · 0 new rows"
+      },
+      "SEBI": {
+        "ok": true,
+        "records": 21,
+        "companiesAttached": 15
+      },
+      "BSE": {
+        "ok": true,
+        "records": 10,
+        "companiesAttached": 10
+      },
+      "BSE-detail": {
+        "ok": true,
+        "records": 0,
+        "indexRecords": 12,
+        "candidates": 30,
+        "matched": 0,
+        "attempted": 0,
+        "updated": 0,
+        "failed": 0,
+        "historyDays": 730,
+        "fieldsFilled": {},
+        "indexHealth": {
+          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+            "ok": true,
+            "records": 0
+          },
+          "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+            "ok": true,
+            "records": 12
+          },
+          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P": {
+            "ok": true,
+            "records": 0
+          }
+        },
+        "errors": []
+      },
+      "BSE-history-detail": {
+        "ok": false,
+        "records": 0,
+        "attempted": 0,
+        "hosts": [
+          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P",
+          "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P"
+        ],
+        "error": "BSE historical archive unavailable on official hosts: https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P: historical page did not contain its ASP.NET form; https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P: historical issue-type selector was not found"
+      },
+      "IPO-subscription": {
+        "ok": true,
+        "degraded": true,
+        "records": 8,
+        "attempted": 8,
+        "snapshotsAdded": 8,
+        "failed": 0,
+        "nseRecords": 0,
+        "bseFallbackRecords": 4,
+        "secondaryFallbackRecords": 4,
+        "secondarySources": {
+          "IPO Premium subscription (secondary)": 4
+        },
+        "asOf": "2026-09-16T00:02:11+05:30",
+        "errors": []
+      },
+      "Critical-backfill": {
+        "ok": true,
+        "records": 0,
+        "asOf": "2026-09-14T11:57:31+05:30"
+      },
+      "SEBI-document-links": {
+        "ok": true,
+        "records": 0,
+        "attemptedRecords": 0,
+        "attempted": 0,
+        "asOf": "2026-09-16T03:07:38+05:30",
+        "errors": []
+      },
+      "Offer-docs": {
+        "ok": false,
+        "records": 11,
+        "attempted": 12,
+        "failed": 1,
+        "parserVersion": 13,
+        "schedulerVersion": 1
+      },
+      "Issuer-offer-docs": {
+        "ok": true,
+        "records": 0,
+        "attempted": 0,
+        "updated": 0,
+        "deepScanned": 0,
+        "failed": 0,
+        "asOf": "2026-09-14T03:33:11+05:30",
+        "errors": []
+      },
+      "NSE-primary-market-reports": {
+        "ok": true,
+        "indexUrl": "https://www.nseindia.com/static/regulations/segment-wise-historical-reports-capital-primary-market",
+        "reportsDiscovered": 30,
+        "reportRows": 534,
+        "candidates": 76,
+        "matched": 0,
+        "updated": 0,
+        "historyDays": 730,
+        "fieldsFilled": {},
+        "errors": [],
+        "asOf": "2026-09-13T23:20:35+05:30"
+      },
+      "verified-upcoming-lot-sizes": {
+        "ok": true,
+        "entries": 2,
+        "updated": 2,
+        "checkedAt": "2026-09-13T08:37:57+05:30"
+      },
+      "SEBI-priority-registers": {
+        "ok": true,
+        "parserVersion": 2,
+        "priorityMax": 3,
+        "firstPageMatched": 0,
+        "firstPageLinks": 0,
+        "searchedRecords": 3,
+        "searchMatchedRecords": 0,
+        "searchLinksAdded": 0,
+        "failed": 0,
+        "asOf": "2026-09-16T03:07:38+05:30",
+        "errors": []
+      },
+      "SEBI-offer-terms": {
+        "ok": true,
+        "priorityMax": 3,
+        "targets": 1,
+        "attempted": 0,
+        "extracted": 0,
+        "updated": 0,
+        "failed": 0,
+        "skippedLotOnlyRhp": 0,
+        "fields": {},
+        "asOf": "2026-09-16T03:07:38+05:30",
+        "errors": []
+      },
+      "verified-lot-sizes": {
+        "ok": true,
+        "entries": 36,
+        "updated": 0,
+        "checkedAt": "2026-09-14T03:33:10+05:30"
+      },
+      "verified-recent-issue-terms": {
+        "ok": true,
+        "entries": 14,
+        "updated": 0,
+        "fields": {},
+        "checkedAt": "2026-09-14T03:33:10+05:30"
+      },
+      "verified-recent-offer-fields": {
+        "ok": true,
+        "entries": 20,
+        "updated": 0,
+        "fields": {},
+        "checkedAt": "2026-09-14T03:33:11+05:30"
+      },
+      "verified-filing-offer-fields": {
+        "ok": true,
+        "entries": 4,
+        "updated": 0,
+        "fields": {},
+        "checkedAt": "2026-09-16T03:07:39+05:30"
+      },
+      "NSE-history-IPO-filter": {
+        "ok": true,
+        "seen": 472,
+        "kept": 435,
+        "excludedNonEquity": 37,
+        "legacyRowsRemoved": 0,
+        "removed": [],
+        "checkedAt": "2026-09-13T23:20:21+05:30"
+      },
+      "NSE-issue-info": {
+        "ok": true,
+        "candidates": 0,
+        "attempted": 0,
+        "updated": 0,
+        "identityMismatches": 0,
+        "noLot": 0,
+        "failed": 0,
+        "historyDays": 730,
+        "retryDays": 7,
+        "errors": []
+      },
+      "P4-legacy-debt-symbol-cleanup": {
+        "ok": true,
+        "historyDays": 730,
+        "removedCount": 8,
+        "removed": [
+          {
+            "id": "935iifl33",
+            "company": "IIFL Finance Limited",
+            "symbol": "935IIFL33",
+            "openDate": "2026-02-17",
+            "exchange": "NSE"
+          },
+          {
+            "id": "815chli36",
+            "company": "Canara HSBC Life Insurance Company Limited",
+            "symbol": "815CHLI36",
+            "openDate": "2025-10-10",
+            "exchange": "NSE"
+          },
+          {
+            "id": "805taca29",
+            "company": "Tata Capital Limited",
+            "symbol": "805TACA29",
+            "openDate": "2025-10-06",
+            "exchange": "NSE"
+          },
+          {
+            "id": "1305dccl29",
+            "company": "Dar Credit & Capital Limited",
+            "symbol": "1305DCCL29",
+            "openDate": "2025-05-21",
+            "exchange": "NSE Emerge"
+          },
+          {
+            "id": "975scl35",
+            "company": "Sammaan Capital Limited",
+            "symbol": "975SCL35",
+            "openDate": "2025-02-27",
+            "exchange": "NSE"
+          },
+          {
+            "id": "790ihfl27",
+            "company": "IIFL Home Finance Limited",
+            "symbol": "790IHFL27",
+            "openDate": "2024-12-06",
+            "exchange": "NSE"
+          },
+          {
+            "id": "727ngel36",
+            "company": "NTPC Green Energy Limited",
+            "symbol": "727NGEL36",
+            "openDate": "2024-11-19",
+            "exchange": "NSE"
+          },
+          {
+            "id": "904nacl28",
+            "company": "Northern Arc Capital Limited",
+            "symbol": "904NACL28",
+            "openDate": "2024-09-16",
+            "exchange": "NSE"
+          }
+        ],
+        "checkedOn": "2026-09-13"
+      },
+      "NSE-issue-info-terms": {
+        "ok": true,
+        "candidates": 42,
+        "attempted": 42,
+        "updated": 0,
+        "identityMismatches": 8,
+        "noTerms": 25,
+        "noChange": 9,
+        "failed": 0,
+        "historyDays": 730,
+        "retryDays": 0,
+        "errors": []
+      },
+      "P4-verified-non-IPO-cleanup": {
+        "ok": true,
+        "historyDays": 730,
+        "checkedOn": "2026-09-13",
+        "removedCount": 3,
+        "removed": [
+          {
+            "id": "adanienpp1",
+            "company": "Adani Enterprises Limited",
+            "symbol": "ADANIENPP1",
+            "openDate": "2026-01-06",
+            "reason": "ADANIENPP1 is a partly-paid rights equity security, while 6-Jan-2026 is the opening date of AEL's public NCD issue; the stored row is not an IPO identity.",
+            "evidence": "https://nsearchives.nseindia.com/content/circulars/CML72630.pdf",
+            "evidence2": "https://www.adani.com/newsroom/media-releases/adani-enterprises-launches-its-3rd-public-issue-of-ncds-of-rs1000-crore"
+          },
+          {
+            "id": "avtl29",
+            "company": "Aegis Vopak Terminals Limited",
+            "symbol": "AVTL29",
+            "openDate": "2025-05-26",
+            "reason": "NSE identifies AVTL29 as Series N0, AVTL Floating Rate 2029 debt security.",
+            "evidence": "https://nsearchives.nseindia.com/content/circulars/CML72192.pdf",
+            "evidence2": null
+          },
+          {
+            "id": "84ail28",
+            "company": "Afcons Infrastructure Limited",
+            "symbol": "84AIL28",
+            "openDate": "2024-10-25",
+            "reason": "NSE identifies the AIL 8.40% 2028 security as debt; AFCONS is the equity IPO symbol.",
+            "evidence": "https://nsearchives.nseindia.com/content/circulars/CML70872.pdf",
+            "evidence2": null
+          }
+        ]
+      },
+      "P4-verified-record-repairs": {
+        "ok": false,
+        "selectorVersion": 2,
+        "identityRepairEntries": 2,
+        "identityRecordsUpdated": 0,
+        "availabilityEntries": 6,
+        "availabilityRecordsUpdated": 0,
+        "missingOrAmbiguous": 3,
+        "checkedAt": "2026-09-14T03:33:10+05:30"
+      },
+      "SEBI-offer-issue-terms": {
+        "ok": true,
+        "priorityMax": 4,
+        "targets": 37,
+        "attempted": 0,
+        "extracted": 0,
+        "updated": 0,
+        "failed": 0,
+        "noDocument": 37,
+        "fields": {},
+        "asOf": "2026-09-14T03:39:42+05:30",
+        "errors": []
+      },
+      "BSE-P4-issue-terms": {
+        "ok": true,
+        "targets": 37,
+        "detailAttempted": 0,
+        "detailUpdated": 0,
+        "pdfAttempted": 0,
+        "pdfUpdated": 0,
+        "failed": 0,
+        "fields": {},
+        "indexHealth": {
+          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+            "ok": true,
+            "records": 0
+          },
+          "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+            "ok": true,
+            "records": 12
+          },
+          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P": {
+            "ok": true,
+            "records": 0
+          }
+        },
+        "asOf": "2026-09-14T03:41:10+05:30",
+        "errors": []
+      },
+      "verified-p4-official-issue-terms": {
+        "ok": true,
+        "entries": 13,
+        "updated": 6,
+        "identityRejected": 0,
+        "fields": {
+          "issueSizeCr": 6,
+          "freshIssueCr": 3,
+          "ofsCr": 3,
+          "issueComposition": 3
+        },
+        "checkedAt": "2026-09-14T03:51:33+05:30"
+      },
+      "verified-p4-nse-issue-terms": {
+        "ok": true,
+        "entries": 17,
+        "updated": 2,
+        "rejected": 0,
+        "fields": {
+          "issueSizeCr": 2,
+          "freshIssueCr": 2,
+          "ofsCr": 2,
+          "issueComposition": 2
+        },
+        "checkedAt": "2026-09-14T04:26:04+05:30"
+      },
+      "verified-p4-final-issue-terms": {
+        "ok": true,
+        "entries": 2,
+        "updated": 2,
+        "rejected": 0,
+        "fields": {
+          "issueSizeCr": 2,
+          "freshIssueCr": 2,
+          "ofsCr": 2,
+          "issueComposition": 2
+        },
+        "checkedAt": "2026-09-14T04:29:55+05:30"
+      },
+      "verified-p4-final-composition": {
+        "ok": true,
+        "entries": 7,
+        "updated": 7,
+        "rejected": 0,
+        "fields": {
+          "freshIssueCr": 7,
+          "ofsCr": 7,
+          "issueComposition": 7
+        },
+        "checkedAt": "2026-09-14T04:48:01+05:30"
+      },
+      "SEBI-other-doc-lot-backfill": {
+        "targets": 110,
+        "selected": 110,
+        "matchedPages": 3,
+        "discoveredDocuments": 3,
+        "attemptedDocuments": 3,
+        "updated": 0,
+        "failed": 1,
+        "updatedIds": [],
+        "errors": [
+          "Jayesh Logistics Limited Jayesh Logistics Limited: ('Connection broken: IncompleteRead(7759815 bytes read, 2263951 more expected)', IncompleteRead(7759815 bytes read, 2263951 more expected))"
+        ],
+        "asOf": "2026-09-15T23:19:16+05:30"
+      },
+      "NSE-lot-size-backfill": {
+        "ok": false,
+        "targets": 110,
+        "selected": 25,
+        "attempted": 1,
+        "updated": 0,
+        "failed": 1,
+        "blockedRemaining": 25,
+        "updatedIds": [],
+        "errors": [
+          "Pramodini Medicare Limited: 403 Client Error: Forbidden for url: https://www.nseindia.com/"
+        ],
+        "asOf": "2026-09-15T23:19:17+05:30"
+      }
+    },
+    "sources": [
+      "NSE India",
+      "SEBI",
+      "BSE India"
+    ],
+    "subscriptionHealth": {
+      "ok": true,
+      "degraded": true,
+      "attempted": 8,
+      "updated": 8,
+      "snapshotsAdded": 8,
+      "failed": 0,
+      "nseRecords": 0,
+      "bseFallbackRecords": 4,
+      "secondaryFallbackRecords": 4,
+      "secondarySources": {
+        "IPO Premium subscription (secondary)": 4
+      },
+      "asOf": "2026-09-16T00:02:11+05:30",
+      "pageHealth": {
+        "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+          "ok": true,
+          "records": 0
+        },
+        "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+          "ok": true,
+          "records": 25
+        },
+        "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2": {
+          "ok": false,
+          "records": 0,
+          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f82aef095b0>, 'Connection to www.bsesme.c"
+        }
+      },
+      "warnings": [
+        "CENTURY BUSINESS MEDIA LIMITED: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7961&status=H · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · ); used explicitly labelled IPO Premium subscription (secondary)",
+        "INJECTO POLYMERS LIMITED: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7968&status=H · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · ); used explicitly labelled IPO Premium subscription (secondary)",
+        "Shakti Polytarp Limited: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7967&status=H · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · ); used explicitly labelled IPO Premium subscription (secondary)",
+        "Vama Wovenfab Limited: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7969&status=H · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · ); used explicitly labelled IPO Premium subscription (secondary)"
+      ],
+      "errors": []
+    },
+    "timezone": "Asia/Kolkata"
   },
   "ipos": [
     {
@@ -4039,7 +4039,7 @@
       "sebiPriorityRegisterSearch": {
         "status": "no-match",
         "linksAdded": 0,
-        "lastAttemptAt": "2026-09-16T02:58:16+05:30",
+        "lastAttemptAt": "2026-09-16T03:07:37+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
       },
@@ -8542,7 +8542,7 @@
       "sebiPriorityRegisterSearch": {
         "status": "no-match",
         "linksAdded": 0,
-        "lastAttemptAt": "2026-09-16T02:58:17+05:30",
+        "lastAttemptAt": "2026-09-16T03:07:38+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
       },
@@ -136248,7 +136248,7 @@
       "sebiPriorityRegisterSearch": {
         "status": "no-match",
         "linksAdded": 0,
-        "lastAttemptAt": "2026-09-16T02:58:15+05:30",
+        "lastAttemptAt": "2026-09-16T03:07:35+05:30",
         "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
         "parserVersion": 2
       },
