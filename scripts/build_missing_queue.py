@@ -32,15 +32,13 @@ NON_ACTIONABLE_AVAILABILITY = {
 
 def profile_path(record: dict[str, Any]) -> str | None:
     value = record.get("profilePath")
-    if value:
-        return str(value)
-    return None
+    return str(value) if value else None
 
 
-def expected_rules(record: dict[str, Any], today: date):
+def expected_rules(record: dict[str, Any], today: date, *, stage: str | None = None):
     """Return named predicates that are appropriate for this record's stage."""
     rules: list[tuple[str, Any]] = []
-    stage = audit.lifecycle_stage(record, today)
+    stage = stage or audit.lifecycle_stage(record, today)
     exchange_stage = audit.present(record.get("openDate")) or audit.present(record.get("symbol"))
 
     if exchange_stage:
@@ -84,17 +82,25 @@ def availability_resolution(record: dict[str, Any], field_name: str) -> dict[str
     return value
 
 
-def missing_partition(record: dict[str, Any], today: date):
-    rules = expected_rules(record, today)
+def missing_partition(record: dict[str, Any], today: date, *, rules=None):
+    rules = rules if rules is not None else expected_rules(record, today)
     raw_missing = [name for name, predicate in rules if not predicate(record)]
     resolved = [name for name in raw_missing if availability_resolution(record, name)]
-    actionable = [name for name in raw_missing if name not in set(resolved)]
+    resolved_set = set(resolved)
+    actionable = [name for name in raw_missing if name not in resolved_set]
     return rules, raw_missing, actionable, resolved
 
 
-def priority_band(record: dict[str, Any], today: date) -> tuple[int, str]:
-    stage = audit.lifecycle_stage(record, today)
-    opened = audit.parse_iso_date(record.get("openDate"))
+def priority_band(
+    record: dict[str, Any],
+    today: date,
+    *,
+    stage: str | None = None,
+    opened: date | None = None,
+) -> tuple[int, str]:
+    stage = stage or audit.lifecycle_stage(record, today)
+    if opened is None:
+        opened = audit.parse_iso_date(record.get("openDate"))
 
     if stage == "open":
         return 0, "P0 open IPO"
@@ -109,23 +115,43 @@ def priority_band(record: dict[str, Any], today: date) -> tuple[int, str]:
     return 5, "P5 historical backfill"
 
 
-def queue_entry(record: dict[str, Any], today: date) -> dict[str, Any] | None:
-    rules, raw_missing, missing, resolved = missing_partition(record, today)
+def analyze_record(record: dict[str, Any], today: date) -> dict[str, Any]:
+    """Compute all queue-relevant facts once for one record."""
+    stage = audit.lifecycle_stage(record, today)
+    opened = audit.parse_iso_date(record.get("openDate"))
+    rules = expected_rules(record, today, stage=stage)
+    rules, raw_missing, actionable, resolved = missing_partition(record, today, rules=rules)
+    priority, label = priority_band(record, today, stage=stage, opened=opened)
+    return {
+        "stage": stage,
+        "rules": rules,
+        "rawMissing": raw_missing,
+        "actionable": actionable,
+        "resolved": resolved,
+        "priority": priority,
+        "priorityLabel": label,
+    }
+
+
+def _queue_entry_from_analysis(record: dict[str, Any], analysis: dict[str, Any]) -> dict[str, Any] | None:
+    rules = analysis["rules"]
+    raw_missing = analysis["rawMissing"]
+    missing = analysis["actionable"]
+    resolved = analysis["resolved"]
     if not rules or not raw_missing or not missing:
         return None
-    priority, label = priority_band(record, today)
     present_count = len(rules) - len(raw_missing)
     completeness = round(present_count / len(rules) * 100, 1) if rules else 100.0
     return {
         "id": record.get("id"),
         "company": record.get("company"),
         "symbol": record.get("symbol"),
-        "stage": audit.lifecycle_stage(record, today),
+        "stage": analysis["stage"],
         "openDate": record.get("openDate"),
         "closeDate": record.get("closeDate"),
         "listingDate": record.get("listingDate"),
-        "priority": priority,
-        "priorityLabel": label,
+        "priority": analysis["priority"],
+        "priorityLabel": analysis["priorityLabel"],
         "completenessPct": completeness,
         "expectedFieldCount": len(rules),
         "missingFieldCount": len(missing),
@@ -136,8 +162,30 @@ def queue_entry(record: dict[str, Any], today: date) -> dict[str, Any] | None:
     }
 
 
-def build_queue(records: list[dict[str, Any]], today: date) -> list[dict[str, Any]]:
-    entries = [entry for record in records if (entry := queue_entry(record, today))]
+def _resolved_entry_from_analysis(record: dict[str, Any], analysis: dict[str, Any]) -> dict[str, Any] | None:
+    resolved = analysis["resolved"]
+    if not resolved:
+        return None
+    return {
+        "id": record.get("id"),
+        "company": record.get("company"),
+        "symbol": record.get("symbol"),
+        "priority": analysis["priority"],
+        "priorityLabel": analysis["priorityLabel"],
+        "resolvedFields": resolved,
+        "resolutions": {
+            field: availability_resolution(record, field) or {}
+            for field in resolved
+        },
+        "profilePath": profile_path(record),
+    }
+
+
+def queue_entry(record: dict[str, Any], today: date) -> dict[str, Any] | None:
+    return _queue_entry_from_analysis(record, analyze_record(record, today))
+
+
+def _sort_queue(entries: list[dict[str, Any]]) -> None:
     entries.sort(
         key=lambda row: (
             int(row["priority"]),
@@ -146,33 +194,49 @@ def build_queue(records: list[dict[str, Any]], today: date) -> list[dict[str, An
             str(row.get("company") or ""),
         )
     )
+
+
+def _sort_resolved(entries: list[dict[str, Any]]) -> None:
+    entries.sort(key=lambda row: (int(row["priority"]), str(row.get("company") or "")))
+
+
+def build_queue(records: list[dict[str, Any]], today: date) -> list[dict[str, Any]]:
+    entries: list[dict[str, Any]] = []
+    for record in records:
+        entry = queue_entry(record, today)
+        if entry:
+            entries.append(entry)
+    _sort_queue(entries)
     return entries
 
 
 def resolved_availability_entries(records: list[dict[str, Any]], today: date) -> list[dict[str, Any]]:
     out: list[dict[str, Any]] = []
     for record in records:
-        _rules, _raw, _actionable, resolved = missing_partition(record, today)
-        if not resolved:
-            continue
-        priority, label = priority_band(record, today)
-        details = {}
-        for field in resolved:
-            details[field] = availability_resolution(record, field) or {}
-        out.append(
-            {
-                "id": record.get("id"),
-                "company": record.get("company"),
-                "symbol": record.get("symbol"),
-                "priority": priority,
-                "priorityLabel": label,
-                "resolvedFields": resolved,
-                "resolutions": details,
-                "profilePath": profile_path(record),
-            }
-        )
-    out.sort(key=lambda row: (int(row["priority"]), str(row.get("company") or "")))
+        entry = _resolved_entry_from_analysis(record, analyze_record(record, today))
+        if entry:
+            out.append(entry)
+    _sort_resolved(out)
     return out
+
+
+def build_queue_and_resolved(
+    records: list[dict[str, Any]], today: date
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Build both outputs in one dataset pass instead of analyzing every record twice."""
+    queue: list[dict[str, Any]] = []
+    resolved: list[dict[str, Any]] = []
+    for record in records:
+        analysis = analyze_record(record, today)
+        queue_row = _queue_entry_from_analysis(record, analysis)
+        if queue_row:
+            queue.append(queue_row)
+        resolved_row = _resolved_entry_from_analysis(record, analysis)
+        if resolved_row:
+            resolved.append(resolved_row)
+    _sort_queue(queue)
+    _sort_resolved(resolved)
+    return queue, resolved
 
 
 def main() -> int:
@@ -180,20 +244,19 @@ def main() -> int:
     records = [row for row in payload.get("ipos") or [] if isinstance(row, dict)]
     now = datetime.now(IST)
     today = now.date()
-    queue = build_queue(records, today)
-    resolved = resolved_availability_entries(records, today)
+    queue, resolved = build_queue_and_resolved(records, today)
 
     field_counts: Counter[str] = Counter()
     priority_counts: Counter[str] = Counter()
     for row in queue:
         field_counts.update(row["missingFields"])
-        priority_counts.update([row["priorityLabel"]])
+        priority_counts[row["priorityLabel"]] += 1
 
     resolved_field_counts: Counter[str] = Counter()
     resolved_priority_counts: Counter[str] = Counter()
     for row in resolved:
         resolved_field_counts.update(row["resolvedFields"])
-        resolved_priority_counts.update([row["priorityLabel"]])
+        resolved_priority_counts[row["priorityLabel"]] += 1
 
     output = {
         "generatedAt": now.isoformat(timespec="seconds"),
