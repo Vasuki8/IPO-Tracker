@@ -2,9 +2,9 @@
 
 Extends the strict offer parser with fields that are meaningful only once the
 book-built offer is final, especially the fixed Offer/Issue Price, explicit bid
-lot and final issue composition. Final issue price is deliberately kept distinct
-from the historical bidding price band: a one-point fixed price is never
-synthesized as a price band.
+lot, deep pre-issue promoter shareholding and final issue composition. Final
+issue price is deliberately kept distinct from the historical bidding price
+band: a one-point fixed price is never synthesized as a price band.
 """
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ from typing import Any
 import legacy_offer_parser as legacy
 import offer_parser as base
 
-PARSER_VERSION = base.PARSER_VERSION + 3
+PARSER_VERSION = base.PARSER_VERSION + 4
 extract_pdf_text = base.extract_pdf_text
 valid_manager = base.valid_manager
 valid_registrar = base.valid_registrar
@@ -72,6 +72,14 @@ _LOT_PATTERNS = (
         re.I,
     ),
 )
+_SHAREHOLDING_MARKER = re.compile(
+    r"(?:pre[-\s]?(?:issue|offer|ipo).{0,100}(?:shareholding|share\s+holding)|"
+    r"(?:shareholding|share\s+holding).{0,100}pre[-\s]?(?:issue|offer|ipo)|"
+    r"shareholding\s+pattern|promoters?\s+(?:and|&|/)\s+promoter\s+group|"
+    r"total\s*(?:[-–—]\s*)?c\s*\(\s*a\s*\+\s*b\s*\)|"
+    r"total\s*\(\s*a\s*\+\s*b\s*\))",
+    re.I,
+)
 
 _SHARE_FIELDS = ("freshShares", "ofsShares")
 _AMOUNT_FIELDS = ("freshIssueCr", "ofsCr", "totalIssueSizeCr")
@@ -97,14 +105,7 @@ def _page_number(page: str, fallback: int) -> int:
 
 
 def extract_final_lot_size(text: str) -> tuple[int | None, dict[str, Any]]:
-    """Extract one unambiguous explicit Bid Lot from the full parsed document.
-
-    Final Prospectuses can place the Bid Lot definition far beyond the first 20
-    pages used by the compatibility front-matter parser. Search the already
-    bounded Poppler text page-by-page, but accept only wording that explicitly
-    says Bid Lot/Minimum Bid Lot. Generic minimum application/bid quantity is
-    intentionally excluded because SME minimum applications may span two lots.
-    """
+    """Extract one unambiguous explicit Bid Lot from the full parsed document."""
     observations: list[tuple[int, int, str]] = []
     for page_index, page in enumerate(str(text or "").split("\f"), 1):
         compact = " ".join(page.replace("\u00a0", " ").split())
@@ -128,6 +129,57 @@ def extract_final_lot_size(text: str) -> tuple[int | None, dict[str, Any]]:
             "heading": evidence_hit[2],
             "value": lot,
             "basis": "explicit Bid Lot/Minimum Bid Lot in Final Prospectus",
+        }
+    }
+
+
+def extract_final_promoter_shareholding(text: str) -> tuple[dict[str, Any] | None, dict[str, Any]]:
+    """Recover explicit pre-issue promoter ownership from deep document pages.
+
+    The compatibility parser looks only at front matter. Here we search for a
+    bounded set of strong shareholding markers across the already extracted PDF,
+    then run the proven legacy recognizer only on a three-page local window.
+    Multiple different ownership percentages fail closed.
+    """
+    pages = str(text or "").split("\f")
+    candidate_indexes: list[tuple[int, str]] = []
+    seen_indexes: set[int] = set()
+    for index, page in enumerate(pages):
+        compact = " ".join(page.replace("\u00a0", " ").split())
+        marker = _SHAREHOLDING_MARKER.search(compact)
+        if marker and index not in seen_indexes:
+            seen_indexes.add(index)
+            candidate_indexes.append((index, marker.group(0)))
+        if len(candidate_indexes) >= 24:
+            break
+
+    observations: list[tuple[float, int, str]] = []
+    for index, heading in candidate_indexes:
+        start = max(0, index - 1)
+        end = min(len(pages), index + 2)
+        window = "\f".join(pages[start:end])
+        parsed = legacy.extract_promoter_shareholding(window)
+        if not isinstance(parsed, dict):
+            continue
+        pct = parsed.get("promoterPreIssuePct")
+        if not isinstance(pct, (int, float)) or isinstance(pct, bool):
+            continue
+        value = round(float(pct), 6)
+        if 0 <= value <= 100:
+            observations.append((value, _page_number(pages[index], index + 1), heading))
+
+    unique = sorted({pct for pct, _, _ in observations})
+    if len(unique) != 1:
+        return None, {}
+    pct = unique[0]
+    evidence_hit = next(hit for hit in observations if hit[0] == pct)
+    shareholding = {"promoters": [], "promoterPreIssuePct": pct}
+    return shareholding, {
+        "shareholding": {
+            "page": evidence_hit[1],
+            "heading": evidence_hit[2],
+            "promoterPreIssuePct": pct,
+            "basis": "explicit pre-issue promoter ownership in Final Prospectus",
         }
     }
 
@@ -276,9 +328,11 @@ def parse_document_text(text: str, price_band=None) -> dict[str, Any]:
 
     lot_size, lot_evidence = extract_final_lot_size(text)
     if lot_size is not None:
-        # The explicit Final Prospectus Bid Lot is stronger than compatibility
-        # fallbacks such as a generic minimum bid quantity.
         parsed["lotSize"] = lot_size
+
+    shareholding, shareholding_evidence = extract_final_promoter_shareholding(text)
+    if shareholding is not None:
+        parsed["shareholding"] = shareholding
 
     issue_price, price_evidence = extract_final_issue_price(text)
     if issue_price is not None:
@@ -288,10 +342,6 @@ def parse_document_text(text: str, price_band=None) -> dict[str, Any]:
     if explicit_band is not None:
         parsed["priceBand"] = explicit_band
     else:
-        # The compatibility parser treats a fixed Issue/Offer Price as a
-        # degenerate band. That is useful historically but semantically wrong
-        # for the canonical `priceBand` field, so discard it unless an actual
-        # band/floor-cap statement is present in the Final Prospectus.
         parsed.pop("priceBand", None)
 
     composition_band = explicit_band
@@ -305,6 +355,7 @@ def parse_document_text(text: str, price_band=None) -> dict[str, Any]:
 
     field_evidence = dict(parsed.get("fieldEvidence") or {})
     field_evidence.update(lot_evidence)
+    field_evidence.update(shareholding_evidence)
     field_evidence.update(price_evidence)
     field_evidence.update(band_evidence)
     field_evidence.update(composition_evidence)
@@ -317,6 +368,8 @@ def parse_document_text(text: str, price_band=None) -> dict[str, Any]:
     ]
     if lot_size is not None and "lotSize" not in extracted:
         extracted.append("lotSize")
+    if shareholding is not None and "shareholding" not in extracted:
+        extracted.append("shareholding")
     if explicit_band is not None and "priceBand" not in extracted:
         extracted.append("priceBand")
     if issue_price is not None and "issuePrice" not in extracted:
