@@ -1,16 +1,15 @@
-"""Repair and maintain document-derived data using the current parser.
+"""Repair canonical static IPO data from Final Prospectuses only.
 
-Successful corrections retain old values and exact document provenance. A
-failed fetch never removes prior data. Confidently identified contamination is
-quarantined even when a replacement is not yet available.
+DRHP/RHP documents may remain linked for historical context, but they are not
+eligible to populate canonical static fields. A failed Final Prospectus fetch
+never removes prior data; successfully parsed Final Prospectus values supersede
+older mixed-source canonical values and retain exact provenance.
 """
 from __future__ import annotations
 
 import argparse
-import copy
 import hashlib
 import json
-import re
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta, timezone
@@ -18,11 +17,12 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 import requests
+import final_prospectus_policy as source_policy
 import offer_parser as parser
 import update_data as core
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA_FILE = ROOT / "data/ipos.json"
+DATA_FILE = ROOT / "data" / "ipos.json"
 CACHE = ROOT / ".cache/offer-documents"
 IST = timezone(timedelta(hours=5, minutes=30))
 
@@ -32,32 +32,13 @@ def timestamp():
 
 
 def document_for(record):
-    previous = record.get("offerDocumentExtraction") or {}
-    candidate = copy.deepcopy(record)
-    candidate.setdefault("documents", [])
-    # Some reviewed exchange PDFs were retained only in the source registry.
-    # The normal opening-page issuer check still applies before any extraction.
-    for source in record.get("sources", []):
-        url = str(source.get("url") or "")
-        path = urlparse(url).path
-        if urlparse(url).hostname not in {"nsearchives.nseindia.com", "archives.nseindia.com", "www.sebi.gov.in"} or not path.lower().endswith(".pdf"):
-            continue
-        if not re.search(r"(?:_RHP|_PROSP|Prospectus)", path, re.I):
-            continue
-        if not any(doc.get("url") == url for doc in candidate["documents"]):
-            candidate["documents"].append({"url": url, "type": "PROSPECTUS" if "prosp" in path.lower() else "RHP", "title": source.get("name"), "source": "NSE" if "nseindia" in url else "SEBI"})
-    eligible = [doc for doc in candidate["documents"] if urlparse(str(doc.get("url") or "")).scheme == "https" and urlparse(str(doc.get("url") or "")).path.lower().endswith(".pdf")]
-    ranks = {"PROSPECTUS": 3, "RHP": 2, "UDRHP": 1, "DRHP": 0}
-    eligible.sort(key=lambda doc: (str(doc.get("filedDate") or ""), ranks.get(doc.get("type"), -1), "abridged" in str(doc.get("title", "")).lower()), reverse=True)
-    selected = eligible[0] if eligible else None
-    if selected and (not previous.get('documentUrl') or str(selected.get('filedDate') or '') > str(previous.get('documentFiledDate') or '')):
-        return selected
-    if previous.get("documentUrl"):
-        return {"url": previous["documentUrl"], "type": previous.get("documentType", "PROSPECTUS"), "title": previous.get("documentTitle", "Official offer document"), "source": previous.get("source", "SEBI"), "filedDate": previous.get("documentFiledDate")}
-    return selected
+    """Return the newest eligible Final Prospectus, never DRHP/RHP."""
+    return source_policy.choose_final_prospectus(record)
 
 
 def pdf_bytes(doc):
+    if not source_policy.is_final_prospectus(doc):
+        raise ValueError("Canonical static extraction requires a Final Prospectus")
     url = doc["url"]
     if urlparse(url).scheme != "https":
         raise ValueError("Official document must use HTTPS")
@@ -65,7 +46,6 @@ def pdf_bytes(doc):
     path = CACHE / (hashlib.sha256(url.encode()).hexdigest() + ".pdf")
     if path.exists():
         return path.read_bytes()
-    # The URL must have come from the record's source-linked document registry.
     started = time.monotonic()
     with requests.get(url, headers=core.HEADERS, stream=True, timeout=(15, 30)) as response:
         response.raise_for_status()
@@ -96,42 +76,61 @@ def extract(record, doc):
 
 
 def correct_record(record, parsed, doc, digest, pages, page_count):
-    changes, now = [], timestamp()
-    for field in ("leadManagers", "registrar", "financials"):
-        before, after = record.get(field), parsed.get(field)
-        # A strict parser can retire a known-bad financial extraction, but does
-        # not erase an established valid intermediary on an unsupported layout.
-        if not after and field == "leadManagers":
-            after = [name for name in (before or []) if parser.valid_manager(name)]
-        if not after and field == "registrar":
-            continue
-        if not after and field == "financials":
-            # Unsupported layout is not evidence that an existing disclosure
-            # is false. Keep it explicitly pending source-table review.
-            continue
-        if before != after:
-            changes.append({"field": field, "before": copy.deepcopy(before), "after": copy.deepcopy(after), "reason": "Revalidated financial table or intermediary role against source document", "sourceUrl": doc["url"], "sha256": digest, "parserVersion": parser.PARSER_VERSION, "correctedAt": now})
-            record[field] = after
-    # Existing official exchange terms remain authoritative and fill-only.
-    for field in ("lotSize", "priceBand"):
-        if record.get(field) in (None, {}, "") and parsed.get(field) not in (None, {}):
-            record[field] = parsed[field]
-    for field in ("promoters", "objectsOfIssue", "shareholding"):
-        if record.get(field) in (None, [], {}) and parsed.get(field) not in (None, [], {}):
-            record[field] = parsed[field]
+    """Make recognized Final Prospectus static values canonical."""
+    now = timestamp()
+    changes = source_policy.apply_final_prospectus_static_fields(
+        record,
+        parsed,
+        doc,
+        sha256=digest,
+        parser_version=parser.PARSER_VERSION,
+        checked_at=now,
+    )
     if changes:
         record.setdefault("dataCorrections", []).extend(changes)
-    provenance = {"sourceUrl": doc["url"], "documentType": doc.get("type"), "documentDate": doc.get("filedDate"), "sha256": digest, "parserVersion": parser.PARSER_VERSION, "checkedAt": now, "evidence": parsed.get("fieldEvidence", {})}
+
+    provenance = {
+        "sourceUrl": doc["url"],
+        "documentType": "PROSPECTUS",
+        "documentDate": doc.get("filedDate"),
+        "sha256": digest,
+        "parserVersion": parser.PARSER_VERSION,
+        "checkedAt": now,
+        "evidence": parsed.get("fieldEvidence", {}),
+        "sourcePolicy": "final-prospectus-only",
+    }
     record["documentFieldProvenance"] = provenance
-    record["offerDocumentExtraction"] = {"status": "extracted", "parserVersion": parser.PARSER_VERSION, "documentUrl": doc["url"], "documentType": doc.get("type"), "documentTitle": doc.get("title"), "documentFiledDate": doc.get("filedDate"), "source": doc.get("source", "SEBI"), "sha256": digest, "pagesRead": pages, "pageCount": page_count, "extractedFields": parsed.get("extractedFields", []), "extractedAt": now, "conflicts": parsed.get("extractionConflicts", [])}
-    record["documentRepair"] = {"status": "updated" if changes else "no_change", "financialStatus": "validated" if parsed.get("financials") else "needs_review", "lastAttemptAt": now, "parserVersion": parser.PARSER_VERSION}
+    record["offerDocumentExtraction"] = {
+        "status": "extracted",
+        "parserVersion": parser.PARSER_VERSION,
+        "documentUrl": doc["url"],
+        "documentType": "PROSPECTUS",
+        "documentTitle": doc.get("title") or "Final Prospectus",
+        "documentFiledDate": doc.get("filedDate"),
+        "source": doc.get("source", "SEBI"),
+        "sha256": digest,
+        "pagesRead": pages,
+        "pageCount": page_count,
+        "extractedFields": parsed.get("extractedFields", []),
+        "extractedAt": now,
+        "conflicts": parsed.get("extractionConflicts", []),
+        "sourcePolicy": "final-prospectus-only",
+    }
+    record["documentRepair"] = {
+        "status": "updated" if changes else "no_change",
+        "financialStatus": "validated" if parsed.get("financials") else "needs_review",
+        "lastAttemptAt": now,
+        "parserVersion": parser.PARSER_VERSION,
+        "sourcePolicy": "final-prospectus-only",
+    }
     return changes
 
 
 def quarantine_intermediaries(record):
-    for field in ('leadManagers', 'registrar'):
+    """Remove obviously invalid legacy intermediary fragments before revalidation."""
+    for field in ("leadManagers", "registrar"):
         old = record.get(field)
-        if field == 'leadManagers':
+        if field == "leadManagers":
             if not isinstance(old, list):
                 continue
             clean = [name for name in old if parser.valid_manager(name)]
@@ -140,7 +139,16 @@ def quarantine_intermediaries(record):
                 continue
             clean = None
         if clean != old:
-            record.setdefault("dataCorrections", []).append({"field": field, "before": old, "after": clean, "reason": "Quarantined exchange names, incomplete entities, and table headers from intermediary field", "parserVersion": parser.PARSER_VERSION, "correctedAt": timestamp()})
+            record.setdefault("dataCorrections", []).append(
+                {
+                    "field": field,
+                    "before": old,
+                    "after": clean,
+                    "reason": "Quarantined invalid legacy intermediary data pending Final Prospectus revalidation",
+                    "parserVersion": parser.PARSER_VERSION,
+                    "correctedAt": timestamp(),
+                }
+            )
             record[field] = clean
 
 
@@ -159,13 +167,28 @@ def run(payload, limit=8, force=False, workers=2, company=None, checkpoint=None,
         doc = document_for(record)
         if not doc:
             continue
-        if cached_only and not (CACHE / (hashlib.sha256(doc['url'].encode()).hexdigest() + '.pdf')).exists():
+        if cached_only and not (CACHE / (hashlib.sha256(doc["url"].encode()).hexdigest() + ".pdf")).exists():
             continue
         previous = record.get("offerDocumentExtraction") or {}
-        if not force and previous.get("parserVersion") == parser.PARSER_VERSION and previous.get("status") == "extracted" and previous.get("documentUrl") == doc["url"]:
+        if (
+            not force
+            and previous.get("parserVersion") == parser.PARSER_VERSION
+            and previous.get("status") == "extracted"
+            and previous.get("documentUrl") == doc["url"]
+            and source_policy.is_final_prospectus(
+                {"type": previous.get("documentType"), "title": previous.get("documentTitle")}
+            )
+        ):
             continue
         repair = record.get("documentRepair") or {}
-        candidates.append((repair.get("lastAttemptAt", ""), core.canonical_company(record.get("company", "")), record, doc))
+        candidates.append(
+            (
+                repair.get("lastAttemptAt", ""),
+                core.canonical_company(record.get("company", "")),
+                record,
+                doc,
+            )
+        )
     candidates.sort(key=lambda item: item[:2])
     selected = candidates[:limit] if limit else candidates
     outcomes, changes = [], 0
@@ -177,15 +200,35 @@ def run(payload, limit=8, force=False, workers=2, company=None, checkpoint=None,
                 parsed, digest, pages, count = future.result()
                 edits = correct_record(record, parsed, doc, digest, pages, count)
                 changes += len(edits)
-                outcome = {"id": record["id"], "status": "updated" if edits else "no_change", "changedFields": [entry["field"] for entry in edits]}
+                outcome = {
+                    "id": record["id"],
+                    "status": "updated" if edits else "no_change",
+                    "changedFields": [entry["field"] for entry in edits],
+                }
             except Exception as exc:
-                record["documentRepair"] = {"status": "source_blocked" if isinstance(exc, requests.RequestException) else "parse_failed", "lastAttemptAt": timestamp(), "parserVersion": parser.PARSER_VERSION, "sourceUrl": doc["url"], "error": str(exc)[:300]}
+                record["documentRepair"] = {
+                    "status": "source_blocked" if isinstance(exc, requests.RequestException) else "parse_failed",
+                    "lastAttemptAt": timestamp(),
+                    "parserVersion": parser.PARSER_VERSION,
+                    "sourceUrl": doc["url"],
+                    "error": str(exc)[:300],
+                    "sourcePolicy": "final-prospectus-only",
+                }
                 outcome = {"id": record["id"], **record["documentRepair"]}
             outcomes.append(outcome)
             print(json.dumps(outcome), flush=True)
             if checkpoint:
                 checkpoint(payload)
-    health = {"parserVersion": parser.PARSER_VERSION, "attempted": len(selected), "remaining": len(candidates) - len(selected), "changedFields": changes, "failed": sum(item["status"] in {"source_blocked", "parse_failed"} for item in outcomes), "checkedAt": timestamp(), "outcomes": sorted(outcomes, key=lambda item: item["id"])}
+    health = {
+        "parserVersion": parser.PARSER_VERSION,
+        "sourcePolicy": "final-prospectus-only",
+        "attempted": len(selected),
+        "remaining": len(candidates) - len(selected),
+        "changedFields": changes,
+        "failed": sum(item["status"] in {"source_blocked", "parse_failed"} for item in outcomes),
+        "checkedAt": timestamp(),
+        "outcomes": sorted(outcomes, key=lambda item: item["id"]),
+    }
     payload.setdefault("meta", {})["documentRepairHealth"] = health
     return health
 
