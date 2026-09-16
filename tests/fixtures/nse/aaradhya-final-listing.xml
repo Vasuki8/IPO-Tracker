@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbrli:xbrl xmlns:in-capmkt="https://www.sebi.gov.in/xbrl/2022-03-31/in-capmkt" xmlns:in-capmkt-ent="https://www.sebi.gov.in/xbrl/ListingStage/2022-03-31/in-capmkt/in-capmkt-ent" xmlns:in-capmkt-roles="https://www.sebi.gov.in/xbrl/ListingStage/2022-03-31/in-capmkt-roles" xmlns:xbrldt="http://xbrl.org/2005/xbrldt" xmlns:link="http://www.xbrl.org/2003/linkbase" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:iso4217="http://www.xbrl.org/2003/iso4217" xmlns:xbrldi="http://xbrl.org/2006/xbrldi" xmlns:xbrli="http://www.xbrl.org/2003/instance">
+<link:schemaRef xlink:type="simple" xlink:href="in-capmkt-ent-2022-03-31.xsd"/>
+
+<xbrli:unit id="INR"><xbrli:measure>iso4217:INR</xbrli:measure></xbrli:unit><xbrli:unit id="pure"><xbrli:measure>xbrli:pure</xbrli:measure></xbrli:unit><xbrli:unit id="shares"><xbrli:measure>xbrli:shares</xbrli:measure></xbrli:unit><xbrli:unit id="INRPerShare"><xbrli:divide><xbrli:unitNumerator><xbrli:measure>iso4217:INR</xbrli:measure></xbrli:unitNumerator><xbrli:unitDenominator><xbrli:measure>xbrli:shares</xbrli:measure></xbrli:unitDenominator></xbrli:divide></xbrli:unit>
+<in-capmkt:ISIN contextRef="OneI">INE124401014</in-capmkt:ISIN>
+<in-capmkt:DesignateStockExchange contextRef="OneD">NSE</in-capmkt:DesignateStockExchange>
+<in-capmkt:DateOfIssueOpen contextRef="OneI">2025-08-04</in-capmkt:DateOfIssueOpen>
+<in-capmkt:DateOfIssueClose contextRef="OneI">2025-08-06</in-capmkt:DateOfIssueClose>
+<in-capmkt:SelectPriceBandOrPrice contextRef="OneD">Price Band</in-capmkt:SelectPriceBandOrPrice>
+<in-capmkt:PriceBandFrom contextRef="OneD" unitRef="INRPerShare" decimals="INF">110</in-capmkt:PriceBandFrom>
+<in-capmkt:PriceBandTo contextRef="OneD" unitRef="INRPerShare" decimals="INF">116</in-capmkt:PriceBandTo>
+<in-capmkt:DiscountPerShare contextRef="OneD" unitRef="INRPerShare" decimals="INF">0</in-capmkt:DiscountPerShare>
+<in-capmkt:CompositionOfIssue contextRef="OneD">Fresh</in-capmkt:CompositionOfIssue>
+<in-capmkt:NumberOfFreshIssueShares contextRef="OneI" unitRef="shares" decimals="INF">3888000</in-capmkt:NumberOfFreshIssueShares>
+<in-capmkt:NumberOfOfferForSaleShares contextRef="OneI" unitRef="shares" decimals="INF">0</in-capmkt:NumberOfOfferForSaleShares>
+<in-capmkt:NumberOfIssueShares contextRef="OneI" unitRef="shares" decimals="INF">3888000</in-capmkt:NumberOfIssueShares>
+<in-capmkt:NumberOfShareAllocatedToAnchor contextRef="OneI" unitRef="shares" decimals="INF">0</in-capmkt:NumberOfShareAllocatedToAnchor>
+<in-capmkt:NumberOfShareAllocatedToQIB contextRef="OneI" unitRef="shares" decimals="INF">184800</in-capmkt:NumberOfShareAllocatedToQIB>
+<in-capmkt:NumberOfShareAllocatedToRII contextRef="OneI" unitRef="shares" decimals="INF">1754400</in-capmkt:NumberOfShareAllocatedToRII>
+<in-capmkt:NumberOfShareAllocatedToNII contextRef="OneI" unitRef="shares" decimals="INF">1754400</in-capmkt:NumberOfShareAllocatedToNII>
+<in-capmkt:NumberOfShareAllocatedToReservationPortion contextRef="OneI" unitRef="shares" decimals="INF">0</in-capmkt:NumberOfShareAllocatedToReservationPortion>
+<in-capmkt:NumberOfShareAllocatedToMarketMakerReservationPortion contextRef="OneI" unitRef="shares" decimals="INF">194400</in-capmkt:NumberOfShareAllocatedToMarketMakerReservationPortion>
+<in-capmkt:NumberOfShareAllocatedToOther contextRef="OneI" unitRef="shares" decimals="INF">0</in-capmkt:NumberOfShareAllocatedToOther>
+<in-capmkt:MarketLot contextRef="OneI" unitRef="shares" decimals="INF">1200</in-capmkt:MarketLot>
+<in-capmkt:FinalIssuePrice contextRef="OneD" unitRef="INRPerShare" decimals="INF">116</in-capmkt:FinalIssuePrice>
+<in-capmkt:AmountOfIssueSize contextRef="OneD" unitRef="INR" decimals="-3">451000000</in-capmkt:AmountOfIssueSize>
+<in-capmkt:NumberOfTimesIssueOverSubscribed contextRef="OneD" unitRef="pure" decimals="INF">1</in-capmkt:NumberOfTimesIssueOverSubscribed>
+<in-capmkt:NumberOfSharePostIssue contextRef="OneI" unitRef="shares" decimals="INF">14138000</in-capmkt:NumberOfSharePostIssue>
+<in-capmkt:ScripID contextRef="OneD">AARADHYA</in-capmkt:ScripID>
+<in-capmkt:DateOfListing contextRef="OneI">2025-08-11</in-capmkt:DateOfListing>
+<in-capmkt:DateOfSubmission contextRef="OneI">2025-08-08</in-capmkt:DateOfSubmission>
+</xbrli:xbrl>

@@ -3,7 +3,7 @@ name: Preview source repairs
 on:
   workflow_dispatch:
   pull_request:
-    paths: ['scripts/offer_parser.py', 'scripts/run_offer_documents.py', 'scripts/review_source_repairs.py', 'scripts/collect_final_issue_prices.py', 'scripts/collect_price_history.py', 'scripts/performance_tracking.py', 'scripts/performance_metrics.py', 'scripts/enrich_nse_primary_market_reports*.py', 'scripts/validate_data.py', 'tests/test_*price*.py', 'tests/test_performance_tracking.py', '.github/workflows/source-review.yml']
+    paths: ['scripts/offer_parser.py', 'scripts/run_offer_documents.py', 'scripts/review_source_repairs.py', 'scripts/collect_nse_offer_filings.py', 'scripts/collect_final_issue_prices.py', 'scripts/collect_price_history.py', 'scripts/performance_tracking.py', 'scripts/performance_metrics.py', 'scripts/enrich_nse_primary_market_reports*.py', 'scripts/validate_data.py', 'tests/test_*price*.py', 'tests/test_performance_tracking.py', 'tests/test_nse_offer_filings.py', 'tests/test_financial_source_layouts.py', 'tests/fixtures/**', '.github/workflows/source-review.yml']
 
 permissions:
   contents: read
@@ -26,7 +26,9 @@ jobs:
       - name: Test parser before source preview
         run: uv run --frozen python -m unittest discover -s tests -q
       - name: Preview current document repairs
-        run: uv run --frozen python scripts/review_source_repairs.py --limit 100
+        run: |
+          uv run --frozen python scripts/collect_nse_offer_filings.py --limit 150 --documents-limit 5
+          uv run --frozen python scripts/review_source_repairs.py --limit 100
       - uses: actions/upload-artifact@v4.6.2
         if: always()
         with:

@@ -15,7 +15,7 @@ from collections import OrderedDict
 from pypdf import PdfReader
 from parser_loader import isolated_module
 
-PARSER_VERSION = 21
+PARSER_VERSION = 22
 _legacy = isolated_module("run_offer_docs_v14")
 base = _legacy.base
 choose_document = _legacy.choose_document
@@ -27,18 +27,18 @@ _METRICS = [
     ("ronwPct", r"(?:Return\s+on\s+Net\s*Worth|RoNW)"),
     ("roePct", r"(?:Return\s+on\s+Equity|ROE)"),
     ("netWorthCr", r"Net\s*Worth"),
-    ("revenueCr", r"(?:Revenue\s+from\s+Operations?|Total\s+Revenue)"),
+    ("revenueCr", r"(?:(?:Total\s+)?Revenue\s+from\s+Operations?|Total\s+Revenue)"),
     ("totalIncomeCr", r"Total\s+Income"),
     ("ebitdaCr", r"(?:(?:Operating\s+)?EBITDA)(?!\s+Margin)"),
     ("patCr", r"(?:(?:Restated\s+)?(?:Net\s+)?Profit\s*(?:/\s*\(?loss\)?)?\s+(?:after\s+Tax(?:ation)?|for\s+the\s+(?:year|period)(?:\s*/\s*(?:year|period))?)|PAT)(?!\s+Margin)"),
-    ("dilutedEps", r"(?:Diluted\s+(?:Earnings?\s+per\s+(?:Equity\s+)?Share|EPS))"),
-    ("eps", r"(?:(?:Basic(?:\s+and\s+Diluted)?\s+)?Earnings?\s+per\s+(?:Equity\s+)?Share|Basic\s+EPS)"),
+    ("dilutedEps", r"(?:Diluted\s+(?:Earnings?\s+per\s+(?:Equity\s+)?Share|EPS)|Earnings?\s+per\s+(?:Equity\s+)?Share\s*(?:-\s*|\(\s*)diluted\b\)?)"),
+    ("eps", r"(?:(?:Basic(?:\s+and\s+Diluted)?\s+)?Earnings?\s+per\s+(?:Equity\s+)?Share(?:\s*(?:-\s*|\(\s*)basic\b\)?)?|Basic\s+EPS)"),
 ]
 _ROWS = [(key, re.compile(r"^\s*(?:\d+[.)]?\s+)?" + label + r"\b", re.I)) for key, label in _METRICS]
-_HEADING = re.compile(r"^\s*(?:\d+[.)]?\s*)?(?:(?:Summary\s+of\s+)?(?:the\s+)?(?:Restated\s+(?:(?:Consolidated|Standalone)\s+)?)?Financial\s+(?:Information|Statements)|Summary\s+of\s+(?:Key\s+)?Financial\s+(?:Information|Statements)|Key\s+Performance\s+Indicators(?:\s*\(KPIs?\))?|Key\s+Financial\s+Information)\s*[:.]?\s*$", re.I)
+_HEADING = re.compile(r"^\s*(?:\d+[.)]?\s*)?(?:(?:Summary\s+of\s+)?(?:the\s+)?(?:Restated\s+(?:(?:Consolidated|Standalone)\s+)?)?Financial\s+(?:Information|Statements)(?:\s+and\s+Restated\s+(?:Standalone|Consolidated)\s+Financial\s+Information)?|Summary\s+of\s+(?:Key\s+)?Financial\s+(?:Information|Statements)|(?:Summary\s+of\s+)?Key\s+Performance\s+Indicators(?:\s*\(KPIs?\))?|Key\s+Financial\s+Information|Summary\s+of\s+selected\s+financial\s+information\s+derived\s+from\s+the\s+Restated\s+(?:Consolidated|Standalone)\s+Financial\s+Information)\s*[:.]?\s*$", re.I)
 _YEAR = re.compile(r"\b(?:Fiscal|FY)\s*(20\d{2})\b|(?:March\s+31|31\s+March)[,\s]+(20\d{2})", re.I)
 _TOKEN = re.compile(r"\(?[-+]?\d[\d,]*(?:\.\d+)?\)?%?|\[\s*[●•*]\s*\]|(?<!\w)[—–-](?!\w)")
-_UNIT = re.compile(r"(?:₹|Rs\.?|INR)\s*(?:in\s+)?(crores?|millions?|lakhs?|lacs?|thousands?)", re.I)
+_UNIT = re.compile(r"(?:(?:₹|Rs\.?|INR)\s*(?:in\s+)?|(?:figures|amounts)\s+in\s+)(crores?|millions?|Mn|lakhs?|lacs?|thousands?)\b", re.I)
 _LEGAL = re.compile(r"\b(?:Private\s+Limited|Pvt\.?\s+Ltd\.?|Limited|Ltd\.?|LLP)\b", re.I)
 _ROLE = re.compile(r"^\s*(?:\d+[.)]\s+)?(?:DETAILS\s+OF\s+(?:THE\s+)?)?(?:BOOK\s+RUNNING\s+LEAD\s+MANAGERS?(?:\s+TO\s+THE\s+(?:ISSUE|OFFER))?|LEAD\s+MANAGERS?(?:\s+TO\s+THE\s+(?:ISSUE|OFFER))?|BRLMS?)\s*[:\-]?\s*$", re.I)
 _REGISTRAR = re.compile(r"^\s*(?:\d+[.)]\s+)?(?:DETAILS\s+OF\s+(?:THE\s+)?)?REGISTRAR\s+(?:TO\s+THE\s+(?:ISSUE|OFFER)|AND\s+SHARE\s+TRANSFER\s+AGENT)\s*[:\-]?\s*$", re.I)
@@ -57,7 +57,7 @@ def valid_manager(name):
 
 
 def valid_registrar(name):
-    return valid_entity(name) and bool(re.search(r'Technolog|Services|Fintech|Registry|Registrars|Intime|Sharegistry|Consultancy|Assignments|Computershare', str(name), re.I))
+    return valid_entity(name) and bool(re.search(r'Technolog|Services|Fintech|Registry|Registrars|Intime|Sharegistry|Consultancy|Assignments|Computershare|Maashitla\s+Securities', str(name), re.I))
 
 
 def _unit(text):
@@ -65,7 +65,7 @@ def _unit(text):
     if not hits:
         return None
     name = hits[-1].group(1).lower()
-    return ("million", 0.1) if name.startswith("million") else ("lakh", 0.01) if name.startswith(("lakh", "lac")) else ("thousand", 0.0001) if name.startswith("thousand") else ("crore", 1.0)
+    return ("million", 0.1) if name.startswith("million") or name == "mn" else ("lakh", 0.01) if name.startswith(("lakh", "lac")) else ("thousand", 0.0001) if name.startswith("thousand") else ("crore", 1.0)
 
 
 def _years(line):
@@ -78,6 +78,7 @@ def _years(line):
 def _numbers(tail, count):
     # Parenthesized footnote markers immediately following the row label are
     # removed before reading cells; parenthesized numeric cells remain negative.
+    tail = re.sub(r"^\s*\)\s*", "", tail)
     tail = re.sub(r"^\s*(?:\((?:PAT|EPS|ROE|RONW)\)|\(\s*in\s*[%₹]\s*\)|\(\s*%\s*\))\s*", "", tail, flags=re.I)
     tail = re.sub(r"^(?:\((?:[A-Za-z]|\d{1,2})\)|\[\d{1,2}\])+", "", tail)
     tail = _UNIT.sub("", tail)
@@ -111,6 +112,22 @@ def _period_columns(lines, index):
     years = list(re.finditer(r"\b20\d{2}\b", line))
     explicit = list(_YEAR.finditer(line))
     if len(explicit) >= 2:
+        # Annual dates may wrap over adjacent header lines. Extend only with
+        # separate, horizontally aligned date cells, never years from prose.
+        extra = []
+        for earlier in context[-2:]:
+            if not re.match(r"^\s{8,}", earlier) or re.search(r"[,;]\s*(?:and\s+)?(?:March|Fiscal)", earlier, re.I):
+                continue
+            for hit in _YEAR.finditer(earlier):
+                token = re.search(r"20\d{2}", hit[0])
+                position = hit.start() + token.start() + 2
+                if all(abs(position - (year.start() + year.end()) / 2) > 12 for year in years):
+                    extra.append((token[0], position))
+        if extra:
+            combined = [(year[0], (year.start() + year.end()) / 2) for year in years] + extra
+            combined.sort(key=lambda item: item[1])
+            if len(combined) <= 5 and len({year for year, _ in combined}) == len(combined) and not _INTERIM.search("\n".join(context)):
+                return {"years": [year for year, _ in combined], "annual": list(range(len(combined))), "positions": [pos for _, pos in combined], "interim": False, "header": "\n".join(context + [line])}
         annual = [n for n, year in enumerate(years) if any(hit.start() <= year.start() < hit.end() for hit in explicit)]
         annual_years = [years[n][0] for n in annual]
         if len(annual_years) != len(set(annual_years)):
@@ -166,6 +183,7 @@ def _annual_values(tail, columns, offset):
 def extract_financials_with_evidence(text):
     periods, evidence, conflicts = OrderedDict(), {}, set()
     previous_header_tail = []
+    previous_scope = "unspecified"
     observations = {}
     pages = str(text or "").replace("\u00a0", " ").split("\f")
     for page_index, page in enumerate(pages, 1):
@@ -175,15 +193,22 @@ def extract_financials_with_evidence(text):
         prefix_length = len(previous_header_tail)
         lines = previous_header_tail + actual_lines
         headers, financial_section = [], bool(previous_header_tail)
-        scope = "unspecified"
+        scope = previous_scope if previous_header_tail else "unspecified"
         previous_header_tail = actual_lines[-12:] if any(_HEADING.search(line) for line in actual_lines) else []
         for i, line in enumerate(lines):
             if _HEADING.search(line) and not re.search(r"\.{3,}", line):
                 financial_section = True
-                scope = "consolidated" if re.search(r"\bconsolidated\b", line, re.I) else "standalone" if re.search(r"\bstandalone\b", line, re.I) else "unspecified"
+                scopes = [name for name in ("consolidated", "standalone") if re.search(r"\b" + name + r"\b", line, re.I)]
+                scope = scopes[0] if len(scopes) == 1 else "unspecified"
+                if headers and len(scopes) == 1:
+                    header_i, columns, header, _ = headers[-1]
+                    headers[-1] = (header_i, columns, header, scope)
             if re.match(r"^\s*(?:\d+[.)]\s*)?(?:Risk\s+Factors|Objects\s+of\s+the|Comparison\s+with|Peer\s+Comparison|Related\s+Party|Our\s+Group\s+Companies|Industry\s+Overview)", line, re.I):
                 financial_section = False
                 headers = []
+            declaration = re.search(r"\bderived\s+from\s+the\s+Restated\s+(Consolidated|Standalone)\s+Financial", line, re.I)
+            if financial_section and declaration:
+                scope = declaration[1].lower()
             columns = _period_columns(lines, i)
             if columns and (financial_section or re.search(r"Particulars|Performance\s+Indicators", line, re.I)):
                 context = "\n".join(lines[max(0, i - 8):i + 1])
@@ -221,6 +246,7 @@ def extract_financials_with_evidence(text):
                 path = period + "." + key
                 cell = {"page": page_no, "header": columns["header"].strip()[-650:], "row": line.strip()[:400], "sourceColumns": source_columns, "normalizedValue": value, "scope": table_scope, "originalUnit": unit[0] if key.endswith("Cr") else ("percent" if key.endswith("Pct") else "rupees per share")}
                 observations.setdefault(path, []).append((value, cell))
+        previous_scope = headers[-1][3] if headers else scope
     for path, candidates in observations.items():
         # Explicit consolidated issuer figures take precedence over standalone
         # figures. An unlabelled disagreement still requires source review.
@@ -301,7 +327,7 @@ def extract_intermediaries(text):
                 value = re.split(r"\(formerly|\(previously", value, flags=re.I)[0].strip()
                 if not value:
                     continue
-                if re.search(r"formerly|known as|CONTACT|TELEPHONE|EMAIL|E-MAIL|https?://|@|^(?:PERSON|REGISTRAR|RUNNING LEAD|MANAGERS|LOGO)$", value, re.I):
+                if re.search(r"formerly|known as|CONTACT|TELEPHONE|EMAIL|E-MAIL|https?://|@|^(?:Mr|Ms|Mrs|Dr|Tel)\b|^(?:PERSON|REGISTRAR|RUNNING LEAD|MANAGERS|LOGO)$", value, re.I):
                     pending = ""
                     continue
                 value = re.sub(r"^\d+[.)]\s*", "", value)
