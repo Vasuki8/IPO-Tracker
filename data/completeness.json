@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T21:23:04+05:30",
+  "generatedAt": "2026-09-16T21:52:22+05:30",
   "asOfDate": "2026-09-16",
   "recordCount": 1357,
   "stageCounts": {
@@ -15,14 +15,14 @@
     "exchangeStage": 1350,
     "recentExchange2Y": 441,
     "historicalExchange": 909,
-    "offerDocumentEligible": 129,
+    "offerDocumentEligible": 148,
     "openNow": 8,
     "maturedClosed": 1321
   },
   "scores": {
     "exchangeStage": 83.5,
     "recentExchange2Y": 99.3,
-    "offerDocumentEligible": 86.8,
+    "offerDocumentEligible": 84.1,
     "openSubscription": 100.0,
     "maturedLifecycle": 97.3,
     "provenance": 100.0
@@ -66,10 +66,10 @@
         "pct": 99.0
       },
       "lotSize": {
-        "present": 425,
+        "present": 426,
         "expected": 1350,
-        "missing": 925,
-        "pct": 31.5
+        "missing": 924,
+        "pct": 31.6
       },
       "issueSizeCr": {
         "present": 439,
@@ -122,10 +122,10 @@
         "pct": 100.0
       },
       "lotSize": {
-        "present": 422,
+        "present": 423,
         "expected": 441,
-        "missing": 19,
-        "pct": 95.7
+        "missing": 18,
+        "pct": 95.9
       },
       "issueSizeCr": {
         "present": 436,
@@ -192,40 +192,40 @@
     },
     "offerDocumentEligible": {
       "registrar": {
-        "present": 127,
-        "expected": 129,
-        "missing": 2,
-        "pct": 98.4
+        "present": 145,
+        "expected": 148,
+        "missing": 3,
+        "pct": 98.0
       },
       "leadManagers": {
-        "present": 127,
-        "expected": 129,
-        "missing": 2,
-        "pct": 98.4
+        "present": 145,
+        "expected": 148,
+        "missing": 3,
+        "pct": 98.0
       },
       "promoters": {
-        "present": 119,
-        "expected": 129,
-        "missing": 10,
-        "pct": 92.2
+        "present": 132,
+        "expected": 148,
+        "missing": 16,
+        "pct": 89.2
       },
       "objectsOfIssue": {
-        "present": 122,
-        "expected": 129,
-        "missing": 7,
-        "pct": 94.6
+        "present": 139,
+        "expected": 148,
+        "missing": 9,
+        "pct": 93.9
       },
       "financials": {
-        "present": 98,
-        "expected": 129,
-        "missing": 31,
-        "pct": 76.0
+        "present": 106,
+        "expected": 148,
+        "missing": 42,
+        "pct": 71.6
       },
       "promoterShareholding": {
-        "present": 79,
-        "expected": 129,
-        "missing": 50,
-        "pct": 61.2
+        "present": 80,
+        "expected": 148,
+        "missing": 68,
+        "pct": 54.1
       }
     },
     "openSubscription": {
@@ -284,8 +284,8 @@
         "pct": 100.0
       },
       "documents": {
-        "present": 132,
-        "expected": 132,
+        "present": 151,
+        "expected": 151,
         "missing": 0,
         "pct": 100.0
       }
@@ -317,12 +317,6 @@
           "company": "Sri Priyanka Geo Commex Limited-Issue Withdrawn",
           "openDate": "2026-06-24",
           "stage": "closed"
-        },
-        {
-          "id": "amirchand",
-          "company": "Amir Chand Jagdish Kumar (Exports) Limited",
-          "openDate": "2026-03-24",
-          "stage": "listed"
         },
         {
           "id": "rsl-withdrawal-option-2026-03-12",
@@ -388,6 +382,12 @@
           "id": "arisinfra",
           "company": "Arisinfra Solutions Limited",
           "openDate": "2025-06-18",
+          "stage": "listed"
+        },
+        {
+          "id": "capinvit",
+          "company": "Capital Infra Trust",
+          "openDate": "2025-01-07",
           "stage": "listed"
         }
       ],
@@ -465,6 +465,12 @@
           "stage": "listed"
         },
         {
+          "id": "biopol",
+          "company": "Biopol Chemicals Limited",
+          "openDate": "2026-02-06",
+          "stage": "listed"
+        },
+        {
           "id": "apexeco",
           "company": "Apex Ecotech Limited",
           "openDate": "2024-11-27",
@@ -476,6 +482,12 @@
           "id": "happy",
           "company": "Happy Steels Limited",
           "openDate": "2026-07-09",
+          "stage": "listed"
+        },
+        {
+          "id": "biopol",
+          "company": "Biopol Chemicals Limited",
+          "openDate": "2026-02-06",
           "stage": "listed"
         },
         {
@@ -517,9 +529,45 @@
           "stage": "listed"
         },
         {
+          "id": "value360",
+          "company": "Value 360 Communications Limited",
+          "openDate": "2026-05-04",
+          "stage": "listed"
+        },
+        {
           "id": "ambaauto",
           "company": "Amba Auto Sales and Services Limited",
           "openDate": "2026-04-27",
+          "stage": "listed"
+        },
+        {
+          "id": "vividel",
+          "company": "Vivid Electromech Limited",
+          "openDate": "2026-03-25",
+          "stage": "listed"
+        },
+        {
+          "id": "apsisaero",
+          "company": "Apsis Aerocom Limited",
+          "openDate": "2026-03-11",
+          "stage": "listed"
+        },
+        {
+          "id": "manilam",
+          "company": "Manilam Industries India Limited",
+          "openDate": "2026-02-20",
+          "stage": "listed"
+        },
+        {
+          "id": "biopol",
+          "company": "Biopol Chemicals Limited",
+          "openDate": "2026-02-06",
+          "stage": "listed"
+        },
+        {
+          "id": "krmayurved",
+          "company": "KRM Ayurveda Limited",
+          "openDate": "2026-01-21",
           "stage": "listed"
         },
         {
@@ -538,12 +586,6 @@
           "id": "igil",
           "company": "International Gemmological Institute (India) Limited",
           "openDate": "2024-12-13",
-          "stage": "listed"
-        },
-        {
-          "id": "etml",
-          "company": "Emerald Tyre Manufacturers Limited",
-          "openDate": "2024-12-05",
           "stage": "listed"
         }
       ],
@@ -567,9 +609,21 @@
           "stage": "listed"
         },
         {
+          "id": "sedemac",
+          "company": "Sedemac Mechatronics Limited",
+          "openDate": "2026-03-04",
+          "stage": "listed"
+        },
+        {
           "id": "acetec",
           "company": "Acetech E-Commerce Limited",
           "openDate": "2026-02-27",
+          "stage": "listed"
+        },
+        {
+          "id": "biopol",
+          "company": "Biopol Chemicals Limited",
+          "openDate": "2026-02-06",
           "stage": "listed"
         },
         {
