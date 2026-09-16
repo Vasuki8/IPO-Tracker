@@ -26,11 +26,26 @@ from issuer_offer_registry import VALIDATED_OFFER_DOCUMENTS  # noqa: E402
 from parser_loader import isolated_module  # noqa: E402
 
 base = isolated_module("enrich_issuer_offer_docs")
-# ``enrich_issuer_offer_docs.main`` expects its parser module to expose the
-# downloader plus ``base.extract_pdf_text``. The current Final Prospectus parser
-# delegates both to the current strict offer parser; no legacy whole-document
-# parser is used for canonical extraction.
-parser.download_pdf = parser.base.download_pdf
+# ``enrich_issuer_offer_docs.main`` historically expects parser_v4.base to own
+# both ``extract_pdf_text`` and a mutable ``MAX_PDF_BYTES`` download cap. The
+# current strict parser intentionally owns only extraction. Keep that public
+# contract through a tiny compatibility shim while the actual bounded network
+# downloader remains the established legacy transport helper. No legacy parser
+# participates in canonical field extraction.
+if not hasattr(parser.base, "MAX_PDF_BYTES"):
+    parser.base.MAX_PDF_BYTES = parser.legacy.base.MAX_PDF_BYTES
+
+
+def _bounded_download_pdf(session, url):
+    previous = parser.legacy.base.MAX_PDF_BYTES
+    parser.legacy.base.MAX_PDF_BYTES = parser.base.MAX_PDF_BYTES
+    try:
+        return parser.legacy.download_pdf(session, url)
+    finally:
+        parser.legacy.base.MAX_PDF_BYTES = previous
+
+
+parser.download_pdf = _bounded_download_pdf
 base.parser_v4 = parser
 base.PARSER_VERSION = parser.PARSER_VERSION
 
