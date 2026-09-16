@@ -71,7 +71,7 @@ def _normal_key(value: Any) -> str:
 
 def _valid_lot(value: Any) -> int | None:
     lot = core.integer(value)
-    if lot is None or not 1 <= lot <= 100_000:
+    if lot is None or not 1 <= lot <= 20_000:
         return None
     return lot
 
