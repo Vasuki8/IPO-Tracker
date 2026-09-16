@@ -9,9 +9,11 @@ A record may also carry a ``dataAvailability`` resolution for a genuinely blank
 field after the official-source paths have been exhausted. Such blanks remain
 visible in completeness coverage, but no longer masquerade as actionable work.
 
-Under the Final-Prospectus-only source policy, a populated legacy static field is
-also actionable until its canonical provenance confirms a Final Prospectus. This
-lets P4/P5 closure depend on source authority rather than null-coverage alone.
+Under the Final-Prospectus-only source policy, populated legacy static fields
+become actionable once a Final Prospectus should exist. Open/upcoming issues are
+not asked to provide a document that has not yet been filed; revalidation starts
+once the IPO is listed, seven days after close, or immediately when a Final
+Prospectus is already attached.
 """
 from __future__ import annotations
 
@@ -28,13 +30,10 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "ipos.json"
 OUTPUT_FILE = ROOT / "data" / "missing_queue.json"
 IST = timezone(timedelta(hours=5, minutes=30))
-NON_ACTIONABLE_AVAILABILITY = {
-    "source-unavailable",
-    "not-applicable",
-    "exhausted-official-sources",
-}
+NON_ACTIONABLE_AVAILABILITY = {"source-unavailable", "not-applicable", "exhausted-official-sources"}
 QUEUE_FORMAT_VERSION = 2
 FINAL_REVALIDATION_PREFIX = "provenance.finalProspectus."
+FINAL_PROSPECTUS_GRACE_DAYS = 7
 
 
 def profile_path(record: dict[str, Any]) -> str | None:
@@ -42,63 +41,46 @@ def profile_path(record: dict[str, Any]) -> str | None:
     return str(value) if value else None
 
 
-def pending_final_prospectus_fields(record: dict[str, Any]) -> list[str]:
-    """Return populated static fields that still lack Final Prospectus authority."""
+def final_prospectus_expected(record: dict[str, Any], today: date) -> bool:
+    if final_policy.choose_final_prospectus(record) is not None:
+        return True
+    listing_date = audit.parse_iso_date(record.get("listingDate"))
+    if listing_date and listing_date <= today:
+        return True
+    close_date = audit.parse_iso_date(record.get("closeDate"))
+    if close_date and close_date <= today - timedelta(days=FINAL_PROSPECTUS_GRACE_DAYS):
+        return True
+    return False
+
+
+def pending_final_prospectus_fields(record: dict[str, Any], today: date) -> list[str]:
     state = record.get("staticSourcePolicy") or {}
-    if not isinstance(state, dict) or state.get("policy") != "final-prospectus-only":
+    if not isinstance(state, dict) or state.get("policy") != "final-prospectus-only" or not final_prospectus_expected(record, today):
         return []
     allowed = set(final_policy.STATIC_CANONICAL_FIELDS)
-    return sorted(
-        {
-            str(field)
-            for field in (state.get("pendingRevalidationFields") or [])
-            if str(field) in allowed
-            and final_policy.field_value(record, str(field)) not in (None, "", [], {})
-        }
-    )
+    return sorted({str(field) for field in (state.get("pendingRevalidationFields") or []) if str(field) in allowed and final_policy.field_value(record, str(field)) not in (None, "", [], {})})
 
 
-def _final_field_verified(record: dict[str, Any], field: str) -> bool:
-    return field not in set(pending_final_prospectus_fields(record))
+def _final_field_verified(record: dict[str, Any], field: str, today: date) -> bool:
+    return field not in set(pending_final_prospectus_fields(record, today))
 
 
 def expected_rules(record: dict[str, Any], today: date, *, stage: str | None = None):
-    """Return named predicates that are appropriate for this record's stage."""
     rules: list[tuple[str, Any]] = []
     stage = stage or audit.lifecycle_stage(record, today)
     exchange_stage = audit.present(record.get("openDate")) or audit.present(record.get("symbol"))
-
     if exchange_stage:
-        rules.extend(
-            (f"exchange.{name}", predicate)
-            for name, predicate in audit.expected_exchange_rules(record, today)
-        )
-
+        rules.extend((f"exchange.{name}", predicate) for name, predicate in audit.expected_exchange_rules(record, today))
     if audit.has_offer_document(record):
         rules.extend((f"offer.{name}", predicate) for name, predicate in audit.OFFER_DOC_FIELDS)
-
     if stage == "open":
         rules.extend((f"subscription.{name}", predicate) for name, predicate in audit.LIVE_SUBSCRIPTION_FIELDS)
-
     close_date = audit.parse_iso_date(record.get("closeDate"))
     if close_date and close_date <= today - timedelta(days=14):
-        rules.extend(
-            (f"lifecycle.{name}", predicate)
-            for name, predicate in audit.MATURED_LIFECYCLE_FIELDS
-        )
-
-    rules.extend(
-        (f"provenance.{name}", predicate)
-        for name, predicate in audit.expected_provenance_rules(record, today)
-    )
-
-    for field in pending_final_prospectus_fields(record):
-        rules.append(
-            (
-                FINAL_REVALIDATION_PREFIX + field,
-                lambda current, field=field: _final_field_verified(current, field),
-            )
-        )
+        rules.extend((f"lifecycle.{name}", predicate) for name, predicate in audit.MATURED_LIFECYCLE_FIELDS)
+    rules.extend((f"provenance.{name}", predicate) for name, predicate in audit.expected_provenance_rules(record, today))
+    for field in pending_final_prospectus_fields(record, today):
+        rules.append((FINAL_REVALIDATION_PREFIX + field, lambda current, field=field, today=today: _final_field_verified(current, field, today)))
     return rules
 
 
@@ -126,17 +108,10 @@ def missing_partition(record: dict[str, Any], today: date, *, rules=None):
     return rules, raw_missing, actionable, resolved
 
 
-def priority_band(
-    record: dict[str, Any],
-    today: date,
-    *,
-    stage: str | None = None,
-    opened: date | None = None,
-) -> tuple[int, str]:
+def priority_band(record: dict[str, Any], today: date, *, stage: str | None = None, opened: date | None = None) -> tuple[int, str]:
     stage = stage or audit.lifecycle_stage(record, today)
     if opened is None:
         opened = audit.parse_iso_date(record.get("openDate"))
-
     if stage == "open":
         return 0, "P0 open IPO"
     if stage == "upcoming":
@@ -156,15 +131,7 @@ def analyze_record(record: dict[str, Any], today: date) -> dict[str, Any]:
     rules = expected_rules(record, today, stage=stage)
     rules, raw_missing, actionable, resolved = missing_partition(record, today, rules=rules)
     priority, label = priority_band(record, today, stage=stage, opened=opened)
-    return {
-        "stage": stage,
-        "rules": rules,
-        "rawMissing": raw_missing,
-        "actionable": actionable,
-        "resolved": resolved,
-        "priority": priority,
-        "priorityLabel": label,
-    }
+    return {"stage": stage, "rules": rules, "rawMissing": raw_missing, "actionable": actionable, "resolved": resolved, "priority": priority, "priorityLabel": label}
 
 
 def _queue_entry_from_analysis(record: dict[str, Any], analysis: dict[str, Any]) -> dict[str, Any] | None:
@@ -176,58 +143,18 @@ def _queue_entry_from_analysis(record: dict[str, Any], analysis: dict[str, Any])
         return None
     present_count = len(rules) - len(raw_missing)
     completeness = round(present_count / len(rules) * 100, 1) if rules else 100.0
-    return {
-        "id": record.get("id"),
-        "company": record.get("company"),
-        "symbol": record.get("symbol"),
-        "stage": analysis["stage"],
-        "openDate": record.get("openDate"),
-        "closeDate": record.get("closeDate"),
-        "listingDate": record.get("listingDate"),
-        "priority": analysis["priority"],
-        "priorityLabel": analysis["priorityLabel"],
-        "completenessPct": completeness,
-        "expectedFieldCount": len(rules),
-        "missingFieldCount": len(missing),
-        "missingFields": missing,
-        "resolvedUnavailableFieldCount": len(resolved),
-        "resolvedUnavailableFields": resolved,
-        "profilePath": profile_path(record),
-    }
+    return {"id": record.get("id"), "company": record.get("company"), "symbol": record.get("symbol"), "stage": analysis["stage"], "openDate": record.get("openDate"), "closeDate": record.get("closeDate"), "listingDate": record.get("listingDate"), "priority": analysis["priority"], "priorityLabel": analysis["priorityLabel"], "completenessPct": completeness, "expectedFieldCount": len(rules), "missingFieldCount": len(missing), "missingFields": missing, "resolvedUnavailableFieldCount": len(resolved), "resolvedUnavailableFields": resolved, "profilePath": profile_path(record)}
 
 
 def _resolved_entry_from_analysis(record: dict[str, Any], analysis: dict[str, Any]) -> dict[str, Any] | None:
     resolved = analysis["resolved"]
     if not resolved:
         return None
-    return {
-        "id": record.get("id"),
-        "company": record.get("company"),
-        "symbol": record.get("symbol"),
-        "priority": analysis["priority"],
-        "priorityLabel": analysis["priorityLabel"],
-        "resolvedFields": resolved,
-        "resolutions": {
-            field: availability_resolution(record, field) or {}
-            for field in resolved
-        },
-        "profilePath": profile_path(record),
-    }
+    return {"id": record.get("id"), "company": record.get("company"), "symbol": record.get("symbol"), "priority": analysis["priority"], "priorityLabel": analysis["priorityLabel"], "resolvedFields": resolved, "resolutions": {field: availability_resolution(record, field) or {} for field in resolved}, "profilePath": profile_path(record)}
 
 
 def operational_queue_entry(row: dict[str, Any]) -> dict[str, Any]:
-    keys = (
-        "id",
-        "company",
-        "stage",
-        "openDate",
-        "priority",
-        "priorityLabel",
-        "completenessPct",
-        "missingFieldCount",
-        "missingFields",
-        "profilePath",
-    )
+    keys = ("id", "company", "stage", "openDate", "priority", "priorityLabel", "completenessPct", "missingFieldCount", "missingFields", "profilePath")
     return {key: row.get(key) for key in keys}
 
 
@@ -241,14 +168,7 @@ def queue_entry(record: dict[str, Any], today: date) -> dict[str, Any] | None:
 
 
 def _sort_queue(entries: list[dict[str, Any]]) -> None:
-    entries.sort(
-        key=lambda row: (
-            int(row["priority"]),
-            -int(row["missingFieldCount"]),
-            str(row.get("openDate") or "9999-99-99") if int(row["priority"]) <= 1 else "",
-            str(row.get("company") or ""),
-        )
-    )
+    entries.sort(key=lambda row: (int(row["priority"]), -int(row["missingFieldCount"]), str(row.get("openDate") or "9999-99-99") if int(row["priority"]) <= 1 else "", str(row.get("company") or "")))
 
 
 def _sort_resolved(entries: list[dict[str, Any]]) -> None:
@@ -256,30 +176,19 @@ def _sort_resolved(entries: list[dict[str, Any]]) -> None:
 
 
 def build_queue(records: list[dict[str, Any]], today: date) -> list[dict[str, Any]]:
-    entries: list[dict[str, Any]] = []
-    for record in records:
-        entry = queue_entry(record, today)
-        if entry:
-            entries.append(entry)
+    entries = [entry for record in records if (entry := queue_entry(record, today))]
     _sort_queue(entries)
     return entries
 
 
 def resolved_availability_entries(records: list[dict[str, Any]], today: date) -> list[dict[str, Any]]:
-    out: list[dict[str, Any]] = []
-    for record in records:
-        entry = _resolved_entry_from_analysis(record, analyze_record(record, today))
-        if entry:
-            out.append(entry)
+    out = [entry for record in records if (entry := _resolved_entry_from_analysis(record, analyze_record(record, today)))]
     _sort_resolved(out)
     return out
 
 
-def build_queue_and_resolved(
-    records: list[dict[str, Any]], today: date
-) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
-    queue: list[dict[str, Any]] = []
-    resolved: list[dict[str, Any]] = []
+def build_queue_and_resolved(records: list[dict[str, Any]], today: date) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    queue, resolved = [], []
     for record in records:
         analysis = analyze_record(record, today)
         queue_row = _queue_entry_from_analysis(record, analysis)
@@ -299,51 +208,17 @@ def main() -> int:
     now = datetime.now(IST)
     today = now.date()
     queue, resolved = build_queue_and_resolved(records, today)
-
-    field_counts: Counter[str] = Counter()
-    priority_counts: Counter[str] = Counter()
+    field_counts, priority_counts = Counter(), Counter()
     for row in queue:
         field_counts.update(row["missingFields"])
         priority_counts[row["priorityLabel"]] += 1
-
-    resolved_field_counts: Counter[str] = Counter()
-    resolved_priority_counts: Counter[str] = Counter()
+    resolved_field_counts, resolved_priority_counts = Counter(), Counter()
     for row in resolved:
         resolved_field_counts.update(row["resolvedFields"])
         resolved_priority_counts[row["priorityLabel"]] += 1
-
-    output = {
-        "formatVersion": QUEUE_FORMAT_VERSION,
-        "generatedAt": now.isoformat(timespec="seconds"),
-        "asOfDate": today.isoformat(),
-        "recordCount": len(records),
-        "queueCount": len(queue),
-        "priorityCounts": dict(priority_counts),
-        "fieldGapCounts": dict(field_counts.most_common()),
-        "resolvedUnavailableRecordCount": len(resolved),
-        "resolvedUnavailablePriorityCounts": dict(resolved_priority_counts),
-        "resolvedUnavailableFieldCounts": dict(resolved_field_counts.most_common()),
-        "queue": [operational_queue_entry(row) for row in queue],
-        "queueIsComplete": True,
-        "resolvedUnavailable": [operational_resolved_entry(row) for row in resolved],
-        "notes": [
-            "P0/P1 records are repaired before historical records.",
-            "Only lifecycle- and source-appropriate missing fields enter the actionable queue.",
-            "Populated legacy static fields remain actionable until Final Prospectus provenance is verified.",
-            "Full non-actionable resolution evidence remains in canonical IPO dataAvailability fields.",
-            "Allotment date is tracked as optional research coverage until a reliable official historical collector exists.",
-            "Blank values are never guessed; canonical static values must come from Final Prospectus evidence.",
-        ],
-    }
-    OUTPUT_FILE.write_text(
-        json.dumps(output, ensure_ascii=False, separators=(",", ":")) + "\n",
-        encoding="utf-8",
-    )
-    print(
-        f"Missing-data queue: records={len(records)}, queued={len(queue)}, "
-        f"resolved-unavailable={len(resolved)}, "
-        f"p0={priority_counts.get('P0 open IPO', 0)}, p1={priority_counts.get('P1 upcoming IPO', 0)}"
-    )
+    output = {"formatVersion": QUEUE_FORMAT_VERSION, "generatedAt": now.isoformat(timespec="seconds"), "asOfDate": today.isoformat(), "recordCount": len(records), "queueCount": len(queue), "priorityCounts": dict(priority_counts), "fieldGapCounts": dict(field_counts.most_common()), "resolvedUnavailableRecordCount": len(resolved), "resolvedUnavailablePriorityCounts": dict(resolved_priority_counts), "resolvedUnavailableFieldCounts": dict(resolved_field_counts.most_common()), "queue": [operational_queue_entry(row) for row in queue], "queueIsComplete": True, "resolvedUnavailable": [operational_resolved_entry(row) for row in resolved], "notes": ["P0/P1 records are repaired before historical records.", "Only lifecycle- and source-appropriate missing fields enter the actionable queue.", "Populated legacy static fields become Final Prospectus revalidation work only after the final filing should exist.", "Open/upcoming IPOs are not blocked on Final Prospectus provenance before listing or the post-close grace period.", "Full non-actionable resolution evidence remains in canonical IPO dataAvailability fields.", "Allotment date is tracked as optional research coverage until a reliable official historical collector exists.", "Blank values are never guessed; canonical mature static values must come from Final Prospectus evidence."]}
+    OUTPUT_FILE.write_text(json.dumps(output, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+    print(f"Missing-data queue: records={len(records)}, queued={len(queue)}, resolved-unavailable={len(resolved)}, p0={priority_counts.get('P0 open IPO', 0)}, p1={priority_counts.get('P1 upcoming IPO', 0)}")
     return 0
 
 
