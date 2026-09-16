@@ -36,6 +36,36 @@ base.ISSUER_DOCUMENTS = {
 }
 
 _ORIGINAL_MERGE = base.merge_issuer_enrichment
+_ORIGINAL_NEEDS_DEEP_SCAN = base._needs_deep_scan
+FINAL_REVALIDATION_PREFIX = "provenance.finalProspectus."
+
+
+def _revalidation_gaps(item: dict[str, Any]) -> set[str]:
+    missing = {str(field) for field in (item.get("missingFields") or [])}
+    return {
+        field[len(FINAL_REVALIDATION_PREFIX):]
+        for field in missing
+        if field.startswith(FINAL_REVALIDATION_PREFIX)
+    }
+
+
+def _has_priority_or_revalidation_gap(item: dict[str, Any]) -> bool:
+    return bool(base._has_priority_gap(item) or _revalidation_gaps(item))
+
+
+def _needs_deep_scan_with_revalidation(
+    item: dict[str, Any], parsed: dict[str, Any]
+) -> tuple[bool, bool]:
+    need_financials, need_shareholding = _ORIGINAL_NEEDS_DEEP_SCAN(item, parsed)
+    pending = _revalidation_gaps(item)
+    if "financials" in pending and not parsed.get("financials"):
+        need_financials = True
+    if "shareholding" in pending and not parsed.get("shareholding"):
+        need_shareholding = True
+    return need_financials, need_shareholding
+
+
+base._needs_deep_scan = _needs_deep_scan_with_revalidation
 
 
 def merge_validated_offer_enrichment(
@@ -185,7 +215,7 @@ def _identity_safe_targets(
 
         record_id = str(item.get("id") or "")
         spec = base.ISSUER_DOCUMENTS.get(record_id)
-        if priority > priority_max or not spec or not base._has_priority_gap(item):
+        if priority > priority_max or not spec or not _has_priority_or_revalidation_gap(item):
             continue
         if not source_policy.is_final_prospectus(spec):
             continue
@@ -205,7 +235,10 @@ def _identity_safe_targets(
             continue
 
         record = matches[0]
-        if _already_extracted(record, spec):
+        # A same-version extraction is normally throttled. Explicit pending
+        # Final Prospectus provenance is the exception: re-open the same final
+        # document so deep financial/shareholding sections can be revalidated.
+        if _already_extracted(record, spec) and not _revalidation_gaps(item):
             continue
 
         candidates.append(
