@@ -1,17 +1,21 @@
 """Final Prospectus parser adapter.
 
 Extends the strict offer parser with fields that are meaningful only once the
-book-built offer is final, especially the fixed Offer/Issue Price. The adapter
-keeps the existing bounded extraction and validation behavior.
+book-built offer is final, especially the fixed Offer/Issue Price and final
+issue composition. The adapter keeps the existing bounded extraction and
+validation behavior and fails closed when internally inconsistent offer amounts
+are observed.
 """
 from __future__ import annotations
 
+import math
 import re
 from typing import Any
 
+import legacy_offer_parser as legacy
 import offer_parser as base
 
-PARSER_VERSION = base.PARSER_VERSION + 1
+PARSER_VERSION = base.PARSER_VERSION + 2
 extract_pdf_text = base.extract_pdf_text
 valid_manager = base.valid_manager
 valid_registrar = base.valid_registrar
@@ -28,6 +32,9 @@ _PRICE_PATTERNS = (
         re.I,
     ),
 )
+
+_SHARE_FIELDS = ("freshShares", "ofsShares")
+_AMOUNT_FIELDS = ("freshIssueCr", "ofsCr", "totalIssueSizeCr")
 
 
 def extract_final_issue_price(text: str) -> tuple[float | None, dict[str, Any]]:
@@ -59,17 +66,127 @@ def extract_final_issue_price(text: str) -> tuple[float | None, dict[str, Any]]:
     }
 
 
+def _finite_number(value: Any) -> bool:
+    return (
+        isinstance(value, (int, float))
+        and not isinstance(value, bool)
+        and math.isfinite(float(value))
+    )
+
+
+def validate_issue_composition(value: Any) -> dict[str, Any] | None:
+    """Return a normalized, internally consistent final issue composition.
+
+    The mature offer recognizer supplies candidate share counts and rupee
+    amounts. This final-only adapter accepts them only when every populated cell
+    is sane and the total amount agrees with Fresh Issue + OFS whenever all
+    three figures are available. Ambiguous/conflicting output is discarded
+    rather than made canonical.
+    """
+    if not isinstance(value, dict):
+        return None
+
+    normalized: dict[str, Any] = {}
+    for field in _SHARE_FIELDS:
+        raw = value.get(field)
+        if raw is None:
+            continue
+        if not _finite_number(raw) or float(raw) < 0 or float(raw) != int(float(raw)):
+            return None
+        shares = int(float(raw))
+        if shares > 100_000_000_000:
+            return None
+        normalized[field] = shares
+
+    for field in _AMOUNT_FIELDS:
+        raw = value.get(field)
+        if raw is None:
+            continue
+        if not _finite_number(raw) or float(raw) < 0 or float(raw) > 10_000_000:
+            return None
+        normalized[field] = round(float(raw), 6)
+
+    valuation = value.get("valuationPriceUsed")
+    if valuation is not None:
+        if not _finite_number(valuation) or not 0 < float(valuation) <= 100_000:
+            return None
+        normalized["valuationPriceUsed"] = float(valuation)
+
+    meaningful = any(
+        normalized.get(field) not in (None, 0)
+        for field in (*_SHARE_FIELDS, *_AMOUNT_FIELDS)
+    )
+    if not meaningful:
+        return None
+
+    fresh = normalized.get("freshIssueCr")
+    ofs = normalized.get("ofsCr")
+    total = normalized.get("totalIssueSizeCr")
+    if fresh is not None and ofs is not None:
+        expected = round(fresh + ofs, 6)
+        if total is None:
+            normalized["totalIssueSizeCr"] = expected
+        else:
+            tolerance = max(0.05, abs(total) * 0.005)
+            if abs(total - expected) > tolerance:
+                return None
+
+    fresh_shares = normalized.get("freshShares")
+    ofs_shares = normalized.get("ofsShares")
+    if fresh_shares == 0 and ofs_shares == 0:
+        return None
+
+    return normalized
+
+
+def extract_final_issue_composition(
+    text: str, price_band: dict[str, Any] | None = None
+) -> tuple[dict[str, Any] | None, dict[str, Any]]:
+    """Extract and validate Fresh Issue/OFS/final issue-size terms."""
+    candidate = legacy.extract_issue_composition(text, price_band)
+    composition = validate_issue_composition(candidate)
+    if not composition:
+        return None, {}
+    return composition, {
+        "issueComposition": {
+            "basis": "validated Final Prospectus issue composition",
+            "freshShares": composition.get("freshShares"),
+            "ofsShares": composition.get("ofsShares"),
+            "freshIssueCr": composition.get("freshIssueCr"),
+            "ofsCr": composition.get("ofsCr"),
+            "totalIssueSizeCr": composition.get("totalIssueSizeCr"),
+        }
+    }
+
+
 def parse_document_text(text: str, price_band=None) -> dict[str, Any]:
     parsed = base.parse_document_text(text, price_band)
-    issue_price, evidence = extract_final_issue_price(text)
+    issue_price, price_evidence = extract_final_issue_price(text)
     if issue_price is not None:
         parsed["issuePrice"] = issue_price
-        field_evidence = dict(parsed.get("fieldEvidence") or {})
-        field_evidence.update(evidence)
-        parsed["fieldEvidence"] = field_evidence
-        extracted = list(parsed.get("extractedFields") or [])
-        if "issuePrice" not in extracted:
-            extracted.append("issuePrice")
-        parsed["extractedFields"] = extracted
+
+    # A fixed final price is stronger than an externally supplied provisional
+    # price band for valuing final share counts. The legacy recognizer can also
+    # consume explicit rupee amounts when the document provides them directly.
+    composition_band = parsed.get("priceBand")
+    if issue_price is not None:
+        composition_band = {"min": issue_price, "max": issue_price}
+    composition, composition_evidence = extract_final_issue_composition(
+        text, composition_band
+    )
+    if composition is not None:
+        parsed["issueComposition"] = composition
+
+    field_evidence = dict(parsed.get("fieldEvidence") or {})
+    field_evidence.update(price_evidence)
+    field_evidence.update(composition_evidence)
+    parsed["fieldEvidence"] = field_evidence
+
+    extracted = list(parsed.get("extractedFields") or [])
+    if issue_price is not None and "issuePrice" not in extracted:
+        extracted.append("issuePrice")
+    if composition is not None and "issueComposition" not in extracted:
+        extracted.append("issueComposition")
+    parsed["extractedFields"] = extracted
     parsed["finalProspectusParserVersion"] = PARSER_VERSION
     return parsed
