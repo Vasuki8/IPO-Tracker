@@ -20,6 +20,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+import final_prospectus_identity as identity
 import final_prospectus_policy as policy
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -60,6 +61,8 @@ def _financial_provenance_valid(
 
 def _extraction_fields(record: dict[str, Any], extraction: Any) -> set[str]:
     if not isinstance(extraction, dict):
+        return set()
+    if identity.known_non_final_document_url(record, extraction.get("documentUrl")):
         return set()
     doc = {
         "type": extraction.get("documentType"),
@@ -146,7 +149,7 @@ def apply_policy(payload: dict[str, Any]) -> dict[str, int]:
         if not isinstance(record, dict):
             continue
         counts["records"] += 1
-        final_doc = policy.choose_final_prospectus(record)
+        final_doc = identity.choose_candidate(record, policy.final_prospectus_candidates(record))
         if final_doc:
             counts["withFinalProspectus"] += 1
 
@@ -154,6 +157,9 @@ def apply_policy(payload: dict[str, Any]) -> dict[str, int]:
         verified: set[str] = set()
         for field, evidence in list(provenance.items()):
             if field not in policy.STATIC_CANONICAL_FIELDS or not isinstance(evidence, dict):
+                continue
+            if identity.known_non_final_document_url(record, evidence.get("sourceUrl")):
+                provenance.pop(field, None)
                 continue
             if not policy.is_final_prospectus(
                 {"type": evidence.get("documentType"), "title": evidence.get("documentTitle")}

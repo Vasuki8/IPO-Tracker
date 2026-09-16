@@ -72,6 +72,30 @@ class FinalProspectusIdentityTests(unittest.TestCase):
         }
         self.assertIs(identity.choose_candidate(record, [generic, issuer_specific]), issuer_specific)
 
+    def test_attached_rhp_classification_overrides_stale_final_extraction_label(self):
+        rhp_url = "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Example-AP_p.pdf"
+        final_url = "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/final.pdf"
+        record = {
+            "company": "Example Industries Limited",
+            "openDate": "2026-09-08",
+            "documents": [
+                {"type": "RHP", "title": "Example Industries Limited - Abridged Prospectus", "url": rhp_url},
+                {"type": "PROSPECTUS", "title": "SEBI PROSPECTUS", "url": final_url},
+            ],
+            "offerDocumentExtraction": {
+                "status": "extracted",
+                "documentType": "PROSPECTUS",
+                "documentTitle": "Final Prospectus",
+                "documentUrl": rhp_url,
+                "documentFiledDate": "2026-09-03",
+            },
+        }
+
+        self.assertTrue(identity.known_non_final_document_url(record, rhp_url))
+        selected = runner.document_for(record)
+        self.assertIsNotNone(selected)
+        self.assertEqual(selected["url"], final_url)
+
     def test_previous_failed_candidate_rotates_to_other_eligible_final_prospectus(self):
         failed = {
             "type": "PROSPECTUS",
