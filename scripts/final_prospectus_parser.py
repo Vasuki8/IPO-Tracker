@@ -2,9 +2,9 @@
 
 Extends the strict offer parser with fields that are meaningful only once the
 book-built offer is final, especially the fixed Offer/Issue Price and final
-issue composition. The adapter keeps the existing bounded extraction and
-validation behavior and fails closed when internally inconsistent offer amounts
-are observed.
+issue composition. Final issue price is deliberately kept distinct from the
+historical bidding price band: a one-point fixed price is never synthesized as
+a price band.
 """
 from __future__ import annotations
 
@@ -32,9 +32,32 @@ _PRICE_PATTERNS = (
         re.I,
     ),
 )
+_PRICE_BAND_PATTERNS = (
+    re.compile(
+        r"\bPRICE\s+BAND\b.{0,120}?(?:₹|RS\.?|INR)?\s*"
+        r"([0-9][0-9,]*(?:\.\d+)?)\s*(?:TO|[-–—])\s*"
+        r"(?:₹|RS\.?|INR)?\s*([0-9][0-9,]*(?:\.\d+)?)\s*"
+        r"(?:PER\s+)?(?:EQUITY\s+)?SHARE\b",
+        re.I,
+    ),
+    re.compile(
+        r"\bFLOOR\s+PRICE\b.{0,100}?(?:₹|RS\.?|INR)\s*"
+        r"([0-9][0-9,]*(?:\.\d+)?).{0,180}?\bCAP\s+PRICE\b.{0,100}?"
+        r"(?:₹|RS\.?|INR)\s*([0-9][0-9,]*(?:\.\d+)?)",
+        re.I,
+    ),
+)
 
 _SHARE_FIELDS = ("freshShares", "ofsShares")
 _AMOUNT_FIELDS = ("freshIssueCr", "ofsCr", "totalIssueSizeCr")
+
+
+def _number(token: str) -> float | None:
+    try:
+        value = float(token.replace(",", ""))
+    except (TypeError, ValueError):
+        return None
+    return value if math.isfinite(value) else None
 
 
 def extract_final_issue_price(text: str) -> tuple[float | None, dict[str, Any]]:
@@ -45,11 +68,8 @@ def extract_final_issue_price(text: str) -> tuple[float | None, dict[str, Any]]:
         compact = " ".join(page.replace("\u00a0", " ").split())
         for pattern in _PRICE_PATTERNS:
             for match in pattern.finditer(compact):
-                try:
-                    value = float(match.group(1).replace(",", ""))
-                except ValueError:
-                    continue
-                if 0 < value <= 100_000:
+                value = _number(match.group(1))
+                if value is not None and 0 < value <= 100_000:
                     values.append((value, page_index, match.group(0)))
     unique = sorted({value for value, _, _ in values})
     if len(unique) != 1:
@@ -66,6 +86,35 @@ def extract_final_issue_price(text: str) -> tuple[float | None, dict[str, Any]]:
     }
 
 
+def extract_explicit_price_band(text: str) -> tuple[dict[str, float] | None, dict[str, Any]]:
+    """Extract only an explicitly stated bidding range; never infer it from issue price."""
+    pages = str(text or "").split("\f")[:40]
+    values: list[tuple[float, float, int, str]] = []
+    for page_index, page in enumerate(pages, 1):
+        compact = " ".join(page.replace("\u00a0", " ").split())
+        for pattern in _PRICE_BAND_PATTERNS:
+            for match in pattern.finditer(compact):
+                low, high = _number(match.group(1)), _number(match.group(2))
+                if low is None or high is None:
+                    continue
+                if 0 < low <= high <= 100_000:
+                    values.append((low, high, page_index, match.group(0)))
+    unique = sorted({(low, high) for low, high, _, _ in values})
+    if len(unique) != 1:
+        return None, {}
+    low, high = unique[0]
+    evidence_hit = next(hit for hit in values if hit[0] == low and hit[1] == high)
+    band = {"min": low, "max": high}
+    return band, {
+        "priceBand": {
+            "page": evidence_hit[2],
+            "heading": evidence_hit[3],
+            "value": band,
+            "basis": "explicit Price Band/Floor Price/Cap Price in Final Prospectus",
+        }
+    }
+
+
 def _finite_number(value: Any) -> bool:
     return (
         isinstance(value, (int, float))
@@ -75,14 +124,6 @@ def _finite_number(value: Any) -> bool:
 
 
 def validate_issue_composition(value: Any) -> dict[str, Any] | None:
-    """Return a normalized, internally consistent final issue composition.
-
-    The mature offer recognizer supplies candidate share counts and rupee
-    amounts. This final-only adapter accepts them only when every populated cell
-    is sane and the total amount agrees with Fresh Issue + OFS whenever all
-    three figures are available. Ambiguous/conflicting output is discarded
-    rather than made canonical.
-    """
     if not isinstance(value, dict):
         return None
 
@@ -142,7 +183,6 @@ def validate_issue_composition(value: Any) -> dict[str, Any] | None:
 def extract_final_issue_composition(
     text: str, price_band: dict[str, Any] | None = None
 ) -> tuple[dict[str, Any] | None, dict[str, Any]]:
-    """Extract and validate Fresh Issue/OFS/final issue-size terms."""
     candidate = legacy.extract_issue_composition(text, price_band)
     composition = validate_issue_composition(candidate)
     if not composition:
@@ -161,14 +201,22 @@ def extract_final_issue_composition(
 
 def parse_document_text(text: str, price_band=None) -> dict[str, Any]:
     parsed = base.parse_document_text(text, price_band)
+
     issue_price, price_evidence = extract_final_issue_price(text)
     if issue_price is not None:
         parsed["issuePrice"] = issue_price
 
-    # A fixed final price is stronger than an externally supplied provisional
-    # price band for valuing final share counts. The legacy recognizer can also
-    # consume explicit rupee amounts when the document provides them directly.
-    composition_band = parsed.get("priceBand")
+    explicit_band, band_evidence = extract_explicit_price_band(text)
+    if explicit_band is not None:
+        parsed["priceBand"] = explicit_band
+    else:
+        # The compatibility parser treats a fixed Issue/Offer Price as a
+        # degenerate band. That is useful historically but semantically wrong
+        # for the canonical `priceBand` field, so discard it unless an actual
+        # band/floor-cap statement is present in the Final Prospectus.
+        parsed.pop("priceBand", None)
+
+    composition_band = explicit_band
     if issue_price is not None:
         composition_band = {"min": issue_price, "max": issue_price}
     composition, composition_evidence = extract_final_issue_composition(
@@ -179,10 +227,17 @@ def parse_document_text(text: str, price_band=None) -> dict[str, Any]:
 
     field_evidence = dict(parsed.get("fieldEvidence") or {})
     field_evidence.update(price_evidence)
+    field_evidence.update(band_evidence)
     field_evidence.update(composition_evidence)
     parsed["fieldEvidence"] = field_evidence
 
-    extracted = list(parsed.get("extractedFields") or [])
+    extracted = [
+        field
+        for field in (parsed.get("extractedFields") or [])
+        if field != "priceBand"
+    ]
+    if explicit_band is not None and "priceBand" not in extracted:
+        extracted.append("priceBand")
     if issue_price is not None and "issuePrice" not in extracted:
         extracted.append("issuePrice")
     if composition is not None and "issueComposition" not in extracted:
