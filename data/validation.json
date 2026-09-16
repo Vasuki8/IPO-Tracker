@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-16T14:20:10.888155+00:00",
+  "generatedAt": "2026-09-16T15:53:04.202822+00:00",
   "parserVersion": 22,
   "recordCount": 1357,
   "errorCount": 0,
-  "reviewCount": 584,
+  "reviewCount": 624,
   "invalidRecordCount": 0,
-  "reviewRecordCount": 48,
+  "reviewRecordCount": 52,
   "subscriptionAuthority": {
     "officialRecords": 5,
     "secondaryRecords": 7,
@@ -321,19 +321,37 @@
     },
     {
       "id": "lumino",
-      "field": "financials.FY2024.roePct",
+      "field": "financials.FY2024.patCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
     {
       "id": "lumino",
-      "field": "financials.FY2025.roePct",
+      "field": "financials.FY2024.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
     {
       "id": "lumino",
-      "field": "financials.FY2026.roePct",
+      "field": "financials.FY2025.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "lumino",
+      "field": "financials.FY2025.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "lumino",
+      "field": "financials.FY2026.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "lumino",
+      "field": "financials.FY2026.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
@@ -770,6 +788,84 @@
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
     {
+      "id": "tempsens",
+      "field": "financials.FY2026.ebitdaCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "tempsens",
+      "field": "financials.FY2026.eps",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "tempsens",
+      "field": "financials.FY2026.dilutedEps",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "tempsens",
+      "field": "financials.FY2026.ronwPct",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "tempsens",
+      "field": "financials.FY2025.ebitdaCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "tempsens",
+      "field": "financials.FY2025.eps",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "tempsens",
+      "field": "financials.FY2025.dilutedEps",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "tempsens",
+      "field": "financials.FY2025.ronwPct",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "tempsens",
+      "field": "financials.FY2024.ebitdaCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "tempsens",
+      "field": "financials.FY2024.eps",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "tempsens",
+      "field": "financials.FY2024.dilutedEps",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "tempsens",
+      "field": "financials.FY2024.netWorthCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "tempsens",
+      "field": "financials.FY2024.ronwPct",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
       "id": "sunshine",
       "field": "financials.FY2024.ebitdaCr",
       "severity": "review",
@@ -820,6 +916,24 @@
     {
       "id": "sunshine",
       "field": "financials.FY2026.totalIncomeCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "shankesh",
+      "field": "financials.FY2024.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "shankesh",
+      "field": "financials.FY2025.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "shankesh",
+      "field": "financials.FY2026.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
@@ -1928,6 +2042,24 @@
       "reason": "Source table/period evidence has not been revalidated"
     },
     {
+      "id": "xtranet",
+      "field": "financials.FY2024.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "xtranet",
+      "field": "financials.FY2025.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "xtranet",
+      "field": "financials.FY2026.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
       "id": "lcl",
       "field": "financials.FY2026.ebitdaCr",
       "severity": "review",
@@ -1982,6 +2114,78 @@
       "reason": "Source table/period evidence has not been revalidated"
     },
     {
+      "id": "sbifunds",
+      "field": "financials.FY2024.dilutedEps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "sbifunds",
+      "field": "financials.FY2024.eps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "sbifunds",
+      "field": "financials.FY2024.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "sbifunds",
+      "field": "financials.FY2024.totalIncomeCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "sbifunds",
+      "field": "financials.FY2025.dilutedEps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "sbifunds",
+      "field": "financials.FY2025.eps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "sbifunds",
+      "field": "financials.FY2025.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "sbifunds",
+      "field": "financials.FY2025.totalIncomeCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "sbifunds",
+      "field": "financials.FY2026.dilutedEps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "sbifunds",
+      "field": "financials.FY2026.eps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "sbifunds",
+      "field": "financials.FY2026.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "sbifunds",
+      "field": "financials.FY2026.totalIncomeCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
       "id": "aastha",
       "field": "financials.FY2025.revenueCr",
       "severity": "review",
@@ -2340,6 +2544,42 @@
       "field": "financials.FY2023.eps",
       "severity": "review",
       "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "cmrgreen",
+      "field": "financials.FY2023.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "cmrgreen",
+      "field": "financials.FY2023.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "cmrgreen",
+      "field": "financials.FY2024.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "cmrgreen",
+      "field": "financials.FY2024.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "cmrgreen",
+      "field": "financials.FY2025.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "cmrgreen",
+      "field": "financials.FY2025.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
     {
       "id": "kissht",

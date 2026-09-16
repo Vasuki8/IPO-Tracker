@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T19:50:11+05:30",
+  "generatedAt": "2026-09-16T21:23:04+05:30",
   "asOfDate": "2026-09-16",
   "recordCount": 1357,
   "stageCounts": {
@@ -15,14 +15,14 @@
     "exchangeStage": 1350,
     "recentExchange2Y": 441,
     "historicalExchange": 909,
-    "offerDocumentEligible": 109,
+    "offerDocumentEligible": 129,
     "openNow": 8,
     "maturedClosed": 1321
   },
   "scores": {
     "exchangeStage": 83.5,
     "recentExchange2Y": 99.3,
-    "offerDocumentEligible": 90.5,
+    "offerDocumentEligible": 86.8,
     "openSubscription": 100.0,
     "maturedLifecycle": 97.3,
     "provenance": 100.0
@@ -192,40 +192,40 @@
     },
     "offerDocumentEligible": {
       "registrar": {
-        "present": 108,
-        "expected": 109,
-        "missing": 1,
-        "pct": 99.1
+        "present": 127,
+        "expected": 129,
+        "missing": 2,
+        "pct": 98.4
       },
       "leadManagers": {
-        "present": 108,
-        "expected": 109,
-        "missing": 1,
-        "pct": 99.1
+        "present": 127,
+        "expected": 129,
+        "missing": 2,
+        "pct": 98.4
       },
       "promoters": {
-        "present": 104,
-        "expected": 109,
-        "missing": 5,
-        "pct": 95.4
+        "present": 119,
+        "expected": 129,
+        "missing": 10,
+        "pct": 92.2
       },
       "objectsOfIssue": {
-        "present": 105,
-        "expected": 109,
-        "missing": 4,
-        "pct": 96.3
+        "present": 122,
+        "expected": 129,
+        "missing": 7,
+        "pct": 94.6
       },
       "financials": {
-        "present": 90,
-        "expected": 109,
-        "missing": 19,
-        "pct": 82.6
+        "present": 98,
+        "expected": 129,
+        "missing": 31,
+        "pct": 76.0
       },
       "promoterShareholding": {
-        "present": 77,
-        "expected": 109,
-        "missing": 32,
-        "pct": 70.6
+        "present": 79,
+        "expected": 129,
+        "missing": 50,
+        "pct": 61.2
       }
     },
     "openSubscription": {
@@ -284,8 +284,8 @@
         "pct": 100.0
       },
       "documents": {
-        "present": 112,
-        "expected": 112,
+        "present": 132,
+        "expected": 132,
         "missing": 0,
         "pct": 100.0
       }
@@ -459,6 +459,12 @@
     "offerDocumentEligible": {
       "registrar": [
         {
+          "id": "happy",
+          "company": "Happy Steels Limited",
+          "openDate": "2026-07-09",
+          "stage": "listed"
+        },
+        {
           "id": "apexeco",
           "company": "Apex Ecotech Limited",
           "openDate": "2024-11-27",
@@ -467,6 +473,12 @@
       ],
       "leadManagers": [
         {
+          "id": "happy",
+          "company": "Happy Steels Limited",
+          "openDate": "2026-07-09",
+          "stage": "listed"
+        },
+        {
           "id": "amcl",
           "company": "ANB Metal Cast Limited",
           "openDate": "2025-08-08",
@@ -474,6 +486,36 @@
         }
       ],
       "promoters": [
+        {
+          "id": "anawil",
+          "company": "Anawil Wire and Engineering Limited",
+          "openDate": "2026-08-03",
+          "stage": "listed"
+        },
+        {
+          "id": "happy",
+          "company": "Happy Steels Limited",
+          "openDate": "2026-07-09",
+          "stage": "listed"
+        },
+        {
+          "id": "icelco",
+          "company": "IC Electricals Company Limited",
+          "openDate": "2026-07-03",
+          "stage": "listed"
+        },
+        {
+          "id": "genxai",
+          "company": "GenXAI Analytics Limited",
+          "openDate": "2026-06-05",
+          "stage": "listed"
+        },
+        {
+          "id": "qline",
+          "company": "Q-Line Biotech Limited",
+          "openDate": "2026-05-21",
+          "stage": "listed"
+        },
         {
           "id": "ambaauto",
           "company": "Amba Auto Sales and Services Limited",
@@ -507,6 +549,24 @@
       ],
       "objectsOfIssue": [
         {
+          "id": "sbifunds",
+          "company": "SBI Funds Management Limited",
+          "openDate": "2026-07-14",
+          "stage": "listed"
+        },
+        {
+          "id": "happy",
+          "company": "Happy Steels Limited",
+          "openDate": "2026-07-09",
+          "stage": "listed"
+        },
+        {
+          "id": "cmrgreen",
+          "company": "CMR Green Technologies Limited",
+          "openDate": "2026-06-03",
+          "stage": "listed"
+        },
+        {
           "id": "acetec",
           "company": "Acetech E-Commerce Limited",
           "openDate": "2026-02-27",
@@ -533,9 +593,75 @@
       ],
       "financials": [
         {
+          "id": "perniaspop",
+          "company": "Purple Style Labs Limited",
+          "openDate": "2026-08-31",
+          "stage": "listed"
+        },
+        {
+          "id": "horizonind",
+          "company": "Horizon Industrial Parks Limited",
+          "openDate": "2026-08-17",
+          "stage": "listed"
+        },
+        {
+          "id": "anawil",
+          "company": "Anawil Wire and Engineering Limited",
+          "openDate": "2026-08-03",
+          "stage": "listed"
+        },
+        {
+          "id": "sbifunds",
+          "company": "SBI Funds Management Limited",
+          "openDate": "2026-07-14",
+          "stage": "listed"
+        },
+        {
+          "id": "happy",
+          "company": "Happy Steels Limited",
+          "openDate": "2026-07-09",
+          "stage": "listed"
+        },
+        {
+          "id": "icelco",
+          "company": "IC Electricals Company Limited",
+          "openDate": "2026-07-03",
+          "stage": "listed"
+        },
+        {
           "id": "vmobile",
           "company": "Vinit Mobile Limited",
           "openDate": "2026-06-30",
+          "stage": "listed"
+        },
+        {
+          "id": "turtlemint",
+          "company": "Turtlemint Fintech Solutions Limited",
+          "openDate": "2026-06-19",
+          "stage": "listed"
+        },
+        {
+          "id": "utkal",
+          "company": "Utkal Speciality Industries India Limited",
+          "openDate": "2026-06-10",
+          "stage": "listed"
+        },
+        {
+          "id": "genxai",
+          "company": "GenXAI Analytics Limited",
+          "openDate": "2026-06-05",
+          "stage": "listed"
+        },
+        {
+          "id": "cmrgreen",
+          "company": "CMR Green Technologies Limited",
+          "openDate": "2026-06-03",
+          "stage": "listed"
+        },
+        {
+          "id": "teamtech",
+          "company": "Teamtech Formwork Solutions Limited",
+          "openDate": "2026-05-19",
           "stage": "listed"
         },
         {
@@ -545,85 +671,37 @@
           "stage": "listed"
         },
         {
+          "id": "rfbl",
+          "company": "RFBL Flexi Pack Limited",
+          "openDate": "2026-05-12",
+          "stage": "listed"
+        },
+        {
           "id": "ambaauto",
           "company": "Amba Auto Sales and Services Limited",
           "openDate": "2026-04-27",
           "stage": "listed"
-        },
-        {
-          "id": "armour",
-          "company": "Armour Security (India). Ltd",
-          "openDate": "2026-01-14",
-          "stage": "listed"
-        },
-        {
-          "id": "eximroutes",
-          "company": "Exim Routes Limited",
-          "openDate": "2025-12-12",
-          "stage": "listed"
-        },
-        {
-          "id": "meesho",
-          "company": "Meesho Limited",
-          "openDate": "2025-12-03",
-          "stage": "listed"
-        },
-        {
-          "id": "arisinfra",
-          "company": "Arisinfra Solutions Limited",
-          "openDate": "2025-06-18",
-          "stage": "listed"
-        },
-        {
-          "id": "theleela",
-          "company": "Schloss Bangalore Limited",
-          "openDate": "2025-05-26",
-          "stage": "listed"
-        },
-        {
-          "id": "maxvolt",
-          "company": "Maxvolt Energy Industries Limited",
-          "openDate": "2025-02-12",
-          "stage": "listed"
-        },
-        {
-          "id": "denta",
-          "company": "Denta Water and Infra Solutions Limited",
-          "openDate": "2025-01-22",
-          "stage": "listed"
-        },
-        {
-          "id": "identical",
-          "company": "Identical Brains Studios Limited",
-          "openDate": "2024-12-18",
-          "stage": "listed"
-        },
-        {
-          "id": "igil",
-          "company": "International Gemmological Institute (India) Limited",
-          "openDate": "2024-12-13",
-          "stage": "listed"
-        },
-        {
-          "id": "suraksha",
-          "company": "Suraksha Diagnostic Limited",
-          "openDate": "2024-11-29",
-          "stage": "listed"
-        },
-        {
-          "id": "ganeshin",
-          "company": "Ganesh Infraworld Limited",
-          "openDate": "2024-11-29",
-          "stage": "listed"
-        },
-        {
-          "id": "apexeco",
-          "company": "Apex Ecotech Limited",
-          "openDate": "2024-11-27",
-          "stage": "listed"
         }
       ],
       "promoterShareholding": [
+        {
+          "id": "perniaspop",
+          "company": "Purple Style Labs Limited",
+          "openDate": "2026-08-31",
+          "stage": "listed"
+        },
+        {
+          "id": "shankesh",
+          "company": "Shankesh Jewellers Limited",
+          "openDate": "2026-08-18",
+          "stage": "listed"
+        },
+        {
+          "id": "horizonind",
+          "company": "Horizon Industrial Parks Limited",
+          "openDate": "2026-08-17",
+          "stage": "listed"
+        },
         {
           "id": "credent",
           "company": "Credent Connect N Care Limited",
@@ -643,75 +721,57 @@
           "stage": "listed"
         },
         {
+          "id": "anawil",
+          "company": "Anawil Wire and Engineering Limited",
+          "openDate": "2026-08-03",
+          "stage": "listed"
+        },
+        {
+          "id": "xtranet",
+          "company": "Xtranet Technologies Limited",
+          "openDate": "2026-07-23",
+          "stage": "listed"
+        },
+        {
+          "id": "metalic",
+          "company": "Metalic Technoforge Limited",
+          "openDate": "2026-07-21",
+          "stage": "listed"
+        },
+        {
+          "id": "sbifunds",
+          "company": "SBI Funds Management Limited",
+          "openDate": "2026-07-14",
+          "stage": "listed"
+        },
+        {
+          "id": "laserpower",
+          "company": "Laser Power & Infra Limited",
+          "openDate": "2026-07-09",
+          "stage": "listed"
+        },
+        {
+          "id": "happy",
+          "company": "Happy Steels Limited",
+          "openDate": "2026-07-09",
+          "stage": "listed"
+        },
+        {
+          "id": "icelco",
+          "company": "IC Electricals Company Limited",
+          "openDate": "2026-07-03",
+          "stage": "listed"
+        },
+        {
           "id": "vmobile",
           "company": "Vinit Mobile Limited",
           "openDate": "2026-06-30",
           "stage": "listed"
         },
         {
-          "id": "shreedhar",
-          "company": "Shreedhar Spinners Limited",
+          "id": "cordelia",
+          "company": "Waterways Leisure Tourism Limited",
           "openDate": "2026-06-23",
-          "stage": "listed"
-        },
-        {
-          "id": "nfpsampoor",
-          "company": "NFP Sampoorna Foods Limited",
-          "openDate": "2026-05-18",
-          "stage": "listed"
-        },
-        {
-          "id": "ambaauto",
-          "company": "Amba Auto Sales and Services Limited",
-          "openDate": "2026-04-27",
-          "stage": "listed"
-        },
-        {
-          "id": "adisoft",
-          "company": "Adisoft Technologies Limited",
-          "openDate": "2026-04-23",
-          "stage": "listed"
-        },
-        {
-          "id": "acetec",
-          "company": "Acetech E-Commerce Limited",
-          "openDate": "2026-02-27",
-          "stage": "listed"
-        },
-        {
-          "id": "armour",
-          "company": "Armour Security (India). Ltd",
-          "openDate": "2026-01-14",
-          "stage": "listed"
-        },
-        {
-          "id": "eximroutes",
-          "company": "Exim Routes Limited",
-          "openDate": "2025-12-12",
-          "stage": "listed"
-        },
-        {
-          "id": "meesho",
-          "company": "Meesho Limited",
-          "openDate": "2025-12-03",
-          "stage": "listed"
-        },
-        {
-          "id": "saatvik",
-          "company": "Saatvik Green Energy Limited",
-          "openDate": "2025-09-19",
-          "stage": "listed"
-        },
-        {
-          "id": "meil",
-          "company": "Mangal Electrical Industries Limited",
-          "openDate": "2025-08-20",
-          "stage": "listed"
-        },
-        {
-          "id": "aaradhya",
-          "company": "Aaradhya Disposal Industries Limited",
-          "openDate": "2025-08-04",
           "stage": "listed"
         }
       ]
