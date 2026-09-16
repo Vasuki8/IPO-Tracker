@@ -80,7 +80,7 @@ jobs:
         env:
           MODE: ${{ steps.collection-mode.outputs.value }}
         run: uv run --frozen python scripts/run_pipeline.py --mode "$MODE"
-      - name: Repair recent P4 offer-document residuals
+      - name: Repair recent P4 residuals
         env:
           MODE: ${{ steps.collection-mode.outputs.value }}
         shell: bash
@@ -88,6 +88,12 @@ jobs:
           set -euo pipefail
           case "$MODE" in
             maintenance|repair|p4)
+              # Push-triggered repair mode must exercise bounded NSE lot-size
+              # fixes immediately. Full SEBI/BSE lot sweeps remain in the
+              # maintenance/p4 pipeline so repair stays within its time budget.
+              if [[ "$MODE" == "repair" ]]; then
+                uv run --frozen python scripts/backfill_recent_nse_lot_sizes.py --limit 25
+              fi
               uv run --frozen python scripts/run_p4_offer_residuals.py --limit 30 --workers 4
               uv run --frozen python scripts/record_integrity.py
               uv run --frozen python scripts/audit_data_completeness.py
@@ -96,7 +102,7 @@ jobs:
               uv run --frozen python scripts/phase_status.py
               ;;
             *)
-              echo "Skipping P4 offer residual repair for $MODE mode"
+              echo "Skipping P4 residual repair for $MODE mode"
               ;;
           esac
       - name: Prepare collected snapshot
