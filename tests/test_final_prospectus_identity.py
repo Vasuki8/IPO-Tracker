@@ -72,6 +72,48 @@ class FinalProspectusIdentityTests(unittest.TestCase):
         }
         self.assertIs(identity.choose_candidate(record, [generic, issuer_specific]), issuer_specific)
 
+    def test_previous_failed_candidate_rotates_to_other_eligible_final_prospectus(self):
+        failed = {
+            "type": "PROSPECTUS",
+            "title": "Example Industries Limited - Prospectus",
+            "url": "https://www.bseindia.com/downloads/ipo/example-primary.pdf",
+            "filedDate": "2026-08-10",
+        }
+        alternate = {
+            "type": "PROSPECTUS",
+            "title": "Example Industries Limited - Prospectus",
+            "url": "https://nsearchives.nseindia.com/corporate/FP_EXAMPLE_08AUG2026.pdf",
+            "filedDate": "2026-08-08",
+        }
+        record = {
+            "company": "Example Industries Limited",
+            "openDate": "2026-08-01",
+            "documentRepair": {
+                "status": "source_blocked",
+                "sourceUrl": failed["url"],
+            },
+        }
+
+        self.assertIs(identity.choose_candidate(record, [failed, alternate]), alternate)
+
+    def test_only_failed_candidate_remains_retryable(self):
+        failed = {
+            "type": "PROSPECTUS",
+            "title": "Example Industries Limited - Prospectus",
+            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/example.pdf",
+            "filedDate": "2026-08-08",
+        }
+        record = {
+            "company": "Example Industries Limited",
+            "openDate": "2026-08-01",
+            "documentRepair": {
+                "status": "parse_failed",
+                "sourceUrl": failed["url"],
+            },
+        }
+
+        self.assertIs(identity.choose_candidate(record, [failed]), failed)
+
     def test_runner_uses_official_identity_when_pdf_opening_text_is_lossy(self):
         record = {"company": "Happy Steels Limited", "openDate": "2026-07-09", "priceBand": None}
         doc = {
