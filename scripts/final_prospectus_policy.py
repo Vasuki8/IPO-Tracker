@@ -15,7 +15,7 @@ import copy
 import math
 import re
 from typing import Any
-from urllib.parse import urlparse
+from urllib.parse import unquote, urlparse
 
 FINAL_DOCUMENT_TYPES = {"PROSPECTUS", "FINALPROSPECTUS"}
 STATIC_CANONICAL_FIELDS = (
@@ -48,8 +48,8 @@ def _normal_type(value: Any) -> str:
     return re.sub(r"[^A-Z]+", "", str(value or "").upper())
 
 
-def _known_non_final_route(url: Any) -> bool:
-    """Reject official exchange notice PDFs that are not offer documents."""
+def _sebi_abridged_pdf(url: Any) -> bool:
+    """Recognize SEBI's direct Abridged Prospectus PDF routes."""
     try:
         parsed = urlparse(str(url or "").strip())
     except ValueError:
@@ -57,7 +57,27 @@ def _known_non_final_route(url: Any) -> bool:
     host = (parsed.hostname or "").lower()
     if host.startswith("www."):
         host = host[4:]
-    return host == "bseindia.com" and "/downloads/uploaddocs/notices/" in parsed.path.lower()
+    if host != "sebi.gov.in":
+        return False
+    path = unquote(parsed.path).lower()
+    if not path.endswith(".pdf") or "/sebi_data/commondocs/" not in path:
+        return False
+    name = path.rsplit("/", 1)[-1]
+    return "abridged prospectus" in name or bool(re.search(r"(?:^|[\s_-])ap_p\.pdf$", name, re.I))
+
+
+def _known_non_final_route(url: Any) -> bool:
+    """Reject official routes that are not full final offer documents."""
+    try:
+        parsed = urlparse(str(url or "").strip())
+    except ValueError:
+        return False
+    host = (parsed.hostname or "").lower()
+    if host.startswith("www."):
+        host = host[4:]
+    return (
+        host == "bseindia.com" and "/downloads/uploaddocs/notices/" in parsed.path.lower()
+    ) or _sebi_abridged_pdf(url)
 
 
 def is_final_prospectus(doc: dict[str, Any] | None) -> bool:
@@ -66,15 +86,18 @@ def is_final_prospectus(doc: dict[str, Any] | None) -> bool:
     A title containing the word "prospectus" is not enough because both DRHP
     and RHP titles also contain it. Prefer the explicit document type, with a
     narrow title fallback that rejects draft/red-herring wording. Known BSE
-    exchange-notice routes are never offer documents even if legacy metadata
-    labeled them ``PROSPECTUS``.
+    exchange-notice and SEBI Abridged Prospectus PDF routes are never canonical
+    Final Prospectuses even if legacy metadata labeled them ``PROSPECTUS``.
     """
     if not isinstance(doc, dict) or _known_non_final_route(doc.get("url")):
+        return False
+    url = str(doc.get("url") or "")
+    title = " ".join(str(doc.get("title") or "").split()).upper()
+    if urlparse(url).path.lower().endswith(".pdf") and "ABRIDGED PROSPECTUS" in title:
         return False
     doc_type = _normal_type(doc.get("type"))
     if doc_type in FINAL_DOCUMENT_TYPES:
         return True
-    title = " ".join(str(doc.get("title") or "").split()).upper()
     return bool(
         title
         and "PROSPECTUS" in title
@@ -82,6 +105,7 @@ def is_final_prospectus(doc: dict[str, Any] | None) -> bool:
         and "DRAFT" not in title
         and "UDRHP" not in title
         and "RHP" not in title
+        and "ABRIDGED PROSPECTUS" not in title
     )
 
 
@@ -101,6 +125,8 @@ def final_prospectus_from_source(source: dict[str, Any] | None) -> dict[str, Any
     label = " ".join(
         str(source.get(key) or "") for key in ("name", "title", "kind")
     ).upper()
+    if "ABRIDGED PROSPECTUS" in label:
+        return None
     path = parsed.path.upper()
     final_hint = bool(
         "FINAL PROSPECTUS" in label
@@ -206,23 +232,14 @@ def _financial_metric_plausible(key: str, value: Any) -> bool:
     number = float(value)
     magnitude = abs(number)
     if key in {"roePct", "ronwPct"}:
-        # A percentage in the thousands is normally a PDF column/year leak.
         return magnitude <= 1000 and not 1900 <= magnitude <= 2100
     if key in {"eps", "dilutedEps"}:
-        # Indian IPO equity-share EPS can be large, but five/six digit figures
-        # are overwhelmingly subsidiary/KPI or unit-alignment false positives.
         return magnitude <= 10_000 and not 1900 <= magnitude <= 2100
     return True
 
 
 def _financial_evidence_supported(record: dict[str, Any], parsed: dict[str, Any]) -> bool:
-    """Require every promoted financial cell to carry matching table evidence.
-
-    The canonical Final Prospectus path must move a financial value and its
-    period/table evidence atomically. This also rejects stale/misaligned fiscal
-    tables and implausible ratio/EPS values rather than allowing a deep-document
-    KPI/subsidiary table to overwrite issuer financials.
-    """
+    """Require every promoted financial cell to carry matching table evidence."""
     financials = parsed.get("financials")
     if not isinstance(financials, dict):
         return False
@@ -260,9 +277,6 @@ def _financial_evidence_supported(record: dict[str, Any], parsed: dict[str, Any]
     except (TypeError, ValueError):
         issue_year = 0
     if issue_year and fiscal_years:
-        # Prospectuses normally summarize the recent annual periods. A table
-        # decades away from the issue year is almost certainly a subsidiary,
-        # peer or PDF-column alignment false positive.
         if max(fiscal_years) < issue_year - 2 or max(fiscal_years) > issue_year + 1:
             return False
         if min(fiscal_years) < issue_year - 6:
@@ -332,7 +346,6 @@ def _canonical_evidence(
     checked_at: str | None,
     detail_evidence: Any = None,
 ) -> dict[str, Any]:
-    """Build issue-specific Final Prospectus evidence understood by validators."""
     out = {
         "source": "Final Prospectus",
         "sourceUrl": source_url,
@@ -359,12 +372,7 @@ def apply_final_prospectus_static_fields(
     parser_version: Any = None,
     checked_at: str | None = None,
 ) -> list[dict[str, Any]]:
-    """Make extracted Final Prospectus values canonical, including overwrites.
-
-    Only fields actually recognized with supported Final Prospectus evidence are
-    changed. Older values are retained when the final parser has no supported
-    evidence for that field, but they remain pending revalidation.
-    """
+    """Make extracted Final Prospectus values canonical, including overwrites."""
     if not is_final_prospectus(doc):
         raise ValueError("Canonical static fields require a Final Prospectus")
 
@@ -403,9 +411,6 @@ def apply_final_prospectus_static_fields(
             detail_evidence=_field_detail_evidence(parsed, field),
         )
 
-    # Keep one document-level provenance snapshot for legacy validators and UI
-    # helpers. Only evidence for fields that were accepted by the canonical
-    # policy is retained; rejected financial tables cannot poison old values.
     accepted_evidence: dict[str, Any] = {}
     for field in extracted:
         detail = _field_detail_evidence(parsed, field)
@@ -429,9 +434,6 @@ def apply_final_prospectus_static_fields(
         "sourcePolicy": "final-prospectus-only",
     }
 
-    # These legacy evidence slots are still consumed by strict validation and
-    # downstream UI helpers. Replace any old NSE/BSE evidence when the Final
-    # Prospectus supplies the corresponding canonical field.
     if "lotSize" in extracted:
         record["lotSizeEvidence"] = _canonical_evidence(
             record,
