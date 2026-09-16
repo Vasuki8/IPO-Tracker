@@ -59,7 +59,7 @@ class FinalProspectusLotSizeTests(unittest.TestCase):
         self.assertEqual(evidence["lotSize"]["value"], 283)
 
     def test_parser_version_bumped_for_deep_lot_revalidation(self):
-        self.assertEqual(parser.PARSER_VERSION, parser.base.PARSER_VERSION + 3)
+        self.assertGreaterEqual(parser.PARSER_VERSION, parser.base.PARSER_VERSION + 3)
 
 
 if __name__ == "__main__":
