@@ -10,6 +10,7 @@ Safety rules:
 - only records whose lotSize is still missing;
 - official NSE endpoint only;
 - fill-only merge; existing values are never overwritten;
+- exact symbol + issuer identity is required for NSE Issue Information payloads;
 - SME issues require an explicit lot field (minimum application quantity may be
   two lots under newer SME rules and is therefore not treated as one lot);
 - conflicting explicit lot values are rejected rather than guessed;
@@ -31,6 +32,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
+import enrich_nse_issue_information as issue_info  # noqa: E402
 import update_data as core  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -49,6 +51,7 @@ MAINBOARD_FALLBACK_KEYS = {
     "minimumbidquantity",
     "minbidquantity",
     "minimumquantity",
+    "minimumorderquantity",
 }
 SAFE_METADATA_KEYS = {
     "issuedetail",
@@ -87,6 +90,16 @@ def _collect_explicit_lots(value: Any, out: list[int]) -> None:
             _collect_explicit_lots(child, out)
 
 
+def _issue_information_fields(payload: Any) -> dict[str, str]:
+    """Read NSE Issue Information title/value rows when this is that payload."""
+    if not isinstance(payload, dict):
+        return {}
+    try:
+        return issue_info.issue_fields(payload)
+    except (AttributeError, TypeError, ValueError):
+        return {}
+
+
 def _safe_metadata_dicts(payload: Any) -> list[dict[str, Any]]:
     """Return root + named metadata dicts, excluding investor/category rows."""
     if not isinstance(payload, dict):
@@ -101,12 +114,20 @@ def _safe_metadata_dicts(payload: Any) -> list[dict[str, Any]]:
 def extract_lot_size(payload: Any, board: str | None = None) -> int | None:
     """Extract one unambiguous lot size from an NSE issue-detail payload.
 
-    Explicit lot fields are safe on both Mainboard and SME. Generic minimum-bid
+    Explicit lot fields, including the official Issue Information ``Bid Lot``
+    row, are safe on both Mainboard and SME. Generic minimum-bid/minimum-order
     quantity is accepted only for Mainboard, because newer SME minimum
     applications can represent multiple lots.
     """
     explicit: list[int] = []
     _collect_explicit_lots(payload, explicit)
+    issue_fields = _issue_information_fields(payload)
+    for title, value in issue_fields.items():
+        if _normal_key(title) in EXPLICIT_LOT_KEYS:
+            lot = _valid_lot(value)
+            if lot is not None:
+                explicit.append(lot)
+
     unique_explicit = sorted(set(explicit))
     if len(unique_explicit) == 1:
         return unique_explicit[0]
@@ -123,12 +144,22 @@ def extract_lot_size(payload: Any, board: str | None = None) -> int | None:
                 lot = _valid_lot(value)
                 if lot is not None:
                     fallback.append(lot)
+    for title, value in issue_fields.items():
+        if _normal_key(title) in MAINBOARD_FALLBACK_KEYS:
+            lot = _valid_lot(value)
+            if lot is not None:
+                fallback.append(lot)
+
     unique_fallback = sorted(set(fallback))
     return unique_fallback[0] if len(unique_fallback) == 1 else None
 
 
 def payload_symbol(payload: Any) -> str | None:
     """Read a top-level/safe-metadata response symbol when NSE supplies one."""
+    if isinstance(payload, dict):
+        meta = payload.get("metaInfo")
+        if isinstance(meta, dict) and meta.get("symbol") not in (None, ""):
+            return str(meta.get("symbol")).strip().upper()
     for row in _safe_metadata_dicts(payload):
         for key, value in row.items():
             if _normal_key(key) in SYMBOL_KEYS and value not in (None, ""):
@@ -151,17 +182,30 @@ def queue_targets(queue_payload: dict[str, Any]) -> set[str]:
     return targets
 
 
-def apply_lot_size(record: dict[str, Any], payload: Any, *, series: str) -> list[str]:
-    """Fill a missing lot size after strict symbol/board validation."""
+def apply_lot_size(
+    record: dict[str, Any],
+    payload: Any,
+    *,
+    series: str,
+    source_url: str = NSE_DETAIL_PAGE,
+) -> list[str]:
+    """Fill a missing lot size after strict symbol/issuer/board validation."""
     if record.get("lotSize") not in (None, ""):
         return []
     expected_symbol = str(record.get("symbol") or "").strip().upper()
     if not expected_symbol:
         return []
 
-    observed_symbol = payload_symbol(payload)
-    if observed_symbol and observed_symbol != expected_symbol:
-        return []
+    # The canonical NSE Issue Information payload carries both symbol and issuer
+    # identity. Require both when available; retain the legacy symbol-only guard
+    # only for alternate official payload shapes.
+    if isinstance(payload, dict) and isinstance(payload.get("metaInfo"), dict):
+        if not issue_info.identity_matches(record, payload):
+            return []
+    else:
+        observed_symbol = payload_symbol(payload)
+        if observed_symbol and observed_symbol != expected_symbol:
+            return []
 
     lot = extract_lot_size(payload, record.get("board"))
     if lot is None:
@@ -176,7 +220,7 @@ def apply_lot_size(record: dict[str, Any], payload: Any, *, series: str) -> list
         changed.append("minInvestment")
 
     checked_at = core.now_ist().isoformat(timespec="seconds")
-    source = core.source_stamp("NSE issue detail lot size", NSE_DETAIL_PAGE, "exchange", checked_at)
+    source = core.source_stamp("NSE issue detail lot size", source_url, "exchange", checked_at)
     sources = [s for s in (record.get("sources") or []) if isinstance(s, dict)]
     sources = [s for s in sources if str(s.get("name") or "") != source["name"]]
     sources.append(source)
@@ -190,7 +234,7 @@ def apply_lot_size(record: dict[str, Any], payload: Any, *, series: str) -> list
     nse["lotCheckedAt"] = checked_at
     observations["NSE"] = nse
     record["recentNseLotBackfill"] = {
-        "source": NSE_DETAIL_PAGE,
+        "source": source_url,
         "series": series,
         "lotSize": lot,
         "asOf": checked_at,
@@ -203,61 +247,28 @@ class NSEIssueDetailClient:
     def __init__(self):
         self.s = requests.Session()
         self.s.headers.update(core.HEADERS)
-        self.primed = False
-        self.prime_error: Exception | None = None
         self.blocked_error: Exception | None = None
 
-    def _prime(self) -> None:
-        if self.primed:
-            return
-        if self.prime_error is not None:
-            raise self.prime_error
-        try:
-            response = self.s.get(core.NSE_HOME, timeout=20)
-            response.raise_for_status()
-            self.primed = True
-        except Exception as exc:  # remember a WAF/network failure once
-            self.prime_error = exc
-            raise
-
-    def detail(self, symbol: str, board: str | None = None) -> tuple[Any, str]:
-        self._prime()
+    def detail(self, symbol: str, board: str | None = None) -> tuple[Any, str, str]:
+        # NSE's homepage commonly returns 403 on cloud runners. The existing
+        # Issue Information collector has a proven official bootstrap path that
+        # primes cookies through the symbol-specific Issue Information page and
+        # retries the API once after a 401/403. Reuse that path here.
         series_options = ["SME", "EQ"] if str(board or "").upper() == "SME" else ["EQ"]
         last_error: Exception | None = None
-        last_payload: Any = None
-        last_series = series_options[-1]
         for series in series_options:
-            last_series = series
             try:
-                response = self.s.get(
-                    f"{core.NSE_API}/ipo-detail",
-                    params={"symbol": symbol, "series": series},
-                    timeout=25,
-                    headers={"Referer": NSE_DETAIL_PAGE},
-                )
-                if response.status_code in {401, 403, 429}:
-                    error = requests.HTTPError(
-                        f"NSE issue-detail blocked with HTTP {response.status_code}",
-                        response=response,
-                    )
-                    self.blocked_error = error
-                    raise error
-                response.raise_for_status()
-                payload = response.json()
-                last_payload = payload
-                if isinstance(payload, dict) and payload:
-                    return payload, series
-                if isinstance(payload, list) and payload:
-                    return payload, series
-            except Exception as exc:  # try the alternate supported series
+                payload, page_url, _api_url = issue_info.fetch_detail(self.s, symbol, series)
+                return payload, series, page_url
+            except Exception as exc:
                 last_error = exc
-                if self.blocked_error is not None:
+                response = getattr(exc, "response", None)
+                if response is not None and getattr(response, "status_code", None) in {401, 403, 429}:
+                    self.blocked_error = exc
                     raise
-        if last_payload not in (None, {}, []):
-            return last_payload, last_series
         if last_error is not None:
             raise last_error
-        return {}, last_series
+        return {}, series_options[-1], issue_info.issue_page_url(symbol, series_options[-1])
 
 
 def backfill(payload: dict[str, Any], client: NSEIssueDetailClient, *, limit: int = 250, pause: float = 0.15) -> dict[str, Any]:
@@ -272,7 +283,7 @@ def backfill(payload: dict[str, Any], client: NSEIssueDetailClient, *, limit: in
         and row.get("symbol")
     ]
     records.sort(key=lambda row: str(row.get("openDate") or ""), reverse=True)
-    records.sort(key=lambda row: (row.get('nseLotSizeAttempt') or {}).get('checkedAt', ''))
+    records.sort(key=lambda row: (row.get("nseLotSizeAttempt") or {}).get("checkedAt", ""))
     if limit > 0:
         records = records[:limit]
 
@@ -282,11 +293,17 @@ def backfill(payload: dict[str, Any], client: NSEIssueDetailClient, *, limit: in
 
     for record in records:
         attempted += 1
-        record['nseLotSizeAttempt'] = {'checkedAt': core.now_ist().isoformat(timespec='seconds'), 'status': 'attempted', 'sourceUrl': NSE_DETAIL_PAGE, 'symbol': record.get('symbol')}
+        record["nseLotSizeAttempt"] = {
+            "checkedAt": core.now_ist().isoformat(timespec="seconds"),
+            "status": "attempted",
+            "sourceUrl": NSE_DETAIL_PAGE,
+            "symbol": record.get("symbol"),
+        }
         try:
-            detail, series = client.detail(str(record.get("symbol")), record.get("board"))
-            changed = apply_lot_size(record, detail, series=series)
-            record['nseLotSizeAttempt']['status'] = 'updated' if changed else 'no_usable_lot_size'
+            detail, series, page_url = client.detail(str(record.get("symbol")), record.get("board"))
+            record["nseLotSizeAttempt"]["sourceUrl"] = page_url
+            changed = apply_lot_size(record, detail, series=series, source_url=page_url)
+            record["nseLotSizeAttempt"]["status"] = "updated" if changed else "no_usable_lot_size"
             if changed:
                 updated += 1
                 updated_ids.append(str(record.get("id") or ""))
@@ -295,11 +312,11 @@ def backfill(payload: dict[str, Any], client: NSEIssueDetailClient, *, limit: in
                     f"lotSize={record.get('lotSize')} series={series}"
                 )
         except Exception as exc:  # one bad/blocked symbol must not corrupt data
-            record['nseLotSizeAttempt'].update(status='source_blocked', error=str(exc)[:250])
+            record["nseLotSizeAttempt"].update(status="source_blocked", error=str(exc)[:250])
             failed += 1
             errors.append(f"{record.get('company')}: {exc}")
             print(f"NSE lot backfill failed {record.get('company')}: {exc}")
-            if client.blocked_error is not None or client.prime_error is not None:
+            if client.blocked_error is not None:
                 blocked = len(records) - attempted + 1
                 print("NSE lot backfill stopped early after persistent NSE access failure")
                 break
