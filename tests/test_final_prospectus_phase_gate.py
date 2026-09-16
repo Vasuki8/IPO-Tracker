@@ -46,6 +46,27 @@ class FinalProspectusPhaseGateTests(unittest.TestCase):
             "validation": {"status": "single-source"},
         }
 
+    def _pending_record(self, *, close_date="2026-04-03", listing_date=None, with_final=False):
+        record = self._complete_recent_record()
+        record["closeDate"] = close_date
+        record["listingDate"] = listing_date
+        record["documents"] = (
+            [
+                {
+                    "type": "PROSPECTUS",
+                    "title": "Final Prospectus",
+                    "url": "https://www.sebi.gov.in/files/final.pdf",
+                }
+            ]
+            if with_final
+            else []
+        )
+        record["staticSourcePolicy"] = {
+            "policy": "final-prospectus-only",
+            "pendingRevalidationFields": ["lotSize", "financials"],
+        }
+        return record
+
     def test_populated_legacy_static_field_enters_queue_until_revalidated(self):
         record = self._complete_recent_record()
         record["staticSourcePolicy"] = {
@@ -56,6 +77,33 @@ class FinalProspectusPhaseGateTests(unittest.TestCase):
         self.assertIsNotNone(entry)
         self.assertIn("provenance.finalProspectus.lotSize", entry["missingFields"])
         self.assertIn("provenance.finalProspectus.financials", entry["missingFields"])
+
+    def test_open_or_upcoming_issue_is_not_blocked_on_unfiled_final_prospectus(self):
+        record = self._pending_record(close_date="2026-09-20")
+        rules = queue_builder.expected_rules(record, date(2026, 9, 16))
+        names = [name for name, _predicate in rules]
+        self.assertFalse(any(name.startswith("provenance.finalProspectus.") for name in names))
+        self.assertFalse(queue_builder.final_prospectus_expected(record, date(2026, 9, 16)))
+
+    def test_recently_closed_issue_gets_bounded_final_prospectus_grace_period(self):
+        record = self._pending_record(close_date="2026-09-15")
+        rules = queue_builder.expected_rules(record, date(2026, 9, 16))
+        names = [name for name, _predicate in rules]
+        self.assertFalse(any(name.startswith("provenance.finalProspectus.") for name in names))
+
+        mature_rules = queue_builder.expected_rules(record, date(2026, 9, 23))
+        mature_names = [name for name, _predicate in mature_rules]
+        self.assertIn("provenance.finalProspectus.lotSize", mature_names)
+        self.assertIn("provenance.finalProspectus.financials", mature_names)
+
+    def test_listing_or_attached_final_document_starts_revalidation_immediately(self):
+        listed = self._pending_record(close_date="2026-09-15", listing_date="2026-09-16")
+        self.assertTrue(queue_builder.final_prospectus_expected(listed, date(2026, 9, 16)))
+
+        attached = self._pending_record(close_date="2026-09-20", with_final=True)
+        self.assertTrue(queue_builder.final_prospectus_expected(attached, date(2026, 9, 16)))
+        names = [name for name, _predicate in queue_builder.expected_rules(attached, date(2026, 9, 16))]
+        self.assertIn("provenance.finalProspectus.lotSize", names)
 
     def test_verified_static_field_does_not_create_revalidation_gap(self):
         record = self._complete_recent_record()
