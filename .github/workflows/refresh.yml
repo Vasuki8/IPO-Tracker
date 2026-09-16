@@ -61,7 +61,7 @@ jobs:
         run: |
           set -euo pipefail
           case "$MODE" in
-            core|filings|maintenance|repair)
+            core|filings|maintenance|repair|p4)
               sudo apt-get update -qq
               sudo apt-get install -y poppler-utils
               ;;
@@ -80,6 +80,25 @@ jobs:
         env:
           MODE: ${{ steps.collection-mode.outputs.value }}
         run: uv run --frozen python scripts/run_pipeline.py --mode "$MODE"
+      - name: Repair recent P4 offer-document residuals
+        env:
+          MODE: ${{ steps.collection-mode.outputs.value }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          case "$MODE" in
+            maintenance|repair|p4)
+              uv run --frozen python scripts/run_p4_offer_residuals.py --limit 30 --workers 4
+              uv run --frozen python scripts/record_integrity.py
+              uv run --frozen python scripts/audit_data_completeness.py
+              uv run --frozen python scripts/build_missing_queue.py
+              uv run --frozen python scripts/validate_data.py --strict
+              uv run --frozen python scripts/phase_status.py
+              ;;
+            *)
+              echo "Skipping P4 offer residual repair for $MODE mode"
+              ;;
+          esac
       - name: Prepare collected snapshot
         run: cp data/ipos.json /tmp/ipo-bundle/proposed.json
       - uses: actions/upload-artifact@v4.6.2
