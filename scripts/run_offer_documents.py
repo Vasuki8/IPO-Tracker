@@ -169,14 +169,21 @@ def atomic_save(payload):
     temporary.replace(DATA_FILE)
 
 
-def _load_queue_priorities() -> dict[str, int]:
+def _priority_key(record: dict) -> tuple[str, str]:
+    return (
+        str(record.get("id") or ""),
+        core.canonical_company(str(record.get("company") or "")),
+    )
+
+
+def _load_queue_priorities() -> dict[tuple[str, str], int]:
     if not QUEUE_FILE.exists():
         return {}
     try:
         queue = json.loads(QUEUE_FILE.read_text(encoding="utf-8"))
     except (OSError, ValueError, json.JSONDecodeError):
         return {}
-    priorities: dict[str, int] = {}
+    priorities: dict[tuple[str, str], int] = {}
     for row in queue.get("queue") or []:
         if not isinstance(row, dict) or not row.get("id"):
             continue
@@ -184,11 +191,10 @@ def _load_queue_priorities() -> dict[str, int]:
             priority = int(row.get("priority"))
         except (TypeError, ValueError):
             continue
-        record_id = str(row["id"])
-        # Duplicate IDs can exist for withdrawal/special-event aliases. Use the
-        # highest operational priority for the shared id; identity validation
-        # still occurs at document extraction time.
-        priorities[record_id] = min(priority, priorities.get(record_id, priority))
+        key = _priority_key(row)
+        if not key[0] or not key[1]:
+            continue
+        priorities[key] = min(priority, priorities.get(key, priority))
     return priorities
 
 
@@ -206,15 +212,17 @@ def _effective_priority_max(requested: int | None) -> int:
     return 4
 
 
-def _priority_allowed(record, priorities: dict[str, int], priority_max: int) -> bool:
+def _priority_allowed(
+    record: dict,
+    priorities: dict[tuple[str, str], int],
+    priority_max: int,
+) -> bool:
     # Once P5 is explicitly enabled, parser-version migrations may legitimately
     # revisit any final document, even if the record is no longer in the queue.
     if priority_max >= 5:
         return True
-    try:
-        return priorities.get(str(record.get("id") or ""), 99) <= priority_max
-    except (TypeError, ValueError):
-        return False
+    priority = priorities.get(_priority_key(record))
+    return priority is not None and priority <= priority_max
 
 
 def run(
@@ -261,7 +269,7 @@ def run(
         repair = record.get("documentRepair") or {}
         candidates.append(
             (
-                priorities.get(str(record.get("id") or ""), 99),
+                priorities.get(_priority_key(record), 99),
                 repair.get("lastAttemptAt", ""),
                 core.canonical_company(record.get("company", "")),
                 record,
