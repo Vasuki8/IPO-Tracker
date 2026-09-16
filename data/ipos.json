@@ -1,25 +1,25 @@
 {
   "meta": {
     "documentRepairHealth": {
-      "parserVersion": 22,
       "attempted": 0,
-      "remaining": 0,
       "changedFields": 0,
-      "failed": 0,
       "checkedAt": "2026-09-16T10:06:21+05:30",
-      "outcomes": []
+      "failed": 0,
+      "outcomes": [],
+      "parserVersion": 22,
+      "remaining": 0
     },
     "errors": [],
     "finalIssuePriceHealth": {
-      "updated": 0,
       "candidates": 66,
+      "checkedAt": "2026-09-16T04:36:28.266049+00:00",
+      "errors": [],
+      "failed": 0,
       "reportRows": 586,
       "reports": 36,
-      "failed": 0,
-      "errors": [],
-      "checkedAt": "2026-09-16T04:36:28.266049+00:00"
+      "updated": 0
     },
-    "generatedAt": "2026-09-16T04:41:08.836222+00:00",
+    "generatedAt": "2026-09-16T04:44:14.846866+00:00",
     "historyStart": "2024-09-13",
     "initialSourceRepair": {
       "records": 1354,
@@ -44,15 +44,15 @@
       "sourceReviewRecords": 60
     },
     "nseOfferFilingsHealth": {
-      "registerRows": 2540,
-      "candidates": 0,
       "attempted": 0,
-      "updated": 0,
+      "candidates": 0,
+      "checkedAt": "2026-09-16T04:36:20+00:00",
       "documentsDiscovered": 0,
-      "failed": 0,
       "errors": [],
+      "failed": 0,
       "outcomes": [],
-      "checkedAt": "2026-09-16T04:36:20+00:00"
+      "registerRows": 2540,
+      "updated": 0
     },
     "offerDocumentHealth": {
       "ok": false,
@@ -68,16 +68,11 @@
       ]
     },
     "p4OfferResidualHealth": {
-      "parserVersion": 3,
-      "mainParserVersion": 22,
-      "targets": 35,
-      "p4QueueTargets": 26,
-      "p4QueueTargetsAttempted": 0,
       "attempted": 30,
-      "remaining": 5,
       "changedFields": 47,
-      "failed": 3,
       "checkedAt": "2026-09-16T10:10:49+05:30",
+      "failed": 12,
+      "mainParserVersion": 22,
       "outcomes": [
         {
           "id": "aastha",
@@ -345,72 +340,21 @@
           ],
           "p4QueueTarget": false
         }
-      ]
+      ],
+      "p4QueueTargets": 26,
+      "p4QueueTargetsAttempted": 0,
+      "parserVersion": 3,
+      "remaining": 5,
+      "targets": 35
     },
     "pipelineStages": {
-      "record_integrity.py": {
-        "stage": "record_integrity.py",
-        "status": "no_change",
-        "exitCode": 0,
-        "durationSeconds": 0.18,
-        "checkedAt": "2026-09-16T04:36:29.361926+00:00",
-        "diagnostics": "{\"integrityRepairs\": 0}\n"
-      },
       "apply_corrections.py": {
-        "stage": "apply_corrections.py",
-        "status": "no_change",
-        "exitCode": 0,
-        "durationSeconds": 0.21,
         "checkedAt": "2026-09-16T04:35:01.544296+00:00",
-        "diagnostics": "ed since source review; preserving this record and its matching provenance\"}, {\"id\": \"cleanmax\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"aye\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"armour\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"objectsOfIssue\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"eximroutes\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"objectsOfIssue\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"torrent-gas-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"national-stock-exchange-of-india-limited\", \"reason\": \"Issuer record no longer exists\"}, {\"id\": \"nopaperforms-solutions-limited\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"m-k-c-agro-fresh-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}]}\n"
-      },
-      "run_update_v2.py": {
-        "stage": "run_update_v2.py",
-        "status": "updated",
+        "diagnostics": "ed since source review; preserving this record and its matching provenance\"}, {\"id\": \"cleanmax\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"aye\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"armour\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"objectsOfIssue\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"eximroutes\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"objectsOfIssue\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"torrent-gas-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"national-stock-exchange-of-india-limited\", \"reason\": \"Issuer record no longer exists\"}, {\"id\": \"nopaperforms-solutions-limited\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"m-k-c-agro-fresh-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}]}\n",
+        "durationSeconds": 0.21,
         "exitCode": 0,
-        "durationSeconds": 39.2,
-        "checkedAt": "2026-09-16T00:25:26.412590+00:00",
-        "diagnostics": "BSE current source failed https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2: HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f5bb8858290>, 'Connection to www.bsesme.com timed out. (connect timeout=30)'))\nBSE current source https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p: 0 IPO rows\nBSE current source https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p: 10 IPO rows\nWrote 1357 records to /home/runner/work/IPO-Tracker/IPO-Tracker/data/ipos.json\n"
-      },
-      "normalize_source_health.py": {
-        "stage": "normalize_source_health.py",
-        "status": "no_change",
-        "exitCode": 0,
-        "durationSeconds": 0.19,
-        "checkedAt": "2026-09-16T00:25:26.884397+00:00",
-        "diagnostics": "NSE-history health: status=checked records=0\n"
-      },
-      "enrich_sebi_priority_registers_v2.py": {
-        "stage": "enrich_sebi_priority_registers_v2.py",
-        "status": "no_change",
-        "exitCode": 0,
-        "durationSeconds": 5.85,
-        "checkedAt": "2026-09-16T00:25:33.572250+00:00",
-        "diagnostics": "SEBI priority registers v2: first_page=0 searched=3 search_matched=0 search_links=0 failed=0\n"
-      },
-      "enrich_sebi_document_links.py": {
-        "stage": "enrich_sebi_document_links.py",
-        "status": "no_change",
-        "exitCode": 0,
-        "durationSeconds": 0.32,
-        "checkedAt": "2026-09-16T00:25:33.932747+00:00",
-        "diagnostics": "SEBI document links: records=0 attempted=0 resolved=0 seeded=0 added=0 failed=0\n"
-      },
-      "enrich_recent_offer_terms.py": {
-        "stage": "enrich_recent_offer_terms.py",
-        "status": "no_change",
-        "exitCode": 0,
-        "durationSeconds": 0.37,
-        "checkedAt": "2026-09-16T00:25:34.343198+00:00",
-        "diagnostics": "SEBI recent offer terms: targets=1 attempted=0 extracted=0 updated=0 failed=0 skipped_lot_only_rhp=0 fields={}\n"
-      },
-      "run_offer_documents.py": {
-        "stage": "run_offer_documents.py",
-        "status": "no_change",
-        "exitCode": 0,
-        "durationSeconds": 0.38,
-        "checkedAt": "2026-09-16T04:36:21.430592+00:00",
-        "diagnostics": "{\"parserVersion\": 22, \"attempted\": 0, \"remaining\": 0, \"changedFields\": 0, \"failed\": 0, \"checkedAt\": \"2026-09-16T10:06:21+05:30\"}\n"
+        "stage": "apply_corrections.py",
+        "status": "no_change"
       },
       "apply_verified_filing_offer_fields.py": {
         "stage": "apply_verified_filing_offer_fields.py",
@@ -420,21 +364,13 @@
         "checkedAt": "2026-09-16T00:25:35.157411+00:00",
         "diagnostics": "Verified filing offer fields: missing record national-stock-exchange-of-india-limited\nVerified filing offer fields: entries=4, updated=0, fields={}\n"
       },
-      "backfill_recent_sebi_other_docs_lot_sizes.py": {
-        "stage": "backfill_recent_sebi_other_docs_lot_sizes.py",
-        "status": "source_blocked",
+      "apply_verified_recent_issue_terms.py": {
+        "checkedAt": "2026-09-16T04:35:01.855958+00:00",
+        "diagnostics": "Verified issue terms: entries=15, updated=0, fields={}\n",
+        "durationSeconds": 0.27,
         "exitCode": 0,
-        "durationSeconds": 144.03,
-        "checkedAt": "2026-09-14T05:18:02.329039+00:00",
-        "diagnostics": "{\n  \"targets\": 113,\n  \"selected\": 113,\n  \"matchedPages\": 3,\n  \"discoveredDocuments\": 3,\n  \"attemptedDocuments\": 3,\n  \"updated\": 0,\n  \"failed\": 2,\n  \"updatedIds\": [],\n  \"errors\": [\n    \"Dhara Rail Projects Limited DHARA RAIL PROJECTS LIMITED: ('Connection broken: IncompleteRead(6974255 bytes read, 4066020 more expected)', IncompleteRead(6974255 bytes read, 4066020 more expected))\",\n    \"Jayesh Logistics Limited Jayesh Logistics Limited: ('Connection broken: IncompleteRead(5439423 bytes read, 4584343 more expected)', IncompleteRead(5439423 bytes read, 4584343 more expected))\"\n  ],\n  \"asOf\": \"2026-09-14T10:48:02+05:30\"\n}\n"
-      },
-      "backfill_recent_nse_lot_sizes.py": {
-        "stage": "backfill_recent_nse_lot_sizes.py",
-        "status": "no_change",
-        "exitCode": 0,
-        "durationSeconds": 127.9,
-        "checkedAt": "2026-09-14T05:20:10.342798+00:00",
-        "diagnostics": "NSE recent lot backfill: targets=113 selected=25 attempted=25 updated=0 failed=0 blockedRemaining=0\n"
+        "stage": "apply_verified_recent_issue_terms.py",
+        "status": "no_change"
       },
       "backfill_p4_lot_sizes.py": {
         "stage": "backfill_p4_lot_sizes.py",
@@ -444,48 +380,112 @@
         "checkedAt": "2026-09-14T05:20:21.946187+00:00",
         "diagnostics": "BSE historical detail unavailable: BSE historical archive unavailable on official hosts: https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P: 403 Client Error: Forbidden for url: https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P; https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P: 403 Client Error: Forbidden for url: https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P\n"
       },
-      "run_priority_subscriptions_v3.py": {
-        "stage": "run_priority_subscriptions_v3.py",
-        "status": "updated",
-        "exitCode": 0,
-        "durationSeconds": 77.16,
-        "checkedAt": "2026-09-16T04:36:19.057879+00:00",
-        "diagnostics": "Priority BSE issue index: 25 links across 2 healthy pages\nIPO Premium subscription (secondary): 9 parseable issues\nPriority subscription CENTURY BUSINESS MEDIA LIMITED [IPO Premium secondary]: QIB=3.51 NII=0.97 Retail=0.73 Total=1.57\nPriority subscription INJECTO POLYMERS LIMITED [IPO Premium secondary]: QIB=1.02 NII=0.8 Retail=0.86 Total=0.86\nPriority subscription Manika Plastech Limited [BSE]: QIB=0.8 NII=11.4 Retail=12.19 Total=8.83\nPriority subscription Shakti Polytarp Limited [IPO Premium secondary]: QIB=0.0 NII=1.53 Retail=0.12 Total=0.65\nPriority subscription Vama Wovenfab Limited [IPO Premium secondary]: QIB=0.0 NII=0.01 Retail=0.02 Total=0.01\nPriority subscription Hero Motors Limited [BSE]: QIB=0.0 NII=0.03 Retail=0.03 Total=0.02\nPriority subscription Jindal Supreme (India) Limited [BSE]: QIB=0.0 NII=0.24 Retail=0.14 Total=0.12\nPriority subscription SS Retail Limited [BSE]: QIB=0.0 NII=0.03 Retail=0.02 Total=0.01\nPriority subscriptions v3: attempted=8 updated=8 snapshots_added=8 failed=0 nse=0 bse=4 secondary=4 secondary_sources={'IPO Premium subscription (secondary)': 4}\n"
-      },
-      "collect_nse_offer_filings.py": {
-        "stage": "collect_nse_offer_filings.py",
+      "backfill_recent_nse_lot_sizes.py": {
+        "stage": "backfill_recent_nse_lot_sizes.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 1.91,
-        "checkedAt": "2026-09-16T04:36:21.011283+00:00",
-        "diagnostics": "{\"registerRows\": 2540, \"candidates\": 0, \"attempted\": 0, \"updated\": 0, \"documentsDiscovered\": 0, \"failed\": 0, \"errors\": [], \"outcomes\": [], \"checkedAt\": \"2026-09-16T04:36:20+00:00\"}\n"
+        "durationSeconds": 127.9,
+        "checkedAt": "2026-09-14T05:20:10.342798+00:00",
+        "diagnostics": "NSE recent lot backfill: targets=113 selected=25 attempted=25 updated=0 failed=0 blockedRemaining=0\n"
+      },
+      "backfill_recent_sebi_other_docs_lot_sizes.py": {
+        "stage": "backfill_recent_sebi_other_docs_lot_sizes.py",
+        "status": "source_blocked",
+        "exitCode": 0,
+        "durationSeconds": 144.03,
+        "checkedAt": "2026-09-14T05:18:02.329039+00:00",
+        "diagnostics": "{\n  \"targets\": 113,\n  \"selected\": 113,\n  \"matchedPages\": 3,\n  \"discoveredDocuments\": 3,\n  \"attemptedDocuments\": 3,\n  \"updated\": 0,\n  \"failed\": 2,\n  \"updatedIds\": [],\n  \"errors\": [\n    \"Dhara Rail Projects Limited DHARA RAIL PROJECTS LIMITED: ('Connection broken: IncompleteRead(6974255 bytes read, 4066020 more expected)', IncompleteRead(6974255 bytes read, 4066020 more expected))\",\n    \"Jayesh Logistics Limited Jayesh Logistics Limited: ('Connection broken: IncompleteRead(5439423 bytes read, 4584343 more expected)', IncompleteRead(5439423 bytes read, 4584343 more expected))\"\n  ],\n  \"asOf\": \"2026-09-14T10:48:02+05:30\"\n}\n"
       },
       "collect_final_issue_prices.py": {
-        "stage": "collect_final_issue_prices.py",
-        "status": "no_change",
-        "exitCode": 0,
-        "durationSeconds": 6.97,
         "checkedAt": "2026-09-16T04:36:28.439973+00:00",
-        "diagnostics": "{\"updated\": 0, \"candidates\": 66, \"reportRows\": 586, \"reports\": 36, \"failed\": 0, \"errors\": [], \"checkedAt\": \"2026-09-16T04:36:28.266049+00:00\"}\n"
+        "diagnostics": "{\"updated\": 0, \"candidates\": 66, \"reportRows\": 586, \"reports\": 36, \"failed\": 0, \"errors\": [], \"checkedAt\": \"2026-09-16T04:36:28.266049+00:00\"}\n",
+        "durationSeconds": 6.97,
+        "exitCode": 0,
+        "stage": "collect_final_issue_prices.py",
+        "status": "no_change"
       },
-      "apply_verified_recent_issue_terms.py": {
-        "stage": "apply_verified_recent_issue_terms.py",
+      "collect_nse_offer_filings.py": {
+        "checkedAt": "2026-09-16T04:36:21.011283+00:00",
+        "diagnostics": "{\"registerRows\": 2540, \"candidates\": 0, \"attempted\": 0, \"updated\": 0, \"documentsDiscovered\": 0, \"failed\": 0, \"errors\": [], \"outcomes\": [], \"checkedAt\": \"2026-09-16T04:36:20+00:00\"}\n",
+        "durationSeconds": 1.91,
+        "exitCode": 0,
+        "stage": "collect_nse_offer_filings.py",
+        "status": "no_change"
+      },
+      "enrich_recent_offer_terms.py": {
+        "stage": "enrich_recent_offer_terms.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.27,
-        "checkedAt": "2026-09-16T04:35:01.855958+00:00",
-        "diagnostics": "Verified issue terms: entries=15, updated=0, fields={}\n"
+        "durationSeconds": 0.37,
+        "checkedAt": "2026-09-16T00:25:34.343198+00:00",
+        "diagnostics": "SEBI recent offer terms: targets=1 attempted=0 extracted=0 updated=0 failed=0 skipped_lot_only_rhp=0 fields={}\n"
+      },
+      "enrich_sebi_document_links.py": {
+        "stage": "enrich_sebi_document_links.py",
+        "status": "no_change",
+        "exitCode": 0,
+        "durationSeconds": 0.32,
+        "checkedAt": "2026-09-16T00:25:33.932747+00:00",
+        "diagnostics": "SEBI document links: records=0 attempted=0 resolved=0 seeded=0 added=0 failed=0\n"
+      },
+      "enrich_sebi_priority_registers_v2.py": {
+        "stage": "enrich_sebi_priority_registers_v2.py",
+        "status": "no_change",
+        "exitCode": 0,
+        "durationSeconds": 5.85,
+        "checkedAt": "2026-09-16T00:25:33.572250+00:00",
+        "diagnostics": "SEBI priority registers v2: first_page=0 searched=3 search_matched=0 search_links=0 failed=0\n"
+      },
+      "normalize_source_health.py": {
+        "stage": "normalize_source_health.py",
+        "status": "no_change",
+        "exitCode": 0,
+        "durationSeconds": 0.19,
+        "checkedAt": "2026-09-16T00:25:26.884397+00:00",
+        "diagnostics": "NSE-history health: status=checked records=0\n"
+      },
+      "record_integrity.py": {
+        "checkedAt": "2026-09-16T04:36:29.361926+00:00",
+        "diagnostics": "{\"integrityRepairs\": 0}\n",
+        "durationSeconds": 0.18,
+        "exitCode": 0,
+        "stage": "record_integrity.py",
+        "status": "no_change"
+      },
+      "run_offer_documents.py": {
+        "checkedAt": "2026-09-16T04:36:21.430592+00:00",
+        "diagnostics": "{\"parserVersion\": 22, \"attempted\": 0, \"remaining\": 0, \"changedFields\": 0, \"failed\": 0, \"checkedAt\": \"2026-09-16T10:06:21+05:30\"}\n",
+        "durationSeconds": 0.38,
+        "exitCode": 0,
+        "stage": "run_offer_documents.py",
+        "status": "no_change"
+      },
+      "run_priority_subscriptions_v3.py": {
+        "checkedAt": "2026-09-16T04:36:19.057879+00:00",
+        "diagnostics": "Priority BSE issue index: 25 links across 2 healthy pages\nIPO Premium subscription (secondary): 9 parseable issues\nPriority subscription CENTURY BUSINESS MEDIA LIMITED [IPO Premium secondary]: QIB=3.51 NII=0.97 Retail=0.73 Total=1.57\nPriority subscription INJECTO POLYMERS LIMITED [IPO Premium secondary]: QIB=1.02 NII=0.8 Retail=0.86 Total=0.86\nPriority subscription Manika Plastech Limited [BSE]: QIB=0.8 NII=11.4 Retail=12.19 Total=8.83\nPriority subscription Shakti Polytarp Limited [IPO Premium secondary]: QIB=0.0 NII=1.53 Retail=0.12 Total=0.65\nPriority subscription Vama Wovenfab Limited [IPO Premium secondary]: QIB=0.0 NII=0.01 Retail=0.02 Total=0.01\nPriority subscription Hero Motors Limited [BSE]: QIB=0.0 NII=0.03 Retail=0.03 Total=0.02\nPriority subscription Jindal Supreme (India) Limited [BSE]: QIB=0.0 NII=0.24 Retail=0.14 Total=0.12\nPriority subscription SS Retail Limited [BSE]: QIB=0.0 NII=0.03 Retail=0.02 Total=0.01\nPriority subscriptions v3: attempted=8 updated=8 snapshots_added=8 failed=0 nse=0 bse=4 secondary=4 secondary_sources={'IPO Premium subscription (secondary)': 4}\n",
+        "durationSeconds": 77.16,
+        "exitCode": 0,
+        "stage": "run_priority_subscriptions_v3.py",
+        "status": "updated"
+      },
+      "run_update_v2.py": {
+        "stage": "run_update_v2.py",
+        "status": "updated",
+        "exitCode": 0,
+        "durationSeconds": 39.2,
+        "checkedAt": "2026-09-16T00:25:26.412590+00:00",
+        "diagnostics": "BSE current source failed https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2: HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f5bb8858290>, 'Connection to www.bsesme.com timed out. (connect timeout=30)'))\nBSE current source https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p: 0 IPO rows\nBSE current source https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p: 10 IPO rows\nWrote 1357 records to /home/runner/work/IPO-Tracker/IPO-Tracker/data/ipos.json\n"
       }
     },
     "publication": {
-      "runId": "35056130629",
-      "collectorCommit": "611e148d772cd3107d8180818ca55efbc91400c1",
-      "status": "published",
-      "pendingConflictCount": 0
+      "runId": "35056273505",
+      "collectorCommit": "000e1cf194032ea4353b15474a221bc684f0121b",
+      "status": "published_with_pending_conflicts",
+      "pendingConflictCount": 81
     },
     "recordCount": 1357,
     "recordIntegrity": {
-      "checkedAt": "2026-09-16T04:41:09.107702+00:00",
+      "checkedAt": "2026-09-16T04:44:15.104928+00:00",
       "changedFields": 0
     },
     "reviewedCorrectionStatus": {
@@ -1283,25 +1283,36 @@
     },
     "seed": false,
     "sourceHealth": {
-      "NSE-live": {
-        "ok": true,
-        "records": 13
-      },
-      "NSE-history": {
-        "ok": true,
-        "records": 0,
-        "status": "checked",
-        "note": "checked · 0 new rows"
-      },
-      "SEBI": {
-        "ok": true,
-        "records": 21,
-        "companiesAttached": 15
-      },
       "BSE": {
         "ok": true,
         "records": 10,
         "companiesAttached": 10
+      },
+      "BSE-P4-issue-terms": {
+        "ok": true,
+        "targets": 37,
+        "detailAttempted": 0,
+        "detailUpdated": 0,
+        "pdfAttempted": 0,
+        "pdfUpdated": 0,
+        "failed": 0,
+        "fields": {},
+        "indexHealth": {
+          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+            "ok": true,
+            "records": 0
+          },
+          "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+            "ok": true,
+            "records": 12
+          },
+          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P": {
+            "ok": true,
+            "records": 0
+          }
+        },
+        "asOf": "2026-09-14T03:41:10+05:30",
+        "errors": []
       },
       "BSE-detail": {
         "ok": true,
@@ -1340,42 +1351,26 @@
         ],
         "error": "BSE historical archive unavailable on official hosts: https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P: historical page did not contain its ASP.NET form; https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P: historical issue-type selector was not found"
       },
-      "IPO-subscription": {
-        "ok": true,
-        "degraded": true,
-        "records": 8,
-        "attempted": 8,
-        "snapshotsAdded": 8,
-        "failed": 0,
-        "nseRecords": 0,
-        "bseFallbackRecords": 4,
-        "secondaryFallbackRecords": 4,
-        "secondarySources": {
-          "IPO Premium subscription (secondary)": 4
-        },
-        "asOf": "2026-09-16T10:06:18+05:30",
-        "errors": []
-      },
       "Critical-backfill": {
         "ok": true,
         "records": 0,
         "asOf": "2026-09-14T11:57:31+05:30"
       },
-      "SEBI-document-links": {
+      "IPO-subscription": {
+        "asOf": "2026-09-16T10:06:18+05:30",
+        "attempted": 8,
+        "bseFallbackRecords": 4,
+        "degraded": true,
+        "errors": [],
+        "failed": 0,
+        "nseRecords": 0,
         "ok": true,
-        "records": 0,
-        "attemptedRecords": 0,
-        "attempted": 0,
-        "asOf": "2026-09-16T05:55:33+05:30",
-        "errors": []
-      },
-      "Offer-docs": {
-        "ok": false,
-        "records": 11,
-        "attempted": 12,
-        "failed": 1,
-        "parserVersion": 13,
-        "schedulerVersion": 1
+        "records": 8,
+        "secondaryFallbackRecords": 4,
+        "secondarySources": {
+          "IPO Premium subscription (secondary)": 4
+        },
+        "snapshotsAdded": 8
       },
       "Issuer-offer-docs": {
         "ok": true,
@@ -1387,77 +1382,11 @@
         "asOf": "2026-09-14T03:33:11+05:30",
         "errors": []
       },
-      "NSE-primary-market-reports": {
+      "NSE-history": {
         "ok": true,
-        "indexUrl": "https://www.nseindia.com/static/regulations/segment-wise-historical-reports-capital-primary-market",
-        "reportsDiscovered": 30,
-        "reportRows": 534,
-        "candidates": 76,
-        "matched": 0,
-        "updated": 0,
-        "historyDays": 730,
-        "fieldsFilled": {},
-        "errors": [],
-        "asOf": "2026-09-13T23:20:35+05:30"
-      },
-      "verified-upcoming-lot-sizes": {
-        "ok": true,
-        "entries": 2,
-        "updated": 2,
-        "checkedAt": "2026-09-13T08:37:57+05:30"
-      },
-      "SEBI-priority-registers": {
-        "ok": true,
-        "parserVersion": 2,
-        "priorityMax": 3,
-        "firstPageMatched": 0,
-        "firstPageLinks": 0,
-        "searchedRecords": 3,
-        "searchMatchedRecords": 0,
-        "searchLinksAdded": 0,
-        "failed": 0,
-        "asOf": "2026-09-16T05:55:33+05:30",
-        "errors": []
-      },
-      "SEBI-offer-terms": {
-        "ok": true,
-        "priorityMax": 3,
-        "targets": 1,
-        "attempted": 0,
-        "extracted": 0,
-        "updated": 0,
-        "failed": 0,
-        "skippedLotOnlyRhp": 0,
-        "fields": {},
-        "asOf": "2026-09-16T05:55:34+05:30",
-        "errors": []
-      },
-      "verified-lot-sizes": {
-        "ok": true,
-        "entries": 36,
-        "updated": 0,
-        "checkedAt": "2026-09-14T03:33:10+05:30"
-      },
-      "verified-recent-issue-terms": {
-        "ok": true,
-        "entries": 15,
-        "updated": 0,
-        "fields": {},
-        "checkedAt": "2026-09-16T10:11:09+05:30"
-      },
-      "verified-recent-offer-fields": {
-        "ok": true,
-        "entries": 20,
-        "updated": 0,
-        "fields": {},
-        "checkedAt": "2026-09-14T03:33:11+05:30"
-      },
-      "verified-filing-offer-fields": {
-        "ok": true,
-        "entries": 4,
-        "updated": 0,
-        "fields": {},
-        "checkedAt": "2026-09-16T05:55:34+05:30"
+        "records": 0,
+        "status": "checked",
+        "note": "checked · 0 new rows"
       },
       "NSE-history-IPO-filter": {
         "ok": true,
@@ -1479,6 +1408,81 @@
         "historyDays": 730,
         "retryDays": 7,
         "errors": []
+      },
+      "NSE-issue-info-terms": {
+        "ok": true,
+        "candidates": 42,
+        "attempted": 42,
+        "updated": 0,
+        "identityMismatches": 8,
+        "noTerms": 25,
+        "noChange": 9,
+        "failed": 0,
+        "historyDays": 730,
+        "retryDays": 0,
+        "errors": []
+      },
+      "NSE-live": {
+        "ok": true,
+        "records": 13
+      },
+      "NSE-lot-size-backfill": {
+        "ok": true,
+        "targets": 42,
+        "selected": 25,
+        "attempted": 25,
+        "updated": 24,
+        "failed": 0,
+        "blockedRemaining": 0,
+        "updatedIds": [
+          "happy",
+          "avience",
+          "utkal",
+          "bmll",
+          "rfbl",
+          "vividel",
+          "striders",
+          "yaap",
+          "mobilise",
+          "krmayurved",
+          "victoryev",
+          "e2erail",
+          "dhararail",
+          "shyamdhani",
+          "epwindia",
+          "shrikanha",
+          "neochem",
+          "speb",
+          "curis",
+          "munish",
+          "greenleaf",
+          "vijaypd",
+          "mpel",
+          "primecab"
+        ],
+        "errors": [],
+        "asOf": "2026-09-16T10:11:00+05:30"
+      },
+      "NSE-primary-market-reports": {
+        "ok": true,
+        "indexUrl": "https://www.nseindia.com/static/regulations/segment-wise-historical-reports-capital-primary-market",
+        "reportsDiscovered": 30,
+        "reportRows": 534,
+        "candidates": 76,
+        "matched": 0,
+        "updated": 0,
+        "historyDays": 730,
+        "fieldsFilled": {},
+        "errors": [],
+        "asOf": "2026-09-13T23:20:35+05:30"
+      },
+      "Offer-docs": {
+        "ok": false,
+        "records": 11,
+        "attempted": 12,
+        "failed": 1,
+        "parserVersion": 13,
+        "schedulerVersion": 1
       },
       "P4-legacy-debt-symbol-cleanup": {
         "ok": true,
@@ -1544,19 +1548,6 @@
         ],
         "checkedOn": "2026-09-13"
       },
-      "NSE-issue-info-terms": {
-        "ok": true,
-        "candidates": 42,
-        "attempted": 42,
-        "updated": 0,
-        "identityMismatches": 8,
-        "noTerms": 25,
-        "noChange": 9,
-        "failed": 0,
-        "historyDays": 730,
-        "retryDays": 0,
-        "errors": []
-      },
       "P4-verified-non-IPO-cleanup": {
         "ok": true,
         "historyDays": 730,
@@ -1602,6 +1593,19 @@
         "missingOrAmbiguous": 3,
         "checkedAt": "2026-09-14T03:33:10+05:30"
       },
+      "SEBI": {
+        "ok": true,
+        "records": 21,
+        "companiesAttached": 15
+      },
+      "SEBI-document-links": {
+        "ok": true,
+        "records": 0,
+        "attemptedRecords": 0,
+        "attempted": 0,
+        "asOf": "2026-09-16T05:55:33+05:30",
+        "errors": []
+      },
       "SEBI-offer-issue-terms": {
         "ok": true,
         "priorityMax": 4,
@@ -1615,82 +1619,18 @@
         "asOf": "2026-09-14T03:39:42+05:30",
         "errors": []
       },
-      "BSE-P4-issue-terms": {
+      "SEBI-offer-terms": {
         "ok": true,
-        "targets": 37,
-        "detailAttempted": 0,
-        "detailUpdated": 0,
-        "pdfAttempted": 0,
-        "pdfUpdated": 0,
+        "priorityMax": 3,
+        "targets": 1,
+        "attempted": 0,
+        "extracted": 0,
+        "updated": 0,
         "failed": 0,
+        "skippedLotOnlyRhp": 0,
         "fields": {},
-        "indexHealth": {
-          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
-            "ok": true,
-            "records": 0
-          },
-          "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
-            "ok": true,
-            "records": 12
-          },
-          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P": {
-            "ok": true,
-            "records": 0
-          }
-        },
-        "asOf": "2026-09-14T03:41:10+05:30",
+        "asOf": "2026-09-16T05:55:34+05:30",
         "errors": []
-      },
-      "verified-p4-official-issue-terms": {
-        "ok": true,
-        "entries": 13,
-        "updated": 6,
-        "identityRejected": 0,
-        "fields": {
-          "issueSizeCr": 6,
-          "freshIssueCr": 3,
-          "ofsCr": 3,
-          "issueComposition": 3
-        },
-        "checkedAt": "2026-09-14T03:51:33+05:30"
-      },
-      "verified-p4-nse-issue-terms": {
-        "ok": true,
-        "entries": 17,
-        "updated": 2,
-        "rejected": 0,
-        "fields": {
-          "issueSizeCr": 2,
-          "freshIssueCr": 2,
-          "ofsCr": 2,
-          "issueComposition": 2
-        },
-        "checkedAt": "2026-09-14T04:26:04+05:30"
-      },
-      "verified-p4-final-issue-terms": {
-        "ok": true,
-        "entries": 2,
-        "updated": 2,
-        "rejected": 0,
-        "fields": {
-          "issueSizeCr": 2,
-          "freshIssueCr": 2,
-          "ofsCr": 2,
-          "issueComposition": 2
-        },
-        "checkedAt": "2026-09-14T04:29:55+05:30"
-      },
-      "verified-p4-final-composition": {
-        "ok": true,
-        "entries": 7,
-        "updated": 7,
-        "rejected": 0,
-        "fields": {
-          "freshIssueCr": 7,
-          "ofsCr": 7,
-          "issueComposition": 7
-        },
-        "checkedAt": "2026-09-14T04:48:01+05:30"
       },
       "SEBI-other-doc-lot-backfill": {
         "targets": 110,
@@ -1706,19 +1646,102 @@
         ],
         "asOf": "2026-09-15T23:19:16+05:30"
       },
-      "NSE-lot-size-backfill": {
-        "ok": false,
-        "targets": 110,
-        "selected": 25,
-        "attempted": 1,
+      "SEBI-priority-registers": {
+        "ok": true,
+        "parserVersion": 2,
+        "priorityMax": 3,
+        "firstPageMatched": 0,
+        "firstPageLinks": 0,
+        "searchedRecords": 3,
+        "searchMatchedRecords": 0,
+        "searchLinksAdded": 0,
+        "failed": 0,
+        "asOf": "2026-09-16T05:55:33+05:30",
+        "errors": []
+      },
+      "verified-filing-offer-fields": {
+        "ok": true,
+        "entries": 4,
         "updated": 0,
-        "failed": 1,
-        "blockedRemaining": 25,
-        "updatedIds": [],
-        "errors": [
-          "Pramodini Medicare Limited: 403 Client Error: Forbidden for url: https://www.nseindia.com/"
-        ],
-        "asOf": "2026-09-15T23:19:17+05:30"
+        "fields": {},
+        "checkedAt": "2026-09-16T05:55:34+05:30"
+      },
+      "verified-lot-sizes": {
+        "ok": true,
+        "entries": 36,
+        "updated": 0,
+        "checkedAt": "2026-09-14T03:33:10+05:30"
+      },
+      "verified-p4-final-composition": {
+        "ok": true,
+        "entries": 7,
+        "updated": 7,
+        "rejected": 0,
+        "fields": {
+          "freshIssueCr": 7,
+          "ofsCr": 7,
+          "issueComposition": 7
+        },
+        "checkedAt": "2026-09-14T04:48:01+05:30"
+      },
+      "verified-p4-final-issue-terms": {
+        "ok": true,
+        "entries": 2,
+        "updated": 2,
+        "rejected": 0,
+        "fields": {
+          "issueSizeCr": 2,
+          "freshIssueCr": 2,
+          "ofsCr": 2,
+          "issueComposition": 2
+        },
+        "checkedAt": "2026-09-14T04:29:55+05:30"
+      },
+      "verified-p4-nse-issue-terms": {
+        "ok": true,
+        "entries": 17,
+        "updated": 2,
+        "rejected": 0,
+        "fields": {
+          "issueSizeCr": 2,
+          "freshIssueCr": 2,
+          "ofsCr": 2,
+          "issueComposition": 2
+        },
+        "checkedAt": "2026-09-14T04:26:04+05:30"
+      },
+      "verified-p4-official-issue-terms": {
+        "ok": true,
+        "entries": 13,
+        "updated": 6,
+        "identityRejected": 0,
+        "fields": {
+          "issueSizeCr": 6,
+          "freshIssueCr": 3,
+          "ofsCr": 3,
+          "issueComposition": 3
+        },
+        "checkedAt": "2026-09-14T03:51:33+05:30"
+      },
+      "verified-recent-issue-terms": {
+        "ok": true,
+        "entries": 15,
+        "updated": 0,
+        "fields": {},
+        "checkedAt": "2026-09-16T10:14:15+05:30"
+      },
+      "verified-recent-offer-fields": {
+        "ok": true,
+        "entries": 20,
+        "updated": 0,
+        "fields": {},
+        "checkedAt": "2026-09-14T03:33:11+05:30"
+      },
+      "verified-upcoming-lot-sizes": {
+        "ok": true,
+        "entries": 2,
+        "updated": 2,
+        "checkedAt": "2026-09-13T08:37:57+05:30"
       }
     },
     "sources": [
@@ -1727,41 +1750,41 @@
       "BSE India"
     ],
     "subscriptionHealth": {
-      "ok": true,
-      "degraded": true,
+      "asOf": "2026-09-16T10:06:18+05:30",
       "attempted": 8,
-      "updated": 8,
-      "snapshotsAdded": 8,
+      "bseFallbackRecords": 4,
+      "degraded": true,
+      "errors": [],
       "failed": 0,
       "nseRecords": 0,
-      "bseFallbackRecords": 4,
-      "secondaryFallbackRecords": 4,
-      "secondarySources": {
-        "IPO Premium subscription (secondary)": 4
-      },
-      "asOf": "2026-09-16T10:06:18+05:30",
+      "ok": true,
       "pageHealth": {
-        "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
-          "ok": true,
-          "records": 0
-        },
         "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
           "ok": true,
           "records": 25
         },
+        "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+          "ok": true,
+          "records": 0
+        },
         "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2": {
+          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7ff7d4e0adb0>, 'Connection to www.bsesme.c",
           "ok": false,
-          "records": 0,
-          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7ff7d4e0adb0>, 'Connection to www.bsesme.c"
+          "records": 0
         }
       },
+      "secondaryFallbackRecords": 4,
+      "secondarySources": {
+        "IPO Premium subscription (secondary)": 4
+      },
+      "snapshotsAdded": 8,
+      "updated": 8,
       "warnings": [
         "CENTURY BUSINESS MEDIA LIMITED: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7961&status=H · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · ); used explicitly labelled IPO Premium subscription (secondary)",
         "INJECTO POLYMERS LIMITED: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7968&status=H · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · ); used explicitly labelled IPO Premium subscription (secondary)",
         "Shakti Polytarp Limited: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7967&status=H · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · ); used explicitly labelled IPO Premium subscription (secondary)",
         "Vama Wovenfab Limited: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no categories https://www.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7969&status=H · LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange) · ); used explicitly labelled IPO Premium subscription (secondary)"
-      ],
-      "errors": []
+      ]
     },
     "timezone": "Asia/Kolkata"
   },
@@ -3013,6 +3036,16 @@
           "nii": 0.03,
           "retail": 0.02,
           "total": 0.01
+        },
+        {
+          "capturedAt": "2026-09-16T10:08:29+05:30",
+          "observedAt": null,
+          "source": "BSE cumulative demand",
+          "sourceUrl": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7975&status=L",
+          "qib": 0.0,
+          "nii": 0.06,
+          "retail": 0.04,
+          "total": 0.03
         }
       ],
       "sharesBid": 0,
@@ -3566,6 +3599,16 @@
           "nii": 0.24,
           "retail": 0.14,
           "total": 0.12
+        },
+        {
+          "capturedAt": "2026-09-16T10:08:27+05:30",
+          "observedAt": null,
+          "source": "BSE cumulative demand",
+          "sourceUrl": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7976&status=L",
+          "qib": 0.0,
+          "nii": 0.27,
+          "retail": 0.18,
+          "total": 0.15
         }
       ],
       "sharesBid": 0,
@@ -4498,6 +4541,16 @@
           "nii": 0.03,
           "retail": 0.03,
           "total": 0.02
+        },
+        {
+          "capturedAt": "2026-09-16T10:08:25+05:30",
+          "observedAt": null,
+          "source": "BSE cumulative demand",
+          "sourceUrl": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7971&status=L",
+          "qib": 0.0,
+          "nii": 0.08,
+          "retail": 0.09,
+          "total": 0.06
         }
       ],
       "sharesBid": 0,
@@ -5229,6 +5282,16 @@
           "nii": 0.01,
           "retail": 0.02,
           "total": 0.01
+        },
+        {
+          "capturedAt": "2026-09-16T10:08:24+05:30",
+          "observedAt": "2026-09-16T10:02:25+05:30",
+          "source": "IPO Premium subscription (secondary)",
+          "sourceUrl": "https://www.ipopremium.in/view/subscription",
+          "qib": 0.0,
+          "nii": 0.01,
+          "retail": 0.02,
+          "total": 0.01
         }
       ],
       "p4OfferResidualRepair": {
@@ -5585,17 +5648,27 @@
           "nii": 1.53,
           "retail": 0.12,
           "total": 0.65
+        },
+        {
+          "capturedAt": "2026-09-16T10:08:18+05:30",
+          "observedAt": "2026-09-16T10:05:13+05:30",
+          "source": "IPO Premium subscription (secondary)",
+          "sourceUrl": "https://www.ipopremium.in/view/subscription",
+          "qib": 0.0,
+          "nii": 1.53,
+          "retail": 0.12,
+          "total": 0.65
         }
       ],
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 3,
-        "mainParserVersion": 22,
-        "documentUrl": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260911-17/20260911-17.pdf",
-        "checkedAt": "2026-09-16T10:06:30+05:30",
         "changedFields": [
           "documents"
-        ]
+        ],
+        "checkedAt": "2026-09-16T10:06:30+05:30",
+        "documentUrl": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260911-17/20260911-17.pdf",
+        "mainParserVersion": 22,
+        "parserVersion": 3,
+        "status": "updated"
       }
     },
     {
@@ -5791,6 +5864,16 @@
           "nii": 11.4,
           "retail": 12.19,
           "total": 8.83
+        },
+        {
+          "capturedAt": "2026-09-16T10:08:10+05:30",
+          "observedAt": null,
+          "source": "BSE cumulative demand",
+          "sourceUrl": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7966&status=L",
+          "qib": 0.8,
+          "nii": 11.49,
+          "retail": 12.28,
+          "total": 8.9
         }
       ],
       "profilePath": "ipo/manika/",
@@ -6414,14 +6497,14 @@
         "fingerprint": "c408ec2e0af93601cb3f2d527dff69e41f3495f586a6ab458f97d0eb6b76c79d"
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 3,
-        "mainParserVersion": 22,
-        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Manika%20IPO%20-%20Abridged%20Prospectus_p.pdf",
-        "checkedAt": "2026-09-16T10:06:34+05:30",
         "changedFields": [
           "documents"
-        ]
+        ],
+        "checkedAt": "2026-09-16T10:06:34+05:30",
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Manika%20IPO%20-%20Abridged%20Prospectus_p.pdf",
+        "mainParserVersion": 22,
+        "parserVersion": 3,
+        "status": "updated"
       }
     },
     {
@@ -6604,6 +6687,16 @@
         },
         {
           "capturedAt": "2026-09-16T10:05:54+05:30",
+          "observedAt": "2026-09-16T10:05:10+05:30",
+          "source": "IPO Premium subscription (secondary)",
+          "sourceUrl": "https://www.ipopremium.in/view/subscription",
+          "qib": 1.02,
+          "nii": 0.8,
+          "retail": 0.86,
+          "total": 0.86
+        },
+        {
+          "capturedAt": "2026-09-16T10:08:09+05:30",
           "observedAt": "2026-09-16T10:05:10+05:30",
           "source": "IPO Premium subscription (secondary)",
           "sourceUrl": "https://www.ipopremium.in/view/subscription",
@@ -7408,6 +7501,16 @@
         {
           "capturedAt": "2026-09-16T10:05:46+05:30",
           "observedAt": "2026-09-16T10:05:06+05:30",
+          "source": "IPO Premium subscription (secondary)",
+          "sourceUrl": "https://www.ipopremium.in/view/subscription",
+          "qib": 3.51,
+          "nii": 0.97,
+          "retail": 0.73,
+          "total": 1.57
+        },
+        {
+          "capturedAt": "2026-09-16T10:08:00+05:30",
+          "observedAt": "2026-09-16T10:06:07+05:30",
           "source": "IPO Premium subscription (secondary)",
           "sourceUrl": "https://www.ipopremium.in/view/subscription",
           "qib": 3.51,
@@ -9783,14 +9886,14 @@
         "parserVersion": 22
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 3,
-        "mainParserVersion": 22,
-        "documentUrl": "https://omgalaxymould.com/wp-content/uploads/2026/09/Project-Om_-RHP_with_RFS.pdf",
-        "checkedAt": "2026-09-16T10:06:42+05:30",
         "changedFields": [
           "documents"
-        ]
+        ],
+        "checkedAt": "2026-09-16T10:06:42+05:30",
+        "documentUrl": "https://omgalaxymould.com/wp-content/uploads/2026/09/Project-Om_-RHP_with_RFS.pdf",
+        "mainParserVersion": 22,
+        "parserVersion": 3,
+        "status": "updated"
       }
     },
     {
@@ -11056,14 +11159,14 @@
         "fingerprint": "4d6be0fc7680f9ab326271e551836aa80329555aaab4f61aee895346dc54ea81"
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 3,
-        "mainParserVersion": 22,
-        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Steamhouse%20India%20Limited%20-%20AP_p.pdf",
-        "checkedAt": "2026-09-16T10:06:34+05:30",
         "changedFields": [
           "documents"
-        ]
+        ],
+        "checkedAt": "2026-09-16T10:06:34+05:30",
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Steamhouse%20India%20Limited%20-%20AP_p.pdf",
+        "mainParserVersion": 22,
+        "parserVersion": 3,
+        "status": "updated"
       }
     },
     {
@@ -11838,14 +11941,14 @@
         "fingerprint": "bba1abe36a3f34da40b404b00c14a52a8880043070f6aa42c094579889a408d8"
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 3,
-        "mainParserVersion": 22,
-        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/RENTOMOJO%20LIMITED%20-%20AP_p.pdf",
-        "checkedAt": "2026-09-16T10:06:35+05:30",
         "changedFields": [
           "documents"
-        ]
+        ],
+        "checkedAt": "2026-09-16T10:06:35+05:30",
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/RENTOMOJO%20LIMITED%20-%20AP_p.pdf",
+        "mainParserVersion": 22,
+        "parserVersion": 3,
+        "status": "updated"
       }
     },
     {
@@ -13850,14 +13953,14 @@
         "fingerprint": "2f7674550b738449499f30dd0474a9ef66cab13ac5c8ec89430f56e40f512ac4"
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 3,
-        "mainParserVersion": 22,
-        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Annexure%20II%20-%20Abridged%20Prospectus_p.pdf",
-        "checkedAt": "2026-09-16T10:06:37+05:30",
         "changedFields": [
           "documents"
-        ]
+        ],
+        "checkedAt": "2026-09-16T10:06:37+05:30",
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Annexure%20II%20-%20Abridged%20Prospectus_p.pdf",
+        "mainParserVersion": 22,
+        "parserVersion": 3,
+        "status": "updated"
       }
     },
     {
@@ -14489,14 +14592,14 @@
         "fingerprint": "85b092669a21478e1f7ecb8d20a4cd19464f4dd59b1789c5807f183afefb2e83"
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 3,
-        "mainParserVersion": 22,
-        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/ASSET%20RECONSTRUCTION%20COMPANY%20-AP_p.pdf",
-        "checkedAt": "2026-09-16T10:06:37+05:30",
         "changedFields": [
           "documents"
-        ]
+        ],
+        "checkedAt": "2026-09-16T10:06:37+05:30",
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/ASSET%20RECONSTRUCTION%20COMPANY%20-AP_p.pdf",
+        "mainParserVersion": 22,
+        "parserVersion": 3,
+        "status": "updated"
       }
     },
     {
@@ -21327,14 +21430,14 @@
         "fingerprint": "bfc892667adf300ef2f46f0dd378ba3fc1eadf3d1c6f85993d46a0d85553e73e"
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 3,
-        "mainParserVersion": 22,
-        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/SYMBIOTEC%20PHARMALAB%20LIMITED%20-%20AP_p.pdf",
-        "checkedAt": "2026-09-16T10:06:38+05:30",
         "changedFields": [
           "documents"
-        ]
+        ],
+        "checkedAt": "2026-09-16T10:06:38+05:30",
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/SYMBIOTEC%20PHARMALAB%20LIMITED%20-%20AP_p.pdf",
+        "mainParserVersion": 22,
+        "parserVersion": 3,
+        "status": "updated"
       }
     },
     {
@@ -26608,14 +26711,15 @@
         "fingerprint": "cf55f21331d2efe2e31d5b78a317749e7168f8fe5ef347e26844849e952d4821"
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 3,
-        "mainParserVersion": 22,
-        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787287442985.pdf",
-        "checkedAt": "2026-09-16T10:07:25+05:30",
         "changedFields": [
           "documents"
-        ]
+        ],
+        "checkedAt": "2026-09-16T10:07:25+05:30",
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787287442985.pdf",
+        "error": "('Connection broken: IncompleteRead(2161471 bytes read, 9204651 more expected)', IncompleteRead(2161471 bytes read, 9204651 more expected))",
+        "mainParserVersion": 22,
+        "parserVersion": 3,
+        "status": "source_blocked"
       }
     },
     {
@@ -28781,14 +28885,14 @@
         "fingerprint": "7ca9472d7f1990965521fd65ae23414203f27e0e01083918e05a63e5fa1af2a5"
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 3,
-        "mainParserVersion": 22,
-        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1786084999541.pdf",
-        "checkedAt": "2026-09-16T10:07:19+05:30",
         "changedFields": [
           "documents"
-        ]
+        ],
+        "checkedAt": "2026-09-16T10:07:19+05:30",
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1786084999541.pdf",
+        "mainParserVersion": 22,
+        "parserVersion": 3,
+        "status": "updated"
       }
     },
     {
@@ -29632,6 +29736,27 @@
           "parserVersion": 22,
           "residualParserVersion": 3,
           "correctedAt": "2026-09-16T10:06:44+05:30"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "are Mr. Sanjay Tyagi",
+            "Mrs. Rekha Tyagi",
+            "Mr. Kartikey Tyagi",
+            "Kartikey"
+          ],
+          "after": [
+            "SANJAY TYAGI",
+            "REKHA TYAGI",
+            "KARTIKEY TYAGI",
+            "SANJAY TYAGI HUF"
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/Technocraft%20Ventures%20Limited%20%20-%20AP_p.pdf",
+          "sha256": "d14a79dca5819375df374527e69c72dc79471702c3befa4b2b03bbb86a43f172",
+          "parserVersion": 22,
+          "residualParserVersion": 3,
+          "correctedAt": "2026-09-16T10:11:19+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -34029,6 +34154,67 @@
           "parserVersion": 22,
           "residualParserVersion": 3,
           "correctedAt": "2026-09-16T10:08:49+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "BASIS FOR OFFER PRICE",
+              "amountCr": 117.0
+            },
+            {
+              "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
+              "amountCr": 126.0
+            },
+            {
+              "purpose": "SECTION IV: ABOUT THE COMPANY",
+              "amountCr": 130.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW",
+              "amountCr": 130.0
+            },
+            {
+              "purpose": "OUR BUSINESS",
+              "amountCr": 184.0
+            },
+            {
+              "purpose": "KEY INDUSTRY REGULATIONS AND POLICIES",
+              "amountCr": 212.0
+            },
+            {
+              "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+              "amountCr": 220.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT",
+              "amountCr": 225.0
+            },
+            {
+              "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
+              "amountCr": 239.0
+            },
+            {
+              "purpose": "OUR GROUP COMPANY",
+              "amountCr": 244.0
+            },
+            {
+              "purpose": "DIVIDEND POLICY",
+              "amountCr": 245.0
+            }
+          ],
+          "after": [
+            {
+              "purpose": "unding working capital requirements of the Company",
+              "amountCr": 16.62
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1785404948142.pdf",
+          "sha256": "42afe3d9632e44060c47896e3e5188b7a8a548f4a39dddbbeeeddaf16e7d8204",
+          "parserVersion": 22,
+          "residualParserVersion": 3,
+          "correctedAt": "2026-09-16T10:12:23+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -35919,7 +36105,9 @@
           "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1784698849378.pdf",
           "source": "SEBI",
           "filedDate": "2026-07-22",
-          "sourcePage": "https://www.sebi.gov.in/filings/public-issues/jul-2026/caliber-mining-and-logistics-limited-prospectus_102990.html"
+          "sourcePage": "https://www.sebi.gov.in/filings/public-issues/jul-2026/caliber-mining-and-logistics-limited-prospectus_102990.html",
+          "sha256": "4e29deb8f0315eb6fa063963e83ecd05d9157def5eeb2b8b4586d704411c43f5",
+          "verifiedAt": "2026-09-16T10:12:24+05:30"
         },
         {
           "type": "RHP",
@@ -36003,52 +36191,20 @@
       },
       "objectsOfIssue": [
         {
-          "purpose": "0 34.00% [●] [●] [●]",
-          "amountCr": null
+          "purpose": "epayment/ prepayment, in full or part, of certain borrowings availed by our",
+          "amountCr": 208.0
         },
         {
-          "purpose": "0 24.09% [●] [●] [●]",
-          "amountCr": null
+          "purpose": "unding capital expenditure for purchase of commercial vehicles, plant and",
+          "amountCr": 167.0
         },
         {
-          "purpose": "0 18.50% [●] [●] [●]",
-          "amountCr": null
+          "purpose": "epayment/ prepayment, in full or part, of certain 20,800.00",
+          "amountCr": 208.0
         },
         {
-          "purpose": "66,80,000 11.94% [●] [●] [●]",
-          "amountCr": null
-        },
-        {
-          "purpose": "Chadda 1,20,000 0.21% [●] [●] [●]",
-          "amountCr": null
-        },
-        {
-          "purpose": "0 88.75% [●] [●] [●]",
-          "amountCr": null
-        },
-        {
-          "purpose": "1,20,000 0.21% [●] [●] [●]",
-          "amountCr": null
-        },
-        {
-          "purpose": "Chachra 1,20,000 0.21% [●] [●] [●]",
-          "amountCr": null
-        },
-        {
-          "purpose": "1,20,000 0.21% [●] [●] [●]",
-          "amountCr": null
-        },
-        {
-          "purpose": "1,20,000 0.21% [●] [●] [●]",
-          "amountCr": null
-        },
-        {
-          "purpose": "1,20,000 0.21% [●] [●] [●]",
-          "amountCr": null
-        },
-        {
-          "purpose": "1,20,000 0.21% [●] [●] [●]",
-          "amountCr": null
+          "purpose": "unding capital expenditure for purchase of 16,700.00",
+          "amountCr": 167.0
         }
       ],
       "shareholding": {
@@ -36103,9 +36259,10 @@
           "registrar",
           "promoters",
           "financials",
-          "lotSize"
+          "lotSize",
+          "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-16T02:25:45+05:30",
+        "extractedAt": "2026-09-16T10:12:24+05:30",
         "conflicts": []
       },
       "dataCorrections": [
@@ -36254,6 +36411,83 @@
           "sha256": "4e29deb8f0315eb6fa063963e83ecd05d9157def5eeb2b8b4586d704411c43f5",
           "parserVersion": 21,
           "correctedAt": "2026-09-15T10:28:56+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "0 34.00% [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "0 24.09% [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "0 18.50% [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "66,80,000 11.94% [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "Chadda 1,20,000 0.21% [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "0 88.75% [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "1,20,000 0.21% [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "Chachra 1,20,000 0.21% [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "1,20,000 0.21% [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "1,20,000 0.21% [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "1,20,000 0.21% [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "1,20,000 0.21% [●] [●] [●]",
+              "amountCr": null
+            }
+          ],
+          "after": [
+            {
+              "purpose": "epayment/ prepayment, in full or part, of certain borrowings availed by our",
+              "amountCr": 208.0
+            },
+            {
+              "purpose": "unding capital expenditure for purchase of commercial vehicles, plant and",
+              "amountCr": 167.0
+            },
+            {
+              "purpose": "epayment/ prepayment, in full or part, of certain 20,800.00",
+              "amountCr": 208.0
+            },
+            {
+              "purpose": "unding capital expenditure for purchase of 16,700.00",
+              "amountCr": 167.0
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1784698849378.pdf",
+          "sha256": "4e29deb8f0315eb6fa063963e83ecd05d9157def5eeb2b8b4586d704411c43f5",
+          "parserVersion": 22,
+          "residualParserVersion": 3,
+          "correctedAt": "2026-09-16T10:12:24+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -36262,7 +36496,7 @@
         "documentDate": "2026-07-22",
         "sha256": "4e29deb8f0315eb6fa063963e83ecd05d9157def5eeb2b8b4586d704411c43f5",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:25:45+05:30",
+        "checkedAt": "2026-09-16T10:12:24+05:30",
         "evidence": {
           "financials": {
             "FY2026.revenueCr": {
@@ -36357,13 +36591,46 @@
             "entities": [
               "KFin Technologies Limited"
             ]
+          },
+          "promoters": {
+            "heading": "OUR PROMOTERS",
+            "entities": [
+              "MOHIT SATISHKUMAR CHADDA",
+              "ANUJ KRISHANLAL CHADDA",
+              "MANISH KRISHANLAL CHADDA",
+              "RAHUL ROSHANLAL CHADDA",
+              "PRIYA ANUJ CHADDA"
+            ]
+          },
+          "objectsOfIssue": {
+            "page": 150,
+            "heading": "OBJECTS OF THE ISSUE",
+            "unit": "lakh",
+            "rows": [
+              {
+                "purpose": "epayment/ prepayment, in full or part, of certain borrowings availed by our",
+                "amountCr": 208.0
+              },
+              {
+                "purpose": "unding capital expenditure for purchase of commercial vehicles, plant and",
+                "amountCr": 167.0
+              },
+              {
+                "purpose": "epayment/ prepayment, in full or part, of certain 20,800.00",
+                "amountCr": 208.0
+              },
+              {
+                "purpose": "unding capital expenditure for purchase of 16,700.00",
+                "amountCr": 167.0
+              }
+            ]
           }
         }
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T02:25:45+05:30",
+        "lastAttemptAt": "2026-09-16T10:12:24+05:30",
         "parserVersion": 22
       },
       "listing": {
@@ -37262,6 +37529,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-08/Primary_Market_data__July26_20260814112232.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue detail lot size",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=HAPPY&type=Past",
+          "asOf": "2026-09-16T10:08:44+05:30"
         }
       ],
       "source": {
@@ -37278,8 +37551,10 @@
             "min": 66.0,
             "max": 66.0
           },
-          "lotSize": null,
-          "issueSizeCr": null
+          "lotSize": 2000,
+          "issueSizeCr": null,
+          "lotSeries": "SME",
+          "lotCheckedAt": "2026-09-16T10:08:44+05:30"
         },
         "NSEFinalIssuePrice": {
           "source": "NSE primary-market monthly report",
@@ -37296,7 +37571,7 @@
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checkedAt": "2026-09-16T10:14:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -37360,6 +37635,20 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:07+00:00",
         "fingerprint": "332b612c76e2321b525d95701b330954ff163672458560bb37a4e3dac23a8c1b"
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-16T10:08:38+05:30",
+        "status": "updated",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=HAPPY&type=Past",
+        "symbol": "HAPPY"
+      },
+      "lotSize": 2000,
+      "minInvestment": 132000.0,
+      "recentNseLotBackfill": {
+        "source": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=HAPPY&type=Past",
+        "series": "SME",
+        "lotSize": 2000,
+        "asOf": "2026-09-16T10:08:44+05:30"
       }
     },
     {
@@ -41741,6 +42030,91 @@
           "parserVersion": 22,
           "residualParserVersion": 3,
           "correctedAt": "2026-09-16T10:09:17+05:30"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "S. No. Name Individual/Corporate/"
+          ],
+          "after": [
+            "or our directors",
+            "Nitin Gilara"
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1782728190936.pdf",
+          "sha256": "8ff9970e2884adb89c40d3261f9921b1d9a0058ee64bd28be35eba3d22b677ff",
+          "parserVersion": 22,
+          "residualParserVersion": 3,
+          "correctedAt": "2026-09-16T10:12:50+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "Aggregate Pre – Issue and Post – Issue Shareholding of the Promoters and Promoter Group and Top",
+              "amountCr": 10.0
+            },
+            {
+              "purpose": "Vipul Gilara 1,57,48,920 46.53% [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "Nitin Gilara 79,70,490 23.55% [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "Prateek Gilara 79,70,490 23.55% [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "Gilara 2,24,070 0.66% [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "Kiran Gilara 32,010 0.10% [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "Rachna Gilara 32,010 0.10% [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "Swati Gilara 32,010 0.10% [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "2,40,000 0.70% [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "Ankita Jain 60,000 0.18% [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "Akshit Aggarwal 48,000 0.14% [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "Alka Bhandari 40,000 0.12% [●] [●] [●]",
+              "amountCr": null
+            }
+          ],
+          "after": [
+            {
+              "purpose": "Less: Issue related expenses (1)",
+              "amountCr": 20.9503
+            },
+            {
+              "purpose": "unding incremental working capital requirements of our Company",
+              "amountCr": 65.0
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1782728190936.pdf",
+          "sha256": "8ff9970e2884adb89c40d3261f9921b1d9a0058ee64bd28be35eba3d22b677ff",
+          "parserVersion": 22,
+          "residualParserVersion": 3,
+          "correctedAt": "2026-09-16T10:12:50+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -41980,6 +42354,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-07/Primary_Market_data__June26_20260717144111.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue detail lot size",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=AVIENCE&type=Past",
+          "asOf": "2026-09-16T10:08:50+05:30"
         }
       ],
       "source": {
@@ -41996,8 +42376,10 @@
             "min": 208.0,
             "max": 208.0
           },
-          "lotSize": null,
-          "issueSizeCr": null
+          "lotSize": 600,
+          "issueSizeCr": null,
+          "lotSeries": "SME",
+          "lotCheckedAt": "2026-09-16T10:08:50+05:30"
         },
         "NSEFinalIssuePrice": {
           "source": "NSE primary-market monthly report",
@@ -42014,7 +42396,7 @@
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checkedAt": "2026-09-16T10:14:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -42078,6 +42460,20 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:04+00:00",
         "fingerprint": "14d5e695c46e2eba10ac65656df8786d80f1bc85666b28043e7b543845718d5e"
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-16T10:08:44+05:30",
+        "status": "updated",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=AVIENCE&type=Past",
+        "symbol": "AVIENCE"
+      },
+      "lotSize": 600,
+      "minInvestment": 124800.0,
+      "recentNseLotBackfill": {
+        "source": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=AVIENCE&type=Past",
+        "series": "SME",
+        "lotSize": 600,
+        "asOf": "2026-09-16T10:08:50+05:30"
       }
     },
     {
@@ -42301,6 +42697,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-07/Primary_Market_data__June26_20260717144111.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue detail lot size",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=UTKAL&type=Past",
+          "asOf": "2026-09-16T10:08:57+05:30"
         }
       ],
       "source": {
@@ -42317,8 +42719,10 @@
             "min": 66.0,
             "max": 66.0
           },
-          "lotSize": null,
-          "issueSizeCr": null
+          "lotSize": 2000,
+          "issueSizeCr": null,
+          "lotSeries": "SME",
+          "lotCheckedAt": "2026-09-16T10:08:57+05:30"
         },
         "NSEFinalIssuePrice": {
           "source": "NSE primary-market monthly report",
@@ -42335,7 +42739,7 @@
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checkedAt": "2026-09-16T10:14:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -42399,6 +42803,20 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:13+00:00",
         "fingerprint": "3790fd2d1f8884b6370e3db8b4357deaff38736ddda1b9b415f3317999ca43ad"
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-16T10:08:51+05:30",
+        "status": "updated",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=UTKAL&type=Past",
+        "symbol": "UTKAL"
+      },
+      "lotSize": 2000,
+      "minInvestment": 132000.0,
+      "recentNseLotBackfill": {
+        "source": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=UTKAL&type=Past",
+        "series": "SME",
+        "lotSize": 2000,
+        "asOf": "2026-09-16T10:08:57+05:30"
       }
     },
     {
@@ -43333,6 +43751,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-06/Exchange_Data_Primary_Market_20260612135555.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue detail lot size",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=BMLL&type=Past",
+          "asOf": "2026-09-16T10:09:03+05:30"
         }
       ],
       "source": {
@@ -43349,8 +43773,10 @@
             "min": 139.0,
             "max": 139.0
           },
-          "lotSize": null,
-          "issueSizeCr": null
+          "lotSize": 1000,
+          "issueSizeCr": null,
+          "lotSeries": "SME",
+          "lotCheckedAt": "2026-09-16T10:09:03+05:30"
         },
         "NSEFinalIssuePrice": {
           "source": "NSE primary-market monthly report",
@@ -43367,7 +43793,7 @@
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checkedAt": "2026-09-16T10:14:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -43423,6 +43849,20 @@
           "checkedAt": "2026-09-15T05:06:02.669317+00:00"
         },
         "gainPct": null
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-16T10:08:57+05:30",
+        "status": "updated",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=BMLL&type=Past",
+        "symbol": "BMLL"
+      },
+      "lotSize": 1000,
+      "minInvestment": 139000.0,
+      "recentNseLotBackfill": {
+        "source": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=BMLL&type=Past",
+        "series": "SME",
+        "lotSize": 1000,
+        "asOf": "2026-09-16T10:09:03+05:30"
       }
     },
     {
@@ -43990,6 +44430,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-06/Exchange_Data_Primary_Market_20260612135555.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue detail lot size",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=RFBL&type=Past",
+          "asOf": "2026-09-16T10:09:08+05:30"
         }
       ],
       "source": {
@@ -44006,8 +44452,10 @@
             "min": 50.0,
             "max": 50.0
           },
-          "lotSize": null,
-          "issueSizeCr": null
+          "lotSize": 3000,
+          "issueSizeCr": null,
+          "lotSeries": "SME",
+          "lotCheckedAt": "2026-09-16T10:09:08+05:30"
         },
         "NSEFinalIssuePrice": {
           "source": "NSE primary-market monthly report",
@@ -44024,7 +44472,7 @@
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checkedAt": "2026-09-16T10:14:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -44088,6 +44536,20 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:09+00:00",
         "fingerprint": "6ed1a2c1ec99a4bad727ab34ce9ce1a95b39464a1c519bd3265e670ca23565d7"
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-16T10:09:03+05:30",
+        "status": "updated",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=RFBL&type=Past",
+        "symbol": "RFBL"
+      },
+      "lotSize": 3000,
+      "minInvestment": 150000.0,
+      "recentNseLotBackfill": {
+        "source": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=RFBL&type=Past",
+        "series": "SME",
+        "lotSize": 3000,
+        "asOf": "2026-09-16T10:09:08+05:30"
       }
     },
     {
@@ -44896,6 +45358,71 @@
           "parserVersion": 22,
           "residualParserVersion": 3,
           "correctedAt": "2026-09-16T10:10:16+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "BASIS FOR OFFER PRICE",
+              "amountCr": 122.0
+            },
+            {
+              "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
+              "amountCr": 138.0
+            },
+            {
+              "purpose": "SECTION IV: ABOUT OUR COMPANY",
+              "amountCr": 145.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW",
+              "amountCr": 145.0
+            },
+            {
+              "purpose": "OUR BUSINESS",
+              "amountCr": 177.0
+            },
+            {
+              "purpose": "KEY REGULATIONS AND POLICIES",
+              "amountCr": 208.0
+            },
+            {
+              "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+              "amountCr": 225.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT",
+              "amountCr": 237.0
+            },
+            {
+              "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
+              "amountCr": 251.0
+            },
+            {
+              "purpose": "OUR GROUP COMPANIES",
+              "amountCr": 254.0
+            },
+            {
+              "purpose": "DIVIDEND POLICY",
+              "amountCr": 255.0
+            }
+          ],
+          "after": [
+            {
+              "purpose": "ugmenting the capital base of our Subsidiary, Si Creva, to meet its future capital requirements arising out of the",
+              "amountCr": 637.5
+            },
+            {
+              "purpose": "ugmenting the capital base of our Subsidiary, Si Creva, 6,375.00 6,375.00",
+              "amountCr": 637.5
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 22,
+          "residualParserVersion": 3,
+          "correctedAt": "2026-09-16T10:13:41+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -46586,6 +47113,79 @@
           "parserVersion": 22,
           "residualParserVersion": 3,
           "correctedAt": "2026-09-16T10:10:01+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "BASIS FOR OFFER PRICE",
+              "amountCr": 134.0
+            },
+            {
+              "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
+              "amountCr": 150.0
+            },
+            {
+              "purpose": "SECTION IV: ABOUT OUR COMPANY",
+              "amountCr": 155.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW",
+              "amountCr": 155.0
+            },
+            {
+              "purpose": "OUR BUSINESS",
+              "amountCr": 239.0
+            },
+            {
+              "purpose": "KEY REGULATIONS AND POLICIES IN INDIA",
+              "amountCr": 264.0
+            },
+            {
+              "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+              "amountCr": 271.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT",
+              "amountCr": 278.0
+            },
+            {
+              "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
+              "amountCr": 297.0
+            },
+            {
+              "purpose": "OUR GROUP COMPANY",
+              "amountCr": 303.0
+            },
+            {
+              "purpose": "DIVIDEND POLICY",
+              "amountCr": 306.0
+            }
+          ],
+          "after": [
+            {
+              "purpose": "unding of capital expenditure requirements of our Company towards purchase of",
+              "amountCr": 11.2094
+            },
+            {
+              "purpose": "re-payment/ re-payment, in part or full, of certain outstanding borrowings availed by our",
+              "amountCr": 25.0
+            },
+            {
+              "purpose": "Funding long-term working capital requirement of our Company",
+              "amountCr": 55.0
+            },
+            {
+              "purpose": "General Corporate Purposes",
+              "amountCr": 28.1082
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2026/1776237369286.pdf",
+          "sha256": "55c6e82dbb6a95d399d3ea0bdf83c29f05c49edc297f6b30bf1bfe715ba37eaf",
+          "parserVersion": 22,
+          "residualParserVersion": 3,
+          "correctedAt": "2026-09-16T10:13:26+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -46996,6 +47596,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-05/Exchange_data_Primary_Market__20260512102406.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue detail lot size",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=VIVIDEL&type=Past",
+          "asOf": "2026-09-16T10:09:14+05:30"
         }
       ],
       "source": {
@@ -47012,8 +47618,10 @@
             "min": 555.0,
             "max": 555.0
           },
-          "lotSize": null,
-          "issueSizeCr": null
+          "lotSize": 240,
+          "issueSizeCr": null,
+          "lotSeries": "SME",
+          "lotCheckedAt": "2026-09-16T10:09:14+05:30"
         },
         "NSEFinalIssuePrice": {
           "source": "NSE primary-market monthly report",
@@ -47030,7 +47638,7 @@
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checkedAt": "2026-09-16T10:14:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -47094,6 +47702,20 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:13+00:00",
         "fingerprint": "9ba038e35fc7392119e217eeaec789444d9710285dd7a56315dac03f50e23d9b"
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-16T10:09:08+05:30",
+        "status": "updated",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=VIVIDEL&type=Past",
+        "symbol": "VIVIDEL"
+      },
+      "lotSize": 240,
+      "minInvestment": 133200.0,
+      "recentNseLotBackfill": {
+        "source": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=VIVIDEL&type=Past",
+        "series": "SME",
+        "lotSize": 240,
+        "asOf": "2026-09-16T10:09:14+05:30"
       }
     },
     {
@@ -47918,6 +48540,12 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:03+00:00",
         "fingerprint": "c3d1decfb36b45d64003cfb7123b3141171bc24c71bff8dcbd6fe242dbbde5c3"
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-16T10:09:14+05:30",
+        "status": "no_usable_lot_size",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=AMIRCHAND&type=Past",
+        "symbol": "AMIRCHAND"
       }
     },
     {
@@ -48702,6 +49330,51 @@
           "parserVersion": 22,
           "residualParserVersion": 3,
           "correctedAt": "2026-09-16T10:10:41+05:30"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "will"
+          ],
+          "after": [
+            "BHAVESH VRAJMOHAN SHAH",
+            "TIRTH KENAL SHAH",
+            "VILASBEN VRAJMOHAN SHAH",
+            "FALGUNI KENAL SHAH",
+            "ALPHA TRUST",
+            "KAPPA TRUST"
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2026/1776851251292.pdf",
+          "sha256": "6ca784ac688288c0230213737353d432ae0161fedd7b57ebe1853644fc9141ac",
+          "parserVersion": 22,
+          "residualParserVersion": 3,
+          "correctedAt": "2026-09-16T10:13:38+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "or disruptions of our information technology systems in the six months ended September 30, 2025, and Fiscals",
+              "amountCr": 2025.0
+            }
+          ],
+          "after": [
+            {
+              "purpose": "epayment or pre-repayment of all or a portion of certain outstanding borrowings availed by our",
+              "amountCr": 170.0
+            },
+            {
+              "purpose": "epayment or pre-repayment of all or a portion of certain 1,700.00",
+              "amountCr": 170.0
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2026/1776851251292.pdf",
+          "sha256": "6ca784ac688288c0230213737353d432ae0161fedd7b57ebe1853644fc9141ac",
+          "parserVersion": 22,
+          "residualParserVersion": 3,
+          "correctedAt": "2026-09-16T10:13:38+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -49774,6 +50447,52 @@
           "parserVersion": 22,
           "residualParserVersion": 3,
           "correctedAt": "2026-09-16T10:10:46+05:30"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "are Lt Col Randeep Hundal",
+            "Uday Pal Singh . For further details",
+            "see section"
+          ],
+          "after": [
+            "LT COL RANDEEP HUNDAL",
+            "UDAY PAL SINGH"
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2026/1774008043195.pdf",
+          "sha256": "99343a058b003d6d27458f879033d743420c379110c2f1ee39ff473796fccab3",
+          "parserVersion": 22,
+          "residualParserVersion": 3,
+          "correctedAt": "2026-09-16T10:13:52+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            "Repayment or prepayment, in part or full of all or certain borrowings availed by the Company",
+            "Funding working capital requirements of the Company",
+            "General corporate purposes"
+          ],
+          "after": [
+            {
+              "purpose": "Repayment or pre-payment, in part or full, of all or certain borrowings",
+              "amountCr": 51.0
+            },
+            {
+              "purpose": "Funding working capital requirements of our Company",
+              "amountCr": 119.0
+            },
+            {
+              "purpose": "General corporate purposes^",
+              "amountCr": 39.799
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2026/1774008043195.pdf",
+          "sha256": "99343a058b003d6d27458f879033d743420c379110c2f1ee39ff473796fccab3",
+          "parserVersion": 22,
+          "residualParserVersion": 3,
+          "correctedAt": "2026-09-16T10:13:52+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -51402,6 +52121,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-04/Primary_Market_data__March_2026_20260413152145.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue detail lot size",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=STRIDERS&type=Past",
+          "asOf": "2026-09-16T10:09:25+05:30"
         }
       ],
       "source": {
@@ -51418,8 +52143,10 @@
             "min": 72.0,
             "max": 72.0
           },
-          "lotSize": null,
-          "issueSizeCr": null
+          "lotSize": 1600,
+          "issueSizeCr": null,
+          "lotSeries": "SME",
+          "lotCheckedAt": "2026-09-16T10:09:25+05:30"
         },
         "NSEFinalIssuePrice": {
           "source": "NSE primary-market monthly report",
@@ -51436,7 +52163,7 @@
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checkedAt": "2026-09-16T10:14:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -51500,6 +52227,20 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:12+00:00",
         "fingerprint": "ed4b19a116e9ecd9e60eff4c42132a2c8bcff2ff95326dde7e4376adb729470f"
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-16T10:09:20+05:30",
+        "status": "updated",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=STRIDERS&type=Past",
+        "symbol": "STRIDERS"
+      },
+      "lotSize": 1600,
+      "minInvestment": 115200.0,
+      "recentNseLotBackfill": {
+        "source": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=STRIDERS&type=Past",
+        "series": "SME",
+        "lotSize": 1600,
+        "asOf": "2026-09-16T10:09:25+05:30"
       }
     },
     {
@@ -51531,6 +52272,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-04/Primary_Market_data__March_2026_20260413152145.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue detail lot size",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=YAAP&type=Past",
+          "asOf": "2026-09-16T10:09:31+05:30"
         }
       ],
       "source": {
@@ -51547,8 +52294,10 @@
             "min": 145.0,
             "max": 145.0
           },
-          "lotSize": null,
-          "issueSizeCr": null
+          "lotSize": 1000,
+          "issueSizeCr": null,
+          "lotSeries": "SME",
+          "lotCheckedAt": "2026-09-16T10:09:31+05:30"
         },
         "NSEFinalIssuePrice": {
           "source": "NSE primary-market monthly report",
@@ -51565,7 +52314,7 @@
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checkedAt": "2026-09-16T10:14:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -51629,6 +52378,20 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:13+00:00",
         "fingerprint": "4a90b3a3315cb1149128c1c7625daa5819e25226768fbac7434e771ba234b662"
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-16T10:09:25+05:30",
+        "status": "updated",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=YAAP&type=Past",
+        "symbol": "YAAP"
+      },
+      "lotSize": 1000,
+      "minInvestment": 145000.0,
+      "recentNseLotBackfill": {
+        "source": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=YAAP&type=Past",
+        "series": "SME",
+        "lotSize": 1000,
+        "asOf": "2026-09-16T10:09:31+05:30"
       }
     },
     {
@@ -52612,6 +53375,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-04/Primary_Market_data__March_2026_20260413152145.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue detail lot size",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=MOBILISE&type=Past",
+          "asOf": "2026-09-16T10:09:37+05:30"
         }
       ],
       "source": {
@@ -52628,8 +53397,10 @@
             "min": 80.0,
             "max": 80.0
           },
-          "lotSize": null,
-          "issueSizeCr": null
+          "lotSize": 1600,
+          "issueSizeCr": null,
+          "lotSeries": "SME",
+          "lotCheckedAt": "2026-09-16T10:09:37+05:30"
         },
         "NSEFinalIssuePrice": {
           "source": "NSE primary-market monthly report",
@@ -52646,7 +53417,7 @@
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checkedAt": "2026-09-16T10:14:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -52710,6 +53481,20 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:08+00:00",
         "fingerprint": "fcc7778284efb234e657276395b976724f5b0b7ce9f526e5f947480b108dad3d"
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-16T10:09:31+05:30",
+        "status": "updated",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=MOBILISE&type=Past",
+        "symbol": "MOBILISE"
+      },
+      "lotSize": 1600,
+      "minInvestment": 128000.0,
+      "recentNseLotBackfill": {
+        "source": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=MOBILISE&type=Past",
+        "series": "SME",
+        "lotSize": 1600,
+        "asOf": "2026-09-16T10:09:37+05:30"
       }
     },
     {
@@ -55066,6 +55851,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-02/Primary_Market_Jan2026_20260217133243.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue detail lot size",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=KRMAYURVED&type=Past",
+          "asOf": "2026-09-16T10:09:42+05:30"
         }
       ],
       "source": {
@@ -55082,8 +55873,10 @@
             "min": 135.0,
             "max": 135.0
           },
-          "lotSize": null,
-          "issueSizeCr": null
+          "lotSize": 1000,
+          "issueSizeCr": null,
+          "lotSeries": "SME",
+          "lotCheckedAt": "2026-09-16T10:09:42+05:30"
         },
         "NSEFinalIssuePrice": {
           "source": "NSE primary-market monthly report",
@@ -55100,7 +55893,7 @@
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checkedAt": "2026-09-16T10:14:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -55164,6 +55957,20 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:07+00:00",
         "fingerprint": "fd867fe21d498b5c97c019434bae5553d5ebaaa81a1d8bdceca578654419c4ae"
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-16T10:09:37+05:30",
+        "status": "updated",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=KRMAYURVED&type=Past",
+        "symbol": "KRMAYURVED"
+      },
+      "lotSize": 1000,
+      "minInvestment": 135000.0,
+      "recentNseLotBackfill": {
+        "source": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=KRMAYURVED&type=Past",
+        "series": "SME",
+        "lotSize": 1000,
+        "asOf": "2026-09-16T10:09:42+05:30"
       }
     },
     {
@@ -56117,6 +56924,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-02/Primary_Market_Jan2026_20260217133243.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue detail lot size",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=VICTORYEV&type=Past",
+          "asOf": "2026-09-16T10:09:48+05:30"
         }
       ],
       "source": {
@@ -56133,8 +56946,10 @@
             "min": 41.0,
             "max": 41.0
           },
-          "lotSize": null,
-          "issueSizeCr": null
+          "lotSize": 3000,
+          "issueSizeCr": null,
+          "lotSeries": "SME",
+          "lotCheckedAt": "2026-09-16T10:09:48+05:30"
         },
         "NSEFinalIssuePrice": {
           "source": "NSE primary-market monthly report",
@@ -56151,7 +56966,7 @@
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checkedAt": "2026-09-16T10:14:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -56215,6 +57030,20 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:13+00:00",
         "fingerprint": "baf106a368332efa6b0d0a197a0827206d216853b631bad85e00013499e259b9"
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-16T10:09:43+05:30",
+        "status": "updated",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=VICTORYEV&type=Past",
+        "symbol": "VICTORYEV"
+      },
+      "lotSize": 3000,
+      "minInvestment": 123000.0,
+      "recentNseLotBackfill": {
+        "source": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=VICTORYEV&type=Past",
+        "series": "SME",
+        "lotSize": 3000,
+        "asOf": "2026-09-16T10:09:48+05:30"
       }
     },
     {
@@ -56246,6 +57075,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-02/Primary_Market_Jan2026_20260217133243.xlsx",
           "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue detail lot size",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=E2ERAIL&type=Past",
+          "asOf": "2026-09-16T10:09:54+05:30"
         }
       ],
       "source": {
@@ -56262,8 +57097,10 @@
             "min": 174.0,
             "max": 174.0
           },
-          "lotSize": null,
-          "issueSizeCr": null
+          "lotSize": 800,
+          "issueSizeCr": null,
+          "lotSeries": "SME",
+          "lotCheckedAt": "2026-09-16T10:09:54+05:30"
         },
         "NSEFinalIssuePrice": {
           "source": "NSE primary-market monthly report",
@@ -56280,7 +57117,7 @@
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checkedAt": "2026-09-16T10:14:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -56344,6 +57181,20 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:05+00:00",
         "fingerprint": "30a10bc61b0d097155b6e8260be8a970f88830370a387f85581f6764f9bb3567"
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-16T10:09:48+05:30",
+        "status": "updated",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=E2ERAIL&type=Past",
+        "symbol": "E2ERAIL"
+      },
+      "lotSize": 800,
+      "minInvestment": 139200.0,
+      "recentNseLotBackfill": {
+        "source": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=E2ERAIL&type=Past",
+        "series": "SME",
+        "lotSize": 800,
+        "asOf": "2026-09-16T10:09:54+05:30"
       }
     },
     {
@@ -56375,6 +57226,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-01/Primary_Market_Monthly_Report_-_December_2025_20260112185519.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue detail lot size",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=DHARARAIL&type=Past",
+          "asOf": "2026-09-16T10:09:59+05:30"
         }
       ],
       "source": {
@@ -56391,8 +57248,10 @@
             "min": 126.0,
             "max": 126.0
           },
-          "lotSize": null,
-          "issueSizeCr": null
+          "lotSize": 1000,
+          "issueSizeCr": null,
+          "lotSeries": "SME",
+          "lotCheckedAt": "2026-09-16T10:09:59+05:30"
         },
         "NSEFinalIssuePrice": {
           "source": "NSE primary-market monthly report",
@@ -56409,7 +57268,7 @@
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checkedAt": "2026-09-16T10:14:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -56474,6 +57333,20 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:05+00:00",
         "fingerprint": "fea9bb1e85a6f0b5be377936b37897925d277e1192f620e658609eac5491f99e"
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-16T10:09:54+05:30",
+        "status": "updated",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=DHARARAIL&type=Past",
+        "symbol": "DHARARAIL"
+      },
+      "lotSize": 1000,
+      "minInvestment": 126000.0,
+      "recentNseLotBackfill": {
+        "source": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=DHARARAIL&type=Past",
+        "series": "SME",
+        "lotSize": 1000,
+        "asOf": "2026-09-16T10:09:59+05:30"
       }
     },
     {
@@ -56690,6 +57563,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-01/Primary_Market_Monthly_Report_-_December_2025_20260112185519.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue detail lot size",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SHYAMDHANI&type=Past",
+          "asOf": "2026-09-16T10:10:05+05:30"
         }
       ],
       "source": {
@@ -56706,8 +57585,10 @@
             "min": 70.0,
             "max": 70.0
           },
-          "lotSize": null,
-          "issueSizeCr": null
+          "lotSize": 2000,
+          "issueSizeCr": null,
+          "lotSeries": "SME",
+          "lotCheckedAt": "2026-09-16T10:10:05+05:30"
         },
         "NSEFinalIssuePrice": {
           "source": "NSE primary-market monthly report",
@@ -56724,7 +57605,7 @@
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checkedAt": "2026-09-16T10:14:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -56781,6 +57662,20 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:11+00:00",
         "fingerprint": "4ac992690bf39c25ae84c4640683d48a35c841807b146a2d22597067944096f4"
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-16T10:09:59+05:30",
+        "status": "updated",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SHYAMDHANI&type=Past",
+        "symbol": "SHYAMDHANI"
+      },
+      "lotSize": 2000,
+      "minInvestment": 140000.0,
+      "recentNseLotBackfill": {
+        "source": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SHYAMDHANI&type=Past",
+        "series": "SME",
+        "lotSize": 2000,
+        "asOf": "2026-09-16T10:10:05+05:30"
       }
     },
     {
@@ -56938,6 +57833,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-01/Primary_Market_Monthly_Report_-_December_2025_20260112185519.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue detail lot size",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=EPWINDIA&type=Past",
+          "asOf": "2026-09-16T10:10:10+05:30"
         }
       ],
       "source": {
@@ -56954,8 +57855,10 @@
             "min": 97.0,
             "max": 97.0
           },
-          "lotSize": null,
-          "issueSizeCr": null
+          "lotSize": 1200,
+          "issueSizeCr": null,
+          "lotSeries": "SME",
+          "lotCheckedAt": "2026-09-16T10:10:10+05:30"
         },
         "NSEFinalIssuePrice": {
           "source": "NSE primary-market monthly report",
@@ -56972,7 +57875,7 @@
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checkedAt": "2026-09-16T10:14:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -57029,6 +57932,20 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:06+00:00",
         "fingerprint": "eabeb22374d6df46864d28396ff3c2fa6985118b7b2ac14a9da7b60d7614a26c"
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-16T10:10:05+05:30",
+        "status": "updated",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=EPWINDIA&type=Past",
+        "symbol": "EPWINDIA"
+      },
+      "lotSize": 1200,
+      "minInvestment": 116400.0,
+      "recentNseLotBackfill": {
+        "source": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=EPWINDIA&type=Past",
+        "series": "SME",
+        "lotSize": 1200,
+        "asOf": "2026-09-16T10:10:10+05:30"
       }
     },
     {
@@ -59050,6 +59967,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-01/Primary_Market_Monthly_Report_-_December_2025_20260112185519.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue detail lot size",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SHRIKANHA&type=Past",
+          "asOf": "2026-09-16T10:10:16+05:30"
         }
       ],
       "source": {
@@ -59066,8 +59989,10 @@
             "min": 90.0,
             "max": 90.0
           },
-          "lotSize": null,
-          "issueSizeCr": null
+          "lotSize": 1600,
+          "issueSizeCr": null,
+          "lotSeries": "SME",
+          "lotCheckedAt": "2026-09-16T10:10:16+05:30"
         },
         "NSEFinalIssuePrice": {
           "source": "NSE primary-market monthly report",
@@ -59084,7 +60009,7 @@
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checkedAt": "2026-09-16T10:14:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -59141,6 +60066,20 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:11+00:00",
         "fingerprint": "9b4ac7a5a9c73957634e378e20c1a41369fe6962fbac38cd451a8319eeeab2b4"
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-16T10:10:11+05:30",
+        "status": "updated",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SHRIKANHA&type=Past",
+        "symbol": "SHRIKANHA"
+      },
+      "lotSize": 1600,
+      "minInvestment": 144000.0,
+      "recentNseLotBackfill": {
+        "source": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SHRIKANHA&type=Past",
+        "series": "SME",
+        "lotSize": 1600,
+        "asOf": "2026-09-16T10:10:16+05:30"
       }
     },
     {
@@ -59557,6 +60496,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-01/Primary_Market_Monthly_Report_-_December_2025_20260112185519.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue detail lot size",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=NEOCHEM&type=Past",
+          "asOf": "2026-09-16T10:10:22+05:30"
         }
       ],
       "source": {
@@ -59573,8 +60518,10 @@
             "min": 98.0,
             "max": 98.0
           },
-          "lotSize": null,
-          "issueSizeCr": null
+          "lotSize": 1200,
+          "issueSizeCr": null,
+          "lotSeries": "SME",
+          "lotCheckedAt": "2026-09-16T10:10:22+05:30"
         },
         "NSEFinalIssuePrice": {
           "source": "NSE primary-market monthly report",
@@ -59591,7 +60538,7 @@
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checkedAt": "2026-09-16T10:14:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -59648,6 +60595,20 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:09+00:00",
         "fingerprint": "df583a50dd3c0d83542d92ef13b197d9717ee11cb6b7d5c24b3ce4a064cce766"
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-16T10:10:16+05:30",
+        "status": "updated",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=NEOCHEM&type=Past",
+        "symbol": "NEOCHEM"
+      },
+      "lotSize": 1200,
+      "minInvestment": 117600.0,
+      "recentNseLotBackfill": {
+        "source": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=NEOCHEM&type=Past",
+        "series": "SME",
+        "lotSize": 1200,
+        "asOf": "2026-09-16T10:10:22+05:30"
       }
     },
     {
@@ -59679,6 +60640,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-01/Primary_Market_Monthly_Report_-_December_2025_20260112185519.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue detail lot size",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SPEB&type=Past",
+          "asOf": "2026-09-16T10:10:27+05:30"
         }
       ],
       "source": {
@@ -59695,8 +60662,10 @@
             "min": 56.0,
             "max": 56.0
           },
-          "lotSize": null,
-          "issueSizeCr": null
+          "lotSize": 2000,
+          "issueSizeCr": null,
+          "lotSeries": "SME",
+          "lotCheckedAt": "2026-09-16T10:10:27+05:30"
         },
         "NSEFinalIssuePrice": {
           "source": "NSE primary-market monthly report",
@@ -59713,7 +60682,7 @@
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checkedAt": "2026-09-16T10:14:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -59770,6 +60739,20 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:11+00:00",
         "fingerprint": "c0ff0241711d46194569e86cac4edbec43166a485ebce1c00d23d7f47cd54b16"
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-16T10:10:22+05:30",
+        "status": "updated",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SPEB&type=Past",
+        "symbol": "SPEB"
+      },
+      "lotSize": 2000,
+      "minInvestment": 112000.0,
+      "recentNseLotBackfill": {
+        "source": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SPEB&type=Past",
+        "series": "SME",
+        "lotSize": 2000,
+        "asOf": "2026-09-16T10:10:27+05:30"
       }
     },
     {
@@ -61179,6 +62162,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com/web/sites/default/files/inline-files/Primary%20Market%20Monthly%20Report%20-November%202025.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue detail lot size",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=CURIS&type=Past",
+          "asOf": "2026-09-16T10:10:33+05:30"
         }
       ],
       "source": {
@@ -61195,8 +62184,10 @@
             "min": 128.0,
             "max": 128.0
           },
-          "lotSize": null,
-          "issueSizeCr": null
+          "lotSize": 1000,
+          "issueSizeCr": null,
+          "lotSeries": "SME",
+          "lotCheckedAt": "2026-09-16T10:10:33+05:30"
         },
         "NSEFinalIssuePrice": {
           "source": "NSE primary-market monthly report",
@@ -61213,7 +62204,7 @@
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checkedAt": "2026-09-16T10:14:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -61270,6 +62261,20 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:05+00:00",
         "fingerprint": "60ba38dab4ac33afac16ceefdce30bbcaeaa57cfaf8acff3e9d34917613a4cea"
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-16T10:10:27+05:30",
+        "status": "updated",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=CURIS&type=Past",
+        "symbol": "CURIS"
+      },
+      "lotSize": 1000,
+      "minInvestment": 128000.0,
+      "recentNseLotBackfill": {
+        "source": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=CURIS&type=Past",
+        "series": "SME",
+        "lotSize": 1000,
+        "asOf": "2026-09-16T10:10:33+05:30"
       }
     },
     {
@@ -63289,6 +64294,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com/web/sites/default/files/inline-files/Listing%20October%20Data%202025.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue detail lot size",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=MUNISH&type=Past",
+          "asOf": "2026-09-16T10:10:38+05:30"
         }
       ],
       "source": {
@@ -63305,8 +64316,10 @@
             "min": 96.0,
             "max": 96.0
           },
-          "lotSize": null,
-          "issueSizeCr": null
+          "lotSize": 1200,
+          "issueSizeCr": null,
+          "lotSeries": "SME",
+          "lotCheckedAt": "2026-09-16T10:10:38+05:30"
         },
         "NSEFinalIssuePrice": {
           "source": "NSE primary-market monthly report",
@@ -63323,7 +64336,7 @@
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checkedAt": "2026-09-16T10:14:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -63380,6 +64393,20 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:08+00:00",
         "fingerprint": "6708a0a22bb46774d91badd1b958ae2446f5e3bf347e282e4d255de6783c99f2"
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-16T10:10:33+05:30",
+        "status": "updated",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=MUNISH&type=Past",
+        "symbol": "MUNISH"
+      },
+      "lotSize": 1200,
+      "minInvestment": 115200.0,
+      "recentNseLotBackfill": {
+        "source": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=MUNISH&type=Past",
+        "series": "SME",
+        "lotSize": 1200,
+        "asOf": "2026-09-16T10:10:38+05:30"
       }
     },
     {
@@ -63411,6 +64438,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com/web/sites/default/files/inline-files/Listing%20October%20Data%202025.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue detail lot size",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=GREENLEAF&type=Past",
+          "asOf": "2026-09-16T10:10:44+05:30"
         }
       ],
       "source": {
@@ -63427,8 +64460,10 @@
             "min": 136.0,
             "max": 136.0
           },
-          "lotSize": null,
-          "issueSizeCr": null
+          "lotSize": 1000,
+          "issueSizeCr": null,
+          "lotSeries": "SME",
+          "lotCheckedAt": "2026-09-16T10:10:44+05:30"
         },
         "NSEFinalIssuePrice": {
           "source": "NSE primary-market monthly report",
@@ -63445,7 +64480,7 @@
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checkedAt": "2026-09-16T10:14:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -63502,6 +64537,20 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:06+00:00",
         "fingerprint": "82caf9e11e82ab8fc26ddc24a644ece49168cee703a0ec9bb5fa9a0e979818da"
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-16T10:10:38+05:30",
+        "status": "updated",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=GREENLEAF&type=Past",
+        "symbol": "GREENLEAF"
+      },
+      "lotSize": 1000,
+      "minInvestment": 136000.0,
+      "recentNseLotBackfill": {
+        "source": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=GREENLEAF&type=Past",
+        "series": "SME",
+        "lotSize": 1000,
+        "asOf": "2026-09-16T10:10:44+05:30"
       }
     },
     {
@@ -63845,6 +64894,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com/web/sites/default/files/inline-files/Listing%20October%20Data%202025.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue detail lot size",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=VIJAYPD&type=Past",
+          "asOf": "2026-09-16T10:10:49+05:30"
         }
       ],
       "source": {
@@ -63861,8 +64916,10 @@
             "min": 35.0,
             "max": 35.0
           },
-          "lotSize": null,
-          "issueSizeCr": null
+          "lotSize": 4000,
+          "issueSizeCr": null,
+          "lotSeries": "SME",
+          "lotCheckedAt": "2026-09-16T10:10:49+05:30"
         },
         "NSEFinalIssuePrice": {
           "source": "NSE primary-market monthly report",
@@ -63879,7 +64936,7 @@
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checkedAt": "2026-09-16T10:14:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -63936,6 +64993,20 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:13+00:00",
         "fingerprint": "e5557a563164229ad1d1e436f456626b33ff74ce58a2bd768ceb4ece568c4f71"
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-16T10:10:44+05:30",
+        "status": "updated",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=VIJAYPD&type=Past",
+        "symbol": "VIJAYPD"
+      },
+      "lotSize": 4000,
+      "minInvestment": 140000.0,
+      "recentNseLotBackfill": {
+        "source": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=VIJAYPD&type=Past",
+        "series": "SME",
+        "lotSize": 4000,
+        "asOf": "2026-09-16T10:10:49+05:30"
       }
     },
     {
@@ -64657,6 +65728,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com/web/sites/default/files/inline-files/Listing%20October%20Data%202025.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue detail lot size",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=MPEL&type=Past",
+          "asOf": "2026-09-16T10:10:55+05:30"
         }
       ],
       "source": {
@@ -64673,8 +65750,10 @@
             "min": 81.0,
             "max": 81.0
           },
-          "lotSize": null,
-          "issueSizeCr": null
+          "lotSize": 1600,
+          "issueSizeCr": null,
+          "lotSeries": "SME",
+          "lotCheckedAt": "2026-09-16T10:10:55+05:30"
         },
         "NSEFinalIssuePrice": {
           "source": "NSE primary-market monthly report",
@@ -64691,7 +65770,7 @@
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checkedAt": "2026-09-16T10:14:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -64748,6 +65827,20 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:08+00:00",
         "fingerprint": "c1002df078661c2b7b72959d982f5804175ad0a3988543adc81b2ce4a3ae6a07"
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-16T10:10:49+05:30",
+        "status": "updated",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=MPEL&type=Past",
+        "symbol": "MPEL"
+      },
+      "lotSize": 1600,
+      "minInvestment": 129600.0,
+      "recentNseLotBackfill": {
+        "source": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=MPEL&type=Past",
+        "series": "SME",
+        "lotSize": 1600,
+        "asOf": "2026-09-16T10:10:55+05:30"
       }
     },
     {
@@ -66468,6 +67561,12 @@
           "kind": "exchange",
           "url": "https://nsearchives.nseindia.com/web/sites/default/files/inline-files/Listing%20_Data_%20Sep2025.xlsx",
           "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE issue detail lot size",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=PRIMECAB&type=Past",
+          "asOf": "2026-09-16T10:11:00+05:30"
         }
       ],
       "source": {
@@ -66484,8 +67583,10 @@
             "min": 83.0,
             "max": 83.0
           },
-          "lotSize": null,
-          "issueSizeCr": null
+          "lotSize": 1600,
+          "issueSizeCr": null,
+          "lotSeries": "SME",
+          "lotCheckedAt": "2026-09-16T10:11:00+05:30"
         },
         "NSEFinalIssuePrice": {
           "source": "NSE primary-market monthly report",
@@ -66502,7 +67603,7 @@
       "documents": [],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checkedAt": "2026-09-16T10:14:14+05:30",
         "checks": [],
         "independentSources": [
           "NSE"
@@ -66559,6 +67660,20 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:09+00:00",
         "fingerprint": "086d82ccb931bbc4b68087209de743f4b477c73eff594c62c4ad398822258e5a"
+      },
+      "nseLotSizeAttempt": {
+        "checkedAt": "2026-09-16T10:10:55+05:30",
+        "status": "updated",
+        "sourceUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=PRIMECAB&type=Past",
+        "symbol": "PRIMECAB"
+      },
+      "lotSize": 1600,
+      "minInvestment": 132800.0,
+      "recentNseLotBackfill": {
+        "source": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=PRIMECAB&type=Past",
+        "series": "SME",
+        "lotSize": 1600,
+        "asOf": "2026-09-16T10:11:00+05:30"
       }
     },
     {
