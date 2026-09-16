@@ -1,3 +1,5 @@
+import json
+import subprocess
 import sys
 import unittest
 from pathlib import Path
@@ -142,6 +144,47 @@ class FinalProspectusSourcePolicyTests(unittest.TestCase):
         """
         price, _ = final_parser.extract_final_issue_price(text)
         self.assertIsNone(price)
+
+    def test_market_updater_keeps_static_terms_observation_only(self):
+        code = r'''
+import json
+import run_update_final_policy as mod
+row = mod.normalize_nse_record({
+    "companyName": "Example Limited",
+    "symbol": "EXAMPLE",
+    "issueStartDate": "01-Sep-2026",
+    "issueEndDate": "03-Sep-2026",
+    "minPrice": 118,
+    "maxPrice": 124,
+    "lotSize": 1200,
+    "issueSizeCr": 100,
+}, "current")
+merged = mod.merge_fill_only(
+    {"company": "Example Limited", "lotSize": None, "priceBand": None, "listingDate": None},
+    {"lotSize": 1200, "priceBand": {"min": 118, "max": 124}, "listingDate": "2026-09-10"},
+)
+print(json.dumps({"row": row, "merged": merged}))
+'''
+        result = subprocess.run(
+            [sys.executable, "-c", code],
+            cwd=ROOT,
+            env={**__import__("os").environ, "PYTHONPATH": str(ROOT / "scripts")},
+            text=True,
+            capture_output=True,
+            check=True,
+        )
+        data = json.loads(result.stdout.strip())
+        row = data["row"]
+        self.assertIsNone(row["lotSize"])
+        self.assertIsNone(row["priceBand"])
+        self.assertIsNone(row["issueSizeCr"])
+        observed = row["observations"]["NSE"]["staticOfferTerms"]
+        self.assertEqual(observed["lotSize"], 1200)
+        self.assertEqual(observed["priceBand"], {"min": 118.0, "max": 124.0})
+        self.assertEqual(observed["issueSizeCr"], 100.0)
+        self.assertIsNone(data["merged"]["lotSize"])
+        self.assertIsNone(data["merged"]["priceBand"])
+        self.assertEqual(data["merged"]["listingDate"], "2026-09-10")
 
     def test_pipeline_has_no_mixed_static_backfill_stages(self):
         pipeline = (ROOT / "scripts" / "run_pipeline.py").read_text(encoding="utf-8")
