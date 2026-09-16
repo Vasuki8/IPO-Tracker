@@ -201,6 +201,11 @@ def run(mode: str):
     step("apply_corrections.py")
     step("enforce_final_prospectus_policy.py")
 
+    # Final-Prospectus enforcement can turn populated legacy static values into
+    # provenance gaps. Rebuild immediately so discovery in this same run sees
+    # those targets instead of waiting for the next scheduled execution.
+    rebuild()
+
     if mode == "core":
         step("run_update_final_policy.py", "--history-days", "1", "--sebi-pages", "4", timeout=900)
         step("record_integrity.py")
