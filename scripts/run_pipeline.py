@@ -115,6 +115,12 @@ def discover_and_parse_final_prospectuses(priority_max: int, *, document_limit: 
     step("enrich_sebi_priority_registers_v2.py", "--priority-max", str(priority_max), "--search-limit", str(max(20, document_limit)), timeout=300)
     step("enrich_sebi_document_links.py", "--priority-max", str(priority_max), "--limit", str(max(20, document_limit)), timeout=300)
     step("collect_nse_offer_filings_final_policy.py", "--limit", str(max(50, document_limit * 3)), "--documents-limit", str(document_limit), timeout=600)
+    # A newly discovered true Final Prospectus can invalidate legacy/RHP/abridged
+    # provenance on a record that was not actionable when this run began. Apply
+    # the source policy and rebuild the authoritative queue before parsing so the
+    # canonical parser can revalidate that record in this same collection run.
+    step("enforce_final_prospectus_policy.py")
+    rebuild()
     step("run_offer_documents.py", "--limit", str(parse_limit), "--workers", "4" if parse_limit >= 30 else "2", timeout=2400 if parse_limit >= 30 else 900)
     step("run_issuer_offer_docs.py", "--priority-max", str(priority_max), "--limit", str(max(10, min(parse_limit, 30))), timeout=1200)
     step("enforce_final_prospectus_policy.py")
