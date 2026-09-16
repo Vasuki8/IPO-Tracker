@@ -25,8 +25,6 @@ base.parser_v4 = parser
 base.PARSER_VERSION = parser.PARSER_VERSION
 base._extract_targeted_full_text = parser.extract_targeted_pdf_text
 
-# Keep only Final Prospectus registrations active. Built-in issuer RHP/DRHP
-# fallbacks are intentionally disabled under the canonical source policy.
 combined = dict(base.ISSUER_DOCUMENTS)
 combined.update(VALIDATED_OFFER_DOCUMENTS)
 base.ISSUER_DOCUMENTS = {
@@ -36,6 +34,36 @@ base.ISSUER_DOCUMENTS = {
 }
 
 _ORIGINAL_MERGE = base.merge_issuer_enrichment
+_ORIGINAL_NEEDS_DEEP_SCAN = base._needs_deep_scan
+FINAL_REVALIDATION_PREFIX = "provenance.finalProspectus."
+
+
+def _revalidation_gaps(item: dict[str, Any]) -> set[str]:
+    missing = {str(field) for field in (item.get("missingFields") or [])}
+    return {
+        field[len(FINAL_REVALIDATION_PREFIX):]
+        for field in missing
+        if field.startswith(FINAL_REVALIDATION_PREFIX)
+    }
+
+
+def _has_priority_or_revalidation_gap(item: dict[str, Any]) -> bool:
+    return bool(base._has_priority_gap(item) or _revalidation_gaps(item))
+
+
+def _needs_deep_scan_with_revalidation(
+    item: dict[str, Any], parsed: dict[str, Any]
+) -> tuple[bool, bool]:
+    need_financials, need_shareholding = _ORIGINAL_NEEDS_DEEP_SCAN(item, parsed)
+    pending = _revalidation_gaps(item)
+    if "financials" in pending and not parsed.get("financials"):
+        need_financials = True
+    if "shareholding" in pending and not parsed.get("shareholding"):
+        need_shareholding = True
+    return need_financials, need_shareholding
+
+
+base._needs_deep_scan = _needs_deep_scan_with_revalidation
 
 
 def merge_validated_offer_enrichment(
@@ -47,7 +75,6 @@ def merge_validated_offer_enrichment(
     pages_read,
     page_count,
 ):
-    """Persist provenance, then make Final Prospectus static fields canonical."""
     if not source_policy.is_final_prospectus(doc):
         raise ValueError("Verified offer fallback is not a Final Prospectus")
 
@@ -185,7 +212,7 @@ def _identity_safe_targets(
 
         record_id = str(item.get("id") or "")
         spec = base.ISSUER_DOCUMENTS.get(record_id)
-        if priority > priority_max or not spec or not base._has_priority_gap(item):
+        if priority > priority_max or not spec or not _has_priority_or_revalidation_gap(item):
             continue
         if not source_policy.is_final_prospectus(spec):
             continue
@@ -205,7 +232,7 @@ def _identity_safe_targets(
             continue
 
         record = matches[0]
-        if _already_extracted(record, spec):
+        if _already_extracted(record, spec) and not _revalidation_gaps(item):
             continue
 
         candidates.append(
