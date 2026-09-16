@@ -17,8 +17,8 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 import requests
+import final_prospectus_parser as parser
 import final_prospectus_policy as source_policy
-import offer_parser as parser
 import update_data as core
 
 ROOT = Path(__file__).resolve().parents[1]
