@@ -1,18 +1,16 @@
 #!/usr/bin/env python3
-"""Phase 2 dedicated SEBI priority filing discovery.
+"""SEBI Final Prospectus discovery for priority IPO records.
 
-v1 discovers priority RHP/Prospectus landing pages from the newest dedicated
-register pages. SEBI's POST pagination is blocked from GitHub Actions, but the
-GET-based all-list search endpoint remains accessible. v2 uses that search only
-for priority issuers still lacking a primary RHP/Prospectus landing page.
+The dedicated SEBI register first page is useful for the newest filings, while
+SEBI's GET-based all-list search can recover older issuer filing pages. Under the
+Final-Prospectus-only source policy an existing RHP is *not* completion: the
+search remains active until an actual Prospectus landing page (or direct final
+Prospectus PDF) is known.
 
-Only final-stage RHP or Prospectus search results are accepted here. DRHP and
-UDRHP results are deliberately ignored because recent exchange terms such as
-lot size and final issue composition may not yet be fixed in draft documents.
-
-Search attempts are persisted per record. Bounded runs therefore process never-
-attempted issuers first, then retry the oldest attempts, instead of repeatedly
-spending the daily budget on the same newest no-match records.
+DRHP/RHP remain document history only. This module attaches only final
+``PROSPECTUS`` matches from the all-list search; direct PDFs are resolved later
+by ``enrich_sebi_document_links.py`` and parsed by the canonical Final
+Prospectus parser.
 """
 from __future__ import annotations
 
@@ -32,13 +30,14 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 import enrich_sebi_priority_registers as v1  # noqa: E402
+import final_prospectus_policy as final_policy  # noqa: E402
 import update_data as core  # noqa: E402
 
 DATA_FILE = core.DATA_FILE
 QUEUE_FILE = v1.QUEUE_FILE
 SEARCH_URL = "https://www.sebi.gov.in/sebiweb/home/HomeAction.do"
-PARSER_VERSION = 2
-ATTEMPT_KEY = "sebiPriorityRegisterSearch"
+PARSER_VERSION = 3
+ATTEMPT_KEY = "sebiFinalProspectusSearch"
 
 
 def infer_primary_type(title: str) -> str | None:
@@ -91,6 +90,7 @@ def parse_search_html(html: str, search_url: str = SEARCH_URL) -> list[dict[str,
 
 
 def has_primary_landing(record: dict[str, Any]) -> bool:
+    """Compatibility helper: any RHP/Prospectus SEBI landing page."""
     for doc in record.get("documents") or []:
         if not isinstance(doc, dict):
             continue
@@ -101,17 +101,47 @@ def has_primary_landing(record: dict[str, Any]) -> bool:
     return False
 
 
+def has_final_prospectus_landing(record: dict[str, Any]) -> bool:
+    """True once the final document is directly known or its SEBI page is attached."""
+    if final_policy.choose_final_prospectus(record) is not None:
+        return True
+    for doc in record.get("documents") or []:
+        if not isinstance(doc, dict):
+            continue
+        url = str(doc.get("url") or "")
+        if (
+            final_policy.is_final_prospectus(doc)
+            and "/filings/public-issues/" in url
+            and not url.lower().endswith(".pdf")
+        ):
+            return True
+    return False
+
+
+def final_prospectus_matches(
+    record: dict[str, Any], candidates: list[dict[str, str]]
+) -> list[dict[str, str]]:
+    """Return identity/date-matched final Prospectus results only."""
+    return [
+        candidate
+        for candidate in v1.match_record(record, candidates)
+        if str(candidate.get("type") or "").upper() == "PROSPECTUS"
+    ]
+
+
 def _attach_matches(record: dict[str, Any], matches: list[dict[str, str]]) -> int:
     docs = [d for d in (record.get("documents") or []) if isinstance(d, dict)]
     existing = {str(d.get("url") or "") for d in docs}
     added = 0
     for candidate in matches:
+        if str(candidate.get("type") or "").upper() != "PROSPECTUS":
+            continue
         url = str(candidate.get("url") or "")
         if not url or url in existing:
             continue
         docs.append(
             {
-                "type": candidate["type"],
+                "type": "PROSPECTUS",
                 "title": candidate["title"],
                 "url": url,
                 "filedDate": candidate.get("filedDate") or None,
@@ -171,11 +201,17 @@ def enrich_payload(
     priority_max: int = 2,
     search_limit: int = 30,
 ) -> dict[str, Any]:
+    # The newest dedicated registers remain a cheap first pass. They may attach
+    # RHP history too, but RHP does not stop the final-only search below.
     first_page = v1.enrich_payload(payload, session, priority_max=priority_max)
     queue = json.loads(QUEUE_FILE.read_text(encoding="utf-8")) if QUEUE_FILE.exists() else {"queue": []}
     ids = v1.priority_ids(queue, priority_max)
-    records = [r for r in payload.get("ipos") or [] if isinstance(r, dict) and str(r.get("id") or "") in ids]
-    records = [r for r in records if not has_primary_landing(r)]
+    records = [
+        r
+        for r in payload.get("ipos") or []
+        if isinstance(r, dict) and str(r.get("id") or "") in ids
+    ]
+    records = [r for r in records if not has_final_prospectus_landing(r)]
     records.sort(key=search_candidate_sort_key)
     if search_limit > 0:
         records = records[:search_limit]
@@ -192,9 +228,13 @@ def enrich_payload(
             )
             response.raise_for_status()
             candidates = parse_search_html(response.text)
-            matches = v1.match_record(record, candidates)
+            matches = final_prospectus_matches(record, candidates)
             added = _attach_matches(record, matches)
-            _stamp_attempt(record, status="matched" if added else "no-match", links_added=added)
+            _stamp_attempt(
+                record,
+                status="matched-final-prospectus" if added else "no-final-prospectus",
+                links_added=added,
+            )
             if added:
                 matched_records += 1
                 links_added += added
@@ -210,9 +250,10 @@ def enrich_payload(
         "priorityMax": priority_max,
         "firstPageMatched": first_page.get("matchedRecords", 0),
         "firstPageLinks": first_page.get("linksAdded", 0),
+        "awaitingFinalProspectus": len(records),
         "searchedRecords": searched,
-        "searchMatchedRecords": matched_records,
-        "searchLinksAdded": links_added,
+        "finalProspectusMatchedRecords": matched_records,
+        "finalProspectusLinksAdded": links_added,
         "failed": failed,
         "asOf": as_of,
         "errors": errors[:10],
@@ -238,10 +279,10 @@ def main() -> int:
     )
     DATA_FILE.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(
-        "SEBI priority registers v2: "
+        "SEBI Final Prospectus discovery: "
         f"first_page={health['firstPageMatched']} searched={health['searchedRecords']} "
-        f"search_matched={health['searchMatchedRecords']} search_links={health['searchLinksAdded']} "
-        f"failed={health['failed']}"
+        f"final_matched={health['finalProspectusMatchedRecords']} "
+        f"final_links={health['finalProspectusLinksAdded']} failed={health['failed']}"
     )
     return 0
 
