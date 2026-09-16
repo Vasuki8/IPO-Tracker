@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T21:52:22+05:30",
+  "generatedAt": "2026-09-16T22:28:51+05:30",
   "asOfDate": "2026-09-16",
   "recordCount": 1357,
   "stageCounts": {
@@ -15,14 +15,14 @@
     "exchangeStage": 1350,
     "recentExchange2Y": 441,
     "historicalExchange": 909,
-    "offerDocumentEligible": 148,
+    "offerDocumentEligible": 169,
     "openNow": 8,
     "maturedClosed": 1321
   },
   "scores": {
     "exchangeStage": 83.5,
     "recentExchange2Y": 99.3,
-    "offerDocumentEligible": 84.1,
+    "offerDocumentEligible": 82.8,
     "openSubscription": 100.0,
     "maturedLifecycle": 97.3,
     "provenance": 100.0
@@ -192,40 +192,40 @@
     },
     "offerDocumentEligible": {
       "registrar": {
-        "present": 145,
-        "expected": 148,
-        "missing": 3,
-        "pct": 98.0
+        "present": 167,
+        "expected": 169,
+        "missing": 2,
+        "pct": 98.8
       },
       "leadManagers": {
-        "present": 145,
-        "expected": 148,
-        "missing": 3,
-        "pct": 98.0
+        "present": 167,
+        "expected": 169,
+        "missing": 2,
+        "pct": 98.8
       },
       "promoters": {
-        "present": 132,
-        "expected": 148,
-        "missing": 16,
-        "pct": 89.2
+        "present": 152,
+        "expected": 169,
+        "missing": 17,
+        "pct": 89.9
       },
       "objectsOfIssue": {
-        "present": 139,
-        "expected": 148,
-        "missing": 9,
-        "pct": 93.9
+        "present": 157,
+        "expected": 169,
+        "missing": 12,
+        "pct": 92.9
       },
       "financials": {
-        "present": 106,
-        "expected": 148,
-        "missing": 42,
-        "pct": 71.6
+        "present": 113,
+        "expected": 169,
+        "missing": 56,
+        "pct": 66.9
       },
       "promoterShareholding": {
-        "present": 80,
-        "expected": 148,
-        "missing": 68,
-        "pct": 54.1
+        "present": 84,
+        "expected": 169,
+        "missing": 85,
+        "pct": 49.7
       }
     },
     "openSubscription": {
@@ -284,8 +284,8 @@
         "pct": 100.0
       },
       "documents": {
-        "present": 151,
-        "expected": 151,
+        "present": 172,
+        "expected": 172,
         "missing": 0,
         "pct": 100.0
       }
@@ -459,12 +459,6 @@
     "offerDocumentEligible": {
       "registrar": [
         {
-          "id": "happy",
-          "company": "Happy Steels Limited",
-          "openDate": "2026-07-09",
-          "stage": "listed"
-        },
-        {
           "id": "biopol",
           "company": "Biopol Chemicals Limited",
           "openDate": "2026-02-06",
@@ -478,12 +472,6 @@
         }
       ],
       "leadManagers": [
-        {
-          "id": "happy",
-          "company": "Happy Steels Limited",
-          "openDate": "2026-07-09",
-          "stage": "listed"
-        },
         {
           "id": "biopol",
           "company": "Biopol Chemicals Limited",
@@ -502,12 +490,6 @@
           "id": "anawil",
           "company": "Anawil Wire and Engineering Limited",
           "openDate": "2026-08-03",
-          "stage": "listed"
-        },
-        {
-          "id": "happy",
-          "company": "Happy Steels Limited",
-          "openDate": "2026-07-09",
           "stage": "listed"
         },
         {
@@ -571,6 +553,18 @@
           "stage": "listed"
         },
         {
+          "id": "dhararail",
+          "company": "Dhara Rail Projects Limited",
+          "openDate": "2025-12-23",
+          "stage": "listed"
+        },
+        {
+          "id": "ashwini",
+          "company": "Ashwini Container Movers Limited",
+          "openDate": "2025-12-12",
+          "stage": "listed"
+        },
+        {
           "id": "aaradhya",
           "company": "Aaradhya Disposal Industries Limited",
           "openDate": "2025-08-04",
@@ -580,12 +574,6 @@
           "id": "sgltl",
           "company": "Standard Glass Lining Technology Limited",
           "openDate": "2025-01-06",
-          "stage": "listed"
-        },
-        {
-          "id": "igil",
-          "company": "International Gemmological Institute (India) Limited",
-          "openDate": "2024-12-13",
           "stage": "listed"
         }
       ],
@@ -627,6 +615,24 @@
           "stage": "listed"
         },
         {
+          "id": "bharatcoal",
+          "company": "Bharat Coking Coal Limited",
+          "openDate": "2026-01-09",
+          "stage": "listed"
+        },
+        {
+          "id": "iciciamc",
+          "company": "ICICI Prudential Asset Management Company Limited",
+          "openDate": "2025-12-12",
+          "stage": "listed"
+        },
+        {
+          "id": "corona",
+          "company": "Corona Remedies Limited",
+          "openDate": "2025-12-08",
+          "stage": "listed"
+        },
+        {
           "id": "mamata",
           "company": "Mamata Machinery Limited",
           "openDate": "2024-12-19",
@@ -662,18 +668,6 @@
           "id": "anawil",
           "company": "Anawil Wire and Engineering Limited",
           "openDate": "2026-08-03",
-          "stage": "listed"
-        },
-        {
-          "id": "sbifunds",
-          "company": "SBI Funds Management Limited",
-          "openDate": "2026-07-14",
-          "stage": "listed"
-        },
-        {
-          "id": "happy",
-          "company": "Happy Steels Limited",
-          "openDate": "2026-07-09",
           "stage": "listed"
         },
         {
@@ -735,6 +729,18 @@
           "company": "Amba Auto Sales and Services Limited",
           "openDate": "2026-04-27",
           "stage": "listed"
+        },
+        {
+          "id": "apsisaero",
+          "company": "Apsis Aerocom Limited",
+          "openDate": "2026-03-11",
+          "stage": "listed"
+        },
+        {
+          "id": "striders",
+          "company": "Striders Impex Limited",
+          "openDate": "2026-02-26",
+          "stage": "listed"
         }
       ],
       "promoterShareholding": [
@@ -781,12 +787,6 @@
           "stage": "listed"
         },
         {
-          "id": "xtranet",
-          "company": "Xtranet Technologies Limited",
-          "openDate": "2026-07-23",
-          "stage": "listed"
-        },
-        {
           "id": "metalic",
           "company": "Metalic Technoforge Limited",
           "openDate": "2026-07-21",
@@ -825,6 +825,12 @@
         {
           "id": "cordelia",
           "company": "Waterways Leisure Tourism Limited",
+          "openDate": "2026-06-23",
+          "stage": "listed"
+        },
+        {
+          "id": "shreedhar",
+          "company": "Shreedhar Spinners Limited",
           "openDate": "2026-06-23",
           "stage": "listed"
         }
