@@ -3,7 +3,7 @@ name: Preview source repairs
 on:
   workflow_dispatch:
   pull_request:
-    paths: ['scripts/offer_parser.py', 'scripts/run_offer_documents.py', 'scripts/review_source_repairs.py', 'scripts/collect_nse_offer_filings.py', 'scripts/collect_final_issue_prices.py', 'scripts/collect_price_history.py', 'scripts/performance_tracking.py', 'scripts/performance_metrics.py', 'scripts/enrich_nse_primary_market_reports*.py', 'scripts/validate_data.py', 'tests/test_*price*.py', 'tests/test_performance_tracking.py', 'tests/test_nse_offer_filings.py', 'tests/test_financial_source_layouts.py', 'tests/fixtures/**', '.github/workflows/source-review.yml']
+    paths: ['scripts/offer_parser.py', 'scripts/final_prospectus_parser.py', 'scripts/final_prospectus_policy.py', 'scripts/run_offer_documents.py', 'scripts/run_issuer_offer_docs.py', 'scripts/review_source_repairs.py', 'scripts/collect_nse_offer_filings_final_policy.py', 'scripts/enforce_final_prospectus_policy.py', 'scripts/collect_price_history.py', 'scripts/performance_tracking.py', 'scripts/performance_metrics.py', 'scripts/validate_data.py', 'tests/test_*price*.py', 'tests/test_performance_tracking.py', 'tests/test_final_prospectus_source_policy.py', 'tests/test_financial_source_layouts.py', 'tests/fixtures/**', '.github/workflows/source-review.yml']
 
 permissions:
   contents: read
@@ -25,9 +25,12 @@ jobs:
       - run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils
       - name: Test parser before source preview
         run: uv run --frozen python -m unittest discover -s tests -q
-      - name: Preview current document repairs
+      - name: Preview Final Prospectus document repairs
         run: |
-          uv run --frozen python scripts/collect_nse_offer_filings.py --limit 150 --documents-limit 5
+          uv run --frozen python scripts/collect_nse_offer_filings_final_policy.py --limit 150 --documents-limit 10
+          uv run --frozen python scripts/run_offer_documents.py --limit 30 --workers 3
+          uv run --frozen python scripts/run_issuer_offer_docs.py --priority-max 4 --limit 20
+          uv run --frozen python scripts/enforce_final_prospectus_policy.py
           uv run --frozen python scripts/review_source_repairs.py --limit 100
       - uses: actions/upload-artifact@v4.6.2
         if: always()
@@ -49,13 +52,13 @@ jobs:
       - run: uv sync --frozen
       - name: Test baseline collectors
         run: uv run --frozen python -m unittest discover -s tests -q
-      - name: Preview official final prices and dated history
+      - name: Preview Final-Prospectus baseline and dated market history
         run: |
-          uv run --frozen python scripts/collect_final_issue_prices.py --history-days 730 --max-reports 36
+          uv run --frozen python scripts/enforce_final_prospectus_policy.py
           uv run --frozen python scripts/collect_price_history.py --limit 30
           uv run --frozen python scripts/validate_data.py --strict
           uv run --frozen python scripts/build_performance_summary.py
-          uv run --frozen python -c 'import json; p=json.load(open("data/ipos.json")); [print("BASELINE_RECORD " + json.dumps({k:r.get(k) for k in ("id","listing","performance")})) for r in p["ipos"] if r.get("listing") or r.get("performance")]'
+          uv run --frozen python -c 'import json; p=json.load(open("data/ipos.json")); [print("BASELINE_RECORD " + json.dumps({k:r.get(k) for k in ("id","listing","performance","staticSourcePolicy")})) for r in p["ipos"] if r.get("listing") or r.get("performance")]'
       - uses: actions/upload-artifact@v4.6.2
         if: always()
         with:
