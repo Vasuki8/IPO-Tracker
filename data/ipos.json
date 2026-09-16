@@ -6,7 +6,7 @@
       "remaining": 0,
       "changedFields": 0,
       "failed": 0,
-      "checkedAt": "2026-09-16T09:00:10+05:30",
+      "checkedAt": "2026-09-16T09:21:45+05:30",
       "outcomes": []
     },
     "errors": [],
@@ -17,9 +17,9 @@
       "reports": 36,
       "failed": 0,
       "errors": [],
-      "checkedAt": "2026-09-16T03:30:18.228850+00:00"
+      "checkedAt": "2026-09-16T03:51:53.285584+00:00"
     },
-    "generatedAt": "2026-09-16T03:30:39.328279+00:00",
+    "generatedAt": "2026-09-16T03:54:35.434972+00:00",
     "historyStart": "2024-09-13",
     "initialSourceRepair": {
       "records": 1354,
@@ -52,7 +52,7 @@
       "failed": 0,
       "errors": [],
       "outcomes": [],
-      "checkedAt": "2026-09-16T03:30:10+00:00"
+      "checkedAt": "2026-09-16T03:51:45+00:00"
     },
     "offerDocumentHealth": {
       "ok": false,
@@ -67,13 +67,227 @@
         "Lohia Corp Limited: PDF too large (22002332 bytes)"
       ]
     },
+    "p4OfferResidualHealth": {
+      "parserVersion": 1,
+      "mainParserVersion": 22,
+      "targets": 80,
+      "attempted": 30,
+      "remaining": 50,
+      "changedFields": 27,
+      "failed": 1,
+      "checkedAt": "2026-09-16T09:24:12+05:30",
+      "outcomes": [
+        {
+          "id": "annu",
+          "status": "updated",
+          "changedFields": [
+            "promoters",
+            "objectsOfIssue"
+          ]
+        },
+        {
+          "id": "arcil",
+          "status": "no_change",
+          "changedFields": []
+        },
+        {
+          "id": "augmont",
+          "status": "updated",
+          "changedFields": [
+            "objectsOfIssue"
+          ]
+        },
+        {
+          "id": "century-business-media-limited",
+          "status": "updated",
+          "changedFields": [
+            "objectsOfIssue"
+          ]
+        },
+        {
+          "id": "credent",
+          "status": "updated",
+          "changedFields": [
+            "objectsOfIssue"
+          ]
+        },
+        {
+          "id": "dhoottrans",
+          "status": "updated",
+          "changedFields": [
+            "objectsOfIssue"
+          ]
+        },
+        {
+          "id": "gaja",
+          "status": "updated",
+          "changedFields": [
+            "promoters",
+            "objectsOfIssue"
+          ]
+        },
+        {
+          "id": "heromotors",
+          "status": "updated",
+          "changedFields": [
+            "promoters"
+          ]
+        },
+        {
+          "id": "htel",
+          "status": "updated",
+          "changedFields": [
+            "promoters",
+            "objectsOfIssue"
+          ]
+        },
+        {
+          "id": "injecto-polymers-limited",
+          "status": "updated",
+          "changedFields": [
+            "objectsOfIssue"
+          ]
+        },
+        {
+          "id": "jsipl",
+          "status": "no_change",
+          "changedFields": []
+        },
+        {
+          "id": "kanohar",
+          "status": "updated",
+          "changedFields": [
+            "promoters"
+          ]
+        },
+        {
+          "id": "karamtara",
+          "status": "updated",
+          "changedFields": [
+            "objectsOfIssue"
+          ]
+        },
+        {
+          "id": "lalithaa",
+          "status": "updated",
+          "changedFields": [
+            "promoters",
+            "objectsOfIssue"
+          ]
+        },
+        {
+          "id": "maharaja-speedex-india-limited",
+          "status": "updated",
+          "changedFields": [
+            "promoters",
+            "objectsOfIssue"
+          ]
+        },
+        {
+          "id": "manika",
+          "status": "no_change",
+          "changedFields": []
+        },
+        {
+          "id": "molbio",
+          "status": "source_blocked",
+          "parserVersion": 1,
+          "mainParserVersion": 22,
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1786084999541.pdf",
+          "checkedAt": "2026-09-16T09:23:44+05:30",
+          "error": "('Connection broken: IncompleteRead(2854584 bytes read, 6898207 more expected)', IncompleteRead(2854584 bytes read, 6898207 more expected))"
+        },
+        {
+          "id": "nse",
+          "status": "no_change",
+          "changedFields": []
+        },
+        {
+          "id": "om-galaxy-limited",
+          "status": "no_change",
+          "changedFields": []
+        },
+        {
+          "id": "pramodini",
+          "status": "updated",
+          "changedFields": [
+            "objectsOfIssue"
+          ]
+        },
+        {
+          "id": "priority",
+          "status": "updated",
+          "changedFields": [
+            "objectsOfIssue"
+          ]
+        },
+        {
+          "id": "raksan-transformers-limited",
+          "status": "updated",
+          "changedFields": [
+            "objectsOfIssue"
+          ]
+        },
+        {
+          "id": "rentomojo",
+          "status": "updated",
+          "changedFields": [
+            "promoters"
+          ]
+        },
+        {
+          "id": "shakti-polytarp-limited",
+          "status": "no_change",
+          "changedFields": []
+        },
+        {
+          "id": "shiprocket",
+          "status": "updated",
+          "changedFields": [
+            "objectsOfIssue"
+          ]
+        },
+        {
+          "id": "skyways",
+          "status": "updated",
+          "changedFields": [
+            "promoters"
+          ]
+        },
+        {
+          "id": "steamhouse",
+          "status": "no_change",
+          "changedFields": []
+        },
+        {
+          "id": "sunshine",
+          "status": "updated",
+          "changedFields": [
+            "objectsOfIssue"
+          ]
+        },
+        {
+          "id": "symbiotec",
+          "status": "no_change",
+          "changedFields": []
+        },
+        {
+          "id": "vama-wovenfab-limited",
+          "status": "updated",
+          "changedFields": [
+            "promoters",
+            "objectsOfIssue"
+          ]
+        }
+      ]
+    },
     "pipelineStages": {
       "record_integrity.py": {
         "stage": "record_integrity.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.2,
-        "checkedAt": "2026-09-16T03:30:19.412483+00:00",
+        "durationSeconds": 0.16,
+        "checkedAt": "2026-09-16T03:51:54.240458+00:00",
         "diagnostics": "{\"integrityRepairs\": 0}\n"
       },
       "apply_corrections.py": {
@@ -81,7 +295,7 @@
         "status": "no_change",
         "exitCode": 0,
         "durationSeconds": 0.22,
-        "checkedAt": "2026-09-16T03:29:00.758124+00:00",
+        "checkedAt": "2026-09-16T03:50:34.264553+00:00",
         "diagnostics": "enance\", \"documentRepair\", \"offerDocumentExtraction\", \"registrar\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"cleanmax\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"aye\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"armour\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"eximroutes\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"torrent-gas-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"national-stock-exchange-of-india-limited\", \"reason\": \"Issuer record no longer exists\"}, {\"id\": \"nopaperforms-solutions-limited\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"m-k-c-agro-fresh-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}]}\n"
       },
       "run_update_v2.py": {
@@ -128,9 +342,9 @@
         "stage": "run_offer_documents.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.41,
-        "checkedAt": "2026-09-16T03:30:11.148218+00:00",
-        "diagnostics": "{\"parserVersion\": 22, \"attempted\": 0, \"remaining\": 0, \"changedFields\": 0, \"failed\": 0, \"checkedAt\": \"2026-09-16T09:00:10+05:30\"}\n"
+        "durationSeconds": 0.34,
+        "checkedAt": "2026-09-16T03:51:45.690873+00:00",
+        "diagnostics": "{\"parserVersion\": 22, \"attempted\": 0, \"remaining\": 0, \"changedFields\": 0, \"failed\": 0, \"checkedAt\": \"2026-09-16T09:21:45+05:30\"}\n"
       },
       "apply_verified_filing_offer_fields.py": {
         "stage": "apply_verified_filing_offer_fields.py",
@@ -168,44 +382,44 @@
         "stage": "run_priority_subscriptions_v3.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 67.91,
-        "checkedAt": "2026-09-16T03:30:09.039938+00:00",
+        "durationSeconds": 68.76,
+        "checkedAt": "2026-09-16T03:51:43.329487+00:00",
         "diagnostics": "Priority BSE issue index: 25 links across 2 healthy pages\nIPO Premium subscription (secondary): 6 parseable issues\nPriority subscription CENTURY BUSINESS MEDIA LIMITED [IPO Premium secondary]: QIB=3.51 NII=0.73 Retail=0.58 Total=1.45\nPriority subscription INJECTO POLYMERS LIMITED [IPO Premium secondary]: QIB=1.02 NII=0.8 Retail=0.84 Total=0.85\nPriority subscription Manika Plastech Limited [BSE]: QIB=0.8 NII=10.69 Retail=11.45 Total=8.3\nPriority subscription Shakti Polytarp Limited [IPO Premium secondary]: QIB=0.0 NII=1.51 Retail=0.11 Total=0.64\nPriority subscription Vama Wovenfab Limited [IPO Premium secondary]: QIB=0.0 NII=0.01 Retail=0.01 Total=0.01\nPriority subscription Hero Motors Limited [BSE]: QIB=0.0 NII=0.0 Retail=0.0 Total=0.0\nPriority subscription Jindal Supreme (India) Limited [BSE]: QIB=0.0 NII=0.0 Retail=0.0 Total=0.0\nPriority subscription SS Retail Limited [BSE]: QIB=0.0 NII=0.0 Retail=0.0 Total=0.0\nPriority subscriptions v3: attempted=8 updated=8 snapshots_added=0 failed=0 nse=0 bse=4 secondary=4 secondary_sources={'IPO Premium subscription (secondary)': 4}\n"
       },
       "collect_nse_offer_filings.py": {
         "stage": "collect_nse_offer_filings.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 1.61,
-        "checkedAt": "2026-09-16T03:30:10.694352+00:00",
-        "diagnostics": "{\"registerRows\": 2540, \"candidates\": 0, \"attempted\": 0, \"updated\": 0, \"documentsDiscovered\": 0, \"failed\": 0, \"errors\": [], \"outcomes\": [], \"checkedAt\": \"2026-09-16T03:30:10+00:00\"}\n"
+        "durationSeconds": 1.96,
+        "checkedAt": "2026-09-16T03:51:45.319971+00:00",
+        "diagnostics": "{\"registerRows\": 2540, \"candidates\": 0, \"attempted\": 0, \"updated\": 0, \"documentsDiscovered\": 0, \"failed\": 0, \"errors\": [], \"outcomes\": [], \"checkedAt\": \"2026-09-16T03:51:45+00:00\"}\n"
       },
       "collect_final_issue_prices.py": {
         "stage": "collect_final_issue_prices.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 7.21,
-        "checkedAt": "2026-09-16T03:30:18.406336+00:00",
-        "diagnostics": "{\"updated\": 0, \"candidates\": 66, \"reportRows\": 586, \"reports\": 36, \"failed\": 0, \"errors\": [], \"checkedAt\": \"2026-09-16T03:30:18.228850+00:00\"}\n"
+        "durationSeconds": 7.72,
+        "checkedAt": "2026-09-16T03:51:53.442405+00:00",
+        "diagnostics": "{\"updated\": 0, \"candidates\": 66, \"reportRows\": 586, \"reports\": 36, \"failed\": 0, \"errors\": [], \"checkedAt\": \"2026-09-16T03:51:53.285584+00:00\"}\n"
       },
       "apply_verified_recent_issue_terms.py": {
         "stage": "apply_verified_recent_issue_terms.py",
-        "status": "updated",
+        "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.28,
-        "checkedAt": "2026-09-16T03:29:01.082457+00:00",
-        "diagnostics": "Verified issue terms: spectraa issueSizeCr=42.52 freshIssueCr=38.42 ofsCr=4.1 changed=freshIssueCr,ofsCr,issueComposition\nVerified issue terms: entries=15, updated=1, fields={'freshIssueCr': 1, 'ofsCr': 1, 'issueComposition': 1}\n"
+        "durationSeconds": 0.23,
+        "checkedAt": "2026-09-16T03:50:34.527687+00:00",
+        "diagnostics": "Verified issue terms: entries=15, updated=0, fields={}\n"
       }
     },
     "publication": {
-      "runId": "35051934830",
-      "collectorCommit": "0c7398dd5c304af330d64a73bd8893dff692b310",
+      "runId": "35053301269",
+      "collectorCommit": "40bf7aacb9eb4e4612f91befbc335861261a7109",
       "status": "published",
       "pendingConflictCount": 0
     },
     "recordCount": 1357,
     "recordIntegrity": {
-      "checkedAt": "2026-09-16T03:30:39.592012+00:00",
+      "checkedAt": "2026-09-16T03:54:35.683205+00:00",
       "changedFields": 0
     },
     "reviewedCorrectionStatus": {
@@ -491,6 +705,7 @@
         {
           "id": "htel",
           "fields": [
+            "dataCorrections",
             "documentFieldProvenance",
             "documentRepair",
             "offerDocumentExtraction"
@@ -500,6 +715,7 @@
         {
           "id": "augmont",
           "fields": [
+            "dataCorrections",
             "documentFieldProvenance",
             "documentRepair",
             "offerDocumentExtraction"
@@ -544,6 +760,7 @@
         {
           "id": "lalithaa",
           "fields": [
+            "dataCorrections",
             "documentFieldProvenance",
             "documentRepair",
             "offerDocumentExtraction"
@@ -1056,7 +1273,7 @@
         "secondarySources": {
           "IPO Premium subscription (secondary)": 4
         },
-        "asOf": "2026-09-16T09:00:08+05:30",
+        "asOf": "2026-09-16T09:21:43+05:30",
         "errors": []
       },
       "Critical-backfill": {
@@ -1146,7 +1363,7 @@
         "entries": 15,
         "updated": 0,
         "fields": {},
-        "checkedAt": "2026-09-16T09:00:39+05:30"
+        "checkedAt": "2026-09-16T09:24:36+05:30"
       },
       "verified-recent-offer-fields": {
         "ok": true,
@@ -1442,7 +1659,7 @@
       "secondarySources": {
         "IPO Premium subscription (secondary)": 4
       },
-      "asOf": "2026-09-16T09:00:08+05:30",
+      "asOf": "2026-09-16T09:21:43+05:30",
       "pageHealth": {
         "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
           "ok": true,
@@ -1455,7 +1672,7 @@
         "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2": {
           "ok": false,
           "records": 0,
-          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f94f639f0e0>, 'Connection to www.bsesme.c"
+          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f32fb7f5d60>, 'Connection to www.bsesme.c"
         }
       },
       "warnings": [
@@ -2049,7 +2266,7 @@
           "name": "BSE cumulative demand",
           "kind": "exchange",
           "url": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7975&status=L",
-          "asOf": "2026-09-16T09:00:08+05:30"
+          "asOf": "2026-09-16T09:21:43+05:30"
         }
       ],
       "source": {
@@ -2113,7 +2330,7 @@
       ],
       "validation": {
         "status": "verified",
-        "checkedAt": "2026-09-16T09:00:39+05:30",
+        "checkedAt": "2026-09-16T09:24:35+05:30",
         "checks": [
           {
             "field": "openDate",
@@ -2691,8 +2908,8 @@
         "retail": 0.0,
         "total": 0.0
       },
-      "subscriptionAsOf": "2026-09-16T09:00:08+05:30",
-      "subscriptionCollectedAt": "2026-09-16T09:00:08+05:30",
+      "subscriptionAsOf": "2026-09-16T09:21:43+05:30",
+      "subscriptionCollectedAt": "2026-09-16T09:21:43+05:30",
       "subscriptionObservedAt": null,
       "subscriptionTimeBasis": "collection-only",
       "subscriptionSource": "BSE cumulative demand",
@@ -2772,7 +2989,7 @@
           "name": "BSE cumulative demand",
           "kind": "exchange",
           "url": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7976&status=L",
-          "asOf": "2026-09-16T09:00:07+05:30"
+          "asOf": "2026-09-16T09:21:40+05:30"
         }
       ],
       "source": {
@@ -2831,7 +3048,7 @@
       ],
       "validation": {
         "status": "verified",
-        "checkedAt": "2026-09-16T09:00:39+05:30",
+        "checkedAt": "2026-09-16T09:24:35+05:30",
         "checks": [
           {
             "field": "openDate",
@@ -2921,7 +3138,7 @@
           "financials",
           "shareholding"
         ],
-        "extractedAt": "2026-09-16T02:25:14+05:30",
+        "extractedAt": "2026-09-16T09:22:03+05:30",
         "conflicts": []
       },
       "profilePath": "ipo/jsipl/",
@@ -3082,7 +3299,7 @@
         "documentDate": null,
         "sha256": "b9e553798fefad161f7738f0487a65a8d06156dd21991fbb051155240d1b502d",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:25:14+05:30",
+        "checkedAt": "2026-09-16T09:22:03+05:30",
         "evidence": {
           "financials": {
             "FY2026.revenueCr": {
@@ -3220,9 +3437,9 @@
         }
       },
       "documentRepair": {
-        "status": "updated",
+        "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T02:25:14+05:30",
+        "lastAttemptAt": "2026-09-16T09:22:03+05:30",
         "parserVersion": 22
       },
       "issueType": "IPO",
@@ -3232,8 +3449,8 @@
         "retail": 0.0,
         "total": 0.0
       },
-      "subscriptionAsOf": "2026-09-16T09:00:07+05:30",
-      "subscriptionCollectedAt": "2026-09-16T09:00:07+05:30",
+      "subscriptionAsOf": "2026-09-16T09:21:40+05:30",
+      "subscriptionCollectedAt": "2026-09-16T09:21:40+05:30",
       "subscriptionObservedAt": null,
       "subscriptionTimeBasis": "collection-only",
       "subscriptionSource": "BSE cumulative demand",
@@ -3257,6 +3474,14 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:25+00:00",
         "fingerprint": "2a6d5e76fc1093eb3ef85cc0a66942bb2ed776e533a89d717698e7be5315445d"
+      },
+      "p4OfferResidualRepair": {
+        "status": "no_change",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Jindal%20Supreme%20(India)%20Limited%20-%20AP_p.PDF",
+        "checkedAt": "2026-09-16T09:22:03+05:30",
+        "changedFields": []
       }
     },
     {
@@ -3308,7 +3533,7 @@
           "name": "BSE cumulative demand",
           "kind": "exchange",
           "url": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7971&status=L",
-          "asOf": "2026-09-16T09:00:05+05:30"
+          "asOf": "2026-09-16T09:21:39+05:30"
         }
       ],
       "source": {
@@ -3372,7 +3597,7 @@
       ],
       "validation": {
         "status": "verified",
-        "checkedAt": "2026-09-16T09:00:39+05:30",
+        "checkedAt": "2026-09-16T09:24:35+05:30",
         "checks": [
           {
             "field": "openDate",
@@ -3408,9 +3633,10 @@
       "sharesOffered": 88607596,
       "issueType": "IPO",
       "promoters": [
-        "ARE PANKAJ MUNJAL",
+        "PANKAJ MUNJAL",
         "CHARU MUNJAL",
-        "ABHISHEK"
+        "ABHISHEK MUNJAL",
+        "O P MUNJAL HOLDINGS"
       ],
       "financials": {
         "unit": "₹ crore",
@@ -3473,7 +3699,7 @@
           "financials",
           "shareholding"
         ],
-        "extractedAt": "2026-09-16T02:24:43+05:30",
+        "extractedAt": "2026-09-16T09:21:57+05:30",
         "conflicts": []
       },
       "profilePath": "ipo/heromotors/",
@@ -3800,6 +4026,26 @@
           "sha256": "e2e39e1b5fd0632748586b09063278774960673b8edd4c29a8a67891213c8b6b",
           "parserVersion": 22,
           "correctedAt": "2026-09-16T02:24:43+05:30"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "ARE PANKAJ MUNJAL",
+            "CHARU MUNJAL",
+            "ABHISHEK"
+          ],
+          "after": [
+            "PANKAJ MUNJAL",
+            "CHARU MUNJAL",
+            "ABHISHEK MUNJAL",
+            "O P MUNJAL HOLDINGS"
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/HERO%20MOTORS%20LIMITED%20-%20AP_p.pdf",
+          "sha256": "e2e39e1b5fd0632748586b09063278774960673b8edd4c29a8a67891213c8b6b",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:21:57+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -3808,7 +4054,7 @@
         "documentDate": null,
         "sha256": "e2e39e1b5fd0632748586b09063278774960673b8edd4c29a8a67891213c8b6b",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:24:43+05:30",
+        "checkedAt": "2026-09-16T09:21:57+05:30",
         "evidence": {
           "financials": {
             "FY2026.netWorthCr": {
@@ -4099,13 +4345,22 @@
             "entities": [
               "KFin Technologies Limited"
             ]
+          },
+          "promoters": {
+            "heading": "PROMOTERS OF OUR COMPANY",
+            "entities": [
+              "PANKAJ MUNJAL",
+              "CHARU MUNJAL",
+              "ABHISHEK MUNJAL",
+              "O P MUNJAL HOLDINGS"
+            ]
           }
         }
       },
       "documentRepair": {
-        "status": "updated",
+        "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T02:24:43+05:30",
+        "lastAttemptAt": "2026-09-16T09:21:57+05:30",
         "parserVersion": 22
       },
       "subscription": {
@@ -4114,8 +4369,8 @@
         "retail": 0.0,
         "total": 0.0
       },
-      "subscriptionAsOf": "2026-09-16T09:00:05+05:30",
-      "subscriptionCollectedAt": "2026-09-16T09:00:05+05:30",
+      "subscriptionAsOf": "2026-09-16T09:21:39+05:30",
+      "subscriptionCollectedAt": "2026-09-16T09:21:39+05:30",
       "subscriptionObservedAt": null,
       "subscriptionTimeBasis": "collection-only",
       "subscriptionSource": "BSE cumulative demand",
@@ -4139,6 +4394,16 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:23+00:00",
         "fingerprint": "2239f6b80ebeccbd0a19be87dde163e854c93fbd7294e74a7f134447c554a224"
+      },
+      "p4OfferResidualRepair": {
+        "status": "updated",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/HERO%20MOTORS%20LIMITED%20-%20AP_p.pdf",
+        "checkedAt": "2026-09-16T09:21:57+05:30",
+        "changedFields": [
+          "promoters"
+        ]
       }
     },
     {
@@ -4187,6 +4452,12 @@
           "kind": "secondary-market-data",
           "url": "https://www.ipopremium.in/view/subscription",
           "asOf": "2026-09-16T09:00:04+05:30"
+        },
+        {
+          "name": "IPO Premium subscription (secondary)",
+          "kind": "secondary-market-data",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "asOf": "2026-09-16T09:21:38+05:30"
         }
       ],
       "source": {
@@ -4219,7 +4490,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T09:00:39+05:30",
+        "checkedAt": "2026-09-16T09:24:35+05:30",
         "checks": [],
         "independentSources": [
           "BSE",
@@ -4248,9 +4519,10 @@
         "valuationPriceUsed": 341.0
       },
       "promoters": [
-        "being",
-        "Mr. Suresh Mohanlal Gupta",
-        "Mr. Vaibhav Suresh"
+        "SURESH MOHANLAL GUPTA",
+        "VAIBHAV SURESH GUPTA",
+        "SAURABH SURESH GUPTA",
+        "NISHA VAIBHAV GUPTA"
       ],
       "financials": {
         "unit": "₹ crore",
@@ -4283,16 +4555,24 @@
       },
       "objectsOfIssue": [
         {
-          "purpose": "Lot Size The Market lot and Trading lot for the Equity Share is 800 and in multiples of",
-          "amountCr": 400.0
+          "purpose": "Capital Expenditure towards Construction of shed 136.30",
+          "amountCr": 1.363
         },
         {
-          "purpose": "Mutual Fund A Mutual Fund registered with SEBI under the SEBI (Mutual Funds) Regulations",
-          "amountCr": 1996.0
+          "purpose": "Capital Expenditure towards purchase of Machinery 724.52",
+          "amountCr": 7.2452
         },
         {
-          "purpose": "The portion of the Offer being not less than 15% of the Offer, consisting of",
-          "amountCr": 276000.0
+          "purpose": "To Meet Working Capital Requirements 2,650.00",
+          "amountCr": 26.5
+        },
+        {
+          "purpose": "General Corporate Purposes* [●]",
+          "amountCr": null
+        },
+        {
+          "purpose": "rojected new construction on First Floor",
+          "amountCr": 16.26
         }
       ],
       "shareholding": {
@@ -4429,6 +4709,71 @@
           "sha256": "d0bbbdc6eb358460311a3a601fe1458884d0b68fae12f1867389088349589c3b",
           "parserVersion": 22,
           "correctedAt": "2026-09-16T02:28:20+05:30"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "being",
+            "Mr. Suresh Mohanlal Gupta",
+            "Mr. Vaibhav Suresh"
+          ],
+          "after": [
+            "SURESH MOHANLAL GUPTA",
+            "VAIBHAV SURESH GUPTA",
+            "SAURABH SURESH GUPTA",
+            "NISHA VAIBHAV GUPTA"
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://vamawoven.com/wp-content/uploads/2026/09/RHP_VamaWovenfabLimited-2.pdf",
+          "sha256": "d0bbbdc6eb358460311a3a601fe1458884d0b68fae12f1867389088349589c3b",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:22:00+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "Lot Size The Market lot and Trading lot for the Equity Share is 800 and in multiples of",
+              "amountCr": 400.0
+            },
+            {
+              "purpose": "Mutual Fund A Mutual Fund registered with SEBI under the SEBI (Mutual Funds) Regulations",
+              "amountCr": 1996.0
+            },
+            {
+              "purpose": "The portion of the Offer being not less than 15% of the Offer, consisting of",
+              "amountCr": 276000.0
+            }
+          ],
+          "after": [
+            {
+              "purpose": "Capital Expenditure towards Construction of shed 136.30",
+              "amountCr": 1.363
+            },
+            {
+              "purpose": "Capital Expenditure towards purchase of Machinery 724.52",
+              "amountCr": 7.2452
+            },
+            {
+              "purpose": "To Meet Working Capital Requirements 2,650.00",
+              "amountCr": 26.5
+            },
+            {
+              "purpose": "General Corporate Purposes* [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "rojected new construction on First Floor",
+              "amountCr": 16.26
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://vamawoven.com/wp-content/uploads/2026/09/RHP_VamaWovenfabLimited-2.pdf",
+          "sha256": "d0bbbdc6eb358460311a3a601fe1458884d0b68fae12f1867389088349589c3b",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:22:00+05:30"
         }
       ],
       "sebiPriorityRegisterSearch": {
@@ -4444,7 +4789,7 @@
         "documentDate": null,
         "sha256": "d0bbbdc6eb358460311a3a601fe1458884d0b68fae12f1867389088349589c3b",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:28:20+05:30",
+        "checkedAt": "2026-09-16T09:22:00+05:30",
         "evidence": {
           "financials": {
             "FY2026.revenueCr": {
@@ -4656,6 +5001,42 @@
             "entities": [
               "MAASHITLA SECURITIES PRIVATE LIMITED"
             ]
+          },
+          "promoters": {
+            "heading": "OUR PROMOTERS",
+            "entities": [
+              "SURESH MOHANLAL GUPTA",
+              "VAIBHAV SURESH GUPTA",
+              "SAURABH SURESH GUPTA",
+              "NISHA VAIBHAV GUPTA"
+            ]
+          },
+          "objectsOfIssue": {
+            "page": 84,
+            "heading": "OBJECTS OF THE ISSUE",
+            "unit": "lakh",
+            "rows": [
+              {
+                "purpose": "Capital Expenditure towards Construction of shed 136.30",
+                "amountCr": 1.363
+              },
+              {
+                "purpose": "Capital Expenditure towards purchase of Machinery 724.52",
+                "amountCr": 7.2452
+              },
+              {
+                "purpose": "To Meet Working Capital Requirements 2,650.00",
+                "amountCr": 26.5
+              },
+              {
+                "purpose": "General Corporate Purposes* [●]",
+                "amountCr": null
+              },
+              {
+                "purpose": "rojected new construction on First Floor",
+                "amountCr": 16.26
+              }
+            ]
           }
         }
       },
@@ -4675,15 +5056,16 @@
           "registrar",
           "promoters",
           "financials",
-          "lotSize"
+          "lotSize",
+          "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-16T02:28:20+05:30",
+        "extractedAt": "2026-09-16T09:22:00+05:30",
         "conflicts": []
       },
       "documentRepair": {
-        "status": "updated",
+        "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T02:28:20+05:30",
+        "lastAttemptAt": "2026-09-16T09:22:00+05:30",
         "parserVersion": 22
       },
       "subscription": {
@@ -4692,9 +5074,9 @@
         "retail": 0.01,
         "total": 0.01
       },
-      "subscriptionAsOf": "2026-09-16T09:00:04+05:30",
-      "subscriptionCollectedAt": "2026-09-16T09:00:04+05:30",
-      "subscriptionObservedAt": "2026-09-15T17:13:29+05:30",
+      "subscriptionAsOf": "2026-09-16T09:21:38+05:30",
+      "subscriptionCollectedAt": "2026-09-16T09:21:38+05:30",
+      "subscriptionObservedAt": "2026-09-16T09:08:36+05:30",
       "subscriptionTimeBasis": "source-observation",
       "subscriptionSource": "IPO Premium subscription (secondary)",
       "subscriptionHistory": [
@@ -4708,7 +5090,18 @@
           "retail": 0.01,
           "total": 0.01
         }
-      ]
+      ],
+      "p4OfferResidualRepair": {
+        "status": "updated",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://vamawoven.com/wp-content/uploads/2026/09/RHP_VamaWovenfabLimited-2.pdf",
+        "checkedAt": "2026-09-16T09:22:00+05:30",
+        "changedFields": [
+          "promoters",
+          "objectsOfIssue"
+        ]
+      }
     },
     {
       "id": "shakti-polytarp-limited",
@@ -4756,6 +5149,12 @@
           "kind": "secondary-market-data",
           "url": "https://www.ipopremium.in/view/subscription",
           "asOf": "2026-09-16T08:59:54+05:30"
+        },
+        {
+          "name": "IPO Premium subscription (secondary)",
+          "kind": "secondary-market-data",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "asOf": "2026-09-16T09:21:31+05:30"
         }
       ],
       "source": {
@@ -4794,7 +5193,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T09:00:39+05:30",
+        "checkedAt": "2026-09-16T09:24:35+05:30",
         "checks": [],
         "independentSources": [
           "BSE",
@@ -4833,7 +5232,7 @@
         "pagesRead": 2,
         "pageCount": 2,
         "extractedFields": [],
-        "extractedAt": "2026-09-16T07:35:01+05:30",
+        "extractedAt": "2026-09-16T09:21:58+05:30",
         "conflicts": []
       },
       "freshIssueCr": 31.77,
@@ -4964,7 +5363,7 @@
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "needs_review",
-        "lastAttemptAt": "2026-09-16T07:35:01+05:30",
+        "lastAttemptAt": "2026-09-16T09:21:58+05:30",
         "parserVersion": 22
       },
       "documentFieldProvenance": {
@@ -4973,7 +5372,7 @@
         "documentDate": null,
         "sha256": "98972eaeb27d791aeaee5ce4fd65ff6662e488ab2efe8cc35dfe7f44e71c2425",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T07:35:01+05:30",
+        "checkedAt": "2026-09-16T09:21:58+05:30",
         "evidence": {
           "financials": {}
         }
@@ -4991,9 +5390,9 @@
         "retail": 0.11,
         "total": 0.64
       },
-      "subscriptionAsOf": "2026-09-16T08:59:54+05:30",
-      "subscriptionCollectedAt": "2026-09-16T08:59:54+05:30",
-      "subscriptionObservedAt": "2026-09-16T08:01:43+05:30",
+      "subscriptionAsOf": "2026-09-16T09:21:31+05:30",
+      "subscriptionCollectedAt": "2026-09-16T09:21:31+05:30",
+      "subscriptionObservedAt": "2026-09-16T09:14:31+05:30",
       "subscriptionTimeBasis": "source-observation",
       "subscriptionSource": "IPO Premium subscription (secondary)",
       "subscriptionHistory": [
@@ -5007,7 +5406,15 @@
           "retail": 0.11,
           "total": 0.64
         }
-      ]
+      ],
+      "p4OfferResidualRepair": {
+        "status": "no_change",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260911-17/20260911-17.pdf",
+        "checkedAt": "2026-09-16T09:21:58+05:30",
+        "changedFields": []
+      }
     },
     {
       "id": "manika",
@@ -5105,12 +5512,12 @@
           "name": "BSE cumulative demand",
           "kind": "exchange",
           "url": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7966&status=L",
-          "asOf": "2026-09-16T08:59:47+05:30"
+          "asOf": "2026-09-16T09:21:23+05:30"
         }
       ],
       "validation": {
         "status": "verified",
-        "checkedAt": "2026-09-16T09:00:39+05:30",
+        "checkedAt": "2026-09-16T09:24:35+05:30",
         "checks": [
           {
             "field": "openDate",
@@ -5170,7 +5577,7 @@
       },
       "allotmentDate": null,
       "issueType": "IPO",
-      "subscriptionAsOf": "2026-09-16T08:59:47+05:30",
+      "subscriptionAsOf": "2026-09-16T09:21:23+05:30",
       "subscriptionSource": "BSE cumulative demand",
       "subscriptionHistory": [
         {
@@ -5223,9 +5630,10 @@
         "extractedFields": [
           "leadManagers",
           "registrar",
-          "financials"
+          "financials",
+          "promoters"
         ],
-        "extractedAt": "2026-09-16T02:25:31+05:30",
+        "extractedAt": "2026-09-16T09:22:03+05:30",
         "conflicts": []
       },
       "promoters": [
@@ -5452,7 +5860,7 @@
         "documentDate": "2026-09-07",
         "sha256": "cc7574cb4cc3be9f033b250558acb52c89c9235b5aaa139e8fef0227d2206e4e",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:25:31+05:30",
+        "checkedAt": "2026-09-16T09:22:03+05:30",
         "evidence": {
           "financials": {
             "FY2026.netWorthCr": {
@@ -5781,16 +6189,26 @@
             "entities": [
               "MUFG Intime India Private Limited"
             ]
+          },
+          "promoters": {
+            "heading": "OUR PROMOTERS",
+            "entities": [
+              "NIKUNJ MOHANLAL KAPADIA",
+              "MUNJAL NIKUNJ KAPADIA",
+              "MIHIR NIKUNJ KAPADIA",
+              "PRATIK NIKUNJ KAPADIA",
+              "VRIDAA HOLDING TRUST"
+            ]
           }
         }
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T02:25:31+05:30",
+        "lastAttemptAt": "2026-09-16T09:22:03+05:30",
         "parserVersion": 22
       },
-      "subscriptionCollectedAt": "2026-09-16T08:59:47+05:30",
+      "subscriptionCollectedAt": "2026-09-16T09:21:23+05:30",
       "subscriptionObservedAt": null,
       "subscriptionTimeBasis": "collection-only",
       "nseOfferFilings": {
@@ -5800,6 +6218,14 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-16T02:04:33+00:00",
         "fingerprint": "c408ec2e0af93601cb3f2d527dff69e41f3495f586a6ab458f97d0eb6b76c79d"
+      },
+      "p4OfferResidualRepair": {
+        "status": "no_change",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Manika%20IPO%20-%20Abridged%20Prospectus_p.pdf",
+        "checkedAt": "2026-09-16T09:22:03+05:30",
+        "changedFields": []
       }
     },
     {
@@ -5860,6 +6286,12 @@
           "kind": "secondary-market-data",
           "url": "https://www.ipopremium.in/view/subscription",
           "asOf": "2026-09-16T08:59:46+05:30"
+        },
+        {
+          "name": "IPO Premium subscription (secondary)",
+          "kind": "secondary-market-data",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "asOf": "2026-09-16T09:21:22+05:30"
         }
       ],
       "source": {
@@ -5899,7 +6331,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T09:00:39+05:30",
+        "checkedAt": "2026-09-16T09:24:35+05:30",
         "checks": [],
         "independentSources": [
           "BSE",
@@ -5925,7 +6357,7 @@
         "retail": 0.84,
         "total": 0.85
       },
-      "subscriptionAsOf": "2026-09-16T08:59:46+05:30",
+      "subscriptionAsOf": "2026-09-16T09:21:22+05:30",
       "subscriptionSource": "IPO Premium subscription (secondary)",
       "subscriptionHistory": [
         {
@@ -5959,52 +6391,20 @@
       ],
       "objectsOfIssue": [
         {
-          "purpose": "BASIS FOR ISSUE PRICE",
-          "amountCr": 123.0
+          "purpose": "Repayment/pre-payment, in full or in part, of certain Up to 1,000.00",
+          "amountCr": null
         },
         {
-          "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
-          "amountCr": 132.0
+          "purpose": "unding the Capital expenditure towards setting up phase IV at Up to 3,050.00",
+          "amountCr": null
         },
         {
-          "purpose": "INDUSTRY OVERVIEW",
-          "amountCr": 136.0
+          "purpose": "General corporate purposes* [●]",
+          "amountCr": null
         },
         {
-          "purpose": "OUR BUSINESS",
-          "amountCr": 145.0
-        },
-        {
-          "purpose": "KEY INDUSTRY REGULATIONS AND POLICIES",
-          "amountCr": 168.0
-        },
-        {
-          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
-          "amountCr": 178.0
-        },
-        {
-          "purpose": "OUR MANAGEMENT",
-          "amountCr": 184.0
-        },
-        {
-          "purpose": "OUR PROMOTERS & PROMOTER GROUP",
-          "amountCr": 200.0
-        },
-        {
-          "purpose": "DIVIDEND POLICY",
-          "amountCr": 208.0
-        },
-        {
-          "purpose": "RESTATED FINANCIAL STATEMENTS",
-          "amountCr": 209.0
-        },
-        {
-          "purpose": "FINANCIAL INDEBTEDNESS",
-          "amountCr": 246.0
-        },
-        {
-          "purpose": "OUTSTANDING LITIGATIONS AND OTHER MATERIAL DEVELOPMENTS",
-          "amountCr": 277.0
+          "purpose": "unding the Capital expenditure towards Up to 3,137.721 Up to 3,050.00 Upto",
+          "amountCr": 30.5
         }
       ],
       "issuerDocumentExtraction": {
@@ -6225,6 +6625,83 @@
           "sha256": "f1b16cb0e4b49ed988eeaeea2d99b67ceb0192a42689a1856d13d0b8c4c864ba",
           "parserVersion": 22,
           "correctedAt": "2026-09-16T02:24:09+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "BASIS FOR ISSUE PRICE",
+              "amountCr": 123.0
+            },
+            {
+              "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
+              "amountCr": 132.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW",
+              "amountCr": 136.0
+            },
+            {
+              "purpose": "OUR BUSINESS",
+              "amountCr": 145.0
+            },
+            {
+              "purpose": "KEY INDUSTRY REGULATIONS AND POLICIES",
+              "amountCr": 168.0
+            },
+            {
+              "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+              "amountCr": 178.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT",
+              "amountCr": 184.0
+            },
+            {
+              "purpose": "OUR PROMOTERS & PROMOTER GROUP",
+              "amountCr": 200.0
+            },
+            {
+              "purpose": "DIVIDEND POLICY",
+              "amountCr": 208.0
+            },
+            {
+              "purpose": "RESTATED FINANCIAL STATEMENTS",
+              "amountCr": 209.0
+            },
+            {
+              "purpose": "FINANCIAL INDEBTEDNESS",
+              "amountCr": 246.0
+            },
+            {
+              "purpose": "OUTSTANDING LITIGATIONS AND OTHER MATERIAL DEVELOPMENTS",
+              "amountCr": 277.0
+            }
+          ],
+          "after": [
+            {
+              "purpose": "Repayment/pre-payment, in full or in part, of certain Up to 1,000.00",
+              "amountCr": null
+            },
+            {
+              "purpose": "unding the Capital expenditure towards setting up phase IV at Up to 3,050.00",
+              "amountCr": null
+            },
+            {
+              "purpose": "General corporate purposes* [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "unding the Capital expenditure towards Up to 3,137.721 Up to 3,050.00 Upto",
+              "amountCr": 30.5
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://injectopolymers.in/wp-content/uploads/2026/09/1.-RHP_07.09.2026.pdf",
+          "sha256": "f1b16cb0e4b49ed988eeaeea2d99b67ceb0192a42689a1856d13d0b8c4c864ba",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:22:01+05:30"
         }
       ],
       "sebiPriorityRegisterSearch": {
@@ -6240,7 +6717,7 @@
         "documentDate": null,
         "sha256": "f1b16cb0e4b49ed988eeaeea2d99b67ceb0192a42689a1856d13d0b8c4c864ba",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:24:09+05:30",
+        "checkedAt": "2026-09-16T09:22:01+05:30",
         "evidence": {
           "financials": {
             "FY2026.totalIncomeCr": {
@@ -6413,6 +6890,41 @@
             "entities": [
               "Integrated Registry Management Services Private Limited"
             ]
+          },
+          "promoters": {
+            "heading": "OUR PROMOTERS",
+            "entities": [
+              "RAMESH KUMAR RATERIA",
+              "ASHOK KUMAR RATERIA",
+              "SUMAN FINANCIAL ADVISORY PRIVATE LIMITED",
+              "SUMAN TOWERS PRIVATE LIMITED",
+              "VINAYAK TIE-UP PRIVATE LIMITED",
+              "NIVEDEEKA COMMERCIAL PRIVATE LIMITED",
+              "BHAGYASHRI TRADING PRIVATE LIMITED"
+            ]
+          },
+          "objectsOfIssue": {
+            "page": 107,
+            "heading": "OBJECTS OF THE ISSUE",
+            "unit": "lakh",
+            "rows": [
+              {
+                "purpose": "Repayment/pre-payment, in full or in part, of certain Up to 1,000.00",
+                "amountCr": null
+              },
+              {
+                "purpose": "unding the Capital expenditure towards setting up phase IV at Up to 3,050.00",
+                "amountCr": null
+              },
+              {
+                "purpose": "General corporate purposes* [●]",
+                "amountCr": null
+              },
+              {
+                "purpose": "unding the Capital expenditure towards Up to 3,137.721 Up to 3,050.00 Upto",
+                "amountCr": 30.5
+              }
+            ]
           }
         }
       },
@@ -6435,18 +6947,28 @@
           "objectsOfIssue",
           "lotSize"
         ],
-        "extractedAt": "2026-09-16T02:24:09+05:30",
+        "extractedAt": "2026-09-16T09:22:01+05:30",
         "conflicts": []
       },
       "documentRepair": {
-        "status": "updated",
+        "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T02:24:09+05:30",
+        "lastAttemptAt": "2026-09-16T09:22:01+05:30",
         "parserVersion": 22
       },
-      "subscriptionCollectedAt": "2026-09-16T08:59:46+05:30",
+      "subscriptionCollectedAt": "2026-09-16T09:21:22+05:30",
       "subscriptionObservedAt": "2026-09-16T08:50:31+05:30",
-      "subscriptionTimeBasis": "source-observation"
+      "subscriptionTimeBasis": "source-observation",
+      "p4OfferResidualRepair": {
+        "status": "updated",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://injectopolymers.in/wp-content/uploads/2026/09/1.-RHP_07.09.2026.pdf",
+        "checkedAt": "2026-09-16T09:22:01+05:30",
+        "changedFields": [
+          "objectsOfIssue"
+        ]
+      }
     },
     {
       "id": "century-business-limited",
@@ -6537,6 +7059,12 @@
           "kind": "secondary-market-data",
           "url": "https://www.ipopremium.in/view/subscription",
           "asOf": "2026-09-16T08:59:40+05:30"
+        },
+        {
+          "name": "IPO Premium subscription (secondary)",
+          "kind": "secondary-market-data",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "asOf": "2026-09-16T09:21:14+05:30"
         }
       ],
       "source": {
@@ -6569,7 +7097,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T09:00:39+05:30",
+        "checkedAt": "2026-09-16T09:24:35+05:30",
         "checks": [],
         "independentSources": [
           "BSE",
@@ -6594,7 +7122,7 @@
         "retail": 0.58,
         "total": 1.45
       },
-      "subscriptionAsOf": "2026-09-16T08:59:40+05:30",
+      "subscriptionAsOf": "2026-09-16T09:21:14+05:30",
       "subscriptionSource": "IPO Premium subscription (secondary)",
       "subscriptionHistory": [
         {
@@ -6634,52 +7162,28 @@
       ],
       "objectsOfIssue": [
         {
-          "purpose": "BASIS FOR ISSUE PRICE",
-          "amountCr": 85.0
+          "purpose": "Funding Capital Expenditure towards Purchase of Media Assets",
+          "amountCr": 4.2127
         },
         {
-          "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
-          "amountCr": 91.0
+          "purpose": "Repayment of certain borrowing availed by the Company",
+          "amountCr": 1.45
         },
         {
-          "purpose": "INDUSTRY OVERVIEW",
-          "amountCr": 96.0
+          "purpose": "To meet Working Capital requirements",
+          "amountCr": 3.25
         },
         {
-          "purpose": "OUR BUSINESS",
-          "amountCr": 105.0
+          "purpose": "General Corporate Purpose",
+          "amountCr": null
         },
         {
-          "purpose": "KEY INDUSTRY REGULATIONS AND POLICIES",
-          "amountCr": 118.0
+          "purpose": "Estimated capital expenditure for deployment of static media assets at various location at",
+          "amountCr": 1.0315
         },
         {
-          "purpose": "HISTORY AND CORPORATE STRUCTURE",
-          "amountCr": 126.0
-        },
-        {
-          "purpose": "OUR MANAGEMENT",
-          "amountCr": 131.0
-        },
-        {
-          "purpose": "OUR PROMOTERS & PROMOTER GROUP",
-          "amountCr": 145.0
-        },
-        {
-          "purpose": "DIVIDEND POLICY",
-          "amountCr": 151.0
-        },
-        {
-          "purpose": "RESTATED FINANCIAL INFORMATION",
-          "amountCr": 152.0
-        },
-        {
-          "purpose": "OTHER FINANCIAL INFORMATION",
-          "amountCr": 197.0
-        },
-        {
-          "purpose": "STATEMENT OF FINANCIAL INDEBTEDNESS",
-          "amountCr": 198.0
+          "purpose": "I. Estimated capital expenditure for deployment of digital media assets at Bihar and",
+          "amountCr": 3.1812
         }
       ],
       "issuerDocumentExtraction": {
@@ -6828,6 +7332,91 @@
           "sha256": "be30612c31cf5327d31d7a6547e3ba07be3e066a180493a3920425f28db16dd8",
           "parserVersion": 21,
           "correctedAt": "2026-09-15T10:27:17+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "BASIS FOR ISSUE PRICE",
+              "amountCr": 85.0
+            },
+            {
+              "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
+              "amountCr": 91.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW",
+              "amountCr": 96.0
+            },
+            {
+              "purpose": "OUR BUSINESS",
+              "amountCr": 105.0
+            },
+            {
+              "purpose": "KEY INDUSTRY REGULATIONS AND POLICIES",
+              "amountCr": 118.0
+            },
+            {
+              "purpose": "HISTORY AND CORPORATE STRUCTURE",
+              "amountCr": 126.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT",
+              "amountCr": 131.0
+            },
+            {
+              "purpose": "OUR PROMOTERS & PROMOTER GROUP",
+              "amountCr": 145.0
+            },
+            {
+              "purpose": "DIVIDEND POLICY",
+              "amountCr": 151.0
+            },
+            {
+              "purpose": "RESTATED FINANCIAL INFORMATION",
+              "amountCr": 152.0
+            },
+            {
+              "purpose": "OTHER FINANCIAL INFORMATION",
+              "amountCr": 197.0
+            },
+            {
+              "purpose": "STATEMENT OF FINANCIAL INDEBTEDNESS",
+              "amountCr": 198.0
+            }
+          ],
+          "after": [
+            {
+              "purpose": "Funding Capital Expenditure towards Purchase of Media Assets",
+              "amountCr": 4.2127
+            },
+            {
+              "purpose": "Repayment of certain borrowing availed by the Company",
+              "amountCr": 1.45
+            },
+            {
+              "purpose": "To meet Working Capital requirements",
+              "amountCr": 3.25
+            },
+            {
+              "purpose": "General Corporate Purpose",
+              "amountCr": null
+            },
+            {
+              "purpose": "Estimated capital expenditure for deployment of static media assets at various location at",
+              "amountCr": 1.0315
+            },
+            {
+              "purpose": "I. Estimated capital expenditure for deployment of digital media assets at Bihar and",
+              "amountCr": 3.1812
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://centurymedia.in/wp-content/uploads/2026/09/Red-Herring-Prospectus.pdf",
+          "sha256": "be30612c31cf5327d31d7a6547e3ba07be3e066a180493a3920425f28db16dd8",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:22:04+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -6836,7 +7425,7 @@
         "documentDate": null,
         "sha256": "be30612c31cf5327d31d7a6547e3ba07be3e066a180493a3920425f28db16dd8",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:23:51+05:30",
+        "checkedAt": "2026-09-16T09:22:04+05:30",
         "evidence": {
           "financials": {
             "FY2025.revenueCr": {
@@ -7048,6 +7637,37 @@
             "entities": [
               "KFin Technologies Limited"
             ]
+          },
+          "objectsOfIssue": {
+            "page": 79,
+            "heading": "OBJECTS OF THE ISSUE",
+            "unit": "lakh",
+            "rows": [
+              {
+                "purpose": "Funding Capital Expenditure towards Purchase of Media Assets",
+                "amountCr": 4.2127
+              },
+              {
+                "purpose": "Repayment of certain borrowing availed by the Company",
+                "amountCr": 1.45
+              },
+              {
+                "purpose": "To meet Working Capital requirements",
+                "amountCr": 3.25
+              },
+              {
+                "purpose": "General Corporate Purpose",
+                "amountCr": null
+              },
+              {
+                "purpose": "Estimated capital expenditure for deployment of static media assets at various location at",
+                "amountCr": 1.0315
+              },
+              {
+                "purpose": "I. Estimated capital expenditure for deployment of digital media assets at Bihar and",
+                "amountCr": 3.1812
+              }
+            ]
           }
         }
       },
@@ -7068,18 +7688,28 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-16T02:23:51+05:30",
+        "extractedAt": "2026-09-16T09:22:04+05:30",
         "conflicts": []
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T02:23:51+05:30",
+        "lastAttemptAt": "2026-09-16T09:22:04+05:30",
         "parserVersion": 22
       },
-      "subscriptionCollectedAt": "2026-09-16T08:59:40+05:30",
+      "subscriptionCollectedAt": "2026-09-16T09:21:14+05:30",
       "subscriptionObservedAt": "2026-09-16T08:01:37+05:30",
-      "subscriptionTimeBasis": "source-observation"
+      "subscriptionTimeBasis": "source-observation",
+      "p4OfferResidualRepair": {
+        "status": "updated",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://centurymedia.in/wp-content/uploads/2026/09/Red-Herring-Prospectus.pdf",
+        "checkedAt": "2026-09-16T09:22:04+05:30",
+        "changedFields": [
+          "objectsOfIssue"
+        ]
+      }
     },
     {
       "id": "veegaland",
@@ -7914,40 +8544,16 @@
       ],
       "objectsOfIssue": [
         {
-          "purpose": "BASIS FOR OFFER PRICE",
-          "amountCr": 96.0
+          "purpose": "To meet working capital requirements",
+          "amountCr": 35.0
         },
         {
-          "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
-          "amountCr": 103.0
+          "purpose": "Repayment of certain borrowing availed by our Company, in part or full",
+          "amountCr": 7.2834
         },
         {
-          "purpose": "INDUSTRY OVERVIEW",
-          "amountCr": 108.0
-        },
-        {
-          "purpose": "OUR BUSINESS",
-          "amountCr": 121.0
-        },
-        {
-          "purpose": "KEY INDUSTRY REGULATIONS AND POLICIES",
-          "amountCr": 133.0
-        },
-        {
-          "purpose": "HISTORY AND CORPORATE STRUCTURE",
-          "amountCr": 140.0
-        },
-        {
-          "purpose": "OUR MANAGEMENT",
-          "amountCr": 145.0
-        },
-        {
-          "purpose": "OUR PROMOTERS & PROMOTER GROUP",
-          "amountCr": 158.0
-        },
-        {
-          "purpose": "DIVIDEND POLICY",
-          "amountCr": 163.0
+          "purpose": "General Corporate Purpose",
+          "amountCr": null
         }
       ],
       "issuerDocumentExtraction": {
@@ -8093,6 +8699,67 @@
           "sha256": "968b575d73bd7371a494f197fbbf37c3a42182db46138c24deae10fef63fc0a0",
           "parserVersion": 21,
           "correctedAt": "2026-09-15T10:27:51+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "BASIS FOR OFFER PRICE",
+              "amountCr": 96.0
+            },
+            {
+              "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
+              "amountCr": 103.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW",
+              "amountCr": 108.0
+            },
+            {
+              "purpose": "OUR BUSINESS",
+              "amountCr": 121.0
+            },
+            {
+              "purpose": "KEY INDUSTRY REGULATIONS AND POLICIES",
+              "amountCr": 133.0
+            },
+            {
+              "purpose": "HISTORY AND CORPORATE STRUCTURE",
+              "amountCr": 140.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT",
+              "amountCr": 145.0
+            },
+            {
+              "purpose": "OUR PROMOTERS & PROMOTER GROUP",
+              "amountCr": 158.0
+            },
+            {
+              "purpose": "DIVIDEND POLICY",
+              "amountCr": 163.0
+            }
+          ],
+          "after": [
+            {
+              "purpose": "To meet working capital requirements",
+              "amountCr": 35.0
+            },
+            {
+              "purpose": "Repayment of certain borrowing availed by our Company, in part or full",
+              "amountCr": 7.2834
+            },
+            {
+              "purpose": "General Corporate Purpose",
+              "amountCr": null
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://raksantransformers.com/assets/pdf/drhp.pdf",
+          "sha256": "968b575d73bd7371a494f197fbbf37c3a42182db46138c24deae10fef63fc0a0",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:22:07+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -8101,7 +8768,7 @@
         "documentDate": null,
         "sha256": "968b575d73bd7371a494f197fbbf37c3a42182db46138c24deae10fef63fc0a0",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:24:32+05:30",
+        "checkedAt": "2026-09-16T09:22:07+05:30",
         "evidence": {
           "financials": {
             "FY2025.revenueCr": {
@@ -8274,6 +8941,25 @@
             "entities": [
               "BIGSHARE SERVICES PRIVATE LIMITED"
             ]
+          },
+          "objectsOfIssue": {
+            "page": 87,
+            "heading": "OBJECTS OF THE ISSUE",
+            "unit": "lakh",
+            "rows": [
+              {
+                "purpose": "To meet working capital requirements",
+                "amountCr": 35.0
+              },
+              {
+                "purpose": "Repayment of certain borrowing availed by our Company, in part or full",
+                "amountCr": 7.2834
+              },
+              {
+                "purpose": "General Corporate Purpose",
+                "amountCr": null
+              }
+            ]
           }
         }
       },
@@ -8291,16 +8977,27 @@
         "extractedFields": [
           "leadManagers",
           "registrar",
-          "financials"
+          "financials",
+          "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-16T02:24:32+05:30",
+        "extractedAt": "2026-09-16T09:22:07+05:30",
         "conflicts": []
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T02:24:32+05:30",
+        "lastAttemptAt": "2026-09-16T09:22:07+05:30",
         "parserVersion": 22
+      },
+      "p4OfferResidualRepair": {
+        "status": "updated",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://raksantransformers.com/assets/pdf/drhp.pdf",
+        "checkedAt": "2026-09-16T09:22:07+05:30",
+        "changedFields": [
+          "objectsOfIssue"
+        ]
       }
     },
     {
@@ -8603,7 +9300,7 @@
         "documentDate": null,
         "sha256": "31dc977c9309fcd6c394eaea0a141b52c299275924d6e259cf2a95e890ca31c4",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:24:26+05:30",
+        "checkedAt": "2026-09-16T09:22:12+05:30",
         "evidence": {
           "financials": {
             "FY2026.patCr": {
@@ -8798,7 +9495,7 @@
           "lotSize",
           "priceBand"
         ],
-        "extractedAt": "2026-09-16T02:24:26+05:30",
+        "extractedAt": "2026-09-16T09:22:12+05:30",
         "conflicts": [
           "FY2024.revenueCr",
           "FY2025.revenueCr",
@@ -8808,8 +9505,16 @@
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T02:24:26+05:30",
+        "lastAttemptAt": "2026-09-16T09:22:12+05:30",
         "parserVersion": 22
+      },
+      "p4OfferResidualRepair": {
+        "status": "no_change",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://omgalaxymould.com/wp-content/uploads/2026/09/Project-Om_-RHP_with_RFS.pdf",
+        "checkedAt": "2026-09-16T09:22:12+05:30",
+        "changedFields": []
       }
     },
     {
@@ -8907,55 +9612,32 @@
         "valuationPriceUsed": 186.0
       },
       "promoters": [
-        "– RAKESH KUMAR AGGARWAL",
         "KUSUM AGGARWAL",
         "AKASH AGGARWAL",
-        "ANKIT BANSAL"
+        "ANKIT BANSAL",
+        "ATUL TULSIAN",
+        "ROHIT GARG"
       ],
       "objectsOfIssue": [
         {
-          "purpose": "BASIS OF OFFER PRICE",
-          "amountCr": 109.0
+          "purpose": "epayment and/or pre-payment, in full or part, of certain borrowings availed by our Company and its",
+          "amountCr": 24.1043
         },
         {
-          "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
-          "amountCr": 120.0
+          "purpose": "unding of capital expenditure towards purchase of plant and machineries at the existing manufacturing",
+          "amountCr": 21.4158
         },
         {
-          "purpose": "SECTION IV- ABOUT THE COMPANY",
-          "amountCr": 125.0
+          "purpose": "Repayment and/or pre-payment, in full or part, of 2,410.43",
+          "amountCr": 24.1043
         },
         {
-          "purpose": "INDUSTRY OVERVIEW",
-          "amountCr": 125.0
+          "purpose": "Funding of capital expenditure towards purchase of 2,141.58",
+          "amountCr": 21.4158
         },
         {
-          "purpose": "BUSINESS OVERVIEW",
-          "amountCr": 169.0
-        },
-        {
-          "purpose": "KEY INDUSTRY REGULATIONS",
-          "amountCr": 196.0
-        },
-        {
-          "purpose": "HISTORY AND CORPORATE STRUCTURE",
-          "amountCr": 203.0
-        },
-        {
-          "purpose": "OUR MANAGEMENT",
-          "amountCr": 210.0
-        },
-        {
-          "purpose": "PROMOTERS AND PROMOTER GROUP",
-          "amountCr": 229.0
-        },
-        {
-          "purpose": "OUR GROUP COMPANIES",
-          "amountCr": 237.0
-        },
-        {
-          "purpose": "DIVIDEND POLICY",
-          "amountCr": 238.0
+          "purpose": "General Corporate Purposes (1) [●]",
+          "amountCr": null
         }
       ],
       "issuerDocumentExtraction": {
@@ -9095,6 +9777,105 @@
           "sha256": "47591636fc45d44497ad3b34d6f62022ca6c68803bade174b0b994340920db62",
           "parserVersion": 22,
           "correctedAt": "2026-09-16T02:28:23+05:30"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "– RAKESH KUMAR AGGARWAL",
+            "KUSUM AGGARWAL",
+            "AKASH AGGARWAL",
+            "ANKIT BANSAL"
+          ],
+          "after": [
+            "KUSUM AGGARWAL",
+            "AKASH AGGARWAL",
+            "ANKIT BANSAL",
+            "ATUL TULSIAN",
+            "ROHIT GARG"
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://speedexind.com/wp-content/uploads/2026/09/SPeedex-RHP.pdf",
+          "sha256": "47591636fc45d44497ad3b34d6f62022ca6c68803bade174b0b994340920db62",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:22:10+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "BASIS OF OFFER PRICE",
+              "amountCr": 109.0
+            },
+            {
+              "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
+              "amountCr": 120.0
+            },
+            {
+              "purpose": "SECTION IV- ABOUT THE COMPANY",
+              "amountCr": 125.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW",
+              "amountCr": 125.0
+            },
+            {
+              "purpose": "BUSINESS OVERVIEW",
+              "amountCr": 169.0
+            },
+            {
+              "purpose": "KEY INDUSTRY REGULATIONS",
+              "amountCr": 196.0
+            },
+            {
+              "purpose": "HISTORY AND CORPORATE STRUCTURE",
+              "amountCr": 203.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT",
+              "amountCr": 210.0
+            },
+            {
+              "purpose": "PROMOTERS AND PROMOTER GROUP",
+              "amountCr": 229.0
+            },
+            {
+              "purpose": "OUR GROUP COMPANIES",
+              "amountCr": 237.0
+            },
+            {
+              "purpose": "DIVIDEND POLICY",
+              "amountCr": 238.0
+            }
+          ],
+          "after": [
+            {
+              "purpose": "epayment and/or pre-payment, in full or part, of certain borrowings availed by our Company and its",
+              "amountCr": 24.1043
+            },
+            {
+              "purpose": "unding of capital expenditure towards purchase of plant and machineries at the existing manufacturing",
+              "amountCr": 21.4158
+            },
+            {
+              "purpose": "Repayment and/or pre-payment, in full or part, of 2,410.43",
+              "amountCr": 24.1043
+            },
+            {
+              "purpose": "Funding of capital expenditure towards purchase of 2,141.58",
+              "amountCr": 21.4158
+            },
+            {
+              "purpose": "General Corporate Purposes (1) [●]",
+              "amountCr": null
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://speedexind.com/wp-content/uploads/2026/09/SPeedex-RHP.pdf",
+          "sha256": "47591636fc45d44497ad3b34d6f62022ca6c68803bade174b0b994340920db62",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:22:10+05:30"
         }
       ],
       "sebiPriorityRegisterSearch": {
@@ -9110,7 +9891,7 @@
         "documentDate": null,
         "sha256": "47591636fc45d44497ad3b34d6f62022ca6c68803bade174b0b994340920db62",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:28:23+05:30",
+        "checkedAt": "2026-09-16T09:22:10+05:30",
         "evidence": {
           "financials": {
             "FY2026.revenueCr": {
@@ -9283,6 +10064,43 @@
             "entities": [
               "Maashitla Securities Private Limited"
             ]
+          },
+          "objectsOfIssue": {
+            "page": 101,
+            "heading": "OBJECTS OF THE ISSUE",
+            "unit": "lakh",
+            "rows": [
+              {
+                "purpose": "epayment and/or pre-payment, in full or part, of certain borrowings availed by our Company and its",
+                "amountCr": 24.1043
+              },
+              {
+                "purpose": "unding of capital expenditure towards purchase of plant and machineries at the existing manufacturing",
+                "amountCr": 21.4158
+              },
+              {
+                "purpose": "Repayment and/or pre-payment, in full or part, of 2,410.43",
+                "amountCr": 24.1043
+              },
+              {
+                "purpose": "Funding of capital expenditure towards purchase of 2,141.58",
+                "amountCr": 21.4158
+              },
+              {
+                "purpose": "General Corporate Purposes (1) [●]",
+                "amountCr": null
+              }
+            ]
+          },
+          "promoters": {
+            "heading": "OUR PROMOTERS",
+            "entities": [
+              "KUSUM AGGARWAL",
+              "AKASH AGGARWAL",
+              "ANKIT BANSAL",
+              "ATUL TULSIAN",
+              "ROHIT GARG"
+            ]
           }
         }
       },
@@ -9300,16 +10118,29 @@
         "extractedFields": [
           "leadManagers",
           "registrar",
-          "financials"
+          "financials",
+          "promoters",
+          "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-16T02:28:23+05:30",
+        "extractedAt": "2026-09-16T09:22:10+05:30",
         "conflicts": []
       },
       "documentRepair": {
-        "status": "updated",
+        "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T02:28:23+05:30",
+        "lastAttemptAt": "2026-09-16T09:22:10+05:30",
         "parserVersion": 22
+      },
+      "p4OfferResidualRepair": {
+        "status": "updated",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://speedexind.com/wp-content/uploads/2026/09/SPeedex-RHP.pdf",
+        "checkedAt": "2026-09-16T09:22:10+05:30",
+        "changedFields": [
+          "promoters",
+          "objectsOfIssue"
+        ]
       }
     },
     {
@@ -9578,7 +10409,7 @@
           "financials",
           "shareholding"
         ],
-        "extractedAt": "2026-09-16T02:25:54+05:30",
+        "extractedAt": "2026-09-16T09:22:09+05:30",
         "conflicts": []
       },
       "minInvestment": 14985.0,
@@ -9675,7 +10506,7 @@
         "documentDate": "2026-09-04",
         "sha256": "3d4a25194d02f8d338342206422d5fdadd6c15fc95cb0bb2bd5d4976b9efdca3",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:25:54+05:30",
+        "checkedAt": "2026-09-16T09:22:09+05:30",
         "evidence": {
           "financials": {
             "FY2026.netWorthCr": {
@@ -9919,13 +10750,23 @@
             "entities": [
               "EQUIRUS CAPITAL LIMITED"
             ]
+          },
+          "promoters": {
+            "heading": "OUR PROMOTERS",
+            "entities": [
+              "VISHAL SANWARPRASAD BUDHIA",
+              "RITU BUDHIA",
+              "VSB BUSINESS TRUST",
+              "BUDHIA BUSINESS TRUST",
+              "VB BUSINESS TRUST"
+            ]
           }
         }
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T02:25:54+05:30",
+        "lastAttemptAt": "2026-09-16T09:22:09+05:30",
         "parserVersion": 22
       },
       "nseOfferFilings": {
@@ -9935,6 +10776,14 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-16T02:04:40+00:00",
         "fingerprint": "4d6be0fc7680f9ab326271e551836aa80329555aaab4f61aee895346dc54ea81"
+      },
+      "p4OfferResidualRepair": {
+        "status": "no_change",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Steamhouse%20India%20Limited%20-%20AP_p.pdf",
+        "checkedAt": "2026-09-16T09:22:09+05:30",
+        "changedFields": []
       }
     },
     {
@@ -10079,9 +10928,7 @@
         "IIFL Capital Services Limited"
       ],
       "promoters": [
-        "and 257",
-        "respectively",
-        "of the Red Herring Prospectus"
+        "GEETANSH BAMANIA"
       ],
       "issueComposition": {
         "freshShares": 27365529,
@@ -10106,9 +10953,10 @@
           "leadManagers",
           "registrar",
           "financials",
-          "shareholding"
+          "shareholding",
+          "promoters"
         ],
-        "extractedAt": "2026-09-16T02:25:53+05:30",
+        "extractedAt": "2026-09-16T09:22:12+05:30",
         "conflicts": []
       },
       "registrar": "KFin Technologies Limited",
@@ -10368,6 +11216,23 @@
           "sha256": "d96f5725a94f8770de2fe8e2d8c4156ae9ff1154fce33c40eca0f92072ff7809",
           "parserVersion": 21,
           "correctedAt": "2026-09-15T10:32:49+05:30"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "and 257",
+            "respectively",
+            "of the Red Herring Prospectus"
+          ],
+          "after": [
+            "GEETANSH BAMANIA"
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/RENTOMOJO%20LIMITED%20-%20AP_p.pdf",
+          "sha256": "d96f5725a94f8770de2fe8e2d8c4156ae9ff1154fce33c40eca0f92072ff7809",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:22:12+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -10376,7 +11241,7 @@
         "documentDate": "2026-09-04",
         "sha256": "d96f5725a94f8770de2fe8e2d8c4156ae9ff1154fce33c40eca0f92072ff7809",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:25:53+05:30",
+        "checkedAt": "2026-09-16T09:22:12+05:30",
         "evidence": {
           "financials": {
             "FY2026.netWorthCr": {
@@ -10667,13 +11532,19 @@
             "entities": [
               "KFin Technologies Limited"
             ]
+          },
+          "promoters": {
+            "heading": "PROMOTERS OF OUR COMPANY",
+            "entities": [
+              "GEETANSH BAMANIA"
+            ]
           }
         }
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T02:25:53+05:30",
+        "lastAttemptAt": "2026-09-16T09:22:12+05:30",
         "parserVersion": 22
       },
       "nseOfferFilings": {
@@ -10683,6 +11554,16 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-16T02:04:37+00:00",
         "fingerprint": "bba1abe36a3f34da40b404b00c14a52a8880043070f6aa42c094579889a408d8"
+      },
+      "p4OfferResidualRepair": {
+        "status": "updated",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/RENTOMOJO%20LIMITED%20-%20AP_p.pdf",
+        "checkedAt": "2026-09-16T09:22:12+05:30",
+        "changedFields": [
+          "promoters"
+        ]
       }
     },
     {
@@ -12144,52 +13025,8 @@
       },
       "objectsOfIssue": [
         {
-          "purpose": "Pre-Offer and Post-Offer shareholding of our Promoters, members of the Promoter Group and top",
-          "amountCr": 1.0
-        },
-        {
-          "purpose": "Tanveer Singh# 65,425,593 22.16 [●] [●] [●]",
-          "amountCr": null
-        },
-        {
-          "purpose": "Rajiv Singh# 65,264,305 22.10 [●] [●] [●]",
-          "amountCr": null
-        },
-        {
-          "purpose": "Inderjeet Singh 1,410,762 0.48 [●] [●] [●]",
-          "amountCr": null
-        },
-        {
-          "purpose": "69,833,994 23.65 [●] [●] [●]",
-          "amountCr": null
-        },
-        {
-          "purpose": "69,833,994 23.65 [●] [●] [●]",
-          "amountCr": null
-        },
-        {
-          "purpose": "Sub-total (A) 271,768,648 92.05 [●] [●] [●]",
-          "amountCr": null
-        },
-        {
-          "purpose": "Gaitri Singh 51 Negligible [●] [●] [●]",
-          "amountCr": null
-        },
-        {
-          "purpose": "Sonal Singh 51 Negligible [●] [●] [●]",
-          "amountCr": null
-        },
-        {
-          "purpose": "Kashyap Choksi(3) 32,300 0.01 [●] [●] [●]",
-          "amountCr": null
-        },
-        {
-          "purpose": "Sub-total (B) 32,402 0.01 [●] [●] [●]",
-          "amountCr": null
-        },
-        {
-          "purpose": "2,952,756 1.00 [●] [●] [●]",
-          "amountCr": null
+          "purpose": "unding prepayment, repayment and/ or payment obligations to our lenders towards",
+          "amountCr": 600.0
         }
       ],
       "shareholding": {
@@ -12212,9 +13049,10 @@
           "registrar",
           "promoters",
           "financials",
-          "shareholding"
+          "shareholding",
+          "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-16T02:25:14+05:30",
+        "extractedAt": "2026-09-16T09:22:14+05:30",
         "conflicts": [
           "FY2024.patCr",
           "FY2025.patCr",
@@ -12452,6 +13290,71 @@
           "sha256": "1f02199da2efc7507fd5130f9f74626aeb5f94bc13d0643472bf0449751ec49d",
           "parserVersion": 22,
           "correctedAt": "2026-09-16T02:25:14+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "Pre-Offer and Post-Offer shareholding of our Promoters, members of the Promoter Group and top",
+              "amountCr": 1.0
+            },
+            {
+              "purpose": "Tanveer Singh# 65,425,593 22.16 [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "Rajiv Singh# 65,264,305 22.10 [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "Inderjeet Singh 1,410,762 0.48 [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "69,833,994 23.65 [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "69,833,994 23.65 [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "Sub-total (A) 271,768,648 92.05 [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "Gaitri Singh 51 Negligible [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "Sonal Singh 51 Negligible [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "Kashyap Choksi(3) 32,300 0.01 [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "Sub-total (B) 32,402 0.01 [●] [●] [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "2,952,756 1.00 [●] [●] [●]",
+              "amountCr": null
+            }
+          ],
+          "after": [
+            {
+              "purpose": "unding prepayment, repayment and/ or payment obligations to our lenders towards",
+              "amountCr": 600.0
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Annexure%20II%20-%20Abridged%20Prospectus_p.pdf",
+          "sha256": "1f02199da2efc7507fd5130f9f74626aeb5f94bc13d0643472bf0449751ec49d",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:22:14+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -12460,7 +13363,7 @@
         "documentDate": "2026-09-03",
         "sha256": "1f02199da2efc7507fd5130f9f74626aeb5f94bc13d0643472bf0449751ec49d",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:25:14+05:30",
+        "checkedAt": "2026-09-16T09:22:14+05:30",
         "evidence": {
           "financials": {
             "FY2026.netWorthCr": {
@@ -12634,13 +13537,24 @@
             "entities": [
               "MUFG Intime India Private Limited"
             ]
+          },
+          "objectsOfIssue": {
+            "page": 6,
+            "heading": "OBJECTS OF THE ISSUE",
+            "unit": "million",
+            "rows": [
+              {
+                "purpose": "unding prepayment, repayment and/ or payment obligations to our lenders towards",
+                "amountCr": 600.0
+              }
+            ]
           }
         }
       },
       "documentRepair": {
-        "status": "updated",
+        "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T02:25:14+05:30",
+        "lastAttemptAt": "2026-09-16T09:22:14+05:30",
         "parserVersion": 22
       },
       "nseOfferFilings": {
@@ -12650,6 +13564,16 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:26+00:00",
         "fingerprint": "2f7674550b738449499f30dd0474a9ef66cab13ac5c8ec89430f56e40f512ac4"
+      },
+      "p4OfferResidualRepair": {
+        "status": "updated",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Annexure%20II%20-%20Abridged%20Prospectus_p.pdf",
+        "checkedAt": "2026-09-16T09:22:14+05:30",
+        "changedFields": [
+          "objectsOfIssue"
+        ]
       }
     },
     {
@@ -12882,7 +13806,7 @@
           "promoters",
           "financials"
         ],
-        "extractedAt": "2026-09-16T02:24:27+05:30",
+        "extractedAt": "2026-09-16T09:22:14+05:30",
         "conflicts": []
       },
       "lotSize": 107,
@@ -13040,7 +13964,7 @@
         "documentDate": "2026-09-02",
         "sha256": "16ccd87fcb73a9bb7641db8f30bb630f2b7a73ee7c10a0d5b72276ab96b2c74a",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:24:27+05:30",
+        "checkedAt": "2026-09-16T09:22:14+05:30",
         "evidence": {
           "financials": {
             "FY2026.netWorthCr": {
@@ -13254,13 +14178,20 @@
             "entities": [
               "MUFG Intime India Private Limited"
             ]
+          },
+          "promoters": {
+            "heading": "OUR PROMOTERS",
+            "entities": [
+              "AVENUE INDIA RESURGENCE PTE. LTD",
+              "STATE BANK OF INDIA"
+            ]
           }
         }
       },
       "documentRepair": {
-        "status": "updated",
+        "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T02:24:27+05:30",
+        "lastAttemptAt": "2026-09-16T09:22:14+05:30",
         "parserVersion": 22
       },
       "nseOfferFilings": {
@@ -13270,6 +14201,14 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:15+00:00",
         "fingerprint": "85b092669a21478e1f7ecb8d20a4cd19464f4dd59b1789c5807f183afefb2e83"
+      },
+      "p4OfferResidualRepair": {
+        "status": "no_change",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/ASSET%20RECONSTRUCTION%20COMPANY%20-AP_p.pdf",
+        "checkedAt": "2026-09-16T09:22:14+05:30",
+        "changedFields": []
       }
     },
     {
@@ -13888,11 +14827,13 @@
       ],
       "registrar": "MUFG Intime India Private Limited",
       "promoters": [
-        "are Dinesh Singhal",
-        "Adesh Singhal",
-        "Vivek Singhal",
-        "Abhishek Singhal",
-        "Virat"
+        "DINESH SINGHAL",
+        "ADESH SINGHAL",
+        "VIVEK SINGHAL",
+        "ABHISHEK SINGHAL",
+        "VIRAT SINGHAL",
+        "ADITYA SINGHAL",
+        "K SONS FAMILY TRUST"
       ],
       "financials": {
         "unit": "₹ crore",
@@ -13992,7 +14933,7 @@
           "financials",
           "shareholding"
         ],
-        "extractedAt": "2026-09-16T02:25:14+05:30",
+        "extractedAt": "2026-09-16T09:22:15+05:30",
         "conflicts": []
       },
       "lotSize": 23,
@@ -14134,6 +15075,31 @@
           "sha256": "a4356fe687fb2300fba9e7e741202654bbe521257f5ec8916de5de4711c9c6b1",
           "parserVersion": 21,
           "correctedAt": "2026-09-15T10:30:08+05:30"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "are Dinesh Singhal",
+            "Adesh Singhal",
+            "Vivek Singhal",
+            "Abhishek Singhal",
+            "Virat"
+          ],
+          "after": [
+            "DINESH SINGHAL",
+            "ADESH SINGHAL",
+            "VIVEK SINGHAL",
+            "ABHISHEK SINGHAL",
+            "VIRAT SINGHAL",
+            "ADITYA SINGHAL",
+            "K SONS FAMILY TRUST"
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Kanohar%20Electricals%20Limited%20-%20AP_p.pdf",
+          "sha256": "a4356fe687fb2300fba9e7e741202654bbe521257f5ec8916de5de4711c9c6b1",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:22:15+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -14142,7 +15108,7 @@
         "documentDate": "2026-09-03",
         "sha256": "a4356fe687fb2300fba9e7e741202654bbe521257f5ec8916de5de4711c9c6b1",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:25:14+05:30",
+        "checkedAt": "2026-09-16T09:22:15+05:30",
         "evidence": {
           "financials": {
             "FY2026.revenueCr": {
@@ -14316,13 +15282,25 @@
             "entities": [
               "MUFG Intime India Private Limited"
             ]
+          },
+          "promoters": {
+            "heading": "OUR PROMOTERS",
+            "entities": [
+              "DINESH SINGHAL",
+              "ADESH SINGHAL",
+              "VIVEK SINGHAL",
+              "ABHISHEK SINGHAL",
+              "VIRAT SINGHAL",
+              "ADITYA SINGHAL",
+              "K SONS FAMILY TRUST"
+            ]
           }
         }
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T02:25:14+05:30",
+        "lastAttemptAt": "2026-09-16T09:22:15+05:30",
         "parserVersion": 22
       },
       "nseOfferFilings": {
@@ -14332,6 +15310,16 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:26+00:00",
         "fingerprint": "2fb1039d9b78948bb57daceef44c904c1580f916975a8595bde90a53513df419"
+      },
+      "p4OfferResidualRepair": {
+        "status": "updated",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Kanohar%20Electricals%20Limited%20-%20AP_p.pdf",
+        "checkedAt": "2026-09-16T09:22:15+05:30",
+        "changedFields": [
+          "promoters"
+        ]
       }
     },
     {
@@ -16749,52 +17737,16 @@
       },
       "objectsOfIssue": [
         {
-          "purpose": "BASIS FOR ISSUE PRICE",
-          "amountCr": 99.0
+          "purpose": "Repayment / pre-payment, in full or in part, of certain working capital",
+          "amountCr": 75.0
         },
         {
-          "purpose": "INDUSTRY OVERVIEW",
-          "amountCr": 114.0
+          "purpose": "General corporate purposes (1)(2)",
+          "amountCr": 18.852
         },
         {
-          "purpose": "OUR BUSINESS",
-          "amountCr": 146.0
-        },
-        {
-          "purpose": "KEY REGULATIONS AND POLICIES",
-          "amountCr": 170.0
-        },
-        {
-          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
-          "amountCr": 176.0
-        },
-        {
-          "purpose": "OUR MANAGEMENT",
-          "amountCr": 183.0
-        },
-        {
-          "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
-          "amountCr": 199.0
-        },
-        {
-          "purpose": "OUR GROUP COMPANIES",
-          "amountCr": 204.0
-        },
-        {
-          "purpose": "DIVIDEND POLICY",
-          "amountCr": 205.0
-        },
-        {
-          "purpose": "RESTATED FINANCIAL INFORMATION",
-          "amountCr": 206.0
-        },
-        {
-          "purpose": "OTHER FINANCIAL INFORMATION",
-          "amountCr": 279.0
-        },
-        {
-          "purpose": "MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS",
-          "amountCr": 280.0
+          "purpose": "2026, we had total borrowings of ₹ 1,127.45 million. We propose to utilise a portion of the Net Proceeds aggregating to",
+          "amountCr": 75.0
         }
       ],
       "shareholding": {
@@ -16825,9 +17777,10 @@
           "registrar",
           "objectsOfIssue",
           "lotSize",
-          "priceBand"
+          "priceBand",
+          "promoters"
         ],
-        "extractedAt": "2026-09-16T02:26:10+05:30",
+        "extractedAt": "2026-09-16T09:23:03+05:30",
         "conflicts": []
       },
       "lotSize": 75,
@@ -16857,6 +17810,79 @@
           "sha256": "cd3026b4bc426e5ba3a455e10ef4b6d0de0d0b393ee0db3590dba6cd45e8efed",
           "parserVersion": 21,
           "correctedAt": "2026-09-15T10:34:45+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "BASIS FOR ISSUE PRICE",
+              "amountCr": 99.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW",
+              "amountCr": 114.0
+            },
+            {
+              "purpose": "OUR BUSINESS",
+              "amountCr": 146.0
+            },
+            {
+              "purpose": "KEY REGULATIONS AND POLICIES",
+              "amountCr": 170.0
+            },
+            {
+              "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+              "amountCr": 176.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT",
+              "amountCr": 183.0
+            },
+            {
+              "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
+              "amountCr": 199.0
+            },
+            {
+              "purpose": "OUR GROUP COMPANIES",
+              "amountCr": 204.0
+            },
+            {
+              "purpose": "DIVIDEND POLICY",
+              "amountCr": 205.0
+            },
+            {
+              "purpose": "RESTATED FINANCIAL INFORMATION",
+              "amountCr": 206.0
+            },
+            {
+              "purpose": "OTHER FINANCIAL INFORMATION",
+              "amountCr": 279.0
+            },
+            {
+              "purpose": "MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS",
+              "amountCr": 280.0
+            }
+          ],
+          "after": [
+            {
+              "purpose": "Repayment / pre-payment, in full or in part, of certain working capital",
+              "amountCr": 75.0
+            },
+            {
+              "purpose": "General corporate purposes (1)(2)",
+              "amountCr": 18.852
+            },
+            {
+              "purpose": "2026, we had total borrowings of ₹ 1,127.45 million. We propose to utilise a portion of the Net Proceeds aggregating to",
+              "amountCr": 75.0
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788323000985.pdf",
+          "sha256": "cd3026b4bc426e5ba3a455e10ef4b6d0de0d0b393ee0db3590dba6cd45e8efed",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:23:03+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -16865,7 +17891,7 @@
         "documentDate": "2026-09-02",
         "sha256": "cd3026b4bc426e5ba3a455e10ef4b6d0de0d0b393ee0db3590dba6cd45e8efed",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:26:10+05:30",
+        "checkedAt": "2026-09-16T09:23:03+05:30",
         "evidence": {
           "financials": {},
           "leadManagers": {
@@ -16881,13 +17907,43 @@
             "entities": [
               "MUFG Intime India Private Limited"
             ]
+          },
+          "promoters": {
+            "heading": "OUR PROMOTERS",
+            "entities": [
+              "SHAILESH SANGANI",
+              "MANISHA SHAILESH SANGANI",
+              "TUSHAR MEHTA",
+              "ADITI KARAN MOTLA",
+              "AASHNA SANGANI PARIKH",
+              "PRIORITY RETAIL VENTURES PRIVATE LIMITED"
+            ]
+          },
+          "objectsOfIssue": {
+            "page": 96,
+            "heading": "OBJECTS OF THE ISSUE",
+            "unit": "million",
+            "rows": [
+              {
+                "purpose": "Repayment / pre-payment, in full or in part, of certain working capital",
+                "amountCr": 75.0
+              },
+              {
+                "purpose": "General corporate purposes (1)(2)",
+                "amountCr": 18.852
+              },
+              {
+                "purpose": "2026, we had total borrowings of ₹ 1,127.45 million. We propose to utilise a portion of the Net Proceeds aggregating to",
+                "amountCr": 75.0
+              }
+            ]
           }
         }
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "needs_review",
-        "lastAttemptAt": "2026-09-16T02:26:10+05:30",
+        "lastAttemptAt": "2026-09-16T09:23:03+05:30",
         "parserVersion": 22
       },
       "nseOfferFilings": {
@@ -16897,6 +17953,16 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-16T02:04:36+00:00",
         "fingerprint": "7bd9f1de9aae2e42089332992623b8ca6978d51fe2c6170d39ea0749d44f7213"
+      },
+      "p4OfferResidualRepair": {
+        "status": "updated",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788323000985.pdf",
+        "checkedAt": "2026-09-16T09:23:03+05:30",
+        "changedFields": [
+          "objectsOfIssue"
+        ]
       }
     },
     {
@@ -18490,18 +19556,8 @@
       ],
       "registrar": "KFin Technologies Limited",
       "promoters": [
-        "ANALYSIS OF FINANCIAL CONDITION",
-        "MATERIAL DEVELOPMENTS ...................................................... 382 GOVERNMENT",
-        "ABBREVIATIONS This Prospectus uses certain definitions",
-        "abbreviations which",
-        "unless the context otherwise indicates or implies",
-        "shall have the meaning as provided below. References to any legislation",
-        "act",
-        "regulation",
-        "rules",
-        "guidelines",
-        "policy",
-        "circular"
+        "SANJAY KUMAR SARRAF",
+        "KRISHNA RANJAN"
       ],
       "financials": {
         "unit": "₹ crore",
@@ -18537,52 +19593,24 @@
       },
       "objectsOfIssue": [
         {
-          "purpose": "BASIS FOR ISSUE PRICE",
-          "amountCr": 117.0
+          "purpose": "Less: Issue Expenses in relation to the Fresh Issue(1)",
+          "amountCr": 20.494
         },
         {
-          "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
-          "amountCr": 127.0
+          "purpose": "Funding capital expenditure requirements of our Company for purchase of 154.08",
+          "amountCr": 0.997
         },
         {
-          "purpose": "SECTION IV: ABOUT OUR COMPANY",
-          "amountCr": 130.0
+          "purpose": "Funding working capital requirements of our Company 1,150.00",
+          "amountCr": 7.44
         },
         {
-          "purpose": "INDUSTRY OVERVIEW",
-          "amountCr": 130.0
+          "purpose": "General corporate purposes 241.60",
+          "amountCr": 1.563
         },
         {
-          "purpose": "OUR BUSINESS",
-          "amountCr": 213.0
-        },
-        {
-          "purpose": "KEY REGULATIONS AND POLICIES IN INDIA",
-          "amountCr": 246.0
-        },
-        {
-          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
-          "amountCr": 253.0
-        },
-        {
-          "purpose": "OUR MANAGEMENT",
-          "amountCr": 260.0
-        },
-        {
-          "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
-          "amountCr": 276.0
-        },
-        {
-          "purpose": "GROUP COMPANIES",
-          "amountCr": 279.0
-        },
-        {
-          "purpose": "DIVIDEND POLICY",
-          "amountCr": 282.0
-        },
-        {
-          "purpose": "SECTION V: FINANCIAL INFORMATION",
-          "amountCr": 283.0
+          "purpose": "Funding working capital requirements of our 1,150.00 650.00",
+          "amountCr": 50.0
         }
       ],
       "shareholding": {
@@ -18614,9 +19642,10 @@
           "financials",
           "objectsOfIssue",
           "lotSize",
-          "priceBand"
+          "priceBand",
+          "promoters"
         ],
-        "extractedAt": "2026-09-16T02:24:37+05:30",
+        "extractedAt": "2026-09-16T09:22:54+05:30",
         "conflicts": []
       },
       "lotSize": 151,
@@ -18782,6 +19811,114 @@
           "sha256": "a83ce724b2e53f5f01ca0df0c19dc1e7b050ea1cb2d0d0885e5bbbc0e8915a65",
           "parserVersion": 21,
           "correctedAt": "2026-09-15T10:28:39+05:30"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "ANALYSIS OF FINANCIAL CONDITION",
+            "MATERIAL DEVELOPMENTS ...................................................... 382 GOVERNMENT",
+            "ABBREVIATIONS This Prospectus uses certain definitions",
+            "abbreviations which",
+            "unless the context otherwise indicates or implies",
+            "shall have the meaning as provided below. References to any legislation",
+            "act",
+            "regulation",
+            "rules",
+            "guidelines",
+            "policy",
+            "circular"
+          ],
+          "after": [
+            "SANJAY KUMAR SARRAF",
+            "KRISHNA RANJAN"
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1788150561832.pdf",
+          "sha256": "a83ce724b2e53f5f01ca0df0c19dc1e7b050ea1cb2d0d0885e5bbbc0e8915a65",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:22:54+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "BASIS FOR ISSUE PRICE",
+              "amountCr": 117.0
+            },
+            {
+              "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
+              "amountCr": 127.0
+            },
+            {
+              "purpose": "SECTION IV: ABOUT OUR COMPANY",
+              "amountCr": 130.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW",
+              "amountCr": 130.0
+            },
+            {
+              "purpose": "OUR BUSINESS",
+              "amountCr": 213.0
+            },
+            {
+              "purpose": "KEY REGULATIONS AND POLICIES IN INDIA",
+              "amountCr": 246.0
+            },
+            {
+              "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+              "amountCr": 253.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT",
+              "amountCr": 260.0
+            },
+            {
+              "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
+              "amountCr": 276.0
+            },
+            {
+              "purpose": "GROUP COMPANIES",
+              "amountCr": 279.0
+            },
+            {
+              "purpose": "DIVIDEND POLICY",
+              "amountCr": 282.0
+            },
+            {
+              "purpose": "SECTION V: FINANCIAL INFORMATION",
+              "amountCr": 283.0
+            }
+          ],
+          "after": [
+            {
+              "purpose": "Less: Issue Expenses in relation to the Fresh Issue(1)",
+              "amountCr": 20.494
+            },
+            {
+              "purpose": "Funding capital expenditure requirements of our Company for purchase of 154.08",
+              "amountCr": 0.997
+            },
+            {
+              "purpose": "Funding working capital requirements of our Company 1,150.00",
+              "amountCr": 7.44
+            },
+            {
+              "purpose": "General corporate purposes 241.60",
+              "amountCr": 1.563
+            },
+            {
+              "purpose": "Funding working capital requirements of our 1,150.00 650.00",
+              "amountCr": 50.0
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1788150561832.pdf",
+          "sha256": "a83ce724b2e53f5f01ca0df0c19dc1e7b050ea1cb2d0d0885e5bbbc0e8915a65",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:22:54+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -18790,7 +19927,7 @@
         "documentDate": "2026-08-31",
         "sha256": "a83ce724b2e53f5f01ca0df0c19dc1e7b050ea1cb2d0d0885e5bbbc0e8915a65",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:24:37+05:30",
+        "checkedAt": "2026-09-16T09:22:54+05:30",
         "evidence": {
           "financials": {
             "FY2026.revenueCr": {
@@ -19041,13 +20178,47 @@
             "entities": [
               "KFin Technologies Limited"
             ]
+          },
+          "promoters": {
+            "heading": "OUR PROMOTERS",
+            "entities": [
+              "SANJAY KUMAR SARRAF",
+              "KRISHNA RANJAN"
+            ]
+          },
+          "objectsOfIssue": {
+            "page": 107,
+            "heading": "OBJECTS OF THE ISSUE",
+            "unit": "million",
+            "rows": [
+              {
+                "purpose": "Less: Issue Expenses in relation to the Fresh Issue(1)",
+                "amountCr": 20.494
+              },
+              {
+                "purpose": "Funding capital expenditure requirements of our Company for purchase of 154.08",
+                "amountCr": 0.997
+              },
+              {
+                "purpose": "Funding working capital requirements of our Company 1,150.00",
+                "amountCr": 7.44
+              },
+              {
+                "purpose": "General corporate purposes 241.60",
+                "amountCr": 1.563
+              },
+              {
+                "purpose": "Funding working capital requirements of our 1,150.00 650.00",
+                "amountCr": 50.0
+              }
+            ]
           }
         }
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T02:24:37+05:30",
+        "lastAttemptAt": "2026-09-16T09:22:54+05:30",
         "parserVersion": 22
       },
       "nseOfferFilings": {
@@ -19057,6 +20228,17 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:15+00:00",
         "fingerprint": "d160c9aea976fb5b2bae454282cb92000c4bccb3e6290dec3d681891ce72b1b8"
+      },
+      "p4OfferResidualRepair": {
+        "status": "updated",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1788150561832.pdf",
+        "checkedAt": "2026-09-16T09:22:54+05:30",
+        "changedFields": [
+          "promoters",
+          "objectsOfIssue"
+        ]
       }
     },
     {
@@ -19183,7 +20365,7 @@
           "financials",
           "shareholding"
         ],
-        "extractedAt": "2026-09-16T02:25:57+05:30",
+        "extractedAt": "2026-09-16T09:22:17+05:30",
         "conflicts": []
       },
       "registrar": "MUFG Intime India Private Limited",
@@ -19544,7 +20726,7 @@
         "documentDate": "2026-08-19",
         "sha256": "c00a38d118d2425254116b6f74d6bd6f988cd5367fd9f2e8ca1a2d3b2167e455",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:25:57+05:30",
+        "checkedAt": "2026-09-16T09:22:17+05:30",
         "evidence": {
           "financials": {
             "FY2026.revenueCr": {
@@ -19841,9 +21023,9 @@
         }
       },
       "documentRepair": {
-        "status": "updated",
+        "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T02:25:57+05:30",
+        "lastAttemptAt": "2026-09-16T09:22:17+05:30",
         "parserVersion": 22
       },
       "nseOfferFilings": {
@@ -19853,6 +21035,14 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-16T02:04:41+00:00",
         "fingerprint": "bfc892667adf300ef2f46f0dd378ba3fc1eadf3d1c6f85993d46a0d85553e73e"
+      },
+      "p4OfferResidualRepair": {
+        "status": "no_change",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/SYMBIOTEC%20PHARMALAB%20LIMITED%20-%20AP_p.pdf",
+        "checkedAt": "2026-09-16T09:22:17+05:30",
+        "changedFields": []
       }
     },
     {
@@ -19954,8 +21144,7 @@
       ],
       "registrar": "Bigshare Services Private Limited",
       "promoters": [
-        "being Mr. Yas hpal Sharma",
-        "Mr. Tarun"
+        "our directors or our Subsidiaries"
       ],
       "financials": {
         "unit": "₹ crore",
@@ -20033,9 +21222,10 @@
         "extractedFields": [
           "leadManagers",
           "registrar",
-          "promoters"
+          "promoters",
+          "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-16T02:26:05+05:30",
+        "extractedAt": "2026-09-16T09:22:54+05:30",
         "conflicts": []
       },
       "lotSize": 100,
@@ -20162,6 +21352,22 @@
           "sha256": "d4b854766d507c39326d493d65b3ad835792c200a26defe7bd1cd024022081b6",
           "parserVersion": 21,
           "correctedAt": "2026-09-15T10:34:33+05:30"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "being Mr. Yas hpal Sharma",
+            "Mr. Tarun"
+          ],
+          "after": [
+            "our directors or our Subsidiaries"
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787916423171.pdf",
+          "sha256": "d4b854766d507c39326d493d65b3ad835792c200a26defe7bd1cd024022081b6",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:22:54+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -20170,7 +21376,7 @@
         "documentDate": "2026-08-28",
         "sha256": "d4b854766d507c39326d493d65b3ad835792c200a26defe7bd1cd024022081b6",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:26:05+05:30",
+        "checkedAt": "2026-09-16T09:22:54+05:30",
         "evidence": {
           "financials": {},
           "leadManagers": {
@@ -20188,13 +21394,34 @@
             "entities": [
               "Bigshare Services Private Limited"
             ]
+          },
+          "objectsOfIssue": {
+            "page": 111,
+            "heading": "OBJECTS OF THE ISSUE",
+            "unit": "lakh",
+            "rows": [
+              {
+                "purpose": "unding incremental working capital requirements of our Company",
+                "amountCr": 130.0
+              },
+              {
+                "purpose": "General Corporate Purposes (1) 1,397.37 897.37",
+                "amountCr": 5.0
+              }
+            ]
+          },
+          "promoters": {
+            "heading": "OUR PROMOTERS",
+            "entities": [
+              "our directors or our Subsidiaries"
+            ]
           }
         }
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "needs_review",
-        "lastAttemptAt": "2026-09-16T02:26:05+05:30",
+        "lastAttemptAt": "2026-09-16T09:22:54+05:30",
         "parserVersion": 22
       },
       "nseOfferFilings": {
@@ -20204,6 +21431,16 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-16T02:04:39+00:00",
         "fingerprint": "9f8763ee2b52a09dc655fc5c579051921d7dc3d036cbacfd2146243c1f8b72c6"
+      },
+      "p4OfferResidualRepair": {
+        "status": "updated",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787916423171.pdf",
+        "checkedAt": "2026-09-16T09:22:54+05:30",
+        "changedFields": [
+          "promoters"
+        ]
       }
     },
     {
@@ -20388,16 +21625,7 @@
       "promoters": [
         "ARE HEMANT TUKARAM MONDKAR",
         "SUREKHA HEMANT MONDKAR",
-        "SHARE RESERV ATION AMONG QIBs",
-        "NIIs",
-        "& RIBs Fresh Issue",
-        "Offer for Sale 11",
-        "320",
-        "754^ Equity Shares of face value ₹5 each aggregating to ₹ 600.00 million 14",
-        "289",
-        "450^ Equity Shares of face value ₹5 each aggregating to ₹757.34 million 25",
-        "610",
-        "204^ Equity Shares of face value of ₹5 each aggregating to ₹1"
+        "ASHWIN HEMANT MONDKAR"
       ],
       "financials": {
         "unit": "₹ crore",
@@ -20433,48 +21661,12 @@
       },
       "objectsOfIssue": [
         {
-          "purpose": "BASIS FOR OFFER PRICE",
-          "amountCr": 111.0
+          "purpose": "repayment or repayment, in full or in part, of certain outstanding borrowings availed by our Company",
+          "amountCr": 16.0
         },
         {
-          "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
-          "amountCr": 119.0
-        },
-        {
-          "purpose": "SECTION IV – ABOUT THE COMPANY",
-          "amountCr": 126.0
-        },
-        {
-          "purpose": "INDUSTRY OVERVIEW",
-          "amountCr": 126.0
-        },
-        {
-          "purpose": "OUR BUSINESS",
-          "amountCr": 172.0
-        },
-        {
-          "purpose": "KEY INDUSTRY REGULATIONS AND POLICIES",
-          "amountCr": 189.0
-        },
-        {
-          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
-          "amountCr": 195.0
-        },
-        {
-          "purpose": "OUR MANAGEMENT",
-          "amountCr": 200.0
-        },
-        {
-          "purpose": "OUR PROMOTER AND PROMOTER GROUP",
-          "amountCr": 215.0
-        },
-        {
-          "purpose": "GROUP COMPANIES",
-          "amountCr": 219.0
-        },
-        {
-          "purpose": "DIVIDEND POLICY",
-          "amountCr": 221.0
+          "purpose": "unding capital expenditure requirement of our Company 299.66 299.66 50.00",
+          "amountCr": 24.966
         }
       ],
       "shareholding": {
@@ -20503,9 +21695,11 @@
         "extractedFields": [
           "leadManagers",
           "registrar",
-          "priceBand"
+          "priceBand",
+          "promoters",
+          "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-16T02:25:14+05:30",
+        "extractedAt": "2026-09-16T09:22:46+05:30",
         "conflicts": []
       },
       "lotSize": 283,
@@ -20536,6 +21730,99 @@
           "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
           "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
           "correctedAt": "2026-09-14T12:16:27.134108+00:00"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "ARE HEMANT TUKARAM MONDKAR",
+            "SUREKHA HEMANT MONDKAR",
+            "SHARE RESERV ATION AMONG QIBs",
+            "NIIs",
+            "& RIBs Fresh Issue",
+            "Offer for Sale 11",
+            "320",
+            "754^ Equity Shares of face value ₹5 each aggregating to ₹ 600.00 million 14",
+            "289",
+            "450^ Equity Shares of face value ₹5 each aggregating to ₹757.34 million 25",
+            "610",
+            "204^ Equity Shares of face value of ₹5 each aggregating to ₹1"
+          ],
+          "after": [
+            "ARE HEMANT TUKARAM MONDKAR",
+            "SUREKHA HEMANT MONDKAR",
+            "ASHWIN HEMANT MONDKAR"
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:22:46+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "BASIS FOR OFFER PRICE",
+              "amountCr": 111.0
+            },
+            {
+              "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
+              "amountCr": 119.0
+            },
+            {
+              "purpose": "SECTION IV – ABOUT THE COMPANY",
+              "amountCr": 126.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW",
+              "amountCr": 126.0
+            },
+            {
+              "purpose": "OUR BUSINESS",
+              "amountCr": 172.0
+            },
+            {
+              "purpose": "KEY INDUSTRY REGULATIONS AND POLICIES",
+              "amountCr": 189.0
+            },
+            {
+              "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+              "amountCr": 195.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT",
+              "amountCr": 200.0
+            },
+            {
+              "purpose": "OUR PROMOTER AND PROMOTER GROUP",
+              "amountCr": 215.0
+            },
+            {
+              "purpose": "GROUP COMPANIES",
+              "amountCr": 219.0
+            },
+            {
+              "purpose": "DIVIDEND POLICY",
+              "amountCr": 221.0
+            }
+          ],
+          "after": [
+            {
+              "purpose": "repayment or repayment, in full or in part, of certain outstanding borrowings availed by our Company",
+              "amountCr": 16.0
+            },
+            {
+              "purpose": "unding capital expenditure requirement of our Company 299.66 299.66 50.00",
+              "amountCr": 24.966
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:22:46+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -20544,7 +21831,7 @@
         "documentDate": "2026-08-28",
         "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:25:14+05:30",
+        "checkedAt": "2026-09-16T09:22:46+05:30",
         "evidence": {
           "financials": {},
           "leadManagers": {
@@ -20560,13 +21847,36 @@
             "entities": [
               "Bigshare Services Private Limited"
             ]
+          },
+          "objectsOfIssue": {
+            "page": 103,
+            "heading": "OBJECTS OF THE ISSUE",
+            "unit": "million",
+            "rows": [
+              {
+                "purpose": "repayment or repayment, in full or in part, of certain outstanding borrowings availed by our Company",
+                "amountCr": 16.0
+              },
+              {
+                "purpose": "unding capital expenditure requirement of our Company 299.66 299.66 50.00",
+                "amountCr": 24.966
+              }
+            ]
+          },
+          "promoters": {
+            "heading": "OUR PROMOTERS",
+            "entities": [
+              "ARE HEMANT TUKARAM MONDKAR",
+              "SUREKHA HEMANT MONDKAR",
+              "ASHWIN HEMANT MONDKAR"
+            ]
           }
         }
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "needs_review",
-        "lastAttemptAt": "2026-09-16T02:25:14+05:30",
+        "lastAttemptAt": "2026-09-16T09:22:46+05:30",
         "parserVersion": 22
       },
       "nseOfferFilings": {
@@ -20576,6 +21886,17 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:23+00:00",
         "fingerprint": "bb1df8791775f1504ae0cdb4791261e26d687e71b59739668e7eb820375c0a12"
+      },
+      "p4OfferResidualRepair": {
+        "status": "updated",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+        "checkedAt": "2026-09-16T09:22:46+05:30",
+        "changedFields": [
+          "promoters",
+          "objectsOfIssue"
+        ]
       }
     },
     {
@@ -20868,48 +22189,12 @@
       },
       "objectsOfIssue": [
         {
-          "purpose": "…………………………..…………………………………………….1",
-          "amountCr": 30.0
+          "purpose": "unding future working capital requirements towards procurement, maintenance and scaling",
+          "amountCr": 465.0
         },
         {
-          "purpose": "BASIS FOR OFFER PRICE",
-          "amountCr": 144.0
-        },
-        {
-          "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
-          "amountCr": 154.0
-        },
-        {
-          "purpose": "SECTION IV: ABOUT OUR COMPANY",
-          "amountCr": 161.0
-        },
-        {
-          "purpose": "INDUSTRY OVERVIEW",
-          "amountCr": 161.0
-        },
-        {
-          "purpose": "OUR BUSINESS",
-          "amountCr": 233.0
-        },
-        {
-          "purpose": "KEY REGULATIONS AND POLICIES",
-          "amountCr": 258.0
-        },
-        {
-          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS………………………………………….26",
-          "amountCr": 9.0
-        },
-        {
-          "purpose": "OUR MANAGEMENT",
-          "amountCr": 284.0
-        },
-        {
-          "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
-          "amountCr": 310.0
-        },
-        {
-          "purpose": "DIVIDEND POLICY",
-          "amountCr": 319.0
+          "purpose": "unding future working capital requirements 4,650.00",
+          "amountCr": 465.0
         }
       ],
       "issueComposition": {
@@ -20934,9 +22219,11 @@
         "extractedFields": [
           "leadManagers",
           "registrar",
-          "lotSize"
+          "lotSize",
+          "promoters",
+          "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-16T02:24:42+05:30",
+        "extractedAt": "2026-09-16T09:23:37+05:30",
         "conflicts": [
           "FY2024.dilutedEps",
           "FY2024.eps",
@@ -20987,6 +22274,71 @@
           "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787821632446.pdf",
           "sha256": "104fc11af09e364009349c59f38b98856691ebf2d41078f8234bd96a4ed8f5f4",
           "correctedAt": "2026-09-14T12:16:27.134108+00:00"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "…………………………..…………………………………………….1",
+              "amountCr": 30.0
+            },
+            {
+              "purpose": "BASIS FOR OFFER PRICE",
+              "amountCr": 144.0
+            },
+            {
+              "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
+              "amountCr": 154.0
+            },
+            {
+              "purpose": "SECTION IV: ABOUT OUR COMPANY",
+              "amountCr": 161.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW",
+              "amountCr": 161.0
+            },
+            {
+              "purpose": "OUR BUSINESS",
+              "amountCr": 233.0
+            },
+            {
+              "purpose": "KEY REGULATIONS AND POLICIES",
+              "amountCr": 258.0
+            },
+            {
+              "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS………………………………………….26",
+              "amountCr": 9.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT",
+              "amountCr": 284.0
+            },
+            {
+              "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
+              "amountCr": 310.0
+            },
+            {
+              "purpose": "DIVIDEND POLICY",
+              "amountCr": 319.0
+            }
+          ],
+          "after": [
+            {
+              "purpose": "unding future working capital requirements towards procurement, maintenance and scaling",
+              "amountCr": 465.0
+            },
+            {
+              "purpose": "unding future working capital requirements 4,650.00",
+              "amountCr": 465.0
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787821632446.pdf",
+          "sha256": "104fc11af09e364009349c59f38b98856691ebf2d41078f8234bd96a4ed8f5f4",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:23:37+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -20995,7 +22347,7 @@
         "documentDate": "2026-08-27",
         "sha256": "104fc11af09e364009349c59f38b98856691ebf2d41078f8234bd96a4ed8f5f4",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:24:42+05:30",
+        "checkedAt": "2026-09-16T09:23:37+05:30",
         "evidence": {
           "financials": {},
           "leadManagers": {
@@ -21014,13 +22366,36 @@
             "entities": [
               "MUFG Intime India Private Limited"
             ]
+          },
+          "objectsOfIssue": {
+            "page": 130,
+            "heading": "OBJECTS OF THE ISSUE",
+            "unit": "million",
+            "rows": [
+              {
+                "purpose": "unding future working capital requirements towards procurement, maintenance and scaling",
+                "amountCr": 465.0
+              },
+              {
+                "purpose": "unding future working capital requirements 4,650.00",
+                "amountCr": 465.0
+              }
+            ]
+          },
+          "promoters": {
+            "heading": "OUR PROMOTERS",
+            "entities": [
+              "selling shareholders",
+              "Namita Ketan Kothari",
+              "Vivek Prithviraj Kothari"
+            ]
           }
         }
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "needs_review",
-        "lastAttemptAt": "2026-09-16T02:24:42+05:30",
+        "lastAttemptAt": "2026-09-16T09:23:37+05:30",
         "parserVersion": 22
       },
       "nseOfferFilings": {
@@ -21030,6 +22405,16 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:16+00:00",
         "fingerprint": "8b818a235daf34f124b28b59c271d9b616109b6f5b5e7df286401244a5a0605f"
+      },
+      "p4OfferResidualRepair": {
+        "status": "updated",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787821632446.pdf",
+        "checkedAt": "2026-09-16T09:23:37+05:30",
+        "changedFields": [
+          "objectsOfIssue"
+        ]
       }
     },
     {
@@ -21858,10 +23243,11 @@
       ],
       "registrar": "MUFG Intime India Private Limited",
       "promoters": [
-        "The Promoters collectively hold an aggregate of 69",
-        "312",
-        "714 Equity Shares",
-        "aggregating to 61.40% of the"
+        "GOPAL JAIN",
+        "RANJIT JAYANT SHAH",
+        "IMRAN JAFAR",
+        "CHITRA JAIN",
+        "MONA RANJIT SHAH"
       ],
       "financials": {
         "unit": "₹ crore",
@@ -21891,44 +23277,20 @@
       },
       "objectsOfIssue": [
         {
-          "purpose": "BASIS FOR OFFER PRICE",
-          "amountCr": 124.0
+          "purpose": "Investing towards our Sponsor Commitments to certain existing and new funds and for repayment",
+          "amountCr": 372.0
         },
         {
-          "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
-          "amountCr": 139.0
+          "purpose": "General corporate purposes(1) (2)",
+          "amountCr": 44.248
         },
         {
-          "purpose": "SECTION IV: ABOUT OUR COMPANY",
-          "amountCr": 146.0
+          "purpose": "General corporate 442.48 442.48 110.62 147.49",
+          "amountCr": 18.437
         },
         {
-          "purpose": "INDUSTRY OVERVIEW",
-          "amountCr": 146.0
-        },
-        {
-          "purpose": "OUR BUSINESS",
-          "amountCr": 218.0
-        },
-        {
-          "purpose": "KEY REGULATIONS AND POLICIES",
-          "amountCr": 245.0
-        },
-        {
-          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
-          "amountCr": 250.0
-        },
-        {
-          "purpose": "OUR MANAGEMENT",
-          "amountCr": 259.0
-        },
-        {
-          "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
-          "amountCr": 279.0
-        },
-        {
-          "purpose": "DIVIDEND POLICY",
-          "amountCr": 284.0
+          "purpose": "he purpose of funding the Sponsor Commitment in Fund IV, which was used for investment of ₹3.65 million in Gaja Capital India Fund",
+          "amountCr": 202.0
         }
       ],
       "shareholding": {
@@ -21959,9 +23321,11 @@
           "registrar",
           "financials",
           "lotSize",
-          "priceBand"
+          "priceBand",
+          "promoters",
+          "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-16T02:25:18+05:30",
+        "extractedAt": "2026-09-16T09:23:28+05:30",
         "conflicts": []
       },
       "lotSize": 93,
@@ -22118,6 +23482,97 @@
           "sha256": "ad9db029408f9dd7e92a37bfe7f1cae43ba446cbe9d7b971883d623e41f4cb4c",
           "parserVersion": 21,
           "correctedAt": "2026-09-15T10:30:18+05:30"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "The Promoters collectively hold an aggregate of 69",
+            "312",
+            "714 Equity Shares",
+            "aggregating to 61.40% of the"
+          ],
+          "after": [
+            "GOPAL JAIN",
+            "RANJIT JAYANT SHAH",
+            "IMRAN JAFAR",
+            "CHITRA JAIN",
+            "MONA RANJIT SHAH"
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787551388728.pdf",
+          "sha256": "ad9db029408f9dd7e92a37bfe7f1cae43ba446cbe9d7b971883d623e41f4cb4c",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:23:28+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "BASIS FOR OFFER PRICE",
+              "amountCr": 124.0
+            },
+            {
+              "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
+              "amountCr": 139.0
+            },
+            {
+              "purpose": "SECTION IV: ABOUT OUR COMPANY",
+              "amountCr": 146.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW",
+              "amountCr": 146.0
+            },
+            {
+              "purpose": "OUR BUSINESS",
+              "amountCr": 218.0
+            },
+            {
+              "purpose": "KEY REGULATIONS AND POLICIES",
+              "amountCr": 245.0
+            },
+            {
+              "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+              "amountCr": 250.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT",
+              "amountCr": 259.0
+            },
+            {
+              "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
+              "amountCr": 279.0
+            },
+            {
+              "purpose": "DIVIDEND POLICY",
+              "amountCr": 284.0
+            }
+          ],
+          "after": [
+            {
+              "purpose": "Investing towards our Sponsor Commitments to certain existing and new funds and for repayment",
+              "amountCr": 372.0
+            },
+            {
+              "purpose": "General corporate purposes(1) (2)",
+              "amountCr": 44.248
+            },
+            {
+              "purpose": "General corporate 442.48 442.48 110.62 147.49",
+              "amountCr": 18.437
+            },
+            {
+              "purpose": "he purpose of funding the Sponsor Commitment in Fund IV, which was used for investment of ₹3.65 million in Gaja Capital India Fund",
+              "amountCr": 202.0
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787551388728.pdf",
+          "sha256": "ad9db029408f9dd7e92a37bfe7f1cae43ba446cbe9d7b971883d623e41f4cb4c",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:23:28+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -22126,7 +23581,7 @@
         "documentDate": "2026-08-24",
         "sha256": "ad9db029408f9dd7e92a37bfe7f1cae43ba446cbe9d7b971883d623e41f4cb4c",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:25:18+05:30",
+        "checkedAt": "2026-09-16T09:23:28+05:30",
         "evidence": {
           "financials": {
             "FY2026.totalIncomeCr": {
@@ -22300,13 +23755,46 @@
             "entities": [
               "MUFG Intime India Private Limited"
             ]
+          },
+          "promoters": {
+            "heading": "OUR PROMOTERS",
+            "entities": [
+              "GOPAL JAIN",
+              "RANJIT JAYANT SHAH",
+              "IMRAN JAFAR",
+              "CHITRA JAIN",
+              "MONA RANJIT SHAH"
+            ]
+          },
+          "objectsOfIssue": {
+            "page": 115,
+            "heading": "OBJECTS OF THE ISSUE",
+            "unit": "million",
+            "rows": [
+              {
+                "purpose": "Investing towards our Sponsor Commitments to certain existing and new funds and for repayment",
+                "amountCr": 372.0
+              },
+              {
+                "purpose": "General corporate purposes(1) (2)",
+                "amountCr": 44.248
+              },
+              {
+                "purpose": "General corporate 442.48 442.48 110.62 147.49",
+                "amountCr": 18.437
+              },
+              {
+                "purpose": "he purpose of funding the Sponsor Commitment in Fund IV, which was used for investment of ₹3.65 million in Gaja Capital India Fund",
+                "amountCr": 202.0
+              }
+            ]
           }
         }
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T02:25:18+05:30",
+        "lastAttemptAt": "2026-09-16T09:23:28+05:30",
         "parserVersion": 22
       },
       "nseOfferFilings": {
@@ -22316,6 +23804,17 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:21+00:00",
         "fingerprint": "84fff64d75937d014f536ce6898153b8c5528fd86aaf4ff4abd4810d082ad586"
+      },
+      "p4OfferResidualRepair": {
+        "status": "updated",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787551388728.pdf",
+        "checkedAt": "2026-09-16T09:23:28+05:30",
+        "changedFields": [
+          "promoters",
+          "objectsOfIssue"
+        ]
       }
     },
     {
@@ -22431,9 +23930,10 @@
           "leadManagers",
           "registrar",
           "promoters",
-          "financials"
+          "financials",
+          "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-16T02:26:15+05:30",
+        "extractedAt": "2026-09-16T09:23:18+05:30",
         "conflicts": [
           "FY2024.ebitdaCr",
           "FY2024.netWorthCr",
@@ -22456,48 +23956,16 @@
       ],
       "objectsOfIssue": [
         {
-          "purpose": "BASIS FOR THE OFFER PRICE",
-          "amountCr": 118.0
+          "purpose": "Funding the working capital requirements of the Company Upto 11,250.00",
+          "amountCr": null
         },
         {
-          "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
-          "amountCr": 127.0
+          "purpose": "General Corporate Purposes* [●]",
+          "amountCr": null
         },
         {
-          "purpose": "SECTION – IV ABOUT OUR COMPANY",
-          "amountCr": 131.0
-        },
-        {
-          "purpose": "INDUSTRY OVERVIEW",
-          "amountCr": 131.0
-        },
-        {
-          "purpose": "OUR BUSINESS",
-          "amountCr": 180.0
-        },
-        {
-          "purpose": "KEY REGULATIONS AND POLICIES IN INDIA",
-          "amountCr": 210.0
-        },
-        {
-          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
-          "amountCr": 216.0
-        },
-        {
-          "purpose": "OUR MANAGEMENT",
-          "amountCr": 230.0
-        },
-        {
-          "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
-          "amountCr": 245.0
-        },
-        {
-          "purpose": "OUR GROUP COMPANIES",
-          "amountCr": 250.0
-        },
-        {
-          "purpose": "DIVIDEND POLICY",
-          "amountCr": 252.0
+          "purpose": "unding the working capital requirements Up to 11,250.00",
+          "amountCr": 112.5
         }
       ],
       "financials": {
@@ -22671,6 +24139,75 @@
           "sha256": "e1abe09b67cf25509e9b888958fded9786c7a2f8be7ac6b2a36a9b35dec85bc9",
           "parserVersion": 21,
           "correctedAt": "2026-09-15T10:35:03+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "BASIS FOR THE OFFER PRICE",
+              "amountCr": 118.0
+            },
+            {
+              "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
+              "amountCr": 127.0
+            },
+            {
+              "purpose": "SECTION – IV ABOUT OUR COMPANY",
+              "amountCr": 131.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW",
+              "amountCr": 131.0
+            },
+            {
+              "purpose": "OUR BUSINESS",
+              "amountCr": 180.0
+            },
+            {
+              "purpose": "KEY REGULATIONS AND POLICIES IN INDIA",
+              "amountCr": 210.0
+            },
+            {
+              "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+              "amountCr": 216.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT",
+              "amountCr": 230.0
+            },
+            {
+              "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
+              "amountCr": 245.0
+            },
+            {
+              "purpose": "OUR GROUP COMPANIES",
+              "amountCr": 250.0
+            },
+            {
+              "purpose": "DIVIDEND POLICY",
+              "amountCr": 252.0
+            }
+          ],
+          "after": [
+            {
+              "purpose": "Funding the working capital requirements of the Company Upto 11,250.00",
+              "amountCr": null
+            },
+            {
+              "purpose": "General Corporate Purposes* [●]",
+              "amountCr": null
+            },
+            {
+              "purpose": "unding the working capital requirements Up to 11,250.00",
+              "amountCr": 112.5
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1786509141250.pdf",
+          "sha256": "e1abe09b67cf25509e9b888958fded9786c7a2f8be7ac6b2a36a9b35dec85bc9",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:23:18+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -22679,7 +24216,7 @@
         "documentDate": "2026-08-12",
         "sha256": "e1abe09b67cf25509e9b888958fded9786c7a2f8be7ac6b2a36a9b35dec85bc9",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:26:15+05:30",
+        "checkedAt": "2026-09-16T09:23:18+05:30",
         "evidence": {
           "financials": {
             "FY2026.revenueCr": {
@@ -22774,13 +24311,41 @@
             "entities": [
               "Bigshare Services Private Limited"
             ]
+          },
+          "promoters": {
+            "heading": "OUR PROMOTERS",
+            "entities": [
+              "VIPUL AMRUTLAL SHAH",
+              "SHEFALI VIPUL SHAH",
+              "ARYAMAN VIPUL SHAH",
+              "MAURYA VIPUL SHAH"
+            ]
+          },
+          "objectsOfIssue": {
+            "page": 110,
+            "heading": "OBJECTS OF THE ISSUE",
+            "unit": "lakh",
+            "rows": [
+              {
+                "purpose": "Funding the working capital requirements of the Company Upto 11,250.00",
+                "amountCr": null
+              },
+              {
+                "purpose": "General Corporate Purposes* [●]",
+                "amountCr": null
+              },
+              {
+                "purpose": "unding the working capital requirements Up to 11,250.00",
+                "amountCr": 112.5
+              }
+            ]
           }
         }
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T02:26:15+05:30",
+        "lastAttemptAt": "2026-09-16T09:23:18+05:30",
         "parserVersion": 22
       },
       "nseOfferFilings": {
@@ -22790,6 +24355,16 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-16T02:04:41+00:00",
         "fingerprint": "ab9ff238df38fe6f372b780ee0df3402441f7c9ff7a34861cf983adc20e17a1d"
+      },
+      "p4OfferResidualRepair": {
+        "status": "updated",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1786509141250.pdf",
+        "checkedAt": "2026-09-16T09:23:18+05:30",
+        "changedFields": [
+          "objectsOfIssue"
+        ]
       }
     },
     {
@@ -22973,9 +24548,8 @@
       ],
       "registrar": "MUFG Intime India Private Limited",
       "promoters": [
-        "namely",
-        "M. Kiran Kumar Jain",
-        "Hemaa Kiran"
+        "M. KIRAN KUMAR JAIN",
+        "HEMAA KIRAN KUMAR JAIN"
       ],
       "financials": {
         "unit": "₹ crore",
@@ -23008,44 +24582,12 @@
       },
       "objectsOfIssue": [
         {
-          "purpose": "BASIS FOR OFFER PRICE",
-          "amountCr": 135.0
+          "purpose": "(a) Capital expenditure for fit-outs in the nature of furniture and fixtures",
+          "amountCr": 34.55
         },
         {
-          "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
-          "amountCr": 152.0
-        },
-        {
-          "purpose": "SECTION V: ABOUT OUR COMPANY",
-          "amountCr": 161.0
-        },
-        {
-          "purpose": "INDUSTRY OVERVIEW",
-          "amountCr": 161.0
-        },
-        {
-          "purpose": "OUR BUSINESS",
-          "amountCr": 242.0
-        },
-        {
-          "purpose": "KEY REGULATIONS AND POLICIES IN INDIA",
-          "amountCr": 271.0
-        },
-        {
-          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
-          "amountCr": 280.0
-        },
-        {
-          "purpose": "OUR MANAGEMENT",
-          "amountCr": 291.0
-        },
-        {
-          "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
-          "amountCr": 309.0
-        },
-        {
-          "purpose": "DIVIDEND POLICY",
-          "amountCr": 313.0
+          "purpose": "(a) Capital expenditure for fit-outs in the nature of 345.50 172.75",
+          "amountCr": 17.275
         }
       ],
       "shareholding": {
@@ -23076,9 +24618,10 @@
           "registrar",
           "promoters",
           "lotSize",
-          "priceBand"
+          "priceBand",
+          "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-16T02:26:25+05:30",
+        "extractedAt": "2026-09-16T09:23:45+05:30",
         "conflicts": [
           "FY2024.dilutedEps",
           "FY2024.eps",
@@ -23125,6 +24668,85 @@
           "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787208957787.pdf",
           "sha256": "31f388d19e66c68b2a8bae128ced3f6d0edc2869ebb25fdf5e46096c41d84cf6",
           "correctedAt": "2026-09-14T12:16:27.134108+00:00"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "namely",
+            "M. Kiran Kumar Jain",
+            "Hemaa Kiran"
+          ],
+          "after": [
+            "M. KIRAN KUMAR JAIN",
+            "HEMAA KIRAN KUMAR JAIN"
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787208957787.pdf",
+          "sha256": "31f388d19e66c68b2a8bae128ced3f6d0edc2869ebb25fdf5e46096c41d84cf6",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:23:45+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "BASIS FOR OFFER PRICE",
+              "amountCr": 135.0
+            },
+            {
+              "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
+              "amountCr": 152.0
+            },
+            {
+              "purpose": "SECTION V: ABOUT OUR COMPANY",
+              "amountCr": 161.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW",
+              "amountCr": 161.0
+            },
+            {
+              "purpose": "OUR BUSINESS",
+              "amountCr": 242.0
+            },
+            {
+              "purpose": "KEY REGULATIONS AND POLICIES IN INDIA",
+              "amountCr": 271.0
+            },
+            {
+              "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+              "amountCr": 280.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT",
+              "amountCr": 291.0
+            },
+            {
+              "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
+              "amountCr": 309.0
+            },
+            {
+              "purpose": "DIVIDEND POLICY",
+              "amountCr": 313.0
+            }
+          ],
+          "after": [
+            {
+              "purpose": "(a) Capital expenditure for fit-outs in the nature of furniture and fixtures",
+              "amountCr": 34.55
+            },
+            {
+              "purpose": "(a) Capital expenditure for fit-outs in the nature of 345.50 172.75",
+              "amountCr": 17.275
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787208957787.pdf",
+          "sha256": "31f388d19e66c68b2a8bae128ced3f6d0edc2869ebb25fdf5e46096c41d84cf6",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:23:45+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -23133,7 +24755,7 @@
         "documentDate": "2026-08-20",
         "sha256": "31f388d19e66c68b2a8bae128ced3f6d0edc2869ebb25fdf5e46096c41d84cf6",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:26:25+05:30",
+        "checkedAt": "2026-09-16T09:23:45+05:30",
         "evidence": {
           "financials": {},
           "leadManagers": {
@@ -23150,13 +24772,35 @@
             "entities": [
               "MUFG Intime India Private Limited"
             ]
+          },
+          "promoters": {
+            "heading": "OUR PROMOTERS",
+            "entities": [
+              "M. KIRAN KUMAR JAIN",
+              "HEMAA KIRAN KUMAR JAIN"
+            ]
+          },
+          "objectsOfIssue": {
+            "page": 126,
+            "heading": "OBJECTS OF THE ISSUE",
+            "unit": "million",
+            "rows": [
+              {
+                "purpose": "(a) Capital expenditure for fit-outs in the nature of furniture and fixtures",
+                "amountCr": 34.55
+              },
+              {
+                "purpose": "(a) Capital expenditure for fit-outs in the nature of 345.50 172.75",
+                "amountCr": 17.275
+              }
+            ]
           }
         }
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "needs_review",
-        "lastAttemptAt": "2026-09-16T02:26:25+05:30",
+        "lastAttemptAt": "2026-09-16T09:23:45+05:30",
         "parserVersion": 22
       },
       "nseOfferFilings": {
@@ -23166,6 +24810,17 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:27+00:00",
         "fingerprint": "6bdd48fc1f1118a6870ad772d78036056a04404faa76b87d12dc3d3578e805e2"
+      },
+      "p4OfferResidualRepair": {
+        "status": "updated",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787208957787.pdf",
+        "checkedAt": "2026-09-16T09:23:45+05:30",
+        "changedFields": [
+          "promoters",
+          "objectsOfIssue"
+        ]
       }
     },
     {
@@ -23608,52 +25263,28 @@
       ],
       "objectsOfIssue": [
         {
-          "purpose": "BASIS FOR ISSUE PRICE",
-          "amountCr": 93.0
+          "purpose": "To meet Working Capital Requirements",
+          "amountCr": 37.0
         },
         {
-          "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
-          "amountCr": 98.0
+          "purpose": "Repayment and/or repayment, in full or part, of borrowing availed by our Company",
+          "amountCr": 6.0
         },
         {
-          "purpose": "INDUSTRY OVERVIEW",
-          "amountCr": 103.0
+          "purpose": "General corporate purposes",
+          "amountCr": 8.9242
         },
         {
-          "purpose": "OUR BUSINESS",
-          "amountCr": 115.0
+          "purpose": "To meet Working Capital Requirements 1,700.00",
+          "amountCr": 20.0
         },
         {
-          "purpose": "KEY INDUSTRY REGULATIONS AND POLICIES",
-          "amountCr": 130.0
+          "purpose": "ccruals as and at an appropriate time as per the requirement. The details of working capital for the Years ended March",
+          "amountCr": 0.31
         },
         {
-          "purpose": "HISTORY AND CORPORATE STRUCTURE",
-          "amountCr": 141.0
-        },
-        {
-          "purpose": "OUR SUBSIDIARIES",
-          "amountCr": 147.0
-        },
-        {
-          "purpose": "OUR MANAGEMENT",
-          "amountCr": 151.0
-        },
-        {
-          "purpose": "OUR PROMOTERS & PROMOTER GROUP",
-          "amountCr": 163.0
-        },
-        {
-          "purpose": "DIVIDEND POLICY",
-          "amountCr": 168.0
-        },
-        {
-          "purpose": "FINANCIAL INFORMATION OF THE COMPANY",
-          "amountCr": 169.0
-        },
-        {
-          "purpose": "OTHER FINANCIAL INFORMATION",
-          "amountCr": 218.0
+          "purpose": "hort Term Borrowings 81.51 117.41 312.90 200.00",
+          "amountCr": 2.0
         }
       ],
       "dataCorrections": [
@@ -23716,6 +25347,91 @@
           "sha256": "ab0430357a63a4306bb27d5f95b2049c1d3e14845b2d4b8b33a86ffd82999fb7",
           "parserVersion": 21,
           "correctedAt": "2026-09-15T10:27:24+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "BASIS FOR ISSUE PRICE",
+              "amountCr": 93.0
+            },
+            {
+              "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
+              "amountCr": 98.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW",
+              "amountCr": 103.0
+            },
+            {
+              "purpose": "OUR BUSINESS",
+              "amountCr": 115.0
+            },
+            {
+              "purpose": "KEY INDUSTRY REGULATIONS AND POLICIES",
+              "amountCr": 130.0
+            },
+            {
+              "purpose": "HISTORY AND CORPORATE STRUCTURE",
+              "amountCr": 141.0
+            },
+            {
+              "purpose": "OUR SUBSIDIARIES",
+              "amountCr": 147.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT",
+              "amountCr": 151.0
+            },
+            {
+              "purpose": "OUR PROMOTERS & PROMOTER GROUP",
+              "amountCr": 163.0
+            },
+            {
+              "purpose": "DIVIDEND POLICY",
+              "amountCr": 168.0
+            },
+            {
+              "purpose": "FINANCIAL INFORMATION OF THE COMPANY",
+              "amountCr": 169.0
+            },
+            {
+              "purpose": "OTHER FINANCIAL INFORMATION",
+              "amountCr": 218.0
+            }
+          ],
+          "after": [
+            {
+              "purpose": "To meet Working Capital Requirements",
+              "amountCr": 37.0
+            },
+            {
+              "purpose": "Repayment and/or repayment, in full or part, of borrowing availed by our Company",
+              "amountCr": 6.0
+            },
+            {
+              "purpose": "General corporate purposes",
+              "amountCr": 8.9242
+            },
+            {
+              "purpose": "To meet Working Capital Requirements 1,700.00",
+              "amountCr": 20.0
+            },
+            {
+              "purpose": "ccruals as and at an appropriate time as per the requirement. The details of working capital for the Years ended March",
+              "amountCr": 0.31
+            },
+            {
+              "purpose": "hort Term Borrowings 81.51 117.41 312.90 200.00",
+              "amountCr": 2.0
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/CredentConnectNCareLimited_PROSP.pdf",
+          "sha256": "ab0430357a63a4306bb27d5f95b2049c1d3e14845b2d4b8b33a86ffd82999fb7",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:23:22+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -23724,7 +25440,7 @@
         "documentDate": null,
         "sha256": "ab0430357a63a4306bb27d5f95b2049c1d3e14845b2d4b8b33a86ffd82999fb7",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:23:56+05:30",
+        "checkedAt": "2026-09-16T09:23:22+05:30",
         "evidence": {
           "financials": {
             "FY2025.revenueCr": {
@@ -23936,6 +25652,37 @@
             "entities": [
               "KFin Technologies Limited"
             ]
+          },
+          "objectsOfIssue": {
+            "page": 87,
+            "heading": "OBJECTS OF THE ISSUE",
+            "unit": "lakh",
+            "rows": [
+              {
+                "purpose": "To meet Working Capital Requirements",
+                "amountCr": 37.0
+              },
+              {
+                "purpose": "Repayment and/or repayment, in full or part, of borrowing availed by our Company",
+                "amountCr": 6.0
+              },
+              {
+                "purpose": "General corporate purposes",
+                "amountCr": 8.9242
+              },
+              {
+                "purpose": "To meet Working Capital Requirements 1,700.00",
+                "amountCr": 20.0
+              },
+              {
+                "purpose": "ccruals as and at an appropriate time as per the requirement. The details of working capital for the Years ended March",
+                "amountCr": 0.31
+              },
+              {
+                "purpose": "hort Term Borrowings 81.51 117.41 312.90 200.00",
+                "amountCr": 2.0
+              }
+            ]
           }
         }
       },
@@ -23957,13 +25704,13 @@
           "objectsOfIssue",
           "priceBand"
         ],
-        "extractedAt": "2026-09-16T02:23:56+05:30",
+        "extractedAt": "2026-09-16T09:23:22+05:30",
         "conflicts": []
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T02:23:56+05:30",
+        "lastAttemptAt": "2026-09-16T09:23:22+05:30",
         "parserVersion": 22
       },
       "lotSize": 600,
@@ -24010,6 +25757,16 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:05+00:00",
         "fingerprint": "0455d655a4ae75e72ee417cc84df73177681a1916f7805f71a53ef26a47720c4"
+      },
+      "p4OfferResidualRepair": {
+        "status": "updated",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/CredentConnectNCareLimited_PROSP.pdf",
+        "checkedAt": "2026-09-16T09:23:22+05:30",
+        "changedFields": [
+          "objectsOfIssue"
+        ]
       }
     },
     {
@@ -24145,40 +25902,20 @@
       },
       "objectsOfIssue": [
         {
-          "purpose": "BASIS FOR OFFER PRICE",
-          "amountCr": 166.0
+          "purpose": "Investment in the growth of our Shiprocket’s platforms primarily 3,656.00 885.84 1,356.92",
+          "amountCr": 141.324
         },
         {
-          "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
-          "amountCr": 176.0
+          "purpose": "investment in marketing initiatives primarily for our Emerging 2,058.00 483.00 756.00",
+          "amountCr": 81.9
         },
         {
-          "purpose": "SECTION IV: ABOUT OUR COMPANY",
-          "amountCr": 184.0
+          "purpose": "investment in technology infrastructure and capabilities 1,598.00 402.84 600.92",
+          "amountCr": 59.424
         },
         {
-          "purpose": "INDUSTRY OVERVIEW",
-          "amountCr": 184.0
-        },
-        {
-          "purpose": "OUR BUSINESS",
-          "amountCr": 207.0
-        },
-        {
-          "purpose": "KEY REGULATIONS AND POLICIES",
-          "amountCr": 252.0
-        },
-        {
-          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
-          "amountCr": 256.0
-        },
-        {
-          "purpose": "OUR MANAGEMENT",
-          "amountCr": 271.0
-        },
-        {
-          "purpose": "OUR PRINCIPAL SHAREHOLDERS",
-          "amountCr": 290.0
+          "purpose": "Funding inorganic growth through unidentified acquisitions and 2,493.95 1,246.98 623.49",
+          "amountCr": 62.349
         }
       ],
       "issueComposition": {
@@ -24204,9 +25941,10 @@
           "leadManagers",
           "registrar",
           "financials",
-          "lotSize"
+          "lotSize",
+          "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-16T02:26:11+05:30",
+        "extractedAt": "2026-09-16T09:24:01+05:30",
         "conflicts": []
       },
       "lotSize": 154,
@@ -24357,6 +26095,71 @@
           "sha256": "e55b43e2d11b10a9bc851893b704a65bca5af78b9f243bc2b78f5f4d31010381",
           "parserVersion": 21,
           "correctedAt": "2026-09-15T10:34:48+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "BASIS FOR OFFER PRICE",
+              "amountCr": 166.0
+            },
+            {
+              "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
+              "amountCr": 176.0
+            },
+            {
+              "purpose": "SECTION IV: ABOUT OUR COMPANY",
+              "amountCr": 184.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW",
+              "amountCr": 184.0
+            },
+            {
+              "purpose": "OUR BUSINESS",
+              "amountCr": 207.0
+            },
+            {
+              "purpose": "KEY REGULATIONS AND POLICIES",
+              "amountCr": 252.0
+            },
+            {
+              "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+              "amountCr": 256.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT",
+              "amountCr": 271.0
+            },
+            {
+              "purpose": "OUR PRINCIPAL SHAREHOLDERS",
+              "amountCr": 290.0
+            }
+          ],
+          "after": [
+            {
+              "purpose": "Investment in the growth of our Shiprocket’s platforms primarily 3,656.00 885.84 1,356.92",
+              "amountCr": 141.324
+            },
+            {
+              "purpose": "investment in marketing initiatives primarily for our Emerging 2,058.00 483.00 756.00",
+              "amountCr": 81.9
+            },
+            {
+              "purpose": "investment in technology infrastructure and capabilities 1,598.00 402.84 600.92",
+              "amountCr": 59.424
+            },
+            {
+              "purpose": "Funding inorganic growth through unidentified acquisitions and 2,493.95 1,246.98 623.49",
+              "amountCr": 62.349
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787287442985.pdf",
+          "sha256": "e55b43e2d11b10a9bc851893b704a65bca5af78b9f243bc2b78f5f4d31010381",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:24:01+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -24365,7 +26168,7 @@
         "documentDate": "2026-08-21",
         "sha256": "e55b43e2d11b10a9bc851893b704a65bca5af78b9f243bc2b78f5f4d31010381",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:26:11+05:30",
+        "checkedAt": "2026-09-16T09:24:01+05:30",
         "evidence": {
           "financials": {
             "FY2026.revenueCr": {
@@ -24463,13 +26266,36 @@
             "entities": [
               "KFin Technologies Limited"
             ]
+          },
+          "objectsOfIssue": {
+            "page": 138,
+            "heading": "OBJECTS OF THE ISSUE",
+            "unit": "million",
+            "rows": [
+              {
+                "purpose": "Investment in the growth of our Shiprocket’s platforms primarily 3,656.00 885.84 1,356.92",
+                "amountCr": 141.324
+              },
+              {
+                "purpose": "investment in marketing initiatives primarily for our Emerging 2,058.00 483.00 756.00",
+                "amountCr": 81.9
+              },
+              {
+                "purpose": "investment in technology infrastructure and capabilities 1,598.00 402.84 600.92",
+                "amountCr": 59.424
+              },
+              {
+                "purpose": "Funding inorganic growth through unidentified acquisitions and 2,493.95 1,246.98 623.49",
+                "amountCr": 62.349
+              }
+            ]
           }
         }
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T02:26:11+05:30",
+        "lastAttemptAt": "2026-09-16T09:24:01+05:30",
         "parserVersion": 22
       },
       "nseOfferFilings": {
@@ -24479,6 +26305,16 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-16T02:04:39+00:00",
         "fingerprint": "cf55f21331d2efe2e31d5b78a317749e7168f8fe5ef347e26844849e952d4821"
+      },
+      "p4OfferResidualRepair": {
+        "status": "updated",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787287442985.pdf",
+        "checkedAt": "2026-09-16T09:24:01+05:30",
+        "changedFields": [
+          "objectsOfIssue"
+        ]
       }
     },
     {
@@ -24625,48 +26461,12 @@
       ],
       "objectsOfIssue": [
         {
-          "purpose": "BASIS FOR OFFER PRICE",
-          "amountCr": 105.0
+          "purpose": "Funding of capital expenditure for purchase of Medical Equipments 4,514.85",
+          "amountCr": 45.1485
         },
         {
-          "purpose": "STATEMENT OF POSSIBLE TAX BENEFITS",
-          "amountCr": 112.0
-        },
-        {
-          "purpose": "SECTION V – ABOUT THE COMPANY",
-          "amountCr": 117.0
-        },
-        {
-          "purpose": "INDUSTRY OVERVIEW",
-          "amountCr": 117.0
-        },
-        {
-          "purpose": "OUR BUSINESS",
-          "amountCr": 134.0
-        },
-        {
-          "purpose": "KEY INDUSTRY REGULATIONS AND POLICIES",
-          "amountCr": 164.0
-        },
-        {
-          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
-          "amountCr": 172.0
-        },
-        {
-          "purpose": "OUR MANAGEMENT",
-          "amountCr": 176.0
-        },
-        {
-          "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
-          "amountCr": 192.0
-        },
-        {
-          "purpose": "OUR GROUP COMPANIES",
-          "amountCr": 199.0
-        },
-        {
-          "purpose": "DIVIDEND POLICY",
-          "amountCr": 201.0
+          "purpose": "General corporate purposes and unidentified inorganic acquisition # 1,075.75",
+          "amountCr": 10.7575
         }
       ],
       "dataCorrections": [
@@ -24722,6 +26522,71 @@
           "sha256": "26afc19baa3e811359e49c2a367ed299bcd00e7571ccf9bcb551b18cb1f58d15",
           "parserVersion": 21,
           "correctedAt": "2026-09-15T10:27:51+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "BASIS FOR OFFER PRICE",
+              "amountCr": 105.0
+            },
+            {
+              "purpose": "STATEMENT OF POSSIBLE TAX BENEFITS",
+              "amountCr": 112.0
+            },
+            {
+              "purpose": "SECTION V – ABOUT THE COMPANY",
+              "amountCr": 117.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW",
+              "amountCr": 117.0
+            },
+            {
+              "purpose": "OUR BUSINESS",
+              "amountCr": 134.0
+            },
+            {
+              "purpose": "KEY INDUSTRY REGULATIONS AND POLICIES",
+              "amountCr": 164.0
+            },
+            {
+              "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+              "amountCr": 172.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT",
+              "amountCr": 176.0
+            },
+            {
+              "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
+              "amountCr": 192.0
+            },
+            {
+              "purpose": "OUR GROUP COMPANIES",
+              "amountCr": 199.0
+            },
+            {
+              "purpose": "DIVIDEND POLICY",
+              "amountCr": 201.0
+            }
+          ],
+          "after": [
+            {
+              "purpose": "Funding of capital expenditure for purchase of Medical Equipments 4,514.85",
+              "amountCr": 45.1485
+            },
+            {
+              "purpose": "General corporate purposes and unidentified inorganic acquisition # 1,075.75",
+              "amountCr": 10.7575
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/PramodiniMedicareLimited_PROSP.pdf",
+          "sha256": "26afc19baa3e811359e49c2a367ed299bcd00e7571ccf9bcb551b18cb1f58d15",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:23:32+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -24730,7 +26595,7 @@
         "documentDate": null,
         "sha256": "26afc19baa3e811359e49c2a367ed299bcd00e7571ccf9bcb551b18cb1f58d15",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:24:30+05:30",
+        "checkedAt": "2026-09-16T09:23:32+05:30",
         "evidence": {
           "financials": {
             "FY2026.revenueCr": {
@@ -24812,6 +26677,30 @@
             "entities": [
               "Purva Sharegistry (India) Private Limited"
             ]
+          },
+          "promoters": {
+            "heading": "PROMOTERS OF OUR COMPANY",
+            "entities": [
+              "CHALASANI KULDEEP KUMAR",
+              "CHALASANI KAVITHA",
+              "CHALASANI DURGA AASHRITHA MS. CHALASANI LALITHAKUMARI",
+              "M/S. SRI RAM MEDICARE PRIVATE LIMITED"
+            ]
+          },
+          "objectsOfIssue": {
+            "page": 100,
+            "heading": "OBJECTS OF THE ISSUE",
+            "unit": "lakh",
+            "rows": [
+              {
+                "purpose": "Funding of capital expenditure for purchase of Medical Equipments 4,514.85",
+                "amountCr": 45.1485
+              },
+              {
+                "purpose": "General corporate purposes and unidentified inorganic acquisition # 1,075.75",
+                "amountCr": 10.7575
+              }
+            ]
           }
         }
       },
@@ -24830,9 +26719,10 @@
           "leadManagers",
           "registrar",
           "promoters",
-          "financials"
+          "financials",
+          "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-16T02:24:30+05:30",
+        "extractedAt": "2026-09-16T09:23:32+05:30",
         "conflicts": [
           "FY2024.revenueCr",
           "FY2025.revenueCr"
@@ -24841,7 +26731,7 @@
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T02:24:30+05:30",
+        "lastAttemptAt": "2026-09-16T09:23:32+05:30",
         "parserVersion": 22
       },
       "nseLotSizeAttempt": {
@@ -24858,6 +26748,16 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:09+00:00",
         "fingerprint": "cf1d74509c5c3305ac02f945bd1ba5113f5a9a10b2762d738f31427542d1bc4c"
+      },
+      "p4OfferResidualRepair": {
+        "status": "updated",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/PramodiniMedicareLimited_PROSP.pdf",
+        "checkedAt": "2026-09-16T09:23:32+05:30",
+        "changedFields": [
+          "objectsOfIssue"
+        ]
       }
     },
     {
@@ -26558,6 +28458,14 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-16T02:04:34+00:00",
         "fingerprint": "7ca9472d7f1990965521fd65ae23414203f27e0e01083918e05a63e5fa1af2a5"
+      },
+      "p4OfferResidualRepair": {
+        "status": "source_blocked",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1786084999541.pdf",
+        "checkedAt": "2026-09-16T09:23:44+05:30",
+        "error": "('Connection broken: IncompleteRead(2854584 bytes read, 6898207 more expected)', IncompleteRead(2854584 bytes read, 6898207 more expected))"
       }
     },
     {
@@ -26695,44 +28603,32 @@
       },
       "objectsOfIssue": [
         {
-          "purpose": "BASIS FOR OFFER PRICE",
-          "amountCr": 163.0
+          "purpose": "Repayment/prepayment, in full or in part, of all or certain outstanding borrowings",
+          "amountCr": 464.802
         },
         {
-          "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
-          "amountCr": 175.0
+          "purpose": "Investment in certain of our Subsidiaries, namely, Dhoot Autocomponents Private",
+          "amountCr": 301.773
         },
         {
-          "purpose": "SECTION IV: ABOUT OUR COMPANY",
-          "amountCr": 180.0
+          "purpose": "Setting up of a new wiring harness manufacturing plant of our Company at (i) Sector",
+          "amountCr": 150.0
         },
         {
-          "purpose": "INDUSTRY OVERVIEW",
-          "amountCr": 180.0
+          "purpose": "Funding inorganic growth through unidentified acquisitions and general corporate",
+          "amountCr": 410.406
         },
         {
-          "purpose": "OUR BUSINESS",
-          "amountCr": 271.0
+          "purpose": "Repayment/prepayment, in full or in part, of 4,648.02 4,648.02 Nil",
+          "amountCr": 3.503
         },
         {
-          "purpose": "KEY REGULATIONS AND POLICIES",
-          "amountCr": 302.0
+          "purpose": "Investment in certain of our Subsidiaries, 3,017.73 3,017.73 Nil",
+          "amountCr": 2.274
         },
         {
-          "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
-          "amountCr": 311.0
-        },
-        {
-          "purpose": "OUR MANAGEMENT",
-          "amountCr": 329.0
-        },
-        {
-          "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
-          "amountCr": 347.0
-        },
-        {
-          "purpose": "DIVIDEND POLICY",
-          "amountCr": 351.0
+          "purpose": "Funding inorganic growth through 4,104.06 2,052.03 2,052.03",
+          "amountCr": 3.093
         }
       ],
       "shareholding": {
@@ -26762,9 +28658,10 @@
           "leadManagers",
           "registrar",
           "promoters",
-          "lotSize"
+          "lotSize",
+          "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-16T02:26:16+05:30",
+        "extractedAt": "2026-09-16T09:24:12+05:30",
         "conflicts": [
           "FY2024.dilutedEps",
           "FY2024.netWorthCr",
@@ -26826,6 +28723,87 @@
           "sha256": "e36f4211c0ed505615646c6c3d933598eff9fd73bc4d7a5cf27855d940cc415e",
           "parserVersion": 21,
           "correctedAt": "2026-09-15T10:35:12+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "BASIS FOR OFFER PRICE",
+              "amountCr": 163.0
+            },
+            {
+              "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
+              "amountCr": 175.0
+            },
+            {
+              "purpose": "SECTION IV: ABOUT OUR COMPANY",
+              "amountCr": 180.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW",
+              "amountCr": 180.0
+            },
+            {
+              "purpose": "OUR BUSINESS",
+              "amountCr": 271.0
+            },
+            {
+              "purpose": "KEY REGULATIONS AND POLICIES",
+              "amountCr": 302.0
+            },
+            {
+              "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+              "amountCr": 311.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT",
+              "amountCr": 329.0
+            },
+            {
+              "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
+              "amountCr": 347.0
+            },
+            {
+              "purpose": "DIVIDEND POLICY",
+              "amountCr": 351.0
+            }
+          ],
+          "after": [
+            {
+              "purpose": "Repayment/prepayment, in full or in part, of all or certain outstanding borrowings",
+              "amountCr": 464.802
+            },
+            {
+              "purpose": "Investment in certain of our Subsidiaries, namely, Dhoot Autocomponents Private",
+              "amountCr": 301.773
+            },
+            {
+              "purpose": "Setting up of a new wiring harness manufacturing plant of our Company at (i) Sector",
+              "amountCr": 150.0
+            },
+            {
+              "purpose": "Funding inorganic growth through unidentified acquisitions and general corporate",
+              "amountCr": 410.406
+            },
+            {
+              "purpose": "Repayment/prepayment, in full or in part, of 4,648.02 4,648.02 Nil",
+              "amountCr": 3.503
+            },
+            {
+              "purpose": "Investment in certain of our Subsidiaries, 3,017.73 3,017.73 Nil",
+              "amountCr": 2.274
+            },
+            {
+              "purpose": "Funding inorganic growth through 4,104.06 2,052.03 2,052.03",
+              "amountCr": 3.093
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787202611548.pdf",
+          "sha256": "e36f4211c0ed505615646c6c3d933598eff9fd73bc4d7a5cf27855d940cc415e",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:24:12+05:30"
         }
       ],
       "documentFieldProvenance": {
@@ -26834,7 +28812,7 @@
         "documentDate": "2026-08-18",
         "sha256": "e36f4211c0ed505615646c6c3d933598eff9fd73bc4d7a5cf27855d940cc415e",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:26:16+05:30",
+        "checkedAt": "2026-09-16T09:24:12+05:30",
         "evidence": {
           "financials": {},
           "leadManagers": {
@@ -26854,13 +28832,56 @@
             "entities": [
               "Kfin Technologies Limited"
             ]
+          },
+          "objectsOfIssue": {
+            "page": 121,
+            "heading": "OBJECTS OF THE ISSUE",
+            "unit": "million",
+            "rows": [
+              {
+                "purpose": "Repayment/prepayment, in full or in part, of all or certain outstanding borrowings",
+                "amountCr": 464.802
+              },
+              {
+                "purpose": "Investment in certain of our Subsidiaries, namely, Dhoot Autocomponents Private",
+                "amountCr": 301.773
+              },
+              {
+                "purpose": "Setting up of a new wiring harness manufacturing plant of our Company at (i) Sector",
+                "amountCr": 150.0
+              },
+              {
+                "purpose": "Funding inorganic growth through unidentified acquisitions and general corporate",
+                "amountCr": 410.406
+              },
+              {
+                "purpose": "Repayment/prepayment, in full or in part, of 4,648.02 4,648.02 Nil",
+                "amountCr": 3.503
+              },
+              {
+                "purpose": "Investment in certain of our Subsidiaries, 3,017.73 3,017.73 Nil",
+                "amountCr": 2.274
+              },
+              {
+                "purpose": "Funding inorganic growth through 4,104.06 2,052.03 2,052.03",
+                "amountCr": 3.093
+              }
+            ]
+          },
+          "promoters": {
+            "heading": "OUR PROMOTERS",
+            "entities": [
+              "pursuant to the requirements of the SEBI ICDR Regulations",
+              "Dhoot Automotive Systems Private Limited",
+              "Dhoot Autocomponents Private Limited identified as material as per Regulation 16(1)(c) of the SEBI"
+            ]
           }
         }
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "needs_review",
-        "lastAttemptAt": "2026-09-16T02:26:16+05:30",
+        "lastAttemptAt": "2026-09-16T09:24:12+05:30",
         "parserVersion": 22
       },
       "nseOfferFilings": {
@@ -26870,6 +28891,16 @@
         "documentsAdded": 0,
         "lastAttemptAt": "2026-09-15T20:51:20+00:00",
         "fingerprint": "dd595c2d306848b010c0866ede1f3c6da3fe02af12c897a0ac953d22800cb0d4"
+      },
+      "p4OfferResidualRepair": {
+        "status": "updated",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787202611548.pdf",
+        "checkedAt": "2026-09-16T09:24:12+05:30",
+        "changedFields": [
+          "objectsOfIssue"
+        ]
       }
     },
     {
@@ -148256,7 +150287,7 @@
         "extractedFields": [
           "financials"
         ],
-        "extractedAt": "2026-09-16T02:26:06+05:30",
+        "extractedAt": "2026-09-16T09:21:58+05:30",
         "conflicts": []
       },
       "profilePath": "ipo/nse/",
@@ -148381,7 +150412,7 @@
         "documentDate": null,
         "sha256": "1e40a9a00dbc56acbd8d20389347ccd5c92c8e202e8e76e06021d85bea58baff",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T02:26:06+05:30",
+        "checkedAt": "2026-09-16T09:21:58+05:30",
         "evidence": {
           "financials": {
             "FY2026.netWorthCr": {
@@ -148661,9 +150692,9 @@
         }
       },
       "documentRepair": {
-        "status": "updated",
+        "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T02:26:06+05:30",
+        "lastAttemptAt": "2026-09-16T09:21:58+05:30",
         "parserVersion": 22
       },
       "issueType": "IPO",
@@ -148927,7 +150958,15 @@
           "parserVersion": 22,
           "correctedAt": "2026-09-16T02:26:06+05:30"
         }
-      ]
+      ],
+      "p4OfferResidualRepair": {
+        "status": "no_change",
+        "parserVersion": 1,
+        "mainParserVersion": 22,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/NATIONAL%20STOCK%20EXCHANGE%20OF%20INDIA%20LIMITED%20-%20AP_p.pdf",
+        "checkedAt": "2026-09-16T09:21:58+05:30",
+        "changedFields": []
+      }
     },
     {
       "id": "kheriaauto",
