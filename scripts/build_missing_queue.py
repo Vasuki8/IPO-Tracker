@@ -9,9 +9,9 @@ A record may also carry a ``dataAvailability`` resolution for a genuinely blank
 field after the official-source paths have been exhausted. Such blanks remain
 visible in completeness coverage, but no longer masquerade as actionable work.
 
-The persisted queue is a compact operational projection. Rich resolution evidence
-remains in each canonical IPO record's ``dataAvailability`` field, avoiding a
-second copy of that evidence in the generated queue artifact.
+Under the Final-Prospectus-only source policy, a populated legacy static field is
+also actionable until its canonical provenance confirms a Final Prospectus. This
+lets P4/P5 closure depend on source authority rather than null-coverage alone.
 """
 from __future__ import annotations
 
@@ -22,6 +22,7 @@ from pathlib import Path
 from typing import Any
 
 import audit_data_completeness as audit
+import final_prospectus_policy as final_policy
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "ipos.json"
@@ -33,11 +34,32 @@ NON_ACTIONABLE_AVAILABILITY = {
     "exhausted-official-sources",
 }
 QUEUE_FORMAT_VERSION = 2
+FINAL_REVALIDATION_PREFIX = "provenance.finalProspectus."
 
 
 def profile_path(record: dict[str, Any]) -> str | None:
     value = record.get("profilePath")
     return str(value) if value else None
+
+
+def pending_final_prospectus_fields(record: dict[str, Any]) -> list[str]:
+    """Return populated static fields that still lack Final Prospectus authority."""
+    state = record.get("staticSourcePolicy") or {}
+    if not isinstance(state, dict) or state.get("policy") != "final-prospectus-only":
+        return []
+    allowed = set(final_policy.STATIC_CANONICAL_FIELDS)
+    return sorted(
+        {
+            str(field)
+            for field in (state.get("pendingRevalidationFields") or [])
+            if str(field) in allowed
+            and final_policy.field_value(record, str(field)) not in (None, "", [], {})
+        }
+    )
+
+
+def _final_field_verified(record: dict[str, Any], field: str) -> bool:
+    return field not in set(pending_final_prospectus_fields(record))
 
 
 def expected_rules(record: dict[str, Any], today: date, *, stage: str | None = None):
@@ -69,6 +91,17 @@ def expected_rules(record: dict[str, Any], today: date, *, stage: str | None = N
         (f"provenance.{name}", predicate)
         for name, predicate in audit.expected_provenance_rules(record, today)
     )
+
+    # A legacy value is not considered source-complete merely because it is
+    # populated. Each pending field becomes an explicit provenance gap until a
+    # Final Prospectus extraction records canonical field provenance.
+    for field in pending_final_prospectus_fields(record):
+        rules.append(
+            (
+                FINAL_REVALIDATION_PREFIX + field,
+                lambda current, field=field: _final_field_verified(current, field),
+            )
+        )
     return rules
 
 
@@ -303,14 +336,12 @@ def main() -> int:
         "notes": [
             "P0/P1 records are repaired before historical records.",
             "Only lifecycle- and source-appropriate missing fields enter the actionable queue.",
+            "Populated legacy static fields remain actionable until Final Prospectus provenance is verified.",
             "Full non-actionable resolution evidence remains in canonical IPO dataAvailability fields.",
-            "Older exchange-only records do not require Fresh/OFS composition when the official historical archive does not expose it.",
             "Allotment date is tracked as optional research coverage until a reliable official historical collector exists.",
-            "Blank values are never guessed; backfill values must come from official sources.",
+            "Blank values are never guessed; canonical static values must come from Final Prospectus evidence.",
         ],
     }
-    # This is an operational machine artifact; compact JSON avoids hundreds of
-    # kilobytes of indentation/duplicated null scaffolding on every checkout.
     OUTPUT_FILE.write_text(
         json.dumps(output, ensure_ascii=False, separators=(",", ":")) + "\n",
         encoding="utf-8",
