@@ -21,6 +21,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 import requests
+import final_prospectus_identity as identity
 import final_prospectus_parser as parser
 import final_prospectus_policy as source_policy
 import update_data as core
@@ -38,8 +39,8 @@ def timestamp():
 
 
 def document_for(record):
-    """Return the newest eligible Final Prospectus, never DRHP/RHP."""
-    return source_policy.choose_final_prospectus(record)
+    """Return the safest eligible Final Prospectus, never DRHP/RHP."""
+    return identity.choose_candidate(record, source_policy.final_prospectus_candidates(record))
 
 
 def pdf_bytes(doc):
@@ -75,8 +76,9 @@ def extract(record, doc):
     text, pages, count = parser.extract_pdf_text(data)
     name = core.canonical_company(record.get("company", ""))
     observed = core.canonical_company(text[:25000])
-    if not name or name not in observed:
-        raise ValueError("Issuer identity not confirmed in the document's opening pages")
+    text_identity_confirmed = bool(name and name in observed)
+    if not text_identity_confirmed and not identity.official_identity_confirmed(record, doc):
+        raise ValueError("Issuer identity not confirmed in the document's opening pages or official source metadata")
     parsed = parser.parse_document_text(text, record.get("priceBand"))
     return parsed, hashlib.sha256(data).hexdigest(), pages, count
 

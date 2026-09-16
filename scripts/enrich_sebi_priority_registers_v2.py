@@ -4,8 +4,8 @@
 The dedicated SEBI register first page is useful for the newest filings, while
 SEBI's GET-based all-list search can recover older issuer filing pages. Under the
 Final-Prospectus-only source policy an existing RHP is *not* completion: the
-search remains active until an actual Prospectus landing page (or direct final
-Prospectus PDF) is known.
+search remains active until an actual issuer-qualified Prospectus landing page
+(or direct final Prospectus PDF) is known.
 
 DRHP/RHP remain document history only. This module attaches only final
 ``PROSPECTUS`` matches from the all-list search; direct PDFs are resolved later
@@ -30,13 +30,14 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 import enrich_sebi_priority_registers as v1  # noqa: E402
+import final_prospectus_identity as identity  # noqa: E402
 import final_prospectus_policy as final_policy  # noqa: E402
 import update_data as core  # noqa: E402
 
 DATA_FILE = core.DATA_FILE
 QUEUE_FILE = v1.QUEUE_FILE
 SEARCH_URL = "https://www.sebi.gov.in/sebiweb/home/HomeAction.do"
-PARSER_VERSION = 3
+PARSER_VERSION = 4
 ATTEMPT_KEY = "sebiFinalProspectusSearch"
 
 
@@ -91,13 +92,19 @@ def has_primary_landing(record: dict[str, Any]) -> bool:
 
 
 def has_final_prospectus_landing(record: dict[str, Any]) -> bool:
-    if final_policy.choose_final_prospectus(record) is not None:
+    selected = identity.choose_candidate(record, final_policy.final_prospectus_candidates(record))
+    if selected is not None and identity.discovery_complete(record, selected):
         return True
     for doc in record.get("documents") or []:
         if not isinstance(doc, dict):
             continue
         url = str(doc.get("url") or "")
-        if final_policy.is_final_prospectus(doc) and "/filings/public-issues/" in url and not url.lower().endswith(".pdf"):
+        if (
+            final_policy.is_final_prospectus(doc)
+            and "/filings/public-issues/" in url
+            and not url.lower().endswith(".pdf")
+            and identity.discovery_complete(record, doc)
+        ):
             return True
     return False
 
@@ -116,7 +123,7 @@ def _attach_matches(record: dict[str, Any], matches: list[dict[str, str]]) -> in
         url = str(candidate.get("url") or "")
         if not url or url in existing:
             continue
-        docs.append({"type": "PROSPECTUS", "title": candidate["title"], "url": url, "filedDate": candidate.get("filedDate") or None, "source": "SEBI", "sourcePage": candidate.get("sourcePage")})
+        docs.append({"type": "PROSPECTUS", "title": candidate["title"], "company": candidate.get("company"), "url": url, "filedDate": candidate.get("filedDate") or None, "source": "SEBI", "sourcePage": candidate.get("sourcePage")})
         existing.add(url)
         added += 1
     if added:
