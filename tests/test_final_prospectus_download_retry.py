@@ -2,7 +2,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 import requests
 
@@ -41,45 +41,46 @@ class FinalProspectusDownloadRetryTests(unittest.TestCase):
 
     def test_transient_connection_failure_retries_and_succeeds(self):
         success = _Response([b"%PDF-test"])
-        with tempfile.TemporaryDirectory() as temp_dir, (
-            patch.object(runner, "CACHE", Path(temp_dir)),
-            patch.object(
-                runner.requests,
-                "get",
-                side_effect=[requests.ConnectionError("broken stream"), success],
-            ) as get_mock,
-            patch.object(runner.time, "sleep") as sleep_mock,
-        ):
-            data = runner.pdf_bytes(self.doc())
+        with tempfile.TemporaryDirectory() as temp_dir:
+            with (
+                patch.object(runner, "CACHE", Path(temp_dir)),
+                patch.object(
+                    runner.requests,
+                    "get",
+                    side_effect=[requests.ConnectionError("broken stream"), success],
+                ) as get_mock,
+                patch.object(runner.time, "sleep") as sleep_mock,
+            ):
+                data = runner.pdf_bytes(self.doc())
 
         self.assertEqual(data, b"%PDF-test")
         self.assertEqual(get_mock.call_count, 2)
         sleep_mock.assert_called_once()
 
     def test_http_404_does_not_retry(self):
-        response = _Response(
-            status_error=requests.HTTPError("404 Client Error")
-        )
-        with tempfile.TemporaryDirectory() as temp_dir, (
-            patch.object(runner, "CACHE", Path(temp_dir)),
-            patch.object(runner.requests, "get", return_value=response) as get_mock,
-            patch.object(runner.time, "sleep") as sleep_mock,
-        ):
-            with self.assertRaises(requests.HTTPError):
-                runner.pdf_bytes(self.doc())
+        response = _Response(status_error=requests.HTTPError("404 Client Error"))
+        with tempfile.TemporaryDirectory() as temp_dir:
+            with (
+                patch.object(runner, "CACHE", Path(temp_dir)),
+                patch.object(runner.requests, "get", return_value=response) as get_mock,
+                patch.object(runner.time, "sleep") as sleep_mock,
+            ):
+                with self.assertRaises(requests.HTTPError):
+                    runner.pdf_bytes(self.doc())
 
         self.assertEqual(get_mock.call_count, 1)
         sleep_mock.assert_not_called()
 
     def test_non_pdf_content_does_not_retry(self):
         response = _Response([b"<html>blocked</html>"])
-        with tempfile.TemporaryDirectory() as temp_dir, (
-            patch.object(runner, "CACHE", Path(temp_dir)),
-            patch.object(runner.requests, "get", return_value=response) as get_mock,
-            patch.object(runner.time, "sleep") as sleep_mock,
-        ):
-            with self.assertRaisesRegex(ValueError, "non-PDF"):
-                runner.pdf_bytes(self.doc())
+        with tempfile.TemporaryDirectory() as temp_dir:
+            with (
+                patch.object(runner, "CACHE", Path(temp_dir)),
+                patch.object(runner.requests, "get", return_value=response) as get_mock,
+                patch.object(runner.time, "sleep") as sleep_mock,
+            ):
+                with self.assertRaisesRegex(ValueError, "non-PDF"):
+                    runner.pdf_bytes(self.doc())
 
         self.assertEqual(get_mock.call_count, 1)
         sleep_mock.assert_not_called()
