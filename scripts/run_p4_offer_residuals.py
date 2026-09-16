@@ -5,8 +5,8 @@ This runner is intentionally narrower than ``run_offer_documents.py``. It only
 revisits recent records that are still incomplete or contain clearly invalid
 legacy promoter/object extraction, reuses the already-linked official document,
 confirms issuer identity, and merges fields recognized by the strict residual
-parser. Current P4 queue records with offer/final-prospectus provenance gaps are
-always processed before general cleanup candidates.
+parser. Current P0-P4 queue records with offer/final-prospectus provenance gaps
+are always processed before general cleanup candidates.
 
 Unsupported layouts remain missing and are retried only after the residual
 parser version changes (unless ``--force`` is supplied).
@@ -180,10 +180,16 @@ def _candidate(
 
 
 def p4_offer_queue_order(queue_payload: dict[str, Any]) -> dict[str, int]:
-    """Map actionable P4 offer/final-prospectus gaps to authoritative queue order."""
+    """Map actionable pre-P5 offer/final-prospectus gaps to authoritative queue order."""
     ordered: dict[str, int] = {}
     for index, row in enumerate(queue_payload.get("queue") or []):
-        if not isinstance(row, dict) or row.get("priority") != 4:
+        if not isinstance(row, dict):
+            continue
+        try:
+            priority = int(row.get("priority"))
+        except (TypeError, ValueError):
+            continue
+        if not 0 <= priority <= 4:
             continue
         missing = [str(field) for field in (row.get("missingFields") or [])]
         if not any(
@@ -225,7 +231,7 @@ def run(
             candidates.append(selected)
 
     # Stable two-pass ordering: newest general cleanup first, then place actual
-    # P4 offer/provenance gaps ahead of it in the queue's existing priority order.
+    # pre-P5 offer/provenance gaps ahead of it in the queue's existing order.
     candidates.sort(
         key=lambda pair: (str(pair[0].get("openDate") or ""), str(pair[0].get("company") or "")),
         reverse=True,
