@@ -48,14 +48,28 @@ def _normal_type(value: Any) -> str:
     return re.sub(r"[^A-Z]+", "", str(value or "").upper())
 
 
+def _known_non_final_route(url: Any) -> bool:
+    """Reject official exchange notice PDFs that are not offer documents."""
+    try:
+        parsed = urlparse(str(url or "").strip())
+    except ValueError:
+        return False
+    host = (parsed.hostname or "").lower()
+    if host.startswith("www."):
+        host = host[4:]
+    return host == "bseindia.com" and "/downloads/uploaddocs/notices/" in parsed.path.lower()
+
+
 def is_final_prospectus(doc: dict[str, Any] | None) -> bool:
     """Return True only for an explicitly final Prospectus document.
 
     A title containing the word "prospectus" is not enough because both DRHP
     and RHP titles also contain it. Prefer the explicit document type, with a
-    narrow title fallback that rejects draft/red-herring wording.
+    narrow title fallback that rejects draft/red-herring wording. Known BSE
+    exchange-notice routes are never offer documents even if legacy metadata
+    labeled them ``PROSPECTUS``.
     """
-    if not isinstance(doc, dict):
+    if not isinstance(doc, dict) or _known_non_final_route(doc.get("url")):
         return False
     doc_type = _normal_type(doc.get("type"))
     if doc_type in FINAL_DOCUMENT_TYPES:
@@ -76,7 +90,7 @@ def final_prospectus_from_source(source: dict[str, Any] | None) -> dict[str, Any
     if not isinstance(source, dict):
         return None
     url = str(source.get("url") or "").strip()
-    if not url:
+    if not url or _known_non_final_route(url):
         return None
     parsed = urlparse(url)
     if parsed.scheme != "https" or parsed.hostname not in _FINAL_SOURCE_HOSTS:
