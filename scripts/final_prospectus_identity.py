@@ -86,8 +86,26 @@ def _normal_document_type(value: Any) -> str:
     return re.sub(r"[^A-Z]+", "", str(value or "").upper())
 
 
+def _sebi_abridged_pdf(url: Any) -> bool:
+    """Recognize SEBI's direct Abridged Prospectus PDF routes."""
+    try:
+        parsed = urlparse(str(url or "").strip())
+    except ValueError:
+        return False
+    host = (parsed.hostname or "").lower()
+    if host.startswith("www."):
+        host = host[4:]
+    if host != "sebi.gov.in":
+        return False
+    path = unquote(parsed.path).lower()
+    if not path.endswith(".pdf") or "/sebi_data/commondocs/" not in path:
+        return False
+    name = path.rsplit("/", 1)[-1]
+    return "abridged prospectus" in name or bool(re.search(r"(?:^|[\s_-])ap_p\.pdf$", name, re.I))
+
+
 def _known_non_final_source_route(url: Any) -> bool:
-    """Reject official exchange notice routes that are not offer documents."""
+    """Reject official source routes that are not full final offer documents."""
     try:
         parsed = urlparse(str(url or "").strip())
     except ValueError:
@@ -96,26 +114,31 @@ def _known_non_final_source_route(url: Any) -> bool:
     if host.startswith("www."):
         host = host[4:]
     path = parsed.path.lower()
-    return host == "bseindia.com" and "/downloads/uploaddocs/notices/" in path
+    return (
+        host == "bseindia.com" and "/downloads/uploaddocs/notices/" in path
+    ) or _sebi_abridged_pdf(url)
 
 
 def known_non_final_document_url(record: dict[str, Any], url: Any) -> bool:
     """Return True when exact official metadata proves a URL is not final.
 
-    Older extraction records sometimes mislabeled an already attached RHP or
-    abridged RHP URL as ``PROSPECTUS``. BSE exchange-notice PDFs were also
-    historically captured from nested issue-detail rows. Exact URL/route guards
-    reject only those contradicted sources without guessing from filenames.
+    Older extraction records sometimes mislabeled attached RHP/Abridged PDFs as
+    ``PROSPECTUS``. BSE exchange-notice PDFs were also historically captured
+    from nested issue-detail rows. Exact URL/route guards reject only those
+    contradicted sources without guessing about otherwise valid final PDFs.
     """
     target = str(url or "").strip()
     if not target:
         return False
     if _known_non_final_source_route(target):
         return True
+    is_pdf = urlparse(target).path.lower().endswith(".pdf")
     for doc in record.get("documents") or []:
         if not isinstance(doc, dict) or str(doc.get("url") or "").strip() != target:
             continue
         if _normal_document_type(doc.get("type")) in NON_FINAL_DOCUMENT_TYPES:
+            return True
+        if is_pdf and "ABRIDGED PROSPECTUS" in str(doc.get("title") or "").upper():
             return True
     return False
 
