@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T22:44:28+05:30",
+  "generatedAt": "2026-09-16T23:15:00+05:30",
   "asOfDate": "2026-09-16",
   "recordCount": 1361,
   "stageCounts": {
@@ -15,14 +15,14 @@
     "exchangeStage": 1352,
     "recentExchange2Y": 443,
     "historicalExchange": 909,
-    "offerDocumentEligible": 189,
+    "offerDocumentEligible": 216,
     "openNow": 8,
     "maturedClosed": 1321
   },
   "scores": {
     "exchangeStage": 83.5,
     "recentExchange2Y": 99.0,
-    "offerDocumentEligible": 79.4,
+    "offerDocumentEligible": 78.5,
     "openSubscription": 100.0,
     "maturedLifecycle": 97.3,
     "provenance": 100.0
@@ -192,40 +192,40 @@
     },
     "offerDocumentEligible": {
       "registrar": {
-        "present": 184,
-        "expected": 189,
-        "missing": 5,
-        "pct": 97.4
-      },
-      "leadManagers": {
-        "present": 183,
-        "expected": 189,
-        "missing": 6,
+        "present": 209,
+        "expected": 216,
+        "missing": 7,
         "pct": 96.8
       },
+      "leadManagers": {
+        "present": 210,
+        "expected": 216,
+        "missing": 6,
+        "pct": 97.2
+      },
       "promoters": {
-        "present": 164,
-        "expected": 189,
-        "missing": 25,
-        "pct": 86.8
+        "present": 186,
+        "expected": 216,
+        "missing": 30,
+        "pct": 86.1
       },
       "objectsOfIssue": {
-        "present": 163,
-        "expected": 189,
-        "missing": 26,
-        "pct": 86.2
+        "present": 188,
+        "expected": 216,
+        "missing": 28,
+        "pct": 87.0
       },
       "financials": {
-        "present": 122,
-        "expected": 189,
-        "missing": 67,
-        "pct": 64.6
+        "present": 139,
+        "expected": 216,
+        "missing": 77,
+        "pct": 64.4
       },
       "promoterShareholding": {
-        "present": 84,
-        "expected": 189,
-        "missing": 105,
-        "pct": 44.4
+        "present": 86,
+        "expected": 216,
+        "missing": 130,
+        "pct": 39.8
       }
     },
     "openSubscription": {
@@ -284,8 +284,8 @@
         "pct": 100.0
       },
       "documents": {
-        "present": 194,
-        "expected": 194,
+        "present": 221,
+        "expected": 221,
         "missing": 0,
         "pct": 100.0
       }
@@ -515,12 +515,6 @@
           "stage": "listed"
         },
         {
-          "id": "shethji",
-          "company": "Shreeji Global FMCG Limited",
-          "openDate": "2025-11-04",
-          "stage": "listed"
-        },
-        {
           "id": "lenskart",
           "company": "Lenskart Solutions Limited",
           "openDate": "2025-10-31",
@@ -530,6 +524,24 @@
           "id": "orklaindia",
           "company": "Orkla India Limited",
           "openDate": "2025-10-29",
+          "stage": "listed"
+        },
+        {
+          "id": "munish",
+          "company": "Munish Forge Limited",
+          "openDate": "2025-09-30",
+          "stage": "listed"
+        },
+        {
+          "id": "bagdigital",
+          "company": "B.A.G. Convergence Limited",
+          "openDate": "2025-09-30",
+          "stage": "listed"
+        },
+        {
+          "id": "trualt",
+          "company": "TruAlt Bioenergy Limited",
+          "openDate": "2025-09-25",
           "stage": "listed"
         },
         {
@@ -553,21 +565,21 @@
           "stage": "listed"
         },
         {
-          "id": "invicta",
-          "company": "Invicta Diagnostic Limited",
-          "openDate": "2025-12-01",
-          "stage": "listed"
-        },
-        {
-          "id": "shethji",
-          "company": "Shreeji Global FMCG Limited",
-          "openDate": "2025-11-04",
-          "stage": "listed"
-        },
-        {
           "id": "orklaindia",
           "company": "Orkla India Limited",
           "openDate": "2025-10-29",
+          "stage": "listed"
+        },
+        {
+          "id": "bagdigital",
+          "company": "B.A.G. Convergence Limited",
+          "openDate": "2025-09-30",
+          "stage": "listed"
+        },
+        {
+          "id": "trualt",
+          "company": "TruAlt Bioenergy Limited",
+          "openDate": "2025-09-25",
           "stage": "listed"
         },
         {
@@ -657,15 +669,15 @@
           "stage": "listed"
         },
         {
-          "id": "excelsoft",
-          "company": "Excelsoft Technologies Limited",
-          "openDate": "2025-11-19",
-          "stage": "listed"
-        },
-        {
           "id": "capillary",
           "company": "Capillary Technologies India Limited",
           "openDate": "2025-11-14",
+          "stage": "listed"
+        },
+        {
+          "id": "utlsolar",
+          "company": "Fujiyama Power Systems Limited",
+          "openDate": "2025-11-13",
           "stage": "listed"
         }
       ],
@@ -737,12 +749,6 @@
           "stage": "listed"
         },
         {
-          "id": "excelsoft",
-          "company": "Excelsoft Technologies Limited",
-          "openDate": "2025-11-19",
-          "stage": "listed"
-        },
-        {
           "id": "capillary",
           "company": "Capillary Technologies India Limited",
           "openDate": "2025-11-14",
@@ -758,6 +764,12 @@
           "id": "tennind",
           "company": "Tenneco Clean Air India Limited",
           "openDate": "2025-11-12",
+          "stage": "listed"
+        },
+        {
+          "id": "pwl",
+          "company": "Physicswallah Limited",
+          "openDate": "2025-11-11",
           "stage": "listed"
         }
       ],
