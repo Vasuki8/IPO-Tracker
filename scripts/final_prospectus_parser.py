@@ -1,10 +1,10 @@
 """Final Prospectus parser adapter.
 
 Extends the strict offer parser with fields that are meaningful only once the
-book-built offer is final, especially the fixed Offer/Issue Price and final
-issue composition. Final issue price is deliberately kept distinct from the
-historical bidding price band: a one-point fixed price is never synthesized as
-a price band.
+book-built offer is final, especially the fixed Offer/Issue Price, explicit bid
+lot and final issue composition. Final issue price is deliberately kept distinct
+from the historical bidding price band: a one-point fixed price is never
+synthesized as a price band.
 """
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ from typing import Any
 import legacy_offer_parser as legacy
 import offer_parser as base
 
-PARSER_VERSION = base.PARSER_VERSION + 2
+PARSER_VERSION = base.PARSER_VERSION + 3
 extract_pdf_text = base.extract_pdf_text
 valid_manager = base.valid_manager
 valid_registrar = base.valid_registrar
@@ -47,6 +47,31 @@ _PRICE_BAND_PATTERNS = (
         re.I,
     ),
 )
+_LOT_PATTERNS = (
+    re.compile(
+        r"\bMINIMUM\s+BID\s+LOT(?:\s+SIZE)?\s*"
+        r"(?:(?:SHALL|WILL)\s+BE|SHALL\s+CONSIST\s+OF|IS|OF|MEANS|[:\-])?\s*"
+        r"([0-9][0-9,]{0,7})\s+(?:FULLY\s+PAID[-\s]?UP\s+)?EQUITY\s+SHARES\b",
+        re.I,
+    ),
+    re.compile(
+        r"\bBID\s+LOT(?:\s+SIZE)?\s*"
+        r"(?:(?:SHALL|WILL)\s+BE|SHALL\s+CONSIST\s+OF|IS|OF|MEANS|[:\-])\s*"
+        r"([0-9][0-9,]{0,7})\s+(?:FULLY\s+PAID[-\s]?UP\s+)?EQUITY\s+SHARES\b",
+        re.I,
+    ),
+    re.compile(
+        r"\bBID\s+LOT\b.{0,80}?\b(?:MINIMUM\s+OF\s+)?"
+        r"([0-9][0-9,]{0,7})\s+(?:FULLY\s+PAID[-\s]?UP\s+)?EQUITY\s+SHARES\b",
+        re.I,
+    ),
+    re.compile(
+        r"\bTHE\s+BID\s+LOT\s+(?:FOR\s+THE\s+(?:OFFER|ISSUE)\s+)?"
+        r"(?:IS|SHALL\s+BE|WILL\s+BE)\s+([0-9][0-9,]{0,7})\s+"
+        r"(?:FULLY\s+PAID[-\s]?UP\s+)?EQUITY\s+SHARES\b",
+        re.I,
+    ),
+)
 
 _SHARE_FIELDS = ("freshShares", "ofsShares")
 _AMOUNT_FIELDS = ("freshIssueCr", "ofsCr", "totalIssueSizeCr")
@@ -60,6 +85,53 @@ def _number(token: str) -> float | None:
     return value if math.isfinite(value) else None
 
 
+def _page_number(page: str, fallback: int) -> int:
+    marker = re.search(r"\[PAGE\s+(\d+)\]", str(page or ""), re.I)
+    if not marker:
+        return fallback
+    try:
+        value = int(marker.group(1))
+    except ValueError:
+        return fallback
+    return value if value > 0 else fallback
+
+
+def extract_final_lot_size(text: str) -> tuple[int | None, dict[str, Any]]:
+    """Extract one unambiguous explicit Bid Lot from the full parsed document.
+
+    Final Prospectuses can place the Bid Lot definition far beyond the first 20
+    pages used by the compatibility front-matter parser. Search the already
+    bounded Poppler text page-by-page, but accept only wording that explicitly
+    says Bid Lot/Minimum Bid Lot. Generic minimum application/bid quantity is
+    intentionally excluded because SME minimum applications may span two lots.
+    """
+    observations: list[tuple[int, int, str]] = []
+    for page_index, page in enumerate(str(text or "").split("\f"), 1):
+        compact = " ".join(page.replace("\u00a0", " ").split())
+        for pattern in _LOT_PATTERNS:
+            for match in pattern.finditer(compact):
+                value = _number(match.group(1))
+                if value is None or value != int(value):
+                    continue
+                lot = int(value)
+                if 0 < lot <= 100_000:
+                    observations.append((lot, _page_number(page, page_index), match.group(0)))
+
+    unique = sorted({lot for lot, _, _ in observations})
+    if len(unique) != 1:
+        return None, {}
+    lot = unique[0]
+    evidence_hit = next(hit for hit in observations if hit[0] == lot)
+    return lot, {
+        "lotSize": {
+            "page": evidence_hit[1],
+            "heading": evidence_hit[2],
+            "value": lot,
+            "basis": "explicit Bid Lot/Minimum Bid Lot in Final Prospectus",
+        }
+    }
+
+
 def extract_final_issue_price(text: str) -> tuple[float | None, dict[str, Any]]:
     """Extract one unambiguous fixed price from Final Prospectus front matter."""
     front_pages = str(text or "").split("\f")[:12]
@@ -70,7 +142,7 @@ def extract_final_issue_price(text: str) -> tuple[float | None, dict[str, Any]]:
             for match in pattern.finditer(compact):
                 value = _number(match.group(1))
                 if value is not None and 0 < value <= 100_000:
-                    values.append((value, page_index, match.group(0)))
+                    values.append((value, _page_number(page, page_index), match.group(0)))
     unique = sorted({value for value, _, _ in values})
     if len(unique) != 1:
         return None, {}
@@ -98,7 +170,7 @@ def extract_explicit_price_band(text: str) -> tuple[dict[str, float] | None, dic
                 if low is None or high is None:
                     continue
                 if 0 < low <= high <= 100_000:
-                    values.append((low, high, page_index, match.group(0)))
+                    values.append((low, high, _page_number(page, page_index), match.group(0)))
     unique = sorted({(low, high) for low, high, _, _ in values})
     if len(unique) != 1:
         return None, {}
@@ -202,6 +274,12 @@ def extract_final_issue_composition(
 def parse_document_text(text: str, price_band=None) -> dict[str, Any]:
     parsed = base.parse_document_text(text, price_band)
 
+    lot_size, lot_evidence = extract_final_lot_size(text)
+    if lot_size is not None:
+        # The explicit Final Prospectus Bid Lot is stronger than compatibility
+        # fallbacks such as a generic minimum bid quantity.
+        parsed["lotSize"] = lot_size
+
     issue_price, price_evidence = extract_final_issue_price(text)
     if issue_price is not None:
         parsed["issuePrice"] = issue_price
@@ -226,6 +304,7 @@ def parse_document_text(text: str, price_band=None) -> dict[str, Any]:
         parsed["issueComposition"] = composition
 
     field_evidence = dict(parsed.get("fieldEvidence") or {})
+    field_evidence.update(lot_evidence)
     field_evidence.update(price_evidence)
     field_evidence.update(band_evidence)
     field_evidence.update(composition_evidence)
@@ -236,6 +315,8 @@ def parse_document_text(text: str, price_band=None) -> dict[str, Any]:
         for field in (parsed.get("extractedFields") or [])
         if field != "priceBand"
     ]
+    if lot_size is not None and "lotSize" not in extracted:
+        extracted.append("lotSize")
     if explicit_band is not None and "priceBand" not in extracted:
         extracted.append("priceBand")
     if issue_price is not None and "issuePrice" not in extracted:
