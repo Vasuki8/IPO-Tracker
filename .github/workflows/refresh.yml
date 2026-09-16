@@ -20,6 +20,14 @@ on:
 permissions:
   contents: read
 
+# A new collector-code push makes an older push artifact unpublishable because
+# publish_transaction.py correctly requires the exact source commit. Cancel only
+# those superseded push workflows; scheduled/manual runs keep unique groups and
+# continue independently.
+concurrency:
+  group: ipo-refresh-${{ github.event_name == 'push' && github.ref || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'push' }}
+
 jobs:
   collect:
     runs-on: ubuntu-latest
