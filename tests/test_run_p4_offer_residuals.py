@@ -135,16 +135,44 @@ class P4OfferResidualRunnerTests(unittest.TestCase):
         self.assertFalse(runner._retain_verified_document(record, doc, "abc123"))
         self.assertEqual(len(record["documents"]), 1)
 
-    def test_queue_order_targets_p4_offer_and_document_gaps_only(self):
+    def test_queue_order_targets_p4_offer_final_prospectus_and_document_gaps_only(self):
         queue = {
             "queue": [
                 {"id": "dhanlaxmi", "priority": 4, "missingFields": ["offer.registrar", "offer.financials"]},
+                {"id": "final-lot", "priority": 4, "missingFields": ["provenance.finalProspectus.lotSize"]},
                 {"id": "lot-only", "priority": 4, "missingFields": ["exchange.lotSize"]},
-                {"id": "history", "priority": 5, "missingFields": ["offer.financials"]},
+                {"id": "history", "priority": 5, "missingFields": ["provenance.finalProspectus.issueComposition"]},
                 {"id": "credent", "priority": 4, "missingFields": ["provenance.documents"]},
             ]
         }
-        self.assertEqual(runner.p4_offer_queue_order(queue), {"dhanlaxmi": 0, "credent": 3})
+        self.assertEqual(
+            runner.p4_offer_queue_order(queue),
+            {"dhanlaxmi": 0, "final-lot": 1, "credent": 4},
+        )
+
+    def test_queue_target_can_run_when_generic_residual_predicates_are_complete(self):
+        record = {
+            "id": "final-only",
+            "company": "Final Only Limited",
+            "openDate": "2026-01-01",
+            "registrar": "Bigshare Services Private Limited",
+            "leadManagers": ["Example Capital Limited"],
+            "promoters": ["Valid Person"],
+            "objectsOfIssue": [{"purpose": "Working Capital Requirements", "amountCr": 10.0}],
+            "financials": {
+                "periods": [
+                    {"period": "FY2025", "revenueCr": 10.0},
+                    {"period": "FY2024", "revenueCr": 9.0},
+                ]
+            },
+            "shareholding": {"promoterPreIssuePct": 70.0},
+            "documentFieldProvenance": {"registrar": {"documentUrl": "https://example.test/final.pdf"}},
+        }
+        doc = {"url": "https://nsearchives.nseindia.com/final-only.pdf"}
+        self.assertFalse(residual.needs_repair(record))
+        with patch.object(runner.base, "document_for", return_value=doc):
+            self.assertIsNone(runner._candidate(record, force=False, queue_target=False))
+            self.assertIsNotNone(runner._candidate(record, force=False, queue_target=True))
 
     def test_run_prioritizes_p4_offer_queue_before_newer_cleanup(self):
         payload = {
@@ -174,6 +202,45 @@ class P4OfferResidualRunnerTests(unittest.TestCase):
         self.assertEqual(attempted, ["dhanlaxmi"])
         self.assertEqual(health["p4QueueTargets"], 1)
         self.assertEqual(health["p4QueueTargetsAttempted"], 1)
+
+    def test_run_prioritizes_final_prospectus_only_queue_target(self):
+        complete = {
+            "id": "final-only",
+            "company": "Final Only Limited",
+            "openDate": "2026-01-01",
+            "registrar": "Bigshare Services Private Limited",
+            "leadManagers": ["Example Capital Limited"],
+            "promoters": ["Valid Person"],
+            "objectsOfIssue": [{"purpose": "Working Capital Requirements", "amountCr": 10.0}],
+            "financials": {
+                "periods": [
+                    {"period": "FY2025", "revenueCr": 10.0},
+                    {"period": "FY2024", "revenueCr": 9.0},
+                ]
+            },
+            "shareholding": {"promoterPreIssuePct": 70.0},
+            "documentFieldProvenance": {"registrar": {"documentUrl": "https://example.test/final.pdf"}},
+        }
+        payload = {"ipos": [complete]}
+        queue = {
+            "queue": [
+                {
+                    "id": "final-only",
+                    "priority": 4,
+                    "missingFields": ["provenance.finalProspectus.lotSize", "provenance.finalProspectus.issueComposition"],
+                }
+            ]
+        }
+        doc = {"url": "https://nsearchives.nseindia.com/final-only.pdf"}
+        with patch.object(runner.base, "document_for", return_value=doc), patch.object(
+            runner, "extract", return_value=({"lotSize": 100, "fieldEvidence": {}}, "hash", 1, 1)
+        ), patch.object(runner, "apply_result", return_value=["lotSize"]):
+            health = runner.run(payload, limit=1, workers=1, queue_payload=queue)
+
+        self.assertEqual(health["p4QueueTargets"], 1)
+        self.assertEqual(health["p4QueueTargetsAttempted"], 1)
+        self.assertEqual(health["attempted"], 1)
+        self.assertTrue(health["outcomes"][0]["p4QueueTarget"])
 
     def test_run_targets_only_recent_incomplete_records_with_documents(self):
         payload = {
