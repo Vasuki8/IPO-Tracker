@@ -186,13 +186,28 @@ def _set_field_value(record: dict[str, Any], field: str, value: Any) -> None:
         record[field] = copy.deepcopy(value)
 
 
+def _financial_metric_plausible(key: str, value: Any) -> bool:
+    if not _numeric(value):
+        return False
+    number = float(value)
+    magnitude = abs(number)
+    if key in {"roePct", "ronwPct"}:
+        # A percentage in the thousands is normally a PDF column/year leak.
+        return magnitude <= 1000 and not 1900 <= magnitude <= 2100
+    if key in {"eps", "dilutedEps"}:
+        # Indian IPO equity-share EPS can be large, but five/six digit figures
+        # are overwhelmingly subsidiary/KPI or unit-alignment false positives.
+        return magnitude <= 10_000 and not 1900 <= magnitude <= 2100
+    return True
+
+
 def _financial_evidence_supported(record: dict[str, Any], parsed: dict[str, Any]) -> bool:
     """Require every promoted financial cell to carry matching table evidence.
 
     The canonical Final Prospectus path must move a financial value and its
     period/table evidence atomically. This also rejects stale/misaligned fiscal
-    tables that are implausibly far from the IPO year rather than allowing a
-    deep-document KPI/subsidiary table to overwrite issuer financials.
+    tables and implausible ratio/EPS values rather than allowing a deep-document
+    KPI/subsidiary table to overwrite issuer financials.
     """
     financials = parsed.get("financials")
     if not isinstance(financials, dict):
@@ -217,12 +232,10 @@ def _financial_evidence_supported(record: dict[str, Any], parsed: dict[str, Any]
             if key == "period" or value is None:
                 continue
             metric_count += 1
-            if not _numeric(value):
+            if not _financial_metric_plausible(str(key), value):
                 return False
             cell = evidence.get(f"{period}.{key}")
             if not isinstance(cell, dict) or cell.get("normalizedValue") != value:
-                return False
-            if key in {"roePct", "ronwPct"} and abs(float(value)) > 1000:
                 return False
 
     if metric_count < 2:
