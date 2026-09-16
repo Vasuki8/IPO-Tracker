@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T11:26:45+05:30",
+  "generatedAt": "2026-09-16T11:44:08+05:30",
   "asOfDate": "2026-09-16",
   "recordCount": 1357,
   "stageCounts": {
@@ -15,14 +15,14 @@
     "exchangeStage": 1350,
     "recentExchange2Y": 441,
     "historicalExchange": 909,
-    "offerDocumentEligible": 106,
+    "offerDocumentEligible": 109,
     "openNow": 8,
     "maturedClosed": 1321
   },
   "scores": {
     "exchangeStage": 83.5,
-    "recentExchange2Y": 99.2,
-    "offerDocumentEligible": 91.5,
+    "recentExchange2Y": 99.3,
+    "offerDocumentEligible": 90.5,
     "openSubscription": 100.0,
     "maturedLifecycle": 97.3,
     "provenance": 100.0
@@ -66,10 +66,10 @@
         "pct": 99.0
       },
       "lotSize": {
-        "present": 423,
+        "present": 425,
         "expected": 1350,
-        "missing": 927,
-        "pct": 31.3
+        "missing": 925,
+        "pct": 31.5
       },
       "issueSizeCr": {
         "present": 439,
@@ -122,10 +122,10 @@
         "pct": 100.0
       },
       "lotSize": {
-        "present": 420,
+        "present": 422,
         "expected": 441,
-        "missing": 21,
-        "pct": 95.2
+        "missing": 19,
+        "pct": 95.7
       },
       "issueSizeCr": {
         "present": 436,
@@ -192,40 +192,40 @@
     },
     "offerDocumentEligible": {
       "registrar": {
-        "present": 105,
-        "expected": 106,
+        "present": 108,
+        "expected": 109,
         "missing": 1,
         "pct": 99.1
       },
       "leadManagers": {
-        "present": 105,
-        "expected": 106,
+        "present": 108,
+        "expected": 109,
         "missing": 1,
         "pct": 99.1
       },
       "promoters": {
-        "present": 102,
-        "expected": 106,
-        "missing": 4,
-        "pct": 96.2
+        "present": 104,
+        "expected": 109,
+        "missing": 5,
+        "pct": 95.4
       },
       "objectsOfIssue": {
-        "present": 103,
-        "expected": 106,
-        "missing": 3,
-        "pct": 97.2
+        "present": 105,
+        "expected": 109,
+        "missing": 4,
+        "pct": 96.3
       },
       "financials": {
         "present": 90,
-        "expected": 106,
-        "missing": 16,
-        "pct": 84.9
+        "expected": 109,
+        "missing": 19,
+        "pct": 82.6
       },
       "promoterShareholding": {
         "present": 77,
-        "expected": 106,
-        "missing": 29,
-        "pct": 72.6
+        "expected": 109,
+        "missing": 32,
+        "pct": 70.6
       }
     },
     "openSubscription": {
@@ -284,8 +284,8 @@
         "pct": 100.0
       },
       "documents": {
-        "present": 109,
-        "expected": 109,
+        "present": 112,
+        "expected": 112,
         "missing": 0,
         "pct": 100.0
       }
@@ -493,6 +493,12 @@
           "stage": "listed"
         },
         {
+          "id": "igil",
+          "company": "International Gemmological Institute (India) Limited",
+          "openDate": "2024-12-13",
+          "stage": "listed"
+        },
+        {
           "id": "etml",
           "company": "Emerald Tyre Manufacturers Limited",
           "openDate": "2024-12-05",
@@ -516,6 +522,12 @@
           "id": "suraksha",
           "company": "Suraksha Diagnostic Limited",
           "openDate": "2024-11-29",
+          "stage": "listed"
+        },
+        {
+          "id": "sagility",
+          "company": "Sagility India Limited",
+          "openDate": "2024-11-05",
           "stage": "listed"
         }
       ],
@@ -587,6 +599,12 @@
           "stage": "listed"
         },
         {
+          "id": "igil",
+          "company": "International Gemmological Institute (India) Limited",
+          "openDate": "2024-12-13",
+          "stage": "listed"
+        },
+        {
           "id": "suraksha",
           "company": "Suraksha Diagnostic Limited",
           "openDate": "2024-11-29",
@@ -601,12 +619,6 @@
         {
           "id": "apexeco",
           "company": "Apex Ecotech Limited",
-          "openDate": "2024-11-27",
-          "stage": "listed"
-        },
-        {
-          "id": "abhapower",
-          "company": "Abha Power and Steel Limited",
           "openDate": "2024-11-27",
           "stage": "listed"
         }
