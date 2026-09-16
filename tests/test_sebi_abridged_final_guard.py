@@ -21,23 +21,23 @@ class SebiAbridgedFinalGuardTests(unittest.TestCase):
     AP_URL = "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Example%20Limited%20-%20AP_p.pdf"
     FINAL_URL = "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789000000000.pdf"
 
-    def page(self):
+    def page(self, full_title="Example Limited - Prospectus"):
         return f"""
         <html><body>
           <a href="{self.AP_URL}">Example Limited - Abridged Prospectus</a>
-          <a href="https://www.sebi.gov.in/web/?file=https%3A%2F%2Fwww.sebi.gov.in%2Fsebi_data%2Fattachdocs%2Fsep-2026%2F1789000000000.pdf">Example Limited - Prospectus</a>
+          <a href="https://www.sebi.gov.in/web/?file=https%3A%2F%2Fwww.sebi.gov.in%2Fsebi_data%2Fattachdocs%2Fsep-2026%2F1789000000000.pdf">{full_title}</a>
         </body></html>
         """
 
     def test_rhp_landing_keeps_abridged_as_rhp_history(self):
         docs = links.extract_pdf_links(
-            self.page(),
+            self.page("Example Limited - RHP"),
             "https://www.sebi.gov.in/filings/public-issues/sep-2026/example-rhp.html",
             fallback_type="RHP",
         )
         by_url = {doc["url"]: doc for doc in docs}
         self.assertEqual(by_url[self.AP_URL]["type"], "RHP")
-        self.assertEqual(by_url[self.FINAL_URL]["type"], "PROSPECTUS")
+        self.assertEqual(by_url[self.FINAL_URL]["type"], "RHP")
 
     def test_final_landing_does_not_promote_abridged_pdf(self):
         docs = links.extract_pdf_links(
