@@ -101,6 +101,8 @@ The record-level `validation` object above describes exchange comparison only. I
 | `dataCorrections[]` | Before/after field values, reason, parser version and source URL/hash when available |
 | `documentFieldProvenance` | Source URL/hash, document date/type, parser version and field evidence |
 | `documentFieldProvenance.evidence.financials` | `FYyyyy.metric` → source page, row, header, original unit and normalized value |
+| `lotSizeEvidence`, `listingDateEvidence` | Issue-specific source URL/hash, issuer and issue dates, source field and accepted value |
+| `nseOfferFilings` | Last register fingerprint, collection outcome, changed fields, document count and retry timestamp |
 | `documentRepair` | Attempt time, status and `financialStatus` (`validated` or `needs_review`) |
 | `subscriptionCollectedAt` | Collector timestamp; compatibility `subscriptionAsOf` has this same meaning |
 | `subscriptionObservedAt` | Actual source observation time, or null when unavailable |
@@ -117,3 +119,9 @@ The record-level `validation` object above describes exchange comparison only. I
 | `data/pending_updates.json` | Unaccepted concurrent proposals retained for source review |
 
 Financial currency values use ₹ crore; RONW/ROE use percentages and EPS uses rupees per share. Fiscal labels must come from table columns. Original source units remain in field evidence. Timestamps retain an explicit UTC offset; operational timestamps may use UTC or Asia/Kolkata.
+
+Financial rows distinguish `revenueCr` from `totalIncomeCr`, and basic `eps` from `dilutedEps`. Financial evidence records zero-based `sourceColumns` and the reporting `scope` where disclosed.
+
+Final-listing XBRL supplies `lotSize` and `marketLot` from the disclosed `MarketLot`. It does not infer `minimumBidQuantity`. Earlier records may separately retain a disclosed minimum application quantity; the fill-only collector preserves those values for source review. Lot evidence, when present, must match the accepted value and issue date.
+
+`meta.pipelineStages` may report `deferred` with a null exit code when the overall collection budget leaves insufficient time to start a stage.

@@ -14,6 +14,38 @@ import build_missing_queue as queue
 
 
 class PipelineIntegrityTests(unittest.TestCase):
+    def test_validation_timestamps_do_not_create_source_conflicts(self):
+        base = {'ipos': [{'id': 'a', 'lotSize': None, 'validation': {'checkedAt': '2026-09-14T00:00:00Z', 'status': 'single-source'}}]}
+        proposed, current = copy.deepcopy(base), copy.deepcopy(base)
+        proposed['ipos'][0]['lotSize'] = 100
+        proposed['ipos'][0]['validation']['checkedAt'] = '2026-09-15T00:00:00Z'
+        current['ipos'][0]['validation']['checkedAt'] = '2026-09-16T00:00:00Z'
+        merged, conflicts = merge_payload(base, proposed, current)
+        self.assertEqual(conflicts, [])
+        self.assertEqual(merged['ipos'][0]['lotSize'], 100)
+        self.assertEqual(merged['ipos'][0]['validation'], current['ipos'][0]['validation'])
+
+    def test_validation_rebuild_uses_both_accepted_exchange_observations(self):
+        base = {'ipos': [{'id': 'a', 'observations': {'NSE': {'lotSize': 100}, 'BSE': {'lotSize': 100}}, 'validation': {'status': 'verified'}}]}
+        proposed, current = copy.deepcopy(base), copy.deepcopy(base)
+        proposed['ipos'][0]['observations']['NSE']['lotSize'] = 200
+        proposed['ipos'][0]['validation'] = {'status': 'conflict', 'checkedAt': 'old'}
+        current['ipos'][0]['observations']['BSE']['lotSize'] = 200
+        current['ipos'][0]['validation'] = {'status': 'conflict', 'checkedAt': 'new'}
+        merged, conflicts = merge_payload(base, proposed, current)
+        self.assertEqual(conflicts, [])
+        self.assertEqual(merged['ipos'][0]['validation']['checks'], [{'field': 'lotSize', 'nse': 200, 'bse': 200, 'match': True}])
+
+    def test_diagnostic_rebuild_does_not_suppress_competing_source_values(self):
+        base = {'ipos': [{'id': 'a', 'observations': {'NSE': {'lotSize': 100}}, 'validation': {'checkedAt': 'old'}}]}
+        proposed, current = copy.deepcopy(base), copy.deepcopy(base)
+        proposed['ipos'][0]['observations']['NSE']['lotSize'] = 200
+        current['ipos'][0]['observations']['NSE']['lotSize'] = 300
+        merged, conflicts = merge_payload(base, proposed, current)
+        self.assertEqual(merged['ipos'][0]['observations']['NSE']['lotSize'], 300)
+        self.assertEqual(len(conflicts), 1)
+        self.assertEqual(conflicts[0]['path'][-3:], ['observations', 'NSE', 'lotSize'])
+
     def test_concurrent_independent_changes_both_survive(self):
         base = {'meta': {}, 'ipos': [{'id': 'a', 'lotSize': None, 'registrar': None}]}
         proposed, current = copy.deepcopy(base), copy.deepcopy(base)
@@ -30,7 +62,7 @@ class PipelineIntegrityTests(unittest.TestCase):
         current = {'ipos': [{'id': 'a', 'lotSize': 200}]}
         result, conflicts = merge_payload(base, proposed, current)
         self.assertEqual(result['ipos'][0]['lotSize'], 200)
-        self.assertEqual(conflicts[0]['proposed'], 100)
+        self.assertEqual(conflicts[0]['proposed']['lotSize'], 100)
         self.assertEqual(conflicts[0]['status'], 'pending_conflict_review')
 
     def test_append_only_subscription_history_preserves_both_updates(self):

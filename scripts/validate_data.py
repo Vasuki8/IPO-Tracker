@@ -45,6 +45,10 @@ def validate_record(record):
     lot = record.get("lotSize")
     if numeric(lot) and (lot <= 0 or lot != int(lot)):
         add("lotSize", "Bid lot must be a positive integer")
+    for field in ("lotSize", "listingDate"):
+        evidence = record.get(field + "Evidence") or {}
+        if evidence and (evidence.get("value") != record.get(field) or not evidence.get("sourceUrl") or evidence.get("issueOpenDate") != record.get("openDate")):
+            add(field, "Value does not match the retained issue-specific source evidence")
     band = record.get("priceBand") or {}
     for key in ("min", "max"):
         if band.get(key) is not None and (not numeric(band[key]) or band[key] <= 0):

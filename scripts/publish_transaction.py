@@ -14,12 +14,14 @@ import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 from record_integrity import repair
+from update_data import build_validation
 
 MISSING = object()
 FIELD_GROUPS = {
     'documentFields': ('financials', 'leadManagers', 'registrar', 'documentFieldProvenance', 'offerDocumentExtraction', 'documentRepair'),
     'subscriptionSnapshot': ('subscription', 'subscriptionSource', 'subscriptionSourceUrl', 'subscriptionAsOf', 'subscriptionCollectedAt', 'subscriptionObservedAt', 'subscriptionTimeBasis', 'subscriptionDegraded'),
-    'priceSnapshot': ('listing', 'performance'),
+    'priceSnapshot': ('listing', 'performance', 'listingDate', 'listingDateEvidence'),
+    'lotTerms': ('lotSize', 'marketLot', 'minimumBidQuantity', 'lotSizeEvidence'),
 }
 ATOMIC_FIELDS = {'financials', 'documentFieldProvenance', 'offerDocumentExtraction', 'performance', 'listing', *FIELD_GROUPS}
 
@@ -69,8 +71,18 @@ def merge_payload(before, proposed, current):
     records = []
     ids = list(dict.fromkeys([row['id'] for row in current.get('ipos', [])] + [row['id'] for row in proposed.get('ipos', [])]))
     for key in ids:
-        merged = merge_value(*(mapping.get(key, MISSING) for mapping in maps), ['ipos', key], conflicts)
+        values = [mapping.get(key, MISSING) for mapping in maps]
+        # Exchange-comparison diagnostics are derived from accepted observations
+        # and sources. Collector timestamps are not competing source facts.
+        inputs = [{field: value for field, value in row.items() if field != 'validation'} if row is not MISSING else MISSING for row in values]
+        merged = merge_value(*inputs, ['ipos', key], conflicts)
         if merged is not MISSING:
+            accepted = values[2] if values[2] is not MISSING else {}
+            if any(merged.get(field) != accepted.get(field) for field in ('observations', 'sources')) or ('validation' not in accepted and any(row is not MISSING and 'validation' in row for row in values)):
+                merged['validation'] = build_validation(merged)
+            elif 'validation' in accepted:
+                merged['validation'] = copy.deepcopy(accepted['validation'])
+            merged = {field: merged[field] for field in dict.fromkeys([*accepted, *merged]) if field in merged}
             records.append(merged)
     output['ipos'] = records
     output['meta'] = merge_value(before.get('meta', {}), proposed.get('meta', {}), current.get('meta', {}), ['meta'], conflicts)

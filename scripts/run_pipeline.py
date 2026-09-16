@@ -25,6 +25,7 @@ MEANINGFUL_FIELDS = (
 )
 PIPELINE_REPORTS: dict[str, dict] = {}
 LAST_SUPPORT_REBUILD_HASH: str | None = None
+DEADLINE: float | None = None
 
 
 def content_hash(payload):
@@ -46,6 +47,16 @@ def _load_bytes(raw: bytes):
 
 def step(script, *args, timeout=600):
     """Run one collector stage and retain a diagnostic report without extra data writes."""
+    if DEADLINE is not None:
+        remaining = DEADLINE - time.monotonic()
+        if remaining <= 20:
+            report = {"stage": script, "status": "deferred", "exitCode": None,
+                      "durationSeconds": 0, "checkedAt": datetime.now(timezone.utc).isoformat(),
+                      "diagnostics": "Pipeline time budget exhausted; retained for a later run"}
+            PIPELINE_REPORTS[script] = report
+            print(json.dumps(report), flush=True)
+            return report
+        timeout = min(timeout, remaining - 10)
     before_bytes = DATA.read_bytes()
     before_payload = _load_bytes(before_bytes)
     before_hash = content_hash(before_payload)
@@ -170,6 +181,9 @@ def run(mode: str):
     if mode in {"subscriptions", "repair"}:
         step("run_priority_subscriptions_v3.py", "--limit", "30", timeout=900)
 
+    if mode in {"maintenance", "repair", "p4"}:
+        step("collect_nse_offer_filings.py", "--limit", "150", "--documents-limit", "5", timeout=600)
+
     if mode in {"maintenance", "repair"}:
         step(
             "run_offer_documents.py",
@@ -193,6 +207,7 @@ def run(mode: str):
 
     phase = json.loads((ROOT / "data/phase_status.json").read_text(encoding="utf-8"))
     if mode in {"maintenance", "p5"} and phase["p5"]["status"] == "enabled":
+        step("collect_nse_offer_filings.py", "--history-days", "10000", "--limit", "100", "--documents-limit", "5", timeout=600)
         step("collect_final_issue_prices.py", "--history-days", "10000", "--max-reports", "100", timeout=900)
         step("enrich_nse_primary_market_reports_v3.py", "--history-days", "10000", "--max-reports", "100", timeout=900)
         step("backfill_bse_history.py", "--history-days", "10000", "--limit", "40", "--core-only", "--oldest-first", "--retry-days", "7", timeout=600)
@@ -207,13 +222,16 @@ def run(mode: str):
 
 
 def main():
+    global DEADLINE
     cli = argparse.ArgumentParser()
     cli.add_argument(
         "--mode",
         choices=["core", "subscriptions", "filings", "maintenance", "repair", "p4", "p5", "performance"],
         default="core",
     )
+    cli.add_argument("--budget-minutes", type=float, default=60)
     args = cli.parse_args()
+    DEADLINE = time.monotonic() + max(1, min(65, args.budget_minutes)) * 60
     try:
         run(args.mode)
     finally:

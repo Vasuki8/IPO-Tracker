@@ -19,6 +19,8 @@ Run `uv run --frozen python scripts/run_pipeline.py --mode MODE` with one of:
 
 Every mode rebuilds completeness, the complete missing-field queue, semantic validation, and phase status. A zero exit from a source wrapper does not by itself establish source success: inspect `meta.pipelineStages`, record attempt outcomes, and `data/validation.json`.
 
+The pipeline has a 60-minute total collection budget (`--budget-minutes`, capped at 65). Each stage receives at most the remaining budget. Later stages become `deferred` when time runs out; completed atomic collector checkpoints remain available for validation and publication within the 75-minute workflow limit. Deferral leaves missing fields on the queue.
+
 ## Scheduling and publication
 
 `refresh.yml` is the only active data writer. Core collection runs hourly; subscriptions run twice hourly during the configured weekday UTC window. Filing maintenance follows core collection when P0–P3 gaps exist, with a six-hour fallback. Daily maintenance runs at 13:43 UTC. GitHub schedules are best-effort; missed triggers are not evidence of fresh data.
@@ -28,6 +30,10 @@ Collectors have read-only repository permissions. They retain a baseline, propos
 Conflicting proposals are retained in `data/pending_updates.json`; accepted values are preserved. `documentFields` and `subscriptionSnapshot` in a pending path name the atomic groups defined in `publish_transaction.py`. Review source evidence, then update or recollect the affected group. There is no automatic last-writer-wins conflict resolution. Failed publications retain their original collection artifact; rerun a failed publisher only when its code is still current, otherwise recollect on current main. Publication requests a Pages rebuild explicitly after a bot commit.
 
 `priceSnapshot` keeps listing prices, final-price evidence, observations and calculated returns together. If another collection changed any of those fields, the competing snapshot stays pending rather than mixing one baseline with another return.
+
+Listing dates and their evidence also belong to `priceSnapshot`. `lotTerms` keeps the bid lot, market lot, minimum application quantity, and retained lot evidence together so conflicting collectors cannot attach one filing's evidence to another value.
+
+Exchange-comparison `validation` is regenerated from accepted observations and source records when those inputs change. Concurrent validation timestamps do not create pending source conflicts; competing underlying observations still do.
 
 Previous ad-hoc writing workflows are retained under `.github/retired-workflows` for reference. They do not execute. Legacy parser entrypoints remain for regression compatibility; scheduled document extraction uses `run_offer_documents.py` and the isolated `offer_parser.py` API.
 
@@ -62,3 +68,11 @@ Historical rows remain in the observation history even when a newer observation 
 Missing index baselines are retried even when the listing-day equity close is already present. Empty or wrong-date responses are not retained as valid cached reports. Conflicting listing-day prices preserve the accepted value and its source, retain the proposed report in `listing.priceConflicts`, and keep a review item visible. Semantic validation checks observations and return calculations before publication.
 
 `source-review.yml` is a read-only preview for parser changes. It runs the full test suite, applies source repairs to an ephemeral dataset, and retains proposed values and validation findings as an artifact. It cannot publish data. Review the source results before merging parser changes.
+
+## NSE issuer filing register
+
+`collect_nse_offer_filings.py` reads the official SME and equity offer registers and their linked final-listing XBRL documents. Matching requires the canonical issuer, exact opening date, compatible closing date, and independently matching symbol or ISIN. The collector rejects inconsistent identities, conflicting filings, wrong XML units, undated/future listings, and non-official links. It fills missing issue lots and listing dates and reads the explicit `FinalIssuePrice`; existing conflicting values are preserved. Each accepted value retains the document hash, source field, issuer, and issue dates.
+
+Repair, maintenance, and P4 collect up to 150 candidate records and discover at most five issuers' RHP/final PDF documents per run. Completed records checkpoint independently while other downloads continue. The register fingerprint and a seven-day retry interval avoid repeating unchanged source attempts. Newly discovered documents still undergo the parser's opening-page issuer check. P5 uses the same register for older issues only after the correctness gate passes.
+
+Parser 22 supports selected-financial-information headings, staggered annual dates, explicit lakh and `₹ Mn` units, and standalone/consolidated scope changes inside shared or continued tables. Financial fixtures retain original PDF spacing and actual disclosed numeric rows.

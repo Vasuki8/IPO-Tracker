@@ -140,6 +140,23 @@ class PipelineIoTests(unittest.TestCase):
         subscription_call = next(call for call in calls if call[0] == "run_priority_subscriptions_v3.py")
         self.assertEqual(subscription_call[1], ("--limit", "30"))
 
+    def test_exhausted_budget_defers_stage_and_preserves_completed_data(self):
+        self.write_payload({"meta": {}, "ipos": [{"id": "a", "lotSize": 1200}]})
+        before = self.data.read_bytes()
+        with patch.object(mod, "DEADLINE", 100), patch.object(mod.time, "monotonic", return_value=90), patch.object(mod.subprocess, "run") as run:
+            report = mod.step("later.py")
+        run.assert_not_called()
+        self.assertEqual(report["status"], "deferred")
+        self.assertEqual(self.data.read_bytes(), before)
+        mod.flush_pipeline_reports()
+        self.assertEqual(json.loads(self.data.read_text())["meta"]["pipelineStages"]["later.py"]["status"], "deferred")
+
+    def test_stage_timeout_reserves_time_for_publication(self):
+        self.write_payload({"ipos": []})
+        with patch.object(mod, "DEADLINE", 100), patch.object(mod.time, "monotonic", return_value=60), patch.object(mod.subprocess, "run", return_value=SimpleNamespace(stdout="", returncode=0)) as run:
+            mod.step("slow.py", timeout=600)
+        self.assertEqual(run.call_args.kwargs["timeout"], 30)
+
 
 if __name__ == "__main__":
     unittest.main()
