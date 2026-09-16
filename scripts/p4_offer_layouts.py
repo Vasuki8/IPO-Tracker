@@ -26,6 +26,17 @@ extract_promoter_shareholding = common.extract_promoter_shareholding
 extract_numeric_date_financials = common.extract_numeric_date_financials
 merge_parsed = common.merge_parsed
 
+_ROLE_LABEL = re.compile(
+    r"^(?:NAME(?:\s+AND\s+LOGO)?|LOGO|CONTACT\s+PERSON|TELEPHONE|TEL\.?|PHONE|"
+    r"E-?MAIL|EMAIL|WEBSITE|ADDRESS|SEBI\s+REG(?:ISTRATION)?\.?\s+NO\.?)$",
+    re.I,
+)
+_ROLE_LABEL_PREFIX = re.compile(
+    r"^(?:(?:NAME(?:\s+AND\s+LOGO)?|LOGO|CONTACT\s+PERSON|TELEPHONE|TEL\.?|PHONE|"
+    r"E-?MAIL|EMAIL|WEBSITE|ADDRESS)\s+)+",
+    re.I,
+)
+
 
 def _space(value: Any) -> str:
     return re.sub(r"\s+", " ", str(value or "").replace("\u00a0", " ")).strip()
@@ -42,6 +53,10 @@ def _dedupe(values: list[str]) -> list[str]:
     return out
 
 
+def _is_role_label(value: str) -> bool:
+    return bool(_ROLE_LABEL.fullmatch(_space(value)))
+
+
 def _entities(block: str, validator) -> list[str]:
     pattern = re.compile(
         r"([A-Z0-9][A-Za-z0-9&'().,/+\-]*(?:\s+[A-Z0-9][A-Za-z0-9&'().,/+\-]*){0,10}\s+"
@@ -51,6 +66,7 @@ def _entities(block: str, validator) -> list[str]:
     values = []
     for match in pattern.finditer(_space(block)):
         name = _space(match.group(1)).strip(" ,.;:-")
+        name = _ROLE_LABEL_PREFIX.sub("", name).strip(" ,.;:-")
         if validator(name):
             values.append(name)
     return _dedupe(values)
@@ -77,10 +93,13 @@ def extract_paired_intermediaries(text: str):
                 # position because company names can be wider than the heading.
                 cells = [cell.strip() for cell in re.split(r"\s{4,}", raw.strip()) if cell.strip()]
                 if len(cells) >= 2:
-                    left_cells.append(cells[0])
-                    right_cells.append(cells[-1])
+                    left_cell, right_cell = cells[0], cells[-1]
+                    if not _is_role_label(left_cell):
+                        left_cells.append(left_cell)
+                    if not _is_role_label(right_cell):
+                        right_cells.append(right_cell)
                     continue
-                if not cells:
+                if not cells or _is_role_label(cells[0]):
                     continue
                 # Wrapped single-column fragments are accepted only when their
                 # indentation clearly places them on one side of the boundary.
