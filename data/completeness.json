@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17T01:45:40+05:30",
+  "generatedAt": "2026-09-17T02:16:04+05:30",
   "asOfDate": "2026-09-17",
   "recordCount": 1362,
   "stageCounts": {
@@ -15,14 +15,14 @@
     "exchangeStage": 1353,
     "recentExchange2Y": 441,
     "historicalExchange": 912,
-    "offerDocumentEligible": 242,
+    "offerDocumentEligible": 267,
     "openNow": 9,
     "maturedClosed": 1323
   },
   "scores": {
     "exchangeStage": 83.5,
-    "recentExchange2Y": 99.0,
-    "offerDocumentEligible": 74.3,
+    "recentExchange2Y": 99.1,
+    "offerDocumentEligible": 77.1,
     "openSubscription": 77.8,
     "maturedLifecycle": 97.2,
     "provenance": 100.0
@@ -66,10 +66,10 @@
         "pct": 98.8
       },
       "lotSize": {
-        "present": 431,
+        "present": 435,
         "expected": 1353,
-        "missing": 922,
-        "pct": 31.9
+        "missing": 918,
+        "pct": 32.2
       },
       "issueSizeCr": {
         "present": 439,
@@ -122,10 +122,10 @@
         "pct": 99.3
       },
       "lotSize": {
-        "present": 425,
+        "present": 429,
         "expected": 441,
-        "missing": 16,
-        "pct": 96.4
+        "missing": 12,
+        "pct": 97.3
       },
       "issueSizeCr": {
         "present": 433,
@@ -192,40 +192,40 @@
     },
     "offerDocumentEligible": {
       "registrar": {
-        "present": 223,
-        "expected": 242,
-        "missing": 19,
-        "pct": 92.1
+        "present": 251,
+        "expected": 267,
+        "missing": 16,
+        "pct": 94.0
       },
       "leadManagers": {
-        "present": 224,
-        "expected": 242,
-        "missing": 18,
-        "pct": 92.6
+        "present": 250,
+        "expected": 267,
+        "missing": 17,
+        "pct": 93.6
       },
       "promoters": {
-        "present": 200,
-        "expected": 242,
-        "missing": 42,
-        "pct": 82.6
+        "present": 221,
+        "expected": 267,
+        "missing": 46,
+        "pct": 82.8
       },
       "objectsOfIssue": {
-        "present": 194,
-        "expected": 242,
-        "missing": 48,
-        "pct": 80.2
+        "present": 210,
+        "expected": 267,
+        "missing": 57,
+        "pct": 78.7
       },
       "financials": {
-        "present": 152,
-        "expected": 242,
-        "missing": 90,
-        "pct": 62.8
+        "present": 182,
+        "expected": 267,
+        "missing": 85,
+        "pct": 68.2
       },
       "promoterShareholding": {
-        "present": 86,
-        "expected": 242,
-        "missing": 156,
-        "pct": 35.5
+        "present": 121,
+        "expected": 267,
+        "missing": 146,
+        "pct": 45.3
       }
     },
     "openSubscription": {
@@ -284,8 +284,8 @@
         "pct": 100.0
       },
       "documents": {
-        "present": 247,
-        "expected": 247,
+        "present": 272,
+        "expected": 272,
         "missing": 0,
         "pct": 100.0
       }
@@ -381,30 +381,6 @@
           "stage": "closed"
         },
         {
-          "id": "anondita",
-          "company": "Anondita Medicare Limited",
-          "openDate": "2025-08-22",
-          "stage": "listed"
-        },
-        {
-          "id": "mril",
-          "company": "Mahendra Realtors & Infrastructure Limited",
-          "openDate": "2025-08-12",
-          "stage": "listed"
-        },
-        {
-          "id": "bhadora",
-          "company": "Bhadora Industries Limited",
-          "openDate": "2025-08-04",
-          "stage": "listed"
-        },
-        {
-          "id": "kaytex",
-          "company": "Kaytex Fabrics Limited",
-          "openDate": "2025-07-29",
-          "stage": "listed"
-        },
-        {
           "id": "tsc",
           "company": "TSC India Limited",
           "openDate": "2025-07-23",
@@ -427,6 +403,12 @@
           "company": "Rajputana Biodiesel Limited",
           "openDate": "2024-11-26",
           "stage": "listed"
+        },
+        {
+          "id": "c2cw",
+          "company": "C2C Advanced Systems Limited- Withdrawal Window",
+          "openDate": "2024-11-26",
+          "stage": "closed"
         }
       ],
       "issueSizeCr": [
@@ -581,27 +563,9 @@
           "stage": "listed"
         },
         {
-          "id": "amanta",
-          "company": "Amanta Healthcare Limited",
-          "openDate": "2025-09-01",
-          "stage": "listed"
-        },
-        {
           "id": "snehaa",
           "company": "Snehaa Organics Limited",
           "openDate": "2025-08-29",
-          "stage": "listed"
-        },
-        {
-          "id": "vikran",
-          "company": "Vikran Engineering Limited",
-          "openDate": "2025-08-26",
-          "stage": "listed"
-        },
-        {
-          "id": "sattvaengg",
-          "company": "Sattva Engineering Construction Limited",
-          "openDate": "2025-08-26",
           "stage": "listed"
         },
         {
@@ -611,15 +575,33 @@
           "stage": "listed"
         },
         {
-          "id": "ahcl",
-          "company": "Anlon Healthcare Limited",
-          "openDate": "2025-08-26",
+          "id": "classiceil",
+          "company": "Classic Electrodes (India) Limited",
+          "openDate": "2025-08-22",
           "stage": "listed"
         },
         {
-          "id": "shivashrit",
-          "company": "Shivashrit Foods Limited",
+          "id": "anondita",
+          "company": "Anondita Medicare Limited",
           "openDate": "2025-08-22",
+          "stage": "listed"
+        },
+        {
+          "id": "patelrmart",
+          "company": "Patel Retail Limited",
+          "openDate": "2025-08-19",
+          "stage": "listed"
+        },
+        {
+          "id": "mril",
+          "company": "Mahendra Realtors & Infrastructure Limited",
+          "openDate": "2025-08-12",
+          "stage": "listed"
+        },
+        {
+          "id": "cudml",
+          "company": "Cash Ur Drive Marketing Limited",
+          "openDate": "2025-07-31",
           "stage": "listed"
         }
       ],
@@ -667,39 +649,9 @@
           "stage": "listed"
         },
         {
-          "id": "amanta",
-          "company": "Amanta Healthcare Limited",
-          "openDate": "2025-09-01",
-          "stage": "listed"
-        },
-        {
           "id": "snehaa",
           "company": "Snehaa Organics Limited",
           "openDate": "2025-08-29",
-          "stage": "listed"
-        },
-        {
-          "id": "vikran",
-          "company": "Vikran Engineering Limited",
-          "openDate": "2025-08-26",
-          "stage": "listed"
-        },
-        {
-          "id": "sattvaengg",
-          "company": "Sattva Engineering Construction Limited",
-          "openDate": "2025-08-26",
-          "stage": "listed"
-        },
-        {
-          "id": "current",
-          "company": "Current Infraprojects Limited",
-          "openDate": "2025-08-26",
-          "stage": "listed"
-        },
-        {
-          "id": "ahcl",
-          "company": "Anlon Healthcare Limited",
-          "openDate": "2025-08-26",
           "stage": "listed"
         },
         {
@@ -712,6 +664,36 @@
           "id": "classiceil",
           "company": "Classic Electrodes (India) Limited",
           "openDate": "2025-08-22",
+          "stage": "listed"
+        },
+        {
+          "id": "anondita",
+          "company": "Anondita Medicare Limited",
+          "openDate": "2025-08-22",
+          "stage": "listed"
+        },
+        {
+          "id": "patelrmart",
+          "company": "Patel Retail Limited",
+          "openDate": "2025-08-19",
+          "stage": "listed"
+        },
+        {
+          "id": "studiolsd",
+          "company": "Studio LSD Limited",
+          "openDate": "2025-08-18",
+          "stage": "listed"
+        },
+        {
+          "id": "mril",
+          "company": "Mahendra Realtors & Infrastructure Limited",
+          "openDate": "2025-08-12",
+          "stage": "listed"
+        },
+        {
+          "id": "amcl",
+          "company": "ANB Metal Cast Limited",
+          "openDate": "2025-08-08",
           "stage": "listed"
         }
       ],
@@ -993,12 +975,6 @@
       ],
       "promoterShareholding": [
         {
-          "id": "perniaspop",
-          "company": "Purple Style Labs Limited",
-          "openDate": "2026-08-31",
-          "stage": "listed"
-        },
-        {
           "id": "shankesh",
           "company": "Shankesh Jewellers Limited",
           "openDate": "2026-08-18",
@@ -1032,12 +1008,6 @@
           "id": "anawil",
           "company": "Anawil Wire and Engineering Limited",
           "openDate": "2026-08-03",
-          "stage": "listed"
-        },
-        {
-          "id": "metalic",
-          "company": "Metalic Technoforge Limited",
-          "openDate": "2026-07-21",
           "stage": "listed"
         },
         {
@@ -1080,6 +1050,18 @@
           "id": "shreedhar",
           "company": "Shreedhar Spinners Limited",
           "openDate": "2026-06-23",
+          "stage": "listed"
+        },
+        {
+          "id": "avience",
+          "company": "Avience Biomedicals Limited",
+          "openDate": "2026-06-18",
+          "stage": "listed"
+        },
+        {
+          "id": "claycraft",
+          "company": "Clay Craft India Limited",
+          "openDate": "2026-06-17",
           "stage": "listed"
         }
       ]

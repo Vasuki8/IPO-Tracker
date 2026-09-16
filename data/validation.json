@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-16T20:15:38.175831+00:00",
+  "generatedAt": "2026-09-16T20:46:04.031699+00:00",
   "parserVersion": 22,
   "recordCount": 1362,
   "errorCount": 0,
-  "reviewCount": 1028,
+  "reviewCount": 1098,
   "invalidRecordCount": 0,
-  "reviewRecordCount": 95,
+  "reviewRecordCount": 114,
   "subscriptionAuthority": {
     "officialRecords": 7,
     "secondaryRecords": 7,
@@ -150,12 +150,6 @@
       "field": "financials.FY2026.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
-    },
-    {
-      "id": "steamhouse",
-      "field": "registrar",
-      "severity": "review",
-      "reason": "Existing disclosure retained; no supported source-role table was extracted"
     },
     {
       "id": "rentomojo",
@@ -4082,6 +4076,12 @@
       "reason": "Source table/period evidence has not been revalidated"
     },
     {
+      "id": "striders",
+      "field": "leadManagers",
+      "severity": "review",
+      "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
       "id": "pngsreva",
       "field": "financials.FY2025.ebitdaCr",
       "severity": "review",
@@ -4194,6 +4194,18 @@
       "field": "financials.FY2023.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "mobilise",
+      "field": "leadManagers",
+      "severity": "review",
+      "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "mobilise",
+      "field": "registrar",
+      "severity": "review",
+      "reason": "Existing disclosure retained; no supported source-role table was extracted"
     },
     {
       "id": "cleanmax",
@@ -4392,6 +4404,18 @@
       "field": "financials.FY2024.netWorthCr",
       "severity": "review",
       "reason": "Possible percentage-to-currency extraction contamination; verify source row"
+    },
+    {
+      "id": "manilam",
+      "field": "leadManagers",
+      "severity": "review",
+      "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "manilam",
+      "field": "registrar",
+      "severity": "review",
+      "reason": "Existing disclosure retained; no supported source-role table was extracted"
     },
     {
       "id": "aye",
@@ -4520,6 +4544,42 @@
       "reason": "Possible percentage-to-currency extraction contamination; verify source row"
     },
     {
+      "id": "gjl",
+      "field": "leadManagers",
+      "severity": "review",
+      "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "gjl",
+      "field": "registrar",
+      "severity": "review",
+      "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "brandman",
+      "field": "leadManagers",
+      "severity": "review",
+      "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "brandman",
+      "field": "registrar",
+      "severity": "review",
+      "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "avana",
+      "field": "leadManagers",
+      "severity": "review",
+      "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "shyamdhani",
+      "field": "registrar",
+      "severity": "review",
+      "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
       "id": "gksl",
       "field": "financials.FY2023.netWorthCr",
       "severity": "review",
@@ -4554,6 +4614,30 @@
       "field": "financials.FY2025.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "marc",
+      "field": "leadManagers",
+      "severity": "review",
+      "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "marc",
+      "field": "registrar",
+      "severity": "review",
+      "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "eximroutes",
+      "field": "leadManagers",
+      "severity": "review",
+      "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "eximroutes",
+      "field": "registrar",
+      "severity": "review",
+      "reason": "Existing disclosure retained; no supported source-role table was extracted"
     },
     {
       "id": "nephroplus",
@@ -4704,6 +4788,18 @@
       "field": "financials.FY2024.roePct",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "encompas",
+      "field": "leadManagers",
+      "severity": "review",
+      "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "encompas",
+      "field": "registrar",
+      "severity": "review",
+      "reason": "Existing disclosure retained; no supported source-role table was extracted"
     },
     {
       "id": "aequs",
@@ -5780,14 +5876,254 @@
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
     {
+      "id": "vikran",
+      "field": "financials.FY2023.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "vikran",
+      "field": "financials.FY2023.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "vikran",
+      "field": "financials.FY2024.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "vikran",
+      "field": "financials.FY2024.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
       "id": "meil",
       "field": "financials.FY2023.patCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
     {
+      "id": "vikramsolr",
+      "field": "financials.FY2023.dilutedEps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "vikramsolr",
+      "field": "financials.FY2023.eps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "vikramsolr",
+      "field": "financials.FY2023.netWorthCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "vikramsolr",
+      "field": "financials.FY2023.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "vikramsolr",
+      "field": "financials.FY2023.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "vikramsolr",
+      "field": "financials.FY2024.dilutedEps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "vikramsolr",
+      "field": "financials.FY2024.eps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "vikramsolr",
+      "field": "financials.FY2024.netWorthCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "vikramsolr",
+      "field": "financials.FY2024.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "vikramsolr",
+      "field": "financials.FY2024.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "vikramsolr",
+      "field": "financials.FY2025.dilutedEps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "vikramsolr",
+      "field": "financials.FY2025.eps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "vikramsolr",
+      "field": "financials.FY2025.netWorthCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "vikramsolr",
+      "field": "financials.FY2025.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "vikramsolr",
+      "field": "financials.FY2025.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "patelrmart",
+      "field": "financials.FY2023.netWorthCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "patelrmart",
+      "field": "financials.FY2024.netWorthCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "patelrmart",
+      "field": "financials.FY2025.netWorthCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "gemaroma",
+      "field": "financials.FY2023.netWorthCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "gemaroma",
+      "field": "financials.FY2023.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "gemaroma",
+      "field": "financials.FY2024.netWorthCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "gemaroma",
+      "field": "financials.FY2024.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "gemaroma",
+      "field": "financials.FY2025.netWorthCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "gemaroma",
+      "field": "financials.FY2025.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "studiolsd",
+      "field": "financials.FY2023.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "studiolsd",
+      "field": "financials.FY2024.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "studiolsd",
+      "field": "financials.FY2025.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
       "id": "amcl",
       "field": "financials.FY2023.roePct",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "sawaliya",
+      "field": "financials.FY2023.netWorthCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "sawaliya",
+      "field": "financials.FY2024.netWorthCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "sawaliya",
+      "field": "financials.FY2025.netWorthCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "parth",
+      "field": "financials.FY2023.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "parth",
+      "field": "financials.FY2024.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "parth",
+      "field": "financials.FY2025.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "rnpl",
+      "field": "financials.FY2023.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "rnpl",
+      "field": "financials.FY2024.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "rnpl",
+      "field": "financials.FY2025.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
@@ -5806,6 +6142,90 @@
     {
       "id": "mbel",
       "field": "financials.FY2025.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "cpplus",
+      "field": "financials.FY2023.eps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "cpplus",
+      "field": "financials.FY2023.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "cpplus",
+      "field": "financials.FY2023.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "cpplus",
+      "field": "financials.FY2023.totalIncomeCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "cpplus",
+      "field": "financials.FY2024.eps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "cpplus",
+      "field": "financials.FY2024.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "cpplus",
+      "field": "financials.FY2024.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "cpplus",
+      "field": "financials.FY2024.totalIncomeCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "cpplus",
+      "field": "financials.FY2025.eps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "cpplus",
+      "field": "financials.FY2025.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "cpplus",
+      "field": "financials.FY2025.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "cpplus",
+      "field": "financials.FY2025.totalIncomeCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "sellowrap",
+      "field": "financials.FY2023.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "sellowrap",
+      "field": "financials.FY2023.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
