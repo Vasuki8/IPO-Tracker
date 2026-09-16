@@ -101,6 +101,28 @@ class IssueCompositionConsistencyTests(unittest.TestCase):
         self.assertEqual(record["staticSourcePolicy"]["status"], "pending-revalidation")
         self.assertFalse(any(item["severity"] == "error" for item in validate_record(record)))
 
+    def test_old_generic_price_claim_requires_revalidation_on_every_enforcement_pass(self):
+        record = self.record()
+        evidence = {"sourceUrl": DOC["url"], "documentType": "PROSPECTUS", "value": 138.0,
+                    "evidence": {"heading": "PRICE OF ₹138 PER EQUITY SHARE"}}
+        record["listing"] = {"issuePrice": 138.0, "issuePriceEvidence": copy.deepcopy(evidence)}
+        record["staticFieldProvenance"]["listing.issuePrice"] = evidence
+        record["offerDocumentExtraction"]["canonicalFields"].append("listing.issuePrice")
+        for _ in range(2):
+            enforcement.apply_policy({"ipos": [record]})
+            self.assertNotIn("listing.issuePrice", record["staticFieldProvenance"])
+            self.assertIn("listing.issuePrice", record["staticSourcePolicy"]["pendingRevalidationFields"])
+        self.assertEqual(record["listing"]["issuePrice"], 138.0)
+
+    def test_new_price_clause_evidence_can_revalidate_a_legacy_generic_price(self):
+        record = self.record()
+        parsed = {"issuePrice": 138.0, "fieldEvidence": {"issuePrice": {
+            "heading": "INITIAL PUBLIC OFFER OF 10,000,000 EQUITY SHARES AT A PRICE OF ₹138 PER EQUITY SHARE",
+            "method": "final-offer-price-v2", "page": 2, "value": 138.0}}}
+        policy.apply_final_prospectus_static_fields(record, parsed, DOC, parser_version=27)
+        enforcement.apply_policy({"ipos": [record]})
+        self.assertIn("listing.issuePrice", record["staticFieldProvenance"])
+
     def test_availability_exclusion_cannot_complete_active_quarantine(self):
         record = self.broken_record()
         enforcement.apply_policy({"ipos": [record]})

@@ -265,7 +265,8 @@ def extract_final_issue_price(text: str) -> tuple[float | None, dict[str, Any]]:
                         continue
                 value = _number(match.group(1))
                 if value is not None and 0 < value <= 100_000:
-                    values.append((value, _page_number(page, page_index), match.group(0)))
+                    statement = compact[offers[-1].start():match.end()] if pattern_index == 1 else match.group(0)
+                    values.append((value, _page_number(page, page_index), statement))
     unique = sorted({value for value, _, _ in values})
     if len(unique) != 1:
         return None, {}
@@ -277,6 +278,7 @@ def extract_final_issue_price(text: str) -> tuple[float | None, dict[str, Any]]:
             "heading": evidence_hit[2],
             "value": value,
             "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+            "method": "final-offer-price-v2",
         }
     }
 

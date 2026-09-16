@@ -16,6 +16,7 @@ from __future__ import annotations
 import argparse
 import copy
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -26,6 +27,23 @@ from issue_composition_checks import COMPOSITION_FIELDS, quarantined_fields, rec
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "ipos.json"
+
+
+def _legacy_generic_issue_price(record: dict[str, Any]) -> bool:
+    """Old generic PRICE OF evidence cannot prove the transaction was this IPO."""
+    proofs = [
+        (record.get("staticFieldProvenance") or {}).get("listing.issuePrice"),
+        (record.get("listing") or {}).get("issuePriceEvidence"),
+    ]
+    for proof in proofs:
+        if not isinstance(proof, dict):
+            continue
+        detail = proof.get("evidence") or {}
+        if isinstance(detail, dict) and detail.get("method") != "final-offer-price-v2" and re.match(
+            r"^\s*PRICE\s+OF\b", str(detail.get("heading") or ""), re.I
+        ):
+            return True
+    return False
 
 
 def _quarantine_inconsistent_composition(record: dict[str, Any], checked_at: str) -> None:
@@ -122,6 +140,8 @@ def _extraction_fields(record: dict[str, Any], extraction: Any) -> set[str]:
     if extraction.get("status") != "extracted" or not policy.is_final_prospectus(doc):
         return set()
     blocked = quarantined_fields(record)
+    if _legacy_generic_issue_price(record):
+        blocked.add("listing.issuePrice")
     if record_composition_problems(record):
         blocked |= set(COMPOSITION_FIELDS)
 
@@ -224,6 +244,9 @@ def apply_policy(payload: dict[str, Any]) -> dict[str, int]:
                 # A legacy Final Prospectus marker without matching cell-level
                 # table evidence cannot satisfy the canonical provenance gate.
                 provenance.pop("financials", None)
+                continue
+            if field == "listing.issuePrice" and _legacy_generic_issue_price(record):
+                provenance.pop(field, None)
                 continue
             verified.add(field)
 
