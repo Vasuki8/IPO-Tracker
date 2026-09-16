@@ -32,6 +32,15 @@ QUEUE_FILE = ROOT / "data" / "missing_queue.json"
 PHASE_FILE = ROOT / "data" / "phase_status.json"
 CACHE = ROOT / ".cache/offer-documents"
 IST = timezone(timedelta(hours=5, minutes=30))
+PDF_DOWNLOAD_ATTEMPTS = 3
+PDF_DOWNLOAD_TOTAL_SECONDS = 180
+PDF_MAX_BYTES = 40 * 1024 * 1024
+_TRANSIENT_PDF_ERRORS = (
+    requests.ConnectionError,
+    requests.Timeout,
+    requests.exceptions.ChunkedEncodingError,
+    requests.exceptions.ContentDecodingError,
+)
 
 
 def timestamp():
@@ -41,6 +50,28 @@ def timestamp():
 def document_for(record):
     """Return the safest eligible Final Prospectus, never DRHP/RHP."""
     return identity.choose_candidate(record, source_policy.final_prospectus_candidates(record))
+
+
+def _download_pdf_once(url: str, deadline: float) -> bytes:
+    """Download one bounded PDF attempt without caching partial bytes."""
+    with requests.get(url, headers=core.HEADERS, stream=True, timeout=(15, 30)) as response:
+        response.raise_for_status()
+        chunks, count = [], 0
+        for chunk in response.iter_content(131072):
+            if time.monotonic() > deadline:
+                raise requests.Timeout(
+                    f"Official PDF download exceeded its {PDF_DOWNLOAD_TOTAL_SECONDS}-second total retry budget"
+                )
+            if not chunk:
+                continue
+            count += len(chunk)
+            if count > PDF_MAX_BYTES:
+                raise ValueError("Official PDF exceeds bounded 40 MiB extraction budget")
+            chunks.append(chunk)
+    data = b"".join(chunks)
+    if not data.startswith(b"%PDF"):
+        raise ValueError("Source returned non-PDF content")
+    return data
 
 
 def pdf_bytes(doc):
@@ -53,22 +84,22 @@ def pdf_bytes(doc):
     path = CACHE / (hashlib.sha256(url.encode()).hexdigest() + ".pdf")
     if path.exists():
         return path.read_bytes()
-    started = time.monotonic()
-    with requests.get(url, headers=core.HEADERS, stream=True, timeout=(15, 30)) as response:
-        response.raise_for_status()
-        chunks, count = [], 0
-        for chunk in response.iter_content(131072):
-            if time.monotonic() - started > 120:
-                raise requests.Timeout("Official PDF download exceeded its 120-second total budget")
-            count += len(chunk)
-            if count > 40 * 1024 * 1024:
-                raise ValueError("Official PDF exceeds bounded 40 MiB extraction budget")
-            chunks.append(chunk)
-    data = b"".join(chunks)
-    if not data.startswith(b"%PDF"):
-        raise ValueError("Source returned non-PDF content")
-    path.write_bytes(data)
-    return data
+
+    deadline = time.monotonic() + PDF_DOWNLOAD_TOTAL_SECONDS
+    for attempt in range(1, PDF_DOWNLOAD_ATTEMPTS + 1):
+        try:
+            data = _download_pdf_once(url, deadline)
+            path.write_bytes(data)
+            return data
+        except _TRANSIENT_PDF_ERRORS:
+            if attempt >= PDF_DOWNLOAD_ATTEMPTS or time.monotonic() >= deadline:
+                raise
+            remaining = max(0.0, deadline - time.monotonic())
+            if remaining <= 0:
+                raise
+            time.sleep(min(0.5 * (2 ** (attempt - 1)), 2.0, remaining))
+
+    raise RuntimeError("Official PDF retry loop ended without a result")
 
 
 def extract(record, doc):
