@@ -48,6 +48,35 @@ class SebiPriorityRegisterV2Tests(unittest.TestCase):
         record["documents"].append({"type": "RHP", "url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/example-rhp.html"})
         self.assertTrue(mod.has_primary_landing(record))
 
+    def test_rhp_landing_does_not_stop_final_prospectus_search(self):
+        record = {"documents": [{"type": "RHP", "title": "Example Limited - RHP", "url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/example-rhp.html"}]}
+        self.assertTrue(mod.has_primary_landing(record))
+        self.assertFalse(mod.has_final_prospectus_landing(record))
+
+    def test_final_prospectus_landing_stops_repeat_search(self):
+        record = {"documents": [{"type": "PROSPECTUS", "title": "Example Limited - Prospectus", "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/example-prospectus.html"}]}
+        self.assertTrue(mod.has_final_prospectus_landing(record))
+
+    def test_direct_final_prospectus_stops_repeat_search(self):
+        record = {"documents": [{"type": "PROSPECTUS", "title": "Example Limited - Prospectus", "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/example-prospectus.pdf"}]}
+        self.assertTrue(mod.has_final_prospectus_landing(record))
+
+    def test_final_match_filter_rejects_rhp_for_same_issuer(self):
+        record = {"company": "Example Limited", "openDate": "2026-09-01"}
+        candidates = [
+            {"type": "RHP", "title": "Example Limited - RHP", "company": "Example Limited", "companyKey": mod.core.canonical_company("Example Limited"), "url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/example-rhp.html", "filedDate": "2026-08-28"},
+            {"type": "PROSPECTUS", "title": "Example Limited - Prospectus", "company": "Example Limited", "companyKey": mod.core.canonical_company("Example Limited"), "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/example-prospectus.html", "filedDate": "2026-09-08"},
+        ]
+        matches = mod.final_prospectus_matches(record, candidates)
+        self.assertEqual(len(matches), 1)
+        self.assertEqual(matches[0]["type"], "PROSPECTUS")
+
+    def test_attach_matches_refuses_rhp_even_if_called_directly(self):
+        record = {"documents": []}
+        added = mod._attach_matches(record, [{"type": "RHP", "title": "Example Limited - RHP", "url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/example-rhp.html", "filedDate": "2026-08-28", "sourcePage": mod.SEARCH_URL}])
+        self.assertEqual(added, 0)
+        self.assertEqual(record["documents"], [])
+
     def test_bounded_search_rotates_unattempted_then_oldest_attempts(self):
         records = [
             {"id": "new-attempt", "openDate": "2026-08-20", mod.ATTEMPT_KEY: {"lastAttemptAt": "2026-09-13T12:00:00+05:30"}},
@@ -56,10 +85,7 @@ class SebiPriorityRegisterV2Tests(unittest.TestCase):
             {"id": "newer-unattempted", "openDate": "2026-08-01"},
         ]
         ordered = sorted(records, key=mod.search_candidate_sort_key)
-        self.assertEqual(
-            [row["id"] for row in ordered],
-            ["newer-unattempted", "older-unattempted", "old-attempt", "new-attempt"],
-        )
+        self.assertEqual([row["id"] for row in ordered], ["newer-unattempted", "older-unattempted", "old-attempt", "new-attempt"])
 
 
 if __name__ == "__main__":

@@ -3,7 +3,7 @@ name: Preview source repairs
 on:
   workflow_dispatch:
   pull_request:
-    paths: ['scripts/offer_parser.py', 'scripts/final_prospectus_parser.py', 'scripts/final_prospectus_policy.py', 'scripts/run_offer_documents.py', 'scripts/run_issuer_offer_docs.py', 'scripts/review_source_repairs.py', 'scripts/collect_nse_offer_filings_final_policy.py', 'scripts/enforce_final_prospectus_policy.py', 'scripts/collect_price_history.py', 'scripts/performance_tracking.py', 'scripts/performance_metrics.py', 'scripts/validate_data.py', 'tests/test_*price*.py', 'tests/test_performance_tracking.py', 'tests/test_final_prospectus_source_policy.py', 'tests/test_financial_source_layouts.py', 'tests/fixtures/**', '.github/workflows/source-review.yml']
+    paths: ['scripts/offer_parser.py', 'scripts/final_prospectus_parser.py', 'scripts/final_prospectus_policy.py', 'scripts/run_offer_documents.py', 'scripts/run_issuer_offer_docs.py', 'scripts/review_source_repairs.py', 'scripts/collect_nse_offer_filings_final_policy.py', 'scripts/enrich_sebi_priority_registers_v2.py', 'scripts/enrich_sebi_document_links.py', 'scripts/enforce_final_prospectus_policy.py', 'scripts/build_missing_queue.py', 'scripts/collect_price_history.py', 'scripts/performance_tracking.py', 'scripts/performance_metrics.py', 'scripts/validate_data.py', 'tests/test_*price*.py', 'tests/test_performance_tracking.py', 'tests/test_final_prospectus_source_policy.py', 'tests/test_sebi_priority_registers_v2.py', 'tests/test_financial_source_layouts.py', 'tests/fixtures/**', '.github/workflows/source-review.yml']
 
 permissions:
   contents: read
@@ -27,6 +27,10 @@ jobs:
         run: uv run --frozen python -m unittest discover -s tests -q
       - name: Preview Final Prospectus document repairs
         run: |
+          uv run --frozen python scripts/enforce_final_prospectus_policy.py
+          uv run --frozen python scripts/build_missing_queue.py
+          uv run --frozen python scripts/enrich_sebi_priority_registers_v2.py --priority-max 4 --search-limit 30
+          uv run --frozen python scripts/enrich_sebi_document_links.py --priority-max 4 --limit 30
           uv run --frozen python scripts/collect_nse_offer_filings_final_policy.py --limit 150 --documents-limit 10
           uv run --frozen python scripts/run_offer_documents.py --limit 30 --workers 3
           uv run --frozen python scripts/run_issuer_offer_docs.py --priority-max 4 --limit 20
@@ -39,6 +43,7 @@ jobs:
           path: |
             data/source_review.json
             data/ipos.json
+            data/missing_queue.json
           retention-days: 14
 
   baselines:
@@ -55,6 +60,7 @@ jobs:
       - name: Preview Final-Prospectus baseline and dated market history
         run: |
           uv run --frozen python scripts/enforce_final_prospectus_policy.py
+          uv run --frozen python scripts/build_missing_queue.py
           uv run --frozen python scripts/collect_price_history.py --limit 30
           uv run --frozen python scripts/validate_data.py --strict
           uv run --frozen python scripts/build_performance_summary.py
@@ -65,5 +71,6 @@ jobs:
           name: baseline-preview-${{ github.run_id }}
           path: |
             data/ipos.json
+            data/missing_queue.json
             data/performance_summary.json
           retention-days: 14
