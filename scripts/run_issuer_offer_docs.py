@@ -4,9 +4,15 @@
 Only explicitly final Prospectus documents are eligible to populate canonical
 static IPO fields. Historical DRHP/RHP registry entries remain inert and may be
 retained for document history, but they are never selected by this runner.
+
+The issuer-registry fallback still uses the legacy targeted parser for coverage
+of non-financial fields. Its financial extraction is deliberately observation-
+only: canonical financials are owned by the strict Final Prospectus parser in
+``run_offer_documents.py``, which retains matching source-table evidence.
 """
 from __future__ import annotations
 
+import copy
 import sys
 from pathlib import Path
 from typing import Any
@@ -66,6 +72,28 @@ def _needs_deep_scan_with_revalidation(
 base._needs_deep_scan = _needs_deep_scan_with_revalidation
 
 
+def _canonical_fallback_payload(parsed: dict[str, Any]) -> dict[str, Any]:
+    """Remove legacy financial extraction from the canonical fallback payload.
+
+    ``legacy_offer_parser`` remains useful for bounded targeted extraction of
+    other Final Prospectus fields, but its financial tables do not carry the
+    strict source-table evidence required by canonical validation. Allowing
+    those values through would overwrite strict financials while retaining
+    stale evidence from ``run_offer_documents.py``.
+    """
+    safe = copy.deepcopy(parsed)
+    safe.pop("financials", None)
+    safe["extractedFields"] = [
+        field
+        for field in (safe.get("extractedFields") or [])
+        if field != "financials"
+    ]
+    field_evidence = safe.get("fieldEvidence")
+    if isinstance(field_evidence, dict):
+        field_evidence.pop("financials", None)
+    return safe
+
+
 def merge_validated_offer_enrichment(
     record,
     parsed,
@@ -78,10 +106,11 @@ def merge_validated_offer_enrichment(
     if not source_policy.is_final_prospectus(doc):
         raise ValueError("Verified offer fallback is not a Final Prospectus")
 
+    canonical_parsed = _canonical_fallback_payload(parsed)
     original_changed = list(
         _ORIGINAL_MERGE(
             record,
-            parsed,
+            canonical_parsed,
             doc,
             pdf_hash=pdf_hash,
             pages_read=pages_read,
@@ -93,7 +122,7 @@ def merge_validated_offer_enrichment(
     checked_at = base.core.now_ist().isoformat(timespec="seconds")
     policy_changes = source_policy.apply_final_prospectus_static_fields(
         record,
-        parsed,
+        canonical_parsed,
         doc,
         sha256=pdf_hash,
         parser_version=parser.PARSER_VERSION,
@@ -113,7 +142,7 @@ def merge_validated_offer_enrichment(
     if isinstance(extraction, dict):
         extraction["parserVersion"] = parser.PARSER_VERSION
         extraction["documentType"] = "PROSPECTUS"
-        extraction["extractedFields"] = parsed.get("extractedFields") or []
+        extraction["extractedFields"] = canonical_parsed.get("extractedFields") or []
         extraction["sourcePolicy"] = "final-prospectus-only"
         if extraction_source:
             extraction["source"] = extraction_source
@@ -142,8 +171,8 @@ def merge_validated_offer_enrichment(
         "sourcePolicy": "final-prospectus-only",
     }
     for field in ("lotSize", "priceBand", "issueComposition"):
-        if parsed.get(field) not in (None, "", [], {}):
-            observation[field] = parsed[field]
+        if canonical_parsed.get(field) not in (None, "", [], {}):
+            observation[field] = canonical_parsed[field]
     record.setdefault("observations", {})["FinalProspectus"] = observation
 
     changed_fields = list(dict.fromkeys(
