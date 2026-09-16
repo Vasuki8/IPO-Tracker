@@ -25,6 +25,7 @@ from typing import Any
 
 import audit_data_completeness as audit
 import final_prospectus_policy as final_policy
+from issue_composition_checks import quarantined_fields
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "ipos.json"
@@ -104,7 +105,7 @@ def pending_final_prospectus_fields(record: dict[str, Any], today: date) -> list
     if not isinstance(state, dict) or state.get("policy") != "final-prospectus-only" or not final_prospectus_expected(record, today):
         return []
     allowed = set(final_policy.STATIC_CANONICAL_FIELDS)
-    pending: set[str] = set()
+    pending: set[str] = quarantined_fields(record)
     for raw_field in state.get("pendingRevalidationFields") or []:
         field = str(raw_field)
         if field not in allowed or final_policy.field_value(record, field) in (None, "", [], {}):
@@ -156,7 +157,8 @@ def availability_resolution(record: dict[str, Any], field_name: str) -> dict[str
 def missing_partition(record: dict[str, Any], today: date, *, rules=None):
     rules = rules if rules is not None else expected_rules(record, today)
     raw_missing = [name for name, predicate in rules if not predicate(record)]
-    resolved = [name for name in raw_missing if availability_resolution(record, name)]
+    held = {FINAL_REVALIDATION_PREFIX + field for field in quarantined_fields(record)}
+    resolved = [name for name in raw_missing if name not in held and availability_resolution(record, name)]
     resolved_set = set(resolved)
     actionable = [name for name in raw_missing if name not in resolved_set]
     return rules, raw_missing, actionable, resolved

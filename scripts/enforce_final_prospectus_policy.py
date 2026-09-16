@@ -16,15 +16,84 @@ from __future__ import annotations
 import argparse
 import copy
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 import final_prospectus_identity as identity
 import final_prospectus_policy as policy
+from issue_composition_checks import COMPOSITION_FIELDS, quarantined_fields, record_composition_problems
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "ipos.json"
+
+
+def _legacy_generic_issue_price(record: dict[str, Any]) -> bool:
+    """Old generic PRICE OF evidence cannot prove the transaction was this IPO."""
+    proofs = [
+        (record.get("staticFieldProvenance") or {}).get("listing.issuePrice"),
+        (record.get("listing") or {}).get("issuePriceEvidence"),
+    ]
+    for proof in proofs:
+        if not isinstance(proof, dict):
+            continue
+        detail = proof.get("evidence") or {}
+        if isinstance(detail, dict) and detail.get("method") != "final-offer-price-v2" and re.match(
+            r"^\s*PRICE\s+OF\b", str(detail.get("heading") or ""), re.I
+        ):
+            return True
+    return False
+
+
+def _quarantine_inconsistent_composition(record: dict[str, Any], checked_at: str) -> None:
+    """Withdraw contradictory canonical claims without losing their evidence."""
+    problems = record_composition_problems(record)
+    provenance = record.get("staticFieldProvenance") or {}
+    canonical = any(
+        isinstance(provenance.get(field), dict)
+        and policy.is_final_prospectus({"type": provenance[field].get("documentType")})
+        for field in COMPOSITION_FIELDS
+    )
+    if problems and canonical:
+        before = {field: copy.deepcopy(record.get(field)) for field in COMPOSITION_FIELDS}
+        source_evidence = {field: copy.deepcopy(provenance[field]) for field in COMPOSITION_FIELDS if field in provenance}
+        snapshot = {
+            "field": "issueComposition",
+            "before": before,
+            "after": {field: None for field in COMPOSITION_FIELDS},
+            "reason": "Inconsistent canonical issue amounts/counts quarantined pending Final Prospectus revalidation",
+            "findings": [{"field": field, "reason": reason} for field, reason in problems],
+            "sourceEvidence": source_evidence,
+            "correctedAt": checked_at,
+        }
+        record.setdefault("dataCorrections", []).append(copy.deepcopy(snapshot))
+        record["issueCompositionReview"] = {
+            "status": "quarantined",
+            "fields": list(COMPOSITION_FIELDS),
+            "checkedAt": checked_at,
+            "snapshot": snapshot,
+        }
+        for field in COMPOSITION_FIELDS:
+            record[field] = None
+
+    held = quarantined_fields(record)
+    if not held:
+        return
+    for field in held:
+        provenance.pop(field, None)
+    # Neither legacy extractedFields nor a later enforcement pass may revive
+    # verification for a value withdrawn by this review.
+    for key in ("offerDocumentExtraction", "issuerDocumentExtraction"):
+        extraction = record.get(key)
+        if not isinstance(extraction, dict):
+            continue
+        for field_list in ("canonicalFields", "extractedFields"):
+            if isinstance(extraction.get(field_list), list):
+                extraction[field_list] = [field for field in extraction[field_list] if field not in held]
+    detail = (record.get("documentFieldProvenance") or {}).get("evidence")
+    if isinstance(detail, dict) and "issueComposition" in held:
+        detail.pop("issueComposition", None)
 
 
 def _document_level_financial_evidence(
@@ -70,13 +139,18 @@ def _extraction_fields(record: dict[str, Any], extraction: Any) -> set[str]:
     }
     if extraction.get("status") != "extracted" or not policy.is_final_prospectus(doc):
         return set()
+    blocked = quarantined_fields(record)
+    if _legacy_generic_issue_price(record):
+        blocked.add("listing.issuePrice")
+    if record_composition_problems(record):
+        blocked |= set(COMPOSITION_FIELDS)
 
     # New runners explicitly separate parser recognition from canonical writes.
     # Never promote an unsupported parser result merely because it appeared in
     # ``extractedFields``.
     if isinstance(extraction.get("canonicalFields"), list):
         fields = {str(field) for field in extraction.get("canonicalFields") or []}
-        return fields & set(policy.STATIC_CANONICAL_FIELDS)
+        return (fields & set(policy.STATIC_CANONICAL_FIELDS)) - blocked
 
     # Legacy extraction records predate canonicalFields. Keep the migration
     # compatibility for non-financial static fields, but financials require the
@@ -102,7 +176,7 @@ def _extraction_fields(record: dict[str, Any], extraction: Any) -> set[str]:
             valid = _financial_provenance_valid(record, fake)
         if not valid:
             fields.discard("financials")
-    return fields
+    return fields - blocked
 
 
 def _bootstrap_provenance(record: dict[str, Any], verified: set[str], checked_at: str) -> None:
@@ -149,6 +223,7 @@ def apply_policy(payload: dict[str, Any]) -> dict[str, int]:
         if not isinstance(record, dict):
             continue
         counts["records"] += 1
+        _quarantine_inconsistent_composition(record, checked_at)
         final_doc = identity.choose_candidate(record, policy.final_prospectus_candidates(record))
         if final_doc:
             counts["withFinalProspectus"] += 1
@@ -170,16 +245,19 @@ def apply_policy(payload: dict[str, Any]) -> dict[str, int]:
                 # table evidence cannot satisfy the canonical provenance gate.
                 provenance.pop("financials", None)
                 continue
+            if field == "listing.issuePrice" and _legacy_generic_issue_price(record):
+                provenance.pop(field, None)
+                continue
             verified.add(field)
 
         _bootstrap_provenance(record, verified, checked_at)
 
-        pending = sorted(
+        pending = sorted({
             field
             for field in policy.STATIC_CANONICAL_FIELDS
             if policy.field_value(record, field) not in (None, "", [], {})
             and field not in verified
-        )
+        } | quarantined_fields(record))
 
         if final_doc and not pending:
             status = "verified"

@@ -17,6 +17,8 @@ import re
 from typing import Any
 from urllib.parse import unquote, urlparse
 
+from issue_composition_checks import COMPOSITION_FIELDS, composition_problems, quarantined_fields, record_composition_problems
+
 FINAL_DOCUMENT_TYPES = {"PROSPECTUS", "FINALPROSPECTUS"}
 STATIC_CANONICAL_FIELDS = (
     "priceBand",
@@ -309,7 +311,7 @@ def _static_values(record: dict[str, Any], parsed: dict[str, Any]) -> dict[str, 
         values["listing.issuePrice"] = issue_price
 
     composition = parsed.get("issueComposition")
-    if _present(composition) and isinstance(composition, dict):
+    if _present(composition) and isinstance(composition, dict) and not composition_problems(composition):
         values["issueComposition"] = copy.deepcopy(composition)
         total = composition.get("totalIssueSizeCr")
         fresh = composition.get("freshIssueCr")
@@ -320,6 +322,13 @@ def _static_values(record: dict[str, Any], parsed: dict[str, Any]) -> dict[str, 
             values["freshIssueCr"] = fresh
         if _present(ofs) or ofs == 0:
             values["ofsCr"] = ofs
+        projected = {field: copy.deepcopy(record.get(field)) for field in COMPOSITION_FIELDS}
+        projected.update({field: values[field] for field in COMPOSITION_FIELDS if field in values})
+        if record_composition_problems(projected):
+            # A partial source extraction must not combine a newly evidenced
+            # component with incompatible retained totals from an older source.
+            for field in COMPOSITION_FIELDS:
+                values.pop(field, None)
     return values
 
 
@@ -411,6 +420,18 @@ def apply_final_prospectus_static_fields(
             detail_evidence=_field_detail_evidence(parsed, field),
         )
 
+    # A partial source repair resolves only the fields actually supported by
+    # this extraction. Unread components stay explicitly queued even if null.
+    held = quarantined_fields(record)
+    if held:
+        remaining = held - set(extracted)
+        review = record["issueCompositionReview"]
+        review["fields"] = sorted(remaining)
+        if not remaining:
+            review["status"] = "resolved"
+            review["resolvedAt"] = checked_at
+            review["resolvedSourceUrl"] = source_url
+
     accepted_evidence: dict[str, Any] = {}
     for field in extracted:
         detail = _field_detail_evidence(parsed, field)
@@ -467,6 +488,7 @@ def apply_final_prospectus_static_fields(
         for field in STATIC_CANONICAL_FIELDS
         if _present(field_value(record, field)) and field not in provenance
     ]
+    pending = sorted(set(pending) | quarantined_fields(record))
     record["staticSourcePolicy"] = {
         "policy": "final-prospectus-only",
         "documentUrl": source_url,
