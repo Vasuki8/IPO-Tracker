@@ -76,7 +76,6 @@ Net worth 999 12 10
         repair({"ipos": [row]})
         self.assertEqual(len(row["dataCorrections"]), 1)
 
-
     def test_numbered_rows_and_shared_annual_date_header(self):
         text = """Summary of Restated Consolidated Financial Information
 (in ₹ million)
@@ -109,10 +108,32 @@ Net worth 30 20
         self.assertEqual(conflicts, [])
         self.assertEqual(financials["periods"][0]["revenueCr"], 120)
 
-    def test_issuer_hosted_registered_pdf_is_not_skipped(self):
+    def test_issuer_hosted_rhp_is_skipped_but_final_prospectus_is_allowed(self):
         from run_offer_documents import document_for
-        row = {"company": "Example Limited", "documents": [{"source": "Issuer website", "type": "RHP", "url": "https://issuer.example/official.pdf"}]}
-        self.assertEqual(document_for(row)["url"], "https://issuer.example/official.pdf")
+        rhp = {
+            "company": "Example Limited",
+            "documents": [
+                {
+                    "source": "Issuer website",
+                    "type": "RHP",
+                    "url": "https://issuer.example/rhp.pdf",
+                }
+            ],
+        }
+        self.assertIsNone(document_for(rhp))
+
+        final = {
+            "company": "Example Limited",
+            "documents": [
+                {
+                    "source": "Issuer website",
+                    "type": "PROSPECTUS",
+                    "title": "Final Prospectus",
+                    "url": "https://issuer.example/final.pdf",
+                }
+            ],
+        }
+        self.assertEqual(document_for(final)["url"], "https://issuer.example/final.pdf")
 
 
 if __name__ == "__main__":
