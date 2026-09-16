@@ -125,6 +125,7 @@ jobs:
             uv sync --frozen
             uv run --frozen python scripts/publish_transaction.py --base /tmp/ipo-bundle/base.json --proposed /tmp/ipo-bundle/proposed.json --run-id "$RUN_ID" --source-commit-file /tmp/ipo-bundle/source-commit.txt
             uv run --frozen python scripts/apply_corrections.py
+            uv run --frozen python scripts/apply_verified_recent_issue_terms.py
             uv run --frozen python scripts/validate_data.py --strict
             uv run --frozen python scripts/build_company_pages.py
             uv run --frozen python scripts/audit_data_completeness.py
