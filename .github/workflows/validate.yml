@@ -71,6 +71,7 @@ jobs:
       - name: Validate reviewed data corrections
         run: |
           uv run --frozen python scripts/apply_corrections.py
+          uv run --frozen python scripts/enforce_final_prospectus_policy.py
           uv run --frozen python scripts/validate_data.py --strict
           uv run --frozen python scripts/build_missing_queue.py
           uv run --frozen python scripts/phase_status.py

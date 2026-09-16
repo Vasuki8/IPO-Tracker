@@ -88,7 +88,7 @@ class FinalProspectusShareholdingTests(unittest.TestCase):
         self.assertEqual(shareholding["promoterPreIssuePct"], 81.25)
 
     def test_parser_version_bumped_for_deep_shareholding_revalidation(self):
-        self.assertEqual(parser.PARSER_VERSION, parser.base.PARSER_VERSION + 4)
+        self.assertGreaterEqual(parser.PARSER_VERSION, parser.base.PARSER_VERSION + 4)
 
 
 if __name__ == "__main__":

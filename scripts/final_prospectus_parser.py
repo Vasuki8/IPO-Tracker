@@ -14,8 +14,9 @@ from typing import Any
 
 import legacy_offer_parser as legacy
 import offer_parser as base
+from issue_composition_checks import composition_problems
 
-PARSER_VERSION = base.PARSER_VERSION + 4
+PARSER_VERSION = base.PARSER_VERSION + 5
 extract_pdf_text = base.extract_pdf_text
 valid_manager = base.valid_manager
 valid_registrar = base.valid_registrar
@@ -83,6 +84,52 @@ _SHAREHOLDING_MARKER = re.compile(
 
 _SHARE_FIELDS = ("freshShares", "ofsShares")
 _AMOUNT_FIELDS = ("freshIssueCr", "ofsCr", "totalIssueSizeCr")
+
+# Keep labels adjacent to their own share count. The legacy recognizer searched
+# hundreds of characters past each label and could attach a seller's quantity,
+# an adjacent table column, or a use-of-proceeds amount to the whole offer.
+_COMPOSITION_NUMBER = r"[0-9][0-9,]*"
+_COMPOSITION_FOOTNOTE = r"\s*[*^#†‡]*\s*"
+_COMPOSITION_QUANTITY = (
+    rf"(?:UP\s+TO\s+|UPTO\s+)?(?P<shares>{_COMPOSITION_NUMBER})"
+    + _COMPOSITION_FOOTNOTE
+    + r"(?:FULLY\s+PAID[-\s]?UP\s+)?EQUITY\s+SHARES\b"
+)
+_COMPOSITION_PART = re.compile(
+    r"\b(?P<label>FRESH\s+ISSUE|OFFER\s+FOR\s+SALE)\s*"
+    r"(?::|[-–—])?\s*(?:OF\s+)?" + _COMPOSITION_QUANTITY,
+    re.I,
+)
+_COMPOSITION_INITIAL = re.compile(
+    r"\bINITIAL\s+PUBLIC\s+(?:OFFER(?:ING)?|ISSUE)\s+(?:OF\s+)?"
+    + _COMPOSITION_QUANTITY,
+    re.I,
+)
+_COMPOSITION_MONEY = re.compile(
+    r"\bAGGREGAT(?:ING|ES|E)\s*(?:(?:UP\s*TO|TO)\s*)?"
+    r"(?:₹|RS\.?|INR)\s*(?P<amount>[0-9][0-9,]*(?:\.\d+)?)"
+    + _COMPOSITION_FOOTNOTE
+    + r"(?P<unit>CRORES?|CR\.?|MILLIONS?|LAKHS?|LACS?)\b",
+    re.I,
+)
+_COMPOSITION_BOUNDARY = re.compile(
+    r"\b(?:FRESH\s+ISSUE|OFFER\s+FOR\s+SALE|PRE[-\s]?IPO|"
+    r"NET\s+PROCEEDS|OBJECTS\s+OF|GENERAL\s+CORPORATE|"
+    r"TOTAL\s+(?:ISSUE|OFFER)(?:\s+SIZE)?)\b|"
+    + _COMPOSITION_QUANTITY,
+    re.I,
+)
+_COMPOSITION_SECTION = re.compile(
+    r"^\s*(?:DETAILS\s+OF\s+THE\s+(?:ISSUE|OFFER)(?:\s+TO\s+PUBLIC)?|"
+    r"(?:ISSUE|OFFER)\s+DETAILS|THE\s+(?:OFFER|ISSUE))\s*$",
+    re.I | re.M,
+)
+_COMPOSITION_END = re.compile(
+    r"\b(?:RISKS?\s+IN\s+RELATION|GENERAL\s+RISK|"
+    r"THE\s+FACE\s+VALUE|THE\s+(?:OFFER|ISSUE)\s+(?:WAS|WILL|SHALL)|"
+    r"OUR\s+COMPANY\s+HAS|FOR\s+DETAILS|OBJECTS\s+OF\s+THE)\b",
+    re.I,
+)
 
 
 def _number(token: str) -> float | None:
@@ -190,8 +237,18 @@ def extract_final_issue_price(text: str) -> tuple[float | None, dict[str, Any]]:
     values: list[tuple[float, int, str]] = []
     for page_index, page in enumerate(front_pages, 1):
         compact = " ".join(page.replace("\u00a0", " ").split())
-        for pattern in _PRICE_PATTERNS:
+        for pattern_index, pattern in enumerate(_PRICE_PATTERNS):
             for match in pattern.finditer(compact):
+                if pattern_index == 1:
+                    # A price-band definition also says "price of ... per
+                    # Equity Share". Its floor/cap are bidding limits, not two
+                    # competing final prices (e.g. Manipal's 322/339 band).
+                    before = compact[max(0, match.start() - 40):match.start()]
+                    after = compact[match.end():match.end() + 60]
+                    if re.search(r"\b(?:MINIMUM|MAXIMUM|FLOOR|CAP)\s*$", before, re.I) or re.match(
+                        r"\s*\(\s*(?:THE\s+)?(?:FLOOR|CAP)\s+PRICE\s*\)", after, re.I
+                    ):
+                        continue
                 value = _number(match.group(1))
                 if value is not None and 0 < value <= 100_000:
                     values.append((value, _page_number(page, page_index), match.group(0)))
@@ -301,19 +358,175 @@ def validate_issue_composition(value: Any) -> dict[str, Any] | None:
     if fresh_shares == 0 and ofs_shares == 0:
         return None
 
+    if composition_problems(normalized):
+        return None
+
     return normalized
+
+
+def _composition_blocks(text: str) -> list[tuple[int, str]]:
+    """Prefer the offer narrative; never flatten adjacent cover-table columns."""
+    narratives: list[tuple[int, str]] = []
+    sections: list[tuple[int, str]] = []
+    for index, page in enumerate(str(text or "").split("\f")[:12], 1):
+        page_number = _page_number(page, index)
+        compact = " ".join(page.replace("\u00a0", " ").split())
+        for match in _COMPOSITION_INITIAL.finditer(compact):
+            block = compact[match.start():match.start() + 6000]
+            end = _COMPOSITION_END.search(block, match.end() - match.start())
+            narratives.append((page_number, block[:end.start()] if end else block))
+        for match in _COMPOSITION_SECTION.finditer(page):
+            raw_block = page[match.end():match.end() + 9000]
+            header_lines = raw_block.splitlines()[:6]
+            header = " ".join(" ".join(header_lines).split())
+            if re.search(r"\b(?:FRESH\s+ISSUE|OFFER\s+FOR\s+SALE)\s+SIZE\b", header, re.I):
+                continue
+            if any(
+                len(re.findall(r"\b(?:FRESH\s+ISSUE|OFFER\s+FOR\s+SALE)\b", line, re.I)) > 1
+                and not _COMPOSITION_PART.search(line)
+                for line in header_lines
+            ):
+                continue
+            block = " ".join(raw_block.split())
+            end = _COMPOSITION_END.search(block)
+            sections.append((page_number, block[:end.start()] if end else block))
+    return narratives or sections
+
+
+def _composition_amount(
+    block: str, start: int
+) -> tuple[float | None, int]:
+    """Find the first aggregate amount inside this share-count clause only."""
+    tail = block[start:start + 1000]
+    boundary = _COMPOSITION_BOUNDARY.search(tail)
+    if boundary:
+        tail = tail[:boundary.start()]
+    # A sentence break must not connect an unvalued component to another fact.
+    sentence = re.search(r"(?<![0-9])\.(?=\s|$)|;", tail)
+    if sentence:
+        tail = tail[:sentence.start()]
+    money = _COMPOSITION_MONEY.search(tail)
+    if not money:
+        return None, start
+    amount = _number(money.group("amount"))
+    if amount is None:
+        return None, start
+    unit = money.group("unit").lower()
+    factor = 0.1 if unit.startswith("million") else 0.01 if unit.startswith(("lakh", "lac")) else 1.0
+    return round(amount * factor, 6), start + money.end()
 
 
 def extract_final_issue_composition(
     text: str, price_band: dict[str, Any] | None = None
 ) -> tuple[dict[str, Any] | None, dict[str, Any]]:
-    candidate = legacy.extract_issue_composition(text, price_band)
+    """Extract final offer clauses with independent, auditable field evidence.
+
+    ``price_band`` remains a compatibility argument, but cannot value the final
+    offer. A price stated as the final Issue/Offer Price in this document can.
+    Repeated conflicting clauses fail closed, including conflicting totals.
+    """
+    candidate: dict[str, Any] = {}
+    evidence: dict[str, Any] = {}
+    ambiguous = False
+
+    def observe(field: str, value: float | int, page: int, row: str, basis: str = "explicit final offer clause") -> None:
+        nonlocal ambiguous
+        if field in candidate and candidate[field] != value:
+            ambiguous = True
+            return
+        candidate[field] = value
+        evidence.setdefault(field, {"page": page, "row": row, "normalizedValue": value, "basis": basis})
+
+    for page_number, block in _composition_blocks(text):
+        total = _COMPOSITION_INITIAL.search(block)
+        if total:
+            total_amount, end = _composition_amount(block, total.end())
+            row = block[total.start():max(total.end(), end)]
+            observe("totalShares", int(total.group("shares").replace(",", "")), page_number, row)
+            if total_amount is not None:
+                observe("totalIssueSizeCr", total_amount, page_number, row)
+                # Some fresh-only covers define the entire Initial Public Issue
+                # as the Fresh Issue after its total, rather than before it.
+                definition = re.match(
+                    _COMPOSITION_FOOTNOTE
+                    + r"\(\s*(?:THE\s+)?[\"“'](?:ISSUE[\"”']\s+OR\s+[\"“'])?"
+                    r"FRESH\s+ISSUE[\"”']\s*\)",
+                    block[end:], re.I,
+                )
+                if definition:
+                    row = block[total.start():end + definition.end()]
+                    observe("freshShares", candidate["totalShares"], page_number, row)
+                    observe("freshIssueCr", total_amount, page_number, row)
+        else:
+            for label in re.finditer(r"\bTOTAL\s+(?:ISSUE|OFFER)(?:\s+SIZE)?\b", block, re.I):
+                amount, end = _composition_amount(block, label.end())
+                if amount is not None:
+                    observe("totalIssueSizeCr", amount, page_number, block[label.start():end])
+
+        for match in _COMPOSITION_PART.finditer(block):
+            prefix = "fresh" if match.group("label").upper().startswith("FRESH") else "ofs"
+            shares = int(match.group("shares").replace(",", ""))
+            amount, end = _composition_amount(block, match.end())
+            row = block[match.start():max(match.end(), end)]
+            observe(prefix + "Shares", shares, page_number, row)
+            if amount is not None:
+                observe("freshIssueCr" if prefix == "fresh" else "ofsCr", amount, page_number, row)
+
+        for match in re.finditer(
+            r"\b(?P<label>FRESH\s+ISSUE|OFFER\s+FOR\s+SALE)\s*"
+            r"(?::|[-–—])?\s*(?:IS\s+)?(?:NOT\s+APPLICABLE|NIL|NONE)\b",
+            block, re.I,
+        ):
+            prefix = "fresh" if match.group("label").upper().startswith("FRESH") else "ofs"
+            observe(prefix + "Shares", 0, page_number, match.group(0))
+            observe("freshIssueCr" if prefix == "fresh" else "ofsCr", 0.0, page_number, match.group(0))
+
+    if ambiguous or not any(field in candidate for field in _SHARE_FIELDS):
+        return None, {}
+
+    total_shares = candidate.pop("totalShares", None)
+    if total_shares is not None:
+        fresh, ofs = candidate.get("freshShares"), candidate.get("ofsShares")
+        if fresh is not None and ofs is not None:
+            if fresh + ofs != total_shares:
+                return None, {}
+        elif fresh == total_shares or ofs == total_shares:
+            # An explicit component that equals the entire stated offer proves
+            # there are no shares in the other component; absence alone cannot.
+            missing = "ofs" if fresh == total_shares else "fresh"
+            source = evidence["totalShares"]
+            basis = "stated component equals the entire stated offer share count"
+            observe(missing + "Shares", 0, source["page"], source["row"], basis)
+            observe("ofsCr" if missing == "ofs" else "freshIssueCr", 0.0, source["page"], source["row"], basis)
+
+    final_price, price_evidence = extract_final_issue_price(text)
+    if final_price is not None:
+        candidate["valuationPriceUsed"] = final_price
+        evidence["valuationPriceUsed"] = price_evidence["issuePrice"]
+        for shares_field, amount_field in (("freshShares", "freshIssueCr"), ("ofsShares", "ofsCr")):
+            if shares_field in candidate and amount_field not in candidate:
+                source = evidence[shares_field]
+                amount = round(candidate[shares_field] * final_price / 10_000_000, 6)
+                observe(amount_field, amount, source["page"], source["row"], "explicit share count multiplied by explicit final issue price")
+
+    if "totalIssueSizeCr" not in candidate and all(field in candidate for field in ("freshIssueCr", "ofsCr")):
+        source = evidence["freshIssueCr"]
+        observe("totalIssueSizeCr", round(candidate["freshIssueCr"] + candidate["ofsCr"], 6), source["page"], source["row"], "sum of independently evidenced fresh issue and offer for sale")
+
+    if ambiguous:
+        return None, {}
     composition = validate_issue_composition(candidate)
     if not composition:
         return None, {}
+    first = next(value for key, value in evidence.items() if key != "valuationPriceUsed")
     return composition, {
         "issueComposition": {
             "basis": "validated Final Prospectus issue composition",
+            "method": "bounded-final-offer-clauses-v1",
+            "page": first["page"],
+            "heading": "Final offer composition",
+            "fields": evidence,
+            "totalShares": total_shares,
             "freshShares": composition.get("freshShares"),
             "ofsShares": composition.get("ofsShares"),
             "freshIssueCr": composition.get("freshIssueCr"),
@@ -344,16 +557,14 @@ def parse_document_text(text: str, price_band=None) -> dict[str, Any]:
     else:
         parsed.pop("priceBand", None)
 
-    composition_band = explicit_band
-    if issue_price is not None:
-        composition_band = {"min": issue_price, "max": issue_price}
-    composition, composition_evidence = extract_final_issue_composition(
-        text, composition_band
-    )
+    composition, composition_evidence = extract_final_issue_composition(text)
     if composition is not None:
         parsed["issueComposition"] = composition
+    else:
+        parsed.pop("issueComposition", None)
 
     field_evidence = dict(parsed.get("fieldEvidence") or {})
+    field_evidence.pop("issueComposition", None)
     field_evidence.update(lot_evidence)
     field_evidence.update(shareholding_evidence)
     field_evidence.update(price_evidence)
@@ -364,7 +575,7 @@ def parse_document_text(text: str, price_band=None) -> dict[str, Any]:
     extracted = [
         field
         for field in (parsed.get("extractedFields") or [])
-        if field != "priceBand"
+        if field not in {"priceBand", "issueComposition"}
     ]
     if lot_size is not None and "lotSize" not in extracted:
         extracted.append("lotSize")

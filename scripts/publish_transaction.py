@@ -18,7 +18,15 @@ from update_data import build_validation
 
 MISSING = object()
 FIELD_GROUPS = {
-    'documentFields': ('financials', 'leadManagers', 'registrar', 'documentFieldProvenance', 'offerDocumentExtraction', 'documentRepair'),
+    # A composition, its amount aliases, and its quarantine/provenance state
+    # must come from the same accepted document update. Otherwise concurrent
+    # publication can reattach a rejected amount or detach its review marker.
+    'documentFields': (
+        'financials', 'leadManagers', 'registrar', 'documentFieldProvenance',
+        'offerDocumentExtraction', 'issuerDocumentExtraction', 'documentRepair',
+        'issueComposition', 'issueSizeCr', 'freshIssueCr', 'ofsCr',
+        'issueCompositionReview', 'staticFieldProvenance', 'staticSourcePolicy',
+    ),
     'subscriptionSnapshot': ('subscription', 'subscriptionSource', 'subscriptionSourceUrl', 'subscriptionAsOf', 'subscriptionCollectedAt', 'subscriptionObservedAt', 'subscriptionTimeBasis', 'subscriptionDegraded'),
     'priceSnapshot': ('listing', 'performance', 'listingDate', 'listingDateEvidence'),
     'lotTerms': ('lotSize', 'marketLot', 'minimumBidQuantity', 'lotSizeEvidence'),
