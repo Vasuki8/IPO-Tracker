@@ -48,6 +48,14 @@ DOCUMENT_WORDS = {
     "RHP",
     "UDRHP",
 }
+NON_FINAL_DOCUMENT_TYPES = {
+    "RHP",
+    "DRHP",
+    "UDRHP",
+    "REDHERRINGPROSPECTUS",
+    "DRAFTREDHERRINGPROSPECTUS",
+    "UPDATEDDRAFTREDHERRINGPROSPECTUS",
+}
 
 
 def issuer_key(value: Any) -> str:
@@ -72,6 +80,28 @@ def _contains_issuer(record: dict[str, Any], value: Any) -> bool:
     expected = issuer_key(record.get("company"))
     observed = issuer_key(value)
     return bool(expected and len(expected) >= 5 and expected in observed)
+
+
+def _normal_document_type(value: Any) -> str:
+    return re.sub(r"[^A-Z]+", "", str(value or "").upper())
+
+
+def known_non_final_document_url(record: dict[str, Any], url: Any) -> bool:
+    """Trust an attached explicit RHP/DRHP classification over stale metadata.
+
+    Older extraction records sometimes mislabeled an already attached RHP or
+    abridged RHP URL as ``PROSPECTUS``. Exact URL matching lets us reject only
+    that contradicted source without guessing from filenames or titles.
+    """
+    target = str(url or "").strip()
+    if not target:
+        return False
+    for doc in record.get("documents") or []:
+        if not isinstance(doc, dict) or str(doc.get("url") or "").strip() != target:
+            continue
+        if _normal_document_type(doc.get("type")) in NON_FINAL_DOCUMENT_TYPES:
+            return True
+    return False
 
 
 def official_identity_score(record: dict[str, Any], doc: dict[str, Any]) -> int:
@@ -135,7 +165,9 @@ def date_status(record: dict[str, Any], doc: dict[str, Any]) -> str:
 
 
 def candidate_acceptable(record: dict[str, Any], doc: dict[str, Any]) -> bool:
-    """Reject clearly stale/misattached generic candidates before PDF parsing."""
+    """Reject clearly stale, contradicted, or misattached candidates."""
+    if known_non_final_document_url(record, doc.get("url")):
+        return False
     status = date_status(record, doc)
     return status != "implausible" or official_identity_score(record, doc) > 0
 
