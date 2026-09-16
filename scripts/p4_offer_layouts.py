@@ -12,7 +12,10 @@ from typing import Any
 
 import p4_offer_parser as common
 
-PARSER_VERSION = common.PARSER_VERSION
+# This revision is deliberately independent from the common recognizer version:
+# changing residual scheduling/provenance behavior should allow already-checked
+# documents to be reconsidered exactly once on the next repair pass.
+PARSER_VERSION = 2
 RECENT_DAYS = common.RECENT_DAYS
 valid_promoter_name = common.valid_promoter_name
 valid_promoters = common.valid_promoters
