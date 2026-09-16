@@ -5,8 +5,8 @@ This runner is intentionally narrower than ``run_offer_documents.py``. It only
 revisits recent records that are still incomplete or contain clearly invalid
 legacy promoter/object extraction, reuses the already-linked official document,
 confirms issuer identity, and merges fields recognized by the strict residual
-parser. Current P4 queue records with offer/provenance gaps are always processed
-before general cleanup candidates.
+parser. Current P4 queue records with offer/final-prospectus provenance gaps are
+always processed before general cleanup candidates.
 
 Unsupported layouts remain missing and are retried only after the residual
 parser version changes (unless ``--force`` is supplied).
@@ -156,8 +156,14 @@ def apply_result(
     return changed
 
 
-def _candidate(record: dict[str, Any], force: bool) -> tuple[dict[str, Any], dict[str, Any]] | None:
-    if not residual.needs_repair(record):
+def _candidate(
+    record: dict[str, Any], force: bool, queue_target: bool = False
+) -> tuple[dict[str, Any], dict[str, Any]] | None:
+    # The authoritative missing-data queue is allowed to schedule a retry even
+    # when the generic residual predicates are already satisfied. This matters
+    # for records whose only remaining gaps are Final Prospectus provenance
+    # fields such as lot size, fixed issue price, or issue composition.
+    if not queue_target and not residual.needs_repair(record):
         return None
     doc = base.document_for(record)
     if not doc:
@@ -174,13 +180,18 @@ def _candidate(record: dict[str, Any], force: bool) -> tuple[dict[str, Any], dic
 
 
 def p4_offer_queue_order(queue_payload: dict[str, Any]) -> dict[str, int]:
-    """Map actionable P4 offer/provenance gaps to their authoritative queue order."""
+    """Map actionable P4 offer/final-prospectus gaps to authoritative queue order."""
     ordered: dict[str, int] = {}
     for index, row in enumerate(queue_payload.get("queue") or []):
         if not isinstance(row, dict) or row.get("priority") != 4:
             continue
         missing = [str(field) for field in (row.get("missingFields") or [])]
-        if not any(field.startswith("offer.") or field == "provenance.documents" for field in missing):
+        if not any(
+            field.startswith("offer.")
+            or field.startswith("provenance.finalProspectus.")
+            or field == "provenance.documents"
+            for field in missing
+        ):
             continue
         record_id = str(row.get("id") or "").strip()
         if record_id and record_id not in ordered:
@@ -203,15 +214,16 @@ def run(
     checkpoint=None,
     queue_payload: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
+    queue_order = p4_offer_queue_order(queue_payload if queue_payload is not None else _load_queue_payload())
     candidates = []
     for record in payload.get("ipos") or []:
         if not isinstance(record, dict):
             continue
-        selected = _candidate(record, force)
+        record_id = str(record.get("id") or "")
+        selected = _candidate(record, force, queue_target=record_id in queue_order)
         if selected:
             candidates.append(selected)
 
-    queue_order = p4_offer_queue_order(queue_payload if queue_payload is not None else _load_queue_payload())
     # Stable two-pass ordering: newest general cleanup first, then place actual
     # P4 offer/provenance gaps ahead of it in the queue's existing priority order.
     candidates.sort(
