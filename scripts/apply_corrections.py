@@ -1,4 +1,4 @@
-"""Apply reviewed field corrections only to their exact prior values."""
+"""Apply reviewed corrections without bypassing the Final Prospectus policy."""
 import argparse
 import copy
 import hashlib
@@ -7,9 +7,14 @@ from collections import defaultdict
 from datetime import date
 from pathlib import Path
 from urllib.parse import urlparse
+
+import final_prospectus_policy as source_policy
 from record_integrity import repair
 
 ROOT = Path(__file__).resolve().parents[1]
+_STATIC_TOP_LEVEL = {
+    field for field in source_policy.STATIC_CANONICAL_FIELDS if "." not in field
+}
 
 
 def fingerprint(value):
@@ -28,8 +33,22 @@ def record_evidence(row, entry, before, after):
         row.setdefault('sources', []).append({**copy.deepcopy(source), 'asOf': entry['reviewedAt']})
 
 
+def _final_prospectus_source(entry):
+    source = entry.get('source') if isinstance(entry, dict) else None
+    if not isinstance(source, dict):
+        return False
+    if source_policy.is_final_prospectus(source):
+        return True
+    return source_policy.final_prospectus_from_source(source) is not None
+
+
+def _static_write_allowed(entry):
+    field = str(entry.get('field') or '')
+    return field not in _STATIC_TOP_LEVEL or _final_prospectus_source(entry)
+
+
 def fill_reviewed_fields(rows, entries):
-    """Fill final-notice gaps independently of earlier full-record migrations."""
+    """Fill reviewed gaps without letting notices/exchanges create static terms."""
     applied, conflicts = 0, []
     for entry in entries:
         identity, field, value = entry['identity'], entry['field'], entry['value']
@@ -54,6 +73,13 @@ def fill_reviewed_fields(rows, entries):
         row = rows.get(identity['id'])
         if row is None or any(row.get(key) != expected for key, expected in identity.items()):
             conflicts.append({'id': identity['id'], 'field': field, 'reason': 'Final-notice issuer or offer identity changed'})
+            continue
+        if not _static_write_allowed(entry):
+            conflicts.append({
+                'id': identity['id'],
+                'field': field,
+                'reason': 'Static canonical field requires Final Prospectus evidence',
+            })
             continue
         before = row.get(field)
         if before == value:
@@ -82,11 +108,23 @@ def apply(payload, registry):
         if any(any(row.get(key) != expected for key, expected in entry.get('identity', {}).items()) for entry in corrections):
             conflicts.append({'id': identifier, 'reason': 'Reviewed issuer or offer identity changed'})
             continue
-        changed = [entry['field'] for entry in corrections if row.get(entry['field']) != entry['after'] and fingerprint(row.get(entry['field'])) != entry['beforeHash']]
+        prohibited = [
+            entry['field']
+            for entry in corrections
+            if row.get(entry['field']) != entry['after'] and not _static_write_allowed(entry)
+        ]
+        if prohibited:
+            conflicts.append({
+                'id': identifier,
+                'fields': prohibited,
+                'reason': 'Static canonical fields require Final Prospectus evidence',
+            })
+        allowed = [entry for entry in corrections if _static_write_allowed(entry)]
+        changed = [entry['field'] for entry in allowed if row.get(entry['field']) != entry['after'] and fingerprint(row.get(entry['field'])) != entry['beforeHash']]
         if changed:
             conflicts.append({'id': identifier, 'fields': changed, 'reason': 'Value changed since source review; preserving this record and its matching provenance'})
             continue
-        for correction in corrections:
+        for correction in allowed:
             field = correction['field']
             if row.get(field) != correction['after']:
                 if correction.get('source'):
