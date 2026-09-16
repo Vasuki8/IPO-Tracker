@@ -6,7 +6,7 @@
       "remaining": 0,
       "changedFields": 0,
       "failed": 0,
-      "checkedAt": "2026-09-16T09:30:34+05:30",
+      "checkedAt": "2026-09-16T09:57:47+05:30",
       "outcomes": []
     },
     "errors": [],
@@ -17,9 +17,9 @@
       "reports": 36,
       "failed": 0,
       "errors": [],
-      "checkedAt": "2026-09-16T04:00:40.942464+00:00"
+      "checkedAt": "2026-09-16T04:27:53.026956+00:00"
     },
-    "generatedAt": "2026-09-16T04:02:38.854299+00:00",
+    "generatedAt": "2026-09-16T04:29:29.057668+00:00",
     "historyStart": "2024-09-13",
     "initialSourceRepair": {
       "records": 1354,
@@ -52,7 +52,7 @@
       "failed": 0,
       "errors": [],
       "outcomes": [],
-      "checkedAt": "2026-09-16T04:00:33+00:00"
+      "checkedAt": "2026-09-16T04:27:46+00:00"
     },
     "offerDocumentHealth": {
       "ok": false,
@@ -68,285 +68,207 @@
       ]
     },
     "p4OfferResidualHealth": {
-      "parserVersion": 2,
+      "parserVersion": 3,
       "mainParserVersion": 22,
       "targets": 65,
       "p4QueueTargets": 27,
       "p4QueueTargetsAttempted": 27,
       "attempted": 30,
       "remaining": 35,
-      "changedFields": 60,
-      "failed": 0,
-      "checkedAt": "2026-09-16T09:32:19+05:30",
+      "changedFields": 0,
+      "failed": 3,
+      "checkedAt": "2026-09-16T09:59:12+05:30",
       "outcomes": [
         {
           "id": "aaradhya",
-          "status": "updated",
-          "changedFields": [
-            "objectsOfIssue",
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": true
         },
         {
           "id": "abhapower",
-          "status": "updated",
-          "changedFields": [
-            "objectsOfIssue",
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": true
         },
         {
           "id": "acetec",
-          "status": "updated",
-          "changedFields": [
-            "promoters",
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": true
         },
         {
           "id": "adisoft",
-          "status": "updated",
-          "changedFields": [
-            "objectsOfIssue",
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": true
         },
         {
           "id": "ambaauto",
-          "status": "updated",
-          "changedFields": [
-            "objectsOfIssue",
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": true
         },
         {
           "id": "amcl",
-          "status": "updated",
-          "changedFields": [
-            "objectsOfIssue",
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": true
         },
         {
           "id": "apexeco",
-          "status": "updated",
-          "changedFields": [
-            "objectsOfIssue",
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": true
         },
         {
           "id": "armour",
-          "status": "updated",
-          "changedFields": [
-            "objectsOfIssue",
-            "documents"
-          ],
+          "status": "source_blocked",
+          "parserVersion": 3,
+          "mainParserVersion": 22,
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781091011695_1278.pdf",
+          "checkedAt": "2026-09-16T09:58:23+05:30",
+          "error": "('Connection broken: IncompleteRead(4777808 bytes read, 1833967 more expected)', IncompleteRead(4777808 bytes read, 1833967 more expected))",
           "p4QueueTarget": true
         },
         {
           "id": "c2c",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "promoters",
-            "objectsOfIssue",
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": true
         },
         {
           "id": "credent",
-          "status": "updated",
-          "changedFields": [
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": true
         },
         {
           "id": "dhanlaxmi",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "registrar",
-            "financials",
-            "promoters",
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": true
         },
         {
           "id": "etml",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "registrar",
-            "objectsOfIssue",
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": true
         },
         {
           "id": "eximroutes",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "registrar",
-            "objectsOfIssue",
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": true
         },
         {
           "id": "ganeshin",
-          "status": "updated",
-          "changedFields": [
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": true
         },
         {
           "id": "heromotors",
-          "status": "updated",
-          "changedFields": [
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": false
         },
         {
           "id": "identical",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "objectsOfIssue",
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": true
         },
         {
           "id": "jsipl",
-          "status": "updated",
-          "changedFields": [
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": false
         },
         {
           "id": "mamata",
-          "status": "updated",
-          "changedFields": [
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": true
         },
         {
           "id": "maxvolt",
-          "status": "updated",
-          "changedFields": [
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": true
         },
         {
           "id": "mbel",
-          "status": "updated",
-          "changedFields": [
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": true
         },
         {
           "id": "meesho",
-          "status": "updated",
-          "changedFields": [
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": true
         },
         {
           "id": "meil",
-          "status": "updated",
-          "changedFields": [
-            "objectsOfIssue",
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": true
         },
         {
           "id": "nfpsampoor",
-          "status": "updated",
-          "changedFields": [
-            "objectsOfIssue",
-            "documents"
-          ],
+          "status": "source_blocked",
+          "parserVersion": 3,
+          "mainParserVersion": 22,
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781177415072_1282.pdf",
+          "checkedAt": "2026-09-16T09:58:37+05:30",
+          "error": "('Connection broken: IncompleteRead(3646880 bytes read, 3344534 more expected)', IncompleteRead(3646880 bytes read, 3344534 more expected))",
           "p4QueueTarget": true
         },
         {
           "id": "nmsteel",
-          "status": "updated",
-          "changedFields": [
-            "objectsOfIssue",
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": true
         },
         {
           "id": "nsdl",
-          "status": "updated",
-          "changedFields": [
-            "leadManagers",
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": true
         },
         {
           "id": "nse",
-          "status": "updated",
-          "changedFields": [
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": false
         },
         {
           "id": "optimystix",
-          "status": "updated",
-          "changedFields": [
-            "registrar",
-            "promoters",
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": true
         },
         {
           "id": "pramodini",
-          "status": "updated",
-          "changedFields": [
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": true
         },
         {
           "id": "shreedhar",
-          "status": "updated",
-          "changedFields": [
-            "objectsOfIssue",
-            "documents"
-          ],
+          "status": "no_change",
+          "changedFields": [],
           "p4QueueTarget": true
         },
         {
           "id": "vmobile",
-          "status": "updated",
-          "changedFields": [
-            "documents"
-          ],
+          "status": "source_blocked",
+          "parserVersion": 3,
+          "mainParserVersion": 22,
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788435005522_1347.pdf",
+          "checkedAt": "2026-09-16T09:58:54+05:30",
+          "error": "HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Read timed out. (read timeout=30)",
           "p4QueueTarget": true
         }
       ]
@@ -356,17 +278,17 @@
         "stage": "record_integrity.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.26,
-        "checkedAt": "2026-09-16T04:00:42.424618+00:00",
+        "durationSeconds": 0.16,
+        "checkedAt": "2026-09-16T04:27:54.090725+00:00",
         "diagnostics": "{\"integrityRepairs\": 0}\n"
       },
       "apply_corrections.py": {
         "stage": "apply_corrections.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.29,
-        "checkedAt": "2026-09-16T03:59:24.241761+00:00",
-        "diagnostics": "enance\", \"documentRepair\", \"offerDocumentExtraction\", \"registrar\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"cleanmax\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"aye\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"armour\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"eximroutes\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"torrent-gas-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"national-stock-exchange-of-india-limited\", \"reason\": \"Issuer record no longer exists\"}, {\"id\": \"nopaperforms-solutions-limited\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"m-k-c-agro-fresh-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}]}\n"
+        "durationSeconds": 0.18,
+        "checkedAt": "2026-09-16T04:26:41.050326+00:00",
+        "diagnostics": "ed since source review; preserving this record and its matching provenance\"}, {\"id\": \"cleanmax\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"aye\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"armour\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"objectsOfIssue\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"eximroutes\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"objectsOfIssue\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"torrent-gas-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"national-stock-exchange-of-india-limited\", \"reason\": \"Issuer record no longer exists\"}, {\"id\": \"nopaperforms-solutions-limited\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"m-k-c-agro-fresh-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}]}\n"
       },
       "run_update_v2.py": {
         "stage": "run_update_v2.py",
@@ -412,9 +334,9 @@
         "stage": "run_offer_documents.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.51,
-        "checkedAt": "2026-09-16T04:00:34.497763+00:00",
-        "diagnostics": "{\"parserVersion\": 22, \"attempted\": 0, \"remaining\": 0, \"changedFields\": 0, \"failed\": 0, \"checkedAt\": \"2026-09-16T09:30:34+05:30\"}\n"
+        "durationSeconds": 0.33,
+        "checkedAt": "2026-09-16T04:27:47.273415+00:00",
+        "diagnostics": "{\"parserVersion\": 22, \"attempted\": 0, \"remaining\": 0, \"changedFields\": 0, \"failed\": 0, \"checkedAt\": \"2026-09-16T09:57:47+05:30\"}\n"
       },
       "apply_verified_filing_offer_fields.py": {
         "stage": "apply_verified_filing_offer_fields.py",
@@ -450,46 +372,46 @@
       },
       "run_priority_subscriptions_v3.py": {
         "stage": "run_priority_subscriptions_v3.py",
-        "status": "no_change",
+        "status": "updated",
         "exitCode": 0,
-        "durationSeconds": 67.46,
-        "checkedAt": "2026-09-16T04:00:32.180161+00:00",
-        "diagnostics": "Priority BSE issue index: 25 links across 2 healthy pages\nIPO Premium subscription (secondary): 6 parseable issues\nPriority subscription CENTURY BUSINESS MEDIA LIMITED [IPO Premium secondary]: QIB=3.51 NII=0.73 Retail=0.58 Total=1.45\nPriority subscription INJECTO POLYMERS LIMITED [IPO Premium secondary]: QIB=1.02 NII=0.8 Retail=0.84 Total=0.85\nPriority subscription Manika Plastech Limited [BSE]: QIB=0.8 NII=10.69 Retail=11.45 Total=8.3\nPriority subscription Shakti Polytarp Limited [IPO Premium secondary]: QIB=0.0 NII=1.51 Retail=0.11 Total=0.64\nPriority subscription Vama Wovenfab Limited [IPO Premium secondary]: QIB=0.0 NII=0.01 Retail=0.01 Total=0.01\nPriority subscription Hero Motors Limited [BSE]: QIB=0.0 NII=0.0 Retail=0.0 Total=0.0\nPriority subscription Jindal Supreme (India) Limited [BSE]: QIB=0.0 NII=0.0 Retail=0.0 Total=0.0\nPriority subscription SS Retail Limited [BSE]: QIB=0.0 NII=0.0 Retail=0.0 Total=0.0\nPriority subscriptions v3: attempted=8 updated=8 snapshots_added=0 failed=0 nse=0 bse=4 secondary=4 secondary_sources={'IPO Premium subscription (secondary)': 4}\n"
+        "durationSeconds": 64.17,
+        "checkedAt": "2026-09-16T04:27:45.539283+00:00",
+        "diagnostics": "Priority BSE issue index: 25 links across 2 healthy pages\nIPO Premium subscription (secondary): 6 parseable issues\nPriority subscription CENTURY BUSINESS MEDIA LIMITED [IPO Premium secondary]: QIB=3.51 NII=0.73 Retail=0.62 Total=1.47\nPriority subscription INJECTO POLYMERS LIMITED [IPO Premium secondary]: QIB=1.02 NII=0.8 Retail=0.85 Total=0.85\nPriority subscription Manika Plastech Limited [BSE]: QIB=0.8 NII=10.69 Retail=11.45 Total=8.3\nPriority subscription Shakti Polytarp Limited [IPO Premium secondary]: QIB=0.0 NII=1.52 Retail=0.12 Total=0.65\nPriority subscription Vama Wovenfab Limited [IPO Premium secondary]: QIB=0.0 NII=0.01 Retail=0.01 Total=0.01\nPriority subscription Hero Motors Limited [BSE]: QIB=0.0 NII=0.0 Retail=0.0 Total=0.0\nPriority subscription Jindal Supreme (India) Limited [BSE]: QIB=0.0 NII=0.0 Retail=0.0 Total=0.0\nPriority subscription SS Retail Limited [BSE]: QIB=0.0 NII=0.0 Retail=0.0 Total=0.0\nPriority subscriptions v3: attempted=8 updated=8 snapshots_added=3 failed=0 nse=0 bse=4 secondary=4 secondary_sources={'IPO Premium subscription (secondary)': 4}\n"
       },
       "collect_nse_offer_filings.py": {
         "stage": "collect_nse_offer_filings.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 1.7,
-        "checkedAt": "2026-09-16T04:00:33.933182+00:00",
-        "diagnostics": "{\"registerRows\": 2540, \"candidates\": 0, \"attempted\": 0, \"updated\": 0, \"documentsDiscovered\": 0, \"failed\": 0, \"errors\": [], \"outcomes\": [], \"checkedAt\": \"2026-09-16T04:00:33+00:00\"}\n"
+        "durationSeconds": 1.33,
+        "checkedAt": "2026-09-16T04:27:46.909131+00:00",
+        "diagnostics": "{\"registerRows\": 2540, \"candidates\": 0, \"attempted\": 0, \"updated\": 0, \"documentsDiscovered\": 0, \"failed\": 0, \"errors\": [], \"outcomes\": [], \"checkedAt\": \"2026-09-16T04:27:46+00:00\"}\n"
       },
       "collect_final_issue_prices.py": {
         "stage": "collect_final_issue_prices.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 6.61,
-        "checkedAt": "2026-09-16T04:00:41.159374+00:00",
-        "diagnostics": "{\"updated\": 0, \"candidates\": 66, \"reportRows\": 586, \"reports\": 36, \"failed\": 0, \"errors\": [], \"checkedAt\": \"2026-09-16T04:00:40.942464+00:00\"}\n"
+        "durationSeconds": 5.95,
+        "checkedAt": "2026-09-16T04:27:53.257722+00:00",
+        "diagnostics": "{\"updated\": 0, \"candidates\": 66, \"reportRows\": 586, \"reports\": 36, \"failed\": 0, \"errors\": [], \"checkedAt\": \"2026-09-16T04:27:53.026956+00:00\"}\n"
       },
       "apply_verified_recent_issue_terms.py": {
         "stage": "apply_verified_recent_issue_terms.py",
         "status": "no_change",
         "exitCode": 0,
-        "durationSeconds": 0.36,
-        "checkedAt": "2026-09-16T03:59:24.661763+00:00",
+        "durationSeconds": 0.25,
+        "checkedAt": "2026-09-16T04:26:41.332723+00:00",
         "diagnostics": "Verified issue terms: entries=15, updated=0, fields={}\n"
       }
     },
     "publication": {
-      "runId": "35053842771",
-      "collectorCommit": "24574dea71534069a734322524fbd59f38758aff",
+      "runId": "35055579760",
+      "collectorCommit": "bc8a59d10e0b9015d43245db72b7f79bb860f6f3",
       "status": "published",
       "pendingConflictCount": 0
     },
     "recordCount": 1357,
     "recordIntegrity": {
-      "checkedAt": "2026-09-16T04:02:39.039125+00:00",
+      "checkedAt": "2026-09-16T04:29:29.326779+00:00",
       "changedFields": 0
     },
     "reviewedCorrectionStatus": {
@@ -1343,7 +1265,7 @@
         "degraded": true,
         "records": 8,
         "attempted": 8,
-        "snapshotsAdded": 0,
+        "snapshotsAdded": 3,
         "failed": 0,
         "nseRecords": 0,
         "bseFallbackRecords": 4,
@@ -1351,7 +1273,7 @@
         "secondarySources": {
           "IPO Premium subscription (secondary)": 4
         },
-        "asOf": "2026-09-16T09:30:31+05:30",
+        "asOf": "2026-09-16T09:57:45+05:30",
         "errors": []
       },
       "Critical-backfill": {
@@ -1441,7 +1363,7 @@
         "entries": 15,
         "updated": 0,
         "fields": {},
-        "checkedAt": "2026-09-16T09:32:39+05:30"
+        "checkedAt": "2026-09-16T09:59:29+05:30"
       },
       "verified-recent-offer-fields": {
         "ok": true,
@@ -1729,7 +1651,7 @@
       "degraded": true,
       "attempted": 8,
       "updated": 8,
-      "snapshotsAdded": 0,
+      "snapshotsAdded": 3,
       "failed": 0,
       "nseRecords": 0,
       "bseFallbackRecords": 4,
@@ -1737,7 +1659,7 @@
       "secondarySources": {
         "IPO Premium subscription (secondary)": 4
       },
-      "asOf": "2026-09-16T09:30:31+05:30",
+      "asOf": "2026-09-16T09:57:45+05:30",
       "pageHealth": {
         "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
           "ok": true,
@@ -1750,7 +1672,7 @@
         "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2": {
           "ok": false,
           "records": 0,
-          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f385070ed20>, 'Connection to www.bsesme.c"
+          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7fd230f23da0>, 'Connection to www.bsesme.c"
         }
       },
       "warnings": [
@@ -2344,7 +2266,7 @@
           "name": "BSE cumulative demand",
           "kind": "exchange",
           "url": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7975&status=L",
-          "asOf": "2026-09-16T09:30:31+05:30"
+          "asOf": "2026-09-16T09:57:45+05:30"
         }
       ],
       "source": {
@@ -2408,7 +2330,7 @@
       ],
       "validation": {
         "status": "verified",
-        "checkedAt": "2026-09-16T09:32:38+05:30",
+        "checkedAt": "2026-09-16T09:59:28+05:30",
         "checks": [
           {
             "field": "openDate",
@@ -2986,8 +2908,8 @@
         "retail": 0.0,
         "total": 0.0
       },
-      "subscriptionAsOf": "2026-09-16T09:30:31+05:30",
-      "subscriptionCollectedAt": "2026-09-16T09:30:31+05:30",
+      "subscriptionAsOf": "2026-09-16T09:57:45+05:30",
+      "subscriptionCollectedAt": "2026-09-16T09:57:45+05:30",
       "subscriptionObservedAt": null,
       "subscriptionTimeBasis": "collection-only",
       "subscriptionSource": "BSE cumulative demand",
@@ -3067,7 +2989,7 @@
           "name": "BSE cumulative demand",
           "kind": "exchange",
           "url": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7976&status=L",
-          "asOf": "2026-09-16T09:30:29+05:30"
+          "asOf": "2026-09-16T09:57:44+05:30"
         }
       ],
       "source": {
@@ -3128,7 +3050,7 @@
       ],
       "validation": {
         "status": "verified",
-        "checkedAt": "2026-09-16T09:32:38+05:30",
+        "checkedAt": "2026-09-16T09:59:28+05:30",
         "checks": [
           {
             "field": "openDate",
@@ -3218,7 +3140,7 @@
           "financials",
           "shareholding"
         ],
-        "extractedAt": "2026-09-16T09:32:11+05:30",
+        "extractedAt": "2026-09-16T09:59:05+05:30",
         "conflicts": []
       },
       "profilePath": "ipo/jsipl/",
@@ -3379,7 +3301,7 @@
         "documentDate": null,
         "sha256": "b9e553798fefad161f7738f0487a65a8d06156dd21991fbb051155240d1b502d",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:32:11+05:30",
+        "checkedAt": "2026-09-16T09:59:05+05:30",
         "evidence": {
           "financials": {
             "FY2026.revenueCr": {
@@ -3519,7 +3441,7 @@
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T09:32:11+05:30",
+        "lastAttemptAt": "2026-09-16T09:59:05+05:30",
         "parserVersion": 22
       },
       "issueType": "IPO",
@@ -3529,8 +3451,8 @@
         "retail": 0.0,
         "total": 0.0
       },
-      "subscriptionAsOf": "2026-09-16T09:30:29+05:30",
-      "subscriptionCollectedAt": "2026-09-16T09:30:29+05:30",
+      "subscriptionAsOf": "2026-09-16T09:57:44+05:30",
+      "subscriptionCollectedAt": "2026-09-16T09:57:44+05:30",
       "subscriptionObservedAt": null,
       "subscriptionTimeBasis": "collection-only",
       "subscriptionSource": "BSE cumulative demand",
@@ -3556,14 +3478,12 @@
         "fingerprint": "2a6d5e76fc1093eb3ef85cc0a66942bb2ed776e533a89d717698e7be5315445d"
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Jindal%20Supreme%20(India)%20Limited%20-%20AP_p.PDF",
-        "checkedAt": "2026-09-16T09:32:11+05:30",
-        "changedFields": [
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:59:05+05:30",
+        "changedFields": []
       }
     },
     {
@@ -3615,7 +3535,7 @@
           "name": "BSE cumulative demand",
           "kind": "exchange",
           "url": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7971&status=L",
-          "asOf": "2026-09-16T09:30:28+05:30"
+          "asOf": "2026-09-16T09:57:43+05:30"
         }
       ],
       "source": {
@@ -3681,7 +3601,7 @@
       ],
       "validation": {
         "status": "verified",
-        "checkedAt": "2026-09-16T09:32:38+05:30",
+        "checkedAt": "2026-09-16T09:59:28+05:30",
         "checks": [
           {
             "field": "openDate",
@@ -3783,7 +3703,7 @@
           "financials",
           "shareholding"
         ],
-        "extractedAt": "2026-09-16T09:32:06+05:30",
+        "extractedAt": "2026-09-16T09:58:59+05:30",
         "conflicts": []
       },
       "profilePath": "ipo/heromotors/",
@@ -4138,7 +4058,7 @@
         "documentDate": null,
         "sha256": "e2e39e1b5fd0632748586b09063278774960673b8edd4c29a8a67891213c8b6b",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:32:06+05:30",
+        "checkedAt": "2026-09-16T09:58:59+05:30",
         "evidence": {
           "financials": {
             "FY2026.netWorthCr": {
@@ -4444,7 +4364,7 @@
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T09:32:06+05:30",
+        "lastAttemptAt": "2026-09-16T09:58:59+05:30",
         "parserVersion": 22
       },
       "subscription": {
@@ -4453,8 +4373,8 @@
         "retail": 0.0,
         "total": 0.0
       },
-      "subscriptionAsOf": "2026-09-16T09:30:28+05:30",
-      "subscriptionCollectedAt": "2026-09-16T09:30:28+05:30",
+      "subscriptionAsOf": "2026-09-16T09:57:43+05:30",
+      "subscriptionCollectedAt": "2026-09-16T09:57:43+05:30",
       "subscriptionObservedAt": null,
       "subscriptionTimeBasis": "collection-only",
       "subscriptionSource": "BSE cumulative demand",
@@ -4480,14 +4400,12 @@
         "fingerprint": "2239f6b80ebeccbd0a19be87dde163e854c93fbd7294e74a7f134447c554a224"
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/HERO%20MOTORS%20LIMITED%20-%20AP_p.pdf",
-        "checkedAt": "2026-09-16T09:32:06+05:30",
-        "changedFields": [
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:59+05:30",
+        "changedFields": []
       }
     },
     {
@@ -4548,6 +4466,12 @@
           "kind": "secondary-market-data",
           "url": "https://www.ipopremium.in/view/subscription",
           "asOf": "2026-09-16T09:30:26+05:30"
+        },
+        {
+          "name": "IPO Premium subscription (secondary)",
+          "kind": "secondary-market-data",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "asOf": "2026-09-16T09:57:42+05:30"
         }
       ],
       "source": {
@@ -4580,7 +4504,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T09:32:38+05:30",
+        "checkedAt": "2026-09-16T09:59:28+05:30",
         "checks": [],
         "independentSources": [
           "BSE",
@@ -5164,9 +5088,9 @@
         "retail": 0.01,
         "total": 0.01
       },
-      "subscriptionAsOf": "2026-09-16T09:30:26+05:30",
-      "subscriptionCollectedAt": "2026-09-16T09:30:26+05:30",
-      "subscriptionObservedAt": "2026-09-16T09:08:36+05:30",
+      "subscriptionAsOf": "2026-09-16T09:57:42+05:30",
+      "subscriptionCollectedAt": "2026-09-16T09:57:42+05:30",
+      "subscriptionObservedAt": "2026-09-16T09:32:16+05:30",
       "subscriptionTimeBasis": "source-observation",
       "subscriptionSource": "IPO Premium subscription (secondary)",
       "subscriptionHistory": [
@@ -5251,6 +5175,12 @@
           "kind": "secondary-market-data",
           "url": "https://www.ipopremium.in/view/subscription",
           "asOf": "2026-09-16T09:30:16+05:30"
+        },
+        {
+          "name": "IPO Premium subscription (secondary)",
+          "kind": "secondary-market-data",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "asOf": "2026-09-16T09:57:36+05:30"
         }
       ],
       "source": {
@@ -5289,7 +5219,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T09:32:38+05:30",
+        "checkedAt": "2026-09-16T09:59:28+05:30",
         "checks": [],
         "independentSources": [
           "BSE",
@@ -5482,13 +5412,13 @@
       },
       "subscription": {
         "qib": 0.0,
-        "nii": 1.51,
-        "retail": 0.11,
-        "total": 0.64
+        "nii": 1.52,
+        "retail": 0.12,
+        "total": 0.65
       },
-      "subscriptionAsOf": "2026-09-16T09:30:16+05:30",
-      "subscriptionCollectedAt": "2026-09-16T09:30:16+05:30",
-      "subscriptionObservedAt": "2026-09-16T09:14:31+05:30",
+      "subscriptionAsOf": "2026-09-16T09:57:36+05:30",
+      "subscriptionCollectedAt": "2026-09-16T09:57:36+05:30",
+      "subscriptionObservedAt": "2026-09-16T09:32:11+05:30",
       "subscriptionTimeBasis": "source-observation",
       "subscriptionSource": "IPO Premium subscription (secondary)",
       "subscriptionHistory": [
@@ -5501,6 +5431,16 @@
           "nii": 1.51,
           "retail": 0.11,
           "total": 0.64
+        },
+        {
+          "capturedAt": "2026-09-16T09:57:36+05:30",
+          "observedAt": "2026-09-16T09:32:11+05:30",
+          "source": "IPO Premium subscription (secondary)",
+          "sourceUrl": "https://www.ipopremium.in/view/subscription",
+          "qib": 0.0,
+          "nii": 1.52,
+          "retail": 0.12,
+          "total": 0.65
         }
       ],
       "p4OfferResidualRepair": {
@@ -5608,12 +5548,12 @@
           "name": "BSE cumulative demand",
           "kind": "exchange",
           "url": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7966&status=L",
-          "asOf": "2026-09-16T09:30:09+05:30"
+          "asOf": "2026-09-16T09:57:30+05:30"
         }
       ],
       "validation": {
         "status": "verified",
-        "checkedAt": "2026-09-16T09:32:38+05:30",
+        "checkedAt": "2026-09-16T09:59:28+05:30",
         "checks": [
           {
             "field": "openDate",
@@ -5673,7 +5613,7 @@
       },
       "allotmentDate": null,
       "issueType": "IPO",
-      "subscriptionAsOf": "2026-09-16T09:30:09+05:30",
+      "subscriptionAsOf": "2026-09-16T09:57:30+05:30",
       "subscriptionSource": "BSE cumulative demand",
       "subscriptionHistory": [
         {
@@ -6304,7 +6244,7 @@
         "lastAttemptAt": "2026-09-16T09:22:03+05:30",
         "parserVersion": 22
       },
-      "subscriptionCollectedAt": "2026-09-16T09:30:09+05:30",
+      "subscriptionCollectedAt": "2026-09-16T09:57:30+05:30",
       "subscriptionObservedAt": null,
       "subscriptionTimeBasis": "collection-only",
       "nseOfferFilings": {
@@ -6394,6 +6334,12 @@
           "kind": "secondary-market-data",
           "url": "https://www.ipopremium.in/view/subscription",
           "asOf": "2026-09-16T09:30:08+05:30"
+        },
+        {
+          "name": "IPO Premium subscription (secondary)",
+          "kind": "secondary-market-data",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "asOf": "2026-09-16T09:57:28+05:30"
         }
       ],
       "source": {
@@ -6433,7 +6379,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T09:32:38+05:30",
+        "checkedAt": "2026-09-16T09:59:28+05:30",
         "checks": [],
         "independentSources": [
           "BSE",
@@ -6456,10 +6402,10 @@
       "subscription": {
         "qib": 1.02,
         "nii": 0.8,
-        "retail": 0.84,
+        "retail": 0.85,
         "total": 0.85
       },
-      "subscriptionAsOf": "2026-09-16T09:30:08+05:30",
+      "subscriptionAsOf": "2026-09-16T09:57:28+05:30",
       "subscriptionSource": "IPO Premium subscription (secondary)",
       "subscriptionHistory": [
         {
@@ -6478,6 +6424,16 @@
           "qib": 1.02,
           "nii": 0.8,
           "retail": 0.84,
+          "total": 0.85
+        },
+        {
+          "capturedAt": "2026-09-16T09:57:28+05:30",
+          "observedAt": "2026-09-16T09:32:09+05:30",
+          "source": "IPO Premium subscription (secondary)",
+          "sourceUrl": "https://www.ipopremium.in/view/subscription",
+          "qib": 1.02,
+          "nii": 0.8,
+          "retail": 0.85,
           "total": 0.85
         }
       ],
@@ -7058,8 +7014,8 @@
         "lastAttemptAt": "2026-09-16T09:22:01+05:30",
         "parserVersion": 22
       },
-      "subscriptionCollectedAt": "2026-09-16T09:30:08+05:30",
-      "subscriptionObservedAt": "2026-09-16T08:50:31+05:30",
+      "subscriptionCollectedAt": "2026-09-16T09:57:28+05:30",
+      "subscriptionObservedAt": "2026-09-16T09:32:09+05:30",
       "subscriptionTimeBasis": "source-observation",
       "p4OfferResidualRepair": {
         "status": "updated",
@@ -7173,6 +7129,12 @@
           "kind": "secondary-market-data",
           "url": "https://www.ipopremium.in/view/subscription",
           "asOf": "2026-09-16T09:30:02+05:30"
+        },
+        {
+          "name": "IPO Premium subscription (secondary)",
+          "kind": "secondary-market-data",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "asOf": "2026-09-16T09:57:21+05:30"
         }
       ],
       "source": {
@@ -7205,7 +7167,7 @@
       ],
       "validation": {
         "status": "single-source",
-        "checkedAt": "2026-09-16T09:32:38+05:30",
+        "checkedAt": "2026-09-16T09:59:28+05:30",
         "checks": [],
         "independentSources": [
           "BSE",
@@ -7227,10 +7189,10 @@
       "subscription": {
         "qib": 3.51,
         "nii": 0.73,
-        "retail": 0.58,
-        "total": 1.45
+        "retail": 0.62,
+        "total": 1.47
       },
-      "subscriptionAsOf": "2026-09-16T09:30:02+05:30",
+      "subscriptionAsOf": "2026-09-16T09:57:21+05:30",
       "subscriptionSource": "IPO Premium subscription (secondary)",
       "subscriptionHistory": [
         {
@@ -7250,6 +7212,16 @@
           "nii": 0.73,
           "retail": 0.58,
           "total": 1.45
+        },
+        {
+          "capturedAt": "2026-09-16T09:57:21+05:30",
+          "observedAt": "2026-09-16T09:32:06+05:30",
+          "source": "IPO Premium subscription (secondary)",
+          "sourceUrl": "https://www.ipopremium.in/view/subscription",
+          "qib": 3.51,
+          "nii": 0.73,
+          "retail": 0.62,
+          "total": 1.47
         }
       ],
       "freshIssueCr": 17.11,
@@ -7805,8 +7777,8 @@
         "lastAttemptAt": "2026-09-16T09:22:04+05:30",
         "parserVersion": 22
       },
-      "subscriptionCollectedAt": "2026-09-16T09:30:02+05:30",
-      "subscriptionObservedAt": "2026-09-16T08:01:37+05:30",
+      "subscriptionCollectedAt": "2026-09-16T09:57:21+05:30",
+      "subscriptionObservedAt": "2026-09-16T09:32:06+05:30",
       "subscriptionTimeBasis": "source-observation",
       "p4OfferResidualRepair": {
         "status": "updated",
@@ -25557,7 +25529,7 @@
         "documentDate": null,
         "sha256": "ab0430357a63a4306bb27d5f95b2049c1d3e14845b2d4b8b33a86ffd82999fb7",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:31:47+05:30",
+        "checkedAt": "2026-09-16T09:58:45+05:30",
         "evidence": {
           "financials": {
             "FY2025.revenueCr": {
@@ -25821,13 +25793,13 @@
           "objectsOfIssue",
           "priceBand"
         ],
-        "extractedAt": "2026-09-16T09:31:47+05:30",
+        "extractedAt": "2026-09-16T09:58:45+05:30",
         "conflicts": []
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T09:31:47+05:30",
+        "lastAttemptAt": "2026-09-16T09:58:45+05:30",
         "parserVersion": 22
       },
       "lotSize": 600,
@@ -25876,14 +25848,12 @@
         "fingerprint": "0455d655a4ae75e72ee417cc84df73177681a1916f7805f71a53ef26a47720c4"
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/CredentConnectNCareLimited_PROSP.pdf",
-        "checkedAt": "2026-09-16T09:31:47+05:30",
-        "changedFields": [
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:45+05:30",
+        "changedFields": []
       }
     },
     {
@@ -26721,7 +26691,7 @@
         "documentDate": null,
         "sha256": "26afc19baa3e811359e49c2a367ed299bcd00e7571ccf9bcb551b18cb1f58d15",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:31:34+05:30",
+        "checkedAt": "2026-09-16T09:58:24+05:30",
         "evidence": {
           "financials": {
             "FY2026.revenueCr": {
@@ -26848,7 +26818,7 @@
           "financials",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-16T09:31:34+05:30",
+        "extractedAt": "2026-09-16T09:58:24+05:30",
         "conflicts": [
           "FY2024.revenueCr",
           "FY2025.revenueCr"
@@ -26857,7 +26827,7 @@
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T09:31:34+05:30",
+        "lastAttemptAt": "2026-09-16T09:58:24+05:30",
         "parserVersion": 22
       },
       "nseLotSizeAttempt": {
@@ -26876,14 +26846,12 @@
         "fingerprint": "cf1d74509c5c3305ac02f945bd1ba5113f5a9a10b2762d738f31427542d1bc4c"
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/PramodiniMedicareLimited_PROSP.pdf",
-        "checkedAt": "2026-09-16T09:31:34+05:30",
-        "changedFields": [
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:24+05:30",
+        "changedFields": []
       }
     },
     {
@@ -30056,7 +30024,7 @@
         "documentDate": null,
         "sha256": "b0bbb222bc5b39b200ac8553d5791bdf771769b526353dab7e1c2541b3409219",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:31:26+05:30",
+        "checkedAt": "2026-09-16T09:58:56+05:30",
         "evidence": {
           "financials": {
             "FY2026.revenueCr": {
@@ -30280,13 +30248,13 @@
           "lotSize",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-16T09:31:26+05:30",
+        "extractedAt": "2026-09-16T09:58:56+05:30",
         "conflicts": []
       },
       "documentRepair": {
-        "status": "updated",
+        "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T09:31:26+05:30",
+        "lastAttemptAt": "2026-09-16T09:58:56+05:30",
         "parserVersion": 22
       },
       "listing": {
@@ -30333,16 +30301,12 @@
         }
       ],
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/OptimystixEntertainmentIndiaLimited_PROSP.pdf",
-        "checkedAt": "2026-09-16T09:31:26+05:30",
-        "changedFields": [
-          "registrar",
-          "promoters",
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:56+05:30",
+        "changedFields": []
       }
     },
     {
@@ -38345,14 +38309,12 @@
         }
       ],
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "source_blocked",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788435005522_1347.pdf",
-        "checkedAt": "2026-09-16T09:31:54+05:30",
-        "changedFields": [
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:54+05:30",
+        "error": "HTTPSConnectionPool(host='www.sebi.gov.in', port=443): Read timed out. (read timeout=30)"
       }
     },
     {
@@ -40198,7 +40160,7 @@
         "documentDate": null,
         "sha256": "989c6833f5b8e4f8779e37705d958f3a26411384277bc92e022d4eb81d7ce0dc",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:32:19+05:30",
+        "checkedAt": "2026-09-16T09:59:12+05:30",
         "evidence": {
           "financials": {
             "FY2026.revenueCr": {
@@ -40361,7 +40323,7 @@
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T09:32:19+05:30",
+        "lastAttemptAt": "2026-09-16T09:59:12+05:30",
         "parserVersion": 22
       },
       "financials": {
@@ -40427,7 +40389,7 @@
           "objectsOfIssue",
           "priceBand"
         ],
-        "extractedAt": "2026-09-16T09:32:19+05:30",
+        "extractedAt": "2026-09-16T09:59:12+05:30",
         "conflicts": []
       },
       "promoters": [
@@ -40452,15 +40414,12 @@
         "gainPct": null
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1783337424176_1302.pdf",
-        "checkedAt": "2026-09-16T09:32:19+05:30",
-        "changedFields": [
-          "objectsOfIssue",
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:59:12+05:30",
+        "changedFields": []
       }
     },
     {
@@ -42977,15 +42936,12 @@
         "gainPct": null
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "source_blocked",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781177415072_1282.pdf",
-        "checkedAt": "2026-09-16T09:32:18+05:30",
-        "changedFields": [
-          "objectsOfIssue",
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:37+05:30",
+        "error": "('Connection broken: IncompleteRead(3646880 bytes read, 3344534 more expected)', IncompleteRead(3646880 bytes read, 3344534 more expected))"
       }
     },
     {
@@ -44296,7 +44252,7 @@
         "documentDate": "2026-04-30",
         "sha256": "5df339cb7986c313d9461fcac36be26ecf9c2b52005b69b206961be824affb45",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:31:15+05:30",
+        "checkedAt": "2026-09-16T09:58:01+05:30",
         "evidence": {
           "financials": {},
           "leadManagers": {
@@ -44355,25 +44311,22 @@
           "objectsOfIssue",
           "lotSize"
         ],
-        "extractedAt": "2026-09-16T09:31:15+05:30",
+        "extractedAt": "2026-09-16T09:58:01+05:30",
         "conflicts": []
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "needs_review",
-        "lastAttemptAt": "2026-09-16T09:31:15+05:30",
+        "lastAttemptAt": "2026-09-16T09:58:01+05:30",
         "parserVersion": 22
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/AmbaAutoSalesandServicesLimited_PROSP.pdf",
-        "checkedAt": "2026-09-16T09:31:15+05:30",
-        "changedFields": [
-          "objectsOfIssue",
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:01+05:30",
+        "changedFields": []
       }
     },
     {
@@ -44764,7 +44717,7 @@
         "documentDate": "2026-04-28",
         "sha256": "a2415c2a0ef8af8b98a94be6a4f41feebdca1c18fe2a8587d2b2051985f47bdf",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:31:40+05:30",
+        "checkedAt": "2026-09-16T09:58:31+05:30",
         "evidence": {
           "financials": {
             "FY2025.revenueCr": {
@@ -44914,28 +44867,25 @@
           "priceBand",
           "promoters"
         ],
-        "extractedAt": "2026-09-16T09:31:40+05:30",
+        "extractedAt": "2026-09-16T09:58:31+05:30",
         "conflicts": []
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T09:31:40+05:30",
+        "lastAttemptAt": "2026-09-16T09:58:31+05:30",
         "parserVersion": 22
       },
       "promoters": [
         "Ajay Chandrashekhar Prabhu"
       ],
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/AdisoftTechnologiesLimited_PROSP.pdf",
-        "checkedAt": "2026-09-16T09:31:40+05:30",
-        "changedFields": [
-          "objectsOfIssue",
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:31+05:30",
+        "changedFields": []
       }
     },
     {
@@ -49716,7 +49666,7 @@
         "documentDate": "2026-03-05",
         "sha256": "e872e28b929286ca1ae1bcb2b1f0d199b6461a08bfd1e2f78c51990a05bbbee4",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:31:43+05:30",
+        "checkedAt": "2026-09-16T09:58:06+05:30",
         "evidence": {
           "financials": {
             "FY2025.revenueCr": {
@@ -49957,25 +49907,22 @@
           "lotSize",
           "priceBand"
         ],
-        "extractedAt": "2026-09-16T09:31:43+05:30",
+        "extractedAt": "2026-09-16T09:58:06+05:30",
         "conflicts": []
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T09:31:43+05:30",
+        "lastAttemptAt": "2026-09-16T09:58:06+05:30",
         "parserVersion": 22
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/AcetechE-CommerceLimited_PROSP.pdf",
-        "checkedAt": "2026-09-16T09:31:43+05:30",
-        "changedFields": [
-          "promoters",
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:06+05:30",
+        "changedFields": []
       }
     },
     {
@@ -54239,15 +54186,12 @@
         "gainPct": null
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "source_blocked",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781091011695_1278.pdf",
-        "checkedAt": "2026-09-16T09:32:03+05:30",
-        "changedFields": [
-          "objectsOfIssue",
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:23+05:30",
+        "error": "('Connection broken: IncompleteRead(4777808 bytes read, 1833967 more expected)', IncompleteRead(4777808 bytes read, 1833967 more expected))"
       }
     },
     {
@@ -56315,7 +56259,7 @@
         "documentDate": null,
         "sha256": "1dcbaabde28b42137eeace01374ae51a427f3b84d7e618c3e4a7c7cb8ceefe3b",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:31:21+05:30",
+        "checkedAt": "2026-09-16T09:58:40+05:30",
         "evidence": {
           "financials": {},
           "objectsOfIssue": {
@@ -56358,9 +56302,9 @@
         }
       },
       "documentRepair": {
-        "status": "updated",
+        "status": "no_change",
         "financialStatus": "needs_review",
-        "lastAttemptAt": "2026-09-16T09:31:21+05:30",
+        "lastAttemptAt": "2026-09-16T09:58:40+05:30",
         "parserVersion": 22
       },
       "leadManagers": [
@@ -56402,7 +56346,7 @@
           "leadManagers",
           "registrar"
         ],
-        "extractedAt": "2026-09-16T09:31:21+05:30",
+        "extractedAt": "2026-09-16T09:58:40+05:30",
         "conflicts": []
       },
       "promoters": [
@@ -56435,17 +56379,12 @@
       },
       "registrar": "MAASHITLA SECURITIES PRIVATE LIMITED",
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781177415072_1281.pdf",
-        "checkedAt": "2026-09-16T09:31:21+05:30",
-        "changedFields": [
-          "leadManagers",
-          "registrar",
-          "objectsOfIssue",
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:40+05:30",
+        "changedFields": []
       }
     },
     {
@@ -57939,7 +57878,7 @@
         "documentDate": "2025-12-08",
         "sha256": "68b12bbe43f9441c718b75cb603f7c0dbea5f7163c384c84b7571cebc2da5b5f",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:31:31+05:30",
+        "checkedAt": "2026-09-16T09:58:19+05:30",
         "evidence": {
           "financials": {},
           "leadManagers": {
@@ -57991,13 +57930,13 @@
           "lotSize",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-16T09:31:31+05:30",
+        "extractedAt": "2026-09-16T09:58:19+05:30",
         "conflicts": []
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "needs_review",
-        "lastAttemptAt": "2026-09-16T09:31:31+05:30",
+        "lastAttemptAt": "2026-09-16T09:58:19+05:30",
         "parserVersion": 22
       },
       "objectsOfIssue": [
@@ -58007,14 +57946,12 @@
         }
       ],
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://nsearchives.nseindia.com/corporate/FP_INE0VDM01015_08DEC2025.pdf",
-        "checkedAt": "2026-09-16T09:31:31+05:30",
-        "changedFields": [
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:19+05:30",
+        "changedFields": []
       }
     },
     {
@@ -69404,7 +69341,7 @@
         "documentDate": "2025-08-25",
         "sha256": "4a3480888a5d243576ef1f728209fd17ac328c37b90a492fe303b250c695092f",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:31:58+05:30",
+        "checkedAt": "2026-09-16T09:58:48+05:30",
         "evidence": {
           "financials": {
             "FY2025.revenueCr": {
@@ -69666,7 +69603,7 @@
           "lotSize",
           "priceBand"
         ],
-        "extractedAt": "2026-09-16T09:31:58+05:30",
+        "extractedAt": "2026-09-16T09:58:48+05:30",
         "conflicts": [
           "FY2023.patCr"
         ]
@@ -69674,19 +69611,16 @@
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T09:31:58+05:30",
+        "lastAttemptAt": "2026-09-16T09:58:48+05:30",
         "parserVersion": 22
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://nsearchives.nseindia.com/corporate/FP_INE0PKD01011_25AUG2025.pdf",
-        "checkedAt": "2026-09-16T09:31:58+05:30",
-        "changedFields": [
-          "objectsOfIssue",
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:48+05:30",
+        "changedFields": []
       }
     },
     {
@@ -71277,7 +71211,7 @@
         "documentDate": "2025-08-13",
         "sha256": "c263d3e504b8b900c6a77bd36c882a521f8b6ea0c6e861ee12aea4c07b4704c5",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:31:04+05:30",
+        "checkedAt": "2026-09-16T09:58:28+05:30",
         "evidence": {
           "financials": {
             "FY2025.eps": {
@@ -71615,7 +71549,7 @@
           "promoters",
           "shareholding"
         ],
-        "extractedAt": "2026-09-16T09:31:04+05:30",
+        "extractedAt": "2026-09-16T09:58:28+05:30",
         "conflicts": [
           "FY2023.roePct"
         ]
@@ -71623,7 +71557,7 @@
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T09:31:04+05:30",
+        "lastAttemptAt": "2026-09-16T09:58:28+05:30",
         "parserVersion": 22
       },
       "registrar": "KFIN TECHNOLOGIES LIMITED",
@@ -71636,15 +71570,12 @@
         "promoterPreIssuePct": 91.49
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/ANBMetalCastLimited_PROSP.pdf",
-        "checkedAt": "2026-09-16T09:31:04+05:30",
-        "changedFields": [
-          "objectsOfIssue",
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:28+05:30",
+        "changedFields": []
       }
     },
     {
@@ -73375,7 +73306,7 @@
         "documentDate": "2025-08-07",
         "sha256": "f9314252ea01a5cddca478a65f20c69fd8b7852db2488017bf9ecc63e3606394",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:31:38+05:30",
+        "checkedAt": "2026-09-16T09:58:02+05:30",
         "evidence": {
           "financials": {
             "FY2025.netWorthCr": {
@@ -73596,25 +73527,22 @@
           "objectsOfIssue",
           "lotSize"
         ],
-        "extractedAt": "2026-09-16T09:31:38+05:30",
+        "extractedAt": "2026-09-16T09:58:02+05:30",
         "conflicts": []
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T09:31:38+05:30",
+        "lastAttemptAt": "2026-09-16T09:58:02+05:30",
         "parserVersion": 22
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/AaradhyaDisposalIndustriesLimited_PROSP.pdf",
-        "checkedAt": "2026-09-16T09:31:38+05:30",
-        "changedFields": [
-          "objectsOfIssue",
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:02+05:30",
+        "changedFields": []
       }
     },
     {
@@ -74599,7 +74527,7 @@
         "documentDate": null,
         "sha256": "73f58366e63772ec93c8218aebd81c8580e6f4f80b92ed9c46d41f2fb4f9a794",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:31:27+05:30",
+        "checkedAt": "2026-09-16T09:58:49+05:30",
         "evidence": {
           "financials": {
             "FY2025.totalIncomeCr": {
@@ -74717,27 +74645,24 @@
           "financials",
           "leadManagers"
         ],
-        "extractedAt": "2026-09-16T09:31:27+05:30",
+        "extractedAt": "2026-09-16T09:58:49+05:30",
         "conflicts": []
       },
       "documentRepair": {
-        "status": "updated",
+        "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T09:31:27+05:30",
+        "lastAttemptAt": "2026-09-16T09:58:49+05:30",
         "parserVersion": 22
       },
       "lotSize": 18,
       "listingDate": "2025-08-06",
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://nsearchives.nseindia.com/content/equities/NSDL_RHP.pdf",
-        "checkedAt": "2026-09-16T09:31:27+05:30",
-        "changedFields": [
-          "leadManagers",
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:49+05:30",
+        "changedFields": []
       }
     },
     {
@@ -74977,7 +74902,7 @@
         "documentDate": "2025-08-04",
         "sha256": "e20a311a4d4473a5ee93a683023f831e009a6910524a9044f48d367acf513219",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:31:48+05:30",
+        "checkedAt": "2026-09-16T09:58:43+05:30",
         "evidence": {
           "financials": {
             "FY2025.ebitdaCr": {
@@ -75211,7 +75136,7 @@
           "priceBand",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-16T09:31:48+05:30",
+        "extractedAt": "2026-09-16T09:58:43+05:30",
         "conflicts": [
           "FY2023.revenueCr",
           "FY2024.revenueCr",
@@ -75221,7 +75146,7 @@
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T09:31:48+05:30",
+        "lastAttemptAt": "2026-09-16T09:58:43+05:30",
         "parserVersion": 22
       },
       "objectsOfIssue": [
@@ -75243,14 +75168,12 @@
         }
       ],
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://nsearchives.nseindia.com/corporate/FP_INE08N601015_04AUG2025.pdf",
-        "checkedAt": "2026-09-16T09:31:48+05:30",
-        "changedFields": [
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:43+05:30",
+        "changedFields": []
       }
     },
     {
@@ -84890,7 +84813,7 @@
         "documentDate": "2025-02-14",
         "sha256": "e02b8f6b96e0933b3a57a2777e601a65637242aab502780b901b75cd718e45fc",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:31:20+05:30",
+        "checkedAt": "2026-09-16T09:58:21+05:30",
         "evidence": {
           "financials": {},
           "leadManagers": {
@@ -84955,13 +84878,13 @@
           "priceBand",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-16T09:31:20+05:30",
+        "extractedAt": "2026-09-16T09:58:21+05:30",
         "conflicts": []
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "needs_review",
-        "lastAttemptAt": "2026-09-16T09:31:20+05:30",
+        "lastAttemptAt": "2026-09-16T09:58:21+05:30",
         "parserVersion": 22
       },
       "objectsOfIssue": [
@@ -84979,14 +84902,12 @@
         }
       ],
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/MaxvoltEnergyIndustriesLimited_PROSP.pdf",
-        "checkedAt": "2026-09-16T09:31:20+05:30",
-        "changedFields": [
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:21+05:30",
+        "changedFields": []
       }
     },
     {
@@ -89059,7 +88980,7 @@
         "documentDate": null,
         "sha256": "1d1173059941837f8cfb35d06452c217074165d9f08958e92fc31e8d7937b614",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:31:30+05:30",
+        "checkedAt": "2026-09-16T09:58:56+05:30",
         "evidence": {
           "financials": {
             "FY2024.ebitdaCr": {
@@ -89195,6 +89116,10 @@
                 "amountCr": 1.355
               }
             ]
+          },
+          "shareholding": {
+            "basis": "explicit aggregate pre-issue promoter Total row",
+            "promoterPreIssuePct": 99.8
           }
         }
       },
@@ -89216,9 +89141,10 @@
           "objectsOfIssue",
           "lotSize",
           "priceBand",
-          "promoters"
+          "promoters",
+          "shareholding"
         ],
-        "extractedAt": "2026-09-16T09:31:30+05:30",
+        "extractedAt": "2026-09-16T09:58:56+05:30",
         "conflicts": [
           "FY2022.patCr",
           "FY2022.revenueCr",
@@ -89231,7 +89157,7 @@
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T09:31:30+05:30",
+        "lastAttemptAt": "2026-09-16T09:58:56+05:30",
         "parserVersion": 22
       },
       "listing": {
@@ -89258,15 +89184,16 @@
         "Molly Varghese"
       ],
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/NewmalayalamSteelLimited_PROSP.pdf",
-        "checkedAt": "2026-09-16T09:31:30+05:30",
-        "changedFields": [
-          "objectsOfIssue",
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:56+05:30",
+        "changedFields": []
+      },
+      "shareholding": {
+        "promoters": [],
+        "promoterPreIssuePct": 99.8
       }
     },
     {
@@ -89521,7 +89448,7 @@
         "documentDate": "2024-12-25",
         "sha256": "150adea4bf2e3567a40ee6450b50f082ed62cfa8be3e821db86f20bd44001fc6",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:31:53+05:30",
+        "checkedAt": "2026-09-16T09:58:15+05:30",
         "evidence": {
           "financials": {
             "FY2024.totalIncomeCr": {
@@ -89677,24 +89604,22 @@
           "lotSize",
           "priceBand"
         ],
-        "extractedAt": "2026-09-16T09:31:53+05:30",
+        "extractedAt": "2026-09-16T09:58:15+05:30",
         "conflicts": []
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T09:31:53+05:30",
+        "lastAttemptAt": "2026-09-16T09:58:15+05:30",
         "parserVersion": 22
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://nsearchives.nseindia.com/corporate/FP_INE0TO701015_25DEC2024.pdf",
-        "checkedAt": "2026-09-16T09:31:53+05:30",
-        "changedFields": [
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:15+05:30",
+        "changedFields": []
       }
     },
     {
@@ -90279,7 +90204,7 @@
         "documentDate": null,
         "sha256": "a99523b4b256c15338201a46d6a093d0ecb9d6bf331e19fa632d02ee605eed4e",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:31:02+05:30",
+        "checkedAt": "2026-09-16T09:58:13+05:30",
         "evidence": {
           "financials": {},
           "registrar": {
@@ -90354,13 +90279,13 @@
           "lotSize",
           "leadManagers"
         ],
-        "extractedAt": "2026-09-16T09:31:02+05:30",
+        "extractedAt": "2026-09-16T09:58:13+05:30",
         "conflicts": []
       },
       "documentRepair": {
-        "status": "updated",
+        "status": "no_change",
         "financialStatus": "needs_review",
-        "lastAttemptAt": "2026-09-16T09:31:02+05:30",
+        "lastAttemptAt": "2026-09-16T09:58:13+05:30",
         "parserVersion": 22
       },
       "listing": {
@@ -90388,16 +90313,12 @@
         "fingerprint": "208b4c05cab228f308466eca4f827e6dd012ebf6821798180caf17a190167b69"
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/IdenticalBrainsStudiosLimited_PROSP.pdf",
-        "checkedAt": "2026-09-16T09:31:02+05:30",
-        "changedFields": [
-          "leadManagers",
-          "objectsOfIssue",
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:13+05:30",
+        "changedFields": []
       }
     },
     {
@@ -91638,7 +91559,7 @@
         "documentDate": null,
         "sha256": "fd0dcf154e87d220c5b2e405023d9f9befb24929ad73f450c0783b1d430bc7cc",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:30:58+05:30",
+        "checkedAt": "2026-09-16T09:58:49+05:30",
         "evidence": {
           "financials": {
             "FY2024.revenueCr": {
@@ -91787,13 +91708,13 @@
           "objectsOfIssue",
           "financials"
         ],
-        "extractedAt": "2026-09-16T09:30:58+05:30",
+        "extractedAt": "2026-09-16T09:58:49+05:30",
         "conflicts": []
       },
       "documentRepair": {
-        "status": "updated",
+        "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T09:30:58+05:30",
+        "lastAttemptAt": "2026-09-16T09:58:49+05:30",
         "parserVersion": 22
       },
       "listing": {
@@ -91879,18 +91800,12 @@
         }
       ],
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/DhanlaxmiCropScienceLimited_PROSP.pdf",
-        "checkedAt": "2026-09-16T09:30:58+05:30",
-        "changedFields": [
-          "leadManagers",
-          "registrar",
-          "financials",
-          "promoters",
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:49+05:30",
+        "changedFields": []
       }
     },
     {
@@ -92240,7 +92155,7 @@
         "documentDate": null,
         "sha256": "fceace5be82cca8e47ec128eccbd186813ded19b08d1c2c87ff2d267f5bff1a2",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:30:51+05:30",
+        "checkedAt": "2026-09-16T09:58:06+05:30",
         "evidence": {
           "financials": {
             "FY2024.netWorthCr": {
@@ -92500,13 +92415,13 @@
           "registrar",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-16T09:30:51+05:30",
+        "extractedAt": "2026-09-16T09:58:06+05:30",
         "conflicts": []
       },
       "documentRepair": {
-        "status": "updated",
+        "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T09:30:51+05:30",
+        "lastAttemptAt": "2026-09-16T09:58:06+05:30",
         "parserVersion": 22
       },
       "listing": {
@@ -92535,17 +92450,12 @@
       },
       "registrar": "Link Intime India Private Limited",
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/EmeraldTyreManufacturersLimited_PROSP.pdf",
-        "checkedAt": "2026-09-16T09:30:51+05:30",
-        "changedFields": [
-          "leadManagers",
-          "registrar",
-          "objectsOfIssue",
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:06+05:30",
+        "changedFields": []
       }
     },
     {
@@ -92868,7 +92778,7 @@
         "documentDate": null,
         "sha256": "b2023a632e38b068e1c578643b8e56e186f6512b890354c1ce3c7c3fcc7b502d",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:30:58+05:30",
+        "checkedAt": "2026-09-16T09:58:11+05:30",
         "evidence": {
           "financials": {},
           "leadManagers": {
@@ -92905,6 +92815,10 @@
             "entities": [
               "our Directors"
             ]
+          },
+          "shareholding": {
+            "basis": "explicit aggregate pre-issue promoter Total row",
+            "promoterPreIssuePct": 81.84
           }
         }
       },
@@ -92923,15 +92837,16 @@
           "leadManagers",
           "registrar",
           "promoters",
-          "objectsOfIssue"
+          "objectsOfIssue",
+          "shareholding"
         ],
-        "extractedAt": "2026-09-16T09:30:58+05:30",
+        "extractedAt": "2026-09-16T09:58:11+05:30",
         "conflicts": []
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "needs_review",
-        "lastAttemptAt": "2026-09-16T09:30:58+05:30",
+        "lastAttemptAt": "2026-09-16T09:58:11+05:30",
         "parserVersion": 22
       },
       "listing": {
@@ -92961,14 +92876,16 @@
         }
       ],
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/GaneshInfraworldLimited_PROSP.pdf",
-        "checkedAt": "2026-09-16T09:30:58+05:30",
-        "changedFields": [
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:11+05:30",
+        "changedFields": []
+      },
+      "shareholding": {
+        "promoters": [],
+        "promoterPreIssuePct": 81.84
       }
     },
     {
@@ -93387,7 +93304,7 @@
         "documentDate": null,
         "sha256": "e7761bcea68c41735b290e63eb3ae1d3884a902d2f7b362d3a3ebea8a831fbd6",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:30:50+05:30",
+        "checkedAt": "2026-09-16T09:57:58+05:30",
         "evidence": {
           "financials": {},
           "leadManagers": {
@@ -93438,13 +93355,13 @@
           "promoters",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-16T09:30:50+05:30",
+        "extractedAt": "2026-09-16T09:57:58+05:30",
         "conflicts": []
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "needs_review",
-        "lastAttemptAt": "2026-09-16T09:30:50+05:30",
+        "lastAttemptAt": "2026-09-16T09:57:58+05:30",
         "parserVersion": 22
       },
       "listing": {
@@ -93472,15 +93389,12 @@
         "fingerprint": "3b1be9aa3aa02187cb0d67995364fb8ed509f26f038eda76d20f2e607a0b330e"
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/ApexEcotechLimited_PROSP.pdf",
-        "checkedAt": "2026-09-16T09:30:50+05:30",
-        "changedFields": [
-          "objectsOfIssue",
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:57:58+05:30",
+        "changedFields": []
       }
     },
     {
@@ -93761,7 +93675,7 @@
         "documentDate": null,
         "sha256": "9901bf1ac6c93df9461aa44cbd23d3d1fc86dde35e512d0b57e340ba1e8c87ec",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:31:12+05:30",
+        "checkedAt": "2026-09-16T09:58:00+05:30",
         "evidence": {
           "financials": {},
           "leadManagers": {
@@ -93828,13 +93742,13 @@
           "promoters",
           "objectsOfIssue"
         ],
-        "extractedAt": "2026-09-16T09:31:12+05:30",
+        "extractedAt": "2026-09-16T09:58:00+05:30",
         "conflicts": []
       },
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "needs_review",
-        "lastAttemptAt": "2026-09-16T09:31:12+05:30",
+        "lastAttemptAt": "2026-09-16T09:58:00+05:30",
         "parserVersion": 22
       },
       "listing": {
@@ -93854,15 +93768,12 @@
         "gainPct": null
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/AbhaPowerandSteelLimited_PROSP.pdf",
-        "checkedAt": "2026-09-16T09:31:12+05:30",
-        "changedFields": [
-          "objectsOfIssue",
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:00+05:30",
+        "changedFields": []
       }
     },
     {
@@ -94577,7 +94488,7 @@
         "documentDate": null,
         "sha256": "eb0b1ffa198e2787c1695786610ab90a630dae4290d9ee656cece7c56fc511ef",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:30:51+05:30",
+        "checkedAt": "2026-09-16T09:58:37+05:30",
         "evidence": {
           "financials": {},
           "registrar": {
@@ -94662,13 +94573,13 @@
           "leadManagers",
           "shareholding"
         ],
-        "extractedAt": "2026-09-16T09:30:51+05:30",
+        "extractedAt": "2026-09-16T09:58:37+05:30",
         "conflicts": []
       },
       "documentRepair": {
-        "status": "updated",
+        "status": "no_change",
         "financialStatus": "needs_review",
-        "lastAttemptAt": "2026-09-16T09:30:51+05:30",
+        "lastAttemptAt": "2026-09-16T09:58:37+05:30",
         "parserVersion": 22
       },
       "listing": {
@@ -94700,17 +94611,12 @@
         "promoterPreIssuePct": 55.29
       },
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/C2CAdvancedSystemsLimited_PROSP.pdf",
-        "checkedAt": "2026-09-16T09:30:51+05:30",
-        "changedFields": [
-          "leadManagers",
-          "promoters",
-          "objectsOfIssue",
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:37+05:30",
+        "changedFields": []
       }
     },
     {
@@ -152835,7 +152741,7 @@
         "extractedFields": [
           "financials"
         ],
-        "extractedAt": "2026-09-16T09:32:02+05:30",
+        "extractedAt": "2026-09-16T09:58:58+05:30",
         "conflicts": []
       },
       "profilePath": "ipo/nse/",
@@ -152960,7 +152866,7 @@
         "documentDate": null,
         "sha256": "1e40a9a00dbc56acbd8d20389347ccd5c92c8e202e8e76e06021d85bea58baff",
         "parserVersion": 22,
-        "checkedAt": "2026-09-16T09:32:02+05:30",
+        "checkedAt": "2026-09-16T09:58:58+05:30",
         "evidence": {
           "financials": {
             "FY2026.netWorthCr": {
@@ -153242,7 +153148,7 @@
       "documentRepair": {
         "status": "no_change",
         "financialStatus": "validated",
-        "lastAttemptAt": "2026-09-16T09:32:02+05:30",
+        "lastAttemptAt": "2026-09-16T09:58:58+05:30",
         "parserVersion": 22
       },
       "issueType": "IPO",
@@ -153508,14 +153414,12 @@
         }
       ],
       "p4OfferResidualRepair": {
-        "status": "updated",
-        "parserVersion": 2,
+        "status": "no_change",
+        "parserVersion": 3,
         "mainParserVersion": 22,
         "documentUrl": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/NATIONAL%20STOCK%20EXCHANGE%20OF%20INDIA%20LIMITED%20-%20AP_p.pdf",
-        "checkedAt": "2026-09-16T09:32:02+05:30",
-        "changedFields": [
-          "documents"
-        ]
+        "checkedAt": "2026-09-16T09:58:58+05:30",
+        "changedFields": []
       }
     },
     {
