@@ -30,6 +30,7 @@ STATIC_CANONICAL_FIELDS = (
     "financials",
     "objectsOfIssue",
     "shareholding",
+    "listing.issuePrice",
 )
 
 _FINAL_SOURCE_HOSTS = {
@@ -164,6 +165,22 @@ def _present(value: Any) -> bool:
     return value not in (None, "", [], {})
 
 
+def field_value(record: dict[str, Any], field: str) -> Any:
+    if field == "listing.issuePrice":
+        listing = record.get("listing")
+        return listing.get("issuePrice") if isinstance(listing, dict) else None
+    return record.get(field)
+
+
+def _set_field_value(record: dict[str, Any], field: str, value: Any) -> None:
+    if field == "listing.issuePrice":
+        listing = dict(record.get("listing") or {})
+        listing["issuePrice"] = copy.deepcopy(value)
+        record["listing"] = listing
+    else:
+        record[field] = copy.deepcopy(value)
+
+
 def _static_values(parsed: dict[str, Any]) -> dict[str, Any]:
     values: dict[str, Any] = {}
     for field in (
@@ -179,6 +196,10 @@ def _static_values(parsed: dict[str, Any]) -> dict[str, Any]:
         value = parsed.get(field)
         if _present(value):
             values[field] = copy.deepcopy(value)
+
+    issue_price = parsed.get("issuePrice")
+    if _present(issue_price):
+        values["listing.issuePrice"] = issue_price
 
     composition = parsed.get("issueComposition")
     if _present(composition) and isinstance(composition, dict):
@@ -217,10 +238,10 @@ def apply_final_prospectus_static_fields(
     source_url = str(doc.get("url") or "")
     extracted = _static_values(parsed)
     for field, after in extracted.items():
-        before = record.get(field)
+        before = field_value(record, field)
         if before == after:
             continue
-        record[field] = copy.deepcopy(after)
+        _set_field_value(record, field, after)
         changes.append(
             {
                 "field": field,
@@ -245,10 +266,24 @@ def apply_final_prospectus_static_fields(
             "checkedAt": checked_at,
         }
 
+    if "listing.issuePrice" in extracted:
+        listing = dict(record.get("listing") or {})
+        listing["issuePriceEvidence"] = {
+            "source": "Final Prospectus",
+            "sourceUrl": source_url,
+            "documentType": "PROSPECTUS",
+            "documentDate": doc.get("filedDate"),
+            "sha256": sha256,
+            "parserVersion": parser_version,
+            "checkedAt": checked_at,
+            "value": extracted["listing.issuePrice"],
+        }
+        record["listing"] = listing
+
     pending = [
         field
         for field in STATIC_CANONICAL_FIELDS
-        if _present(record.get(field)) and field not in provenance
+        if _present(field_value(record, field)) and field not in provenance
     ]
     record["staticSourcePolicy"] = {
         "policy": "final-prospectus-only",
