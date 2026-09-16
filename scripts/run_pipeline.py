@@ -1,8 +1,9 @@
 """One operational entrypoint with bounded, independently reported stages.
 
-Stage diagnostics are accumulated in memory and flushed once at the end. Support
-artifacts are rebuilt only when IPO records have changed since the last rebuild,
-so maintenance mode does not repeatedly rescan the same multi-megabyte dataset.
+Canonical static IPO data follows a Final-Prospectus-only source policy. Market
+and exchange collectors remain responsible for discovery, lifecycle, subscription
+and post-listing data; their offer terms are observations, not canonical static
+fields.
 """
 from __future__ import annotations
 
@@ -34,7 +35,6 @@ def content_hash(payload):
 
 
 def support_hash(payload):
-    """Fingerprint all IPO record content while ignoring volatile top-level metadata."""
     rows = payload.get("ipos") or []
     return hashlib.sha256(
         json.dumps(rows, sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode()
@@ -46,13 +46,17 @@ def _load_bytes(raw: bytes):
 
 
 def step(script, *args, timeout=600):
-    """Run one collector stage and retain a diagnostic report without extra data writes."""
     if DEADLINE is not None:
         remaining = DEADLINE - time.monotonic()
         if remaining <= 20:
-            report = {"stage": script, "status": "deferred", "exitCode": None,
-                      "durationSeconds": 0, "checkedAt": datetime.now(timezone.utc).isoformat(),
-                      "diagnostics": "Pipeline time budget exhausted; retained for a later run"}
+            report = {
+                "stage": script,
+                "status": "deferred",
+                "exitCode": None,
+                "durationSeconds": 0,
+                "checkedAt": datetime.now(timezone.utc).isoformat(),
+                "diagnostics": "Pipeline time budget exhausted; retained for a later run",
+            }
             PIPELINE_REPORTS[script] = report
             print(json.dumps(report), flush=True)
             return report
@@ -117,7 +121,6 @@ def step(script, *args, timeout=600):
 
 
 def flush_pipeline_reports():
-    """Persist all stage diagnostics with one canonical dataset rewrite."""
     if not PIPELINE_REPORTS:
         return False
     payload = json.loads(DATA.read_text(encoding="utf-8"))
@@ -128,7 +131,6 @@ def flush_pipeline_reports():
 
 
 def rebuild(force: bool = False):
-    """Rebuild derived support files once per distinct IPO-record state."""
     global LAST_SUPPORT_REBUILD_HASH
     payload = json.loads(DATA.read_text(encoding="utf-8"))
     current_hash = support_hash(payload)
@@ -145,10 +147,43 @@ def rebuild(force: bool = False):
     ):
         subprocess.run([sys.executable, str(ROOT / "scripts" / script)], cwd=ROOT, check=True)
 
-    # Derived builders do not intentionally mutate IPO records. Re-read before
-    # remembering the fingerprint so an unexpected mutation cannot hide work.
     LAST_SUPPORT_REBUILD_HASH = support_hash(json.loads(DATA.read_text(encoding="utf-8")))
     return True
+
+
+def discover_and_parse_final_prospectuses(priority_max: int, *, document_limit: int, parse_limit: int):
+    """Discover official final filings and parse only Final Prospectuses."""
+    step(
+        "enrich_sebi_priority_registers_v2.py",
+        "--priority-max", str(priority_max),
+        "--search-limit", str(max(20, document_limit)),
+        timeout=300,
+    )
+    step(
+        "enrich_sebi_document_links.py",
+        "--priority-max", str(priority_max),
+        "--limit", str(max(20, document_limit)),
+        timeout=300,
+    )
+    step(
+        "collect_nse_offer_filings_final_policy.py",
+        "--limit", str(max(50, document_limit * 3)),
+        "--documents-limit", str(document_limit),
+        timeout=600,
+    )
+    step(
+        "run_offer_documents.py",
+        "--limit", str(parse_limit),
+        "--workers", "4" if parse_limit >= 30 else "2",
+        timeout=2400 if parse_limit >= 30 else 900,
+    )
+    step(
+        "run_issuer_offer_docs.py",
+        "--priority-max", str(priority_max),
+        "--limit", str(max(10, min(parse_limit, 30))),
+        timeout=1200,
+    )
+    step("enforce_final_prospectus_policy.py")
 
 
 def maintain_filings():
@@ -156,11 +191,7 @@ def maintain_filings():
     queue = json.loads((ROOT / "data/missing_queue.json").read_text(encoding="utf-8"))
     if not any(row.get("priority", 9) <= 3 for row in queue["queue"]):
         return
-    step("enrich_sebi_priority_registers_v2.py", "--priority-max", "3", "--search-limit", "20", timeout=300)
-    step("enrich_sebi_document_links.py", "--priority-max", "3", "--limit", "20", timeout=300)
-    step("enrich_recent_offer_terms.py", "--priority-max", "3", "--limit", "20", timeout=300)
-    step("run_offer_documents.py", "--limit", "8", "--workers", "2", timeout=600)
-    step("apply_verified_filing_offer_fields.py")
+    discover_and_parse_final_prospectuses(3, document_limit=10, parse_limit=12)
 
 
 def run(mode: str):
@@ -168,57 +199,49 @@ def run(mode: str):
     LAST_SUPPORT_REBUILD_HASH = None
     step("record_integrity.py")
     step("apply_corrections.py")
-    step("apply_verified_recent_issue_terms.py")
+    step("enforce_final_prospectus_policy.py")
 
     if mode == "core":
-        step("run_update_v2.py", "--history-days", "1", "--sebi-pages", "4", timeout=900)
+        step("run_update_final_policy.py", "--history-days", "1", "--sebi-pages", "4", timeout=900)
         step("record_integrity.py")
+        step("enforce_final_prospectus_policy.py")
         step("normalize_source_health.py")
         maintain_filings()
 
-    # Repair runs are triggered after script changes on main. Refreshing the same
-    # bounded set of currently open IPOs here makes subscription fixes/data-source
-    # changes take effect immediately rather than waiting for the next timed run.
     if mode in {"subscriptions", "repair"}:
         step("run_priority_subscriptions_v3.py", "--limit", "30", timeout=900)
 
     if mode in {"maintenance", "repair", "p4"}:
-        step("collect_nse_offer_filings.py", "--limit", "150", "--documents-limit", "5", timeout=600)
-
-    if mode in {"maintenance", "repair"}:
-        step(
-            "run_offer_documents.py",
-            "--limit", "100" if mode == "repair" else "12",
-            "--workers", "4" if mode == "repair" else "2",
-            timeout=2400 if mode == "repair" else 1500,
-        )
-        step("collect_final_issue_prices.py", "--history-days", "730", "--max-reports", "36", timeout=600)
+        parse_limit = 100 if mode == "repair" else 40 if mode == "p4" else 20
+        discover_and_parse_final_prospectuses(4, document_limit=20, parse_limit=parse_limit)
 
     if mode in {"maintenance", "filings"}:
         maintain_filings()
 
     rebuild()
 
-    if mode in {"maintenance", "p4"}:
-        step("enrich_nse_issue_information.py", "--limit", "30", "--history-days", "730", "--retry-days", "7", timeout=600)
-        step("backfill_recent_sebi_other_docs_lot_sizes.py", "--limit", "125", "--max-listing-pages", "40", timeout=600)
-        step("backfill_recent_nse_lot_sizes.py", "--limit", "25", timeout=500)
-        step("backfill_p4_lot_sizes.py", "--history-days", "730", "--limit", "30", "--core-only", "--retry-days", "1", timeout=600)
-        rebuild()
-
     phase = json.loads((ROOT / "data/phase_status.json").read_text(encoding="utf-8"))
     if mode in {"maintenance", "p5"} and phase["p5"]["status"] == "enabled":
-        step("collect_nse_offer_filings.py", "--history-days", "10000", "--limit", "100", "--documents-limit", "5", timeout=600)
-        step("collect_final_issue_prices.py", "--history-days", "10000", "--max-reports", "100", timeout=900)
-        step("enrich_nse_primary_market_reports_v3.py", "--history-days", "10000", "--max-reports", "100", timeout=900)
-        step("backfill_bse_history.py", "--history-days", "10000", "--limit", "40", "--core-only", "--oldest-first", "--retry-days", "7", timeout=600)
+        step(
+            "collect_nse_offer_filings_final_policy.py",
+            "--history-days", "10000",
+            "--limit", "100",
+            "--documents-limit", "20",
+            timeout=900,
+        )
+        step("run_offer_documents.py", "--limit", "100", "--workers", "4", timeout=2400)
+        step("run_issuer_offer_docs.py", "--priority-max", "5", "--limit", "30", timeout=1200)
+        step("enforce_final_prospectus_policy.py")
+        rebuild()
 
     if mode in {"maintenance", "performance"} and phase["p4"]["status"] == "complete":
-        step("collect_final_issue_prices.py", "--history-days", "730", "--max-reports", "36", timeout=600)
+        # Issue price is now sourced from Final Prospectus. Market sources begin
+        # only after that static baseline exists.
         step("collect_price_history.py", "--limit", "30", timeout=600)
         step("performance_tracking.py", "--limit", "20", timeout=300)
 
     step("record_integrity.py")
+    step("enforce_final_prospectus_policy.py")
     rebuild()
 
 

@@ -80,7 +80,7 @@ jobs:
         env:
           MODE: ${{ steps.collection-mode.outputs.value }}
         run: uv run --frozen python scripts/run_pipeline.py --mode "$MODE"
-      - name: Repair recent P4 residuals
+      - name: Repair recent P4 Final Prospectus residuals
         env:
           MODE: ${{ steps.collection-mode.outputs.value }}
         shell: bash
@@ -88,13 +88,8 @@ jobs:
           set -euo pipefail
           case "$MODE" in
             maintenance|repair|p4)
-              # Push-triggered repair mode must exercise bounded NSE lot-size
-              # fixes immediately. Full SEBI/BSE lot sweeps remain in the
-              # maintenance/p4 pipeline so repair stays within its time budget.
-              if [[ "$MODE" == "repair" ]]; then
-                uv run --frozen python scripts/backfill_recent_nse_lot_sizes.py --limit 25
-              fi
               uv run --frozen python scripts/run_p4_offer_residuals.py --limit 30 --workers 4
+              uv run --frozen python scripts/enforce_final_prospectus_policy.py
               uv run --frozen python scripts/record_integrity.py
               uv run --frozen python scripts/audit_data_completeness.py
               uv run --frozen python scripts/build_missing_queue.py
@@ -102,7 +97,7 @@ jobs:
               uv run --frozen python scripts/phase_status.py
               ;;
             *)
-              echo "Skipping P4 residual repair for $MODE mode"
+              echo "Skipping P4 Final Prospectus residual repair for $MODE mode"
               ;;
           esac
       - name: Prepare collected snapshot
@@ -150,7 +145,7 @@ jobs:
             uv sync --frozen
             uv run --frozen python scripts/publish_transaction.py --base /tmp/ipo-bundle/base.json --proposed /tmp/ipo-bundle/proposed.json --run-id "$RUN_ID" --source-commit-file /tmp/ipo-bundle/source-commit.txt
             uv run --frozen python scripts/apply_corrections.py
-            uv run --frozen python scripts/apply_verified_recent_issue_terms.py
+            uv run --frozen python scripts/enforce_final_prospectus_policy.py
             uv run --frozen python scripts/validate_data.py --strict
             uv run --frozen python scripts/build_company_pages.py
             uv run --frozen python scripts/audit_data_completeness.py

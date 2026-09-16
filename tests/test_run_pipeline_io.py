@@ -123,7 +123,7 @@ class PipelineIoTests(unittest.TestCase):
             self.assertTrue(mod.rebuild())
             self.assertEqual(len(calls), 10)
 
-    def test_pipeline_applies_verified_recent_issue_terms_before_mode_specific_collectors(self):
+    def test_pipeline_enforces_final_prospectus_policy_before_mode_collectors(self):
         calls = []
 
         def fake_step(script, *args, **kwargs):
@@ -136,11 +136,14 @@ class PipelineIoTests(unittest.TestCase):
             mod.run("repair")
 
         scripts = [script for script, _args, _kwargs in calls]
-        self.assertIn("apply_verified_recent_issue_terms.py", scripts)
+        self.assertNotIn("apply_verified_recent_issue_terms.py", scripts)
+        self.assertIn("enforce_final_prospectus_policy.py", scripts)
         self.assertLess(
-            scripts.index("apply_verified_recent_issue_terms.py"),
+            scripts.index("enforce_final_prospectus_policy.py"),
             scripts.index("run_priority_subscriptions_v3.py"),
         )
+        self.assertIn("run_offer_documents.py", scripts)
+        self.assertIn("run_issuer_offer_docs.py", scripts)
 
     def test_repair_mode_refreshes_live_subscriptions(self):
         calls = []

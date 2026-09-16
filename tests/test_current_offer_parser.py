@@ -69,24 +69,33 @@ class CurrentParserTests(unittest.TestCase):
     def test_narrative_numbers_are_not_financial_rows(self):
         self.assertIsNone(parser.extract_financials('In Fiscal 2026 and Fiscal 2025 revenue was reported. See page 2026. Net worth ratios are discussed on page 31.'))
 
-    def test_repair_is_audited_idempotent_and_fill_only_for_exchange(self):
+    def test_final_prospectus_repair_is_audited_idempotent_and_authoritative(self):
         record = {'id': 'sona', 'company': 'Sonaselection India Limited', 'lotSize': 150, 'financials': {'unit': '₹ crore', 'periods': [{'period': 'FY2025', 'revenueCr': 120.979}]}, 'leadManagers': ['BSE Limited']}
         result = parser.parse_document_text(SOURCE_ROWS)
         result['lotSize'] = 999
-        doc = {'url': 'https://www.sebi.gov.in/official.pdf', 'source': 'SEBI'}
+        doc = {'url': 'https://www.sebi.gov.in/official.pdf', 'source': 'SEBI', 'type': 'PROSPECTUS', 'title': 'Final Prospectus'}
         self.assertTrue(correct_record(record, result, doc, 'hash', 3, 8))
-        self.assertEqual(record['lotSize'], 150)
+        self.assertEqual(record['lotSize'], 999)
+        self.assertEqual(record['staticFieldProvenance']['lotSize']['documentType'], 'PROSPECTUS')
         count = len(record['dataCorrections'])
         self.assertEqual(correct_record(record, result, doc, 'hash', 3, 8), [])
         self.assertEqual(len(record['dataCorrections']), count)
         self.assertEqual(validate_payload({'ipos': [record]})['errorCount'], 0)
 
-    def test_unsupported_layout_preserves_values_for_review(self):
+    def test_unsupported_final_layout_preserves_values_for_review(self):
         record = {'id': 'x', 'financials': {'periods': [{'period': 'FY2025', 'patCr': 10}]}}
         before = copy.deepcopy(record['financials'])
-        correct_record(record, {}, {'url': 'https://www.sebi.gov.in/a.pdf'}, 'hash', 1, 1)
+        correct_record(
+            record,
+            {},
+            {'url': 'https://www.sebi.gov.in/a.pdf', 'type': 'PROSPECTUS', 'title': 'Final Prospectus'},
+            'hash',
+            1,
+            1,
+        )
         self.assertEqual(record['financials'], before)
         self.assertEqual(record['documentRepair']['financialStatus'], 'needs_review')
+        self.assertIn('financials', record['staticSourcePolicy']['pendingRevalidationFields'])
 
     def test_split_annual_header_and_interim_rejection(self):
         text = 'Summary of Financial Information\n(₹ in lakhs)\nParticulars March 31, March 31, March 31,\n2026 2025 2024\nNet worth (1) 64754.31 48929.71 29593.38\nRevenue from operations 167766.09 143040.38 95311.60\n'

@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-"""Run verified issuer/regulator offer-document fallbacks through one stable path.
+"""Run verified Final Prospectus fallbacks through one stable path.
 
-The runner preserves the established exact-host, PDF-magic, issuer-identity and
-fill-only gates while using the final legacy parser contract (v14). Verified
-fallback registrations live separately in issuer_offer_registry.py so adding a
-source no longer requires another executable parser wrapper.
+Only explicitly final Prospectus documents are eligible to populate canonical
+static IPO fields. Historical DRHP/RHP registry entries remain inert and may be
+retained for document history, but they are never selected by this runner.
 """
 from __future__ import annotations
 
@@ -16,20 +15,25 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
+import final_prospectus_policy as source_policy  # noqa: E402
 import legacy_offer_parser as parser  # noqa: E402
 from issuer_offer_registry import VALIDATED_OFFER_DOCUMENTS  # noqa: E402
 from parser_loader import isolated_module  # noqa: E402
 
 base = isolated_module("enrich_issuer_offer_docs")
-
-# Preserve the final effective v4 behavior without traversing v2/v3/v4 or the
-# numbered offer-parser aliases. The generic targeted parser remains compatible
-# with the issuer runner's financial/shareholding call contract and also retains
-# the finalized lot/price deep-page recognition introduced before v14.
 base.parser_v4 = parser
 base.PARSER_VERSION = parser.PARSER_VERSION
 base._extract_targeted_full_text = parser.extract_targeted_pdf_text
-base.ISSUER_DOCUMENTS.update(VALIDATED_OFFER_DOCUMENTS)
+
+# Keep only Final Prospectus registrations active. Built-in issuer RHP/DRHP
+# fallbacks are intentionally disabled under the canonical source policy.
+combined = dict(base.ISSUER_DOCUMENTS)
+combined.update(VALIDATED_OFFER_DOCUMENTS)
+base.ISSUER_DOCUMENTS = {
+    record_id: spec
+    for record_id, spec in combined.items()
+    if source_policy.is_final_prospectus(spec)
+}
 
 _ORIGINAL_MERGE = base.merge_issuer_enrichment
 
@@ -43,8 +47,11 @@ def merge_validated_offer_enrichment(
     pages_read,
     page_count,
 ):
-    """Fill missing fields and preserve source-specific provenance observations."""
-    changed = list(
+    """Persist provenance, then make Final Prospectus static fields canonical."""
+    if not source_policy.is_final_prospectus(doc):
+        raise ValueError("Verified offer fallback is not a Final Prospectus")
+
+    original_changed = list(
         _ORIGINAL_MERGE(
             record,
             parsed,
@@ -56,6 +63,18 @@ def merge_validated_offer_enrichment(
         or []
     )
 
+    checked_at = base.core.now_ist().isoformat(timespec="seconds")
+    policy_changes = source_policy.apply_final_prospectus_static_fields(
+        record,
+        parsed,
+        doc,
+        sha256=pdf_hash,
+        parser_version=parser.PARSER_VERSION,
+        checked_at=checked_at,
+    )
+    if policy_changes:
+        record.setdefault("dataCorrections", []).extend(policy_changes)
+
     extraction_source = str(doc.get("extractionSource") or "").strip()
     document_source = str(doc.get("documentSource") or "").strip()
     source_name = str(doc.get("sourceName") or "").strip()
@@ -66,7 +85,9 @@ def merge_validated_offer_enrichment(
     extraction = record.get("issuerDocumentExtraction")
     if isinstance(extraction, dict):
         extraction["parserVersion"] = parser.PARSER_VERSION
+        extraction["documentType"] = "PROSPECTUS"
         extraction["extractedFields"] = parsed.get("extractedFields") or []
+        extraction["sourcePolicy"] = "final-prospectus-only"
         if extraction_source:
             extraction["source"] = extraction_source
 
@@ -74,6 +95,7 @@ def merge_validated_offer_enrichment(
         for item in record.get("documents") or []:
             if isinstance(item, dict) and str(item.get("url") or "") == url:
                 item["source"] = document_source
+                item["type"] = "PROSPECTUS"
 
     if source_name or source_kind:
         for source in record.get("sources") or []:
@@ -84,47 +106,31 @@ def merge_validated_offer_enrichment(
             if source_kind:
                 source["kind"] = source_kind
 
-    lot_size = parsed.get("lotSize")
-    price_band = parsed.get("priceBand")
-    term_changes: list[str] = []
-    if record.get("lotSize") is None and lot_size is not None:
-        record["lotSize"] = lot_size
-        term_changes.append("lotSize")
-    if record.get("priceBand") in (None, {}, []) and price_band:
-        record["priceBand"] = price_band
-        term_changes.append("priceBand")
+    observation = {
+        "documentUrl": doc.get("url"),
+        "documentType": "PROSPECTUS",
+        "documentFiledDate": doc.get("filedDate"),
+        "parserVersion": parser.PARSER_VERSION,
+        "source": extraction_source or document_source or "Issuer website",
+        "sourcePolicy": "final-prospectus-only",
+    }
+    for field in ("lotSize", "priceBand", "issueComposition"):
+        if parsed.get(field) not in (None, "", [], {}):
+            observation[field] = parsed[field]
+    record.setdefault("observations", {})["FinalProspectus"] = observation
 
-    if lot_size is not None or price_band:
-        observation_source = str(
-            doc.get("extractionSource")
-            or doc.get("documentSource")
-            or "Issuer website"
-        )
-        observation = {
-            "documentUrl": doc.get("url"),
-            "documentType": doc.get("type"),
-            "documentFiledDate": doc.get("filedDate"),
-            "parserVersion": parser.PARSER_VERSION,
-            "source": observation_source,
-        }
-        if lot_size is not None:
-            observation["lotSize"] = lot_size
-        if price_band:
-            observation["priceBand"] = price_band
-        record.setdefault("observations", {})["Offer-document"] = observation
-
-    if isinstance(extraction, dict) and term_changes:
-        existing = list(extraction.get("changedFields") or [])
-        extraction["changedFields"] = list(dict.fromkeys(existing + term_changes))
-
-    return list(dict.fromkeys(changed + term_changes))
+    changed_fields = list(dict.fromkeys(
+        original_changed + [entry["field"] for entry in policy_changes]
+    ))
+    if isinstance(extraction, dict):
+        extraction["changedFields"] = changed_fields
+    return changed_fields
 
 
 base.merge_issuer_enrichment = merge_validated_offer_enrichment
 
 
 def _previous_failed_companies(payload: dict[str, Any]) -> set[str]:
-    """Return canonical issuer names from the immediately previous runner errors."""
     health = (payload.get("meta") or {}).get("issuerOfferDocumentHealth") or {}
     failed: set[str] = set()
     for raw in health.get("errors") or []:
@@ -143,6 +149,12 @@ def _already_extracted(record: dict[str, Any], spec: dict[str, Any]) -> bool:
         previous.get("status") == "extracted"
         and previous.get("parserVersion") == base.PARSER_VERSION
         and str(previous.get("documentUrl") or "") == str(spec.get("url") or "")
+        and source_policy.is_final_prospectus(
+            {
+                "type": previous.get("documentType"),
+                "title": previous.get("documentTitle"),
+            }
+        )
     )
 
 
@@ -152,7 +164,6 @@ def _identity_safe_targets(
     priority_max: int,
     limit: int,
 ):
-    """Select exactly one verified issuer per id and schedule fresh work first."""
     by_id: dict[str, list[dict[str, Any]]] = {}
     for record in payload.get("ipos") or []:
         if not isinstance(record, dict) or not record.get("id"):
@@ -175,6 +186,8 @@ def _identity_safe_targets(
         record_id = str(item.get("id") or "")
         spec = base.ISSUER_DOCUMENTS.get(record_id)
         if priority > priority_max or not spec or not base._has_priority_gap(item):
+            continue
+        if not source_policy.is_final_prospectus(spec):
             continue
 
         expected_company = base.core.canonical_company(str(spec.get("company") or ""))
