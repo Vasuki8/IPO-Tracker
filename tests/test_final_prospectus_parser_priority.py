@@ -12,6 +12,9 @@ import run_offer_documents as runner
 
 
 class FinalProspectusParserPriorityTests(unittest.TestCase):
+    def key(self, record_id, company):
+        return (record_id, runner.core.canonical_company(company))
+
     def test_phase_status_keeps_default_parser_scope_at_p4_until_p5_enabled(self):
         with tempfile.TemporaryDirectory() as tmp:
             phase = Path(tmp) / "phase.json"
@@ -27,11 +30,30 @@ class FinalProspectusParserPriorityTests(unittest.TestCase):
         self.assertEqual(runner._effective_priority_max(-5), 0)
 
     def test_p5_record_is_not_eligible_while_p4_gate_is_active(self):
-        priorities = {"p4": 4, "p5": 5}
-        self.assertTrue(runner._priority_allowed({"id": "p4"}, priorities, 4))
-        self.assertFalse(runner._priority_allowed({"id": "p5"}, priorities, 4))
-        self.assertFalse(runner._priority_allowed({"id": "not-in-queue"}, priorities, 4))
-        self.assertTrue(runner._priority_allowed({"id": "p5"}, priorities, 5))
+        priorities = {
+            self.key("p4", "Priority Four Limited"): 4,
+            self.key("p5", "Priority Five Limited"): 5,
+        }
+        self.assertTrue(
+            runner._priority_allowed(
+                {"id": "p4", "company": "Priority Four Limited"}, priorities, 4
+            )
+        )
+        self.assertFalse(
+            runner._priority_allowed(
+                {"id": "p5", "company": "Priority Five Limited"}, priorities, 4
+            )
+        )
+        self.assertFalse(
+            runner._priority_allowed(
+                {"id": "not-in-queue", "company": "Not In Queue Limited"}, priorities, 4
+            )
+        )
+        self.assertTrue(
+            runner._priority_allowed(
+                {"id": "p5", "company": "Priority Five Limited"}, priorities, 5
+            )
+        )
 
     def test_deferred_p5_record_is_not_mutated_or_parsed(self):
         p4 = {
@@ -59,12 +81,16 @@ class FinalProspectusParserPriorityTests(unittest.TestCase):
             ],
         }
         payload = {"ipos": [p4, p5], "meta": {}}
+        priorities = {
+            self.key("p4", p4["company"]): 4,
+            self.key("p5", p5["company"]): 5,
+        }
 
         def fake_extract(record, doc):
             return {}, "abc", 1, 1
 
         with (
-            patch.object(runner, "_load_queue_priorities", return_value={"p4": 4, "p5": 5}),
+            patch.object(runner, "_load_queue_priorities", return_value=priorities),
             patch.object(runner, "_effective_priority_max", return_value=4),
             patch.object(runner, "extract", side_effect=fake_extract) as extract_mock,
         ):
@@ -79,21 +105,49 @@ class FinalProspectusParserPriorityTests(unittest.TestCase):
         self.assertEqual(p5["leadManagers"], ["Bad"])
         self.assertNotIn("documentRepair", p5)
 
-    def test_duplicate_queue_ids_keep_highest_priority_for_gate(self):
+    def test_shared_id_aliases_keep_separate_priorities(self):
         with tempfile.TemporaryDirectory() as tmp:
             queue = Path(tmp) / "queue.json"
             queue.write_text(
                 json.dumps(
                     {
                         "queue": [
-                            {"id": "shared", "priority": 5},
-                            {"id": "shared", "priority": 4},
+                            {
+                                "id": "shared",
+                                "company": "Issuer Limited",
+                                "priority": 4,
+                            },
+                            {
+                                "id": "shared",
+                                "company": "Issuer Limited - Special Withdrawal Option",
+                                "priority": 5,
+                            },
                         ]
                     }
                 )
             )
             with patch.object(runner, "QUEUE_FILE", queue):
-                self.assertEqual(runner._load_queue_priorities()["shared"], 4)
+                priorities = runner._load_queue_priorities()
+
+        issuer_key = self.key("shared", "Issuer Limited")
+        alias_key = self.key("shared", "Issuer Limited - Special Withdrawal Option")
+        self.assertEqual(priorities[issuer_key], 4)
+        self.assertEqual(priorities[alias_key], 5)
+        self.assertTrue(
+            runner._priority_allowed(
+                {"id": "shared", "company": "Issuer Limited"}, priorities, 4
+            )
+        )
+        self.assertFalse(
+            runner._priority_allowed(
+                {
+                    "id": "shared",
+                    "company": "Issuer Limited - Special Withdrawal Option",
+                },
+                priorities,
+                4,
+            )
+        )
 
 
 if __name__ == "__main__":
