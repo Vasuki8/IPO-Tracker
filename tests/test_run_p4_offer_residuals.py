@@ -5,7 +5,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-import p4_offer_parser as residual
+import p4_offer_layouts as residual
 import run_p4_offer_residuals as runner
 
 
@@ -75,6 +75,64 @@ class P4OfferResidualRunnerTests(unittest.TestCase):
             self.assertIsNone(runner._candidate(record, force=False))
             self.assertIsNotNone(runner._candidate(record, force=True))
 
+    def test_verified_document_is_persisted_once(self):
+        record = {"documents": []}
+        doc = {
+            "url": "https://nsearchives.nseindia.com/emerge/corporates/content/Example_PROSP.pdf",
+            "type": "Prospectus",
+            "title": "Example Limited Prospectus",
+            "source": "NSE",
+            "filedDate": "2026-01-05",
+        }
+        self.assertTrue(runner._retain_verified_document(record, doc, "abc123"))
+        self.assertEqual(len(record["documents"]), 1)
+        saved = record["documents"][0]
+        self.assertEqual(saved["url"], doc["url"])
+        self.assertEqual(saved["type"], "Prospectus")
+        self.assertEqual(saved["sha256"], "abc123")
+        self.assertFalse(runner._retain_verified_document(record, doc, "abc123"))
+        self.assertEqual(len(record["documents"]), 1)
+
+    def test_queue_order_targets_p4_offer_and_document_gaps_only(self):
+        queue = {
+            "queue": [
+                {"id": "dhanlaxmi", "priority": 4, "missingFields": ["offer.registrar", "offer.financials"]},
+                {"id": "lot-only", "priority": 4, "missingFields": ["exchange.lotSize"]},
+                {"id": "history", "priority": 5, "missingFields": ["offer.financials"]},
+                {"id": "credent", "priority": 4, "missingFields": ["provenance.documents"]},
+            ]
+        }
+        self.assertEqual(runner.p4_offer_queue_order(queue), {"dhanlaxmi": 0, "credent": 3})
+
+    def test_run_prioritizes_p4_offer_queue_before_newer_cleanup(self):
+        payload = {
+            "ipos": [
+                {"id": "newer", "company": "Newer Limited", "openDate": "2026-08-01", "promoters": ["Mr"]},
+                {"id": "dhanlaxmi", "company": "Dhanlaxmi Crop Science Limited", "openDate": "2024-12-09", "promoters": ["Mr"]},
+                {"id": "middle", "company": "Middle Limited", "openDate": "2025-08-01", "promoters": ["Mr"]},
+            ]
+        }
+        queue = {
+            "queue": [
+                {"id": "dhanlaxmi", "priority": 4, "missingFields": ["offer.registrar", "offer.financials"]},
+            ]
+        }
+        doc = {"url": "https://nsearchives.nseindia.com/example.pdf"}
+        attempted = []
+
+        def fake_extract(record, _doc):
+            attempted.append(record["id"])
+            return {"promoters": ["Valid Person"], "leadManagers": [], "fieldEvidence": {}}, "hash", 1, 1
+
+        with patch.object(runner.base, "document_for", return_value=doc), patch.object(
+            runner, "extract", side_effect=fake_extract
+        ), patch.object(runner, "apply_result", return_value=["promoters"]):
+            health = runner.run(payload, limit=1, workers=1, queue_payload=queue)
+
+        self.assertEqual(attempted, ["dhanlaxmi"])
+        self.assertEqual(health["p4QueueTargets"], 1)
+        self.assertEqual(health["p4QueueTargetsAttempted"], 1)
+
     def test_run_targets_only_recent_incomplete_records_with_documents(self):
         payload = {
             "ipos": [
@@ -86,7 +144,7 @@ class P4OfferResidualRunnerTests(unittest.TestCase):
         with patch.object(runner.base, "document_for", side_effect=lambda r: doc if r["id"] == "recent" else None), patch.object(
             runner, "extract", return_value=({"promoters": ["Valid Person"], "leadManagers": [], "fieldEvidence": {}}, "hash", 1, 1)
         ), patch.object(runner, "apply_result", return_value=["promoters"]):
-            health = runner.run(payload, limit=30, workers=1)
+            health = runner.run(payload, limit=30, workers=1, queue_payload={"queue": []})
         self.assertEqual(health["attempted"], 1)
         self.assertEqual(health["changedFields"], 1)
         self.assertEqual(health["outcomes"][0]["id"], "recent")
