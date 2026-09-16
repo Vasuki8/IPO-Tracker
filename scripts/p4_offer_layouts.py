@@ -1,9 +1,10 @@
 """Current strict layout adapters for the P4 residual parser.
 
-These adapters sit on top of ``p4_offer_parser`` and narrow two source layouts
-that need column/sentence-aware handling: paired cover-page intermediary columns
-and explicit promoter declarations. Keeping the adapters small makes their
-source-layout assumptions easy to regression-test.
+These adapters sit on top of ``p4_offer_parser`` and narrow source layouts
+that need column/sentence/table-aware handling: paired cover-page intermediary
+columns, explicit promoter declarations, and explicit promoter-shareholding
+totals. Keeping the adapters small makes their source-layout assumptions easy
+to regression-test.
 """
 from __future__ import annotations
 
@@ -15,7 +16,7 @@ import p4_offer_parser as common
 # This revision is deliberately independent from the common recognizer version:
 # changing residual scheduling/provenance behavior should allow already-checked
 # documents to be reconsidered exactly once on the next repair pass.
-PARSER_VERSION = 2
+PARSER_VERSION = 3
 RECENT_DAYS = common.RECENT_DAYS
 valid_promoter_name = common.valid_promoter_name
 valid_promoters = common.valid_promoters
@@ -25,7 +26,6 @@ _has_financials = common._has_financials
 is_recent = common.is_recent
 needs_repair = common.needs_repair
 extract_objects = common.extract_objects
-extract_promoter_shareholding = common.extract_promoter_shareholding
 extract_numeric_date_financials = common.extract_numeric_date_financials
 merge_parsed = common.merge_parsed
 
@@ -37,6 +37,14 @@ _ROLE_LABEL = re.compile(
 _ROLE_LABEL_PREFIX = re.compile(
     r"^(?:(?:NAME(?:\s+AND\s+LOGO)?|LOGO|CONTACT\s+PERSON|TELEPHONE|TEL\.?|PHONE|"
     r"E-?MAIL|EMAIL|WEBSITE|ADDRESS)\s+)+",
+    re.I,
+)
+_SHAREHOLDING_MARKER = re.compile(
+    r"aggregate\s+pre[-\s]?issue\s+shareholding\s+of\s+(?:our\s+)?Promoters?\s+and\s+Promoter\s+Group",
+    re.I,
+)
+_SHAREHOLDING_TOTAL = re.compile(
+    r"\bTotal\s+[\d,]{4,}\s+([0-9]+(?:\.\d+)?)\b",
     re.I,
 )
 
@@ -180,10 +188,41 @@ def extract_promoters(text: str):
     return (names, {"promoters": {"heading": heading, "entities": names}}) if names else ([], {})
 
 
+def extract_promoter_shareholding(text: str):
+    """Prefer an explicit aggregate Total row before summing component rows.
+
+    The common parser safely sums component promoter percentages when a table has
+    no total. Some NSE prospectuses also print an explicit ``Total`` row. In
+    those layouts, summing the component percentages *and* that total double
+    counts the ownership and makes the safe parser reject an otherwise valid
+    result. The explicit total is stronger evidence, so consume it first and
+    fall back to the common recognizer when it is absent.
+    """
+    flat = _space(" ".join(str(text or "").split("\f")[:35])[:220000])
+    marker = _SHAREHOLDING_MARKER.search(flat)
+    if marker:
+        block = flat[marker.start():marker.start() + 4200]
+        total = _SHAREHOLDING_TOTAL.search(block)
+        if total:
+            pct = float(total.group(1))
+            if 0 < pct <= 100:
+                return (
+                    {"promoters": [], "promoterPreIssuePct": pct},
+                    {
+                        "shareholding": {
+                            "basis": "explicit aggregate pre-issue promoter Total row",
+                            "promoterPreIssuePct": pct,
+                        }
+                    },
+                )
+    return common.extract_promoter_shareholding(text)
+
+
 def parse_document_text(text: str) -> dict[str, Any]:
     result = common.parse_document_text(text)
     leads, registrar, role_evidence = extract_paired_intermediaries(text)
     promoters, promoter_evidence = extract_promoters(text)
+    shareholding, shareholding_evidence = extract_promoter_shareholding(text)
 
     if leads:
         result["leadManagers"] = leads
@@ -191,9 +230,11 @@ def parse_document_text(text: str) -> dict[str, Any]:
         result["registrar"] = registrar
     if valid_promoters(promoters):
         result["promoters"] = promoters
+    if _valid_shareholding(shareholding):
+        result["shareholding"] = shareholding
 
     evidence = dict(result.get("fieldEvidence") or {})
-    for supplement in (role_evidence, promoter_evidence):
+    for supplement in (role_evidence, promoter_evidence, shareholding_evidence):
         evidence.update(supplement)
     result["fieldEvidence"] = evidence
     result["residualParserVersion"] = PARSER_VERSION
