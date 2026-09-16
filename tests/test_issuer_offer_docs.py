@@ -29,6 +29,8 @@ class IssuerOfferDocumentTests(unittest.TestCase):
         cls.runner = load_runner()
 
     def test_registry_uses_exact_whitelisted_hosts(self):
+        # Historical low-level registry entries can include RHP/DRHP, but every
+        # configured source still requires an exact host match.
         for entry in mod.ISSUER_DOCUMENTS.values():
             self.assertTrue(mod._host_matches(entry["url"], entry["host"]))
         for entry in self.runner.base.ISSUER_DOCUMENTS.values():
@@ -84,7 +86,9 @@ class IssuerOfferDocumentTests(unittest.TestCase):
         self.assertTrue(mod._SHAREHOLDING_MARKERS.search("Pre and Post-Issue Shareholding"))
         self.assertTrue(mod._SHAREHOLDING_MARKERS.search("Promoters and Promoter Group"))
 
-    def test_base_merge_fills_missing_values_without_overwriting_primary_values(self):
+    def test_historical_base_merge_remains_fill_only(self):
+        # The low-level historical helper remains available for parsing/document
+        # history, but the canonical runner no longer activates non-final docs.
         record = {
             "company": "Example Limited",
             "freshIssueCr": 50.0,
@@ -129,8 +133,6 @@ class IssuerOfferDocumentTests(unittest.TestCase):
         self.assertEqual(record["issueSizeCr"], 70.0)
         self.assertEqual(record["leadManagers"], ["Example Capital Limited"])
         self.assertIn("issueComposition", changed)
-        self.assertEqual(record["issuerDocumentExtraction"]["source"], "Issuer website")
-        self.assertEqual(record["sources"][0]["kind"], "issuer-filing")
 
     def test_zero_ofs_is_preserved(self):
         merged = mod._merge_dict_missing(
@@ -141,7 +143,7 @@ class IssuerOfferDocumentTests(unittest.TestCase):
         self.assertEqual(merged["ofsShares"], 0)
         self.assertEqual(merged["ofsCr"], 0.0)
 
-    def test_canonical_runner_uses_final_parser_and_deep_scan_contract(self):
+    def test_canonical_runner_keeps_deep_scan_contract(self):
         self.assertEqual(self.runner.base.PARSER_VERSION, 14)
         self.assertEqual(self.runner.parser.PARSER_VERSION, 14)
         params = inspect.signature(self.runner.base._extract_targeted_full_text).parameters
@@ -149,19 +151,15 @@ class IssuerOfferDocumentTests(unittest.TestCase):
         self.assertIn("need_shareholding", params)
         self.assertIn("max_scan_pages", params)
 
-    def test_runner_registers_current_verified_fallbacks(self):
-        shakti = self.runner.base.ISSUER_DOCUMENTS["shakti-polytarp-limited"]
-        self.assertEqual(shakti["host"], "shaktipolytarp.com")
-        self.assertEqual(shakti["type"], "DRHP")
-        self.assertIn("DRHP_Shakti_29092025.pdf", shakti["url"])
+    def test_canonical_runner_filters_out_rhp_and_drhp_fallbacks(self):
+        self.assertNotIn("shakti-polytarp-limited", self.runner.base.ISSUER_DOCUMENTS)
+        self.assertNotIn("vama-wovenfab-limited", self.runner.base.ISSUER_DOCUMENTS)
+        self.assertNotIn("injecto-polymers-limited", self.runner.base.ISSUER_DOCUMENTS)
+        self.assertTrue(self.runner.base.ISSUER_DOCUMENTS)
+        for entry in self.runner.base.ISSUER_DOCUMENTS.values():
+            self.assertTrue(self.runner.source_policy.is_final_prospectus(entry))
 
-        vama = self.runner.base.ISSUER_DOCUMENTS["vama-wovenfab-limited"]
-        self.assertEqual(vama["host"], "vamawoven.com")
-        self.assertEqual(vama["type"], "RHP")
-        self.assertIn("RHP_VamaWovenfabLimited-2.pdf", vama["url"])
-        self.assertEqual(vama["sourcePage"], "https://vamawoven.com/rhp/")
-
-    def test_p4_sebi_fallbacks_are_explicit_and_regulator_hosted(self):
+    def test_p4_sebi_final_prospectus_fallbacks_are_explicit_and_regulator_hosted(self):
         expected = {
             "leap": "Leap India Limited",
             "propshop": "Propshop Events and Exhibitions Limited",
@@ -191,27 +189,21 @@ class IssuerOfferDocumentTests(unittest.TestCase):
             self.assertEqual(doc["company"], company)
             self.assertEqual(doc["host"], "www.sebi.gov.in")
             self.assertTrue(doc["url"].startswith("https://www.sebi.gov.in/sebi_data/attachdocs/"))
-            self.assertEqual(doc["type"], "Prospectus")
+            self.assertTrue(self.runner.source_policy.is_final_prospectus(doc))
             self.assertEqual(doc["extractionSource"], "SEBI")
             self.assertEqual(doc["documentSource"], "SEBI")
             self.assertEqual(doc["sourceKind"], "regulatory-filing")
             self.assertTrue(doc["sourcePage"].startswith("https://www.sebi.gov.in/filings/public-issues/"))
 
-    def test_final_sebi_and_nse_fallbacks_are_retained(self):
-        sebi = {
-            "indomim": ("INDO-MIM Limited", "RHP", "1784523106091.pdf"),
-            "omni": ("Omnitech Engineering Limited", "RHP", "1771933506852.pdf"),
-            "rsl": ("Rajputana Stainless Limited", "Prospectus", "1775629467259.pdf"),
-        }
-        for record_id, (company, doc_type, pdf_name) in sebi.items():
-            entry = self.runner.base.ISSUER_DOCUMENTS[record_id]
-            self.assertEqual(entry["company"], company)
-            self.assertEqual(entry["host"], "www.sebi.gov.in")
-            self.assertEqual(entry["type"], doc_type)
-            self.assertEqual(entry["extractionSource"], "SEBI")
-            self.assertEqual(entry["documentSource"], "SEBI")
-            self.assertEqual(entry["sourceKind"], "regulatory-filing")
-            self.assertTrue(entry["url"].endswith(pdf_name))
+    def test_rhp_entries_are_inert_but_final_sebi_and_nse_fallbacks_are_retained(self):
+        self.assertNotIn("indomim", self.runner.base.ISSUER_DOCUMENTS)
+        self.assertNotIn("omni", self.runner.base.ISSUER_DOCUMENTS)
+
+        rsl = self.runner.base.ISSUER_DOCUMENTS["rsl"]
+        self.assertEqual(rsl["company"], "Rajputana Stainless Limited")
+        self.assertEqual(rsl["host"], "www.sebi.gov.in")
+        self.assertTrue(self.runner.source_policy.is_final_prospectus(rsl))
+        self.assertTrue(rsl["url"].endswith("1775629467259.pdf"))
 
         nse = {
             "ardee": ("Ardee Industries Limited", "FP_INE0XNF01022_10AUG2026.pdf"),
@@ -221,14 +213,14 @@ class IssuerOfferDocumentTests(unittest.TestCase):
             entry = self.runner.base.ISSUER_DOCUMENTS[record_id]
             self.assertEqual(entry["company"], company)
             self.assertEqual(entry["host"], "nsearchives.nseindia.com")
-            self.assertEqual(entry["type"], "Prospectus")
+            self.assertTrue(self.runner.source_policy.is_final_prospectus(entry))
             self.assertEqual(entry["extractionSource"], "NSE")
             self.assertEqual(entry["documentSource"], "NSE")
             self.assertEqual(entry["sourceKind"], "exchange-filing")
             self.assertTrue(entry["url"].endswith(pdf_name))
             self.assertEqual(entry["sourcePage"], entry["url"])
 
-    def test_validated_terms_are_fill_only_and_observed(self):
+    def test_validated_final_terms_override_legacy_static_values(self):
         doc = {
             "url": "https://www.bseindia.com/example.pdf",
             "sourcePage": "https://www.bseindia.com/example.pdf",
@@ -267,47 +259,17 @@ class IssuerOfferDocumentTests(unittest.TestCase):
             pages_read=12,
             page_count=20,
         )
-        self.assertEqual(record["lotSize"], 50)
+        self.assertEqual(record["lotSize"], 100)
         self.assertEqual(record["priceBand"], {"min": 80.0, "max": 85.0})
         self.assertIn("priceBand", changed)
-        self.assertNotIn("lotSize", changed)
-        self.assertEqual(record["observations"]["Offer-document"]["lotSize"], 100)
-        self.assertEqual(record["observations"]["Offer-document"]["source"], "BSE")
+        self.assertIn("lotSize", changed)
+        self.assertEqual(record["observations"]["FinalProspectus"]["lotSize"], 100)
+        self.assertEqual(record["observations"]["FinalProspectus"]["source"], "BSE")
         self.assertEqual(record["issuerDocumentExtraction"]["parserVersion"], 14)
+        self.assertEqual(record["staticFieldProvenance"]["lotSize"]["documentType"], "PROSPECTUS")
 
-    def test_registrar_fallback_keeps_registrar_provenance(self):
-        entry = self.runner.base.ISSUER_DOCUMENTS["injecto-polymers-limited"]
-        self.assertEqual(entry["host"], "ipostatus.integratedregistry.in")
-        self.assertEqual(entry["extractionSource"], "Registrar website")
-        self.assertEqual(entry["sourceKind"], "registrar-filing")
-        record = {"company": "INJECTO POLYMERS LIMITED", "sources": [], "documents": []}
-        parsed = {
-            "issueComposition": {},
-            "registrar": None,
-            "leadManagers": [],
-            "promoters": [],
-            "financials": None,
-            "objectsOfIssue": [],
-            "shareholding": {"promoters": [], "promoterPreIssuePct": 88.14},
-            "lotSize": None,
-            "priceBand": None,
-            "extractedFields": ["shareholding"],
-        }
-        changed = self.runner.merge_validated_offer_enrichment(
-            record,
-            parsed,
-            entry,
-            pdf_hash="abc",
-            pages_read=120,
-            page_count=400,
-        )
-        self.assertIn("shareholding", changed)
-        self.assertEqual(record["issuerDocumentExtraction"]["source"], "Registrar website")
-        matching_docs = [d for d in record["documents"] if d.get("url") == entry["url"]]
-        self.assertEqual(matching_docs[0]["source"], "Integrated Registry")
-        matching_sources = [s for s in record["sources"] if s.get("url") == entry["sourcePage"]]
-        self.assertEqual(matching_sources[0]["name"], "Integrated Registry offer document")
-        self.assertEqual(matching_sources[0]["kind"], "registrar-filing")
+    def test_non_final_registrar_fallback_is_not_selectable(self):
+        self.assertNotIn("injecto-polymers-limited", self.runner.base.ISSUER_DOCUMENTS)
 
     def test_duplicate_id_selects_exact_registered_issuer(self):
         payload = {
@@ -380,6 +342,8 @@ class IssuerOfferDocumentTests(unittest.TestCase):
                         "status": "extracted",
                         "parserVersion": 14,
                         "documentUrl": spec_entry["url"],
+                        "documentType": "PROSPECTUS",
+                        "documentTitle": "Prospectus",
                     },
                 }
             ]
@@ -394,12 +358,12 @@ class IssuerOfferDocumentTests(unittest.TestCase):
         old_parser["documentUrl"] = "https://example.invalid/old.pdf"
         self.assertEqual(len(self.runner._identity_safe_targets(current, queue, 4, 10)), 1)
 
-    def test_previous_failure_moves_behind_fresh_candidate(self):
+    def test_previous_failure_moves_behind_fresh_final_candidate(self):
         payload = {
             "meta": {"issuerOfferDocumentHealth": {"errors": ["Ardee Industries Limited: read timeout"]}},
             "ipos": [
                 {"id": "ardee", "company": "Ardee Industries Limited"},
-                {"id": "indomim", "company": "INDO-MIM Limited"},
+                {"id": "powerica", "company": "Powerica Limited"},
             ],
         }
         queue = {
@@ -411,15 +375,15 @@ class IssuerOfferDocumentTests(unittest.TestCase):
                     "missingFields": ["offer.financials"],
                 },
                 {
-                    "id": "indomim",
-                    "company": "INDO-MIM Limited",
+                    "id": "powerica",
+                    "company": "Powerica Limited",
                     "priority": 4,
                     "missingFields": ["offer.financials"],
                 },
             ]
         }
         targets = self.runner._identity_safe_targets(payload, queue, priority_max=4, limit=1)
-        self.assertEqual(targets[0][0]["id"], "indomim")
+        self.assertEqual(targets[0][0]["id"], "powerica")
 
 
 if __name__ == "__main__":
