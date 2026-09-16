@@ -216,6 +216,32 @@ def _static_values(parsed: dict[str, Any]) -> dict[str, Any]:
     return values
 
 
+def _canonical_evidence(
+    record: dict[str, Any],
+    field: str,
+    value: Any,
+    doc: dict[str, Any],
+    *,
+    source_url: str,
+    sha256: str | None,
+    parser_version: Any,
+    checked_at: str | None,
+) -> dict[str, Any]:
+    """Build issue-specific Final Prospectus evidence understood by validators."""
+    return {
+        "source": "Final Prospectus",
+        "sourceUrl": source_url,
+        "documentType": "PROSPECTUS",
+        "documentDate": doc.get("filedDate"),
+        "sha256": sha256,
+        "parserVersion": parser_version,
+        "checkedAt": checked_at,
+        "issueOpenDate": record.get("openDate"),
+        "field": field,
+        "value": copy.deepcopy(value),
+    }
+
+
 def apply_final_prospectus_static_fields(
     record: dict[str, Any],
     parsed: dict[str, Any],
@@ -256,28 +282,42 @@ def apply_final_prospectus_static_fields(
         )
 
     provenance = record.setdefault("staticFieldProvenance", {})
-    for field in extracted:
-        provenance[field] = {
-            "sourceUrl": source_url,
-            "documentType": "PROSPECTUS",
-            "documentDate": doc.get("filedDate"),
-            "sha256": sha256,
-            "parserVersion": parser_version,
-            "checkedAt": checked_at,
-        }
+    for field, value in extracted.items():
+        provenance[field] = _canonical_evidence(
+            record,
+            field,
+            value,
+            doc,
+            source_url=source_url,
+            sha256=sha256,
+            parser_version=parser_version,
+            checked_at=checked_at,
+        )
+
+    if "lotSize" in extracted:
+        record["lotSizeEvidence"] = _canonical_evidence(
+            record,
+            "lotSize",
+            extracted["lotSize"],
+            doc,
+            source_url=source_url,
+            sha256=sha256,
+            parser_version=parser_version,
+            checked_at=checked_at,
+        )
 
     if "listing.issuePrice" in extracted:
         listing = dict(record.get("listing") or {})
-        listing["issuePriceEvidence"] = {
-            "source": "Final Prospectus",
-            "sourceUrl": source_url,
-            "documentType": "PROSPECTUS",
-            "documentDate": doc.get("filedDate"),
-            "sha256": sha256,
-            "parserVersion": parser_version,
-            "checkedAt": checked_at,
-            "value": extracted["listing.issuePrice"],
-        }
+        listing["issuePriceEvidence"] = _canonical_evidence(
+            record,
+            "listing.issuePrice",
+            extracted["listing.issuePrice"],
+            doc,
+            source_url=source_url,
+            sha256=sha256,
+            parser_version=parser_version,
+            checked_at=checked_at,
+        )
         record["listing"] = listing
 
     pending = [
