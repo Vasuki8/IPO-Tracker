@@ -156,10 +156,24 @@ def _filed_sort_value(doc: dict[str, Any]) -> str:
 
 
 def choose_candidate(record: dict[str, Any], candidates: Iterable[dict[str, Any]]) -> dict[str, Any] | None:
-    """Choose the safest candidate, preferring issuer evidence over recency."""
+    """Choose the safest candidate, rotating away from a previously failed URL.
+
+    A failed source is skipped only when another independently eligible Final
+    Prospectus exists. If it is the only candidate, it remains selectable so
+    transient source failures can be retried on a later collection run.
+    """
     eligible = [doc for doc in candidates if isinstance(doc, dict) and candidate_acceptable(record, doc)]
     if not eligible:
         return None
+
+    repair = record.get("documentRepair") or {}
+    if isinstance(repair, dict) and repair.get("status") in {"source_blocked", "parse_failed"}:
+        failed_url = str(repair.get("sourceUrl") or "").strip()
+        if failed_url:
+            alternatives = [doc for doc in eligible if str(doc.get("url") or "").strip() != failed_url]
+            if alternatives:
+                eligible = alternatives
+
     eligible.sort(
         key=lambda doc: (
             official_identity_score(record, doc),
