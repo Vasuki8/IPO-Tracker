@@ -1,28 +1,28 @@
 {
-  "generatedAt": "2026-09-16T22:28:51+05:30",
+  "generatedAt": "2026-09-16T22:34:02+05:30",
   "asOfDate": "2026-09-16",
-  "recordCount": 1357,
+  "recordCount": 1361,
   "stageCounts": {
     "closed": 51,
-    "filing-pipeline": 6,
+    "filing-pipeline": 8,
     "listed": 1287,
     "open": 8,
     "unknown": 1,
-    "upcoming": 4
+    "upcoming": 6
   },
   "segmentCounts": {
-    "allRecords": 1357,
-    "exchangeStage": 1350,
-    "recentExchange2Y": 441,
+    "allRecords": 1361,
+    "exchangeStage": 1352,
+    "recentExchange2Y": 443,
     "historicalExchange": 909,
-    "offerDocumentEligible": 169,
+    "offerDocumentEligible": 179,
     "openNow": 8,
     "maturedClosed": 1321
   },
   "scores": {
     "exchangeStage": 83.5,
-    "recentExchange2Y": 99.3,
-    "offerDocumentEligible": 82.8,
+    "recentExchange2Y": 99.0,
+    "offerDocumentEligible": 81.3,
     "openSubscription": 100.0,
     "maturedLifecycle": 97.3,
     "provenance": 100.0
@@ -31,113 +31,113 @@
     "exchangeStage": {
       "symbol": {
         "present": 1350,
-        "expected": 1350,
-        "missing": 0,
-        "pct": 100.0
+        "expected": 1352,
+        "missing": 2,
+        "pct": 99.9
       },
       "board": {
-        "present": 1350,
-        "expected": 1350,
+        "present": 1352,
+        "expected": 1352,
         "missing": 0,
         "pct": 100.0
       },
       "exchange": {
-        "present": 1350,
-        "expected": 1350,
+        "present": 1352,
+        "expected": 1352,
         "missing": 0,
         "pct": 100.0
       },
       "openDate": {
-        "present": 1350,
-        "expected": 1350,
+        "present": 1352,
+        "expected": 1352,
         "missing": 0,
         "pct": 100.0
       },
       "closeDate": {
-        "present": 1350,
-        "expected": 1350,
+        "present": 1352,
+        "expected": 1352,
         "missing": 0,
         "pct": 100.0
       },
       "priceBand": {
         "present": 1337,
-        "expected": 1350,
-        "missing": 13,
-        "pct": 99.0
+        "expected": 1352,
+        "missing": 15,
+        "pct": 98.9
       },
       "lotSize": {
         "present": 426,
-        "expected": 1350,
-        "missing": 924,
-        "pct": 31.6
+        "expected": 1352,
+        "missing": 926,
+        "pct": 31.5
       },
       "issueSizeCr": {
         "present": 439,
-        "expected": 1350,
-        "missing": 911,
+        "expected": 1352,
+        "missing": 913,
         "pct": 32.5
       },
       "issueComposition": {
         "present": 436,
-        "expected": 441,
-        "missing": 5,
-        "pct": 98.9
+        "expected": 443,
+        "missing": 7,
+        "pct": 98.4
       }
     },
     "recentExchange2Y": {
       "symbol": {
         "present": 441,
-        "expected": 441,
-        "missing": 0,
-        "pct": 100.0
+        "expected": 443,
+        "missing": 2,
+        "pct": 99.5
       },
       "board": {
-        "present": 441,
-        "expected": 441,
+        "present": 443,
+        "expected": 443,
         "missing": 0,
         "pct": 100.0
       },
       "exchange": {
-        "present": 441,
-        "expected": 441,
+        "present": 443,
+        "expected": 443,
         "missing": 0,
         "pct": 100.0
       },
       "openDate": {
-        "present": 441,
-        "expected": 441,
+        "present": 443,
+        "expected": 443,
         "missing": 0,
         "pct": 100.0
       },
       "closeDate": {
-        "present": 441,
-        "expected": 441,
+        "present": 443,
+        "expected": 443,
         "missing": 0,
         "pct": 100.0
       },
       "priceBand": {
         "present": 441,
-        "expected": 441,
-        "missing": 0,
-        "pct": 100.0
+        "expected": 443,
+        "missing": 2,
+        "pct": 99.5
       },
       "lotSize": {
         "present": 423,
-        "expected": 441,
-        "missing": 18,
-        "pct": 95.9
+        "expected": 443,
+        "missing": 20,
+        "pct": 95.5
       },
       "issueSizeCr": {
         "present": 436,
-        "expected": 441,
-        "missing": 5,
-        "pct": 98.9
+        "expected": 443,
+        "missing": 7,
+        "pct": 98.4
       },
       "issueComposition": {
         "present": 436,
-        "expected": 441,
-        "missing": 5,
-        "pct": 98.9
+        "expected": 443,
+        "missing": 7,
+        "pct": 98.4
       }
     },
     "historicalExchange": {
@@ -192,40 +192,40 @@
     },
     "offerDocumentEligible": {
       "registrar": {
-        "present": 167,
-        "expected": 169,
+        "present": 177,
+        "expected": 179,
         "missing": 2,
-        "pct": 98.8
+        "pct": 98.9
       },
       "leadManagers": {
-        "present": 167,
-        "expected": 169,
-        "missing": 2,
-        "pct": 98.8
+        "present": 175,
+        "expected": 179,
+        "missing": 4,
+        "pct": 97.8
       },
       "promoters": {
-        "present": 152,
-        "expected": 169,
-        "missing": 17,
-        "pct": 89.9
+        "present": 159,
+        "expected": 179,
+        "missing": 20,
+        "pct": 88.8
       },
       "objectsOfIssue": {
-        "present": 157,
-        "expected": 169,
-        "missing": 12,
-        "pct": 92.9
+        "present": 159,
+        "expected": 179,
+        "missing": 20,
+        "pct": 88.8
       },
       "financials": {
-        "present": 113,
-        "expected": 169,
-        "missing": 56,
-        "pct": 66.9
+        "present": 119,
+        "expected": 179,
+        "missing": 60,
+        "pct": 66.5
       },
       "promoterShareholding": {
         "present": 84,
-        "expected": 169,
-        "missing": 85,
-        "pct": 49.7
+        "expected": 179,
+        "missing": 95,
+        "pct": 46.9
       }
     },
     "openSubscription": {
@@ -272,20 +272,20 @@
     },
     "provenance": {
       "sources": {
-        "present": 1356,
-        "expected": 1357,
+        "present": 1360,
+        "expected": 1361,
         "missing": 1,
         "pct": 99.9
       },
       "validation": {
-        "present": 1357,
-        "expected": 1357,
+        "present": 1361,
+        "expected": 1361,
         "missing": 0,
         "pct": 100.0
       },
       "documents": {
-        "present": 172,
-        "expected": 172,
+        "present": 184,
+        "expected": 184,
         "missing": 0,
         "pct": 100.0
       }
@@ -293,13 +293,51 @@
   },
   "gapExamples": {
     "recentExchange2Y": {
-      "symbol": [],
+      "symbol": [
+        {
+          "id": "vivekanand-cotspin-limited",
+          "company": "Vivekanand Cotspin Limited",
+          "openDate": "2026-09-21",
+          "stage": "upcoming"
+        },
+        {
+          "id": "fx-multitech-limited",
+          "company": "FX MULTITECH LIMITED",
+          "openDate": "2026-09-21",
+          "stage": "upcoming"
+        }
+      ],
       "board": [],
       "exchange": [],
       "openDate": [],
       "closeDate": [],
-      "priceBand": [],
+      "priceBand": [
+        {
+          "id": "vivekanand-cotspin-limited",
+          "company": "Vivekanand Cotspin Limited",
+          "openDate": "2026-09-21",
+          "stage": "upcoming"
+        },
+        {
+          "id": "fx-multitech-limited",
+          "company": "FX MULTITECH LIMITED",
+          "openDate": "2026-09-21",
+          "stage": "upcoming"
+        }
+      ],
       "lotSize": [
+        {
+          "id": "vivekanand-cotspin-limited",
+          "company": "Vivekanand Cotspin Limited",
+          "openDate": "2026-09-21",
+          "stage": "upcoming"
+        },
+        {
+          "id": "fx-multitech-limited",
+          "company": "FX MULTITECH LIMITED",
+          "openDate": "2026-09-21",
+          "stage": "upcoming"
+        },
         {
           "id": "pramodini",
           "company": "Pramodini Medicare Limited",
@@ -377,21 +415,21 @@
           "company": "Happy Square Outsourcing Services Limited",
           "openDate": "2025-07-03",
           "stage": "listed"
-        },
-        {
-          "id": "arisinfra",
-          "company": "Arisinfra Solutions Limited",
-          "openDate": "2025-06-18",
-          "stage": "listed"
-        },
-        {
-          "id": "capinvit",
-          "company": "Capital Infra Trust",
-          "openDate": "2025-01-07",
-          "stage": "listed"
         }
       ],
       "issueSizeCr": [
+        {
+          "id": "vivekanand-cotspin-limited",
+          "company": "Vivekanand Cotspin Limited",
+          "openDate": "2026-09-21",
+          "stage": "upcoming"
+        },
+        {
+          "id": "fx-multitech-limited",
+          "company": "FX MULTITECH LIMITED",
+          "openDate": "2026-09-21",
+          "stage": "upcoming"
+        },
         {
           "id": "icel",
           "company": "IC Electricals Company Limited-Issue postponed",
@@ -424,6 +462,18 @@
         }
       ],
       "issueComposition": [
+        {
+          "id": "vivekanand-cotspin-limited",
+          "company": "Vivekanand Cotspin Limited",
+          "openDate": "2026-09-21",
+          "stage": "upcoming"
+        },
+        {
+          "id": "fx-multitech-limited",
+          "company": "FX MULTITECH LIMITED",
+          "openDate": "2026-09-21",
+          "stage": "upcoming"
+        },
         {
           "id": "icel",
           "company": "IC Electricals Company Limited-Issue postponed",
@@ -476,6 +526,18 @@
           "id": "biopol",
           "company": "Biopol Chemicals Limited",
           "openDate": "2026-02-06",
+          "stage": "listed"
+        },
+        {
+          "id": "speb",
+          "company": "Speb Adhesives Limited",
+          "openDate": "2025-12-01",
+          "stage": "listed"
+        },
+        {
+          "id": "invicta",
+          "company": "Invicta Diagnostic Limited",
+          "openDate": "2025-12-01",
           "stage": "listed"
         },
         {
@@ -565,15 +627,15 @@
           "stage": "listed"
         },
         {
-          "id": "aaradhya",
-          "company": "Aaradhya Disposal Industries Limited",
-          "openDate": "2025-08-04",
+          "id": "excelsoft",
+          "company": "Excelsoft Technologies Limited",
+          "openDate": "2025-11-19",
           "stage": "listed"
         },
         {
-          "id": "sgltl",
-          "company": "Standard Glass Lining Technology Limited",
-          "openDate": "2025-01-06",
+          "id": "capillary",
+          "company": "Capillary Technologies India Limited",
+          "openDate": "2025-11-14",
           "stage": "listed"
         }
       ],
@@ -633,21 +695,39 @@
           "stage": "listed"
         },
         {
-          "id": "mamata",
-          "company": "Mamata Machinery Limited",
-          "openDate": "2024-12-19",
+          "id": "speb",
+          "company": "Speb Adhesives Limited",
+          "openDate": "2025-12-01",
           "stage": "listed"
         },
         {
-          "id": "suraksha",
-          "company": "Suraksha Diagnostic Limited",
-          "openDate": "2024-11-29",
+          "id": "sudeepphrm",
+          "company": "Sudeep Pharma Limited",
+          "openDate": "2025-11-21",
           "stage": "listed"
         },
         {
-          "id": "sagility",
-          "company": "Sagility India Limited",
-          "openDate": "2024-11-05",
+          "id": "excelsoft",
+          "company": "Excelsoft Technologies Limited",
+          "openDate": "2025-11-19",
+          "stage": "listed"
+        },
+        {
+          "id": "capillary",
+          "company": "Capillary Technologies India Limited",
+          "openDate": "2025-11-14",
+          "stage": "listed"
+        },
+        {
+          "id": "utlsolar",
+          "company": "Fujiyama Power Systems Limited",
+          "openDate": "2025-11-13",
+          "stage": "listed"
+        },
+        {
+          "id": "tennind",
+          "company": "Tenneco Clean Air India Limited",
+          "openDate": "2025-11-12",
           "stage": "listed"
         }
       ],
