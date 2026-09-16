@@ -19,7 +19,7 @@
       "reports": 36,
       "updated": 0
     },
-    "generatedAt": "2026-09-16T04:44:14.846866+00:00",
+    "generatedAt": "2026-09-16T05:04:23.830377+00:00",
     "historyStart": "2024-09-13",
     "initialSourceRepair": {
       "records": 1354,
@@ -349,12 +349,12 @@
     },
     "pipelineStages": {
       "apply_corrections.py": {
-        "checkedAt": "2026-09-16T04:35:01.544296+00:00",
-        "diagnostics": "ed since source review; preserving this record and its matching provenance\"}, {\"id\": \"cleanmax\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"aye\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"armour\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"objectsOfIssue\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"eximroutes\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"objectsOfIssue\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"torrent-gas-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"national-stock-exchange-of-india-limited\", \"reason\": \"Issuer record no longer exists\"}, {\"id\": \"nopaperforms-solutions-limited\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"m-k-c-agro-fresh-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}]}\n",
-        "durationSeconds": 0.21,
-        "exitCode": 0,
         "stage": "apply_corrections.py",
-        "status": "no_change"
+        "status": "no_change",
+        "exitCode": 0,
+        "durationSeconds": 0.3,
+        "checkedAt": "2026-09-16T05:04:07.768639+00:00",
+        "diagnostics": "ed since source review; preserving this record and its matching provenance\"}, {\"id\": \"cleanmax\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"aye\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"armour\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"objectsOfIssue\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"eximroutes\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"objectsOfIssue\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"torrent-gas-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"national-stock-exchange-of-india-limited\", \"reason\": \"Issuer record no longer exists\"}, {\"id\": \"nopaperforms-solutions-limited\", \"fields\": [\"dataCorrections\", \"documentFieldProvenance\", \"documentRepair\", \"leadManagers\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}, {\"id\": \"m-k-c-agro-fresh-limited\", \"fields\": [\"documentFieldProvenance\", \"documentRepair\", \"offerDocumentExtraction\"], \"reason\": \"Value changed since source review; preserving this record and its matching provenance\"}]}\n"
       },
       "apply_verified_filing_offer_fields.py": {
         "stage": "apply_verified_filing_offer_fields.py",
@@ -365,12 +365,12 @@
         "diagnostics": "Verified filing offer fields: missing record national-stock-exchange-of-india-limited\nVerified filing offer fields: entries=4, updated=0, fields={}\n"
       },
       "apply_verified_recent_issue_terms.py": {
-        "checkedAt": "2026-09-16T04:35:01.855958+00:00",
-        "diagnostics": "Verified issue terms: entries=15, updated=0, fields={}\n",
-        "durationSeconds": 0.27,
-        "exitCode": 0,
         "stage": "apply_verified_recent_issue_terms.py",
-        "status": "no_change"
+        "status": "no_change",
+        "exitCode": 0,
+        "durationSeconds": 0.37,
+        "checkedAt": "2026-09-16T05:04:08.201682+00:00",
+        "diagnostics": "Verified issue terms: entries=15, updated=0, fields={}\n"
       },
       "backfill_p4_lot_sizes.py": {
         "stage": "backfill_p4_lot_sizes.py",
@@ -445,12 +445,12 @@
         "diagnostics": "NSE-history health: status=checked records=0\n"
       },
       "record_integrity.py": {
-        "checkedAt": "2026-09-16T04:36:29.361926+00:00",
-        "diagnostics": "{\"integrityRepairs\": 0}\n",
-        "durationSeconds": 0.18,
-        "exitCode": 0,
         "stage": "record_integrity.py",
-        "status": "no_change"
+        "status": "no_change",
+        "exitCode": 0,
+        "durationSeconds": 0.36,
+        "checkedAt": "2026-09-16T05:04:09.691718+00:00",
+        "diagnostics": "{\"integrityRepairs\": 0}\n"
       },
       "run_offer_documents.py": {
         "checkedAt": "2026-09-16T04:36:21.430592+00:00",
@@ -478,14 +478,14 @@
       }
     },
     "publication": {
-      "runId": "35056273505",
-      "collectorCommit": "000e1cf194032ea4353b15474a221bc684f0121b",
-      "status": "published_with_pending_conflicts",
+      "runId": "35058015539",
+      "collectorCommit": "e94467af49c09c77a5565eda0ca8489870ad7c31",
+      "status": "published",
       "pendingConflictCount": 81
     },
     "recordCount": 1357,
     "recordIntegrity": {
-      "checkedAt": "2026-09-16T04:44:15.104928+00:00",
+      "checkedAt": "2026-09-16T05:04:24.114428+00:00",
       "changedFields": 0
     },
     "reviewedCorrectionStatus": {
@@ -1728,7 +1728,7 @@
         "entries": 15,
         "updated": 0,
         "fields": {},
-        "checkedAt": "2026-09-16T10:14:15+05:30"
+        "checkedAt": "2026-09-16T10:34:24+05:30"
       },
       "verified-recent-offer-fields": {
         "ok": true,
