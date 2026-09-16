@@ -75,9 +75,6 @@ def merge_dynamic_only(record, entry, cells, url, digest):
     return changed
 
 
-base.merge_terms = merge_dynamic_only
-
-
 def _pending_revalidation(record: dict[str, Any]) -> list[str]:
     state = record.get("staticSourcePolicy") or {}
     if not isinstance(state, dict) or state.get("policy") != "final-prospectus-only":
@@ -227,8 +224,6 @@ def discover_final_prospectuses(
             skipped_recent += 1
             continue
 
-        # Newer issues first; within the same date, prioritize records with more
-        # static fields awaiting Final Prospectus authority.
         candidates.append(
             (
                 opened,
@@ -254,8 +249,6 @@ def discover_final_prospectuses(
         docs = eligible_final_documents(record, matches)
         changed = False
         if docs:
-            # One latest identity-matched final filing is sufficient; source
-            # policy deterministically picks the newest final document.
             changed = _attach_final_document(record, docs[0])
             records_with_final += 1
             if changed:
@@ -309,16 +302,22 @@ def run(
     retry_days: int = 7,
     checkpoint=None,
 ) -> dict[str, Any]:
-    # Preserve NSE final-listing lifecycle enrichment, but disable its legacy
-    # missing-field-driven document selector. Discovery below is provenance-led.
-    dynamic_health = base.run(
-        payload,
-        limit=max(1, limit),
-        history_days=max(0, history_days),
-        documents_limit=0,
-        retry_days=max(0, retry_days),
-        checkpoint=checkpoint,
-    )
+    # The compatibility collector still owns dynamic listing enrichment. Scope
+    # its merge override to this call so importing this wrapper cannot mutate
+    # the legacy module for tests or other tools in the same Python process.
+    original_merge = base.merge_terms
+    try:
+        base.merge_terms = merge_dynamic_only
+        dynamic_health = base.run(
+            payload,
+            limit=max(1, limit),
+            history_days=max(0, history_days),
+            documents_limit=0,
+            retry_days=max(0, retry_days),
+            checkpoint=checkpoint,
+        )
+    finally:
+        base.merge_terms = original_merge
 
     rows, register_errors = _load_register_rows()
     discovery = discover_final_prospectuses(
@@ -334,8 +333,6 @@ def run(
     discovery["errors"] = register_errors
 
     health = payload.setdefault("meta", {}).setdefault("nseOfferFilingsHealth", {})
-    # Keep the dynamic XBRL metrics already produced by the base collector and
-    # make Final Prospectus discovery separately measurable.
     health.update(dynamic_health)
     health["finalProspectusDiscovery"] = discovery
     health["checkedAt"] = base.stamp()
