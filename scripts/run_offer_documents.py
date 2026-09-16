@@ -35,6 +35,8 @@ IST = timezone(timedelta(hours=5, minutes=30))
 PDF_DOWNLOAD_ATTEMPTS = 3
 PDF_DOWNLOAD_TOTAL_SECONDS = 180
 PDF_MAX_BYTES = 40 * 1024 * 1024
+BSE_IPO_HISTORY = "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=P"
+BSE_BOOTSTRAP_URLS = ("https://www.bseindia.com/", BSE_IPO_HISTORY)
 _TRANSIENT_PDF_ERRORS = (
     requests.ConnectionError,
     requests.Timeout,
@@ -52,26 +54,65 @@ def document_for(record):
     return identity.choose_candidate(record, source_policy.final_prospectus_candidates(record))
 
 
-def _download_pdf_once(url: str, deadline: float) -> bytes:
-    """Download one bounded PDF attempt without caching partial bytes."""
-    with requests.get(url, headers=core.HEADERS, stream=True, timeout=(15, 30)) as response:
-        response.raise_for_status()
-        chunks, count = [], 0
-        for chunk in response.iter_content(131072):
-            if time.monotonic() > deadline:
-                raise requests.Timeout(
-                    f"Official PDF download exceeded its {PDF_DOWNLOAD_TOTAL_SECONDS}-second total retry budget"
-                )
-            if not chunk:
-                continue
-            count += len(chunk)
-            if count > PDF_MAX_BYTES:
-                raise ValueError("Official PDF exceeds bounded 40 MiB extraction budget")
-            chunks.append(chunk)
+def _bse_ipo_pdf(url: str) -> bool:
+    """Return True only for BSE's official IPO-document download tree."""
+    parsed = urlparse(str(url or ""))
+    host = (parsed.hostname or "").lower()
+    return (
+        host in {"www.bseindia.com", "bseindia.com"}
+        and parsed.path.lower().startswith("/downloads/ipo/")
+        and parsed.path.lower().endswith(".pdf")
+    )
+
+
+def _read_pdf_response(response, deadline: float) -> bytes:
+    response.raise_for_status()
+    chunks, count = [], 0
+    for chunk in response.iter_content(131072):
+        if time.monotonic() > deadline:
+            raise requests.Timeout(
+                f"Official PDF download exceeded its {PDF_DOWNLOAD_TOTAL_SECONDS}-second total retry budget"
+            )
+        if not chunk:
+            continue
+        count += len(chunk)
+        if count > PDF_MAX_BYTES:
+            raise ValueError("Official PDF exceeds bounded 40 MiB extraction budget")
+        chunks.append(chunk)
     data = b"".join(chunks)
     if not data.startswith(b"%PDF"):
         raise ValueError("Source returned non-PDF content")
     return data
+
+
+def _download_pdf_once(url: str, deadline: float) -> bytes:
+    """Download one bounded PDF attempt without caching partial bytes.
+
+    BSE's IPO download tree may reject stateless direct requests. Reuse the same
+    bounded session/referrer bootstrap used by the project's BSE collectors, but
+    only for that exact official path. NSE and SEBI retain the generic transport.
+    """
+    if _bse_ipo_pdf(url):
+        with requests.Session() as session:
+            session.headers.update({**core.HEADERS, "Referer": BSE_IPO_HISTORY})
+            for bootstrap_url in BSE_BOOTSTRAP_URLS:
+                try:
+                    bootstrap = session.get(bootstrap_url, timeout=(5, 10))
+                    bootstrap.close()
+                except requests.RequestException:
+                    # Bootstrap is opportunistic; the bounded final request below
+                    # remains authoritative and surfaces any real source failure.
+                    pass
+            with session.get(
+                url,
+                headers={**core.HEADERS, "Referer": BSE_IPO_HISTORY},
+                stream=True,
+                timeout=(15, 30),
+            ) as response:
+                return _read_pdf_response(response, deadline)
+
+    with requests.get(url, headers=core.HEADERS, stream=True, timeout=(15, 30)) as response:
+        return _read_pdf_response(response, deadline)
 
 
 def pdf_bytes(doc):
