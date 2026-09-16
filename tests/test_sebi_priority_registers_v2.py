@@ -49,17 +49,21 @@ class SebiPriorityRegisterV2Tests(unittest.TestCase):
         self.assertTrue(mod.has_primary_landing(record))
 
     def test_rhp_landing_does_not_stop_final_prospectus_search(self):
-        record = {"documents": [{"type": "RHP", "title": "Example Limited - RHP", "url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/example-rhp.html"}]}
+        record = {"company": "Example Limited", "openDate": "2026-08-20", "documents": [{"type": "RHP", "title": "Example Limited - RHP", "url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/example-rhp.html"}]}
         self.assertTrue(mod.has_primary_landing(record))
         self.assertFalse(mod.has_final_prospectus_landing(record))
 
-    def test_final_prospectus_landing_stops_repeat_search(self):
-        record = {"documents": [{"type": "PROSPECTUS", "title": "Example Limited - Prospectus", "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/example-prospectus.html"}]}
+    def test_final_prospectus_landing_stops_repeat_search_when_issuer_qualified(self):
+        record = {"company": "Example Limited", "openDate": "2026-09-01", "documents": [{"type": "PROSPECTUS", "title": "Example Limited - Prospectus", "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/example-limited-prospectus.html", "filedDate": "2026-09-08"}]}
         self.assertTrue(mod.has_final_prospectus_landing(record))
 
-    def test_direct_final_prospectus_stops_repeat_search(self):
-        record = {"documents": [{"type": "PROSPECTUS", "title": "Example Limited - Prospectus", "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/example-prospectus.pdf"}]}
+    def test_direct_final_prospectus_stops_repeat_search_when_url_names_issuer(self):
+        record = {"company": "Happy Steels Limited", "openDate": "2026-07-09", "documents": [{"type": "PROSPECTUS", "title": "Final Prospectus", "url": "https://nsearchives.nseindia.com/emerge/corporates/content/HappySteelsLimited_PROSP.pdf", "filedDate": "2026-07-14"}]}
         self.assertTrue(mod.has_final_prospectus_landing(record))
+
+    def test_generic_unqualified_final_pdf_does_not_stop_repeat_search(self):
+        record = {"company": "Transrail Lighting Limited", "openDate": "2024-12-19", "closeDate": "2024-12-23", "documents": [{"type": "PROSPECTUS", "title": "Final Prospectus", "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jul-2025/1752651007576_865.pdf", "filedDate": "2025-07-16"}]}
+        self.assertFalse(mod.has_final_prospectus_landing(record))
 
     def test_final_match_filter_rejects_rhp_for_same_issuer(self):
         record = {"company": "Example Limited", "openDate": "2026-09-01"}
