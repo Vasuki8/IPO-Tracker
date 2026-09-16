@@ -124,8 +124,9 @@ def extract(record: dict[str, Any], doc: dict[str, Any]):
     text, pages, count = parser.extract_pdf_text(data)
     name = core.canonical_company(record.get("company", ""))
     observed = core.canonical_company(text[:25000])
-    if not name or name not in observed:
-        raise ValueError("Issuer identity not confirmed in the document's opening pages")
+    text_identity_confirmed = bool(name and name in observed)
+    if not text_identity_confirmed and not base.identity.official_identity_confirmed(record, doc):
+        raise ValueError("Issuer identity not confirmed in the document's opening pages or official source metadata")
     primary = parser.parse_document_text(text, record.get("priceBand"))
     supplement = residual.parse_document_text(text)
     parsed = residual.merge_parsed(primary, supplement)
