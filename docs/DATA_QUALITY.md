@@ -1,6 +1,6 @@
 # IPO Tracker Data Quality
 
-Generated: **2026-09-17T04:31:19+05:30**
+Generated: **2026-09-17T05:05:51+05:30**
 
 Records audited: **1,362**
 
@@ -8,9 +8,9 @@ Records audited: **1,362**
 
 | Area | Score | Records in denominator |
 | --- | ---: | ---: |
-| Actionable exchange terms | 83.5% | 1,353 |
-| Recent exchange terms (2Y) | 99.2% | 441 |
-| Offer-document intelligence | 76.3% | 287 |
+| Actionable exchange terms | 82.3% | 1,353 |
+| Recent exchange terms (2Y) | 95.7% | 441 |
+| Offer-document intelligence | 76.8% | 312 |
 | Live subscription categories | 77.8% | 9 |
 | Matured lifecycle dates | 97.2% | 1,323 |
 | Source/provenance trail | 100.0% | 1,362 |
@@ -26,8 +26,8 @@ Records audited: **1,362**
 | closeDate | 1,353 | 1,353 | 0 | 100.0% |
 | priceBand | 1,337 | 1,353 | 16 | 98.8% |
 | lotSize | 437 | 1,353 | 916 | 32.3% |
-| issueSizeCr | 439 | 1,353 | 914 | 32.4% |
-| issueComposition | 433 | 441 | 8 | 98.2% |
+| issueSizeCr | 370 | 1,353 | 983 | 27.3% |
+| issueComposition | 365 | 441 | 76 | 82.8% |
 
 ## Recent exchange fields — last 2 years
 
@@ -40,8 +40,8 @@ Records audited: **1,362**
 | closeDate | 441 | 441 | 0 | 100.0% |
 | priceBand | 438 | 441 | 3 | 99.3% |
 | lotSize | 431 | 441 | 10 | 97.7% |
-| issueSizeCr | 433 | 441 | 8 | 98.2% |
-| issueComposition | 433 | 441 | 8 | 98.2% |
+| issueSizeCr | 364 | 441 | 77 | 82.5% |
+| issueComposition | 365 | 441 | 76 | 82.8% |
 
 ## Historical exchange fields
 
@@ -60,12 +60,12 @@ Records audited: **1,362**
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| registrar | 269 | 287 | 18 | 93.7% |
-| leadManagers | 266 | 287 | 21 | 92.7% |
-| promoters | 233 | 287 | 54 | 81.2% |
-| objectsOfIssue | 218 | 287 | 69 | 76.0% |
-| financials | 196 | 287 | 91 | 68.3% |
-| promoterShareholding | 132 | 287 | 155 | 46.0% |
+| registrar | 290 | 312 | 22 | 92.9% |
+| leadManagers | 287 | 312 | 25 | 92.0% |
+| promoters | 249 | 312 | 63 | 79.8% |
+| objectsOfIssue | 238 | 312 | 74 | 76.3% |
+| financials | 209 | 312 | 103 | 67.0% |
+| promoterShareholding | 164 | 312 | 148 | 52.6% |
 
 ## Open IPO subscription fields
 

@@ -1,18 +1,72 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-16T23:01:18.112789+00:00",
+  "generatedAt": "2026-09-16T23:35:50.214816+00:00",
   "parserVersion": 22,
   "recordCount": 1362,
   "errorCount": 0,
-  "reviewCount": 1149,
+  "reviewCount": 1308,
   "invalidRecordCount": 0,
-  "reviewRecordCount": 121,
+  "reviewRecordCount": 186,
   "subscriptionAuthority": {
     "officialRecords": 7,
     "secondaryRecords": 7,
     "sourceTimeUnknown": 10
   },
   "issues": [
+    {
+      "id": "ssretail",
+      "field": "issueComposition.totalIssueSizeCr",
+      "severity": "review",
+      "reason": "Fresh issue plus offer for sale does not match total issue size"
+    },
+    {
+      "id": "ssretail",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed issue amount does not match issue composition"
+    },
+    {
+      "id": "ssretail",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed fresh issue plus offer for sale does not match total issue size"
+    },
+    {
+      "id": "jsipl",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed issue amount does not match issue composition"
+    },
+    {
+      "id": "jsipl",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed fresh issue plus offer for sale does not match total issue size"
+    },
+    {
+      "id": "heromotors",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed fresh issue plus offer for sale does not match total issue size"
+    },
+    {
+      "id": "vama-wovenfab-limited",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed issue amount does not match issue composition"
+    },
+    {
+      "id": "vama-wovenfab-limited",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed fresh issue plus offer for sale does not match total issue size"
+    },
+    {
+      "id": "shakti-polytarp-limited",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed fresh issue plus offer for sale does not match total issue size"
+    },
     {
       "id": "shakti-polytarp-limited",
       "field": "leadManagers",
@@ -134,6 +188,54 @@
       "reason": "Source table/period evidence has not been revalidated"
     },
     {
+      "id": "manika",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed fresh issue plus offer for sale does not match total issue size"
+    },
+    {
+      "id": "century-business-media-limited",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed issue amount does not match issue composition"
+    },
+    {
+      "id": "century-business-media-limited",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed fresh issue plus offer for sale does not match total issue size"
+    },
+    {
+      "id": "veegaland",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "raksan-transformers-limited",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed issue amount does not match issue composition"
+    },
+    {
+      "id": "raksan-transformers-limited",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed fresh issue plus offer for sale does not match total issue size"
+    },
+    {
+      "id": "om-galaxy-limited",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed issue amount does not match issue composition"
+    },
+    {
+      "id": "om-galaxy-limited",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed fresh issue plus offer for sale does not match total issue size"
+    },
+    {
       "id": "om-galaxy-limited",
       "field": "financials.FY2024.revenueCr",
       "severity": "review",
@@ -150,6 +252,24 @@
       "field": "financials.FY2026.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "maharaja-speedex-india-limited",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed issue amount does not match issue composition"
+    },
+    {
+      "id": "maharaja-speedex-india-limited",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed fresh issue plus offer for sale does not match total issue size"
+    },
+    {
+      "id": "rentomojo",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "rentomojo",
@@ -873,6 +993,12 @@
     },
     {
       "id": "esds",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "esds",
       "field": "financials.FY2026.totalIncomeCr",
       "severity": "review",
       "reason": "Source table/period evidence has not been revalidated"
@@ -1401,6 +1527,12 @@
     },
     {
       "id": "tempsens",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "tempsens",
       "field": "financials.FY2024.patCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
@@ -1575,6 +1707,18 @@
     },
     {
       "id": "sunshine",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed issue amount does not match issue composition"
+    },
+    {
+      "id": "sunshine",
+      "field": "ofsCr",
+      "severity": "review",
+      "reason": "Displayed issue amount does not match issue composition"
+    },
+    {
+      "id": "sunshine",
       "field": "financials.FY2024.ebitdaCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
@@ -1626,6 +1770,12 @@
       "field": "financials.FY2026.totalIncomeCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "shankesh",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "shankesh",
@@ -1788,6 +1938,12 @@
       "field": "financials.FY2024.roePct",
       "severity": "review",
       "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "shiprocket",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "pramodini",
@@ -2334,6 +2490,12 @@
       "field": "financials.FY2026.ebitdaCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "anawil",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "mvelectro",
@@ -2535,6 +2697,12 @@
     },
     {
       "id": "jnpr",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "jnpr",
       "field": "financials.FY2024.dilutedEps",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
@@ -2748,6 +2916,12 @@
       "field": "financials.FY2024.netWorthCr",
       "severity": "review",
       "reason": "Possible percentage-to-currency extraction contamination; verify source row"
+    },
+    {
+      "id": "manipalhos",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "manipalhos",
@@ -3038,6 +3212,18 @@
       "reason": "Source table/period evidence has not been revalidated"
     },
     {
+      "id": "cmll",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "sbifunds",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
       "id": "sbifunds",
       "field": "financials.FY2024.dilutedEps",
       "severity": "review",
@@ -3218,6 +3404,24 @@
       "reason": "Source table/period evidence has not been revalidated"
     },
     {
+      "id": "laserpower",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "happy",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "kusumgar",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
       "id": "aastha",
       "field": "financials.FY2025.revenueCr",
       "severity": "review",
@@ -3434,6 +3638,24 @@
       "reason": "Source table/period evidence has not been revalidated"
     },
     {
+      "id": "turtlemint",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "claycraft",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "hexagon",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
       "id": "hexagon",
       "field": "financials.FY2025.revenueCr",
       "severity": "review",
@@ -3594,12 +3816,30 @@
       "field": "financials.FY2025.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "qline",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "teamtech",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "rfbl",
       "field": "leadManagers",
       "severity": "review",
       "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "value360",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "value360",
@@ -3842,6 +4082,18 @@
       "reason": "Possible percentage-to-currency extraction contamination; verify source row"
     },
     {
+      "id": "adisoft",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "saiparent",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
       "id": "powerica",
       "field": "financials.FY2023.revenueCr",
       "severity": "review",
@@ -3858,6 +4110,12 @@
       "field": "financials.FY2025.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "amirchand",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "amirchand",
@@ -4076,10 +4334,28 @@
       "reason": "Source table/period evidence has not been revalidated"
     },
     {
+      "id": "sedemac",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "striders",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
       "id": "striders",
       "field": "leadManagers",
       "severity": "review",
       "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "omni",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "pngsreva",
@@ -4407,6 +4683,12 @@
     },
     {
       "id": "manilam",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "manilam",
       "field": "leadManagers",
       "severity": "review",
       "reason": "Existing disclosure retained; no supported source-role table was extracted"
@@ -4418,6 +4700,12 @@
       "reason": "Existing disclosure retained; no supported source-role table was extracted"
     },
     {
+      "id": "fractal",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
       "id": "aye",
       "field": "financials.FY2025.patCr",
       "severity": "review",
@@ -4545,6 +4833,12 @@
     },
     {
       "id": "gjl",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "gjl",
       "field": "leadManagers",
       "severity": "review",
       "reason": "Existing disclosure retained; no supported source-role table was extracted"
@@ -4568,10 +4862,34 @@
       "reason": "Existing disclosure retained; no supported source-role table was extracted"
     },
     {
+      "id": "amagi",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
       "id": "avana",
       "field": "leadManagers",
       "severity": "review",
       "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "bharatcoal",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "dhararail",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "shyamdhani",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "shyamdhani",
@@ -4581,6 +4899,12 @@
     },
     {
       "id": "gksl",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "gksl",
       "field": "financials.FY2023.netWorthCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
@@ -4617,6 +4941,12 @@
     },
     {
       "id": "marc",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "marc",
       "field": "leadManagers",
       "severity": "review",
       "reason": "Existing disclosure retained; no supported source-role table was extracted"
@@ -4628,6 +4958,18 @@
       "reason": "Existing disclosure retained; no supported source-role table was extracted"
     },
     {
+      "id": "iciciamc",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "eximroutes",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
       "id": "eximroutes",
       "field": "leadManagers",
       "severity": "review",
@@ -4638,6 +4980,12 @@
       "field": "registrar",
       "severity": "review",
       "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "nephroplus",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "nephroplus",
@@ -4730,6 +5078,18 @@
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
     {
+      "id": "corona",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "fwstc",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
       "id": "fwstc",
       "field": "financials.FY2023.ebitdaCr",
       "severity": "review",
@@ -4800,6 +5160,12 @@
       "field": "registrar",
       "severity": "review",
       "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "aequs",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "aequs",
@@ -4892,6 +5258,12 @@
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
     {
+      "id": "speb",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
       "id": "invicta",
       "field": "financials.FY2024.ebitdaCr",
       "severity": "review",
@@ -4902,6 +5274,12 @@
       "field": "financials.FY2025.ebitdaCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "invicta",
+      "field": "leadManagers",
+      "severity": "review",
+      "reason": "Existing disclosure retained; no supported source-role table was extracted"
     },
     {
       "id": "excelsoft",
@@ -5030,6 +5408,18 @@
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
     {
+      "id": "tennind",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "pwl",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
       "id": "emmvee",
       "field": "financials.FY2023.dilutedEps",
       "severity": "review",
@@ -5139,6 +5529,12 @@
     },
     {
       "id": "shethji",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "shethji",
       "field": "financials.FY2023.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
@@ -5154,6 +5550,42 @@
       "field": "financials.FY2025.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "shethji",
+      "field": "leadManagers",
+      "severity": "review",
+      "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "shethji",
+      "field": "registrar",
+      "severity": "review",
+      "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "studds",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "midwestltd",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "cramc",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "wework",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "wework",
@@ -5262,6 +5694,12 @@
       "field": "financials.FY2025.totalIncomeCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "munish",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "munish",
@@ -5418,6 +5856,12 @@
       "field": "financials.FY2024.patCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "omfreight",
+      "field": "leadManagers",
+      "severity": "review",
+      "reason": "Existing disclosure retained; no supported source-role table was extracted"
     },
     {
       "id": "glottis",
@@ -5436,6 +5880,12 @@
       "field": "financials.FY2024.patCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "fabtech",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "fabtech",
@@ -5684,6 +6134,18 @@
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
     {
+      "id": "solarworld",
+      "field": "leadManagers",
+      "severity": "review",
+      "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "solarworld",
+      "field": "registrar",
+      "severity": "review",
+      "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
       "id": "ecoline",
       "field": "financials.FY2023.netWorthCr",
       "severity": "review",
@@ -5694,6 +6156,12 @@
       "field": "financials.FY2024.netWorthCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "arssbl",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "primecab",
@@ -5766,6 +6234,12 @@
       "field": "financials.FY2024.patCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "ivalue",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "ivalue",
@@ -5874,6 +6348,12 @@
       "field": "financials.FY2024.eps",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "taurian",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "vikran",
@@ -6051,6 +6531,12 @@
     },
     {
       "id": "studiolsd",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "studiolsd",
       "field": "financials.FY2023.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
@@ -6068,10 +6554,22 @@
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
     {
+      "id": "regaal",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
       "id": "amcl",
       "field": "financials.FY2023.roePct",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "sawaliya",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "sawaliya",
@@ -6092,6 +6590,24 @@
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
     {
+      "id": "alltime",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "hilinfra",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "parth",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
       "id": "parth",
       "field": "financials.FY2023.revenueCr",
       "severity": "review",
@@ -6110,6 +6626,12 @@
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
     {
+      "id": "jyotiglobl",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
       "id": "rnpl",
       "field": "financials.FY2023.revenueCr",
       "severity": "review",
@@ -6126,6 +6648,12 @@
       "field": "financials.FY2025.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "cudml",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "mbel",
@@ -6219,6 +6747,12 @@
     },
     {
       "id": "sellowrap",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "sellowrap",
       "field": "financials.FY2023.patCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
@@ -6276,6 +6810,12 @@
       "field": "financials.FY2025.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "anthem",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "anthem",
@@ -6536,6 +7076,276 @@
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
     {
+      "id": "pushpa",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "profx",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "sambhv",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "shksil",
+      "field": "financials.FY2023.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "shksil",
+      "field": "financials.FY2024.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "safeentp",
+      "field": "financials.FY2023.ebitdaCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "safeentp",
+      "field": "financials.FY2023.netWorthCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "safeentp",
+      "field": "financials.FY2023.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "safeentp",
+      "field": "financials.FY2023.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "safeentp",
+      "field": "financials.FY2024.ebitdaCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "safeentp",
+      "field": "financials.FY2024.netWorthCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "safeentp",
+      "field": "financials.FY2024.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "safeentp",
+      "field": "financials.FY2024.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "patilautom",
+      "field": "financials.FY2023.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "patilautom",
+      "field": "financials.FY2024.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "oswalpumps",
+      "field": "financials.FY2022.dilutedEps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "oswalpumps",
+      "field": "financials.FY2022.eps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "oswalpumps",
+      "field": "financials.FY2022.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "oswalpumps",
+      "field": "financials.FY2022.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "oswalpumps",
+      "field": "financials.FY2023.dilutedEps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "oswalpumps",
+      "field": "financials.FY2023.eps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "oswalpumps",
+      "field": "financials.FY2023.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "oswalpumps",
+      "field": "financials.FY2023.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "oswalpumps",
+      "field": "financials.FY2024.dilutedEps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "oswalpumps",
+      "field": "financials.FY2024.eps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "oswalpumps",
+      "field": "financials.FY2024.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "oswalpumps",
+      "field": "financials.FY2024.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "scodatubes",
+      "field": "financials.FY2022.ebitdaCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "scodatubes",
+      "field": "financials.FY2023.ebitdaCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "scodatubes",
+      "field": "financials.FY2024.ebitdaCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "prostarm",
+      "field": "financials.FY2022.dilutedEps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "prostarm",
+      "field": "financials.FY2022.eps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "prostarm",
+      "field": "financials.FY2023.dilutedEps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "prostarm",
+      "field": "financials.FY2023.eps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "prostarm",
+      "field": "financials.FY2024.dilutedEps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "prostarm",
+      "field": "financials.FY2024.eps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "nikita",
+      "field": "financials.FY2021.dilutedEps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "nikita",
+      "field": "financials.FY2021.eps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "nikita",
+      "field": "financials.FY2021.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "nikita",
+      "field": "financials.FY2022.dilutedEps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "nikita",
+      "field": "financials.FY2022.eps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "nikita",
+      "field": "financials.FY2022.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "nikita",
+      "field": "financials.FY2023.dilutedEps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "nikita",
+      "field": "financials.FY2023.eps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "nikita",
+      "field": "financials.FY2023.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
       "id": "theleela",
       "field": "financials.FY2023.dilutedEps",
       "severity": "review",
@@ -6626,6 +7436,24 @@
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
     {
+      "id": "vginfotech",
+      "field": "financials.FY2022.ebitdaCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "vginfotech",
+      "field": "financials.FY2023.ebitdaCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "vginfotech",
+      "field": "financials.FY2024.ebitdaCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
       "id": "denta",
       "field": "financials.FY2023.patCr",
       "severity": "review",
@@ -6648,6 +7476,12 @@
       "field": "financials.FY2024.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "sgltl",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "nmsteel",
@@ -6690,6 +7524,12 @@
       "field": "leadManagers",
       "severity": "review",
       "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "igil",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "dhanlaxmi",
@@ -6759,6 +7599,12 @@
     },
     {
       "id": "etml",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "etml",
       "field": "leadManagers",
       "severity": "review",
       "reason": "Existing disclosure retained; no supported source-role table was extracted"
@@ -6770,10 +7616,106 @@
       "reason": "Existing disclosure retained; no supported source-role table was extracted"
     },
     {
+      "id": "suraksha",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
       "id": "c2c",
       "field": "leadManagers",
       "severity": "review",
       "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "blackbuck",
+      "field": "issueComposition",
+      "severity": "review",
+      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "wol3d",
+      "field": "issueComposition.totalIssueSizeCr",
+      "severity": "review",
+      "reason": "Fresh issue plus offer for sale does not match total issue size"
+    },
+    {
+      "id": "wol3d",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed fresh issue plus offer for sale does not match total issue size"
+    },
+    {
+      "id": "rappid",
+      "field": "issueComposition.totalIssueSizeCr",
+      "severity": "review",
+      "reason": "Fresh issue plus offer for sale does not match total issue size"
+    },
+    {
+      "id": "rappid",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed fresh issue plus offer for sale does not match total issue size"
+    },
+    {
+      "id": "manba",
+      "field": "issueComposition.totalIssueSizeCr",
+      "severity": "review",
+      "reason": "Fresh issue plus offer for sale does not match total issue size"
+    },
+    {
+      "id": "manba",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed fresh issue plus offer for sale does not match total issue size"
+    },
+    {
+      "id": "sdreams",
+      "field": "issueComposition.totalIssueSizeCr",
+      "severity": "review",
+      "reason": "Fresh issue plus offer for sale does not match total issue size"
+    },
+    {
+      "id": "sdreams",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed fresh issue plus offer for sale does not match total issue size"
+    },
+    {
+      "id": "phoglobal",
+      "field": "issueComposition.totalIssueSizeCr",
+      "severity": "review",
+      "reason": "Fresh issue plus offer for sale does not match total issue size"
+    },
+    {
+      "id": "phoglobal",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed fresh issue plus offer for sale does not match total issue size"
+    },
+    {
+      "id": "bikewo",
+      "field": "issueComposition.totalIssueSizeCr",
+      "severity": "review",
+      "reason": "Fresh issue plus offer for sale does not match total issue size"
+    },
+    {
+      "id": "bikewo",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed fresh issue plus offer for sale does not match total issue size"
+    },
+    {
+      "id": "aviansh",
+      "field": "issueComposition.totalIssueSizeCr",
+      "severity": "review",
+      "reason": "Fresh issue plus offer for sale does not match total issue size"
+    },
+    {
+      "id": "aviansh",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed fresh issue plus offer for sale does not match total issue size"
     },
     {
       "id": "sartelefpo",
@@ -6888,6 +7830,18 @@
       "field": "financials.FY2024.patCr",
       "severity": "review",
       "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "nopaperforms-solutions-limited",
+      "field": "issueComposition.totalIssueSizeCr",
+      "severity": "review",
+      "reason": "Fresh issue plus offer for sale does not match total issue size"
+    },
+    {
+      "id": "nopaperforms-solutions-limited",
+      "field": "issueSizeCr",
+      "severity": "review",
+      "reason": "Displayed fresh issue plus offer for sale does not match total issue size"
     },
     {
       "id": "m-k-c-agro-fresh-limited",
