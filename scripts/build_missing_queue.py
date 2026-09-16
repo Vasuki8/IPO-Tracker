@@ -9,9 +9,11 @@ A record may also carry a ``dataAvailability`` resolution for a genuinely blank
 field after the official-source paths have been exhausted. Such blanks remain
 visible in completeness coverage, but no longer masquerade as actionable work.
 
-Under the Final-Prospectus-only source policy, a populated legacy static field is
-also actionable until its canonical provenance confirms a Final Prospectus. This
-lets P4/P5 closure depend on source authority rather than null-coverage alone.
+Under the Final-Prospectus-only source policy, populated legacy static fields
+become actionable once a Final Prospectus should exist. Open/upcoming issues are
+not asked to provide a document that has not yet been filed; revalidation starts
+once the IPO is listed, seven days after close, or immediately when a Final
+Prospectus is already attached.
 """
 from __future__ import annotations
 
@@ -35,6 +37,7 @@ NON_ACTIONABLE_AVAILABILITY = {
 }
 QUEUE_FORMAT_VERSION = 2
 FINAL_REVALIDATION_PREFIX = "provenance.finalProspectus."
+FINAL_PROSPECTUS_GRACE_DAYS = 7
 
 
 def profile_path(record: dict[str, Any]) -> str | None:
@@ -42,10 +45,32 @@ def profile_path(record: dict[str, Any]) -> str | None:
     return str(value) if value else None
 
 
-def pending_final_prospectus_fields(record: dict[str, Any]) -> list[str]:
-    """Return populated static fields that still lack Final Prospectus authority."""
+def final_prospectus_expected(record: dict[str, Any], today: date) -> bool:
+    """Whether it is reasonable to require final-document provenance today."""
+    if final_policy.choose_final_prospectus(record) is not None:
+        return True
+
+    listing_date = audit.parse_iso_date(record.get("listingDate"))
+    if listing_date and listing_date <= today:
+        return True
+
+    close_date = audit.parse_iso_date(record.get("closeDate"))
+    if close_date and close_date <= today - timedelta(days=FINAL_PROSPECTUS_GRACE_DAYS):
+        return True
+
+    return False
+
+
+def pending_final_prospectus_fields(
+    record: dict[str, Any], today: date
+) -> list[str]:
+    """Return mature populated static fields still lacking Final Prospectus authority."""
     state = record.get("staticSourcePolicy") or {}
-    if not isinstance(state, dict) or state.get("policy") != "final-prospectus-only":
+    if (
+        not isinstance(state, dict)
+        or state.get("policy") != "final-prospectus-only"
+        or not final_prospectus_expected(record, today)
+    ):
         return []
     allowed = set(final_policy.STATIC_CANONICAL_FIELDS)
     return sorted(
@@ -58,8 +83,8 @@ def pending_final_prospectus_fields(record: dict[str, Any]) -> list[str]:
     )
 
 
-def _final_field_verified(record: dict[str, Any], field: str) -> bool:
-    return field not in set(pending_final_prospectus_fields(record))
+def _final_field_verified(record: dict[str, Any], field: str, today: date) -> bool:
+    return field not in set(pending_final_prospectus_fields(record, today))
 
 
 def expected_rules(record: dict[str, Any], today: date, *, stage: str | None = None):
@@ -92,11 +117,11 @@ def expected_rules(record: dict[str, Any], today: date, *, stage: str | None = N
         for name, predicate in audit.expected_provenance_rules(record, today)
     )
 
-    for field in pending_final_prospectus_fields(record):
+    for field in pending_final_prospectus_fields(record, today):
         rules.append(
             (
                 FINAL_REVALIDATION_PREFIX + field,
-                lambda current, field=field: _final_field_verified(current, field),
+                lambda current, field=field, today=today: _final_field_verified(current, field, today),
             )
         )
     return rules
@@ -329,10 +354,11 @@ def main() -> int:
         "notes": [
             "P0/P1 records are repaired before historical records.",
             "Only lifecycle- and source-appropriate missing fields enter the actionable queue.",
-            "Populated legacy static fields remain actionable until Final Prospectus provenance is verified.",
+            "Populated legacy static fields become Final Prospectus revalidation work only after the final filing should exist.",
+            "Open/upcoming IPOs are not blocked on Final Prospectus provenance before listing or the post-close grace period.",
             "Full non-actionable resolution evidence remains in canonical IPO dataAvailability fields.",
             "Allotment date is tracked as optional research coverage until a reliable official historical collector exists.",
-            "Blank values are never guessed; canonical static values must come from Final Prospectus evidence.",
+            "Blank values are never guessed; canonical mature static values must come from Final Prospectus evidence.",
         ],
     }
     OUTPUT_FILE.write_text(
