@@ -168,6 +168,7 @@ def run(mode: str):
     LAST_SUPPORT_REBUILD_HASH = None
     step("record_integrity.py")
     step("apply_corrections.py")
+    step("apply_verified_recent_issue_terms.py")
 
     if mode == "core":
         step("run_update_v2.py", "--history-days", "1", "--sebi-pages", "4", timeout=900)
