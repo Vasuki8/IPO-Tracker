@@ -86,16 +86,32 @@ def _normal_document_type(value: Any) -> str:
     return re.sub(r"[^A-Z]+", "", str(value or "").upper())
 
 
+def _known_non_final_source_route(url: Any) -> bool:
+    """Reject official exchange notice routes that are not offer documents."""
+    try:
+        parsed = urlparse(str(url or "").strip())
+    except ValueError:
+        return False
+    host = (parsed.hostname or "").lower()
+    if host.startswith("www."):
+        host = host[4:]
+    path = parsed.path.lower()
+    return host == "bseindia.com" and "/downloads/uploaddocs/notices/" in path
+
+
 def known_non_final_document_url(record: dict[str, Any], url: Any) -> bool:
-    """Trust an attached explicit RHP/DRHP classification over stale metadata.
+    """Return True when exact official metadata proves a URL is not final.
 
     Older extraction records sometimes mislabeled an already attached RHP or
-    abridged RHP URL as ``PROSPECTUS``. Exact URL matching lets us reject only
-    that contradicted source without guessing from filenames or titles.
+    abridged RHP URL as ``PROSPECTUS``. BSE exchange-notice PDFs were also
+    historically captured from nested issue-detail rows. Exact URL/route guards
+    reject only those contradicted sources without guessing from filenames.
     """
     target = str(url or "").strip()
     if not target:
         return False
+    if _known_non_final_source_route(target):
+        return True
     for doc in record.get("documents") or []:
         if not isinstance(doc, dict) or str(doc.get("url") or "").strip() != target:
             continue
