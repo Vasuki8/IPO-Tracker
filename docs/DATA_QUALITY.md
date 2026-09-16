@@ -1,6 +1,6 @@
 # IPO Tracker Data Quality
 
-Generated: **2026-09-16T23:15:00+05:30**
+Generated: **2026-09-17T00:49:32+05:30**
 
 Records audited: **1,361**
 
@@ -9,10 +9,10 @@ Records audited: **1,361**
 | Area | Score | Records in denominator |
 | --- | ---: | ---: |
 | Actionable exchange terms | 83.5% | 1,352 |
-| Recent exchange terms (2Y) | 99.0% | 443 |
-| Offer-document intelligence | 78.5% | 216 |
-| Live subscription categories | 100.0% | 8 |
-| Matured lifecycle dates | 97.3% | 1,321 |
+| Recent exchange terms (2Y) | 99.2% | 440 |
+| Offer-document intelligence | 77.5% | 232 |
+| Live subscription categories | 77.8% | 9 |
+| Matured lifecycle dates | 97.2% | 1,323 |
 | Source/provenance trail | 100.0% | 1,361 |
 
 ## Actionable exchange fields
@@ -25,68 +25,68 @@ Records audited: **1,361**
 | openDate | 1,352 | 1,352 | 0 | 100.0% |
 | closeDate | 1,352 | 1,352 | 0 | 100.0% |
 | priceBand | 1,337 | 1,352 | 15 | 98.9% |
-| lotSize | 426 | 1,352 | 926 | 31.5% |
+| lotSize | 431 | 1,352 | 921 | 31.9% |
 | issueSizeCr | 439 | 1,352 | 913 | 32.5% |
-| issueComposition | 436 | 443 | 7 | 98.4% |
+| issueComposition | 433 | 440 | 7 | 98.4% |
 
 ## Recent exchange fields — last 2 years
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| symbol | 441 | 443 | 2 | 99.5% |
-| board | 443 | 443 | 0 | 100.0% |
-| exchange | 443 | 443 | 0 | 100.0% |
-| openDate | 443 | 443 | 0 | 100.0% |
-| closeDate | 443 | 443 | 0 | 100.0% |
-| priceBand | 441 | 443 | 2 | 99.5% |
-| lotSize | 423 | 443 | 20 | 95.5% |
-| issueSizeCr | 436 | 443 | 7 | 98.4% |
-| issueComposition | 436 | 443 | 7 | 98.4% |
+| symbol | 438 | 440 | 2 | 99.5% |
+| board | 440 | 440 | 0 | 100.0% |
+| exchange | 440 | 440 | 0 | 100.0% |
+| openDate | 440 | 440 | 0 | 100.0% |
+| closeDate | 440 | 440 | 0 | 100.0% |
+| priceBand | 438 | 440 | 2 | 99.5% |
+| lotSize | 425 | 440 | 15 | 96.6% |
+| issueSizeCr | 433 | 440 | 7 | 98.4% |
+| issueComposition | 433 | 440 | 7 | 98.4% |
 
 ## Historical exchange fields
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| symbol | 909 | 909 | 0 | 100.0% |
-| board | 909 | 909 | 0 | 100.0% |
-| exchange | 909 | 909 | 0 | 100.0% |
-| openDate | 909 | 909 | 0 | 100.0% |
-| closeDate | 909 | 909 | 0 | 100.0% |
-| priceBand | 896 | 909 | 13 | 98.6% |
-| lotSize | 3 | 909 | 906 | 0.3% |
-| issueSizeCr | 3 | 909 | 906 | 0.3% |
+| symbol | 912 | 912 | 0 | 100.0% |
+| board | 912 | 912 | 0 | 100.0% |
+| exchange | 912 | 912 | 0 | 100.0% |
+| openDate | 912 | 912 | 0 | 100.0% |
+| closeDate | 912 | 912 | 0 | 100.0% |
+| priceBand | 899 | 912 | 13 | 98.6% |
+| lotSize | 6 | 912 | 906 | 0.7% |
+| issueSizeCr | 6 | 912 | 906 | 0.7% |
 
 ## Offer-document fields
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| registrar | 209 | 216 | 7 | 96.8% |
-| leadManagers | 210 | 216 | 6 | 97.2% |
-| promoters | 186 | 216 | 30 | 86.1% |
-| objectsOfIssue | 188 | 216 | 28 | 87.0% |
-| financials | 139 | 216 | 77 | 64.4% |
-| promoterShareholding | 86 | 216 | 130 | 39.8% |
+| registrar | 223 | 232 | 9 | 96.1% |
+| leadManagers | 224 | 232 | 8 | 96.6% |
+| promoters | 200 | 232 | 32 | 86.2% |
+| objectsOfIssue | 194 | 232 | 38 | 83.6% |
+| financials | 152 | 232 | 80 | 65.5% |
+| promoterShareholding | 86 | 232 | 146 | 37.1% |
 
 ## Open IPO subscription fields
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| qib | 8 | 8 | 0 | 100.0% |
-| nii | 8 | 8 | 0 | 100.0% |
-| retail | 8 | 8 | 0 | 100.0% |
-| total | 8 | 8 | 0 | 100.0% |
+| qib | 7 | 9 | 2 | 77.8% |
+| nii | 7 | 9 | 2 | 77.8% |
+| retail | 7 | 9 | 2 | 77.8% |
+| total | 7 | 9 | 2 | 77.8% |
 
 ## Matured lifecycle fields
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| listingDate | 1,285 | 1,321 | 36 | 97.3% |
+| listingDate | 1,286 | 1,323 | 37 | 97.2% |
 
 ## Optional lifecycle observations
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| allotmentDate | 0 | 1,321 | 1,321 | 0.0% |
+| allotmentDate | 0 | 1,323 | 1,323 | 0.0% |
 
 ## Interpretation
 

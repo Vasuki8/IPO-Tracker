@@ -1,30 +1,30 @@
 {
-  "generatedAt": "2026-09-16T23:15:00+05:30",
-  "asOfDate": "2026-09-16",
+  "generatedAt": "2026-09-17T00:49:32+05:30",
+  "asOfDate": "2026-09-17",
   "recordCount": 1361,
   "stageCounts": {
-    "closed": 51,
+    "closed": 54,
     "filing-pipeline": 8,
     "listed": 1287,
-    "open": 8,
+    "open": 9,
     "unknown": 1,
-    "upcoming": 6
+    "upcoming": 2
   },
   "segmentCounts": {
     "allRecords": 1361,
     "exchangeStage": 1352,
-    "recentExchange2Y": 443,
-    "historicalExchange": 909,
-    "offerDocumentEligible": 216,
-    "openNow": 8,
-    "maturedClosed": 1321
+    "recentExchange2Y": 440,
+    "historicalExchange": 912,
+    "offerDocumentEligible": 232,
+    "openNow": 9,
+    "maturedClosed": 1323
   },
   "scores": {
     "exchangeStage": 83.5,
-    "recentExchange2Y": 99.0,
-    "offerDocumentEligible": 78.5,
-    "openSubscription": 100.0,
-    "maturedLifecycle": 97.3,
+    "recentExchange2Y": 99.2,
+    "offerDocumentEligible": 77.5,
+    "openSubscription": 77.8,
+    "maturedLifecycle": 97.2,
     "provenance": 100.0
   },
   "coverage": {
@@ -66,10 +66,10 @@
         "pct": 98.9
       },
       "lotSize": {
-        "present": 426,
+        "present": 431,
         "expected": 1352,
-        "missing": 926,
-        "pct": 31.5
+        "missing": 921,
+        "pct": 31.9
       },
       "issueSizeCr": {
         "present": 439,
@@ -78,195 +78,195 @@
         "pct": 32.5
       },
       "issueComposition": {
-        "present": 436,
-        "expected": 443,
+        "present": 433,
+        "expected": 440,
         "missing": 7,
         "pct": 98.4
       }
     },
     "recentExchange2Y": {
       "symbol": {
-        "present": 441,
-        "expected": 443,
+        "present": 438,
+        "expected": 440,
         "missing": 2,
         "pct": 99.5
       },
       "board": {
-        "present": 443,
-        "expected": 443,
+        "present": 440,
+        "expected": 440,
         "missing": 0,
         "pct": 100.0
       },
       "exchange": {
-        "present": 443,
-        "expected": 443,
+        "present": 440,
+        "expected": 440,
         "missing": 0,
         "pct": 100.0
       },
       "openDate": {
-        "present": 443,
-        "expected": 443,
+        "present": 440,
+        "expected": 440,
         "missing": 0,
         "pct": 100.0
       },
       "closeDate": {
-        "present": 443,
-        "expected": 443,
+        "present": 440,
+        "expected": 440,
         "missing": 0,
         "pct": 100.0
       },
       "priceBand": {
-        "present": 441,
-        "expected": 443,
+        "present": 438,
+        "expected": 440,
         "missing": 2,
         "pct": 99.5
       },
       "lotSize": {
-        "present": 423,
-        "expected": 443,
-        "missing": 20,
-        "pct": 95.5
+        "present": 425,
+        "expected": 440,
+        "missing": 15,
+        "pct": 96.6
       },
       "issueSizeCr": {
-        "present": 436,
-        "expected": 443,
+        "present": 433,
+        "expected": 440,
         "missing": 7,
         "pct": 98.4
       },
       "issueComposition": {
-        "present": 436,
-        "expected": 443,
+        "present": 433,
+        "expected": 440,
         "missing": 7,
         "pct": 98.4
       }
     },
     "historicalExchange": {
       "symbol": {
-        "present": 909,
-        "expected": 909,
+        "present": 912,
+        "expected": 912,
         "missing": 0,
         "pct": 100.0
       },
       "board": {
-        "present": 909,
-        "expected": 909,
+        "present": 912,
+        "expected": 912,
         "missing": 0,
         "pct": 100.0
       },
       "exchange": {
-        "present": 909,
-        "expected": 909,
+        "present": 912,
+        "expected": 912,
         "missing": 0,
         "pct": 100.0
       },
       "openDate": {
-        "present": 909,
-        "expected": 909,
+        "present": 912,
+        "expected": 912,
         "missing": 0,
         "pct": 100.0
       },
       "closeDate": {
-        "present": 909,
-        "expected": 909,
+        "present": 912,
+        "expected": 912,
         "missing": 0,
         "pct": 100.0
       },
       "priceBand": {
-        "present": 896,
-        "expected": 909,
+        "present": 899,
+        "expected": 912,
         "missing": 13,
         "pct": 98.6
       },
       "lotSize": {
-        "present": 3,
-        "expected": 909,
+        "present": 6,
+        "expected": 912,
         "missing": 906,
-        "pct": 0.3
+        "pct": 0.7
       },
       "issueSizeCr": {
-        "present": 3,
-        "expected": 909,
+        "present": 6,
+        "expected": 912,
         "missing": 906,
-        "pct": 0.3
+        "pct": 0.7
       }
     },
     "offerDocumentEligible": {
       "registrar": {
-        "present": 209,
-        "expected": 216,
-        "missing": 7,
-        "pct": 96.8
+        "present": 223,
+        "expected": 232,
+        "missing": 9,
+        "pct": 96.1
       },
       "leadManagers": {
-        "present": 210,
-        "expected": 216,
-        "missing": 6,
-        "pct": 97.2
+        "present": 224,
+        "expected": 232,
+        "missing": 8,
+        "pct": 96.6
       },
       "promoters": {
-        "present": 186,
-        "expected": 216,
-        "missing": 30,
-        "pct": 86.1
+        "present": 200,
+        "expected": 232,
+        "missing": 32,
+        "pct": 86.2
       },
       "objectsOfIssue": {
-        "present": 188,
-        "expected": 216,
-        "missing": 28,
-        "pct": 87.0
+        "present": 194,
+        "expected": 232,
+        "missing": 38,
+        "pct": 83.6
       },
       "financials": {
-        "present": 139,
-        "expected": 216,
-        "missing": 77,
-        "pct": 64.4
+        "present": 152,
+        "expected": 232,
+        "missing": 80,
+        "pct": 65.5
       },
       "promoterShareholding": {
         "present": 86,
-        "expected": 216,
-        "missing": 130,
-        "pct": 39.8
+        "expected": 232,
+        "missing": 146,
+        "pct": 37.1
       }
     },
     "openSubscription": {
       "qib": {
-        "present": 8,
-        "expected": 8,
-        "missing": 0,
-        "pct": 100.0
+        "present": 7,
+        "expected": 9,
+        "missing": 2,
+        "pct": 77.8
       },
       "nii": {
-        "present": 8,
-        "expected": 8,
-        "missing": 0,
-        "pct": 100.0
+        "present": 7,
+        "expected": 9,
+        "missing": 2,
+        "pct": 77.8
       },
       "retail": {
-        "present": 8,
-        "expected": 8,
-        "missing": 0,
-        "pct": 100.0
+        "present": 7,
+        "expected": 9,
+        "missing": 2,
+        "pct": 77.8
       },
       "total": {
-        "present": 8,
-        "expected": 8,
-        "missing": 0,
-        "pct": 100.0
+        "present": 7,
+        "expected": 9,
+        "missing": 2,
+        "pct": 77.8
       }
     },
     "maturedLifecycle": {
       "listingDate": {
-        "present": 1285,
-        "expected": 1321,
-        "missing": 36,
-        "pct": 97.3
+        "present": 1286,
+        "expected": 1323,
+        "missing": 37,
+        "pct": 97.2
       }
     },
     "optionalLifecycle": {
       "allotmentDate": {
         "present": 0,
-        "expected": 1321,
-        "missing": 1321,
+        "expected": 1323,
+        "missing": 1323,
         "pct": 0.0
       }
     },
@@ -284,8 +284,8 @@
         "pct": 100.0
       },
       "documents": {
-        "present": 221,
-        "expected": 221,
+        "present": 237,
+        "expected": 237,
         "missing": 0,
         "pct": 100.0
       }
@@ -339,12 +339,6 @@
           "stage": "upcoming"
         },
         {
-          "id": "pramodini",
-          "company": "Pramodini Medicare Limited",
-          "openDate": "2026-08-12",
-          "stage": "listed"
-        },
-        {
           "id": "icel",
           "company": "IC Electricals Company Limited-Issue postponed",
           "openDate": "2026-06-25",
@@ -367,18 +361,6 @@
           "company": "NFP Sampoorna Foods Limited-Issue Withdrawn",
           "openDate": "2026-02-04",
           "stage": "closed"
-        },
-        {
-          "id": "saatvik",
-          "company": "Saatvik Green Energy Limited",
-          "openDate": "2025-09-19",
-          "stage": "listed"
-        },
-        {
-          "id": "techd",
-          "company": "TechD Cybersecurity Limited",
-          "openDate": "2025-09-15",
-          "stage": "listed"
         },
         {
           "id": "anondita",
@@ -415,6 +397,24 @@
           "company": "Happy Square Outsourcing Services Limited",
           "openDate": "2025-07-03",
           "stage": "listed"
+        },
+        {
+          "id": "capinvit",
+          "company": "Capital Infra Trust",
+          "openDate": "2025-01-07",
+          "stage": "listed"
+        },
+        {
+          "id": "rajputana",
+          "company": "Rajputana Biodiesel Limited",
+          "openDate": "2024-11-26",
+          "stage": "listed"
+        },
+        {
+          "id": "c2cw",
+          "company": "C2C Advanced Systems Limited- Withdrawal Window",
+          "openDate": "2024-11-26",
+          "stage": "closed"
         }
       ],
       "issueSizeCr": [
@@ -539,9 +539,21 @@
           "stage": "listed"
         },
         {
-          "id": "trualt",
-          "company": "TruAlt Bioenergy Limited",
-          "openDate": "2025-09-25",
+          "id": "techd",
+          "company": "TechD Cybersecurity Limited",
+          "openDate": "2025-09-15",
+          "stage": "listed"
+        },
+        {
+          "id": "vigor",
+          "company": "Vigor Plast India Limited",
+          "openDate": "2025-09-04",
+          "stage": "listed"
+        },
+        {
+          "id": "optivalue",
+          "company": "Optivalue Tek Consulting Limited",
+          "openDate": "2025-09-02",
           "stage": "listed"
         },
         {
@@ -577,9 +589,21 @@
           "stage": "listed"
         },
         {
-          "id": "trualt",
-          "company": "TruAlt Bioenergy Limited",
-          "openDate": "2025-09-25",
+          "id": "techd",
+          "company": "TechD Cybersecurity Limited",
+          "openDate": "2025-09-15",
+          "stage": "listed"
+        },
+        {
+          "id": "vigor",
+          "company": "Vigor Plast India Limited",
+          "openDate": "2025-09-04",
+          "stage": "listed"
+        },
+        {
+          "id": "optivalue",
+          "company": "Optivalue Tek Consulting Limited",
+          "openDate": "2025-09-02",
           "stage": "listed"
         },
         {
@@ -959,13 +983,71 @@
       ]
     },
     "openSubscription": {
-      "qib": [],
-      "nii": [],
-      "retail": [],
-      "total": []
+      "qib": [
+        {
+          "id": "spectraa",
+          "company": "SpectraA Technology Solutions Limited",
+          "openDate": "2026-09-17",
+          "stage": "open"
+        },
+        {
+          "id": "kheriaauto",
+          "company": "Kheria Autocomp Limited",
+          "openDate": "2026-09-17",
+          "stage": "open"
+        }
+      ],
+      "nii": [
+        {
+          "id": "spectraa",
+          "company": "SpectraA Technology Solutions Limited",
+          "openDate": "2026-09-17",
+          "stage": "open"
+        },
+        {
+          "id": "kheriaauto",
+          "company": "Kheria Autocomp Limited",
+          "openDate": "2026-09-17",
+          "stage": "open"
+        }
+      ],
+      "retail": [
+        {
+          "id": "spectraa",
+          "company": "SpectraA Technology Solutions Limited",
+          "openDate": "2026-09-17",
+          "stage": "open"
+        },
+        {
+          "id": "kheriaauto",
+          "company": "Kheria Autocomp Limited",
+          "openDate": "2026-09-17",
+          "stage": "open"
+        }
+      ],
+      "total": [
+        {
+          "id": "spectraa",
+          "company": "SpectraA Technology Solutions Limited",
+          "openDate": "2026-09-17",
+          "stage": "open"
+        },
+        {
+          "id": "kheriaauto",
+          "company": "Kheria Autocomp Limited",
+          "openDate": "2026-09-17",
+          "stage": "open"
+        }
+      ]
     },
     "maturedLifecycle": {
       "listingDate": [
+        {
+          "id": "momsbelief",
+          "company": "Rays of Belief Limited- For Profit Social Enterprise (FPSE)",
+          "openDate": "2026-09-01",
+          "stage": "closed"
+        },
         {
           "id": "icel",
           "company": "IC Electricals Company Limited-Issue postponed",
@@ -1048,12 +1130,6 @@
           "id": "dkegl",
           "company": "D. K. Enterprises Global Limited",
           "openDate": "2021-10-07",
-          "stage": "closed"
-        },
-        {
-          "id": "dynamic",
-          "company": "Dynamic Services & Security Ltd.",
-          "openDate": "2021-09-30",
           "stage": "closed"
         }
       ]
