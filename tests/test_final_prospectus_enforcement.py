@@ -79,6 +79,43 @@ class FinalProspectusEnforcementTests(unittest.TestCase):
         self.assertNotIn("financials", record["staticSourcePolicy"]["verifiedFields"])
         self.assertIn("financials", record["staticSourcePolicy"]["pendingRevalidationFields"])
 
+    def test_known_rhp_url_cannot_keep_stale_final_prospectus_provenance(self):
+        record = self.record()
+        rhp_url = "https://www.sebi.gov.in/files/example-abridged-rhp.pdf"
+        record["documents"].insert(
+            0,
+            {
+                "type": "RHP",
+                "title": "Example Limited - Abridged Prospectus",
+                "url": rhp_url,
+            },
+        )
+        record["lotSize"] = 100
+        record["offerDocumentExtraction"] = {
+            "status": "extracted",
+            "documentType": "PROSPECTUS",
+            "documentTitle": "Final Prospectus",
+            "documentUrl": rhp_url,
+            "canonicalFields": ["lotSize"],
+        }
+        record["staticFieldProvenance"] = {
+            "lotSize": {
+                "documentType": "PROSPECTUS",
+                "sourceUrl": rhp_url,
+                "value": 100,
+            }
+        }
+
+        enforcement.apply_policy({"ipos": [record]})
+
+        self.assertNotIn("lotSize", record["staticFieldProvenance"])
+        self.assertNotIn("lotSize", record["staticSourcePolicy"]["verifiedFields"])
+        self.assertIn("lotSize", record["staticSourcePolicy"]["pendingRevalidationFields"])
+        self.assertEqual(
+            record["staticSourcePolicy"]["documentUrl"],
+            "https://www.sebi.gov.in/files/final.pdf",
+        )
+
     def test_supported_legacy_document_evidence_can_migrate_financials(self):
         record = self.record()
         record["offerDocumentExtraction"] = {
