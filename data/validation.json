@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-16T01:53:20.421386+00:00",
+  "generatedAt": "2026-09-16T02:06:18.947786+00:00",
   "parserVersion": 22,
   "recordCount": 1357,
   "errorCount": 0,
-  "reviewCount": 535,
+  "reviewCount": 542,
   "invalidRecordCount": 0,
-  "reviewRecordCount": 39,
+  "reviewRecordCount": 41,
   "subscriptionAuthority": {
     "officialRecords": 5,
     "secondaryRecords": 7,
@@ -2745,6 +2745,12 @@
     },
     {
       "id": "cleanmax",
+      "field": "financials.FY2023.dilutedEps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "cleanmax",
       "field": "financials.FY2023.netWorthCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
@@ -2763,6 +2769,12 @@
     },
     {
       "id": "cleanmax",
+      "field": "financials.FY2024.dilutedEps",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "cleanmax",
       "field": "financials.FY2024.netWorthCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
@@ -2776,6 +2788,12 @@
     {
       "id": "cleanmax",
       "field": "financials.FY2024.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "cleanmax",
+      "field": "financials.FY2025.dilutedEps",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
@@ -3050,8 +3068,32 @@
       "reason": "Possible percentage-to-currency extraction contamination; verify source row"
     },
     {
+      "id": "meil",
+      "field": "financials.FY2023.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
       "id": "amcl",
       "field": "financials.FY2023.roePct",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "mbel",
+      "field": "financials.FY2023.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "mbel",
+      "field": "financials.FY2024.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "mbel",
+      "field": "financials.FY2025.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },

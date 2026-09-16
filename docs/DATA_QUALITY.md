@@ -1,6 +1,6 @@
 # IPO Tracker Data Quality
 
-Generated: **2026-09-16T07:22:52+05:30**
+Generated: **2026-09-16T07:36:19+05:30**
 
 Records audited: **1,357**
 
@@ -10,7 +10,7 @@ Records audited: **1,357**
 | --- | ---: | ---: |
 | Actionable exchange terms | 83.2% | 1,350 |
 | Recent exchange terms (2Y) | 98.5% | 441 |
-| Offer-document intelligence | 90.2% | 95 |
+| Offer-document intelligence | 88.8% | 100 |
 | Live subscription categories | 100.0% | 8 |
 | Matured lifecycle dates | 97.3% | 1,321 |
 | Source/provenance trail | 99.5% | 1,357 |
@@ -60,12 +60,12 @@ Records audited: **1,357**
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| registrar | 90 | 95 | 5 | 94.7% |
-| leadManagers | 88 | 95 | 7 | 92.6% |
-| promoters | 89 | 95 | 6 | 93.7% |
-| objectsOfIssue | 90 | 95 | 5 | 94.7% |
-| financials | 84 | 95 | 11 | 88.4% |
-| promoterShareholding | 73 | 95 | 22 | 76.8% |
+| registrar | 95 | 100 | 5 | 95.0% |
+| leadManagers | 93 | 100 | 7 | 93.0% |
+| promoters | 94 | 100 | 6 | 94.0% |
+| objectsOfIssue | 91 | 100 | 9 | 91.0% |
+| financials | 87 | 100 | 13 | 87.0% |
+| promoterShareholding | 73 | 100 | 27 | 73.0% |
 
 ## Open IPO subscription fields
 
