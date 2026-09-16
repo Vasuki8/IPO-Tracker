@@ -26,6 +26,7 @@ FIELD_GROUPS = {
         'offerDocumentExtraction', 'issuerDocumentExtraction', 'documentRepair',
         'issueComposition', 'issueSizeCr', 'freshIssueCr', 'ofsCr',
         'issueCompositionReview', 'staticFieldProvenance', 'staticSourcePolicy',
+        'objectsOfIssue', 'objectsOfIssueReview',
     ),
     'subscriptionSnapshot': ('subscription', 'subscriptionSource', 'subscriptionSourceUrl', 'subscriptionAsOf', 'subscriptionCollectedAt', 'subscriptionObservedAt', 'subscriptionTimeBasis', 'subscriptionDegraded'),
     'priceSnapshot': ('listing', 'performance', 'listingDate', 'listingDateEvidence'),

@@ -24,6 +24,7 @@ from typing import Any
 import final_prospectus_identity as identity
 import final_prospectus_policy as policy
 from issue_composition_checks import COMPOSITION_FIELDS, quarantined_fields, record_composition_problems
+from objects_of_issue_checks import objects_problems, objects_quarantined
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "ipos.json"
@@ -96,6 +97,45 @@ def _quarantine_inconsistent_composition(record: dict[str, Any], checked_at: str
         detail.pop("issueComposition", None)
 
 
+def _quarantine_invalid_objects(record: dict[str, Any], checked_at: str) -> None:
+    """A contents-page number cannot remain a published use-of-proceeds amount."""
+    problems = objects_problems(record.get("objectsOfIssue"))
+    provenance = record.get("staticFieldProvenance") or {}
+    if problems:
+        document = record.get("documentFieldProvenance") or {}
+        detail = document.get("evidence") or {}
+        snapshot = {
+            "field": "objectsOfIssue",
+            "before": copy.deepcopy(record.get("objectsOfIssue")),
+            "after": None,
+            "reason": "Invalid objects of issue quarantined pending Final Prospectus revalidation",
+            "findings": problems,
+            "sourceEvidence": copy.deepcopy(provenance.get("objectsOfIssue")),
+            "documentEvidence": copy.deepcopy(detail.get("objectsOfIssue")),
+            "sourceUrl": document.get("sourceUrl") or (record.get("offerDocumentExtraction") or {}).get("documentUrl"),
+            "sha256": document.get("sha256") or (record.get("offerDocumentExtraction") or {}).get("sha256"),
+            "correctedAt": checked_at,
+        }
+        record.setdefault("dataCorrections", []).append(copy.deepcopy(snapshot))
+        record["objectsOfIssueReview"] = {
+            "status": "quarantined", "checkedAt": checked_at, "snapshot": snapshot,
+        }
+        record["objectsOfIssue"] = None
+    if not objects_quarantined(record):
+        return
+    provenance.pop("objectsOfIssue", None)
+    for key in ("offerDocumentExtraction", "issuerDocumentExtraction"):
+        extraction = record.get(key)
+        if not isinstance(extraction, dict):
+            continue
+        for field_list in ("canonicalFields", "extractedFields"):
+            if isinstance(extraction.get(field_list), list):
+                extraction[field_list] = [field for field in extraction[field_list] if field != "objectsOfIssue"]
+    detail = (record.get("documentFieldProvenance") or {}).get("evidence")
+    if isinstance(detail, dict):
+        detail.pop("objectsOfIssue", None)
+
+
 def _document_level_financial_evidence(
     record: dict[str, Any], source_url: str | None
 ) -> dict[str, Any] | None:
@@ -140,6 +180,8 @@ def _extraction_fields(record: dict[str, Any], extraction: Any) -> set[str]:
     if extraction.get("status") != "extracted" or not policy.is_final_prospectus(doc):
         return set()
     blocked = quarantined_fields(record)
+    if objects_quarantined(record) or objects_problems(record.get("objectsOfIssue")):
+        blocked.add("objectsOfIssue")
     if _legacy_generic_issue_price(record):
         blocked.add("listing.issuePrice")
     if record_composition_problems(record):
@@ -224,6 +266,7 @@ def apply_policy(payload: dict[str, Any]) -> dict[str, int]:
             continue
         counts["records"] += 1
         _quarantine_inconsistent_composition(record, checked_at)
+        _quarantine_invalid_objects(record, checked_at)
         final_doc = identity.choose_candidate(record, policy.final_prospectus_candidates(record))
         if final_doc:
             counts["withFinalProspectus"] += 1
@@ -257,7 +300,7 @@ def apply_policy(payload: dict[str, Any]) -> dict[str, int]:
             for field in policy.STATIC_CANONICAL_FIELDS
             if policy.field_value(record, field) not in (None, "", [], {})
             and field not in verified
-        } | quarantined_fields(record))
+        } | quarantined_fields(record) | ({"objectsOfIssue"} if objects_quarantined(record) else set()))
 
         if final_doc and not pending:
             status = "verified"

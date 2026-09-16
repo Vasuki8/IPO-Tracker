@@ -18,6 +18,7 @@ from typing import Any
 from urllib.parse import unquote, urlparse
 
 from issue_composition_checks import COMPOSITION_FIELDS, composition_problems, quarantined_fields, record_composition_problems
+from objects_of_issue_checks import objects_problems, objects_quarantined
 
 FINAL_DOCUMENT_TYPES = {"PROSPECTUS", "FINALPROSPECTUS"}
 STATIC_CANONICAL_FIELDS = (
@@ -299,6 +300,8 @@ def _static_values(record: dict[str, Any], parsed: dict[str, Any]) -> dict[str, 
         "shareholding",
     ):
         value = parsed.get(field)
+        if field == "objectsOfIssue" and objects_problems(value):
+            continue
         if _present(value):
             values[field] = copy.deepcopy(value)
 
@@ -432,6 +435,12 @@ def apply_final_prospectus_static_fields(
             review["resolvedAt"] = checked_at
             review["resolvedSourceUrl"] = source_url
 
+    if objects_quarantined(record) and "objectsOfIssue" in extracted:
+        record["objectsOfIssueReview"].update({
+            "status": "resolved", "resolvedAt": checked_at,
+            "resolvedSourceUrl": source_url,
+        })
+
     accepted_evidence: dict[str, Any] = {}
     for field in extracted:
         detail = _field_detail_evidence(parsed, field)
@@ -488,7 +497,7 @@ def apply_final_prospectus_static_fields(
         for field in STATIC_CANONICAL_FIELDS
         if _present(field_value(record, field)) and field not in provenance
     ]
-    pending = sorted(set(pending) | quarantined_fields(record))
+    pending = sorted(set(pending) | quarantined_fields(record) | ({"objectsOfIssue"} if objects_quarantined(record) else set()))
     record["staticSourcePolicy"] = {
         "policy": "final-prospectus-only",
         "documentUrl": source_url,
