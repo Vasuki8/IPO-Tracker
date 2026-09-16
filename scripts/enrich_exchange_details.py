@@ -38,6 +38,7 @@ import track_subscriptions as subscription_helpers  # noqa: E402
 DATA_FILE = core.DATA_FILE
 BSE_HISTORY_URL = f"{core.BSE_HOME}/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P"
 INDEX_URLS = tuple(dict.fromkeys((*core.BSE_URLS, BSE_HISTORY_URL)))
+_PROSPECTUS_LABELS = {"prospectus", "prospectus gid", "prospectus and gid"}
 
 
 def clean_label(value: str) -> str:
@@ -70,28 +71,33 @@ def parse_detail_html(html: str) -> dict[str, Any]:
         label = " ".join(cells[0].stripped_strings).strip()
         if not label:
             continue
+        label_key = clean_label(label)
         values: list[str] = []
         for cell in cells[1:]:
             values.extend(_cell_texts(cell))
         if values:
-            pairs.setdefault(clean_label(label), []).extend(values)
+            pairs.setdefault(label_key, []).extend(values)
 
         # BSE issue pages commonly expose an official "Prospectus & GID" link.
-        # Retain only direct BSE-hosted PDFs; generic external links and forms are
-        # deliberately ignored.
-        if "prospectus" in clean_label(label):
-            for anchor in tr.select("a[href]"):
-                href = urljoin(f"{core.BSE_HOME}/", str(anchor.get("href") or "").strip())
-                if not _official_bse_pdf(href):
-                    continue
-                doc = {
-                    "type": "PROSPECTUS",
-                    "title": label or "BSE Prospectus",
-                    "url": href,
-                    "source": "BSE",
-                }
-                if not any(existing.get("url") == href for existing in documents):
-                    documents.append(doc)
+        # Only an explicit prospectus-label row is eligible, and only anchors in
+        # that row's value cells may be retained. Some BSE layouts nest whole
+        # issue-detail tables inside a parent row; scanning every anchor in such
+        # a row historically promoted unrelated Exchange Notice PDFs to
+        # PROSPECTUS documents.
+        if label_key in _PROSPECTUS_LABELS:
+            for cell in cells[1:]:
+                for anchor in cell.select("a[href]"):
+                    href = urljoin(f"{core.BSE_HOME}/", str(anchor.get("href") or "").strip())
+                    if not _official_bse_pdf(href):
+                        continue
+                    doc = {
+                        "type": "PROSPECTUS",
+                        "title": label or "BSE Prospectus",
+                        "url": href,
+                        "source": "BSE",
+                    }
+                    if not any(existing.get("url") == href for existing in documents):
+                        documents.append(doc)
 
     def values_for(*labels: str) -> list[str]:
         wanted = [clean_label(label) for label in labels]
