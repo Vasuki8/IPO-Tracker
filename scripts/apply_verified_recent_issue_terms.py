@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Fill narrowly verified recent IPO issue size/composition gaps.
+"""Fill narrowly verified current/recent IPO issue size/composition gaps.
 
-This is a conservative bridge for finalized P2 offer terms while SEBI's PDF host
-is intermittently presenting an incomplete TLS chain to GitHub-hosted runners.
-It never disables TLS verification and never overwrites populated exchange data.
+This is a conservative bridge for finalized offer terms while primary PDF hosts
+can be intermittently unavailable to GitHub-hosted runners. It never disables
+TLS verification and never overwrites populated exchange data.
 
 Each registry entry requires exact record id, symbol, company identity and open
 date. Values are taken from final IPO/RHP-derived issue disclosures and retain
@@ -50,6 +50,11 @@ def _entry(
 
 
 VERIFIED_RECENT_ISSUE_TERMS: dict[str, dict[str, Any]] = {
+    "spectraa": _entry(
+        "SpectraA Technology Solutions Limited", "SPECTRAA", "2026-09-17", 42.52, 38.42, 4.10,
+        "SpectraA Technology Solutions final IPO terms",
+        "https://www.business-standard.com/markets/ipo/spectraa-technology-solutions-ltd-ipo-96530",
+    ),
     "sunshine": _entry(
         "Sunshine Pictures Limited", "SUNSHINE", "2026-08-18", 282.14, 172.80, 109.34,
         "Sunshine Pictures final IPO terms",
