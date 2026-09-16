@@ -5,10 +5,16 @@ This is a non-destructive migration step. Existing mixed-source values are kept
 visible temporarily, but are explicitly marked pending revalidation. New market
 updates are prevented from writing these canonical fields by the policy-aware
 updater and offer-document runners.
+
+New extraction metadata distinguishes fields merely recognized by a parser from
+fields actually accepted by the canonical policy. Legacy financial verification
+is retained only when its exact source-table evidence still supports the current
+canonical values.
 """
 from __future__ import annotations
 
 import argparse
+import copy
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -20,7 +26,39 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "ipos.json"
 
 
-def _extraction_fields(extraction: Any) -> set[str]:
+def _document_level_financial_evidence(
+    record: dict[str, Any], source_url: str | None
+) -> dict[str, Any] | None:
+    provenance = record.get("documentFieldProvenance") or {}
+    if not isinstance(provenance, dict):
+        return None
+    if source_url and str(provenance.get("sourceUrl") or "") != str(source_url):
+        return None
+    evidence = provenance.get("evidence") or {}
+    financial = evidence.get("financials") if isinstance(evidence, dict) else None
+    return financial if isinstance(financial, dict) and financial else None
+
+
+def _financial_provenance_valid(
+    record: dict[str, Any], evidence: dict[str, Any] | None
+) -> bool:
+    if not isinstance(evidence, dict):
+        return False
+    if evidence.get("value") != record.get("financials"):
+        return False
+    detail = evidence.get("evidence")
+    if not isinstance(detail, dict) or not detail:
+        detail = _document_level_financial_evidence(record, evidence.get("sourceUrl"))
+    if not detail:
+        return False
+    parsed = {
+        "financials": copy.deepcopy(record.get("financials")),
+        "fieldEvidence": {"financials": copy.deepcopy(detail)},
+    }
+    return policy._financial_evidence_supported(record, parsed)
+
+
+def _extraction_fields(record: dict[str, Any], extraction: Any) -> set[str]:
     if not isinstance(extraction, dict):
         return set()
     doc = {
@@ -29,35 +67,69 @@ def _extraction_fields(extraction: Any) -> set[str]:
     }
     if extraction.get("status") != "extracted" or not policy.is_final_prospectus(doc):
         return set()
+
+    # New runners explicitly separate parser recognition from canonical writes.
+    # Never promote an unsupported parser result merely because it appeared in
+    # ``extractedFields``.
+    if isinstance(extraction.get("canonicalFields"), list):
+        fields = {str(field) for field in extraction.get("canonicalFields") or []}
+        return fields & set(policy.STATIC_CANONICAL_FIELDS)
+
+    # Legacy extraction records predate canonicalFields. Keep the migration
+    # compatibility for non-financial static fields, but financials require the
+    # same cell-level evidence contract used by current Final Prospectus writes.
     fields = {str(field) for field in (extraction.get("extractedFields") or [])}
     if "issueComposition" in fields:
         fields.update({"issueSizeCr", "freshIssueCr", "ofsCr"})
     if "issuePrice" in fields:
         fields.add("listing.issuePrice")
-    return fields & set(policy.STATIC_CANONICAL_FIELDS)
+    fields &= set(policy.STATIC_CANONICAL_FIELDS)
+    if "financials" in fields:
+        source_url = str(extraction.get("documentUrl") or "")
+        static_evidence = (record.get("staticFieldProvenance") or {}).get("financials")
+        if isinstance(static_evidence, dict):
+            valid = _financial_provenance_valid(record, static_evidence)
+        else:
+            detail = _document_level_financial_evidence(record, source_url)
+            fake = {
+                "value": record.get("financials"),
+                "sourceUrl": source_url,
+                "evidence": detail,
+            }
+            valid = _financial_provenance_valid(record, fake)
+        if not valid:
+            fields.discard("financials")
+    return fields
 
 
 def _bootstrap_provenance(record: dict[str, Any], verified: set[str], checked_at: str) -> None:
     provenance = record.setdefault("staticFieldProvenance", {})
     for extraction_key in ("offerDocumentExtraction", "issuerDocumentExtraction"):
         extraction = record.get(extraction_key)
-        fields = _extraction_fields(extraction)
+        fields = _extraction_fields(record, extraction)
         if not fields or not isinstance(extraction, dict):
             continue
         for field in fields:
             verified.add(field)
-            provenance.setdefault(
-                field,
-                {
-                    "sourceUrl": extraction.get("documentUrl"),
-                    "documentType": "PROSPECTUS",
-                    "documentDate": extraction.get("documentFiledDate"),
-                    "sha256": extraction.get("sha256"),
-                    "parserVersion": extraction.get("parserVersion"),
-                    "checkedAt": extraction.get("extractedAt") or checked_at,
-                    "migratedFrom": extraction_key,
-                },
-            )
+            if field in provenance:
+                continue
+            entry: dict[str, Any] = {
+                "sourceUrl": extraction.get("documentUrl"),
+                "documentType": "PROSPECTUS",
+                "documentDate": extraction.get("documentFiledDate"),
+                "sha256": extraction.get("sha256"),
+                "parserVersion": extraction.get("parserVersion"),
+                "checkedAt": extraction.get("extractedAt") or checked_at,
+                "migratedFrom": extraction_key,
+            }
+            if field == "financials":
+                detail = _document_level_financial_evidence(
+                    record, str(extraction.get("documentUrl") or "")
+                )
+                if detail:
+                    entry["value"] = copy.deepcopy(record.get("financials"))
+                    entry["evidence"] = copy.deepcopy(detail)
+            provenance[field] = entry
 
 
 def apply_policy(payload: dict[str, Any]) -> dict[str, int]:
@@ -78,15 +150,22 @@ def apply_policy(payload: dict[str, Any]) -> dict[str, int]:
         if final_doc:
             counts["withFinalProspectus"] += 1
 
-        verified = {
-            field
-            for field, evidence in (record.get("staticFieldProvenance") or {}).items()
-            if field in policy.STATIC_CANONICAL_FIELDS
-            and isinstance(evidence, dict)
-            and policy.is_final_prospectus(
+        provenance = record.setdefault("staticFieldProvenance", {})
+        verified: set[str] = set()
+        for field, evidence in list(provenance.items()):
+            if field not in policy.STATIC_CANONICAL_FIELDS or not isinstance(evidence, dict):
+                continue
+            if not policy.is_final_prospectus(
                 {"type": evidence.get("documentType"), "title": evidence.get("documentTitle")}
-            )
-        }
+            ):
+                continue
+            if field == "financials" and not _financial_provenance_valid(record, evidence):
+                # A legacy Final Prospectus marker without matching cell-level
+                # table evidence cannot satisfy the canonical provenance gate.
+                provenance.pop("financials", None)
+                continue
+            verified.add(field)
+
         _bootstrap_provenance(record, verified, checked_at)
 
         pending = sorted(
