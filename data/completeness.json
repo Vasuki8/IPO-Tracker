@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T10:34:25+05:30",
+  "generatedAt": "2026-09-16T11:26:45+05:30",
   "asOfDate": "2026-09-16",
   "recordCount": 1357,
   "stageCounts": {
@@ -15,14 +15,14 @@
     "exchangeStage": 1350,
     "recentExchange2Y": 441,
     "historicalExchange": 909,
-    "offerDocumentEligible": 100,
+    "offerDocumentEligible": 106,
     "openNow": 8,
     "maturedClosed": 1321
   },
   "scores": {
     "exchangeStage": 83.5,
     "recentExchange2Y": 99.2,
-    "offerDocumentEligible": 93.0,
+    "offerDocumentEligible": 91.5,
     "openSubscription": 100.0,
     "maturedLifecycle": 97.3,
     "provenance": 100.0
@@ -66,10 +66,10 @@
         "pct": 99.0
       },
       "lotSize": {
-        "present": 421,
+        "present": 423,
         "expected": 1350,
-        "missing": 929,
-        "pct": 31.2
+        "missing": 927,
+        "pct": 31.3
       },
       "issueSizeCr": {
         "present": 439,
@@ -122,10 +122,10 @@
         "pct": 100.0
       },
       "lotSize": {
-        "present": 418,
+        "present": 420,
         "expected": 441,
-        "missing": 23,
-        "pct": 94.8
+        "missing": 21,
+        "pct": 95.2
       },
       "issueSizeCr": {
         "present": 436,
@@ -192,40 +192,40 @@
     },
     "offerDocumentEligible": {
       "registrar": {
-        "present": 99,
-        "expected": 100,
+        "present": 105,
+        "expected": 106,
         "missing": 1,
-        "pct": 99.0
+        "pct": 99.1
       },
       "leadManagers": {
-        "present": 99,
-        "expected": 100,
+        "present": 105,
+        "expected": 106,
         "missing": 1,
-        "pct": 99.0
+        "pct": 99.1
       },
       "promoters": {
-        "present": 97,
-        "expected": 100,
-        "missing": 3,
-        "pct": 97.0
+        "present": 102,
+        "expected": 106,
+        "missing": 4,
+        "pct": 96.2
       },
       "objectsOfIssue": {
-        "present": 98,
-        "expected": 100,
-        "missing": 2,
-        "pct": 98.0
+        "present": 103,
+        "expected": 106,
+        "missing": 3,
+        "pct": 97.2
       },
       "financials": {
-        "present": 88,
-        "expected": 100,
-        "missing": 12,
-        "pct": 88.0
+        "present": 90,
+        "expected": 106,
+        "missing": 16,
+        "pct": 84.9
       },
       "promoterShareholding": {
         "present": 77,
-        "expected": 100,
-        "missing": 23,
-        "pct": 77.0
+        "expected": 106,
+        "missing": 29,
+        "pct": 72.6
       }
     },
     "openSubscription": {
@@ -284,8 +284,8 @@
         "pct": 100.0
       },
       "documents": {
-        "present": 103,
-        "expected": 103,
+        "present": 109,
+        "expected": 109,
         "missing": 0,
         "pct": 100.0
       }
@@ -487,6 +487,12 @@
           "stage": "listed"
         },
         {
+          "id": "sgltl",
+          "company": "Standard Glass Lining Technology Limited",
+          "openDate": "2025-01-06",
+          "stage": "listed"
+        },
+        {
           "id": "etml",
           "company": "Emerald Tyre Manufacturers Limited",
           "openDate": "2024-12-05",
@@ -504,6 +510,12 @@
           "id": "mamata",
           "company": "Mamata Machinery Limited",
           "openDate": "2024-12-19",
+          "stage": "listed"
+        },
+        {
+          "id": "suraksha",
+          "company": "Suraksha Diagnostic Limited",
+          "openDate": "2024-11-29",
           "stage": "listed"
         }
       ],
@@ -545,15 +557,39 @@
           "stage": "listed"
         },
         {
+          "id": "arisinfra",
+          "company": "Arisinfra Solutions Limited",
+          "openDate": "2025-06-18",
+          "stage": "listed"
+        },
+        {
+          "id": "theleela",
+          "company": "Schloss Bangalore Limited",
+          "openDate": "2025-05-26",
+          "stage": "listed"
+        },
+        {
           "id": "maxvolt",
           "company": "Maxvolt Energy Industries Limited",
           "openDate": "2025-02-12",
           "stage": "listed"
         },
         {
+          "id": "denta",
+          "company": "Denta Water and Infra Solutions Limited",
+          "openDate": "2025-01-22",
+          "stage": "listed"
+        },
+        {
           "id": "identical",
           "company": "Identical Brains Studios Limited",
           "openDate": "2024-12-18",
+          "stage": "listed"
+        },
+        {
+          "id": "suraksha",
+          "company": "Suraksha Diagnostic Limited",
+          "openDate": "2024-11-29",
           "stage": "listed"
         },
         {
@@ -572,12 +608,6 @@
           "id": "abhapower",
           "company": "Abha Power and Steel Limited",
           "openDate": "2024-11-27",
-          "stage": "listed"
-        },
-        {
-          "id": "c2c",
-          "company": "C2C Advanced Systems Limited",
-          "openDate": "2024-11-22",
           "stage": "listed"
         }
       ],
@@ -655,6 +685,12 @@
           "stage": "listed"
         },
         {
+          "id": "saatvik",
+          "company": "Saatvik Green Energy Limited",
+          "openDate": "2025-09-19",
+          "stage": "listed"
+        },
+        {
           "id": "meil",
           "company": "Mangal Electrical Industries Limited",
           "openDate": "2025-08-20",
@@ -664,12 +700,6 @@
           "id": "aaradhya",
           "company": "Aaradhya Disposal Industries Limited",
           "openDate": "2025-08-04",
-          "stage": "listed"
-        },
-        {
-          "id": "nsdl",
-          "company": "National Securities Depository Limited",
-          "openDate": "2025-07-30",
           "stage": "listed"
         }
       ]
