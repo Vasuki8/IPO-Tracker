@@ -15,7 +15,7 @@ from typing import Any
 import legacy_offer_parser as legacy
 import offer_parser as base
 
-PARSER_VERSION = base.PARSER_VERSION + 2
+PARSER_VERSION = base.PARSER_VERSION + 3
 extract_pdf_text = base.extract_pdf_text
 valid_manager = base.valid_manager
 valid_registrar = base.valid_registrar
@@ -44,6 +44,38 @@ _PRICE_BAND_PATTERNS = (
         r"\bFLOOR\s+PRICE\b.{0,100}?(?:₹|RS\.?|INR)\s*"
         r"([0-9][0-9,]*(?:\.\d+)?).{0,180}?\bCAP\s+PRICE\b.{0,100}?"
         r"(?:₹|RS\.?|INR)\s*([0-9][0-9,]*(?:\.\d+)?)",
+        re.I,
+    ),
+)
+_LOT_SIZE_PATTERNS = (
+    re.compile(
+        r"\bMINIMUM\s+BID\s+LOT(?:\s+SIZE)?\s*(?:IS|OF|:|[-–—])?\s*"
+        r"([0-9][0-9,]{0,7})\s+(?:FULLY\s+PAID[-\s]?UP\s+)?(?:EQUITY\s+)?SHARES?\b",
+        re.I,
+    ),
+    re.compile(
+        r"\bBID\s+LOT(?:\s+SIZE)?\s*(?:IS|OF|:|[-–—])?\s*"
+        r"([0-9][0-9,]{0,7})\s+(?:FULLY\s+PAID[-\s]?UP\s+)?(?:EQUITY\s+)?SHARES?\b",
+        re.I,
+    ),
+    re.compile(
+        r"\bMINIMUM\s+BID\s+QUANTITY\s*(?:IS|OF|:|[-–—])?\s*"
+        r"([0-9][0-9,]{0,7})\s+(?:FULLY\s+PAID[-\s]?UP\s+)?(?:EQUITY\s+)?SHARES?\b",
+        re.I,
+    ),
+    re.compile(
+        r"\bBIDS?\s+(?:CAN|MAY)\s+BE\s+MADE\s+FOR\s+(?:A\s+)?MINIMUM\s+OF\s+"
+        r"([0-9][0-9,]{0,7})\s+(?:FULLY\s+PAID[-\s]?UP\s+)?(?:EQUITY\s+)?SHARES?\b",
+        re.I,
+    ),
+    re.compile(
+        r"\bMARKET\s+LOT\s*(?:IS|OF|:|[-–—])?\s*"
+        r"([0-9][0-9,]{0,7})\s+(?:FULLY\s+PAID[-\s]?UP\s+)?(?:EQUITY\s+)?SHARES?\b",
+        re.I,
+    ),
+    re.compile(
+        r"\bMINIMUM\s+APPLICATION(?:\s+(?:SIZE|LOT))?\s*(?:IS|OF|:|[-–—])?\s*"
+        r"([0-9][0-9,]{0,7})\s+(?:FULLY\s+PAID[-\s]?UP\s+)?(?:EQUITY\s+)?SHARES?\b",
         re.I,
     ),
 )
@@ -111,6 +143,49 @@ def extract_explicit_price_band(text: str) -> tuple[dict[str, float] | None, dic
             "heading": evidence_hit[3],
             "value": band,
             "basis": "explicit Price Band/Floor Price/Cap Price in Final Prospectus",
+        }
+    }
+
+
+def extract_final_lot_size(text: str) -> tuple[int | None, dict[str, Any]]:
+    """Extract one unambiguous explicitly labelled bid/market lot.
+
+    Unlike the compatibility parser, scan every extracted Prospectus page. This
+    recovers issue terms that appear after the front matter while remaining
+    conservative: a value is accepted only beside an explicit lot/application
+    label and all matches in the document must agree.
+    """
+    values: list[tuple[int, int, str]] = []
+    for page_index, page in enumerate(str(text or "").split("\f"), 1):
+        compact = " ".join(page.replace("\u00a0", " ").split())
+        for pattern in _LOT_SIZE_PATTERNS:
+            for match in pattern.finditer(compact):
+                number = _number(match.group(1))
+                if number is None or number != int(number):
+                    continue
+                lot = int(number)
+                if 0 < lot <= 100_000:
+                    values.append((lot, page_index, match.group(0)))
+
+    unique = sorted({value for value, _, _ in values})
+    if not unique:
+        return None, {}
+    if len(unique) != 1:
+        return None, {
+            "lotSizeConflict": {
+                "values": unique,
+                "basis": "conflicting explicit bid/market lot sizes in Final Prospectus",
+            }
+        }
+
+    value = unique[0]
+    evidence_hit = next(hit for hit in values if hit[0] == value)
+    return value, {
+        "lotSize": {
+            "page": evidence_hit[1],
+            "heading": evidence_hit[2],
+            "value": value,
+            "basis": "explicit bid/market lot in Final Prospectus",
         }
     }
 
@@ -216,6 +291,16 @@ def parse_document_text(text: str, price_band=None) -> dict[str, Any]:
         # band/floor-cap statement is present in the Final Prospectus.
         parsed.pop("priceBand", None)
 
+    lot_size, lot_evidence = extract_final_lot_size(text)
+    lot_conflict = "lotSizeConflict" in lot_evidence
+    if lot_conflict:
+        # A front-page compatibility match must not survive contradictory Final
+        # Prospectus lot terms. Keep the field pending for manual/re-parser
+        # review instead of blessing one of the competing values.
+        parsed.pop("lotSize", None)
+    elif lot_size is not None:
+        parsed["lotSize"] = lot_size
+
     composition_band = explicit_band
     if issue_price is not None:
         composition_band = {"min": issue_price, "max": issue_price}
@@ -228,16 +313,19 @@ def parse_document_text(text: str, price_band=None) -> dict[str, Any]:
     field_evidence = dict(parsed.get("fieldEvidence") or {})
     field_evidence.update(price_evidence)
     field_evidence.update(band_evidence)
+    field_evidence.update(lot_evidence)
     field_evidence.update(composition_evidence)
     parsed["fieldEvidence"] = field_evidence
 
     extracted = [
         field
         for field in (parsed.get("extractedFields") or [])
-        if field != "priceBand"
+        if field != "priceBand" and not (lot_conflict and field == "lotSize")
     ]
     if explicit_band is not None and "priceBand" not in extracted:
         extracted.append("priceBand")
+    if lot_size is not None and not lot_conflict and "lotSize" not in extracted:
+        extracted.append("lotSize")
     if issue_price is not None and "issuePrice" not in extracted:
         extracted.append("issuePrice")
     if composition is not None and "issueComposition" not in extracted:
