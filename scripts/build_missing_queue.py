@@ -53,12 +53,66 @@ def final_prospectus_expected(record: dict[str, Any], today: date) -> bool:
     return False
 
 
+def _same_number(left: Any, right: Any) -> bool:
+    try:
+        return abs(float(left) - float(right)) <= 1e-9
+    except (TypeError, ValueError):
+        return False
+
+
+def fixed_price_band_finally_verified(record: dict[str, Any]) -> bool:
+    """Return True when a one-point legacy priceBand is proved by final issue price.
+
+    Fixed-price IPOs do not have a bidding range. Older tracker records represent
+    their fixed price as ``priceBand.min == priceBand.max`` for UI compatibility.
+    The Final Prospectus parser correctly refuses to invent a price band from the
+    fixed Offer/Issue Price, so requiring separate ``priceBand`` provenance would
+    create an impossible revalidation item forever.
+
+    This exception is deliberately narrow: the canonical band must be one point,
+    it must exactly equal ``listing.issuePrice``, and that issue price must itself
+    carry matching Final Prospectus provenance. Real book-built ranges still need
+    explicit Price Band/Floor Price/Cap Price evidence from the Final Prospectus.
+    """
+    band = record.get("priceBand")
+    if not isinstance(band, dict):
+        return False
+    low, high = band.get("min"), band.get("max")
+    if not (_same_number(low, high) and low not in (None, "")):
+        return False
+
+    issue_price = final_policy.field_value(record, "listing.issuePrice")
+    if not _same_number(low, issue_price):
+        return False
+
+    provenance = record.get("staticFieldProvenance") or {}
+    evidence = provenance.get("listing.issuePrice") if isinstance(provenance, dict) else None
+    if not isinstance(evidence, dict):
+        return False
+    if str(evidence.get("source") or "").strip().lower() != "final prospectus":
+        return False
+    if str(evidence.get("documentType") or "").strip().upper() not in final_policy.FINAL_DOCUMENT_TYPES:
+        return False
+    if not _same_number(evidence.get("value"), issue_price):
+        return False
+    source_url = str(evidence.get("sourceUrl") or "").strip()
+    return source_url.startswith("https://")
+
+
 def pending_final_prospectus_fields(record: dict[str, Any], today: date) -> list[str]:
     state = record.get("staticSourcePolicy") or {}
     if not isinstance(state, dict) or state.get("policy") != "final-prospectus-only" or not final_prospectus_expected(record, today):
         return []
     allowed = set(final_policy.STATIC_CANONICAL_FIELDS)
-    return sorted({str(field) for field in (state.get("pendingRevalidationFields") or []) if str(field) in allowed and final_policy.field_value(record, str(field)) not in (None, "", [], {})})
+    pending: set[str] = set()
+    for raw_field in state.get("pendingRevalidationFields") or []:
+        field = str(raw_field)
+        if field not in allowed or final_policy.field_value(record, field) in (None, "", [], {}):
+            continue
+        if field == "priceBand" and fixed_price_band_finally_verified(record):
+            continue
+        pending.add(field)
+    return sorted(pending)
 
 
 def _final_field_verified(record: dict[str, Any], field: str, today: date) -> bool:
@@ -216,7 +270,7 @@ def main() -> int:
     for row in resolved:
         resolved_field_counts.update(row["resolvedFields"])
         resolved_priority_counts[row["priorityLabel"]] += 1
-    output = {"formatVersion": QUEUE_FORMAT_VERSION, "generatedAt": now.isoformat(timespec="seconds"), "asOfDate": today.isoformat(), "recordCount": len(records), "queueCount": len(queue), "priorityCounts": dict(priority_counts), "fieldGapCounts": dict(field_counts.most_common()), "resolvedUnavailableRecordCount": len(resolved), "resolvedUnavailablePriorityCounts": dict(resolved_priority_counts), "resolvedUnavailableFieldCounts": dict(resolved_field_counts.most_common()), "queue": [operational_queue_entry(row) for row in queue], "queueIsComplete": True, "resolvedUnavailable": [operational_resolved_entry(row) for row in resolved], "notes": ["P0/P1 records are repaired before historical records.", "Only lifecycle- and source-appropriate missing fields enter the actionable queue.", "Populated legacy static fields become Final Prospectus revalidation work only after the final filing should exist.", "Open/upcoming IPOs are not blocked on Final Prospectus provenance before listing or the post-close grace period.", "Full non-actionable resolution evidence remains in canonical IPO dataAvailability fields.", "Allotment date is tracked as optional research coverage until a reliable official historical collector exists.", "Blank values are never guessed; canonical mature static values must come from Final Prospectus evidence."]}
+    output = {"formatVersion": QUEUE_FORMAT_VERSION, "generatedAt": now.isoformat(timespec="seconds"), "asOfDate": today.isoformat(), "recordCount": len(records), "queueCount": len(queue), "priorityCounts": dict(priority_counts), "fieldGapCounts": dict(field_counts.most_common()), "resolvedUnavailableRecordCount": len(resolved), "resolvedUnavailablePriorityCounts": dict(resolved_priority_counts), "resolvedUnavailableFieldCounts": dict(resolved_field_counts.most_common()), "queue": [operational_queue_entry(row) for row in queue], "queueIsComplete": True, "resolvedUnavailable": [operational_resolved_entry(row) for row in resolved], "notes": ["P0/P1 records are repaired before historical records.", "Only lifecycle- and source-appropriate missing fields enter the actionable queue.", "Populated legacy static fields become Final Prospectus revalidation work only after the final filing should exist.", "Fixed-price IPOs may satisfy legacy one-point priceBand revalidation through matching Final Prospectus issue-price evidence; true book-built price bands still require explicit band evidence.", "Open/upcoming IPOs are not blocked on Final Prospectus provenance before listing or the post-close grace period.", "Full non-actionable resolution evidence remains in canonical IPO dataAvailability fields.", "Allotment date is tracked as optional research coverage until a reliable official historical collector exists.", "Blank values are never guessed; canonical mature static values must come from Final Prospectus evidence."]}
     OUTPUT_FILE.write_text(json.dumps(output, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     print(f"Missing-data queue: records={len(records)}, queued={len(queue)}, resolved-unavailable={len(resolved)}, p0={priority_counts.get('P0 open IPO', 0)}, p1={priority_counts.get('P1 upcoming IPO', 0)}")
     return 0
