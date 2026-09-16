@@ -57,6 +57,47 @@ class FinalCompositionSourceLayoutTests(unittest.TestCase):
         text = "OFFER PRICE IS ₹339 PER EQUITY SHARE\fISSUE PRICE: ₹322 PER EQUITY SHARE"
         self.assertEqual(parser.extract_final_issue_price(text), (None, {}))
 
+    def test_historical_placement_price_cannot_value_the_current_offer(self):
+        text = """Our Company completed a pre-IPO placement at a price of ₹125 per Equity Share.
+DETAILS OF THE ISSUE
+Fresh Issue of 8,000,000 Equity Shares
+Offer for Sale of 2,000,000 Equity Shares
+"""
+        parsed = parser.parse_document_text(text)
+        self.assertNotIn("issuePrice", parsed)
+        self.assertEqual(parsed["issueComposition"], {"freshShares": 8_000_000, "ofsShares": 2_000_000})
+
+    def test_leading_initial_offer_cash_price_is_a_supported_final_price(self):
+        text = "INITIAL PUBLIC OFFER OF 10,000,000 EQUITY SHARES OF FACE VALUE ₹10 EACH FOR CASH AT A PRICE OF ₹125 PER EQUITY SHARE"
+        self.assertEqual(parser.extract_final_issue_price(text)[0], 125.0)
+
+    def test_unrelated_acquisition_price_after_offer_sentence_is_not_final_price(self):
+        text = "INITIAL PUBLIC OFFER OF 10,000,000 EQUITY SHARES. Our promoter acquired shares at a price of ₹500 per Equity Share."
+        self.assertEqual(parser.extract_final_issue_price(text), (None, {}))
+
+    def test_employee_discount_prevents_full_price_valuation_of_missing_amounts(self):
+        text = """ISSUE PRICE IS ₹100 PER EQUITY SHARE
+An employee discount of ₹20 per Equity Share is applicable to the 1,000,000 Equity Shares reserved for employees.
+INITIAL PUBLIC OFFER OF 10,000,000 EQUITY SHARES
+COMPRISING A FRESH ISSUE OF 10,000,000 EQUITY SHARES
+"""
+        composition, _ = parser.extract_final_issue_composition(text)
+        self.assertEqual(composition["freshShares"], 10_000_000)
+        self.assertNotIn("freshIssueCr", composition)
+        self.assertNotIn("totalIssueSizeCr", composition)
+        self.assertNotIn("valuationPriceUsed", composition)
+
+    def test_explicit_discounted_amounts_remain_source_supported(self):
+        text = """ISSUE PRICE IS ₹100 PER EQUITY SHARE
+An employee discount of ₹20 per Equity Share is applicable to 1,000,000 shares.
+INITIAL PUBLIC OFFER OF 10,000,000 EQUITY SHARES AGGREGATING TO ₹98 CRORE
+COMPRISING A FRESH ISSUE OF 10,000,000 EQUITY SHARES AGGREGATING TO ₹98 CRORE
+"""
+        composition, _ = parser.extract_final_issue_composition(text)
+        self.assertEqual(composition["freshIssueCr"], 98.0)
+        self.assertEqual(composition["totalIssueSizeCr"], 98.0)
+        self.assertNotIn("valuationPriceUsed", composition)
+
     def test_price_band_cap_cannot_value_final_share_counts(self):
         text = """
         PROSPECTUS
@@ -118,6 +159,10 @@ class FinalCompositionSourceLayoutTests(unittest.TestCase):
         COMPRISING A FRESH ISSUE OF 8,000,000 EQUITY SHARES AGGREGATING TO ₹80 CRORE
         AND AN OFFER FOR SALE OF 3,000,000 EQUITY SHARES AGGREGATING TO ₹20 CRORE
         """
+        self.assertEqual(parser.extract_final_issue_composition(text), (None, {}))
+
+    def test_one_component_cannot_exceed_the_stated_total_share_count(self):
+        text = "INITIAL PUBLIC OFFER OF 10,000,000 EQUITY SHARES\nCOMPRISING A FRESH ISSUE OF 12,000,000 EQUITY SHARES"
         self.assertEqual(parser.extract_final_issue_composition(text), (None, {}))
 
     def test_rejected_strict_extraction_cannot_keep_legacy_composition(self):

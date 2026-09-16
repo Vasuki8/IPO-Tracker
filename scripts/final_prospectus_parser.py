@@ -249,6 +249,20 @@ def extract_final_issue_price(text: str) -> tuple[float | None, dict[str, Any]]:
                         r"\s*\(\s*(?:THE\s+)?(?:FLOOR|CAP)\s+PRICE\s*\)", after, re.I
                     ):
                         continue
+                    # An unlabeled transaction price is usable only inside the
+                    # initial public offer's leading cash-pricing clause. Past
+                    # placements/acquisitions elsewhere are not issue prices.
+                    offers = [hit for hit in _COMPOSITION_INITIAL.finditer(compact) if hit.end() <= match.start()]
+                    if not offers or not re.search(r"\bAT\s+(?:A\s+)?$", before, re.I):
+                        continue
+                    lead = compact[offers[-1].end():match.start()]
+                    if len(lead) > 900 or _COMPOSITION_BOUNDARY.search(lead) or _COMPOSITION_END.search(lead):
+                        continue
+                    if _COMPOSITION_MONEY.search(lead) or re.search(
+                        r"\b(?:PRE[-\s]?IPO|PLACEMENT|ACQUISITION|ACQUIRED|HISTORICAL)\b|;|\.(?=\s+[A-Z])",
+                        lead, re.I,
+                    ):
+                        continue
                 value = _number(match.group(1))
                 if value is not None and 0 < value <= 100_000:
                     values.append((value, _page_number(page, page_index), match.group(0)))
@@ -487,6 +501,8 @@ def extract_final_issue_composition(
     total_shares = candidate.pop("totalShares", None)
     if total_shares is not None:
         fresh, ofs = candidate.get("freshShares"), candidate.get("ofsShares")
+        if any(shares is not None and shares > total_shares for shares in (fresh, ofs)):
+            return None, {}
         if fresh is not None and ofs is not None:
             if fresh + ofs != total_shares:
                 return None, {}
@@ -500,7 +516,11 @@ def extract_final_issue_composition(
             observe("ofsCr" if missing == "ofs" else "freshIssueCr", 0.0, source["page"], source["row"], basis)
 
     final_price, price_evidence = extract_final_issue_price(text)
-    if final_price is not None:
+    # An offer discount can make shares * headline price an overstatement.
+    # Explicit disclosed amounts remain usable; unsupported discount arithmetic
+    # must never supply missing amounts or claim uniform-price valuation.
+    discount = bool(re.search(r"\bDISCOUNT(?:ED)?\b", "\f".join(str(text or "").split("\f")[:12]), re.I))
+    if final_price is not None and not discount:
         candidate["valuationPriceUsed"] = final_price
         evidence["valuationPriceUsed"] = price_evidence["issuePrice"]
         for shares_field, amount_field in (("freshShares", "freshIssueCr"), ("ofsShares", "ofsCr")):
