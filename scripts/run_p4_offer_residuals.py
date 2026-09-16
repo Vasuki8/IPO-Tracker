@@ -24,7 +24,7 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 import offer_parser as parser  # noqa: E402
-import p4_offer_parser as residual  # noqa: E402
+import p4_offer_layouts as residual  # noqa: E402
 import run_offer_documents as base  # noqa: E402
 import update_data as core  # noqa: E402
 
