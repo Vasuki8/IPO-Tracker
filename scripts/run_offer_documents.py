@@ -4,6 +4,10 @@ DRHP/RHP documents may remain linked for historical context, but they are not
 eligible to populate canonical static fields. A failed Final Prospectus fetch
 never removes prior data; successfully parsed Final Prospectus values supersede
 older mixed-source canonical values and retain exact provenance.
+
+The parser also obeys the project phase gate. While P5 is locked, only records in
+the actionable P0-P4 queue may be parsed or mutated; historical P5 documents are
+left untouched until ``phase_status.json`` explicitly enables P5.
 """
 from __future__ import annotations
 
@@ -23,6 +27,8 @@ import update_data as core
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "ipos.json"
+QUEUE_FILE = ROOT / "data" / "missing_queue.json"
+PHASE_FILE = ROOT / "data" / "phase_status.json"
 CACHE = ROOT / ".cache/offer-documents"
 IST = timezone(timedelta(hours=5, minutes=30))
 
@@ -158,16 +164,69 @@ def atomic_save(payload):
     temporary.replace(DATA_FILE)
 
 
-def run(payload, limit=8, force=False, workers=2, company=None, checkpoint=None, cached_only=False):
+def _load_queue_priorities() -> dict[str, int]:
+    if not QUEUE_FILE.exists():
+        return {}
+    try:
+        queue = json.loads(QUEUE_FILE.read_text(encoding="utf-8"))
+    except (OSError, ValueError, json.JSONDecodeError):
+        return {}
+    priorities: dict[str, int] = {}
+    for row in queue.get("queue") or []:
+        if not isinstance(row, dict) or not row.get("id"):
+            continue
+        try:
+            priorities[str(row["id"])] = int(row.get("priority"))
+        except (TypeError, ValueError):
+            continue
+    return priorities
+
+
+def _effective_priority_max(requested: int | None) -> int:
+    """Default to P0-P4 unless persisted phase status explicitly enables P5."""
+    if requested is not None:
+        return max(0, min(5, int(requested)))
+    if PHASE_FILE.exists():
+        try:
+            phase = json.loads(PHASE_FILE.read_text(encoding="utf-8"))
+            if (phase.get("p5") or {}).get("status") == "enabled":
+                return 5
+        except (OSError, ValueError, json.JSONDecodeError):
+            pass
+    return 4
+
+
+def _priority_allowed(record, priorities: dict[str, int], priority_max: int) -> bool:
+    # Once P5 is explicitly enabled, parser-version migrations may legitimately
+    # revisit any final document, even if the record is no longer in the queue.
+    if priority_max >= 5:
+        return True
+    try:
+        return priorities.get(str(record.get("id") or ""), 99) <= priority_max
+    except (TypeError, ValueError):
+        return False
+
+
+def run(
+    payload,
+    limit=8,
+    force=False,
+    workers=2,
+    company=None,
+    checkpoint=None,
+    cached_only=False,
+    priority_max=None,
+):
+    resolved_priority_max = _effective_priority_max(priority_max)
+    priorities = _load_queue_priorities()
     candidates = []
+    deferred_by_priority = 0
+
     for record in payload.get("ipos", []):
-        quarantine_intermediaries(record)
         if company and company.lower() not in record.get("company", "").lower():
             continue
         doc = document_for(record)
         if not doc:
-            continue
-        if cached_only and not (CACHE / (hashlib.sha256(doc["url"].encode()).hexdigest() + ".pdf")).exists():
             continue
         previous = record.get("offerDocumentExtraction") or {}
         if (
@@ -180,20 +239,34 @@ def run(payload, limit=8, force=False, workers=2, company=None, checkpoint=None,
             )
         ):
             continue
+        if not _priority_allowed(record, priorities, resolved_priority_max):
+            deferred_by_priority += 1
+            continue
+        if cached_only and not (CACHE / (hashlib.sha256(doc["url"].encode()).hexdigest() + ".pdf")).exists():
+            continue
+
+        # Do not mutate intermediary fields on a record that the phase gate has
+        # deferred. Quarantine is part of the selected record's revalidation.
+        quarantine_intermediaries(record)
         repair = record.get("documentRepair") or {}
         candidates.append(
             (
+                priorities.get(str(record.get("id") or ""), 99),
                 repair.get("lastAttemptAt", ""),
                 core.canonical_company(record.get("company", "")),
                 record,
                 doc,
             )
         )
-    candidates.sort(key=lambda item: item[:2])
+
+    candidates.sort(key=lambda item: item[:3])
     selected = candidates[:limit] if limit else candidates
     outcomes, changes = [], 0
     with ThreadPoolExecutor(max_workers=max(1, min(workers, 4))) as pool:
-        futures = {pool.submit(extract, record, doc): (record, doc) for _, _, record, doc in selected}
+        futures = {
+            pool.submit(extract, record, doc): (record, doc)
+            for _, _, _, record, doc in selected
+        }
         for future in as_completed(futures):
             record, doc = futures[future]
             try:
@@ -222,6 +295,9 @@ def run(payload, limit=8, force=False, workers=2, company=None, checkpoint=None,
     health = {
         "parserVersion": parser.PARSER_VERSION,
         "sourcePolicy": "final-prospectus-only",
+        "priorityMax": resolved_priority_max,
+        "priorityQueueRecords": len(priorities),
+        "deferredByPriority": deferred_by_priority,
         "attempted": len(selected),
         "remaining": len(candidates) - len(selected),
         "changedFields": changes,
@@ -240,9 +316,19 @@ def main():
     cli.add_argument("--force", action="store_true")
     cli.add_argument("--company")
     cli.add_argument("--cached-only", action="store_true")
+    cli.add_argument("--priority-max", type=int, choices=range(0, 6))
     args = cli.parse_args()
     payload = json.loads(DATA_FILE.read_text())
-    health = run(payload, max(0, args.limit), args.force, args.workers, args.company, atomic_save, args.cached_only)
+    health = run(
+        payload,
+        max(0, args.limit),
+        args.force,
+        args.workers,
+        args.company,
+        atomic_save,
+        args.cached_only,
+        args.priority_max,
+    )
     atomic_save(payload)
     print(json.dumps({key: value for key, value in health.items() if key != "outcomes"}))
     return 0
