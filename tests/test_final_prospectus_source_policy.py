@@ -119,6 +119,116 @@ class FinalProspectusSourcePolicyTests(unittest.TestCase):
             "Final Prospectus",
         )
 
+    def test_financials_without_exact_table_evidence_are_not_promoted(self):
+        old_financials = {
+            "unit": "₹ crore",
+            "periods": [
+                {"period": "FY2025", "revenueCr": 80.0, "patCr": 8.0},
+                {"period": "FY2024", "revenueCr": 70.0, "patCr": 7.0},
+            ],
+        }
+        record = {
+            "openDate": "2026-04-01",
+            "financials": old_financials,
+        }
+        parsed = {
+            "financials": {
+                "unit": "₹ crore",
+                "periods": [
+                    {"period": "FY2025", "revenueCr": 100.0, "patCr": 10.0},
+                    {"period": "FY2024", "revenueCr": 90.0, "patCr": 9.0},
+                ],
+            },
+            "fieldEvidence": {"financials": {}},
+        }
+        doc = {
+            "type": "PROSPECTUS",
+            "title": "Final Prospectus",
+            "url": "https://www.sebi.gov.in/files/final.pdf",
+        }
+        changes = policy.apply_final_prospectus_static_fields(
+            record,
+            parsed,
+            doc,
+            sha256="abc",
+            parser_version=24,
+            checked_at="2026-09-16T00:00:00Z",
+        )
+        self.assertEqual(record["financials"], old_financials)
+        self.assertNotIn("financials", {entry["field"] for entry in changes})
+        self.assertNotIn("financials", record["staticFieldProvenance"])
+        self.assertNotIn("financials", record["documentFieldProvenance"]["evidence"])
+        self.assertIn("financials", record["staticSourcePolicy"]["pendingRevalidationFields"])
+
+    def test_financials_and_table_evidence_are_promoted_atomically(self):
+        financials = {
+            "unit": "₹ crore",
+            "periods": [
+                {"period": "FY2025", "revenueCr": 100.0, "patCr": 10.0},
+                {"period": "FY2024", "revenueCr": 90.0, "patCr": 9.0},
+            ],
+        }
+        financial_evidence = {
+            "FY2025.revenueCr": {"page": 100, "normalizedValue": 100.0},
+            "FY2025.patCr": {"page": 100, "normalizedValue": 10.0},
+            "FY2024.revenueCr": {"page": 100, "normalizedValue": 90.0},
+            "FY2024.patCr": {"page": 100, "normalizedValue": 9.0},
+        }
+        record = {"openDate": "2026-04-01", "financials": None}
+        parsed = {
+            "financials": financials,
+            "fieldEvidence": {"financials": financial_evidence},
+        }
+        doc = {
+            "type": "PROSPECTUS",
+            "title": "Final Prospectus",
+            "url": "https://www.sebi.gov.in/files/final.pdf",
+            "filedDate": "2026-04-08",
+        }
+        changes = policy.apply_final_prospectus_static_fields(
+            record,
+            parsed,
+            doc,
+            sha256="abc",
+            parser_version=24,
+            checked_at="2026-09-16T00:00:00Z",
+        )
+        self.assertIn("financials", {entry["field"] for entry in changes})
+        self.assertEqual(record["financials"], financials)
+        self.assertEqual(
+            record["documentFieldProvenance"]["evidence"]["financials"],
+            financial_evidence,
+        )
+        self.assertEqual(
+            record["staticFieldProvenance"]["financials"]["evidence"],
+            financial_evidence,
+        )
+        self.assertNotIn("financials", record["staticSourcePolicy"]["pendingRevalidationFields"])
+
+    def test_stale_financial_table_far_from_issue_year_fails_closed(self):
+        financials = {
+            "unit": "₹ crore",
+            "periods": [
+                {"period": "FY2016", "revenueCr": 100.0, "patCr": 10.0},
+                {"period": "FY2015", "revenueCr": 90.0, "patCr": 9.0},
+            ],
+        }
+        evidence = {
+            "FY2016.revenueCr": {"normalizedValue": 100.0},
+            "FY2016.patCr": {"normalizedValue": 10.0},
+            "FY2015.revenueCr": {"normalizedValue": 90.0},
+            "FY2015.patCr": {"normalizedValue": 9.0},
+        }
+        record = {"openDate": "2026-04-01", "financials": None}
+        policy.apply_final_prospectus_static_fields(
+            record,
+            {"financials": financials, "fieldEvidence": {"financials": evidence}},
+            {"type": "PROSPECTUS", "url": "https://www.sebi.gov.in/files/final.pdf"},
+            parser_version=24,
+        )
+        self.assertIsNone(record["financials"])
+        self.assertNotIn("financials", record["staticFieldProvenance"])
+
     def test_non_final_document_cannot_write_static_fields(self):
         with self.assertRaises(ValueError):
             policy.apply_final_prospectus_static_fields(
