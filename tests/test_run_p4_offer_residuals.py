@@ -57,6 +57,48 @@ class P4OfferResidualRunnerTests(unittest.TestCase):
         self.assertEqual(changed, [])
         self.assertEqual(record, before)
 
+    def test_extract_uses_final_prospectus_parser_for_primary_fields(self):
+        record = {
+            "company": "Example Limited",
+            "priceBand": {"min": 100.0, "max": 100.0},
+        }
+        doc = {"url": "https://nsearchives.nseindia.com/emerge/corporates/content/Example_PROSP.pdf"}
+        text = "Example Limited\nFinal Prospectus"
+        primary = {
+            "issuePrice": 100.0,
+            "issueComposition": {"freshIssueCr": 10.0, "ofsCr": 0.0, "totalIssueSizeCr": 10.0},
+            "fieldEvidence": {"issuePrice": {"basis": "final prospectus issue price"}},
+        }
+        supplement = {
+            "promoters": ["Valid Person"],
+            "fieldEvidence": {"promoters": {"heading": "OUR PROMOTERS"}},
+        }
+        combined = {
+            **primary,
+            "promoters": supplement["promoters"],
+            "fieldEvidence": {**primary["fieldEvidence"], **supplement["fieldEvidence"]},
+        }
+
+        with patch.object(runner.base, "pdf_bytes", return_value=b"%PDF-final"), patch.object(
+            runner.parser, "extract_pdf_text", return_value=(text, 1, 1)
+        ), patch.object(
+            runner.parser, "parse_document_text", return_value=primary
+        ) as parse_primary, patch.object(
+            runner.residual, "parse_document_text", return_value=supplement
+        ), patch.object(
+            runner.residual, "merge_parsed", return_value=combined
+        ):
+            parsed, digest, pages, page_count = runner.extract(record, doc)
+
+        self.assertEqual(runner.parser.__name__, "final_prospectus_parser")
+        parse_primary.assert_called_once_with(text, record["priceBand"])
+        self.assertEqual(parsed["issuePrice"], 100.0)
+        self.assertEqual(parsed["issueComposition"]["freshIssueCr"], 10.0)
+        self.assertEqual(parsed["promoters"], ["Valid Person"])
+        self.assertEqual(pages, 1)
+        self.assertEqual(page_count, 1)
+        self.assertTrue(digest)
+
     def test_same_parser_and_document_are_throttled_after_attempt(self):
         record = {
             "id": "x",
