@@ -42,10 +42,12 @@ class OfferParserArchitectureTests(unittest.TestCase):
         self.assertIn("import legacy_offer_parser as offer_parser", text)
         self.assertEqual(numbered_imports(path), [])
 
-    def test_issuer_offer_runner_is_canonical_and_version_wrappers_are_gone(self):
+    def test_issuer_offer_runner_uses_current_final_parser_and_no_version_wrappers(self):
         runner = SCRIPTS / "run_issuer_offer_docs.py"
         text = runner.read_text(encoding="utf-8")
-        self.assertIn("import legacy_offer_parser as parser", text)
+        self.assertIn("import final_prospectus_parser as parser", text)
+        self.assertIn("import final_prospectus_policy as source_policy", text)
+        self.assertNotIn("import legacy_offer_parser as parser", text)
         self.assertIn("from issuer_offer_registry import VALIDATED_OFFER_DOCUMENTS", text)
         self.assertEqual(numbered_imports(runner), [])
         self.assertEqual(imports_with_prefix(runner, "run_issuer_offer_docs_v"), [])

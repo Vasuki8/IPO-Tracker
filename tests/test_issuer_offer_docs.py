@@ -143,9 +143,9 @@ class IssuerOfferDocumentTests(unittest.TestCase):
         self.assertEqual(merged["ofsShares"], 0)
         self.assertEqual(merged["ofsCr"], 0.0)
 
-    def test_canonical_runner_keeps_deep_scan_contract(self):
-        self.assertEqual(self.runner.base.PARSER_VERSION, 14)
-        self.assertEqual(self.runner.parser.PARSER_VERSION, 14)
+    def test_canonical_runner_uses_current_final_parser_and_keeps_deep_scan_contract(self):
+        self.assertEqual(self.runner.base.PARSER_VERSION, self.runner.parser.PARSER_VERSION)
+        self.assertGreater(self.runner.base.PARSER_VERSION, mod.PARSER_VERSION)
         params = inspect.signature(self.runner.base._extract_targeted_full_text).parameters
         self.assertIn("need_financials", params)
         self.assertIn("need_shareholding", params)
@@ -265,8 +265,68 @@ class IssuerOfferDocumentTests(unittest.TestCase):
         self.assertIn("lotSize", changed)
         self.assertEqual(record["observations"]["FinalProspectus"]["lotSize"], 100)
         self.assertEqual(record["observations"]["FinalProspectus"]["source"], "BSE")
-        self.assertEqual(record["issuerDocumentExtraction"]["parserVersion"], 14)
+        self.assertEqual(
+            record["issuerDocumentExtraction"]["parserVersion"],
+            self.runner.parser.PARSER_VERSION,
+        )
         self.assertEqual(record["staticFieldProvenance"]["lotSize"]["documentType"], "PROSPECTUS")
+
+    def test_canonical_issuer_financials_and_evidence_move_together(self):
+        doc = {
+            "url": "https://www.sebi.gov.in/sebi_data/attachdocs/example.pdf",
+            "sourcePage": "https://www.sebi.gov.in/filings/public-issues/example.html",
+            "host": "www.sebi.gov.in",
+            "type": "PROSPECTUS",
+            "title": "Prospectus",
+            "extractionSource": "SEBI",
+            "documentSource": "SEBI",
+            "sourceName": "SEBI final Prospectus",
+            "sourceKind": "regulatory-filing",
+        }
+        financials = {
+            "unit": "₹ crore",
+            "periods": [
+                {"period": "FY2025", "revenueCr": 100.0, "patCr": 10.0},
+                {"period": "FY2024", "revenueCr": 90.0, "patCr": 9.0},
+            ],
+        }
+        evidence = {
+            "FY2025.revenueCr": {"page": 100, "normalizedValue": 100.0},
+            "FY2025.patCr": {"page": 100, "normalizedValue": 10.0},
+            "FY2024.revenueCr": {"page": 100, "normalizedValue": 90.0},
+            "FY2024.patCr": {"page": 100, "normalizedValue": 9.0},
+        }
+        record = {
+            "openDate": "2026-04-01",
+            "financials": {"unit": "₹ crore", "periods": [{"period": "FY2025", "revenueCr": 1.0}]},
+            "sources": [],
+            "documents": [],
+            "observations": {},
+        }
+        parsed = {
+            "financials": financials,
+            "fieldEvidence": {"financials": evidence},
+            "extractedFields": ["financials"],
+        }
+        changed = self.runner.merge_validated_offer_enrichment(
+            record,
+            parsed,
+            doc,
+            pdf_hash="abc",
+            pages_read=120,
+            page_count=300,
+        )
+        self.assertIn("financials", changed)
+        self.assertEqual(record["financials"], financials)
+        self.assertEqual(
+            record["documentFieldProvenance"]["evidence"]["financials"],
+            evidence,
+        )
+        self.assertEqual(
+            record["staticFieldProvenance"]["financials"]["evidence"],
+            evidence,
+        )
+        self.assertIn("financials", record["issuerDocumentExtraction"]["canonicalFields"])
 
     def test_non_final_registrar_fallback_is_not_selectable(self):
         self.assertNotIn("injecto-polymers-limited", self.runner.base.ISSUER_DOCUMENTS)
@@ -323,6 +383,7 @@ class IssuerOfferDocumentTests(unittest.TestCase):
 
     def test_current_success_is_skipped_but_parser_or_document_change_reenables(self):
         spec_entry = self.runner.base.ISSUER_DOCUMENTS["ardee"]
+        version = self.runner.base.PARSER_VERSION
         queue = {
             "queue": [
                 {
@@ -340,7 +401,7 @@ class IssuerOfferDocumentTests(unittest.TestCase):
                     "company": "Ardee Industries Limited",
                     "issuerDocumentExtraction": {
                         "status": "extracted",
-                        "parserVersion": 14,
+                        "parserVersion": version,
                         "documentUrl": spec_entry["url"],
                         "documentType": "PROSPECTUS",
                         "documentTitle": "Prospectus",
@@ -351,10 +412,10 @@ class IssuerOfferDocumentTests(unittest.TestCase):
         self.assertEqual(self.runner._identity_safe_targets(current, queue, 4, 10), [])
 
         old_parser = current["ipos"][0]["issuerDocumentExtraction"]
-        old_parser["parserVersion"] = 13
+        old_parser["parserVersion"] = version - 1
         self.assertEqual(len(self.runner._identity_safe_targets(current, queue, 4, 10)), 1)
 
-        old_parser["parserVersion"] = 14
+        old_parser["parserVersion"] = version
         old_parser["documentUrl"] = "https://example.invalid/old.pdf"
         self.assertEqual(len(self.runner._identity_safe_targets(current, queue, 4, 10)), 1)
 

@@ -12,6 +12,7 @@ exchange/market sources.
 from __future__ import annotations
 
 import copy
+import math
 import re
 from typing import Any
 from urllib.parse import urlparse
@@ -165,6 +166,10 @@ def _present(value: Any) -> bool:
     return value not in (None, "", [], {})
 
 
+def _numeric(value: Any) -> bool:
+    return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(float(value))
+
+
 def field_value(record: dict[str, Any], field: str) -> Any:
     if field == "listing.issuePrice":
         listing = record.get("listing")
@@ -181,7 +186,78 @@ def _set_field_value(record: dict[str, Any], field: str, value: Any) -> None:
         record[field] = copy.deepcopy(value)
 
 
-def _static_values(parsed: dict[str, Any]) -> dict[str, Any]:
+def _financial_metric_plausible(key: str, value: Any) -> bool:
+    if not _numeric(value):
+        return False
+    number = float(value)
+    magnitude = abs(number)
+    if key in {"roePct", "ronwPct"}:
+        # A percentage in the thousands is normally a PDF column/year leak.
+        return magnitude <= 1000 and not 1900 <= magnitude <= 2100
+    if key in {"eps", "dilutedEps"}:
+        # Indian IPO equity-share EPS can be large, but five/six digit figures
+        # are overwhelmingly subsidiary/KPI or unit-alignment false positives.
+        return magnitude <= 10_000 and not 1900 <= magnitude <= 2100
+    return True
+
+
+def _financial_evidence_supported(record: dict[str, Any], parsed: dict[str, Any]) -> bool:
+    """Require every promoted financial cell to carry matching table evidence.
+
+    The canonical Final Prospectus path must move a financial value and its
+    period/table evidence atomically. This also rejects stale/misaligned fiscal
+    tables and implausible ratio/EPS values rather than allowing a deep-document
+    KPI/subsidiary table to overwrite issuer financials.
+    """
+    financials = parsed.get("financials")
+    if not isinstance(financials, dict):
+        return False
+    periods = financials.get("periods")
+    evidence = (parsed.get("fieldEvidence") or {}).get("financials")
+    if not isinstance(periods, list) or len(periods) < 2 or not isinstance(evidence, dict) or not evidence:
+        return False
+
+    fiscal_years: list[int] = []
+    metric_count = 0
+    seen_periods: set[str] = set()
+    for row in periods:
+        if not isinstance(row, dict):
+            return False
+        period = str(row.get("period") or "")
+        if not re.fullmatch(r"FY20\d{2}", period) or period in seen_periods:
+            return False
+        seen_periods.add(period)
+        fiscal_years.append(int(period[2:]))
+        for key, value in row.items():
+            if key == "period" or value is None:
+                continue
+            metric_count += 1
+            if not _financial_metric_plausible(str(key), value):
+                return False
+            cell = evidence.get(f"{period}.{key}")
+            if not isinstance(cell, dict) or cell.get("normalizedValue") != value:
+                return False
+
+    if metric_count < 2:
+        return False
+
+    try:
+        issue_year = int(str(record.get("openDate") or "")[:4])
+    except (TypeError, ValueError):
+        issue_year = 0
+    if issue_year and fiscal_years:
+        # Prospectuses normally summarize the recent annual periods. A table
+        # decades away from the issue year is almost certainly a subsidiary,
+        # peer or PDF-column alignment false positive.
+        if max(fiscal_years) < issue_year - 2 or max(fiscal_years) > issue_year + 1:
+            return False
+        if min(fiscal_years) < issue_year - 6:
+            return False
+
+    return True
+
+
+def _static_values(record: dict[str, Any], parsed: dict[str, Any]) -> dict[str, Any]:
     values: dict[str, Any] = {}
     for field in (
         "priceBand",
@@ -189,13 +265,16 @@ def _static_values(parsed: dict[str, Any]) -> dict[str, Any]:
         "leadManagers",
         "registrar",
         "promoters",
-        "financials",
         "objectsOfIssue",
         "shareholding",
     ):
         value = parsed.get(field)
         if _present(value):
             values[field] = copy.deepcopy(value)
+
+    financials = parsed.get("financials")
+    if _present(financials) and _financial_evidence_supported(record, parsed):
+        values["financials"] = copy.deepcopy(financials)
 
     issue_price = parsed.get("issuePrice")
     if _present(issue_price):
@@ -216,6 +295,17 @@ def _static_values(parsed: dict[str, Any]) -> dict[str, Any]:
     return values
 
 
+def _field_detail_evidence(parsed: dict[str, Any], field: str) -> Any:
+    evidence = parsed.get("fieldEvidence") or {}
+    if not isinstance(evidence, dict):
+        return None
+    if field in {"issueSizeCr", "freshIssueCr", "ofsCr", "issueComposition"}:
+        return evidence.get("issueComposition")
+    if field == "listing.issuePrice":
+        return evidence.get("issuePrice")
+    return evidence.get(field)
+
+
 def _canonical_evidence(
     record: dict[str, Any],
     field: str,
@@ -226,9 +316,10 @@ def _canonical_evidence(
     sha256: str | None,
     parser_version: Any,
     checked_at: str | None,
+    detail_evidence: Any = None,
 ) -> dict[str, Any]:
     """Build issue-specific Final Prospectus evidence understood by validators."""
-    return {
+    out = {
         "source": "Final Prospectus",
         "sourceUrl": source_url,
         "documentType": "PROSPECTUS",
@@ -240,6 +331,9 @@ def _canonical_evidence(
         "field": field,
         "value": copy.deepcopy(value),
     }
+    if detail_evidence not in (None, {}, []):
+        out["evidence"] = copy.deepcopy(detail_evidence)
+    return out
 
 
 def apply_final_prospectus_static_fields(
@@ -253,16 +347,16 @@ def apply_final_prospectus_static_fields(
 ) -> list[dict[str, Any]]:
     """Make extracted Final Prospectus values canonical, including overwrites.
 
-    Only fields actually recognized in the Final Prospectus are changed. Older
-    values are retained when the final parser has no supported evidence for that
-    field, but they are listed as pending revalidation in ``staticSourcePolicy``.
+    Only fields actually recognized with supported Final Prospectus evidence are
+    changed. Older values are retained when the final parser has no supported
+    evidence for that field, but they remain pending revalidation.
     """
     if not is_final_prospectus(doc):
         raise ValueError("Canonical static fields require a Final Prospectus")
 
     changes: list[dict[str, Any]] = []
     source_url = str(doc.get("url") or "")
-    extracted = _static_values(parsed)
+    extracted = _static_values(record, parsed)
     for field, after in extracted.items():
         before = field_value(record, field)
         if before == after:
@@ -292,7 +386,34 @@ def apply_final_prospectus_static_fields(
             sha256=sha256,
             parser_version=parser_version,
             checked_at=checked_at,
+            detail_evidence=_field_detail_evidence(parsed, field),
         )
+
+    # Keep one document-level provenance snapshot for legacy validators and UI
+    # helpers. Only evidence for fields that were accepted by the canonical
+    # policy is retained; rejected financial tables cannot poison old values.
+    accepted_evidence: dict[str, Any] = {}
+    for field in extracted:
+        detail = _field_detail_evidence(parsed, field)
+        key = (
+            "issueComposition"
+            if field in {"issueSizeCr", "freshIssueCr", "ofsCr", "issueComposition"}
+            else "issuePrice"
+            if field == "listing.issuePrice"
+            else field
+        )
+        if detail not in (None, {}, []) and key not in accepted_evidence:
+            accepted_evidence[key] = copy.deepcopy(detail)
+    record["documentFieldProvenance"] = {
+        "sourceUrl": source_url,
+        "documentType": "PROSPECTUS",
+        "documentDate": doc.get("filedDate"),
+        "sha256": sha256,
+        "parserVersion": parser_version,
+        "checkedAt": checked_at,
+        "evidence": accepted_evidence,
+        "sourcePolicy": "final-prospectus-only",
+    }
 
     # These legacy evidence slots are still consumed by strict validation and
     # downstream UI helpers. Replace any old NSE/BSE evidence when the Final
@@ -307,6 +428,7 @@ def apply_final_prospectus_static_fields(
             sha256=sha256,
             parser_version=parser_version,
             checked_at=checked_at,
+            detail_evidence=_field_detail_evidence(parsed, "lotSize"),
         )
 
     if "listing.issuePrice" in extracted:
@@ -320,6 +442,7 @@ def apply_final_prospectus_static_fields(
             sha256=sha256,
             parser_version=parser_version,
             checked_at=checked_at,
+            detail_evidence=_field_detail_evidence(parsed, "listing.issuePrice"),
         )
         record["listing"] = listing
 

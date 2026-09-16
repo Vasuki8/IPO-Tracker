@@ -4,6 +4,11 @@
 Only explicitly final Prospectus documents are eligible to populate canonical
 static IPO fields. Historical DRHP/RHP registry entries remain inert and may be
 retained for document history, but they are never selected by this runner.
+
+All canonical static writes, including financials and their table evidence, go
+through ``final_prospectus_policy``. The historical issuer helper is used for
+bounded downloading/target selection only and cannot independently mutate
+canonical static fields.
 """
 from __future__ import annotations
 
@@ -15,15 +20,34 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
+import final_prospectus_parser as parser  # noqa: E402
 import final_prospectus_policy as source_policy  # noqa: E402
-import legacy_offer_parser as parser  # noqa: E402
 from issuer_offer_registry import VALIDATED_OFFER_DOCUMENTS  # noqa: E402
 from parser_loader import isolated_module  # noqa: E402
 
 base = isolated_module("enrich_issuer_offer_docs")
+# ``enrich_issuer_offer_docs.main`` historically expects parser_v4.base to own
+# both ``extract_pdf_text`` and a mutable ``MAX_PDF_BYTES`` download cap. The
+# current strict parser intentionally owns only extraction. Keep that public
+# contract through a tiny compatibility shim while the actual bounded network
+# downloader remains the established legacy transport helper. No legacy parser
+# participates in canonical field extraction.
+if not hasattr(parser.base, "MAX_PDF_BYTES"):
+    parser.base.MAX_PDF_BYTES = parser.legacy.base.MAX_PDF_BYTES
+
+
+def _bounded_download_pdf(session, url):
+    previous = parser.legacy.base.MAX_PDF_BYTES
+    parser.legacy.base.MAX_PDF_BYTES = parser.base.MAX_PDF_BYTES
+    try:
+        return parser.legacy.download_pdf(session, url)
+    finally:
+        parser.legacy.base.MAX_PDF_BYTES = previous
+
+
+parser.download_pdf = _bounded_download_pdf
 base.parser_v4 = parser
 base.PARSER_VERSION = parser.PARSER_VERSION
-base._extract_targeted_full_text = parser.extract_targeted_pdf_text
 
 combined = dict(base.ISSUER_DOCUMENTS)
 combined.update(VALIDATED_OFFER_DOCUMENTS)
@@ -33,7 +57,6 @@ base.ISSUER_DOCUMENTS = {
     if source_policy.is_final_prospectus(spec)
 }
 
-_ORIGINAL_MERGE = base.merge_issuer_enrichment
 _ORIGINAL_NEEDS_DEEP_SCAN = base._needs_deep_scan
 FINAL_REVALIDATION_PREFIX = "provenance.finalProspectus."
 
@@ -66,6 +89,58 @@ def _needs_deep_scan_with_revalidation(
 base._needs_deep_scan = _needs_deep_scan_with_revalidation
 
 
+def _canonical_fields_for_document(record: dict[str, Any], url: str) -> list[str]:
+    fields = []
+    for field, evidence in (record.get("staticFieldProvenance") or {}).items():
+        if isinstance(evidence, dict) and str(evidence.get("sourceUrl") or "") == url:
+            fields.append(str(field))
+    return sorted(fields)
+
+
+def _record_document_metadata(record: dict[str, Any], doc: dict[str, Any]) -> None:
+    url = str(doc.get("url") or "")
+    document_source = str(doc.get("documentSource") or "").strip()
+    documents = [d for d in (record.get("documents") or []) if isinstance(d, dict)]
+    existing = next((item for item in documents if str(item.get("url") or "") == url), None)
+    if existing is None:
+        existing = {
+            "type": "PROSPECTUS",
+            "title": doc.get("title") or "Final Prospectus",
+            "url": url,
+            "filedDate": doc.get("filedDate"),
+            "source": document_source or doc.get("source") or "Issuer website",
+        }
+        documents.append(existing)
+    else:
+        existing["type"] = "PROSPECTUS"
+        if doc.get("title"):
+            existing["title"] = doc.get("title")
+        if doc.get("filedDate"):
+            existing["filedDate"] = doc.get("filedDate")
+        if document_source:
+            existing["source"] = document_source
+    record["documents"] = base.core.dedupe_dicts(documents, ("url", "type"))
+
+    source_name = str(doc.get("sourceName") or "").strip()
+    source_kind = str(doc.get("sourceKind") or "").strip()
+    source_page = str(doc.get("sourcePage") or url)
+    sources = [s for s in (record.get("sources") or []) if isinstance(s, dict)]
+    matching = next((s for s in sources if str(s.get("url") or "") == source_page), None)
+    if matching is None:
+        matching = base.core.source_stamp(
+            source_name or "Final Prospectus",
+            source_page,
+            source_kind or "issuer-filing",
+        )
+        sources.append(matching)
+    else:
+        if source_name:
+            matching["name"] = source_name
+        if source_kind:
+            matching["kind"] = source_kind
+    record["sources"] = base.core.dedupe_dicts(sources, ("name", "url"))
+
+
 def merge_validated_offer_enrichment(
     record,
     parsed,
@@ -75,20 +150,9 @@ def merge_validated_offer_enrichment(
     pages_read,
     page_count,
 ):
+    """Promote only policy-validated Final Prospectus static fields atomically."""
     if not source_policy.is_final_prospectus(doc):
         raise ValueError("Verified offer fallback is not a Final Prospectus")
-
-    original_changed = list(
-        _ORIGINAL_MERGE(
-            record,
-            parsed,
-            doc,
-            pdf_hash=pdf_hash,
-            pages_read=pages_read,
-            page_count=page_count,
-        )
-        or []
-    )
 
     checked_at = base.core.now_ist().isoformat(timespec="seconds")
     policy_changes = source_policy.apply_final_prospectus_static_fields(
@@ -102,55 +166,44 @@ def merge_validated_offer_enrichment(
     if policy_changes:
         record.setdefault("dataCorrections", []).extend(policy_changes)
 
+    _record_document_metadata(record, doc)
+
     extraction_source = str(doc.get("extractionSource") or "").strip()
     document_source = str(doc.get("documentSource") or "").strip()
-    source_name = str(doc.get("sourceName") or "").strip()
-    source_kind = str(doc.get("sourceKind") or "").strip()
-    source_page = str(doc.get("sourcePage") or doc.get("url") or "")
     url = str(doc.get("url") or "")
-
-    extraction = record.get("issuerDocumentExtraction")
-    if isinstance(extraction, dict):
-        extraction["parserVersion"] = parser.PARSER_VERSION
-        extraction["documentType"] = "PROSPECTUS"
-        extraction["extractedFields"] = parsed.get("extractedFields") or []
-        extraction["sourcePolicy"] = "final-prospectus-only"
-        if extraction_source:
-            extraction["source"] = extraction_source
-
-    if document_source:
-        for item in record.get("documents") or []:
-            if isinstance(item, dict) and str(item.get("url") or "") == url:
-                item["source"] = document_source
-                item["type"] = "PROSPECTUS"
-
-    if source_name or source_kind:
-        for source in record.get("sources") or []:
-            if not isinstance(source, dict) or str(source.get("url") or "") != source_page:
-                continue
-            if source_name:
-                source["name"] = source_name
-            if source_kind:
-                source["kind"] = source_kind
+    changed_fields = [entry["field"] for entry in policy_changes]
+    canonical_fields = _canonical_fields_for_document(record, url)
+    record["issuerDocumentExtraction"] = {
+        "status": "extracted",
+        "parserVersion": parser.PARSER_VERSION,
+        "documentUrl": url,
+        "documentType": "PROSPECTUS",
+        "documentTitle": doc.get("title") or "Final Prospectus",
+        "sourcePage": doc.get("sourcePage"),
+        "sha256": pdf_hash,
+        "pagesRead": pages_read,
+        "pageCount": page_count,
+        "extractedFields": parsed.get("extractedFields") or [],
+        "canonicalFields": canonical_fields,
+        "changedFields": changed_fields,
+        "extractedAt": checked_at,
+        "source": extraction_source or document_source or "Issuer website",
+        "sourcePolicy": "final-prospectus-only",
+    }
 
     observation = {
-        "documentUrl": doc.get("url"),
+        "documentUrl": url,
         "documentType": "PROSPECTUS",
         "documentFiledDate": doc.get("filedDate"),
         "parserVersion": parser.PARSER_VERSION,
         "source": extraction_source or document_source or "Issuer website",
         "sourcePolicy": "final-prospectus-only",
+        "canonicalStaticFieldsWritten": canonical_fields,
     }
     for field in ("lotSize", "priceBand", "issueComposition"):
         if parsed.get(field) not in (None, "", [], {}):
             observation[field] = parsed[field]
     record.setdefault("observations", {})["FinalProspectus"] = observation
-
-    changed_fields = list(dict.fromkeys(
-        original_changed + [entry["field"] for entry in policy_changes]
-    ))
-    if isinstance(extraction, dict):
-        extraction["changedFields"] = changed_fields
     return changed_fields
 
 

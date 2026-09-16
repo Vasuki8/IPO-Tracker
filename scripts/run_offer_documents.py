@@ -75,6 +75,14 @@ def extract(record, doc):
     return parsed, hashlib.sha256(data).hexdigest(), pages, count
 
 
+def _canonical_fields_for_document(record, url):
+    out = []
+    for field, evidence in (record.get("staticFieldProvenance") or {}).items():
+        if isinstance(evidence, dict) and evidence.get("sourceUrl") == url:
+            out.append(field)
+    return sorted(out)
+
+
 def correct_record(record, parsed, doc, digest, pages, page_count):
     """Make recognized Final Prospectus static values canonical."""
     now = timestamp()
@@ -89,17 +97,7 @@ def correct_record(record, parsed, doc, digest, pages, page_count):
     if changes:
         record.setdefault("dataCorrections", []).extend(changes)
 
-    provenance = {
-        "sourceUrl": doc["url"],
-        "documentType": "PROSPECTUS",
-        "documentDate": doc.get("filedDate"),
-        "sha256": digest,
-        "parserVersion": parser.PARSER_VERSION,
-        "checkedAt": now,
-        "evidence": parsed.get("fieldEvidence", {}),
-        "sourcePolicy": "final-prospectus-only",
-    }
-    record["documentFieldProvenance"] = provenance
+    canonical_fields = _canonical_fields_for_document(record, doc["url"])
     record["offerDocumentExtraction"] = {
         "status": "extracted",
         "parserVersion": parser.PARSER_VERSION,
@@ -112,13 +110,20 @@ def correct_record(record, parsed, doc, digest, pages, page_count):
         "pagesRead": pages,
         "pageCount": page_count,
         "extractedFields": parsed.get("extractedFields", []),
+        "canonicalFields": canonical_fields,
         "extractedAt": now,
         "conflicts": parsed.get("extractionConflicts", []),
         "sourcePolicy": "final-prospectus-only",
     }
+    financial_provenance = (record.get("staticFieldProvenance") or {}).get("financials") or {}
+    financial_validated = bool(
+        isinstance(financial_provenance, dict)
+        and financial_provenance.get("sourceUrl") == doc["url"]
+        and financial_provenance.get("value") == record.get("financials")
+    )
     record["documentRepair"] = {
         "status": "updated" if changes else "no_change",
-        "financialStatus": "validated" if parsed.get("financials") else "needs_review",
+        "financialStatus": "validated" if financial_validated else "needs_review",
         "lastAttemptAt": now,
         "parserVersion": parser.PARSER_VERSION,
         "sourcePolicy": "final-prospectus-only",
