@@ -45,6 +45,9 @@ class FinalProspectusDiscoveryTests(unittest.TestCase):
         row.update(overrides)
         return row
 
+    def test_import_does_not_mutate_shared_legacy_merge_function(self):
+        self.assertIsNot(collector.base.merge_terms, collector.merge_dynamic_only)
+
     def test_populated_legacy_fields_do_not_suppress_final_discovery(self):
         record = self.record()
         docs = collector.eligible_final_documents(record, [self.entry()])
