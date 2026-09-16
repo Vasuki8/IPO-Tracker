@@ -118,6 +118,28 @@ def infer_type(text: str, fallback: str | None = None) -> str:
     return str(fallback or "DOCUMENT").upper()
 
 
+def is_abridged_pdf(url: str, title: str = "") -> bool:
+    """Identify the non-canonical Abridged Prospectus PDF beside a full filing."""
+    path = unquote(urlparse(str(url or "")).path)
+    context = f"{title} {path}".upper()
+    name = path.rsplit("/", 1)[-1]
+    return "ABRIDGED PROSPECTUS" in context or bool(
+        re.search(r"(?:^|[\s_-])AP_P\.PDF$", name, re.I)
+    )
+
+
+def resolved_document_type(title: str, direct: str, fallback_type: str | None) -> str:
+    """Classify one resolved PDF without promoting an abridged copy to final."""
+    typ = infer_type(f"{title} {direct}", fallback=fallback_type)
+    if not is_abridged_pdf(direct, title):
+        return typ
+    fallback = str(fallback_type or "").upper()
+    # An abridged PDF from an RHP/DRHP landing remains useful historical
+    # evidence for that stage. On a final Prospectus landing it must remain
+    # explicitly non-canonical instead of inheriting PROSPECTUS.
+    return fallback if fallback in {"RHP", "DRHP", "UDRHP"} else "ABRIDGED"
+
+
 def extract_pdf_links(html: str, landing_url: str, *, fallback_type: str | None = None) -> list[dict[str, Any]]:
     """Extract direct official PDFs from one SEBI filing page."""
     soup = BeautifulSoup(html, "html.parser")
@@ -132,12 +154,7 @@ def extract_pdf_links(html: str, landing_url: str, *, fallback_type: str | None 
         if not direct or direct in seen:
             continue
         title = " ".join(anchor.stripped_strings).strip()
-        typ = infer_type(f"{title} {href}", fallback=fallback_type)
-        abridged = "ABRIDGED" in title.upper() or "AP_" in direct.upper()
-        if abridged and fallback_type:
-            # "Abridged Prospectus" alone would otherwise be classified as a
-            # final prospectus even when it belongs to an RHP filing.
-            typ = str(fallback_type).upper()
+        typ = resolved_document_type(title, direct, fallback_type)
         out.append(
             {
                 "type": typ,
@@ -160,7 +177,7 @@ def extract_pdf_links(html: str, landing_url: str, *, fallback_type: str | None 
             direct = direct_pdf_from_url(match)
             if not direct or direct in seen:
                 continue
-            typ = infer_type(match, fallback=fallback_type)
+            typ = resolved_document_type("", direct, fallback_type)
             out.append(
                 {
                     "type": typ,
