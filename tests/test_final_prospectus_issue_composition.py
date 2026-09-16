@@ -42,9 +42,26 @@ class FinalProspectusIssueCompositionTests(unittest.TestCase):
         parsed = parser.parse_document_text(text)
         composition = parsed.get("issueComposition")
         self.assertIsNotNone(composition)
+        self.assertEqual(parsed["issuePrice"], 125.0)
+        self.assertNotIn("priceBand", parsed)
+        self.assertNotIn("priceBand", parsed["extractedFields"])
         self.assertEqual(composition["freshIssueCr"], 100.0)
         self.assertEqual(composition["ofsCr"], 25.0)
         self.assertEqual(composition["totalIssueSizeCr"], 125.0)
+
+    def test_explicit_price_band_is_kept_separate_from_final_issue_price(self):
+        text = """
+        PROSPECTUS
+        The Price Band was ₹ 120 to ₹ 125 per Equity Share.
+        OFFER PRICE: ₹ 125 PER EQUITY SHARE
+        DETAILS OF THE ISSUE
+        Fresh Issue of 8,000,000 Equity Shares
+        RISKS IN RELATION TO THE FIRST OFFER
+        """
+        parsed = parser.parse_document_text(text)
+        self.assertEqual(parsed["issuePrice"], 125.0)
+        self.assertEqual(parsed["priceBand"], {"min": 120.0, "max": 125.0})
+        self.assertIn("priceBand", parsed["extractedFields"])
 
     def test_conflicting_total_fails_closed(self):
         self.assertIsNone(
