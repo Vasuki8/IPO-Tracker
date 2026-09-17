@@ -1,6 +1,6 @@
 # IPO Tracker Data Quality
 
-Generated: **2026-09-17T06:13:36+05:30**
+Generated: **2026-09-17T07:01:13+05:30**
 
 Records audited: **1,362**
 
@@ -9,8 +9,8 @@ Records audited: **1,362**
 | Area | Score | Records in denominator |
 | --- | ---: | ---: |
 | Actionable exchange terms | 82.4% | 1,353 |
-| Recent exchange terms (2Y) | 96.0% | 441 |
-| Offer-document intelligence | 67.4% | 333 |
+| Recent exchange terms (2Y) | 96.1% | 441 |
+| Offer-document intelligence | 66.6% | 343 |
 | Live subscription categories | 77.8% | 9 |
 | Matured lifecycle dates | 97.2% | 1,323 |
 | Source/provenance trail | 100.0% | 1,362 |
@@ -26,8 +26,8 @@ Records audited: **1,362**
 | closeDate | 1,353 | 1,353 | 0 | 100.0% |
 | priceBand | 1,337 | 1,353 | 16 | 98.8% |
 | lotSize | 437 | 1,353 | 916 | 32.3% |
-| issueSizeCr | 375 | 1,353 | 978 | 27.7% |
-| issueComposition | 371 | 441 | 70 | 84.1% |
+| issueSizeCr | 376 | 1,353 | 977 | 27.8% |
+| issueComposition | 372 | 441 | 69 | 84.4% |
 
 ## Recent exchange fields — last 2 years
 
@@ -40,8 +40,8 @@ Records audited: **1,362**
 | closeDate | 441 | 441 | 0 | 100.0% |
 | priceBand | 438 | 441 | 3 | 99.3% |
 | lotSize | 431 | 441 | 10 | 97.7% |
-| issueSizeCr | 369 | 441 | 72 | 83.7% |
-| issueComposition | 371 | 441 | 70 | 84.1% |
+| issueSizeCr | 370 | 441 | 71 | 83.9% |
+| issueComposition | 372 | 441 | 69 | 84.4% |
 
 ## Historical exchange fields
 
@@ -60,12 +60,12 @@ Records audited: **1,362**
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| registrar | 307 | 333 | 26 | 92.2% |
-| leadManagers | 304 | 333 | 29 | 91.3% |
-| promoters | 258 | 333 | 75 | 77.5% |
-| objectsOfIssue | 68 | 333 | 265 | 20.4% |
-| financials | 221 | 333 | 112 | 66.4% |
-| promoterShareholding | 188 | 333 | 145 | 56.5% |
+| registrar | 315 | 343 | 28 | 91.8% |
+| leadManagers | 312 | 343 | 31 | 91.0% |
+| promoters | 263 | 343 | 80 | 76.7% |
+| objectsOfIssue | 68 | 343 | 275 | 19.8% |
+| financials | 224 | 343 | 119 | 65.3% |
+| promoterShareholding | 189 | 343 | 154 | 55.1% |
 
 ## Open IPO subscription fields
 

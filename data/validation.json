@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-17T00:43:36.110528+00:00",
+  "generatedAt": "2026-09-17T01:31:12.718055+00:00",
   "parserVersion": 22,
   "recordCount": 1362,
   "errorCount": 0,
-  "reviewCount": 1506,
+  "reviewCount": 1517,
   "invalidRecordCount": 0,
-  "reviewRecordCount": 267,
+  "reviewRecordCount": 268,
   "subscriptionAuthority": {
     "officialRecords": 7,
     "secondaryRecords": 7,
@@ -3648,12 +3648,6 @@
       "field": "objectsOfIssue",
       "severity": "review",
       "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
-    },
-    {
-      "id": "laserpower",
-      "field": "issueComposition",
-      "severity": "review",
-      "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "happy",
@@ -8636,10 +8630,82 @@
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
     {
+      "id": "quadfuture",
+      "field": "financials.FY2022.netWorthCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "quadfuture",
+      "field": "financials.FY2022.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "quadfuture",
+      "field": "financials.FY2022.totalIncomeCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "quadfuture",
+      "field": "financials.FY2023.netWorthCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "quadfuture",
+      "field": "financials.FY2023.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "quadfuture",
+      "field": "financials.FY2023.totalIncomeCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "quadfuture",
+      "field": "financials.FY2024.netWorthCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "quadfuture",
+      "field": "financials.FY2024.patCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "quadfuture",
+      "field": "financials.FY2024.totalIncomeCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
       "id": "sgltl",
       "field": "issueComposition",
       "severity": "review",
       "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "unimech",
+      "field": "financials.FY2022.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "unimech",
+      "field": "financials.FY2023.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "unimech",
+      "field": "financials.FY2024.revenueCr",
+      "severity": "review",
+      "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
     {
       "id": "nmsteel",
