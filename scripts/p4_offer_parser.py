@@ -430,11 +430,12 @@ def parse_document_text(text: str) -> dict[str, Any]:
 
 def merge_parsed(primary: dict[str, Any], supplement: dict[str, Any]) -> dict[str, Any]:
     out = dict(primary or {})
+    final_promoters_assessed = out.get("finalPromoterAssessment") in {"accepted", "unresolved"}
     if not out.get("leadManagers") and supplement.get("leadManagers"):
         out["leadManagers"] = supplement["leadManagers"]
     if not out.get("registrar") and supplement.get("registrar"):
         out["registrar"] = supplement["registrar"]
-    if not valid_promoters(out.get("promoters")) and valid_promoters(supplement.get("promoters")):
+    if not final_promoters_assessed and not valid_promoters(out.get("promoters")) and valid_promoters(supplement.get("promoters")):
         out["promoters"] = supplement["promoters"]
     if not valid_objects(out.get("objectsOfIssue")) and valid_objects(supplement.get("objectsOfIssue")):
         out["objectsOfIssue"] = supplement["objectsOfIssue"]
@@ -444,6 +445,8 @@ def merge_parsed(primary: dict[str, Any], supplement: dict[str, Any]) -> dict[st
         out["financials"] = supplement["financials"]
     evidence = dict(out.get("fieldEvidence") or {})
     for key, value in (supplement.get("fieldEvidence") or {}).items():
+        if key == "promoters" and final_promoters_assessed:
+            continue
         if key == "financials":
             current = dict(evidence.get("financials") or {})
             current.update(value or {})
