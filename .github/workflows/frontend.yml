@@ -11,6 +11,7 @@ on:
       - 'scripts/public_quality.py'
       - 'data/public_display_holds.json'
       - 'tests/frontend*'
+      - 'tests/verify_public_release.py'
       - '.github/workflows/frontend.yml'
   push:
     branches: [main]
@@ -23,6 +24,7 @@ on:
       - 'scripts/public_quality.py'
       - 'data/public_display_holds.json'
       - 'tests/frontend*'
+      - 'tests/verify_public_release.py'
       - '.github/workflows/frontend.yml'
   workflow_dispatch:
 
@@ -81,6 +83,7 @@ jobs:
           PY
           node tests/frontend_smoke.cjs
           node tests/frontend_quality_layout.cjs
+          uv run --frozen python tests/verify_public_release.py --expected-commit "$(git rev-parse HEAD)" --base-url "$BASE_URL" > "$SMOKE_ARTIFACT_DIR/public-release.json"
       - name: Retain screenshots and failure diagnostics
         if: always()
         uses: actions/upload-artifact@v4.6.2

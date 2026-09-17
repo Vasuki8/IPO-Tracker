@@ -1,0 +1,69 @@
+name: Verify public release
+
+on:
+  pull_request:
+    paths:
+      - 'tests/verify_public_release.py'
+      - 'tests/test_public_release_verifier.py'
+      - '.github/workflows/public-release.yml'
+  workflow_run:
+    workflows: ['pages build and deployment']
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    if: github.event_name == 'pull_request' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository)
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@v10.1.0
+      - run: uv python install 3.12
+      - name: Test release verification
+        run: uv run --no-project --python 3.12 python -m unittest discover -s tests -p 'test_public_release_verifier.py' -v
+      - name: Verify immutable public output
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          DEPLOYED_SHA: ${{ github.event.workflow_run.head_sha }}
+          DEPLOYMENT_RUN: ${{ github.event.workflow_run.id }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/public-release
+          sha="$(git rev-parse HEAD)"
+          if [[ "$EVENT_NAME" == 'workflow_run' ]]; then
+            test "$sha" = "$DEPLOYED_SHA"
+            base='https://vasuki8.github.io/IPO-Tracker/'
+            printf '%s\n' "$DEPLOYMENT_RUN" > artifacts/public-release/deployment-run.txt
+          else
+            base='http://127.0.0.1:8000/'
+            python3 -m http.server 8000 --bind 127.0.0.1 > artifacts/public-release/server.log 2>&1 &
+            server_pid=$!
+            trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          fi
+          # Pages propagation may lag the successful deployment event. Retries
+          # are bounded; never reinterpret mismatched bytes as a successful run.
+          for attempt in 1 2 3; do
+            if uv run --no-project --python 3.12 python tests/verify_public_release.py --expected-commit "$sha" --base-url "$base" > "artifacts/public-release/attempt-$attempt.json"; then
+              cat "artifacts/public-release/attempt-$attempt.json"
+              git diff --exit-code
+              exit 0
+            fi
+            cat "artifacts/public-release/attempt-$attempt.json"
+            if [[ "$attempt" -lt 3 ]]; then sleep 10; fi
+          done
+          exit 1
+      - name: Retain release receipt, including failed attempts
+        if: always()
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: public-release-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/public-release/
+          retention-days: 14

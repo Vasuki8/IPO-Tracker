@@ -2,50 +2,122 @@
 
 ## Standing product direction
 
-IPO Tracker is intended to become a public commercial product. The paying audience, pricing and revenue model are not selected. Customer trust, repeat research, accessibility, discoverability, dependable operations and sustainable costs apply to every milestone. Do not add spending, contracts, outreach, accounts, payments, analytics tracking or materially changed access without the required owner approval. Sponsorship must be identifiable and separate from factual verification/ranking. See `COMMERCIAL_READINESS.md` for evidence and unresolved decisions.
+IPO Tracker is intended to become a public commercial product. The paying audience,
+pricing and revenue model are not selected. Customer trust, repeat research,
+accessibility, discoverability, dependable operations and sustainable costs apply
+to every milestone. No new spending, contracts, external outreach, accounts,
+payments, analytics tracking or materially changed access without required owner
+approval. Sponsorship must be identifiable and separate from factual verification
+and ranking. See `COMMERCIAL_READINESS.md` for evidence and unresolved decisions.
 
-Keep the existing light/static architecture while it meets requirements. Final Prospectus authority for completed static terms and the existing P4 correctness gate are unchanged. P5/performance expansion remain gated; presentation work does not close canonical gaps.
+Keep the existing light/static architecture while it meets requirements. Final
+Prospectus authority for completed static terms, explicit provisional disclosures,
+source observation versus collection time, missing-value semantics and the existing
+P4 correctness gate are unchanged. P5/performance expansion remain gated.
 
-## Reconciled baseline — 17 September 2026
+## Recovery of the interrupted session — 17 September 2026
 
-Current upstream main was verified as `cc30f3701996232aa0eecd1b8c4adbf710c84735`; tree `3f0396594e446d6abc9d9c63867b1557f4828a0c`. GitHub reports the Pages deployment successful in [run 35258451293](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35258451293), completed at 18:23 UTC. The downloaded Pages artifact was `10513224480`, archive digest `sha256:225c4c3510f8fdf277b92981c071927ab074d28d92e34dd11aa6a452ee210770`; its source files and generated outputs were inspected. Current code and deployment evidence take precedence over earlier chat claims.
+The failed chat response did **not** discard the previous implementation:
 
-The published report snapshot still contains 1,366 records, 385 P4 actionable records plus 53 higher-priority records, 1,619 semantic review items (1,615 blocking and 14 unmapped), and 441 retained proposals. P5 remains `waiting_for_p4`, with 913 queued records. These are the last published report numbers, not a newly collected market snapshot or a claim that each stored record is verified. Rolling date-based counts must be recalculated on the exact next canonical publication.
+- [PR #100](https://github.com/Vasuki8/IPO-Tracker/pull/100) merged as
+  `bb2227c727597b7c75ff55c6dc88268860026c41` at 21:30:10 UTC. Its head was
+  `aa6922129d0217e3f0c3c00b99a1c7a329090e3a`. Public field decisions/withholding,
+  separate observation/check clocks, secondary labels, methodology, commercial
+  readiness and presentation-only publication are implemented. Do not rebuild
+  these as new roadmap tickets.
+- The presentation publisher created `2ec1b07edd54ecb16efad9c1364bdbd0790703b4`.
+  [Pages run 35277098551](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35277098551)
+  succeeded. Downloaded artifact `10521465600` has verified archive SHA-256
+  `e90c5076826605b9856a39d89686f90e574cd6f038c25883c31de05ce5f369bf`.
+  The recovered code, generated data and all 1,366 profiles were inspected from
+  that artifact. This is deployed-artifact evidence, not a claim of direct public
+  HTTP access from the local environment.
+- No prior Git working tree or unfinished patch survived in the accessible
+  workspace. The roadmap, two earlier source-preview ZIPs and three screenshots
+  did survive and were preserved. Recovery used a new artifact-derived workspace,
+  not a reset/overwrite of an existing checkout. Direct Git/network access failed;
+  GitHub connector reads/writes and workflow artifacts remain available.
+- Current `main` later advanced through the independent scheduled publisher to
+  `e3ee0fe1d43efee3785743388523e1d408ce6008` (filings output). This recovery work is
+  based on that newer main tree and must preserve its data. It does not claim the
+  older presentation artifact is the latest canonical snapshot.
 
-Already delivered and retained: light dashboard, stable company URLs, quick view, comparison, local watchlist, calendar, CSV, compact public payloads, full queue retention, semantic validation, source evidence, isolated browser CI and serialized publication. Do not rebuild these as new features.
+The detailed pre-release implementation note is preserved in the history of this
+file at `2ec1b07edd54ecb16efad9c1364bdbd0790703b4`. The owner roadmap remains a dated
+audit in `ROADMAP.md`; it has not been rewritten to imply source repairs occurred.
 
-Unmerged repair work preserved:
+## One bounded milestone: complete public-release acceptance
 
-- [#94](https://github.com/Vasuki8/IPO-Tracker/pull/94), `fix-p4-mixed-ofs-sellers`, head `4707df1e82337e3a7b8bac0838bbaa30c3d200be`: parser/source-review work, not a published seven-record acceptance. The green source preview did not contain the intended Emmvee and Teamtech repairs. Do not promote that broad preview wholesale. Five other allocations remain held pending evidence.
-- [#98](https://github.com/Vasuki8/IPO-Tracker/pull/98), `fix-reviewed-correction-publication-guard`, head `d5e5d0580360a87dffc35b69e674886848b55005`: green publication-policy and manifest safeguards stacked on #94; not merged into main. This milestone does not retarget, overwrite or bypass it.
+**Problem / affected users:** a green build and an interrupted release handoff do
+not prove directory researchers, profile readers and CSV/comparison users receive
+the same trust-aware snapshot. The previous status still said pre-release after
+#100 had actually merged and deployed.
 
-## Earliest unmet milestone: public field trust
+**Acceptance:** verify all local generated profiles against the summary contract;
+compare bounded real HTTP samples with the exact deployment checkout; reject
+stale/mixed content and changed source clocks; retain pass/failure receipts; no
+canonical/proposal/gate writes; full frozen and browser checks before merge.
 
-Problem: source reviews/quarantines and distinct subscription clocks did not consistently survive public projection. An exchange agreement badge could coexist with contradictory public figures. Affected users: directory researchers, profile readers, comparison users and CSV consumers, including narrow mobile screens.
+Implementation branch: `chore-public-release-verification` (new PR/release receipts
+must be recorded after they actually exist). `tests/verify_public_release.py`
+checks all profiles locally and full bytes for a bounded served sample. The new
+`Verify public release` workflow has read-only permissions and follows successful
+main-branch Pages runs using their immutable commit. Existing frontend CI also
+runs the HTTP acceptance check after its browser journeys. No new source writer,
+paid service, tracking or production dependency is introduced.
 
-Acceptance: the same field-level decisions and withholding across all four public surfaces; explicit source/check clocks and secondary authority; no canonical/proposal/gate mutation; no unsanitized master-data fallback; retained existing navigation, watchlist, comparison and mobile behavior; frozen CI plus browser checks before merge; generated-page and deployed-artifact verification before claiming publication.
+Verified locally on the recovered presentation artifact: **957 Python regressions**
+(949 existing plus eight release-check tests), **seven Node quality/renderer tests**,
+all **1,366 profile/summary consistency checks**, and **17 complete HTTP responses**
+from a loopback server. Negative cases cover stale profiles, changed source clocks
+and authority, reintroduced held amounts, remapped/mismatched source references,
+duplicate/unsafe inventories, malformed payloads, HTTP failure and wrong bytes.
+Tests assert no file mutation and no public master/proposal/gate requests.
 
-Implemented on `feat-public-field-trust` (PR/release evidence to be recorded after actual creation):
+The original workflows missing from the Pages archive were recovered with their
+exact Git blob hashes before running the full local suite. Local tests used
+`uv run --no-project --python /opt/pyvenv/bin/python` with available Python 3.13;
+locked dependency installation failed because local networking/cache is unavailable.
+Do not call that a frozen pass. Frozen GitHub validation, fresh browser results,
+authorized merge and post-deployment HTTP acceptance are pending until observed.
+See `PUBLIC_RELEASE_ACCEPTANCE.md` for scope, commands, cost bounds and recovery.
 
-- Pure `scripts/public_quality.py` projects field decisions without mutating canonical records. Source/value-bound temporary holds contain the seven reviewed #94 defects without pretending to correct them or blocking a later changed source/value automatically.
-- Final verified static fields require matching value, Final Prospectus classification, issue date, document hash and physical source evidence. A selected active bidding term can be provisional only when it matches an issue-bound official exchange observation. Attached documents alone do not prove a field. Provisional permissions expire after close in IST; the browser rechecks cached decisions on rendering.
-- Contradictory composition groups and quarantined/reviewed fields are withheld. Derived amounts/returns cannot reuse held inputs. Bid lot, market lot, minimum bid quantity and one-lot-at-cap remain distinct; minimum application is not inferred.
-- Shared browser quality labels, field/source explanations and an explicit `methodology.html` page. No whole-record verification claim. Legacy payloads fail closed; the normal browser does not fall back to `data/ipos.json`.
-- Source observation and collection clocks remain separate. Current accepted subscriptions cannot borrow a newer history value or a different source URL. Secondary providers remain visible on mobile; unknown time remains unknown.
-- The existing single serialized publisher gains a presentation-only rebuild path. Pure presentation pushes can rebuild from current accepted main without source collection, correction application, proposal reconciliation or phase-state writes. Mixed/unknown source changes remain normal repair mode. No second data writer is introduced.
+## Preserved unfinished source repairs
 
-Local verification completed: 949 Python regressions (930 baseline plus 19 new), seven Node contract/renderer tests, JavaScript syntax checks, generation of all 1,366 routes and an idempotent second build with all routes unchanged. Canonical `data/ipos.json`, `data/pending_updates.json` and `data/phase_status.json` remain byte-for-byte unchanged. The selected production fixture preserves exact affected values/hash bindings; it is not a fresh PDF source acceptance.
+- [#94](https://github.com/Vasuki8/IPO-Tracker/pull/94), `fix-p4-mixed-ofs-sellers`,
+  head `4707df1e82337e3a7b8bac0838bbaa30c3d200be`: not merged; GitHub currently
+  reports a merge conflict against main. The broad preview did not contain the
+  intended Emmvee/Teamtech repairs. It is not an accepted seven-record publication.
+- [#98](https://github.com/Vasuki8/IPO-Tracker/pull/98),
+  `fix-reviewed-correction-publication-guard`, last inspected head
+  `d5e5d0580360a87dffc35b69e674886848b55005`: source-policy/manifest safeguards
+  stacked on #94, not integrated by this milestone.
+- [#99](https://github.com/Vasuki8/IPO-Tracker/pull/99),
+  `fix-kaytex-speb-document-holds`, head `a503531ded368c4eb53ba09cf5c2aafef3391c38`:
+  additional Kaytex/SPEB source holds and final-preview review ordering, stacked
+  on #94. Its source findings, preserved proposal and manifest handoff must be
+  carried forward. This recovery does not re-review the PDFs or promote its preview.
 
-Local environment limitation: `uv run --no-project --python /opt/pyvenv/bin/python` used the available Python 3.13 / pypdf 5.9 runtime, not the locked Python 3.12 environment. Full frozen GitHub CI is therefore required. Local Chromium navigation failed with `net::ERR_BLOCKED_BY_ADMINISTRATOR` before reaching localhost; no local browser pass is claimed. The existing browser workflow rebuilds the new projections and runs 24 checks in its supported runner. CI outcome is pending until observed.
+No branch above is overwritten, retargeted or merged by this milestone. Existing
+canonical defects, review history and temporary public holds remain distinct.
+The recovered presentation report had P4 incomplete with 385 P4 plus 53 higher
+priority rows, 1,615 blocking reviews, 14 unmapped reviews and P5 waiting. Those
+are the older artifact's dated counts, not a replacement for the next accepted
+canonical publication's recalculated reports.
 
-Public payload tradeoff measured locally: directory JSON grows from 570,254 to 1,293,859 bytes to carry per-field decisions and deduplicated source references, while remaining about 4.8% of the 26,758,638-byte canonical master. This is a correctness cost, not a speed improvement claim. No real-user measurements were collected.
+## Exact next task after release acceptance
 
-## Release status
+Reconcile #94 with current main while preserving #100's public trust boundary;
+integrate #98 and #99 on that repair branch, then freeze the combined code for the
+explicit seven-record acceptance. Reproduce Emmvee composition and Teamtech
+allocations with matching Final Prospectus proofs; preserve the five continuing
+holds, Kaytex/SPEB safeguards, unaffected records and proposal history. Recollect
+under the combined source policy rather than relabelling an old collector manifest.
+Only after source acceptance, reviewed publication and deployed-page verification
+may that repair be called complete. Do not enable P5/performance while P4 is blocked.
 
-This status entry accompanies the implementation before release. Do not infer merge or deployment from code generation, test definitions or a green source preview. Record the actual PR head, frozen/browser outcomes, merge commit, presentation publication commit and Pages artifact verification here when available.
-
-## Next concrete action and remaining blockers
-
-After public-display acceptance, complete #94's current-base, explicitly targeted seven-record source acceptance: corrected Emmvee composition and Teamtech allocations with matching proofs, the five continuing holds, exact unaffected-record preservation, then reviewed publication and live generated-page verification. Integrate #98 without bypassing its dependency. Next, triage retained proposals and route every semantic review into actionable work. P4 closure still requires the existing runtime gate; performance/P5 expansion remain disabled while it is blocked.
-
-Commercial permissions, actual customer validation, hosting suitability, exact dependency/asset notices, professional jurisdiction review, telemetry decisions, overdue-source monitoring and a restore rehearsal remain unresolved. No paid feature, contract, external outreach or measurement collection was activated.
+Proposal triage, routing all semantic reviews, overdue-update detection, lifecycle
+work and the remaining P4 evidence batches remain unfinished. Data-use/hosting
+permissions, customer validation, exact dependency/asset notices, professional
+jurisdiction review, telemetry decisions and a restore rehearsal remain unresolved.
+No monetization activation or external communication was performed.
