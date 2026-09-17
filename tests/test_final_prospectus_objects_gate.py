@@ -11,6 +11,7 @@ import enforce_final_prospectus_policy as enforcement
 import final_prospectus_parser as parser
 import final_prospectus_policy as policy
 import p4_offer_parser as residual
+from build_company_pages import public_profile_record
 from publish_transaction import merge_payload
 from validate_data import validate_record
 
@@ -29,6 +30,15 @@ STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS 127
 SECTION IV: ABOUT OUR COMPANY 130
 INDUSTRY OVERVIEW 130
 OUR BUSINESS 213
+"""
+LOT_TERMS = [{
+    "purpose": "Lot Size The Market lot and Trading lot for the Equity Share is 1,200 and in multiples of",
+    "amountCr": 1200.0,
+}]
+LOT_TEXT = """[PAGE 11]
+For further details refer to “Objects of the Issue” beginning on page 77 of this Prospectus.
+Lot Size  The Market lot and Trading lot for the Equity Share is 1,200 and in multiples of 1,200
+thereafter; subject to a minimum allotment of 1,200 Equity Shares.
 """
 
 
@@ -55,6 +65,52 @@ class FinalProspectusObjectsGateTests(unittest.TestCase):
         self.assertNotIn("objectsOfIssue", parsed["fieldEvidence"])
         supplement = residual.parse_document_text(TEXT)
         self.assertFalse(residual.merge_parsed(parsed, supplement).get("objectsOfIssue"))
+
+    def test_lot_definition_after_objects_cross_reference_cannot_supply_proceeds(self):
+        # Paramount's PDF page 11 defines shares per lot. The nearby objects
+        # cross-reference is not the monetary allocation table on page 77.
+        parsed = parser.parse_document_text(LOT_TEXT)
+        self.assertFalse(parsed.get("objectsOfIssue"))
+        self.assertNotIn("objectsOfIssue", parsed["extractedFields"])
+        self.assertNotIn("objectsOfIssue", parsed["fieldEvidence"])
+        supplement = residual.parse_document_text(LOT_TEXT)
+        self.assertFalse(residual.merge_parsed(parsed, supplement).get("objectsOfIssue"))
+
+    def test_verified_lot_metadata_is_held_with_audit_and_removed_from_public_profile(self):
+        record = self.record()
+        record["lotSize"] = 1200
+        record["objectsOfIssue"] = copy.deepcopy(LOT_TERMS)
+        record["staticFieldProvenance"]["objectsOfIssue"]["value"] = copy.deepcopy(LOT_TERMS)
+        original_proof = copy.deepcopy(record["staticFieldProvenance"]["objectsOfIssue"])
+        self.assertTrue(any(row["field"] == "objectsOfIssue" and row["severity"] == "error"
+                            for row in validate_record(record)))
+
+        payload = {"ipos": [record]}
+        enforcement.apply_policy(payload)
+        self.assertIsNone(record["objectsOfIssue"])
+        self.assertNotIn("objectsOfIssue", public_profile_record(record))
+        self.assertEqual(record["lotSize"], 1200)
+        snapshot = copy.deepcopy(record["objectsOfIssueReview"]["snapshot"])
+        self.assertEqual(snapshot["before"], LOT_TERMS)
+        self.assertEqual(snapshot["sourceEvidence"], original_proof)
+        self.assertNotIn("objectsOfIssue", record["staticFieldProvenance"])
+        entry = queue.queue_entry(record, date(2026, 9, 17))
+        self.assertTrue({"offer.objectsOfIssue", "provenance.finalProspectus.objectsOfIssue"}
+                        <= set(entry["missingFields"]))
+
+        corrections = copy.deepcopy(record["dataCorrections"])
+        enforcement.apply_policy(payload)
+        policy.apply_final_prospectus_static_fields(record, {"objectsOfIssue": LOT_TERMS}, DOC)
+        self.assertIsNone(record["objectsOfIssue"])
+        self.assertEqual(record["dataCorrections"], corrections)
+        self.assertFalse(any(row["severity"] == "error" for row in validate_record(record)))
+
+        policy.apply_final_prospectus_static_fields(record, {"objectsOfIssue": GOOD}, DOC,
+                                                   sha256="reviewed-allocation-table")
+        enforcement.apply_policy(payload)
+        self.assertEqual(record["objectsOfIssue"], GOOD)
+        self.assertEqual(record["objectsOfIssueReview"]["status"], "resolved")
+        self.assertEqual(record["objectsOfIssueReview"]["snapshot"], snapshot)
 
     def test_canonical_gate_rejects_contents_rows_without_overwriting_valid_objects(self):
         record = self.record()

@@ -76,6 +76,57 @@ class ObjectsOfIssueChecksTests(unittest.TestCase):
             with self.subTest(purpose=purpose):
                 self.assertEqual(objects_problems([{"purpose": purpose, "amountCr": 12.5}]), [])
 
+    def test_actual_share_lot_definitions_are_rejected(self):
+        for purpose, amount in (
+            ("Lot Size The Market lot and Trading lot for the Equity Share is 1,200 and in multiples of", 1200),
+            ("Lot Size The Market lot and Trading lot for the Equity Share is 2,000 and in multiples of", 2000),
+            ("The Market lot and Trading lot for the Equity Share is 1,200 and in multiples of", 1200),
+        ):
+            with self.subTest(purpose=purpose, amount=amount):
+                problems = objects_problems([{"purpose": purpose, "amountCr": amount}])
+                self.assertEqual(len(problems), 1)
+                self.assertIn("share lot or bid quantity", problems[0])
+
+    def test_lot_metadata_labels_and_quantity_variants_are_rejected(self):
+        for purpose in (
+            "Lot Size",
+            "2. LOT\n SIZE: The market lot for the Equity Shares is",
+            "A. market lot and trading lot for the Equity Shares is",
+            "Trading Lot: 1,200 Equity Shares",
+            "Bid Lot Size = 1,200 shares and in multiples thereof",
+            "Minimum Bid Lot shall be 1,200 Equity Shares",
+            "Lot Size: 1,200",
+            "Lot Size for the Equity Shares is",
+        ):
+            with self.subTest(purpose=purpose):
+                self.assertTrue(objects_problems([{"purpose": purpose, "amountCr": 1200}]))
+
+    def test_legitimate_lot_and_share_purposes_remain_valid(self):
+        for purpose in (
+            "Purchasing lots of land for the proposed factory",
+            "Funding production lot size optimization",
+            "Lot size optimization for the manufacturing unit",
+            "Lot size optimisation equipment for production",
+            "Lot size 2 optimization for the production line",
+            "Investment in equity shares of our subsidiary",
+            "Purchase of shares in the target company",
+            "Funding a platform for trading lots of agricultural produce",
+            "Market lot acquisition for the new retail outlet",
+            "Bid lot automation software development",
+        ):
+            for amount in (None, 0, 12.5):
+                with self.subTest(purpose=purpose, amount=amount):
+                    self.assertEqual(objects_problems([{"purpose": purpose, "amountCr": amount}]), [])
+
+    def test_share_lot_metadata_cannot_hide_among_valid_objects(self):
+        rows = [
+            {"purpose": "Acquisition of manufacturing equipment", "amountCr": 10},
+            {"purpose": "The Market lot and Trading lot for the Equity Shares is", "amountCr": 1200},
+        ]
+        problems = objects_problems(rows)
+        self.assertEqual(len(problems), 1)
+        self.assertIn("row 2", problems[0])
+
     def test_absent_undisclosed_zero_and_integer_amounts_are_allowed(self):
         self.assertEqual(objects_problems(None), [])
         self.assertEqual(objects_problems([]), [])

@@ -1,8 +1,9 @@
 """Conservative checks for objects-of-issue rows before canonical promotion.
 
-These checks reject recognizable contents entries and malformed values. They do
-not establish source evidence or require legitimate purposes to match a keyword
-list; monetary units and source rows remain the extractor's responsibility.
+These checks reject recognizable contents entries, share-lot metadata and
+malformed values. They do not establish source evidence or require legitimate
+purposes to match a keyword list; monetary units and source rows remain the
+extractor's responsibility.
 """
 from __future__ import annotations
 
@@ -30,6 +31,29 @@ _DOT_LEADER = re.compile(r"(?:\.\s*){3,}|…")
 _ROW_PREFIX = re.compile(r"^(?:\d+(?:\.\d+)*[.)]?|[A-Z][.)])\s+", re.I)
 _TRAILING_NUMERIC_COLUMN = re.compile(r"\s[-+]?(?:\d[\d,]*\.\d+|\d{1,3}(?:,\d{2,3})+)$")
 _PAGE_REFERENCE = re.compile(r"\bon\s+pages?\s*[.:;]?$", re.I)
+_LOT_METADATA_LABEL = re.compile(
+    r"^(?:Lot\s+Size|(?:The\s+)?(?:Minimum\s+)?(?:Market|Trading|Bid)\s+Lot(?:\s+Size)?)\b",
+    re.I,
+)
+_LOT_METADATA_DETAIL = re.compile(
+    r"^(?:"
+    r"(?:and\s+)?(?:the\s+)?(?:minimum\s+)?(?:market|trading|bid)\s+lot\b|"
+    r"(?:(?:for|of)\s+(?:the\s+)?)?(?:equity\s+)?shares?\b|"
+    r"(?:(?:is|shall\s+be|will\s+be)\s+)?\d[\d,]*(?:\.\d+)?"
+    r"(?:$|\s+(?:(?:equity\s+)?shares?\b|(?:and\s+)?in\s+multiples\b))"
+    r")",
+    re.I,
+)
+
+
+def _share_lot_metadata(purpose: str) -> bool:
+    label = _LOT_METADATA_LABEL.match(purpose)
+    if not label:
+        return False
+    detail = purpose[label.end():].strip(" :;=\u2013\u2014-")
+    # A metadata label and quantity/definition cannot describe a use of proceeds.
+    # Other continuations, such as production lot-size optimization, stay valid.
+    return not detail or bool(_LOT_METADATA_DETAIL.match(detail))
 
 
 def objects_problems(value: Any) -> list[str]:
@@ -54,6 +78,8 @@ def objects_problems(value: Any) -> list[str]:
             heading = _ROW_PREFIX.sub("", normalized)
             if _CONTENTS_HEADING.fullmatch(heading) or _DOT_LEADER.search(normalized):
                 problems.append(label + " resembles a table-of-contents entry, not a use of proceeds")
+            elif _share_lot_metadata(heading):
+                problems.append(label + " describes a share lot or bid quantity, not a use of proceeds")
             elif _TRAILING_NUMERIC_COLUMN.search(normalized):
                 problems.append(label + " purpose ends in a numeric table column; amount alignment needs review")
             elif _PAGE_REFERENCE.search(normalized):
