@@ -14,13 +14,18 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
+import tempfile
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta, timezone
+from io import BytesIO
 from pathlib import Path
 from urllib.parse import urlparse
 
 import requests
+from pypdf import PdfReader
+from pypdf.errors import PyPdfError
 import final_prospectus_identity as identity
 import final_prospectus_parser as parser
 import final_prospectus_policy as source_policy
@@ -37,11 +42,16 @@ PDF_DOWNLOAD_TOTAL_SECONDS = 180
 PDF_MAX_BYTES = 40 * 1024 * 1024
 BSE_IPO_HISTORY = "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=P"
 BSE_BOOTSTRAP_URLS = ("https://www.bseindia.com/", BSE_IPO_HISTORY)
+class InvalidPDFError(ValueError):
+    """A PDF response is incomplete or its page structure cannot be read."""
+
+
 _TRANSIENT_PDF_ERRORS = (
     requests.ConnectionError,
     requests.Timeout,
     requests.exceptions.ChunkedEncodingError,
     requests.exceptions.ContentDecodingError,
+    InvalidPDFError,
 )
 
 
@@ -115,7 +125,43 @@ def _download_pdf_once(url: str, deadline: float) -> bytes:
         return _read_pdf_response(response, deadline)
 
 
-def pdf_bytes(doc):
+def _validate_pdf_bytes(data: bytes) -> None:
+    """Check the container and page tree, allowing pypdf's normal recovery."""
+    if len(data) > PDF_MAX_BYTES:
+        raise ValueError("Official PDF exceeds bounded 40 MiB extraction budget")
+    if not data.startswith(b"%PDF"):
+        raise ValueError("Source returned non-PDF content")
+    try:
+        with BytesIO(data) as stream:
+            reader = PdfReader(stream, strict=False)
+            if reader.is_encrypted:
+                reader.decrypt("")
+            if len(reader.pages) < 1:
+                raise ValueError("PDF contains no readable pages")
+            # Encrypted PDFs may report /Count without traversing the tree.
+            reader.pages[0]
+    except (PyPdfError, AttributeError, KeyError, TypeError, ValueError, IndexError, AssertionError, RecursionError) as exc:
+        raise InvalidPDFError(f"Source returned an unreadable PDF: {exc}") from exc
+
+
+def _write_pdf_cache(path: Path, data: bytes) -> None:
+    """Publish complete validated bytes without exposing a partially written PDF."""
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="wb", dir=path.parent, prefix=f".{path.name}.", suffix=".tmp", delete=False,
+        ) as stream:
+            temporary = Path(stream.name)
+            stream.write(data)
+            stream.flush()
+            os.fsync(stream.fileno())
+        temporary.replace(path)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
+
+
+def pdf_bytes(doc, *, cached_only=False):
     if not source_policy.is_final_prospectus(doc):
         raise ValueError("Canonical static extraction requires a Final Prospectus")
     url = doc["url"]
@@ -123,14 +169,30 @@ def pdf_bytes(doc):
         raise ValueError("Official document must use HTTPS")
     CACHE.mkdir(parents=True, exist_ok=True)
     path = CACHE / (hashlib.sha256(url.encode()).hexdigest() + ".pdf")
-    if path.exists():
-        return path.read_bytes()
+    try:
+        with path.open("rb") as cached:
+            data = cached.read(PDF_MAX_BYTES + 1)
+    except FileNotFoundError:
+        pass
+    else:
+        try:
+            _validate_pdf_bytes(data)
+        except ValueError:
+            path.unlink(missing_ok=True)
+            if cached_only:
+                raise
+        else:
+            return data
+
+    if cached_only:
+        raise FileNotFoundError("No valid cached Final Prospectus available in cached-only mode")
 
     deadline = time.monotonic() + PDF_DOWNLOAD_TOTAL_SECONDS
     for attempt in range(1, PDF_DOWNLOAD_ATTEMPTS + 1):
         try:
             data = _download_pdf_once(url, deadline)
-            path.write_bytes(data)
+            _validate_pdf_bytes(data)
+            _write_pdf_cache(path, data)
             return data
         except _TRANSIENT_PDF_ERRORS:
             if attempt >= PDF_DOWNLOAD_ATTEMPTS or time.monotonic() >= deadline:
@@ -143,8 +205,8 @@ def pdf_bytes(doc):
     raise RuntimeError("Official PDF retry loop ended without a result")
 
 
-def extract(record, doc):
-    data = pdf_bytes(doc)
+def extract(record, doc, *, cached_only=False):
+    data = pdf_bytes(doc, cached_only=True) if cached_only else pdf_bytes(doc)
     text, pages, count = parser.extract_pdf_text(data)
     name = core.canonical_company(record.get("company", ""))
     observed = core.canonical_company(text[:25000])
@@ -354,9 +416,10 @@ def run(
     candidates.sort(key=lambda item: item[:3])
     selected = candidates[:limit] if limit else candidates
     outcomes, changes = [], 0
+    extract_options = {"cached_only": True} if cached_only else {}
     with ThreadPoolExecutor(max_workers=max(1, min(workers, 4))) as pool:
         futures = {
-            pool.submit(extract, record, doc): (record, doc)
+            pool.submit(extract, record, doc, **extract_options): (record, doc)
             for _, _, _, record, doc in selected
         }
         for future in as_completed(futures):

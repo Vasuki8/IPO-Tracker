@@ -109,6 +109,7 @@ def _record_document_metadata(record: dict[str, Any], doc: dict[str, Any]) -> No
             "url": url,
             "filedDate": doc.get("filedDate"),
             "source": document_source or doc.get("source") or "Issuer website",
+            "sourcePage": doc.get("sourcePage") or url,
         }
         documents.append(existing)
     else:
@@ -117,6 +118,8 @@ def _record_document_metadata(record: dict[str, Any], doc: dict[str, Any]) -> No
             existing["title"] = doc.get("title")
         if doc.get("filedDate"):
             existing["filedDate"] = doc.get("filedDate")
+        if doc.get("sourcePage"):
+            existing["sourcePage"] = doc["sourcePage"]
         if document_source:
             existing["source"] = document_source
     record["documents"] = base.core.dedupe_dicts(documents, ("url", "type"))

@@ -1,7 +1,8 @@
 """Verified official/issuer offer-document fallbacks.
 
 This registry is data only. Every entry is still subject to the runtime runner's
-exact-host, PDF-magic, issuer-identity and fill-only merge gates before use.
+exact-host, PDF-magic, issuer-identity and canonical Final Prospectus policy gates
+before use.
 """
 
 VALIDATED_OFFER_DOCUMENTS: dict[str, dict[str, str]] = {
@@ -53,17 +54,35 @@ VALIDATED_OFFER_DOCUMENTS: dict[str, dict[str, str]] = {
         "title": "Red Herring Prospectus",
         "sourcePage": "https://vamawoven.com/rhp/",
     },
+    # The old BSE download is unavailable; the issuer links this final PDF
+    # separately from its August 10, 2026 Red Herring Prospectus.
     "sunshine": {
         "company": "Sunshine Pictures Limited",
-        "url": "https://www.bseindia.com/downloads/ipo/361148/ipo_T3/Prospectus_20260821184134.pdf",
-        "host": "www.bseindia.com",
-        "type": "Prospectus",
-        "title": "Prospectus",
-        "sourcePage": "https://www.bseindia.com/downloads/ipo/361148/ipo_T3/Prospectus_20260821184134.pdf",
-        "extractionSource": "BSE",
-        "documentSource": "BSE",
-        "sourceName": "BSE final Prospectus",
-        "sourceKind": "exchange-filing",
+        "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+        "host": "sunshinepictures.in",
+        "type": "PROSPECTUS",
+        "title": "Sunshine Pictures Limited Final Prospectus",
+        "filedDate": "2026-08-21",
+        "sourcePage": "https://sunshinepictures.in/offer-documents/",
+        "extractionSource": "Issuer website",
+        "documentSource": "Issuer website",
+        "sourceName": "Sunshine Pictures issuer Final Prospectus",
+        "sourceKind": "issuer-filing",
+    },
+    # The exchange archive returned a truncated PDF. The issuer's complete
+    # Prospectus is dated October 31, 2025, not its October 23 RHP.
+    "orklaindia": {
+        "company": "Orkla India Limited",
+        "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+        "host": "www.orklaindia.com",
+        "type": "PROSPECTUS",
+        "title": "Orkla India Limited Final Prospectus",
+        "filedDate": "2025-10-31",
+        "sourcePage": "https://www.orklaindia.com/offer-documents/prospectus/",
+        "extractionSource": "Issuer website",
+        "documentSource": "Issuer website",
+        "sourceName": "Orkla India issuer Final Prospectus",
+        "sourceKind": "issuer-filing",
     },
     "symbiotec": {
         "company": "Symbiotec Pharmalab Limited",
