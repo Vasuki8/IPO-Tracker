@@ -12,6 +12,7 @@ from pathlib import Path
 from offer_parser import valid_manager, valid_registrar, PARSER_VERSION
 from performance_metrics import refresh_returns
 from issue_composition_checks import COMPOSITION_FIELDS, quarantined_fields, record_composition_problems
+from objects_of_issue_checks import objects_problems, objects_quarantined
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -25,6 +26,10 @@ def validate_record(record):
     def add(field, reason, severity="error"):
         issues.append({"id": record.get("id"), "field": field, "severity": severity, "reason": reason})
     provenance = record.get("staticFieldProvenance") or {}
+    for reason in objects_problems(record.get("objectsOfIssue")):
+        add("objectsOfIssue", reason)
+    if objects_quarantined(record):
+        add("objectsOfIssue", "Invalid objects quarantined; Final Prospectus revalidation is still required", "review")
     claims_verified = any(field in provenance for field in COMPOSITION_FIELDS)
     for field, reason in record_composition_problems(record):
         add(field, reason, "error" if claims_verified else "review")

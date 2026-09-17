@@ -14,6 +14,8 @@ import re
 from datetime import date, timedelta
 from typing import Any
 
+from objects_of_issue_checks import objects_problems
+
 PARSER_VERSION = 1
 RECENT_DAYS = 730
 
@@ -106,7 +108,7 @@ def valid_promoters(value: Any) -> bool:
 
 
 def valid_objects(value: Any) -> bool:
-    if not isinstance(value, list) or not value or len(value) > 20:
+    if not isinstance(value, list) or not value or len(value) > 20 or objects_problems(value):
         return False
     good = 0
     for row in value:

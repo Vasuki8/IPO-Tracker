@@ -15,8 +15,9 @@ from typing import Any
 import legacy_offer_parser as legacy
 import offer_parser as base
 from issue_composition_checks import composition_problems
+from objects_of_issue_checks import objects_problems
 
-PARSER_VERSION = base.PARSER_VERSION + 5
+PARSER_VERSION = base.PARSER_VERSION + 6
 extract_pdf_text = base.extract_pdf_text
 valid_manager = base.valid_manager
 valid_registrar = base.valid_registrar
@@ -560,6 +561,9 @@ def extract_final_issue_composition(
 
 def parse_document_text(text: str, price_band=None) -> dict[str, Any]:
     parsed = base.parse_document_text(text, price_band)
+    invalid_objects = bool(objects_problems(parsed.get("objectsOfIssue")))
+    if invalid_objects:
+        parsed.pop("objectsOfIssue", None)
 
     lot_size, lot_evidence = extract_final_lot_size(text)
     if lot_size is not None:
@@ -587,6 +591,8 @@ def parse_document_text(text: str, price_band=None) -> dict[str, Any]:
 
     field_evidence = dict(parsed.get("fieldEvidence") or {})
     field_evidence.pop("issueComposition", None)
+    if invalid_objects:
+        field_evidence.pop("objectsOfIssue", None)
     field_evidence.update(lot_evidence)
     field_evidence.update(shareholding_evidence)
     field_evidence.update(price_evidence)
@@ -598,6 +604,7 @@ def parse_document_text(text: str, price_band=None) -> dict[str, Any]:
         field
         for field in (parsed.get("extractedFields") or [])
         if field not in {"priceBand", "issueComposition"}
+        and not (field == "objectsOfIssue" and invalid_objects)
     ]
     if lot_size is not None and "lotSize" not in extracted:
         extracted.append("lotSize")
