@@ -80,15 +80,21 @@ class CompanyRouteTests(unittest.TestCase):
             "symbol": "SUM",
             "profilePath": "ipo/summary/",
             "priceBand": {"min": 95, "max": 100, "internal": "drop"},
+            "lotSize": 150,
             "subscription": {"qib": 2.0, "retail": 3.0, "total": 2.5},
-            "subscriptionHistory": [{"capturedAt": "2026-09-15T10:00:00+05:30", "total": 2.5}],
+            "subscriptionAsOf": "2026-09-15T10:00:00+05:30",
+            "subscriptionSource": "NSE",
+            "subscriptionHistory": [{"capturedAt": "2026-09-15T10:00:00+05:30", "total": 2.5, "rawPayload": {"bids": [1, 2, 3]}}],
             "listing": {"gainPct": 7.5, "listPrice": 107.5},
             "financials": {"periods": [{"period": "FY26", "revenueCr": 100}]},
-            "sources": [{"name": "NSE live", "url": "https://example.test"}, {"name": "SEBI"}],
+            "sources": [{"name": "NSE live", "url": "https://example.test", "rawPayload": {"issues": [1, 2, 3]}}, {"name": "SEBI"}],
             "validation": {"status": "verified", "checks": [{"field": "priceBand"}]},
         }
         summary = mod.public_summary_record(record)
+        self.assertEqual(summary["lotSize"], 150)
         self.assertEqual(summary["subscription"], {"total": 2.5})
+        self.assertEqual(summary["subscriptionAsOf"], "2026-09-15T10:00:00+05:30")
+        self.assertEqual(summary["subscriptionSource"], "NSE")
         self.assertEqual(summary["listing"], {"gainPct": 7.5})
         self.assertEqual(summary["sourceCount"], 2)
         self.assertEqual(summary["profilePath"], "ipo/summary/")
@@ -97,6 +103,35 @@ class CompanyRouteTests(unittest.TestCase):
         self.assertNotIn("sources", summary)
         self.assertNotIn("checks", summary["validation"])
         self.assertNotIn("internal", summary["priceBand"])
+        self.assertNotIn("rawPayload", json.dumps(summary))
+
+    def test_summary_preserves_zero_and_omits_missing_detail_values(self):
+        zero_summary = mod.public_summary_record({
+            "id": "zero",
+            "lotSize": 0,
+            "subscription": {"total": 0},
+            "listing": {"gainPct": 0},
+        })
+        self.assertEqual(zero_summary["lotSize"], 0)
+        self.assertEqual(zero_summary["subscription"], {"total": 0})
+        self.assertEqual(zero_summary["listing"], {"gainPct": 0})
+        self.assertEqual(zero_summary["sourceCount"], 0)
+
+        for missing in (None, "", [], {}):
+            with self.subTest(missing=missing):
+                summary = mod.public_summary_record({
+                    "id": "missing",
+                    "lotSize": missing,
+                    "subscriptionAsOf": missing,
+                    "subscriptionSource": missing,
+                    "subscription": {"total": None},
+                })
+                for field in ("lotSize", "subscriptionAsOf", "subscriptionSource", "subscription"):
+                    self.assertNotIn(field, summary)
+
+        missing_summary = mod.public_summary_record({"id": "absent"})
+        for field in ("lotSize", "subscriptionAsOf", "subscriptionSource"):
+            self.assertNotIn(field, missing_summary)
 
     def test_profile_keeps_display_fields_but_strips_internal_fields(self):
         record = {
@@ -148,12 +183,14 @@ class CompanyRouteTests(unittest.TestCase):
         self.assertNotEqual(first, mod.route_digest(record, "digest"))
 
     def test_public_summary_payload_is_compact_json_serializable(self):
-        payload = {"meta": {"schemaVersion": 7, "generatedAt": "2026-09-15T12:00:00+05:30"}}
+        payload = {"meta": {"schemaVersion": 7, "generatedAt": "2026-09-15T12:00:00+05:30", "seed": False}}
         records = [{"id": "a", "company": "A", "profilePath": "ipo/a/"}]
         public = mod.public_summary_payload(payload, records)
         encoded = json.dumps(public, separators=(",", ":"))
         decoded = json.loads(encoded)
         self.assertEqual(decoded["meta"]["publicSummaryVersion"], mod.PUBLIC_SUMMARY_VERSION)
+        self.assertEqual(decoded["meta"]["publicSummaryVersion"], 1)
+        self.assertIs(decoded["meta"]["seed"], False)
         self.assertEqual(decoded["meta"]["recordCount"], 1)
         self.assertEqual(decoded["ipos"][0]["profilePath"], "ipo/a/")
 

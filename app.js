@@ -5,7 +5,7 @@ const state = {
   board: 'all',
   year: 'all',
   view: 'explore',
-  sort: 'recent',
+  sort: 'activity',
   page: 1,
   pageSize: 25,
   saved: new Set(),
@@ -110,7 +110,15 @@ function badge(status) {
 
 function validationBadge(ipo) {
   const status = ipo.validation?.status || 'single-source';
-  const label = status === 'single-source' ? '1 source' : status;
+  const count = sourceCount(ipo);
+  const label =
+    status === 'single-source'
+      ? count === 0
+        ? 'No sources'
+        : count === 1
+          ? '1 source'
+          : 'Not cross-verified'
+      : status;
   return `<span class="validation validation-${escapeAttr(status)}">${escapeHtml(label)}</span>`;
 }
 
@@ -140,6 +148,72 @@ function statusBucket(ipo) {
   return status === 'upcoming' && !ipo.openDate ? 'pipeline' : status;
 }
 
+function latestSubscription(ipo) {
+  if (typeof p4Latest === 'function' && typeof p4History === 'function')
+    return p4Latest(ipo, p4History(ipo));
+  return {
+    ...(ipo.subscription || {}),
+    capturedAt: ipo.subscriptionAsOf,
+    source: ipo.subscriptionSource,
+  };
+}
+
+function oneLotAtCap(ipo) {
+  if (ipo.lotSize == null || ipo.priceBand?.max == null) return null;
+  const value = Number(ipo.lotSize) * Number(ipo.priceBand.max);
+  return Number.isFinite(value) ? value : null;
+}
+
+function lotCostCell(ipo) {
+  const value = oneLotAtCap(ipo);
+  return `<span class="metric">${rupees(value)}</span>${ipo.lotSize != null ? `<small class="metric-note">${Number(ipo.lotSize).toLocaleString('en-IN')} shares</small>` : ''}`;
+}
+
+function subscriptionCell(ipo) {
+  const latest = latestSubscription(ipo);
+  if (latest.total == null) return '<span class="metric">—</span>';
+  const timestamp = latest.capturedAt;
+  const date = new Date(timestamp);
+  const valid = timestamp && Number.isFinite(date.getTime());
+  const label = valid
+    ? new Intl.DateTimeFormat('en-IN', {
+        timeZone: 'Asia/Kolkata',
+        day: 'numeric',
+        month: 'short',
+        hour: 'numeric',
+        minute: '2-digit',
+      }).format(date)
+    : 'Time unavailable';
+  const title = [
+    latest.source || 'Source unavailable',
+    valid ? formatTimestamp(timestamp) : 'Timestamp unavailable',
+  ].join(' · ');
+  return `<span class="metric" title="${escapeAttr(title)}">${x(latest.total)}</span><small class="metric-note" title="${escapeAttr(title)}">${escapeHtml(label)}</small>`;
+}
+
+function compareMarketActivity(a, b) {
+  const ranks = { open: 0, upcoming: 1, closed: 2, listed: 2, pipeline: 3 };
+  const aStatus = statusBucket(a),
+    bStatus = statusBucket(b);
+  const rankDifference = (ranks[aStatus] ?? 4) - (ranks[bStatus] ?? 4);
+  if (rankDifference) return rankDifference;
+  const eventDate = (ipo, status) => {
+    if (status === 'open' || status === 'closed') return ipo.closeDate || '';
+    if (status === 'upcoming') return ipo.openDate || '';
+    if (status === 'listed') return ipo.listingDate || ipo.openDate || '';
+    return ipo.lifecycle?.stageDate || '';
+  };
+  const aDate = eventDate(a, aStatus),
+    bDate = eventDate(b, bStatus);
+  if (aDate && !bDate) return -1;
+  if (!aDate && bDate) return 1;
+  if (aDate !== bDate)
+    return ['open', 'upcoming'].includes(aStatus)
+      ? aDate.localeCompare(bDate)
+      : bDate.localeCompare(aDate);
+  return COMPANY_COLLATOR.compare(a.company || '', b.company || '');
+}
+
 function matchesBase(ipo) {
   const search = state.search.trim().toLowerCase();
   const year = (ipo.openDate || ipo.listingDate || ipo.lifecycle?.stageDate || '').slice(0, 4);
@@ -154,7 +228,7 @@ function matchesBase(ipo) {
 function filtered() {
   const metric = {
     size: (ipo) => ipo.issueSizeCr,
-    subscription: (ipo) => ipo.subscription?.total,
+    subscription: (ipo) => latestSubscription(ipo).total,
     return: (ipo) => ipo.listing?.gainPct,
   }[state.sort];
   return state.data
@@ -164,6 +238,7 @@ function filtered() {
         (state.activeStatus === 'all' || statusBucket(ipo) === state.activeStatus),
     )
     .sort((a, b) => {
+      if (state.sort === 'activity') return compareMarketActivity(a, b);
       if (state.sort === 'company')
         return COMPANY_COLLATOR.compare(a.company || '', b.company || '');
       if (metric) {
@@ -196,7 +271,7 @@ function renderStats() {
   const cards = [
     ['Open for bids', counts.open, 'View current issues', 'open'],
     ['Upcoming IPOs', counts.upcoming, 'With an opening date', 'upcoming'],
-    ['Bidding closed', counts.closed, 'Awaiting listing updates', 'closed'],
+    ['Bidding closed', counts.closed, 'Explore closed offers', 'closed'],
     ['Listed IPOs', counts.listed, 'Explore the archive', 'listed'],
   ];
   els.stats.innerHTML = cards
@@ -246,11 +321,23 @@ function rowActions(ipo) {
 }
 
 function keyDates(ipo) {
-  if (statusBucket(ipo) === 'listed' && ipo.listingDate)
-    return `<span class="table-date">${prettyDate(ipo.listingDate)}<small>Listed on exchange</small></span>`;
+  const status = statusBucket(ipo);
+  const relative = (verb, date) => {
+    const days = Math.round(
+      (Date.parse(date + 'T00:00:00Z') - Date.parse(TODAY_IST + 'T00:00:00Z')) / 86400000,
+    );
+    return `${verb} ${days === 0 ? 'today' : days === 1 ? 'tomorrow' : prettyDate(date)}`;
+  };
+  if (status === 'listed' && ipo.listingDate)
+    return `<span class="table-date">Listed ${prettyDate(ipo.listingDate)}</span>`;
+  if (status === 'open' && ipo.closeDate)
+    return `<span class="table-date${ipo.closeDate === TODAY_IST ? ' date-today' : ''}">${relative('Closes', ipo.closeDate)}<small>${ipo.openDate ? `Opened ${prettyDate(ipo.openDate)}` : 'Opening date unavailable'}</small></span>`;
+  if (status === 'closed' && ipo.closeDate)
+    return `<span class="table-date">Closed ${prettyDate(ipo.closeDate)}<small>${ipo.listingDate ? relative('Listing', ipo.listingDate) : 'Listing date unavailable'}</small></span>`;
   if (ipo.openDate)
-    return `<span class="table-date">${prettyDate(ipo.openDate)}<small>${ipo.closeDate ? `Closes ${prettyDate(ipo.closeDate)}` : 'Closing date unavailable'}</small></span>`;
-  return `<span class="date-note">Dates unavailable${filingStage(ipo) !== '—' ? `<small class="metric-note">${escapeHtml(filingStage(ipo))} filed</small>` : ''}</span>`;
+    return `<span class="table-date">${relative(status === 'upcoming' ? 'Opens' : 'Opened', ipo.openDate)}<small>${ipo.closeDate ? `Closes ${prettyDate(ipo.closeDate)}` : 'Closing date unavailable'}</small></span>`;
+  const filing = filingStage(ipo);
+  return `<span class="date-note">Dates unavailable${!['—', 'Exchange'].includes(filing) ? `<small class="metric-note">${escapeHtml(filing)} available</small>` : ''}</span>`;
 }
 
 function renderTable() {
@@ -263,6 +350,13 @@ function renderTable() {
   state.page = Math.min(pageCount, Math.max(1, state.page));
   const start = (state.page - 1) * state.pageSize;
   const visible = rows.slice(start, start + state.pageSize);
+  const showReturns = state.activeStatus === 'listed' || state.sort === 'return';
+  document.getElementById('secondaryMetricHeading').textContent = showReturns
+    ? 'Listing return'
+    : '1 lot at cap';
+  document.getElementById('directoryMetricNote').textContent = showReturns
+    ? 'Listing return is the recorded listing-day gain. Subscription figures keep their reported timestamps. A dash means data is unavailable.'
+    : 'One lot at cap = lot size × upper price band. Subscription figures keep their reported timestamps. A dash means data is unavailable.';
   els.empty.classList.toggle('hidden', rows.length > 0);
   els.rows.innerHTML = visible
     .map((ipo, index) => {
@@ -279,7 +373,7 @@ function renderTable() {
         ipo.validation?.status === 'conflict'
           ? ` · <span class="validation validation-conflict">Source conflict</span>`
           : '';
-      return `<tr data-id="${escapeAttr(ipo.id)}"><td data-label="Company"><div class="company-cell"><span class="ipo-monogram tone-${index % 4}" aria-hidden="true">${escapeHtml(initials)}</span><div class="ipo-company">${companyLink(ipo)}<span class="symbol">${escapeHtml([ipo.symbol, ipo.board || ipo.exchange].filter(Boolean).join(' · '))}${validation}</span></div></div></td><td class="status-cell" data-label="Status">${status === 'pipeline' ? '<span class="badge badge-pipeline">Dates pending</span>' : badge(status)}</td><td class="date-cell" data-label="Key dates">${keyDates(ipo)}</td><td class="numeric" data-label="Price band"><span class="metric">${priceBand(ipo)}</span></td><td class="numeric" data-label="Issue size"><span class="metric">${money(ipo.issueSizeCr)}</span></td><td class="numeric" data-label="Subscription"><span class="metric">${x(ipo.subscription?.total)}</span></td><td class="numeric" data-label="Listing return"><span class="metric">${listingReturn(ipo)}</span></td><td class="actions-cell" data-label="Actions">${rowActions(ipo)}</td></tr>`;
+      return `<tr data-id="${escapeAttr(ipo.id)}"><td data-label="Company"><div class="company-cell"><span class="ipo-monogram tone-${index % 4}" aria-hidden="true">${escapeHtml(initials)}</span><div class="ipo-company">${companyLink(ipo)}<span class="symbol">${escapeHtml([ipo.symbol, ipo.board || ipo.exchange].filter(Boolean).join(' · '))}${validation}</span></div></div></td><td class="status-cell" data-label="Status">${status === 'pipeline' ? '<span class="badge badge-pipeline">Dates pending</span>' : badge(status)}</td><td class="date-cell" data-label="Key dates">${keyDates(ipo)}</td><td class="numeric" data-label="Price band"><span class="metric">${priceBand(ipo)}</span></td><td class="numeric" data-label="Issue size"><span class="metric">${money(ipo.issueSizeCr)}</span></td><td class="numeric" data-label="Subscription">${subscriptionCell(ipo)}</td><td class="numeric" data-label="${showReturns ? 'Listing return' : '1 lot at cap'}">${showReturns ? `<span class="metric">${listingReturn(ipo)}</span>` : lotCostCell(ipo)}</td><td class="actions-cell" data-label="Actions">${rowActions(ipo)}</td></tr>`;
     })
     .join('');
   document.getElementById('resultCount').textContent = rows.length
@@ -315,6 +409,7 @@ function renderTable() {
       counts[button.dataset.status].toLocaleString('en-IN');
   });
   document.getElementById('watchlistCount').textContent = state.saved.size;
+  renderActiveFilters();
   syncUrl(false);
 }
 
@@ -485,7 +580,7 @@ const VIEWS = {
   explore: [
     'Explore IPOs',
     'The IPO market, in focus.',
-    'Find the next issue. Understand the details. Follow what happens next.',
+    'Research open offers, upcoming issues and recent listings.',
   ],
   watchlist: [
     'Watchlist',
@@ -504,7 +599,47 @@ const VIEWS = {
   ],
 };
 const VALID_STATUSES = ['all', 'open', 'upcoming', 'closed', 'listed', 'pipeline'];
-const VALID_SORTS = ['recent', 'closing', 'company', 'size', 'subscription', 'return'];
+const VALID_SORTS = ['activity', 'recent', 'closing', 'company', 'size', 'subscription', 'return'];
+const FILTER_DEFAULTS = {
+  search: '',
+  board: 'all',
+  year: 'all',
+  activeStatus: 'all',
+  sort: 'activity',
+};
+function renderActiveFilters() {
+  const root = document.getElementById('activeFilters');
+  const statusNames = {
+    open: 'Open',
+    upcoming: 'Upcoming',
+    closed: 'Closed',
+    listed: 'Listed',
+    pipeline: 'Dates pending',
+  };
+  const sortNames = {
+    recent: 'Most recent',
+    closing: 'Closing soon',
+    company: 'Company A–Z',
+    size: 'Issue size',
+    subscription: 'Subscription',
+    return: 'Listing return',
+  };
+  const labels = {
+    search: `Search: ${state.search}`,
+    board: state.board,
+    year: state.year,
+    activeStatus: statusNames[state.activeStatus],
+    sort: `Sort: ${sortNames[state.sort]}`,
+  };
+  const active = Object.entries(FILTER_DEFAULTS).filter(([key, value]) => state[key] !== value);
+  root.hidden = !active.length;
+  root.innerHTML = active
+    .map(
+      ([key]) =>
+        `<button type="button" class="filter-chip" data-clear-filter="${key}" aria-label="Remove ${escapeAttr(labels[key])} filter"><span>${escapeHtml(labels[key])}</span><span aria-hidden="true">×</span></button>`,
+    )
+    .join('');
+}
 function readUrl() {
   const params = new URLSearchParams(location.search);
   state.view = Object.hasOwn(VIEWS, params.get('view')) ? params.get('view') : 'explore';
@@ -512,7 +647,7 @@ function readUrl() {
   state.search = (params.get('q') || '').slice(0, 200);
   state.board = ['Mainboard', 'SME'].includes(params.get('board')) ? params.get('board') : 'all';
   state.year = /^\d{4}$/.test(params.get('year') || '') ? params.get('year') : 'all';
-  state.sort = VALID_SORTS.includes(params.get('sort')) ? params.get('sort') : 'recent';
+  state.sort = VALID_SORTS.includes(params.get('sort')) ? params.get('sort') : 'activity';
   state.page = Math.max(1, Math.min(100000, parseInt(params.get('page'), 10) || 1));
   state.pageSize = params.get('limit') === '50' ? 50 : 25;
   state.calendarMonth = /^\d{4}-(0[1-9]|1[0-2])$/.test(params.get('month') || '')
@@ -526,7 +661,7 @@ function syncUrl(push = false) {
   if (state.search) params.set('q', state.search);
   if (state.board !== 'all') params.set('board', state.board);
   if (state.year !== 'all') params.set('year', state.year);
-  if (state.sort !== 'recent') params.set('sort', state.sort);
+  if (state.sort !== 'activity') params.set('sort', state.sort);
   if (state.page !== 1) params.set('page', state.page);
   if (state.pageSize !== 25) params.set('limit', state.pageSize);
   if (state.view === 'calendar' && state.calendarMonth !== TODAY_IST.slice(0, 7))
@@ -550,7 +685,7 @@ function hasFilters() {
     state.board !== 'all' ||
     state.year !== 'all' ||
     state.activeStatus !== 'all' ||
-    state.sort !== 'recent'
+    state.sort !== 'activity'
   );
 }
 function resetFilters() {
@@ -558,7 +693,7 @@ function resetFilters() {
   state.board = 'all';
   state.year = 'all';
   state.activeStatus = 'all';
-  state.sort = 'recent';
+  state.sort = 'activity';
   state.page = 1;
   syncControls();
   syncUrl(true);
@@ -567,6 +702,7 @@ function resetFilters() {
 function changeView(view, push = true) {
   if (!Object.hasOwn(VIEWS, view)) return;
   state.view = view;
+  document.body.dataset.view = view;
   const [label, title, description] = VIEWS[view];
   document.getElementById('viewBreadcrumb').textContent = label;
   document.getElementById('pageTitle').textContent = title;
@@ -575,6 +711,7 @@ function changeView(view, push = true) {
   document.getElementById('view-explore').hidden = !['explore', 'watchlist'].includes(view);
   document.getElementById('view-calendar').hidden = view !== 'calendar';
   document.getElementById('view-quality').hidden = view !== 'quality';
+  document.getElementById('jumpToSearch').hidden = !['explore', 'watchlist'].includes(view);
   els.stats.hidden = view !== 'explore';
   document.querySelectorAll('.main-nav [data-view]').forEach((link) => {
     const active = link.dataset.view === view;
@@ -664,6 +801,9 @@ function toggleSaved(id) {
         : 'Removed from your watchlist.'
       : 'Updated for this visit. Your browser could not save the watchlist.',
   );
+  document.dispatchEvent(
+    new CustomEvent('ipo:watchlist-change', { detail: { ids: [...state.saved], persisted } }),
+  );
 }
 function toggleCompare(id) {
   if (state.compare.has(id)) state.compare.delete(id);
@@ -703,10 +843,17 @@ function openComparison() {
     ['Board', (ipo) => escapeHtml(ipo.board || '—')],
     ['Price band', priceBand],
     ['Issue size', (ipo) => money(ipo.issueSizeCr)],
+    [
+      'Lot size',
+      (ipo) =>
+        ipo.lotSize == null ? '—' : `${Number(ipo.lotSize).toLocaleString('en-IN')} shares`,
+    ],
+    ['1 lot at cap', (ipo) => rupees(oneLotAtCap(ipo))],
     ['Bidding opens', (ipo) => prettyDate(ipo.openDate)],
     ['Bidding closes', (ipo) => prettyDate(ipo.closeDate)],
     ['Listing date', (ipo) => prettyDate(ipo.listingDate)],
-    ['Subscription', (ipo) => x(ipo.subscription?.total)],
+    ['Subscription', subscriptionCell],
+    ['Subscription source', (ipo) => escapeHtml(latestSubscription(ipo).source || '—')],
     ['Listing return', listingReturn],
     ['Filing stage', (ipo) => escapeHtml(filingStage(ipo))],
     ['Data validation', validationBadge],
@@ -740,6 +887,10 @@ function exportCsv() {
     'Source count',
     'Profile URL',
     'Dataset timestamp',
+    'Lot size shares',
+    'One lot at cap INR',
+    'Subscription timestamp',
+    'Subscription source',
   ];
   const lines = filtered().map((ipo) => [
     ipo.company,
@@ -752,12 +903,16 @@ function exportCsv() {
     ipo.priceBand?.min,
     ipo.priceBand?.max,
     ipo.issueSizeCr,
-    ipo.subscription?.total,
+    latestSubscription(ipo).total,
     ipo.listing?.gainPct,
     ipo.validation?.status,
     sourceCount(ipo),
     ipo.profilePath ? new URL(ipo.profilePath, document.baseURI).href : '',
     state.meta.generatedAt,
+    ipo.lotSize,
+    oneLotAtCap(ipo),
+    latestSubscription(ipo).capturedAt,
+    latestSubscription(ipo).source,
   ]);
   const blob = new Blob(
     ['\uFEFF' + [header, ...lines].map((row) => row.map(quote).join(',')).join('\r\n')],
@@ -826,6 +981,24 @@ function closeMenu() {
   document.getElementById('navBackdrop').hidden = true;
 }
 function bind() {
+  document.getElementById('jumpToSearch').addEventListener('click', () => {
+    els.search.scrollIntoView({ block: 'center', behavior: 'instant' });
+    els.search.focus({ preventScroll: true });
+  });
+  document.getElementById('activeFilters').addEventListener('click', (event) => {
+    const button = event.target.closest('[data-clear-filter]');
+    if (!button || !Object.hasOwn(FILTER_DEFAULTS, button.dataset.clearFilter)) return;
+    const root = document.getElementById('activeFilters');
+    const index = [...root.querySelectorAll('button')].indexOf(button);
+    const key = button.dataset.clearFilter;
+    state[key] = FILTER_DEFAULTS[key];
+    state.page = 1;
+    syncControls();
+    syncUrl(true);
+    renderTable();
+    const remaining = [...root.querySelectorAll('button')];
+    (remaining[Math.min(index, remaining.length - 1)] || els.search).focus({ preventScroll: true });
+  });
   document.querySelectorAll('[data-view]').forEach((link) =>
     link.addEventListener('click', (event) => {
       if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
@@ -883,7 +1056,7 @@ function bind() {
     state.search = '';
     state.board = 'all';
     state.year = 'all';
-    state.sort = 'recent';
+    state.sort = 'activity';
     state.activeStatus = card.dataset.statStatus;
     state.page = 1;
     syncControls();
@@ -958,6 +1131,7 @@ function bind() {
   els.dialog.addEventListener('close', () => {
     detailRequest++;
     if (detailTrigger?.isConnected) detailTrigger.focus({ preventScroll: true });
+    else if (detailTrigger) focusDirectoryAction('preview');
   });
   [els.dialog, document.getElementById('compareDialog')].forEach((dialog) =>
     dialog.addEventListener('click', (event) => {
@@ -1011,6 +1185,11 @@ function bind() {
       state.saved = new Set([...state.saved].filter((id) => state.byId.has(id)));
       renderTable();
     }
+    document.dispatchEvent(
+      new CustomEvent('ipo:watchlist-change', {
+        detail: { ids: [...state.saved], persisted: true },
+      }),
+    );
   });
 }
 

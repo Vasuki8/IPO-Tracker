@@ -75,6 +75,106 @@ function companySafeUrl(value) {
     return '';
   }
 }
+const COMPANY_WATCHLIST_KEY = 'ipoTrackerWatchlist';
+let companyWatchlistMemory = null;
+let companyWatchlistPersisted = true;
+const companyActionRoots = new WeakSet();
+
+function companyParseWatchlist(value) {
+  try {
+    const ids = typeof value === 'string' ? JSON.parse(value) : value;
+    return new Set(Array.isArray(ids) ? ids.filter((id) => typeof id === 'string') : []);
+  } catch {
+    return new Set();
+  }
+}
+function companySavedIds() {
+  if (typeof state !== 'undefined' && state.saved instanceof Set) return state.saved;
+  if (companyWatchlistMemory == null) {
+    try {
+      companyWatchlistMemory = companyParseWatchlist(localStorage.getItem(COMPANY_WATCHLIST_KEY));
+    } catch {
+      companyWatchlistMemory = new Set();
+      companyWatchlistPersisted = false;
+    }
+  }
+  return companyWatchlistMemory;
+}
+function companySaveFeedback(saved, persisted) {
+  if (!persisted)
+    return `${saved ? 'Saved' : 'Removed'} for this visit only. Your browser could not store the watchlist.`;
+  return saved ? 'Saved to your watchlist on this device.' : 'Removed from your watchlist.';
+}
+function companyWatchlistAction(ipo) {
+  const saved = companySavedIds().has(String(ipo.id));
+  return `<div class="company-watchlist-action"><button type="button" class="company-watchlist-button" data-company-save="${escapeAttr(ipo.id)}" aria-pressed="${saved}" aria-label="${saved ? 'Remove from watchlist' : 'Save to watchlist'}"><span aria-hidden="true">${saved ? '✓' : '+'}</span><span data-company-save-label>${saved ? 'Saved to watchlist' : 'Save to watchlist'}</span></button><p class="company-save-status" role="status" aria-live="polite">${!companyWatchlistPersisted && saved ? escapeHtml(companySaveFeedback(saved, false)) : ''}</p></div>`;
+}
+function syncCompanyWatchlist(root = document, announce = false) {
+  const savedIds = companySavedIds();
+  root.querySelectorAll('[data-company-save]').forEach((button) => {
+    const saved = savedIds.has(button.dataset.companySave);
+    button.setAttribute('aria-pressed', String(saved));
+    button.setAttribute('aria-label', saved ? 'Remove from watchlist' : 'Save to watchlist');
+    button.querySelector('[aria-hidden]').textContent = saved ? '✓' : '+';
+    button.querySelector('[data-company-save-label]').textContent = saved
+      ? 'Saved to watchlist'
+      : 'Save to watchlist';
+    const status = button
+      .closest('.company-watchlist-action')
+      ?.querySelector('.company-save-status');
+    if (status && announce)
+      status.textContent = companySaveFeedback(saved, companyWatchlistPersisted);
+  });
+}
+function bindCompanyProfileActions(root) {
+  syncCompanyWatchlist(root);
+  if (companyActionRoots.has(root)) return;
+  companyActionRoots.add(root);
+  root.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-company-save]');
+    if (!button || !root.contains(button)) return;
+    const id = String(button.dataset.companySave);
+    if (typeof toggleSaved === 'function') {
+      toggleSaved(id);
+      return;
+    }
+    const ids = companySavedIds();
+    if (ids.has(id)) ids.delete(id);
+    else ids.add(id);
+    let persisted = true;
+    try {
+      localStorage.setItem(COMPANY_WATCHLIST_KEY, JSON.stringify([...ids]));
+    } catch {
+      persisted = false;
+    }
+    document.dispatchEvent(
+      new CustomEvent('ipo:watchlist-change', {
+        detail: { ids: [...ids], persisted },
+      }),
+    );
+  });
+}
+document.addEventListener('ipo:watchlist-change', (event) => {
+  if (!Array.isArray(event.detail?.ids)) return;
+  companyWatchlistMemory = companyParseWatchlist(event.detail.ids);
+  companyWatchlistPersisted = event.detail.persisted !== false;
+  syncCompanyWatchlist(document, true);
+});
+window.addEventListener('storage', (event) => {
+  // The dashboard owns its storage listener and publishes the same event.
+  if (
+    typeof toggleSaved === 'function' ||
+    (event.key !== COMPANY_WATCHLIST_KEY && event.key !== null)
+  )
+    return;
+  const ids = companyParseWatchlist(event.newValue);
+  document.dispatchEvent(
+    new CustomEvent('ipo:watchlist-change', {
+      detail: { ids: [...ids], persisted: true },
+    }),
+  );
+});
+
 function companyHeading(title, level = 'h3') {
   const tag = level === 'h2' ? 'h2' : 'h3';
   return `<${tag} class="company-section-title">${escapeHtml(title)}</${tag}>`;
@@ -245,18 +345,43 @@ function companyFinancials(ipo, heading = 'h3') {
   if (!periods.length) return '';
   return `<section class="company-section" id="company-financials"><div class="company-section-head"><div>${companyHeading('Restated financials', heading)}<p class="company-section-subtitle">As reported in official offer documents. Amounts in ₹ crore, except EPS (₹) and returns (%).</p></div></div><div class="company-financial-wrap" role="region" aria-label="Restated financials; scroll horizontally for all columns" tabindex="0"><table class="company-financial-table"><thead><tr><th scope="col">Period</th><th scope="col">Revenue</th><th scope="col">EBITDA</th><th scope="col">PAT</th><th scope="col">Net worth</th><th scope="col">RONW / ROE</th><th scope="col">EPS</th></tr></thead><tbody>${periods.map((row) => `<tr><th scope="row">${escapeHtml(row.period || '—')}</th><td>${money(row.revenueCr)}</td><td>${money(row.ebitdaCr)}</td><td>${money(row.patCr)}</td><td>${money(row.netWorthCr)}</td><td>${companyPct(row.ronwPct ?? row.roePct)}</td><td>${row.eps == null ? '—' : rupees(row.eps)}</td></tr>`).join('')}</tbody></table></div><p class="company-data-note">A dash means data is unavailable. Compare periods of the same duration.</p></section>`;
 }
+function companyDocumentSource(url) {
+  if (!url) return 'Source unavailable';
+  const host = new URL(url).hostname.toLowerCase();
+  for (const [domain, label] of [
+    ['sebi.gov.in', 'SEBI'],
+    ['bseindia.com', 'BSE'],
+    ['nseindia.com', 'NSE'],
+  ]) {
+    if (host === domain || host.endsWith(`.${domain}`)) return label;
+  }
+  return host.replace(/^www\./, '');
+}
 function companyDocuments(ipo, heading = 'h3') {
   const docs = (ipo.documents || [])
     .slice()
     .sort((a, b) => String(b.filedDate || '').localeCompare(String(a.filedDate || '')));
   if (!docs.length) return '';
-  return `<section class="company-section" id="company-documents"><div class="company-section-head"><div>${companyHeading('Official documents', heading)}<p class="company-section-subtitle">Offer documents and official filings, with the most recent first.</p></div><span class="company-meta-chip">${docs.length} document${docs.length === 1 ? '' : 's'}</span></div><div class="company-link-list">${docs
+  return `<section class="company-section" id="company-documents"><div class="company-section-head"><div>${companyHeading('Official documents', heading)}<p class="company-section-subtitle">Open the source filing. The newest documents appear first.</p></div><span class="company-meta-chip">${docs.length} document${docs.length === 1 ? '' : 's'}</span></div><div class="company-link-list">${docs
     .map((doc) => {
       const url = companySafeUrl(doc.url);
-      const inner = `<span class="company-link-copy"><strong>${escapeHtml(doc.type || 'Document')}</strong><small>${escapeHtml(doc.title || 'Official filing')} · ${doc.filedDate ? escapeHtml(companyDate(doc.filedDate)) : 'Filing date not available'}</small></span><span class="company-link-action">${url ? 'Open ↗' : 'Link unavailable'}</span>`;
-      return url
-        ? `<a class="company-link-row" href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer">${inner}</a>`
-        : `<div class="company-link-row">${inner}</div>`;
+      const source = companyDocumentSource(url);
+      const original = String(doc.title || '');
+      const concise = original.replace(/\s+/g, ' ').trim();
+      const disclose =
+        concise.length > 140 ||
+        /BSE Bid Details|Cumulative Bid Details|Cumulative Demand Schedule/i.test(concise);
+      const label =
+        {
+          PROSPECTUS: 'Prospectus',
+          'FINAL PROSPECTUS': 'Final prospectus',
+          'ABRIDGED PROSPECTUS': 'Abridged prospectus',
+        }[String(doc.type || '').toUpperCase()] ||
+        doc.type ||
+        'Document';
+      const meta = `${source} · ${doc.filedDate ? companyDate(doc.filedDate) : 'Filing date not available'}`;
+      const inner = `<span class="company-link-copy"><strong>${escapeHtml(label)}</strong><small>${escapeHtml(meta)}</small>${!disclose && concise && concise.toLowerCase() !== String(label).toLowerCase() ? `<small class="company-document-short-title">${escapeHtml(original)}</small>` : ''}</span><span class="company-link-action">${url ? 'Open ↗' : 'Link unavailable'}</span>`;
+      return `<div class="company-document-card">${url ? `<a class="company-link-row company-document-link" href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer">${inner}</a>` : `<div class="company-link-row">${inner}</div>`}${disclose ? `<details class="company-document-title"><summary>View original title</summary><p>${escapeHtml(original)}</p></details>` : ''}</div>`;
     })
     .join('')}</div></section>`;
 }
@@ -277,7 +402,7 @@ function companySourcesAndValidation(ipo, heading = 'h3') {
 function companySidebar(ipo, heading = 'h3') {
   const latestSource = companyLatestSource(ipo);
   const extraction = ipo.offerDocumentExtraction || {};
-  return `<aside class="company-side-stack" aria-label="Company reference information"><section class="company-section"><div class="company-section-head">${companyHeading('At a glance', heading)}</div>${companyOverviewFacts(ipo)}</section><section class="company-section"><div class="company-section-head">${companyHeading('Record freshness', heading)}</div><dl class="company-fact-grid"><div class="company-fact"><dt>Latest source</dt><dd>${escapeHtml(latestSource?.name || '—')}</dd></div><div class="company-fact"><dt>Source timestamp</dt><dd>${escapeHtml(latestSource?.asOf ? formatTimestamp(latestSource.asOf) : 'Not available')}</dd></div><div class="company-fact"><dt>Offer document processed</dt><dd>${escapeHtml(extraction.extractedAt ? formatTimestamp(extraction.extractedAt) : 'Not available')}</dd></div><div class="company-fact"><dt>Validation</dt><dd>${escapeHtml(ipo.validation?.status || 'single-source')}</dd></div></dl><p class="company-data-note">Dates and timestamps use Indian Standard Time (IST).</p></section></aside>`;
+  return `<aside class="company-side-stack" aria-label="Company reference information"><section class="company-section"><div class="company-section-head">${companyHeading('At a glance', heading)}</div>${companyOverviewFacts(ipo)}</section><section class="company-section"><div class="company-section-head">${companyHeading('Record freshness', heading)}</div><dl class="company-fact-grid"><div class="company-fact"><dt>Latest source</dt><dd>${escapeHtml(latestSource?.name || '—')}</dd></div><div class="company-fact"><dt>Source timestamp</dt><dd>${escapeHtml(latestSource?.asOf ? formatTimestamp(latestSource.asOf) : 'Not available')}</dd></div><div class="company-fact"><dt>Offer document processed</dt><dd>${escapeHtml(extraction.extractedAt ? formatTimestamp(extraction.extractedAt) : 'Not available')}</dd></div><div class="company-fact"><dt>Validation</dt><dd>${validationBadge(ipo)}</dd></div></dl><p class="company-data-note">Dates and timestamps use Indian Standard Time (IST).</p></section></aside>`;
 }
 function companyNav(ipo) {
   const items = [
@@ -310,11 +435,26 @@ function companyHero(ipo, { standalone = false } = {}) {
   const count = sourceCount(ipo);
   const title = standalone ? 'h1' : 'h2';
   const profileUrl = companySafeUrl(ipo.profilePath);
-  return `<section class="company-hero-card" id="company-overview"><div class="company-identity"><div class="company-monogram" aria-hidden="true">${escapeHtml(companyInitials(ipo.company))}</div><div class="company-identity-copy"><div class="company-kicker">${escapeHtml([ipo.symbol, ipo.exchange].filter(Boolean).join(' · ') || 'Indian IPO')}</div><${title} class="company-hero-name">${escapeHtml(ipo.company || 'Unknown company')}</${title}><div class="company-chip-row">${badge(status)}<span class="company-meta-chip">${escapeHtml(ipo.board || 'Board unavailable')}</span>${filing !== '—' ? `<span class="company-meta-chip">${escapeHtml(filing)}</span>` : ''}${validationBadge(ipo)}</div><p class="company-hero-caption">${count} source${count === 1 ? '' : 's'} attached · ${ipo.openDate ? `Bidding ${companyDate(ipo.openDate)}${ipo.closeDate ? ` – ${companyDate(ipo.closeDate)}` : ' · closing date not available'}` : 'Bidding dates not available'}</p></div></div><div class="company-hero-side"><div class="company-side-highlight"><span>Current stage</span><strong>${escapeHtml(stage)}</strong><small>${escapeHtml(dateText)}</small></div>${!standalone && profileUrl ? `<a class="company-profile-link" href="${escapeAttr(profileUrl)}">Open full company profile <span aria-hidden="true">↗</span></a>` : ''}</div></section>`;
+  return `<section class="company-hero-card" id="company-overview"><div class="company-identity"><div class="company-monogram" aria-hidden="true">${escapeHtml(companyInitials(ipo.company))}</div><div class="company-identity-copy"><div class="company-kicker">${escapeHtml([ipo.symbol, ipo.exchange].filter(Boolean).join(' · ') || 'Indian IPO')}</div><${title} class="company-hero-name">${escapeHtml(ipo.company || 'Unknown company')}</${title}><div class="company-chip-row">${badge(status)}<span class="company-meta-chip">${escapeHtml(ipo.board || 'Board unavailable')}</span>${filing !== '—' ? `<span class="company-meta-chip">${escapeHtml(filing)}</span>` : ''}${validationBadge(ipo)}</div><p class="company-hero-caption">${count} source${count === 1 ? '' : 's'} attached · ${ipo.openDate ? `Bidding ${companyDate(ipo.openDate)}${ipo.closeDate ? ` – ${companyDate(ipo.closeDate)}` : ' · closing date not available'}` : 'Bidding dates not available'}</p></div></div><div class="company-hero-side"><div class="company-side-highlight"><span>Current stage</span><strong>${escapeHtml(stage)}</strong><small>${escapeHtml(dateText)}</small></div>${companyWatchlistAction(ipo)}${!standalone && profileUrl ? `<a class="company-profile-link" href="${escapeAttr(profileUrl)}">Open full company profile <span aria-hidden="true">↗</span></a>` : ''}</div></section>`;
 }
 function companyProfileHtml(ipo, { standalone = false } = {}) {
   const heading = standalone ? 'h2' : 'h3';
-  return `<div class="company-profile${standalone ? ' company-route-profile' : ''}">${companyNav(ipo)}<div class="company-profile-inner">${companyHero(ipo, { standalone })}<div class="company-kpis">${companyKpis(ipo)}</div><section class="company-section" id="company-timeline"><div class="company-section-head"><div>${companyHeading('IPO timeline', heading)}<p class="company-section-subtitle">Key dates from official filings through allotment and listing. Missing dates are marked Not available.</p></div><span class="company-meta-chip">All dates · IST</span></div><div class="company-timeline">${companyTimeline(ipo)}</div></section><div class="company-two-col"><div class="company-main-sections">${companySubscriptionSection(ipo, heading)}${companyOfferIntel(ipo, heading)}${companyFinancials(ipo, heading)}${companyDocuments(ipo, heading)}${companySourcesAndValidation(ipo, heading)}</div>${companySidebar(ipo, heading)}</div></div></div>`;
+  const sections = [
+    companySubscriptionSection(ipo, heading),
+    companyOfferIntel(ipo, heading),
+    companyFinancials(ipo, heading),
+    companyDocuments(ipo, heading),
+  ].filter(Boolean);
+  const sparse =
+    sections.length <= 1 &&
+    !(ipo.subscriptionHistory || []).length &&
+    (ipo.documents || []).length <= 3 &&
+    (ipo.objectsOfIssue || []).length <= 3 &&
+    (ipo.leadManagers || []).length <= 4 &&
+    (ipo.promoters || []).length <= 4;
+  const main = `<div class="company-main-sections">${sections.join('')}${companySourcesAndValidation(ipo, heading)}</div>`;
+  const sidebar = companySidebar(ipo, heading);
+  return `<div class="company-profile${standalone ? ' company-route-profile' : ''}${sparse ? ' company-profile-sparse' : ''}">${companyNav(ipo)}<div class="company-profile-inner">${companyHero(ipo, { standalone })}<div class="company-kpis">${companyKpis(ipo)}</div><section class="company-section" id="company-timeline"><div class="company-section-head"><div>${companyHeading('IPO timeline', heading)}<p class="company-section-subtitle">Key dates from official filings through allotment and listing. Missing dates are marked Not available.</p></div><span class="company-meta-chip">All dates · IST</span></div><div class="company-timeline">${companyTimeline(ipo)}</div></section><div class="company-two-col">${sparse ? sidebar + main : main + sidebar}</div></div></div>`;
 }
 const companyNavigationCleanups = new WeakMap();
 function bindCompanyProfileNavigation(root = els.dialogBody, { scrollRoot = root } = {}) {
@@ -398,4 +538,5 @@ openDetail = function (id) {
   els.dialogBody.scrollTop = 0;
   if (!els.dialog.open) els.dialog.showModal();
   bindCompanyProfileNavigation(els.dialogBody);
+  bindCompanyProfileActions(els.dialogBody);
 };

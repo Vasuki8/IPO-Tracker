@@ -4,14 +4,14 @@ A static, source-aware website for tracking Indian IPOs from **SEBI filing throu
 
 ## Research workspace
 
-- **Explore IPOs:** status, company, board and year filters; six sorting options; 25/50-row pagination; and CSV export of all matching records. Search and filter state is kept in the URL and restored when returning from a company profile.
+- **Explore IPOs:** status, company, board and year filters; seven sorting options; 25/50-row pagination; and CSV export of all matching records. The default Open first sort starts with open offers ordered by closing date, followed by upcoming issues and then recent closing/listing activity. Individual filter chips can be removed without resetting the rest. Search and filter state is kept in the URL and restored when returning from a company profile.
 - **IPO calendar:** opening, closing and listing events grouped by date, with month navigation. Issues without an opening date are available under **Dates pending** in the directory.
-- **Watchlist:** bookmark issues locally in the current browser. This is device-local storage, with no account or cross-device sync.
-- **Compare:** select two or three IPOs to compare the available issue terms, dates, subscription and listing return.
+- **Watchlist:** bookmark issues from the directory, quick view or permanent company profile in the current browser. This is device-local storage, with no account or cross-device sync.
+- **Compare:** select two or three IPOs to compare the available issue terms, lot size and one-lot value at the price-band cap, dates, timestamped subscription and listing return.
 - **Company profiles:** permanent URLs and an explicit quick-view action; responsive issue terms, lifecycle, subscription charts and snapshots, offer information, financials, documents and source validation.
 - **Data & sources:** source diagnostics and coverage/repair details are available in a dedicated view. Coverage payloads load only when that view is opened.
 
-The light interface uses a mobile card layout for IPO results, keyboard-accessible actions and reduced-motion support. A dash means the value is unavailable. Display changes do not alter canonical source records or collection policy.
+The compact light interface uses a mobile card layout for IPO results, six visible status filters, a persistent navigation/search bar, keyboard-accessible actions and reduced-motion support. The directory shows one-lot value at the upper price band for current offers, and listing return when exploring listed issues. Subscription figures show their observation time; exports include lot terms and subscription provenance. A dash means the value is unavailable. Display changes do not alter canonical source records or collection policy.
 
 ### Browser checks
 

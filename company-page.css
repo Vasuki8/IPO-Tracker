@@ -165,16 +165,14 @@
   }
   .company-route-topbar {
     flex-wrap: wrap;
-    gap: 16px;
-    padding: 20px 0;
+    gap: 12px;
+    padding: 14px 0;
   }
   .company-route-topbar .brand {
     width: 100%;
   }
   .company-route-topbar .brand-subtitle {
-    max-width: none;
-    white-space: normal;
-    overflow-wrap: anywhere;
+    display: none;
   }
   .company-route-actions {
     width: 100%;

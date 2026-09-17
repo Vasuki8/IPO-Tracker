@@ -82,7 +82,17 @@
               ☰</button
             ><span class="breadcrumb"
               >Markets <span>/</span> <strong id="viewBreadcrumb">Explore IPOs</strong></span
+            ><button
+              type="button"
+              id="jumpToSearch"
+              class="icon-button search-jump"
+              aria-label="Jump to IPO search"
             >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="10.5" cy="10.5" r="6.5" />
+                <path d="m16 16 5 5" />
+              </svg>
+            </button>
           </div>
           <div class="freshness" id="freshness" role="status">Loading latest snapshot…</div>
         </header>
@@ -91,9 +101,7 @@
             <div>
               <div class="eyebrow" id="pageEyebrow">INDIA · PRIMARY MARKETS</div>
               <h1 id="pageTitle">The IPO market, in focus.</h1>
-              <p id="pageDescription">
-                Find the next issue. Understand the details. Follow what happens next.
-              </p>
+              <p id="pageDescription">Research open offers, upcoming issues and recent listings.</p>
             </div>
             <div class="market-date">
               <span>MARKET CALENDAR</span><strong id="marketDate">India Standard Time</strong
@@ -158,6 +166,7 @@
                   ><label
                     ><span class="sr-only">Sort IPOs</span
                     ><select id="sortFilter">
+                      <option value="activity">Open first</option>
                       <option value="recent">Most recent</option>
                       <option value="closing">Closing soon</option>
                       <option value="company">Company A–Z</option>
@@ -168,6 +177,13 @@
                   >
                 </div>
               </div>
+              <div
+                id="activeFilters"
+                class="active-filters"
+                role="group"
+                aria-label="Active filters"
+                hidden
+              ></div>
               <div class="results-meta">
                 <span id="resultCount" role="status" aria-live="polite">Loading IPOs…</span
                 ><button type="button" id="clearFilters" class="text-button" hidden>
@@ -188,7 +204,7 @@
                       <th scope="col" class="numeric">Price band</th>
                       <th scope="col" class="numeric">Issue size</th>
                       <th scope="col" class="numeric">Subscription</th>
-                      <th scope="col" class="numeric">Listing return</th>
+                      <th scope="col" class="numeric" id="secondaryMetricHeading">1 lot at cap</th>
                       <th scope="col">Actions</th>
                     </tr>
                   </thead>
@@ -222,8 +238,11 @@
               </nav>
             </section>
             <p class="table-footnote">
-              <span class="info-dot">i</span> Subscription is the recorded demand multiple. Listing
-              return is the recorded listing-day gain. A dash means data is unavailable.
+              <span class="info-dot">i</span
+              ><span id="directoryMetricNote"
+                >One lot at cap = lot size × upper price band. Subscription figures keep their
+                reported timestamps. A dash means data is unavailable.</span
+              >
             </p>
           </section>
           <section id="view-calendar" hidden aria-label="IPO calendar">

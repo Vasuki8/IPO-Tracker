@@ -152,7 +152,8 @@ function sourceCount(ipo) {
 
 function validationBadge(ipo) {
   const status = ipo.validation?.status || "single-source";
-  const label = status === "single-source" ? "1 source" : status;
+  const count = sourceCount(ipo);
+  const label = status === "single-source" ? (count === 0 ? "No sources" : count === 1 ? "1 source" : "Not cross-verified") : status;
   return `<span class="validation validation-${escapeAttr(status)}">${escapeHtml(label)}</span>`;
 }
 
@@ -514,6 +515,7 @@ async function initCompanyRoute() {
         : "IPO research profile";
     root.innerHTML = routeProfileHtml(ipo);
     bindRouteNavigation(root);
+    bindCompanyProfileActions(root);
 
     const shareButton = document.getElementById("copyCompanyLink");
     if (shareButton)
