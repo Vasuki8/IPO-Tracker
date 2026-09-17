@@ -49,7 +49,7 @@
   box-sizing: border-box;
 }
 .company-profile :is(button, a, summary, [tabindex]):focus-visible {
-  outline: 3px solid var(--accent);
+  outline: 3px solid var(--focus);
   outline-offset: 4px;
 }
 .company-nav {
@@ -93,7 +93,7 @@
 }
 .company-nav button:hover {
   color: var(--accent);
-  background: #f4faf8;
+  background: var(--accent-soft);
 }
 .company-nav button.is-active {
   color: var(--accent);
@@ -134,9 +134,9 @@
   flex: 0 0 56px;
   width: 56px;
   height: 56px;
-  border: 1px solid #cde6e0;
+  border: 1px solid var(--accent-border);
   border-radius: 13px;
-  background: #edf7f4;
+  background: var(--accent-soft);
   color: var(--accent);
   font-size: 19px;
   font-weight: 800;
@@ -177,7 +177,7 @@
   padding: 4px 8px;
   border: 1px solid var(--border);
   border-radius: 6px;
-  background: #f8fafb;
+  background: var(--panel-2);
   color: var(--muted);
   font-size: 10px;
   line-height: 1.4;
@@ -197,9 +197,9 @@
 }
 .company-side-highlight {
   padding: 16px 18px;
-  border: 1px solid #dcece6;
+  border: 1px solid var(--accent-border);
   border-radius: 10px;
-  background: #f1f8f5;
+  background: var(--accent-soft);
 }
 .company-side-highlight span {
   display: block;
@@ -234,22 +234,22 @@
   width: 100%;
   min-height: 40px;
   padding: 9px 13px;
-  border: 1px solid #bcd8d0;
+  border: 1px solid var(--accent);
   border-radius: 8px;
-  background: var(--panel);
-  color: var(--accent);
+  background: var(--accent);
+  color: var(--panel);
   font-size: 12px;
   font-weight: 650;
   line-height: 1.4;
 }
 .company-watchlist-button:hover {
-  background: #f1f8f5;
-  border-color: var(--accent);
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
 }
 .company-watchlist-button[aria-pressed='true'] {
-  background: #eaf6f0;
-  border-color: #a6d0bd;
-  color: #087452;
+  background: var(--success-soft);
+  border-color: var(--success-border);
+  color: var(--success);
 }
 .company-watchlist-button > [aria-hidden] {
   font-size: 15px;
@@ -306,7 +306,7 @@
   overflow-wrap: anywhere;
 }
 .company-kpi-value.positive {
-  color: #087452;
+  color: var(--success);
 }
 .company-kpi-value.negative {
   color: var(--danger);
@@ -443,18 +443,18 @@
   font-weight: 800;
 }
 .company-timeline-step.done .company-timeline-dot {
-  color: var(--accent);
-  border-color: #b4d8cd;
-  background: #edf7f3;
+  color: var(--success);
+  border-color: var(--success-border);
+  background: var(--success-soft);
 }
 .company-timeline-step.done::before {
-  background: #c5e1d8;
+  background: var(--success-border);
 }
 .company-timeline-step.current .company-timeline-dot {
-  color: white;
+  color: var(--panel);
   border-color: var(--accent);
   background: var(--accent);
-  box-shadow: 0 0 0 4px #e5f3ed;
+  box-shadow: 0 0 0 4px var(--focus-halo);
 }
 .company-timeline-label {
   margin-top: 12px;
@@ -483,7 +483,7 @@
 .company-fact {
   min-width: 0;
   padding: 12px 0;
-  border-bottom: 1px solid #ecf0f3;
+  border-bottom: 1px solid var(--border);
 }
 .company-fact dt {
   color: var(--muted);
@@ -536,15 +536,15 @@
   line-height: 1.6;
 }
 .company-person {
-  background: #f8fafb;
+  background: var(--panel-2);
   overflow-wrap: anywhere;
 }
 .company-link-row {
   text-decoration: none;
 }
 a.company-link-row:hover {
-  background: #f5faf8;
-  border-color: #9abfb5;
+  background: var(--row-hover);
+  border-color: var(--accent-border);
 }
 .company-link-copy {
   min-width: 0;
@@ -586,7 +586,7 @@ a.company-link-row:hover {
   font-size: 10px;
 }
 .company-document-title {
-  border-top: 1px solid #edf1f4;
+  border-top: 1px solid var(--border);
   padding: 0 14px;
 }
 .company-document-title summary {
@@ -647,7 +647,7 @@ a.company-link-row:hover {
 .company-profile .company-financial-table th,
 .company-profile .company-financial-table td {
   padding: 13px 12px;
-  border-bottom: 1px solid #eaf0f3;
+  border-bottom: 1px solid var(--border);
   font-size: 11px;
   line-height: 1.4;
   text-align: right;
@@ -656,7 +656,7 @@ a.company-link-row:hover {
 }
 .company-profile .company-financial-table thead th {
   position: static;
-  background: #f5f8fa;
+  background: var(--panel-2);
   color: var(--muted);
   font-size: 10px;
   font-weight: 650;
@@ -674,7 +674,7 @@ a.company-link-row:hover {
   cursor: default;
 }
 .company-profile .company-financial-table tbody tr:hover {
-  background: #f8fafb;
+  background: var(--row-hover);
 }
 .company-profile .company-financial-table tbody tr:last-child > * {
   border-bottom: 0;
@@ -685,9 +685,9 @@ a.company-link-row:hover {
   align-items: flex-start;
   margin-bottom: 15px;
   padding: 14px;
-  border: 1px solid #d5e9df;
+  border: 1px solid var(--info-border);
   border-radius: 8px;
-  background: #f2f9f5;
+  background: var(--info-soft);
   color: var(--muted);
   font-size: 12px;
   line-height: 1.7;
@@ -697,8 +697,8 @@ a.company-link-row:hover {
   margin-top: 2px;
 }
 .company-validation-box.conflict {
-  border-color: #efd1d5;
-  background: #fff6f6;
+  border-color: var(--danger-border);
+  background: var(--danger-soft);
 }
 .company-conflict-list {
   margin: 0 0 16px;
@@ -708,9 +708,9 @@ a.company-link-row:hover {
   grid-template-columns: 0.9fr 1fr 1fr;
   gap: 12px;
   padding: 12px 14px;
-  border: 1px solid #efd1d5;
+  border: 1px solid var(--danger-border);
   border-radius: 8px;
-  background: #fffafa;
+  background: var(--danger-soft);
   color: var(--muted);
   font-size: 11px;
   line-height: 1.6;
@@ -745,7 +745,7 @@ a.company-link-row:hover {
   padding: 14px 12px;
   border: 1px solid var(--border);
   border-radius: 8px;
-  background: #f8fafb;
+  background: var(--panel-2);
 }
 .company-profile .subscription-card span {
   color: var(--muted);
@@ -784,20 +784,20 @@ a.company-link-row:hover {
   border-radius: 3px;
 }
 .company-profile .sub-qib {
-  color: #3768af;
-  stroke: #3768af;
+  color: var(--chart-qib);
+  stroke: var(--chart-qib);
 }
 .company-profile .sub-nii {
-  color: #96600a;
-  stroke: #96600a;
+  color: var(--chart-nii);
+  stroke: var(--chart-nii);
 }
 .company-profile .sub-retail {
-  color: #087f70;
-  stroke: #087f70;
+  color: var(--chart-retail);
+  stroke: var(--chart-retail);
 }
 .company-profile .sub-total {
-  color: #734fb2;
-  stroke: #734fb2;
+  color: var(--chart-total);
+  stroke: var(--chart-total);
 }
 .company-profile .subscription-chart-wrap {
   margin-top: 0;
@@ -813,11 +813,11 @@ a.company-link-row:hover {
   height: auto;
 }
 .company-profile .sub-grid {
-  stroke: #e3eaf0;
+  stroke: var(--chart-grid);
   stroke-width: 1;
 }
 .company-profile .sub-axis-label {
-  fill: #526475;
+  fill: var(--muted);
   font-size: 10px;
 }
 .company-profile .sub-line {
@@ -882,7 +882,7 @@ a.company-link-row:hover {
   letter-spacing: 0;
 }
 .company-profile .subscription-table thead {
-  background: #f5f8fa;
+  background: var(--panel-2);
 }
 .company-profile .subscription-table th:first-child {
   text-align: left;
@@ -891,7 +891,7 @@ a.company-link-row:hover {
   cursor: default;
 }
 .company-profile .subscription-table tbody tr:hover {
-  background: #f8fafb;
+  background: var(--row-hover);
 }
 .company-profile .subscription-table tbody tr:last-child > * {
   border-bottom: 0;

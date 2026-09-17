@@ -135,10 +135,10 @@
 .quality-priority {
   justify-self: end;
   padding: 3px 8px;
-  border: 1px solid #bfdfd7;
+  border: 1px solid var(--accent-border);
   border-radius: 6px;
-  background: #eaf5f0;
-  color: var(--accent-2) !important;
+  background: var(--accent-soft);
+  color: var(--accent) !important;
   font-size: 11px !important;
   font-weight: 650;
   white-space: nowrap;
@@ -155,7 +155,7 @@
 }
 .quality-queue-row a:focus-visible,
 .quality-retry:focus-visible {
-  outline: 3px solid var(--accent);
+  outline: 3px solid var(--focus);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -190,8 +190,8 @@
   display: none;
 }
 .quality-loading-error {
-  border-color: #edc9cd;
-  background: #fff6f6;
+  border-color: var(--danger-border);
+  background: var(--danger-soft);
 }
 .quality-loading-error strong {
   color: var(--danger);

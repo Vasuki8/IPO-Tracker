@@ -9,11 +9,11 @@
 }
 .health-item:hover,
 .health-item[aria-expanded='true'] {
-  border-color: #98c6bc;
-  background: #edf7f3;
+  border-color: var(--accent-border);
+  background: var(--accent-soft);
 }
 .health-item:focus-visible {
-  outline: 3px solid var(--accent);
+  outline: 3px solid var(--focus);
   outline-offset: 3px;
 }
 .health-item::after {
@@ -33,7 +33,7 @@
   border-radius: 14px;
   background: var(--panel);
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(24, 43, 58, 0.035);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--text) 3.5%, transparent);
 }
 .source-health-detail[hidden] {
   display: none;
@@ -79,7 +79,7 @@
 }
 .health-detail-close:focus-visible,
 .health-detail-link:focus-visible {
-  outline: 3px solid var(--accent);
+  outline: 3px solid var(--focus);
   outline-offset: 3px;
 }
 .health-detail-grid {
@@ -123,7 +123,7 @@
   background: var(--muted);
 }
 .health-detail-status.ok::before {
-  background: var(--accent-2);
+  background: var(--success);
 }
 .health-detail-status.bad::before {
   background: var(--danger);
@@ -157,8 +157,8 @@
   overflow-wrap: anywhere;
 }
 .health-detail-section.error {
-  border-color: #edc9cd;
-  background: #fff6f6;
+  border-color: var(--danger-border);
+  background: var(--danger-soft);
 }
 .health-detail-section.error strong {
   color: var(--danger);

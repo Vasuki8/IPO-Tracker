@@ -7,10 +7,10 @@
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  border: 1px solid #c5ded6;
+  border: 1px solid var(--accent-border);
   border-radius: 12px;
   padding: 16px;
-  background: #f0f8f4;
+  background: var(--accent-soft);
   margin-bottom: 16px;
 }
 .offer-extraction-meta strong {
@@ -39,7 +39,7 @@
   text-underline-offset: 3px;
 }
 .offer-extraction-meta a:focus-visible {
-  outline: 3px solid var(--accent);
+  outline: 3px solid var(--focus);
   outline-offset: 3px;
 }
 .offer-intel-grid {
