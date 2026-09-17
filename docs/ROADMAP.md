@@ -1,5 +1,11 @@
 # IPO Tracker — prioritized development roadmap
 
+Current execution update (17 September 2026): the deployed document-hold safeguards
+remain complete. The source-publication guard from #98 is being released as an
+independent increment; the combined parser and seven-record source acceptance
+remain gated. See [PROJECT_STATUS.md](PROJECT_STATUS.md) for verified checks and
+the current checkpoint; the dated audit below is preserved.
+
 Prepared 17 September 2026. Recommendation: make displayed data trustworthy, make repairs and updates dependable, complete P4, then expand historical coverage and investment-research features. Keep the current light dashboard and static GitHub Pages architecture while doing this.
 
 **Commercial product direction — confirmed by the owner.** IPO Tracker is intended to become a public commercial product with future monetization. Treat this as a standing requirement for product, data, design and engineering decisions. Optimize for customer trust, repeat use, discoverability, accessibility, dependable operation and sustainable cost. The target paying customer, pricing and revenue model remain decisions to validate; no specific monetization model has been selected.

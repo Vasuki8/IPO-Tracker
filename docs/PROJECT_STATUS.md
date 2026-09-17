@@ -15,7 +15,46 @@ authority for completed static terms, explicitly provisional active disclosures,
 source observation versus collection clocks, nulls, source evidence and correction
 history remain mandatory. P4 is incomplete; P5/performance expansion remain gated.
 
-## Current milestone — document-scoped public review protection, released 17 September 2026
+## Current milestone — protect publication after source-policy changes
+
+Rechecked on 17 September 2026 against main
+`2e0e8541f92608ca71ab76a14232f6626ca43050`. Main, the five relevant open repair
+PRs, canonical data and the deployed document-hold release are unchanged. Pages
+[35283102313](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35283102313)
+and automatic live acceptance
+[35283136925](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35283136925)
+succeeded for that checkpoint.
+
+The next complete increment extracts the publication safeguard already developed
+in #98 from draft integration #105, without releasing its unaccepted parser/data
+changes. A collector could previously publish after the reviewed-correction
+registry changed, or bypass verification with an empty supplied manifest. That
+could reintroduce source values collected before a review decision, affecting all
+public research views after publication.
+
+Acceptance criteria: require an ancestor collector commit with identical scripts,
+locked dependencies and correction registry; reject missing, empty, malformed or
+stale supplied manifests before any data/proposal write; allow independent
+accepted-data and documentation advances through the existing three-way merge;
+preserve all canonical values, retained proposals and public projections.
+
+Implementation is on `fix-current-publication-source-guard`, based on the main
+checkpoint above. **983 Python regressions passed** with Python 3.12.14 and
+`uv sync --frozen`, including real disposable Git histories and no-write CLI
+failure checks. Strict validation has zero errors; seven Node tests and the public
+release verifier pass. All 1,366 profiles and the compact directory rebuild
+without changes, and the canonical dataset, 441 proposals and phase state remain
+byte-identical. PR checks, merge and deployment evidence will be recorded before
+this increment is marked released. See `PUBLICATION_SOURCE_GUARD.md` for the
+recollection procedure; an old collector SHA must never be relabelled.
+
+In parallel, local source integration `d8eed0555ff1480476a6d48347eec8e3e39b3f28`
+incorporates main into #105's `54054c0e` head. The original seven-record transport
+is still unavailable. New source reconstruction uses the exact current base and
+retained PDF hashes, and is not accepted until its full source review and bounded
+publication checks pass. No P4 completion or broader parser rollout is claimed.
+
+## Previous milestone — document-scoped public review protection, released 17 September 2026
 
 Reconciled at main `cf906df7ccc9bcf40881743b0af39480858a612e` on 17 September
 2026. The earlier public trust/freshness milestone is already deployed and has
