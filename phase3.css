@@ -1,26 +1,152 @@
-/* Phase 3: structured SEBI offer-document intelligence */
-.offer-intelligence { border-top-color: rgba(117,208,255,.28); }
-.offer-extraction-meta { display:flex; justify-content:space-between; align-items:center; gap:14px; border:1px solid rgba(117,208,255,.24); border-radius:12px; padding:12px 13px; background:rgba(117,208,255,.035); margin-bottom:12px; }
-.offer-extraction-meta strong { display:block; font-size:12px; }
-.offer-extraction-meta span { display:block; color:var(--muted); font-size:10px; margin-top:3px; }
-.offer-extraction-meta a { color:var(--accent); text-decoration:none; white-space:nowrap; font-size:11px; }
-.offer-intel-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
-.offer-intel-card { min-height:78px; border:1px solid var(--border); border-radius:11px; padding:12px; background:var(--panel); }
-.offer-intel-value { margin-top:8px; font-size:13px; font-weight:700; line-height:1.4; }
-.offer-subsection { margin-top:15px; }
-.chip-list { display:flex; flex-wrap:wrap; gap:6px; }
-.data-chip { display:inline-flex; align-items:center; padding:6px 8px; border-radius:999px; border:1px solid var(--border); background:rgba(140,240,200,.035); color:var(--text); font-size:10px; }
-.object-list { display:grid; gap:6px; }
-.object-row { display:grid; grid-template-columns:1fr auto; gap:15px; align-items:start; border:1px solid var(--border); border-radius:10px; padding:10px 11px; background:var(--panel); color:var(--muted); font-size:11px; line-height:1.45; }
-.object-row strong { color:var(--text); white-space:nowrap; }
-.financial-table-wrap { overflow-x:auto; border:1px solid var(--border); border-radius:11px; }
-.financial-table { min-width:690px; background:var(--panel); }
-.financial-table th, .financial-table td { padding:10px 11px; font-size:11px; }
-.financial-table th { font-size:9px; position:static; }
-.financial-table tbody tr { cursor:default; }
-.financial-table tbody tr:hover { background:transparent; }
-@media (max-width:650px) {
-  .offer-intel-grid { grid-template-columns:1fr 1fr; }
-  .offer-extraction-meta { align-items:flex-start; flex-direction:column; }
-  .object-row { grid-template-columns:1fr; gap:5px; }
+/* Structured official offer-document details. */
+.offer-intelligence {
+  border-top-color: var(--border);
+}
+.offer-extraction-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid #c5ded6;
+  border-radius: 12px;
+  padding: 16px;
+  background: #f0f8f4;
+  margin-bottom: 16px;
+}
+.offer-extraction-meta strong {
+  display: block;
+  font-size: 14px;
+}
+.offer-extraction-meta span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+  margin-top: 4px;
+}
+.offer-extraction-meta a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--accent);
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 600;
+}
+.offer-extraction-meta a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.offer-extraction-meta a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+.offer-intel-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.offer-intel-card {
+  min-width: 0;
+  min-height: 90px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  background: var(--panel);
+}
+.offer-intel-value {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+.offer-subsection {
+  margin-top: 20px;
+}
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.data-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 10px;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  color: var(--text);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.object-list {
+  display: grid;
+  gap: 8px;
+}
+.object-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: start;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  background: var(--panel);
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.object-row strong {
+  color: var(--text);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.financial-table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.financial-table {
+  min-width: 690px;
+  background: var(--panel);
+}
+.financial-table th,
+.financial-table td {
+  padding: 12px 14px;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+.financial-table th {
+  position: static;
+  background: var(--panel-2);
+  color: var(--muted);
+  font-size: 11px;
+}
+.financial-table tbody tr {
+  cursor: default;
+}
+.financial-table tbody tr:hover {
+  background: transparent;
+}
+@media (max-width: 650px) {
+  .offer-intel-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .offer-extraction-meta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .object-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+@media (max-width: 380px) {
+  .offer-intel-grid {
+    grid-template-columns: 1fr;
+  }
 }

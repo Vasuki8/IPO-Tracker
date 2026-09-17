@@ -1,2 +1,211 @@
-/* Permanent clean company routes */
-.company-name-link{color:inherit;text-decoration:none}.company-name-link:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}.company-route-body{min-height:100vh}.company-route-shell{width:min(1500px,calc(100% - 40px));margin:0 auto}.company-route-topbar{position:relative}.company-route-actions{display:flex;align-items:center;gap:8px}.company-route-back,.company-route-share{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:0 12px;border:1px solid var(--border);border-radius:10px;background:rgba(11,23,40,.78);color:var(--muted);text-decoration:none;font-size:12px;cursor:pointer}.company-route-back:hover,.company-route-share:hover{color:var(--text);border-color:rgba(117,208,255,.42)}.company-route-main{width:min(1240px,100%);margin:30px auto 68px}.company-route-profile{border:1px solid var(--border);border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}.company-route-profile .company-nav{top:0}.company-route-profile .company-profile-inner{padding:24px}.company-route-freshness{color:var(--muted);font-size:11px;text-align:right;margin:12px 2px 0}.company-route-error{margin:72px auto;max-width:720px;border:1px solid var(--border);border-radius:20px;padding:30px;background:rgba(11,23,40,.8)}.company-route-error h1{font-size:clamp(30px,5vw,54px);max-width:none}.company-route-error p{color:var(--muted);line-height:1.6}.company-route-error a{color:var(--accent);text-decoration:none}.company-route-footer{width:min(1240px,100%);margin:0 auto;padding:22px 0 40px;border-top:1px solid rgba(144,162,186,.16);display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:11px}.company-route-footer a{color:var(--accent);text-decoration:none}@media(max-width:760px){.company-route-shell{width:min(100% - 22px,1500px)}.company-route-topbar{align-items:stretch}.company-route-actions{width:100%;justify-content:space-between}.company-route-main{margin-top:18px}.company-route-profile{border-radius:18px}.company-route-profile .company-profile-inner{padding:14px}.company-route-footer{flex-direction:column;gap:7px}.company-route-freshness{text-align:left}}
+/* Permanent company routes share the main dashboard's typography and palette. */
+.company-name-link {
+  color: inherit;
+  text-decoration: none;
+}
+.company-name-link:hover {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.company-route-body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+}
+.company-route-shell {
+  width: min(1320px, calc(100% - 56px));
+  margin: 0 auto;
+}
+.company-route-topbar {
+  position: relative;
+  gap: 24px;
+}
+.company-route-topbar .brand {
+  min-width: 0;
+}
+.company-route-topbar .brand > div:last-child {
+  min-width: 0;
+}
+.company-route-topbar .brand-subtitle {
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  font-weight: 500;
+  max-width: 560px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.company-route-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-shrink: 0;
+}
+.company-route-back,
+.company-route-share {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 39px;
+  padding: 0 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  text-decoration: none;
+  cursor: pointer;
+}
+.company-route-share {
+  color: var(--accent);
+  border-color: #bcd8d0;
+}
+.company-route-back:hover,
+.company-route-share:hover {
+  border-color: var(--accent);
+  background: #f0f8f5;
+}
+.company-route-share:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+.company-route-body :is(a, button, input):focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+.company-route-main {
+  width: 100%;
+  margin: 18px auto 42px;
+}
+.company-route-profile {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+.company-route-profile .company-nav {
+  border-radius: 14px 14px 0 0;
+}
+.company-route-freshness {
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+  text-align: right;
+}
+.company-route-error {
+  max-width: 740px;
+  margin: 60px auto;
+  padding: 32px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--panel);
+}
+.company-route-error h1 {
+  max-width: none;
+  font-size: clamp(26px, 4vw, 40px);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+.company-route-error p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.company-route-error a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 650;
+}
+.company-route-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 0 auto;
+  padding: 22px 0 34px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.65;
+}
+.company-route-footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.company-copy-feedback {
+  width: 100%;
+  margin: 12px 0;
+  color: var(--accent);
+  font-size: 12px;
+  line-height: 1.6;
+  text-align: right;
+}
+.company-copy-feedback:empty {
+  display: none;
+}
+.company-copy-feedback input {
+  display: block;
+  width: min(100%, 640px);
+  min-width: 0;
+  min-height: 40px;
+  margin: 8px 0 0 auto;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+}
+@media (max-width: 760px) {
+  .company-route-shell {
+    width: calc(100% - 24px);
+  }
+  .company-route-topbar {
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 20px 0;
+  }
+  .company-route-topbar .brand {
+    width: 100%;
+  }
+  .company-route-topbar .brand-subtitle {
+    max-width: none;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .company-route-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .company-route-back,
+  .company-route-share {
+    min-height: 42px;
+  }
+  .company-route-main {
+    margin-top: 14px;
+  }
+  .company-route-profile {
+    border-radius: 10px;
+  }
+  .company-route-profile .company-nav {
+    border-radius: 10px 10px 0 0;
+  }
+  .company-route-profile .company-profile-inner {
+    padding: 12px;
+  }
+  .company-route-freshness,
+  .company-copy-feedback {
+    text-align: left;
+  }
+  .company-route-footer {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .company-route-error {
+    margin: 30px auto;
+    padding: 22px;
+  }
+}

@@ -1,1 +1,216 @@
-.subscription-intelligence{overflow:hidden}.subscription-section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px}.subscription-section-head p{margin:5px 0 0;color:var(--muted,#8fa2b8);font-size:13px;line-height:1.5}.subscription-section-head a{white-space:nowrap;color:var(--accent,#70c5ff);font-size:13px;text-decoration:none}.subscription-section-head a:hover{text-decoration:underline}.subscription-latest-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.subscription-card{padding:14px;border:1px solid rgba(148,163,184,.18);border-radius:12px;background:rgba(255,255,255,.025)}.subscription-card span{display:block;color:var(--muted,#8fa2b8);font-size:11px;text-transform:uppercase;letter-spacing:.08em}.subscription-card strong{display:block;margin-top:7px;font-size:20px;font-variant-numeric:tabular-nums}.subscription-meta{display:flex;justify-content:space-between;gap:12px;margin:12px 0 6px;color:var(--muted,#8fa2b8);font-size:12px}.sub-legend{display:flex;flex-wrap:wrap;gap:14px;margin:14px 0 4px}.sub-legend-item{display:inline-flex;align-items:center;gap:6px;color:var(--muted,#9aafc5);font-size:12px}.sub-swatch{width:18px;height:3px;border-radius:4px;background:currentColor}.sub-qib{color:#6ea8ff;stroke:#6ea8ff}.sub-nii{color:#e3a75b;stroke:#e3a75b}.sub-retail{color:#6fd3a5;stroke:#6fd3a5}.sub-total{color:#d58cff;stroke:#d58cff}.subscription-chart-wrap{margin-top:8px;overflow-x:auto;border:1px solid rgba(148,163,184,.14);border-radius:14px;background:rgba(3,9,18,.35)}.subscription-chart{display:block;width:100%;min-width:650px;height:auto}.sub-grid{stroke:rgba(148,163,184,.14);stroke-width:1}.sub-axis-label{fill:#8095aa;font-size:10px}.sub-line{fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}.sub-point{stroke-width:2;fill:#0a1524;vector-effect:non-scaling-stroke}.subscription-table-wrap{margin-top:14px;overflow:auto}.subscription-table{width:100%;border-collapse:collapse;font-size:12px}.subscription-table th,.subscription-table td{padding:9px 10px;border-bottom:1px solid rgba(148,163,184,.12);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}.subscription-table th:first-child,.subscription-table td:first-child{text-align:left}.subscription-table th{color:var(--muted,#8fa2b8);font-weight:600}.subscription-table tbody tr:last-child td{border-bottom:0}@media(max-width:760px){.subscription-section-head{display:block}.subscription-section-head a{display:inline-block;margin-top:8px}.subscription-latest-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.subscription-meta{display:block}.subscription-meta span{display:block;margin-top:4px}}
+/* Official subscription history, chart and tabular observations. */
+.subscription-intelligence {
+  overflow: hidden;
+}
+.subscription-section-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.subscription-section-head p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+.subscription-section-head a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  white-space: nowrap;
+  color: var(--accent);
+  font-size: 13px;
+  text-decoration: none;
+}
+.subscription-section-head a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.subscription-section-head a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+.subscription-latest-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.subscription-card {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--panel);
+}
+.subscription-card span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.subscription-card strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--text);
+  font-size: 24px;
+  letter-spacing: -0.025em;
+  font-variant-numeric: tabular-nums;
+}
+.subscription-meta {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin: 16px 0 8px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+.sub-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  margin: 16px 0 8px;
+}
+.sub-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.sub-swatch {
+  width: 20px;
+  height: 3px;
+  border-radius: 3px;
+  background: currentColor;
+}
+.sub-qib {
+  color: #2865af;
+  stroke: #2865af;
+}
+.sub-nii {
+  color: #9b6014;
+  stroke: #9b6014;
+}
+.sub-retail {
+  color: #07805d;
+  stroke: #07805d;
+}
+.sub-total {
+  color: #8451a5;
+  stroke: #8451a5;
+}
+.subscription-chart-wrap {
+  max-width: 100%;
+  margin-top: 12px;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--panel);
+}
+.subscription-chart {
+  display: block;
+  width: 100%;
+  min-width: 540px;
+  height: auto;
+}
+.sub-grid {
+  stroke: #e2e8ed;
+  stroke-width: 1;
+}
+.sub-axis-label {
+  fill: var(--muted);
+  font-size: 11px;
+}
+.sub-line {
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.sub-line.sub-nii {
+  stroke-dasharray: 7 4;
+}
+.sub-line.sub-retail {
+  stroke-dasharray: 2 4;
+}
+.sub-line.sub-total {
+  stroke-width: 3.25;
+}
+.sub-point {
+  stroke-width: 2;
+  fill: var(--panel);
+  vector-effect: non-scaling-stroke;
+}
+.subscription-table-wrap {
+  max-width: 100%;
+  margin-top: 16px;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.subscription-table {
+  width: 100%;
+  min-width: 540px;
+  border-collapse: collapse;
+  background: var(--panel);
+  font-size: 13px;
+}
+.subscription-table th,
+.subscription-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  text-align: right;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.subscription-table th:first-child,
+.subscription-table td:first-child {
+  text-align: left;
+}
+.subscription-table th {
+  position: static;
+  background: var(--panel-2);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 650;
+}
+.subscription-table tbody tr {
+  cursor: default;
+}
+.subscription-table tbody tr:hover {
+  background: var(--bg);
+}
+.subscription-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+@media (max-width: 760px) {
+  .subscription-section-head {
+    display: block;
+  }
+  .subscription-section-head a {
+    margin-top: 8px;
+  }
+  .subscription-latest-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .subscription-card {
+    padding: 14px;
+  }
+  .subscription-card strong {
+    font-size: 23px;
+  }
+  .subscription-meta {
+    display: block;
+  }
+  .subscription-meta span {
+    display: block;
+    margin-top: 4px;
+  }
+}
