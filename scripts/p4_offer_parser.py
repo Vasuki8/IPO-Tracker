@@ -237,12 +237,14 @@ def extract_promoters(text: str):
 
 _OBJECTS_HEADING = re.compile(
     r"^(?:[a-z]\)\s*)?(?:OBJECTS?\s+OF\s+THE\s+(?:ISSUE|OFFER)|"
-    r"UTILI[SZ]ATION\s+OF\s+(?:THE\s+)?(?:(?:NET|ISSUE)\s+)?(?:PROCEEDS|FUNDS))\s*:?[ \t]*$",
+    r"UTILI[SZ]ATION\s+OF\s+(?:THE\s+)?(?:(?:NET|GROSS)\s+)?(?:(?:ISSUE|OFFER)\s+)?(?:PROCEEDS|FUNDS))\s*:?[ \t]*$",
     re.I,
 )
 _OBJECT_TABLE_STOP = re.compile(
     r"^(?:(?:PROPOSED\s+)?(?:SCHEDULE\b|DEPLOYMENT\b)|MEANS\s+OF\s+FINANCE\b|"
     r"DETAILS\s+OF\b|DETAILED\s+(?:BREAK|OBJECT|UTILI)|"
+    r"THE\s+DETAILS\s+OF\s+(?:THE\s+)?OBJECTS?\s+OF\s+(?:THE\s+)?(?:ISSUE|OFFER)\b|"
+    r"(?:THE\s+)?ESTIMATED\s+COST\s+OF\s+SETTING\s+UP\b|"
     r"BASIS\s+FOR\s+(?:THE\s+)?(?:ISSUE|OFFER)\s+PRICE|"
     r"STATEMENT\s+OF\s+(?:POSSIBLE\s+)?(?:SPECIAL\s+)?TAX\s+BENEFITS|"
     r"SECTION\s+[IVX]+\b|RISK\s+FACTORS)", re.I,
@@ -287,7 +289,7 @@ def _object_lines(text: str) -> list[dict[str, Any]]:
     return lines
 
 
-def _object_unit(lines: list[dict[str, Any]], start: int, header: int):
+def _object_unit(lines: list[dict[str, Any]], start: int, header: int, columns=None):
     for source_line in reversed(lines[max(start, header - 8):header + 1]):
         units = list(_OBJECT_UNIT.finditer(source_line["text"]))
         if not units:
@@ -301,6 +303,32 @@ def _object_unit(lines: list[dict[str, Any]], start: int, header: int):
             return None
         name = names.pop()
         return name, {"million": Decimal("0.1"), "lakh": Decimal("0.01"), "crore": Decimal("1")}[name], source_line
+    # A stacked header can split the currency and its unit across physical
+    # lines. Read only the observed amount column, retaining every source span.
+    if columns and not columns.get("compact"):
+        column_start = columns["amountColumn"]
+        percent_starts = [match.start() for row in columns["headers"]
+                          if (match := _OBJECT_PERCENT_HEADER.search(row["text"]))]
+        column_end = min(percent_starts) if percent_starts else None
+        source_lines, spans, fragments = [], [], []
+        for row in columns["headers"]:
+            raw = row["text"]
+            fragment = raw[column_start:column_end]
+            if not fragment.strip():
+                continue
+            first = column_start + len(fragment) - len(fragment.lstrip())
+            last = column_start + len(fragment.rstrip())
+            source_lines.append(dict(row))
+            spans.append({"line": len(source_lines) - 1, "start": first, "end": last})
+            fragments.append(raw[first:last])
+        unit_text = _space(" ".join(fragments))
+        matches = list(_OBJECT_UNIT.finditer(unit_text))
+        if len(matches) == 1:
+            token = matches[0]["unit"].lower()
+            name = "million" if token.startswith("million") else "lakh" if token.startswith(("lakh", "lac")) else "crore"
+            source = {"page": source_lines[0]["page"], "text": unit_text}
+            return (name, {"million": Decimal("0.1"), "lakh": Decimal("0.01"), "crore": Decimal("1")}[name],
+                    source, {"unitSourceLines": source_lines, "unitSpans": spans})
     return None
 
 
@@ -318,11 +346,18 @@ def _object_header(lines: list[dict[str, Any]], index: int):
     first, last = index, index
     while first > max(0, index - 2):
         prior = lines[first - 1]["text"]
-        if _OBJECT_UNIT.search(prior) or not _object_header_fragment(prior):
+        if (_OBJECT_UNIT.search(prior) or not _object_header_fragment(prior)
+                or (_object_row_tail(prior, False) or _object_reconciliation_tail(prior))
+                and not _OBJECT_FISCAL_HEADER.search(prior)):
             break
         first -= 1
     while last + 1 < min(len(lines), index + 4):
-        if not _object_header_fragment(lines[last + 1]["text"]):
+        following = lines[last + 1]["text"]
+        starts_budget_row = (_OBJECT_NON_ALLOCATION.match(_space(following))
+                             and len(following) - len(following.lstrip()) < purpose.end())
+        if (not _object_header_fragment(following) or starts_budget_row
+                or (_object_row_tail(following, False) or _object_reconciliation_tail(following))
+                and not _OBJECT_FISCAL_HEADER.search(following)):
             break
         last += 1
     headers = lines[first:last + 1]
@@ -362,6 +397,13 @@ def _object_row_tail(raw: str, percentage: bool):
     return match
 
 
+def _object_reconciliation_tail(raw: str):
+    return re.search(
+        r"(?<!\S)(?P<amount>" + _OBJECT_TOKEN + r")"
+        r"(?P<annotations>(?:\s*(?:\(+\d+\)|[*†‡#^]))+)?\s*$", raw, re.I,
+    )
+
+
 def _object_purpose_span(raw: str, end: int):
     prefix = raw[:end]
     qualifier = re.search(r"(?:Up\s+to\s+)?(?:₹|Rs\.?|INR)\s*$|Up\s+to\s*$", prefix, re.I)
@@ -370,6 +412,8 @@ def _object_purpose_span(raw: str, end: int):
     end = len(raw[:end].rstrip())
     marker = _OBJECT_ROW_MARKER.match(raw[:end])
     start = marker.end() if marker else len(raw[:end]) - len(raw[:end].lstrip())
+    if re.fullmatch(r"\s*(?:\d+[.)]?|[A-Z][.)])\s*", raw[:end], re.I):
+        return None
     return (start, end) if start < end else None
 
 
@@ -394,13 +438,14 @@ def _bare_object_footnote_closes(lines: list[dict[str, Any]], index: int, header
 
 def _object_table(lines: list[dict[str, Any]], index: int, heading_index: int, header: dict[str, Any], unit):
     """Read one allocation table; None skips a non-allocation reconciliation."""
-    unit_name, factor, unit_line = unit
+    unit_name, factor, unit_line = unit[:3]
     source_rows = []
     pending = None
     invalid = False
     closed = False
     total_row = None
     table_scope = "unspecified"
+    parent_scope = None
 
     def finish():
         nonlocal pending, invalid
@@ -409,12 +454,23 @@ def _object_table(lines: list[dict[str, Any]], index: int, heading_index: int, h
         if "amountToken" not in pending:
             invalid = True
         else:
+            pending.pop("_purposeColumn", None)
             pending["purpose"] = _space(" ".join(
                 pending["lines"][span["line"]]["text"][span["start"]:span["end"]]
                 for span in pending["purposeSpans"]
             ))
             source_rows.append(pending)
         pending = None
+
+    def start_row(source_line, span, *, inherit=False):
+        row = {"page": source_line["page"], "lines": [], "purposeSpans": [],
+               "_purposeColumn": span[0] if span else None}
+        if inherit:
+            row["page"] = parent_scope["source"]["page"]
+            row["lines"].append(dict(parent_scope["source"]))
+            first, last = parent_scope["span"]
+            row["purposeSpans"].append({"line": 0, "start": first, "end": last})
+        return row
 
     table_end = min(len(lines), header["next"] + 70)
     for source_index in range(header["next"], table_end):
@@ -450,7 +506,11 @@ def _object_table(lines: list[dict[str, Any]], index: int, heading_index: int, h
             }
             gross_header = re.search(r"(?:%|Percentage|Per\s+cent)\s+of\s+Gross\b",
                                      " ".join(row["text"] for row in header["headers"]), re.I)
-            table_scope = "net" if net_total else "gross" if gross_total or gross_header else "unspecified"
+            # A percentage of gross proceeds describes the denominator. It
+            # establishes a gross allocation table only when its total is 100%.
+            percent_total = tail.groupdict().get("percentage")
+            full_gross = gross_header and percent_total is not None and abs(float(percent_total) - 100) <= 0.005
+            table_scope = "net" if net_total else "gross" if gross_total or full_gross else "unspecified"
             closed = True
             break
         if _OBJECT_FOOTNOTE.match(flat):
@@ -478,6 +538,41 @@ def _object_table(lines: list[dict[str, Any]], index: int, heading_index: int, h
         marker = _OBJECT_ROW_MARKER.match(raw)
         span = _object_purpose_span(raw, tail.start("amount") if tail else len(raw))
         purpose_piece = raw[span[0]:span[1]] if span else ""
+        # An unpriced parent caption introduces the ownership/purpose scope of
+        # its indented child allocations. It is never a continuation of the
+        # previous, already priced object.
+        if (not tail and span and purpose_piece.rstrip().endswith(":")
+                and not header["compact"]):
+            if parent_scope is not None:
+                invalid = True
+                break
+            finish()
+            parent_scope = {"source": dict(source_line), "span": span, "children": 0}
+            continue
+        child = bool(parent_scope and marker and span and span[0] > parent_scope["span"][0] + 2)
+        if parent_scope and not child and tail and span and span[0] <= parent_scope["span"][0] + 2:
+            if not parent_scope["children"]:
+                invalid = True
+                break
+            parent_scope = None
+        if (parent_scope and tail and span and not child
+                and (pending is None or "amountToken" in pending)):
+            # Once a group is open, an indented but unnumbered new allocation
+            # cannot silently lose the parent scope after an earlier child.
+            invalid = True
+            break
+        centred_row = False
+        if not tail and not marker and span and not parent_scope and not header["compact"]:
+            for following in lines[source_index + 1:min(table_end, source_index + 4)]:
+                if not following["text"].strip():
+                    continue
+                next_tail = _object_row_tail(following["text"], header["percentage"])
+                centred_row = bool(
+                    next_tail and _OBJECT_ROW_MARKER.match(following["text"])
+                    and _object_purpose_span(following["text"], next_tail.start("amount")) is None
+                    and following["page"] == source_line["page"]
+                )
+                break
         if tail:
             # An extra amount column must not become the end of a purpose.
             if re.search(r"(?:^|\s)\d[\d,]*(?:\.\d+)?\s*$", purpose_piece):
@@ -486,12 +581,15 @@ def _object_table(lines: list[dict[str, Any]], index: int, heading_index: int, h
             if not header["compact"] and tail.start("amount") < header["amountColumn"] - 4:
                 invalid = True
                 break
-            if marker or pending is None or "amountToken" in pending:
+            amount_only = (not span and marker and pending is not None and "amountToken" not in pending)
+            if not amount_only and (marker or pending is None or "amountToken" in pending):
                 finish()
                 if not span:
                     invalid = True
                     break
-                pending = {"page": source_line["page"], "lines": [], "purposeSpans": []}
+                pending = start_row(source_line, span, inherit=child)
+                if child:
+                    parent_scope["children"] += 1
             line_index = len(pending["lines"])
             pending["lines"].append(dict(source_line))
             if span:
@@ -514,13 +612,22 @@ def _object_table(lines: list[dict[str, Any]], index: int, heading_index: int, h
             if not span or header["compact"]:
                 invalid = True
                 break
-            pending = {
-                "page": source_line["page"], "lines": [dict(source_line)],
-                "purposeSpans": [{"line": 0, "start": span[0], "end": span[1]}],
-            }
+            pending = start_row(source_line, span, inherit=child)
+            line_index = len(pending["lines"])
+            pending["lines"].append(dict(source_line))
+            pending["purposeSpans"].append({"line": line_index, "start": span[0], "end": span[1]})
+            if child:
+                parent_scope["children"] += 1
+        elif centred_row:
+            finish()
+            if raw[header["amountColumn"]:].strip():
+                invalid = True
+                break
+            pending = start_row(source_line, span)
+            pending["lines"].append(dict(source_line))
+            pending["purposeSpans"].append({"line": 0, "start": span[0], "end": span[1]})
         elif pending and span and not header["compact"]:
-            first = pending["purposeSpans"][0]
-            if abs(span[0] - first["start"]) > 2 or raw[header["amountColumn"]:].strip():
+            if abs(span[0] - pending["_purposeColumn"]) > 2 or raw[header["amountColumn"]:].strip():
                 invalid = True
                 break
             # Only the purpose column can wrap. Unexplained numeric cells stop acceptance.
@@ -530,12 +637,22 @@ def _object_table(lines: list[dict[str, Any]], index: int, heading_index: int, h
             line_index = len(pending["lines"])
             pending["lines"].append(dict(source_line))
             pending["purposeSpans"].append({"line": line_index, "start": span[0], "end": span[1]})
+        elif (pending is None and not source_rows and span and not header["compact"]
+              and not parent_scope and not raw[header["amountColumn"]:].strip()):
+            # Some tables centre the serial number and amount vertically beside
+            # a wrapped first purpose. Keep the purpose pending until its own
+            # otherwise-empty numbered amount row is observed.
+            pending = start_row(source_line, span)
+            pending["lines"].append(dict(source_line))
+            pending["purposeSpans"].append({"line": 0, "start": span[0], "end": span[1]})
         else:
             invalid = True
             break
     if not closed and table_end < len(lines):
         invalid = True
     finish()
+    if parent_scope and not parent_scope["children"]:
+        invalid = True
     if invalid:
         return False
     rows = []
@@ -569,7 +686,82 @@ def _object_table(lines: list[dict[str, Any]], index: int, heading_index: int, h
     }
     if total_row:
         evidence["tableTotal"] = total_row
+    if len(unit) > 3:
+        evidence.update(unit[3])
     return rows, evidence
+
+
+def _object_reconciliation(lines, index, heading_index, header, unit):
+    """Capture a separate gross less issuer expenses equals net source table.
+
+    These rows establish the allocation budget; they are not themselves
+    objects. Unsupported reconciliation layouts stay unresolved.
+    """
+    source_lines = []
+    for row in lines[header["next"]:header["next"] + 12]:
+        flat = _space(row["text"])
+        if not flat or re.fullmatch(r"Page\s+\d+\s+of\s+\d+|\d+", flat, re.I):
+            continue
+        source_lines.append(row)
+        if len(source_lines) == 3:
+            break
+    if not source_lines or not re.match(r"Gross\b.*\bProceeds\b", _space(source_lines[0]["text"]), re.I):
+        return None
+    # A combined pre-IPO-placement budget is a different proceeds scope. It
+    # remains outside this issuer Issue/Offer reconciliation family.
+    if re.match(r"Gross\s+Proceeds\s+of\s+the\s+Fresh\s+Issue\s+together\s+with\s+proceeds\s+from\s+the\s+Pre[- ]IPO\s+Placement\b",
+                _space(source_lines[0]["text"]), re.I):
+        return None
+    if not _object_reconciliation_tail(source_lines[0]["text"]):
+        return False
+    if len(source_lines) != 3 or header["percentage"]:
+        return False
+    unit_name, factor, unit_line = unit[:3]
+    sources = []
+    for row in source_lines:
+        raw = row["text"]
+        tail = _object_reconciliation_tail(raw)
+        span = _object_purpose_span(raw, tail.start("amount")) if tail else None
+        if not tail or not span or not lines[index]["page"] <= row["page"] <= lines[index]["page"] + 1:
+            return False
+        try:
+            normalized = _object_amount(tail["amount"], factor)
+        except (InvalidOperation, ValueError, OverflowError):
+            return False
+        sources.append({
+            "page": row["page"], "purpose": _space(raw[span[0]:span[1]]),
+            "amountToken": tail["amount"], "normalizedValue": normalized,
+            "lines": [dict(row)], "purposeSpans": [{"line": 0, "start": span[0], "end": span[1]}],
+            "amountSpan": {"line": 0, "start": tail.start("amount"), "end": tail.end("amount")},
+        })
+        if tail["annotations"]:
+            sources[-1]["amountAnnotationSpans"] = [{
+                "line": 0, "start": tail.start("annotations"), "end": tail.end("annotations"),
+            }]
+    values = [{"purpose": row["purpose"], "amountCr": row["normalizedValue"]} for row in sources]
+    heading = lines[heading_index]
+    evidence = {
+        "schemaVersion": 1, "page": heading["page"], "heading": _space(heading["text"]),
+        "headingRaw": heading["text"], "unit": unit_name, "unitText": unit_line["text"],
+        "unitPage": unit_line["page"], "tableHeaders": [dict(row) for row in header["headers"]],
+        "rows": values, "sourceRows": sources,
+    }
+    if len(unit) > 3:
+        evidence.update(unit[3])
+    # Bare Gross Proceeds and Offer labels need observed issuer/fresh-issue
+    # scope. Keep the nearest positive source line, without an intervening
+    # Offer for Sale section, instead of guessing from a record's issue size.
+    context = None
+    for row in lines[heading_index + 1:index]:
+        flat = _space(row["text"])
+        if re.fullmatch(r"(?:The\s+)?Offer\s+for\s+Sale", flat, re.I):
+            context = None
+        elif (re.fullmatch(r"(?:The\s+)?Fresh\s+Issue", flat, re.I)
+              or re.fullmatch(r"The\s+details\s+of\s+the\s+(?:net\s+)?proceeds\s+of\s+the\s+Fresh\s+Issue\b.{0,120}(?:below|follows)[:.]?", flat, re.I)):
+            context = dict(row)
+    if context:
+        evidence["issuerProceedsContext"] = [context]
+    return evidence if not objects_evidence_problems(values, evidence) else False
 
 
 def _object_net_gross_agree(net, gross) -> bool:
@@ -595,6 +787,7 @@ def extract_objects(text: str):
     lines = _object_lines(str(text or ""))
     active_heading = None
     candidates = []
+    reconciliations = []
     for index, source_line in enumerate(lines):
         flat = _space(source_line["text"])
         if _OBJECTS_HEADING.fullmatch(flat):
@@ -611,8 +804,16 @@ def extract_objects(text: str):
             continue
         if header.get("unsupported"):
             return [], {}
-        unit = _object_unit(lines, active_heading, index)
+        unit = _object_unit(lines, active_heading, index, header)
         if not unit:
+            continue
+        reconciliation = _object_reconciliation(lines, index, active_heading, header, unit)
+        if reconciliation is False:
+            return [], {}
+        if reconciliation:
+            key = [row["amountCr"] for row in reconciliation["rows"]]
+            if key not in [[row["amountCr"] for row in prior["rows"]] for prior in reconciliations]:
+                reconciliations.append(reconciliation)
             continue
         found = _object_table(lines, index, active_heading, header, unit)
         if found is False:
@@ -638,6 +839,10 @@ def extract_objects(text: str):
     rows, evidence = selected
     if corroborations:
         evidence["corroboratingSourceTables"] = corroborations
+    if reconciliations:
+        evidence["proceedsReconciliation"] = reconciliations
+    if objects_evidence_problems(rows, evidence):
+        return [], {}
     return rows, {"objectsOfIssue": evidence}
 
 

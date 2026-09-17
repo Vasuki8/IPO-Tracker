@@ -1,0 +1,2173 @@
+{
+  "sourceReviewRunId": 35264712051,
+  "sourceCommit": "4707df1e82337e3a7b8bac0838bbaa30c3d200be",
+  "sourceArtifactIposSha256": "8647648fe07fcb03dbf074d62eb3f8304d220047365bc4df98ad12d63ad149e8",
+  "projection": "Exact CI identity, allocation, documents, complete document provenance, extraction envelope and correction history. Field provenance retains the complete objects proof and available lot-size proof; unrelated fields are omitted.",
+  "records": [
+    {
+      "id": "kaytex",
+      "company": "Kaytex Fabrics Limited",
+      "symbol": "KAYTEX",
+      "openDate": "2025-07-29",
+      "objectsOfIssue": [
+        {
+          "purpose": "Funding capital expenditure for construction of additional warehouse facility in Amritsar;",
+          "amountCr": 2.5555
+        },
+        {
+          "purpose": "Funding capital expenditure for construction of dedicated sales office in Amritsar;",
+          "amountCr": 3.732
+        },
+        {
+          "purpose": "Funding capital expenditure towards purchase of advanced fabric processing system for our existing printing, dyeing and processing unit in Amritsar;",
+          "amountCr": 5.01
+        },
+        {
+          "purpose": "Funding our incremental working capital requirements; and",
+          "amountCr": 30.0
+        },
+        {
+          "purpose": "General corporate purposes",
+          "amountCr": 8.049
+        }
+      ],
+      "documents": [
+        {
+          "url": "https://nsearchives.nseindia.com/emerge/corporates/content/KaytexFabricsLimited_PROSP.pdf",
+          "source": "NSE",
+          "type": "PROSPECTUS",
+          "title": "Kaytex Fabrics Limited Final Prospectus",
+          "filedDate": "2025-08-01",
+          "registerUrl": "https://www.nseindia.com/companies-listing/corporate-filings-offer-documents"
+        }
+      ],
+      "documentFieldProvenance": {
+        "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/KaytexFabricsLimited_PROSP.pdf",
+        "documentType": "PROSPECTUS",
+        "documentDate": "2025-08-01",
+        "sha256": "a0a9b14c498bdcb7a8b2f8e4c8ebd32406b145f6e87f85a1da1675fab056e934",
+        "parserVersion": 33,
+        "checkedAt": "2026-09-18T01:20:33+05:30",
+        "evidence": {
+          "lotSize": {
+            "page": 9,
+            "heading": "Bid Lot 1,600 Equity Shares",
+            "value": 1600,
+            "basis": "explicit Bid Lot/Minimum Bid Lot in Final Prospectus"
+          },
+          "registrar": {
+            "page": 1,
+            "heading": "DETAILS OF REGISTRAR TO THE OFFER",
+            "entities": [
+              "Bigshare Services Private Limited"
+            ]
+          },
+          "promoters": {
+            "page": 1,
+            "heading": "THE PROMOTERS OF OUR COMPANY",
+            "rows": [
+              "THE PROMOTERS OF OUR COMPANY ARE SANJEEV KANDHARI, AMIT KANDHARI, SHELLY KANDHARI AND PRITI",
+              "KANDHARI"
+            ],
+            "entities": [
+              "SANJEEV KANDHARI",
+              "AMIT KANDHARI",
+              "SHELLY KANDHARI",
+              "PRITI KANDHARI"
+            ],
+            "method": "bounded-promoter-heading-v1"
+          },
+          "objectsOfIssue": {
+            "schemaVersion": 1,
+            "page": 35,
+            "heading": "Objects of the Offer",
+            "headingRaw": "                   Objects of the Offer",
+            "unit": "lakh",
+            "unitText": "                                                                                                                                                                      (₹ in Lakhs)",
+            "unitPage": 35,
+            "tableHeaders": [
+              {
+                "page": 36,
+                "text": "                     Sr. No.       Particulars                                                                                                                Amount"
+              }
+            ],
+            "rows": [
+              {
+                "purpose": "Funding capital expenditure for construction of additional warehouse facility in Amritsar;",
+                "amountCr": 2.5555
+              },
+              {
+                "purpose": "Funding capital expenditure for construction of dedicated sales office in Amritsar;",
+                "amountCr": 3.732
+              },
+              {
+                "purpose": "Funding capital expenditure towards purchase of advanced fabric processing system for our existing printing, dyeing and processing unit in Amritsar;",
+                "amountCr": 5.01
+              },
+              {
+                "purpose": "Funding our incremental working capital requirements; and",
+                "amountCr": 30.0
+              },
+              {
+                "purpose": "General corporate purposes",
+                "amountCr": 8.049
+              }
+            ],
+            "sourceRows": [
+              {
+                "page": 36,
+                "lines": [
+                  {
+                    "page": 36,
+                    "text": "                     1.            Funding capital expenditure for construction of additional warehouse facility in Amritsar;                                 255.55"
+                  }
+                ],
+                "purposeSpans": [
+                  {
+                    "line": 0,
+                    "start": 35,
+                    "end": 125
+                  }
+                ],
+                "amountToken": "255.55",
+                "normalizedValue": 2.5555,
+                "amountSpan": {
+                  "line": 0,
+                  "start": 158,
+                  "end": 164
+                },
+                "purpose": "Funding capital expenditure for construction of additional warehouse facility in Amritsar;"
+              },
+              {
+                "page": 36,
+                "lines": [
+                  {
+                    "page": 36,
+                    "text": "                     2.            Funding capital expenditure for construction of dedicated sales office in Amritsar;                                        373.20"
+                  }
+                ],
+                "purposeSpans": [
+                  {
+                    "line": 0,
+                    "start": 35,
+                    "end": 118
+                  }
+                ],
+                "amountToken": "373.20",
+                "normalizedValue": 3.732,
+                "amountSpan": {
+                  "line": 0,
+                  "start": 158,
+                  "end": 164
+                },
+                "purpose": "Funding capital expenditure for construction of dedicated sales office in Amritsar;"
+              },
+              {
+                "page": 36,
+                "lines": [
+                  {
+                    "page": 36,
+                    "text": "                     3.            Funding     capital   expenditure      towards     purchase    of  advanced      fabric   processing     system    for     501.00"
+                  },
+                  {
+                    "page": 36,
+                    "text": "                                   our existing printing, dyeing and processing unit in Amritsar;"
+                  }
+                ],
+                "purposeSpans": [
+                  {
+                    "line": 0,
+                    "start": 35,
+                    "end": 153
+                  },
+                  {
+                    "line": 1,
+                    "start": 35,
+                    "end": 97
+                  }
+                ],
+                "amountToken": "501.00",
+                "normalizedValue": 5.01,
+                "amountSpan": {
+                  "line": 0,
+                  "start": 158,
+                  "end": 164
+                },
+                "purpose": "Funding capital expenditure towards purchase of advanced fabric processing system for our existing printing, dyeing and processing unit in Amritsar;"
+              },
+              {
+                "page": 36,
+                "lines": [
+                  {
+                    "page": 36,
+                    "text": "                     4.            Funding our incremental working capital requirements; and                                                                  3,000.00"
+                  }
+                ],
+                "purposeSpans": [
+                  {
+                    "line": 0,
+                    "start": 35,
+                    "end": 92
+                  }
+                ],
+                "amountToken": "3,000.00",
+                "normalizedValue": 30.0,
+                "amountSpan": {
+                  "line": 0,
+                  "start": 158,
+                  "end": 166
+                },
+                "purpose": "Funding our incremental working capital requirements; and"
+              },
+              {
+                "page": 36,
+                "lines": [
+                  {
+                    "page": 36,
+                    "text": "                     5.            General corporate purposes                                                                                                 804.90"
+                  }
+                ],
+                "purposeSpans": [
+                  {
+                    "line": 0,
+                    "start": 35,
+                    "end": 61
+                  }
+                ],
+                "amountToken": "804.90",
+                "normalizedValue": 8.049,
+                "amountSpan": {
+                  "line": 0,
+                  "start": 158,
+                  "end": 164
+                },
+                "purpose": "General corporate purposes"
+              }
+            ],
+            "tableScope": "net",
+            "tableTotal": {
+              "page": 36,
+              "purpose": "Net Proceeds*",
+              "amountToken": "4,934.65",
+              "normalizedValue": 49.3465,
+              "lines": [
+                {
+                  "page": 36,
+                  "text": "                                   Net Proceeds*                                                                                                              4,934.65"
+                }
+              ],
+              "purposeSpans": [
+                {
+                  "line": 0,
+                  "start": 35,
+                  "end": 48
+                }
+              ],
+              "amountSpan": {
+                "line": 0,
+                "start": 158,
+                "end": 166
+              }
+            },
+            "proceedsReconciliation": [
+              {
+                "schemaVersion": 1,
+                "page": 115,
+                "heading": "OBJECTS OF THE OFFER",
+                "headingRaw": "                                                                                OBJECTS OF THE OFFER",
+                "unit": "lakh",
+                "unitText": "                                                                                                                                                                     (₹ in Lakhs)",
+                "unitPage": 115,
+                "tableHeaders": [
+                  {
+                    "page": 115,
+                    "text": "                     Particulars                                                                                                                    Estimated Amount"
+                  }
+                ],
+                "rows": [
+                  {
+                    "purpose": "Gross Proceeds of the Fresh Issue",
+                    "amountCr": 57.5856
+                  },
+                  {
+                    "purpose": "Less: Offer related Expenses in relation to the Fresh Issue",
+                    "amountCr": 8.2391
+                  },
+                  {
+                    "purpose": "Net Proceeds",
+                    "amountCr": 49.3465
+                  }
+                ],
+                "sourceRows": [
+                  {
+                    "page": 115,
+                    "purpose": "Gross Proceeds of the Fresh Issue",
+                    "amountToken": "5,758.56",
+                    "normalizedValue": 57.5856,
+                    "lines": [
+                      {
+                        "page": 115,
+                        "text": "                     Gross Proceeds of the Fresh Issue                                                                                              5,758.56"
+                      }
+                    ],
+                    "purposeSpans": [
+                      {
+                        "line": 0,
+                        "start": 21,
+                        "end": 54
+                      }
+                    ],
+                    "amountSpan": {
+                      "line": 0,
+                      "start": 148,
+                      "end": 156
+                    }
+                  },
+                  {
+                    "page": 115,
+                    "purpose": "Less: Offer related Expenses in relation to the Fresh Issue",
+                    "amountToken": "823.91",
+                    "normalizedValue": 8.2391,
+                    "lines": [
+                      {
+                        "page": 115,
+                        "text": "                     Less: Offer related Expenses in relation to the Fresh Issue                                                                    823.91"
+                      }
+                    ],
+                    "purposeSpans": [
+                      {
+                        "line": 0,
+                        "start": 21,
+                        "end": 80
+                      }
+                    ],
+                    "amountSpan": {
+                      "line": 0,
+                      "start": 148,
+                      "end": 154
+                    }
+                  },
+                  {
+                    "page": 115,
+                    "purpose": "Net Proceeds",
+                    "amountToken": "4,934.65",
+                    "normalizedValue": 49.3465,
+                    "lines": [
+                      {
+                        "page": 115,
+                        "text": "                     Net Proceeds                                                                                                                   4,934.65"
+                      }
+                    ],
+                    "purposeSpans": [
+                      {
+                        "line": 0,
+                        "start": 21,
+                        "end": 33
+                      }
+                    ],
+                    "amountSpan": {
+                      "line": 0,
+                      "start": 148,
+                      "end": 156
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "financials": {
+            "FY2025.revenueCr": {
+              "page": 89,
+              "header": "83\n[PAGE 89]\n                   Summary of Profit and Loss Data\n\n                                                                                                                                                                      (₹ in Lakhs)\n                     Particulars                                                                       March 31, 2025               March 31, 2024            March 31, 2023",
+              "row": "Revenue from operations                                                           15,278.73                    12,494.14                 9,918.84",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 152.7873,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2024.revenueCr": {
+              "page": 89,
+              "header": "83\n[PAGE 89]\n                   Summary of Profit and Loss Data\n\n                                                                                                                                                                      (₹ in Lakhs)\n                     Particulars                                                                       March 31, 2025               March 31, 2024            March 31, 2023",
+              "row": "Revenue from operations                                                           15,278.73                    12,494.14                 9,918.84",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 124.9414,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2023.revenueCr": {
+              "page": 89,
+              "header": "83\n[PAGE 89]\n                   Summary of Profit and Loss Data\n\n                                                                                                                                                                      (₹ in Lakhs)\n                     Particulars                                                                       March 31, 2025               March 31, 2024            March 31, 2023",
+              "row": "Revenue from operations                                                           15,278.73                    12,494.14                 9,918.84",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 99.1884,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2025.totalIncomeCr": {
+              "page": 89,
+              "header": "83\n[PAGE 89]\n                   Summary of Profit and Loss Data\n\n                                                                                                                                                                      (₹ in Lakhs)\n                     Particulars                                                                       March 31, 2025               March 31, 2024            March 31, 2023",
+              "row": "Total Income                                                                      15,321.50                    12,503.323                9,934.40",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 153.215,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2024.totalIncomeCr": {
+              "page": 89,
+              "header": "83\n[PAGE 89]\n                   Summary of Profit and Loss Data\n\n                                                                                                                                                                      (₹ in Lakhs)\n                     Particulars                                                                       March 31, 2025               March 31, 2024            March 31, 2023",
+              "row": "Total Income                                                                      15,321.50                    12,503.323                9,934.40",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 125.03323,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2023.totalIncomeCr": {
+              "page": 89,
+              "header": "83\n[PAGE 89]\n                   Summary of Profit and Loss Data\n\n                                                                                                                                                                      (₹ in Lakhs)\n                     Particulars                                                                       March 31, 2025               March 31, 2024            March 31, 2023",
+              "row": "Total Income                                                                      15,321.50                    12,503.323                9,934.40",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 99.344,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2025.ebitdaCr": {
+              "page": 308,
+              "header": "[PAGE 308]\n                                                                                            ANNEXURE –VI\n                                    Statement of Accounting & Other Ratios, As Restated                                                  (₹ in Lakhs)\n                                    Particulars                                           March 31, 2025    March 31, 2024        March 31, 2023",
+              "row": "EBITDA                                                       3,006.22          2,242.60                 1,278.83",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 30.0622,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2024.ebitdaCr": {
+              "page": 308,
+              "header": "[PAGE 308]\n                                                                                            ANNEXURE –VI\n                                    Statement of Accounting & Other Ratios, As Restated                                                  (₹ in Lakhs)\n                                    Particulars                                           March 31, 2025    March 31, 2024        March 31, 2023",
+              "row": "EBITDA                                                       3,006.22          2,242.60                 1,278.83",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 22.426,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2023.ebitdaCr": {
+              "page": 308,
+              "header": "[PAGE 308]\n                                                                                            ANNEXURE –VI\n                                    Statement of Accounting & Other Ratios, As Restated                                                  (₹ in Lakhs)\n                                    Particulars                                           March 31, 2025    March 31, 2024        March 31, 2023",
+              "row": "EBITDA                                                       3,006.22          2,242.60                 1,278.83",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 12.7883,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2025.roePct": {
+              "page": 309,
+              "header": "[PAGE 309]\n                                    Accounting Ratio\n                              Sr.\n                              No.   Particulars                                           March 31, 2025    March 31, 2024       March 31, 2023                  Comments#",
+              "row": "Return on Equity (ROE):                                        40.43%            41.36%                  30.48%",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 40.43,
+              "scope": "unspecified",
+              "originalUnit": "percent"
+            },
+            "FY2024.roePct": {
+              "page": 309,
+              "header": "[PAGE 309]\n                                    Accounting Ratio\n                              Sr.\n                              No.   Particulars                                           March 31, 2025    March 31, 2024       March 31, 2023                  Comments#",
+              "row": "Return on Equity (ROE):                                        40.43%            41.36%                  30.48%",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 41.36,
+              "scope": "unspecified",
+              "originalUnit": "percent"
+            },
+            "FY2023.roePct": {
+              "page": 309,
+              "header": "[PAGE 309]\n                                    Accounting Ratio\n                              Sr.\n                              No.   Particulars                                           March 31, 2025    March 31, 2024       March 31, 2023                  Comments#",
+              "row": "Return on Equity (ROE):                                        40.43%            41.36%                  30.48%",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 30.48,
+              "scope": "unspecified",
+              "originalUnit": "percent"
+            }
+          },
+          "issueComposition": {
+            "basis": "validated Final Prospectus issue composition",
+            "method": "bounded-final-offer-clauses-v1",
+            "page": 3,
+            "heading": "Final offer composition",
+            "fields": {
+              "totalShares": {
+                "page": 3,
+                "row": "INITIAL PUBLIC OFFERING OF 38,78,400 EQUITY SHARES OF FACE VALUE OF ₹10/- EACH (“EQUITY SHARES”) FOR CASH AT A PRICE OF ₹180/- PER EQUITY SHARE (INCLUDING A PREMIUM OF ₹170/- PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹6,981.12 LAKHS",
+                "normalizedValue": 3878400,
+                "basis": "explicit final offer clause"
+              },
+              "totalIssueSizeCr": {
+                "page": 3,
+                "row": "INITIAL PUBLIC OFFERING OF 38,78,400 EQUITY SHARES OF FACE VALUE OF ₹10/- EACH (“EQUITY SHARES”) FOR CASH AT A PRICE OF ₹180/- PER EQUITY SHARE (INCLUDING A PREMIUM OF ₹170/- PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹6,981.12 LAKHS",
+                "normalizedValue": 69.8112,
+                "basis": "explicit final offer clause"
+              },
+              "freshShares": {
+                "page": 3,
+                "row": "FRESH ISSUE OF 31,99,200 EQUITY SHARES AGGREGATING TO ₹5,758.56 LAKHS",
+                "normalizedValue": 3199200,
+                "basis": "explicit final offer clause"
+              },
+              "freshIssueCr": {
+                "page": 3,
+                "row": "FRESH ISSUE OF 31,99,200 EQUITY SHARES AGGREGATING TO ₹5,758.56 LAKHS",
+                "normalizedValue": 57.5856,
+                "basis": "explicit final offer clause"
+              },
+              "ofsShares": {
+                "page": 3,
+                "row": "OFFER FOR SALE OF 6,79,200 EQUITY SHARES (“OFFERED SHARES”) AGGREGATING TO ₹ 1,222.56 LAKHS",
+                "normalizedValue": 679200,
+                "basis": "explicit final offer clause"
+              },
+              "ofsCr": {
+                "page": 3,
+                "row": "OFFER FOR SALE OF 6,79,200 EQUITY SHARES (“OFFERED SHARES”) AGGREGATING TO ₹ 1,222.56 LAKHS",
+                "normalizedValue": 12.2256,
+                "basis": "explicit final offer clause"
+              }
+            },
+            "totalShares": 3878400,
+            "freshShares": 3199200,
+            "ofsShares": 679200,
+            "freshIssueCr": 57.5856,
+            "ofsCr": 12.2256,
+            "totalIssueSizeCr": 69.8112
+          }
+        },
+        "sourcePolicy": "final-prospectus-only"
+      },
+      "offerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 33,
+        "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/KaytexFabricsLimited_PROSP.pdf",
+        "documentType": "PROSPECTUS",
+        "documentTitle": "Kaytex Fabrics Limited Final Prospectus",
+        "documentFiledDate": "2025-08-01",
+        "source": "NSE",
+        "sha256": "a0a9b14c498bdcb7a8b2f8e4c8ebd32406b145f6e87f85a1da1675fab056e934",
+        "pagesRead": 448,
+        "pageCount": 448,
+        "extractedFields": [
+          "registrar",
+          "financials",
+          "lotSize",
+          "objectsOfIssue",
+          "promoters",
+          "issueComposition"
+        ],
+        "canonicalFields": [
+          "financials",
+          "freshIssueCr",
+          "issueComposition",
+          "issueSizeCr",
+          "lotSize",
+          "objectsOfIssue",
+          "ofsCr",
+          "promoters",
+          "registrar"
+        ],
+        "extractedAt": "2026-09-18T01:20:33+05:30",
+        "conflicts": [],
+        "sourcePolicy": "final-prospectus-only"
+      },
+      "dataCorrections": [
+        {
+          "field": "lotSize",
+          "before": null,
+          "after": 1600,
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/KaytexFabricsLimited_PROSP.pdf",
+          "sha256": "a0a9b14c498bdcb7a8b2f8e4c8ebd32406b145f6e87f85a1da1675fab056e934",
+          "parserVersion": 26,
+          "correctedAt": "2026-09-17T01:50:43+05:30"
+        },
+        {
+          "field": "registrar",
+          "before": null,
+          "after": "Bigshare Services Private Limited",
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/KaytexFabricsLimited_PROSP.pdf",
+          "sha256": "a0a9b14c498bdcb7a8b2f8e4c8ebd32406b145f6e87f85a1da1675fab056e934",
+          "parserVersion": 26,
+          "correctedAt": "2026-09-17T01:50:43+05:30"
+        },
+        {
+          "field": "promoters",
+          "before": null,
+          "after": [
+            "ARE SANJEEV KANDHARI",
+            "AMIT KANDHARI",
+            "SHELLY KANDHARI",
+            "PRITI"
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/KaytexFabricsLimited_PROSP.pdf",
+          "sha256": "a0a9b14c498bdcb7a8b2f8e4c8ebd32406b145f6e87f85a1da1675fab056e934",
+          "parserVersion": 26,
+          "correctedAt": "2026-09-17T01:50:43+05:30"
+        },
+        {
+          "field": "financials",
+          "before": null,
+          "after": {
+            "unit": "₹ crore",
+            "periods": [
+              {
+                "period": "FY2025",
+                "revenueCr": 152.7873,
+                "totalIncomeCr": 153.215,
+                "ebitdaCr": 30.0622,
+                "roePct": 40.43
+              },
+              {
+                "period": "FY2024",
+                "revenueCr": 124.9414,
+                "totalIncomeCr": 125.03323,
+                "ebitdaCr": 22.426,
+                "roePct": 41.36
+              },
+              {
+                "period": "FY2023",
+                "revenueCr": 99.1884,
+                "totalIncomeCr": 99.344,
+                "ebitdaCr": 12.7883,
+                "roePct": 30.48
+              }
+            ]
+          },
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/KaytexFabricsLimited_PROSP.pdf",
+          "sha256": "a0a9b14c498bdcb7a8b2f8e4c8ebd32406b145f6e87f85a1da1675fab056e934",
+          "parserVersion": 26,
+          "correctedAt": "2026-09-17T01:50:43+05:30"
+        },
+        {
+          "field": "issueComposition",
+          "before": {
+            "freshShares": 3199200,
+            "ofsShares": 679200,
+            "freshIssueCr": 57.5856,
+            "ofsCr": 12.2256,
+            "totalIssueSizeCr": 69.81,
+            "valuationPriceUsed": 180.0
+          },
+          "after": {
+            "freshShares": 3199200,
+            "ofsShares": 679200,
+            "freshIssueCr": 57.5856,
+            "ofsCr": 12.2256,
+            "totalIssueSizeCr": 69.8112
+          },
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/KaytexFabricsLimited_PROSP.pdf",
+          "sha256": "a0a9b14c498bdcb7a8b2f8e4c8ebd32406b145f6e87f85a1da1675fab056e934",
+          "parserVersion": 26,
+          "correctedAt": "2026-09-17T01:50:43+05:30"
+        },
+        {
+          "field": "issueSizeCr",
+          "before": 69.81,
+          "after": 69.8112,
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/KaytexFabricsLimited_PROSP.pdf",
+          "sha256": "a0a9b14c498bdcb7a8b2f8e4c8ebd32406b145f6e87f85a1da1675fab056e934",
+          "parserVersion": 26,
+          "correctedAt": "2026-09-17T01:50:43+05:30"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "ARE SANJEEV KANDHARI",
+            "AMIT KANDHARI",
+            "SHELLY KANDHARI",
+            "PRITI"
+          ],
+          "after": [
+            "SANJEEV KANDHARI",
+            "AMIT KANDHARI",
+            "SHELLY KANDHARI",
+            "PRITI KANDHARI"
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/KaytexFabricsLimited_PROSP.pdf",
+          "sha256": "a0a9b14c498bdcb7a8b2f8e4c8ebd32406b145f6e87f85a1da1675fab056e934",
+          "parserVersion": 29,
+          "correctedAt": "2026-09-17T09:14:41+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": null,
+          "after": [
+            {
+              "purpose": "Funding capital expenditure for construction of additional warehouse facility in Amritsar;",
+              "amountCr": 2.5555
+            },
+            {
+              "purpose": "Funding capital expenditure for construction of dedicated sales office in Amritsar;",
+              "amountCr": 3.732
+            },
+            {
+              "purpose": "Funding capital expenditure towards purchase of advanced fabric processing system for our existing printing, dyeing and processing unit in Amritsar;",
+              "amountCr": 5.01
+            },
+            {
+              "purpose": "Funding our incremental working capital requirements; and",
+              "amountCr": 30.0
+            },
+            {
+              "purpose": "General corporate purposes",
+              "amountCr": 8.049
+            }
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/KaytexFabricsLimited_PROSP.pdf",
+          "sha256": "a0a9b14c498bdcb7a8b2f8e4c8ebd32406b145f6e87f85a1da1675fab056e934",
+          "parserVersion": 33,
+          "correctedAt": "2026-09-18T01:20:33+05:30"
+        }
+      ],
+      "lotSize": 1600,
+      "staticFieldProvenance": {
+        "objectsOfIssue": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/KaytexFabricsLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-08-01",
+          "sha256": "a0a9b14c498bdcb7a8b2f8e4c8ebd32406b145f6e87f85a1da1675fab056e934",
+          "parserVersion": 33,
+          "checkedAt": "2026-09-18T01:20:33+05:30",
+          "issueOpenDate": "2025-07-29",
+          "field": "objectsOfIssue",
+          "value": [
+            {
+              "purpose": "Funding capital expenditure for construction of additional warehouse facility in Amritsar;",
+              "amountCr": 2.5555
+            },
+            {
+              "purpose": "Funding capital expenditure for construction of dedicated sales office in Amritsar;",
+              "amountCr": 3.732
+            },
+            {
+              "purpose": "Funding capital expenditure towards purchase of advanced fabric processing system for our existing printing, dyeing and processing unit in Amritsar;",
+              "amountCr": 5.01
+            },
+            {
+              "purpose": "Funding our incremental working capital requirements; and",
+              "amountCr": 30.0
+            },
+            {
+              "purpose": "General corporate purposes",
+              "amountCr": 8.049
+            }
+          ],
+          "evidence": {
+            "schemaVersion": 1,
+            "page": 35,
+            "heading": "Objects of the Offer",
+            "headingRaw": "                   Objects of the Offer",
+            "unit": "lakh",
+            "unitText": "                                                                                                                                                                      (₹ in Lakhs)",
+            "unitPage": 35,
+            "tableHeaders": [
+              {
+                "page": 36,
+                "text": "                     Sr. No.       Particulars                                                                                                                Amount"
+              }
+            ],
+            "rows": [
+              {
+                "purpose": "Funding capital expenditure for construction of additional warehouse facility in Amritsar;",
+                "amountCr": 2.5555
+              },
+              {
+                "purpose": "Funding capital expenditure for construction of dedicated sales office in Amritsar;",
+                "amountCr": 3.732
+              },
+              {
+                "purpose": "Funding capital expenditure towards purchase of advanced fabric processing system for our existing printing, dyeing and processing unit in Amritsar;",
+                "amountCr": 5.01
+              },
+              {
+                "purpose": "Funding our incremental working capital requirements; and",
+                "amountCr": 30.0
+              },
+              {
+                "purpose": "General corporate purposes",
+                "amountCr": 8.049
+              }
+            ],
+            "sourceRows": [
+              {
+                "page": 36,
+                "lines": [
+                  {
+                    "page": 36,
+                    "text": "                     1.            Funding capital expenditure for construction of additional warehouse facility in Amritsar;                                 255.55"
+                  }
+                ],
+                "purposeSpans": [
+                  {
+                    "line": 0,
+                    "start": 35,
+                    "end": 125
+                  }
+                ],
+                "amountToken": "255.55",
+                "normalizedValue": 2.5555,
+                "amountSpan": {
+                  "line": 0,
+                  "start": 158,
+                  "end": 164
+                },
+                "purpose": "Funding capital expenditure for construction of additional warehouse facility in Amritsar;"
+              },
+              {
+                "page": 36,
+                "lines": [
+                  {
+                    "page": 36,
+                    "text": "                     2.            Funding capital expenditure for construction of dedicated sales office in Amritsar;                                        373.20"
+                  }
+                ],
+                "purposeSpans": [
+                  {
+                    "line": 0,
+                    "start": 35,
+                    "end": 118
+                  }
+                ],
+                "amountToken": "373.20",
+                "normalizedValue": 3.732,
+                "amountSpan": {
+                  "line": 0,
+                  "start": 158,
+                  "end": 164
+                },
+                "purpose": "Funding capital expenditure for construction of dedicated sales office in Amritsar;"
+              },
+              {
+                "page": 36,
+                "lines": [
+                  {
+                    "page": 36,
+                    "text": "                     3.            Funding     capital   expenditure      towards     purchase    of  advanced      fabric   processing     system    for     501.00"
+                  },
+                  {
+                    "page": 36,
+                    "text": "                                   our existing printing, dyeing and processing unit in Amritsar;"
+                  }
+                ],
+                "purposeSpans": [
+                  {
+                    "line": 0,
+                    "start": 35,
+                    "end": 153
+                  },
+                  {
+                    "line": 1,
+                    "start": 35,
+                    "end": 97
+                  }
+                ],
+                "amountToken": "501.00",
+                "normalizedValue": 5.01,
+                "amountSpan": {
+                  "line": 0,
+                  "start": 158,
+                  "end": 164
+                },
+                "purpose": "Funding capital expenditure towards purchase of advanced fabric processing system for our existing printing, dyeing and processing unit in Amritsar;"
+              },
+              {
+                "page": 36,
+                "lines": [
+                  {
+                    "page": 36,
+                    "text": "                     4.            Funding our incremental working capital requirements; and                                                                  3,000.00"
+                  }
+                ],
+                "purposeSpans": [
+                  {
+                    "line": 0,
+                    "start": 35,
+                    "end": 92
+                  }
+                ],
+                "amountToken": "3,000.00",
+                "normalizedValue": 30.0,
+                "amountSpan": {
+                  "line": 0,
+                  "start": 158,
+                  "end": 166
+                },
+                "purpose": "Funding our incremental working capital requirements; and"
+              },
+              {
+                "page": 36,
+                "lines": [
+                  {
+                    "page": 36,
+                    "text": "                     5.            General corporate purposes                                                                                                 804.90"
+                  }
+                ],
+                "purposeSpans": [
+                  {
+                    "line": 0,
+                    "start": 35,
+                    "end": 61
+                  }
+                ],
+                "amountToken": "804.90",
+                "normalizedValue": 8.049,
+                "amountSpan": {
+                  "line": 0,
+                  "start": 158,
+                  "end": 164
+                },
+                "purpose": "General corporate purposes"
+              }
+            ],
+            "tableScope": "net",
+            "tableTotal": {
+              "page": 36,
+              "purpose": "Net Proceeds*",
+              "amountToken": "4,934.65",
+              "normalizedValue": 49.3465,
+              "lines": [
+                {
+                  "page": 36,
+                  "text": "                                   Net Proceeds*                                                                                                              4,934.65"
+                }
+              ],
+              "purposeSpans": [
+                {
+                  "line": 0,
+                  "start": 35,
+                  "end": 48
+                }
+              ],
+              "amountSpan": {
+                "line": 0,
+                "start": 158,
+                "end": 166
+              }
+            },
+            "proceedsReconciliation": [
+              {
+                "schemaVersion": 1,
+                "page": 115,
+                "heading": "OBJECTS OF THE OFFER",
+                "headingRaw": "                                                                                OBJECTS OF THE OFFER",
+                "unit": "lakh",
+                "unitText": "                                                                                                                                                                     (₹ in Lakhs)",
+                "unitPage": 115,
+                "tableHeaders": [
+                  {
+                    "page": 115,
+                    "text": "                     Particulars                                                                                                                    Estimated Amount"
+                  }
+                ],
+                "rows": [
+                  {
+                    "purpose": "Gross Proceeds of the Fresh Issue",
+                    "amountCr": 57.5856
+                  },
+                  {
+                    "purpose": "Less: Offer related Expenses in relation to the Fresh Issue",
+                    "amountCr": 8.2391
+                  },
+                  {
+                    "purpose": "Net Proceeds",
+                    "amountCr": 49.3465
+                  }
+                ],
+                "sourceRows": [
+                  {
+                    "page": 115,
+                    "purpose": "Gross Proceeds of the Fresh Issue",
+                    "amountToken": "5,758.56",
+                    "normalizedValue": 57.5856,
+                    "lines": [
+                      {
+                        "page": 115,
+                        "text": "                     Gross Proceeds of the Fresh Issue                                                                                              5,758.56"
+                      }
+                    ],
+                    "purposeSpans": [
+                      {
+                        "line": 0,
+                        "start": 21,
+                        "end": 54
+                      }
+                    ],
+                    "amountSpan": {
+                      "line": 0,
+                      "start": 148,
+                      "end": 156
+                    }
+                  },
+                  {
+                    "page": 115,
+                    "purpose": "Less: Offer related Expenses in relation to the Fresh Issue",
+                    "amountToken": "823.91",
+                    "normalizedValue": 8.2391,
+                    "lines": [
+                      {
+                        "page": 115,
+                        "text": "                     Less: Offer related Expenses in relation to the Fresh Issue                                                                    823.91"
+                      }
+                    ],
+                    "purposeSpans": [
+                      {
+                        "line": 0,
+                        "start": 21,
+                        "end": 80
+                      }
+                    ],
+                    "amountSpan": {
+                      "line": 0,
+                      "start": 148,
+                      "end": 154
+                    }
+                  },
+                  {
+                    "page": 115,
+                    "purpose": "Net Proceeds",
+                    "amountToken": "4,934.65",
+                    "normalizedValue": 49.3465,
+                    "lines": [
+                      {
+                        "page": 115,
+                        "text": "                     Net Proceeds                                                                                                                   4,934.65"
+                      }
+                    ],
+                    "purposeSpans": [
+                      {
+                        "line": 0,
+                        "start": 21,
+                        "end": 33
+                      }
+                    ],
+                    "amountSpan": {
+                      "line": 0,
+                      "start": 148,
+                      "end": 156
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "lotSize": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/KaytexFabricsLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-08-01",
+          "sha256": "a0a9b14c498bdcb7a8b2f8e4c8ebd32406b145f6e87f85a1da1675fab056e934",
+          "parserVersion": 33,
+          "checkedAt": "2026-09-18T01:20:33+05:30",
+          "issueOpenDate": "2025-07-29",
+          "field": "lotSize",
+          "value": 1600,
+          "evidence": {
+            "page": 9,
+            "heading": "Bid Lot 1,600 Equity Shares",
+            "value": 1600,
+            "basis": "explicit Bid Lot/Minimum Bid Lot in Final Prospectus"
+          }
+        }
+      }
+    },
+    {
+      "id": "speb",
+      "company": "Speb Adhesives Limited",
+      "symbol": "SPEB",
+      "openDate": "2025-12-01",
+      "objectsOfIssue": [
+        {
+          "purpose": "Part finance the cost of establishing new manufacturing facility to expand our production capabilities of Water based Adhesives at Survey no. 120, 121/1 and 121/2, Village Tambati, Taluka Khalapur, District Raigad, Maharashtra, India (“Proposed new facility”)",
+          "amountCr": 20.4357
+        },
+        {
+          "purpose": "General corporate purposes (1)",
+          "amountCr": 4.0556
+        }
+      ],
+      "documents": [
+        {
+          "url": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+          "source": "NSE",
+          "type": "PROSPECTUS",
+          "title": "Speb Adhesives Limited Final Prospectus",
+          "filedDate": "2025-12-03",
+          "registerUrl": "https://www.nseindia.com/companies-listing/corporate-filings-offer-documents"
+        }
+      ],
+      "documentFieldProvenance": {
+        "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+        "documentType": "PROSPECTUS",
+        "documentDate": "2025-12-03",
+        "sha256": "048405928a44bebad40c08e16256534094b61b1a77890af9072b6cb778b818a2",
+        "parserVersion": 33,
+        "checkedAt": "2026-09-18T01:25:08+05:30",
+        "evidence": {
+          "priceBand": {
+            "page": 15,
+            "heading": "Price band of a minimum price of ₹ 52 per Equity Share (Floor Price) and the maximum Price of ₹ 56 per Equity Share (Cap Price)",
+            "value": {
+              "min": 52.0,
+              "max": 56.0
+            },
+            "basis": "explicit Price Band/Floor Price/Cap Price in Final Prospectus"
+          },
+          "registrar": {
+            "page": 1,
+            "heading": "DETAILS OF REGISTRAR TO THE OFFER",
+            "entities": [
+              "MUFG INTIME INDIA PRIVATE LIMITED"
+            ]
+          },
+          "promoters": {
+            "page": 1,
+            "heading": "PROMOTERS OF OUR COMPANY",
+            "rows": [
+              "PROMOTERS OF OUR COMPANY: KIRTIKUMAR VITHLANI, BHAUMIK VITHLANI, GAURAV VITHLANI AND HARISH VITHLANI"
+            ],
+            "entities": [
+              "KIRTIKUMAR VITHLANI",
+              "BHAUMIK VITHLANI",
+              "GAURAV VITHLANI",
+              "HARISH VITHLANI"
+            ],
+            "method": "bounded-promoter-heading-v1"
+          },
+          "objectsOfIssue": {
+            "schemaVersion": 1,
+            "page": 30,
+            "heading": "OBJECTS OF THE OFFER",
+            "headingRaw": "                        OBJECTS OF THE OFFER",
+            "unit": "lakh",
+            "unitText": "                                                                                                                                                              (₹ in lakhs)",
+            "unitPage": 30,
+            "tableHeaders": [
+              {
+                "page": 30,
+                "text": "                          Sr. No.         Particulars                                                                                            Estimated Amount"
+              }
+            ],
+            "rows": [
+              {
+                "purpose": "Part finance the cost of establishing new manufacturing facility to expand our production capabilities of Water based Adhesives at Survey no. 120, 121/1 and 121/2, Village Tambati, Taluka Khalapur, District Raigad, Maharashtra, India (“Proposed new facility”)",
+                "amountCr": 20.4357
+              },
+              {
+                "purpose": "General corporate purposes (1)",
+                "amountCr": 4.0556
+              }
+            ],
+            "sourceRows": [
+              {
+                "page": 30,
+                "lines": [
+                  {
+                    "page": 30,
+                    "text": "                            1.            Part   finance     the   cost   of  establishing       new    manufacturing          facility   to                     2,043.57"
+                  },
+                  {
+                    "page": 30,
+                    "text": "                                          expand      our    production       capabilities      of   Water      based     Adhesives       at"
+                  },
+                  {
+                    "page": 30,
+                    "text": "                                          Survey no. 120, 121/1 and 121/2, Village Tambati, Taluka Khalapur,"
+                  },
+                  {
+                    "page": 30,
+                    "text": "                                          District Raigad, Maharashtra, India (“Proposed new facility”)"
+                  }
+                ],
+                "purposeSpans": [
+                  {
+                    "line": 0,
+                    "start": 42,
+                    "end": 140
+                  },
+                  {
+                    "line": 1,
+                    "start": 42,
+                    "end": 140
+                  },
+                  {
+                    "line": 2,
+                    "start": 42,
+                    "end": 108
+                  },
+                  {
+                    "line": 3,
+                    "start": 42,
+                    "end": 103
+                  }
+                ],
+                "amountToken": "2,043.57",
+                "normalizedValue": 20.4357,
+                "amountSpan": {
+                  "line": 0,
+                  "start": 161,
+                  "end": 169
+                },
+                "purpose": "Part finance the cost of establishing new manufacturing facility to expand our production capabilities of Water based Adhesives at Survey no. 120, 121/1 and 121/2, Village Tambati, Taluka Khalapur, District Raigad, Maharashtra, India (“Proposed new facility”)"
+              },
+              {
+                "page": 30,
+                "lines": [
+                  {
+                    "page": 30,
+                    "text": "                            2.            General corporate purposes (1)                                                                                           405.56"
+                  }
+                ],
+                "purposeSpans": [
+                  {
+                    "line": 0,
+                    "start": 42,
+                    "end": 72
+                  }
+                ],
+                "amountToken": "405.56",
+                "normalizedValue": 4.0556,
+                "amountSpan": {
+                  "line": 0,
+                  "start": 163,
+                  "end": 169
+                },
+                "purpose": "General corporate purposes (1)"
+              }
+            ],
+            "tableScope": "unspecified",
+            "tableTotal": {
+              "page": 30,
+              "purpose": "Total",
+              "amountToken": "2,449.13",
+              "normalizedValue": 24.4913,
+              "lines": [
+                {
+                  "page": 30,
+                  "text": "                          Total                                                                                                                                 2,449.13"
+                }
+              ],
+              "purposeSpans": [
+                {
+                  "line": 0,
+                  "start": 26,
+                  "end": 31
+                }
+              ],
+              "amountSpan": {
+                "line": 0,
+                "start": 160,
+                "end": 168
+              }
+            }
+          },
+          "shareholding": {
+            "page": 108,
+            "heading": "Pre-Offer and Post-Offer Shareholding",
+            "promoterPreIssuePct": 100.0,
+            "basis": "explicit pre-issue promoter ownership in Final Prospectus"
+          },
+          "financials": {
+            "FY2025.netWorthCr": {
+              "page": 31,
+              "header": "                                                                                                (₹ in lakhs)\n                          Sr.      Particulars                    For       the      period                              For the Fiscal Year\n                          No.                                     ended\n                                                                  September                30,     March             31,     March             31,     March             31,\n                                                                  2025                             2025                      2024                      2023",
+              "row": "2.       Net Worth                               2,901.23                     2,536.04                  1,946.58                  1,945.71",
+              "sourceColumns": [
+                1,
+                2,
+                3
+              ],
+              "normalizedValue": 25.3604,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2024.netWorthCr": {
+              "page": 31,
+              "header": "                                                                                                (₹ in lakhs)\n                          Sr.      Particulars                    For       the      period                              For the Fiscal Year\n                          No.                                     ended\n                                                                  September                30,     March             31,     March             31,     March             31,\n                                                                  2025                             2025                      2024                      2023",
+              "row": "2.       Net Worth                               2,901.23                     2,536.04                  1,946.58                  1,945.71",
+              "sourceColumns": [
+                1,
+                2,
+                3
+              ],
+              "normalizedValue": 19.4658,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2023.netWorthCr": {
+              "page": 31,
+              "header": "                                                                                                (₹ in lakhs)\n                          Sr.      Particulars                    For       the      period                              For the Fiscal Year\n                          No.                                     ended\n                                                                  September                30,     March             31,     March             31,     March             31,\n                                                                  2025                             2025                      2024                      2023",
+              "row": "2.       Net Worth                               2,901.23                     2,536.04                  1,946.58                  1,945.71",
+              "sourceColumns": [
+                1,
+                2,
+                3
+              ],
+              "normalizedValue": 19.4571,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2025.patCr": {
+              "page": 31,
+              "header": "                                                                                                (₹ in lakhs)\n                          Sr.      Particulars                    For       the      period                              For the Fiscal Year\n                          No.                                     ended\n                                                                  September                30,     March             31,     March             31,     March             31,\n                                                                  2025                             2025                      2024                      2023",
+              "row": "5.       Profit after Tax                         365.19                       589.46                    493.68                    183.13",
+              "sourceColumns": [
+                1,
+                2,
+                3
+              ],
+              "normalizedValue": 5.8946,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2024.patCr": {
+              "page": 31,
+              "header": "                                                                                                (₹ in lakhs)\n                          Sr.      Particulars                    For       the      period                              For the Fiscal Year\n                          No.                                     ended\n                                                                  September                30,     March             31,     March             31,     March             31,\n                                                                  2025                             2025                      2024                      2023",
+              "row": "5.       Profit after Tax                         365.19                       589.46                    493.68                    183.13",
+              "sourceColumns": [
+                1,
+                2,
+                3
+              ],
+              "normalizedValue": 4.9368,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2023.patCr": {
+              "page": 31,
+              "header": "                                                                                                (₹ in lakhs)\n                          Sr.      Particulars                    For       the      period                              For the Fiscal Year\n                          No.                                     ended\n                                                                  September                30,     March             31,     March             31,     March             31,\n                                                                  2025                             2025                      2024                      2023",
+              "row": "5.       Profit after Tax                         365.19                       589.46                    493.68                    183.13",
+              "sourceColumns": [
+                1,
+                2,
+                3
+              ],
+              "normalizedValue": 1.8313,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2024.eps": {
+              "page": 266,
+              "header": "[PAGE 266]\n                                                                       OTHER FINANCIAL INFORMATION\n\n                        SUMMARY OF ACCOUNTING RATIOS\n\n                          Particulars                                           Period ended                   FY 2024-2025                 FY 2023-              FY 2022-",
+              "row": "Basic EPS (in ₹)                                                          2.07                       3.35                   2.59                  0.95",
+              "sourceColumns": [
+                0,
+                2,
+                3
+              ],
+              "normalizedValue": 2.07,
+              "scope": "unspecified",
+              "originalUnit": "rupees per share"
+            },
+            "FY2023.eps": {
+              "page": 266,
+              "header": "[PAGE 266]\n                                                                       OTHER FINANCIAL INFORMATION\n\n                        SUMMARY OF ACCOUNTING RATIOS\n\n                          Particulars                                           Period ended                   FY 2024-2025                 FY 2023-              FY 2022-",
+              "row": "Basic EPS (in ₹)                                                          2.07                       3.35                   2.59                  0.95",
+              "sourceColumns": [
+                0,
+                2,
+                3
+              ],
+              "normalizedValue": 2.59,
+              "scope": "unspecified",
+              "originalUnit": "rupees per share"
+            },
+            "FY2022.eps": {
+              "page": 266,
+              "header": "[PAGE 266]\n                                                                       OTHER FINANCIAL INFORMATION\n\n                        SUMMARY OF ACCOUNTING RATIOS\n\n                          Particulars                                           Period ended                   FY 2024-2025                 FY 2023-              FY 2022-",
+              "row": "Basic EPS (in ₹)                                                          2.07                       3.35                   2.59                  0.95",
+              "sourceColumns": [
+                0,
+                2,
+                3
+              ],
+              "normalizedValue": 0.95,
+              "scope": "unspecified",
+              "originalUnit": "rupees per share"
+            },
+            "FY2024.dilutedEps": {
+              "page": 266,
+              "header": "[PAGE 266]\n                                                                       OTHER FINANCIAL INFORMATION\n\n                        SUMMARY OF ACCOUNTING RATIOS\n\n                          Particulars                                           Period ended                   FY 2024-2025                 FY 2023-              FY 2022-",
+              "row": "Diluted EPS (in ₹)                                                        2.07                       3.35                   2.59                  0.95",
+              "sourceColumns": [
+                0,
+                2,
+                3
+              ],
+              "normalizedValue": 2.07,
+              "scope": "unspecified",
+              "originalUnit": "rupees per share"
+            },
+            "FY2023.dilutedEps": {
+              "page": 266,
+              "header": "[PAGE 266]\n                                                                       OTHER FINANCIAL INFORMATION\n\n                        SUMMARY OF ACCOUNTING RATIOS\n\n                          Particulars                                           Period ended                   FY 2024-2025                 FY 2023-              FY 2022-",
+              "row": "Diluted EPS (in ₹)                                                        2.07                       3.35                   2.59                  0.95",
+              "sourceColumns": [
+                0,
+                2,
+                3
+              ],
+              "normalizedValue": 2.59,
+              "scope": "unspecified",
+              "originalUnit": "rupees per share"
+            },
+            "FY2022.dilutedEps": {
+              "page": 266,
+              "header": "[PAGE 266]\n                                                                       OTHER FINANCIAL INFORMATION\n\n                        SUMMARY OF ACCOUNTING RATIOS\n\n                          Particulars                                           Period ended                   FY 2024-2025                 FY 2023-              FY 2022-",
+              "row": "Diluted EPS (in ₹)                                                        2.07                       3.35                   2.59                  0.95",
+              "sourceColumns": [
+                0,
+                2,
+                3
+              ],
+              "normalizedValue": 0.95,
+              "scope": "unspecified",
+              "originalUnit": "rupees per share"
+            },
+            "FY2024.ronwPct": {
+              "page": 266,
+              "header": "[PAGE 266]\n                                                                       OTHER FINANCIAL INFORMATION\n\n                        SUMMARY OF ACCOUNTING RATIOS\n\n                          Particulars                                           Period ended                   FY 2024-2025                 FY 2023-              FY 2022-",
+              "row": "Return on Net worth (%)                                              13.43%                     26.30%                  25.37%                 9.88%",
+              "sourceColumns": [
+                0,
+                2,
+                3
+              ],
+              "normalizedValue": 13.43,
+              "scope": "unspecified",
+              "originalUnit": "percent"
+            },
+            "FY2023.ronwPct": {
+              "page": 266,
+              "header": "[PAGE 266]\n                                                                       OTHER FINANCIAL INFORMATION\n\n                        SUMMARY OF ACCOUNTING RATIOS\n\n                          Particulars                                           Period ended                   FY 2024-2025                 FY 2023-              FY 2022-",
+              "row": "Return on Net worth (%)                                              13.43%                     26.30%                  25.37%                 9.88%",
+              "sourceColumns": [
+                0,
+                2,
+                3
+              ],
+              "normalizedValue": 25.37,
+              "scope": "unspecified",
+              "originalUnit": "percent"
+            },
+            "FY2022.ronwPct": {
+              "page": 266,
+              "header": "[PAGE 266]\n                                                                       OTHER FINANCIAL INFORMATION\n\n                        SUMMARY OF ACCOUNTING RATIOS\n\n                          Particulars                                           Period ended                   FY 2024-2025                 FY 2023-              FY 2022-",
+              "row": "Return on Net worth (%)                                              13.43%                     26.30%                  25.37%                 9.88%",
+              "sourceColumns": [
+                0,
+                2,
+                3
+              ],
+              "normalizedValue": 9.88,
+              "scope": "unspecified",
+              "originalUnit": "percent"
+            },
+            "FY2024.ebitdaCr": {
+              "page": 266,
+              "header": "[PAGE 266]\n                                                                       OTHER FINANCIAL INFORMATION\n\n                        SUMMARY OF ACCOUNTING RATIOS\n\n                          Particulars                                           Period ended                   FY 2024-2025                 FY 2023-              FY 2022-",
+              "row": "EBITDA (in ₹ lakhs)                                                   487.66                     782.54                 652.83                242.55",
+              "sourceColumns": [
+                0,
+                2,
+                3
+              ],
+              "normalizedValue": 4.8766,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2023.ebitdaCr": {
+              "page": 266,
+              "header": "[PAGE 266]\n                                                                       OTHER FINANCIAL INFORMATION\n\n                        SUMMARY OF ACCOUNTING RATIOS\n\n                          Particulars                                           Period ended                   FY 2024-2025                 FY 2023-              FY 2022-",
+              "row": "EBITDA (in ₹ lakhs)                                                   487.66                     782.54                 652.83                242.55",
+              "sourceColumns": [
+                0,
+                2,
+                3
+              ],
+              "normalizedValue": 6.5283,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            },
+            "FY2022.ebitdaCr": {
+              "page": 266,
+              "header": "[PAGE 266]\n                                                                       OTHER FINANCIAL INFORMATION\n\n                        SUMMARY OF ACCOUNTING RATIOS\n\n                          Particulars                                           Period ended                   FY 2024-2025                 FY 2023-              FY 2022-",
+              "row": "EBITDA (in ₹ lakhs)                                                   487.66                     782.54                 652.83                242.55",
+              "sourceColumns": [
+                0,
+                2,
+                3
+              ],
+              "normalizedValue": 2.4255,
+              "scope": "unspecified",
+              "originalUnit": "lakh"
+            }
+          },
+          "issuePrice": {
+            "page": 2,
+            "heading": "INITIAL PUBLIC OFFERING OF 60,24,000* EQUITY SHARES OF FACE VALUE OF ₹ 10 EACH (“EQUITY SHARES”) OF SPEB ADHESIVES LIMITED (“COMPANY” OR THE “ISSUER”) FOR CASH AT A PRICE OF ₹ 56 PER EQUITY SHARE",
+            "value": 56.0,
+            "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+            "method": "final-offer-price-v2"
+          },
+          "issueComposition": {
+            "basis": "validated Final Prospectus issue composition",
+            "method": "bounded-final-offer-clauses-v1",
+            "page": 2,
+            "heading": "Final offer composition",
+            "fields": {
+              "totalShares": {
+                "page": 2,
+                "row": "INITIAL PUBLIC OFFERING OF 60,24,000* EQUITY SHARES OF FACE VALUE OF ₹ 10 EACH (“EQUITY SHARES”) OF SPEB ADHESIVES LIMITED (“COMPANY” OR THE “ISSUER”) FOR CASH AT A PRICE OF ₹ 56 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹ 46 PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹ 3,373.44 LAKHS",
+                "normalizedValue": 6024000,
+                "basis": "explicit final offer clause"
+              },
+              "totalIssueSizeCr": {
+                "page": 2,
+                "row": "INITIAL PUBLIC OFFERING OF 60,24,000* EQUITY SHARES OF FACE VALUE OF ₹ 10 EACH (“EQUITY SHARES”) OF SPEB ADHESIVES LIMITED (“COMPANY” OR THE “ISSUER”) FOR CASH AT A PRICE OF ₹ 56 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹ 46 PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹ 3,373.44 LAKHS",
+                "normalizedValue": 33.7344,
+                "basis": "explicit final offer clause"
+              },
+              "freshShares": {
+                "page": 2,
+                "row": "FRESH ISSUE OF 48,54,000* EQUITY SHARES AGGREGATING TO ₹ 2,718.24 LAKHS",
+                "normalizedValue": 4854000,
+                "basis": "explicit final offer clause"
+              },
+              "freshIssueCr": {
+                "page": 2,
+                "row": "FRESH ISSUE OF 48,54,000* EQUITY SHARES AGGREGATING TO ₹ 2,718.24 LAKHS",
+                "normalizedValue": 27.1824,
+                "basis": "explicit final offer clause"
+              },
+              "ofsShares": {
+                "page": 2,
+                "row": "OFFER FOR SALE OF 11,70,000* EQUITY SHARES AGGREGATING TO ₹ 655.20 LAKHS",
+                "normalizedValue": 1170000,
+                "basis": "explicit final offer clause"
+              },
+              "ofsCr": {
+                "page": 2,
+                "row": "OFFER FOR SALE OF 11,70,000* EQUITY SHARES AGGREGATING TO ₹ 655.20 LAKHS",
+                "normalizedValue": 6.552,
+                "basis": "explicit final offer clause"
+              },
+              "valuationPriceUsed": {
+                "page": 2,
+                "heading": "INITIAL PUBLIC OFFERING OF 60,24,000* EQUITY SHARES OF FACE VALUE OF ₹ 10 EACH (“EQUITY SHARES”) OF SPEB ADHESIVES LIMITED (“COMPANY” OR THE “ISSUER”) FOR CASH AT A PRICE OF ₹ 56 PER EQUITY SHARE",
+                "value": 56.0,
+                "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+                "method": "final-offer-price-v2"
+              }
+            },
+            "totalShares": 6024000,
+            "freshShares": 4854000,
+            "ofsShares": 1170000,
+            "freshIssueCr": 27.1824,
+            "ofsCr": 6.552,
+            "totalIssueSizeCr": 33.7344
+          }
+        },
+        "sourcePolicy": "final-prospectus-only"
+      },
+      "offerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 33,
+        "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+        "documentType": "PROSPECTUS",
+        "documentTitle": "Speb Adhesives Limited Final Prospectus",
+        "documentFiledDate": "2025-12-03",
+        "source": "NSE",
+        "sha256": "048405928a44bebad40c08e16256534094b61b1a77890af9072b6cb778b818a2",
+        "pagesRead": 410,
+        "pageCount": 410,
+        "extractedFields": [
+          "registrar",
+          "financials",
+          "objectsOfIssue",
+          "promoters",
+          "shareholding",
+          "priceBand",
+          "issuePrice",
+          "issueComposition"
+        ],
+        "canonicalFields": [
+          "financials",
+          "freshIssueCr",
+          "issueComposition",
+          "issueSizeCr",
+          "listing.issuePrice",
+          "objectsOfIssue",
+          "ofsCr",
+          "priceBand",
+          "promoters",
+          "registrar",
+          "shareholding"
+        ],
+        "extractedAt": "2026-09-18T01:25:08+05:30",
+        "conflicts": [],
+        "sourcePolicy": "final-prospectus-only"
+      },
+      "dataCorrections": [
+        {
+          "field": "registrar",
+          "before": null,
+          "after": "MUFG INTIME INDIA PRIVATE LIMITED",
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+          "sha256": "048405928a44bebad40c08e16256534094b61b1a77890af9072b6cb778b818a2",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T22:33:12+05:30"
+        },
+        {
+          "field": "promoters",
+          "before": null,
+          "after": [
+            "namely",
+            "Kirtikumar Vithlani",
+            "Harish Vithlani"
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+          "sha256": "048405928a44bebad40c08e16256534094b61b1a77890af9072b6cb778b818a2",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T22:33:12+05:30"
+        },
+        {
+          "field": "financials",
+          "before": null,
+          "after": {
+            "unit": "₹ crore",
+            "periods": [
+              {
+                "period": "FY2025",
+                "netWorthCr": 25.3604,
+                "patCr": 5.8946
+              },
+              {
+                "period": "FY2024",
+                "netWorthCr": 19.4658,
+                "patCr": 4.9368,
+                "eps": 2.07,
+                "dilutedEps": 2.07,
+                "ronwPct": 13.43,
+                "ebitdaCr": 4.8766
+              },
+              {
+                "period": "FY2023",
+                "netWorthCr": 19.4571,
+                "patCr": 1.8313,
+                "eps": 2.59,
+                "dilutedEps": 2.59,
+                "ronwPct": 25.37,
+                "ebitdaCr": 6.5283
+              },
+              {
+                "period": "FY2022",
+                "eps": 0.95,
+                "dilutedEps": 0.95,
+                "ronwPct": 9.88,
+                "ebitdaCr": 2.4255
+              }
+            ]
+          },
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+          "sha256": "048405928a44bebad40c08e16256534094b61b1a77890af9072b6cb778b818a2",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T22:33:12+05:30"
+        },
+        {
+          "field": "issueComposition",
+          "before": {
+            "freshShares": 4854000,
+            "ofsShares": 1170000,
+            "freshIssueCr": 27.1824,
+            "ofsCr": 6.552,
+            "totalIssueSizeCr": 33.73,
+            "valuationPriceUsed": 56.0
+          },
+          "after": {
+            "freshShares": 585000,
+            "ofsShares": 585000,
+            "freshIssueCr": 6.552,
+            "ofsCr": 6.552,
+            "totalIssueSizeCr": 13.104,
+            "valuationPriceUsed": 56.0
+          },
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+          "sha256": "048405928a44bebad40c08e16256534094b61b1a77890af9072b6cb778b818a2",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T22:33:12+05:30"
+        },
+        {
+          "field": "issueSizeCr",
+          "before": 33.73,
+          "after": 13.104,
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+          "sha256": "048405928a44bebad40c08e16256534094b61b1a77890af9072b6cb778b818a2",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T22:33:12+05:30"
+        },
+        {
+          "field": "freshIssueCr",
+          "before": 27.1824,
+          "after": 6.552,
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+          "sha256": "048405928a44bebad40c08e16256534094b61b1a77890af9072b6cb778b818a2",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T22:33:12+05:30"
+        },
+        {
+          "field": "shareholding",
+          "before": null,
+          "after": {
+            "promoters": [],
+            "promoterPreIssuePct": 100.0
+          },
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+          "sha256": "048405928a44bebad40c08e16256534094b61b1a77890af9072b6cb778b818a2",
+          "parserVersion": 26,
+          "correctedAt": "2026-09-17T01:55:26+05:30"
+        },
+        {
+          "field": "issueComposition",
+          "before": {
+            "issueComposition": {
+              "freshShares": 585000,
+              "ofsShares": 585000,
+              "freshIssueCr": 6.552,
+              "ofsCr": 6.552,
+              "totalIssueSizeCr": 13.104,
+              "valuationPriceUsed": 56.0
+            },
+            "issueSizeCr": 13.104,
+            "freshIssueCr": 6.552,
+            "ofsCr": 6.552
+          },
+          "after": {
+            "issueComposition": null,
+            "issueSizeCr": null,
+            "freshIssueCr": null,
+            "ofsCr": null
+          },
+          "reason": "Inconsistent canonical issue amounts/counts quarantined pending Final Prospectus revalidation",
+          "findings": [
+            {
+              "field": "issueComposition.freshIssueCr",
+              "reason": "Share count times valuation price does not match amount; source or discount evidence needs review"
+            },
+            {
+              "field": "issueComposition.ofsCr",
+              "reason": "Share count times valuation price does not match amount; source or discount evidence needs review"
+            }
+          ],
+          "sourceEvidence": {
+            "issueComposition": {
+              "source": "Final Prospectus",
+              "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+              "documentType": "PROSPECTUS",
+              "documentDate": "2025-12-03",
+              "sha256": "048405928a44bebad40c08e16256534094b61b1a77890af9072b6cb778b818a2",
+              "parserVersion": 26,
+              "checkedAt": "2026-09-17T01:55:26+05:30",
+              "issueOpenDate": "2025-12-01",
+              "field": "issueComposition",
+              "value": {
+                "freshShares": 585000,
+                "ofsShares": 585000,
+                "freshIssueCr": 6.552,
+                "ofsCr": 6.552,
+                "totalIssueSizeCr": 13.104,
+                "valuationPriceUsed": 56.0
+              },
+              "evidence": {
+                "basis": "validated Final Prospectus issue composition",
+                "freshShares": 585000,
+                "ofsShares": 585000,
+                "freshIssueCr": 6.552,
+                "ofsCr": 6.552,
+                "totalIssueSizeCr": 13.104
+              }
+            },
+            "issueSizeCr": {
+              "source": "Final Prospectus",
+              "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+              "documentType": "PROSPECTUS",
+              "documentDate": "2025-12-03",
+              "sha256": "048405928a44bebad40c08e16256534094b61b1a77890af9072b6cb778b818a2",
+              "parserVersion": 26,
+              "checkedAt": "2026-09-17T01:55:26+05:30",
+              "issueOpenDate": "2025-12-01",
+              "field": "issueSizeCr",
+              "value": 13.104,
+              "evidence": {
+                "basis": "validated Final Prospectus issue composition",
+                "freshShares": 585000,
+                "ofsShares": 585000,
+                "freshIssueCr": 6.552,
+                "ofsCr": 6.552,
+                "totalIssueSizeCr": 13.104
+              }
+            },
+            "freshIssueCr": {
+              "source": "Final Prospectus",
+              "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+              "documentType": "PROSPECTUS",
+              "documentDate": "2025-12-03",
+              "sha256": "048405928a44bebad40c08e16256534094b61b1a77890af9072b6cb778b818a2",
+              "parserVersion": 26,
+              "checkedAt": "2026-09-17T01:55:26+05:30",
+              "issueOpenDate": "2025-12-01",
+              "field": "freshIssueCr",
+              "value": 6.552,
+              "evidence": {
+                "basis": "validated Final Prospectus issue composition",
+                "freshShares": 585000,
+                "ofsShares": 585000,
+                "freshIssueCr": 6.552,
+                "ofsCr": 6.552,
+                "totalIssueSizeCr": 13.104
+              }
+            },
+            "ofsCr": {
+              "source": "Final Prospectus",
+              "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+              "documentType": "PROSPECTUS",
+              "documentDate": "2025-12-03",
+              "sha256": "048405928a44bebad40c08e16256534094b61b1a77890af9072b6cb778b818a2",
+              "parserVersion": 26,
+              "checkedAt": "2026-09-17T01:55:26+05:30",
+              "issueOpenDate": "2025-12-01",
+              "field": "ofsCr",
+              "value": 6.552,
+              "evidence": {
+                "basis": "validated Final Prospectus issue composition",
+                "freshShares": 585000,
+                "ofsShares": 585000,
+                "freshIssueCr": 6.552,
+                "ofsCr": 6.552,
+                "totalIssueSizeCr": 13.104
+              }
+            }
+          },
+          "correctedAt": "2026-09-16T23:02:27.703175+00:00"
+        },
+        {
+          "field": "priceBand",
+          "before": {
+            "min": 56.0,
+            "max": 56.0
+          },
+          "after": {
+            "min": 52.0,
+            "max": 56.0
+          },
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+          "sha256": "048405928a44bebad40c08e16256534094b61b1a77890af9072b6cb778b818a2",
+          "parserVersion": 30,
+          "correctedAt": "2026-09-17T11:30:42+05:30"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "namely",
+            "Kirtikumar Vithlani",
+            "Harish Vithlani"
+          ],
+          "after": [
+            "KIRTIKUMAR VITHLANI",
+            "BHAUMIK VITHLANI",
+            "GAURAV VITHLANI",
+            "HARISH VITHLANI"
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+          "sha256": "048405928a44bebad40c08e16256534094b61b1a77890af9072b6cb778b818a2",
+          "parserVersion": 30,
+          "correctedAt": "2026-09-17T11:30:42+05:30"
+        },
+        {
+          "field": "issueComposition",
+          "before": null,
+          "after": {
+            "freshShares": 4854000,
+            "ofsShares": 1170000,
+            "freshIssueCr": 27.1824,
+            "ofsCr": 6.552,
+            "totalIssueSizeCr": 33.7344,
+            "valuationPriceUsed": 56.0
+          },
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+          "sha256": "048405928a44bebad40c08e16256534094b61b1a77890af9072b6cb778b818a2",
+          "parserVersion": 30,
+          "correctedAt": "2026-09-17T11:30:42+05:30"
+        },
+        {
+          "field": "issueSizeCr",
+          "before": null,
+          "after": 33.7344,
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+          "sha256": "048405928a44bebad40c08e16256534094b61b1a77890af9072b6cb778b818a2",
+          "parserVersion": 30,
+          "correctedAt": "2026-09-17T11:30:42+05:30"
+        },
+        {
+          "field": "freshIssueCr",
+          "before": null,
+          "after": 27.1824,
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+          "sha256": "048405928a44bebad40c08e16256534094b61b1a77890af9072b6cb778b818a2",
+          "parserVersion": 30,
+          "correctedAt": "2026-09-17T11:30:42+05:30"
+        },
+        {
+          "field": "ofsCr",
+          "before": null,
+          "after": 6.552,
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+          "sha256": "048405928a44bebad40c08e16256534094b61b1a77890af9072b6cb778b818a2",
+          "parserVersion": 30,
+          "correctedAt": "2026-09-17T11:30:42+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": null,
+          "after": [
+            {
+              "purpose": "Part finance the cost of establishing new manufacturing facility to expand our production capabilities of Water based Adhesives at Survey no. 120, 121/1 and 121/2, Village Tambati, Taluka Khalapur, District Raigad, Maharashtra, India (“Proposed new facility”)",
+              "amountCr": 20.4357
+            },
+            {
+              "purpose": "General corporate purposes (1)",
+              "amountCr": 4.0556
+            }
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+          "sha256": "048405928a44bebad40c08e16256534094b61b1a77890af9072b6cb778b818a2",
+          "parserVersion": 33,
+          "correctedAt": "2026-09-18T01:25:08+05:30"
+        }
+      ],
+      "lotSize": 2000,
+      "staticFieldProvenance": {
+        "objectsOfIssue": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-12-03",
+          "sha256": "048405928a44bebad40c08e16256534094b61b1a77890af9072b6cb778b818a2",
+          "parserVersion": 33,
+          "checkedAt": "2026-09-18T01:25:08+05:30",
+          "issueOpenDate": "2025-12-01",
+          "field": "objectsOfIssue",
+          "value": [
+            {
+              "purpose": "Part finance the cost of establishing new manufacturing facility to expand our production capabilities of Water based Adhesives at Survey no. 120, 121/1 and 121/2, Village Tambati, Taluka Khalapur, District Raigad, Maharashtra, India (“Proposed new facility”)",
+              "amountCr": 20.4357
+            },
+            {
+              "purpose": "General corporate purposes (1)",
+              "amountCr": 4.0556
+            }
+          ],
+          "evidence": {
+            "schemaVersion": 1,
+            "page": 30,
+            "heading": "OBJECTS OF THE OFFER",
+            "headingRaw": "                        OBJECTS OF THE OFFER",
+            "unit": "lakh",
+            "unitText": "                                                                                                                                                              (₹ in lakhs)",
+            "unitPage": 30,
+            "tableHeaders": [
+              {
+                "page": 30,
+                "text": "                          Sr. No.         Particulars                                                                                            Estimated Amount"
+              }
+            ],
+            "rows": [
+              {
+                "purpose": "Part finance the cost of establishing new manufacturing facility to expand our production capabilities of Water based Adhesives at Survey no. 120, 121/1 and 121/2, Village Tambati, Taluka Khalapur, District Raigad, Maharashtra, India (“Proposed new facility”)",
+                "amountCr": 20.4357
+              },
+              {
+                "purpose": "General corporate purposes (1)",
+                "amountCr": 4.0556
+              }
+            ],
+            "sourceRows": [
+              {
+                "page": 30,
+                "lines": [
+                  {
+                    "page": 30,
+                    "text": "                            1.            Part   finance     the   cost   of  establishing       new    manufacturing          facility   to                     2,043.57"
+                  },
+                  {
+                    "page": 30,
+                    "text": "                                          expand      our    production       capabilities      of   Water      based     Adhesives       at"
+                  },
+                  {
+                    "page": 30,
+                    "text": "                                          Survey no. 120, 121/1 and 121/2, Village Tambati, Taluka Khalapur,"
+                  },
+                  {
+                    "page": 30,
+                    "text": "                                          District Raigad, Maharashtra, India (“Proposed new facility”)"
+                  }
+                ],
+                "purposeSpans": [
+                  {
+                    "line": 0,
+                    "start": 42,
+                    "end": 140
+                  },
+                  {
+                    "line": 1,
+                    "start": 42,
+                    "end": 140
+                  },
+                  {
+                    "line": 2,
+                    "start": 42,
+                    "end": 108
+                  },
+                  {
+                    "line": 3,
+                    "start": 42,
+                    "end": 103
+                  }
+                ],
+                "amountToken": "2,043.57",
+                "normalizedValue": 20.4357,
+                "amountSpan": {
+                  "line": 0,
+                  "start": 161,
+                  "end": 169
+                },
+                "purpose": "Part finance the cost of establishing new manufacturing facility to expand our production capabilities of Water based Adhesives at Survey no. 120, 121/1 and 121/2, Village Tambati, Taluka Khalapur, District Raigad, Maharashtra, India (“Proposed new facility”)"
+              },
+              {
+                "page": 30,
+                "lines": [
+                  {
+                    "page": 30,
+                    "text": "                            2.            General corporate purposes (1)                                                                                           405.56"
+                  }
+                ],
+                "purposeSpans": [
+                  {
+                    "line": 0,
+                    "start": 42,
+                    "end": 72
+                  }
+                ],
+                "amountToken": "405.56",
+                "normalizedValue": 4.0556,
+                "amountSpan": {
+                  "line": 0,
+                  "start": 163,
+                  "end": 169
+                },
+                "purpose": "General corporate purposes (1)"
+              }
+            ],
+            "tableScope": "unspecified",
+            "tableTotal": {
+              "page": 30,
+              "purpose": "Total",
+              "amountToken": "2,449.13",
+              "normalizedValue": 24.4913,
+              "lines": [
+                {
+                  "page": 30,
+                  "text": "                          Total                                                                                                                                 2,449.13"
+                }
+              ],
+              "purposeSpans": [
+                {
+                  "line": 0,
+                  "start": 26,
+                  "end": 31
+                }
+              ],
+              "amountSpan": {
+                "line": 0,
+                "start": 160,
+                "end": 168
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
