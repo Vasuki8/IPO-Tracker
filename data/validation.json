@@ -1,18 +1,30 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-17T07:47:05.623951+00:00",
+  "generatedAt": "2026-09-17T09:22:57.287751+00:00",
   "parserVersion": 22,
   "recordCount": 1364,
   "errorCount": 0,
-  "reviewCount": 1582,
+  "reviewCount": 1649,
   "invalidRecordCount": 0,
-  "reviewRecordCount": 280,
+  "reviewRecordCount": 303,
   "subscriptionAuthority": {
     "officialRecords": 7,
     "secondaryRecords": 8,
     "sourceTimeUnknown": 11
   },
   "issues": [
+    {
+      "id": "sona",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "ssretail",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
     {
       "id": "ssretail",
       "field": "issueComposition.totalIssueSizeCr",
@@ -33,6 +45,12 @@
     },
     {
       "id": "jsipl",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "jsipl",
       "field": "issueSizeCr",
       "severity": "review",
       "reason": "Displayed issue amount does not match issue composition"
@@ -45,6 +63,12 @@
     },
     {
       "id": "heromotors",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "heromotors",
       "field": "issueSizeCr",
       "severity": "review",
       "reason": "Displayed fresh issue plus offer for sale does not match total issue size"
@@ -53,7 +77,7 @@
       "id": "vama-wovenfab-limited",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "vama-wovenfab-limited",
@@ -71,7 +95,7 @@
       "id": "shakti-polytarp-limited",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "shakti-polytarp-limited",
@@ -201,15 +225,159 @@
     },
     {
       "id": "manika",
-      "field": "issueSizeCr",
+      "field": "financials.FY2026.netWorthCr",
       "severity": "review",
-      "reason": "Displayed fresh issue plus offer for sale does not match total issue size"
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "manika",
+      "field": "financials.FY2026.revenueCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "manika",
+      "field": "financials.FY2026.ebitdaCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "manika",
+      "field": "financials.FY2026.patCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "manika",
+      "field": "financials.FY2026.eps",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "manika",
+      "field": "financials.FY2026.dilutedEps",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "manika",
+      "field": "financials.FY2026.roePct",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "manika",
+      "field": "financials.FY2026.ronwPct",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "manika",
+      "field": "financials.FY2025.netWorthCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "manika",
+      "field": "financials.FY2025.revenueCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "manika",
+      "field": "financials.FY2025.ebitdaCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "manika",
+      "field": "financials.FY2025.patCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "manika",
+      "field": "financials.FY2025.eps",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "manika",
+      "field": "financials.FY2025.dilutedEps",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "manika",
+      "field": "financials.FY2025.roePct",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "manika",
+      "field": "financials.FY2025.ronwPct",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "manika",
+      "field": "financials.FY2024.netWorthCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "manika",
+      "field": "financials.FY2024.revenueCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "manika",
+      "field": "financials.FY2024.ebitdaCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "manika",
+      "field": "financials.FY2024.patCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "manika",
+      "field": "financials.FY2024.eps",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "manika",
+      "field": "financials.FY2024.dilutedEps",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "manika",
+      "field": "financials.FY2024.roePct",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "manika",
+      "field": "financials.FY2024.ronwPct",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
     },
     {
       "id": "injecto-polymers-limited",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "century-business-media-limited",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "century-business-media-limited",
@@ -225,15 +393,15 @@
     },
     {
       "id": "veegaland",
-      "field": "objectsOfIssue",
-      "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
-    },
-    {
-      "id": "veegaland",
       "field": "issueComposition",
       "severity": "review",
       "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "raksan-transformers-limited",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "raksan-transformers-limited",
@@ -251,7 +419,7 @@
       "id": "om-galaxy-limited",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "om-galaxy-limited",
@@ -287,7 +455,7 @@
       "id": "maharaja-speedex-india-limited",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "maharaja-speedex-india-limited",
@@ -302,10 +470,16 @@
       "reason": "Displayed fresh issue plus offer for sale does not match total issue size"
     },
     {
+      "id": "steamhouse",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
       "id": "rentomojo",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "rentomojo",
@@ -440,10 +614,16 @@
       "reason": "Source table/period evidence has not been revalidated"
     },
     {
+      "id": "mpimanipal",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
       "id": "lccproject",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "lccproject",
@@ -485,7 +665,7 @@
       "id": "karamtara",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "karamtara",
@@ -561,6 +741,12 @@
     },
     {
       "id": "arcil",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "arcil",
       "field": "financials.FY2024.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
@@ -599,7 +785,7 @@
       "id": "prasolchem",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "prasolchem",
@@ -677,7 +863,7 @@
       "id": "kanohar",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "kanohar",
@@ -750,12 +936,6 @@
       "field": "financials.FY2024.roePct",
       "severity": "review",
       "reason": "Source table/period evidence has not been revalidated"
-    },
-    {
-      "id": "glasswall",
-      "field": "objectsOfIssue",
-      "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "glasswall",
@@ -923,25 +1103,19 @@
       "id": "pranav",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
-    },
-    {
-      "id": "deepa",
-      "field": "objectsOfIssue",
-      "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "perniaspop",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "esds",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "esds",
@@ -1061,7 +1235,7 @@
       "id": "lumino",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "lumino",
@@ -1103,19 +1277,13 @@
       "id": "annu",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
-    },
-    {
-      "id": "symbiotec",
-      "field": "objectsOfIssue",
-      "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "skyways",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "skyways",
@@ -1229,7 +1397,7 @@
       "id": "htel",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "htel",
@@ -1361,7 +1529,7 @@
       "id": "augmont",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "augmont",
@@ -1517,7 +1685,7 @@
       "id": "tempsens",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "tempsens",
@@ -1703,13 +1871,13 @@
       "id": "gaja",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "sunshine",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "sunshine",
@@ -1769,7 +1937,7 @@
       "id": "shankesh",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "shankesh",
@@ -1799,7 +1967,7 @@
       "id": "lalithaa",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "lalithaa",
@@ -1949,25 +2117,25 @@
       "id": "horizonind",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "credent",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "shiprocket",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "pramodini",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "pramodini",
@@ -1980,6 +2148,18 @@
       "field": "financials.FY2025.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "blel",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "milkymist",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "milkymist",
@@ -2057,7 +2237,7 @@
       "id": "molbio",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "molbio",
@@ -2147,7 +2327,7 @@
       "id": "dhoottrans",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "dhoottrans",
@@ -2367,6 +2547,12 @@
     },
     {
       "id": "technocraf",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "technocraf",
       "field": "financials.FY2026.netWorthCr",
       "severity": "review",
       "reason": "Source table/period evidence has not been revalidated"
@@ -2510,16 +2696,16 @@
       "reason": "Source table/period evidence has not been revalidated"
     },
     {
+      "id": "optimystix",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
       "id": "leap",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
-    },
-    {
-      "id": "ardee",
-      "field": "objectsOfIssue",
-      "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "ardee",
@@ -2540,10 +2726,16 @@
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
     {
+      "id": "anawil",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
       "id": "mvelectro",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "mvelectro",
@@ -2747,7 +2939,7 @@
       "id": "jnpr",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "jnpr",
@@ -2975,7 +3167,7 @@
       "id": "manipalhos",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "manipalhos",
@@ -3203,7 +3395,7 @@
       "id": "xtranet",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "xtranet",
@@ -3227,7 +3419,7 @@
       "id": "lcl",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "lcl",
@@ -3284,16 +3476,22 @@
       "reason": "Source table/period evidence has not been revalidated"
     },
     {
+      "id": "indomim",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
       "id": "metalic",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "cmll",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "cmll",
@@ -3491,13 +3689,25 @@
       "id": "alpinetex",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "laserpower",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "happy",
       "field": "issueComposition",
       "severity": "review",
       "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "kusumgar",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "kusumgar",
@@ -3509,7 +3719,7 @@
       "id": "icelco",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "icelco",
@@ -3524,16 +3734,16 @@
       "reason": "Existing disclosure retained; no supported source-role table was extracted"
     },
     {
+      "id": "knack",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
       "id": "vmobile",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
-    },
-    {
-      "id": "aastha",
-      "field": "objectsOfIssue",
-      "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "aastha",
@@ -3665,13 +3875,25 @@
       "id": "csm",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "cordelia",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "shreedhar",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "rambhajo",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "rambhajo",
@@ -3767,19 +3989,19 @@
       "id": "turtlemint",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "avience",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "claycraft",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "claycraft",
@@ -3791,13 +4013,13 @@
       "id": "utkal",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "hexagon",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "hexagon",
@@ -3935,7 +4157,7 @@
       "id": "genxai",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "cmrgreen",
@@ -3977,7 +4199,7 @@
       "id": "qline",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "qline",
@@ -3989,7 +4211,7 @@
       "id": "teamtech",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "teamtech",
@@ -4001,13 +4223,13 @@
       "id": "nfpsampoor",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "rfbl",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "rfbl",
@@ -4019,7 +4241,7 @@
       "id": "value360",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "value360",
@@ -4140,12 +4362,6 @@
       "field": "financials.FY2025.roePct",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
-    },
-    {
-      "id": "kissht",
-      "field": "objectsOfIssue",
-      "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "kissht",
@@ -4277,13 +4493,13 @@
       "id": "ambaauto",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "adisoft",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "adisoft",
@@ -4292,16 +4508,28 @@
       "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
+      "id": "ompower",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "vividel",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
       "id": "saiparent",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "powerica",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "powerica",
@@ -4320,6 +4548,12 @@
       "field": "financials.FY2025.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "amirchand",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "amirchand",
@@ -4349,7 +4583,7 @@
       "id": "cmpdi",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "cmpdi",
@@ -4460,16 +4694,16 @@
       "reason": "Source table/period evidence has not been revalidated"
     },
     {
-      "id": "gspcrop",
-      "field": "objectsOfIssue",
-      "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
-    },
-    {
       "id": "apsisaero",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "innovision",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "innovision",
@@ -4562,6 +4796,12 @@
       "reason": "Source table/period evidence has not been revalidated"
     },
     {
+      "id": "rsl",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
       "id": "sedemac",
       "field": "issueComposition",
       "severity": "review",
@@ -4571,7 +4811,7 @@
       "id": "striders",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "striders",
@@ -4583,7 +4823,7 @@
       "id": "yaap",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "yaap",
@@ -4592,10 +4832,16 @@
       "reason": "Existing disclosure retained; no supported source-role table was extracted"
     },
     {
+      "id": "omni",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
       "id": "pngsreva",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "pngsreva",
@@ -4707,6 +4953,12 @@
     },
     {
       "id": "srtl",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "srtl",
       "field": "financials.FY2023.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
@@ -4715,7 +4967,7 @@
       "id": "mobilise",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "mobilise",
@@ -4733,7 +4985,7 @@
       "id": "cleanmax",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "cleanmax",
@@ -4935,15 +5187,33 @@
     },
     {
       "id": "manilam",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "manilam",
       "field": "issueComposition",
       "severity": "review",
       "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
+      "id": "gaudiumivf",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "fractal",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
       "id": "aye",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "aye",
@@ -5075,7 +5345,7 @@
       "id": "gjl",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "gjl",
@@ -5099,7 +5369,7 @@
       "id": "brandman",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "brandman",
@@ -5117,13 +5387,19 @@
       "id": "ckkretail",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "ckkretail",
       "field": "registrar",
       "severity": "review",
       "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "krmayurved",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "krmayurved",
@@ -5141,7 +5417,25 @@
       "id": "shadowfax",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "armour",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "amagi",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "avana",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "avana",
@@ -5159,7 +5453,7 @@
       "id": "dhararail",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "dhararail",
@@ -5171,13 +5465,13 @@
       "id": "socl",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "shyamdhani",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "shyamdhani",
@@ -5195,7 +5489,7 @@
       "id": "gksl",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "gksl",
@@ -5243,13 +5537,13 @@
       "id": "epwindia",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "marc",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "marc",
@@ -5273,13 +5567,13 @@
       "id": "kshintl",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "eximroutes",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "eximroutes",
@@ -5303,19 +5597,19 @@
       "id": "ashwini",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "parkhosps",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "nephroplus",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "nephroplus",
@@ -5414,10 +5708,22 @@
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
     {
+      "id": "wakefit",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
       "id": "corona",
       "field": "issueComposition",
       "severity": "review",
       "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "fwstc",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "fwstc",
@@ -5489,7 +5795,7 @@
       "id": "encompas",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "encompas",
@@ -5507,19 +5813,19 @@
       "id": "vidyawires",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "meesho",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "aequs",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "aequs",
@@ -5618,10 +5924,10 @@
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
     {
-      "id": "invicta",
+      "id": "neochem",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "invicta",
@@ -5645,13 +5951,13 @@
       "id": "cssl",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "excelsoft",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "excelsoft",
@@ -5765,7 +6071,7 @@
       "id": "capillary",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "capillary",
@@ -5873,7 +6179,7 @@
       "id": "pinelabs",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "pinelabs",
@@ -5915,19 +6221,19 @@
       "id": "curis",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "finbud",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "shethji",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "shethji",
@@ -5969,7 +6275,7 @@
       "id": "lenskart",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "studds",
@@ -5981,7 +6287,7 @@
       "id": "jayesh",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "midwestltd",
@@ -5993,7 +6299,7 @@
       "id": "rubicon",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "cramc",
@@ -6117,6 +6423,12 @@
     },
     {
       "id": "sheel",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "sheel",
       "field": "leadManagers",
       "severity": "review",
       "reason": "Existing disclosure retained; no supported source-role table was extracted"
@@ -6144,6 +6456,12 @@
       "field": "financials.FY2024.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "bagdigital",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "bagdigital",
@@ -6239,13 +6557,7 @@
       "id": "advance",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
-    },
-    {
-      "id": "vijaypd",
-      "field": "objectsOfIssue",
-      "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "vijaypd",
@@ -6278,16 +6590,10 @@
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
     {
-      "id": "subahotels",
-      "field": "objectsOfIssue",
-      "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
-    },
-    {
       "id": "omfreight",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "omfreight",
@@ -6323,7 +6629,7 @@
       "id": "glottis",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "glottis",
@@ -6347,7 +6653,7 @@
       "id": "fabtech",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "fabtech",
@@ -6378,12 +6684,6 @@
       "field": "financials.FY2025.patCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
-    },
-    {
-      "id": "pacedigitk",
-      "field": "objectsOfIssue",
-      "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "pacedigitk",
@@ -6425,7 +6725,7 @@
       "id": "trualt",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "trualt",
@@ -6443,19 +6743,19 @@
       "id": "jkipl",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
-    },
-    {
-      "id": "jainrec",
-      "field": "objectsOfIssue",
-      "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "jainrec",
       "field": "financials.FY2025.ronwPct",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "gurunanak",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "gurunanak",
@@ -6473,7 +6773,13 @@
       "id": "epackpeb",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "bmwventltd",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "bmwventltd",
@@ -6587,7 +6893,7 @@
       "id": "solarworld",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "solarworld",
@@ -6653,7 +6959,13 @@
       "id": "styl",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "mgsl",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "mgsl",
@@ -6668,10 +6980,10 @@
       "reason": "Existing disclosure retained; no supported source-role table was extracted"
     },
     {
-      "id": "ecoline",
+      "id": "jaro",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "ecoline",
@@ -6689,7 +7001,7 @@
       "id": "arssbl",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "arssbl",
@@ -6773,7 +7085,7 @@
       "id": "saatvik",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "ivalue",
@@ -6833,7 +7145,7 @@
       "id": "vmstmt",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "europratik",
@@ -6872,16 +7184,10 @@
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
     {
-      "id": "techd",
-      "field": "objectsOfIssue",
-      "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
-    },
-    {
       "id": "shringarms",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "gml",
@@ -6905,7 +7211,7 @@
       "id": "devx",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "taurian",
@@ -6917,13 +7223,13 @@
       "id": "amanta",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "snehaa",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "vikran",
@@ -6953,31 +7259,31 @@
       "id": "sattvaengg",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "current",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "classiceil",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "anondita",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "meil",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "meil",
@@ -7079,7 +7385,7 @@
       "id": "shreejispg",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "patelrmart",
@@ -7160,10 +7466,16 @@
       "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
+      "id": "mril",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
       "id": "amcl",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "amcl",
@@ -7190,6 +7502,12 @@
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
     {
+      "id": "alltime",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
       "id": "hilinfra",
       "field": "issueComposition",
       "severity": "review",
@@ -7199,7 +7517,7 @@
       "id": "parth",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "parth",
@@ -7229,25 +7547,25 @@
       "id": "bhadora",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "aaradhya",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "flysbs",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "rnpl",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "rnpl",
@@ -7269,6 +7587,12 @@
     },
     {
       "id": "cudml",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "cudml",
       "field": "issueComposition",
       "severity": "review",
       "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
@@ -7277,19 +7601,19 @@
       "id": "lotusdev",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "nsdl",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "mbel",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "mbel",
@@ -7385,7 +7709,7 @@
       "id": "shantigold",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "sellowrap",
@@ -7409,13 +7733,13 @@
       "id": "brighotel",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "tsc",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "tsc",
@@ -7469,7 +7793,7 @@
       "id": "savy",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "anthem",
@@ -7571,7 +7895,7 @@
       "id": "whiteforce",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "whiteforce",
@@ -7748,10 +8072,16 @@
       "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
     },
     {
+      "id": "cedaar",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
       "id": "profx",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "profx",
@@ -7763,7 +8093,19 @@
       "id": "mmel",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "suntech",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "sambhv",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "sambhv",
@@ -7775,7 +8117,7 @@
       "id": "shksil",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "shksil",
@@ -7793,19 +8135,13 @@
       "id": "kalpataru",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "globecivil",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
-    },
-    {
-      "id": "safeentp",
-      "field": "objectsOfIssue",
-      "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "safeentp",
@@ -7859,25 +8195,25 @@
       "id": "aakaar",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "arisinfra",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "eepl",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "patilautom",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "patilautom",
@@ -7967,31 +8303,31 @@
       "id": "monolith",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "jainik",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "sacheerome",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "gangabath",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "scodatubes",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "scodatubes",
@@ -8010,12 +8346,6 @@
       "field": "financials.FY2024.ebitdaCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
-    },
-    {
-      "id": "nrvandana",
-      "field": "objectsOfIssue",
-      "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
     },
     {
       "id": "prostarm",
@@ -8052,6 +8382,12 @@
       "field": "financials.FY2024.eps",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "nikita",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "nikita",
@@ -8111,7 +8447,13 @@
       "id": "bluewater",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "theleela",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "theleela",
@@ -8204,22 +8546,16 @@
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
     {
-      "id": "belrise",
-      "field": "objectsOfIssue",
-      "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
-    },
-    {
       "id": "borana",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "vginfotech",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "vginfotech",
@@ -8289,6 +8625,12 @@
     },
     {
       "id": "rapidfleet",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "rapidfleet",
       "field": "financials.FY2022.netWorthCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
@@ -8328,6 +8670,12 @@
       "field": "financials.FY2024.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "maxvolt",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "chamunda",
@@ -8387,7 +8735,7 @@
       "id": "denta",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "denta",
@@ -8523,6 +8871,12 @@
     },
     {
       "id": "sgltl",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "sgltl",
       "field": "issueComposition",
       "severity": "review",
       "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
@@ -8567,7 +8921,7 @@
       "id": "nmsteel",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "nmsteel",
@@ -8699,7 +9053,7 @@
       "id": "identical",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "identical",
@@ -8711,7 +9065,7 @@
       "id": "igil",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "igil",
@@ -8747,7 +9101,7 @@
       "id": "dhanlaxmi",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "dhanlaxmi",
@@ -8819,7 +9173,7 @@
       "id": "etml",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "etml",
@@ -8840,10 +9194,22 @@
       "reason": "Existing disclosure retained; no supported source-role table was extracted"
     },
     {
+      "id": "ganeshin",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
       "id": "apexeco",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "abhapower",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "eiel",
@@ -8879,13 +9245,19 @@
       "id": "c2c",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "c2c",
       "field": "leadManagers",
       "severity": "review",
       "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "blackbuck",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "swiggy",
@@ -8993,7 +9365,7 @@
       "id": "paramount",
       "field": "objectsOfIssue",
       "severity": "review",
-      "reason": "Invalid objects quarantined; Final Prospectus revalidation is still required"
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "hvax",
@@ -9236,6 +9608,12 @@
       "reason": "Displayed fresh issue plus offer for sale does not match total issue size"
     },
     {
+      "id": "manba",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
       "id": "sdreams",
       "field": "issueComposition.totalIssueSizeCr",
       "severity": "review",
@@ -9387,6 +9765,12 @@
     },
     {
       "id": "torrent-gas-limited",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "torrent-gas-limited",
       "field": "financials.FY2026.revenueCr",
       "severity": "review",
       "reason": "Source table/period evidence has not been revalidated"
@@ -9477,6 +9861,12 @@
     },
     {
       "id": "nopaperforms-solutions-limited",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "nopaperforms-solutions-limited",
       "field": "issueComposition.totalIssueSizeCr",
       "severity": "review",
       "reason": "Fresh issue plus offer for sale does not match total issue size"
@@ -9489,9 +9879,21 @@
     },
     {
       "id": "m-k-c-agro-fresh-limited",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
+    },
+    {
+      "id": "m-k-c-agro-fresh-limited",
       "field": "leadManagers",
       "severity": "review",
       "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "nse",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
       "id": "nse",
