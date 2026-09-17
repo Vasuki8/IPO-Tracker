@@ -1,5 +1,5 @@
 {
-  "revision": "2026-09-17-quarantine-priority-financials",
+  "revision": "2026-09-17-review-kaytex-speb-document-consistency",
   "basedOnCommit": "eef493b2eec6b0f0ab9cefad8b45b9d5759bc86b",
   "generatedAt": "2026-09-14T12:16:27.134108+00:00",
   "parserVersion": 18,
@@ -14493,6 +14493,360 @@
         "basis": "Cover issue table: up to 4,598,400 fresh equity shares; OFS is NIL. The same page confirms the September 17–21, 2026 offer dates."
       },
       "reviewedAt": "2026-09-15T13:52:32+00:00"
+    }
+  ],
+  "reviewedObjects": [
+    {
+      "identity": {
+        "id": "unimech",
+        "company": "Unimech Aerospace and Manufacturing Limited",
+        "symbol": "UNIMECH",
+        "openDate": "2024-12-23"
+      },
+      "beforeHash": "a6b6722f90ff70e97c69e50f6aacb87ea0c5dd32a263930312c6b7e560dca830",
+      "source": {
+        "name": "Reviewed Final Prospectus objects of issue",
+        "url": "https://nsearchives.nseindia.com/corporate/FP_INE0U3I01011_30DEC2024.pdf",
+        "type": "PROSPECTUS",
+        "title": "Unimech Aerospace and Manufacturing Limited Final Prospectus",
+        "filedDate": "2024-12-30"
+      },
+      "evidence": {
+        "sha256": "b10afca3e64e8731dd4c4660a99ec720c8f0ec4fa4eb0b524ab441717977cfd3",
+        "sourceTextSha256": "fb066e8697a7721cf6019a5debc1977254ac9d7b773d6075bffa900a3ff282fd",
+        "basedOnCommit": "cc30f3701996232aa0eecd1b8c4adbf710c84735",
+        "sourceAmountsCr": {
+          "companyCapex": 36.366,
+          "companyWorkingCapital": 25.285,
+          "subsidiaryCapex": 43.891,
+          "subsidiaryWorkingCapital": 44.715,
+          "subsidiaryBorrowingRepayment": 40.0,
+          "generalCorporatePurposes": 40.654,
+          "netProceeds": 230.911
+        },
+        "sourcePhysicalPagesInspected": [
+          19
+        ]
+      },
+      "findings": [
+        "A standalone full-width parent row Investment in our Material Subsidiary for: is appended to the preceding own-company working-capital purpose. The subsequent three subsidiary child allocations omit this required ownership scope."
+      ],
+      "reason": "Withheld use-of-proceeds allocations that attached the subsidiary parent label to a company allocation and omitted that scope from the three subsidiary allocations.",
+      "reviewedAt": "2026-09-17T18:54:04+00:00",
+      "scope": "value"
+    },
+    {
+      "identity": {
+        "id": "teamtech",
+        "company": "Teamtech Formwork Solutions Limited",
+        "symbol": "TEAMTECH",
+        "openDate": "2026-05-19"
+      },
+      "beforeHash": "97887aea6eecf6eca3dc8df987d173a562c6713d855c5e61dbb8b6f2178fd437",
+      "source": {
+        "name": "Reviewed Final Prospectus objects of issue",
+        "url": "https://nsearchives.nseindia.com/emerge/corporates/content/TeamtechFormworkSolutionsLimited_PROSP.pdf",
+        "type": "PROSPECTUS",
+        "title": "Teamtech Formwork Solutions Limited Final Prospectus",
+        "filedDate": "2026-05-22"
+      },
+      "evidence": {
+        "sha256": "985909fbad119ffa02604f6fbb2895387a98d817a1fa8b486a7806ac18b537e8",
+        "sourceTextSha256": "7d89661142c20549eb85ac9361cb60d1acd21423cd7d41a5ccaf93488906229e",
+        "basedOnCommit": "cc30f3701996232aa0eecd1b8c4adbf710c84735",
+        "sourceAmountsCr": {
+          "grossIssueProceeds": 50.148,
+          "issueExpenses": 4.6621,
+          "netIssueProceeds": 45.4859
+        },
+        "completeSourceAllocations": [
+          {
+            "purpose": "Funding of Capital Expenditure towards purchase of Plant and Machineries for new manufacturing unit",
+            "amountCr": 11.9235
+          },
+          {
+            "purpose": "Repayment/prepayment of all or certain of our borrowing availed by your company.",
+            "amountCr": 15.5
+          },
+          {
+            "purpose": "To meet the working capital requirements",
+            "amountCr": 13.7688
+          },
+          {
+            "purpose": "General Corporate Purpose*",
+            "amountCr": 4.2936
+          }
+        ],
+        "sourcePhysicalPagesInspected": [
+          87,
+          88,
+          89,
+          90
+        ]
+      },
+      "findings": [
+        "The CI candidate contains a project-cost subtable within the first capital-expenditure object, rather than the complete allocation of net issue proceeds. Land, building and part of machinery costs are not established as IPO-funded allocations."
+      ],
+      "reason": "Withheld a project-cost breakdown that was incorrectly presented as the complete allocation of net issue proceeds.",
+      "reviewedAt": "2026-09-17T18:54:04+00:00",
+      "scope": "value"
+    },
+    {
+      "identity": {
+        "id": "blackbuck",
+        "company": "Zinka Logistics Solutions Limited",
+        "symbol": "BLACKBUCK",
+        "openDate": "2024-11-13"
+      },
+      "beforeHash": "346cd523f1a661fd4ca905ff98c7d06f1885600d0bca6a1de6bfe4d76c5df00f",
+      "source": {
+        "name": "Reviewed Final Prospectus objects of issue",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2024/1732249559904.pdf",
+        "type": "PROSPECTUS",
+        "title": "Zinka Logistics Solutions Limited Final Prospectus",
+        "filedDate": "2024-11-18"
+      },
+      "evidence": {
+        "sha256": "0a6837d67b0d5b91c5ca9d9f6527c155fc28f9cad4e8654bba803b60c438007b",
+        "sourceTextSha256": "d9de92e02ef9cfa0b77b945b1b45102f90c98baa13e632ebfc23848cb6bb8f13",
+        "basedOnCommit": "cc30f3701996232aa0eecd1b8c4adbf710c84735",
+        "sourceAmountsCr": {
+          "grossFreshIssue": 550.0,
+          "issuerOfferExpenses": 30.281,
+          "netProceeds": 519.719,
+          "quotedAllocationTotal": 550.0,
+          "quotedGeneralCorporatePurposes": 135.0
+        },
+        "sourceFootnotes": "The allocation total is subject to finalisation of Basis of Allotment; PDF125 repeats a550cr deployment total and caps GCP at25% of gross. Neither footnote reconciles the30.281cr expense difference or specifies adjusted allocations.",
+        "sourcePhysicalPagesInspected": [
+          124,
+          125
+        ]
+      },
+      "findings": [
+        "The same physical PDF124 first quotes gross fresh proceeds550cr less expenses30.281cr equals net519.719cr, then labels a550cr allocation table as utilization of net proceeds. CI copies the lower table faithfully but cannot establish an unambiguous net allocation from this contradictory source."
+      ],
+      "reason": "Withheld use-of-proceeds allocations because their quoted total conflicts with the same Final Prospectus's explicitly disclosed net proceeds.",
+      "reviewedAt": "2026-09-17T18:54:04+00:00",
+      "scope": "document"
+    },
+    {
+      "identity": {
+        "id": "mbel",
+        "company": "M&B Engineering Limited",
+        "symbol": "MBEL",
+        "openDate": "2025-07-30"
+      },
+      "beforeHash": "268075304103ee73a6aed64095aae5cf5cd3430d1f7883754517d7b7f810763e",
+      "source": {
+        "name": "Reviewed Final Prospectus objects of issue",
+        "url": "https://nsearchives.nseindia.com/corporate/FP_INE08N601015_04AUG2025.pdf",
+        "type": "PROSPECTUS",
+        "title": "M&B Engineering Limited Final Prospectus",
+        "filedDate": "2025-08-04"
+      },
+      "evidence": {
+        "sha256": "e20a311a4d4473a5ee93a683023f831e009a6910524a9044f48d367acf513219",
+        "sourceTextSha256": "b66b453634682622d5e08006c992da3403e45336f3dcaed1af1c518ab51e9688",
+        "basedOnCommit": "cc30f3701996232aa0eecd1b8c4adbf710c84735",
+        "sourceAmountsCr": {
+          "grossFreshIssue": 275.0,
+          "issuerOfferExpenses": 15.68,
+          "netProceeds": 259.32,
+          "quotedAllocationTotal": 275.0,
+          "quotedGeneralCorporatePurposes": 80.471
+        },
+        "sourceFootnote": "The amount utilised for general corporate purposes shall not exceed 25% of the Gross Proceeds of the Fresh Issue.",
+        "footnoteContradiction": "The source GCP allocation of 80.471 crore exceeds the source-stated 68.75 crore cap. The footnote does not identify any portion as offer expenses or specify an adjusted GCP allocation.",
+        "sourcePhysicalPagesInspected": [
+          24,
+          119,
+          120,
+          131,
+          132,
+          133
+        ]
+      },
+      "findings": [
+        "The retained summary table is transcribed faithfully, but the same final prospectus contradicts its stated net proceeds. The allocation sum equals gross fresh proceeds and exceeds the explicitly quoted net proceeds by the issuer offer-expense amount."
+      ],
+      "reason": "Withheld use-of-proceeds allocations because their quoted total conflicts with the same Final Prospectus's explicitly disclosed net proceeds; no adjusted general corporate purposes amount is inferred.",
+      "reviewedAt": "2026-09-17T18:54:04+00:00",
+      "scope": "document"
+    },
+    {
+      "identity": {
+        "id": "shriahimsa",
+        "company": "Shri Ahimsa Naturals Limited",
+        "symbol": "SHRIAHIMSA",
+        "openDate": "2025-03-25"
+      },
+      "beforeHash": "7d01016b6d3a89fadee460d73a97c5394922a0c062b3267b83ac2b01d877e383",
+      "source": {
+        "name": "Reviewed Final Prospectus objects of issue",
+        "url": "https://nsearchives.nseindia.com/emerge/corporates/content/ShriAhimsaNaturalsLimited_PROSP.pdf",
+        "type": "PROSPECTUS",
+        "title": "Shri Ahimsa Naturals Limited Final Prospectus",
+        "filedDate": "2025-03-28"
+      },
+      "evidence": {
+        "sha256": "eb9fd3588990048a03f5c8602406a45020bebe158f6aa566fd4c028d746177b0",
+        "sourceTextSha256": "914e7f089e23f8e767fdd8a21ac6c794826e5d8713c668d8497e58c594983bc6",
+        "basedOnCommit": "cc30f3701996232aa0eecd1b8c4adbf710c84735",
+        "sourcePhysicalPagesInspected": [
+          22,
+          102,
+          103
+        ],
+        "sourceAmountsCr": {
+          "grossIssueProceeds": 50.0228,
+          "issueExpenses": 7.3313,
+          "netIssueProceeds": 42.6915,
+          "quotedAllocationTotal": 39.2956,
+          "subsidiaryInvestment": 35.0,
+          "generalCorporatePurposes": 4.2956
+        }
+      },
+      "findings": [
+        "The repeated summary, allocation and deployment tables total 39.2956 crore, while the same Final Prospectus explicitly states net proceeds of 42.6915 crore after 7.3313 crore of issue expenses. The source does not reconcile the 3.3959 crore difference."
+      ],
+      "reason": "Withheld use-of-proceeds allocations because the repeated allocation total conflicts with the same Final Prospectus's explicitly disclosed net proceeds; no missing allocation or adjusted amount is inferred.",
+      "reviewedAt": "2026-09-17T19:10:06+00:00",
+      "scope": "document"
+    },
+    {
+      "identity": {
+        "id": "genxai",
+        "company": "GenXAI Analytics Limited",
+        "symbol": "GENXAI",
+        "openDate": "2026-06-05"
+      },
+      "beforeHash": "529f228e6c49f8a3c5197b55f8a112b90bfbad21a7481729fc0ed05ac6e8f76d",
+      "source": {
+        "name": "Reviewed Final Prospectus objects of issue",
+        "url": "https://nsearchives.nseindia.com/emerge/corporates/content/GenXAIAnalyticsLimited_PROSP.pdf",
+        "type": "PROSPECTUS",
+        "title": "GenXAI Analytics Limited Final Prospectus",
+        "filedDate": "2026-06-10"
+      },
+      "evidence": {
+        "sha256": "c810471e52810eaf6ffb7f023b359b82702c486694af19f086dac8b89c0163b0",
+        "sourceTextSha256": "250d92e5111e6d41fa3b4020a27d53317d5a87a06e504a1ca4945777f9b548f9",
+        "basedOnCommit": "cc30f3701996232aa0eecd1b8c4adbf710c84735",
+        "sourcePhysicalPagesInspected": [
+          100,
+          101,
+          117
+        ],
+        "sourceAmountsCr": {
+          "grossIssueProceeds": 54.6648,
+          "issueExpenses": 8.451,
+          "tableNetIssueProceeds": 46.2138,
+          "narrativeNetProceeds": 8.451,
+          "quotedAllocationTotal": 46.2138
+        }
+      },
+      "findings": [
+        "Physical PDF100 calls the proceeds after issue expenses 845.10 lakh (Net proceeds), while its explicit table labels 845.10 lakh as expenses and 4,621.38 lakh as Net Proceeds. The deployment and expense tables corroborate the latter classification but do not explicitly supersede the contradictory prose definition."
+      ],
+      "reason": "Withheld use-of-proceeds allocations pending authoritative reconciliation of contradictory narrative and table definitions of net proceeds in the same Final Prospectus.",
+      "scope": "document",
+      "reviewedAt": "2026-09-17T19:17:00+00:00"
+    },
+    {
+      "identity": {
+        "id": "kaytex",
+        "company": "Kaytex Fabrics Limited",
+        "symbol": "KAYTEX",
+        "openDate": "2025-07-29"
+      },
+      "beforeHash": "318338bcc5c23268369840f44e276f77fb5f37542f4b35820a37fbb0a43bf511",
+      "source": {
+        "name": "Reviewed Final Prospectus objects of issue",
+        "url": "https://nsearchives.nseindia.com/emerge/corporates/content/KaytexFabricsLimited_PROSP.pdf",
+        "type": "PROSPECTUS",
+        "title": "Kaytex Fabrics Limited Final Prospectus",
+        "filedDate": "2025-08-01"
+      },
+      "evidence": {
+        "sha256": "a0a9b14c498bdcb7a8b2f8e4c8ebd32406b145f6e87f85a1da1675fab056e934",
+        "basedOnCommit": "4707df1e82337e3a7b8bac0838bbaa30c3d200be",
+        "sourceReviewRunId": 35264712051,
+        "sourceArtifactIposSha256": "8647648fe07fcb03dbf074d62eb3f8304d220047365bc4df98ad12d63ad149e8",
+        "sourcePhysicalPagesInspected": [
+          115
+        ],
+        "sourcePrintedPages": [
+          110
+        ],
+        "retainedAllocationPages": [
+          36
+        ],
+        "sourceAmountsCr": {
+          "grossFreshIssue": 57.5856,
+          "issuerOfferExpenses": 8.2391,
+          "tableNetProceeds": 49.3465,
+          "narrativeNetProceeds": 47.6186,
+          "quotedAllocationTotal": 49.3465,
+          "unreconciledDifference": 1.7279
+        },
+        "sourceScope": "Physical PDF115 excludes OFS proceeds from the issuer proceeds. Its narrative and immediately following table both concern net proceeds of the Fresh Issue. The estimated-expenses footnote does not explicitly supersede the narrative amount."
+      },
+      "findings": [
+        "Physical PDF115 (printed110) states net Fresh Issue proceeds of 47.6186 crore in prose, while the immediately following same-scope table and retained allocations use 49.3465 crore. The 1.7279 crore difference is not reconciled or explicitly superseded in the inspected source."
+      ],
+      "reason": "Withheld use-of-proceeds allocations pending authoritative reconciliation of contradictory narrative and table definitions of issuer net proceeds in the same Final Prospectus.",
+      "scope": "document",
+      "reviewedAt": "2026-09-17T20:16:35+00:00"
+    },
+    {
+      "identity": {
+        "id": "speb",
+        "company": "Speb Adhesives Limited",
+        "symbol": "SPEB",
+        "openDate": "2025-12-01"
+      },
+      "beforeHash": "615a4c142e9ec75daa93f41340b3044d19d49d235c9c08823e0d2534bde216fb",
+      "source": {
+        "name": "Reviewed Final Prospectus objects of issue",
+        "url": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+        "type": "PROSPECTUS",
+        "title": "Speb Adhesives Limited Final Prospectus",
+        "filedDate": "2025-12-03"
+      },
+      "evidence": {
+        "sha256": "048405928a44bebad40c08e16256534094b61b1a77890af9072b6cb778b818a2",
+        "basedOnCommit": "4707df1e82337e3a7b8bac0838bbaa30c3d200be",
+        "sourceReviewRunId": 35264712051,
+        "sourceArtifactIposSha256": "8647648fe07fcb03dbf074d62eb3f8304d220047365bc4df98ad12d63ad149e8",
+        "sourcePhysicalPagesInspected": [
+          119,
+          120
+        ],
+        "sourcePrintedPages": [
+          115,
+          116
+        ],
+        "retainedAllocationPages": [
+          30
+        ],
+        "sourceAmountsCr": {
+          "totalFacilityProjectCost": 26.0542,
+          "quotedFacilityFundingFromNetProceeds": 20.4357,
+          "boardResolutionFacilityFundingFromNetProceeds": 20.4189,
+          "unreconciledDifference": 0.0168,
+          "generalCorporatePurposes": 4.0556,
+          "quotedAllocationTotal": 24.4913
+        },
+        "sourceScope": "Physical PDF119 states 2,043.57 lakh from Net Proceeds for the proposed facility, then cites the November 19, 2025 Board resolution for 2,041.89 lakh of capital expenditure from Net Proceeds for the same facility. PDF120 repeats 2,043.57 lakh. The internal-funding footnote does not reconcile the 1.68 lakh difference.",
+        "reviewLimitation": "A later revision before the December 3, 2025 Final Prospectus could explain the dated Board amount, but the inspected passage does not explicitly supersede it. The retained allocation correctly uses IPO funding rather than total project cost; this hold requires source resolution and does not assert a wrong project-cost column."
+      },
+      "findings": [
+        "Physical PDF119 (printed115) gives 20.4357 crore of net-proceeds funding for the proposed facility, but the same page cites a November 19, 2025 Board resolution for 20.4189 crore for that use. PDF120 repeats 20.4357 crore without explicitly superseding the dated Board amount; the 0.0168 crore difference remains unresolved."
+      ],
+      "reason": "Withheld use-of-proceeds allocations pending authoritative reconciliation or explicit supersession of the dated Board funding amount in the same Final Prospectus.",
+      "scope": "document",
+      "reviewedAt": "2026-09-17T20:16:35+00:00"
     }
   ]
 }

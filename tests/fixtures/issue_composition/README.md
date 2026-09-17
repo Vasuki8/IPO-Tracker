@@ -14,6 +14,7 @@ Source PDFs and rendered pages were inspected; no PDF binaries are committed.
 | `orkla-final-offer.txt` | [Orkla, dated 31 October 2025](https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf) | 3; tables confirmed on 21 (printed 16) | Entirely OFS: 22,843,004 shares, quoted ₹1,667.33 crore. The ₹69 employee discount prevents uniform ₹730 valuation. |
 | `vmm-final-offer.txt` | [Vishal Mega Mart, dated 13 December 2024](https://nsearchives.nseindia.com/corporate/FP_INE01EA01019_16DEC2024.pdf) | 3 | Entirely OFS: 1,025,641,025 shares, quoted ₹8,000 crore at ₹78. The single seller owns the entire OFS quantity. |
 | `sbifunds-final-offer.txt` | [SBI Funds Management, dated 16 July 2026](https://www.sebi.gov.in/sebi_data/attachdocs/jul-2026/1784286127716.pdf) | 3; table confirmed on 1 | Entirely OFS: 170,956,631 shares, quoted ₹9,795.321 crore. The first seller's 99,501,649 shares are not the entire OFS. Employee discount: ₹54. |
+| `emmvee-final-offer.txt` | [Emmvee, dated 14 November 2025](https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf) | 3 and 11 (printed 6); table confirmed on 21 (printed 16) | Fresh: 98,795,483 shares/₹2,143.862 crore; OFS: 34,845,069 shares/₹756.138 crore; total ₹2,900 crore at ₹217. The mixed-offer cover lists two owned OFS quantities: 17,422,535 and 17,422,534 shares, each quoted at ₹378.069 crore. |
 
 Manipal's price-band definition is reflowed from its page-11 table, preserving
 the original words and values. This ensures the generic `Price Of` matcher
@@ -29,3 +30,13 @@ SBI Funds Management's is `3df0687af1bfe755eb08360ee47bf8334da9cafef23b96beb4b40
 These two offers place the whole-offer alias before `THROUGH AN OFFER FOR SALE`.
 The share counts attached to named sellers corroborate the initial total; their
 prices and employee reservations do not supply canonical amounts.
+
+Emmvee's PDF SHA-256 is `85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda`.
+The fixture preserves exact lines from physical PDF3 and PDF11 of the complete
+511-page production extraction, whose text SHA-256 is
+`294f180e7910ddc09fe7729a3d30c1ed597673bc9bce55e166d09ef1fb51eacf`.
+The `EQUITY SHARES^` carets and both sellers' names and quoted amounts are
+unchanged. PDF11 independently states the aggregate OFS; it must agree with
+the complete PDF3 seller list. PDF21 corroborates the composition and the
+separate ₹1,621.294 crore and ₹438.711 crore objects allocations; it is not an
+additional composition parser window or fixture layout.

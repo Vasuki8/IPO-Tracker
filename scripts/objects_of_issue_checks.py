@@ -105,7 +105,7 @@ def objects_quarantined(record: dict[str, Any]) -> bool:
 
 _TABLE_HEADING = re.compile(
     r"(?:(?:[A-Z]|\d+)[.)]\s*)?(?:OBJECTS?\s+OF\s+(?:THE\s+)?(?:ISSUE|OFFER)|"
-    r"UTILI[ZS]ATION\s+OF\s+(?:THE\s+)?(?:(?:NET|GROSS|ISSUE|OFFER)\s+)?(?:PROCEEDS|FUNDS))\s*[:.]?",
+    r"UTILI[ZS]ATION\s+OF\s+(?:THE\s+)?(?:(?:NET|GROSS)\s+)?(?:(?:ISSUE|OFFER)\s+)?(?:PROCEEDS|FUNDS))\s*[:.]?",
     re.I,
 )
 _OBSERVED_UNIT = re.compile(
@@ -140,10 +140,12 @@ def objects_header_fragment(raw: str) -> bool:
 
 def objects_purpose_key(purpose: str) -> str:
     """Compare table scopes without changing the observed canonical wording."""
-    value = re.sub(r"(?:\s*(?:\(\d+\)|\*+|[†‡]))+$", "", purpose)
+    value = re.sub(r"(?:\s*(?:\(\d+\)|\*+|[†‡#]))+$", "", purpose)
     value = _normalized_text(value).rstrip(" .;:").casefold()
     if re.fullmatch(r"working capital(?: expenditure)? requirements?", value):
         return "working capital requirement"
+    if re.fullmatch(r"general corporate purposes?", value):
+        return "general corporate purposes"
     return value
 
 
@@ -175,6 +177,51 @@ def _source_amount(token: str, unit: str) -> tuple[bool, float | None]:
     return (True, amount) if math.isfinite(amount) else (False, None)
 
 
+def _objects_unit_span_problems(evidence: dict[str, Any]) -> list[str]:
+    """Check a monetary-unit label split across physical table-header lines."""
+    if "unitSourceLines" not in evidence and "unitSpans" not in evidence:
+        return []
+    sources, spans = evidence.get("unitSourceLines"), evidence.get("unitSpans")
+    headers = evidence.get("tableHeaders")
+    if (not isinstance(sources, list) or not sources
+            or not isinstance(spans, list) or not spans
+            or not isinstance(headers, list)
+            or any(not isinstance(row, dict) or not _positive_page(row.get("page"))
+                   or not isinstance(row.get("text"), str) or not row["text"].strip()
+                   or "\n" in row["text"] or "\r" in row["text"] for row in sources)
+            or any(not isinstance(row, dict) or not _positive_page(row.get("page"))
+                   or not isinstance(row.get("text"), str) for row in headers)):
+        return ["Wrapped objects unit needs physical source lines and spans from the table headers"]
+    source_keys = [(row["page"], row["text"]) for row in sources]
+    header_keys = [(row["page"], row["text"]) for row in headers]
+    if (len(set(source_keys)) != len(source_keys)
+            or any(key not in header_keys for key in source_keys)
+            or [row["page"] for row in sources] != sorted(row["page"] for row in sources)
+            or evidence.get("unitPage") != sources[0]["page"]):
+        return ["Wrapped objects unit source lines must match distinct ordered table headers and the unit page"]
+    header_positions = [header_keys.index(key) for key in source_keys]
+    if header_positions != sorted(header_positions):
+        return ["Wrapped objects unit source lines must follow physical table-header order"]
+
+    parts = []
+    previous_line, previous_end = -1, -1
+    for span in spans:
+        if not isinstance(span, dict):
+            return ["Wrapped objects unit spans need valid physical source bounds"]
+        line, start, end = span.get("line"), span.get("start"), span.get("end")
+        if (not all(isinstance(part, int) and not isinstance(part, bool) for part in (line, start, end))
+                or not 0 <= line < len(sources)
+                or not 0 <= start < end <= len(sources[line]["text"])):
+            return ["Wrapped objects unit spans need valid physical source bounds"]
+        if line < previous_line or (line == previous_line and start < previous_end):
+            return ["Wrapped objects unit spans must follow source order without duplication or overlap"]
+        parts.append(sources[line]["text"][start:end])
+        previous_line, previous_end = line, end
+    if _normalized_text(" ".join(parts)) != evidence.get("unitText"):
+        return ["Wrapped objects unit text must equal its physical source spans"]
+    return []
+
+
 def objects_evidence_problems(value: Any, evidence: Any) -> list[str]:
     """Check that each allocation equals a captured source-table row.
 
@@ -202,6 +249,7 @@ def objects_evidence_problems(value: Any, evidence: Any) -> list[str]:
     if (unit not in ("crore", "million", "lakh") or not isinstance(unit_text, str)
             or _source_unit(unit_text) != unit or not _positive_page(evidence.get("unitPage"))):
         problems.append("Objects table needs an explicit matching monetary unit and PDF page")
+    problems.extend(_objects_unit_span_problems(evidence))
 
     headers = evidence.get("tableHeaders")
     if (not isinstance(headers, list) or not headers
@@ -307,6 +355,20 @@ def objects_evidence_problems(value: Any, evidence: Any) -> list[str]:
         token = source_row.get("amountToken")
         if not isinstance(token, str) or amount_text != token or token != token.strip():
             problems.append(label + " amount token must equal its physical source span")
+        if "amountAnnotationSpans" in source_row:
+            annotations = source_row["amountAnnotationSpans"]
+            amount_span = source_row.get("amountSpan")
+            if not isinstance(annotations, list) or not 1 <= len(annotations) <= 3:
+                problems.append(label + " amount annotations need bounded physical source spans")
+            else:
+                for annotation in annotations:
+                    fragment = read_span(annotation)
+                    if (fragment is None or not re.fullmatch(r"(?:\s*(?:\(+\d+\)|[*†‡#^]))+", fragment)
+                            or amount_text is None
+                            or not isinstance(amount_span, dict)
+                            or annotation.get("line") != amount_span.get("line")
+                            or annotation.get("start", -1) < amount_span.get("end", 0)):
+                        problems.append(label + " amount annotation must be a trailing observed footnote")
         valid_amount, expected = _source_amount(token, unit) if isinstance(token, str) and isinstance(unit, str) else (False, None)
         normalized = source_row.get("normalizedValue")
         if (not valid_amount or "normalizedValue" not in source_row
@@ -343,9 +405,88 @@ def objects_evidence_problems(value: Any, evidence: Any) -> list[str]:
     return _objects_scope_problems(value, evidence)
 
 
+def _objects_proceeds_reconciliation_problems(
+        value: list[dict[str, Any]], evidence: dict[str, Any]) -> list[str]:
+    """Bind allocation totals to separately disclosed issuer net proceeds.
+
+    A reconciliation is a source table, not another allocation list. Its
+    explicit Fresh Issue or Issue scope prevents an unrelated expense table
+    from being treated as funds available to the issuer.
+    """
+    if "proceedsReconciliation" not in evidence:
+        return []
+    tables = evidence["proceedsReconciliation"]
+    if not isinstance(tables, list) or not 1 <= len(tables) <= 3:
+        return ["Objects proceeds reconciliation must contain one to three standalone source tables"]
+
+    problems = []
+    allocations = [row for row in value if not is_issue_expense_purpose(row["purpose"])]
+    if not allocations or any(row.get("amountCr") is None for row in value):
+        problems.append("Objects proceeds reconciliation requires fully disclosed non-expense allocations")
+        allocation_total = None
+    else:
+        allocation_total = sum((Decimal(str(row["amountCr"])) for row in allocations), Decimal("0"))
+
+    expected_labels = (
+        r"(?:gross\s+proceeds(?:\s+(?:of|from)\s+(?:the\s+)?(?:fresh\s+)?(?:issue|offer))?|gross\s+(?:issue|offer)\s+proceeds)",
+        r"(?:\(less\)|less)\s*:?\s*(?:(?:public\s+)?(?:issue|offer)(?:[\s-]+related)?\s+)?expenses?"
+        r"(?:\s+(?:in\s+relation\s+to|of|for)\s+(?:the\s+)?(?:fresh\s+)?(?:issue|offer))?",
+        r"net\s+(?:(?:issue|offer)\s+)?proceeds(?:\s+(?:of|from)\s+(?:the\s+)?(?:fresh\s+)?(?:issue|offer))?",
+    )
+    prior_amounts = None
+    for index, table in enumerate(tables, 1):
+        label = f"Objects proceeds reconciliation {index}"
+        if (not isinstance(table, dict)
+                or any(key in table for key in ("proceedsReconciliation", "corroboratingSourceTables", "tableTotal"))
+                or not isinstance(table.get("rows"), list) or len(table["rows"]) != 3):
+            problems.append(label + " needs exactly three rows in a standalone source table")
+            continue
+        source_rows = table["rows"]
+        if objects_evidence_problems(source_rows, table):
+            problems.append(label + " lacks matching standalone source evidence")
+            continue
+        # Some PDFs repeat an opening parenthesis around a numeric footnote.
+        # Normalize only that bounded suffix for role comparison; raw purposes
+        # and their physical spans remain unchanged.
+        labels = [re.sub(r"(?:\s*(?:\(+\d+\)|\*+|[†‡#]))+$", "", row["purpose"]).strip().casefold()
+                  for row in source_rows]
+        if any(not re.fullmatch(pattern, normalized, re.I)
+               for pattern, normalized in zip(expected_labels, labels)):
+            problems.append(label + " needs explicit gross Fresh Issue, issuer expenses and Net Proceeds rows in order")
+            continue
+        ambiguous_scope = labels[0] == "gross proceeds" or bool(re.search(r"\boffer\b", labels[0]))
+        if ambiguous_scope:
+            context = table.get("issuerProceedsContext")
+            first_page = table["sourceRows"][0]["page"]
+            if (not isinstance(context, list) or not 1 <= len(context) <= 3
+                    or any(not isinstance(row, dict) or not _positive_page(row.get("page"))
+                           or not table["page"] <= row["page"] <= first_page
+                           or not isinstance(row.get("text"), str) or "\n" in row["text"]
+                           or not re.fullmatch(
+                               r"(?:The\s+)?Fresh\s+Issue|The\s+details\s+of\s+the\s+(?:net\s+)?proceeds\s+of\s+the\s+Fresh\s+Issue\b.{0,120}(?:below|follows)[:.]?",
+                               _normalized_text(row["text"]), re.I) for row in context)):
+                problems.append(label + " needs observed Fresh Issue context for bare or Offer proceeds labels")
+        if any(row.get("amountCr") is None for row in source_rows):
+            problems.append(label + " requires disclosed amounts for gross proceeds, expenses and net proceeds")
+            continue
+        amounts = tuple(Decimal(str(row["amountCr"])) for row in source_rows)
+        gross, expenses, net = amounts
+        tolerance = Decimal("0.000003")
+        if abs(gross - expenses - net) > tolerance:
+            problems.append(label + " does not reconcile gross Fresh Issue less issuer expenses to Net Proceeds")
+        if prior_amounts is not None and any(abs(before - after) > tolerance
+                                             for before, after in zip(prior_amounts, amounts)):
+            problems.append("Objects proceeds reconciliation tables disagree on gross proceeds, expenses or net proceeds")
+        prior_amounts = amounts
+        allocation_tolerance = Decimal("0.000001") * max(1, len(allocations))
+        if allocation_total is not None and abs(allocation_total - net) > allocation_tolerance:
+            problems.append("Objects allocations excluding explicit issue expenses do not reconcile to disclosed Net Proceeds")
+    return problems
+
+
 def _objects_scope_problems(value: list[dict[str, Any]], evidence: dict[str, Any]) -> list[str]:
     """Verify disclosed totals and narrowly reconciled net/gross summaries."""
-    problems = []
+    problems = _objects_proceeds_reconciliation_problems(value, evidence)
     total = evidence.get("tableTotal")
     scope = evidence.get("tableScope", "unspecified")
     if scope not in ("net", "gross", "unspecified"):
@@ -355,7 +496,7 @@ def _objects_scope_problems(value: list[dict[str, Any]], evidence: dict[str, Any
             return ["Objects table total needs its physical source row"]
         total_value = [{"purpose": total.get("purpose"), "amountCr": total.get("normalizedValue")}]
         standalone = {key: val for key, val in evidence.items()
-                      if key not in {"tableTotal", "tableScope", "corroboratingSourceTables"}}
+                      if key not in {"tableTotal", "tableScope", "corroboratingSourceTables", "proceedsReconciliation"}}
         standalone.update(rows=total_value, sourceRows=[total])
         if objects_evidence_problems(total_value, standalone):
             problems.append("Objects table total must match its physical source cells")

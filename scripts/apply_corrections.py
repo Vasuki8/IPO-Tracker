@@ -93,6 +93,54 @@ def fill_reviewed_fields(rows, entries):
     return applied, conflicts
 
 
+def quarantine_reviewed_objects(rows, entries):
+    """Withdraw only the exact allocation and document that a review rejected.
+
+    Source-table syntax alone cannot prove a table's purpose or reconcile a
+    prospectus contradiction. Preserve the reviewed source and previous proof
+    using the normal quarantine path, without replacing unrelated evidence.
+    """
+    from enforce_final_prospectus_policy import _quarantine_invalid_objects
+
+    applied, conflicts = 0, []
+    for entry in entries:
+        identity = entry.get('identity') or {}
+        source = entry.get('source') or {}
+        evidence = entry.get('evidence') or {}
+        if (not all(identity.get(key) for key in ('id', 'company', 'symbol', 'openDate'))
+                or not _final_prospectus_source(entry)
+                or urlparse(source.get('url', '')).scheme != 'https'
+                or not evidence.get('sha256') or not entry.get('beforeHash')
+                or entry.get('scope', 'value') not in {'value', 'document'}
+                or not entry.get('findings') or not entry.get('reason') or not entry.get('reviewedAt')):
+            raise ValueError('An objects review requires exact identity, value hash and Final Prospectus evidence')
+        row = rows.get(identity['id'])
+        if row is None or any(row.get(key) != value for key, value in identity.items()):
+            conflicts.append({'id': identity['id'], 'field': 'objectsOfIssue',
+                              'reason': 'Reviewed issuer or offer identity changed'})
+            continue
+        value = row.get('objectsOfIssue')
+        if value in (None, []):
+            continue
+        # A successful later source repair is expected to differ. It must not
+        # be erased, nor treated as a recurring stale-review conflict.
+        if fingerprint(value) != entry['beforeHash']:
+            continue
+        proof = (row.get('staticFieldProvenance') or {}).get('objectsOfIssue') or {}
+        if (not isinstance(proof, dict) or proof.get('value') != value or proof.get('sourceUrl') != source['url']
+                or proof.get('sha256') != evidence['sha256']):
+            conflicts.append({'id': identity['id'], 'field': 'objectsOfIssue',
+                              'reason': 'Reviewed objects source changed; preserving the current value and evidence'})
+            continue
+        _quarantine_invalid_objects(row, entry['reviewedAt'], reviewed_source={
+            'reason': entry['reason'], 'findings': copy.deepcopy(entry['findings']),
+            'source': copy.deepcopy(source), 'evidence': copy.deepcopy(evidence),
+            'scope': entry.get('scope', 'value'),
+        })
+        applied += 1
+    return applied, conflicts
+
+
 def apply(payload, registry):
     repair(payload)
     rows = {row['id']: row for row in payload['ipos']}
@@ -134,6 +182,9 @@ def apply(payload, registry):
     filled, fill_conflicts = fill_reviewed_fields(rows, registry.get('fillMissing', []))
     applied += filled
     conflicts.extend(fill_conflicts)
+    quarantined, review_conflicts = quarantine_reviewed_objects(rows, registry.get('reviewedObjects', []))
+    applied += quarantined
+    conflicts.extend(review_conflicts)
     payload.setdefault('meta', {})['schemaVersion'] = max(5, payload.get('meta', {}).get('schemaVersion', 0))
     payload.setdefault('meta', {})['reviewedCorrectionStatus'] = {'registryRevision': registry.get('revision'), 'appliedFields': applied, 'conflicts': conflicts}
     payload['meta']['initialSourceRepair'] = registry.get('summary', {})
