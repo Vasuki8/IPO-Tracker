@@ -121,7 +121,8 @@ def main():
     cli.add_argument('--source-commit-file', type=Path)
     args = cli.parse_args()
     source_commit = args.source_commit_file.read_text().strip() if args.source_commit_file else None
-    if source_commit:
+    # A supplied but empty manifest is corrupt, not an opt-out from validation.
+    if args.source_commit_file is not None:
         verify_source_commit(source_commit)
     values = [json.loads(path.read_text()) for path in (args.base, args.proposed, args.current)]
     output, conflicts = merge_payload(*values)
