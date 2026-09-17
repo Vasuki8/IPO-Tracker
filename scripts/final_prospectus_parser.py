@@ -14,10 +14,10 @@ from typing import Any
 
 import legacy_offer_parser as legacy
 import offer_parser as base
-from issue_composition_checks import composition_problems
+from issue_composition_checks import amounts_match, composition_problems
 from objects_of_issue_checks import objects_problems
 
-PARSER_VERSION = base.PARSER_VERSION + 7
+PARSER_VERSION = base.PARSER_VERSION + 8
 extract_pdf_text = base.extract_pdf_text
 valid_manager = base.valid_manager
 valid_registrar = base.valid_registrar
@@ -40,10 +40,10 @@ _PRICE_BAND_PATTERNS = (
     re.compile(
         r"\bPRICE\s+BAND\s+(?:OF\s+)?(?:A\s+)?MINIMUM\s+PRICE\s+OF\s*"
         r"(?:₹|RS\.?|INR)\s*([0-9][0-9,]*(?:\.\d+)?)\s*"
-        r"PER\s+(?:EQUITY\s+)?SHARES?\s*\(\s*(?:THE\s+)?FLOOR\s+PRICE\s*\)\s*"
+        r"PER\s+(?:EQUITY\s+)?SHARES?\s*\(\s*(?:I\.E\.,?\s*)?(?:THE\s+)?FLOOR\s+PRICE\s*\)\s*"
         r"AND\s+(?:THE\s+)?MAXIMUM\s+PRICE\s+OF\s*"
         r"(?:₹|RS\.?|INR)\s*([0-9][0-9,]*(?:\.\d+)?)\s*"
-        r"PER\s+(?:EQUITY\s+)?SHARES?\s*\(\s*(?:THE\s+)?CAP\s+PRICE\s*\)",
+        r"PER\s+(?:EQUITY\s+)?SHARES?\s*\(\s*(?:I\.E\.,?\s*)?(?:THE\s+)?CAP\s+PRICE\s*\)",
         re.I,
     ),
     re.compile(
@@ -136,6 +136,11 @@ _COMPOSITION_PART = re.compile(
     r"(?::|[-–—])?\s*(?:OF\s+)?" + _COMPOSITION_QUANTITY,
     re.I,
 )
+_COMPOSITION_EMPTY_PART = re.compile(
+    r"\b(?P<label>FRESH\s+ISSUE|OFFER\s+FOR\s+SALE)\s*"
+    r"(?::|[-–—])?\s*(?:IS\s+)?(?:NOT\s+APPLICABLE|NIL|NONE)\b",
+    re.I,
+)
 _COMPOSITION_INITIAL = re.compile(
     r"\bINITIAL\s+PUBLIC\s+(?:OFFER(?:ING)?|ISSUE)\s+(?:OF\s+)?"
     + _COMPOSITION_QUANTITY,
@@ -146,6 +151,21 @@ _COMPOSITION_MONEY = re.compile(
     r"(?:₹|RS\.?|INR)\s*(?P<amount>[0-9][0-9,]*(?:\.\d+)?)"
     + _COMPOSITION_FOOTNOTE
     + r"(?P<unit>CRORES?|CR\.?|MILLIONS?|LAKHS?|LACS?)\b",
+    re.I,
+)
+_COMPOSITION_SELLER_PREFIX = re.compile(
+    r"\s*(?:(?:BEARING\s+|OF\s+)?FACE\s+VALUE\s+(?:OF\s+)?"
+    r"(?:₹|RS\.?|INR)\s*[0-9][0-9,]*(?:\.\d+)?\s+EACH\s*,?\s*)?"
+    + r"(?:" + _COMPOSITION_MONEY.pattern + r")?"
+    + _COMPOSITION_FOOTNOTE + r"$",
+    re.I,
+)
+_COMPOSITION_WHOLE_OFS = re.compile(
+    _COMPOSITION_FOOTNOTE
+    + r"(?:THROUGH\s+AN\s+OFFER\s+FOR\s+SALE\s*\(\s*(?:THE\s+)?"
+    r"[\"“']OFFER[\"”']\s+OR\s+[\"“']OFFER\s+FOR\s+SALE[\"”']\s*\)"
+    r"|\(\s*(?:THE\s+)?[\"“']OFFER[\"”']\s*\)\s*,?\s*"
+    r"THROUGH\s+AN\s+(?P<seller_label>OFFER\s+FOR\s+SALE)\b)",
     re.I,
 )
 _COMPOSITION_BOUNDARY = re.compile(
@@ -577,6 +597,60 @@ def _composition_amount(
     return round(amount * factor, 6), start + money.end()
 
 
+def _whole_ofs_sellers_match(block: str, start: int, total_shares: int, total_amount: float) -> bool:
+    """Check seller disclosures without using them to value the whole offer."""
+    tail = block[start:]
+    leading = re.match(r"\s+OF\s+", tail, re.I)
+    if not leading:
+        return False
+    boundary = re.search(
+        r"\b(?:THE\s+(?:OFFER|ISSUE)\s+(?:INCLUDED|INCLUDES|CONSTITUTED|CONSTITUTES|LESS|AND)|"
+        r"RESERVATION|RESERVED|SUBSCRIPTION|ALLOCATION|ALLOTMENT|NET\s+(?:OFFER|ISSUE))\b", tail, re.I,
+    )
+    if boundary:
+        tail = tail[:boundary.start()]
+    quantities = list(re.finditer(_COMPOSITION_QUANTITY, tail, re.I))
+    if not quantities or quantities[0].start() != leading.end():
+        return False
+    total = 0
+    amounts = []
+    for index, quantity in enumerate(quantities):
+        if index:
+            separator = tail[quantities[index - 1].end():quantity.start()]
+            if not re.search(r"(?:,\s*(?:AND\s+)?|\bAND\s+)$", separator, re.I):
+                return False
+        end = quantities[index + 1].start() if index + 1 < len(quantities) else len(tail)
+        # Each quantity must be explicitly owned by a seller, not merely
+        # appear in an adjacent component or reservation clause.
+        row = tail[quantity.end():end]
+        seller = re.search(r"\bBY\s+[A-Z]", row, re.I)
+        prefix = _COMPOSITION_SELLER_PREFIX.fullmatch(row[:seller.start()]) if seller else None
+        if not prefix:
+            return False
+        shares = int(quantity.group("shares").replace(",", ""))
+        total += shares
+        if prefix.group("amount") is not None:
+            # This prefix is already bounded to its seller; a currency marker
+            # such as "Rs. " must not be mistaken for a sentence boundary.
+            amount = _number(prefix.group("amount"))
+            if amount is None:
+                return False
+            unit = prefix.group("unit").lower()
+            factor = 0.1 if unit.startswith("million") else 0.01 if unit.startswith(("lakh", "lac")) else 1.0
+            amount = round(amount * factor, 6)
+            if composition_problems({"ofsShares": shares, "ofsCr": amount}):
+                return False
+            if amount > total_amount and not amounts_match(amount, total_amount):
+                return False
+            amounts.append(amount)
+    known_amount = sum(amounts)
+    if known_amount > total_amount and not amounts_match(known_amount, total_amount):
+        return False
+    if len(amounts) == len(quantities) and not amounts_match(known_amount, total_amount):
+        return False
+    return total == total_shares
+
+
 def extract_final_issue_composition(
     text: str, price_band: dict[str, Any] | None = None
 ) -> tuple[dict[str, Any] | None, dict[str, Any]]:
@@ -599,6 +673,7 @@ def extract_final_issue_composition(
         evidence.setdefault(field, {"page": page, "row": row, "normalizedValue": value, "basis": basis})
 
     for page_number, block in _composition_blocks(text):
+        seller_label_start = None
         total = _COMPOSITION_INITIAL.search(block)
         if total:
             total_amount, end = _composition_amount(block, total.end())
@@ -618,6 +693,29 @@ def extract_final_issue_composition(
                     row = block[total.start():end + definition.end()]
                     observe("freshShares", candidate["totalShares"], page_number, row)
                     observe("freshIssueCr", total_amount, page_number, row)
+                # This definition attaches the whole Initial Public Offer to
+                # OFS. Its following quantities can belong to individual
+                # sellers, so keep the initial total rather than skipping the
+                # parenthesis in the ordinary component recognizer.
+                whole_ofs = _COMPOSITION_WHOLE_OFS.match(block[end:])
+                if whole_ofs:
+                    mixed_fresh = any(
+                        not _COMPOSITION_EMPTY_PART.match(block, mention.start())
+                        for mention in re.finditer(r"\bFRESH\s+ISSUE\b", block, re.I)
+                    )
+                    if mixed_fresh or not _whole_ofs_sellers_match(
+                        block, end + whole_ofs.end(), candidate["totalShares"], total_amount
+                    ):
+                        # The shorthand cannot resolve a separate fresh-issue
+                        # clause or an incomplete/conflicting seller list.
+                        ambiguous = True
+                    else:
+                        row = block[total.start():end + whole_ofs.end()]
+                        basis = "entire initial offer explicitly defined as offer for sale"
+                        observe("ofsShares", candidate["totalShares"], page_number, row, basis)
+                        observe("ofsCr", total_amount, page_number, row, basis)
+                        if whole_ofs.group("seller_label"):
+                            seller_label_start = end + whole_ofs.start("seller_label")
         else:
             for label in re.finditer(r"\bTOTAL\s+(?:ISSUE|OFFER)(?:\s+SIZE)?\b", block, re.I):
                 amount, end = _composition_amount(block, label.end())
@@ -625,19 +723,20 @@ def extract_final_issue_composition(
                     observe("totalIssueSizeCr", amount, page_number, block[label.start():end])
 
         for match in _COMPOSITION_PART.finditer(block):
-            prefix = "fresh" if match.group("label").upper().startswith("FRESH") else "ofs"
             shares = int(match.group("shares").replace(",", ""))
+            if match.start() == seller_label_start and shares != candidate.get("totalShares"):
+                # This exact label introduces the corroborated seller list.
+                # A sole seller equal to the entire offer, and all separate
+                # component clauses, still participate in amount conflicts.
+                continue
+            prefix = "fresh" if match.group("label").upper().startswith("FRESH") else "ofs"
             amount, end = _composition_amount(block, match.end())
             row = block[match.start():max(match.end(), end)]
             observe(prefix + "Shares", shares, page_number, row)
             if amount is not None:
                 observe("freshIssueCr" if prefix == "fresh" else "ofsCr", amount, page_number, row)
 
-        for match in re.finditer(
-            r"\b(?P<label>FRESH\s+ISSUE|OFFER\s+FOR\s+SALE)\s*"
-            r"(?::|[-–—])?\s*(?:IS\s+)?(?:NOT\s+APPLICABLE|NIL|NONE)\b",
-            block, re.I,
-        ):
+        for match in _COMPOSITION_EMPTY_PART.finditer(block):
             prefix = "fresh" if match.group("label").upper().startswith("FRESH") else "ofs"
             observe(prefix + "Shares", 0, page_number, match.group(0))
             observe("freshIssueCr" if prefix == "fresh" else "ofsCr", 0.0, page_number, match.group(0))
