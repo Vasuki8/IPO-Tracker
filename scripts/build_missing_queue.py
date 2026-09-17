@@ -263,8 +263,9 @@ def build_queue_and_resolved(records: list[dict[str, Any]], today: date) -> tupl
     return queue, resolved
 
 
-def main() -> int:
-    payload = json.loads(DATA_FILE.read_text(encoding="utf-8"))
+def main(*, payload: dict[str, Any] | None = None, output_file: Path | None = None) -> int:
+    if payload is None:
+        payload = json.loads(DATA_FILE.read_text(encoding="utf-8"))
     records = [row for row in payload.get("ipos") or [] if isinstance(row, dict)]
     now = datetime.now(IST)
     today = now.date()
@@ -278,7 +279,7 @@ def main() -> int:
         resolved_field_counts.update(row["resolvedFields"])
         resolved_priority_counts[row["priorityLabel"]] += 1
     output = {"formatVersion": QUEUE_FORMAT_VERSION, "generatedAt": now.isoformat(timespec="seconds"), "asOfDate": today.isoformat(), "recordCount": len(records), "queueCount": len(queue), "priorityCounts": dict(priority_counts), "fieldGapCounts": dict(field_counts.most_common()), "resolvedUnavailableRecordCount": len(resolved), "resolvedUnavailablePriorityCounts": dict(resolved_priority_counts), "resolvedUnavailableFieldCounts": dict(resolved_field_counts.most_common()), "queue": [operational_queue_entry(row) for row in queue], "queueIsComplete": True, "resolvedUnavailable": [operational_resolved_entry(row) for row in resolved], "notes": ["P0/P1 records are repaired before historical records.", "Only lifecycle- and source-appropriate missing fields enter the actionable queue.", "Populated legacy static fields become Final Prospectus revalidation work only after the final filing should exist.", "Fixed-price IPOs may satisfy legacy one-point priceBand revalidation through matching Final Prospectus issue-price evidence; true book-built price bands still require explicit band evidence.", "Open/upcoming IPOs are not blocked on Final Prospectus provenance before listing or the post-close grace period.", "Full non-actionable resolution evidence remains in canonical IPO dataAvailability fields.", "Allotment date is tracked as optional research coverage until a reliable official historical collector exists.", "Blank values are never guessed; canonical mature static values must come from Final Prospectus evidence."]}
-    OUTPUT_FILE.write_text(json.dumps(output, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+    (output_file or OUTPUT_FILE).write_text(json.dumps(output, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     print(f"Missing-data queue: records={len(records)}, queued={len(queue)}, resolved-unavailable={len(resolved)}, p0={priority_counts.get('P0 open IPO', 0)}, p1={priority_counts.get('P1 upcoming IPO', 0)}")
     return 0
 

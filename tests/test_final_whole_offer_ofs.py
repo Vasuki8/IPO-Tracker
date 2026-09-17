@@ -329,7 +329,7 @@ class FinalWholeOfferOFSTests(unittest.TestCase):
             self.assertEqual(proof["documentType"], "PROSPECTUS")
             self.assertEqual(proof["sourceUrl"], doc["url"])
             self.assertEqual(proof["sha256"], pdf_hash)
-            self.assertEqual(proof["parserVersion"], 30)
+            self.assertEqual(proof["parserVersion"], parser.PARSER_VERSION)
             self.assertEqual(proof["evidence"], evidence["issueComposition"])
         before = copy.deepcopy(record)
         changes = policy.apply_final_prospectus_static_fields(

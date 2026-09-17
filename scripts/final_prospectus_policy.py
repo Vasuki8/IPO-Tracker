@@ -18,7 +18,7 @@ from typing import Any
 from urllib.parse import unquote, urlparse
 
 from issue_composition_checks import COMPOSITION_FIELDS, composition_problems, quarantined_fields, record_composition_problems
-from objects_of_issue_checks import objects_problems, objects_quarantined
+from objects_of_issue_checks import objects_evidence_problems, objects_quarantined
 
 FINAL_DOCUMENT_TYPES = {"PROSPECTUS", "FINALPROSPECTUS"}
 STATIC_CANONICAL_FIELDS = (
@@ -300,7 +300,9 @@ def _static_values(record: dict[str, Any], parsed: dict[str, Any]) -> dict[str, 
         "shareholding",
     ):
         value = parsed.get(field)
-        if field == "objectsOfIssue" and objects_problems(value):
+        if field == "objectsOfIssue" and objects_evidence_problems(
+            value, _field_detail_evidence(parsed, field)
+        ):
             continue
         if _present(value):
             values[field] = copy.deepcopy(value)
@@ -391,6 +393,10 @@ def apply_final_prospectus_static_fields(
     changes: list[dict[str, Any]] = []
     source_url = str(doc.get("url") or "")
     extracted = _static_values(record, parsed)
+    if "objectsOfIssue" in extracted and (not source_url or not sha256):
+        # Raw cells must remain bound to the exact source document when the
+        # objects proof is retained independently of later document metadata.
+        extracted.pop("objectsOfIssue")
     for field, after in extracted.items():
         before = field_value(record, field)
         if before == after:

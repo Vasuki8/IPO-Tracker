@@ -21,6 +21,7 @@ located deep inside SME offer documents.
 from __future__ import annotations
 
 import argparse
+import copy
 import hashlib
 import io
 import json
@@ -307,7 +308,28 @@ def _targets(payload: dict[str, Any], queue: dict[str, Any], priority_max: int, 
     return selected
 
 
-def main() -> int:
+def atomic_save(payload: dict[str, Any]) -> None:
+    """Replace the dataset only after its complete checkpoint is written."""
+    temporary = DATA_FILE.with_suffix(".json.tmp")
+    temporary.write_text(
+        json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+    )
+    temporary.replace(DATA_FILE)
+
+
+def _previous_retry_errors(payload: dict[str, Any]) -> dict[str, str]:
+    health = (payload.get("meta") or {}).get("issuerOfferDocumentHealth") or {}
+    errors = health.get("retryErrors", health.get("errors") or [])
+    pending: dict[str, str] = {}
+    for raw in errors or []:
+        message = str(raw or "")
+        company = core.canonical_company(message.split(":", 1)[0].strip())
+        if company:
+            pending[company] = message
+    return pending
+
+
+def main(*, checkpoint=None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--priority-max", type=int, default=2)
     parser.add_argument("--limit", type=int, default=10)
@@ -321,6 +343,45 @@ def main() -> int:
     session.headers.update(core.HEADERS)
     attempted = extracted = updated = failed = deep_scanned = 0
     errors: list[str] = []
+    outcomes: list[dict[str, Any]] = []
+    retry_errors = _previous_retry_errors(payload)
+
+    def save_progress(*, complete: bool = False) -> None:
+        as_of = core.now_ist().isoformat(timespec="seconds")
+        health = {
+            "ok": failed == 0 if attempted else True,
+            "status": "completed" if complete else "in_progress",
+            "selected": len(targets),
+            "remaining": len(targets) - attempted,
+            "attempted": attempted,
+            "extracted": extracted,
+            "updated": updated,
+            "deepScanned": deep_scanned,
+            "failed": failed,
+            "asOf": as_of,
+            "errors": errors[:10],
+            # Current-run errors above describe this run only. Keep unattempted
+            # historical failures separately so interruption cannot reset their
+            # existing retry-order penalty.
+            "retryErrors": list(retry_errors.values()),
+            "outcomes": list(outcomes),
+        }
+        meta = payload.setdefault("meta", {})
+        meta["issuerOfferDocumentHealth"] = health
+        meta.setdefault("sourceHealth", {})["Issuer-offer-docs"] = {
+            "ok": health["ok"],
+            "status": health["status"],
+            "selected": health["selected"],
+            "remaining": health["remaining"],
+            "records": extracted,
+            "attempted": attempted,
+            "updated": updated,
+            "deepScanned": deep_scanned,
+            "failed": failed,
+            "asOf": as_of,
+            "errors": errors[:5],
+        }
+        (checkpoint or atomic_save)(payload)
 
     previous_cap = parser_v4.base.MAX_PDF_BYTES
     parser_v4.base.MAX_PDF_BYTES = max(previous_cap, 35 * 1024 * 1024)
@@ -328,6 +389,7 @@ def main() -> int:
         for record, item, spec in targets:
             attempted += 1
             company = str(record.get("company") or spec.get("company") or "")
+            before_record = copy.deepcopy(record)
             try:
                 if not _host_matches(spec["url"], spec["host"]):
                     raise ValueError("issuer PDF host failed whitelist validation")
@@ -366,8 +428,6 @@ def main() -> int:
                     pages_read=pages_read,
                     page_count=page_count,
                 )
-                extracted += 1
-                updated += int(bool(changed))
                 print(
                     f"Issuer offer doc {company}: "
                     f"extracted={','.join(parsed.get('extractedFields') or [])} "
@@ -375,37 +435,42 @@ def main() -> int:
                     f"pages={pages_read}/{page_count}"
                 )
             except Exception as exc:
+                # A policy merge and document metadata form one result. Do not
+                # checkpoint half that result if a later merge operation fails.
+                record.clear()
+                record.update(before_record)
                 failed += 1
                 message = f"{company}: {exc}"
                 errors.append(message)
+                retry_errors[core.canonical_company(company)] = message
+                outcomes.append({
+                    "id": record.get("id"),
+                    "company": company,
+                    "documentUrl": spec["url"],
+                    "status": "failed",
+                    "error": str(exc),
+                })
                 print(f"Issuer offer-document fallback failed: {message}", file=sys.stderr)
+            else:
+                extracted += 1
+                updated += int(bool(changed))
+                retry_errors.pop(core.canonical_company(company), None)
+                outcomes.append({
+                    "id": record.get("id"),
+                    "company": company,
+                    "documentUrl": spec["url"],
+                    "status": "updated" if changed else "no_change",
+                    "changedFields": list(changed),
+                })
+            # A later document can exhaust the pipeline's stage budget. Keep
+            # each completed result with its matching source proof and health.
+            # A failed checkpoint must stop the stage, not become a source error.
+            if checkpoint is not None:
+                save_progress()
     finally:
         parser_v4.base.MAX_PDF_BYTES = previous_cap
 
-    as_of = core.now_ist().isoformat(timespec="seconds")
-    health = {
-        "ok": failed == 0 if attempted else True,
-        "attempted": attempted,
-        "extracted": extracted,
-        "updated": updated,
-        "deepScanned": deep_scanned,
-        "failed": failed,
-        "asOf": as_of,
-        "errors": errors[:10],
-    }
-    meta = payload.setdefault("meta", {})
-    meta["issuerOfferDocumentHealth"] = health
-    meta.setdefault("sourceHealth", {})["Issuer-offer-docs"] = {
-        "ok": health["ok"],
-        "records": extracted,
-        "attempted": attempted,
-        "updated": updated,
-        "deepScanned": deep_scanned,
-        "failed": failed,
-        "asOf": as_of,
-        "errors": errors[:5],
-    }
-    DATA_FILE.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    save_progress(complete=True)
     print(
         "Issuer offer docs: "
         f"attempted={attempted} extracted={extracted} updated={updated} "

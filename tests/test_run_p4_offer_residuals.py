@@ -7,10 +7,12 @@ from unittest.mock import patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 import p4_offer_layouts as residual
 import run_p4_offer_residuals as runner
+import enforce_final_prospectus_policy as enforcement
+from objects_evidence_fixtures import objects_evidence, objects_parsed
 
 
 class P4OfferResidualRunnerTests(unittest.TestCase):
-    def test_invalid_promoters_and_toc_objects_are_replaced_and_audited(self):
+    def test_direct_residual_fallback_does_not_write_objects(self):
         record = {
             "id": "apexeco",
             "company": "Apex Ecotech Limited",
@@ -31,12 +33,57 @@ class P4OfferResidualRunnerTests(unittest.TestCase):
 
         changed = runner._replace_invalid_residuals(record, parsed, doc, "hash")
 
-        self.assertEqual(set(changed), {"promoters", "objectsOfIssue"})
+        self.assertEqual(changed, ["promoters"])
         self.assertTrue(residual.valid_promoters(record["promoters"]))
-        self.assertTrue(residual.valid_objects(record["objectsOfIssue"]))
+        self.assertFalse(residual.valid_objects(record["objectsOfIssue"]))
         audited = {row["field"] for row in record["dataCorrections"]}
-        self.assertEqual(audited, {"promoters", "objectsOfIssue"})
+        self.assertEqual(audited, {"promoters"})
         self.assertTrue(all(row["sourceUrl"] == doc["url"] for row in record["dataCorrections"]))
+
+    def test_apply_result_promotes_objects_only_with_matching_source_rows(self):
+        rows = [{"purpose": "Working Capital Requirements", "amountCr": 10.0}]
+        parsed = objects_parsed(rows)
+        record = {
+            "id": "example", "company": "Example Limited", "openDate": "2026-09-01",
+            "objectsOfIssue": [{"purpose": "BASIS FOR ISSUE PRICE", "amountCr": 97.0}],
+        }
+        doc = {"type": "PROSPECTUS", "url": "https://nsearchives.nseindia.com/Example_PROSP.pdf"}
+
+        changed = runner.apply_result(record, parsed, doc, "exact-pdf", 100, 200)
+
+        self.assertIn("objectsOfIssue", changed)
+        self.assertEqual(record["objectsOfIssue"], rows)
+        proof = record["staticFieldProvenance"]["objectsOfIssue"]
+        self.assertEqual(proof["value"], rows)
+        self.assertEqual(proof["evidence"], parsed["fieldEvidence"]["objectsOfIssue"])
+        self.assertEqual(proof["sha256"], "exact-pdf")
+        corrections = [row for row in record["dataCorrections"] if row["field"] == "objectsOfIssue"]
+        self.assertEqual(len(corrections), 1)
+        self.assertEqual(corrections[0]["after"], rows)
+
+    def test_apply_result_cannot_reintroduce_objects_rejected_by_canonical_policy(self):
+        good = [{"purpose": "Working Capital Requirements", "amountCr": 10.0}]
+        unrelated = [{"purpose": "General corporate purposes", "amountCr": 5.0}]
+        for evidence in (None, objects_evidence(unrelated)):
+            with self.subTest(evidence=evidence):
+                record = {
+                    "id": "example", "company": "Example Limited", "openDate": "2026-09-01",
+                    "objectsOfIssue": [{"purpose": "BASIS FOR ISSUE PRICE", "amountCr": 97.0}],
+                }
+                enforcement.apply_policy({"ipos": [record]})
+                review = copy.deepcopy(record["objectsOfIssueReview"])
+                corrections = copy.deepcopy(record["dataCorrections"])
+                parsed = {"objectsOfIssue": good, "fieldEvidence": {"objectsOfIssue": evidence}}
+                doc = {"type": "PROSPECTUS", "url": "https://nsearchives.nseindia.com/Example_PROSP.pdf"}
+
+                changed = runner.apply_result(record, parsed, doc, "source-pdf", 100, 200)
+
+                self.assertNotIn("objectsOfIssue", changed)
+                self.assertIsNone(record["objectsOfIssue"])
+                self.assertEqual(record["objectsOfIssueReview"], review)
+                self.assertEqual(record["dataCorrections"], corrections)
+                self.assertNotIn("objectsOfIssue", record["staticFieldProvenance"])
+                self.assertNotIn("objectsOfIssue", record["offerDocumentExtraction"]["canonicalFields"])
 
     def test_good_existing_residual_fields_are_not_replaced(self):
         record = {

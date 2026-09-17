@@ -14,6 +14,7 @@ import p4_offer_parser as residual
 from build_company_pages import public_profile_record
 from publish_transaction import merge_payload
 from validate_data import validate_record
+from objects_evidence_fixtures import objects_evidence, objects_parsed
 
 
 DOC = {"type": "PROSPECTUS", "title": "Final Prospectus",
@@ -46,8 +47,7 @@ class FinalProspectusObjectsGateTests(unittest.TestCase):
     def record(self, invalid=False):
         record = {"id": "issuer", "company": "Issuer Limited", "documents": [DOC],
                   "openDate": "2026-09-01", "closeDate": "2026-09-03", "dataCorrections": []}
-        parsed = {"objectsOfIssue": copy.deepcopy(GOOD), "fieldEvidence": {"objectsOfIssue": {
-            "page": 100, "heading": "OBJECTS OF THE ISSUE", "unit": "crore", "rows": copy.deepcopy(GOOD)}}}
+        parsed = objects_parsed(GOOD)
         policy.apply_final_prospectus_static_fields(record, parsed, DOC, sha256="source-proof")
         for key in ("offerDocumentExtraction", "issuerDocumentExtraction"):
             record[key] = {"status": "extracted", "documentType": "PROSPECTUS",
@@ -105,7 +105,7 @@ class FinalProspectusObjectsGateTests(unittest.TestCase):
         self.assertEqual(record["dataCorrections"], corrections)
         self.assertFalse(any(row["severity"] == "error" for row in validate_record(record)))
 
-        policy.apply_final_prospectus_static_fields(record, {"objectsOfIssue": GOOD}, DOC,
+        policy.apply_final_prospectus_static_fields(record, objects_parsed(GOOD), DOC,
                                                    sha256="reviewed-allocation-table")
         enforcement.apply_policy(payload)
         self.assertEqual(record["objectsOfIssue"], GOOD)
@@ -118,6 +118,164 @@ class FinalProspectusObjectsGateTests(unittest.TestCase):
         policy.apply_final_prospectus_static_fields(record, {"objectsOfIssue": TOC}, DOC)
         self.assertEqual(record["objectsOfIssue"], GOOD)
         self.assertEqual(record["staticFieldProvenance"]["objectsOfIssue"], evidence)
+
+    def test_missing_or_mismatched_evidence_cannot_overwrite_supported_objects(self):
+        replacement = [{"purpose": "General corporate purposes", "amountCr": 5.0}]
+        incomplete = [
+            {"objectsOfIssue": replacement},
+            {"objectsOfIssue": replacement, "fieldEvidence": {"objectsOfIssue": objects_evidence(GOOD)}},
+        ]
+        for parsed in incomplete:
+            with self.subTest(parsed=parsed):
+                record = self.record()
+                evidence = copy.deepcopy(record["staticFieldProvenance"]["objectsOfIssue"])
+                changes = policy.apply_final_prospectus_static_fields(record, parsed, DOC, sha256="other-source")
+                enforcement.apply_policy({"ipos": [record]})
+                self.assertEqual(record["objectsOfIssue"], GOOD)
+                self.assertEqual(record["staticFieldProvenance"]["objectsOfIssue"], evidence)
+                self.assertNotIn("objectsOfIssue", {row["field"] for row in changes})
+
+    def test_matching_source_rows_and_value_are_promoted_together(self):
+        rows = [
+            {"purpose": "Working capital requirements", "amountCr": 0.0},
+            {"purpose": "General corporate purposes", "amountCr": None},
+        ]
+        record = self.record()
+        parsed = objects_parsed(rows)
+        changes = policy.apply_final_prospectus_static_fields(record, parsed, DOC, sha256="exact-table")
+        enforcement.apply_policy({"ipos": [record]})
+        self.assertEqual(record["objectsOfIssue"], rows)
+        self.assertIn("objectsOfIssue", {row["field"] for row in changes})
+        proof = record["staticFieldProvenance"]["objectsOfIssue"]
+        self.assertEqual(proof["value"], rows)
+        self.assertEqual(proof["evidence"], parsed["fieldEvidence"]["objectsOfIssue"])
+        self.assertEqual(proof["sha256"], "exact-table")
+
+    def test_new_objects_need_both_source_url_and_hash(self):
+        rows = [{"purpose": "General corporate purposes", "amountCr": 5.0}]
+        for doc, digest in ((DOC, None), ({"type": "PROSPECTUS"}, "source-proof")):
+            with self.subTest(doc=doc, digest=digest):
+                record = self.record()
+                proof = copy.deepcopy(record["staticFieldProvenance"]["objectsOfIssue"])
+                changes = policy.apply_final_prospectus_static_fields(record, objects_parsed(rows), doc, sha256=digest)
+                self.assertEqual(record["objectsOfIssue"], GOOD)
+                self.assertEqual(record["staticFieldProvenance"]["objectsOfIssue"], proof)
+                self.assertNotIn("objectsOfIssue", {row["field"] for row in changes})
+
+    def test_stale_proof_for_absent_objects_cannot_rebootstrap_verification(self):
+        for value in (None, []):
+            with self.subTest(value=value):
+                record = self.record()
+                record["objectsOfIssue"] = value
+                record["staticFieldProvenance"]["objectsOfIssue"]["value"] = value
+                enforcement.apply_policy({"ipos": [record]})
+                self.assertNotIn("objectsOfIssue", record["staticFieldProvenance"])
+                self.assertNotIn("objectsOfIssue", record["staticSourcePolicy"]["verifiedFields"])
+                self.assertEqual(record["dataCorrections"], [])
+
+    def test_legacy_rows_without_raw_evidence_are_withheld_without_calling_them_wrong(self):
+        record = self.record()
+        weak = {"page": 100, "heading": "OBJECTS OF THE ISSUE", "unit": "crore", "rows": copy.deepcopy(GOOD)}
+        record["staticFieldProvenance"]["objectsOfIssue"]["evidence"] = copy.deepcopy(weak)
+        record["documentFieldProvenance"]["evidence"]["objectsOfIssue"] = copy.deepcopy(weak)
+        original_proof = copy.deepcopy(record["staticFieldProvenance"]["objectsOfIssue"])
+        original_document = copy.deepcopy(record["documentFieldProvenance"])
+        original_extractions = {key: copy.deepcopy(record[key]) for key in ("offerDocumentExtraction", "issuerDocumentExtraction")}
+
+        enforcement.apply_policy({"ipos": [record]})
+
+        self.assertIsNone(record["objectsOfIssue"])
+        self.assertNotIn("objectsOfIssue", public_profile_record(record))
+        review = record["objectsOfIssueReview"]
+        self.assertEqual(review["reviewKind"], "source-evidence-required")
+        snapshot = copy.deepcopy(review["snapshot"])
+        self.assertEqual(snapshot["before"], GOOD)
+        self.assertEqual(snapshot["sourceEvidence"], original_proof)
+        self.assertEqual(snapshot["documentProvenance"], original_document)
+        self.assertEqual(snapshot["extractionEvidence"], original_extractions)
+        self.assertIn("lack matching source-table evidence", snapshot["reason"])
+        self.assertNotIn("Invalid", snapshot["reason"])
+        corrections = copy.deepcopy(record["dataCorrections"])
+        entry = queue.queue_entry(record, date(2026, 9, 17))
+        self.assertTrue({"offer.objectsOfIssue", "provenance.finalProspectus.objectsOfIssue"} <= set(entry["missingFields"]))
+
+        enforcement.apply_policy({"ipos": [record]})
+        self.assertEqual(record["dataCorrections"], corrections)
+        self.assertEqual(record["objectsOfIssueReview"]["snapshot"], snapshot)
+
+    def test_extraction_markers_cannot_rebootstrap_objects_without_raw_evidence(self):
+        for extraction_key in ("offerDocumentExtraction", "issuerDocumentExtraction"):
+            for field_key in ("canonicalFields", "extractedFields"):
+                with self.subTest(extraction_key=extraction_key, field_key=field_key):
+                    record = self.record()
+                    record.pop("staticFieldProvenance")
+                    record.pop("documentFieldProvenance")
+                    for key in ("offerDocumentExtraction", "issuerDocumentExtraction"):
+                        record.pop(key)
+                    record[extraction_key] = {
+                        "status": "extracted", "documentType": "PROSPECTUS", "documentUrl": DOC["url"],
+                        "sha256": "source-proof", field_key: ["objectsOfIssue"],
+                    }
+                    self.assertNotIn("objectsOfIssue", enforcement._extraction_fields(record, record[extraction_key]))
+                    enforcement.apply_policy({"ipos": [record]})
+                    self.assertIsNone(record["objectsOfIssue"])
+                    self.assertEqual(record["objectsOfIssueReview"]["snapshot"]["before"], GOOD)
+                    self.assertNotIn("objectsOfIssue", record["staticSourcePolicy"]["verifiedFields"])
+
+    def test_legacy_complete_document_evidence_migrates_only_for_same_url_and_hash(self):
+        for field_key in ("canonicalFields", "extractedFields"):
+            for source_url, digest, accepted in (
+                (DOC["url"], "source-proof", True),
+                ("https://www.sebi.gov.in/files/other.pdf", "source-proof", False),
+                (DOC["url"], "other-bytes", False),
+                (DOC["url"], None, False),
+            ):
+                with self.subTest(field_key=field_key, source_url=source_url, digest=digest):
+                    record = self.record()
+                    record.pop("staticFieldProvenance")
+                    record.pop("issuerDocumentExtraction")
+                    record["offerDocumentExtraction"] = {
+                        "status": "extracted", "documentType": "PROSPECTUS", "documentUrl": source_url,
+                        "sha256": digest, field_key: ["objectsOfIssue"],
+                    }
+                    enforcement.apply_policy({"ipos": [record]})
+                    if accepted:
+                        self.assertEqual(record["objectsOfIssue"], GOOD)
+                        proof = record["staticFieldProvenance"]["objectsOfIssue"]
+                        self.assertEqual(proof["value"], GOOD)
+                        self.assertEqual(proof["evidence"], objects_evidence(GOOD))
+                        self.assertIn("objectsOfIssue", record["staticSourcePolicy"]["verifiedFields"])
+                    else:
+                        self.assertIsNone(record["objectsOfIssue"])
+                        self.assertNotIn("objectsOfIssue", record["staticSourcePolicy"]["verifiedFields"])
+
+    def test_existing_proof_document_fallback_requires_matching_url_hash_and_value(self):
+        for changed_key, changed_value in (
+            (None, None),
+            ("sourceUrl", "https://www.sebi.gov.in/files/other.pdf"),
+            ("sha256", "different-bytes"),
+            ("value", [{"purpose": "General corporate purposes", "amountCr": 5.0}]),
+        ):
+            with self.subTest(changed_key=changed_key):
+                record = self.record()
+                proof = record["staticFieldProvenance"]["objectsOfIssue"]
+                proof.pop("evidence")
+                if changed_key:
+                    proof[changed_key] = changed_value
+                enforcement.apply_policy({"ipos": [record]})
+                if changed_key:
+                    self.assertIsNone(record["objectsOfIssue"])
+                    self.assertNotIn("objectsOfIssue", record["staticSourcePolicy"]["verifiedFields"])
+                else:
+                    self.assertEqual(record["objectsOfIssue"], GOOD)
+                    self.assertEqual(proof["evidence"], objects_evidence(GOOD))
+
+    def test_non_final_source_cannot_support_legacy_objects_even_with_raw_evidence(self):
+        record = self.record()
+        record["documents"] = [{**DOC, "type": "RHP", "title": "Red Herring Prospectus"}]
+        enforcement.apply_policy({"ipos": [record]})
+        self.assertIsNone(record["objectsOfIssue"])
+        self.assertEqual(record["objectsOfIssueReview"]["reviewKind"], "source-evidence-required")
 
     def test_semantic_validator_blocks_old_contents_values(self):
         findings = validate_record(self.record(invalid=True))
@@ -168,10 +326,26 @@ class FinalProspectusObjectsGateTests(unittest.TestCase):
         self.assertEqual(record["objectsOfIssueReview"]["status"], "quarantined")
         self.assertIsNone(record["objectsOfIssue"])
 
+    def test_rejected_replacement_cannot_resolve_quarantine(self):
+        record = self.record(invalid=True)
+        enforcement.apply_policy({"ipos": [record]})
+        original = copy.deepcopy(record["objectsOfIssueReview"])
+        for parsed in (
+            {"objectsOfIssue": GOOD},
+            {"objectsOfIssue": GOOD, "fieldEvidence": {"objectsOfIssue": objects_evidence(
+                [{"purpose": "General corporate purposes", "amountCr": 5.0}]
+            )}},
+        ):
+            policy.apply_final_prospectus_static_fields(record, parsed, DOC, sha256="rejected")
+            enforcement.apply_policy({"ipos": [record]})
+            self.assertIsNone(record["objectsOfIssue"])
+            self.assertEqual(record["objectsOfIssueReview"], original)
+            self.assertNotIn("objectsOfIssue", record["staticFieldProvenance"])
+
     def test_valid_final_source_replacement_resolves_quarantine_and_keeps_audit(self):
         record = self.record(invalid=True)
         enforcement.apply_policy({"ipos": [record]})
-        policy.apply_final_prospectus_static_fields(record, {"objectsOfIssue": GOOD}, DOC, sha256="replacement")
+        policy.apply_final_prospectus_static_fields(record, objects_parsed(GOOD), DOC, sha256="replacement")
         enforcement.apply_policy({"ipos": [record]})
         self.assertEqual(record["objectsOfIssue"], GOOD)
         self.assertEqual(record["objectsOfIssueReview"]["status"], "resolved")
@@ -185,7 +359,7 @@ class FinalProspectusObjectsGateTests(unittest.TestCase):
     def test_concurrent_publication_keeps_objects_value_proof_and_quarantine_together(self):
         before = self.record(invalid=True)
         proposed = copy.deepcopy(before)
-        policy.apply_final_prospectus_static_fields(proposed, {"objectsOfIssue": GOOD}, DOC, sha256="replacement")
+        policy.apply_final_prospectus_static_fields(proposed, objects_parsed(GOOD), DOC, sha256="replacement")
         current = copy.deepcopy(before)
         enforcement.apply_policy({"ipos": [current]})
         payloads = [{"meta": {}, "ipos": [record]} for record in (before, proposed, current)]

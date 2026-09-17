@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Mark canonical static IPO fields under the Final Prospectus source policy.
 
-This is a non-destructive migration step. Existing mixed-source values are kept
-visible temporarily, but are explicitly marked pending revalidation. New market
-updates are prevented from writing these canonical fields by the policy-aware
-updater and offer-document runners.
+Existing mixed-source values are marked pending revalidation. Objects of issue
+without matching source-table evidence are withheld with their original values
+and proofs retained in an audit snapshot. Missing evidence does not establish
+that those values are wrong. New market updates are prevented from writing
+canonical fields by the policy-aware updater and offer-document runners.
 
 New extraction metadata distinguishes fields merely recognized by a parser from
 fields actually accepted by the canonical policy. Legacy financial verification
@@ -24,7 +25,7 @@ from typing import Any
 import final_prospectus_identity as identity
 import final_prospectus_policy as policy
 from issue_composition_checks import COMPOSITION_FIELDS, quarantined_fields, record_composition_problems
-from objects_of_issue_checks import objects_problems, objects_quarantined
+from objects_of_issue_checks import objects_evidence_problems, objects_problems, objects_quarantined
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "ipos.json"
@@ -97,28 +98,120 @@ def _quarantine_inconsistent_composition(record: dict[str, Any], checked_at: str
         detail.pop("issueComposition", None)
 
 
+def _document_level_objects_evidence(
+    record: dict[str, Any], source_url: Any, sha256: Any
+) -> dict[str, Any] | None:
+    """Use document evidence only for the exact bytes identified by a proof."""
+    document = record.get("documentFieldProvenance")
+    if not isinstance(document, dict) or not source_url or not sha256:
+        return None
+    if document.get("sourceUrl") != source_url or document.get("sha256") != sha256:
+        return None
+    if not policy.is_final_prospectus({
+        "type": document.get("documentType"), "url": document.get("sourceUrl")
+    }):
+        return None
+    evidence = document.get("evidence")
+    detail = evidence.get("objectsOfIssue") if isinstance(evidence, dict) else None
+    return detail if isinstance(detail, dict) and detail else None
+
+
+def _objects_provenance_problems(record: dict[str, Any], proof: Any) -> list[str]:
+    """Revalidate the source identity, stored value and every source-table row."""
+    if record.get("objectsOfIssue") in (None, []):
+        return ["Objects of issue have no current disclosed rows to verify"]
+    if not isinstance(proof, dict):
+        return ["Objects of issue have no Final Prospectus source proof"]
+    source_url = proof.get("sourceUrl")
+    if not source_url or not proof.get("sha256"):
+        return ["Objects-of-issue source proof needs its document URL and SHA-256"]
+    if identity.known_non_final_document_url(record, source_url) or not policy.is_final_prospectus({
+        "type": proof.get("documentType"), "title": proof.get("documentTitle"), "url": source_url
+    }):
+        return ["Objects-of-issue source proof does not identify a Final Prospectus"]
+    if proof.get("value") != record.get("objectsOfIssue"):
+        return ["Objects-of-issue source proof does not match the current disclosed rows"]
+    detail = proof.get("evidence")
+    if detail in (None, {}, []):
+        detail = _document_level_objects_evidence(record, source_url, proof.get("sha256"))
+    return objects_evidence_problems(record.get("objectsOfIssue"), detail)
+
+
+def _objects_proof_from_extraction(record: dict[str, Any], extraction: Any) -> dict[str, Any] | None:
+    """A marker may migrate complete same-document evidence, never invent it."""
+    if not isinstance(extraction, dict) or extraction.get("status") != "extracted":
+        return None
+    field_key = "canonicalFields" if isinstance(extraction.get("canonicalFields"), list) else "extractedFields"
+    if "objectsOfIssue" not in (extraction.get(field_key) or []):
+        return None
+    proof = {
+        "documentType": extraction.get("documentType"),
+        "documentTitle": extraction.get("documentTitle"),
+        "sourceUrl": extraction.get("documentUrl"),
+        "sha256": extraction.get("sha256"),
+        "value": copy.deepcopy(record.get("objectsOfIssue")),
+        "evidence": _document_level_objects_evidence(
+            record, extraction.get("documentUrl"), extraction.get("sha256")
+        ),
+    }
+    return proof if not _objects_provenance_problems(record, proof) else None
+
+
+def _retained_objects_proof(record: dict[str, Any]) -> dict[str, Any] | None:
+    proof = (record.get("staticFieldProvenance") or {}).get("objectsOfIssue")
+    if proof is not None:
+        return proof if not _objects_provenance_problems(record, proof) else None
+    for key in ("offerDocumentExtraction", "issuerDocumentExtraction"):
+        proof = _objects_proof_from_extraction(record, record.get(key))
+        if proof:
+            return proof
+    return None
+
+
 def _quarantine_invalid_objects(record: dict[str, Any], checked_at: str) -> None:
-    """A contents-page number cannot remain a published use-of-proceeds amount."""
-    problems = objects_problems(record.get("objectsOfIssue"))
+    """Withhold unsupported allocations while retaining evidence for re-reading."""
+    value = record.get("objectsOfIssue")
+    invalid = objects_problems(value)
     provenance = record.get("staticFieldProvenance") or {}
-    if problems:
+    unsupported = value not in (None, []) and (
+        objects_quarantined(record) or not _retained_objects_proof(record)
+    )
+    if invalid or unsupported:
         document = record.get("documentFieldProvenance") or {}
         detail = document.get("evidence") or {}
+        source_proof = provenance.get("objectsOfIssue")
+        source_proof = source_proof if isinstance(source_proof, dict) else {}
+        extraction = record.get("offerDocumentExtraction") or record.get("issuerDocumentExtraction") or {}
+        problems = invalid or _objects_provenance_problems(record, provenance.get("objectsOfIssue")) or [
+            "Objects of issue remain subject to an unresolved source review"
+        ]
         snapshot = {
             "field": "objectsOfIssue",
-            "before": copy.deepcopy(record.get("objectsOfIssue")),
+            "before": copy.deepcopy(value),
             "after": None,
-            "reason": "Invalid objects of issue quarantined pending Final Prospectus revalidation",
+            "reason": (
+                "Invalid objects of issue quarantined pending Final Prospectus revalidation"
+                if invalid else
+                "Objects of issue lack matching source-table evidence; withheld pending Final Prospectus revalidation"
+            ),
+            "reviewKind": "invalid-values" if invalid else "source-evidence-required",
             "findings": problems,
             "sourceEvidence": copy.deepcopy(provenance.get("objectsOfIssue")),
             "documentEvidence": copy.deepcopy(detail.get("objectsOfIssue")),
-            "sourceUrl": document.get("sourceUrl") or (record.get("offerDocumentExtraction") or {}).get("documentUrl"),
-            "sha256": document.get("sha256") or (record.get("offerDocumentExtraction") or {}).get("sha256"),
+            "documentProvenance": copy.deepcopy(document),
+            "extractionEvidence": {
+                key: copy.deepcopy(record[key])
+                for key in ("offerDocumentExtraction", "issuerDocumentExtraction")
+                if isinstance(record.get(key), dict)
+            },
+            "sourceUrl": source_proof.get("sourceUrl") or document.get("sourceUrl") or extraction.get("documentUrl"),
+            "sha256": source_proof.get("sha256") or document.get("sha256") or extraction.get("sha256"),
             "correctedAt": checked_at,
         }
         record.setdefault("dataCorrections", []).append(copy.deepcopy(snapshot))
         record["objectsOfIssueReview"] = {
-            "status": "quarantined", "checkedAt": checked_at, "snapshot": snapshot,
+            "status": "quarantined", "reviewKind": snapshot["reviewKind"],
+            "checkedAt": checked_at, "snapshot": snapshot,
         }
         record["objectsOfIssue"] = None
     if not objects_quarantined(record):
@@ -180,7 +273,7 @@ def _extraction_fields(record: dict[str, Any], extraction: Any) -> set[str]:
     if extraction.get("status") != "extracted" or not policy.is_final_prospectus(doc):
         return set()
     blocked = quarantined_fields(record)
-    if objects_quarantined(record) or objects_problems(record.get("objectsOfIssue")):
+    if objects_quarantined(record) or not _retained_objects_proof(record):
         blocked.add("objectsOfIssue")
     if _legacy_generic_issue_price(record):
         blocked.add("listing.issuePrice")
@@ -195,8 +288,8 @@ def _extraction_fields(record: dict[str, Any], extraction: Any) -> set[str]:
         return (fields & set(policy.STATIC_CANONICAL_FIELDS)) - blocked
 
     # Legacy extraction records predate canonicalFields. Keep the migration
-    # compatibility for non-financial static fields, but financials require the
-    # same cell-level evidence contract used by current Final Prospectus writes.
+    # compatibility for other static fields. Objects were blocked above unless
+    # exact source-table evidence is present; financials need matching cells.
     fields = {str(field) for field in (extraction.get("extractedFields") or [])}
     if "issueComposition" in fields:
         fields.update({"issueSizeCr", "freshIssueCr", "ofsCr"})
@@ -248,6 +341,13 @@ def _bootstrap_provenance(record: dict[str, Any], verified: set[str], checked_at
                 if detail:
                     entry["value"] = copy.deepcopy(record.get("financials"))
                     entry["evidence"] = copy.deepcopy(detail)
+            if field == "objectsOfIssue":
+                proof = _objects_proof_from_extraction(record, extraction)
+                if not proof:
+                    verified.discard(field)
+                    continue
+                entry["value"] = copy.deepcopy(proof["value"])
+                entry["evidence"] = copy.deepcopy(proof["evidence"])
             provenance[field] = entry
 
 
@@ -288,6 +388,16 @@ def apply_policy(payload: dict[str, Any]) -> dict[str, int]:
                 # table evidence cannot satisfy the canonical provenance gate.
                 provenance.pop("financials", None)
                 continue
+            if field == "objectsOfIssue":
+                if _objects_provenance_problems(record, evidence):
+                    provenance.pop(field, None)
+                    continue
+                if evidence.get("evidence") in (None, {}, []):
+                    # Preserve the matching raw evidence with the field before
+                    # another partial extraction replaces document metadata.
+                    evidence["evidence"] = copy.deepcopy(_document_level_objects_evidence(
+                        record, evidence.get("sourceUrl"), evidence.get("sha256")
+                    ))
             if field == "listing.issuePrice" and _legacy_generic_issue_price(record):
                 provenance.pop(field, None)
                 continue

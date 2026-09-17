@@ -10,9 +10,11 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 
 from offer_parser import valid_manager, valid_registrar, PARSER_VERSION
+import final_prospectus_identity as final_identity
+from final_prospectus_policy import is_final_prospectus
 from performance_metrics import refresh_returns
 from issue_composition_checks import COMPOSITION_FIELDS, quarantined_fields, record_composition_problems
-from objects_of_issue_checks import objects_problems, objects_quarantined
+from objects_of_issue_checks import objects_problems, objects_evidence_problems, objects_quarantined
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -28,8 +30,18 @@ def validate_record(record):
     provenance = record.get("staticFieldProvenance") or {}
     for reason in objects_problems(record.get("objectsOfIssue")):
         add("objectsOfIssue", reason)
+    if record.get("objectsOfIssue") and not objects_problems(record["objectsOfIssue"]):
+        proof = provenance.get("objectsOfIssue")
+        if not isinstance(proof, dict):
+            proof = {}
+        if (proof.get("value") != record["objectsOfIssue"] or not proof.get("sourceUrl") or not proof.get("sha256")
+                or not is_final_prospectus({"type": proof.get("documentType"), "url": proof.get("sourceUrl")})
+                or final_identity.known_non_final_document_url(record, proof.get("sourceUrl"))):
+            add("objectsOfIssue", "Allocations need matching values and an identified Final Prospectus source")
+        for reason in objects_evidence_problems(record["objectsOfIssue"], proof.get("evidence")):
+            add("objectsOfIssue", reason)
     if objects_quarantined(record):
-        add("objectsOfIssue", "Invalid objects quarantined; Final Prospectus revalidation is still required", "review")
+        add("objectsOfIssue", "Objects withheld pending Final Prospectus source-table revalidation", "review")
     claims_verified = any(field in provenance for field in COMPOSITION_FIELDS)
     for field, reason in record_composition_problems(record):
         add(field, reason, "error" if claims_verified else "review")
