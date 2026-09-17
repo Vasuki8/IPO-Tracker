@@ -23,8 +23,9 @@ the public field-trust/freshness release and verified live acceptance from
 #100–#103. Those audited omissions below are historical. Source repairs #94/#98/#99
 are now integrated in draft #105 and pass 1,023 frozen regressions; their targeted
 data publication remains blocked on a recoverable or newly accepted seven-record
-bundle and a reviewed publication scope. An independent document-scoped public
-hold closes a newly reproduced mirror-URL/changed-allocation display gap. The
+bundle and a reviewed publication scope. The independently released #106
+document-scoped public hold closes a newly reproduced mirror-URL/changed-allocation
+display gap, with 966 regressions, 24 browser journeys and live acceptance passed. The
 current canonical report has 385 P4 plus 51 higher-priority actionable records,
 1,614 blocking source-review items and 17 unmapped reviews; P5 remains gated.
 See [project status](PROJECT_STATUS.md) for current release evidence and exact next

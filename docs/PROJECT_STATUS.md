@@ -15,7 +15,7 @@ authority for completed static terms, explicitly provisional active disclosures,
 source observation versus collection clocks, nulls, source evidence and correction
 history remain mandatory. P4 is incomplete; P5/performance expansion remain gated.
 
-## Current milestone — document-scoped public review protection
+## Current milestone — document-scoped public review protection, released 17 September 2026
 
 Reconciled at main `cf906df7ccc9bcf40881743b0af39480858a612e` on 17 September
 2026. The earlier public trust/freshness milestone is already deployed and has
@@ -43,8 +43,24 @@ unchanged. The complete diff selects `presentation` publication.
 
 The current visible values were already withheld or absent; this closes a future
 re-extraction/mirror bypass and does not publish new numerical corrections.
-GitHub browser acceptance, merge and live release verification are still pending
-in this pre-release note. A later evidence receipt must establish those results.
+[#106](https://github.com/Vasuki8/IPO-Tracker/pull/106) is merged and deployed.
+
+| Release evidence | Verified result |
+| --- | --- |
+| Reviewed code | `d9001a0ed4e5d0e3926976d7158a85b333f34cfd` |
+| PR validation | [35282355631](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35282355631): 966 regressions and strict validation passed |
+| Browser acceptance | [35282355685](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35282355685): all 24 journeys and freshness text boundaries at 1440, 375 and 320 pixels passed |
+| Merge | `fe053a4c6e79ca1d6fcfdc2ed5b6704a14993b12` |
+| Pages deployment | [35282621904](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35282621904) deployed the merge successfully |
+| Publication scope | [35282622791](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35282622791): selected `presentation`, skipped source/residual collection, passed validation/Node checks, and reported no accepted data changes to publish |
+| Actual live acceptance | [35282660194](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35282660194): 1,366 profiles consistent and 17 complete HTTPS responses matched the deployed checkout; an independent local HTTPS run produced the identical receipt |
+
+[The retained receipt](releases/2026-09-17-document-holds.json) includes exact input
+hashes, observed results and limitations. The live GenXAI profile was inspected:
+its allocation remains withheld with its source link and `Under review` label.
+The browser artifact's direct download returned HTTP 403; its reported digest is
+recorded without claiming a local ZIP verification. Browser job logs confirmed
+all 24 journeys; no new mobile screenshot inspection is claimed.
 
 ## Preserved source integration and commercial work — 17 September 2026
 
@@ -174,8 +190,8 @@ presentation artifact, not the newer canonical snapshot.
 
 ## Exact next task
 
-Complete the independent public document-hold release, then incorporate it into
-#105 and freeze the combined code for explicitly targeted seven-record acceptance.
+Incorporate the released #106 public document holds into #105 and freeze the
+combined code for explicitly targeted seven-record acceptance.
 The original proposal is unavailable; any replacement needs a new source-reviewed
 acceptance lineage, exact current data base, code manifest and content hashes.
 Reproduce
