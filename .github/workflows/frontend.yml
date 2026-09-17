@@ -80,6 +80,7 @@ jobs:
               raise SystemExit('Local frontend server did not start')
           PY
           node tests/frontend_smoke.cjs
+          node tests/frontend_quality_layout.cjs
       - name: Retain screenshots and failure diagnostics
         if: always()
         uses: actions/upload-artifact@v4.6.2

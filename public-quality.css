@@ -9,3 +9,13 @@
 .quality-grid dd { margin: 0; }
 .quality-grid .quality-note { margin-top: .2rem; }
 @media (max-width: 540px) { .quality-grid { grid-template-columns: 1fr; } }
+
+/* Timestamp and authority text must remain inside its own metric cell. The
+   legacy compact metric rule uses nowrap and can overflow a mobile grid cell
+   without creating document-level overflow. */
+.ipo-table td[data-label="Subscription"] .metric-note {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+  line-height: 1.5;
+}
