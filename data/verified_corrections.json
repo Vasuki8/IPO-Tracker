@@ -1,5 +1,5 @@
 {
-  "revision": "2026-09-17-review-objects-source-consistency",
+  "revision": "2026-09-17-review-kaytex-speb-document-consistency",
   "basedOnCommit": "eef493b2eec6b0f0ab9cefad8b45b9d5759bc86b",
   "generatedAt": "2026-09-14T12:16:27.134108+00:00",
   "parserVersion": 18,
@@ -14752,6 +14752,101 @@
       "reason": "Withheld use-of-proceeds allocations pending authoritative reconciliation of contradictory narrative and table definitions of net proceeds in the same Final Prospectus.",
       "scope": "document",
       "reviewedAt": "2026-09-17T19:17:00+00:00"
+    },
+    {
+      "identity": {
+        "id": "kaytex",
+        "company": "Kaytex Fabrics Limited",
+        "symbol": "KAYTEX",
+        "openDate": "2025-07-29"
+      },
+      "beforeHash": "318338bcc5c23268369840f44e276f77fb5f37542f4b35820a37fbb0a43bf511",
+      "source": {
+        "name": "Reviewed Final Prospectus objects of issue",
+        "url": "https://nsearchives.nseindia.com/emerge/corporates/content/KaytexFabricsLimited_PROSP.pdf",
+        "type": "PROSPECTUS",
+        "title": "Kaytex Fabrics Limited Final Prospectus",
+        "filedDate": "2025-08-01"
+      },
+      "evidence": {
+        "sha256": "a0a9b14c498bdcb7a8b2f8e4c8ebd32406b145f6e87f85a1da1675fab056e934",
+        "basedOnCommit": "4707df1e82337e3a7b8bac0838bbaa30c3d200be",
+        "sourceReviewRunId": 35264712051,
+        "sourceArtifactIposSha256": "8647648fe07fcb03dbf074d62eb3f8304d220047365bc4df98ad12d63ad149e8",
+        "sourcePhysicalPagesInspected": [
+          115
+        ],
+        "sourcePrintedPages": [
+          110
+        ],
+        "retainedAllocationPages": [
+          36
+        ],
+        "sourceAmountsCr": {
+          "grossFreshIssue": 57.5856,
+          "issuerOfferExpenses": 8.2391,
+          "tableNetProceeds": 49.3465,
+          "narrativeNetProceeds": 47.6186,
+          "quotedAllocationTotal": 49.3465,
+          "unreconciledDifference": 1.7279
+        },
+        "sourceScope": "Physical PDF115 excludes OFS proceeds from the issuer proceeds. Its narrative and immediately following table both concern net proceeds of the Fresh Issue. The estimated-expenses footnote does not explicitly supersede the narrative amount."
+      },
+      "findings": [
+        "Physical PDF115 (printed110) states net Fresh Issue proceeds of 47.6186 crore in prose, while the immediately following same-scope table and retained allocations use 49.3465 crore. The 1.7279 crore difference is not reconciled or explicitly superseded in the inspected source."
+      ],
+      "reason": "Withheld use-of-proceeds allocations pending authoritative reconciliation of contradictory narrative and table definitions of issuer net proceeds in the same Final Prospectus.",
+      "scope": "document",
+      "reviewedAt": "2026-09-17T20:16:35+00:00"
+    },
+    {
+      "identity": {
+        "id": "speb",
+        "company": "Speb Adhesives Limited",
+        "symbol": "SPEB",
+        "openDate": "2025-12-01"
+      },
+      "beforeHash": "615a4c142e9ec75daa93f41340b3044d19d49d235c9c08823e0d2534bde216fb",
+      "source": {
+        "name": "Reviewed Final Prospectus objects of issue",
+        "url": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+        "type": "PROSPECTUS",
+        "title": "Speb Adhesives Limited Final Prospectus",
+        "filedDate": "2025-12-03"
+      },
+      "evidence": {
+        "sha256": "048405928a44bebad40c08e16256534094b61b1a77890af9072b6cb778b818a2",
+        "basedOnCommit": "4707df1e82337e3a7b8bac0838bbaa30c3d200be",
+        "sourceReviewRunId": 35264712051,
+        "sourceArtifactIposSha256": "8647648fe07fcb03dbf074d62eb3f8304d220047365bc4df98ad12d63ad149e8",
+        "sourcePhysicalPagesInspected": [
+          119,
+          120
+        ],
+        "sourcePrintedPages": [
+          115,
+          116
+        ],
+        "retainedAllocationPages": [
+          30
+        ],
+        "sourceAmountsCr": {
+          "totalFacilityProjectCost": 26.0542,
+          "quotedFacilityFundingFromNetProceeds": 20.4357,
+          "boardResolutionFacilityFundingFromNetProceeds": 20.4189,
+          "unreconciledDifference": 0.0168,
+          "generalCorporatePurposes": 4.0556,
+          "quotedAllocationTotal": 24.4913
+        },
+        "sourceScope": "Physical PDF119 states 2,043.57 lakh from Net Proceeds for the proposed facility, then cites the November 19, 2025 Board resolution for 2,041.89 lakh of capital expenditure from Net Proceeds for the same facility. PDF120 repeats 2,043.57 lakh. The internal-funding footnote does not reconcile the 1.68 lakh difference.",
+        "reviewLimitation": "A later revision before the December 3, 2025 Final Prospectus could explain the dated Board amount, but the inspected passage does not explicitly supersede it. The retained allocation correctly uses IPO funding rather than total project cost; this hold requires source resolution and does not assert a wrong project-cost column."
+      },
+      "findings": [
+        "Physical PDF119 (printed115) gives 20.4357 crore of net-proceeds funding for the proposed facility, but the same page cites a November 19, 2025 Board resolution for 20.4189 crore for that use. PDF120 repeats 20.4357 crore without explicitly superseding the dated Board amount; the 0.0168 crore difference remains unresolved."
+      ],
+      "reason": "Withheld use-of-proceeds allocations pending authoritative reconciliation or explicit supersession of the dated Board funding amount in the same Final Prospectus.",
+      "scope": "document",
+      "reviewedAt": "2026-09-17T20:16:35+00:00"
     }
   ]
 }

@@ -9,6 +9,7 @@ import re
 from datetime import datetime
 from pathlib import Path
 
+import apply_corrections as corrections
 import build_missing_queue as missing_queue
 import enforce_final_prospectus_policy as final_policy
 import run_p4_offer_residuals as residuals
@@ -50,6 +51,10 @@ def main():
             payload, limit=args.residual_limit, workers=3,
             checkpoint=documents.atomic_save, queue_payload=queue,
         )
+    # A previously empty field may first be extracted in either collection
+    # pass. Apply the publication review registry before saving its final
+    # policy, queue and validation result.
+    corrections.apply(payload, json.loads((ROOT / "data/verified_corrections.json").read_text()))
     final_policy.apply_policy(payload)
     documents.atomic_save(payload)
     missing_queue.main(payload=payload, output_file=ROOT / "data/missing_queue.json")
