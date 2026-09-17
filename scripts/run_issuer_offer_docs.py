@@ -24,6 +24,7 @@ import final_prospectus_parser as parser  # noqa: E402
 import final_prospectus_policy as source_policy  # noqa: E402
 from issuer_offer_registry import VALIDATED_OFFER_DOCUMENTS  # noqa: E402
 from parser_loader import isolated_module  # noqa: E402
+from source_review_queue import review_gaps  # noqa: E402
 
 base = isolated_module("enrich_issuer_offer_docs")
 # ``enrich_issuer_offer_docs.main`` historically expects parser_v4.base to own
@@ -71,13 +72,15 @@ def _revalidation_gaps(item: dict[str, Any]) -> set[str]:
 
 
 def _has_priority_or_revalidation_gap(item: dict[str, Any]) -> bool:
-    return bool(base._has_priority_gap(item) or _revalidation_gaps(item))
+    return bool(base._has_priority_gap(item) or _revalidation_gaps(item) or review_gaps(item))
 
 
 def _needs_deep_scan_with_revalidation(
     item: dict[str, Any], parsed: dict[str, Any]
 ) -> tuple[bool, bool]:
     need_financials, need_shareholding = _ORIGINAL_NEEDS_DEEP_SCAN(item, parsed)
+    if "offer.financials" in review_gaps(item) and not parsed.get("financials"):
+        need_financials = True
     pending = _revalidation_gaps(item)
     if "financials" in pending and not parsed.get("financials"):
         need_financials = True
