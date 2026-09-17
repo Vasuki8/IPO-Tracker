@@ -29,7 +29,7 @@
   text-underline-offset: 3px;
 }
 .subscription-section-head a:focus-visible {
-  outline: 3px solid var(--accent);
+  outline: 3px solid var(--focus);
   outline-offset: 3px;
 }
 .subscription-latest-grid {
@@ -88,20 +88,20 @@
   background: currentColor;
 }
 .sub-qib {
-  color: #2865af;
-  stroke: #2865af;
+  color: var(--chart-qib);
+  stroke: var(--chart-qib);
 }
 .sub-nii {
-  color: #9b6014;
-  stroke: #9b6014;
+  color: var(--chart-nii);
+  stroke: var(--chart-nii);
 }
 .sub-retail {
-  color: #07805d;
-  stroke: #07805d;
+  color: var(--chart-retail);
+  stroke: var(--chart-retail);
 }
 .sub-total {
-  color: #8451a5;
-  stroke: #8451a5;
+  color: var(--chart-total);
+  stroke: var(--chart-total);
 }
 .subscription-chart-wrap {
   max-width: 100%;
@@ -118,7 +118,7 @@
   height: auto;
 }
 .sub-grid {
-  stroke: #e2e8ed;
+  stroke: var(--chart-grid);
   stroke-width: 1;
 }
 .sub-axis-label {
@@ -184,7 +184,7 @@
   cursor: default;
 }
 .subscription-table tbody tr:hover {
-  background: var(--bg);
+  background: var(--row-hover);
 }
 .subscription-table tbody tr:last-child td {
   border-bottom: 0;

@@ -473,7 +473,10 @@ async function initCompanyRoute() {
   const ipoId = document.body.dataset.ipoId;
   if (!root) return;
   const theme = document.querySelector('meta[name="theme-color"]');
-  if (theme) theme.content = "#f5f7f9";
+  if (theme)
+    theme.content = getComputedStyle(document.documentElement)
+      .getPropertyValue("--bg")
+      .trim();
   if (!document.querySelector('link[rel="icon"]')) {
     const favicon = document.createElement("link");
     favicon.rel = "icon";
