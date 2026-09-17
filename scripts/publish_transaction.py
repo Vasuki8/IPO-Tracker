@@ -9,10 +9,9 @@ import argparse
 import copy
 import hashlib
 import json
-import re
-import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
+from publication_source_policy import verify_source_commit
 from record_integrity import repair
 from update_data import build_validation
 
@@ -110,16 +109,6 @@ def merge_payload(before, proposed, current):
     output['meta']['schemaVersion'] = max(5, output['meta'].get('schemaVersion', 0))
     output['meta']['generatedAt'] = datetime.now(timezone.utc).isoformat()
     return output, conflicts
-
-
-def verify_source_commit(sha):
-    if not re.fullmatch(r'[0-9a-f]{40}', sha):
-        raise ValueError('Invalid collector commit SHA')
-    subprocess.run(['git', 'merge-base', '--is-ancestor', sha, 'HEAD'], check=True)
-    # Old collector code must never publish after a parser/collector repair.
-    result = subprocess.run(['git', 'diff', '--quiet', sha, 'HEAD', '--', 'scripts', 'uv.lock', 'pyproject.toml'], check=False)
-    if result.returncode:
-        raise ValueError('Collector code changed after collection; retained artifact must be recollected with current code')
 
 
 def main():
