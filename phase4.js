@@ -5,102 +5,186 @@
 const phase3OpenDetail = openDetail;
 const phase3RenderSourceHealth = renderSourceHealth;
 
-const p4Esc = value => String(value ?? '').replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
-const p4X = value => value == null ? '—' : `${Number(value).toLocaleString('en-IN', { maximumFractionDigits: 2 })}×`;
+const p4Esc = (value) =>
+  String(value ?? "").replace(
+    /[&<>'"]/g,
+    (c) =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[
+        c
+      ],
+  );
+const p4X = (value) =>
+  value == null
+    ? "—"
+    : `${Number(value).toLocaleString("en-IN", { maximumFractionDigits: 2 })}×`;
 const p4Series = [
-  ['qib', 'QIB'],
-  ['nii', 'NII / HNI'],
-  ['retail', 'Retail / Individual'],
-  ['total', 'Total']
+  ["qib", "QIB"],
+  ["nii", "NII / HNI"],
+  ["retail", "Retail / Individual"],
+  ["total", "Total"],
 ];
 
 function phase4SourceHealth() {
   phase3RenderSourceHealth();
   if (!els.health) return;
-  const h = state.meta?.sourceHealth?.['IPO-subscription'] || state.meta?.sourceHealth?.['NSE-subscription'];
-  if (!h || els.health.querySelector('[data-health="ipo-subscription"]')) return;
+  const h =
+    state.meta?.sourceHealth?.["IPO-subscription"] ||
+    state.meta?.sourceHealth?.["NSE-subscription"];
+  if (!h || els.health.querySelector('[data-health="ipo-subscription"]'))
+    return;
   const ok = !!h.ok;
   const attempted = Number(h.attempted || 0);
   const updated = Number(h.records || 0);
   const added = Number(h.snapshotsAdded || 0);
   const bseFallback = Number(h.bseFallbackRecords || 0);
-  const sourceNote = bseFallback ? ` · BSE fallback ${bseFallback}` : '';
-  const note = attempted ? `${updated}/${attempted} live issues · +${added} snapshots${sourceNote}` : 'no open issues';
-  els.health.insertAdjacentHTML('beforeend', `<div class="health-item" data-health="ipo-subscription"><span class="health-dot ${ok ? 'health-ok' : 'health-bad'}"></span><strong>Subscription feed</strong><span>${p4Esc(note)}</span></div>`);
+  const sourceNote = bseFallback ? ` · BSE fallback ${bseFallback}` : "";
+  const note = attempted
+    ? `${updated}/${attempted} live issues · +${added} snapshots${sourceNote}`
+    : "no open issues";
+  els.health.insertAdjacentHTML(
+    "beforeend",
+    `<div class="health-item" data-health="ipo-subscription"><span class="health-dot ${ok ? "health-ok" : "health-bad"}"></span><strong>Subscription feed</strong><span>${p4Esc(note)}</span></div>`,
+  );
 }
 
 renderSourceHealth = phase4SourceHealth;
 
 function p4History(ipo) {
   return (ipo.subscriptionHistory || [])
-    .filter(row => row && row.capturedAt)
+    .filter((row) => row && row.capturedAt)
     .slice()
     .sort((a, b) => String(a.capturedAt).localeCompare(String(b.capturedAt)));
 }
 
 function p4Latest(ipo, history) {
-  if (history.length) return { ...(ipo.subscription || {}), ...history[history.length - 1] };
-  return ipo.subscription || {};
+  const current = {
+    ...(ipo.subscription || {}),
+    capturedAt: ipo.subscriptionAsOf || null,
+    source: ipo.subscriptionSource || null,
+  };
+  const recorded = history[history.length - 1];
+  if (!recorded) return current;
+  const hasCurrent = ["qib", "nii", "retail", "total"].some(
+    (key) => current[key] != null,
+  );
+  if (!hasCurrent) return { ...recorded };
+  const currentTime = Date.parse(current.capturedAt);
+  const recordedTime = Date.parse(recorded.capturedAt);
+  // Keep each observation's values, timestamp and source together. The canonical
+  // snapshot can be newer than the last stored change in the history series.
+  if (
+    Number.isFinite(currentTime) &&
+    Number.isFinite(recordedTime) &&
+    recordedTime > currentTime
+  )
+    return { ...recorded };
+  return current;
 }
 
 function p4TimeLabel(value, includeDate = false) {
   const d = new Date(value);
-  if (Number.isNaN(d.getTime())) return String(value || '—');
-  return d.toLocaleString('en-IN', {
-    timeZone: 'Asia/Kolkata',
-    day: includeDate ? '2-digit' : undefined,
-    month: includeDate ? 'short' : undefined,
-    hour: '2-digit',
-    minute: '2-digit'
-  }).replace(',', '');
+  if (Number.isNaN(d.getTime())) return String(value || "—");
+  return d
+    .toLocaleString("en-IN", {
+      timeZone: "Asia/Kolkata",
+      day: includeDate ? "2-digit" : undefined,
+      month: includeDate ? "short" : undefined,
+      hour: "2-digit",
+      minute: "2-digit",
+    })
+    .replace(",", "");
 }
 
 function p4Chart(history) {
-  if (!history.length) return '';
+  if (!history.length) return "";
   const width = 860;
   const height = 310;
   const margin = { left: 58, right: 20, top: 22, bottom: 52 };
   const plotW = width - margin.left - margin.right;
   const plotH = height - margin.top - margin.bottom;
-  const values = history.flatMap(row => p4Series
-    .map(([key]) => row[key] == null ? null : Number(row[key]))
-    .filter(value => value != null && Number.isFinite(value)));
+  const values = history.flatMap((row) =>
+    p4Series
+      .map(([key]) => (row[key] == null ? null : Number(row[key])))
+      .filter((value) => value != null && Number.isFinite(value)),
+  );
   const maxValue = Math.max(1, ...values);
-  const roundedMax = maxValue <= 5 ? Math.ceil(maxValue * 2) / 2 : maxValue <= 20 ? Math.ceil(maxValue / 2) * 2 : Math.ceil(maxValue / 10) * 10;
-  const times = history.map(row => new Date(row.capturedAt).getTime());
+  const roundedMax =
+    maxValue <= 5
+      ? Math.ceil(maxValue * 2) / 2
+      : maxValue <= 20
+        ? Math.ceil(maxValue / 2) * 2
+        : Math.ceil(maxValue / 10) * 10;
+  const times = history.map((row) => new Date(row.capturedAt).getTime());
   const validTimes = times.filter(Number.isFinite);
   const tMin = validTimes.length ? Math.min(...validTimes) : 0;
   const tMax = validTimes.length ? Math.max(...validTimes) : history.length - 1;
   const xAt = (row, index) => {
     const t = new Date(row.capturedAt).getTime();
-    if (Number.isFinite(t) && tMax > tMin) return margin.left + ((t - tMin) / (tMax - tMin)) * plotW;
-    return margin.left + (history.length <= 1 ? plotW / 2 : (index / (history.length - 1)) * plotW);
+    if (Number.isFinite(t) && tMax > tMin)
+      return margin.left + ((t - tMin) / (tMax - tMin)) * plotW;
+    return (
+      margin.left +
+      (history.length <= 1 ? plotW / 2 : (index / (history.length - 1)) * plotW)
+    );
   };
-  const yAt = value => margin.top + plotH - (Math.max(0, Number(value) || 0) / roundedMax) * plotH;
+  const yAt = (value) =>
+    margin.top + plotH - (Math.max(0, Number(value) || 0) / roundedMax) * plotH;
 
-  const yTicks = [0, 0.25, 0.5, 0.75, 1].map(frac => {
-    const value = roundedMax * frac;
-    const y = yAt(value);
-    return `<line class="sub-grid" x1="${margin.left}" y1="${y.toFixed(1)}" x2="${width - margin.right}" y2="${y.toFixed(1)}"></line><text class="sub-axis-label" x="${margin.left - 10}" y="${(y + 4).toFixed(1)}" text-anchor="end">${p4Esc(p4X(value))}</text>`;
-  }).join('');
+  const yTicks = [0, 0.25, 0.5, 0.75, 1]
+    .map((frac) => {
+      const value = roundedMax * frac;
+      const y = yAt(value);
+      return `<line class="sub-grid" x1="${margin.left}" y1="${y.toFixed(1)}" x2="${width - margin.right}" y2="${y.toFixed(1)}"></line><text class="sub-axis-label" x="${margin.left - 10}" y="${(y + 4).toFixed(1)}" text-anchor="end">${p4Esc(p4X(value))}</text>`;
+    })
+    .join("");
 
-  const tickIndexes = [...new Set([0, Math.floor((history.length - 1) * 0.25), Math.floor((history.length - 1) * 0.5), Math.floor((history.length - 1) * 0.75), history.length - 1])].filter(i => i >= 0);
-  const xTicks = tickIndexes.map(i => {
-    const x = xAt(history[i], i);
-    return `<text class="sub-axis-label" x="${x.toFixed(1)}" y="${height - 18}" text-anchor="middle">${p4Esc(p4TimeLabel(history[i].capturedAt, true))}</text>`;
-  }).join('');
+  // Tick positions follow elapsed time, so clusters of observations cannot
+  // crowd the labels. Keep endpoint labels inside the SVG plotting bounds.
+  const hasTimeRange = validTimes.length > 1 && tMax > tMin;
+  const tickCount = hasTimeRange ? Math.min(4, history.length) : 1;
+  const xTicks = Array.from({ length: tickCount }, (_, index) => {
+    const fraction = tickCount === 1 ? 0.5 : index / (tickCount - 1);
+    const pointX = margin.left + fraction * plotW;
+    const tickTime = validTimes.length ? tMin + fraction * (tMax - tMin) : null;
+    const label =
+      tickTime == null
+        ? "Timestamp not available"
+        : `${p4TimeLabel(new Date(tickTime).toISOString(), true)} IST`;
+    const anchor =
+      tickCount === 1
+        ? "middle"
+        : index === 0
+          ? "start"
+          : index === tickCount - 1
+            ? "end"
+            : "middle";
+    return `<text class="sub-axis-label" x="${pointX.toFixed(1)}" y="${height - 18}" text-anchor="${anchor}">${p4Esc(label)}</text>`;
+  }).join("");
 
-  const lines = p4Series.map(([key, label]) => {
-    const points = history.map((row, index) => {
-      if (row[key] == null) return null;
-      const value = Number(row[key]);
-      return Number.isFinite(value) ? { x: xAt(row, index), y: yAt(value), value, row } : null;
-    }).filter(Boolean);
-    if (!points.length) return '';
-    const polyline = points.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
-    const dots = points.map(p => `<circle class="sub-point sub-${key}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4"><title>${p4Esc(`${label}: ${p4X(p.value)} · ${formatTimestamp(p.row.capturedAt)} · ${p.row.source || 'official exchange'}`)}</title></circle>`).join('');
-    return `<polyline class="sub-line sub-${key}" points="${polyline}"></polyline>${dots}`;
-  }).join('');
+  const lines = p4Series
+    .map(([key, label]) => {
+      const points = history
+        .map((row, index) => {
+          if (row[key] == null) return null;
+          const value = Number(row[key]);
+          return Number.isFinite(value)
+            ? { x: xAt(row, index), y: yAt(value), value, row }
+            : null;
+        })
+        .filter(Boolean);
+      if (!points.length) return "";
+      const polyline = points
+        .map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`)
+        .join(" ");
+      const dots = points
+        .map(
+          (p) =>
+            `<circle class="sub-point sub-${key}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4"><title>${p4Esc(`${label}: ${p4X(p.value)} · ${formatTimestamp(p.row.capturedAt)} · ${p.row.source || "official exchange"}`)}</title></circle>`,
+        )
+        .join("");
+      return `<polyline class="sub-line sub-${key}" points="${polyline}"></polyline>${dots}`;
+    })
+    .join("");
 
   return `<div class="subscription-chart-wrap"><svg class="subscription-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="IPO subscription history chart">${yTicks}${xTicks}${lines}</svg></div>`;
 }
@@ -108,28 +192,65 @@ function p4Chart(history) {
 function phase4DetailSection(ipo) {
   const history = p4History(ipo);
   const latest = p4Latest(ipo, history);
-  const hasData = p4Series.some(([key]) => latest[key] != null) || history.length;
-  if (!hasData) return '';
+  const hasData =
+    p4Series.some(([key]) => latest[key] != null) || history.length;
+  if (!hasData) return "";
 
-  const latestCards = p4Series.map(([key, label]) => `<div class="subscription-card"><span>${p4Esc(label)}</span><strong>${p4X(latest[key])}</strong></div>`).join('');
-  const legend = p4Series.map(([key, label]) => `<span class="sub-legend-item"><i class="sub-swatch sub-${key}"></i>${p4Esc(label)}</span>`).join('');
-  const latestTime = ipo.subscriptionAsOf || (history.length ? history[history.length - 1].capturedAt : null);
-  const historyNote = history.length === 1 ? '1 stored change' : `${history.length.toLocaleString('en-IN')} stored changes`;
-  const source = (ipo.sources || []).find(s => s?.name === 'NSE subscription detail' || s?.name === 'BSE cumulative demand');
-  const sourceLabel = source?.name === 'BSE cumulative demand' ? 'Open BSE cumulative demand ↗' : 'Open NSE bid detail ↗';
-  const sourceLink = source?.url ? `<a href="${p4Esc(source.url)}" target="_blank" rel="noopener">${sourceLabel}</a>` : '';
-  const latestSource = ipo.subscriptionSource || history[history.length - 1]?.source || 'Official exchange';
+  const latestCards = p4Series
+    .map(
+      ([key, label]) =>
+        `<div class="subscription-card"><span>${p4Esc(label)}</span><strong>${p4X(latest[key])}</strong></div>`,
+    )
+    .join("");
+  const legend = p4Series
+    .map(
+      ([key, label]) =>
+        `<span class="sub-legend-item"><i class="sub-swatch sub-${key}"></i>${p4Esc(label)}</span>`,
+    )
+    .join("");
+  const latestTime =
+    ipo.subscriptionAsOf ||
+    (history.length ? history[history.length - 1].capturedAt : null);
+  const historyNote =
+    history.length === 1
+      ? "1 stored change"
+      : `${history.length.toLocaleString("en-IN")} stored changes`;
+  const source = (ipo.sources || []).find(
+    (s) =>
+      s?.name === "NSE subscription detail" ||
+      s?.name === "BSE cumulative demand",
+  );
+  const sourceLabel =
+    source?.name === "BSE cumulative demand"
+      ? "Open BSE cumulative demand ↗"
+      : "Open NSE bid detail ↗";
+  const sourceLink = source?.url
+    ? `<a href="${p4Esc(source.url)}" target="_blank" rel="noopener">${sourceLabel}</a>`
+    : "";
+  const latestSource =
+    ipo.subscriptionSource ||
+    history[history.length - 1]?.source ||
+    "Official exchange";
 
-  const tableRows = history.slice(-8).reverse().map(row => `<tr><td>${p4Esc(p4TimeLabel(row.capturedAt, true))}</td><td>${p4X(row.qib)}</td><td>${p4X(row.nii)}</td><td>${p4X(row.retail)}</td><td>${p4X(row.total)}</td></tr>`).join('');
-  const historyTable = history.length ? `<div class="subscription-table-wrap"><table class="subscription-table"><thead><tr><th>Snapshot</th><th>QIB</th><th>NII</th><th>Retail</th><th>Total</th></tr></thead><tbody>${tableRows}</tbody></table></div>` : '';
+  const tableRows = history
+    .slice(-8)
+    .reverse()
+    .map(
+      (row) =>
+        `<tr><td>${p4Esc(p4TimeLabel(row.capturedAt, true))}</td><td>${p4X(row.qib)}</td><td>${p4X(row.nii)}</td><td>${p4X(row.retail)}</td><td>${p4X(row.total)}</td></tr>`,
+    )
+    .join("");
+  const historyTable = history.length
+    ? `<div class="subscription-table-wrap"><table class="subscription-table"><thead><tr><th>Snapshot</th><th>QIB</th><th>NII</th><th>Retail</th><th>Total</th></tr></thead><tbody>${tableRows}</tbody></table></div>`
+    : "";
 
-  return `<section class="detail-section subscription-intelligence"><div class="subscription-section-head"><div><div class="section-title">Live subscription history</div><p>Official exchange category-wise bid multiples are stored as changed snapshots instead of being overwritten. NSE is preferred; BSE cumulative demand is used when NSE blocks the cloud runner.</p></div>${sourceLink}</div><div class="subscription-latest-grid">${latestCards}</div><div class="subscription-meta"><span>${p4Esc(historyNote)} · ${p4Esc(latestSource)}</span><span>${latestTime ? `Latest check · ${p4Esc(formatTimestamp(latestTime))}` : 'Timestamp unavailable'}</span></div>${history.length ? `<div class="sub-legend">${legend}</div>${p4Chart(history)}` : ''}${historyTable}</section>`;
+  return `<section class="detail-section subscription-intelligence"><div class="subscription-section-head"><div><div class="section-title">Live subscription history</div><p>Official exchange category-wise bid multiples are stored as changed snapshots instead of being overwritten. NSE is preferred; BSE cumulative demand is used when NSE blocks the cloud runner.</p></div>${sourceLink}</div><div class="subscription-latest-grid">${latestCards}</div><div class="subscription-meta"><span>${p4Esc(historyNote)} · ${p4Esc(latestSource)}</span><span>${latestTime ? `Latest check · ${p4Esc(formatTimestamp(latestTime))}` : "Timestamp unavailable"}</span></div>${history.length ? `<div class="sub-legend">${legend}</div>${p4Chart(history)}` : ""}${historyTable}</section>`;
 }
 
-openDetail = function(id) {
+openDetail = function (id) {
   phase3OpenDetail(id);
-  const ipo = state.data.find(item => item.id === id);
+  const ipo = state.data.find((item) => item.id === id);
   if (!ipo || !els.dialogBody) return;
   const html = phase4DetailSection(ipo);
-  if (html) els.dialogBody.insertAdjacentHTML('beforeend', html);
+  if (html) els.dialogBody.insertAdjacentHTML("beforeend", html);
 };
