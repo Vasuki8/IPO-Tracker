@@ -48,6 +48,11 @@ dependency. For local HTTP tests, only loopback hosts may use unencrypted HTTP.
 ## Operations and recovery
 
 `Verify public release` runs read-only after successful main-branch Pages runs.
+Its filter includes the built-in `pages-build-deployment` workflow identifier as
+well as the display-name alias. A display-title-only filter did not start a run
+after #101; #102 corrected it and run `35279827685` proved the automatic live path.
+The first accepted live receipt is retained in
+`releases/2026-09-17-public-release.json`; see `PROJECT_STATUS.md` for release binding.
 PR changes to the verifier also test against a local HTTP server. The existing
 frontend workflow runs the same byte checks after its real browser journeys.
 Only `contents: read` is granted; checkout credentials are not persisted. There
