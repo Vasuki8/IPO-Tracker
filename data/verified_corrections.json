@@ -1,5 +1,5 @@
 {
-  "revision": "2026-09-15-upcoming-and-final-notices",
+  "revision": "2026-09-17-reject-misrouted-happy-prospectus",
   "basedOnCommit": "eef493b2eec6b0f0ab9cefad8b45b9d5759bc86b",
   "generatedAt": "2026-09-14T12:16:27.134108+00:00",
   "parserVersion": 18,
@@ -14039,6 +14039,309 @@
       },
       "reviewedAt": "2026-09-15T13:52:32+00:00",
       "reason": "Corrected the fresh/OFS allocation, listing exchange and cap-price offer size against the issuer final advertisement, including employee discount"
+    },
+    {
+      "id": "happy",
+      "identity": {
+        "company": "Happy Steels Limited",
+        "symbol": "HAPPY",
+        "openDate": "2026-07-09"
+      },
+      "field": "priceBand",
+      "beforeHash": "eb5933bfd382d0ab92c3918043fbb470e3657dbbf3109962a92aadac29ac57ba",
+      "after": null,
+      "source": {
+        "name": "NSE Final Prospectus cover identity rejection",
+        "url": "https://nsearchives.nseindia.com/emerge/corporates/content/HappySteelsLimited_PROSP.pdf",
+        "type": "PROSPECTUS",
+        "title": "Laser Power & Infra Limited Final Prospectus"
+      },
+      "evidence": {
+        "expectedIssuer": "Happy Steels Limited",
+        "observedIssuer": "Laser Power & Infra Limited",
+        "observedCin": "U14220WB1988PLC043591",
+        "page": 1,
+        "sha256": "d5fd7cd97ce85f366a25fa8a44a54ee05a0466ff00193ab28b28302da25a3d38",
+        "heading": "LASER POWER & INFRA LIMITED",
+        "identityLabel": "CORPORATE IDENTITY NUMBER: U14220WB1988PLC043591",
+        "basedOnCommit": "50a31546a15f155f6af9db7a1daf11ab3cd5c6f2"
+      },
+      "reviewedAt": "2026-09-17T01:24:00+00:00",
+      "reason": "Removed values copied from a misrouted NSE PDF whose cover identifies Laser Power & Infra Limited. Happy Steels values remain missing pending a matching Final Prospectus."
+    },
+    {
+      "id": "happy",
+      "identity": {
+        "company": "Happy Steels Limited",
+        "symbol": "HAPPY",
+        "openDate": "2026-07-09"
+      },
+      "field": "lotSize",
+      "beforeHash": "ff5a1ae012afa5d4c889c50ad427aaf545d31a4fac04ffc1c4d03d403ba4250a",
+      "after": null,
+      "source": {
+        "name": "NSE Final Prospectus cover identity rejection",
+        "url": "https://nsearchives.nseindia.com/emerge/corporates/content/HappySteelsLimited_PROSP.pdf",
+        "type": "PROSPECTUS",
+        "title": "Laser Power & Infra Limited Final Prospectus"
+      },
+      "evidence": {
+        "expectedIssuer": "Happy Steels Limited",
+        "observedIssuer": "Laser Power & Infra Limited",
+        "observedCin": "U14220WB1988PLC043591",
+        "page": 1,
+        "sha256": "d5fd7cd97ce85f366a25fa8a44a54ee05a0466ff00193ab28b28302da25a3d38",
+        "heading": "LASER POWER & INFRA LIMITED",
+        "identityLabel": "CORPORATE IDENTITY NUMBER: U14220WB1988PLC043591",
+        "basedOnCommit": "50a31546a15f155f6af9db7a1daf11ab3cd5c6f2"
+      },
+      "reviewedAt": "2026-09-17T01:24:00+00:00",
+      "reason": "Removed values copied from a misrouted NSE PDF whose cover identifies Laser Power & Infra Limited. Happy Steels values remain missing pending a matching Final Prospectus."
+    },
+    {
+      "id": "happy",
+      "identity": {
+        "company": "Happy Steels Limited",
+        "symbol": "HAPPY",
+        "openDate": "2026-07-09"
+      },
+      "field": "leadManagers",
+      "beforeHash": "44387bb7217195561998047fef9187845c4b9d9b240741b18d55396860d6aaa6",
+      "after": null,
+      "source": {
+        "name": "NSE Final Prospectus cover identity rejection",
+        "url": "https://nsearchives.nseindia.com/emerge/corporates/content/HappySteelsLimited_PROSP.pdf",
+        "type": "PROSPECTUS",
+        "title": "Laser Power & Infra Limited Final Prospectus"
+      },
+      "evidence": {
+        "expectedIssuer": "Happy Steels Limited",
+        "observedIssuer": "Laser Power & Infra Limited",
+        "observedCin": "U14220WB1988PLC043591",
+        "page": 1,
+        "sha256": "d5fd7cd97ce85f366a25fa8a44a54ee05a0466ff00193ab28b28302da25a3d38",
+        "heading": "LASER POWER & INFRA LIMITED",
+        "identityLabel": "CORPORATE IDENTITY NUMBER: U14220WB1988PLC043591",
+        "basedOnCommit": "50a31546a15f155f6af9db7a1daf11ab3cd5c6f2"
+      },
+      "reviewedAt": "2026-09-17T01:24:00+00:00",
+      "reason": "Removed values copied from a misrouted NSE PDF whose cover identifies Laser Power & Infra Limited. Happy Steels values remain missing pending a matching Final Prospectus."
+    },
+    {
+      "id": "happy",
+      "identity": {
+        "company": "Happy Steels Limited",
+        "symbol": "HAPPY",
+        "openDate": "2026-07-09"
+      },
+      "field": "registrar",
+      "beforeHash": "9007a6ad8e14453524bb23c1ae7e165c64f0aae4c26ce2b0eb194f0952bd8a3f",
+      "after": null,
+      "source": {
+        "name": "NSE Final Prospectus cover identity rejection",
+        "url": "https://nsearchives.nseindia.com/emerge/corporates/content/HappySteelsLimited_PROSP.pdf",
+        "type": "PROSPECTUS",
+        "title": "Laser Power & Infra Limited Final Prospectus"
+      },
+      "evidence": {
+        "expectedIssuer": "Happy Steels Limited",
+        "observedIssuer": "Laser Power & Infra Limited",
+        "observedCin": "U14220WB1988PLC043591",
+        "page": 1,
+        "sha256": "d5fd7cd97ce85f366a25fa8a44a54ee05a0466ff00193ab28b28302da25a3d38",
+        "heading": "LASER POWER & INFRA LIMITED",
+        "identityLabel": "CORPORATE IDENTITY NUMBER: U14220WB1988PLC043591",
+        "basedOnCommit": "50a31546a15f155f6af9db7a1daf11ab3cd5c6f2"
+      },
+      "reviewedAt": "2026-09-17T01:24:00+00:00",
+      "reason": "Removed values copied from a misrouted NSE PDF whose cover identifies Laser Power & Infra Limited. Happy Steels values remain missing pending a matching Final Prospectus."
+    },
+    {
+      "id": "happy",
+      "identity": {
+        "company": "Happy Steels Limited",
+        "symbol": "HAPPY",
+        "openDate": "2026-07-09"
+      },
+      "field": "promoters",
+      "beforeHash": "54d01fc2080e86cba9895d225012bf9395598057796aa2c7d6d0fbce09f0bd87",
+      "after": null,
+      "source": {
+        "name": "NSE Final Prospectus cover identity rejection",
+        "url": "https://nsearchives.nseindia.com/emerge/corporates/content/HappySteelsLimited_PROSP.pdf",
+        "type": "PROSPECTUS",
+        "title": "Laser Power & Infra Limited Final Prospectus"
+      },
+      "evidence": {
+        "expectedIssuer": "Happy Steels Limited",
+        "observedIssuer": "Laser Power & Infra Limited",
+        "observedCin": "U14220WB1988PLC043591",
+        "page": 1,
+        "sha256": "d5fd7cd97ce85f366a25fa8a44a54ee05a0466ff00193ab28b28302da25a3d38",
+        "heading": "LASER POWER & INFRA LIMITED",
+        "identityLabel": "CORPORATE IDENTITY NUMBER: U14220WB1988PLC043591",
+        "basedOnCommit": "50a31546a15f155f6af9db7a1daf11ab3cd5c6f2"
+      },
+      "reviewedAt": "2026-09-17T01:24:00+00:00",
+      "reason": "Removed values copied from a misrouted NSE PDF whose cover identifies Laser Power & Infra Limited. Happy Steels values remain missing pending a matching Final Prospectus."
+    },
+    {
+      "id": "happy",
+      "identity": {
+        "company": "Happy Steels Limited",
+        "symbol": "HAPPY",
+        "openDate": "2026-07-09"
+      },
+      "field": "financials",
+      "beforeHash": "a06d29b7ba3c70a8516f0f6f3f43f284e9923fc0f648af13398f294a8e45fdf5",
+      "after": null,
+      "source": {
+        "name": "NSE Final Prospectus cover identity rejection",
+        "url": "https://nsearchives.nseindia.com/emerge/corporates/content/HappySteelsLimited_PROSP.pdf",
+        "type": "PROSPECTUS",
+        "title": "Laser Power & Infra Limited Final Prospectus"
+      },
+      "evidence": {
+        "expectedIssuer": "Happy Steels Limited",
+        "observedIssuer": "Laser Power & Infra Limited",
+        "observedCin": "U14220WB1988PLC043591",
+        "page": 1,
+        "sha256": "d5fd7cd97ce85f366a25fa8a44a54ee05a0466ff00193ab28b28302da25a3d38",
+        "heading": "LASER POWER & INFRA LIMITED",
+        "identityLabel": "CORPORATE IDENTITY NUMBER: U14220WB1988PLC043591",
+        "basedOnCommit": "50a31546a15f155f6af9db7a1daf11ab3cd5c6f2"
+      },
+      "reviewedAt": "2026-09-17T01:24:00+00:00",
+      "reason": "Removed values copied from a misrouted NSE PDF whose cover identifies Laser Power & Infra Limited. Happy Steels values remain missing pending a matching Final Prospectus."
+    },
+    {
+      "id": "happy",
+      "identity": {
+        "company": "Happy Steels Limited",
+        "symbol": "HAPPY",
+        "openDate": "2026-07-09"
+      },
+      "field": "lotSizeEvidence",
+      "beforeHash": "1d73554fb3cfef993d955a5b875dccf104c8d47238470c5ea7f32f1fe5f68cf1",
+      "after": null,
+      "source": {
+        "name": "NSE Final Prospectus cover identity rejection",
+        "url": "https://nsearchives.nseindia.com/emerge/corporates/content/HappySteelsLimited_PROSP.pdf",
+        "type": "PROSPECTUS",
+        "title": "Laser Power & Infra Limited Final Prospectus"
+      },
+      "evidence": {
+        "expectedIssuer": "Happy Steels Limited",
+        "observedIssuer": "Laser Power & Infra Limited",
+        "observedCin": "U14220WB1988PLC043591",
+        "page": 1,
+        "sha256": "d5fd7cd97ce85f366a25fa8a44a54ee05a0466ff00193ab28b28302da25a3d38",
+        "heading": "LASER POWER & INFRA LIMITED",
+        "identityLabel": "CORPORATE IDENTITY NUMBER: U14220WB1988PLC043591",
+        "basedOnCommit": "50a31546a15f155f6af9db7a1daf11ab3cd5c6f2"
+      },
+      "reviewedAt": "2026-09-17T01:24:00+00:00",
+      "reason": "Removed values copied from a misrouted NSE PDF whose cover identifies Laser Power & Infra Limited. Happy Steels values remain missing pending a matching Final Prospectus."
+    },
+    {
+      "id": "happy",
+      "identity": {
+        "company": "Happy Steels Limited",
+        "symbol": "HAPPY",
+        "openDate": "2026-07-09"
+      },
+      "field": "staticFieldProvenance",
+      "beforeHash": "9f89ed69f2bfeacabb445fcf4b2a66d0e3c0872b306e6b89d7739ab228242e67",
+      "after": {},
+      "source": {
+        "name": "NSE Final Prospectus cover identity rejection",
+        "url": "https://nsearchives.nseindia.com/emerge/corporates/content/HappySteelsLimited_PROSP.pdf",
+        "type": "PROSPECTUS",
+        "title": "Laser Power & Infra Limited Final Prospectus"
+      },
+      "evidence": {
+        "expectedIssuer": "Happy Steels Limited",
+        "observedIssuer": "Laser Power & Infra Limited",
+        "observedCin": "U14220WB1988PLC043591",
+        "page": 1,
+        "sha256": "d5fd7cd97ce85f366a25fa8a44a54ee05a0466ff00193ab28b28302da25a3d38",
+        "heading": "LASER POWER & INFRA LIMITED",
+        "identityLabel": "CORPORATE IDENTITY NUMBER: U14220WB1988PLC043591",
+        "basedOnCommit": "50a31546a15f155f6af9db7a1daf11ab3cd5c6f2"
+      },
+      "reviewedAt": "2026-09-17T01:24:00+00:00",
+      "reason": "Removed values copied from a misrouted NSE PDF whose cover identifies Laser Power & Infra Limited. Happy Steels values remain missing pending a matching Final Prospectus."
+    },
+    {
+      "id": "happy",
+      "identity": {
+        "company": "Happy Steels Limited",
+        "symbol": "HAPPY",
+        "openDate": "2026-07-09"
+      },
+      "field": "documentFieldProvenance",
+      "beforeHash": "715f8d7642cae93576a128a0cc3bc3dea7f29ab3db43b5dd256fce142a40b5a8",
+      "after": null,
+      "source": {
+        "name": "NSE Final Prospectus cover identity rejection",
+        "url": "https://nsearchives.nseindia.com/emerge/corporates/content/HappySteelsLimited_PROSP.pdf",
+        "type": "PROSPECTUS",
+        "title": "Laser Power & Infra Limited Final Prospectus"
+      },
+      "evidence": {
+        "expectedIssuer": "Happy Steels Limited",
+        "observedIssuer": "Laser Power & Infra Limited",
+        "observedCin": "U14220WB1988PLC043591",
+        "page": 1,
+        "sha256": "d5fd7cd97ce85f366a25fa8a44a54ee05a0466ff00193ab28b28302da25a3d38",
+        "heading": "LASER POWER & INFRA LIMITED",
+        "identityLabel": "CORPORATE IDENTITY NUMBER: U14220WB1988PLC043591",
+        "basedOnCommit": "50a31546a15f155f6af9db7a1daf11ab3cd5c6f2"
+      },
+      "reviewedAt": "2026-09-17T01:24:00+00:00",
+      "reason": "Removed values copied from a misrouted NSE PDF whose cover identifies Laser Power & Infra Limited. Happy Steels values remain missing pending a matching Final Prospectus."
+    },
+    {
+      "id": "happy",
+      "identity": {
+        "company": "Happy Steels Limited",
+        "symbol": "HAPPY",
+        "openDate": "2026-07-09"
+      },
+      "field": "offerDocumentExtraction",
+      "beforeHash": "3ca4de0cd858124b192a4ed9da68813b7f723488197d9394f531c0cec03223e1",
+      "after": {
+        "status": "identity_rejected",
+        "parserVersion": 29,
+        "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/HappySteelsLimited_PROSP.pdf",
+        "documentType": "PROSPECTUS",
+        "sha256": "d5fd7cd97ce85f366a25fa8a44a54ee05a0466ff00193ab28b28302da25a3d38",
+        "canonicalFields": [],
+        "extractedFields": [],
+        "expectedIssuer": "Happy Steels Limited",
+        "observedIssuer": "Laser Power & Infra Limited",
+        "observedCin": "U14220WB1988PLC043591",
+        "rejectedAt": "2026-09-17T01:24:00+00:00",
+        "sourcePolicy": "final-prospectus-only"
+      },
+      "source": {
+        "name": "NSE Final Prospectus cover identity rejection",
+        "url": "https://nsearchives.nseindia.com/emerge/corporates/content/HappySteelsLimited_PROSP.pdf",
+        "type": "PROSPECTUS",
+        "title": "Laser Power & Infra Limited Final Prospectus"
+      },
+      "evidence": {
+        "expectedIssuer": "Happy Steels Limited",
+        "observedIssuer": "Laser Power & Infra Limited",
+        "observedCin": "U14220WB1988PLC043591",
+        "page": 1,
+        "sha256": "d5fd7cd97ce85f366a25fa8a44a54ee05a0466ff00193ab28b28302da25a3d38",
+        "heading": "LASER POWER & INFRA LIMITED",
+        "identityLabel": "CORPORATE IDENTITY NUMBER: U14220WB1988PLC043591",
+        "basedOnCommit": "50a31546a15f155f6af9db7a1daf11ab3cd5c6f2"
+      },
+      "reviewedAt": "2026-09-17T01:24:00+00:00",
+      "reason": "Removed values copied from a misrouted NSE PDF whose cover identifies Laser Power & Infra Limited. Happy Steels values remain missing pending a matching Final Prospectus."
     }
   ],
   "fillMissing": [

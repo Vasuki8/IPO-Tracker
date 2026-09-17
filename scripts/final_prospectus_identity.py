@@ -1,9 +1,8 @@
 """Issuer-aware Final Prospectus candidate ranking and validation.
 
-This module deliberately does not parse PDFs. It only decides whether document
-metadata is plausible enough to select a Final Prospectus for parsing or to
-consider issuer discovery complete. PDF text identity remains the primary
-content-level guard in ``run_offer_documents.py``.
+This module does not decode PDFs. It ranks document metadata and checks bounded
+opening-page text for an explicitly contradictory cover issuer before metadata
+can substitute for unreadable PDF text.
 """
 from __future__ import annotations
 
@@ -56,6 +55,86 @@ NON_FINAL_DOCUMENT_TYPES = {
     "DRAFTREDHERRINGPROSPECTUS",
     "UPDATEDDRAFTREDHERRINGPROSPECTUS",
 }
+
+_COVER_IDENTITY_LABEL = re.compile(
+    r"^(?:CORPORATE\s+(?:IDENTITY|IDENTIFICATION)\s+NUMBER\b|CIN\s*[:\-]|REGISTERED\s+OFFICE\b)",
+    re.I,
+)
+_COVER_SECTION_END = re.compile(
+    r"^(?:OUR\s+PROMOTERS?|DETAILS\s+OF\s+(?:THE\s+)?(?:OFFER|ISSUE)|"
+    r"INITIAL\s+PUBLIC|RISK|GENERAL\s+RISK|BOOK\s+RUNNING|LEAD\s+MANAGERS?|"
+    r"REGISTRAR\s+TO|BANKERS?\s+TO|LEGAL\s+ADVIS[OE]RS?|AUDITORS?|TABLE\s+OF\s+CONTENTS)\b",
+    re.I,
+)
+_COVER_NAME_END = re.compile(r"\b(?:LIMITED|LTD\.?|LLP|PLC)\s*$", re.I)
+_COVER_NAME_NOISE = re.compile(
+    r"\b(?:PROSPECTUS|DATED|PLEASE|LOGO|IDENTITY|IDENTIFICATION|REGISTERED|OFFICE|"
+    r"TELEPHONE|CONTACT|WEBSITE|FORMERLY)\b|\[PAGE\s+\d+\]", re.I,
+)
+_COVER_QR_CAPTION = re.compile(
+    r"^(?:\(?Please\s+(?:scan|use)\b.*\bQR\s*Code\b.*|"
+    r"(?:this\s+)?Prospectus(?:\s+and\s+(?:the\s+)?Abridged\s+Prospectus)?\)?)$",
+    re.I,
+)
+
+
+def explicit_cover_issuers(text: str) -> list[str]:
+    """Read legal-name headings immediately above a cover identity/address label."""
+    names = []
+    for page in str(text or "")[:40000].split("\f")[:3]:
+        lines = page.splitlines()[:80]
+        for index, raw in enumerate(lines):
+            line = " ".join(raw.split())
+            if _COVER_SECTION_END.match(line):
+                break
+            if not _COVER_IDENTITY_LABEL.match(line):
+                continue
+            pieces = []
+            ambiguous = False
+            for previous in reversed(lines[max(0, index - 6):index]):
+                # Layout extraction can put the QR caption beside the legal
+                # title, with its continuation directly above the CIN row.
+                # Discard only recognizable caption cells, not other prose.
+                cells = [" ".join(cell.split()) for cell in re.split(r"[ \t]{3,}", previous.strip())]
+                value = " ".join(cell for cell in cells if not _COVER_QR_CAPTION.fullmatch(cell))
+                if not value:
+                    if pieces:
+                        break
+                    continue
+                if re.match(r"^\(?\s*Formerly\s+(?:known\s+as|called)\b", value, re.I) and not pieces:
+                    continue
+                if _COVER_NAME_NOISE.search(value) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9 &'().,/+\-]*", value):
+                    break
+                if pieces and not re.fullmatch(r"(?:PRIVATE\s+)?(?:LIMITED|LTD\.?|LLP|PLC)", " ".join(pieces), re.I):
+                    # Without a joining cue, another physical row could be a
+                    # tagline or an unpunctuated wrapped name. Neither reading
+                    # is strong enough to contradict official issuer metadata.
+                    if not re.search(r"(?:&|\bAND|-)\s*$", value, re.I):
+                        ambiguous = True
+                        break
+                pieces.insert(0, value)
+                if len(pieces) >= 3:
+                    break
+            candidate = " ".join(pieces).strip()
+            if (
+                not ambiguous and 5 <= len(candidate) <= 180 and _COVER_NAME_END.search(candidate)
+                and len(issuer_key(candidate)) >= 5
+                and candidate.count("(") == candidate.count(")")
+            ):
+                if candidate not in names:
+                    names.append(candidate)
+                # Later address blocks on the same cover may belong to an
+                # intermediary rather than the issuing company.
+                break
+    return names
+
+
+def contradictory_cover_issuer(record: dict[str, Any], text: str) -> str | None:
+    """Return an explicit different issuer; incidental body mentions cannot rescue it."""
+    expected = issuer_key(record.get("company"))
+    if not expected:
+        return None
+    return next((name for name in explicit_cover_issuers(text) if issuer_key(name) != expected), None)
 
 
 def issuer_key(value: Any) -> str:

@@ -208,6 +208,9 @@ def pdf_bytes(doc, *, cached_only=False):
 def extract(record, doc, *, cached_only=False):
     data = pdf_bytes(doc, cached_only=True) if cached_only else pdf_bytes(doc)
     text, pages, count = parser.extract_pdf_text(data)
+    contradictory = identity.contradictory_cover_issuer(record, text)
+    if contradictory:
+        raise ValueError(f"Final Prospectus cover issuer {contradictory!r} contradicts expected issuer {record.get('company')!r}")
     name = core.canonical_company(record.get("company", ""))
     observed = core.canonical_company(text[:25000])
     text_identity_confirmed = bool(name and name in observed)
