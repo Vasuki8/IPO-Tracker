@@ -18,7 +18,7 @@ from objects_evidence_fixtures import objects_parsed
 
 
 class SourceReviewReportTests(unittest.TestCase):
-    def preview(self, directory, *, invalid=False, interrupt=False, residual=False, unsupported=False, untouched=False):
+    def preview(self, directory, *, invalid=False, interrupt=False, residual=False, unsupported=False, untouched=False, queue_case=False):
         root = Path(directory)
         (root / "data").mkdir()
         cache = root / "cache"
@@ -29,6 +29,15 @@ class SourceReviewReportTests(unittest.TestCase):
             {"id": "first", "company": "First Limited"},
             {"id": "second", "company": "Second Limited"},
         ]}))
+        if queue_case:
+            initial = json.loads(data_file.read_text())
+            for record in initial["ipos"]:
+                record.update(openDate="2026-01-01", closeDate="2026-01-03", listingDate="2026-01-08")
+                record["documents"] = [{"type": "PROSPECTUS", "url": f"https://www.sebi.gov.in/files/{record['id']}.pdf"}]
+                record["objectsOfIssueReview"] = {"status": "quarantined", "snapshot": {
+                    "before": [{"purpose": "Unverified legacy allocation", "amountCr": 1}],
+                }}
+            data_file.write_text(json.dumps(initial))
         if untouched:
             initial = json.loads(data_file.read_text())
             initial["ipos"].append({"id": "untouched", "company": "Untouched Limited"})
@@ -170,6 +179,17 @@ class SourceReviewReportTests(unittest.TestCase):
         self.assertEqual([row["id"] for row in report["records"]], ["first", "second"])
         self.assertEqual(len(data["ipos"]), 3)
         self.assertNotIn('"id": "untouched"', output)
+
+    def test_saved_final_queue_removes_recovered_objects_and_keeps_held_objects(self):
+        with tempfile.TemporaryDirectory() as directory:
+            _, report, data, _ = self.preview(directory, residual=True, queue_case=True, interrupt=True)
+            queue = json.loads((Path(directory) / "data/missing_queue.json").read_text())
+        entries = {row["id"]: row for row in queue["queue"]}
+        self.assertNotIn("offer.objectsOfIssue", entries["first"]["missingFields"])
+        self.assertIn("offer.objectsOfIssue", entries["second"]["missingFields"])
+        self.assertEqual(queue["recordCount"], len(data["ipos"]))
+        self.assertEqual(queue["queueCount"], len(queue["queue"]))
+        self.assertEqual(report["after"]["errorCount"], 0)
 
 
 if __name__ == "__main__":

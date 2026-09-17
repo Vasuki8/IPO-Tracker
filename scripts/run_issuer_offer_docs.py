@@ -214,14 +214,7 @@ base.merge_issuer_enrichment = merge_validated_offer_enrichment
 
 
 def _previous_failed_companies(payload: dict[str, Any]) -> set[str]:
-    health = (payload.get("meta") or {}).get("issuerOfferDocumentHealth") or {}
-    failed: set[str] = set()
-    for raw in health.get("errors") or []:
-        company = str(raw or "").split(":", 1)[0].strip()
-        canonical = base.core.canonical_company(company)
-        if canonical:
-            failed.add(canonical)
-    return failed
+    return set(base._previous_retry_errors(payload))
 
 
 def _already_extracted(record: dict[str, Any], spec: dict[str, Any]) -> bool:
@@ -309,7 +302,7 @@ base._targets = _identity_safe_targets
 
 
 def main() -> int:
-    return base.main()
+    return base.main(checkpoint=base.atomic_save)
 
 
 if __name__ == "__main__":

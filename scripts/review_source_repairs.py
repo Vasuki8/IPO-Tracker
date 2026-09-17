@@ -52,6 +52,7 @@ def main():
         )
     final_policy.apply_policy(payload)
     documents.atomic_save(payload)
+    missing_queue.main(payload=payload, output_file=ROOT / "data/missing_queue.json")
     report = validate_payload(payload)
     review_ids = {item["id"] for item in report["issues"]}
     results = []
