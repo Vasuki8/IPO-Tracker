@@ -122,6 +122,9 @@ def _retain_verified_document(record: dict[str, Any], doc: dict[str, Any], diges
 def extract(record: dict[str, Any], doc: dict[str, Any]):
     data = base.pdf_bytes(doc)
     text, pages, count = parser.extract_pdf_text(data)
+    contradictory = base.identity.contradictory_cover_issuer(record, text)
+    if contradictory:
+        raise ValueError(f"Final Prospectus cover issuer {contradictory!r} contradicts expected issuer {record.get('company')!r}")
     name = core.canonical_company(record.get("company", ""))
     observed = core.canonical_company(text[:25000])
     text_identity_confirmed = bool(name and name in observed)

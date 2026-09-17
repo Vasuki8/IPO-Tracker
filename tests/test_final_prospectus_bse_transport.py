@@ -1,6 +1,8 @@
 import tempfile
 import unittest
+from io import BytesIO
 from pathlib import Path
+from pypdf import PdfWriter
 from unittest.mock import MagicMock, patch
 
 import sys
@@ -9,6 +11,14 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 import run_offer_documents as runner
+
+
+def _valid_pdf():
+    stream = BytesIO()
+    writer = PdfWriter()
+    writer.add_blank_page(width=612, height=792)
+    writer.write(stream)
+    return stream.getvalue()
 
 
 class _Response:
@@ -48,7 +58,8 @@ class BSEFinalProspectusTransportTests(unittest.TestCase):
         session.__exit__.return_value = False
         home = _Response([b"home"])
         history = _Response([b"history"])
-        final = _Response([b"%PDF-bse-final"])
+        expected = _valid_pdf()
+        final = _Response([expected])
         session.get.side_effect = [home, history, final]
 
         with tempfile.TemporaryDirectory() as temp_dir, patch.object(
@@ -60,7 +71,7 @@ class BSEFinalProspectusTransportTests(unittest.TestCase):
         ) as generic_get:
             data = runner.pdf_bytes(self.bse_doc())
 
-        self.assertEqual(data, b"%PDF-bse-final")
+        self.assertEqual(data, expected)
         session_factory.assert_called_once_with()
         generic_get.assert_not_called()
         self.assertTrue(home.closed)
@@ -75,7 +86,8 @@ class BSEFinalProspectusTransportTests(unittest.TestCase):
         session = MagicMock()
         session.__enter__.return_value = session
         session.__exit__.return_value = False
-        final = _Response([b"%PDF-after-bootstrap-failure"])
+        expected = _valid_pdf()
+        final = _Response([expected])
         session.get.side_effect = [
             runner.requests.ConnectionError("home blocked"),
             runner.requests.Timeout("history blocked"),
@@ -87,7 +99,7 @@ class BSEFinalProspectusTransportTests(unittest.TestCase):
         ), patch.object(runner.requests, "Session", return_value=session):
             data = runner.pdf_bytes(self.bse_doc())
 
-        self.assertEqual(data, b"%PDF-after-bootstrap-failure")
+        self.assertEqual(data, expected)
         self.assertEqual(session.get.call_count, 3)
 
     def test_non_bse_final_keeps_generic_transport(self):
@@ -96,7 +108,8 @@ class BSEFinalProspectusTransportTests(unittest.TestCase):
             "title": "Final Prospectus",
             "url": "https://nsearchives.nseindia.com/corporate/FP_EXAMPLE.pdf",
         }
-        response = _Response([b"%PDF-nse-final"])
+        expected = _valid_pdf()
+        response = _Response([expected])
 
         with tempfile.TemporaryDirectory() as temp_dir, patch.object(
             runner, "CACHE", Path(temp_dir)
@@ -107,7 +120,7 @@ class BSEFinalProspectusTransportTests(unittest.TestCase):
         ) as session_factory:
             data = runner.pdf_bytes(doc)
 
-        self.assertEqual(data, b"%PDF-nse-final")
+        self.assertEqual(data, expected)
         generic_get.assert_called_once()
         session_factory.assert_not_called()
 

@@ -1,15 +1,25 @@
 import sys
 import tempfile
 import unittest
+from io import BytesIO
 from pathlib import Path
 from unittest.mock import patch
 
 import requests
+from pypdf import PdfWriter
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 import run_offer_documents as runner
+
+
+def _valid_pdf():
+    stream = BytesIO()
+    writer = PdfWriter()
+    writer.add_blank_page(width=612, height=792)
+    writer.write(stream)
+    return stream.getvalue()
 
 
 class _Response:
@@ -40,7 +50,8 @@ class FinalProspectusDownloadRetryTests(unittest.TestCase):
         }
 
     def test_transient_connection_failure_retries_and_succeeds(self):
-        success = _Response([b"%PDF-test"])
+        expected = _valid_pdf()
+        success = _Response([expected])
         with tempfile.TemporaryDirectory() as temp_dir:
             with (
                 patch.object(runner, "CACHE", Path(temp_dir)),
@@ -53,7 +64,7 @@ class FinalProspectusDownloadRetryTests(unittest.TestCase):
             ):
                 data = runner.pdf_bytes(self.doc())
 
-        self.assertEqual(data, b"%PDF-test")
+        self.assertEqual(data, expected)
         self.assertEqual(get_mock.call_count, 2)
         sleep_mock.assert_called_once()
 

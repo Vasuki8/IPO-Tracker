@@ -17,7 +17,7 @@ import offer_parser as base
 from issue_composition_checks import composition_problems
 from objects_of_issue_checks import objects_problems
 
-PARSER_VERSION = base.PARSER_VERSION + 6
+PARSER_VERSION = base.PARSER_VERSION + 7
 extract_pdf_text = base.extract_pdf_text
 valid_manager = base.valid_manager
 valid_registrar = base.valid_registrar
@@ -35,6 +35,17 @@ _PRICE_PATTERNS = (
     ),
 )
 _PRICE_BAND_PATTERNS = (
+    # A definitions table may disclose the two values before their parenthetic
+    # Floor/Cap labels, rather than writing a numeric "low to high" range.
+    re.compile(
+        r"\bPRICE\s+BAND\s+(?:OF\s+)?(?:A\s+)?MINIMUM\s+PRICE\s+OF\s*"
+        r"(?:₹|RS\.?|INR)\s*([0-9][0-9,]*(?:\.\d+)?)\s*"
+        r"PER\s+(?:EQUITY\s+)?SHARES?\s*\(\s*(?:THE\s+)?FLOOR\s+PRICE\s*\)\s*"
+        r"AND\s+(?:THE\s+)?MAXIMUM\s+PRICE\s+OF\s*"
+        r"(?:₹|RS\.?|INR)\s*([0-9][0-9,]*(?:\.\d+)?)\s*"
+        r"PER\s+(?:EQUITY\s+)?SHARES?\s*\(\s*(?:THE\s+)?CAP\s+PRICE\s*\)",
+        re.I,
+    ),
     re.compile(
         r"\bPRICE\s+BAND\b.{0,120}?(?:₹|RS\.?|INR)?\s*"
         r"([0-9][0-9,]*(?:\.\d+)?)\s*(?:TO|[-–—])\s*"
@@ -85,6 +96,30 @@ _SHAREHOLDING_MARKER = re.compile(
 
 _SHARE_FIELDS = ("freshShares", "ofsShares")
 _AMOUNT_FIELDS = ("freshIssueCr", "ofsCr", "totalIssueSizeCr")
+
+_PROMOTER_HEADING = re.compile(
+    r"^\s*(?P<heading>OUR\s+PROMOTERS?|"
+    r"(?:(?:NAMES?\s+OF\s+)?(?:THE\s+)?)PROMOTERS?\s+OF\s+(?:OUR\s+|THE\s+)?COMPANY)"
+    r"\b(?!\s*(?:AND|&)\s+PROMOTER\s+GROUP)(?P<names>.*)$",
+    re.I,
+)
+_PROMOTER_END = re.compile(
+    r"^(?:DETAILS\s+OF|(?:ISSUE|OFFER)\s+DETAILS|INITIAL\s+PUBLIC|"
+    r"RISKS?\s+IN\s+RELATION|RISK\s+FACTORS|GENERAL\s+RISK|LISTING|"
+    r"BOOK\s+RUNNING|REGISTRAR\s+TO|BID\s*/|OBJECTS?\s+OF|"
+    r"FOR\s+DETAILS|THE\s+DETAILS|OUR\s+COMPANY|TABLE\s+OF\s+CONTENTS|SECTION\s+[IVX])\b",
+    re.I,
+)
+_PROMOTER_JUNK = re.compile(
+    r"\b(?:being|namely|promoters?|selling|shareholders?|equity|shares?|offer|issue|"
+    r"details|our|are|is|including|page|contact|telephone|email|website|risk|listing|respectively)\b",
+    re.I,
+)
+_PROMOTER_LEGAL_END = re.compile(
+    r"(?:\b(?:PRIVATE\s+LIMITED|PVT\.?\s+LTD\.?|PTE\.?\s+LTD\.?|LIMITED|LTD\.?|LLP|LLC|PLC|"
+    r"INC\.?|CORP\.?|ASA|AS|S\.?A\.?)|\(\s*HUF\s*\))$", re.I,
+)
+_PROMOTER_HUF_END = re.compile(r"\(\s*HUF\s*\)$", re.I)
 
 # Keep labels adjacent to their own share count. The legacy recognizer searched
 # hundreds of characters past each label and could attach a seller's quantity,
@@ -150,6 +185,115 @@ def _page_number(page: str, fallback: int) -> int:
     except ValueError:
         return fallback
     return value if value > 0 else fallback
+
+
+def _promoter_names(payload: str, *, single=False) -> list[str]:
+    payload = re.split(r"\b(?:For\s+details|The\s+details\s+of\s+our\s+Promoters)\b", payload, maxsplit=1, flags=re.I)[0]
+    payload = re.sub(
+        r"^(?:(?:(?:The\s+)?Promoters?\s+of\s+(?:our|the)\s+Company|Our\s+Promoters?)\s+)?"
+        r"(?:are|is)\s*[:\-]?\s*", "", payload, flags=re.I,
+    )
+    payload = re.sub(r"^(?:being|namely)\s+", "", payload, flags=re.I)
+    payload = re.sub(r"\(\s*(?:[ivx]+|\d{1,2})\s*\)", ";", payload, flags=re.I)
+    payload = payload.strip(" ;")
+    # A singular promoter heading can name one corporation containing AND.
+    if single and _PROMOTER_LEGAL_END.search(payload) and not re.search(r"[,;]", payload):
+        joined = re.split(r"\s+AND\s+", payload, flags=re.I)
+        if any(_PROMOTER_LEGAL_END.search(part.strip()) for part in joined[:-1]):
+            return []
+        pieces = [payload]
+    else:
+        for segment in re.split(r"[,;]", payload):
+            joined = re.split(r"\s+AND\s+", segment.strip(), flags=re.I)
+            if len(joined) > 2 and any(_PROMOTER_LEGAL_END.search(part.strip()) for part in joined):
+                return []
+        pieces = re.split(r"\s*[,;]\s*|\s+AND\s+", payload, flags=re.I)
+    names = []
+    for piece in pieces:
+        name = " ".join(piece.split()).strip(" ,;:")
+        name = re.sub(r"^(?:Mr|Mrs|Ms|Dr)\.?\s+", "", name, flags=re.I)
+        if not re.search(r"\b(?:Ltd|Pte|Inc|Corp|Co|S\.?A)\.$", name, re.I):
+            name = name.rstrip(".")
+        words = name.split()
+        if not 4 <= len(name) <= 140 or not 2 <= len(words) <= 12 or _PROMOTER_JUNK.search(name):
+            return []
+        if huf := _PROMOTER_HUF_END.search(name):
+            # Preserve the source name, including M/S, but require a named
+            # HUF rather than allowing the prefix and suffix alone to qualify.
+            person = re.sub(r"^M/S\s+", "", name[:huf.start()].strip(), flags=re.I)
+            person_words = person.split()
+            valid = len(person_words) >= 2 and all(re.fullmatch(r"[A-Za-z][A-Za-z.'\-]*", word) for word in person_words)
+        elif _PROMOTER_LEGAL_END.search(name):
+            valid = bool(re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9\s.'&()/+\-]*", name))
+        else:
+            valid = all(re.fullmatch(r"[A-Za-z][A-Za-z.'\-]*", word) for word in words)
+        if not valid or name.count("(") != name.count(")"):
+            return []
+        if name.casefold() not in {existing.casefold() for existing in names}:
+            names.append(name)
+    return names if 1 <= len(names) <= (1 if single else 20) else []
+
+
+def _ambiguous_promoter_rows(parts: list[str]) -> bool:
+    nonempty = [part.strip() for part in parts if part.strip()]
+    for previous, current in zip(nonempty, nonempty[1:]):
+        if re.search(r"[,;]$|\bAND$", previous, re.I) or re.match(r"[,;]|AND\b", current, re.I):
+            continue
+        left = re.split(r"[,;]|\bAND\b", previous, flags=re.I)[-1].strip()
+        right = re.split(r"[,;]|\bAND\b", current, flags=re.I)[0].strip()
+        # A stand-alone legal suffix can complete the previous entity; two
+        # independently plausible name rows cannot safely become one person.
+        if _promoter_names(left) and _promoter_names(right) and not _PROMOTER_LEGAL_END.fullmatch(right):
+            return True
+    return False
+
+
+def extract_final_promoters(text: str) -> tuple[list[str], dict[str, Any]]:
+    """Use complete headed name lists; seller definitions are not promoter lists."""
+    observations = []
+    for page_index, page in enumerate(str(text or "")[:100000].split("\f")[:12], 1):
+        lines = page.splitlines()
+        for index, line in enumerate(lines):
+            match = _PROMOTER_HEADING.match(line)
+            if not match:
+                continue
+            first = match.group("names").strip(" :\t-")
+            # Contents entries and promoter-group headings do not name people.
+            if re.fullmatch(r"[.\s]*\d+", first) or re.search(r"\.{3,}", first):
+                continue
+            rows, parts = [line.strip()], [first]
+            terminated = False
+            for following in lines[index + 1:index + 9]:
+                value = following.strip()
+                if not value:
+                    continue
+                if _PROMOTER_END.match(value) or (_PROMOTER_HEADING.match(value) and any(parts)):
+                    terminated = True
+                    break
+                rows.append(value)
+                parts.append(value)
+                if sum(map(len, parts)) > 1400:
+                    terminated = False
+                    break
+            if not terminated or _ambiguous_promoter_rows(parts):
+                continue
+            names = _promoter_names(
+                " ".join(parts).strip(),
+                single=bool(re.search(r"\bPROMOTER\b", match.group("heading"), re.I)),
+            )
+            if names:
+                observations.append((names, {
+                    "page": _page_number(page, page_index),
+                    "heading": " ".join(match.group("heading").split()),
+                    "rows": rows,
+                    "entities": names,
+                    "method": "bounded-promoter-heading-v1",
+                }))
+    identities = {frozenset(name.casefold().rstrip(".") for name in names) for names, _ in observations}
+    if len(identities) != 1:
+        return [], {}
+    names, evidence = observations[0]
+    return names, {"promoters": evidence}
 
 
 def extract_final_lot_size(text: str) -> tuple[int | None, dict[str, Any]]:
@@ -561,6 +705,12 @@ def extract_final_issue_composition(
 
 def parse_document_text(text: str, price_band=None) -> dict[str, Any]:
     parsed = base.parse_document_text(text, price_band)
+    promoters, promoter_evidence = extract_final_promoters(text)
+    parsed["finalPromoterAssessment"] = "accepted" if promoters else "unresolved"
+    if promoters:
+        parsed["promoters"] = promoters
+    else:
+        parsed.pop("promoters", None)
     invalid_objects = bool(objects_problems(parsed.get("objectsOfIssue")))
     if invalid_objects:
         parsed.pop("objectsOfIssue", None)
@@ -590,10 +740,12 @@ def parse_document_text(text: str, price_band=None) -> dict[str, Any]:
         parsed.pop("issueComposition", None)
 
     field_evidence = dict(parsed.get("fieldEvidence") or {})
+    field_evidence.pop("promoters", None)
     field_evidence.pop("issueComposition", None)
     if invalid_objects:
         field_evidence.pop("objectsOfIssue", None)
     field_evidence.update(lot_evidence)
+    field_evidence.update(promoter_evidence)
     field_evidence.update(shareholding_evidence)
     field_evidence.update(price_evidence)
     field_evidence.update(band_evidence)
@@ -603,9 +755,11 @@ def parse_document_text(text: str, price_band=None) -> dict[str, Any]:
     extracted = [
         field
         for field in (parsed.get("extractedFields") or [])
-        if field not in {"priceBand", "issueComposition"}
+        if field not in {"priceBand", "issueComposition", "promoters"}
         and not (field == "objectsOfIssue" and invalid_objects)
     ]
+    if promoters:
+        extracted.append("promoters")
     if lot_size is not None and "lotSize" not in extracted:
         extracted.append("lotSize")
     if shareholding is not None and "shareholding" not in extracted:
