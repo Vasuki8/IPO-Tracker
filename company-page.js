@@ -151,21 +151,11 @@ function sourceCount(ipo) {
 }
 
 function validationBadge(ipo) {
-  const status = ipo.validation?.status || "single-source";
-  const count = sourceCount(ipo);
-  const label = status === "single-source" ? (count === 0 ? "No sources" : count === 1 ? "1 source" : "Not cross-verified") : status;
-  return `<span class="validation validation-${escapeAttr(status)}">${escapeHtml(label)}</span>`;
+  return IPOQuality.overview(ipo);
 }
 
 function validationCopy(ipo) {
-  const status = ipo.validation?.status || "single-source";
-  if (status === "verified")
-    return "At least two independent official sources are attached to this record.";
-  if (status === "conflict")
-    return "One or more comparable fields disagree across exchange sources.";
-  return sourceCount(ipo)
-    ? "This record has not been cross-verified across independent sources."
-    : "No source is attached to this record yet.";
+  return 'Exchange agreement is not whole-record verification. See field-level evidence and review states below.';
 }
 
 function formatObservation(value) {
@@ -174,35 +164,11 @@ function formatObservation(value) {
 }
 
 function p4History(ipo) {
-  return (ipo.subscriptionHistory || [])
-    .filter((row) => row && row.capturedAt)
-    .slice()
-    .sort((a, b) => String(a.capturedAt).localeCompare(String(b.capturedAt)));
+  return IPOQuality.history(ipo);
 }
 
 function p4Latest(ipo, history) {
-  const current = {
-    ...(ipo.subscription || {}),
-    capturedAt: ipo.subscriptionAsOf || null,
-    source: ipo.subscriptionSource || null,
-  };
-  const recorded = history[history.length - 1];
-  if (!recorded) return current;
-  const hasCurrent = ["qib", "nii", "retail", "total"].some(
-    (key) => current[key] != null,
-  );
-  if (!hasCurrent) return { ...recorded };
-  const currentTime = Date.parse(current.capturedAt);
-  const recordedTime = Date.parse(recorded.capturedAt);
-  // Keep each observation's values, timestamp and source together. The canonical
-  // snapshot can be newer than the last stored change in the history series.
-  if (
-    Number.isFinite(currentTime) &&
-    Number.isFinite(recordedTime) &&
-    recordedTime > currentTime
-  )
-    return { ...recorded };
-  return current;
+  return IPOQuality.snapshot(ipo);
 }
 
 function p4TimeLabel(value, includeDate = false) {
@@ -316,7 +282,7 @@ function p4Chart(history) {
     })
     .join("");
 
-  return `<div class="subscription-chart-wrap"><svg class="subscription-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="IPO subscription history chart">${yTicks}${xTicks}${lines}</svg></div>`;
+  return `<div class="subscription-chart-wrap"><svg class="subscription-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="IPO subscription collection-history chart">${yTicks}${xTicks}${lines}</svg></div>`;
 }
 
 function routeProfileHtml(ipo) {
@@ -352,7 +318,7 @@ function bindCompanyReturnLinks() {
   const href = companyReturnUrl();
   document
     .querySelectorAll(
-      ".company-route-back, .company-route-footer a, .company-route-error a, [data-company-return]",
+      '.company-route-back, .company-route-footer a[href="./"], .company-route-error a, [data-company-return]',
     )
     .forEach((link) => {
       link.href = href;
@@ -444,27 +410,13 @@ function embeddedProfile() {
 
 function latestProfileTimestamp(ipo) {
   let latest = "";
-  for (const source of ipo.sources || []) {
-    const value = String(source?.asOf || "");
-    if (value > latest) latest = value;
-  }
   for (const value of [
-    ipo.subscriptionAsOf,
+    ipo.subscriptionCollectedAt || ipo.subscriptionAsOf,
     ipo.offerDocumentExtraction?.extractedAt,
   ]) {
-    if (value && String(value) > latest) latest = String(value);
+    if (value && Number.isFinite(Date.parse(value)) && (!latest || Date.parse(value) > Date.parse(latest))) latest = String(value);
   }
   return latest || null;
-}
-
-async function fallbackMasterRecord(ipoId) {
-  const response = await fetch("data/ipos.json", { cache: "no-cache" });
-  if (!response.ok) throw new Error(`HTTP ${response.status}`);
-  const payload = await response.json();
-  return (
-    (payload.ipos || []).find((item) => String(item.id) === String(ipoId)) ||
-    null
-  );
 }
 
 async function initCompanyRoute() {
@@ -495,9 +447,10 @@ async function initCompanyRoute() {
   bindCompanyReturnLinks();
 
   try {
-    // New routes are self-contained. The master fetch is only a temporary
-    // compatibility fallback for route files generated before template v3.
-    const ipo = embeddedProfile() || (await fallbackMasterRecord(ipoId));
+    // Cached pre-contract HTML may still reference this newer shared script.
+    if (!globalThis.IPOQuality) await import('./public-quality.js');
+    const embedded = embeddedProfile();
+    const ipo = embedded && IPOQuality.sanitize(embedded);
     if (!ipo) {
       root.innerHTML =
         '<div class="company-route-error"><div class="eyebrow">IPO NOT FOUND</div><h1>This company route is no longer available.</h1><p>The company may have been renamed or merged into another official record.</p><a href="./">Return to IPO tracker</a></div>';
@@ -508,13 +461,13 @@ async function initCompanyRoute() {
     document.title = `${ipo.company} IPO | India IPO Tracker`;
     const description = document.querySelector('meta[name="description"]');
     if (description) {
-      description.content = `${ipo.company} IPO details, issue dates, price band, subscription, offer documents, financials and official source validation.`;
+      description.content = `${ipo.company} IPO details, issue dates, price band, subscription, offer documents, financials and field-specific source evidence.`;
     }
 
     const updatedAt = latestProfileTimestamp(ipo);
     if (freshness)
       freshness.textContent = updatedAt
-        ? `Record updated ${formatTimestamp(updatedAt)}`
+        ? `Record collection / processing check ${formatTimestamp(updatedAt)}`
         : "IPO research profile";
     root.innerHTML = routeProfileHtml(ipo);
     bindRouteNavigation(root);

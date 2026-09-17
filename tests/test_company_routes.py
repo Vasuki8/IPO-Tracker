@@ -1,3 +1,4 @@
+import copy
 import importlib.util
 import json
 import re
@@ -10,6 +11,19 @@ spec = importlib.util.spec_from_file_location("build_company_pages", MODULE)
 mod = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = mod
 spec.loader.exec_module(mod)
+
+
+def final_terms(record, *fields):
+    """Controlled source-bound fields for projection/compaction tests, not source acceptance."""
+    record['openDate'] = '2026-09-01'
+    for field in fields:
+        record.setdefault('staticFieldProvenance', {})[field] = {
+            'value': copy.deepcopy(record[field]), 'documentType': 'PROSPECTUS',
+            'sourceUrl': 'https://nsearchives.nseindia.com/corporate/test-final.pdf',
+            'issueOpenDate': record['openDate'], 'sha256': 'a' * 64,
+            'evidence': {'page': 1, 'field': field, 'value': copy.deepcopy(record[field])},
+        }
+    return record
 
 
 class CompanyRouteTests(unittest.TestCase):
@@ -90,12 +104,12 @@ class CompanyRouteTests(unittest.TestCase):
             "sources": [{"name": "NSE live", "url": "https://example.test", "rawPayload": {"issues": [1, 2, 3]}}, {"name": "SEBI"}],
             "validation": {"status": "verified", "checks": [{"field": "priceBand"}]},
         }
-        summary = mod.public_summary_record(record)
+        summary = mod.public_summary_record(final_terms(record, "lotSize", "priceBand"))
         self.assertEqual(summary["lotSize"], 150)
         self.assertEqual(summary["subscription"], {"total": 2.5})
         self.assertEqual(summary["subscriptionAsOf"], "2026-09-15T10:00:00+05:30")
         self.assertEqual(summary["subscriptionSource"], "NSE")
-        self.assertEqual(summary["listing"], {"gainPct": 7.5})
+        self.assertNotIn("listing", summary, "An unsupported return must not survive an unverified final issue price")
         self.assertEqual(summary["sourceCount"], 2)
         self.assertEqual(summary["profilePath"], "ipo/summary/")
         self.assertNotIn("subscriptionHistory", summary)
@@ -112,9 +126,9 @@ class CompanyRouteTests(unittest.TestCase):
             "subscription": {"total": 0},
             "listing": {"gainPct": 0},
         })
-        self.assertEqual(zero_summary["lotSize"], 0)
+        self.assertNotIn("lotSize", zero_summary, "Zero is not a valid bid lot")
         self.assertEqual(zero_summary["subscription"], {"total": 0})
-        self.assertEqual(zero_summary["listing"], {"gainPct": 0})
+        self.assertNotIn("listing", zero_summary, "An unsupported return is not a verified zero")
         self.assertEqual(zero_summary["sourceCount"], 0)
 
         for missing in (None, "", [], {}):
@@ -180,6 +194,8 @@ class CompanyRouteTests(unittest.TestCase):
         record["dataAvailability"] = {"internal": "two"}
         self.assertEqual(first, mod.route_digest(record, "digest"))
         record["issueSizeCr"] = 101
+        self.assertEqual(first, mod.route_digest(record, "digest"), "A hidden legacy amount is not public content")
+        record["company"] = "New Public Name Limited"
         self.assertNotEqual(first, mod.route_digest(record, "digest"))
 
     def test_public_summary_payload_is_compact_json_serializable(self):

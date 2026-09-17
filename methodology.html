@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f6f7fb" />
+  <title>Sources, evidence and corrections | IPO Tracker</title>
+  <meta name="description" content="How IPO Tracker distinguishes verified Final Prospectus fields, provisional disclosures, review holds and source freshness." />
+  <link rel="canonical" href="https://vasuki8.github.io/IPO-Tracker/methodology.html" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="company.css" />
+  <style>
+    .methodology { max-width: 800px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+    .methodology section { margin-top: 1.5rem; padding: 1.5rem; border: 1px solid var(--border); border-radius: 16px; background: var(--surface, white); }
+    .methodology h1 { margin: 1rem 0; } .methodology h2 { font-size: 1.15rem; margin-bottom: .8rem; }
+    .methodology p { margin: .8rem 0; line-height: 1.7; } .methodology a { text-decoration: underline; text-underline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <main class="methodology" id="main">
+    <nav aria-label="Breadcrumb"><a href="./">IPO Tracker</a> / Sources &amp; methodology</nav>
+    <h1>Read the evidence, not just the number.</h1>
+    <p>IPO Tracker is a research directory. A populated record or agreement between exchanges does not mean every field has been verified. Evidence is assessed field by field.</p>
+    <section><h2>What the field labels mean</h2>
+      <p><strong>Final Prospectus verified</strong> means the displayed static field has matching retained Final Prospectus evidence, including document identity and a physical source location, and has passed the applicable automated checks. It is not a guarantee that every statement in a document or every field in the IPO is correct.</p>
+      <p><strong>Provisional disclosure</strong> identifies a supported active-issue bidding observation, not final IPO terms. The current public projection accepts issue-bound matching official exchange observations for selected bidding terms. An attached draft or RHP alone does not prove a particular value. Provisional values expire after the disclosed closing date; final verification is then required.</p>
+      <p><strong>Under review</strong> means evidence is incomplete, unsupported or conflicting, or a specific correction is pending. The affected figure is withheld from research displays and calculations. <strong>Awaiting disclosure</strong> and <strong>Source unavailable</strong> are distinct missing states; neither is zero. <strong>Reported</strong> identifies a market or lifecycle observation without implying Final Prospectus verification.</p>
+    </section>
+    <section><h2>Source time is not collection time</h2>
+      <p><strong>Source reported at</strong> is the observation time supplied by the source when available. <strong>Checked at</strong> is when it was collected. A later check does not make an unchanged observation newer. When source time is unknown, we say so. Times are displayed in Indian Standard Time.</p>
+      <p>Secondary subscription providers are identified separately from official exchange sources. Collection-history charts show stored checks, not necessarily each source's publication times. Latest recorded demand after bidding closes is not automatically the official final subscription.</p>
+    </section>
+    <section><h2>Amounts and comparisons</h2>
+      <p>Issue amounts are shown in rupees or crore rupees as labelled. One lot at cap means the disclosed bid lot multiplied by the upper price band. It is not a promise of the minimum application amount or an allotment probability. Market lot and minimum bid quantity are separate fields; missing terms are not inferred from each other.</p>
+      <p>The directory, company pages, comparisons and CSV exports use the same accepted-value projection. A held input cannot be restored by a calculation or a fallback to the canonical database. Historical conflicting observations may appear in explicitly identified source diagnostics; they are not accepted offer terms.</p>
+    </section>
+    <section><h2>Sources and correction handling</h2>
+      <p>Company pages link to retained source filings and observations. Where a physical page is available, a field's source link points to it. Source links and provenance do not imply endorsement by an exchange or regulator. Original values, evidence and correction reasons remain in the project's audit history.</p>
+      <p>To flag a concern, <a href="https://github.com/Vasuki8/IPO-Tracker/issues/new" target="_blank" rel="noopener noreferrer">open a data-correction issue</a> with the company URL, field, source link, document page and relevant date. GitHub issues are public: do not include account details, holdings, application identifiers or other personal information. A report requires investigation and is not automatically an accepted correction.</p>
+      <p>Watchlists are stored on your device. This release adds no account system or analytics tracker; that does not imply the hosting provider has no server logs. No paid placements are active. Any future sponsorship must be identified and must not change factual verification or research ordering.</p>
+      <p>This is financial information for research, not a recommendation to apply, buy or sell. Check the original filing and current official issue notices before acting. Data quality, source permissions and applicable product obligations remain ongoing work; a disclaimer does not replace them.</p>
+    </section>
+    <p><a href="./">Back to IPO research</a></p>
+  </main>
+</body>
+</html>

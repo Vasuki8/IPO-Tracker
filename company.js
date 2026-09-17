@@ -35,7 +35,7 @@ function companyLatestSource(ipo) {
   return (
     (ipo.sources || (ipo.source ? [ipo.source] : []))
       .slice()
-      .sort((a, b) => String(b.asOf || '').localeCompare(String(a.asOf || '')))[0] || null
+      .sort((a, b) => (Date.parse(b.asOf) || 0) - (Date.parse(a.asOf) || 0))[0] || null
   );
 }
 function companyHistory(ipo) {
@@ -196,34 +196,34 @@ function companyTimeline(ipo) {
           ? filingStage(ipo)
           : 'Dated filing not available',
     ],
-    ['Opens', ipo.openDate, 'Bidding opens'],
-    ['Closes', ipo.closeDate, 'Bidding closes'],
-    ['Allotment', ipo.allotmentDate, 'Basis of allotment'],
-    ['Listing', ipo.listingDate, 'Exchange listing'],
+    ['Opens', ipo.openDate, 'Bidding opens', 'openDate'],
+    ['Closes', ipo.closeDate, 'Bidding closes', 'closeDate'],
+    ['Allotment', ipo.allotmentDate, 'Basis of allotment', 'allotmentDate'],
+    ['Listing', ipo.listingDate, 'Exchange listing', 'listingDate'],
   ];
   return items
-    .map(([label, date, note]) => {
+    .map(([label, date, note, field]) => {
       const status = date === today ? 'current' : date && date < today ? 'done' : '';
-      return `<div class="company-timeline-step ${status}"><div class="company-timeline-dot" aria-hidden="true">${status === 'done' ? '✓' : status === 'current' ? '•' : ''}</div><div class="company-timeline-label">${escapeHtml(label)}</div><div class="company-timeline-date">${escapeHtml(companyDate(date))}</div><div class="company-timeline-note">${escapeHtml(note)}</div></div>`;
+      return `<div class="company-timeline-step ${status}"><div class="company-timeline-dot" aria-hidden="true">${status === 'done' ? '✓' : status === 'current' ? '•' : ''}</div><div class="company-timeline-label">${escapeHtml(label)}</div><div class="company-timeline-date">${escapeHtml(companyDate(date))}</div><div class="company-timeline-note">${escapeHtml(note)}</div>${field ? IPOQuality.note(ipo, field) : ''}</div>`;
     })
     .join('');
 }
 function companyKpis(ipo) {
   const latest = companySubscription(ipo);
-  const asOf = latest.capturedAt || ipo.subscriptionAsOf;
+  const asOf = latest.observedAt;
   const gain = ipo.listing?.gainPct;
   const lotNote =
     ipo.lotSize && ipo.priceBand?.max != null
       ? `One lot at cap: ${rupees(Number(ipo.lotSize) * Number(ipo.priceBand.max))}`
       : 'Shares per lot';
   const cards = [
-    ['Price band', priceBand(ipo), 'Price per share', ''],
-    ['Issue size', money(ipo.issueSizeCr), 'Total offer value', ''],
-    ['Lot size', ipo.lotSize == null ? '—' : `${companyShares(ipo.lotSize)} shares`, lotNote, ''],
+    ['Price band', priceBand(ipo), 'Price per share', '', 'priceBand'],
+    ['Issue size', money(ipo.issueSizeCr), 'Total offer value', '', 'issueSizeCr'],
+    ['Bid lot', ipo.lotSize == null ? '—' : `${companyShares(ipo.lotSize)} shares`, lotNote, '', 'lotSize'],
     [
       'Subscription',
       x(latest.total),
-      asOf ? `As of ${formatTimestamp(asOf)}` : 'Timestamp not available',
+      IPOQuality.freshness(latest),
       '',
     ],
     [
@@ -235,8 +235,8 @@ function companyKpis(ipo) {
   ];
   return cards
     .map(
-      ([label, value, note, tone]) =>
-        `<div class="company-kpi"><div class="company-kpi-label">${escapeHtml(label)}</div><div class="company-kpi-value ${tone}">${escapeHtml(value)}</div><div class="company-kpi-note">${escapeHtml(note)}</div></div>`,
+      ([label, value, note, tone, field]) =>
+        `<div class="company-kpi"><div class="company-kpi-label">${escapeHtml(label)}</div><div class="company-kpi-value ${tone}">${escapeHtml(value)}</div><div class="company-kpi-note">${escapeHtml(note)}</div>${field ? IPOQuality.note(ipo, field) : ''}</div>`,
     )
     .join('');
 }
@@ -248,6 +248,8 @@ function companyOverviewFacts(ipo) {
     ['Exchange', ipo.exchange],
     ['Symbol', ipo.symbol],
     ['Issue type', ipo.issueType || 'IPO'],
+    ['Market lot', ipo.marketLot == null ? null : `${companyShares(ipo.marketLot)} shares`],
+    ['Minimum bid quantity', ipo.minimumBidQuantity == null ? null : `${companyShares(ipo.minimumBidQuantity)} shares`],
     [
       'Fresh issue',
       ipo.freshIssueCr != null
@@ -279,7 +281,6 @@ function companySubscriptionSection(ipo, heading = 'h3') {
   if (!companyHasSubscription(ipo)) return '';
   const history = companyHistory(ipo);
   const latest = companySubscription(ipo, history);
-  const latestTime = latest.capturedAt || ipo.subscriptionAsOf;
   const source = latest.source || 'Source not available';
   const series = [
     ['qib', 'QIB'],
@@ -295,7 +296,7 @@ function companySubscriptionSection(ipo, heading = 'h3') {
     .join('');
   const chart = history.length && typeof p4Chart === 'function' ? p4Chart(history) : '';
   const historyCaption = chart
-    ? `<p class="company-data-note">Recorded history · through ${escapeHtml(formatTimestamp(history[history.length - 1].capturedAt))}</p>`
+    ? `<p class="company-data-note">Collection history (not source-reporting times) · through ${escapeHtml(formatTimestamp(history[history.length - 1].capturedAt))}</p>`
     : '';
   const legend = chart
     ? `<div class="sub-legend" aria-label="Chart series">${series.map(([key, label]) => `<span class="sub-legend-item"><span class="sub-swatch sub-${key}" aria-hidden="true"></span>${escapeHtml(label)}</span>`).join('')}</div>`
@@ -305,7 +306,7 @@ function companySubscriptionSection(ipo, heading = 'h3') {
     .reverse()
     .map(
       (row) =>
-        `<tr><th scope="row">${escapeHtml(formatTimestamp(row.capturedAt))}</th><td>${x(row.qib)}</td><td>${x(row.nii)}</td><td>${x(row.retail)}</td><td>${x(row.total)}</td></tr>`,
+        `<tr><th scope="row">${escapeHtml(IPOQuality.formatTime(row.collectedAt))}</th><td>${escapeHtml(IPOQuality.formatTime(row.observedAt))}</td><td>${x(row.qib)}</td><td>${x(row.nii)}</td><td>${x(row.retail)}</td><td>${x(row.total)}</td></tr>`,
     )
     .join('');
   const status = derivedStatus(ipo);
@@ -313,9 +314,9 @@ function companySubscriptionSection(ipo, heading = 'h3') {
     status === 'open'
       ? 'Bidding is open. These are the latest reported demand multiples.'
       : status === 'closed' || status === 'listed'
-        ? 'Bidding has closed. These are the latest recorded demand multiples.'
+        ? 'Bidding has closed. Latest recorded multiples are not necessarily the official final subscription.'
         : 'Reported category demand, with each available observation retained.';
-  return `<section class="company-section" id="company-subscription"><div class="company-section-head"><div>${companyHeading('Subscription', heading)}<p class="company-section-subtitle">${subtitle}</p></div><span class="company-meta-chip">${escapeHtml(source)}</span></div><div class="subscription-latest-grid">${cards}</div><p class="company-data-note">Latest snapshot · ${escapeHtml(latestTime ? formatTimestamp(latestTime) : 'Timestamp not available')}</p>${historyCaption}${legend}${chart}${rows ? `<details class="company-history-details"><summary>View ${Math.min(history.length, 10)} latest snapshot${history.length === 1 ? '' : 's'}${history.length > 10 ? ` of ${history.length}` : ''}</summary><div class="subscription-table-wrap" role="region" aria-label="Subscription snapshots" tabindex="0"><table class="subscription-table"><thead><tr><th scope="col">Snapshot · IST</th><th scope="col">QIB</th><th scope="col">NII</th><th scope="col">Retail</th><th scope="col">Total</th></tr></thead><tbody>${rows}</tbody></table></div></details>` : ''}<p class="company-data-note">Multiples compare bids with the shares offered in each category. A dash means data is unavailable.</p></section>`;
+  return `<section class="company-section" id="company-subscription"><div class="company-section-head"><div>${companyHeading('Subscription', heading)}<p class="company-section-subtitle">${subtitle}</p></div><span class="company-meta-chip">${escapeHtml(source)}</span></div><div class="subscription-latest-grid">${cards}</div><p class="company-data-note">${escapeHtml(IPOQuality.freshness(latest))}</p>${historyCaption}${legend}${chart}${rows ? `<details class="company-history-details"><summary>View ${Math.min(history.length, 10)} latest snapshot${history.length === 1 ? '' : 's'}${history.length > 10 ? ` of ${history.length}` : ''}</summary><div class="subscription-table-wrap" role="region" aria-label="Subscription snapshots" tabindex="0"><table class="subscription-table"><thead><tr><th scope="col">Collection check · IST</th><th scope="col">Source observation · IST</th><th scope="col">QIB</th><th scope="col">NII</th><th scope="col">Retail</th><th scope="col">Total</th></tr></thead><tbody>${rows}</tbody></table></div></details>` : ''}<p class="company-data-note">Multiples compare bids with the shares offered in each category. A dash means data is unavailable.</p></section>`;
 }
 function companyOfferIntel(ipo, heading = 'h3') {
   if (!companyHasOffer(ipo)) return '';
@@ -342,8 +343,8 @@ function companyOfferIntel(ipo, heading = 'h3') {
 }
 function companyFinancials(ipo, heading = 'h3') {
   const periods = ipo.financials?.periods || [];
-  if (!periods.length) return '';
-  return `<section class="company-section" id="company-financials"><div class="company-section-head"><div>${companyHeading('Restated financials', heading)}<p class="company-section-subtitle">As reported in official offer documents. Amounts in ₹ crore, except EPS (₹) and returns (%).</p></div></div><div class="company-financial-wrap" role="region" aria-label="Restated financials; scroll horizontally for all columns" tabindex="0"><table class="company-financial-table"><thead><tr><th scope="col">Period</th><th scope="col">Revenue</th><th scope="col">EBITDA</th><th scope="col">PAT</th><th scope="col">Net worth</th><th scope="col">RONW / ROE</th><th scope="col">EPS</th></tr></thead><tbody>${periods.map((row) => `<tr><th scope="row">${escapeHtml(row.period || '—')}</th><td>${money(row.revenueCr)}</td><td>${money(row.ebitdaCr)}</td><td>${money(row.patCr)}</td><td>${money(row.netWorthCr)}</td><td>${companyPct(row.ronwPct ?? row.roePct)}</td><td>${row.eps == null ? '—' : rupees(row.eps)}</td></tr>`).join('')}</tbody></table></div><p class="company-data-note">A dash means data is unavailable. Compare periods of the same duration.</p></section>`;
+  if (!periods.length) return IPOQuality.decision(ipo, 'financials').state === 'under_review' ? `<section class="company-section" id="company-financials">${companyHeading('Restated financials', heading)}${IPOQuality.note(ipo, 'financials')}<p class="company-data-note">The table is withheld pending field-level source verification.</p></section>` : '';
+  return `<section class="company-section" id="company-financials"><div class="company-section-head"><div>${companyHeading('Restated financials', heading)}<p class="company-section-subtitle">Amount and reporting-period evidence is retained per field. Amounts in ₹ crore, except EPS (₹) and returns (%).</p></div></div>${IPOQuality.note(ipo, 'financials')}<div class="company-financial-wrap" role="region" aria-label="Restated financials; scroll horizontally for all columns" tabindex="0"><table class="company-financial-table"><thead><tr><th scope="col">Period</th><th scope="col">Revenue</th><th scope="col">EBITDA</th><th scope="col">PAT</th><th scope="col">Net worth</th><th scope="col">RONW / ROE</th><th scope="col">EPS</th></tr></thead><tbody>${periods.map((row) => `<tr><th scope="row">${escapeHtml(row.period || '—')}</th><td>${money(row.revenueCr)}</td><td>${money(row.ebitdaCr)}</td><td>${money(row.patCr)}</td><td>${money(row.netWorthCr)}</td><td>${companyPct(row.ronwPct ?? row.roePct)}</td><td>${row.eps == null ? '—' : rupees(row.eps)}</td></tr>`).join('')}</tbody></table></div><p class="company-data-note">A dash means data is unavailable. Compare periods of the same duration.</p></section>`;
 }
 function companyDocumentSource(url) {
   if (!url) return 'Source unavailable';
@@ -393,16 +394,16 @@ function companySourcesAndValidation(ipo, heading = 'h3') {
     ? `<div class="company-link-list">${sources
         .map((source) => {
           const url = companySafeUrl(source.url);
-          return `<div class="company-link-row"><span class="company-link-copy"><strong>${escapeHtml(source.name || 'Official source')}</strong><small>${escapeHtml(source.asOf ? formatTimestamp(source.asOf) : 'Timestamp not available')}</small></span>${url ? `<a class="company-section-action" href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer" aria-label="Open ${escapeAttr(source.name || 'official source')}">Open ↗</a>` : ''}</div>`;
+          return `<div class="company-link-row"><span class="company-link-copy"><strong>${escapeHtml(source.name || 'Source')}</strong><small>${escapeHtml(source.asOf ? formatTimestamp(source.asOf) : 'Timestamp not available')}</small></span>${url ? `<a class="company-section-action" href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer" aria-label="Open ${escapeAttr(source.name || 'source')}">Open ↗</a>` : ''}</div>`;
         })
         .join('')}</div>`
     : '<div class="company-empty-note">An official source trail is not available for this record yet.</div>';
-  return `<section class="company-section" id="company-sources"><div class="company-section-head"><div>${companyHeading('Data quality & sources', heading)}<p class="company-section-subtitle">Check the evidence behind this profile. Any conflicting exchange values remain visible below.</p></div></div><div class="company-validation-box${conflictClass}">${validationBadge(ipo)}<span>${escapeHtml(validationCopy(ipo))}</span></div>${conflicts.length ? `<div class="company-conflict-list">${conflicts.map((check) => `<div class="company-conflict-row"><strong>${escapeHtml(check.field)}</strong><span>NSE · ${escapeHtml(formatObservation(check.nse))}</span><span>BSE · ${escapeHtml(formatObservation(check.bse))}</span></div>`).join('')}</div>` : ''}${sourceHtml}</section>`;
+  return `<section class="company-section" id="company-sources"><div class="company-section-head"><div>${companyHeading('Data quality & sources', heading)}<p class="company-section-subtitle">Verification applies to individual fields. Historical exchange disagreements below are diagnostic observations, not accepted offer terms.</p></div></div><div class="company-validation-box${conflictClass}">${validationBadge(ipo)}<span>${escapeHtml(validationCopy(ipo))}</span></div>${conflicts.length ? `<div class="company-conflict-list">${conflicts.map((check) => `<div class="company-conflict-row"><strong>${escapeHtml(check.field)}</strong><span>NSE · ${escapeHtml(formatObservation(check.nse))}</span><span>BSE · ${escapeHtml(formatObservation(check.bse))}</span></div>`).join('')}</div>` : ''}${sourceHtml}</section>`;
 }
 function companySidebar(ipo, heading = 'h3') {
   const latestSource = companyLatestSource(ipo);
   const extraction = ipo.offerDocumentExtraction || {};
-  return `<aside class="company-side-stack" aria-label="Company reference information"><section class="company-section"><div class="company-section-head">${companyHeading('At a glance', heading)}</div>${companyOverviewFacts(ipo)}</section><section class="company-section"><div class="company-section-head">${companyHeading('Record freshness', heading)}</div><dl class="company-fact-grid"><div class="company-fact"><dt>Latest source</dt><dd>${escapeHtml(latestSource?.name || '—')}</dd></div><div class="company-fact"><dt>Source timestamp</dt><dd>${escapeHtml(latestSource?.asOf ? formatTimestamp(latestSource.asOf) : 'Not available')}</dd></div><div class="company-fact"><dt>Offer document processed</dt><dd>${escapeHtml(extraction.extractedAt ? formatTimestamp(extraction.extractedAt) : 'Not available')}</dd></div><div class="company-fact"><dt>Validation</dt><dd>${validationBadge(ipo)}</dd></div></dl><p class="company-data-note">Dates and timestamps use Indian Standard Time (IST).</p></section></aside>`;
+  return `<aside class="company-side-stack" aria-label="Company reference information"><section class="company-section"><div class="company-section-head">${companyHeading('At a glance', heading)}</div>${companyOverviewFacts(ipo)}</section><section class="company-section"><div class="company-section-head">${companyHeading('Record freshness', heading)}</div><dl class="company-fact-grid"><div class="company-fact"><dt>Latest source record</dt><dd>${escapeHtml(latestSource?.name || '—')}</dd></div><div class="company-fact"><dt>Source record timestamp</dt><dd>${escapeHtml(latestSource?.asOf ? formatTimestamp(latestSource.asOf) : 'Not available')}</dd></div><div class="company-fact"><dt>Offer document processed</dt><dd>${escapeHtml(extraction.extractedAt ? formatTimestamp(extraction.extractedAt) : 'Not available')}</dd></div><div class="company-fact"><dt>Validation</dt><dd>${validationBadge(ipo)}</dd></div></dl><p class="company-data-note">Dates and timestamps use Indian Standard Time (IST). A later collection check does not make the source observation newer.</p></section></aside>`;
 }
 function companyNav(ipo) {
   const items = [
@@ -438,6 +439,7 @@ function companyHero(ipo, { standalone = false } = {}) {
   return `<section class="company-hero-card" id="company-overview"><div class="company-identity"><div class="company-monogram" aria-hidden="true">${escapeHtml(companyInitials(ipo.company))}</div><div class="company-identity-copy"><div class="company-kicker">${escapeHtml([ipo.symbol, ipo.exchange].filter(Boolean).join(' · ') || 'Indian IPO')}</div><${title} class="company-hero-name">${escapeHtml(ipo.company || 'Unknown company')}</${title}><div class="company-chip-row">${badge(status)}<span class="company-meta-chip">${escapeHtml(ipo.board || 'Board unavailable')}</span>${filing !== '—' ? `<span class="company-meta-chip">${escapeHtml(filing)}</span>` : ''}${validationBadge(ipo)}</div><p class="company-hero-caption">${count} source${count === 1 ? '' : 's'} attached · ${ipo.openDate ? `Bidding ${companyDate(ipo.openDate)}${ipo.closeDate ? ` – ${companyDate(ipo.closeDate)}` : ' · closing date not available'}` : 'Bidding dates not available'}</p></div></div><div class="company-hero-side"><div class="company-side-highlight"><span>Current stage</span><strong>${escapeHtml(stage)}</strong><small>${escapeHtml(dateText)}</small></div>${companyWatchlistAction(ipo)}${!standalone && profileUrl ? `<a class="company-profile-link" href="${escapeAttr(profileUrl)}">Open full company profile <span aria-hidden="true">↗</span></a>` : ''}</div></section>`;
 }
 function companyProfileHtml(ipo, { standalone = false } = {}) {
+  ipo = IPOQuality.sanitize(ipo);
   const heading = standalone ? 'h2' : 'h3';
   const sections = [
     companySubscriptionSection(ipo, heading),
@@ -452,7 +454,7 @@ function companyProfileHtml(ipo, { standalone = false } = {}) {
     (ipo.objectsOfIssue || []).length <= 3 &&
     (ipo.leadManagers || []).length <= 4 &&
     (ipo.promoters || []).length <= 4;
-  const main = `<div class="company-main-sections">${sections.join('')}${companySourcesAndValidation(ipo, heading)}</div>`;
+  const main = `<div class="company-main-sections">${sections.join('')}${IPOQuality.panel(ipo)}${companySourcesAndValidation(ipo, heading)}</div>`;
   const sidebar = companySidebar(ipo, heading);
   return `<div class="company-profile${standalone ? ' company-route-profile' : ''}${sparse ? ' company-profile-sparse' : ''}">${companyNav(ipo)}<div class="company-profile-inner">${companyHero(ipo, { standalone })}<div class="company-kpis">${companyKpis(ipo)}</div><section class="company-section" id="company-timeline"><div class="company-section-head"><div>${companyHeading('IPO timeline', heading)}<p class="company-section-subtitle">Key dates from official filings through allotment and listing. Missing dates are marked Not available.</p></div><span class="company-meta-chip">All dates · IST</span></div><div class="company-timeline">${companyTimeline(ipo)}</div></section><div class="company-two-col">${sparse ? sidebar + main : main + sidebar}</div></div></div>`;
 }

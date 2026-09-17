@@ -8,6 +8,8 @@ on:
       - '*.js'
       - 'assets/**'
       - 'scripts/build_company_pages.py'
+      - 'scripts/public_quality.py'
+      - 'data/public_display_holds.json'
       - 'tests/frontend*'
       - '.github/workflows/frontend.yml'
   push:
@@ -18,6 +20,8 @@ on:
       - '*.js'
       - 'assets/**'
       - 'scripts/build_company_pages.py'
+      - 'scripts/public_quality.py'
+      - 'data/public_display_holds.json'
       - 'tests/frontend*'
       - '.github/workflows/frontend.yml'
   workflow_dispatch:
@@ -38,6 +42,14 @@ jobs:
       SMOKE_ARTIFACT_DIR: ${{ github.workspace }}/artifacts/frontend
     steps:
       - uses: actions/checkout@v7.0.1
+      - uses: astral-sh/setup-uv@v10.1.0
+      - run: uv python install 3.12
+      - run: uv sync --frozen
+      - name: Rebuild and verify public trust projections
+        run: |
+          uv run --frozen python scripts/build_company_pages.py
+          git diff --exit-code -- data/ipos.json
+          node --test tests/public_quality.test.cjs
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -68,6 +80,7 @@ jobs:
               raise SystemExit('Local frontend server did not start')
           PY
           node tests/frontend_smoke.cjs
+          node tests/frontend_quality_layout.cjs
       - name: Retain screenshots and failure diagnostics
         if: always()
         uses: actions/upload-artifact@v4.6.2

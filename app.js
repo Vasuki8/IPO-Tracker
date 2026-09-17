@@ -109,17 +109,7 @@ function badge(status) {
 }
 
 function validationBadge(ipo) {
-  const status = ipo.validation?.status || 'single-source';
-  const count = sourceCount(ipo);
-  const label =
-    status === 'single-source'
-      ? count === 0
-        ? 'No sources'
-        : count === 1
-          ? '1 source'
-          : 'Not cross-verified'
-      : status;
-  return `<span class="validation validation-${escapeAttr(status)}">${escapeHtml(label)}</span>`;
+  return IPOQuality.overview(ipo);
 }
 
 function filingStage(ipo) {
@@ -149,13 +139,7 @@ function statusBucket(ipo) {
 }
 
 function latestSubscription(ipo) {
-  if (typeof p4Latest === 'function' && typeof p4History === 'function')
-    return p4Latest(ipo, p4History(ipo));
-  return {
-    ...(ipo.subscription || {}),
-    capturedAt: ipo.subscriptionAsOf,
-    source: ipo.subscriptionSource,
-  };
+  return IPOQuality.snapshot(ipo);
 }
 
 function oneLotAtCap(ipo) {
@@ -171,24 +155,9 @@ function lotCostCell(ipo) {
 
 function subscriptionCell(ipo) {
   const latest = latestSubscription(ipo);
-  if (latest.total == null) return '<span class="metric">—</span>';
-  const timestamp = latest.capturedAt;
-  const date = new Date(timestamp);
-  const valid = timestamp && Number.isFinite(date.getTime());
-  const label = valid
-    ? new Intl.DateTimeFormat('en-IN', {
-        timeZone: 'Asia/Kolkata',
-        day: 'numeric',
-        month: 'short',
-        hour: 'numeric',
-        minute: '2-digit',
-      }).format(date)
-    : 'Time unavailable';
-  const title = [
-    latest.source || 'Source unavailable',
-    valid ? formatTimestamp(timestamp) : 'Timestamp unavailable',
-  ].join(' · ');
-  return `<span class="metric" title="${escapeAttr(title)}">${x(latest.total)}</span><small class="metric-note" title="${escapeAttr(title)}">${escapeHtml(label)}</small>`;
+  if (latest.total == null) return '<span class="metric">—</span>' + IPOQuality.note(ipo, 'subscription');
+  const label = IPOQuality.freshness(latest);
+  return `<span class="metric">${x(latest.total)}</span><small class="metric-note">${escapeHtml(label)}</small>`;
 }
 
 function compareMarketActivity(a, b) {
@@ -231,7 +200,7 @@ function filtered() {
     subscription: (ipo) => latestSubscription(ipo).total,
     return: (ipo) => ipo.listing?.gainPct,
   }[state.sort];
-  return state.data
+  return state.data.map((ipo) => IPOQuality.sanitize(ipo))
     .filter(
       (ipo) =>
         matchesBase(ipo) &&
@@ -373,7 +342,7 @@ function renderTable() {
         ipo.validation?.status === 'conflict'
           ? ` · <span class="validation validation-conflict">Source conflict</span>`
           : '';
-      return `<tr data-id="${escapeAttr(ipo.id)}"><td data-label="Company"><div class="company-cell"><span class="ipo-monogram tone-${index % 4}" aria-hidden="true">${escapeHtml(initials)}</span><div class="ipo-company">${companyLink(ipo)}<span class="symbol">${escapeHtml([ipo.symbol, ipo.board || ipo.exchange].filter(Boolean).join(' · '))}${validation}</span></div></div></td><td class="status-cell" data-label="Status">${status === 'pipeline' ? '<span class="badge badge-pipeline">Dates pending</span>' : badge(status)}</td><td class="date-cell" data-label="Key dates">${keyDates(ipo)}</td><td class="numeric" data-label="Price band"><span class="metric">${priceBand(ipo)}</span></td><td class="numeric" data-label="Issue size"><span class="metric">${money(ipo.issueSizeCr)}</span></td><td class="numeric" data-label="Subscription">${subscriptionCell(ipo)}</td><td class="numeric" data-label="${showReturns ? 'Listing return' : '1 lot at cap'}">${showReturns ? `<span class="metric">${listingReturn(ipo)}</span>` : lotCostCell(ipo)}</td><td class="actions-cell" data-label="Actions">${rowActions(ipo)}</td></tr>`;
+      return `<tr data-id="${escapeAttr(ipo.id)}"><td data-label="Company"><div class="company-cell"><span class="ipo-monogram tone-${index % 4}" aria-hidden="true">${escapeHtml(initials)}</span><div class="ipo-company">${companyLink(ipo)}<span class="symbol">${escapeHtml([ipo.symbol, ipo.board || ipo.exchange].filter(Boolean).join(' · '))}${validation}</span></div></div></td><td class="status-cell" data-label="Status">${status === 'pipeline' ? '<span class="badge badge-pipeline">Dates pending</span>' : badge(status)}</td><td class="date-cell" data-label="Key dates">${keyDates(ipo)}</td><td class="numeric" data-label="Price band"><span class="metric">${priceBand(ipo)}</span>${IPOQuality.note(ipo, 'priceBand')}</td><td class="numeric" data-label="Issue size"><span class="metric">${money(ipo.issueSizeCr)}</span>${IPOQuality.note(ipo, 'issueSizeCr')}</td><td class="numeric" data-label="Subscription">${subscriptionCell(ipo)}</td><td class="numeric" data-label="${showReturns ? 'Listing return' : '1 lot at cap'}">${showReturns ? `<span class="metric">${listingReturn(ipo)}</span>` : lotCostCell(ipo) + IPOQuality.note(ipo, 'lotSize')}</td><td class="actions-cell" data-label="Actions">${rowActions(ipo)}</td></tr>`;
     })
     .join('');
   document.getElementById('resultCount').textContent = rows.length
@@ -438,20 +407,9 @@ function parseProfileHtml(text) {
   return payload?.ipo && typeof payload.ipo === 'object' ? payload.ipo : null;
 }
 
-async function masterDetail(id) {
-  const key = String(id);
-  if (!state.masterById) {
-    const response = await fetch('data/ipos.json', { cache: 'no-cache' });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const payload = await response.json();
-    state.masterById = new Map((payload.ipos || []).map((ipo) => [String(ipo.id), ipo]));
-  }
-  return state.masterById.get(key) || null;
-}
-
 async function loadIpoDetail(id) {
   const key = String(id);
-  if (state.detailById.has(key)) return state.detailById.get(key);
+  if (state.detailById.has(key)) return IPOQuality.sanitize(state.detailById.get(key));
 
   const summary = state.byId.get(key);
   if (!summary) return null;
@@ -467,25 +425,11 @@ async function loadIpoDetail(id) {
     const profile = parseProfileHtml(await response.text());
     if (!profile || String(profile.id) !== key)
       throw new Error('Embedded profile record missing or mismatched');
-    const detail = { ...summary, ...profile };
+    const detail = IPOQuality.sanitize(profile);
     state.detailById.set(key, detail);
     return detail;
   } catch (error) {
-    // During rollout an old route may not contain embedded JSON yet. Fall back
-    // to the canonical file once, then stop paying that cost after routes rebuild.
-    console.warn(
-      `Could not lazy-load embedded IPO profile ${key}; using compatibility fallback`,
-      error,
-    );
-    try {
-      const detail = await masterDetail(key);
-      if (detail) {
-        state.detailById.set(key, detail);
-        return detail;
-      }
-    } catch (fallbackError) {
-      console.warn(`Could not load master IPO detail ${key}`, fallbackError);
-    }
+    console.warn(`Could not load IPO profile ${key}; canonical fallback is disabled`, error);
     return summary;
   }
 }
@@ -537,14 +481,7 @@ async function openDetail(id) {
 }
 
 function validationCopy(ipo) {
-  const status = ipo.validation?.status || 'single-source';
-  if (status === 'verified')
-    return 'At least two independent official sources are attached to this record.';
-  if (status === 'conflict')
-    return 'One or more comparable fields disagree across exchange sources.';
-  return sourceCount(ipo)
-    ? 'This record has not been cross-verified across independent sources.'
-    : 'No source is attached to this record yet.';
+  return 'Exchange agreement is not whole-record verification. See the field-level evidence and review states below.';
 }
 
 function formatObservation(value) {
@@ -829,7 +766,7 @@ function renderCompareTray() {
     .join('');
 }
 function openComparison() {
-  const records = [...state.compare].map((id) => state.byId.get(id)).filter(Boolean);
+  const records = [...state.compare].map((id) => state.byId.get(id)).filter(Boolean).map((ipo) => IPOQuality.sanitize(ipo));
   if (records.length < 2) return;
   const fields = [
     [
@@ -841,12 +778,12 @@ function openComparison() {
         ),
     ],
     ['Board', (ipo) => escapeHtml(ipo.board || '—')],
-    ['Price band', priceBand],
-    ['Issue size', (ipo) => money(ipo.issueSizeCr)],
+    ['Price band', (ipo) => priceBand(ipo) + IPOQuality.note(ipo, 'priceBand')],
+    ['Issue size', (ipo) => money(ipo.issueSizeCr) + IPOQuality.note(ipo, 'issueSizeCr')],
     [
       'Lot size',
       (ipo) =>
-        ipo.lotSize == null ? '—' : `${Number(ipo.lotSize).toLocaleString('en-IN')} shares`,
+        (ipo.lotSize == null ? '—' : `${Number(ipo.lotSize).toLocaleString('en-IN')} shares`) + IPOQuality.note(ipo, 'lotSize'),
     ],
     ['1 lot at cap', (ipo) => rupees(oneLotAtCap(ipo))],
     ['Bidding opens', (ipo) => prettyDate(ipo.openDate)],
@@ -856,7 +793,7 @@ function openComparison() {
     ['Subscription source', (ipo) => escapeHtml(latestSubscription(ipo).source || '—')],
     ['Listing return', listingReturn],
     ['Filing stage', (ipo) => escapeHtml(filingStage(ipo))],
-    ['Data validation', validationBadge],
+    ['Field evidence', validationBadge],
     ['Sources attached', (ipo) => String(sourceCount(ipo))],
   ];
   document.getElementById('compareBody').innerHTML =
@@ -883,13 +820,18 @@ function exportCsv() {
     'Issue size crore INR',
     'Subscription multiple',
     'Listing gain percent',
-    'Validation',
+    'Exchange comparison status (not field verification)',
     'Source count',
     'Profile URL',
     'Dataset timestamp',
     'Lot size shares',
     'One lot at cap INR',
-    'Subscription timestamp',
+    'Subscription source observation time',
+    'Subscription collection time',
+    'Subscription source authority',
+    'Price band evidence state',
+    'Lot evidence state',
+    'Issue size evidence state',
     'Subscription source',
   ];
   const lines = filtered().map((ipo) => [
@@ -911,7 +853,12 @@ function exportCsv() {
     state.meta.generatedAt,
     ipo.lotSize,
     oneLotAtCap(ipo),
-    latestSubscription(ipo).capturedAt,
+    latestSubscription(ipo).observedAt,
+    latestSubscription(ipo).collectedAt,
+    latestSubscription(ipo).authority,
+    IPOQuality.decision(ipo, 'priceBand').state,
+    IPOQuality.decision(ipo, 'lotSize').state,
+    IPOQuality.decision(ipo, 'issueSizeCr').state,
     latestSubscription(ipo).source,
   ]);
   const blob = new Blob(
@@ -1194,7 +1141,7 @@ function bind() {
 }
 
 async function loadDashboardPayload() {
-  const sources = ['data/ipos-summary.json', 'data/ipos.json'];
+  const sources = ['data/ipos-summary.json'];
   let lastError = null;
   for (const url of sources) {
     try {
@@ -1222,7 +1169,7 @@ async function init() {
   changeView(state.view, false);
   try {
     const payload = await loadDashboardPayload();
-    state.data = payload.ipos || [];
+    state.data = (payload.ipos || []).map((ipo) => IPOQuality.sanitize(ipo));
     state.meta = payload.meta || {};
     state.summaryMode = Number(state.meta.publicSummaryVersion || 0) >= 1;
     state.byId = new Map(state.data.map((ipo) => [String(ipo.id), ipo]));

@@ -5,12 +5,12 @@ on:
     inputs:
       mode:
         type: choice
-        options: [core, subscriptions, filings, maintenance, repair, p4, p5, performance]
+        options: [core, subscriptions, filings, maintenance, repair, p4, p5, performance, presentation]
         default: maintenance
         description: Source collection stage
   push:
     branches: [main]
-    paths: ['scripts/**', '.github/workflows/refresh.yml', 'data/verified_corrections.json', 'uv.lock']
+    paths: ['scripts/**', '.github/workflows/refresh.yml', 'data/verified_corrections.json', 'data/public_display_holds.json', 'uv.lock', 'pyproject.toml', '*.js', '*.css', '*.html']
   schedule:
     - cron: '17 * * * *'
     - cron: '0,30 4-12 * * 1-5'
@@ -32,8 +32,12 @@ jobs:
   collect:
     runs-on: ubuntu-latest
     timeout-minutes: 75
+    outputs:
+      mode: ${{ steps.collection-mode.outputs.value }}
     steps:
       - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 2
       - uses: astral-sh/setup-uv@v10.1.0
       - run: uv python install 3.12
       - run: uv sync --frozen
@@ -49,7 +53,7 @@ jobs:
           mode="$REQUESTED_MODE"
           if [[ -z "$mode" ]]; then
             if [[ "$EVENT_NAME" == "push" ]]; then
-              mode="repair"
+              mode="$(uv run --frozen python scripts/publication_mode.py)"
             elif [[ "$EVENT_SCHEDULE" == "0,30 4-12 * * 1-5" ]]; then
               mode="subscriptions"
             elif [[ "$EVENT_SCHEDULE" == "43 13 * * *" ]]; then
@@ -85,6 +89,7 @@ jobs:
           cp data/ipos.json /tmp/ipo-bundle/base.json
           git rev-parse HEAD > /tmp/ipo-bundle/source-commit.txt
       - name: Collect sources with explicit stage outcomes
+        if: steps.collection-mode.outputs.value != 'presentation'
         env:
           MODE: ${{ steps.collection-mode.outputs.value }}
         run: uv run --frozen python scripts/run_pipeline.py --mode "$MODE"
@@ -142,6 +147,7 @@ jobs:
       - name: Merge, validate, and publish from current main
         env:
           RUN_ID: ${{ github.run_id }}
+          MODE: ${{ needs.collect.outputs.mode }}
         shell: bash
         run: |
           set -euo pipefail
@@ -151,21 +157,31 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             uv sync --frozen
-            uv run --frozen python scripts/publish_transaction.py --base /tmp/ipo-bundle/base.json --proposed /tmp/ipo-bundle/proposed.json --run-id "$RUN_ID" --source-commit-file /tmp/ipo-bundle/source-commit.txt
-            uv run --frozen python scripts/apply_corrections.py
-            uv run --frozen python scripts/enforce_final_prospectus_policy.py
-            uv run --frozen python scripts/validate_data.py --strict
-            uv run --frozen python scripts/build_company_pages.py
-            uv run --frozen python scripts/audit_data_completeness.py
-            uv run --frozen python scripts/build_missing_queue.py
-            uv run --frozen python scripts/phase_status.py
-            uv run --frozen python scripts/build_performance_summary.py
-            git add data/ ipo/ docs/DATA_QUALITY.md
+            if [[ "$MODE" == "presentation" ]]; then
+              # Rebuild from current accepted data; no collector, correction,
+              # proposal reconciliation or phase-state mutation on this path.
+              uv run --frozen python scripts/validate_data.py --strict
+              uv run --frozen python scripts/build_company_pages.py
+              git diff --exit-code -- data/ipos.json
+              node --test tests/public_quality.test.cjs
+              git add data/ipos-summary.json ipo/
+            else
+              uv run --frozen python scripts/publish_transaction.py --base /tmp/ipo-bundle/base.json --proposed /tmp/ipo-bundle/proposed.json --run-id "$RUN_ID" --source-commit-file /tmp/ipo-bundle/source-commit.txt
+              uv run --frozen python scripts/apply_corrections.py
+              uv run --frozen python scripts/enforce_final_prospectus_policy.py
+              uv run --frozen python scripts/validate_data.py --strict
+              uv run --frozen python scripts/build_company_pages.py
+              uv run --frozen python scripts/audit_data_completeness.py
+              uv run --frozen python scripts/build_missing_queue.py
+              uv run --frozen python scripts/phase_status.py
+              uv run --frozen python scripts/build_performance_summary.py
+              git add data/ ipo/ docs/DATA_QUALITY.md
+            fi
             if git diff --cached --quiet; then
               echo 'No accepted data changes to publish'
               exit 0
             fi
-            git commit -m 'data: publish validated IPO collection'
+            git commit -m "data: publish validated IPO $MODE output"
             if git push origin HEAD:main; then
               exit 0
             fi
