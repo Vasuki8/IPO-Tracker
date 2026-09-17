@@ -18,6 +18,19 @@ The commercial goal does not relax the P4 correctness gate. P5 and performance e
 
 This plan reviews the current repository, published data, representative live user journeys, recent workflows and pull requests, the earlier technical audit, and retrieved development decisions. The fixed code/data baseline is commit `cc30f3701996232aa0eecd1b8c4adbf710c84735`, published at 18:22 UTC on 17 September. Its Pages deployment succeeded. Live inspection followed that snapshot; date-sensitive labels can change at midnight IST. No production code, data, deployment, or PR was changed during this review.
 
+**Execution reconciliation, 17 September 2026:** main `cf906df7` already includes
+the public field-trust/freshness release and verified live acceptance from
+#100–#103. Those audited omissions below are historical. Source repairs #94/#98/#99
+are now integrated in draft #105 and pass 1,023 frozen regressions; their targeted
+data publication remains blocked on a recoverable or newly accepted seven-record
+bundle and a reviewed publication scope. An independent document-scoped public
+hold closes a newly reproduced mirror-URL/changed-allocation display gap. The
+current canonical report has 385 P4 plus 51 higher-priority actionable records,
+1,614 blocking source-review items and 17 unmapped reviews; P5 remains gated.
+See [project status](PROJECT_STATUS.md) for current release evidence and exact next
+action, and [commercial readiness](COMMERCIAL_READINESS.md) for newly retrieved
+NSE terms and dependency inventory. Preserve this dated audit as history.
+
 **The main finding:** the collection and validation foundations have improved considerably, but internal source-review information does not consistently reach the public website. A page can display disputed values and a broad verification label at the same time. Fix that before adding more analytical features.
 
 **What is already working**

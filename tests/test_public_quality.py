@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from public_quality import project_record, value_digest, display_holds
 from build_company_pages import public_profile_record, public_summary_record
+from objects_evidence_fixtures import objects_evidence
 
 TODAY = date(2026, 9, 17)
 SOURCE = 'https://nsearchives.nseindia.com/corporate/FINAL.pdf'
@@ -165,7 +166,7 @@ class RetainedProductionDisplayTests(unittest.TestCase):
             self.assertNotIn(field,result)
 
     def test_retained_pr94_holds_bind_current_data_and_remain_presentation_only(self):
-        for hold in display_holds():
+        for hold in (item for item in display_holds() if item.get('scope', 'value') == 'value'):
             row = self.rows[hold['id']]
             for field, binding in hold['fields'].items():
                 # Immutable, selected production values must match every guard;
@@ -178,6 +179,148 @@ class RetainedProductionDisplayTests(unittest.TestCase):
                 decision = result['publicQuality']['fields'][field]
                 self.assertEqual(decision['state'], 'under_review')
                 self.assertEqual(decision['reason'], 'composition_review' if hold['id'] == 'emmvee' else 'pending_source_repair')
+
+
+class DocumentReviewDisplayTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.rows = {row['id']: row for row in json.loads(
+            (ROOT / 'tests/public_document_reviews_retained.json').read_text(encoding='utf-8'))['ipos']}
+        cls.holds = {hold['id']: hold for hold in display_holds() if hold.get('scope') == 'document'}
+
+    def assert_held(self, row):
+        before = copy.deepcopy(row)
+        actual = project_record(row, today=TODAY)
+        self.assertIsNone(actual['objectsOfIssue'])
+        decision = actual['publicQuality']['fields']['objectsOfIssue']
+        self.assertEqual(decision['state'], 'under_review')
+        self.assertEqual(decision['reason'], 'pending_source_repair')
+        self.assertEqual(actual['publicQuality']['sources'][decision['source']]['sha256'],
+                         row['staticFieldProvenance']['objectsOfIssue']['sha256'])
+        profile = public_profile_record(row)
+        self.assertNotIn('objectsOfIssue', profile)
+        self.assertEqual(profile['publicQuality']['fields']['objectsOfIssue']['state'], 'under_review')
+        self.assertEqual(row, before)
+
+    def test_all_reviewed_documents_bind_real_issuer_offer_and_field_proofs(self):
+        self.assertEqual(set(self.holds), {'blackbuck', 'mbel', 'shriahimsa', 'genxai', 'kaytex', 'speb'})
+        self.assertEqual(set(self.holds), set(self.rows))
+        for identifier, row in self.rows.items():
+            with self.subTest(id=identifier):
+                hold = self.holds[identifier]
+                proof = row['staticFieldProvenance']['objectsOfIssue']
+                self.assertEqual(hold['identity'], {key: row[key] for key in ('id', 'company', 'symbol', 'openDate')})
+                self.assertEqual(proof['issueOpenDate'], row['openDate'])
+                self.assertEqual(proof['sha256'], hold['fields']['objectsOfIssue']['sha256'])
+                self.assertEqual(proof['sourceUrl'], hold['fields']['objectsOfIssue']['sourceUrl'])
+                self.assertEqual(proof['value'], row['objectsOfIssue'])
+                self.assertNotIn('objectsOfIssueReview', row)
+                # These structurally supported values were otherwise verified;
+                # no pre-existing canonical quarantine supplies this protection.
+                self.assertEqual(project_record(row, today=TODAY, holds=[])['publicQuality']['fields']['objectsOfIssue']['state'], 'final_verified')
+                self.assert_held(row)
+
+    def test_mirror_urls_and_changed_allocations_cannot_resolve_document_review(self):
+        for identifier in ('genxai', 'kaytex', 'speb'):
+            for variant in ('query', 'mirror', 'changed_allocation'):
+                with self.subTest(id=identifier, variant=variant):
+                    row = copy.deepcopy(self.rows[identifier])
+                    proof = row['staticFieldProvenance']['objectsOfIssue']
+                    if variant == 'query':
+                        proof['sourceUrl'] += '?mirror=1'
+                    elif variant == 'mirror':
+                        proof['sourceUrl'] = 'https://www.sebi.gov.in/mirrored-final-prospectus.pdf'
+                    else:
+                        # A synthetic, internally valid alternate extraction:
+                        # it is not evidence of a corrected source allocation.
+                        row['objectsOfIssue'] = [{'purpose': 'Working capital requirements', 'amountCr': 1.0}]
+                        proof['value'] = copy.deepcopy(row['objectsOfIssue'])
+                        proof['evidence'] = objects_evidence(row['objectsOfIssue'])
+                    self.assertEqual(project_record(row, today=TODAY, holds=[])['publicQuality']['fields']['objectsOfIssue']['state'], 'final_verified')
+                    self.assert_held(row)
+
+    def test_empty_allocation_with_retained_reviewed_proof_stays_under_review(self):
+        for empty in (None, []):
+            with self.subTest(value=empty):
+                row = copy.deepcopy(self.rows['kaytex'])
+                row['objectsOfIssue'] = empty
+                self.assert_held(row)
+        row = copy.deepcopy(self.rows['kaytex'])
+        row['objectsOfIssue'] = None
+        row.pop('staticFieldProvenance')
+        self.assertEqual(project_record(row, today=TODAY)['publicQuality']['fields']['objectsOfIssue']['state'], 'awaiting_disclosure')
+
+    def test_different_document_can_be_verified_under_ordinary_evidence_rules(self):
+        for original in self.rows.values():
+            with self.subTest(id=original['id']):
+                row = copy.deepcopy(original)
+                proof = row['staticFieldProvenance']['objectsOfIssue']
+                proof['sha256'] = 'a' * 64
+                proof['sourceUrl'] = 'https://www.sebi.gov.in/later-final-prospectus.pdf'
+                before = copy.deepcopy(row)
+                projected = project_record(row, today=TODAY)
+                self.assertEqual(projected['objectsOfIssue'], row['objectsOfIssue'])
+                self.assertEqual(projected['publicQuality']['fields']['objectsOfIssue']['state'], 'final_verified')
+                self.assertEqual(row, before)
+                proof['documentType'] = 'RHP'
+                self.assertIsNone(project_record(row, today=TODAY)['objectsOfIssue'])
+
+    def test_same_pdf_cannot_transfer_the_hold_to_another_issuer_or_offer(self):
+        for field, value in (('id', 'other-issue'), ('company', 'Another Issuer Limited'),
+                             ('symbol', 'ANOTHER'), ('openDate', '2026-08-01')):
+            with self.subTest(field=field):
+                row = copy.deepcopy(self.rows['kaytex'])
+                row[field] = value
+                if field == 'openDate':
+                    row['closeDate'] = '2026-08-03'
+                    row['staticFieldProvenance']['objectsOfIssue']['issueOpenDate'] = value
+                before = copy.deepcopy(row)
+                projected = project_record(row, today=TODAY)
+                self.assertEqual(projected['objectsOfIssue'], row['objectsOfIssue'])
+                self.assertEqual(projected['publicQuality']['fields']['objectsOfIssue']['state'], 'final_verified')
+                self.assertEqual(row, before)
+
+    def test_proof_must_bind_the_exact_reviewed_offer_date(self):
+        for value in (None, '2026-08-01'):
+            with self.subTest(proof_date=value):
+                row = copy.deepcopy(self.rows['kaytex'])
+                row['staticFieldProvenance']['objectsOfIssue']['issueOpenDate'] = value
+                projected = project_record(row, today=TODAY)
+                self.assertIsNone(projected['objectsOfIssue'])
+                self.assertEqual(projected['publicQuality']['fields']['objectsOfIssue']['reason'], 'final_evidence_required')
+
+    def test_malformed_document_scope_cannot_silently_skip_the_hold(self):
+        for mutation in ('company', 'symbol', 'openDate', 'id', 'scope'):
+            hold = copy.deepcopy(self.holds['kaytex'])
+            if mutation == 'scope':
+                hold['scope'] = 'unknown'
+            else:
+                hold['identity'].pop(mutation)
+            with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                project_record(self.rows['kaytex'], today=TODAY, holds=[hold])
+
+    def test_canonical_proofs_review_and_correction_history_survive_public_withholding(self):
+        row = copy.deepcopy(self.rows['speb'])
+        row['dataCorrections'] = [{'field': 'objectsOfIssue', 'before': None, 'after': copy.deepcopy(row['objectsOfIssue'])}]
+        row['objectsOfIssueReview'] = {'status': 'resolved', 'snapshot': {'retained': 'earlier review'}}
+        row['documentFieldProvenance'] = {'evidence': {'objectsOfIssue': copy.deepcopy(row['staticFieldProvenance']['objectsOfIssue']['evidence'])}}
+        row['subscription'] = {'total': 2.5}
+        self.assert_held(row)
+        projected = project_record(row, today=TODAY)
+        for field in ('dataCorrections', 'objectsOfIssueReview', 'staticFieldProvenance', 'documentFieldProvenance', 'subscription'):
+            self.assertEqual(projected[field], row[field])
+
+    def test_layout_holds_remain_value_scoped_for_same_document_repairs(self):
+        holds = {hold['id']: hold for hold in display_holds()}
+        for identifier in ('emmvee', 'teamtech', 'unimech'):
+            self.assertEqual(holds[identifier].get('scope', 'value'), 'value')
+            self.assertTrue(all(binding.get('valueDigest') for binding in holds[identifier]['fields'].values()))
+        for identifier in ('teamtech', 'unimech'):
+            row = evidence({'id': identifier}, 'objectsOfIssue',
+                           [{'purpose': 'Working capital requirements', 'amountCr': 1.0}],
+                           objects_evidence([{'purpose': 'Working capital requirements', 'amountCr': 1.0}]))
+            row['staticFieldProvenance']['objectsOfIssue']['sha256'] = holds[identifier]['fields']['objectsOfIssue']['sha256']
+            self.assertEqual(project_record(row, today=TODAY)['objectsOfIssue'], row['objectsOfIssue'])
 
 if __name__ == '__main__':
     unittest.main()
