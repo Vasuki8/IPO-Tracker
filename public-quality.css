@@ -1,0 +1,11 @@
+/* Text labels, not color alone, convey field trust. Uses the existing light theme. */
+.quality-note { display: block; margin-top: .35rem; font-size: .72rem; line-height: 1.5; white-space: normal; color: var(--muted, #536174); }
+.quality-note a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.quality-under_review, .quality-source_unavailable { font-weight: 650; color: #85420e; }
+.quality-provisional { color: #51468b; }
+.quality-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 1rem; }
+.quality-grid div { min-width: 0; }
+.quality-grid dt { font-weight: 650; font-size: .8rem; }
+.quality-grid dd { margin: 0; }
+.quality-grid .quality-note { margin-top: .2rem; }
+@media (max-width: 540px) { .quality-grid { grid-template-columns: 1fr; } }

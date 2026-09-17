@@ -20,6 +20,10 @@ import shutil
 import unicodedata
 from pathlib import Path
 from typing import Any
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from public_quality import project_record, summary_quality
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "ipos.json"
@@ -27,7 +31,7 @@ SUMMARY_FILE = ROOT / "data" / "ipos-summary.json"
 OUT_DIR = ROOT / "ipo"
 MANIFEST = OUT_DIR / "routes.json"
 
-ROUTE_TEMPLATE_VERSION = 3
+ROUTE_TEMPLATE_VERSION = 4
 PUBLIC_SUMMARY_VERSION = 1
 PROFILE_SCRIPT_ID = "ipo-profile-data"
 
@@ -123,6 +127,7 @@ def source_count(record: dict[str, Any]) -> int:
 
 def public_summary_record(record: dict[str, Any]) -> dict[str, Any]:
     """Return compact directory/comparison fields and subscription provenance."""
+    record = project_record(record)
     subscription = _pick(record.get("subscription"), ("total",))
     listing = _pick(record.get("listing"), ("gainPct",))
     lifecycle = _pick(record.get("lifecycle"), ("stage", "stageDate"))
@@ -145,6 +150,8 @@ def public_summary_record(record: dict[str, Any]) -> dict[str, Any]:
             "lotSize": record.get("lotSize"),
             "issueSizeCr": record.get("issueSizeCr"),
             "subscription": subscription,
+            "publicQuality": summary_quality(record["publicQuality"]),
+            **{key: record.get(key) for key in ("subscriptionObservedAt", "subscriptionCollectedAt", "subscriptionTimeBasis", "subscriptionAuthority", "subscriptionSourceUrl")},
             "subscriptionAsOf": record.get("subscriptionAsOf"),
             "subscriptionSource": record.get("subscriptionSource"),
             "listing": listing,
@@ -159,8 +166,11 @@ def public_summary_record(record: dict[str, Any]) -> dict[str, Any]:
 
 def public_profile_record(record: dict[str, Any]) -> dict[str, Any]:
     """Return the compact, display-only record embedded in a permanent route."""
+    record = project_record(record)
     sources = record.get("sources") or ([record["source"]] if isinstance(record.get("source"), dict) else [])
     profile = {
+        "publicQuality": record["publicQuality"],
+        **{key: record.get(key) for key in ("marketLot", "minimumBidQuantity", "subscriptionObservedAt", "subscriptionCollectedAt", "subscriptionTimeBasis", "subscriptionAuthority", "subscriptionSourceUrl")},
         "id": record.get("id"),
         "company": record.get("company"),
         "symbol": record.get("symbol"),
@@ -183,7 +193,7 @@ def public_profile_record(record: dict[str, Any]) -> dict[str, Any]:
         "subscription": _pick(record.get("subscription"), ("qib", "nii", "retail", "total")),
         "subscriptionHistory": _pick_rows(
             record.get("subscriptionHistory"),
-            ("capturedAt", "qib", "nii", "retail", "total", "source"),
+            ("capturedAt", "observedAt", "collectedAt", "timeBasis", "qib", "nii", "retail", "total", "source", "sourceUrl"),
         ),
         "listing": _pick(record.get("listing"), ("issuePrice", "listPrice", "gainPct")),
         "lifecycle": _pick(record.get("lifecycle"), ("stage", "stageDate")),
@@ -287,6 +297,7 @@ def page_html(record: dict[str, Any], route: str) -> str:
   <link rel="stylesheet" href="phase4.css" />
   <link rel="stylesheet" href="company.css" />
   <link rel="stylesheet" href="company-page.css" />
+  <link rel="stylesheet" href="public-quality.css" />
 </head>
 <body class="company-route-body" data-ipo-id="{record_id}" data-profile-path="{profile_path}">
   <div class="company-route-shell">
@@ -310,12 +321,13 @@ def page_html(record: dict[str, Any], route: str) -> str:
     </main>
 
     <footer class="company-route-footer">
-      <span>Official-source IPO research tracker · not investment advice.</span>
-      <a href="./">Back to all IPOs</a>
+      <span>Source-linked IPO research · not investment advice.</span>
+      <a href="methodology.html">Sources &amp; methodology</a> · <a href="./">Back to all IPOs</a>
     </footer>
   </div>
 
   <script id="{PROFILE_SCRIPT_ID}" type="application/json">{embedded_profile}</script>
+  <script src="public-quality.js" defer></script>
   <script src="company-page.js" defer></script>
   <script src="company.js" defer></script>
 </body>

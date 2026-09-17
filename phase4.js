@@ -50,35 +50,11 @@ function phase4SourceHealth() {
 renderSourceHealth = phase4SourceHealth;
 
 function p4History(ipo) {
-  return (ipo.subscriptionHistory || [])
-    .filter((row) => row && row.capturedAt)
-    .slice()
-    .sort((a, b) => String(a.capturedAt).localeCompare(String(b.capturedAt)));
+  return IPOQuality.history(ipo);
 }
 
 function p4Latest(ipo, history) {
-  const current = {
-    ...(ipo.subscription || {}),
-    capturedAt: ipo.subscriptionAsOf || null,
-    source: ipo.subscriptionSource || null,
-  };
-  const recorded = history[history.length - 1];
-  if (!recorded) return current;
-  const hasCurrent = ["qib", "nii", "retail", "total"].some(
-    (key) => current[key] != null,
-  );
-  if (!hasCurrent) return { ...recorded };
-  const currentTime = Date.parse(current.capturedAt);
-  const recordedTime = Date.parse(recorded.capturedAt);
-  // Keep each observation's values, timestamp and source together. The canonical
-  // snapshot can be newer than the last stored change in the history series.
-  if (
-    Number.isFinite(currentTime) &&
-    Number.isFinite(recordedTime) &&
-    recordedTime > currentTime
-  )
-    return { ...recorded };
-  return current;
+  return IPOQuality.snapshot(ipo);
 }
 
 function p4TimeLabel(value, includeDate = false) {
@@ -179,14 +155,14 @@ function p4Chart(history) {
       const dots = points
         .map(
           (p) =>
-            `<circle class="sub-point sub-${key}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4"><title>${p4Esc(`${label}: ${p4X(p.value)} · ${formatTimestamp(p.row.capturedAt)} · ${p.row.source || "official exchange"}`)}</title></circle>`,
+            `<circle class="sub-point sub-${key}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4"><title>${p4Esc(`${label}: ${p4X(p.value)} · ${formatTimestamp(p.row.capturedAt)} · ${p.row.source || "source unavailable"}`)}</title></circle>`,
         )
         .join("");
       return `<polyline class="sub-line sub-${key}" points="${polyline}"></polyline>${dots}`;
     })
     .join("");
 
-  return `<div class="subscription-chart-wrap"><svg class="subscription-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="IPO subscription history chart">${yTicks}${xTicks}${lines}</svg></div>`;
+  return `<div class="subscription-chart-wrap"><svg class="subscription-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="IPO subscription collection-history chart">${yTicks}${xTicks}${lines}</svg></div>`;
 }
 
 function phase4DetailSection(ipo) {
@@ -208,29 +184,10 @@ function phase4DetailSection(ipo) {
         `<span class="sub-legend-item"><i class="sub-swatch sub-${key}"></i>${p4Esc(label)}</span>`,
     )
     .join("");
-  const latestTime =
-    ipo.subscriptionAsOf ||
-    (history.length ? history[history.length - 1].capturedAt : null);
-  const historyNote =
-    history.length === 1
-      ? "1 stored change"
-      : `${history.length.toLocaleString("en-IN")} stored changes`;
-  const source = (ipo.sources || []).find(
-    (s) =>
-      s?.name === "NSE subscription detail" ||
-      s?.name === "BSE cumulative demand",
-  );
-  const sourceLabel =
-    source?.name === "BSE cumulative demand"
-      ? "Open BSE cumulative demand ↗"
-      : "Open NSE bid detail ↗";
-  const sourceLink = source?.url
-    ? `<a href="${p4Esc(source.url)}" target="_blank" rel="noopener">${sourceLabel}</a>`
-    : "";
-  const latestSource =
-    ipo.subscriptionSource ||
-    history[history.length - 1]?.source ||
-    "Official exchange";
+  const historyNote = `${history.length.toLocaleString('en-IN')} stored checks`;
+  const sourceLink = latest.sourceUrl
+    ? `<a href="${p4Esc(latest.sourceUrl)}" target="_blank" rel="noopener noreferrer">Open subscription source ↗</a>` : '';
+  const latestSource = latest.source || 'Source unavailable';
 
   const tableRows = history
     .slice(-8)
@@ -241,10 +198,10 @@ function phase4DetailSection(ipo) {
     )
     .join("");
   const historyTable = history.length
-    ? `<div class="subscription-table-wrap"><table class="subscription-table"><thead><tr><th>Snapshot</th><th>QIB</th><th>NII</th><th>Retail</th><th>Total</th></tr></thead><tbody>${tableRows}</tbody></table></div>`
+    ? `<div class="subscription-table-wrap"><table class="subscription-table"><thead><tr><th>Collection check · IST</th><th>QIB</th><th>NII</th><th>Retail</th><th>Total</th></tr></thead><tbody>${tableRows}</tbody></table></div>`
     : "";
 
-  return `<section class="detail-section subscription-intelligence"><div class="subscription-section-head"><div><div class="section-title">Live subscription history</div><p>Official exchange category-wise bid multiples are stored as changed snapshots instead of being overwritten. NSE is preferred; BSE cumulative demand is used when NSE blocks the cloud runner.</p></div>${sourceLink}</div><div class="subscription-latest-grid">${latestCards}</div><div class="subscription-meta"><span>${p4Esc(historyNote)} · ${p4Esc(latestSource)}</span><span>${latestTime ? `Latest check · ${p4Esc(formatTimestamp(latestTime))}` : "Timestamp unavailable"}</span></div>${history.length ? `<div class="sub-legend">${legend}</div>${p4Chart(history)}` : ""}${historyTable}</section>`;
+  return `<section class="detail-section subscription-intelligence"><div class="subscription-section-head"><div><div class="section-title">Subscription collection history</div><p>Stored demand snapshots retain their original source. Collection time is not source observation time; secondary sources are identified separately.</p></div>${sourceLink}</div><div class="subscription-latest-grid">${latestCards}</div><div class="subscription-meta"><span>${p4Esc(historyNote)} · ${p4Esc(latestSource)}</span><span>${p4Esc(IPOQuality.freshness(latest))}</span></div>${history.length ? `<div class="sub-legend">${legend}</div>${p4Chart(history)}` : ""}${historyTable}</section>`;
 }
 
 openDetail = function (id) {

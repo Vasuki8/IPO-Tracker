@@ -509,7 +509,8 @@ async function main() {
       // no price-performance coverage. Only this isolated browser test receives
       // a controlled return; no repository data or other test data is changed.
       const original = records.find((ipo) => ipo.listingDate) || records[0];
-      record = { ...original, listing: { ...original.listing, gainPct: -12.5 } };
+      record = { ...original, listing: { ...original.listing, gainPct: -12.5 },
+        publicQuality: {...original.publicQuality, fields: {...original.publicQuality.fields, listing:{state:'reported'}}} };
       await page.route('**/data/ipos-summary.json', (route) =>
         route.fulfill({
           json: { ...publicPayload, ipos: [record] },
@@ -681,19 +682,19 @@ async function main() {
     const profile = JSON.parse(embedded[2]).ipo;
     const canonical = {
       ...(profile.subscription || {}),
-      capturedAt: profile.subscriptionAsOf,
+      collectedAt: profile.subscriptionCollectedAt || profile.subscriptionAsOf,
+      observedAt: profile.subscriptionObservedAt,
       source: profile.subscriptionSource,
     };
     const history = [...(profile.subscriptionHistory || [])].sort(
       (a, b) => Date.parse(a.capturedAt) - Date.parse(b.capturedAt),
     );
     const last = history.at(-1);
-    const currentTime = Date.parse(canonical.capturedAt);
+    const currentTime = Date.parse(canonical.collectedAt);
     const historyTime = Date.parse(last?.capturedAt);
-    const expected =
-      Number.isFinite(currentTime) && Number.isFinite(historyTime) && historyTime > currentTime
-        ? last
-        : canonical;
+    // The public accepted snapshot is authoritative. A later history check is
+    // not publication approval and cannot mix categories or source clocks.
+    const expected = canonical;
     const multiple = (value) =>
       value == null
         ? '—'
@@ -719,7 +720,7 @@ async function main() {
       assert.equal(
         shown.kpi,
         multiple(snapshot.total),
-        `${label}: KPI uses the freshest observation`,
+        `${label}: KPI uses the accepted current observation`,
       );
       for (const [key, category] of [
         ['qib', 'QIB'],
@@ -734,17 +735,16 @@ async function main() {
         );
       }
       assert.equal(shown.source, snapshot.source || 'Source not available');
-      if (snapshot.capturedAt) {
-        const timestamp = new Intl.DateTimeFormat('en-IN', {
-          timeZone: 'Asia/Kolkata',
-          dateStyle: 'medium',
-          timeStyle: 'short',
-        }).format(new Date(snapshot.capturedAt));
-        assert.ok(
-          shown.timestamp.includes(timestamp),
-          `${label}: timestamp matches the displayed observation`,
-        );
-      }
+      const stamp = (value) => new Intl.DateTimeFormat('en-IN', {
+        timeZone: 'Asia/Kolkata', day: 'numeric', month: 'short', year: 'numeric',
+        hour: 'numeric', minute: '2-digit',
+      }).format(new Date(value));
+      if (snapshot.collectedAt)
+        assert.ok(shown.timestamp.includes('Checked at ' + stamp(snapshot.collectedAt)), `${label}: collection is a check, not source freshness`);
+      if (snapshot.observedAt)
+        assert.ok(shown.timestamp.includes('Source reported at ' + stamp(snapshot.observedAt)), `${label}: source clock is separate`);
+      else
+        assert.ok(shown.timestamp.includes('Source time unavailable'), `${label}: unknown source time stays unknown`);
       console.log(`  SNAPSHOT ${label}: ${shown.kpi}, ${shown.source}, ${shown.timestamp}`);
     };
     const inspectBoth = async (snapshot, label) => {
@@ -760,9 +760,8 @@ async function main() {
     };
     await inspectBoth(expected, 'Published Veegaland');
 
-    // The actual record catches older history overriding newer canonical data.
-    // A single controlled newer row verifies the converse and catches category
-    // mixing: absent QIB/NII/retail values must remain absent in that observation.
+    // Neither earlier nor later collection history may override the accepted
+    // public snapshot. In particular, a later check cannot make a source newer.
     const newer = {
       capturedAt: new Date(
         Math.max(currentTime || 0, historyTime || 0, Date.now()) + 60_000,
@@ -781,8 +780,68 @@ async function main() {
         contentType: 'text/html; charset=utf-8',
       }),
     );
-    await inspectBoth(newer, 'Isolated newer-history fixture');
+    await inspectBoth(canonical, 'Isolated newer-history fixture retains accepted snapshot');
   });
+
+  await run('Disputed figures stay withheld across directory quick view profile comparison and CSV', async (page, requests) => {
+    const record = records.find(ipo => ipo.id === 'shakti-polytarp-limited');
+    assert.ok(record?.profilePath, 'Retained contradictory-record regression exists');
+    // A new accepted source repair may legitimately resolve this particular
+    // production record; inject only the already-withheld contract below then.
+    assert.equal(record.publicQuality?.version, 1, 'The deployed projection carries its quality contract');
+    const held = {...record, issueSizeCr: null, publicQuality:{...record.publicQuality,
+      fields:{...record.publicQuality.fields,issueSizeCr:{state:'under_review',reason:'composition_review'}}}};
+    await page.route('**/data/ipos-summary.json', route => route.fulfill({json:{...publicPayload,
+      ipos:records.map(row => row.id === held.id ? held : row)}}));
+    await openDirectory(page, '?q=' + encodeURIComponent(held.company));
+    const row = page.locator(`#ipoRows tr[data-id="${held.id}"]`);
+    assert.equal((await row.locator('[data-label="Issue size"] .metric').textContent()).trim(), '—');
+    assert.ok((await row.locator('[data-quality-field="issueSizeCr"]').textContent()).includes('Under review'));
+    const downloadPromise = page.waitForEvent('download');
+    await page.locator('#exportCsv').click();
+    const download = await downloadPromise;
+    const csv = (await fs.readFile(await download.path(), 'utf8')).replace(/^\uFEFF/,'').split('\r\n');
+    const parse = line => [...line.matchAll(/(?:^|,)(?:"((?:[^"]|"")*)"|([^,]*))/g)].map(cell => (cell[1] ?? cell[2]).replace(/""/g,'"'));
+    const headers = parse(csv[0]), values = parse(csv[1]);
+    assert.equal(values[headers.indexOf('Issue size crore INR')], '');
+    assert.equal(values[headers.indexOf('Issue size evidence state')], 'under_review');
+    await row.locator('[data-action="compare"]').click();
+    const other = records.find(ipo => ipo.id !== held.id && ipo.company);
+    await page.locator('#search').fill(other.company);
+    await page.locator(`#ipoRows tr[data-id="${other.id}"] [data-action="compare"]`).click();
+    await page.locator('#openCompare').click();
+    const comparison = page.locator('#compareBody tbody tr').filter({has: page.locator('th', {hasText:/^Issue size$/})});
+    assert.equal((await comparison.locator('td').first().textContent()).trim(), '—Under review');
+    await page.keyboard.press('Escape');
+    // Inspect the real generated full record, not a synthetic projection.
+    await page.goto(url(record.profilePath), {waitUntil:'networkidle'});
+    await page.locator('#companyPage .company-profile').waitFor();
+    const realState = await page.locator('#ipo-profile-data').textContent();
+    const real = JSON.parse(realState).ipo;
+    if (real.publicQuality.fields.issueSizeCr.state === 'under_review') {
+      assert.equal(real.issueSizeCr,undefined);
+      assert.ok((await page.locator('#companyPage [data-quality-field="issueSizeCr"]').first().textContent()).includes('Under review'));
+    }
+    await openDirectory(page, '?q=' + encodeURIComponent(record.company));
+    await page.locator('#ipoRows [data-action="preview"]').first().click();
+    await page.locator('#detailDialog[open] .company-profile').waitFor();
+    if (real.publicQuality.fields.issueSizeCr.state === 'under_review')
+      assert.ok((await page.locator('#detailDialog [data-quality-field="issueSizeCr"]').first().textContent()).includes('Under review'));
+    assert.equal(fileRequested(requests,'ipos.json').length,0,'No surface can fetch unsanitized canonical fallback values');
+    await screenshot(page,'field-trust-quick-view');
+  });
+
+  await run('Secondary subscription source and separate clocks remain visible on mobile', async (page) => {
+    const record = records.find(ipo => ipo.subscriptionAuthority === 'secondary' && ipo.subscriptionObservedAt && ipo.subscriptionCollectedAt);
+    assert.ok(record, 'The retained data supplies a real secondary snapshot with both clocks');
+    await openDirectory(page, '?q=' + encodeURIComponent(record.company));
+    const cell = page.locator(`#ipoRows tr[data-id="${record.id}"] [data-label="Subscription"]`);
+    assert.equal(await cell.isVisible(),true);
+    const text = await cell.textContent();
+    assert.ok(text.includes('Secondary source')); assert.ok(text.includes('Source reported at')); assert.ok(text.includes('Checked at'));
+    await noOverflow(page,'field-trust mobile directory');
+    await screenshot(page,'field-trust-mobile');
+  }, {width:375,height:812});
 
   await run('Profile watchlist persists and synchronizes with other tabs and quick view', async (page) => {
     const record = records.find((ipo) => ipo.id === 'veegaland');
@@ -944,6 +1003,7 @@ async function main() {
       const rect = document.getElementById('company-sources')?.getBoundingClientRect();
       return rect && rect.top < window.innerHeight && rect.bottom > 0;
     });
+    assert.equal(await page.locator('.company-route-footer a[href="methodology.html"]').count(), 1, 'Return-link binding must not redirect the methodology link');
     await page.locator('.company-route-back').click();
     await ready(page);
     assert.equal(page.url(), before, 'The profile back link restores the full directory query');
