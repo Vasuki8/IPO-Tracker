@@ -38,10 +38,21 @@ def clone(value):
     return MISSING if value is MISSING else copy.deepcopy(value)
 
 
+def comparison_value(value, path):
+    # Enforcement refreshes this clock without changing document facts. Ignore
+    # it only for equality; return the selected group's complete original data.
+    if len(path) == 3 and path[0] == 'ipos' and path[-1] == 'documentFields' and isinstance(value, dict):
+        policy = value.get('staticSourcePolicy')
+        if isinstance(policy, dict):
+            return {**value, 'staticSourcePolicy': {key: item for key, item in policy.items() if key != 'checkedAt'}}
+    return value
+
+
 def merge_value(before, proposed, current, path, conflicts):
-    if proposed == before or proposed == current:
+    before_comparison, proposed_comparison, current_comparison = [comparison_value(value, path) for value in (before, proposed, current)]
+    if proposed_comparison == before_comparison or proposed_comparison == current_comparison:
         return clone(current)
-    if current == before:
+    if current_comparison == before_comparison:
         return clone(proposed)
     if (not path or path[-1] not in ATOMIC_FIELDS) and all(isinstance(value, dict) for value in (before, proposed, current)):
         output = {}
