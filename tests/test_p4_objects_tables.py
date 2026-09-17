@@ -93,6 +93,46 @@ class ObjectsTableParserTests(unittest.TestCase):
         self.assertIn("Up to 2,005.77", proof["sourceRows"][0]["lines"][0]["text"])
         self.assertEqual(proof["sourceRows"][0]["amountToken"], "2,005.77")
 
+    def test_capillary_header_like_continuation_keeps_full_purpose_and_total(self):
+        parsed = self.parsed((FIXTURES / "capillary-boundary-table.txt").read_text())
+        self.assertEqual([row["amountCr"] for row in parsed["objectsOfIssue"]], [143.0, 71.581, 10.342, 97.985])
+        self.assertEqual(parsed["objectsOfIssue"][-1]["purpose"],
+                         "Funding inorganic growth through unidentified acquisitions and general corporate purposes*")
+        proof = parsed["fieldEvidence"]["objectsOfIssue"]
+        self.assertEqual(proof["tableTotal"]["normalizedValue"], 322.908)
+        self.assertEqual(proof["tableTotal"]["page"], 27)
+        self.assertEqual(proof["sourceRows"][-1]["lines"][-1]["text"].strip(), "purposes*")
+
+    def test_alpine_floating_footnote_cannot_drop_third_allocation(self):
+        self.assert_rejected((FIXTURES / "alpinetex-boundary-table.txt").read_text())
+
+    def test_solarworld_repeated_header_cannot_close_table_prefix(self):
+        self.assert_rejected((FIXTURES / "solarworld-boundary-table.txt").read_text())
+
+    def test_repeated_header_cannot_hide_an_inconsistent_final_total(self):
+        body = line("1.", "Funding working capital requirements", "200.00")
+        source = fixed(body, total=False) + "\n\f[PAGE 11]\n"
+        source += "Sr. No.       Particulars                                 Estimated Amount\n"
+        source += line("", "Total", "300.00")
+        self.assert_rejected(source)
+
+    def test_bare_footnote_needs_real_note_text_or_strong_boundary(self):
+        source = fixed(line("1.", "Funding working capital requirements", "200.00"), total=False)
+        for marker in ("(1)", "*", "^"):
+            with self.subTest(marker=marker):
+                self.assert_rejected(source + "\n" + marker)
+                self.assert_rejected(source + "\n" + marker + "\n" + line("2.", "General corporate purposes", "100.00"))
+                parsed = self.parsed(source + "\n" + marker + "\nThe amount utilised for general corporate purposes shall not exceed 25%.")
+                self.assertEqual(len(parsed["objectsOfIssue"]), 1)
+                self.parsed(source + "\n" + marker + "\nProposed schedule of implementation and deployment of Net Proceeds")
+
+    def test_footnote_prefixed_allocation_cannot_close_an_incomplete_prefix(self):
+        source = fixed(line("1.", "Funding working capital requirements", "200.00"), total=False)
+        for marker in ("(3)", "*", "^"):
+            with self.subTest(marker=marker):
+                next_row = line("", marker + " General corporate purposes", "100.00")
+                self.assert_rejected(source + "\n" + next_row + "\n" + line("", "Total", "300.00"))
+
     def test_requires_standalone_heading_and_identifiable_columns(self):
         source = compact("A. Working capital requirements 20.00")
         for replacement in ("For objects of the issue see page 10", "OBJECTS OF THE ISSUE 10", ""):

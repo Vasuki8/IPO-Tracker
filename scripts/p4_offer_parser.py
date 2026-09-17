@@ -261,6 +261,12 @@ _OBJECT_UNIT = re.compile(
 _OBJECT_TOKEN = r"(?:\d{1,3}(?:,\d{2})*,\d{3}|\d+)(?:\.\d+)?|\[\s*[●•*]\s*\]|[—–-]|Nil"
 _OBJECT_ROW_MARKER = re.compile(r"^\s*(?:\d+[.)]?\s+|[A-Z][.)]\s+|[A-Z]\s{2,})", re.I)
 _OBJECT_FOOTNOTE = re.compile(r"^(?:\*|\^|[†‡]|\(\d+\)(?:\s|$)|Notes?\s*[:.])", re.I)
+_OBJECT_BARE_FOOTNOTE = re.compile(r"(?:\*+|\^|[†‡]|\(\d+\))")
+_OBJECT_NOTE_TEXT = re.compile(
+    r"^(?:Subject\s+to\b|The\s+(?:amount|proceeds|funds|cost|expenses|net|gross)\b|"
+    r"For\s+(?:further\s+)?details\b|See\b|As\s+(?:per|certified|stated|set\s+out)\b|Our\s+Company\b)",
+    re.I,
+)
 _OBJECT_TOTAL = re.compile(r"^(?:Grand\s+)?Total(?:\s|\(|\*|$)", re.I)
 _OBJECT_NON_ALLOCATION = re.compile(
     r"^(?:Gross\b.*\bProceeds|Net\s+(?:Issue\s+)?Proceeds|Less\b|\(Less\))", re.I,
@@ -367,6 +373,25 @@ def _object_purpose_span(raw: str, end: int):
     return (start, end) if start < end else None
 
 
+def _bare_object_footnote_closes(lines: list[dict[str, Any]], index: int, header: dict[str, Any]) -> bool:
+    """An isolated superscript can precede another row, so it cannot end a table."""
+    for next_index in range(index + 1, min(len(lines), index + 9)):
+        source_line = lines[next_index]
+        flat = _space(source_line["text"])
+        if source_line["page"] > lines[index]["page"] + 1:
+            return False
+        if not flat or re.fullmatch(r"Page\s+\d+\s+of\s+\d+|\d+", flat, re.I):
+            continue
+        if _OBJECT_BARE_FOOTNOTE.fullmatch(flat):
+            continue
+        if _OBJECT_TABLE_STOP.match(flat):
+            return True
+        if _object_header(lines, next_index) or _object_row_tail(source_line["text"], header["percentage"]):
+            return False
+        return bool(_OBJECT_NOTE_TEXT.match(flat) or _OBJECT_FOOTNOTE.match(flat))
+    return False
+
+
 def _object_table(lines: list[dict[str, Any]], index: int, heading_index: int, header: dict[str, Any], unit):
     """Read one allocation table; None skips a non-allocation reconciliation."""
     unit_name, factor, unit_line = unit
@@ -392,7 +417,8 @@ def _object_table(lines: list[dict[str, Any]], index: int, heading_index: int, h
         pending = None
 
     table_end = min(len(lines), header["next"] + 70)
-    for source_line in lines[header["next"]:table_end]:
+    for source_index in range(header["next"], table_end):
+        source_line = lines[source_index]
         raw = source_line["text"]
         flat = _space(raw)
         if source_line["page"] > lines[index]["page"] + 1:
@@ -427,13 +453,24 @@ def _object_table(lines: list[dict[str, Any]], index: int, heading_index: int, h
             table_scope = "net" if net_total else "gross" if gross_total or gross_header else "unspecified"
             closed = True
             break
-        if _OBJECT_FOOTNOTE.match(flat) or _OBJECT_TABLE_STOP.match(flat):
+        if _OBJECT_FOOTNOTE.match(flat):
+            note_amount = _object_row_tail(raw, header["percentage"])
+            if note_amount and (header["compact"] or note_amount.start("amount") >= header["amountColumn"] - 4):
+                # Parenthesized numbering or a floating superscript may belong
+                # to another allocation row, rather than a prose footnote.
+                invalid = True
+                break
+            closed = (not _OBJECT_BARE_FOOTNOTE.fullmatch(flat)
+                      or _bare_object_footnote_closes(lines, source_index, header))
+            invalid = not closed
+            break
+        if _OBJECT_TABLE_STOP.match(flat) or _OBJECTS_HEADING.fullmatch(flat):
             closed = True
             break
-        if (_OBJECTS_HEADING.fullmatch(flat)
-                or (_object_header_fragment(raw)
-                    and (_OBJECT_PURPOSE_HEADER.search(raw) or _OBJECT_AMOUNT_HEADER.search(raw)))):
-            closed = True
+        if _object_header(lines, source_index):
+            # A repeated/new header does not prove that the preceding rows were
+            # complete. Pagination remains unsupported until its rows are bound.
+            invalid = True
             break
         if _OBJECT_NON_ALLOCATION.match(row_flat):
             return False if pending or source_rows else None
