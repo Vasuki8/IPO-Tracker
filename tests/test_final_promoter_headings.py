@@ -242,7 +242,8 @@ DETAILS OF THE ISSUE
         self.assertEqual(merged["fieldEvidence"]["promoters"], supplement["fieldEvidence"]["promoters"])
 
     def test_parser_version_schedules_semantic_promoter_revalidation(self):
-        self.assertEqual(parser.PARSER_VERSION, parser.base.PARSER_VERSION + 7)
+        # Version 29 introduced this revalidation; later parser releases retain it.
+        self.assertGreaterEqual(parser.PARSER_VERSION, 29)
 
 
 if __name__ == "__main__":

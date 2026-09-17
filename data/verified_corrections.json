@@ -1,5 +1,5 @@
 {
-  "revision": "2026-09-17-reject-misrouted-happy-prospectus",
+  "revision": "2026-09-17-quarantine-priority-financials",
   "basedOnCommit": "eef493b2eec6b0f0ab9cefad8b45b9d5759bc86b",
   "generatedAt": "2026-09-14T12:16:27.134108+00:00",
   "parserVersion": 18,
@@ -4195,89 +4195,129 @@
     },
     {
       "id": "priority",
-      "field": "dataCorrections",
-      "beforeHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
-      "after": [
-        {
-          "field": "leadManagers",
-          "before": [
-            "BSE Limited",
-            "India Limited"
-          ],
-          "after": [],
-          "reason": "Corrected from bounded source-table/role extraction; unsupported intermediary fragments quarantined",
-          "parserVersion": 18,
-          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788323000985.pdf",
-          "sha256": "cd3026b4bc426e5ba3a455e10ef4b6d0de0d0b393ee0db3590dba6cd45e8efed",
-          "correctedAt": "2026-09-14T12:16:27.134108+00:00"
-        }
-      ]
-    },
-    {
-      "id": "priority",
-      "field": "documentFieldProvenance",
-      "beforeHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
-      "after": {
-        "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788323000985.pdf",
-        "documentType": "PROSPECTUS",
-        "documentDate": "2026-09-02",
+      "identity": {
+        "company": "Priority Jewels Limited",
+        "symbol": "PRIORITY",
+        "openDate": "2026-08-28"
+      },
+      "field": "financials",
+      "beforeHash": "7f91f7111812f822f62d30d837c0387dc28d1cec1cbb468ca3e10ae8a6720cb8",
+      "after": null,
+      "source": {
+        "name": "SEBI Final Prospectus financial table review",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788323000985.pdf",
+        "type": "PROSPECTUS",
+        "title": "Priority Jewels Limited Final Prospectus",
+        "filedDate": "2026-09-02"
+      },
+      "evidence": {
+        "issuer": "Priority Jewels Limited",
+        "cin": "U52393MH2007PLC174977",
         "sha256": "cd3026b4bc426e5ba3a455e10ef4b6d0de0d0b393ee0db3590dba6cd45e8efed",
-        "parserVersion": 18,
-        "checkedAt": "2026-09-14T10:54:23+05:30",
-        "evidence": {
-          "financials": {},
-          "registrar": {
-            "page": 2,
-            "heading": "REGISTRAR TO THE ISSUE",
-            "entities": [
-              "MUFG Intime India Private Limited"
-            ]
-          }
-        }
-      }
-    },
-    {
-      "id": "priority",
-      "field": "documentRepair",
-      "beforeHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
-      "after": {
-        "status": "no_change",
-        "financialStatus": "needs_review",
-        "lastAttemptAt": "2026-09-14T10:54:23+05:30",
-        "parserVersion": 18
-      }
-    },
-    {
-      "id": "priority",
-      "field": "leadManagers",
-      "beforeHash": "8ad5d9dcffb21ccbb414f96d9fa42784d34649dbc98e753a56c3ac75ec68d7d0",
-      "after": []
-    },
-    {
-      "id": "priority",
-      "field": "offerDocumentExtraction",
-      "beforeHash": "f2f2e65930f94705cfe9900482daaaee95515c94931d056ee46008ac6ee664a2",
-      "after": {
-        "status": "extracted",
-        "parserVersion": 18,
-        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788323000985.pdf",
-        "documentType": "PROSPECTUS",
-        "documentTitle": "SEBI PROSPECTUS",
-        "documentFiledDate": "2026-09-02",
-        "source": "SEBI",
-        "sha256": "cd3026b4bc426e5ba3a455e10ef4b6d0de0d0b393ee0db3590dba6cd45e8efed",
-        "pagesRead": 387,
+        "prospectusDate": "2026-09-01",
+        "sebiFiledDate": "2026-09-02",
         "pageCount": 387,
-        "extractedFields": [
-          "registrar",
-          "promoters",
-          "objectsOfIssue",
-          "lotSize",
-          "priceBand"
+        "basedOnCommit": "56826a222b0a1520492cca9b18ffa7c7e48e1bc7",
+        "financialScopeByPeriod": {
+          "FY2026": "consolidated",
+          "FY2025": "standalone",
+          "FY2024": "standalone"
+        },
+        "scopePage": 17,
+        "sourcePages": [
+          {
+            "page": 105,
+            "printedPage": 101,
+            "heading": "Financial KPIs",
+            "originalUnit": "million",
+            "columns": [
+              "Three months ended June 30, 2026",
+              "Fiscal 2026",
+              "Fiscal 2025",
+              "Fiscal 2024"
+            ],
+            "annualSourceColumns": [
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "page": 48,
+            "printedPage": 44,
+            "heading": "Total Net Worth",
+            "originalUnit": "million"
+          },
+          {
+            "page": 283,
+            "printedPage": 279,
+            "heading": "OTHER FINANCIAL INFORMATION",
+            "basis": "Basic EPS and bonus-adjusted EPS are separate rows; ratios and rupees per share are not monetary amounts."
+          }
         ],
-        "extractedAt": "2026-09-14T10:54:23+05:30",
-        "conflicts": []
-      }
+        "findings": [
+          {
+            "field": "revenueCr",
+            "storedFiscal2026Value": 1467.26,
+            "sourceInterimValueMillion": 1467.26,
+            "sourceAnnualValuesMillion": {
+              "FY2026": 5389.49,
+              "FY2025": 4354.95,
+              "FY2024": 4105.05
+            },
+            "reason": "Interim values were shifted into annual periods and million amounts were not converted to crore."
+          },
+          {
+            "field": "ebitdaCr",
+            "storedValues": [
+              10.26,
+              2.86,
+              4.89
+            ],
+            "sourceRow": "Net Debt to EBITDA",
+            "sourceAnnualValuesMillion": {
+              "FY2026": 336.23,
+              "FY2025": 242.8,
+              "FY2024": 193.48
+            },
+            "reason": "A leverage ratio was stored as EBITDA and the first value belongs to the interim period."
+          },
+          {
+            "field": "netWorthCr",
+            "storedValues": [
+              1.273,
+              1.002,
+              0.444
+            ],
+            "sourceAnnualValuesMillion": {
+              "FY2026": 1386.06,
+              "FY2025": 1048.86,
+              "FY2024": 947.82
+            },
+            "reason": "Stored values reproduce return-on-net-worth percentages with a currency conversion factor."
+          },
+          {
+            "field": "eps",
+            "storedValues": [
+              2013.0,
+              3.0,
+              133.0
+            ],
+            "sourceAnnualBasicValues": {
+              "FY2026": 14.03,
+              "FY2025": 8.34,
+              "FY2024": 22.69
+            },
+            "sourceFiscal2024BonusAdjustedValue": 5.67,
+            "reason": "Legal-reference numbers were stored as earnings per share; basic and bonus-adjusted EPS require separate source interpretation."
+          }
+        ],
+        "reviewedCellCount": 21,
+        "contradictedCellCount": 19,
+        "quarantineBasis": "The whole unverified financial payload is held pending a bounded annual-table repair; reviewed source values are evidence, not canonical replacements."
+      },
+      "reviewedAt": "2026-09-17T03:43:42+00:00",
+      "reason": "Quarantined Priority Jewels financials after reviewing its matching Final Prospectus: interim columns, units, leverage ratios, percentages and legal-reference numbers contaminated 19 of 21 stored cells. Source-period scope and EPS basis require explicit revalidation before restoring financials."
     },
     {
       "id": "esds",

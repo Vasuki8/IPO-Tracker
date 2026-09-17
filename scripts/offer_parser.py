@@ -369,15 +369,20 @@ def parse_document_text(text, price_band=None):
     return parsed
 
 
-def extract_pdf_text(data):
+def extract_pdf_text(data, *, page_limit=520):
+    if isinstance(page_limit, bool) or not isinstance(page_limit, int):
+        raise ValueError("page_limit must be an integer from 1 to 520")
+    if not 1 <= page_limit <= 520:
+        raise ValueError("page_limit must be an integer from 1 to 520")
     reader = PdfReader(io.BytesIO(data))
     if reader.is_encrypted:
         reader.decrypt("")
     count = len(reader.pages)
+    pages_to_read = min(count, page_limit)
     # Poppler preserves table columns and avoids repeatedly walking hundreds
     # of PDF content streams in Python.
     if shutil.which("pdftotext"):
-        result = subprocess.run(["pdftotext", "-layout", "-fixed", "3", "-enc", "UTF-8", "-f", "1", "-l", str(min(count, 520)), "-", "-"], input=data, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=120, check=True)
-        pages = result.stdout.decode("utf-8").split("\f")[:min(count, 520)]
+        result = subprocess.run(["pdftotext", "-layout", "-fixed", "3", "-enc", "UTF-8", "-f", "1", "-l", str(pages_to_read), "-", "-"], input=data, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=120, check=True)
+        pages = result.stdout.decode("utf-8").split("\f")[:pages_to_read]
         return "\f".join(f"[PAGE {i + 1}]\n{text}" for i, text in enumerate(pages)), len(pages), count
     raise RuntimeError("poppler-utils is required to preserve validated PDF table columns")
