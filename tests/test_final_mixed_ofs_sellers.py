@@ -43,7 +43,7 @@ class FinalMixedOFSSellerTests(unittest.TestCase):
 
     def test_exact_source_repairs_composition_with_complete_seller_evidence(self):
         parsed = parser.parse_document_text(self.source)
-        self.assertEqual(parsed["finalProspectusParserVersion"], 32)
+        self.assertEqual(parsed["finalProspectusParserVersion"], parser.PARSER_VERSION)
         self.assertEqual(parsed["issuePrice"], 217.0)
         self.assertEqual(parsed["issueComposition"], EXPECTED)
         self.assertIn("issueComposition", parsed["extractedFields"])

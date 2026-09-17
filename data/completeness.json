@@ -1,28 +1,28 @@
 {
-  "generatedAt": "2026-09-17T19:57:44+05:30",
+  "generatedAt": "2026-09-17T23:52:33+05:30",
   "asOfDate": "2026-09-17",
-  "recordCount": 1365,
+  "recordCount": 1366,
   "stageCounts": {
     "closed": 54,
     "filing-pipeline": 10,
     "listed": 1287,
     "open": 9,
     "unknown": 1,
-    "upcoming": 4
+    "upcoming": 5
   },
   "segmentCounts": {
-    "allRecords": 1365,
-    "exchangeStage": 1354,
-    "recentExchange2Y": 442,
+    "allRecords": 1366,
+    "exchangeStage": 1355,
+    "recentExchange2Y": 443,
     "historicalExchange": 912,
     "offerDocumentEligible": 387,
     "openNow": 9,
     "maturedClosed": 1323
   },
   "scores": {
-    "exchangeStage": 82.7,
-    "recentExchange2Y": 96.7,
-    "offerDocumentEligible": 65.8,
+    "exchangeStage": 82.6,
+    "recentExchange2Y": 96.6,
+    "offerDocumentEligible": 68.1,
     "openSubscription": 91.7,
     "maturedLifecycle": 97.2,
     "provenance": 100.0
@@ -31,55 +31,55 @@
     "exchangeStage": {
       "symbol": {
         "present": 1351,
-        "expected": 1354,
-        "missing": 3,
-        "pct": 99.8
+        "expected": 1355,
+        "missing": 4,
+        "pct": 99.7
       },
       "board": {
-        "present": 1354,
-        "expected": 1354,
+        "present": 1355,
+        "expected": 1355,
         "missing": 0,
         "pct": 100.0
       },
       "exchange": {
-        "present": 1354,
-        "expected": 1354,
+        "present": 1355,
+        "expected": 1355,
         "missing": 0,
         "pct": 100.0
       },
       "openDate": {
-        "present": 1354,
-        "expected": 1354,
+        "present": 1355,
+        "expected": 1355,
         "missing": 0,
         "pct": 100.0
       },
       "closeDate": {
-        "present": 1354,
-        "expected": 1354,
+        "present": 1355,
+        "expected": 1355,
         "missing": 0,
         "pct": 100.0
       },
       "priceBand": {
         "present": 1336,
-        "expected": 1354,
-        "missing": 18,
-        "pct": 98.7
+        "expected": 1355,
+        "missing": 19,
+        "pct": 98.6
       },
       "lotSize": {
         "present": 436,
-        "expected": 1354,
-        "missing": 918,
+        "expected": 1355,
+        "missing": 919,
         "pct": 32.2
       },
       "issueSizeCr": {
-        "present": 391,
-        "expected": 1354,
+        "present": 392,
+        "expected": 1355,
         "missing": 963,
         "pct": 28.9
       },
       "issueComposition": {
-        "present": 388,
-        "expected": 442,
+        "present": 389,
+        "expected": 443,
         "missing": 54,
         "pct": 87.8
       }
@@ -87,55 +87,55 @@
     "recentExchange2Y": {
       "symbol": {
         "present": 439,
-        "expected": 442,
-        "missing": 3,
-        "pct": 99.3
+        "expected": 443,
+        "missing": 4,
+        "pct": 99.1
       },
       "board": {
-        "present": 442,
-        "expected": 442,
+        "present": 443,
+        "expected": 443,
         "missing": 0,
         "pct": 100.0
       },
       "exchange": {
-        "present": 442,
-        "expected": 442,
+        "present": 443,
+        "expected": 443,
         "missing": 0,
         "pct": 100.0
       },
       "openDate": {
-        "present": 442,
-        "expected": 442,
+        "present": 443,
+        "expected": 443,
         "missing": 0,
         "pct": 100.0
       },
       "closeDate": {
-        "present": 442,
-        "expected": 442,
+        "present": 443,
+        "expected": 443,
         "missing": 0,
         "pct": 100.0
       },
       "priceBand": {
         "present": 437,
-        "expected": 442,
-        "missing": 5,
-        "pct": 98.9
+        "expected": 443,
+        "missing": 6,
+        "pct": 98.6
       },
       "lotSize": {
         "present": 430,
-        "expected": 442,
-        "missing": 12,
-        "pct": 97.3
+        "expected": 443,
+        "missing": 13,
+        "pct": 97.1
       },
       "issueSizeCr": {
-        "present": 385,
-        "expected": 442,
+        "present": 386,
+        "expected": 443,
         "missing": 57,
         "pct": 87.1
       },
       "issueComposition": {
-        "present": 388,
-        "expected": 442,
+        "present": 389,
+        "expected": 443,
         "missing": 54,
         "pct": 87.8
       }
@@ -192,28 +192,28 @@
     },
     "offerDocumentEligible": {
       "registrar": {
+        "present": 356,
+        "expected": 387,
+        "missing": 31,
+        "pct": 92.0
+      },
+      "leadManagers": {
         "present": 350,
         "expected": 387,
         "missing": 37,
         "pct": 90.4
       },
-      "leadManagers": {
-        "present": 346,
-        "expected": 387,
-        "missing": 41,
-        "pct": 89.4
-      },
       "promoters": {
-        "present": 332,
+        "present": 343,
         "expected": 387,
-        "missing": 55,
-        "pct": 85.8
+        "missing": 44,
+        "pct": 88.6
       },
       "objectsOfIssue": {
-        "present": 33,
+        "present": 65,
         "expected": 387,
-        "missing": 354,
-        "pct": 8.5
+        "missing": 322,
+        "pct": 16.8
       },
       "financials": {
         "present": 246,
@@ -222,10 +222,10 @@
         "pct": 63.6
       },
       "promoterShareholding": {
-        "present": 220,
+        "present": 221,
         "expected": 387,
-        "missing": 167,
-        "pct": 56.8
+        "missing": 166,
+        "pct": 57.1
       }
     },
     "openSubscription": {
@@ -272,14 +272,14 @@
     },
     "provenance": {
       "sources": {
-        "present": 1364,
-        "expected": 1365,
+        "present": 1365,
+        "expected": 1366,
         "missing": 1,
         "pct": 99.9
       },
       "validation": {
-        "present": 1365,
-        "expected": 1365,
+        "present": 1366,
+        "expected": 1366,
         "missing": 0,
         "pct": 100.0
       },
@@ -294,6 +294,12 @@
   "gapExamples": {
     "recentExchange2Y": {
       "symbol": [
+        {
+          "id": "himalaya-nutravedics-india-limited",
+          "company": "Himalaya Nutravedics India Limited",
+          "openDate": "2026-09-22",
+          "stage": "upcoming"
+        },
         {
           "id": "vivekanand-cotspin-limited",
           "company": "Vivekanand Cotspin Limited",
@@ -318,6 +324,12 @@
       "openDate": [],
       "closeDate": [],
       "priceBand": [
+        {
+          "id": "himalaya-nutravedics-india-limited",
+          "company": "Himalaya Nutravedics India Limited",
+          "openDate": "2026-09-22",
+          "stage": "upcoming"
+        },
         {
           "id": "vivekanand-cotspin-limited",
           "company": "Vivekanand Cotspin Limited",
@@ -350,6 +362,12 @@
         }
       ],
       "lotSize": [
+        {
+          "id": "himalaya-nutravedics-india-limited",
+          "company": "Himalaya Nutravedics India Limited",
+          "openDate": "2026-09-22",
+          "stage": "upcoming"
+        },
         {
           "id": "vivekanand-cotspin-limited",
           "company": "Vivekanand Cotspin Limited",
@@ -425,6 +443,12 @@
       ],
       "issueSizeCr": [
         {
+          "id": "himalaya-nutravedics-india-limited",
+          "company": "Himalaya Nutravedics India Limited",
+          "openDate": "2026-09-22",
+          "stage": "upcoming"
+        },
+        {
           "id": "vivekanand-cotspin-limited",
           "company": "Vivekanand Cotspin Limited",
           "openDate": "2026-09-21",
@@ -488,12 +512,6 @@
           "id": "cmll",
           "company": "Caliber Mining and Logistics Limited",
           "openDate": "2026-07-17",
-          "stage": "listed"
-        },
-        {
-          "id": "sbifunds",
-          "company": "SBI Funds Management Limited",
-          "openDate": "2026-07-14",
           "stage": "listed"
         },
         {
@@ -517,6 +535,12 @@
       ],
       "issueComposition": [
         {
+          "id": "himalaya-nutravedics-india-limited",
+          "company": "Himalaya Nutravedics India Limited",
+          "openDate": "2026-09-22",
+          "stage": "upcoming"
+        },
+        {
           "id": "vivekanand-cotspin-limited",
           "company": "Vivekanand Cotspin Limited",
           "openDate": "2026-09-21",
@@ -580,12 +604,6 @@
           "id": "cmll",
           "company": "Caliber Mining and Logistics Limited",
           "openDate": "2026-07-17",
-          "stage": "listed"
-        },
-        {
-          "id": "sbifunds",
-          "company": "SBI Funds Management Limited",
-          "openDate": "2026-07-14",
           "stage": "listed"
         },
         {
@@ -626,12 +644,6 @@
           "id": "lenskart",
           "company": "Lenskart Solutions Limited",
           "openDate": "2025-10-31",
-          "stage": "listed"
-        },
-        {
-          "id": "munish",
-          "company": "Munish Forge Limited",
-          "openDate": "2025-09-30",
           "stage": "listed"
         },
         {
@@ -698,6 +710,12 @@
           "id": "cudml",
           "company": "Cash Ur Drive Marketing Limited",
           "openDate": "2025-07-31",
+          "stage": "listed"
+        },
+        {
+          "id": "cedaar",
+          "company": "Cedaar Textile Limited",
+          "openDate": "2025-06-30",
           "stage": "listed"
         }
       ],
@@ -795,12 +813,6 @@
       ],
       "promoters": [
         {
-          "id": "anawil",
-          "company": "Anawil Wire and Engineering Limited",
-          "openDate": "2026-08-03",
-          "stage": "listed"
-        },
-        {
           "id": "happy",
           "company": "Happy Steels Limited",
           "openDate": "2026-07-09",
@@ -813,21 +825,9 @@
           "stage": "listed"
         },
         {
-          "id": "genxai",
-          "company": "GenXAI Analytics Limited",
-          "openDate": "2026-06-05",
-          "stage": "listed"
-        },
-        {
           "id": "qline",
           "company": "Q-Line Biotech Limited",
           "openDate": "2026-05-21",
-          "stage": "listed"
-        },
-        {
-          "id": "ambaauto",
-          "company": "Amba Auto Sales and Services Limited",
-          "openDate": "2026-04-27",
           "stage": "listed"
         },
         {
@@ -882,6 +882,24 @@
           "id": "mgsl",
           "company": "Matrix Geo Solutions Limited",
           "openDate": "2025-09-23",
+          "stage": "listed"
+        },
+        {
+          "id": "optivalue",
+          "company": "Optivalue Tek Consulting Limited",
+          "openDate": "2025-09-02",
+          "stage": "listed"
+        },
+        {
+          "id": "snehaa",
+          "company": "Snehaa Organics Limited",
+          "openDate": "2025-08-29",
+          "stage": "listed"
+        },
+        {
+          "id": "indiqube",
+          "company": "Indiqube Spaces Limited",
+          "openDate": "2025-07-23",
           "stage": "listed"
         }
       ],

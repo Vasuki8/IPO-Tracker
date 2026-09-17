@@ -122,7 +122,7 @@ def source_count(record: dict[str, Any]) -> int:
 
 
 def public_summary_record(record: dict[str, Any]) -> dict[str, Any]:
-    """Return only fields needed to render/filter the dashboard table."""
+    """Return compact directory/comparison fields and subscription provenance."""
     subscription = _pick(record.get("subscription"), ("total",))
     listing = _pick(record.get("listing"), ("gainPct",))
     lifecycle = _pick(record.get("lifecycle"), ("stage", "stageDate"))
@@ -142,8 +142,11 @@ def public_summary_record(record: dict[str, Any]) -> dict[str, Any]:
             "closeDate": record.get("closeDate"),
             "listingDate": record.get("listingDate"),
             "priceBand": price_band,
+            "lotSize": record.get("lotSize"),
             "issueSizeCr": record.get("issueSizeCr"),
             "subscription": subscription,
+            "subscriptionAsOf": record.get("subscriptionAsOf"),
+            "subscriptionSource": record.get("subscriptionSource"),
             "listing": listing,
             "validation": validation,
             "lifecycle": lifecycle,

@@ -1,138 +1,371 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#07111f" />
-  <meta name="description" content="Live, upcoming and historical Indian IPO tracker using NSE, SEBI and BSE official-market sources." />
-  <title>India IPO Tracker</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="source-health.css" />
-  <link rel="stylesheet" href="phase3.css" />
-  <link rel="stylesheet" href="phase4.css" />
-  <link rel="stylesheet" href="company.css" />
-  <link rel="stylesheet" href="company-page.css" />
-  <link rel="stylesheet" href="completeness.css" />
-</head>
-<body>
-  <div class="shell">
-    <header class="topbar">
-      <div class="brand">
-        <div class="brand-mark">IP</div>
-        <div>
-          <div class="brand-title">India IPO Tracker</div>
-          <div class="brand-subtitle">Mainboard + SME · NSE + SEBI + BSE</div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f7fb" />
+    <meta
+      name="description"
+      content="Explore Indian IPOs, compare issue details, follow key dates and build your watchlist. Mainboard and SME research with source-linked data."
+    />
+    <title>India IPO Tracker · Explore the primary market</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="source-health.css" />
+    <link rel="stylesheet" href="phase3.css" />
+    <link rel="stylesheet" href="phase4.css" />
+    <link rel="stylesheet" href="company.css" />
+    <link rel="stylesheet" href="company-page.css" />
+    <link rel="stylesheet" href="completeness.css" />
+  </head>
+  <body class="dashboard-body">
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div class="app-layout">
+      <aside class="sidebar" id="sidebar" aria-label="Primary navigation">
+        <a class="brand" href="./"
+          ><span class="brand-mark">IP<span></span></span
+          ><span
+            ><span class="brand-title">IPO Tracker</span
+            ><span class="brand-subtitle">THE INDIAN PRIMARY MARKET</span></span
+          ></a
+        >
+        <div class="nav-label">WORKSPACE</div>
+        <nav class="main-nav" aria-label="Workspace">
+          <a href="?view=explore" data-view="explore" class="nav-item active" aria-current="page"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7" rx="1.5" />
+              <rect x="14" y="3" width="7" height="7" rx="1.5" />
+              <rect x="3" y="14" width="7" height="7" rx="1.5" />
+              <rect x="14" y="14" width="7" height="7" rx="1.5" /></svg
+            >Explore IPOs</a
+          >
+          <a href="?view=calendar" data-view="calendar" class="nav-item"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="16" rx="2" />
+              <path d="M16 3v4M8 3v4M3 11h18M7 15h3m4 0h3m-10 3h3" /></svg
+            >IPO calendar</a
+          >
+          <a href="?view=watchlist" data-view="watchlist" class="nav-item"
+            ><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z" /></svg
+            >Watchlist<span id="watchlistCount" class="nav-count">0</span></a
+          >
+        </nav>
+        <div class="nav-label">RESEARCH TOOLS</div>
+        <nav class="main-nav" aria-label="Research tools">
+          <a href="?view=quality" data-view="quality" class="nav-item"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zM8 12l3 3 5-6" /></svg
+            >Data &amp; sources</a
+          >
+        </nav>
+        <div class="sidebar-note">
+          <span class="sidebar-note-mark">↗</span><strong>Research with context.</strong>
+          <p>Issue terms, filings and exchange data, with their sources one click away.</p>
+          <a href="?view=quality" data-view="quality">How we track IPOs <span>→</span></a>
         </div>
-      </div>
-      <div class="freshness" id="freshness">Loading data…</div>
-    </header>
-
-    <main>
-      <section class="hero">
-        <div>
-          <div class="eyebrow">PRIMARY MARKET MONITOR</div>
-          <h1>Follow an IPO from first filing to market listing.</h1>
-          <p>SEBI filing discovery, exchange issue data, offer-document intelligence, subscription tracking and historical listings in one auditable database. Conflicting official values are flagged instead of silently overwritten.</p>
+        <div class="sidebar-footer">
+          <span class="market-dot"></span> NSE · BSE · SEBI<span>MAINBOARD &amp; SME</span>
         </div>
-        <div class="hero-note">
-          <span class="pulse"></span>
-          <div><strong>Multi-source validation</strong><br><span>SEBI filings · NSE spine · BSE cross-check</span></div>
-        </div>
-      </section>
-
-      <section class="source-health-panel">
-        <div><div class="eyebrow">SOURCE HEALTH</div><div class="source-health" id="sourceHealth"></div></div>
-      </section>
-
-      <section class="stats" id="stats"></section>
-      <div id="qualityDashboard"></div>
-
-      <section class="workspace">
-        <div class="toolbar">
-          <div class="tabs" id="tabs">
-            <button class="tab active" data-status="all">All</button>
-            <button class="tab" data-status="open">Open</button>
-            <button class="tab" data-status="upcoming">Upcoming</button>
-            <button class="tab" data-status="closed">Closed</button>
-            <button class="tab" data-status="listed">Listed</button>
+      </aside>
+      <button id="navBackdrop" class="nav-backdrop" aria-label="Close navigation" hidden></button>
+      <div class="main-shell">
+        <header class="dashboard-topbar">
+          <div class="topbar-left">
+            <button
+              type="button"
+              id="menuToggle"
+              class="icon-button menu-toggle"
+              aria-label="Open navigation"
+              aria-expanded="false"
+              aria-controls="sidebar"
+            >
+              ☰</button
+            ><span class="breadcrumb"
+              >Markets <span>/</span> <strong id="viewBreadcrumb">Explore IPOs</strong></span
+            ><button
+              type="button"
+              id="jumpToSearch"
+              class="icon-button search-jump"
+              aria-label="Jump to IPO search"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="10.5" cy="10.5" r="6.5" />
+                <path d="m16 16 5 5" />
+              </svg>
+            </button>
           </div>
-          <div class="controls">
-            <label class="searchbox">
-              <span>⌕</span>
-              <input id="search" type="search" placeholder="Search company or symbol" />
-            </label>
-            <select id="boardFilter" aria-label="Board filter">
-              <option value="all">All boards</option>
-              <option value="Mainboard">Mainboard</option>
-              <option value="SME">SME</option>
-            </select>
-            <select id="yearFilter" aria-label="Year filter">
-              <option value="all">All years</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Company</th>
-                <th>Status</th>
-                <th>Board</th>
-                <th>Filing</th>
-                <th>Price band</th>
-                <th>Open</th>
-                <th>Close</th>
-                <th>Issue size</th>
-                <th>Subscription</th>
-                <th>Listing return</th>
-                <th>Validation</th>
-              </tr>
-            </thead>
-            <tbody id="ipoRows"></tbody>
-          </table>
-          <div class="empty hidden" id="empty">No IPOs match the current filters.</div>
-        </div>
-      </section>
-
-      <section class="methodology">
-        <div>
-          <div class="eyebrow">DATA DESIGN</div>
-          <h2>Official sources have different jobs.</h2>
-        </div>
-        <div class="method-grid">
-          <article><span>01</span><h3>SEBI discovery</h3><p>DRHP, UDRHP, RHP and final prospectus filings create the pre-exchange IPO pipeline and retain official document links.</p></article>
-          <article><span>02</span><h3>NSE spine</h3><p>Current, upcoming, detail and historical exchange records remain the primary source for issue dates and exchange fields.</p></article>
-          <article><span>03</span><h3>BSE validation</h3><p>BSE fills missing issue terms and independently checks comparable fields such as dates, price band, lot size and issue size.</p></article>
-          <article><span>04</span><h3>SEBI document extraction</h3><p>Abridged RHP/Prospectus PDFs are parsed for fresh issue and OFS composition, lead managers, registrar, promoters, objects and restated financials.</p></article>
-          <article><span>05</span><h3>Exchange subscription history</h3><p>QIB, NII/HNI, Retail/Individual and Total demand is captured throughout the live bidding window. NSE is preferred, with BSE's official cumulative-demand schedule as the cloud-runner fallback.</p></article>
-          <article><span>06</span><h3>Completeness repair queue</h3><p>Lifecycle-aware audits identify missing official fields and prioritize open/upcoming IPOs before historical backfills.</p></article>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <span>For research and tracking only. Not investment advice.</span>
-      <span id="recordCount"></span>
-    </footer>
-  </div>
-
-  <dialog id="detailDialog">
-    <div class="dialog-head">
-      <div>
-        <div class="eyebrow" id="dialogBoard"></div>
-        <h2 id="dialogTitle"></h2>
+          <div class="freshness" id="freshness" role="status">Loading latest snapshot…</div>
+        </header>
+        <main id="main" tabindex="-1">
+          <section class="page-heading">
+            <div>
+              <div class="eyebrow" id="pageEyebrow">INDIA · PRIMARY MARKETS</div>
+              <h1 id="pageTitle">The IPO market, in focus.</h1>
+              <p id="pageDescription">Research open offers, upcoming issues and recent listings.</p>
+            </div>
+            <div class="market-date">
+              <span>MARKET CALENDAR</span><strong id="marketDate">India Standard Time</strong
+              ><small>All dates in IST</small>
+            </div>
+          </section>
+          <section class="stats" id="stats" aria-label="IPO market overview"></section>
+          <section id="view-explore" aria-label="IPO directory">
+            <section class="workspace" id="directory">
+              <div class="workspace-heading">
+                <div>
+                  <h2 id="directoryTitle">
+                    Explore IPOs <span id="directoryTotal" class="count-pill"></span>
+                  </h2>
+                  <p id="directoryDescription">From upcoming offers to the latest listings.</p>
+                </div>
+                <button class="button secondary" id="exportCsv" type="button" disabled>
+                  ↓ Export CSV
+                </button>
+              </div>
+              <div class="tabs" id="tabs" role="group" aria-label="Filter IPO status">
+                <button class="tab active" data-status="all" aria-pressed="true">
+                  All IPOs <span></span></button
+                ><button class="tab" data-status="open" aria-pressed="false">
+                  Open <span></span></button
+                ><button class="tab" data-status="upcoming" aria-pressed="false">
+                  Upcoming <span></span></button
+                ><button class="tab" data-status="closed" aria-pressed="false">
+                  Closed <span></span></button
+                ><button class="tab" data-status="listed" aria-pressed="false">
+                  Listed <span></span></button
+                ><button class="tab" data-status="pipeline" aria-pressed="false">
+                  Dates pending <span></span>
+                </button>
+              </div>
+              <div class="toolbar">
+                <label class="searchbox"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="10.5" cy="10.5" r="6.5" />
+                    <path d="m16 16 5 5" /></svg
+                  ><span class="sr-only">Search company or symbol</span
+                  ><input
+                    id="search"
+                    type="search"
+                    placeholder="Search company or symbol…"
+                    autocomplete="off"
+                  /><kbd aria-hidden="true">/</kbd></label
+                >
+                <div class="filter-controls">
+                  <label
+                    ><span class="sr-only">Board</span
+                    ><select id="boardFilter">
+                      <option value="all">All boards</option>
+                      <option value="Mainboard">Mainboard</option>
+                      <option value="SME">SME</option>
+                    </select></label
+                  ><label
+                    ><span class="sr-only">Year</span
+                    ><select id="yearFilter">
+                      <option value="all">All years</option>
+                    </select></label
+                  ><label
+                    ><span class="sr-only">Sort IPOs</span
+                    ><select id="sortFilter">
+                      <option value="activity">Open first</option>
+                      <option value="recent">Most recent</option>
+                      <option value="closing">Closing soon</option>
+                      <option value="company">Company A–Z</option>
+                      <option value="size">Issue size ↓</option>
+                      <option value="subscription">Subscription ↓</option>
+                      <option value="return">Listing return ↓</option>
+                    </select></label
+                  >
+                </div>
+              </div>
+              <div
+                id="activeFilters"
+                class="active-filters"
+                role="group"
+                aria-label="Active filters"
+                hidden
+              ></div>
+              <div class="results-meta">
+                <span id="resultCount" role="status" aria-live="polite">Loading IPOs…</span
+                ><button type="button" id="clearFilters" class="text-button" hidden>
+                  Reset filters
+                </button>
+              </div>
+              <div class="table-wrap" id="directoryTableWrap">
+                <table class="ipo-table">
+                  <caption class="sr-only">
+                    Indian IPO directory. Use the company link for a full profile or Quick view for
+                    an overview.
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Company</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Key dates</th>
+                      <th scope="col" class="numeric">Price band</th>
+                      <th scope="col" class="numeric">Issue size</th>
+                      <th scope="col" class="numeric">Subscription</th>
+                      <th scope="col" class="numeric" id="secondaryMetricHeading">1 lot at cap</th>
+                      <th scope="col">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ipoRows"></tbody>
+                </table>
+                <div class="empty hidden" id="empty">
+                  <div class="empty-symbol">⌕</div>
+                  <h3 id="emptyTitle">No IPOs match your filters</h3>
+                  <p id="emptyDescription">Try another company name or broaden your filters.</p>
+                  <button type="button" class="button primary" id="emptyReset">
+                    Clear filters
+                  </button>
+                </div>
+              </div>
+              <nav class="pagination" aria-label="Result pages">
+                <label
+                  >Rows per page
+                  <select id="pageSize">
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                  </select></label
+                >
+                <div>
+                  <button id="prevPage" class="button secondary" type="button" disabled>
+                    ← Previous</button
+                  ><span id="pageInfo">Page 1 of 1</span
+                  ><button id="nextPage" class="button secondary" type="button" disabled>
+                    Next →
+                  </button>
+                </div>
+              </nav>
+            </section>
+            <p class="table-footnote">
+              <span class="info-dot">i</span
+              ><span id="directoryMetricNote"
+                >One lot at cap = lot size × upper price band. Subscription figures keep their
+                reported timestamps. A dash means data is unavailable.</span
+              >
+            </p>
+          </section>
+          <section id="view-calendar" hidden aria-label="IPO calendar">
+            <div class="workspace">
+              <div class="workspace-heading">
+                <div>
+                  <h2>Key dates</h2>
+                  <p>Opening, closing and listing dates available in the tracker.</p>
+                </div>
+                <div class="calendar-controls">
+                  <button class="icon-button" id="previousMonth" aria-label="Previous month">
+                    ←</button
+                  ><strong id="calendarMonth"></strong
+                  ><button class="icon-button" id="nextMonth" aria-label="Next month">→</button
+                  ><button class="button secondary" id="calendarToday">This month</button>
+                </div>
+              </div>
+              <div id="calendarEvents" class="calendar-events"></div>
+              <p class="calendar-footnote">
+                Dates may change. Check the company profile and official source before taking
+                action.
+              </p>
+            </div>
+          </section>
+          <section id="view-quality" hidden aria-label="Data and sources">
+            <section class="source-health-panel">
+              <div class="workspace-heading">
+                <div>
+                  <h2>Source health</h2>
+                  <p>Select a source to see its latest check and coverage.</p>
+                </div>
+              </div>
+              <div class="source-health" id="sourceHealth"></div>
+            </section>
+            <p id="qualityLoading" role="status">Loading data coverage…</p>
+            <div id="qualityDashboard"></div>
+            <section class="methodology">
+              <div class="section-intro">
+                <div class="eyebrow">OUR APPROACH</div>
+                <h2>Know where the numbers come from.</h2>
+                <p>
+                  Source links, timestamps and disagreements stay attached to the company record.
+                </p>
+              </div>
+              <div class="method-grid">
+                <article>
+                  <span>01</span>
+                  <h3>Regulatory filings</h3>
+                  <p>
+                    SEBI filings help identify the pipeline. DRHP, RHP and prospectus links stay
+                    available for further research.
+                  </p>
+                </article>
+                <article>
+                  <span>02</span>
+                  <h3>Exchange issue data</h3>
+                  <p>
+                    NSE supplies issue dates and terms. BSE fills gaps and provides an independent
+                    comparison where values are comparable.
+                  </p>
+                </article>
+                <article>
+                  <span>03</span>
+                  <h3>Offer documents</h3>
+                  <p>
+                    Available official documents support issue composition, financials, promoters,
+                    use of proceeds and intermediaries.
+                  </p>
+                </article>
+                <article>
+                  <span>04</span>
+                  <h3>Transparent coverage</h3>
+                  <p>
+                    Missing values stay empty. Conflicting source values remain visible. Coverage
+                    checks prioritize current issues.
+                  </p>
+                </article>
+              </div>
+            </section>
+          </section>
+          <footer>
+            <span>IPO Tracker · Built for informed research.</span><span id="recordCount"></span
+            ><span>Not investment advice.</span>
+          </footer>
+        </main>
       </div>
-      <button id="dialogClose" class="icon-button" aria-label="Close">×</button>
     </div>
-    <div id="dialogBody"></div>
-  </dialog>
-
-  <script src="app.js" defer></script>
-  <script src="source-health.js" defer></script>
-  <script src="phase3.js" defer></script>
-  <script src="phase4.js" defer></script>
-  <script src="company.js" defer></script>
-  <script src="completeness.js" defer></script>
-</body>
+    <div class="compare-tray" id="compareTray" hidden>
+      <div>
+        <strong id="compareCount">0 IPOs selected</strong><span>Choose up to 3 to compare</span>
+      </div>
+      <div id="compareNames" class="compare-names"></div>
+      <button class="text-button" id="clearCompare">Clear</button
+      ><button class="button primary" id="openCompare" disabled>Compare IPOs →</button>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+    <dialog id="detailDialog" aria-labelledby="dialogTitle">
+      <div class="dialog-head">
+        <div>
+          <div class="eyebrow" id="dialogBoard"></div>
+          <h2 id="dialogTitle"></h2>
+        </div>
+        <button id="dialogClose" class="icon-button" aria-label="Close company quick view">
+          ×
+        </button>
+      </div>
+      <div id="dialogBody"></div>
+    </dialog>
+    <dialog id="compareDialog" aria-labelledby="compareTitle">
+      <div class="dialog-head">
+        <div>
+          <div class="eyebrow">SIDE BY SIDE</div>
+          <h2 id="compareTitle">Compare IPOs</h2>
+        </div>
+        <button id="closeCompare" class="icon-button" aria-label="Close comparison">×</button>
+      </div>
+      <div id="compareBody"></div>
+    </dialog>
+    <script src="app.js" defer></script>
+    <script src="source-health.js" defer></script>
+    <script src="phase3.js" defer></script>
+    <script src="phase4.js" defer></script>
+    <script src="company.js" defer></script>
+    <script src="completeness.js" defer></script>
+  </body>
 </html>

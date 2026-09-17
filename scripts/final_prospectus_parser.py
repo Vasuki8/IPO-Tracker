@@ -18,7 +18,7 @@ from p4_offer_parser import extract_objects
 from issue_composition_checks import amounts_match, composition_problems
 from objects_of_issue_checks import objects_evidence_problems
 
-PARSER_VERSION = base.PARSER_VERSION + 10
+PARSER_VERSION = base.PARSER_VERSION + 11
 extract_pdf_text = base.extract_pdf_text
 valid_manager = base.valid_manager
 valid_registrar = base.valid_registrar

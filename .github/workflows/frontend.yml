@@ -1,0 +1,78 @@
+name: Frontend browser checks
+
+on:
+  pull_request:
+    paths:
+      - '*.html'
+      - '*.css'
+      - '*.js'
+      - 'assets/**'
+      - 'scripts/build_company_pages.py'
+      - 'tests/frontend*'
+      - '.github/workflows/frontend.yml'
+  push:
+    branches: [main]
+    paths:
+      - '*.html'
+      - '*.css'
+      - '*.js'
+      - 'assets/**'
+      - 'scripts/build_company_pages.py'
+      - 'tests/frontend*'
+      - '.github/workflows/frontend.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: frontend-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      BASE_URL: http://127.0.0.1:8000/
+      SMOKE_ARTIFACT_DIR: ${{ github.workspace }}/artifacts/frontend
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated browser test runtime
+        run: |
+          mkdir -p "$RUNNER_TEMP/ipo-playwright" "$SMOKE_ARTIFACT_DIR"
+          cd "$RUNNER_TEMP/ipo-playwright"
+          npm install --no-save --package-lock=false playwright@1.62.1
+          npx --no-install playwright install --with-deps chromium
+      - name: Serve the site and test real browser interactions
+        run: |
+          export NODE_PATH="$RUNNER_TEMP/ipo-playwright/node_modules"
+          python3 -m http.server 8000 --bind 127.0.0.1 > "$SMOKE_ARTIFACT_DIR/server.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          python3 - <<'PY'
+          import time
+          import urllib.request
+          for attempt in range(60):
+              try:
+                  with urllib.request.urlopen('http://127.0.0.1:8000/', timeout=1) as response:
+                      if response.status == 200:
+                          break
+              except OSError:
+                  pass
+              time.sleep(0.25)
+          else:
+              raise SystemExit('Local frontend server did not start')
+          PY
+          node tests/frontend_smoke.cjs
+      - name: Retain screenshots and failure diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: frontend-browser-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/frontend/
+          if-no-files-found: warn
+          retention-days: 14
