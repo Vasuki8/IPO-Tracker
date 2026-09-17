@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17T07:01:13+05:30",
+  "generatedAt": "2026-09-17T09:38:45+05:30",
   "asOfDate": "2026-09-17",
   "recordCount": 1362,
   "stageCounts": {
@@ -15,14 +15,14 @@
     "exchangeStage": 1353,
     "recentExchange2Y": 441,
     "historicalExchange": 912,
-    "offerDocumentEligible": 343,
+    "offerDocumentEligible": 371,
     "openNow": 9,
     "maturedClosed": 1323
   },
   "scores": {
-    "exchangeStage": 82.4,
-    "recentExchange2Y": 96.1,
-    "offerDocumentEligible": 66.6,
+    "exchangeStage": 82.5,
+    "recentExchange2Y": 96.2,
+    "offerDocumentEligible": 66.4,
     "openSubscription": 77.8,
     "maturedLifecycle": 97.2,
     "provenance": 100.0
@@ -60,28 +60,28 @@
         "pct": 100.0
       },
       "priceBand": {
-        "present": 1337,
+        "present": 1336,
         "expected": 1353,
-        "missing": 16,
-        "pct": 98.8
+        "missing": 17,
+        "pct": 98.7
       },
       "lotSize": {
-        "present": 437,
+        "present": 436,
         "expected": 1353,
-        "missing": 916,
-        "pct": 32.3
+        "missing": 917,
+        "pct": 32.2
       },
       "issueSizeCr": {
-        "present": 376,
+        "present": 380,
         "expected": 1353,
-        "missing": 977,
-        "pct": 27.8
+        "missing": 973,
+        "pct": 28.1
       },
       "issueComposition": {
-        "present": 372,
+        "present": 376,
         "expected": 441,
-        "missing": 69,
-        "pct": 84.4
+        "missing": 65,
+        "pct": 85.3
       }
     },
     "recentExchange2Y": {
@@ -116,28 +116,28 @@
         "pct": 100.0
       },
       "priceBand": {
-        "present": 438,
+        "present": 437,
         "expected": 441,
-        "missing": 3,
-        "pct": 99.3
+        "missing": 4,
+        "pct": 99.1
       },
       "lotSize": {
-        "present": 431,
+        "present": 430,
         "expected": 441,
-        "missing": 10,
-        "pct": 97.7
+        "missing": 11,
+        "pct": 97.5
       },
       "issueSizeCr": {
-        "present": 370,
+        "present": 374,
         "expected": 441,
-        "missing": 71,
-        "pct": 83.9
+        "missing": 67,
+        "pct": 84.8
       },
       "issueComposition": {
-        "present": 372,
+        "present": 376,
         "expected": 441,
-        "missing": 69,
-        "pct": 84.4
+        "missing": 65,
+        "pct": 85.3
       }
     },
     "historicalExchange": {
@@ -192,40 +192,40 @@
     },
     "offerDocumentEligible": {
       "registrar": {
-        "present": 315,
-        "expected": 343,
-        "missing": 28,
-        "pct": 91.8
+        "present": 338,
+        "expected": 371,
+        "missing": 33,
+        "pct": 91.1
       },
       "leadManagers": {
-        "present": 312,
-        "expected": 343,
-        "missing": 31,
-        "pct": 91.0
+        "present": 333,
+        "expected": 371,
+        "missing": 38,
+        "pct": 89.8
       },
       "promoters": {
-        "present": 263,
-        "expected": 343,
+        "present": 291,
+        "expected": 371,
         "missing": 80,
-        "pct": 76.7
+        "pct": 78.4
       },
       "objectsOfIssue": {
-        "present": 68,
-        "expected": 343,
-        "missing": 275,
-        "pct": 19.8
+        "present": 69,
+        "expected": 371,
+        "missing": 302,
+        "pct": 18.6
       },
       "financials": {
-        "present": 224,
-        "expected": 343,
-        "missing": 119,
-        "pct": 65.3
+        "present": 235,
+        "expected": 371,
+        "missing": 136,
+        "pct": 63.3
       },
       "promoterShareholding": {
-        "present": 189,
-        "expected": 343,
-        "missing": 154,
-        "pct": 55.1
+        "present": 213,
+        "expected": 371,
+        "missing": 158,
+        "pct": 57.4
       }
     },
     "openSubscription": {
@@ -284,8 +284,8 @@
         "pct": 100.0
       },
       "documents": {
-        "present": 348,
-        "expected": 348,
+        "present": 376,
+        "expected": 376,
         "missing": 0,
         "pct": 100.0
       }
@@ -335,6 +335,12 @@
           "company": "FX MULTITECH LIMITED",
           "openDate": "2026-09-21",
           "stage": "upcoming"
+        },
+        {
+          "id": "happy",
+          "company": "Happy Steels Limited",
+          "openDate": "2026-07-09",
+          "stage": "listed"
         }
       ],
       "lotSize": [
@@ -355,6 +361,12 @@
           "company": "FX MULTITECH LIMITED",
           "openDate": "2026-09-21",
           "stage": "upcoming"
+        },
+        {
+          "id": "happy",
+          "company": "Happy Steels Limited",
+          "openDate": "2026-07-09",
+          "stage": "listed"
         },
         {
           "id": "icel",
@@ -587,6 +599,12 @@
     "offerDocumentEligible": {
       "registrar": [
         {
+          "id": "happy",
+          "company": "Happy Steels Limited",
+          "openDate": "2026-07-09",
+          "stage": "listed"
+        },
+        {
           "id": "biopol",
           "company": "Biopol Chemicals Limited",
           "openDate": "2026-02-06",
@@ -596,12 +614,6 @@
           "id": "lenskart",
           "company": "Lenskart Solutions Limited",
           "openDate": "2025-10-31",
-          "stage": "listed"
-        },
-        {
-          "id": "orklaindia",
-          "company": "Orkla India Limited",
-          "openDate": "2025-10-29",
           "stage": "listed"
         },
         {
@@ -679,6 +691,12 @@
       ],
       "leadManagers": [
         {
+          "id": "happy",
+          "company": "Happy Steels Limited",
+          "openDate": "2026-07-09",
+          "stage": "listed"
+        },
+        {
           "id": "biopol",
           "company": "Biopol Chemicals Limited",
           "openDate": "2026-02-06",
@@ -688,12 +706,6 @@
           "id": "speb",
           "company": "Speb Adhesives Limited",
           "openDate": "2025-12-01",
-          "stage": "listed"
-        },
-        {
-          "id": "orklaindia",
-          "company": "Orkla India Limited",
-          "openDate": "2025-10-29",
           "stage": "listed"
         },
         {
@@ -777,6 +789,12 @@
           "stage": "listed"
         },
         {
+          "id": "happy",
+          "company": "Happy Steels Limited",
+          "openDate": "2026-07-09",
+          "stage": "listed"
+        },
+        {
           "id": "icelco",
           "company": "IC Electricals Company Limited",
           "openDate": "2026-07-03",
@@ -852,12 +870,6 @@
           "id": "capillary",
           "company": "Capillary Technologies India Limited",
           "openDate": "2025-11-14",
-          "stage": "listed"
-        },
-        {
-          "id": "utlsolar",
-          "company": "Fujiyama Power Systems Limited",
-          "openDate": "2025-11-13",
           "stage": "listed"
         }
       ],
@@ -973,6 +985,12 @@
           "stage": "listed"
         },
         {
+          "id": "happy",
+          "company": "Happy Steels Limited",
+          "openDate": "2026-07-09",
+          "stage": "listed"
+        },
+        {
           "id": "icelco",
           "company": "IC Electricals Company Limited",
           "openDate": "2026-07-03",
@@ -1037,12 +1055,6 @@
           "company": "Apsis Aerocom Limited",
           "openDate": "2026-03-11",
           "stage": "listed"
-        },
-        {
-          "id": "striders",
-          "company": "Striders Impex Limited",
-          "openDate": "2026-02-26",
-          "stage": "listed"
         }
       ],
       "promoterShareholding": [
@@ -1071,12 +1083,6 @@
           "stage": "listed"
         },
         {
-          "id": "sbifunds",
-          "company": "SBI Funds Management Limited",
-          "openDate": "2026-07-14",
-          "stage": "listed"
-        },
-        {
           "id": "laserpower",
           "company": "Laser Power & Infra Limited",
           "openDate": "2026-07-09",
@@ -1098,12 +1104,6 @@
           "id": "vmobile",
           "company": "Vinit Mobile Limited",
           "openDate": "2026-06-30",
-          "stage": "listed"
-        },
-        {
-          "id": "cordelia",
-          "company": "Waterways Leisure Tourism Limited",
-          "openDate": "2026-06-23",
           "stage": "listed"
         },
         {
@@ -1134,6 +1134,18 @@
           "id": "qline",
           "company": "Q-Line Biotech Limited",
           "openDate": "2026-05-21",
+          "stage": "listed"
+        },
+        {
+          "id": "rfbl",
+          "company": "RFBL Flexi Pack Limited",
+          "openDate": "2026-05-12",
+          "stage": "listed"
+        },
+        {
+          "id": "value360",
+          "company": "Value 360 Communications Limited",
+          "openDate": "2026-05-04",
           "stage": "listed"
         }
       ]
