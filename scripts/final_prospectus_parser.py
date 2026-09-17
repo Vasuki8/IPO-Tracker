@@ -14,10 +14,11 @@ from typing import Any
 
 import legacy_offer_parser as legacy
 import offer_parser as base
+from p4_offer_parser import extract_objects
 from issue_composition_checks import amounts_match, composition_problems
-from objects_of_issue_checks import objects_problems
+from objects_of_issue_checks import objects_evidence_problems
 
-PARSER_VERSION = base.PARSER_VERSION + 8
+PARSER_VERSION = base.PARSER_VERSION + 9
 extract_pdf_text = base.extract_pdf_text
 valid_manager = base.valid_manager
 valid_registrar = base.valid_registrar
@@ -810,8 +811,11 @@ def parse_document_text(text: str, price_band=None) -> dict[str, Any]:
         parsed["promoters"] = promoters
     else:
         parsed.pop("promoters", None)
-    invalid_objects = bool(objects_problems(parsed.get("objectsOfIssue")))
-    if invalid_objects:
+    objects, object_evidence = extract_objects(text)
+    if objects and not objects_evidence_problems(objects, object_evidence.get("objectsOfIssue")):
+        parsed["objectsOfIssue"] = objects
+    else:
+        objects, object_evidence = [], {}
         parsed.pop("objectsOfIssue", None)
 
     lot_size, lot_evidence = extract_final_lot_size(text)
@@ -841,8 +845,8 @@ def parse_document_text(text: str, price_band=None) -> dict[str, Any]:
     field_evidence = dict(parsed.get("fieldEvidence") or {})
     field_evidence.pop("promoters", None)
     field_evidence.pop("issueComposition", None)
-    if invalid_objects:
-        field_evidence.pop("objectsOfIssue", None)
+    field_evidence.pop("objectsOfIssue", None)
+    field_evidence.update(object_evidence)
     field_evidence.update(lot_evidence)
     field_evidence.update(promoter_evidence)
     field_evidence.update(shareholding_evidence)
@@ -854,9 +858,10 @@ def parse_document_text(text: str, price_band=None) -> dict[str, Any]:
     extracted = [
         field
         for field in (parsed.get("extractedFields") or [])
-        if field not in {"priceBand", "issueComposition", "promoters"}
-        and not (field == "objectsOfIssue" and invalid_objects)
+        if field not in {"priceBand", "issueComposition", "promoters", "objectsOfIssue"}
     ]
+    if objects:
+        extracted.append("objectsOfIssue")
     if promoters:
         extracted.append("promoters")
     if lot_size is not None and "lotSize" not in extracted:

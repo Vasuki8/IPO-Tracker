@@ -174,12 +174,13 @@ class P4OfferParserTests(unittest.TestCase):
             "leadManagers": ["Existing Capital Limited"],
             "fieldEvidence": {},
         }
+        objects, object_evidence = parser.extract_objects(DHANLAXMI_OBJECTS)
         supplement = {
             "promoters": ["Kamleshkumar Jayantilal Patel", "Alpeshbhai Jayantilal Patel"],
-            "objectsOfIssue": [{"purpose": "Working Capital Requirements", "amountCr": 20.0577}],
+            "objectsOfIssue": objects,
             "leadManagers": ["Replacement Capital Limited"],
-            "fieldEvidence": {"promoters": {"heading": "OUR PROMOTERS"}},
-            "residualParserVersion": 1,
+            "fieldEvidence": {"promoters": {"heading": "OUR PROMOTERS"}, **object_evidence},
+            "residualParserVersion": 4,
         }
         merged = parser.merge_parsed(primary, supplement)
         self.assertEqual(merged["promoters"], supplement["promoters"])

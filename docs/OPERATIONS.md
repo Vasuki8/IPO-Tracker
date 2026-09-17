@@ -65,7 +65,9 @@ Parser 30 also recognizes an initial offer whose quoted aggregate is immediately
 
 Previously verified issue amounts that contradict their own counts or totals are quarantined during policy enforcement. Their original values and source evidence remain in `dataCorrections` and the `issueCompositionReview` snapshot; the affected amounts become null until a valid source repair supplies them. Quarantined fields remain in the Final Prospectus queue even while null. Partial repairs resolve only the fields actually recovered. Legacy mixed-source disagreements remain visible as review items. Publication keeps issue amounts, document evidence and quarantine state in one atomic group.
 
-Objects-of-issue rows that contain contents-page headings, trailing monetary columns in purpose text, incomplete page references or malformed amounts are rejected by the final parser and canonical policy. Enforcement clears previously stored invalid rows while preserving their values and source evidence in `dataCorrections` and `objectsOfIssueReview`. These fields stay queued until a valid Final Prospectus extraction replaces them, and their values, provenance and review state publish together. This guard detects recognizable contamination; it does not prove the amounts or table columns of every remaining objects row.
+Objects of issue require an observed allocation table in a Final Prospectus. Parser 31 and residual adapter 4 retain the actual heading, PDF pages, explicit monetary unit, physical column headers and exact purpose/amount spans, including wrapped purposes. The supported family has one purpose column and one allocation-amount column, optionally followed by an explicitly labelled percentage column. Totals and subsequent deployment, financing and narrative sections close the table; conflicting candidates, missing units and unexplained columns remain unresolved. Each canonical amount must equal its source token converted to crore.
+
+Enforcement rechecks old objects against this source-table contract. Missing legacy raw evidence is labelled `source-evidence-required`, separately from structurally invalid rows; both are withheld while the original values, source proof, document metadata and extraction envelopes are preserved in `dataCorrections` and `objectsOfIssueReview`. Old verification labels cannot restore them. Complete document-level evidence may migrate only when its source URL and SHA match the field's source. Repeated enforcement keeps the same audit snapshot, and a supported replacement resolves the review without deleting that history. Values, evidence and review state publish together; withheld objects remain actionable in P4.
 
 `completeness.json` measures field presence. `validation.json` separately reports invalid values and disclosures needing source review. A populated field is not automatically correct. `phase_status.json` keeps P4 incomplete and P5 gated while actionable P0–P4 gaps, semantic errors or unresolved source-review items remain. Documented availability exclusions remain visible as raw missing fields; source failure alone must not be converted into a completed task.
 
@@ -77,7 +79,7 @@ Performance observations require an exact NSE symbol, a positive price and an of
 
 ## Verification
 
-Run `uv run --frozen python -m unittest discover -s tests -q`, then apply the correction registry and run `scripts/validate_data.py --strict`. Regression tests cover source year alignment, footnotes, negative/missing cells, unsupported/interim layouts, intermediary contacts and former names, concurrent publication, complete queues, migration preconditions and performance-date/identity rules.
+Run `uv run --frozen python -m unittest discover -s tests -q`, then use `uv run --frozen python` to run `scripts/apply_corrections.py`, `scripts/enforce_final_prospectus_policy.py` and `scripts/validate_data.py --strict` in that order. Policy enforcement first migrates unsupported legacy objects into an auditable review state. Regression tests cover source year alignment, footnotes, negative/missing cells, unsupported/interim layouts, intermediary contacts and former names, concurrent publication, complete queues, migration preconditions and performance-date/identity rules.
 
 ## Final issue prices and historical observations
 
@@ -91,7 +93,7 @@ Historical rows remain in the observation history even when a newer observation 
 
 Missing index baselines are retried even when the listing-day equity close is already present. Empty or wrong-date responses are not retained as valid cached reports. Conflicting listing-day prices preserve the accepted value and its source, retain the proposed report in `listing.priceConflicts`, and keep a review item visible. Semantic validation checks observations and return calculations before publication.
 
-`source-review.yml` is a read-only preview for parser changes. It runs the full test suite, applies source repairs to an ephemeral dataset, and retains proposed values and validation findings as an artifact. It cannot publish data. Review the source results before merging parser changes.
+`source-review.yml` is a read-only preview for parser changes. It runs the full test suite, applies source repairs to an ephemeral dataset, and retains proposed values and validation findings as an artifact. It watches the primary parser, residual layouts and shared objects checks. The final review processes up to 100 primary documents and 30 residual documents, deriving residual order from the updated queue and reusing the PDF cache. It saves a complete report after both stages and final policy enforcement, before bounded optional diagnostics. It cannot publish data. Review the source results before merging parser changes.
 
 ## NSE issuer filing register
 

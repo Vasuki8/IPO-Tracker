@@ -3,7 +3,7 @@ name: Preview source repairs
 on:
   workflow_dispatch:
   pull_request:
-    paths: ['scripts/offer_parser.py', 'scripts/final_prospectus_parser.py', 'scripts/final_prospectus_policy.py', 'scripts/final_prospectus_identity.py', 'scripts/run_p4_offer_residuals.py', 'data/verified_corrections.json', 'scripts/run_offer_documents.py', 'scripts/run_issuer_offer_docs.py', 'scripts/issuer_offer_registry.py', 'scripts/review_source_repairs.py', 'scripts/collect_nse_offer_filings_final_policy.py', 'scripts/enrich_sebi_priority_registers_v2.py', 'scripts/enrich_sebi_document_links.py', 'scripts/enforce_final_prospectus_policy.py', 'scripts/build_missing_queue.py', 'scripts/collect_price_history.py', 'scripts/performance_tracking.py', 'scripts/performance_metrics.py', 'scripts/validate_data.py', 'tests/test_*price*.py', 'tests/test_performance_tracking.py', 'tests/test_final_prospectus_source_policy.py', 'tests/test_sebi_priority_registers_v2.py', 'tests/test_financial_source_layouts.py', 'tests/fixtures/**', '.github/workflows/source-review.yml']
+    paths: ['scripts/offer_parser.py', 'scripts/final_prospectus_parser.py', 'scripts/final_prospectus_policy.py', 'scripts/final_prospectus_identity.py', 'scripts/p4_offer_parser.py', 'scripts/p4_offer_layouts.py', 'scripts/objects_of_issue_checks.py', 'scripts/run_p4_offer_residuals.py', 'data/verified_corrections.json', 'scripts/run_offer_documents.py', 'scripts/run_issuer_offer_docs.py', 'scripts/issuer_offer_registry.py', 'scripts/review_source_repairs.py', 'scripts/collect_nse_offer_filings_final_policy.py', 'scripts/enrich_sebi_priority_registers_v2.py', 'scripts/enrich_sebi_document_links.py', 'scripts/enforce_final_prospectus_policy.py', 'scripts/build_missing_queue.py', 'scripts/collect_price_history.py', 'scripts/performance_tracking.py', 'scripts/performance_metrics.py', 'scripts/validate_data.py', 'tests/test_*price*.py', 'tests/test_performance_tracking.py', 'tests/test_final_prospectus_source_policy.py', 'tests/test_sebi_priority_registers_v2.py', 'tests/test_financial_source_layouts.py', 'tests/test_p4_offer*.py', 'tests/test_objects*.py', 'tests/test_final_objects*.py', 'tests/fixtures/**', '.github/workflows/source-review.yml']
 
 permissions:
   contents: read
@@ -37,7 +37,7 @@ jobs:
           uv run --frozen python scripts/run_issuer_offer_docs.py --priority-max 4 --limit 30
           uv run --frozen python -c 'import json; from scripts.issuer_offer_registry import VALIDATED_OFFER_DOCUMENTS; p=json.load(open("data/ipos.json")); [print("ISSUER_SOURCE_REPAIR " + json.dumps({"id":r["id"],"extraction":r.get("issuerDocumentExtraction")}, sort_keys=True)) for r in p["ipos"] if r.get("id") in VALIDATED_OFFER_DOCUMENTS]'
           uv run --frozen python scripts/enforce_final_prospectus_policy.py
-          uv run --frozen python scripts/review_source_repairs.py --limit 100
+          uv run --frozen python scripts/review_source_repairs.py --limit 100 --residual-limit 30
       - uses: actions/upload-artifact@v4.6.2
         if: always()
         with:

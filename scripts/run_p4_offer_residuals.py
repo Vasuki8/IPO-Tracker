@@ -54,9 +54,10 @@ def _audit_change(record: dict[str, Any], field: str, before: Any, after: Any, d
 
 def _replace_invalid_residuals(record: dict[str, Any], parsed: dict[str, Any], doc: dict[str, Any], digest: str) -> list[str]:
     changed: list[str] = []
+    # Objects and their source-table evidence are accepted together by
+    # ``correct_record``. A value-only fallback must never revive rejected rows.
     for field, validator in (
         ("promoters", residual.valid_promoters),
-        ("objectsOfIssue", residual.valid_objects),
     ):
         before = record.get(field)
         after = parsed.get(field)
