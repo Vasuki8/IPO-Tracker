@@ -45,8 +45,54 @@ Promoters    The Promoters of our Company, being, Orkla ASA, Orkla Asia Holding 
 """
 ORKLA_NAMES = ["ORKLA ASA", "ORKLA ASIA HOLDING AS", "ORKLA ASIA PACIFIC PTE. LTD."]
 
+# Actual cover rows from SheelBiotechLimited_PROSP.pdf, October 06, 2025.
+SHEEL = """[PAGE 1]
+NAME OF THE PROMOTERS OF THE COMPANY
+DR. SATYA NARAYAN CHANDAK, DR. SANJAY CHANDAK, MR. DIVYE CHANDAK, MRS. MINI CHADHA, M/S SATYA NARAYAN CHANDAK (HUF),
+M/S SANJAY CHANDAK (HUF) AND M/S SUMEET CHANDAK (HUF)
+DETAILS OF OFFER TO PUBLIC, PROMOTERS/ SELLING SHAREHOLDERS
+"""
+SHEEL_NAMES = [
+    "SATYA NARAYAN CHANDAK", "SANJAY CHANDAK", "DIVYE CHANDAK", "MINI CHADHA",
+    "M/S SATYA NARAYAN CHANDAK (HUF)", "M/S SANJAY CHANDAK (HUF)", "M/S SUMEET CHANDAK (HUF)",
+]
+
 
 class FinalPromoterHeadingTests(unittest.TestCase):
+    def test_sheel_mixed_cover_list_keeps_all_people_and_named_hufs(self):
+        names, evidence = parser.extract_final_promoters(SHEEL)
+        self.assertEqual(names, SHEEL_NAMES)
+        self.assertEqual(evidence["promoters"]["page"], 1)
+        self.assertEqual(evidence["promoters"]["entities"], SHEEL_NAMES)
+        self.assertEqual(len(evidence["promoters"]["rows"]), 3)
+        self.assertIn("SATYA NARAYAN CHANDAK", names)
+        self.assertIn("M/S SATYA NARAYAN CHANDAK (HUF)", names)
+
+    def test_huf_suffix_is_preserved_with_and_without_ms_prefix(self):
+        text = "OUR PROMOTERS: John Doe, John Doe (HUF) AND M/S Jane Roe(HUF)\nDETAILS OF THE OFFER"
+        self.assertEqual(parser.extract_final_promoters(text)[0], ["John Doe", "John Doe (HUF)", "M/S Jane Roe(HUF)"])
+
+    def test_missing_huf_name_malformed_parentheses_or_junk_reject_the_whole_list(self):
+        cases = [
+            "M/S (HUF)", "(HUF)", "M/S JOHN (HUF)", "M/S JOHN DOE (HUF", "M/S JOHN DOE HUF)",
+            "M/S JOHN )( DOE (HUF)", "M/S (JOHN DOE) (HUF)", "M/S JOHN DOE (HUF) equity shares",
+        ]
+        for invalid in cases:
+            with self.subTest(invalid=invalid):
+                text = "OUR PROMOTERS: ALPHA BETA, " + invalid + "\nDETAILS OF THE OFFER"
+                self.assertEqual(parser.extract_final_promoters(text), ([], {}))
+
+    def test_huf_support_preserves_ambiguous_list_boundary_rejection(self):
+        cases = [
+            "OUR PROMOTERS\nM/S JOHN DOE (HUF)\nM/S JANE ROE (HUF)\nDETAILS OF THE OFFER",
+            "OUR PROMOTERS: ALPHA BETA AND M/S JOHN DOE (HUF)\fAND M/S JANE ROE (HUF)\nDETAILS OF THE OFFER",
+            "OUR PROMOTER: M/S JOHN DOE (HUF) AND M/S JANE ROE (HUF)\nDETAILS OF THE OFFER",
+            "OUR PROMOTERS: M/S JOHN DOE (HUF) AND M/S JANE ROE (HUF) AND ALPHA BETA\nDETAILS OF THE OFFER",
+        ]
+        for text in cases:
+            with self.subTest(text=text):
+                self.assertEqual(parser.extract_final_promoters(text), ([], {}))
+
     def test_sunshine_complete_cover_list_outranks_wrapped_definition_and_seller_subset(self):
         names, evidence = parser.extract_final_promoters(SUNSHINE)
         self.assertEqual(names, SUNSHINE_NAMES)
@@ -168,7 +214,7 @@ DETAILS OF THE ISSUE
         self.assertEqual(parsed["finalPromoterAssessment"], "unresolved")
 
     def test_full_parser_and_residual_merge_keep_complete_source_names_and_proof(self):
-        for text, expected in ((SUNSHINE, SUNSHINE_NAMES), (ORKLA, ORKLA_NAMES)):
+        for text, expected in ((SUNSHINE, SUNSHINE_NAMES), (ORKLA, ORKLA_NAMES), (SHEEL, SHEEL_NAMES)):
             with self.subTest(issuer=expected[0]):
                 parsed = parser.parse_document_text(text)
                 merged = residual.merge_parsed(parsed, residual.parse_document_text(text))

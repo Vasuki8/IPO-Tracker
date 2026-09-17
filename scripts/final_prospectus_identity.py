@@ -73,6 +73,8 @@ _COVER_NAME_NOISE = re.compile(
 )
 _COVER_QR_CAPTION = re.compile(
     r"^(?:\(?Please\s+(?:scan|use)\b.*\bQR\s*Code\b.*|"
+    # Some covers spell the wrapped caption's final word "Propectus".
+    r"to\s+view\s+the\s+Pro(?:s)?pectus\.|"
     r"(?:this\s+)?Prospectus(?:\s+and\s+(?:the\s+)?Abridged\s+Prospectus)?\)?)$",
     re.I,
 )

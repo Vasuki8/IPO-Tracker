@@ -42,6 +42,21 @@ LASER_LAYOUT_COVER = """[PAGE 1]
                                                          CORPORATE IDENTITY NUMBER: U14220WB1988PLC043591
          REGISTERED OFFICE                      CORPORATE OFFICE                     CONTACT PERSON                     TELEPHONE AND E-MAIL                              WEBSITE
 """
+# Production text from the Sheel PDF, SHA 903e8c345fd7718c443a1624cdd1f4a07a418df02cc602072aa86f3b2f4917a6.
+# The source misspells "Prospectus" in the QR caption beside the legal title.
+SHEEL_LAYOUT_COVER = """[PAGE 1]
+                                                                                                                                                                                         Prospectus
+                                                                                                                                                                             Dated: October 06, 2025
+                                                                                                                                                                          100% Book Building Offer
+                                                                                                                                                 Please read Section 26 and 32 of Companies Act, 2013
+
+           Please scan this QR Code
+            to view the Propectus.                                             SHEEL BIOTECH LIMITED
+                                                                                   CIN: U24239DL1991PLC046531
+
+
+                     REGISTERED OFFICE                           CORPORATE OFFICE                    CONTACT PERSON                   EMAIL & TELEPHONE                         WEBSITE
+"""
 HAPPY = {"company": "Happy Steels Limited", "openDate": "2026-07-09", "priceBand": None}
 HAPPY_DOC = {
     "type": "PROSPECTUS",
@@ -65,6 +80,21 @@ class CoverIssuerIdentityTests(unittest.TestCase):
         self.assertEqual(identity.explicit_cover_issuers(LASER_LAYOUT_COVER), ["LASER POWER & INFRA LIMITED"])
         self.assertEqual(identity.contradictory_cover_issuer(HAPPY, LASER_LAYOUT_COVER), "LASER POWER & INFRA LIMITED")
         self.assertIsNone(identity.contradictory_cover_issuer({"company": "Laser Power & Infra Limited"}, LASER_LAYOUT_COVER))
+
+    def test_actual_sheel_layout_excludes_the_wrapped_qr_caption(self):
+        for spelling in ("Propectus", "Prospectus"):
+            with self.subTest(spelling=spelling):
+                text = SHEEL_LAYOUT_COVER.replace("Propectus", spelling)
+                self.assertEqual(identity.explicit_cover_issuers(text), ["SHEEL BIOTECH LIMITED"])
+                self.assertIsNone(identity.contradictory_cover_issuer({"company": "Sheel Biotech Limited"}, text))
+
+    def test_sheel_caption_normalization_does_not_rescue_a_different_issuer(self):
+        self.assertEqual(identity.contradictory_cover_issuer(HAPPY, SHEEL_LAYOUT_COVER), "SHEEL BIOTECH LIMITED")
+
+    def test_company_name_prefix_is_not_removed_like_a_qr_caption(self):
+        text = SHEEL_LAYOUT_COVER.replace("SHEEL BIOTECH LIMITED", "NORTH SHEEL BIOTECH LIMITED")
+        self.assertEqual(identity.explicit_cover_issuers(text), ["NORTH SHEEL BIOTECH LIMITED"])
+        self.assertEqual(identity.contradictory_cover_issuer({"company": "Sheel Biotech Limited"}, text), "NORTH SHEEL BIOTECH LIMITED")
 
     def test_spacing_ampersand_and_legal_abbreviation_preserve_identity(self):
         cover = "\n  Laser   Power  AND  Infra  Ltd.  \n  CIN : U14220WB1988PLC043591\n"
@@ -117,6 +147,23 @@ class CoverIssuerIdentityTests(unittest.TestCase):
 
 
 class CoverIssuerRunnerTests(unittest.TestCase):
+    def test_primary_and_residual_accept_sheel_actual_layout(self):
+        record = {"company": "Sheel Biotech Limited", "priceBand": None}
+        doc = {"type": "PROSPECTUS", "url": "https://nsearchives.nseindia.com/emerge/corporates/content/SheelBiotechLimited_PROSP.pdf"}
+        for runner in (primary, residual):
+            with self.subTest(runner=runner.__name__):
+                with (
+                    patch.object(primary, "pdf_bytes", return_value=b"%PDF-mocked"),
+                    patch.object(primary.parser, "extract_pdf_text", return_value=(SHEEL_LAYOUT_COVER, 1, 484)),
+                    patch.object(primary.parser, "parse_document_text", return_value={"extractedFields": []}) as parse_primary,
+                    patch.object(residual.residual, "parse_document_text", return_value={}),
+                ):
+                    parsed, digest, pages, count = runner.extract(record, doc)
+                self.assertEqual(parsed["extractedFields"], [])
+                self.assertTrue(digest)
+                self.assertEqual((pages, count), (1, 484))
+                parse_primary.assert_called_once_with(SHEEL_LAYOUT_COVER, None)
+
     def test_primary_and_residual_reject_wrong_cover_before_any_field_parser(self):
         for runner in (primary, residual):
             for cover in (LASER_COVER, LASER_LAYOUT_COVER):

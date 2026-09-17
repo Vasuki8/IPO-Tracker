@@ -116,9 +116,10 @@ _PROMOTER_JUNK = re.compile(
     re.I,
 )
 _PROMOTER_LEGAL_END = re.compile(
-    r"\b(?:PRIVATE\s+LIMITED|PVT\.?\s+LTD\.?|PTE\.?\s+LTD\.?|LIMITED|LTD\.?|LLP|LLC|PLC|"
-    r"INC\.?|CORP\.?|ASA|AS|S\.?A\.?)$", re.I,
+    r"(?:\b(?:PRIVATE\s+LIMITED|PVT\.?\s+LTD\.?|PTE\.?\s+LTD\.?|LIMITED|LTD\.?|LLP|LLC|PLC|"
+    r"INC\.?|CORP\.?|ASA|AS|S\.?A\.?)|\(\s*HUF\s*\))$", re.I,
 )
+_PROMOTER_HUF_END = re.compile(r"\(\s*HUF\s*\)$", re.I)
 
 # Keep labels adjacent to their own share count. The legacy recognizer searched
 # hundreds of characters past each label and could attach a seller's quantity,
@@ -216,7 +217,13 @@ def _promoter_names(payload: str, *, single=False) -> list[str]:
         words = name.split()
         if not 4 <= len(name) <= 140 or not 2 <= len(words) <= 12 or _PROMOTER_JUNK.search(name):
             return []
-        if _PROMOTER_LEGAL_END.search(name):
+        if huf := _PROMOTER_HUF_END.search(name):
+            # Preserve the source name, including M/S, but require a named
+            # HUF rather than allowing the prefix and suffix alone to qualify.
+            person = re.sub(r"^M/S\s+", "", name[:huf.start()].strip(), flags=re.I)
+            person_words = person.split()
+            valid = len(person_words) >= 2 and all(re.fullmatch(r"[A-Za-z][A-Za-z.'\-]*", word) for word in person_words)
+        elif _PROMOTER_LEGAL_END.search(name):
             valid = bool(re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9\s.'&()/+\-]*", name))
         else:
             valid = all(re.fullmatch(r"[A-Za-z][A-Za-z.'\-]*", word) for word in words)
