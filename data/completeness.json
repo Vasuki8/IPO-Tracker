@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17T22:45:37+05:30",
+  "generatedAt": "2026-09-17T23:43:44+05:30",
   "asOfDate": "2026-09-17",
   "recordCount": 1365,
   "stageCounts": {
@@ -22,7 +22,7 @@
   "scores": {
     "exchangeStage": 82.7,
     "recentExchange2Y": 96.7,
-    "offerDocumentEligible": 66.1,
+    "offerDocumentEligible": 67.1,
     "openSubscription": 91.7,
     "maturedLifecycle": 97.2,
     "provenance": 100.0
@@ -192,16 +192,16 @@
     },
     "offerDocumentEligible": {
       "registrar": {
+        "present": 356,
+        "expected": 387,
+        "missing": 31,
+        "pct": 92.0
+      },
+      "leadManagers": {
         "present": 350,
         "expected": 387,
         "missing": 37,
         "pct": 90.4
-      },
-      "leadManagers": {
-        "present": 346,
-        "expected": 387,
-        "missing": 41,
-        "pct": 89.4
       },
       "promoters": {
         "present": 337,
@@ -210,10 +210,10 @@
         "pct": 87.1
       },
       "objectsOfIssue": {
-        "present": 37,
+        "present": 49,
         "expected": 387,
-        "missing": 350,
-        "pct": 9.6
+        "missing": 338,
+        "pct": 12.7
       },
       "financials": {
         "present": 246,
@@ -222,10 +222,10 @@
         "pct": 63.6
       },
       "promoterShareholding": {
-        "present": 220,
+        "present": 221,
         "expected": 387,
-        "missing": 167,
-        "pct": 56.8
+        "missing": 166,
+        "pct": 57.1
       }
     },
     "openSubscription": {
@@ -629,12 +629,6 @@
           "stage": "listed"
         },
         {
-          "id": "munish",
-          "company": "Munish Forge Limited",
-          "openDate": "2025-09-30",
-          "stage": "listed"
-        },
-        {
           "id": "bagdigital",
           "company": "B.A.G. Convergence Limited",
           "openDate": "2025-09-30",
@@ -698,6 +692,12 @@
           "id": "cudml",
           "company": "Cash Ur Drive Marketing Limited",
           "openDate": "2025-07-31",
+          "stage": "listed"
+        },
+        {
+          "id": "cedaar",
+          "company": "Cedaar Textile Limited",
+          "openDate": "2025-06-30",
           "stage": "listed"
         }
       ],
