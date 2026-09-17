@@ -168,7 +168,9 @@ def _retained_objects_proof(record: dict[str, Any]) -> dict[str, Any] | None:
     return None
 
 
-def _quarantine_invalid_objects(record: dict[str, Any], checked_at: str) -> None:
+def _quarantine_invalid_objects(
+    record: dict[str, Any], checked_at: str, *, reviewed_source: dict[str, Any] | None = None
+) -> None:
     """Withhold unsupported allocations while retaining evidence for re-reading."""
     value = record.get("objectsOfIssue")
     invalid = objects_problems(value)
@@ -176,25 +178,25 @@ def _quarantine_invalid_objects(record: dict[str, Any], checked_at: str) -> None
     unsupported = value not in (None, []) and (
         objects_quarantined(record) or not _retained_objects_proof(record)
     )
-    if invalid or unsupported:
+    if invalid or unsupported or (reviewed_source and value not in (None, [])):
         document = record.get("documentFieldProvenance") or {}
         detail = document.get("evidence") or {}
         source_proof = provenance.get("objectsOfIssue")
         source_proof = source_proof if isinstance(source_proof, dict) else {}
         extraction = record.get("offerDocumentExtraction") or record.get("issuerDocumentExtraction") or {}
-        problems = invalid or _objects_provenance_problems(record, provenance.get("objectsOfIssue")) or [
+        problems = (reviewed_source or {}).get("findings") or invalid or _objects_provenance_problems(record, provenance.get("objectsOfIssue")) or [
             "Objects of issue remain subject to an unresolved source review"
         ]
         snapshot = {
             "field": "objectsOfIssue",
             "before": copy.deepcopy(value),
             "after": None,
-            "reason": (
+            "reason": (reviewed_source or {}).get("reason") or (
                 "Invalid objects of issue quarantined pending Final Prospectus revalidation"
                 if invalid else
                 "Objects of issue lack matching source-table evidence; withheld pending Final Prospectus revalidation"
             ),
-            "reviewKind": "invalid-values" if invalid else "source-evidence-required",
+            "reviewKind": "source-review" if reviewed_source else "invalid-values" if invalid else "source-evidence-required",
             "findings": problems,
             "sourceEvidence": copy.deepcopy(provenance.get("objectsOfIssue")),
             "documentEvidence": copy.deepcopy(detail.get("objectsOfIssue")),
@@ -208,6 +210,8 @@ def _quarantine_invalid_objects(record: dict[str, Any], checked_at: str) -> None
             "sha256": source_proof.get("sha256") or document.get("sha256") or extraction.get("sha256"),
             "correctedAt": checked_at,
         }
+        if reviewed_source:
+            snapshot["reviewedSource"] = copy.deepcopy(reviewed_source)
         record.setdefault("dataCorrections", []).append(copy.deepcopy(snapshot))
         record["objectsOfIssueReview"] = {
             "status": "quarantined", "reviewKind": snapshot["reviewKind"],

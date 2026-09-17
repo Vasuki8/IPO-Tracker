@@ -393,6 +393,17 @@ def apply_final_prospectus_static_fields(
     changes: list[dict[str, Any]] = []
     source_url = str(doc.get("url") or "")
     extracted = _static_values(record, parsed)
+    snapshot = (record.get("objectsOfIssueReview") or {}).get("snapshot") or {}
+    reviewed = snapshot.get("reviewedSource") or {}
+    if ("objectsOfIssue" in extracted and reviewed and sha256
+            and sha256 == (reviewed.get("evidence") or {}).get("sha256")
+            and (reviewed.get("scope") == "document"
+                 or extracted["objectsOfIssue"] == snapshot.get("before"))):
+        # Table syntax cannot resolve a known source contradiction. A review
+        # of the whole document requires different authoritative document
+        # bytes; a mirror URL does not resolve the source contradiction. A
+        # value-scoped layout repair may supply a corrected allocation list.
+        extracted.pop("objectsOfIssue")
     if "objectsOfIssue" in extracted and (not source_url or not sha256):
         # Raw cells must remain bound to the exact source document when the
         # objects proof is retained independently of later document metadata.
