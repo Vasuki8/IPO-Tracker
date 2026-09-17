@@ -203,7 +203,7 @@ class DocumentReviewDisplayTests(unittest.TestCase):
         self.assertEqual(row, before)
 
     def test_all_reviewed_documents_bind_real_issuer_offer_and_field_proofs(self):
-        self.assertEqual(set(self.holds), {'blackbuck', 'mbel', 'shriahimsa', 'genxai', 'kaytex', 'speb'})
+        self.assertEqual(set(self.holds), {'blackbuck', 'mbel', 'shriahimsa', 'genxai', 'kaytex', 'speb', 'teamtech'})
         self.assertEqual(set(self.holds), set(self.rows))
         for identifier, row in self.rows.items():
             with self.subTest(id=identifier):
@@ -221,7 +221,7 @@ class DocumentReviewDisplayTests(unittest.TestCase):
                 self.assert_held(row)
 
     def test_mirror_urls_and_changed_allocations_cannot_resolve_document_review(self):
-        for identifier in ('genxai', 'kaytex', 'speb'):
+        for identifier in ('genxai', 'kaytex', 'speb', 'teamtech'):
             for variant in ('query', 'mirror', 'changed_allocation'):
                 with self.subTest(id=identifier, variant=variant):
                     row = copy.deepcopy(self.rows[identifier])
@@ -238,6 +238,32 @@ class DocumentReviewDisplayTests(unittest.TestCase):
                         proof['evidence'] = objects_evidence(row['objectsOfIssue'])
                     self.assertEqual(project_record(row, today=TODAY, holds=[])['publicQuality']['fields']['objectsOfIssue']['state'], 'final_verified')
                     self.assert_held(row)
+
+    def test_teamtech_reconstructed_allocations_do_not_resolve_the_document_unit_conflict(self):
+        candidate = json.loads((ROOT / 'tests/teamtech_unaccepted_objects.json').read_text(encoding='utf-8'))
+        self.assertEqual(candidate['status'], 'unaccepted_source_unit_conflict')
+        self.assertEqual([item['amountCr'] for item in candidate['rows']], [11.9235, 15.5, 13.7688, 4.2936])
+        self.assertAlmostEqual(sum(item['amountCr'] for item in candidate['rows']), 45.4859)
+        for mirrored in (False, True):
+            with self.subTest(mirrored=mirrored):
+                # Test envelope around the exact unaccepted full-document
+                # extraction; preserve its actual physical evidence unchanged.
+                row = copy.deepcopy(self.rows['teamtech'])
+                row['objectsOfIssue'] = copy.deepcopy(candidate['rows'])
+                proof = row['staticFieldProvenance']['objectsOfIssue']
+                proof['value'] = copy.deepcopy(candidate['rows'])
+                proof['evidence'] = copy.deepcopy(candidate['evidence'])
+                self.assertEqual(proof['sha256'], candidate['sha256'])
+                self.assertNotEqual(value_digest(row['objectsOfIssue']),
+                                    value_digest(self.rows['teamtech']['objectsOfIssue']))
+                if mirrored:
+                    proof['sourceUrl'] = 'https://www.sebi.gov.in/mirrored-teamtech-prospectus.pdf'
+                self.assert_held(row)
+                # Different source bytes remove this review binding, while
+                # ordinary evidence rules still decide whether to display it.
+                proof['sha256'] = 'b' * 64
+                self.assertEqual(project_record(row, today=TODAY),
+                                 project_record(row, today=TODAY, holds=[]))
 
     def test_empty_allocation_with_retained_reviewed_proof_stays_under_review(self):
         for empty in (None, []):
@@ -312,10 +338,10 @@ class DocumentReviewDisplayTests(unittest.TestCase):
 
     def test_layout_holds_remain_value_scoped_for_same_document_repairs(self):
         holds = {hold['id']: hold for hold in display_holds()}
-        for identifier in ('emmvee', 'teamtech', 'unimech'):
+        for identifier in ('emmvee', 'unimech'):
             self.assertEqual(holds[identifier].get('scope', 'value'), 'value')
             self.assertTrue(all(binding.get('valueDigest') for binding in holds[identifier]['fields'].values()))
-        for identifier in ('teamtech', 'unimech'):
+        for identifier in ('unimech',):
             row = evidence({'id': identifier}, 'objectsOfIssue',
                            [{'purpose': 'Working capital requirements', 'amountCr': 1.0}],
                            objects_evidence([{'purpose': 'Working capital requirements', 'amountCr': 1.0}]))
