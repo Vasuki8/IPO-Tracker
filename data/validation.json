@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-17T09:23:25.295767+00:00",
+  "generatedAt": "2026-09-17T12:03:11.108912+00:00",
   "parserVersion": 22,
   "recordCount": 1364,
   "errorCount": 0,
-  "reviewCount": 1649,
+  "reviewCount": 1647,
   "invalidRecordCount": 0,
-  "reviewRecordCount": 303,
+  "reviewRecordCount": 302,
   "subscriptionAuthority": {
     "officialRecords": 7,
     "secondaryRecords": 8,
@@ -6069,12 +6069,6 @@
     },
     {
       "id": "capillary",
-      "field": "objectsOfIssue",
-      "severity": "review",
-      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
-    },
-    {
-      "id": "capillary",
       "field": "financials.FY2023.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
@@ -7587,15 +7581,15 @@
     },
     {
       "id": "cudml",
-      "field": "objectsOfIssue",
-      "severity": "review",
-      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
-    },
-    {
-      "id": "cudml",
       "field": "issueComposition",
       "severity": "review",
       "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "cudml",
+      "field": "leadManagers",
+      "severity": "review",
+      "reason": "Existing disclosure retained; no supported source-role table was extracted"
     },
     {
       "id": "lotusdev",
@@ -9195,12 +9189,6 @@
     },
     {
       "id": "ganeshin",
-      "field": "objectsOfIssue",
-      "severity": "review",
-      "reason": "Objects withheld pending Final Prospectus source-table revalidation"
-    },
-    {
-      "id": "apexeco",
       "field": "objectsOfIssue",
       "severity": "review",
       "reason": "Objects withheld pending Final Prospectus source-table revalidation"
