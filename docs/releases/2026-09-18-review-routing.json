@@ -1,0 +1,981 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-18 00:35:27 UTC",
+  "repository": "Vasuki8/IPO-Tracker",
+  "pullRequest": 110,
+  "expectedCommit": "dd3a9b42057422057c98a16c9b1281cf318a54d8",
+  "expectedTree": "5980bc75a46263c181c06b3ab1fcb1fc347d60be",
+  "releaseStatus": "Pages, browser checks and automatic live acceptance passed; source refresh still in progress at last observation.",
+  "pages": {
+    "id": 35291532877,
+    "name": "pages build and deployment",
+    "head_sha": "dd3a9b42057422057c98a16c9b1281cf318a54d8",
+    "event": "dynamic",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-09-18T00:31:08Z",
+    "updated_at": "2026-09-18T00:31:33Z",
+    "html_url": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35291532877",
+    "run_attempt": 1,
+    "jobs": [
+      {
+        "id": 105435216594,
+        "name": "build",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 35291532877,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Checkout",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Upload artifact",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Post Checkout",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          }
+        ]
+      },
+      {
+        "id": 105435261512,
+        "name": "report-build-status",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 35291532877,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Report Build Status",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          }
+        ]
+      },
+      {
+        "id": 105435261525,
+        "name": "deploy",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 35291532877,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Deploy to GitHub Pages",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          }
+        ]
+      }
+    ]
+  },
+  "postMergeValidation": {
+    "id": 35291533965,
+    "name": "Validate IPO changes",
+    "head_sha": "dd3a9b42057422057c98a16c9b1281cf318a54d8",
+    "event": "push",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-09-18T00:31:09Z",
+    "updated_at": "2026-09-18T00:31:35Z",
+    "html_url": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35291533965",
+    "run_attempt": 1,
+    "jobId": 105435217200,
+    "pythonTestsPassed": 1007,
+    "logEvidence": [
+      "2026-09-18T00:31:26.3735927Z Ran 1007 tests in 2.927s",
+      "2026-09-18T00:31:28.3956791Z Company routes: records=1366, routes=1366, written=0, unchanged=1366, removed=0, dataRewrite=no, summaryWrite=no, summaryBytes=1293692"
+    ]
+  },
+  "postMergeBrowser": {
+    "id": 35291534029,
+    "name": "Frontend browser checks",
+    "head_sha": "dd3a9b42057422057c98a16c9b1281cf318a54d8",
+    "event": "push",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-09-18T00:31:09Z",
+    "updated_at": "2026-09-18T00:33:01Z",
+    "html_url": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35291534029",
+    "run_attempt": 1
+  },
+  "localIntegration": {
+    "tree": "5980bc75a46263c181c06b3ab1fcb1fc347d60be",
+    "pythonTestsPassed": 1007,
+    "nodeTestsPassed": 8,
+    "resultAttribution": "Local test results supplied by parent engineer; tree identity independently matches the merged commit. Postmerge CI independently confirms 1007 Python tests."
+  },
+  "liveAcceptance": {
+    "id": 35291563246,
+    "name": "Verify public release",
+    "head_sha": "dd3a9b42057422057c98a16c9b1281cf318a54d8",
+    "event": "workflow_run",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-09-18T00:31:34Z",
+    "updated_at": "2026-09-18T00:31:47Z",
+    "html_url": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35291563246",
+    "run_attempt": 1,
+    "jobId": 105435308067,
+    "triggeringPagesRunId": 35291532877,
+    "localRouteCount": 1366,
+    "liveHttpFileCount": 17,
+    "actualReceipt": {
+      "expectedCommit": "dd3a9b42057422057c98a16c9b1281cf318a54d8",
+      "status": "passed",
+      "scope": "public-artifact-consistency-not-source-accuracy",
+      "routeCount": 1366,
+      "sampledProfiles": [
+        "ipo/emmvee/",
+        "ipo/teamtech/",
+        "ipo/shakti-polytarp-limited/",
+        "ipo/kheriaauto/",
+        "ipo/vama-wovenfab-limited/",
+        "ipo/sona/",
+        "ipo/manika/"
+      ],
+      "expectedSha256": {
+        "index.html": "7bb7c13dc4c856b9bcb77138e9d9cdfb8934384688e97c27c5bd9d81aa6fec59",
+        "public-quality.js": "327e7561c91728abd22dbf7d948babbc7b78db3cc29b07355386602e1209d77c",
+        "public-quality.css": "988dee5e990116eff25b8746a77b0b618b23d5394f3b919d601cceaedd6d4467",
+        "app.js": "aad042ffd8cea3576b5abff34d8b0378e812ab7e4f368f73e162d427201167d3",
+        "company-page.js": "c965ddfd01ab122b196dc58797d299f724b2378092c7ff927c91ea14b132c610",
+        "company.js": "8fba803171c5fd0fb09b95844fc153eaeff159a3a55c92785ef3c9013e08435d",
+        "phase4.js": "d7c69047e184cf5f896a75e61c62150a462ed985deaf93fdd8c0015a212e388f",
+        "methodology.html": "fe6b152b67eeaf0d1b17d7a700e1819fc250256bc022b64c9735c7867d7c546c",
+        "data/ipos-summary.json": "d90275e0e39b9a7e7e06837ea4ed472994375f485e8490e4d98121c3b5148f0c",
+        "ipo/routes.json": "b35e39781f3868b755c56e02b827ee933fb17e1fec87412e482bcb773e13ddef",
+        "ipo/emmvee/index.html": "9bebc399bab6bf699d4d5cbb23c84aa704bc52160d1b7e833daed82905610aac",
+        "ipo/teamtech/index.html": "724722823686a49c9c8cdb6e6411d47ad5ebbff4d22dbc024143cbad3cc22e8d",
+        "ipo/shakti-polytarp-limited/index.html": "5bcdee8e16db777889de0ef4cb8a737c3b9e63e5e24825d78f03ef563ea20cc5",
+        "ipo/kheriaauto/index.html": "016bd885008a6fd554469135b06f9e22f9d567170b4a3735fa3cfe45eaa25a46",
+        "ipo/vama-wovenfab-limited/index.html": "ed84a83324dea32bf77c914902687b382b9d4d2841f7c4c9aa26dcbe2f70de70",
+        "ipo/sona/index.html": "19c40fbf4d9dafdb64edb0952c8c168e2943ec7d8f49108d43c09c13b2ca2e2c",
+        "ipo/manika/index.html": "d93ed249adccf3ff72675298747dcb0f294f95e5ebd31fc4d53499aa556d2c13"
+      },
+      "baseUrl": "https://vasuki8.github.io/IPO-Tracker/",
+      "httpChecked": [
+        "index.html",
+        "public-quality.js",
+        "public-quality.css",
+        "app.js",
+        "company-page.js",
+        "company.js",
+        "phase4.js",
+        "methodology.html",
+        "data/ipos-summary.json",
+        "ipo/routes.json",
+        "ipo/emmvee/index.html",
+        "ipo/teamtech/index.html",
+        "ipo/shakti-polytarp-limited/index.html",
+        "ipo/kheriaauto/index.html",
+        "ipo/vama-wovenfab-limited/index.html",
+        "ipo/sona/index.html",
+        "ipo/manika/index.html"
+      ]
+    },
+    "receiptSource": "JSON printed by actual completed Verify immutable public output job log, with log timestamps stripped before parsing.",
+    "artifacts": [
+      {
+        "id": 10527125293,
+        "name": "public-release-35291563246-1",
+        "size_in_bytes": 1414,
+        "url": "https://api.github.com/repos/Vasuki8/IPO-Tracker/actions/artifacts/10527125293",
+        "archive_download_url": "https://api.github.com/repos/Vasuki8/IPO-Tracker/actions/artifacts/10527125293/zip",
+        "expired": false,
+        "created_at": "2026-09-18T00:31:44Z",
+        "expires_at": "2026-10-02T00:31:44Z",
+        "updated_at": "2026-09-18T00:31:44Z",
+        "digest": "sha256:f67fee8ee068839a1747fe957d9494fe027d7adf095d409d2fdda546c983a7cf",
+        "workflow_run": {
+          "id": 35291563246,
+          "repository_id": 1366866944,
+          "head_repository_id": 1366866944,
+          "head_branch": "main",
+          "head_sha": "dd3a9b42057422057c98a16c9b1281cf318a54d8"
+        }
+      }
+    ],
+    "scopeLimit": "This verifies public-artifact consistency against the exact commit, not source-value accuracy."
+  },
+  "acceptedData": {
+    "atCommit": "dd3a9b42057422057c98a16c9b1281cf318a54d8",
+    "method": "Read immutable Git objects for the merged commit.",
+    "files": {
+      "data/missing_queue.json": {
+        "bytes": 573984,
+        "sha256": "058fa27096c8b3f4585960458e84fc59de17028113898fe700b77001ab329ea0",
+        "summary": {
+          "generatedAt": "2026-09-18T05:19:14+05:30",
+          "asOfDate": "2026-09-18",
+          "recordCount": 1366,
+          "queueCount": 1355,
+          "sourceReviewCount": 1618,
+          "sourceReviewRecordCount": 296,
+          "queueIsComplete": true,
+          "priorityCounts": {
+            "P0 open IPO": 7,
+            "P1 upcoming IPO": 4,
+            "P2 recent IPO (30d)": 37,
+            "P3 filing pipeline": 3,
+            "P4 recent history (2y)": 390,
+            "P5 historical backfill": 914
+          }
+        }
+      },
+      "data/phase_status.json": {
+        "bytes": 653,
+        "sha256": "1547d817c050b7e0921ade108c758dd35a5ea486503e83597fa82d03cdd6ea29",
+        "summary": {
+          "generatedAt": "2026-09-17T23:49:14.645326+00:00",
+          "p4": {
+            "status": "incomplete",
+            "actionableRecords": 390,
+            "higherPriorityRecords": 51,
+            "semanticErrors": 0,
+            "sourceReviewItems": 1618,
+            "blockingSourceReviewItems": 1614,
+            "p5OnlySourceReviewItems": 4,
+            "unmappedSourceReviewItems": 0,
+            "finalProspectusRevalidationRecords": 325,
+            "finalProspectusRevalidationFields": 1185,
+            "higherPriorityFinalProspectusRevalidationRecords": 29,
+            "higherPriorityFinalProspectusRevalidationFields": 107,
+            "resolvedUnavailableRecords": 5
+          },
+          "p5": {
+            "status": "waiting_for_p4",
+            "actionableRecords": 914
+          }
+        }
+      },
+      "data/validation.json": {
+        "bytes": 305860,
+        "sha256": "83bdc94b89b5db56961023e3e1a40a07424325736a6081eb1fca44fd450ec808",
+        "summary": {
+          "schemaVersion": 1,
+          "generatedAt": "2026-09-17T21:40:39.383538+00:00",
+          "parserVersion": 22,
+          "recordCount": 1366,
+          "errorCount": 0,
+          "reviewCount": 1618,
+          "invalidRecordCount": 0,
+          "reviewRecordCount": 296,
+          "subscriptionAuthority": {
+            "officialRecords": 7,
+            "secondaryRecords": 8,
+            "sourceTimeUnknown": 11
+          }
+        }
+      },
+      "data/ipos.json": {
+        "bytes": 26762994,
+        "sha256": "29e2c170165e9dad215f786b1805fb8e18680dd43b219a59c29a5954a4160e5c",
+        "summary": {
+          "recordCount": 1366
+        }
+      },
+      "data/pending_updates.json": {
+        "bytes": 12256367,
+        "sha256": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+        "summary": {
+          "keys": [
+            "updates"
+          ]
+        }
+      }
+    },
+    "preservedCanonicalFiles": {
+      "comparedTo": "0b3b35b62ad8426fd9689555613aff2e2c278e35",
+      "files": [
+        "data/ipos.json",
+        "data/validation.json",
+        "data/pending_updates.json"
+      ],
+      "exactGitDiff": "no changes"
+    }
+  },
+  "sourcePreview": {
+    "schemaVersion": 1,
+    "checkedAt": "2026-09-18 00:31:12 UTC",
+    "repository": "Vasuki8/IPO-Tracker",
+    "pullRequest": 110,
+    "previewRun": {
+      "id": 35288989442,
+      "head_sha": "daf180a07aca0e955270eb9675d668fd7ff7aa3e",
+      "name": "Preview source repairs",
+      "status": "completed",
+      "conclusion": "success",
+      "event": "pull_request",
+      "created_at": "2026-09-17T23:55:50Z",
+      "updated_at": "2026-09-18T00:26:26Z",
+      "html_url": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35288989442"
+    },
+    "dataAcceptance": "UNACCEPTED. Preview1599 reviews and all proposed source or market data remain separate from accepted1618 reviews.",
+    "jobs": [
+      {
+        "id": 105427506010,
+        "name": "review",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 35288989442,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v7.0.1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run astral-sh/setup-uv@v10.1.0",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run uv python install 3.12",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Run uv sync --frozen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Run sudo apt-get update -qq && sudo apt-get install -y poppler-utils",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Test parser before source preview",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Preview Final Prospectus document repairs",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Run actions/upload-artifact@v4.6.2",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Post Run astral-sh/setup-uv@v10.1.0",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          },
+          {
+            "name": "Post Run actions/checkout@v7.0.1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 18
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 19
+          }
+        ]
+      },
+      {
+        "id": 105427506309,
+        "name": "baselines",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 35288989442,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v7.0.1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run astral-sh/setup-uv@v10.1.0",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run uv python install 3.12",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Run uv sync --frozen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Test baseline collectors",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Preview Final-Prospectus baseline and dated market history",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Run actions/upload-artifact@v4.6.2",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run astral-sh/setup-uv@v10.1.0",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@v7.0.1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      }
+    ],
+    "tests": {
+      "reviewJobPython": 1000,
+      "baselineJobPython": 1000
+    },
+    "selection": {
+      "primaryAttempts": 113,
+      "primaryUniqueRecords": 113,
+      "primaryOutcomes": {
+        "no_change": 76,
+        "updated": 28,
+        "source_blocked": 2,
+        "parse_failed": 7
+      },
+      "issuerAttempts": 27,
+      "issuerExtracted": 27,
+      "issuerUpdated": 0,
+      "issuerFailed": 0,
+      "residualAttempts": 30,
+      "residualOutcomes": {
+        "updated": 17,
+        "no_change": 12,
+        "parse_failed": 1
+      },
+      "newReviewOnlyRecordIds": [
+        "ardee",
+        "ganeshcp",
+        "glottis",
+        "mbel",
+        "pacedigitk"
+      ],
+      "newReviewOnlyRecordsAttempted": []
+    },
+    "sourceFailures": [
+      {
+        "time": "2026-09-18T00:18:16.8404758Z",
+        "id": "wol3d",
+        "status": "source_blocked",
+        "lastAttemptAt": "2026-09-18T05:48:16+05:30",
+        "parserVersion": 31,
+        "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/Wol3DIndiaLimited_PROSP.pdf",
+        "error": "404 Client Error: Not Found for url: https://nsearchives.nseindia.com/emerge/corporates/content/Wol3DIndiaLimited_PROSP.pdf",
+        "sourcePolicy": "final-prospectus-only"
+      },
+      {
+        "time": "2026-09-18T00:19:26.8064706Z",
+        "id": "happy",
+        "status": "parse_failed",
+        "lastAttemptAt": "2026-09-18T05:49:26+05:30",
+        "parserVersion": 31,
+        "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/HappySteelsLimited_PROSP.pdf",
+        "error": "Final Prospectus cover issuer 'LASER POWER & INFRA LIMITED' contradicts expected issuer 'Happy Steels Limited'",
+        "sourcePolicy": "final-prospectus-only"
+      },
+      {
+        "time": "2026-09-18T00:22:32.9625695Z",
+        "id": "cedaar",
+        "status": "parse_failed",
+        "lastAttemptAt": "2026-09-18T05:52:32+05:30",
+        "parserVersion": 31,
+        "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/CedaarTextileLimited_PROSP.pdf",
+        "error": "Final Prospectus cover issuer 'FAST TRACK FINSEC PRIVATE LIMITED SKYLINE FINANCIAL SERVICES PRIVATE LIMITED' contradicts expected issuer 'Cedaar Textile Limited'",
+        "sourcePolicy": "final-prospectus-only"
+      },
+      {
+        "time": "2026-09-18T00:22:46.4229497Z",
+        "id": "optivalue",
+        "status": "source_blocked",
+        "lastAttemptAt": "2026-09-18T05:52:46+05:30",
+        "parserVersion": 31,
+        "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/OptivalueTekConsultingLimited_PROSP.pdf",
+        "error": "404 Client Error: Not Found for url: https://nsearchives.nseindia.com/emerge/corporates/content/OptivalueTekConsultingLimited_PROSP.pdf",
+        "sourcePolicy": "final-prospectus-only"
+      },
+      {
+        "time": "2026-09-18T00:22:49.5187813Z",
+        "id": "kkjewels",
+        "status": "parse_failed",
+        "lastAttemptAt": "2026-09-18T05:52:49+05:30",
+        "parserVersion": 31,
+        "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/KabraJewelsLimited_PROSP.pdf",
+        "error": "Final Prospectus cover issuer 'KABRA JEWLS LIMITED' contradicts expected issuer 'Kabra Jewels Limited'",
+        "sourcePolicy": "final-prospectus-only"
+      },
+      {
+        "time": "2026-09-18T00:22:50.2401720Z",
+        "id": "orklaindia",
+        "status": "parse_failed",
+        "lastAttemptAt": "2026-09-18T05:52:50+05:30",
+        "parserVersion": 31,
+        "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE16NZ01023_03NOV2025.pdf",
+        "error": "Source returned an unreadable PDF: Stream has ended unexpectedly",
+        "sourcePolicy": "final-prospectus-only"
+      },
+      {
+        "time": "2026-09-18T00:22:51.1616276Z",
+        "id": "hyundai",
+        "status": "parse_failed",
+        "lastAttemptAt": "2026-09-18T05:52:51+05:30",
+        "parserVersion": 31,
+        "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE0V6F01027_18OCT2024.pdf",
+        "error": "Source returned non-PDF content",
+        "sourcePolicy": "final-prospectus-only"
+      },
+      {
+        "time": "2026-09-18T00:22:51.9079133Z",
+        "id": "nivabupa",
+        "status": "parse_failed",
+        "lastAttemptAt": "2026-09-18T05:52:51+05:30",
+        "parserVersion": 31,
+        "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE995S01015_12NOV2024.pdf",
+        "error": "Source returned non-PDF content",
+        "sourcePolicy": "final-prospectus-only"
+      },
+      {
+        "time": "2026-09-18T00:22:57.7128929Z",
+        "id": "deltic",
+        "status": "parse_failed",
+        "lastAttemptAt": "2026-09-18T05:52:57+05:30",
+        "parserVersion": 31,
+        "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/DeltaAutocorpLimited_PROSP.pdf",
+        "error": "Official PDF exceeds bounded 40 MiB extraction budget",
+        "sourcePolicy": "final-prospectus-only"
+      },
+      {
+        "time": "2026-09-18T00:23:40.4770516Z",
+        "id": "cedaar",
+        "status": "parse_failed",
+        "parserVersion": 4,
+        "mainParserVersion": 31,
+        "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/CedaarTextileLimited_PROSP.pdf",
+        "checkedAt": "2026-09-18T05:53:40+05:30",
+        "error": "Final Prospectus cover issuer 'FAST TRACK FINSEC PRIVATE LIMITED SKYLINE FINANCIAL SERVICES PRIVATE LIMITED' contradicts expected issuer 'Cedaar Textile Limited'",
+        "p4QueueTarget": true
+      }
+    ],
+    "previewValidation": {
+      "schemaVersion": 1,
+      "generatedAt": "2026-09-18T00:25:38.466993+00:00",
+      "parserVersion": 22,
+      "recordCount": 1366,
+      "errorCount": 0,
+      "reviewCount": 1599,
+      "invalidRecordCount": 0,
+      "reviewRecordCount": 287,
+      "subscriptionAuthority": {
+        "officialRecords": 7,
+        "secondaryRecords": 8,
+        "sourceTimeUnknown": 11
+      }
+    },
+    "baselineValidation": {
+      "recordCount": 1366,
+      "errorCount": 0,
+      "reviewCount": 1618,
+      "invalidRecordCount": 0,
+      "reviewRecordCount": 296
+    },
+    "logEvidence": [
+      "2026-09-17T23:56:25.7404892Z Ran 1000 tests in 2.604s",
+      "2026-09-17T23:56:28.0970170Z Missing-data queue: records=1366, queued=1355, source-reviews=1618, resolved-unavailable=5, p0=7, p1=4",
+      "2026-09-18T00:18:14.6108629Z Issuer offer docs: attempted=27 extracted=27 updated=0 deep_scanned=10 failed=0",
+      "2026-09-18T00:25:38.7002175Z Missing-data queue: records=1366, queued=1352, source-reviews=1599, resolved-unavailable=5, p0=7, p1=4",
+      "2026-09-18T00:25:38.7003097Z SOURCE_REVIEW_SUMMARY {\"schemaVersion\": 1, \"generatedAt\": \"2026-09-18T00:25:38.466993+00:00\", \"parserVersion\": 22, \"recordCount\": 1366, \"errorCount\": 0, \"reviewCount\": 1599, \"invalidRecordCount\": 0, \"reviewRecordCount\": 287, \"subscriptionAuthority\": {\"officialRecords\": 7, \"secondaryRecords\": 8, \"sourceTimeUnknown\": 11}}",
+      "2026-09-17T23:56:07.3831446Z Ran 1000 tests in 2.158s",
+      "2026-09-17T23:56:21.7851852Z {\"selected\": 30, \"updatedObservations\": 224, \"recordsObserved\": 27, \"failed\": 0, \"errors\": [], \"checkedAt\": \"2026-09-18T05:26:10+05:30\"}"
+    ],
+    "artifactMetadata": [
+      {
+        "id": 10526106243,
+        "name": "source-review-35288989442",
+        "size_in_bytes": 2139640,
+        "url": "https://api.github.com/repos/Vasuki8/IPO-Tracker/actions/artifacts/10526106243",
+        "archive_download_url": "https://api.github.com/repos/Vasuki8/IPO-Tracker/actions/artifacts/10526106243/zip",
+        "expired": false,
+        "created_at": "2026-09-18T00:26:23Z",
+        "expires_at": "2026-10-02T00:26:22Z",
+        "updated_at": "2026-09-18T00:26:23Z",
+        "digest": "sha256:707f069e96882fff2d0dfe126dfc583cbdebfe3ddb96a9900f52a369cb63e081",
+        "workflow_run": {
+          "id": 35288989442,
+          "repository_id": 1366866944,
+          "head_repository_id": 1366866944,
+          "head_branch": "fix-unmapped-source-review-routing",
+          "head_sha": "daf180a07aca0e955270eb9675d668fd7ff7aa3e"
+        }
+      },
+      {
+        "id": 10525791248,
+        "name": "baseline-preview-35288989442",
+        "size_in_bytes": 2034507,
+        "url": "https://api.github.com/repos/Vasuki8/IPO-Tracker/actions/artifacts/10525791248",
+        "archive_download_url": "https://api.github.com/repos/Vasuki8/IPO-Tracker/actions/artifacts/10525791248/zip",
+        "expired": false,
+        "created_at": "2026-09-17T23:56:24Z",
+        "expires_at": "2026-10-01T23:56:23Z",
+        "updated_at": "2026-09-17T23:56:24Z",
+        "digest": "sha256:c51f7e5346ef81da19e7a18bc165d4562421c39565878fe0a0dbb96b981a15bb",
+        "workflow_run": {
+          "id": 35288989442,
+          "repository_id": 1366866944,
+          "head_repository_id": 1366866944,
+          "head_branch": "fix-unmapped-source-review-routing",
+          "head_sha": "daf180a07aca0e955270eb9675d668fd7ff7aa3e"
+        }
+      }
+    ],
+    "artifactReadLimitation": "Connector downloads returned reusable references, but retrieving ZIP bytes failed: original signed links HTTP403/code1010; authorized materialization transfers HTTP502. No artifact report-file contents were obtained. Review uses actual completed job logs, including JSON summary and record outcomes, plus metadata.",
+    "recommendation": {
+      "codeOnlyRouting": "No blocking issue identified for routing implementation release.",
+      "basis": "Production-selector regression checks retain 113 primary/27 issuer eligibility and bounded residual selection. This preview attempted none of the five review-only records. Failures remain explicit and validation reports zero semantic errors. The current-main integration tests and all1618 review-pointer checks are separate acceptance evidence held by the parent engineer.",
+      "notApproved": "Any source values, performance observations or reduced review count from preview artifacts."
+    }
+  },
+  "refresh": {
+    "id": 35291533992,
+    "name": "Collect and publish IPO data",
+    "head_sha": "dd3a9b42057422057c98a16c9b1281cf318a54d8",
+    "event": "push",
+    "status": "in_progress",
+    "conclusion": null,
+    "created_at": "2026-09-18T00:31:09Z",
+    "updated_at": "2026-09-18T00:31:11Z",
+    "html_url": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35291533992",
+    "run_attempt": 1,
+    "jobs": [
+      {
+        "id": 105435217162,
+        "name": "collect",
+        "status": "in_progress",
+        "conclusion": null,
+        "run_id": 35291533992,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v7.0.1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run astral-sh/setup-uv@v10.1.0",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run uv python install 3.12",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Run uv sync --frozen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Resolve collection mode",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Install bounded PDF table extraction when needed",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Verify the collector",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Save collection baseline",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Collect sources with explicit stage outcomes",
+            "status": "in_progress",
+            "conclusion": null,
+            "number": 10
+          },
+          {
+            "name": "Repair recent P4 Final Prospectus residuals",
+            "status": "pending",
+            "conclusion": null,
+            "number": 11
+          },
+          {
+            "name": "Prepare collected snapshot",
+            "status": "pending",
+            "conclusion": null,
+            "number": 12
+          },
+          {
+            "name": "Run actions/upload-artifact@v4.6.2",
+            "status": "pending",
+            "conclusion": null,
+            "number": 13
+          },
+          {
+            "name": "Post Run astral-sh/setup-uv@v10.1.0",
+            "status": "pending",
+            "conclusion": null,
+            "number": 25
+          },
+          {
+            "name": "Post Run actions/checkout@v7.0.1",
+            "status": "pending",
+            "conclusion": null,
+            "number": 26
+          }
+        ]
+      }
+    ],
+    "observedAt": "2026-09-18 00:35:09 UTC",
+    "publicationOutcome": "Not established while collection remains in progress. No claim of accepted data changes or no changes.",
+    "followup": "Recorded current status only; did not wait for the broad collection, dispatch, cancel or retry it."
+  },
+  "additionalRoutingAssetVerification": {
+    "owner": "Parent engineer",
+    "paths": [
+      "completeness.js",
+      "data/missing_queue.json",
+      "data/phase_status.json"
+    ],
+    "baselineReceiptIncludesThese": false,
+    "status": "Separate parent HTTPS verification; not claimed by this receipt."
+  },
+  "remoteActions": "Read-only metadata/log/artifact retrieval. No GitHub mutations.",
+  "browserAndPullRequestCi": {
+    "purpose": "Independent read-only verification of PR #110 premerge CI and browser checks on its exact final merge commit. No dispatch, cancellation, repository edit or remote mutation.",
+    "pullRequest": {
+      "url": "https://github.com/Vasuki8/IPO-Tracker/pull/110",
+      "headSha": "daf180a07aca0e955270eb9675d668fd7ff7aa3e",
+      "baseSha": "e407f66e6fd1b54ccd2738cd668bd270934b8bef",
+      "mergeCommitSha": "dd3a9b42057422057c98a16c9b1281cf318a54d8",
+      "mergedAt": "2026-09-18T00:31:06Z"
+    },
+    "beforeMerge": [
+      {
+        "workflow": "Validate IPO changes",
+        "event": "pull_request",
+        "runId": 35288989420,
+        "runUrl": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35288989420",
+        "runStatus": "completed",
+        "runConclusion": "success",
+        "runHeadSha": "daf180a07aca0e955270eb9675d668fd7ff7aa3e",
+        "checkedOutSha": "72a4ac8d12e091fae811c19d87fe2ba95fe8f334",
+        "jobId": 105427505879,
+        "jobUrl": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35288989420/job/105427505879",
+        "jobStatus": "completed",
+        "jobConclusion": "success",
+        "startedAt": "2026-09-17T23:55:53Z",
+        "completedAt": "2026-09-17T23:56:16Z",
+        "exactSummaryExcerpts": [
+          "2026-09-17T23:56:07.7425591Z Ran 1000 tests in 2.534s",
+          "2026-09-17T23:56:07.7425953Z OK"
+        ],
+        "passedTests": 1000
+      },
+      {
+        "workflow": "Frontend browser checks",
+        "event": "pull_request",
+        "runId": 35288989465,
+        "runUrl": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35288989465",
+        "runStatus": "completed",
+        "runConclusion": "success",
+        "runHeadSha": "daf180a07aca0e955270eb9675d668fd7ff7aa3e",
+        "checkedOutSha": "72a4ac8d12e091fae811c19d87fe2ba95fe8f334",
+        "jobId": 105427506317,
+        "jobUrl": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35288989465/job/105427506317",
+        "jobStatus": "completed",
+        "jobConclusion": "success",
+        "startedAt": "2026-09-17T23:55:53Z",
+        "completedAt": "2026-09-17T23:57:28Z",
+        "exactSummaryExcerpts": [
+          "2026-09-17T23:56:04.4467972Z # tests 7",
+          "2026-09-17T23:56:04.4468414Z # pass 7",
+          "2026-09-17T23:56:34.7328085Z PASS Review-only quality queue row retains source review context (836ms)",
+          "2026-09-17T23:57:21.0573381Z 25/25 smoke checks passed. Artifacts: /home/runner/work/IPO-Tracker/IPO-Tracker/artifacts/frontend",
+          "2026-09-17T23:57:23.9512751Z PASS source/check/secondary text remains inside its cell at 1440, 375 and 320px"
+        ],
+        "smokePassLines": 25,
+        "smokeCount": 25,
+        "smokeTotal": 25,
+        "qualityLayoutPassed": true,
+        "nodeTests": 7,
+        "nodePass": 7,
+        "artifactId": 10525467002
+      }
+    ],
+    "afterMerge": [
+      {
+        "workflow": "Validate IPO changes",
+        "event": "push",
+        "runId": 35291533965,
+        "runUrl": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35291533965",
+        "runStatus": "completed",
+        "runConclusion": "success",
+        "runHeadSha": "dd3a9b42057422057c98a16c9b1281cf318a54d8",
+        "checkedOutSha": "dd3a9b42057422057c98a16c9b1281cf318a54d8",
+        "jobId": 105435217200,
+        "jobUrl": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35291533965/job/105435217200",
+        "jobStatus": "completed",
+        "jobConclusion": "success",
+        "startedAt": "2026-09-18T00:31:11Z",
+        "completedAt": "2026-09-18T00:31:35Z",
+        "exactSummaryExcerpts": [
+          "2026-09-18T00:31:26.3735927Z Ran 1007 tests in 2.927s",
+          "2026-09-18T00:31:26.3736156Z OK"
+        ],
+        "passedTests": 1007
+      },
+      {
+        "workflow": "Frontend browser checks",
+        "event": "push",
+        "runId": 35291534029,
+        "runUrl": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35291534029",
+        "runStatus": "completed",
+        "runConclusion": "success",
+        "runHeadSha": "dd3a9b42057422057c98a16c9b1281cf318a54d8",
+        "checkedOutSha": "dd3a9b42057422057c98a16c9b1281cf318a54d8",
+        "jobId": 105435217224,
+        "jobUrl": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35291534029/job/105435217224",
+        "jobStatus": "completed",
+        "jobConclusion": "success",
+        "startedAt": "2026-09-18T00:31:12Z",
+        "completedAt": "2026-09-18T00:33:00Z",
+        "exactSummaryExcerpts": [
+          "2026-09-18T00:31:23.8042760Z # tests 8",
+          "2026-09-18T00:31:23.8043477Z # pass 8",
+          "2026-09-18T00:32:01.0113795Z PASS Review-only quality queue row retains source review context (884ms)",
+          "2026-09-18T00:32:53.2539419Z 25/25 smoke checks passed. Artifacts: /home/runner/work/IPO-Tracker/IPO-Tracker/artifacts/frontend",
+          "2026-09-18T00:32:56.1764191Z PASS source/check/secondary text remains inside its cell at 1440, 375 and 320px"
+        ],
+        "smokePassLines": 25,
+        "smokeCount": 25,
+        "smokeTotal": 25,
+        "qualityLayoutPassed": true,
+        "nodeTests": 8,
+        "nodePass": 8,
+        "artifactId": 10527190223
+      }
+    ],
+    "interpretation": "Premerge runs identify PR head daf180a07aca0e955270eb9675d668fd7ff7aa3e but actually checked out GitHub's synthetic merge 72a4ac8d12e091fae811c19d87fe2ba95fe8f334, as shown in both logs. Postmerge jobs checked out dd3a9b42057422057c98a16c9b1281cf318a54d8. The postmerge Python count is 1007, not the premerge 1000. Browser smoke counts are 25/25 in both, with a separate successful responsive quality-layout check.",
+    "scopeLimit": "These CI/browser results do not establish canonical source-value accuracy or refresh publication. Parent owns Pages, automatic release receipts and refresh-status verification."
+  }
+}
