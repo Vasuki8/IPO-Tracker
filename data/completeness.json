@@ -1,143 +1,143 @@
 {
-  "generatedAt": "2026-09-19T02:50:32+05:30",
+  "generatedAt": "2026-09-19T04:09:49+05:30",
   "asOfDate": "2026-09-19",
-  "recordCount": 1371,
+  "recordCount": 1379,
   "stageCounts": {
-    "closed": 59,
+    "closed": 66,
     "filing-pipeline": 12,
-    "listed": 1287,
+    "listed": 1288,
     "open": 5,
     "unknown": 1,
     "upcoming": 7
   },
   "segmentCounts": {
-    "allRecords": 1371,
-    "exchangeStage": 1358,
-    "recentExchange2Y": 445,
+    "allRecords": 1379,
+    "exchangeStage": 1366,
+    "recentExchange2Y": 453,
     "historicalExchange": 913,
     "offerDocumentEligible": 389,
     "openNow": 5,
-    "maturedClosed": 1323
+    "maturedClosed": 1325
   },
   "scores": {
-    "exchangeStage": 82.6,
-    "recentExchange2Y": 96.3,
+    "exchangeStage": 82.4,
+    "recentExchange2Y": 95.6,
     "offerDocumentEligible": 70.7,
     "openSubscription": 85.0,
-    "maturedLifecycle": 97.2,
-    "provenance": 100.0
+    "maturedLifecycle": 97.1,
+    "provenance": 99.7
   },
   "coverage": {
     "exchangeStage": {
       "symbol": {
-        "present": 1353,
-        "expected": 1358,
+        "present": 1361,
+        "expected": 1366,
         "missing": 5,
         "pct": 99.6
       },
       "board": {
-        "present": 1358,
-        "expected": 1358,
+        "present": 1366,
+        "expected": 1366,
         "missing": 0,
         "pct": 100.0
       },
       "exchange": {
-        "present": 1358,
-        "expected": 1358,
+        "present": 1366,
+        "expected": 1366,
         "missing": 0,
         "pct": 100.0
       },
       "openDate": {
-        "present": 1358,
-        "expected": 1358,
+        "present": 1366,
+        "expected": 1366,
         "missing": 0,
         "pct": 100.0
       },
       "closeDate": {
-        "present": 1358,
-        "expected": 1358,
+        "present": 1366,
+        "expected": 1366,
         "missing": 0,
         "pct": 100.0
       },
       "priceBand": {
         "present": 1336,
-        "expected": 1358,
-        "missing": 22,
-        "pct": 98.4
+        "expected": 1366,
+        "missing": 30,
+        "pct": 97.8
       },
       "lotSize": {
         "present": 436,
-        "expected": 1358,
-        "missing": 922,
-        "pct": 32.1
+        "expected": 1366,
+        "missing": 930,
+        "pct": 31.9
       },
       "issueSizeCr": {
         "present": 392,
-        "expected": 1358,
-        "missing": 966,
-        "pct": 28.9
+        "expected": 1366,
+        "missing": 974,
+        "pct": 28.7
       },
       "issueComposition": {
         "present": 389,
-        "expected": 446,
-        "missing": 57,
-        "pct": 87.2
+        "expected": 454,
+        "missing": 65,
+        "pct": 85.7
       }
     },
     "recentExchange2Y": {
       "symbol": {
-        "present": 440,
-        "expected": 445,
+        "present": 448,
+        "expected": 453,
         "missing": 5,
         "pct": 98.9
       },
       "board": {
-        "present": 445,
-        "expected": 445,
+        "present": 453,
+        "expected": 453,
         "missing": 0,
         "pct": 100.0
       },
       "exchange": {
-        "present": 445,
-        "expected": 445,
+        "present": 453,
+        "expected": 453,
         "missing": 0,
         "pct": 100.0
       },
       "openDate": {
-        "present": 445,
-        "expected": 445,
+        "present": 453,
+        "expected": 453,
         "missing": 0,
         "pct": 100.0
       },
       "closeDate": {
-        "present": 445,
-        "expected": 445,
+        "present": 453,
+        "expected": 453,
         "missing": 0,
         "pct": 100.0
       },
       "priceBand": {
         "present": 436,
-        "expected": 445,
-        "missing": 9,
-        "pct": 98.0
+        "expected": 453,
+        "missing": 17,
+        "pct": 96.2
       },
       "lotSize": {
         "present": 429,
-        "expected": 445,
-        "missing": 16,
-        "pct": 96.4
+        "expected": 453,
+        "missing": 24,
+        "pct": 94.7
       },
       "issueSizeCr": {
         "present": 385,
-        "expected": 445,
-        "missing": 60,
-        "pct": 86.5
+        "expected": 453,
+        "missing": 68,
+        "pct": 85.0
       },
       "issueComposition": {
         "present": 388,
-        "expected": 445,
-        "missing": 57,
-        "pct": 87.2
+        "expected": 453,
+        "missing": 65,
+        "pct": 85.7
       }
     },
     "historicalExchange": {
@@ -263,31 +263,31 @@
     "maturedLifecycle": {
       "listingDate": {
         "present": 1286,
-        "expected": 1323,
-        "missing": 37,
-        "pct": 97.2
+        "expected": 1325,
+        "missing": 39,
+        "pct": 97.1
       }
     },
     "optionalLifecycle": {
       "allotmentDate": {
         "present": 0,
-        "expected": 1323,
-        "missing": 1323,
+        "expected": 1325,
+        "missing": 1325,
         "pct": 0.0
       }
     },
     "provenance": {
       "sources": {
-        "present": 1370,
-        "expected": 1371,
+        "present": 1378,
+        "expected": 1379,
         "missing": 1,
         "pct": 99.9
       },
       "validation": {
         "present": 1371,
-        "expected": 1371,
-        "missing": 0,
-        "pct": 100.0
+        "expected": 1379,
+        "missing": 8,
+        "pct": 99.4
       },
       "documents": {
         "present": 396,
@@ -385,10 +385,46 @@
           "stage": "open"
         },
         {
-          "id": "happy",
-          "company": "Happy Steels Limited",
-          "openDate": "2026-07-09",
+          "id": "quanto-agroworld",
+          "company": "QUANTO AGROWORLD LIMITED",
+          "openDate": "2026-09-15",
+          "stage": "closed"
+        },
+        {
+          "id": "panchatv-bharat",
+          "company": "PANCHATV BHARAT LIMITED",
+          "openDate": "2026-09-10",
+          "stage": "closed"
+        },
+        {
+          "id": "vinod",
+          "company": "Vinod Texworld Limited",
+          "openDate": "2026-09-09",
           "stage": "listed"
+        },
+        {
+          "id": "infrax-renewable",
+          "company": "INFRAX RENEWABLE LIMITED",
+          "openDate": "2026-09-09",
+          "stage": "closed"
+        },
+        {
+          "id": "amtech-esters",
+          "company": "AMTECH ESTERS LIMITED",
+          "openDate": "2026-09-09",
+          "stage": "closed"
+        },
+        {
+          "id": "apana-logistics",
+          "company": "APANA LOGISTICS LIMITED",
+          "openDate": "2026-09-07",
+          "stage": "closed"
+        },
+        {
+          "id": "fly-hi-maritime-travels",
+          "company": "FLY HI MARITIME TRAVELS LIMITED",
+          "openDate": "2026-09-01",
+          "stage": "closed"
         }
       ],
       "lotSize": [
@@ -441,46 +477,46 @@
           "stage": "open"
         },
         {
-          "id": "happy",
-          "company": "Happy Steels Limited",
-          "openDate": "2026-07-09",
+          "id": "quanto-agroworld",
+          "company": "QUANTO AGROWORLD LIMITED",
+          "openDate": "2026-09-15",
+          "stage": "closed"
+        },
+        {
+          "id": "panchatv-bharat",
+          "company": "PANCHATV BHARAT LIMITED",
+          "openDate": "2026-09-10",
+          "stage": "closed"
+        },
+        {
+          "id": "vinod",
+          "company": "Vinod Texworld Limited",
+          "openDate": "2026-09-09",
           "stage": "listed"
         },
         {
-          "id": "icel",
-          "company": "IC Electricals Company Limited-Issue postponed",
-          "openDate": "2026-06-25",
+          "id": "infrax-renewable",
+          "company": "INFRAX RENEWABLE LIMITED",
+          "openDate": "2026-09-09",
           "stage": "closed"
         },
         {
-          "id": "spgcl-withdrawn-2026-06-24",
-          "company": "Sri Priyanka Geo Commex Limited-Issue Withdrawn",
-          "openDate": "2026-06-24",
+          "id": "amtech-esters",
+          "company": "AMTECH ESTERS LIMITED",
+          "openDate": "2026-09-09",
           "stage": "closed"
         },
         {
-          "id": "rsl-withdrawal-option-2026-03-12",
-          "company": "Rajputana Stainless Limited-Special Withdrawal Option",
-          "openDate": "2026-03-12",
+          "id": "apana-logistics",
+          "company": "APANA LOGISTICS LIMITED",
+          "openDate": "2026-09-07",
           "stage": "closed"
         },
         {
-          "id": "sampoorna-withdrawn-2026-02-04",
-          "company": "NFP Sampoorna Foods Limited-Issue Withdrawn",
-          "openDate": "2026-02-04",
+          "id": "fly-hi-maritime-travels",
+          "company": "FLY HI MARITIME TRAVELS LIMITED",
+          "openDate": "2026-09-01",
           "stage": "closed"
-        },
-        {
-          "id": "capinvit",
-          "company": "Capital Infra Trust",
-          "openDate": "2025-01-07",
-          "stage": "listed"
-        },
-        {
-          "id": "rajputana",
-          "company": "Rajputana Biodiesel Limited",
-          "openDate": "2024-11-26",
-          "stage": "listed"
         }
       ],
       "issueSizeCr": [
@@ -533,10 +569,28 @@
           "stage": "open"
         },
         {
+          "id": "quanto-agroworld",
+          "company": "QUANTO AGROWORLD LIMITED",
+          "openDate": "2026-09-15",
+          "stage": "closed"
+        },
+        {
           "id": "veegaland",
           "company": "Veegaland Developers Limited",
           "openDate": "2026-09-10",
           "stage": "closed"
+        },
+        {
+          "id": "panchatv-bharat",
+          "company": "PANCHATV BHARAT LIMITED",
+          "openDate": "2026-09-10",
+          "stage": "closed"
+        },
+        {
+          "id": "vinod",
+          "company": "Vinod Texworld Limited",
+          "openDate": "2026-09-09",
+          "stage": "listed"
         },
         {
           "id": "rentomojo",
@@ -545,34 +599,16 @@
           "stage": "closed"
         },
         {
-          "id": "esds",
-          "company": "ESDS Software Solution Limited",
-          "openDate": "2026-08-28",
-          "stage": "listed"
+          "id": "infrax-renewable",
+          "company": "INFRAX RENEWABLE LIMITED",
+          "openDate": "2026-09-09",
+          "stage": "closed"
         },
         {
-          "id": "tempsens",
-          "company": "Tempsens Instruments (India) Limited",
-          "openDate": "2026-08-20",
-          "stage": "listed"
-        },
-        {
-          "id": "jnpr",
-          "company": "Juniper Green Energy Limited",
-          "openDate": "2026-07-30",
-          "stage": "listed"
-        },
-        {
-          "id": "manipalhos",
-          "company": "Manipal Health Enterprises Limited",
-          "openDate": "2026-07-29",
-          "stage": "listed"
-        },
-        {
-          "id": "cmll",
-          "company": "Caliber Mining and Logistics Limited",
-          "openDate": "2026-07-17",
-          "stage": "listed"
+          "id": "amtech-esters",
+          "company": "AMTECH ESTERS LIMITED",
+          "openDate": "2026-09-09",
+          "stage": "closed"
         }
       ],
       "issueComposition": [
@@ -625,10 +661,28 @@
           "stage": "open"
         },
         {
+          "id": "quanto-agroworld",
+          "company": "QUANTO AGROWORLD LIMITED",
+          "openDate": "2026-09-15",
+          "stage": "closed"
+        },
+        {
           "id": "veegaland",
           "company": "Veegaland Developers Limited",
           "openDate": "2026-09-10",
           "stage": "closed"
+        },
+        {
+          "id": "panchatv-bharat",
+          "company": "PANCHATV BHARAT LIMITED",
+          "openDate": "2026-09-10",
+          "stage": "closed"
+        },
+        {
+          "id": "vinod",
+          "company": "Vinod Texworld Limited",
+          "openDate": "2026-09-09",
+          "stage": "listed"
         },
         {
           "id": "rentomojo",
@@ -637,34 +691,16 @@
           "stage": "closed"
         },
         {
-          "id": "esds",
-          "company": "ESDS Software Solution Limited",
-          "openDate": "2026-08-28",
-          "stage": "listed"
+          "id": "infrax-renewable",
+          "company": "INFRAX RENEWABLE LIMITED",
+          "openDate": "2026-09-09",
+          "stage": "closed"
         },
         {
-          "id": "tempsens",
-          "company": "Tempsens Instruments (India) Limited",
-          "openDate": "2026-08-20",
-          "stage": "listed"
-        },
-        {
-          "id": "jnpr",
-          "company": "Juniper Green Energy Limited",
-          "openDate": "2026-07-30",
-          "stage": "listed"
-        },
-        {
-          "id": "manipalhos",
-          "company": "Manipal Health Enterprises Limited",
-          "openDate": "2026-07-29",
-          "stage": "listed"
-        },
-        {
-          "id": "cmll",
-          "company": "Caliber Mining and Logistics Limited",
-          "openDate": "2026-07-17",
-          "stage": "listed"
+          "id": "amtech-esters",
+          "company": "AMTECH ESTERS LIMITED",
+          "openDate": "2026-09-09",
+          "stage": "closed"
         }
       ]
     },
@@ -1258,6 +1294,18 @@
           "stage": "closed"
         },
         {
+          "id": "fly-hi-maritime-travels",
+          "company": "FLY HI MARITIME TRAVELS LIMITED",
+          "openDate": "2026-09-01",
+          "stage": "closed"
+        },
+        {
+          "id": "farm-peace",
+          "company": "FARM PEACE LIMITED",
+          "openDate": "2026-09-01",
+          "stage": "closed"
+        },
+        {
           "id": "icel",
           "company": "IC Electricals Company Limited-Issue postponed",
           "openDate": "2026-06-25",
@@ -1327,18 +1375,6 @@
           "id": "timescan",
           "company": "Timescan Logistics (India) Private Limited",
           "openDate": "2021-12-31",
-          "stage": "closed"
-        },
-        {
-          "id": "abcots",
-          "company": "AB Cotspin India Limited",
-          "openDate": "2021-12-30",
-          "stage": "closed"
-        },
-        {
-          "id": "dkegl",
-          "company": "D. K. Enterprises Global Limited",
-          "openDate": "2021-10-07",
           "stage": "closed"
         }
       ]

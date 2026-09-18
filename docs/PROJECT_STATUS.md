@@ -15,7 +15,57 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
-## Current checkpoint — reviewed financial release, 18 September 2026
+## Current checkpoint — official-universe release candidate, 18 September 2026
+
+Verified main at recovery and before publication: **`6992dd44c55dfa529cea29cb32a9462d9ca38a78`**.
+The prior HTEL/Onemi financial release is preserved below and was not repeated.
+Branch: `audit-official-ipo-universe-20260918`; PR/deployment are pending final CI.
+
+The [official-universe report](audits/official-universe/2026-09-18/REPORT.md) and
+[reproducible audit](audits/official-universe/2026-09-18/audit.json) establish that
+coverage is incomplete. Distinct observed candidate denominators after eight
+reviewed admissions: NSE **173/174 (99.43%)**, BSE **563/1,848 (30.47%)**, SEBI
+**2,602/5,813 (44.76%)**. These are source-record/name match rates, not whole-market
+IPO coverage. Exact source/year/board/lifecycle breakdowns are in the audit.
+
+SEBI: all 236 page positions traversed; RHP 1,270, final-offer 1,560 and Other
+Documents 818 rows reconcile. Draft pages disagree between 2,208 and 2,210 rows,
+with 43 repeated URLs; completion is not claimed. BSE's recovered official beta
+archive has 1,282 book-building rows back to 2002 and 558 fixed-price rows back to
+2010. NSE current/upcoming, 2025 Q1 and 2026 year-to-date responded; annual
+2000–2025 queries timed out. The SEBI date-filter probe returned HTTP 530.
+All gaps and original responses remain retained.
+
+Five evidence-bound aliases were accepted for audit matching; other conflicts
+remain open. The report retains 2,160 unmatched normalized candidate names and
+227 tracker-only/unreconciled records. These are not automatic new-IPO admissions.
+Eight reviewed September issuers were added: Amtech Esters, Quanto Agroworld,
+Panchatv Bharat, Infrax Renewable, Apana Logistics, Farm Peace, Fly Hi Maritime
+Travels and Vinod Texworld. Seven BSE issues are closed with unknown listing dates;
+NSE explicitly lists Vinod on 17 September. Numerical/static terms remain null.
+
+All 1,371 existing records and 441 proposals are unchanged; correction history,
+proofs, holds and all 1,556 source reviews are preserved. Inventory is 1,379.
+P4: **387 actionable + 63 higher priority; 1,552 blocking reviews; zero semantic
+errors**. P5 remains waiting with 914 records. No P4 reduction is claimed.
+
+Tests: 30 focused universe/evidence tests, 20 affected operational regressions,
+nine Node quality tests and strict validation pass. Direct browser checks cover
+all eight profiles, directory search and mobile layout. Full Linux CI is pending;
+the full Windows run retains the two known filesystem limitations. The metadata
+count mismatch found during that run was fixed without weakening validation.
+
+The earlier open PRs #105/#104 (drafts), #99/#98/#94 remain untouched. Commercial
+segment, pricing, revenue model, source redistribution rights and hosting fit
+remain unresolved. No paid services, outreach or permissions changed.
+
+**Exact next task:** finish CI, merge this bounded audit/admission release, verify
+Pages and every new live profile, and record the release SHA. Then review the BSE
+August 2026 missing SME-name cohort from retained evidence. Recover stable SEBI
+draft pagination and the failed NSE historical ranges separately; do not repeat
+verified RHP/final/Other/BSE cohorts or begin numerical backfill.
+
+## Historical checkpoint — reviewed financial release, 18 September 2026
 
 Current accepted data/main commit observed before documentation closeout:
 **`ea5f0f2631051feffb470c2cbd1b596f5767cf06`**. Sequential recovery started at
