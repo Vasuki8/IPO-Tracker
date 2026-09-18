@@ -1,0 +1,275 @@
+{
+  "reviewVersion": 1,
+  "reviewedAt": "2026-09-18T19:51:29.285528+00:00",
+  "baselineCommit": "64697fe1d837e422a6678c51959e647fb7ad6e0b",
+  "identity": {
+    "id": "spectraa",
+    "company": "SpectraA Technology Solutions Limited",
+    "symbol": "SPECTRAA",
+    "board": "SME",
+    "openDate": "2026-09-17",
+    "closeDate": "2026-09-21"
+  },
+  "decision": "retain historical subscription hold; no accepted numerical correction; prevent board/identity/zero-denominator substitution",
+  "sourceAccessConclusion": "Direct reads succeeded; web-reader failures are not evidence that disclosure is absent.",
+  "rawEvidenceDirectory": ".cache/spectraa-evidence-20260918/",
+  "rawBodyRepresentation": "requests response.content: content encoding decoded; no text normalization before hash",
+  "sources": [
+    {
+      "requestUrl": "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p",
+      "collectionStartedAt": "2026-09-18T19:38:37.596503+00:00",
+      "method": "GET",
+      "collectionCompletedAt": "2026-09-18T19:38:39.744031+00:00",
+      "statusCode": 200,
+      "responseUrl": "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p",
+      "bytes": 31366,
+      "sha256": "fff3870e121401755f5c0b64a145b8f7caa748a498c7c6ee8d1ab2a4995e9c21",
+      "bodyFile": "bse-beta-public-index.response",
+      "bodyEncoding": "requests decoded content encoding; bytes before text decoding",
+      "responseDateHeader": "Fri, 18 Sep 2026 19:38:37 GMT",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "requestUrl": "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p",
+      "collectionStartedAt": "2026-09-18T19:38:36.603995+00:00",
+      "method": "GET",
+      "collectionCompletedAt": "2026-09-18T19:38:37.596503+00:00",
+      "statusCode": 200,
+      "responseUrl": "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new?id=1&Type=p",
+      "bytes": 14287,
+      "sha256": "b534273e5f5247a718f3e46dbe848a7869809cb27ebb889cd1f1548d701e0dda",
+      "bodyFile": "bse-public-index.response",
+      "bodyEncoding": "requests decoded content encoding; bytes before text decoding",
+      "responseDateHeader": "Fri, 18 Sep 2026 19:38:35 GMT",
+      "contentType": "text/html"
+    },
+    {
+      "requestUrl": "https://nsearchives.nseindia.com/content/ipo/ANCHOR_SPECTRAA.zip",
+      "collectionStartedAt": "2026-09-18T19:39:50.878952+00:00",
+      "method": "GET",
+      "collectionCompletedAt": "2026-09-18T19:39:52.367728+00:00",
+      "statusCode": 200,
+      "responseUrl": "https://nsearchives.nseindia.com/content/ipo/ANCHOR_SPECTRAA.zip",
+      "bytes": 313156,
+      "sha256": "945a30ecbea415e95ba6c8077a388dc4309682a191c55b5b98966be964372723",
+      "bodyFile": "nse-anchor-report.response",
+      "bodyEncoding": "requests decoded content encoding; bytes before text decoding",
+      "zipMembers": [
+        {
+          "filename": "ANCHOR_SPECTRAA/",
+          "bytes": 0
+        },
+        {
+          "filename": "ANCHOR_SPECTRAA/Company Anchor Letter.pdf",
+          "bytes": 334135
+        }
+      ],
+      "responseDateHeader": "Fri, 18 Sep 2026 19:39:49 GMT",
+      "contentType": "application/zip"
+    },
+    {
+      "requestUrl": "https://www.nseindia.com/api/ipo-current-issue",
+      "collectionStartedAt": "2026-09-18T19:38:29.834779+00:00",
+      "method": "GET",
+      "collectionCompletedAt": "2026-09-18T19:38:30.716246+00:00",
+      "statusCode": 200,
+      "responseUrl": "https://www.nseindia.com/api/ipo-current-issue",
+      "bytes": 1424,
+      "sha256": "d12649301240d663d0787848da162bc9e321d52b7b3a39072535f0d48935480e",
+      "bodyFile": "nse-current.response",
+      "bodyEncoding": "requests decoded content encoding; bytes before text decoding",
+      "responseDateHeader": "Fri, 18 Sep 2026 19:38:28 GMT",
+      "contentType": "application/json; charset=utf-8"
+    },
+    {
+      "requestUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SPECTRAA&series=EQ",
+      "collectionStartedAt": "2026-09-18T19:38:31.936692+00:00",
+      "method": "GET",
+      "collectionCompletedAt": "2026-09-18T19:38:36.603995+00:00",
+      "statusCode": 200,
+      "responseUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SPECTRAA&series=EQ",
+      "bytes": 7998,
+      "sha256": "ffbe45307b21d88176f72966809117dbc3ad2d63852ec5293375b22d0ffe5853",
+      "bodyFile": "nse-detail-eq.response",
+      "bodyEncoding": "requests decoded content encoding; bytes before text decoding",
+      "responseDateHeader": "Fri, 18 Sep 2026 19:38:34 GMT",
+      "contentType": "application/json; charset=utf-8"
+    },
+    {
+      "requestUrl": "https://www.nseindia.com/api/ipo-detail?symbol=JSIPL&series=EQ",
+      "collectionStartedAt": "2026-09-18T19:42:08.701265+00:00",
+      "method": "GET",
+      "collectionCompletedAt": "2026-09-18T19:42:13.593275+00:00",
+      "statusCode": 200,
+      "responseUrl": "https://www.nseindia.com/api/ipo-detail?symbol=JSIPL&series=EQ",
+      "bytes": 12359,
+      "sha256": "f300ce5efa47732699711854c9b7582222b4af1faf3b81b2272aa84fbda03eb7",
+      "bodyFile": "nse-detail-jsipl-eq.response",
+      "bodyEncoding": "requests decoded content encoding; bytes before text decoding",
+      "responseDateHeader": "Fri, 18 Sep 2026 19:42:11 GMT",
+      "contentType": "application/json; charset=utf-8"
+    },
+    {
+      "requestUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SPECTRAA&series=SME",
+      "collectionStartedAt": "2026-09-18T19:38:31.436729+00:00",
+      "method": "GET",
+      "collectionCompletedAt": "2026-09-18T19:38:31.936692+00:00",
+      "statusCode": 200,
+      "responseUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SPECTRAA&series=SME",
+      "bytes": 12915,
+      "sha256": "bbdc8da8d80c37ed2f03adc1ab8c9bc21b35971d33c2d25836545f0ff0286362",
+      "bodyFile": "nse-detail-sme.response",
+      "bodyEncoding": "requests decoded content encoding; bytes before text decoding",
+      "responseDateHeader": "Fri, 18 Sep 2026 19:38:29 GMT",
+      "contentType": "application/json; charset=utf-8"
+    },
+    {
+      "requestUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SONA&series=EQ",
+      "collectionStartedAt": "2026-09-18T19:42:08.220231+00:00",
+      "method": "GET",
+      "collectionCompletedAt": "2026-09-18T19:42:08.700263+00:00",
+      "statusCode": 200,
+      "responseUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SONA&series=EQ",
+      "bytes": 14092,
+      "sha256": "7a3db748bbff92267ecf2d814d6d2706272bc8bff3949e87299fe631d442f8dc",
+      "bodyFile": "nse-detail-sona-eq.response",
+      "bodyEncoding": "requests decoded content encoding; bytes before text decoding",
+      "responseDateHeader": "Fri, 18 Sep 2026 19:42:06 GMT",
+      "contentType": "application/json; charset=utf-8"
+    },
+    {
+      "requestUrl": "https://nsearchives.nseindia.com/content/ipo/ipo_graph_logic.pdf",
+      "collectionStartedAt": "2026-09-18T19:39:52.367728+00:00",
+      "method": "GET",
+      "collectionCompletedAt": "2026-09-18T19:39:53.187533+00:00",
+      "statusCode": 200,
+      "responseUrl": "https://nsearchives.nseindia.com/content/ipo/ipo_graph_logic.pdf",
+      "bytes": 63849,
+      "sha256": "aea1be50badb33a15243a2c650c295e231f3a3788b27b60b6eadd56a7cee3064",
+      "bodyFile": "nse-graph-logic.response",
+      "bodyEncoding": "requests decoded content encoding; bytes before text decoding",
+      "responseDateHeader": "Fri, 18 Sep 2026 19:39:51 GMT",
+      "contentType": "application/pdf"
+    },
+    {
+      "requestUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SPECTRAA&type=Active",
+      "collectionStartedAt": "2026-09-18T19:38:30.716246+00:00",
+      "method": "GET",
+      "collectionCompletedAt": "2026-09-18T19:38:31.436729+00:00",
+      "statusCode": 200,
+      "responseUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SPECTRAA&type=Active",
+      "bytes": 298169,
+      "sha256": "6cea751877d1fad970319ec108774b643cbf5de5e629d3c5abbc98db9a2ecefc",
+      "bodyFile": "nse-issue-page.response",
+      "bodyEncoding": "requests decoded content encoding; bytes before text decoding",
+      "responseDateHeader": "Fri, 18 Sep 2026 19:38:29 GMT",
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "requestUrl": "https://nsearchives.nseindia.com/content/ipo/POSTANCHOR_PARAMETERS_SPECTRAA.zip",
+      "collectionStartedAt": "2026-09-18T19:39:48.694160+00:00",
+      "method": "GET",
+      "collectionCompletedAt": "2026-09-18T19:39:49.711079+00:00",
+      "statusCode": 200,
+      "responseUrl": "https://nsearchives.nseindia.com/content/ipo/POSTANCHOR_PARAMETERS_SPECTRAA.zip",
+      "bytes": 79752,
+      "sha256": "b52a0e8897aca2c45feeb7bc52862a81d1c77cc55fce3677598362d685ddea0d",
+      "bodyFile": "nse-postanchor-parameters.response",
+      "bodyEncoding": "requests decoded content encoding; bytes before text decoding",
+      "zipMembers": [
+        {
+          "filename": "POSTANCHOR_PARAMETERS_SPECTRAA/",
+          "bytes": 0
+        },
+        {
+          "filename": "POSTANCHOR_PARAMETERS_SPECTRAA/POSTANCHOR_PARAMETERS_SPECTRAA.pdf",
+          "bytes": 93664
+        }
+      ],
+      "responseDateHeader": "Fri, 18 Sep 2026 19:39:47 GMT",
+      "contentType": "application/zip"
+    },
+    {
+      "requestUrl": "https://nsearchives.nseindia.com/content/ipo/PREANCHOR_PARAMETERS_SPECTRAA.zip",
+      "collectionStartedAt": "2026-09-18T19:39:49.733922+00:00",
+      "method": "GET",
+      "collectionCompletedAt": "2026-09-18T19:39:50.878062+00:00",
+      "statusCode": 200,
+      "responseUrl": "https://nsearchives.nseindia.com/content/ipo/PREANCHOR_PARAMETERS_SPECTRAA.zip",
+      "bytes": 78717,
+      "sha256": "afa54d7c2e05e96b155f2589035c7f9eb3c2bfeec426f8bc53ede315e856f474",
+      "bodyFile": "nse-preanchor-parameters.response",
+      "bodyEncoding": "requests decoded content encoding; bytes before text decoding",
+      "zipMembers": [
+        {
+          "filename": "PREANCHOR_PARAMETERS_SPECTRAA/",
+          "bytes": 0
+        },
+        {
+          "filename": "PREANCHOR_PARAMETERS_SPECTRAA/PREANCHOR_PARAMETERS_SPECTRAA.pdf",
+          "bytes": 92593
+        }
+      ],
+      "responseDateHeader": "Fri, 18 Sep 2026 19:39:48 GMT",
+      "contentType": "application/zip"
+    }
+  ],
+  "pdfMembers": [
+    {
+      "file": "nse-anchor-report.pdf",
+      "bytes": 334135,
+      "sha256": "aa689765e68e5ab3dccf1a7ae14ebceb2f51c5e4a148d73b5e8c7b3ffdfab9b5"
+    },
+    {
+      "file": "nse-postanchor-parameters.pdf",
+      "bytes": 93664,
+      "sha256": "1009c265bc528563ab2eb4d09a6179dd51d132c51fa6630302a21580879d83ec"
+    },
+    {
+      "file": "nse-preanchor-parameters.pdf",
+      "bytes": 92593,
+      "sha256": "24ec7a79060a0ed2d431f6a2e0ec2e69deb9b6bf395398965e526c9c5a46671c"
+    }
+  ],
+  "fixture": {
+    "path": "tests/nse_subscription_detail_20260918.json",
+    "sha256": "7e1fe25cc410c6810db7f60c32afc78d06f99d29ecb778831da07b2fa2654d9b",
+    "representation": "selected literal source fields; source hashes refer to full response bodies"
+  },
+  "sourceClocks": {
+    "activeCat": "Updated as on 18-Sep-2026 17:00:00",
+    "demandGraph": "As on 18-Sep-2026 17:00:02 IST",
+    "demandGraphALL": "As on 18-Sep-2026 17:00:00 IST",
+    "canonicalObservationTimeChanged": false
+  },
+  "documentIdentity": {
+    "postAnchorMember": "POSTANCHOR_PARAMETERS_SPECTRAA/POSTANCHOR_PARAMETERS_SPECTRAA.pdf",
+    "postAnchorReportingDate": null,
+    "preAnchorMember": "PREANCHOR_PARAMETERS_SPECTRAA/PREANCHOR_PARAMETERS_SPECTRAA.pdf",
+    "preAnchorReportingDate": null,
+    "anchorMember": "ANCHOR_SPECTRAA/Company Anchor Letter.pdf",
+    "anchorReportingDate": "2026-09-16"
+  },
+  "denominatorEvidence": {
+    "unit": "equity shares",
+    "postAnchorQib": 684000,
+    "postAnchorNibIncludingMarketMaker": 697200,
+    "individualInvestor": 1197600,
+    "postAnchorTotal": 2578800,
+    "marketMakerIncludedInNib": 182400,
+    "anchorExcludedFromTotal": 1024800,
+    "source": "post-anchor security parameters, page2 category table and footnote; page1 issue identity",
+    "reviewMethod": "pypdf text extraction and both post-anchor PDF pages visually rendered with Poppler; anchor allocation report page1 visually reviewed",
+    "computedSubscriptionMultiplesAccepted": false
+  },
+  "bseIndexEvidence": {
+    "betaDisplayIpoLinks": 20,
+    "exactSpectraaMatch": false,
+    "mainHostResponse": "JavaScript application shell"
+  },
+  "canonicalMutated": false,
+  "holdMutated": false,
+  "proposalsMutated": false,
+  "p4BlockersRemoved": 0,
+  "nextAction": "Obtain official category subscription multiples with valid denominators and supported scope for this exact live offer; retain hold until reviewed publication."
+}

@@ -146,14 +146,28 @@ class SubscriptionHistoryTests(unittest.TestCase):
     def test_incomplete_response_cannot_relabel_an_old_total_as_a_new_observation(self):
         record = {
             "symbol": "TEST",
+            "company": "Test Limited",
+            "board": "Mainboard",
+            "openDate": "2026-09-17",
+            "closeDate": "2026-09-21",
             "subscription": {"total": 4.8},
             "sources": [],
         }
         detail = {
+            "issueInfo": {
+                "symbol": "TEST", "heading": "Test Limited",
+                "dataList": [
+                    {"title": "Symbol", "value": "TEST"},
+                    {"title": "Issue Period", "value": "17-Sep-2026 to 21-Sep-2026"},
+                ],
+            },
             "bidDetails": [
-                {"category": "Qualified Institutional Buyers", "noOfTime": "3.16"},
-                {"category": "Non Institutional Investors", "noOfTime": "7.41"},
-                {"category": "Retail Individual Investors", "noOfTime": "4.82"},
+                {"category": "Qualified Institutional Buyers", "noOfTime": "3.16",
+                 "noOfSharesOffered": "100", "noOfsharesBid": "316"},
+                {"category": "Non Institutional Investors", "noOfTime": "7.41",
+                 "noOfSharesOffered": "100", "noOfsharesBid": "741"},
+                {"category": "Retail Individual Investors", "noOfTime": "4.82",
+                 "noOfSharesOffered": "100", "noOfsharesBid": "482"},
             ]
         }
         before = copy.deepcopy(record)

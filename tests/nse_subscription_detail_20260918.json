@@ -1,0 +1,509 @@
+{
+  "reviewVersion": 1,
+  "extraction": "Selected literal source fields only; contact/document/navigation text and non-headline rows omitted. Source SHA-256 covers the complete retained response bytes, not this normalized subset. No numeric values transformed.",
+  "cases": [
+    {
+      "name": "nse-detail-sme",
+      "series": "SME",
+      "record": {
+        "id": "spectraa",
+        "company": "SpectraA Technology Solutions Limited",
+        "symbol": "SPECTRAA",
+        "board": "SME",
+        "openDate": "2026-09-17",
+        "closeDate": "2026-09-21"
+      },
+      "source": {
+        "requestUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SPECTRAA&series=SME",
+        "collectionStartedAt": "2026-09-18T19:38:31.436729+00:00",
+        "collectionCompletedAt": "2026-09-18T19:38:31.936692+00:00",
+        "statusCode": 200,
+        "bytes": 12915,
+        "sha256": "bbdc8da8d80c37ed2f03adc1ab8c9bc21b35971d33c2d25836545f0ff0286362",
+        "bodyFile": "nse-detail-sme.response"
+      },
+      "payload": {
+        "companyName": "SPECTRAA",
+        "metaInfo": {},
+        "issueInfo": {
+          "heading": "SpectraA Technology Solutions Limited ",
+          "symbol": "SPECTRAA",
+          "dataList": [
+            {
+              "title": "Symbol",
+              "value": "SPECTRAA"
+            },
+            {
+              "title": "Issue Period",
+              "value": "17-Sep-2026 to 21-Sep-2026"
+            }
+          ]
+        },
+        "bidDetails": [
+          {
+            "category": "Qualified Institutional Buyers(QIBs)",
+            "noOfshareBid": "14400",
+            "noofapplication": "4",
+            "srNo": "1"
+          },
+          {
+            "category": "Non Institutional Investors",
+            "noOfshareBid": "10287600",
+            "noofapplication": "1613",
+            "srNo": "2"
+          },
+          {
+            "category": "Non Institutional Investors(Bid amount of more than Ten Lakh Rupees)",
+            "noOfshareBid": "6504000",
+            "noofapplication": "638",
+            "srNo": "2.1"
+          },
+          {
+            "category": "Individual Investors (IND category bidding for 2 Lots)",
+            "noOfshareBid": "37226400",
+            "noofapplication": "15511",
+            "srNo": "3"
+          },
+          {
+            "category": "Total",
+            "noOfshareBid": "47528400",
+            "noofapplication": "17128",
+            "srNo": null
+          }
+        ],
+        "activeCat": {
+          "heading": null,
+          "symbol": null,
+          "updateTime": "Updated as on 18-Sep-2026 17:00:00",
+          "dataList": [
+            {
+              "category": "Qualified Institutional Buyers(QIBs)",
+              "noOfShareOffered": "0",
+              "noOfSharesBid": "14400",
+              "noOfTotalMeant": "0.00",
+              "srNo": "1"
+            },
+            {
+              "category": "Non Institutional Investors",
+              "noOfShareOffered": "0",
+              "noOfSharesBid": "10287600",
+              "noOfTotalMeant": "0.00",
+              "srNo": "2"
+            },
+            {
+              "category": "Non Institutional Investors(Bid amount of more than Ten Lakh Rupees)",
+              "noOfShareOffered": "0",
+              "noOfSharesBid": "6504000",
+              "noOfTotalMeant": "0.00",
+              "srNo": "2.1"
+            },
+            {
+              "category": "Total",
+              "noOfShareOffered": "0.0",
+              "noOfSharesBid": "1.0302E7",
+              "noOfTotalMeant": "0.00",
+              "srNo": null
+            }
+          ]
+        },
+        "demandGraph": {
+          "heading1": "SpectraA Technology Solutions Limited- Graphical display of bids received *",
+          "heading2": "(* indicates bids position and not necessarily the subscription to the issue)",
+          "totalIssueSize": "2578800",
+          "TOTAL_BIDS": "47528400",
+          "noOfTimesIssueSubscribed": "18.43",
+          "timestamp": "As on 18-Sep-2026 17:00:02 IST"
+        },
+        "demandGraphALL": {
+          "heading1": "SpectraA Technology Solutions Limited- Graphical display of bids received *",
+          "heading2": "(* indicates bids position and not necessarily the subscription to the issue)",
+          "totalIssueSize": "2578800",
+          "TOTAL_BIDS": "47528400",
+          "noOfTimesIssueSubscribed": "18.43",
+          "timestamp": "As on 18-Sep-2026 17:00:00 IST"
+        }
+      }
+    },
+    {
+      "name": "nse-detail-eq",
+      "series": "EQ",
+      "record": {
+        "id": "spectraa",
+        "company": "SpectraA Technology Solutions Limited",
+        "symbol": "SPECTRAA",
+        "board": "SME",
+        "openDate": "2026-09-17",
+        "closeDate": "2026-09-21"
+      },
+      "source": {
+        "requestUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SPECTRAA&series=EQ",
+        "collectionStartedAt": "2026-09-18T19:38:31.936692+00:00",
+        "collectionCompletedAt": "2026-09-18T19:38:36.603995+00:00",
+        "statusCode": 200,
+        "bytes": 7998,
+        "sha256": "ffbe45307b21d88176f72966809117dbc3ad2d63852ec5293375b22d0ffe5853",
+        "bodyFile": "nse-detail-eq.response"
+      },
+      "payload": {
+        "companyName": "SPECTRAA",
+        "metaInfo": {},
+        "issueInfo": {},
+        "bidDetails": [
+          {
+            "category": "Qualified Institutional Buyers(QIBs)",
+            "noOfSharesOffered": "0",
+            "noOfTime": "0.00",
+            "noOfsharesBid": "14400",
+            "srNo": "1"
+          },
+          {
+            "category": "Non Institutional Investors",
+            "noOfSharesOffered": "0",
+            "noOfTime": "0.00",
+            "noOfsharesBid": "10287600",
+            "srNo": "2"
+          },
+          {
+            "category": "Non Institutional Investors(Bid amount of more than Ten Lakh Rupees)",
+            "noOfSharesOffered": "0",
+            "noOfTime": "0.00",
+            "noOfsharesBid": "6504000",
+            "srNo": "2.1"
+          },
+          {
+            "category": "Total",
+            "noOfSharesOffered": "0.0",
+            "noOfTime": "0.00",
+            "noOfsharesBid": "1.0302E7",
+            "srNo": null
+          }
+        ],
+        "activeCat": {
+          "heading": null,
+          "symbol": null,
+          "updateTime": "Updated as on 18-Sep-2026 17:00:00",
+          "dataList": [
+            {
+              "category": "Qualified Institutional Buyers(QIBs)",
+              "noOfShareOffered": "0",
+              "noOfSharesBid": "14400",
+              "noOfTotalMeant": "0.00",
+              "srNo": "1"
+            },
+            {
+              "category": "Non Institutional Investors",
+              "noOfShareOffered": "0",
+              "noOfSharesBid": "10287600",
+              "noOfTotalMeant": "0.00",
+              "srNo": "2"
+            },
+            {
+              "category": "Non Institutional Investors(Bid amount of more than Ten Lakh Rupees)",
+              "noOfShareOffered": "0",
+              "noOfSharesBid": "6504000",
+              "noOfTotalMeant": "0.00",
+              "srNo": "2.1"
+            },
+            {
+              "category": "Total",
+              "noOfShareOffered": "0.0",
+              "noOfSharesBid": "1.0302E7",
+              "noOfTotalMeant": "0.00",
+              "srNo": null
+            }
+          ]
+        },
+        "demandGraph": {
+          "heading1": "- Graphical display of bids received *",
+          "heading2": "(* indicates bids position and not necessarily the subscription to the issue)",
+          "totalIssueSize": "0",
+          "TOTAL_BIDS": "47528400",
+          "noOfTimesIssueSubscribed": "",
+          "timestamp": "As on 18-Sep-2026 17:00:02 IST"
+        },
+        "demandGraphALL": {
+          "heading1": "- Graphical display of bids received *",
+          "heading2": "(* indicates bids position and not necessarily the subscription to the issue)",
+          "totalIssueSize": "0",
+          "TOTAL_BIDS": "47528400",
+          "noOfTimesIssueSubscribed": "",
+          "timestamp": "As on 18-Sep-2026 17:00:00 IST"
+        }
+      }
+    },
+    {
+      "name": "nse-detail-sona-eq",
+      "series": "EQ",
+      "record": {
+        "id": "sona",
+        "company": "Sonaselection India Limited",
+        "symbol": "SONA",
+        "board": "Mainboard",
+        "openDate": "2026-09-17",
+        "closeDate": "2026-09-21"
+      },
+      "source": {
+        "requestUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SONA&series=EQ",
+        "collectionStartedAt": "2026-09-18T19:42:08.220231+00:00",
+        "collectionCompletedAt": "2026-09-18T19:42:08.700263+00:00",
+        "statusCode": 200,
+        "bytes": 14092,
+        "sha256": "7a3db748bbff92267ecf2d814d6d2706272bc8bff3949e87299fe631d442f8dc",
+        "bodyFile": "nse-detail-sona-eq.response"
+      },
+      "payload": {
+        "companyName": "SONA",
+        "metaInfo": {},
+        "issueInfo": {
+          "symbol": "SONA",
+          "dataList": [
+            {
+              "title": "Sonaselection India Limited",
+              "value": ""
+            },
+            {
+              "title": "Symbol",
+              "value": "SONA"
+            },
+            {
+              "title": "Issue Period",
+              "value": "17-Sep-2026 to 21-Sep-2026"
+            }
+          ]
+        },
+        "bidDetails": [
+          {
+            "category": "Qualified Institutional Buyers(QIBs)",
+            "noOfSharesOffered": "2860000",
+            "noOfTime": "0.4591783216783217",
+            "noOfsharesBid": "1313250",
+            "srNo": "1"
+          },
+          {
+            "category": "Non Institutional Investors",
+            "noOfSharesOffered": "2145000",
+            "noOfTime": "0.5227272727272727",
+            "noOfsharesBid": "1121250",
+            "srNo": "2"
+          },
+          {
+            "category": "Non Institutional Investors(Bid amount of more than Ten Lakh Rupees)",
+            "noOfSharesOffered": "1430000",
+            "noOfTime": "0.5379020979020979",
+            "noOfsharesBid": "769200",
+            "srNo": "2.1"
+          },
+          {
+            "category": "Retail Individual Investors(RIIs)",
+            "noOfSharesOffered": "5005000",
+            "noOfTime": "0.8868131868131868",
+            "noOfsharesBid": "4438500",
+            "srNo": "3"
+          },
+          {
+            "category": "Total",
+            "noOfSharesOffered": "1.001E7",
+            "noOfTime": "0.6866133866133867",
+            "noOfsharesBid": "6873000.0",
+            "srNo": null
+          }
+        ],
+        "activeCat": {
+          "heading": null,
+          "symbol": null,
+          "updateTime": "Updated as on 18-Sep-2026 17:00:00",
+          "dataList": [
+            {
+              "category": "Qualified Institutional Buyers(QIBs)",
+              "noOfShareOffered": "2860000",
+              "noOfSharesBid": "1313250",
+              "noOfTotalMeant": "0.4591783216783217",
+              "srNo": "1"
+            },
+            {
+              "category": "Non Institutional Investors",
+              "noOfShareOffered": "2145000",
+              "noOfSharesBid": "1284750",
+              "noOfTotalMeant": "0.598951048951049",
+              "srNo": "2"
+            },
+            {
+              "category": "Non Institutional Investors(Bid amount of more than Ten Lakh Rupees)",
+              "noOfShareOffered": "1430000",
+              "noOfSharesBid": "845400",
+              "noOfTotalMeant": "0.5911888111888112",
+              "srNo": "2.1"
+            },
+            {
+              "category": "Retail Individual Investors(RIIs)",
+              "noOfShareOffered": "5005000",
+              "noOfSharesBid": "6454200",
+              "noOfTotalMeant": "1.2895504495504495",
+              "srNo": "3"
+            },
+            {
+              "category": "Total",
+              "noOfShareOffered": "1.001E7",
+              "noOfSharesBid": "9052200.0",
+              "noOfTotalMeant": "0.9043156843156843",
+              "srNo": null
+            }
+          ]
+        },
+        "demandGraph": {
+          "heading1": "Sonaselection India Limited- Graphical display of bids received *",
+          "heading2": "(* indicates bids position and not necessarily the subscription to the issue)",
+          "totalIssueSize": "10010000",
+          "TOTAL_BIDS": "6873000",
+          "noOfTimesIssueSubscribed": "0.69",
+          "timestamp": "As on 18-Sep-2026 17:00:02 IST"
+        },
+        "demandGraphALL": {
+          "heading1": "Sonaselection India Limited- Graphical display of bids received *",
+          "heading2": "(* indicates bids position and not necessarily the subscription to the issue)",
+          "totalIssueSize": "10010000",
+          "TOTAL_BIDS": "9066000",
+          "noOfTimesIssueSubscribed": "0.91",
+          "timestamp": "As on 18-Sep-2026 17:00:00 IST"
+        }
+      }
+    },
+    {
+      "name": "nse-detail-jsipl-eq",
+      "series": "EQ",
+      "record": {
+        "id": "jsipl",
+        "company": "Jindal Supreme (India) Limited",
+        "symbol": "JSIPL",
+        "board": "Mainboard",
+        "openDate": "2026-09-16",
+        "closeDate": "2026-09-18"
+      },
+      "source": {
+        "requestUrl": "https://www.nseindia.com/api/ipo-detail?symbol=JSIPL&series=EQ",
+        "collectionStartedAt": "2026-09-18T19:42:08.701265+00:00",
+        "collectionCompletedAt": "2026-09-18T19:42:13.593275+00:00",
+        "statusCode": 200,
+        "bytes": 12359,
+        "sha256": "f300ce5efa47732699711854c9b7582222b4af1faf3b81b2272aa84fbda03eb7",
+        "bodyFile": "nse-detail-jsipl-eq.response"
+      },
+      "payload": {
+        "companyName": "JSIPL",
+        "metaInfo": {},
+        "issueInfo": {
+          "symbol": "JSIPL",
+          "dataList": [
+            {
+              "title": "Jindal Supreme (India) Limited",
+              "value": ""
+            },
+            {
+              "title": "Symbol",
+              "value": "JSIPL"
+            },
+            {
+              "title": "Issue Period",
+              "value": "16-Sep-2026 to 18-Sep-2026"
+            }
+          ]
+        },
+        "bidDetails": [
+          {
+            "category": "Qualified Institutional Buyers(QIBs)",
+            "noOfSharesOffered": "2685600",
+            "noOfTime": "101.88657432231159",
+            "noOfsharesBid": "273626584",
+            "srNo": "1"
+          },
+          {
+            "category": "Non Institutional Investors",
+            "noOfSharesOffered": "2014200",
+            "noOfTime": "252.6192473438586",
+            "noOfsharesBid": "508825688",
+            "srNo": "2"
+          },
+          {
+            "category": "Non Institutional Investors(Bid amount of more than Ten Lakh Rupees)",
+            "noOfSharesOffered": "1342800",
+            "noOfTime": "253.28880175752158",
+            "noOfsharesBid": "340116203",
+            "srNo": "2.1"
+          },
+          {
+            "category": "Retail Individual Investors(RIIs)",
+            "noOfSharesOffered": "4699800",
+            "noOfTime": "83.7154781054513",
+            "noOfsharesBid": "393446004",
+            "srNo": "3"
+          },
+          {
+            "category": "Total",
+            "noOfSharesOffered": "9399600.0",
+            "noOfTime": "125.10088471849866",
+            "noOfsharesBid": "1.175898276E9",
+            "srNo": null
+          }
+        ],
+        "activeCat": {
+          "heading": null,
+          "symbol": null,
+          "updateTime": "Updated as on 18-Sep-2026 19:00:00",
+          "dataList": [
+            {
+              "category": "Qualified Institutional Buyers(QIBs)",
+              "noOfShareOffered": "2685600",
+              "noOfSharesBid": "339488625",
+              "noOfTotalMeant": "126.41071827524576",
+              "srNo": "1"
+            },
+            {
+              "category": "Non Institutional Investors",
+              "noOfShareOffered": "2014200",
+              "noOfSharesBid": "660643214",
+              "noOfTotalMeant": "327.99285771025717",
+              "srNo": "2"
+            },
+            {
+              "category": "Non Institutional Investors(Bid amount of more than Ten Lakh Rupees)",
+              "noOfShareOffered": "1342800",
+              "noOfSharesBid": "408458610",
+              "noOfTotalMeant": "304.1842493297587",
+              "srNo": "2.1"
+            },
+            {
+              "category": "Retail Individual Investors(RIIs)",
+              "noOfShareOffered": "4699800",
+              "noOfSharesBid": "701851164",
+              "noOfTotalMeant": "149.33638963360144",
+              "srNo": "3"
+            },
+            {
+              "category": "Total",
+              "noOfShareOffered": "9399600.0",
+              "noOfSharesBid": "1.701983003E9",
+              "noOfTotalMeant": "181.06972669049748",
+              "srNo": null
+            }
+          ]
+        },
+        "demandGraph": {
+          "heading1": "Jindal Supreme (India) Limited- Graphical display of bids received *",
+          "heading2": "(* indicates bids position and not necessarily the subscription to the issue)",
+          "totalIssueSize": "9399600",
+          "TOTAL_BIDS": "1175898276",
+          "noOfTimesIssueSubscribed": "125.10",
+          "timestamp": "As on 18-Sep-2026 19:00:13 IST"
+        },
+        "demandGraphALL": {
+          "heading1": "Jindal Supreme (India) Limited- Graphical display of bids received *",
+          "heading2": "(* indicates bids position and not necessarily the subscription to the issue)",
+          "totalIssueSize": "9399600",
+          "TOTAL_BIDS": "1707267506",
+          "noOfTimesIssueSubscribed": "181.63",
+          "timestamp": "As on 18-Sep-2026 19:00:00 IST"
+        }
+      }
+    }
+  ]
+}
