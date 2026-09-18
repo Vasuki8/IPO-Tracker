@@ -78,10 +78,41 @@ evidence/review/scope differences; these counts overlap and are not error totals
 There are no exact already-applied groups and no duplicate fingerprints in that
 snapshot. No proposal has been resolved, rejected or superseded by this report.
 
-Next, review the retained Emmvee document proposal at input index 133 against its
-released full value/proof group and original collection context. It includes
-allocation differences beyond the composition repair: do not call the whole
-proposal superseded merely because Emmvee's composition was repaired. A later
-explicit, source-backed decision/audit must precede any change to retained status.
-Subscription proposal classification and overdue-update reporting remain separate
-work. P4, Teamtech's hold and the unaccepted broad parser draft #105 remain unchanged.
+## Evidence-bound review advice
+
+The retained Emmvee proposal has now been reviewed against its original collection
+and the already accepted value/proof group. See the [review note](reviews/2026-09-18-emmvee-retained-proposal.md).
+The decision is **do not apply as proposed**, not “already applied” or “superseded”.
+Its old proof withdrawal must not overwrite the current supported allocation group.
+The original status and every occurrence remain in the backlog.
+
+`reviewDecisionAudit` preserves every event from
+`docs/reviews/pending-proposal-decisions.json`; `reviewDecisions` links matching
+report entries to the note. `applicable` requires the exact proposal, original run,
+issuer/offer identity, accepted document-group hash, display holds and current
+public verification states. Changed bindings report `proposal_mismatch`,
+`identity_mismatch` or `stale_evidence`; unmatched reviews also remain visible.
+An independent subscription update does not stale a document review. The only
+normalized clock remains `staticSourcePolicy.checkedAt`, never the source-proof
+clock. Multiple events are all shown, never selected by latest timestamp.
+
+Add new uniquely named review events and preserve earlier notes. Evidence files
+must be local, hash-matching Markdown files alongside the ledger. Invalid ledgers,
+missing notes or altered evidence fail generation rather than quietly losing the
+audit. `--check-report` also binds the ledger and note bytes. Neither advice nor
+`applicable` is a publication permission, resolution or fresh source audit; no
+publisher imports this ledger. `resolutionsApplied` remains zero.
+
+The next separate milestone is read-only `subscriptionSnapshot` classification,
+with source authority, observation and collection clocks kept distinct. P4,
+Teamtech's hold and the unaccepted broad parser draft #105 remain unchanged.
+
+## Verified review release
+
+The Emmvee review annotation was released in #121 at `3bb08735`; its audited
+accepted baseline remains `71bec048`. A concurrent ordinary filings update
+`61360716` is preserved. The new main report was replayed against that updated
+snapshot and the review is still applicable; no pending status was changed.
+See [the release receipt](releases/2026-09-18-emmvee-proposal-review.json) for
+CI, live checks, exact artifact hashes and the distinction between an operator
+review and an accepted numerical publication.
