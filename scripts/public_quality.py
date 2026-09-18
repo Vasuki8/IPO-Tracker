@@ -7,11 +7,8 @@ its matching Final Prospectus proof, or a dated active-issue observation.
 from __future__ import annotations
 
 import copy
-import hashlib
-import json
 import re
 from datetime import date, datetime
-from functools import lru_cache
 from pathlib import Path
 from urllib.parse import urlparse
 from zoneinfo import ZoneInfo
@@ -20,6 +17,7 @@ from final_prospectus_policy import STATIC_CANONICAL_FIELDS, field_value, is_fin
 from final_prospectus_identity import known_non_final_document_url
 from issue_composition_checks import COMPOSITION_FIELDS, quarantined_fields
 from objects_of_issue_checks import objects_quarantined
+from source_review_holds import display_holds, display_hold_matches as _display_hold_matches, value_digest
 from validate_data import validate_record
 
 VERSION = 1
@@ -47,45 +45,6 @@ def safe_url(value):
 
 def official_url(value):
     return bool(safe_url(value) and urlparse(value).hostname in EXCHANGE_HOSTS)
-
-
-def value_digest(value):
-    return hashlib.sha256(json.dumps(value, sort_keys=True, ensure_ascii=False,
-                                    separators=(',', ':'), allow_nan=False).encode()).hexdigest()
-
-
-@lru_cache(maxsize=1)
-def display_holds():
-    # Missing/malformed registry is a build failure, never silent permission to
-    # restore a previously reviewed value. Document reviews bind issuer, offer
-    # and PDF bytes; layout reviews remain exact source/value guards.
-    return json.loads((ROOT / 'data/public_display_holds.json').read_text(encoding='utf-8'))['holds']
-
-
-def _display_hold_matches(record, field, hold):
-    binding = hold['fields'][field]
-    proof = (record.get('staticFieldProvenance') or {}).get(field) or {}
-    scope = hold.get('scope', 'value')
-    if scope not in {'value', 'document'}:
-        raise ValueError('Unsupported public display hold scope')
-    # A supplied issuer/offer constraint is authoritative for layout holds too.
-    # Older value-only holds keep their original PDF/value binding; do not invent
-    # identities for them or let an incomplete new binding silently broaden scope.
-    if scope == 'document' or 'identity' in hold:
-        identity = hold.get('identity')
-        keys = ('id', 'company', 'symbol', 'openDate')
-        if (not isinstance(identity, dict)
-                or not all(isinstance(identity.get(key), str) and identity[key] for key in keys)
-                or identity['id'] != hold['id']):
-            raise ValueError('Document display hold requires exact issuer and offer identity')
-        if (any(record.get(key) != identity[key] for key in keys)
-                or proof.get('issueOpenDate') != identity['openDate']):
-            return False
-    if scope == 'document':
-        # A mirror or a differently parsed value cannot reconcile the same PDF.
-        return proof.get('sha256') == binding['sha256']
-    return (proof.get('sha256') == binding['sha256']
-            and value_digest(field_value(record, field)) == binding['valueDigest'])
 
 
 def _proof_source(proof):
@@ -192,8 +151,9 @@ def project_record(record, *, today=None, holds=None):
     """Return a sanitized copy and compact per-field decisions for every surface."""
     today = today or datetime.now(ZoneInfo('Asia/Kolkata')).date()
     output = copy.deepcopy(record)
+    holds = display_holds() if holds is None else list(holds)
     reviews = {}
-    for item in validate_record(record):
+    for item in validate_record(record, holds=holds):
         reviews.setdefault(_review_field(item['field']), 'source_review')
     for field in (record.get('dataReview') or {}):
         reviews.setdefault(_review_field(field), 'source_review')
@@ -201,7 +161,7 @@ def project_record(record, *, today=None, holds=None):
         reviews[field] = 'quarantined'
     if objects_quarantined(record):
         reviews['objectsOfIssue'] = 'quarantined'
-    for hold in display_holds() if holds is None else holds:
+    for hold in holds:
         if hold['id'] != record.get('id'):
             continue
         for field in hold['fields']:

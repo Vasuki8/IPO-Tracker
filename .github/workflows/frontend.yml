@@ -9,6 +9,7 @@ on:
       - 'assets/**'
       - 'scripts/build_company_pages.py'
       - 'scripts/public_quality.py'
+      - 'scripts/source_review_holds.py'
       - 'data/public_display_holds.json'
       - 'data/verified_corrections.json'
       - 'data/reviewed_correction_evidence.json'
@@ -28,6 +29,7 @@ on:
       - 'assets/**'
       - 'scripts/build_company_pages.py'
       - 'scripts/public_quality.py'
+      - 'scripts/source_review_holds.py'
       - 'data/public_display_holds.json'
       - 'data/verified_corrections.json'
       - 'data/reviewed_correction_evidence.json'
@@ -95,6 +97,7 @@ jobs:
           PY
           node tests/frontend_smoke.cjs
           node tests/frontend_quality_layout.cjs
+          node tests/frontend_source_holds.cjs
           uv run --frozen python tests/verify_public_release.py --expected-commit "$(git rev-parse HEAD)" --base-url "$BASE_URL" > "$SMOKE_ARTIFACT_DIR/public-release.json"
       - name: Rehearse bounded reviewed composition in an isolated site
         shell: bash

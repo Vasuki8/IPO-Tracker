@@ -5,7 +5,7 @@ on:
     inputs:
       mode:
         type: choice
-        options: [core, subscriptions, filings, maintenance, repair, p4, p5, performance, presentation, reviewed]
+        options: [core, subscriptions, filings, maintenance, repair, p4, p5, performance, presentation, review, reviewed]
         default: maintenance
         description: Source collection stage
       reviewed_ids:
@@ -93,7 +93,7 @@ jobs:
           cp data/ipos.json /tmp/ipo-bundle/base.json
           git rev-parse HEAD > /tmp/ipo-bundle/source-commit.txt
       - name: Collect sources with explicit stage outcomes
-        if: steps.collection-mode.outputs.value != 'presentation' && steps.collection-mode.outputs.value != 'reviewed'
+        if: steps.collection-mode.outputs.value != 'presentation' && steps.collection-mode.outputs.value != 'review' && steps.collection-mode.outputs.value != 'reviewed'
         env:
           MODE: ${{ steps.collection-mode.outputs.value }}
         run: uv run --frozen python scripts/run_pipeline.py --mode "$MODE"
@@ -184,26 +184,38 @@ jobs:
               node --test tests/public_quality.test.cjs
               git add data/ipos-summary.json ipo/
             else
-              reviewed_args=()
-              if [[ "$MODE" == "reviewed" ]]; then
-                reviewed_args=(--reviewed-manifest /tmp/ipo-bundle/reviewed.json)
-              fi
-              uv run --frozen python scripts/publish_transaction.py --base /tmp/ipo-bundle/base.json --proposed /tmp/ipo-bundle/proposed.json --run-id "$RUN_ID" --source-commit-file /tmp/ipo-bundle/source-commit.txt "${reviewed_args[@]}"
-              if [[ "$MODE" != "reviewed" ]]; then
-                uv run --frozen python scripts/apply_corrections.py
-                uv run --frozen python scripts/enforce_final_prospectus_policy.py
+              if [[ "$MODE" == "review" ]]; then
+                # Rebuild only derived review/public artifacts from current main.
+                # Never apply proposals, corrections, or run source collection.
+                uv run --frozen python scripts/validate_data.py --strict
+                uv run --frozen python scripts/build_missing_queue.py
+                uv run --frozen python scripts/phase_status.py
+                uv run --frozen python scripts/build_company_pages.py
+                git diff --exit-code -- data/ipos.json data/pending_updates.json
+                node --test tests/public_quality.test.cjs
+                git add data/validation.json data/missing_queue.json data/phase_status.json data/ipos-summary.json ipo/
               else
-                # The selected records were already corrected and policy-checked.
-                # Never apply unrelated corrections or rewrite pending proposals.
-                git diff --exit-code -- data/pending_updates.json
+                reviewed_args=()
+                if [[ "$MODE" == "reviewed" ]]; then
+                  reviewed_args=(--reviewed-manifest /tmp/ipo-bundle/reviewed.json)
+                fi
+                uv run --frozen python scripts/publish_transaction.py --base /tmp/ipo-bundle/base.json --proposed /tmp/ipo-bundle/proposed.json --run-id "$RUN_ID" --source-commit-file /tmp/ipo-bundle/source-commit.txt "${reviewed_args[@]}"
+                if [[ "$MODE" != "reviewed" ]]; then
+                  uv run --frozen python scripts/apply_corrections.py
+                  uv run --frozen python scripts/enforce_final_prospectus_policy.py
+                else
+                  # The selected records were already corrected and policy-checked.
+                  # Never apply unrelated corrections or rewrite pending proposals.
+                  git diff --exit-code -- data/pending_updates.json
+                fi
+                uv run --frozen python scripts/validate_data.py --strict
+                uv run --frozen python scripts/build_company_pages.py
+                uv run --frozen python scripts/audit_data_completeness.py
+                uv run --frozen python scripts/build_missing_queue.py
+                uv run --frozen python scripts/phase_status.py
+                uv run --frozen python scripts/build_performance_summary.py
+                git add data/ ipo/ docs/DATA_QUALITY.md
               fi
-              uv run --frozen python scripts/validate_data.py --strict
-              uv run --frozen python scripts/build_company_pages.py
-              uv run --frozen python scripts/audit_data_completeness.py
-              uv run --frozen python scripts/build_missing_queue.py
-              uv run --frozen python scripts/phase_status.py
-              uv run --frozen python scripts/build_performance_summary.py
-              git add data/ ipo/ docs/DATA_QUALITY.md
             fi
             if git diff --cached --quiet; then
               echo 'No accepted data changes to publish'

@@ -19,13 +19,49 @@ jobs:
     timeout-minutes: 50
     steps:
       - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
       - uses: astral-sh/setup-uv@v10.1.0
       - run: uv python install 3.12
       - run: uv sync --frozen
       - run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils
       - name: Test parser before source preview
         run: uv run --frozen python -m unittest discover -s tests -q
+      - name: Resolve preview scope from complete PR diff
+        id: scope
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          mode=repair
+          if [[ "$EVENT_NAME" == "pull_request" ]]; then
+            mode="$(uv run --frozen python - <<'PYCODE'
+          import os, re, subprocess, sys
+          sys.path.insert(0, 'scripts')
+          from publication_mode import push_mode
+          base = os.environ['BASE_SHA']
+          if not re.fullmatch(r'[a-f0-9]{40}', base):
+              raise SystemExit('Missing immutable PR baseline')
+          diff = subprocess.run(['git', 'diff', '--name-only', '--no-renames', '-z', base, 'HEAD', '--'],
+                                check=True, capture_output=True, text=True).stdout
+          print(push_mode(diff.rstrip('\0').split('\0') if diff else []))
+          PYCODE
+            )"
+          fi
+          echo "value=$mode" >> "$GITHUB_OUTPUT"
+          echo "Preview scope: $mode"
+      - name: Verify review-only derived artifacts without source collection
+        if: steps.scope.outputs.value == 'review'
+        run: |
+          mkdir -p artifacts/review-preview
+          uv run --frozen python scripts/validate_data.py --strict
+          uv run --frozen python scripts/build_missing_queue.py
+          uv run --frozen python scripts/phase_status.py
+          uv run --frozen python scripts/build_company_pages.py
+          uv run --frozen python tests/verify_public_release.py --expected-commit "$(git rev-parse HEAD)" > artifacts/review-preview/public.json
+          git diff --exit-code -- data/ipos.json data/pending_updates.json data/performance_summary.json
       - name: Preview Final Prospectus document repairs
+        if: steps.scope.outputs.value != 'review'
         run: |
           uv run --frozen python scripts/apply_corrections.py
           uv run --frozen python scripts/enforce_final_prospectus_policy.py
@@ -43,6 +79,7 @@ jobs:
         with:
           name: source-review-${{ github.run_id }}
           path: |
+            artifacts/review-preview/
             data/source_review.json
             data/ipos.json
             data/missing_queue.json
@@ -54,12 +91,48 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
       - uses: astral-sh/setup-uv@v10.1.0
       - run: uv python install 3.12
       - run: uv sync --frozen
       - name: Test baseline collectors
         run: uv run --frozen python -m unittest discover -s tests -q
+      - name: Resolve preview scope from complete PR diff
+        id: scope
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          mode=repair
+          if [[ "$EVENT_NAME" == "pull_request" ]]; then
+            mode="$(uv run --frozen python - <<'PYCODE'
+          import os, re, subprocess, sys
+          sys.path.insert(0, 'scripts')
+          from publication_mode import push_mode
+          base = os.environ['BASE_SHA']
+          if not re.fullmatch(r'[a-f0-9]{40}', base):
+              raise SystemExit('Missing immutable PR baseline')
+          diff = subprocess.run(['git', 'diff', '--name-only', '--no-renames', '-z', base, 'HEAD', '--'],
+                                check=True, capture_output=True, text=True).stdout
+          print(push_mode(diff.rstrip('\0').split('\0') if diff else []))
+          PYCODE
+            )"
+          fi
+          echo "value=$mode" >> "$GITHUB_OUTPUT"
+          echo "Preview scope: $mode"
+      - name: Verify review-only derived artifacts without source collection
+        if: steps.scope.outputs.value == 'review'
+        run: |
+          mkdir -p artifacts/review-preview
+          uv run --frozen python scripts/validate_data.py --strict
+          uv run --frozen python scripts/build_missing_queue.py
+          uv run --frozen python scripts/phase_status.py
+          uv run --frozen python scripts/build_company_pages.py
+          uv run --frozen python tests/verify_public_release.py --expected-commit "$(git rev-parse HEAD)" > artifacts/review-preview/public.json
+          git diff --exit-code -- data/ipos.json data/pending_updates.json data/performance_summary.json
       - name: Preview Final-Prospectus baseline and dated market history
+        if: steps.scope.outputs.value != 'review'
         run: |
           uv run --frozen python scripts/apply_corrections.py
           uv run --frozen python scripts/enforce_final_prospectus_policy.py
@@ -73,6 +146,7 @@ jobs:
         with:
           name: baseline-preview-${{ github.run_id }}
           path: |
+            artifacts/review-preview/
             data/ipos.json
             data/missing_queue.json
             data/performance_summary.json
