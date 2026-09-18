@@ -1,14 +1,14 @@
 """Read-only proposal triage. Matching a stored group is NOT source acceptance.
 
 Print a deterministic report to stdout; never change canonical data, proposals,
-review states or the P4 gate. Only documentFields are assessed in this first pass.
+review states or the P4 gate. Assess documentFields and subscriptionSnapshot only.
 """
 from __future__ import annotations
 
 import argparse
 from collections import Counter, defaultdict
 import copy
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 import hashlib
 import json
 import re
@@ -19,10 +19,12 @@ from zoneinfo import ZoneInfo
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from publish_transaction import FIELD_GROUPS  # noqa: E402
-from public_quality import project_record  # noqa: E402
+from public_quality import project_record, safe_url  # noqa: E402
 from final_prospectus_policy import STATIC_CANONICAL_FIELDS  # noqa: E402
 
 DOCUMENT_FIELDS = FIELD_GROUPS['documentFields']
+SUBSCRIPTION_FIELDS = FIELD_GROUPS['subscriptionSnapshot']
+SUBSCRIPTION_CLOCKS = ('subscriptionObservedAt', 'subscriptionCollectedAt', 'subscriptionAsOf')
 VALUE_FIELDS = tuple(field for field in DOCUMENT_FIELDS if field in STATIC_CANONICAL_FIELDS)
 CONFLICT_KEYS = ('path', 'baseExists', 'base', 'proposedExists', 'proposed', 'status')
 ACTIONS = {
@@ -93,6 +95,124 @@ def assess(record, group, *, as_of, holds):
                 'errorType': type(error).__name__}
 
 
+def clock(value):
+    """Read an explicit zoned timestamp; never invent a timezone or source time."""
+    if value is None:
+        return {'status': 'missing'}
+    if not isinstance(value, str) or not re.fullmatch(
+            r'\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?(?:Z|[+-]\d{2}:\d{2})', value):
+        return {'status': 'invalid'}
+    try:
+        parsed = datetime.fromisoformat(value)
+        if parsed.utcoffset() is None:
+            raise ValueError('Timezone missing')
+        return {'status': 'valid', 'utc': parsed.astimezone(timezone.utc).isoformat()}
+    except (ValueError, OverflowError):
+        return {'status': 'invalid'}
+
+
+def subscription_evidence(record, group, *, as_of, holds):
+    """Assess the stored snapshot, not a splice with today's source/history.
+
+    Use shared public rules on an isolated copy, retaining current review context.
+    Host-based authority is diagnostic classification, not source/issuer acceptance.
+    """
+    candidate = {k: copy.deepcopy(record[k]) for k in
+                 ('id', 'company', 'symbol', 'openDate', 'closeDate', 'status',
+                  'dataReview', 'dataAvailability') if k in record}
+    candidate.update(copy.deepcopy(group))
+    clocks = {key: clock(group.get(key)) for key in SUBSCRIPTION_CLOCKS}
+    issues = [key + '_invalid' for key, value in clocks.items() if value['status'] == 'invalid']
+    if not isinstance(group.get('subscriptionSource'), str) or not group['subscriptionSource'].strip():
+        issues.append('source_label_missing_or_invalid')
+    try:
+        url = safe_url(group.get('subscriptionSourceUrl'))
+    except ValueError:
+        url = None
+    if not url:
+        issues.append('snapshot_source_url_missing_or_invalid')
+    basis = group.get('subscriptionTimeBasis')
+    if basis not in ('source-observation', 'collection-only'):
+        issues.append('time_basis_missing_or_invalid')
+    observed = clocks['subscriptionObservedAt']
+    if basis == 'collection-only':
+        issues.append('source_observation_unavailable')
+        if group.get('subscriptionObservedAt') is not None:
+            issues.append('observation_present_but_basis_collection_only')
+        observed = {'status': 'unavailable_collection_only'}
+    elif basis != 'source-observation':
+        observed = {'status': 'unavailable_time_basis'}
+    elif observed['status'] == 'missing':
+        issues.append('source_observation_missing')
+    # Legacy AsOf is only a collection alias. An invalid explicit clock does
+    # not become acceptable merely because a different alias is well formed.
+    collection_key = ('subscriptionCollectedAt' if group.get('subscriptionCollectedAt') is not None
+                      else 'subscriptionAsOf')
+    collected = clocks[collection_key]
+    if collected['status'] == 'missing':
+        issues.append('collection_time_missing')
+    explicit, legacy = clocks['subscriptionCollectedAt'], clocks['subscriptionAsOf']
+    if (explicit['status'] == legacy['status'] == 'valid' and explicit['utc'] != legacy['utc']):
+        issues.append('collection_alias_disagrees')
+    if (observed['status'] == collected['status'] == 'valid'
+            and datetime.fromisoformat(observed['utc']) > datetime.fromisoformat(collected['utc'])):
+        issues.append('source_observation_after_collection')
+    degraded = group.get('subscriptionDegraded')
+    if degraded is not None and type(degraded) is not bool:
+        issues.append('degraded_state_invalid')
+    elif degraded:
+        issues.append('degraded_source_state_retained')
+    values = group.get('subscription')
+    missing = [key for key in ('qib', 'nii', 'retail', 'total')
+               if not isinstance(values, dict) or values.get(key) is None]
+    if missing:
+        issues.append('headline_categories_missing')
+    try:
+        public = project_record(candidate, today=as_of, holds=holds)
+        decision = public['publicQuality']['fields']['subscription']
+        if decision['state'] not in ('reported', 'provisional', 'final_verified'):
+            issues.append('public_subscription_not_displayable')
+        result = {'status': 'assessed', 'publicState': decision['state'],
+                  'authority': public['subscriptionAuthority']}
+        if result['authority'] == 'unknown':
+            issues.append('source_authority_unknown')
+    except (ValueError, TypeError, KeyError, AttributeError, IndexError, OverflowError) as error:
+        result = {'status': 'assessment_failed', 'authority': 'unknown', 'errorType': type(error).__name__}
+        issues.append('public_projection_failed')
+    result.update(sourceLabel=copy.deepcopy(group.get('subscriptionSource')), sourceUrl=url,
+                  sourceBinding='snapshot_fields_only_no_current_history_fallback',
+                  storedClocks={k: copy.deepcopy(group[k]) for k in SUBSCRIPTION_CLOCKS if k in group},
+                  clockChecks=clocks, timeBasis=copy.deepcopy(basis),
+                  observed=observed, collected={**collected, 'field': collection_key},
+                  missingCategories=missing, issues=issues, requiresSourceReview=bool(issues),
+                  finality='not_established_by_snapshot')
+    return result
+
+
+def clock_relation(current, proposed):
+    if current['status'] != 'valid' or proposed['status'] != 'valid':
+        return 'not_comparable'
+    current_time, proposed_time = [datetime.fromisoformat(v['utc']) for v in (current, proposed)]
+    return ('same_instant' if current_time == proposed_time else
+            'proposed_older' if proposed_time < current_time else 'proposed_newer')
+
+
+def subscription_comparison(record, base, proposed, current, *, as_of, holds):
+    snapshots = {key: subscription_evidence(record, group, as_of=as_of, holds=holds)
+                 for key, group in (('base', base), ('proposed', proposed), ('current', current))}
+    now, candidate = snapshots['current'], snapshots['proposed']
+    source_relation = 'not_bound'
+    if (now['sourceUrl'] and candidate['sourceUrl']
+            and all(isinstance(x['sourceLabel'], str) and x['sourceLabel'].strip() for x in (now, candidate))):
+        source_relation = ('same_label_and_url' if
+                           (now['sourceLabel'], now['sourceUrl']) == (candidate['sourceLabel'], candidate['sourceUrl'])
+                           else 'different_source')
+    return {**snapshots, 'sourceRelation': source_relation,
+            'observationRelation': clock_relation(now['observed'], candidate['observed']),
+            'collectionRelation': clock_relation(now['collected'], candidate['collected']),
+            'orderingIsResolution': False}
+
+
 def entry_report(item, index, rows, *, as_of, holds):
     entry = {'inputIndex': index, 'proposalSha256': digest(encoded(item)), 'resolutionChanged': False}
     def finish(state, reason=None):
@@ -121,8 +241,9 @@ def entry_report(item, index, rows, *, as_of, holds):
         return finish('malformed_proposal', 'Retained fingerprint does not match the original envelope')
     if any(not item[k + 'Exists'] and item[k] is not None for k in ('base', 'proposed')):
         return finish('malformed_proposal', 'Absent snapshot has a non-null payload')
-    if path[2:] != ['documentFields']:
-        result = finish('not_assessed', 'Only complete documentFields proposals are assessed in this version')
+    family = path[2]
+    if path[2:] not in (['documentFields'], ['subscriptionSnapshot']):
+        result = finish('not_assessed', 'Only complete documentFields and subscriptionSnapshot proposals are assessed')
         if path[2] == 'subscriptionSnapshot':
             result['nextAction'] = 'Review the complete subscription snapshot, official/secondary authority and source versus collection clocks.'
         elif path[2] == 'lotTerms':
@@ -136,31 +257,37 @@ def entry_report(item, index, rows, *, as_of, holds):
     if len(matches) != 1:
         return finish('ambiguous_record')
     record = matches[0]
+    fields = DOCUMENT_FIELDS if family == 'documentFields' else SUBSCRIPTION_FIELDS
+    value_fields = VALUE_FIELDS if family == 'documentFields' else ('subscription',)
     entry['currentIdentity'] = {k: record.get(k) for k in ('company', 'symbol', 'openDate')}
     entry['identityBasis'] = 'retained-path-id-not-new-issuer-verification'
     if (not item['baseExists'] or not item['proposedExists']
             or not isinstance(item['base'], dict) or not isinstance(item['proposed'], dict)):
-        return finish('malformed_proposal', 'Atomic document snapshots must be present objects')
+        return finish('malformed_proposal', 'Atomic snapshots must be present objects')
     base, proposed = item['base'], item['proposed']
-    unknown = sorted((set(base) | set(proposed)) - set(DOCUMENT_FIELDS))
+    unknown = sorted((set(base) | set(proposed)) - set(fields))
     if unknown:
         entry['unsupportedFields'] = unknown
         return finish('legacy_group_scope', 'Snapshot contains fields outside the current atomic group')
-    current = {k: record[k] for k in DOCUMENT_FIELDS if k in record}
+    current = {k: record[k] for k in fields if k in record}
     entry['groupHashes'] = {k: digest(encoded(v)) for k, v in
                            (('base', base), ('proposed', proposed), ('current', current))}
     different = sorted(k for k in set(current) | set(proposed)
                        if k not in current or k not in proposed or not equal(current[k], proposed[k]))
-    entry['differingValueFields'] = [k for k in different if k in VALUE_FIELDS]
-    entry['differingEvidenceOrReviewFields'] = [k for k in different if k not in VALUE_FIELDS]
+    entry['differingValueFields'] = [k for k in different if k in value_fields]
+    entry['differingEvidenceOrReviewFields'] = [k for k in different if k not in value_fields]
     entry['currentOnlyFields'] = sorted(set(current) - set(proposed))
     entry['proposedOnlyFields'] = sorted(set(proposed) - set(current))
-    entry['currentEvidence'] = assess(record, current, as_of=as_of, holds=holds)
-    entry['proposedEvidence'] = assess(record, proposed, as_of=as_of, holds=holds)
+    if family == 'documentFields':
+        entry['currentEvidence'] = assess(record, current, as_of=as_of, holds=holds)
+        entry['proposedEvidence'] = assess(record, proposed, as_of=as_of, holds=holds)
+    else:
+        entry['subscriptionComparison'] = subscription_comparison(
+            record, base, proposed, current, as_of=as_of, holds=holds)
     # Equality is kept separate from source acceptance, including equal bad data.
     if equal(current, proposed):
         state = 'already_applied_exact'
-    elif equal(without_policy_clock(current), without_policy_clock(proposed)):
+    elif family == 'documentFields' and equal(without_policy_clock(current), without_policy_clock(proposed)):
         state = 'policy_clock_only'
     elif equal(base, proposed):
         state = 'no_change_proposal'
@@ -168,7 +295,11 @@ def entry_report(item, index, rows, *, as_of, holds):
         state = 'base_unchanged'
     else:
         state = 'still_conflicting'
-    return finish(state)
+    result = finish(state)
+    if family == 'subscriptionSnapshot':
+        result['nextAction'] = ('Review the full retained snapshot and original source URL/issuer binding; compare source versus collection clocks. '
+                                'Do not accept, supersede or infer final subscription from recency or equality alone.')
+    return result
 
 
 def build_report(canonical, pending, *, as_of, holds):
@@ -183,17 +314,25 @@ def build_report(canonical, pending, *, as_of, holds):
         rows[row['id']].append(row)
     entries = [entry_report(item, index, rows, as_of=as_of, holds=holds)
                for index, item in enumerate(pending['updates'])]
+    documents = [e for e in entries if (e['path'][2:] if isinstance(e.get('path'), list) else []) == ['documentFields']]
+    subscriptions = [e for e in entries if (e['path'][2:] if isinstance(e.get('path'), list) else []) == ['subscriptionSnapshot']]
     return {
-        'schemaVersion': 1, 'scope': 'read-only-document-proposal-triage-not-source-acceptance',
+        'schemaVersion': 2, 'scope': 'read-only-document-and-subscription-triage-not-source-acceptance',
         'asOf': as_of.isoformat(), 'resolutionsApplied': 0,
         'comparisonRules': {'completeAtomicGroup': list(DOCUMENT_FIELDS),
+                            'subscriptionAtomicGroup': list(SUBSCRIPTION_FIELDS),
+                            'subscriptionClockException': None,
                             'clockOnlyException': 'staticSourcePolicy.checkedAt',
                             'allOccurrencesRetained': True, 'newestWriterWins': False},
         'summary': {'retainedProposals': len(entries),
-                    'documentFieldProposals': sum(isinstance(e.get('path'), list) and e['path'][2:] == ['documentFields'] for e in entries),
+                    'documentFieldProposals': len(documents),
+                    'subscriptionSnapshotProposals': len(subscriptions),
+                    'subscriptionByComparisonState': dict(sorted(Counter(e['comparisonState'] for e in subscriptions).items())),
+                    'subscriptionObservationRelations': dict(sorted(Counter(e['subscriptionComparison']['observationRelation']
+                        for e in subscriptions if 'subscriptionComparison' in e).items())),
                     'byComparisonState': dict(sorted(Counter(e['comparisonState'] for e in entries).items())),
-                    'documentWithValueDifferences': sum(bool(e.get('differingValueFields')) for e in entries),
-                    'documentWithEvidenceOrReviewDifferences': sum(bool(e.get('differingEvidenceOrReviewFields')) for e in entries),
+                    'documentWithValueDifferences': sum(bool(e.get('differingValueFields')) for e in documents),
+                    'documentWithEvidenceOrReviewDifferences': sum(bool(e.get('differingEvidenceOrReviewFields')) for e in documents),
                     'duplicateFingerprintOccurrences': sum(n - 1 for n in Counter(
                         e['fingerprint'] for e in entries if isinstance(e.get('fingerprint'), str)).values())},
         'entries': entries,

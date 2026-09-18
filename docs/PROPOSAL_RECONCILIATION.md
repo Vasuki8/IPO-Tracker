@@ -1,4 +1,4 @@
-# Retained-proposal reconciliation: read-only first pass
+# Retained-proposal reconciliation: read-only triage and review advice
 
 A pending proposal is not automatically a data error, an accepted correction or an
 obsolete update. This report helps the operator compare it with current accepted
@@ -43,8 +43,8 @@ figures into public-facing exports. Use its input hashes and index to retrieve t
 exact retained evidence. Run IDs locate collection context; they never establish
 source priority or permission to reuse an old collector manifest.
 
-Only complete `documentFields` proposals are assessed in this version. The atomic
-field list is imported from the existing publisher, not maintained as a second
+Complete `documentFields` and `subscriptionSnapshot` proposals are assessed in
+report schema 2. The atomic field list is imported from the existing publisher, not maintained as a second
 merge policy. Matching values with different proofs or review state are a conflict.
 Extra current fields cannot be ignored to manufacture an already-applied result.
 Absent keys, null, zero and false remain distinct; object key order and equivalent
@@ -103,8 +103,7 @@ audit. `--check-report` also binds the ledger and note bytes. Neither advice nor
 `applicable` is a publication permission, resolution or fresh source audit; no
 publisher imports this ledger. `resolutionsApplied` remains zero.
 
-The next separate milestone is read-only `subscriptionSnapshot` classification,
-with source authority, observation and collection clocks kept distinct. P4,
+Read-only `subscriptionSnapshot` classification is described below. P4,
 Teamtech's hold and the unaccepted broad parser draft #105 remain unchanged.
 
 ## Verified review release
@@ -116,3 +115,50 @@ snapshot and the review is still applicable; no pending status was changed.
 See [the release receipt](releases/2026-09-18-emmvee-proposal-review.json) for
 CI, live checks, exact artifact hashes and the distinction between an operator
 review and an accepted numerical publication.
+
+
+## Subscription snapshots — report schema 2
+
+The existing commands and validation-job artifact now include all retained
+`subscriptionSnapshot` occurrences. The eight-field group comes from the publisher,
+including category values, source label/URL, observed/collected/legacy AsOf clocks,
+time basis and degraded state. A matching total with different categories, source,
+clock, null or missing field is not an exact match. No subscription clock is ignored
+for whole-group equality. Unknown fields/scopes and malformed proposals remain work.
+
+`subscriptionComparison` contains base, proposed and current diagnostics, alongside
+`sourceRelation`, `observationRelation` and `collectionRelation`. Source labels and
+explicit HTTPS URLs use the same authority classification as the public boundary;
+classification is not verified issuer identity, correct numbers or permission to
+redistribute. A named exchange with no snapshot URL has unknown bound authority.
+A secondary-source label stays secondary. Current attached sources/history are
+intentionally not borrowed to fill a retained group's missing URL or timestamp.
+This diagnostic isolation can report unknown authority where the current public
+page has contextual source links; it does not change that page or those links.
+
+Raw clocks remain in `storedClocks`. Separate instant comparisons require explicit
+zones, normalize offsets only for ordering, and flag invalid/naive dates, disagreeing
+collection aliases or observation after collection. `subscriptionAsOf` is a legacy
+collection alias, never an observation. Collection-only or untrusted observation
+bases are `not_comparable`. A newer collection of an older observation is identified
+as such, not promoted. The time relation remains only a comparison even when source
+bindings differ or are missing. Matching groups can still require source review.
+No timestamp, closing date or `reported` state establishes final subscription.
+
+Snapshot diagnostics include missing headline categories, missing/unsafe source
+URLs, unknown authority, clock issues, retained degraded state and the shared public
+subscription review state. Malformed projection data is `assessment_failed`, never
+a verification pass. Current review/availability context remains attached to the
+isolated assessment; original proposals and public data are not altered.
+
+At the `09a570f5` baseline, 22 subscription groups remain conflicting. Eight have
+older recorded source observations and 14 have no comparable observation time.
+All 22 lack a snapshot URL: 14 are exchange-named but unbound; eight retain secondary
+labels. All 441 proposal occurrences remain, including 159 unchanged document
+comparisons and 260 other-family items still explicitly not assessed. No proposal
+was resolved or the phase gate relaxed. `--check-report` rejects schema-1 receipts
+as stale; regenerate instead of relabelling an old report.
+
+Next, add read-only overdue-source/publication diagnostics. Source lineage recovery
+and explicit audited dispositions remain separate; this tool never supplies a
+publication manifest, applies a proposal or clears a source review.

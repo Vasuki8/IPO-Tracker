@@ -135,12 +135,12 @@ class PendingReconciliationTests(unittest.TestCase):
 
     def test_duplicate_occurrences_and_out_of_scope_items_are_all_retained(self):
         doc = proposal(self.base, self.group)
-        other = proposal({}, {'subscription': {'total': 0}}, path=['ipos', 'example', 'subscriptionSnapshot'])
+        other = proposal({}, {'listing': {'gainPct': 0}}, path=['ipos', 'example', 'priceSnapshot'])
         result = self.build([doc, copy.deepcopy(doc), other])
         self.assertEqual([e['inputIndex'] for e in result['entries']], [0, 1, 2])
         self.assertEqual(result['summary']['duplicateFingerprintOccurrences'], 1)
         self.assertEqual(result['entries'][2]['comparisonState'], 'not_assessed')
-        self.assertIn('source versus collection', result['entries'][2]['nextAction'])
+        self.assertIn('official listing evidence', result['entries'][2]['nextAction'])
 
     def test_bad_envelopes_are_visible_not_dropped(self):
         malformed = [None, [], {}, {**proposal(self.base, self.group), 'baseExists': 1},
