@@ -12,6 +12,8 @@ SOURCE_DEPENDENCIES = (
     'uv.lock',
     'pyproject.toml',
     'data/verified_corrections.json',
+    'data/reviewed_correction_evidence.json',
+    'data/reviewed_correction_evidence',
 )
 
 

@@ -5,12 +5,16 @@ on:
     inputs:
       mode:
         type: choice
-        options: [core, subscriptions, filings, maintenance, repair, p4, p5, performance, presentation]
+        options: [core, subscriptions, filings, maintenance, repair, p4, p5, performance, presentation, reviewed]
         default: maintenance
         description: Source collection stage
+      reviewed_ids:
+        type: string
+        default: ''
+        description: Comma-separated IDs for reviewed mode (requires retained composition proofs)
   push:
     branches: [main]
-    paths: ['scripts/**', '.github/workflows/refresh.yml', 'data/verified_corrections.json', 'data/public_display_holds.json', 'uv.lock', 'pyproject.toml', '*.js', '*.css', '*.html']
+    paths: ['scripts/**', '.github/workflows/refresh.yml', 'data/verified_corrections.json', 'data/reviewed_correction_evidence.json', 'data/reviewed_correction_evidence/**', 'data/public_display_holds.json', 'uv.lock', 'pyproject.toml', '*.js', '*.css', '*.html']
   schedule:
     - cron: '17 * * * *'
     - cron: '0,30 4-12 * * 1-5'
@@ -89,7 +93,7 @@ jobs:
           cp data/ipos.json /tmp/ipo-bundle/base.json
           git rev-parse HEAD > /tmp/ipo-bundle/source-commit.txt
       - name: Collect sources with explicit stage outcomes
-        if: steps.collection-mode.outputs.value != 'presentation'
+        if: steps.collection-mode.outputs.value != 'presentation' && steps.collection-mode.outputs.value != 'reviewed'
         env:
           MODE: ${{ steps.collection-mode.outputs.value }}
         run: uv run --frozen python scripts/run_pipeline.py --mode "$MODE"
@@ -113,7 +117,13 @@ jobs:
               echo "Skipping P4 Final Prospectus residual repair for $MODE mode"
               ;;
           esac
+      - name: Prepare bounded reviewed corrections without source collection
+        if: steps.collection-mode.outputs.value == 'reviewed'
+        env:
+          REVIEWED_IDS: ${{ inputs.reviewed_ids || '' }}
+        run: uv run --frozen python scripts/reviewed_corrections.py --ids "$REVIEWED_IDS" --bundle /tmp/ipo-bundle
       - name: Prepare collected snapshot
+        if: steps.collection-mode.outputs.value != 'reviewed'
         run: cp data/ipos.json /tmp/ipo-bundle/proposed.json
       - uses: actions/upload-artifact@v4.6.2
         with:
@@ -166,9 +176,19 @@ jobs:
               node --test tests/public_quality.test.cjs
               git add data/ipos-summary.json ipo/
             else
-              uv run --frozen python scripts/publish_transaction.py --base /tmp/ipo-bundle/base.json --proposed /tmp/ipo-bundle/proposed.json --run-id "$RUN_ID" --source-commit-file /tmp/ipo-bundle/source-commit.txt
-              uv run --frozen python scripts/apply_corrections.py
-              uv run --frozen python scripts/enforce_final_prospectus_policy.py
+              reviewed_args=()
+              if [[ "$MODE" == "reviewed" ]]; then
+                reviewed_args=(--reviewed-manifest /tmp/ipo-bundle/reviewed.json)
+              fi
+              uv run --frozen python scripts/publish_transaction.py --base /tmp/ipo-bundle/base.json --proposed /tmp/ipo-bundle/proposed.json --run-id "$RUN_ID" --source-commit-file /tmp/ipo-bundle/source-commit.txt "${reviewed_args[@]}"
+              if [[ "$MODE" != "reviewed" ]]; then
+                uv run --frozen python scripts/apply_corrections.py
+                uv run --frozen python scripts/enforce_final_prospectus_policy.py
+              else
+                # The selected records were already corrected and policy-checked.
+                # Never apply unrelated corrections or rewrite pending proposals.
+                git diff --exit-code -- data/pending_updates.json
+              fi
               uv run --frozen python scripts/validate_data.py --strict
               uv run --frozen python scripts/build_company_pages.py
               uv run --frozen python scripts/audit_data_completeness.py
