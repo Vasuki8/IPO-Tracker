@@ -27,6 +27,7 @@ async function main() {
         const address = new URL(base); address.searchParams.set('q', record.company);
         await page.goto(address.href, { waitUntil: 'networkidle' });
         await page.locator('#freshness.loaded').waitFor();
+        assert.equal(await page.locator('#freshness').getAttribute('title'), 'Dataset generation time. Source observations and accepted publication timing are separate.');
         const cell = page.locator('#ipoRows tr').filter({has: page.locator(`[data-action="preview"][data-id="${record.id}"]`)}).locator('td[data-label="Subscription"]');
         const note = cell.locator('.metric-note');
         await note.scrollIntoViewIfNeeded();

@@ -42,9 +42,9 @@ const SOURCE_HEALTH_INFO = {
   },
   'IPO-subscription': {
     label: 'Subscription feed',
-    role: 'Live category-wise IPO subscription tracking',
-    scope: 'QIB, NII/HNI, Retail/Individual and Total demand snapshots',
-    url: 'https://www.nseindia.com/market-data/all-upcoming-issues-ipo'
+    role: 'Subscription sources vary by issue',
+    scope: 'Official exchange and labelled secondary snapshots; each company retains its source link and observation time',
+    url: null
   },
   'NSE-subscription': {
     label: 'Subscription feed',
@@ -61,6 +61,7 @@ function nseHistoryError(meta) {
 
 function sourceHealthError(key, health) {
   if (health?.error) return String(health.error);
+  if (Array.isArray(health?.errors) && health.errors.length) return health.errors.map(String).join(' · ');
   const errors = Array.isArray(state.meta?.errors) ? state.meta.errors : [];
   const prefixes = {
     'NSE-live': ['NSE live/upcoming:'],
@@ -188,8 +189,10 @@ function healthExtraDiagnostics(key, health) {
   const parts = [];
   if (health.companiesAttached != null) parts.push(`${Number(health.companiesAttached).toLocaleString('en-IN')} companies attached`);
   if (health.attempted != null) parts.push(`${Number(health.attempted).toLocaleString('en-IN')} attempted`);
+  if (health.failed != null) parts.push(`${Number(health.failed).toLocaleString('en-IN')} failed`);
   if (health.snapshotsAdded != null) parts.push(`+${Number(health.snapshotsAdded).toLocaleString('en-IN')} snapshots`);
   if (health.bseFallbackRecords != null && Number(health.bseFallbackRecords) > 0) parts.push(`${Number(health.bseFallbackRecords).toLocaleString('en-IN')} BSE fallback`);
+  if (health.secondaryFallbackRecords != null && Number(health.secondaryFallbackRecords) > 0) parts.push(`${Number(health.secondaryFallbackRecords).toLocaleString('en-IN')} secondary fallback`);
   if (key === 'NSE-history' && Number(health.records || 0) === 0 && recordedSourceOutcome(health) === 'successful' && !sourceHealthError(key, health)) {
     parts.push('zero rows is valid when no IPO entered the checked history window');
   }

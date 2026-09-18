@@ -47,3 +47,14 @@ test('unbound legacy diagnostics remain visible without replacing a recorded out
   assert.match(panel.innerHTML,/Retained diagnostic/);
   assert.match(panel.innerHTML,/earlier fallback failed/);
 });
+
+test('mixed subscription diagnostics retain failures and secondary authority',()=>{
+  const {context,panel}=runtime();
+  context.state.meta.sourceHealth['IPO-subscription']={ok:false,records:4,attempted:5,failed:1,bseFallbackRecords:2,secondaryFallbackRecords:2,errors:['Official source unavailable for Example']};
+  vm.runInContext("openHealthDetail('IPO-subscription')",context);
+  assert.match(panel.innerHTML,/Official source unavailable for Example/);
+  assert.match(panel.innerHTML,/1 failed/);
+  assert.match(panel.innerHTML,/2 secondary fallback/);
+  assert.match(panel.innerHTML,/Subscription sources vary by issue/);
+  assert.doesNotMatch(panel.innerHTML,/Open official source/);
+});
