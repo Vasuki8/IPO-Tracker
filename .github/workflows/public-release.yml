@@ -5,6 +5,8 @@ on:
     paths:
       - 'tests/verify_public_release.py'
       - 'tests/test_public_release_verifier.py'
+      - 'tests/verify_review_release.py'
+      - 'tests/test_review_release_delivery.py'
       - '.github/workflows/public-release.yml'
   workflow_run:
     # Built-in Pages uses this workflow identifier; retain the display-name
@@ -29,7 +31,7 @@ jobs:
       - uses: astral-sh/setup-uv@v10.1.0
       - run: uv python install 3.12
       - name: Test release verification
-        run: uv run --no-project --python 3.12 python -m unittest discover -s tests -p 'test_public_release_verifier.py' -v
+        run: uv run --no-project --python 3.12 python -m unittest discover -s tests -p 'test_*release*.py' -v
       - name: Verify immutable public output
         env:
           EVENT_NAME: ${{ github.event_name }}
@@ -53,7 +55,7 @@ jobs:
           # Pages propagation may lag the successful deployment event. Retries
           # are bounded; never reinterpret mismatched bytes as a successful run.
           for attempt in 1 2 3; do
-            if uv run --no-project --python 3.12 python tests/verify_public_release.py --expected-commit "$sha" --base-url "$base" --check-reviewed-publication > "artifacts/public-release/attempt-$attempt.json"; then
+            if uv run --no-project --python 3.12 python tests/verify_review_release.py --expected-commit "$sha" --base-url "$base" > "artifacts/public-release/attempt-$attempt.json"; then
               cat "artifacts/public-release/attempt-$attempt.json"
               git diff --exit-code
               exit 0
