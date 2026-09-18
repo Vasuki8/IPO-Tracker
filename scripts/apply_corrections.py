@@ -94,15 +94,30 @@ def fill_reviewed_fields(rows, entries):
     return applied, conflicts
 
 
-def apply(payload, registry, *, evidence_groups=()):
+def apply(payload, registry, *, evidence_groups=(), explicit_review=False):
     evidence_by_id = index_groups(evidence_groups, registry)
-    repair(payload)
-    rows = {row['id']: row for row in payload['ipos']}
-    applied, conflicts = 0, []
     groups = defaultdict(list)
     for correction in registry.get('changes', []):
         groups[correction['id']].append(correction)
+    # Validate opt-in boundaries before even normalizing the input payload.
     for identifier, corrections in groups.items():
+        scopes = {entry.get('publicationScope') for entry in corrections}
+        if scopes - {None, 'explicit-reviewed'}:
+            raise ValueError('Unsupported correction publication scope')
+        if 'explicit-reviewed' in scopes and len(scopes) != 1:
+            raise ValueError('Explicit reviewed corrections must cover the whole issuer group')
+        if 'explicit-reviewed' in scopes and explicit_review and identifier not in evidence_by_id:
+            raise ValueError('Explicit reviewed corrections require matching field proofs')
+    repair(payload)
+    rows = {row['id']: row for row in payload['ipos']}
+    applied, conflicts = 0, []
+    for identifier, corrections in groups.items():
+        # These groups are prepared only by the bounded reviewed publisher.
+        # A registry deployment or a scheduled repair cannot activate them.
+        explicit = [entry.get('publicationScope') == 'explicit-reviewed' for entry in corrections]
+        if any(explicit):
+            if not explicit_review:
+                continue
         row = rows.get(identifier)
         if row is None:
             conflicts.append({'id': identifier, 'reason': 'Issuer record no longer exists'})

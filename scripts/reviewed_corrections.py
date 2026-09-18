@@ -1,4 +1,4 @@
-"""Prepare and verify a bounded, offline reviewed-composition publication.
+"""Prepare and verify a bounded, offline reviewed-field publication.
 
 Uses the existing correction registry and policy; never collects sources,
 resolves pending proposals, or authorizes an unreviewed parser rollout.
@@ -15,7 +15,7 @@ from apply_corrections import apply
 from enforce_final_prospectus_policy import apply_policy
 from issue_composition_checks import COMPOSITION_FIELDS
 from public_quality import project_record
-from reviewed_evidence import ROOT, index_groups, load_groups
+from reviewed_evidence import ROOT, group_fields, index_groups, load_groups
 from validate_data import validate_payload
 
 REGISTRY_FILE = ROOT / 'data/verified_corrections.json'
@@ -37,7 +37,7 @@ def selected_groups(registry, groups, ids):
     indexed = index_groups(groups, registry)
     if (not isinstance(ids, list) or not ids or len(ids) != len(set(ids))
             or any(identifier not in indexed for identifier in ids)):
-        raise ValueError('Select unique IDs with complete reviewed composition evidence')
+        raise ValueError('Select unique IDs with complete reviewed field evidence')
     return [indexed[identifier] for identifier in ids]
 
 
@@ -59,7 +59,7 @@ def validate_records(payload, registry, groups, ids):
         raise ValueError('Reviewed publication has strict semantic errors')
 
 
-def validate_scope(before, after, ids, *, allow_meta=False):
+def validate_scope(before, after, ids, *, allow_meta=False, groups=None):
     """Reject unrelated records/fields and any loss of evidence or history."""
     a, b = record_map(before), record_map(after)
     if list(a) != list(b) or set(ids) - set(a):
@@ -67,18 +67,20 @@ def validate_scope(before, after, ids, *, allow_meta=False):
     for key in set(before) | set(after):
         if key != 'ipos' and not (allow_meta and key == 'meta') and before.get(key) != after.get(key):
             raise ValueError('Reviewed preparation changed unrelated payload metadata')
-    fields = set(COMPOSITION_FIELDS)
-    allowed = fields | {'staticFieldProvenance', 'staticSourcePolicy', 'dataCorrections', 'sources'}
-    if allow_meta:
-        allowed.add('validation')
+    selected_fields = {group['identity']['id']: group_fields(group) for group in (groups or [])}
+    missing = object()
     for identifier, original in a.items():
         updated = b[identifier]
         if identifier not in ids:
             if original != updated:
                 raise ValueError('Reviewed publication changed an unselected issuer')
             continue
+        fields = selected_fields.get(identifier, set(COMPOSITION_FIELDS))
+        allowed = fields | {'staticFieldProvenance', 'staticSourcePolicy', 'dataCorrections', 'sources'}
+        if allow_meta:
+            allowed.add('validation')
         for field in (set(original) | set(updated)) - allowed:
-            if original.get(field) != updated.get(field):
+            if original.get(field, missing) != updated.get(field, missing):
                 raise ValueError('Reviewed publication changed an unrelated issuer field')
         if allow_meta and original.get('validation') != updated.get('validation'):
             from update_data import build_validation
@@ -113,14 +115,14 @@ def prepare(payload, registry, groups, ids):
     subset = {'ipos': [copy.deepcopy(original[identifier]) for identifier in ids]}
     scoped_registry = {**registry, 'changes': [entry for entry in registry['changes'] if entry['id'] in ids],
                        'fillMissing': []}
-    _, conflicts = apply(subset, scoped_registry, evidence_groups=selected)
+    _, conflicts = apply(subset, scoped_registry, evidence_groups=selected, explicit_review=True)
     if conflicts:
         raise ValueError('Reviewed correction preconditions failed: ' + json.dumps(conflicts))
     apply_policy(subset)
     replacements = record_map(subset)
     output = copy.deepcopy(payload)
     output['ipos'] = [replacements.get(row['id'], row) for row in output['ipos']]
-    validate_scope(payload, output, ids)
+    validate_scope(payload, output, ids, groups=selected)
     validate_records(output, registry, groups, ids)
     return output
 
@@ -133,8 +135,8 @@ def verify_manifest(manifest, base_path, proposed_path, before, proposed):
     registry = json.loads(REGISTRY_FILE.read_text(encoding='utf-8'))
     groups = load_groups()
     ids = manifest.get('ids')
-    selected_groups(registry, groups, ids)
-    validate_scope(before, proposed, ids)
+    selected = selected_groups(registry, groups, ids)
+    validate_scope(before, proposed, ids, groups=selected)
     validate_records(proposed, registry, groups, ids)
     # Re-run the reviewed before-value/proof preconditions at the write boundary.
     # A newly hashed manifest cannot authorize a different starting record or
@@ -169,7 +171,7 @@ def main():
     base.write_bytes(args.data.read_bytes())
     output.write_text(json.dumps(proposed, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     manifest = {'schemaVersion':1, 'ids':ids, 'baseSha256':file_hash(base),
-                'proposedSha256':file_hash(output), 'scope':'reviewed-composition-only-no-source-collection'}
+                'proposedSha256':file_hash(output), 'scope':'reviewed-fields-only-no-source-collection'}
     manifest_path.write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
     print(json.dumps(manifest))
 

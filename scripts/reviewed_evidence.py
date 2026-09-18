@@ -1,4 +1,4 @@
-"""Attach separately reviewed composition proofs without overwriting newer evidence.
+"""Attach separately reviewed field proofs without overwriting newer evidence.
 
 A source receipt is not a new extraction. Its source check time, physical rows,
 units and parser lineage are retained unchanged. Publication still requires the
@@ -10,7 +10,7 @@ import copy
 import hashlib
 import json
 import re
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 
 from final_prospectus_identity import known_non_final_document_url
@@ -19,6 +19,16 @@ from issue_composition_checks import COMPOSITION_FIELDS
 
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE_FILE = ROOT / 'data/reviewed_correction_evidence.json'
+INTERMEDIARY_FIELDS = ('leadManagers', 'registrar')
+
+
+def group_fields(group):
+    kind = group.get('kind', 'composition')
+    if kind == 'composition':
+        return set(COMPOSITION_FIELDS)
+    if kind == 'intermediaries':
+        return set(INTERMEDIARY_FIELDS)
+    raise ValueError('Unsupported reviewed field-evidence kind')
 
 
 def digest(value):
@@ -54,8 +64,8 @@ def index_groups(groups, registry):
         date.fromisoformat(identity['openDate'])
         proofs = group.get('proofs') or {}
         hashes = group.get('beforeProofHashes') or {}
-        if set(proofs) != set(COMPOSITION_FIELDS) or set(hashes) != set(proofs):
-            raise ValueError('Reviewed composition evidence must cover the complete value/proof group')
+        if set(proofs) != group_fields(group) or set(hashes) != set(proofs):
+            raise ValueError('Reviewed evidence must cover the complete value/proof group')
         # Bind the recovered artifact to its immutable source-review receipt.
         blob = (json.dumps(proofs, ensure_ascii=False, indent=2, allow_nan=False) + '\n').encode()
         if hashlib.sha256(blob).hexdigest() != group.get('sourceProofsSha256'):
@@ -82,6 +92,30 @@ def index_groups(groups, registry):
                     or type(detail.get('page')) is not int or detail['page'] < 1
                     or not proof.get('checkedAt')):
                 raise ValueError('Reviewed field evidence does not match its accepted correction')
+            if group.get('kind') == 'intermediaries':
+                if item.get('publicationScope') != 'explicit-reviewed':
+                    raise ValueError('Intermediary corrections require explicit reviewed publication')
+                entities = detail.get('entities')
+                expected = proof['value'] if field == 'leadManagers' else [proof['value']]
+                if (not isinstance(entities, list) or not entities or entities != expected
+                        or any(not isinstance(name, str) or not name.strip() for name in entities)
+                        or not detail.get('heading') or not detail.get('rawLines')):
+                    raise ValueError('Reviewed intermediary evidence requires role-specific source rows')
+                from review_intermediary_columns import validate_evidence, has_reviewed_role_evidence
+                validate_evidence(field, proof['value'], detail)
+                if (proof.get('identity') != identity
+                        or not has_reviewed_role_evidence({**identity, field: proof['value'],
+                            'staticFieldProvenance': {field: proof}}, field)
+                        or datetime.fromisoformat(group['reviewedAt']).utcoffset() is None):
+                    raise ValueError('Reviewed intermediary proof must bind exact issuer and dated review')
+        if group.get('kind') == 'intermediaries':
+            bindings = {(proof['sourceUrl'], proof['sha256'], proof['documentDate'],
+                         proof.get('parserVersion'), proof['checkedAt']) for proof in proofs.values()}
+            if len(bindings) != 1:
+                raise ValueError('Reviewed intermediary roles must share one exact document review')
+            left, right = [proofs[field]['evidence'] for field in INTERMEDIARY_FIELDS]
+            if any(left.get(key) != right.get(key) for key in ('page', 'rawLines', 'headingLine')):
+                raise ValueError('Reviewed intermediary roles must share one physical source table')
         result[identifier] = group
     return result
 
@@ -108,8 +142,8 @@ def attach_evidence(row, group):
     row.setdefault('dataCorrections', []).append({
         'field': 'staticFieldProvenance', 'fields': list(proofs),
         'before': before, 'after': copy.deepcopy(proofs),
-        'reason': 'Attach the matching retained source-review proofs to reviewed composition values; preserve previous proofs',
-        'sourceUrl': proofs['issueComposition']['sourceUrl'],
+        'reason': 'Attach the matching retained source-review proofs to reviewed values; preserve previous proofs',
+        'sourceUrl': next(iter(proofs.values()))['sourceUrl'],
         'sourceReviewUrl': group['sourceReviewUrl'],
         'correctedAt': group['reviewedAt'],
     })
