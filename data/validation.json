@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-18T18:09:27.981401+00:00",
+  "generatedAt": "2026-09-18T19:02:44.857315+00:00",
   "parserVersion": 22,
   "recordCount": 1371,
   "errorCount": 0,
-  "reviewCount": 1600,
+  "reviewCount": 1601,
   "invalidRecordCount": 0,
-  "reviewRecordCount": 289,
+  "reviewRecordCount": 290,
   "subscriptionAuthority": {
     "officialRecords": 7,
     "secondaryRecords": 9,
@@ -9960,6 +9960,36 @@
       "field": "registrar",
       "severity": "review",
       "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "spectraa",
+      "field": "subscription",
+      "severity": "review",
+      "reason": "The core feed replaced this total without establishing comparable source/offer and bid-denominator evidence for the complete snapshot. Withhold subscription multiples and historical charts pending source reconciliation; neither the old nor new total is accepted by this review.",
+      "reviewType": "subscription_snapshot_conflict",
+      "displayHold": {
+        "registryPath": "data/public_display_holds.json",
+        "holdId": "spectraa",
+        "scope": "subscription_snapshot",
+        "source": {},
+        "binding": {
+          "snapshot": {
+            "subscription": {
+              "total": 18.43
+            }
+          },
+          "snapshotDigest": "212b33152f0a83be66ce12cfe1c68df574005c3382319277e24bc466039c2c1f"
+        },
+        "identity": {
+          "id": "spectraa",
+          "company": "SpectraA Technology Solutions Limited",
+          "symbol": "SPECTRAA",
+          "openDate": "2026-09-17",
+          "closeDate": "2026-09-21"
+        },
+        "reviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/0b27f66c244074e971a0c7e08591f0b842b3cacf/docs/reviews/2026-09-18-subscription-snapshot-holds.md",
+        "reviewedAt": "2026-09-18T18:08:09.263011+00:00"
+      }
     }
   ]
 }
