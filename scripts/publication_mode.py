@@ -25,6 +25,21 @@ REVIEW_GATE_FILES = {
 }
 REVIEW_SUPPORT_FILES = {'.github/workflows/source-review.yml', '.github/workflows/public-release.yml'}
 REVIEW_OUTPUT_FILES = {'data/validation.json', 'data/missing_queue.json', 'data/phase_status.json'}
+# A bounded reviewed-transport release prepares support without applying its
+# corrections. The later request remains a separate, single-file publication.
+# Registry/apply changes alone must not select this route. The exact role-proof
+# guards below preserve reviewed fields; parser or collection changes still need
+# repair. Explicit-reviewed registry groups are inert in ordinary apply.
+REVIEWED_SUPPORT_DISCRIMINATORS = {
+    'scripts/reviewed_evidence.py', 'scripts/reviewed_corrections.py',
+}
+REVIEWED_SUPPORT_FILES = REVIEWED_SUPPORT_DISCRIMINATORS | {
+    'scripts/apply_corrections.py', 'scripts/publish_transaction.py',
+    'scripts/validate_data.py', 'scripts/run_offer_documents.py',
+    'scripts/final_prospectus_policy.py',
+    'scripts/review_intermediary_columns.py',
+    'data/verified_corrections.json', 'data/reviewed_correction_evidence.json',
+}
 # A change to this leaf collector can use the existing subscription-only stage.
 # Policy/other collector/dependency changes still require ordinary repair.
 SUBSCRIPTION_FILES = {'scripts/track_subscriptions.py'}
@@ -48,6 +63,12 @@ def push_mode(paths):
         return (path in PRESENTATION_FILES or path.startswith(('docs/', 'tests/', 'assets/'))
                 or profile is not None
                 or (len(pure.parts) == 1 and (pure.suffix in {'.html', '.css', '.js'} or path == 'README.md')))
+    def reviewed_support(path):
+        return isinstance(path, str) and (path in REVIEWED_SUPPORT_FILES | REVIEW_SUPPORT_FILES
+            or re.fullmatch(r'data/reviewed_correction_evidence/[a-z0-9][a-z0-9-]*\.json', path) is not None)
+    if (any(isinstance(path, str) and path in REVIEWED_SUPPORT_DISCRIMINATORS for path in paths)
+            and all(presentation(path) or reviewed_support(path) for path in paths)):
+        return 'review'
     if (any(isinstance(path, str) and path in SUBSCRIPTION_FILES for path in paths)
             and all(isinstance(path, str) and (path in SUBSCRIPTION_FILES
                     or (presentation(path) and (path.startswith(('docs/', 'tests/'))

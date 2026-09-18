@@ -175,7 +175,10 @@ def verify_reviewed_publication(root, receipt):
             and all(isinstance(key, str) and key for key in ids)
             and len(ids) == len(set(ids)), 'Reviewed publication needs unique nonempty issuer IDs')
     require(publication.get('status') == 'published', 'Reviewed publication is not accepted')
-    fields = ('issueComposition', 'issueSizeCr', 'freshIssueCr', 'ofsCr')
+    field_groups = {
+        'composition': ('issueComposition', 'issueSizeCr', 'freshIssueCr', 'ofsCr'),
+        'intermediaries': ('leadManagers', 'registrar'),
+    }
     public_composition = ('freshShares', 'ofsShares', 'valuationPriceUsed')
     source_keys = ('sourceUrl', 'documentDate', 'sha256', 'parserVersion', 'checkedAt')
     index = read_json((root / 'data/reviewed_correction_evidence.json').read_bytes())
@@ -214,6 +217,9 @@ def verify_reviewed_publication(root, receipt):
     checked = []
     for key in ids:
         group = groups[key]
+        kind = group.get('kind', 'composition')
+        require(isinstance(kind, str) and kind in field_groups, 'Unsupported reviewed evidence kind')
+        fields = field_groups[kind]
         name = group.get('proofsFile')
         require(isinstance(name, str) and re.fullmatch(r'[a-z0-9][a-z0-9-]*\.json', name),
                 'Unsafe reviewed proof filename')
@@ -225,7 +231,7 @@ def verify_reviewed_publication(root, receipt):
         blob = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
         require(blob == group.get('sourceProofsGitBlob'), 'Reviewed proof Git identity mismatch')
         proofs = read_json(raw)
-        require(isinstance(proofs, dict) and set(proofs) == set(fields), 'Incomplete reviewed composition proofs')
+        require(isinstance(proofs, dict) and set(proofs) == set(fields), 'Incomplete reviewed field-group proofs')
         identity = group['identity']
         require(all(isinstance(identity.get(k), str) and identity[k]
                     for k in ('id', 'company', 'symbol', 'openDate')), 'Incomplete reviewed offer identity')
@@ -250,19 +256,23 @@ def verify_reviewed_publication(root, receipt):
                 expected = {k: expected[k] for k in public_composition if k in expected}
             require(equal(profile.get(field), expected), f'{key}.{field}: reviewed profile value not delivered')
             expected_source = {k: proof[k] for k in source_keys if k in proof}
-            for decision in ([projected.get(field), directory.get(field)] if field == 'issueSizeCr'
-                             else [projected.get(field)]):
+            delivered_decisions = [projected.get(field)]
+            if field == 'issueSizeCr' or field in directory or field in summary[key]:
+                # The compact directory currently omits intermediary names. If a
+                # surface carries a reviewed field, its value and proof must agree.
+                require(equal(summary[key].get(field), expected),
+                        f'{key}.{field}: reviewed directory value not delivered')
+                delivered_decisions.append(directory.get(field))
+            for decision in delivered_decisions:
                 require(isinstance(decision, dict) and decision.get('state') == 'final_verified'
                         and decision.get('sourceEvidence') == expected_source
                         and decision.get('page') == proof['evidence']['page'],
                         f'{key}.{field}: reviewed public evidence not delivered')
-        require(equal(summary[key].get('issueSizeCr'), proofs['issueSizeCr']['value']),
-                f'{key}: reviewed directory value not delivered')
         # The ordinary sampler is not guaranteed to include future reviewed IDs.
         if path not in receipt['sampledProfiles']:
             receipt['sampledProfiles'].append(path)
         receipt['expectedSha256'][path + 'index.html'] = digest((root / path / 'index.html').read_bytes())
-        checked.append({'id': key, 'fields': list(fields), 'proofsSha256': digest(raw),
+        checked.append({'id': key, 'kind': kind, 'fields': list(fields), 'proofsSha256': digest(raw),
                         'proofsGitBlob': blob, 'sourceReviewUrl': group.get('sourceReviewUrl')})
     return {'status': 'passed', 'scope': 'retained-reviewed-evidence-delivery-not-new-source-audit',
             'canonicalSha256': digest(canonical_bytes), 'checked': checked}

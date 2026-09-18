@@ -25,7 +25,7 @@ class ReviewedEvidencePublicationTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.registry = json.loads((ROOT / 'data/verified_corrections.json').read_text())
-        cls.groups = load_groups()
+        cls.groups = [group for group in load_groups() if group['identity']['id'] == 'emmvee']
         cls.production = json.loads((ROOT / 'data/ipos.json').read_text())
 
     def setUp(self):

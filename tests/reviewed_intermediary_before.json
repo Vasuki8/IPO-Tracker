@@ -1,0 +1,2351 @@
+{
+  "ipos": [
+    {
+      "id": "snehaa",
+      "matchKey": "SNEHAAORGANICS",
+      "symbol": "SNEHAA",
+      "company": "Snehaa Organics Limited",
+      "board": "SME",
+      "exchange": "NSE Emerge",
+      "status": "listed",
+      "listingDate": "2025-09-05",
+      "priceBand": {
+        "min": 115.0,
+        "max": 122.0
+      },
+      "lifecycle": {
+        "stage": "exchange",
+        "stageDate": "2025-08-29"
+      },
+      "sources": [
+        {
+          "name": "NSE historical",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+          "asOf": "2026-09-12T08:19:30+05:30"
+        },
+        {
+          "name": "NSE primary-market monthly report",
+          "kind": "exchange",
+          "url": "https://nsearchives.nseindia.com/web/sites/default/files/inline-files/Listing%20_Data_%20Sep2025.xlsx",
+          "asOf": "2026-09-13T05:08:29+05:30"
+        },
+        {
+          "name": "NSE final-listing XBRL",
+          "kind": "exchange",
+          "url": "https://nsearchives.nseindia.com/emerge/corporates/content/IPO_LISTING_9147_1522865_04092025045245_WEB.xml",
+          "asOf": "2026-09-16T02:21:11+05:30"
+        }
+      ],
+      "source": {
+        "name": "NSE historical",
+        "kind": "exchange",
+        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+        "asOf": "2026-09-12T08:19:30+05:30"
+      },
+      "observations": {
+        "NSE": {
+          "openDate": "2025-08-29",
+          "closeDate": "2025-09-02",
+          "priceBand": {
+            "min": 122.0,
+            "max": 122.0
+          },
+          "lotSize": null,
+          "issueSizeCr": null
+        },
+        "NSEFinalIssuePrice": {
+          "source": "NSE primary-market monthly report",
+          "sourceUrl": "https://nsearchives.nseindia.com/web/sites/default/files/inline-files/Listing%20_Data_%20Sep2025.xlsx",
+          "sha256": "932b0a06321cdc107e4ade5c82a631437a638190284335cf75241cad8b52ee05",
+          "company": "Snehaa Organics Limited",
+          "symbol": "SNEHAA",
+          "issueOpenDate": "2025-08-29",
+          "issueCloseDate": "2025-09-02",
+          "field": "Issue_Price",
+          "value": 122.0
+        },
+        "NSEFinalListing": {
+          "source": "NSE final-listing XBRL",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/IPO_LISTING_9147_1522865_04092025045245_WEB.xml",
+          "registerUrl": "https://www.nseindia.com/companies-listing/corporate-filings-offer-documents",
+          "sha256": "76b5b736c72077e06608b69ee4b6d979569e338924ef6875536d9ab3ce33bcf1",
+          "company": "Snehaa Organics Limited",
+          "symbol": "SNEHAA",
+          "isin": "INE1OIC01018",
+          "issueOpenDate": "2025-08-29",
+          "issueCloseDate": "2025-09-02",
+          "fields": {
+            "ISIN": "INE1OIC01018",
+            "DesignateStockExchange": "NSE",
+            "DateOfIssueOpen": "2025-08-29",
+            "DateOfIssueClose": "2025-09-02",
+            "SelectPriceBandOrPrice": "Price Band",
+            "PriceBandFrom": "115",
+            "PriceBandTo": "122",
+            "DiscountPerShare": "0",
+            "CompositionOfIssue": "Fresh",
+            "NumberOfFreshIssueShares": "2679000",
+            "NumberOfIssueShares": "2679000",
+            "NumberOfShareAllocatedToAnchor": "0",
+            "NumberOfShareAllocatedToQIB": "126000",
+            "NumberOfShareAllocatedToRII": "1210000",
+            "NumberOfShareAllocatedToNII": "1209000",
+            "NumberOfShareAllocatedToReservationPortion": "0",
+            "NumberOfShareAllocatedToMarketMakerReservationPortion": "134000",
+            "NumberOfShareAllocatedToOther": "0",
+            "MarketLot": "1000",
+            "FinalIssuePrice": "122",
+            "AmountOfIssueSize": "326800000",
+            "NumberOfTimesIssueOverSubscribed": "26",
+            "NumberOfSharePostIssue": "10179000",
+            "ScripID": "SNEHAA",
+            "DateOfListing": "2025-09-05",
+            "DateOfSubmission": "2025-09-04"
+          }
+        }
+      },
+      "documents": [
+        {
+          "url": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+          "source": "NSE",
+          "type": "PROSPECTUS",
+          "title": "Snehaa Organics Limited Final Prospectus",
+          "filedDate": "2025-09-03",
+          "registerUrl": "https://www.nseindia.com/companies-listing/corporate-filings-offer-documents",
+          "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+          "verifiedAt": "2026-09-18T06:28:13+05:30"
+        }
+      ],
+      "validation": {
+        "status": "single-source",
+        "checkedAt": "2026-09-16T07:23:19+05:30",
+        "checks": [],
+        "independentSources": [
+          "NSE"
+        ]
+      },
+      "profilePath": "ipo/snehaa/",
+      "openDate": "2025-08-29",
+      "closeDate": "2025-09-02",
+      "sharesOffered": 2679000,
+      "issueSizeCr": 32.68,
+      "freshIssueCr": 32.68,
+      "ofsCr": 0.0,
+      "issueComposition": {
+        "freshShares": 2679000,
+        "freshIssueCr": 32.68,
+        "valuationPriceUsed": 122.0
+      },
+      "nseIssueInfoLotBackfill": {
+        "status": "no-lot",
+        "lastAttemptAt": "2026-09-14T04:57:41+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SNEHAA&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SNEHAA&series=SME",
+        "lotSize": null,
+        "error": null
+      },
+      "sebiOtherDocumentsAttempt": {
+        "checkedAt": "2026-09-15T23:17:11+05:30",
+        "status": "no_matching_official_document",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=78&ssid=15"
+      },
+      "listing": {
+        "issuePrice": 122.0,
+        "issuePriceEvidence": {
+          "source": "NSE primary-market monthly report",
+          "sourceUrl": "https://nsearchives.nseindia.com/web/sites/default/files/inline-files/Listing%20_Data_%20Sep2025.xlsx",
+          "sha256": "932b0a06321cdc107e4ade5c82a631437a638190284335cf75241cad8b52ee05",
+          "company": "Snehaa Organics Limited",
+          "symbol": "SNEHAA",
+          "issueOpenDate": "2025-08-29",
+          "issueCloseDate": "2025-09-02",
+          "field": "Issue_Price",
+          "value": 122.0,
+          "checkedAt": "2026-09-15T05:06:02.675510+00:00"
+        },
+        "gainPct": null
+      },
+      "lotSize": 1000,
+      "marketLot": 1000,
+      "lotSizeEvidence": {
+        "source": "Final Prospectus",
+        "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+        "documentType": "PROSPECTUS",
+        "documentDate": "2025-09-03",
+        "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+        "parserVersion": 31,
+        "checkedAt": "2026-09-18T06:28:13+05:30",
+        "issueOpenDate": "2025-08-29",
+        "field": "lotSize",
+        "value": 1000,
+        "evidence": {
+          "page": 10,
+          "heading": "Bid Lot 1000 equity shares",
+          "value": 1000,
+          "basis": "explicit Bid Lot/Minimum Bid Lot in Final Prospectus"
+        }
+      },
+      "nseOfferFilings": {
+        "id": "snehaa",
+        "status": "updated",
+        "changedFields": [
+          "lotSize"
+        ],
+        "documentsAdded": 0,
+        "lastAttemptAt": "2026-09-15T20:51:11+00:00",
+        "fingerprint": "93f6d0bddbcfeab6d99d12aba00250b8026016fed4b671b2a65188247f03870c"
+      },
+      "staticFieldProvenance": {
+        "priceBand": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-09-03",
+          "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-18T06:28:13+05:30",
+          "issueOpenDate": "2025-08-29",
+          "field": "priceBand",
+          "value": {
+            "min": 115.0,
+            "max": 122.0
+          },
+          "evidence": {
+            "page": 16,
+            "heading": "Floor Price) of ₹ 115 and the maximum price (Cap Price) of ₹ 122",
+            "value": {
+              "min": 115.0,
+              "max": 122.0
+            },
+            "basis": "explicit Price Band/Floor Price/Cap Price in Final Prospectus"
+          }
+        },
+        "lotSize": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-09-03",
+          "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-18T06:28:13+05:30",
+          "issueOpenDate": "2025-08-29",
+          "field": "lotSize",
+          "value": 1000,
+          "evidence": {
+            "page": 10,
+            "heading": "Bid Lot 1000 equity shares",
+            "value": 1000,
+            "basis": "explicit Bid Lot/Minimum Bid Lot in Final Prospectus"
+          }
+        },
+        "shareholding": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-09-03",
+          "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-18T06:28:13+05:30",
+          "issueOpenDate": "2025-08-29",
+          "field": "shareholding",
+          "value": {
+            "promoters": [],
+            "promoterPreIssuePct": 100.0
+          },
+          "evidence": {
+            "page": 34,
+            "heading": "PRE-ISSUE SHAREHOLDING",
+            "promoterPreIssuePct": 100.0,
+            "basis": "explicit pre-issue promoter ownership in Final Prospectus"
+          }
+        },
+        "issueComposition": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-09-03",
+          "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+          "parserVersion": 26,
+          "checkedAt": "2026-09-17T01:51:48+05:30",
+          "issueOpenDate": "2025-08-29",
+          "field": "issueComposition",
+          "value": {
+            "freshShares": 2679000,
+            "freshIssueCr": 32.68,
+            "valuationPriceUsed": 122.0
+          },
+          "evidence": {
+            "basis": "validated Final Prospectus issue composition",
+            "freshShares": 2679000,
+            "ofsShares": null,
+            "freshIssueCr": 32.68,
+            "ofsCr": null,
+            "totalIssueSizeCr": null
+          }
+        },
+        "freshIssueCr": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-09-03",
+          "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+          "parserVersion": 26,
+          "checkedAt": "2026-09-17T01:51:48+05:30",
+          "issueOpenDate": "2025-08-29",
+          "field": "freshIssueCr",
+          "value": 32.68,
+          "evidence": {
+            "basis": "validated Final Prospectus issue composition",
+            "freshShares": 2679000,
+            "ofsShares": null,
+            "freshIssueCr": 32.68,
+            "ofsCr": null,
+            "totalIssueSizeCr": null
+          }
+        },
+        "leadManagers": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-09-03",
+          "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-18T06:28:13+05:30",
+          "issueOpenDate": "2025-08-29",
+          "field": "leadManagers",
+          "value": [
+            "SKYLINE FINANCIAL SERVICES PRIVATE LIMITED FAST TRACK FINSEC PRIVATE LIMITED"
+          ],
+          "evidence": {
+            "page": 1,
+            "heading": "LEAD MANAGER TO THE ISSUE REGISTRAR TO THE ISSUE",
+            "entities": [
+              "SKYLINE FINANCIAL SERVICES PRIVATE LIMITED FAST TRACK FINSEC PRIVATE LIMITED"
+            ]
+          }
+        }
+      },
+      "staticSourcePolicy": {
+        "policy": "final-prospectus-only",
+        "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+        "documentType": "PROSPECTUS",
+        "checkedAt": "2026-09-18T18:09:26.036375+00:00",
+        "verifiedFields": [
+          "freshIssueCr",
+          "issueComposition",
+          "leadManagers",
+          "lotSize",
+          "priceBand",
+          "shareholding"
+        ],
+        "pendingRevalidationFields": [
+          "issueSizeCr",
+          "listing.issuePrice",
+          "objectsOfIssue",
+          "ofsCr"
+        ],
+        "status": "pending-revalidation",
+        "marketStaticTerms": "observation-only"
+      },
+      "nseFinalProspectusDiscovery": {
+        "id": "snehaa",
+        "company": "Snehaa Organics Limited",
+        "openDate": "2025-08-29",
+        "status": "updated",
+        "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+        "lastAttemptAt": "2026-09-16T20:11:27+00:00",
+        "fingerprint": "4cc21ff16ab5be1e4e603608d77f895a2f41a99cb14096a8f6e42f0a391760d7"
+      },
+      "objectsOfIssue": null,
+      "shareholding": {
+        "promoters": [],
+        "promoterPreIssuePct": 100.0
+      },
+      "documentFieldProvenance": {
+        "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+        "documentType": "PROSPECTUS",
+        "documentDate": "2025-09-03",
+        "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+        "parserVersion": 31,
+        "checkedAt": "2026-09-18T06:28:13+05:30",
+        "evidence": {
+          "priceBand": {
+            "page": 16,
+            "heading": "Floor Price) of ₹ 115 and the maximum price (Cap Price) of ₹ 122",
+            "value": {
+              "min": 115.0,
+              "max": 122.0
+            },
+            "basis": "explicit Price Band/Floor Price/Cap Price in Final Prospectus"
+          },
+          "lotSize": {
+            "page": 10,
+            "heading": "Bid Lot 1000 equity shares",
+            "value": 1000,
+            "basis": "explicit Bid Lot/Minimum Bid Lot in Final Prospectus"
+          },
+          "leadManagers": {
+            "page": 1,
+            "heading": "LEAD MANAGER TO THE ISSUE REGISTRAR TO THE ISSUE",
+            "entities": [
+              "SKYLINE FINANCIAL SERVICES PRIVATE LIMITED FAST TRACK FINSEC PRIVATE LIMITED"
+            ]
+          },
+          "shareholding": {
+            "page": 34,
+            "heading": "PRE-ISSUE SHAREHOLDING",
+            "promoterPreIssuePct": 100.0,
+            "basis": "explicit pre-issue promoter ownership in Final Prospectus"
+          }
+        },
+        "sourcePolicy": "final-prospectus-only"
+      },
+      "dataCorrections": [
+        {
+          "field": "priceBand",
+          "before": {
+            "min": 122.0,
+            "max": 122.0
+          },
+          "after": {
+            "min": 115.0,
+            "max": 122.0
+          },
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+          "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+          "parserVersion": 26,
+          "correctedAt": "2026-09-17T01:51:48+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": null,
+          "after": [
+            {
+              "purpose": "………………………………………………………………………………",
+              "amountCr": 103.0
+            },
+            {
+              "purpose": "BASIS FOR ISSUE PRICE………………………………………………………………………………",
+              "amountCr": 114.0
+            },
+            {
+              "purpose": "STATEMENT OF POSSIBLE TAX BENEFITS…………………………………………………………",
+              "amountCr": 120.0
+            },
+            {
+              "purpose": "SECTION V – ABOUT THE COMPANY………………………………………………………………",
+              "amountCr": 123.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW………………………………………………………………………………",
+              "amountCr": 123.0
+            },
+            {
+              "purpose": "OUR BUSINESS …………………………………………………………………………………………",
+              "amountCr": 178.0
+            },
+            {
+              "purpose": "KEY REGULATION AND POLICIES……………………………………………………………………",
+              "amountCr": 224.0
+            },
+            {
+              "purpose": "OUR HISTORY AND CERTAIN OTHER CORPORATE MATTERS………………………………",
+              "amountCr": 238.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT…………………………………………………………………………………",
+              "amountCr": 243.0
+            },
+            {
+              "purpose": "OUR PROMOTER AND PROMOTER GROUP………………………………………………………",
+              "amountCr": 259.0
+            },
+            {
+              "purpose": "OUR GROUP COMPANIES ………………………………………………………………………...…",
+              "amountCr": 266.0
+            },
+            {
+              "purpose": "RELATED PARTY TRANSACTIONS…………………………………………………………………",
+              "amountCr": 277.0
+            }
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+          "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+          "parserVersion": 26,
+          "correctedAt": "2026-09-17T01:51:48+05:30"
+        },
+        {
+          "field": "shareholding",
+          "before": null,
+          "after": {
+            "promoters": [],
+            "promoterPreIssuePct": 100.0
+          },
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+          "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+          "parserVersion": 26,
+          "correctedAt": "2026-09-17T01:51:48+05:30"
+        },
+        {
+          "field": "issueComposition",
+          "before": {
+            "freshShares": 2679000,
+            "ofsShares": 0,
+            "freshIssueCr": 32.6838,
+            "ofsCr": 0.0,
+            "totalIssueSizeCr": 32.68,
+            "valuationPriceUsed": 122.0
+          },
+          "after": {
+            "freshShares": 2679000,
+            "freshIssueCr": 32.68,
+            "valuationPriceUsed": 122.0
+          },
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+          "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+          "parserVersion": 26,
+          "correctedAt": "2026-09-17T01:51:48+05:30"
+        },
+        {
+          "field": "freshIssueCr",
+          "before": 32.6838,
+          "after": 32.68,
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+          "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+          "parserVersion": 26,
+          "correctedAt": "2026-09-17T01:51:48+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "………………………………………………………………………………",
+              "amountCr": 103.0
+            },
+            {
+              "purpose": "BASIS FOR ISSUE PRICE………………………………………………………………………………",
+              "amountCr": 114.0
+            },
+            {
+              "purpose": "STATEMENT OF POSSIBLE TAX BENEFITS…………………………………………………………",
+              "amountCr": 120.0
+            },
+            {
+              "purpose": "SECTION V – ABOUT THE COMPANY………………………………………………………………",
+              "amountCr": 123.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW………………………………………………………………………………",
+              "amountCr": 123.0
+            },
+            {
+              "purpose": "OUR BUSINESS …………………………………………………………………………………………",
+              "amountCr": 178.0
+            },
+            {
+              "purpose": "KEY REGULATION AND POLICIES……………………………………………………………………",
+              "amountCr": 224.0
+            },
+            {
+              "purpose": "OUR HISTORY AND CERTAIN OTHER CORPORATE MATTERS………………………………",
+              "amountCr": 238.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT…………………………………………………………………………………",
+              "amountCr": 243.0
+            },
+            {
+              "purpose": "OUR PROMOTER AND PROMOTER GROUP………………………………………………………",
+              "amountCr": 259.0
+            },
+            {
+              "purpose": "OUR GROUP COMPANIES ………………………………………………………………………...…",
+              "amountCr": 266.0
+            },
+            {
+              "purpose": "RELATED PARTY TRANSACTIONS…………………………………………………………………",
+              "amountCr": 277.0
+            }
+          ],
+          "after": null,
+          "reason": "Invalid objects of issue quarantined pending Final Prospectus revalidation",
+          "findings": [
+            "Objects-of-issue row 1 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 2 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 3 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 4 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 5 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 6 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 7 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 8 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 9 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 10 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 11 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 12 resembles a table-of-contents entry, not a use of proceeds"
+          ],
+          "sourceEvidence": {
+            "source": "Final Prospectus",
+            "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+            "documentType": "PROSPECTUS",
+            "documentDate": "2025-09-03",
+            "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+            "parserVersion": 26,
+            "checkedAt": "2026-09-17T01:51:48+05:30",
+            "issueOpenDate": "2025-08-29",
+            "field": "objectsOfIssue",
+            "value": [
+              {
+                "purpose": "………………………………………………………………………………",
+                "amountCr": 103.0
+              },
+              {
+                "purpose": "BASIS FOR ISSUE PRICE………………………………………………………………………………",
+                "amountCr": 114.0
+              },
+              {
+                "purpose": "STATEMENT OF POSSIBLE TAX BENEFITS…………………………………………………………",
+                "amountCr": 120.0
+              },
+              {
+                "purpose": "SECTION V – ABOUT THE COMPANY………………………………………………………………",
+                "amountCr": 123.0
+              },
+              {
+                "purpose": "INDUSTRY OVERVIEW………………………………………………………………………………",
+                "amountCr": 123.0
+              },
+              {
+                "purpose": "OUR BUSINESS …………………………………………………………………………………………",
+                "amountCr": 178.0
+              },
+              {
+                "purpose": "KEY REGULATION AND POLICIES……………………………………………………………………",
+                "amountCr": 224.0
+              },
+              {
+                "purpose": "OUR HISTORY AND CERTAIN OTHER CORPORATE MATTERS………………………………",
+                "amountCr": 238.0
+              },
+              {
+                "purpose": "OUR MANAGEMENT…………………………………………………………………………………",
+                "amountCr": 243.0
+              },
+              {
+                "purpose": "OUR PROMOTER AND PROMOTER GROUP………………………………………………………",
+                "amountCr": 259.0
+              },
+              {
+                "purpose": "OUR GROUP COMPANIES ………………………………………………………………………...…",
+                "amountCr": 266.0
+              },
+              {
+                "purpose": "RELATED PARTY TRANSACTIONS…………………………………………………………………",
+                "amountCr": 277.0
+              }
+            ]
+          },
+          "documentEvidence": null,
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+          "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+          "correctedAt": "2026-09-17T00:08:43.420328+00:00"
+        },
+        {
+          "field": "leadManagers",
+          "before": null,
+          "after": [
+            "SKYLINE FINANCIAL SERVICES PRIVATE LIMITED FAST TRACK FINSEC PRIVATE LIMITED"
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+          "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+          "parserVersion": 31,
+          "correctedAt": "2026-09-18T06:28:13+05:30"
+        }
+      ],
+      "offerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 31,
+        "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+        "documentType": "PROSPECTUS",
+        "documentTitle": "Snehaa Organics Limited Final Prospectus",
+        "documentFiledDate": "2025-09-03",
+        "source": "NSE",
+        "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+        "pagesRead": 467,
+        "pageCount": 467,
+        "extractedFields": [
+          "lotSize",
+          "shareholding",
+          "priceBand",
+          "leadManagers"
+        ],
+        "canonicalFields": [
+          "freshIssueCr",
+          "issueComposition",
+          "leadManagers",
+          "lotSize",
+          "priceBand",
+          "shareholding"
+        ],
+        "extractedAt": "2026-09-18T06:28:13+05:30",
+        "conflicts": [],
+        "sourcePolicy": "final-prospectus-only"
+      },
+      "documentRepair": {
+        "status": "updated",
+        "financialStatus": "needs_review",
+        "lastAttemptAt": "2026-09-18T06:28:13+05:30",
+        "parserVersion": 31,
+        "sourcePolicy": "final-prospectus-only"
+      },
+      "objectsOfIssueReview": {
+        "status": "quarantined",
+        "checkedAt": "2026-09-17T00:08:43.420328+00:00",
+        "snapshot": {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "………………………………………………………………………………",
+              "amountCr": 103.0
+            },
+            {
+              "purpose": "BASIS FOR ISSUE PRICE………………………………………………………………………………",
+              "amountCr": 114.0
+            },
+            {
+              "purpose": "STATEMENT OF POSSIBLE TAX BENEFITS…………………………………………………………",
+              "amountCr": 120.0
+            },
+            {
+              "purpose": "SECTION V – ABOUT THE COMPANY………………………………………………………………",
+              "amountCr": 123.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW………………………………………………………………………………",
+              "amountCr": 123.0
+            },
+            {
+              "purpose": "OUR BUSINESS …………………………………………………………………………………………",
+              "amountCr": 178.0
+            },
+            {
+              "purpose": "KEY REGULATION AND POLICIES……………………………………………………………………",
+              "amountCr": 224.0
+            },
+            {
+              "purpose": "OUR HISTORY AND CERTAIN OTHER CORPORATE MATTERS………………………………",
+              "amountCr": 238.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT…………………………………………………………………………………",
+              "amountCr": 243.0
+            },
+            {
+              "purpose": "OUR PROMOTER AND PROMOTER GROUP………………………………………………………",
+              "amountCr": 259.0
+            },
+            {
+              "purpose": "OUR GROUP COMPANIES ………………………………………………………………………...…",
+              "amountCr": 266.0
+            },
+            {
+              "purpose": "RELATED PARTY TRANSACTIONS…………………………………………………………………",
+              "amountCr": 277.0
+            }
+          ],
+          "after": null,
+          "reason": "Invalid objects of issue quarantined pending Final Prospectus revalidation",
+          "findings": [
+            "Objects-of-issue row 1 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 2 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 3 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 4 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 5 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 6 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 7 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 8 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 9 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 10 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 11 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 12 resembles a table-of-contents entry, not a use of proceeds"
+          ],
+          "sourceEvidence": {
+            "source": "Final Prospectus",
+            "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+            "documentType": "PROSPECTUS",
+            "documentDate": "2025-09-03",
+            "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+            "parserVersion": 26,
+            "checkedAt": "2026-09-17T01:51:48+05:30",
+            "issueOpenDate": "2025-08-29",
+            "field": "objectsOfIssue",
+            "value": [
+              {
+                "purpose": "………………………………………………………………………………",
+                "amountCr": 103.0
+              },
+              {
+                "purpose": "BASIS FOR ISSUE PRICE………………………………………………………………………………",
+                "amountCr": 114.0
+              },
+              {
+                "purpose": "STATEMENT OF POSSIBLE TAX BENEFITS…………………………………………………………",
+                "amountCr": 120.0
+              },
+              {
+                "purpose": "SECTION V – ABOUT THE COMPANY………………………………………………………………",
+                "amountCr": 123.0
+              },
+              {
+                "purpose": "INDUSTRY OVERVIEW………………………………………………………………………………",
+                "amountCr": 123.0
+              },
+              {
+                "purpose": "OUR BUSINESS …………………………………………………………………………………………",
+                "amountCr": 178.0
+              },
+              {
+                "purpose": "KEY REGULATION AND POLICIES……………………………………………………………………",
+                "amountCr": 224.0
+              },
+              {
+                "purpose": "OUR HISTORY AND CERTAIN OTHER CORPORATE MATTERS………………………………",
+                "amountCr": 238.0
+              },
+              {
+                "purpose": "OUR MANAGEMENT…………………………………………………………………………………",
+                "amountCr": 243.0
+              },
+              {
+                "purpose": "OUR PROMOTER AND PROMOTER GROUP………………………………………………………",
+                "amountCr": 259.0
+              },
+              {
+                "purpose": "OUR GROUP COMPANIES ………………………………………………………………………...…",
+                "amountCr": 266.0
+              },
+              {
+                "purpose": "RELATED PARTY TRANSACTIONS…………………………………………………………………",
+                "amountCr": 277.0
+              }
+            ]
+          },
+          "documentEvidence": null,
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+          "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+          "correctedAt": "2026-09-17T00:08:43.420328+00:00"
+        }
+      },
+      "leadManagers": [
+        "SKYLINE FINANCIAL SERVICES PRIVATE LIMITED FAST TRACK FINSEC PRIVATE LIMITED"
+      ],
+      "p4OfferResidualRepair": {
+        "status": "updated",
+        "parserVersion": 4,
+        "mainParserVersion": 31,
+        "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+        "checkedAt": "2026-09-18T06:28:13+05:30",
+        "changedFields": [
+          "leadManagers",
+          "documents"
+        ]
+      }
+    },
+    {
+      "id": "sacheerome",
+      "matchKey": "SACHEEROME",
+      "symbol": "SACHEEROME",
+      "company": "Sacheerome Limited",
+      "board": "SME",
+      "exchange": "NSE Emerge",
+      "status": "listed",
+      "listingDate": "2025-06-16",
+      "priceBand": {
+        "min": 96.0,
+        "max": 102.0
+      },
+      "lifecycle": {
+        "stage": "exchange",
+        "stageDate": "2025-06-09"
+      },
+      "sources": [
+        {
+          "name": "NSE historical",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+          "asOf": "2026-09-12T08:19:29+05:30"
+        },
+        {
+          "name": "NSE primary-market monthly report",
+          "kind": "exchange",
+          "url": "https://nsearchives.nseindia.com/web/sites/default/files/inline-files/Primary%20Market%20Monthly%20Report%20-%20June%202025.xlsx",
+          "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SACHEEROME&type=Past",
+          "asOf": "2026-09-13T18:37:59+05:30"
+        }
+      ],
+      "source": {
+        "name": "NSE historical",
+        "kind": "exchange",
+        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+        "asOf": "2026-09-12T08:19:29+05:30"
+      },
+      "observations": {
+        "NSE": {
+          "openDate": "2025-06-09",
+          "closeDate": "2025-06-11",
+          "priceBand": {
+            "min": 102.0,
+            "max": 102.0
+          },
+          "lotSize": null,
+          "issueSizeCr": null
+        },
+        "NSEFinalIssuePrice": {
+          "source": "NSE primary-market monthly report",
+          "sourceUrl": "https://nsearchives.nseindia.com/web/sites/default/files/inline-files/Primary%20Market%20Monthly%20Report%20-%20June%202025.xlsx",
+          "sha256": "cfcbd6008cbce7da108a5dc35ab52074a6f9a2dbd16b8cac5024a1029859a8eb",
+          "company": "Sacheerome Limited",
+          "symbol": null,
+          "issueOpenDate": "2025-06-09",
+          "issueCloseDate": "2025-06-11",
+          "field": "Issue_Price",
+          "value": 102.0
+        }
+      },
+      "documents": [
+        {
+          "url": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "source": "NSE",
+          "type": "PROSPECTUS",
+          "title": "Sacheerome Limited Final Prospectus",
+          "filedDate": "2025-06-12",
+          "registerUrl": "https://www.nseindia.com/companies-listing/corporate-filings-offer-documents",
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "verifiedAt": "2026-09-18T06:29:41+05:30"
+        }
+      ],
+      "validation": {
+        "status": "single-source",
+        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checks": [],
+        "independentSources": [
+          "NSE"
+        ]
+      },
+      "profilePath": "ipo/sacheerome/",
+      "openDate": "2025-06-09",
+      "closeDate": "2025-06-11",
+      "sharesOffered": 6040800,
+      "issueSizeCr": 61.61616,
+      "freshIssueCr": 61.6162,
+      "ofsCr": 0.0,
+      "issueComposition": {
+        "freshShares": 6040800,
+        "ofsShares": 0,
+        "freshIssueCr": 61.6162,
+        "ofsCr": 0.0,
+        "totalIssueSizeCr": 61.61616,
+        "valuationPriceUsed": 102.0
+      },
+      "lotSize": 1200,
+      "minimumBidQuantity": 1200,
+      "marketLot": 1200,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T18:37:59+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SACHEEROME&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SACHEEROME&series=SME",
+        "lotSize": 1200,
+        "error": null
+      },
+      "listing": {
+        "issuePrice": 102.0,
+        "issuePriceEvidence": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-06-12",
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-18T06:29:41+05:30",
+          "issueOpenDate": "2025-06-09",
+          "field": "listing.issuePrice",
+          "value": 102.0,
+          "evidence": {
+            "page": 2,
+            "heading": "ISSUE PRICE OF ₹ 102 PER EQUITY SHARE",
+            "value": 102.0,
+            "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+            "method": "final-offer-price-v2"
+          }
+        },
+        "gainPct": null
+      },
+      "nseOfferFilings": {
+        "id": "sacheerome",
+        "status": "no_match",
+        "changedFields": [],
+        "documentsAdded": 0,
+        "lastAttemptAt": "2026-09-16T02:04:37+00:00",
+        "fingerprint": "ee4bc3d1f2321626806b185dd40270bd60f9e4e5998bead2c0899554533f82ce"
+      },
+      "staticFieldProvenance": {
+        "priceBand": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-06-12",
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-18T06:29:41+05:30",
+          "issueOpenDate": "2025-06-09",
+          "field": "priceBand",
+          "value": {
+            "min": 96.0,
+            "max": 102.0
+          },
+          "evidence": {
+            "page": 2,
+            "heading": "PRICE BAND: ₹ 96.00 TO ₹ 102.00 PER EQUITY SHARE",
+            "value": {
+              "min": 96.0,
+              "max": 102.0
+            },
+            "basis": "explicit Price Band/Floor Price/Cap Price in Final Prospectus"
+          }
+        },
+        "lotSize": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-06-12",
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-18T06:29:41+05:30",
+          "issueOpenDate": "2025-06-09",
+          "field": "lotSize",
+          "value": 1200,
+          "evidence": {
+            "page": 8,
+            "heading": "Bid Lot 1200 Equity Shares",
+            "value": 1200,
+            "basis": "explicit Bid Lot/Minimum Bid Lot in Final Prospectus"
+          }
+        },
+        "promoters": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-06-12",
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-18T06:29:41+05:30",
+          "issueOpenDate": "2025-06-09",
+          "field": "promoters",
+          "value": [
+            "MANOJ ARORA",
+            "ALKA ARORA",
+            "DHRUV ARORA"
+          ],
+          "evidence": {
+            "page": 1,
+            "heading": "PROMOTERS OF OUR COMPANY",
+            "rows": [
+              "PROMOTERS OF OUR COMPANY: MR. MANOJ ARORA, MRS. ALKA ARORA AND MR. DHRUV ARORA"
+            ],
+            "entities": [
+              "MANOJ ARORA",
+              "ALKA ARORA",
+              "DHRUV ARORA"
+            ],
+            "method": "bounded-promoter-heading-v1"
+          }
+        },
+        "shareholding": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-06-12",
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-18T06:29:41+05:30",
+          "issueOpenDate": "2025-06-09",
+          "field": "shareholding",
+          "value": {
+            "promoters": [],
+            "promoterPreIssuePct": 98.0
+          },
+          "evidence": {
+            "page": 21,
+            "heading": "Promoter and Promoter Group",
+            "promoterPreIssuePct": 98.0,
+            "basis": "explicit pre-issue promoter ownership in Final Prospectus"
+          }
+        },
+        "financials": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-06-12",
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-18T06:29:41+05:30",
+          "issueOpenDate": "2025-06-09",
+          "field": "financials",
+          "value": {
+            "unit": "₹ crore",
+            "periods": [
+              {
+                "period": "FY2025",
+                "netWorthCr": 61.9859,
+                "revenueCr": 107.5359,
+                "patCr": 15.982,
+                "totalIncomeCr": 108.1341,
+                "ebitdaCr": 23.3826,
+                "roePct": 29.6
+              },
+              {
+                "period": "FY2024",
+                "netWorthCr": 46.0039,
+                "revenueCr": 85.0953,
+                "patCr": 10.673,
+                "totalIncomeCr": 86.3978,
+                "ebitdaCr": 16.4537,
+                "roePct": 26.24
+              },
+              {
+                "period": "FY2023",
+                "netWorthCr": 35.3309,
+                "revenueCr": 70.4919,
+                "patCr": 5.9941,
+                "totalIncomeCr": 70.9281,
+                "ebitdaCr": 10.3567,
+                "roePct": 18.54
+              }
+            ]
+          },
+          "evidence": {
+            "FY2025.netWorthCr": {
+              "page": 22,
+              "header": "tal Structure” beginning on Page No. 48 of this Prospectus\n         8.          Summary of Financial Information\n                     Following are the details as per the Restated Financial Information for the Financial Years ended on March 31, 2025, 2024 and\n                     2023:\n                                                                                                                                                                       (₹ in thousands)\n                         S. No.                                Particulars                                  March 31, 2025               March 31, 2024              March 31, 2023",
+              "row": "2.         Net Worth                                                                6,19,859                     4,60,039                    3,53,309",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 61.9859,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2024.netWorthCr": {
+              "page": 22,
+              "header": "tal Structure” beginning on Page No. 48 of this Prospectus\n         8.          Summary of Financial Information\n                     Following are the details as per the Restated Financial Information for the Financial Years ended on March 31, 2025, 2024 and\n                     2023:\n                                                                                                                                                                       (₹ in thousands)\n                         S. No.                                Particulars                                  March 31, 2025               March 31, 2024              March 31, 2023",
+              "row": "2.         Net Worth                                                                6,19,859                     4,60,039                    3,53,309",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 46.0039,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2023.netWorthCr": {
+              "page": 22,
+              "header": "tal Structure” beginning on Page No. 48 of this Prospectus\n         8.          Summary of Financial Information\n                     Following are the details as per the Restated Financial Information for the Financial Years ended on March 31, 2025, 2024 and\n                     2023:\n                                                                                                                                                                       (₹ in thousands)\n                         S. No.                                Particulars                                  March 31, 2025               March 31, 2024              March 31, 2023",
+              "row": "2.         Net Worth                                                                6,19,859                     4,60,039                    3,53,309",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 35.3309,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2025.revenueCr": {
+              "page": 22,
+              "header": "tal Structure” beginning on Page No. 48 of this Prospectus\n         8.          Summary of Financial Information\n                     Following are the details as per the Restated Financial Information for the Financial Years ended on March 31, 2025, 2024 and\n                     2023:\n                                                                                                                                                                       (₹ in thousands)\n                         S. No.                                Particulars                                  March 31, 2025               March 31, 2024              March 31, 2023",
+              "row": "3.         Revenue from operations                                                 10,75,359                     8,50,953                    7,04,919",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 107.5359,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2024.revenueCr": {
+              "page": 22,
+              "header": "tal Structure” beginning on Page No. 48 of this Prospectus\n         8.          Summary of Financial Information\n                     Following are the details as per the Restated Financial Information for the Financial Years ended on March 31, 2025, 2024 and\n                     2023:\n                                                                                                                                                                       (₹ in thousands)\n                         S. No.                                Particulars                                  March 31, 2025               March 31, 2024              March 31, 2023",
+              "row": "3.         Revenue from operations                                                 10,75,359                     8,50,953                    7,04,919",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 85.0953,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2023.revenueCr": {
+              "page": 22,
+              "header": "tal Structure” beginning on Page No. 48 of this Prospectus\n         8.          Summary of Financial Information\n                     Following are the details as per the Restated Financial Information for the Financial Years ended on March 31, 2025, 2024 and\n                     2023:\n                                                                                                                                                                       (₹ in thousands)\n                         S. No.                                Particulars                                  March 31, 2025               March 31, 2024              March 31, 2023",
+              "row": "3.         Revenue from operations                                                 10,75,359                     8,50,953                    7,04,919",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 70.4919,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2025.patCr": {
+              "page": 22,
+              "header": "tal Structure” beginning on Page No. 48 of this Prospectus\n         8.          Summary of Financial Information\n                     Following are the details as per the Restated Financial Information for the Financial Years ended on March 31, 2025, 2024 and\n                     2023:\n                                                                                                                                                                       (₹ in thousands)\n                         S. No.                                Particulars                                  March 31, 2025               March 31, 2024              March 31, 2023",
+              "row": "4.         Profit after Tax                                                         1,59,820                     1,06,730                     59,941",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 15.982,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2024.patCr": {
+              "page": 22,
+              "header": "tal Structure” beginning on Page No. 48 of this Prospectus\n         8.          Summary of Financial Information\n                     Following are the details as per the Restated Financial Information for the Financial Years ended on March 31, 2025, 2024 and\n                     2023:\n                                                                                                                                                                       (₹ in thousands)\n                         S. No.                                Particulars                                  March 31, 2025               March 31, 2024              March 31, 2023",
+              "row": "4.         Profit after Tax                                                         1,59,820                     1,06,730                     59,941",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 10.673,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2023.patCr": {
+              "page": 22,
+              "header": "tal Structure” beginning on Page No. 48 of this Prospectus\n         8.          Summary of Financial Information\n                     Following are the details as per the Restated Financial Information for the Financial Years ended on March 31, 2025, 2024 and\n                     2023:\n                                                                                                                                                                       (₹ in thousands)\n                         S. No.                                Particulars                                  March 31, 2025               March 31, 2024              March 31, 2023",
+              "row": "4.         Profit after Tax                                                         1,59,820                     1,06,730                     59,941",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 5.9941,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2025.totalIncomeCr": {
+              "page": 103,
+              "header": "FINANCIAL SNAPSHOT:\n\n              The financial performance of our company for Fiscals 2025, 2024 and 2023 is as follows:\n                                                                                                                                                            (Amount Rs. Thousands)\n\n                Particulars                                               Fiscal 2025                             Fiscal 2024                                Fiscal 2023",
+              "row": "Total Income                                               10,81,341                                8,63,978                                   7,09,281",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 108.1341,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2024.totalIncomeCr": {
+              "page": 103,
+              "header": "FINANCIAL SNAPSHOT:\n\n              The financial performance of our company for Fiscals 2025, 2024 and 2023 is as follows:\n                                                                                                                                                            (Amount Rs. Thousands)\n\n                Particulars                                               Fiscal 2025                             Fiscal 2024                                Fiscal 2023",
+              "row": "Total Income                                               10,81,341                                8,63,978                                   7,09,281",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 86.3978,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2023.totalIncomeCr": {
+              "page": 103,
+              "header": "FINANCIAL SNAPSHOT:\n\n              The financial performance of our company for Fiscals 2025, 2024 and 2023 is as follows:\n                                                                                                                                                            (Amount Rs. Thousands)\n\n                Particulars                                               Fiscal 2025                             Fiscal 2024                                Fiscal 2023",
+              "row": "Total Income                                               10,81,341                                8,63,978                                   7,09,281",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 70.9281,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2025.ebitdaCr": {
+              "page": 103,
+              "header": "FINANCIAL SNAPSHOT:\n\n              The financial performance of our company for Fiscals 2025, 2024 and 2023 is as follows:\n                                                                                                                                                            (Amount Rs. Thousands)\n\n                Particulars                                               Fiscal 2025                             Fiscal 2024                                Fiscal 2023",
+              "row": "EBITDA                                                      2,33,826                                1,64,537                                   1,03,567",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 23.3826,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2024.ebitdaCr": {
+              "page": 103,
+              "header": "FINANCIAL SNAPSHOT:\n\n              The financial performance of our company for Fiscals 2025, 2024 and 2023 is as follows:\n                                                                                                                                                            (Amount Rs. Thousands)\n\n                Particulars                                               Fiscal 2025                             Fiscal 2024                                Fiscal 2023",
+              "row": "EBITDA                                                      2,33,826                                1,64,537                                   1,03,567",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 16.4537,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2023.ebitdaCr": {
+              "page": 103,
+              "header": "FINANCIAL SNAPSHOT:\n\n              The financial performance of our company for Fiscals 2025, 2024 and 2023 is as follows:\n                                                                                                                                                            (Amount Rs. Thousands)\n\n                Particulars                                               Fiscal 2025                             Fiscal 2024                                Fiscal 2023",
+              "row": "EBITDA                                                      2,33,826                                1,64,537                                   1,03,567",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 10.3567,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2025.roePct": {
+              "page": 103,
+              "header": "FINANCIAL SNAPSHOT:\n\n              The financial performance of our company for Fiscals 2025, 2024 and 2023 is as follows:\n                                                                                                                                                            (Amount Rs. Thousands)\n\n                Particulars                                               Fiscal 2025                             Fiscal 2024                                Fiscal 2023",
+              "row": "ROE (%)                                                      29.60%                                 26.24%                                      18.54%",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 29.6,
+              "scope": "unspecified",
+              "originalUnit": "percent"
+            },
+            "FY2024.roePct": {
+              "page": 103,
+              "header": "FINANCIAL SNAPSHOT:\n\n              The financial performance of our company for Fiscals 2025, 2024 and 2023 is as follows:\n                                                                                                                                                            (Amount Rs. Thousands)\n\n                Particulars                                               Fiscal 2025                             Fiscal 2024                                Fiscal 2023",
+              "row": "ROE (%)                                                      29.60%                                 26.24%                                      18.54%",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 26.24,
+              "scope": "unspecified",
+              "originalUnit": "percent"
+            },
+            "FY2023.roePct": {
+              "page": 103,
+              "header": "FINANCIAL SNAPSHOT:\n\n              The financial performance of our company for Fiscals 2025, 2024 and 2023 is as follows:\n                                                                                                                                                            (Amount Rs. Thousands)\n\n                Particulars                                               Fiscal 2025                             Fiscal 2024                                Fiscal 2023",
+              "row": "ROE (%)                                                      29.60%                                 26.24%                                      18.54%",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 18.54,
+              "scope": "unspecified",
+              "originalUnit": "percent"
+            }
+          }
+        },
+        "listing.issuePrice": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-06-12",
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-18T06:29:41+05:30",
+          "issueOpenDate": "2025-06-09",
+          "field": "listing.issuePrice",
+          "value": 102.0,
+          "evidence": {
+            "page": 2,
+            "heading": "ISSUE PRICE OF ₹ 102 PER EQUITY SHARE",
+            "value": 102.0,
+            "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+            "method": "final-offer-price-v2"
+          }
+        },
+        "leadManagers": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-06-12",
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-18T06:29:41+05:30",
+          "issueOpenDate": "2025-06-09",
+          "field": "leadManagers",
+          "value": [
+            "MUFG INTIME INDIA PRIVATE LIMITED GYR CAPITAL ADVISORS PRIVATE LIMITED"
+          ],
+          "evidence": {
+            "page": 3,
+            "heading": "BOOK RUNNING LEAD MANAGER N REGISTRAR TO THE ISSUE",
+            "entities": [
+              "MUFG INTIME INDIA PRIVATE LIMITED GYR CAPITAL ADVISORS PRIVATE LIMITED"
+            ]
+          }
+        },
+        "registrar": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-06-12",
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-18T06:29:41+05:30",
+          "issueOpenDate": "2025-06-09",
+          "field": "registrar",
+          "value": "formerly known As Link Intime India Private Limited",
+          "evidence": {
+            "page": 3,
+            "heading": "BOOK RUNNING LEAD MANAGER N REGISTRAR TO THE ISSUE",
+            "entities": [
+              "formerly known As Link Intime India Private Limited"
+            ]
+          }
+        }
+      },
+      "staticSourcePolicy": {
+        "policy": "final-prospectus-only",
+        "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+        "documentType": "PROSPECTUS",
+        "checkedAt": "2026-09-18T18:09:26.036375+00:00",
+        "verifiedFields": [
+          "financials",
+          "leadManagers",
+          "listing.issuePrice",
+          "lotSize",
+          "priceBand",
+          "promoters",
+          "registrar",
+          "shareholding"
+        ],
+        "pendingRevalidationFields": [
+          "freshIssueCr",
+          "issueComposition",
+          "issueSizeCr",
+          "objectsOfIssue",
+          "ofsCr"
+        ],
+        "status": "pending-revalidation",
+        "marketStaticTerms": "observation-only"
+      },
+      "sebiFinalProspectusSearch": {
+        "status": "no-final-prospectus",
+        "linksAdded": 0,
+        "lastAttemptAt": "2026-09-17T04:33:52+05:30",
+        "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+        "parserVersion": 4
+      },
+      "nseFinalProspectusDiscovery": {
+        "id": "sacheerome",
+        "company": "Sacheerome Limited",
+        "openDate": "2025-06-09",
+        "status": "updated",
+        "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+        "lastAttemptAt": "2026-09-16T23:04:07+00:00",
+        "fingerprint": "80598145db4fb0cdf392a2b451946f7cb080239b5c7ef4d1fb893dfd0474cec0"
+      },
+      "promoters": [
+        "MANOJ ARORA",
+        "ALKA ARORA",
+        "DHRUV ARORA"
+      ],
+      "objectsOfIssue": null,
+      "shareholding": {
+        "promoters": [],
+        "promoterPreIssuePct": 98.0
+      },
+      "financials": {
+        "unit": "₹ crore",
+        "periods": [
+          {
+            "period": "FY2025",
+            "netWorthCr": 61.9859,
+            "revenueCr": 107.5359,
+            "patCr": 15.982,
+            "totalIncomeCr": 108.1341,
+            "ebitdaCr": 23.3826,
+            "roePct": 29.6
+          },
+          {
+            "period": "FY2024",
+            "netWorthCr": 46.0039,
+            "revenueCr": 85.0953,
+            "patCr": 10.673,
+            "totalIncomeCr": 86.3978,
+            "ebitdaCr": 16.4537,
+            "roePct": 26.24
+          },
+          {
+            "period": "FY2023",
+            "netWorthCr": 35.3309,
+            "revenueCr": 70.4919,
+            "patCr": 5.9941,
+            "totalIncomeCr": 70.9281,
+            "ebitdaCr": 10.3567,
+            "roePct": 18.54
+          }
+        ]
+      },
+      "documentFieldProvenance": {
+        "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+        "documentType": "PROSPECTUS",
+        "documentDate": "2025-06-12",
+        "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+        "parserVersion": 31,
+        "checkedAt": "2026-09-18T06:29:41+05:30",
+        "evidence": {
+          "priceBand": {
+            "page": 2,
+            "heading": "PRICE BAND: ₹ 96.00 TO ₹ 102.00 PER EQUITY SHARE",
+            "value": {
+              "min": 96.0,
+              "max": 102.0
+            },
+            "basis": "explicit Price Band/Floor Price/Cap Price in Final Prospectus"
+          },
+          "lotSize": {
+            "page": 8,
+            "heading": "Bid Lot 1200 Equity Shares",
+            "value": 1200,
+            "basis": "explicit Bid Lot/Minimum Bid Lot in Final Prospectus"
+          },
+          "leadManagers": {
+            "page": 3,
+            "heading": "BOOK RUNNING LEAD MANAGER N REGISTRAR TO THE ISSUE",
+            "entities": [
+              "MUFG INTIME INDIA PRIVATE LIMITED GYR CAPITAL ADVISORS PRIVATE LIMITED"
+            ]
+          },
+          "registrar": {
+            "page": 3,
+            "heading": "BOOK RUNNING LEAD MANAGER N REGISTRAR TO THE ISSUE",
+            "entities": [
+              "formerly known As Link Intime India Private Limited"
+            ]
+          },
+          "promoters": {
+            "page": 1,
+            "heading": "PROMOTERS OF OUR COMPANY",
+            "rows": [
+              "PROMOTERS OF OUR COMPANY: MR. MANOJ ARORA, MRS. ALKA ARORA AND MR. DHRUV ARORA"
+            ],
+            "entities": [
+              "MANOJ ARORA",
+              "ALKA ARORA",
+              "DHRUV ARORA"
+            ],
+            "method": "bounded-promoter-heading-v1"
+          },
+          "shareholding": {
+            "page": 21,
+            "heading": "Promoter and Promoter Group",
+            "promoterPreIssuePct": 98.0,
+            "basis": "explicit pre-issue promoter ownership in Final Prospectus"
+          },
+          "financials": {
+            "FY2025.netWorthCr": {
+              "page": 22,
+              "header": "tal Structure” beginning on Page No. 48 of this Prospectus\n         8.          Summary of Financial Information\n                     Following are the details as per the Restated Financial Information for the Financial Years ended on March 31, 2025, 2024 and\n                     2023:\n                                                                                                                                                                       (₹ in thousands)\n                         S. No.                                Particulars                                  March 31, 2025               March 31, 2024              March 31, 2023",
+              "row": "2.         Net Worth                                                                6,19,859                     4,60,039                    3,53,309",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 61.9859,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2024.netWorthCr": {
+              "page": 22,
+              "header": "tal Structure” beginning on Page No. 48 of this Prospectus\n         8.          Summary of Financial Information\n                     Following are the details as per the Restated Financial Information for the Financial Years ended on March 31, 2025, 2024 and\n                     2023:\n                                                                                                                                                                       (₹ in thousands)\n                         S. No.                                Particulars                                  March 31, 2025               March 31, 2024              March 31, 2023",
+              "row": "2.         Net Worth                                                                6,19,859                     4,60,039                    3,53,309",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 46.0039,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2023.netWorthCr": {
+              "page": 22,
+              "header": "tal Structure” beginning on Page No. 48 of this Prospectus\n         8.          Summary of Financial Information\n                     Following are the details as per the Restated Financial Information for the Financial Years ended on March 31, 2025, 2024 and\n                     2023:\n                                                                                                                                                                       (₹ in thousands)\n                         S. No.                                Particulars                                  March 31, 2025               March 31, 2024              March 31, 2023",
+              "row": "2.         Net Worth                                                                6,19,859                     4,60,039                    3,53,309",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 35.3309,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2025.revenueCr": {
+              "page": 22,
+              "header": "tal Structure” beginning on Page No. 48 of this Prospectus\n         8.          Summary of Financial Information\n                     Following are the details as per the Restated Financial Information for the Financial Years ended on March 31, 2025, 2024 and\n                     2023:\n                                                                                                                                                                       (₹ in thousands)\n                         S. No.                                Particulars                                  March 31, 2025               March 31, 2024              March 31, 2023",
+              "row": "3.         Revenue from operations                                                 10,75,359                     8,50,953                    7,04,919",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 107.5359,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2024.revenueCr": {
+              "page": 22,
+              "header": "tal Structure” beginning on Page No. 48 of this Prospectus\n         8.          Summary of Financial Information\n                     Following are the details as per the Restated Financial Information for the Financial Years ended on March 31, 2025, 2024 and\n                     2023:\n                                                                                                                                                                       (₹ in thousands)\n                         S. No.                                Particulars                                  March 31, 2025               March 31, 2024              March 31, 2023",
+              "row": "3.         Revenue from operations                                                 10,75,359                     8,50,953                    7,04,919",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 85.0953,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2023.revenueCr": {
+              "page": 22,
+              "header": "tal Structure” beginning on Page No. 48 of this Prospectus\n         8.          Summary of Financial Information\n                     Following are the details as per the Restated Financial Information for the Financial Years ended on March 31, 2025, 2024 and\n                     2023:\n                                                                                                                                                                       (₹ in thousands)\n                         S. No.                                Particulars                                  March 31, 2025               March 31, 2024              March 31, 2023",
+              "row": "3.         Revenue from operations                                                 10,75,359                     8,50,953                    7,04,919",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 70.4919,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2025.patCr": {
+              "page": 22,
+              "header": "tal Structure” beginning on Page No. 48 of this Prospectus\n         8.          Summary of Financial Information\n                     Following are the details as per the Restated Financial Information for the Financial Years ended on March 31, 2025, 2024 and\n                     2023:\n                                                                                                                                                                       (₹ in thousands)\n                         S. No.                                Particulars                                  March 31, 2025               March 31, 2024              March 31, 2023",
+              "row": "4.         Profit after Tax                                                         1,59,820                     1,06,730                     59,941",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 15.982,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2024.patCr": {
+              "page": 22,
+              "header": "tal Structure” beginning on Page No. 48 of this Prospectus\n         8.          Summary of Financial Information\n                     Following are the details as per the Restated Financial Information for the Financial Years ended on March 31, 2025, 2024 and\n                     2023:\n                                                                                                                                                                       (₹ in thousands)\n                         S. No.                                Particulars                                  March 31, 2025               March 31, 2024              March 31, 2023",
+              "row": "4.         Profit after Tax                                                         1,59,820                     1,06,730                     59,941",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 10.673,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2023.patCr": {
+              "page": 22,
+              "header": "tal Structure” beginning on Page No. 48 of this Prospectus\n         8.          Summary of Financial Information\n                     Following are the details as per the Restated Financial Information for the Financial Years ended on March 31, 2025, 2024 and\n                     2023:\n                                                                                                                                                                       (₹ in thousands)\n                         S. No.                                Particulars                                  March 31, 2025               March 31, 2024              March 31, 2023",
+              "row": "4.         Profit after Tax                                                         1,59,820                     1,06,730                     59,941",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 5.9941,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2025.totalIncomeCr": {
+              "page": 103,
+              "header": "FINANCIAL SNAPSHOT:\n\n              The financial performance of our company for Fiscals 2025, 2024 and 2023 is as follows:\n                                                                                                                                                            (Amount Rs. Thousands)\n\n                Particulars                                               Fiscal 2025                             Fiscal 2024                                Fiscal 2023",
+              "row": "Total Income                                               10,81,341                                8,63,978                                   7,09,281",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 108.1341,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2024.totalIncomeCr": {
+              "page": 103,
+              "header": "FINANCIAL SNAPSHOT:\n\n              The financial performance of our company for Fiscals 2025, 2024 and 2023 is as follows:\n                                                                                                                                                            (Amount Rs. Thousands)\n\n                Particulars                                               Fiscal 2025                             Fiscal 2024                                Fiscal 2023",
+              "row": "Total Income                                               10,81,341                                8,63,978                                   7,09,281",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 86.3978,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2023.totalIncomeCr": {
+              "page": 103,
+              "header": "FINANCIAL SNAPSHOT:\n\n              The financial performance of our company for Fiscals 2025, 2024 and 2023 is as follows:\n                                                                                                                                                            (Amount Rs. Thousands)\n\n                Particulars                                               Fiscal 2025                             Fiscal 2024                                Fiscal 2023",
+              "row": "Total Income                                               10,81,341                                8,63,978                                   7,09,281",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 70.9281,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2025.ebitdaCr": {
+              "page": 103,
+              "header": "FINANCIAL SNAPSHOT:\n\n              The financial performance of our company for Fiscals 2025, 2024 and 2023 is as follows:\n                                                                                                                                                            (Amount Rs. Thousands)\n\n                Particulars                                               Fiscal 2025                             Fiscal 2024                                Fiscal 2023",
+              "row": "EBITDA                                                      2,33,826                                1,64,537                                   1,03,567",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 23.3826,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2024.ebitdaCr": {
+              "page": 103,
+              "header": "FINANCIAL SNAPSHOT:\n\n              The financial performance of our company for Fiscals 2025, 2024 and 2023 is as follows:\n                                                                                                                                                            (Amount Rs. Thousands)\n\n                Particulars                                               Fiscal 2025                             Fiscal 2024                                Fiscal 2023",
+              "row": "EBITDA                                                      2,33,826                                1,64,537                                   1,03,567",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 16.4537,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2023.ebitdaCr": {
+              "page": 103,
+              "header": "FINANCIAL SNAPSHOT:\n\n              The financial performance of our company for Fiscals 2025, 2024 and 2023 is as follows:\n                                                                                                                                                            (Amount Rs. Thousands)\n\n                Particulars                                               Fiscal 2025                             Fiscal 2024                                Fiscal 2023",
+              "row": "EBITDA                                                      2,33,826                                1,64,537                                   1,03,567",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 10.3567,
+              "scope": "unspecified",
+              "originalUnit": "thousand"
+            },
+            "FY2025.roePct": {
+              "page": 103,
+              "header": "FINANCIAL SNAPSHOT:\n\n              The financial performance of our company for Fiscals 2025, 2024 and 2023 is as follows:\n                                                                                                                                                            (Amount Rs. Thousands)\n\n                Particulars                                               Fiscal 2025                             Fiscal 2024                                Fiscal 2023",
+              "row": "ROE (%)                                                      29.60%                                 26.24%                                      18.54%",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 29.6,
+              "scope": "unspecified",
+              "originalUnit": "percent"
+            },
+            "FY2024.roePct": {
+              "page": 103,
+              "header": "FINANCIAL SNAPSHOT:\n\n              The financial performance of our company for Fiscals 2025, 2024 and 2023 is as follows:\n                                                                                                                                                            (Amount Rs. Thousands)\n\n                Particulars                                               Fiscal 2025                             Fiscal 2024                                Fiscal 2023",
+              "row": "ROE (%)                                                      29.60%                                 26.24%                                      18.54%",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 26.24,
+              "scope": "unspecified",
+              "originalUnit": "percent"
+            },
+            "FY2023.roePct": {
+              "page": 103,
+              "header": "FINANCIAL SNAPSHOT:\n\n              The financial performance of our company for Fiscals 2025, 2024 and 2023 is as follows:\n                                                                                                                                                            (Amount Rs. Thousands)\n\n                Particulars                                               Fiscal 2025                             Fiscal 2024                                Fiscal 2023",
+              "row": "ROE (%)                                                      29.60%                                 26.24%                                      18.54%",
+              "sourceColumns": [
+                0,
+                1,
+                2
+              ],
+              "normalizedValue": 18.54,
+              "scope": "unspecified",
+              "originalUnit": "percent"
+            }
+          },
+          "issuePrice": {
+            "page": 2,
+            "heading": "ISSUE PRICE OF ₹ 102 PER EQUITY SHARE",
+            "value": 102.0,
+            "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+            "method": "final-offer-price-v2"
+          }
+        },
+        "sourcePolicy": "final-prospectus-only"
+      },
+      "lotSizeEvidence": {
+        "source": "Final Prospectus",
+        "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+        "documentType": "PROSPECTUS",
+        "documentDate": "2025-06-12",
+        "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+        "parserVersion": 31,
+        "checkedAt": "2026-09-18T06:29:41+05:30",
+        "issueOpenDate": "2025-06-09",
+        "field": "lotSize",
+        "value": 1200,
+        "evidence": {
+          "page": 8,
+          "heading": "Bid Lot 1200 Equity Shares",
+          "value": 1200,
+          "basis": "explicit Bid Lot/Minimum Bid Lot in Final Prospectus"
+        }
+      },
+      "dataCorrections": [
+        {
+          "field": "priceBand",
+          "before": {
+            "min": 102.0,
+            "max": 102.0
+          },
+          "after": {
+            "min": 96.0,
+            "max": 102.0
+          },
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "parserVersion": 27,
+          "correctedAt": "2026-09-17T04:38:55+05:30"
+        },
+        {
+          "field": "promoters",
+          "before": null,
+          "after": [
+            "being Mr. Manoj Arora",
+            "Mrs. Alka Arora",
+            "Mr. Dhruv"
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "parserVersion": 27,
+          "correctedAt": "2026-09-17T04:38:55+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": null,
+          "after": [
+            {
+              "purpose": "BASIS FOR ISSUE PRICE",
+              "amountCr": 81.0
+            },
+            {
+              "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
+              "amountCr": 87.0
+            },
+            {
+              "purpose": "SECTION V – ABOUT THE COMPANY",
+              "amountCr": 93.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW",
+              "amountCr": 93.0
+            },
+            {
+              "purpose": "OUR BUSINESS",
+              "amountCr": 99.0
+            },
+            {
+              "purpose": "KEY INDUSTRIAL REGULATIONS AND POLICIES",
+              "amountCr": 121.0
+            },
+            {
+              "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+              "amountCr": 128.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT",
+              "amountCr": 131.0
+            },
+            {
+              "purpose": "OUR PROMOTER AND PROMOTER GROUP",
+              "amountCr": 145.0
+            },
+            {
+              "purpose": "OUR GROUP COMPANY",
+              "amountCr": 150.0
+            },
+            {
+              "purpose": "DIVIDEND POLICY",
+              "amountCr": 155.0
+            },
+            {
+              "purpose": "SECTION VI: FINANCIAL INFORMATION",
+              "amountCr": 156.0
+            }
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "parserVersion": 27,
+          "correctedAt": "2026-09-17T04:38:55+05:30"
+        },
+        {
+          "field": "shareholding",
+          "before": null,
+          "after": {
+            "promoters": [],
+            "promoterPreIssuePct": 98.0
+          },
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "parserVersion": 27,
+          "correctedAt": "2026-09-17T04:38:55+05:30"
+        },
+        {
+          "field": "financials",
+          "before": null,
+          "after": {
+            "unit": "₹ crore",
+            "periods": [
+              {
+                "period": "FY2025",
+                "netWorthCr": 61.9859,
+                "revenueCr": 107.5359,
+                "patCr": 15.982,
+                "totalIncomeCr": 108.1341,
+                "ebitdaCr": 23.3826,
+                "roePct": 29.6
+              },
+              {
+                "period": "FY2024",
+                "netWorthCr": 46.0039,
+                "revenueCr": 85.0953,
+                "patCr": 10.673,
+                "totalIncomeCr": 86.3978,
+                "ebitdaCr": 16.4537,
+                "roePct": 26.24
+              },
+              {
+                "period": "FY2023",
+                "netWorthCr": 35.3309,
+                "revenueCr": 70.4919,
+                "patCr": 5.9941,
+                "totalIncomeCr": 70.9281,
+                "ebitdaCr": 10.3567,
+                "roePct": 18.54
+              }
+            ]
+          },
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "parserVersion": 27,
+          "correctedAt": "2026-09-17T04:38:55+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "BASIS FOR ISSUE PRICE",
+              "amountCr": 81.0
+            },
+            {
+              "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
+              "amountCr": 87.0
+            },
+            {
+              "purpose": "SECTION V – ABOUT THE COMPANY",
+              "amountCr": 93.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW",
+              "amountCr": 93.0
+            },
+            {
+              "purpose": "OUR BUSINESS",
+              "amountCr": 99.0
+            },
+            {
+              "purpose": "KEY INDUSTRIAL REGULATIONS AND POLICIES",
+              "amountCr": 121.0
+            },
+            {
+              "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+              "amountCr": 128.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT",
+              "amountCr": 131.0
+            },
+            {
+              "purpose": "OUR PROMOTER AND PROMOTER GROUP",
+              "amountCr": 145.0
+            },
+            {
+              "purpose": "OUR GROUP COMPANY",
+              "amountCr": 150.0
+            },
+            {
+              "purpose": "DIVIDEND POLICY",
+              "amountCr": 155.0
+            },
+            {
+              "purpose": "SECTION VI: FINANCIAL INFORMATION",
+              "amountCr": 156.0
+            }
+          ],
+          "after": null,
+          "reason": "Invalid objects of issue quarantined pending Final Prospectus revalidation",
+          "findings": [
+            "Objects-of-issue row 1 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 2 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 3 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 4 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 5 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 7 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 8 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 9 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 11 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 12 resembles a table-of-contents entry, not a use of proceeds"
+          ],
+          "sourceEvidence": {
+            "source": "Final Prospectus",
+            "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+            "documentType": "PROSPECTUS",
+            "documentDate": "2025-06-12",
+            "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+            "parserVersion": 27,
+            "checkedAt": "2026-09-17T04:38:55+05:30",
+            "issueOpenDate": "2025-06-09",
+            "field": "objectsOfIssue",
+            "value": [
+              {
+                "purpose": "BASIS FOR ISSUE PRICE",
+                "amountCr": 81.0
+              },
+              {
+                "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
+                "amountCr": 87.0
+              },
+              {
+                "purpose": "SECTION V – ABOUT THE COMPANY",
+                "amountCr": 93.0
+              },
+              {
+                "purpose": "INDUSTRY OVERVIEW",
+                "amountCr": 93.0
+              },
+              {
+                "purpose": "OUR BUSINESS",
+                "amountCr": 99.0
+              },
+              {
+                "purpose": "KEY INDUSTRIAL REGULATIONS AND POLICIES",
+                "amountCr": 121.0
+              },
+              {
+                "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+                "amountCr": 128.0
+              },
+              {
+                "purpose": "OUR MANAGEMENT",
+                "amountCr": 131.0
+              },
+              {
+                "purpose": "OUR PROMOTER AND PROMOTER GROUP",
+                "amountCr": 145.0
+              },
+              {
+                "purpose": "OUR GROUP COMPANY",
+                "amountCr": 150.0
+              },
+              {
+                "purpose": "DIVIDEND POLICY",
+                "amountCr": 155.0
+              },
+              {
+                "purpose": "SECTION VI: FINANCIAL INFORMATION",
+                "amountCr": 156.0
+              }
+            ]
+          },
+          "documentEvidence": null,
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "correctedAt": "2026-09-17T00:08:43.420328+00:00"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "being Mr. Manoj Arora",
+            "Mrs. Alka Arora",
+            "Mr. Dhruv"
+          ],
+          "after": [
+            "MANOJ ARORA",
+            "ALKA ARORA",
+            "DHRUV ARORA"
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "parserVersion": 31,
+          "correctedAt": "2026-09-17T14:24:48+05:30"
+        },
+        {
+          "field": "leadManagers",
+          "before": null,
+          "after": [
+            "MUFG INTIME INDIA PRIVATE LIMITED GYR CAPITAL ADVISORS PRIVATE LIMITED"
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "parserVersion": 31,
+          "correctedAt": "2026-09-18T06:29:41+05:30"
+        },
+        {
+          "field": "registrar",
+          "before": null,
+          "after": "formerly known As Link Intime India Private Limited",
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "parserVersion": 31,
+          "correctedAt": "2026-09-18T06:29:41+05:30"
+        }
+      ],
+      "offerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 31,
+        "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+        "documentType": "PROSPECTUS",
+        "documentTitle": "Sacheerome Limited Final Prospectus",
+        "documentFiledDate": "2025-06-12",
+        "source": "NSE",
+        "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+        "pagesRead": 293,
+        "pageCount": 293,
+        "extractedFields": [
+          "financials",
+          "lotSize",
+          "promoters",
+          "shareholding",
+          "priceBand",
+          "issuePrice",
+          "leadManagers",
+          "registrar"
+        ],
+        "canonicalFields": [
+          "financials",
+          "leadManagers",
+          "listing.issuePrice",
+          "lotSize",
+          "priceBand",
+          "promoters",
+          "registrar",
+          "shareholding"
+        ],
+        "extractedAt": "2026-09-18T06:29:41+05:30",
+        "conflicts": [],
+        "sourcePolicy": "final-prospectus-only"
+      },
+      "documentRepair": {
+        "status": "updated",
+        "financialStatus": "validated",
+        "lastAttemptAt": "2026-09-18T06:29:41+05:30",
+        "parserVersion": 31,
+        "sourcePolicy": "final-prospectus-only"
+      },
+      "objectsOfIssueReview": {
+        "status": "quarantined",
+        "checkedAt": "2026-09-17T00:08:43.420328+00:00",
+        "snapshot": {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "BASIS FOR ISSUE PRICE",
+              "amountCr": 81.0
+            },
+            {
+              "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
+              "amountCr": 87.0
+            },
+            {
+              "purpose": "SECTION V – ABOUT THE COMPANY",
+              "amountCr": 93.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW",
+              "amountCr": 93.0
+            },
+            {
+              "purpose": "OUR BUSINESS",
+              "amountCr": 99.0
+            },
+            {
+              "purpose": "KEY INDUSTRIAL REGULATIONS AND POLICIES",
+              "amountCr": 121.0
+            },
+            {
+              "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+              "amountCr": 128.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT",
+              "amountCr": 131.0
+            },
+            {
+              "purpose": "OUR PROMOTER AND PROMOTER GROUP",
+              "amountCr": 145.0
+            },
+            {
+              "purpose": "OUR GROUP COMPANY",
+              "amountCr": 150.0
+            },
+            {
+              "purpose": "DIVIDEND POLICY",
+              "amountCr": 155.0
+            },
+            {
+              "purpose": "SECTION VI: FINANCIAL INFORMATION",
+              "amountCr": 156.0
+            }
+          ],
+          "after": null,
+          "reason": "Invalid objects of issue quarantined pending Final Prospectus revalidation",
+          "findings": [
+            "Objects-of-issue row 1 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 2 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 3 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 4 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 5 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 7 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 8 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 9 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 11 resembles a table-of-contents entry, not a use of proceeds",
+            "Objects-of-issue row 12 resembles a table-of-contents entry, not a use of proceeds"
+          ],
+          "sourceEvidence": {
+            "source": "Final Prospectus",
+            "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+            "documentType": "PROSPECTUS",
+            "documentDate": "2025-06-12",
+            "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+            "parserVersion": 27,
+            "checkedAt": "2026-09-17T04:38:55+05:30",
+            "issueOpenDate": "2025-06-09",
+            "field": "objectsOfIssue",
+            "value": [
+              {
+                "purpose": "BASIS FOR ISSUE PRICE",
+                "amountCr": 81.0
+              },
+              {
+                "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
+                "amountCr": 87.0
+              },
+              {
+                "purpose": "SECTION V – ABOUT THE COMPANY",
+                "amountCr": 93.0
+              },
+              {
+                "purpose": "INDUSTRY OVERVIEW",
+                "amountCr": 93.0
+              },
+              {
+                "purpose": "OUR BUSINESS",
+                "amountCr": 99.0
+              },
+              {
+                "purpose": "KEY INDUSTRIAL REGULATIONS AND POLICIES",
+                "amountCr": 121.0
+              },
+              {
+                "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+                "amountCr": 128.0
+              },
+              {
+                "purpose": "OUR MANAGEMENT",
+                "amountCr": 131.0
+              },
+              {
+                "purpose": "OUR PROMOTER AND PROMOTER GROUP",
+                "amountCr": 145.0
+              },
+              {
+                "purpose": "OUR GROUP COMPANY",
+                "amountCr": 150.0
+              },
+              {
+                "purpose": "DIVIDEND POLICY",
+                "amountCr": 155.0
+              },
+              {
+                "purpose": "SECTION VI: FINANCIAL INFORMATION",
+                "amountCr": 156.0
+              }
+            ]
+          },
+          "documentEvidence": null,
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "correctedAt": "2026-09-17T00:08:43.420328+00:00"
+        }
+      },
+      "leadManagers": [
+        "MUFG INTIME INDIA PRIVATE LIMITED GYR CAPITAL ADVISORS PRIVATE LIMITED"
+      ],
+      "registrar": "formerly known As Link Intime India Private Limited",
+      "p4OfferResidualRepair": {
+        "status": "updated",
+        "parserVersion": 4,
+        "mainParserVersion": 31,
+        "documentUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+        "checkedAt": "2026-09-18T06:29:41+05:30",
+        "changedFields": [
+          "leadManagers",
+          "registrar",
+          "documents"
+        ]
+      }
+    }
+  ]
+}
