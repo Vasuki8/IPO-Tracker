@@ -57,6 +57,23 @@ boundary tests). The local workspace is disconnected; CI is the execution author
 does not claim any fresh NSE response or universal correctness of source data.
 Record exact CI, merge and deployment evidence in PROJECT_STATUS.md.
 
+## Current primary-source check
+
+At 2026-09-18 17:40–17:41 UTC the read-only browser tool returned the
+[NSE current-issue endpoint](https://www.nseindia.com/api/ipo-current-issue).
+Its eight issuer/symbol rows and headline multiples match the retained diagnostic.
+The response exposes `noOfSharesOffered`, `noOfsharesBid`, `category` and
+`series`; the evidence observation now preserves those exact fields as well as
+existing aliases. For example, SONA reports 6,873,000 shares bid and 10,010,000
+shares offered alongside 0.6866133866133867 times. This verifies the summary
+feed's reported inputs, not comparability with BSE's category denominator.
+
+The NSE detail URLs for SONA/EQ and SPECTRAA/SME and BSE's SONA demand page
+(ID 7973, status L, on both primary and beta hosts) were inaccessible through
+this read tool. This is a tool/source-access limitation, not proof of an exchange
+outage or absence of a disclosure. No full HTTP body digest, source observation
+timestamp, accepted replacement total or detail-source numerical audit is claimed.
+
 ## Remaining source work
 
 The historical diagnostic remains unresolved. Reconcile original source, exact

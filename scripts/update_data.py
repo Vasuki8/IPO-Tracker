@@ -298,7 +298,8 @@ def subscription_summary_observation(row, kind, source, company, symbol, opened,
         "qib", "qualifiedInstitutionalBuyers", "nii", "hni", "nonInstitutionalInvestors",
         "retail", "rii", "retailIndividualInvestors", "noOfTime", "subscription",
         "timesSubscribed", "totalSubscription", "noOfsharesBid", "sharesBid",
-        "issueSize", "sharesOffered", "sharesOfferedForSubscription",
+        "issueSize", "sharesOffered", "noOfSharesOffered", "sharesOfferedForSubscription",
+        "category", "series",
     )
     raw = {key: copy.deepcopy(row[key]) for key in fields if key in row}
     if not raw:

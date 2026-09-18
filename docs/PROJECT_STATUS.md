@@ -58,7 +58,11 @@ reproducing all eight mixed totals. Implementation head
 on Python 3.12.14 with `uv sync --frozen` in
 [run 35375378425](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35375378425).
 The same run passed strict validation, compact artifact checks and read-only
-proposal/update-health reports. Browser and release results remain pending. The existing source/repair publisher and its
+proposal/update-health reports. Reconciled-head validation 35375633999 also passed.
+A current NSE endpoint read confirmed the reported denominator field
+`noOfSharesOffered`; the final patch retains it, category and series in raw evidence.
+NSE detail and BSE demand URLs were inaccessible through the read tool. This does
+not authorize numerical replacement. Final-head browser and release results remain pending. The existing source/repair publisher and its
 permissions, schedules and validation remain unchanged.
 
 The network-free regression reconstructs eight incoming summary rows from the

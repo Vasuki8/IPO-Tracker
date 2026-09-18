@@ -54,7 +54,8 @@ def replay_core():
         incoming.append({"companyName": identity["company"], "symbol": identity["symbol"],
                          "issueStartDate": "16-Sep-2026", "issueEndDate": "22-Sep-2026",
                          "noOfTime": change["afterTotal"], "noOfsharesBid": 45,
-                         "issueSize": 100, "status": "open"})
+                         "issueSize": 100, "noOfSharesOffered": "100.0", "category": "Total",
+                         "series": "EQ", "status": "open"})
     incoming.append({"companyName": "New Fixture Limited", "symbol": "NEWFIXTURE",
                      "issueStartDate": "16-Sep-2026", "issueEndDate": "22-Sep-2026",
                      "noOfTime": 0, "qib": 0, "noOfsharesBid": 0})
@@ -156,6 +157,9 @@ class CoreSubscriptionBoundaryTests(unittest.TestCase):
                 self.assertEqual(observation["values"]["total"], change["afterTotal"])
                 self.assertEqual(observation["rawFields"]["noOfTime"], change["afterTotal"])
                 self.assertEqual(observation["rawFields"]["issueSize"], 100)
+                self.assertEqual(observation["rawFields"]["noOfSharesOffered"], "100.0")
+                self.assertEqual(observation["rawFields"]["category"], "Total")
+                self.assertEqual(observation["rawFields"]["series"], "EQ")
                 self.assertEqual(observation["rawFields"]["noOfsharesBid"], 45)
                 self.assertEqual(observation["denominatorStatus"], "unverified")
                 self.assertEqual(observation["use"], "observation-only")
