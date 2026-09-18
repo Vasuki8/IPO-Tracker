@@ -15,15 +15,24 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
-## Current milestone — reviewed Emmvee proposal, 18 September 2026
+## Current verified implementation — 18 September 2026
+
+[PR #121](https://github.com/Vasuki8/IPO-Tracker/pull/121) is merged and live at
+`3bb08735dfb114bbba08a622df50fce88274defa`, tree
+`126c240dc0773b942f02f48ccff3662477ae8cb7`. Reviewed head was
+`9d6ad3ae783bbd97888fd95d299d51b00f11ae40` on `feat-emmvee-proposal-review`.
+This documentation-only closeout on `docs-emmvee-proposal-review-checkpoint`
+records the completed milestone; no second implementation milestone is included.
+
+### Recovered starting point
 
 Starting main is `71bec048515b3b1fae2232b5640dac3a55ee7c3b`, tree
-`7fa926362879790f54a473c02829a0612617381b`. Main has not advanced since the
-last checkpoint. #119's reconciliation tool and #120's release checkpoint are
+`7fa926362879790f54a473c02829a0612617381b`. Main had not advanced at the initial checkpoint read. #119's reconciliation tool and #120's release checkpoint are
 complete. The existing Pages deployment 35307749331 and live acceptance
-35307777409 succeeded. Canonical publication remains `3834c732`.
+35307777409 succeeded. The accepted Emmvee composition repair remains the earlier `3834c732` lineage.
+A subsequent routine filings publication is reconciled separately below.
 
-### Implemented on `feat-emmvee-proposal-review`
+### Completed: evidence-bound review of the retained Emmvee proposal
 
 The next unfinished item was the retained Emmvee document proposal, fingerprint
 `15558bebf1ac545501558352946b9104ebf2ce62d499024ae295e783f725c15c`, original run
@@ -57,7 +66,7 @@ advice, not publication authority: **all 441 proposals retain their original
 pending status**, the 159 conflicting document groups and 282 unassessed items
 remain counted, and no canonical, proposal, source-review or gate data changes.
 
-### Tests and remaining release acceptance
+### Tests and source-check limitations
 
 Eleven new regression tests pass locally through uv, including stale evidence,
 identity/run/payload changes, unchanged source clocks, reordered duplicates and
@@ -68,7 +77,7 @@ deterministic report replay pass. The complete local run attempted 1,062 tests;
 three failed only because the Pages artifact omits `.github/workflows/` needed by
 existing workflow tests. This is **not a full local suite pass**. Local frozen
 sync lacked locked packages; tests used uv with available Python 3.13.5 and
-requests 2.32.5 / pypdf 5.9.0. Require frozen full-repository CI before merging.
+requests 2.32.5 / pypdf 5.9.0. The complete-repository frozen CI subsequently passed; see below.
 
 Fresh NSE PDF retrieval was unavailable: the web reader rejected its 11,360,516-byte
 length and direct download failed. This is a review of the original collection
@@ -82,10 +91,50 @@ Pages artifact 10531947746, not remote Git history. Original archives were prese
 no prior working tree survived. Direct Git access failed DNS. Authenticated GitHub
 read/write/release actions are used only with their actual returned evidence.
 
-Remaining for this branch: review the complete diff, pass frozen GitHub validation,
-inspect and compare its retained reconciliation report, merge with the exact head,
-verify Pages/live acceptance and record final commit/run IDs. No release is claimed
-by this pre-merge status.
+### Verified CI, release and concurrent automation
+
+[Frozen PR validation 35309035968](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35309035968)
+passed the full regression suite using Python 3.12 and `uv sync --frozen`, report
+replay/input-preservation checks, strict validation and generated/support checks.
+Its actual test merge was `dcf43a15b171b878b2c91a1b356b35db1ac5622e`.
+The downloaded report artifact 10533095128 matched ZIP SHA-256
+`149d164deaed4d10da7703dc50792b71beaa7713a2ed62d733003dc71880cbcc`;
+the complete report matched the local result byte for byte, SHA-256
+`ed5bd99fb60e41fc9e94cdba08c00a60e2b58947e35f5d926564febd37b2b3f4`.
+The reviewed tool, tests and immutable note blobs matched the tested local bytes.
+The authorized merge used the exact expected head and no protection changes.
+
+**A concurrent automatic update is preserved.** Existing filings run
+`35309048100` published `61360716df53507128266eebe330cf0273038c84` shortly before
+the merge. This refreshed all policy-check clocks and changed 36 records beyond
+that clock, plus four generated profiles. These are not changes made by the
+five-file review-only PR. No new source adjudication of those unrelated facts is
+claimed. All 441 pending proposals remain byte-identical. Emmvee and Teamtech are
+unchanged apart from their policy check clock; Emmvee's amounts, complete proofs,
+allocations and the Teamtech hold remain intact. Current canonical SHA-256 is
+`ecc71c4b53f87178c20e0b1708322a9399da66d22272c6d5e5cc62fd8335672f`.
+
+[Post-merge frozen validation 35309364538](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35309364538)
+also passed on the combined tree. Its downloaded report artifact 10532925972 was
+hash-verified and replayed locally against the newly deployed data. The decision
+remains **applicable**, with one bound occurrence and zero resolutions. All counts
+and original statuses remain unchanged; this is not an implicit source acceptance.
+
+[Pages 35309363825](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35309363825)
+successfully deployed the merge, and [live acceptance 35309396845](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35309396845)
+passed on the first attempt. The checksum-verified deployed archive and live
+receipt agree on 1,366 local profile checks and 17 complete public HTTPS responses.
+The current ordinary filings publication correctly yields
+`reviewedPublication.status=not_requested`, not a reviewed-repair pass; the
+current Emmvee evidence binding passed separately in the operator report.
+No new browser journey suite ran for this operator-only change. The previous
+light presentation and all source/display rules are preserved.
+
+[The release receipt](releases/2026-09-18-emmvee-proposal-review.json) retains exact
+CI, artifact, original collection, live-response and concurrent-update evidence.
+Implementation and release acceptance for #121 are complete. The operating guide
+now documents advice applicability, stale/unmatched reviews and their non-resolving
+boundary. Original snapshots and the immutable audit note remain untouched.
 
 ### Gate, blockers and next task
 
