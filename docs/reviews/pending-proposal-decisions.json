@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "decisions": [
+    {
+      "reviewId": "emmvee-retained-document-2026-09-18",
+      "reviewedAt": "2026-09-18T04:49:59.562981+00:00",
+      "decision": "do_not_apply_as_proposed",
+      "fingerprint": "15558bebf1ac545501558352946b9104ebf2ce62d499024ae295e783f725c15c",
+      "proposalSha256": "e55de865b3cbd32a0759ae3ed87e081c3100a8f35e0b218d5a89000cf499cddb",
+      "runId": "35204652736",
+      "path": [
+        "ipos",
+        "emmvee",
+        "documentFields"
+      ],
+      "identity": {
+        "id": "emmvee",
+        "company": "Emmvee Photovoltaic Power Limited",
+        "symbol": "EMMVEE",
+        "openDate": "2025-11-11"
+      },
+      "acceptedCommit": "71bec048515b3b1fae2232b5640dac3a55ee7c3b",
+      "acceptedGroupSha256": "e599bf3b0ed16f6a19446ae06f3e954a9ad2ddc8427d277afb8e9e13c235b1b9",
+      "displayHoldsSha256": "e0ccc9b414585e1076acfe538d0fd92ff5b15159ccaa5261d847f95af76db628",
+      "reviewedFields": [
+        "issueComposition",
+        "issueSizeCr",
+        "freshIssueCr",
+        "ofsCr",
+        "objectsOfIssue"
+      ],
+      "evidenceFile": "2026-09-18-emmvee-retained-proposal.md",
+      "evidenceSha256": "7662faae0f9e3d2fb32a8f47bf56a072d3945abb9ccb188d53c57e0c68ed08e7",
+      "reason": "The original proposal carries rejected composition values and an old objects proof withdrawal; the current accepted group has the reviewed composition and source-bound allocations. Do not replay the atomic group.",
+      "nextAction": "Retain the original proposal and this decision. Do not apply as proposed or mark it wholly superseded; re-review if the bound evidence changes."
+    }
+  ]
+}

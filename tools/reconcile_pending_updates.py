@@ -11,6 +11,7 @@ import copy
 from datetime import date, datetime
 import hashlib
 import json
+import re
 from pathlib import Path
 import sys
 from zoneinfo import ZoneInfo
@@ -199,6 +200,113 @@ def build_report(canonical, pending, *, as_of, holds):
     }
 
 
+def load_decisions(path):
+    """Load review notes as evidence-bound advice, never publication authority."""
+    raw = Path(path).read_bytes()
+    ledger = read_json(raw)
+    if (not isinstance(ledger, dict) or type(ledger.get('schemaVersion')) is not int
+            or ledger['schemaVersion'] != 1
+            or not isinstance(ledger.get('decisions'), list)):
+        raise ValueError('Invalid proposal-decision ledger')
+    seen, evidence_hashes = set(), {}
+    for decision in ledger['decisions']:
+        if not isinstance(decision, dict):
+            raise ValueError('Invalid proposal-decision event')
+        key = decision.get('reviewId')
+        if (not isinstance(key, str) or not re.fullmatch(r'[a-z0-9][a-z0-9-]*', key)
+                or key in seen):
+            raise ValueError('Invalid or duplicate proposal review ID')
+        seen.add(key)
+        if decision.get('decision') != 'do_not_apply_as_proposed':
+            raise ValueError('Review advice cannot accept, resolve or delete a proposal')
+        for field in ('fingerprint', 'proposalSha256', 'acceptedGroupSha256',
+                      'displayHoldsSha256', 'evidenceSha256'):
+            if not isinstance(decision.get(field), str) or not re.fullmatch(r'[a-f0-9]{64}', decision[field]):
+                raise ValueError('Invalid decision hash: ' + field)
+        if not isinstance(decision.get('acceptedCommit'), str) or not re.fullmatch(r'[a-f0-9]{40}', decision['acceptedCommit']):
+            raise ValueError('Decision needs an immutable accepted commit')
+        identity = decision.get('identity')
+        if (not isinstance(identity, dict)
+                or set(identity) != {'id', 'company', 'symbol', 'openDate'}
+                or not all(isinstance(v, str) and v for v in identity.values())
+                or decision.get('path') != ['ipos', identity['id'], 'documentFields']):
+            raise ValueError('Decision requires exact issuer and offer identity')
+        date.fromisoformat(identity['openDate'])
+        for field in ('reviewedAt', 'runId', 'reason', 'nextAction'):
+            if not isinstance(decision.get(field), str) or not decision[field].strip():
+                raise ValueError('Missing decision ' + field)
+        if datetime.fromisoformat(decision['reviewedAt']).tzinfo is None:
+            raise ValueError('Decision review time needs a timezone')
+        fields = decision.get('reviewedFields')
+        if (not isinstance(fields, list) or not fields
+                or not all(isinstance(f, str) and f in VALUE_FIELDS for f in fields)
+                or len(fields) != len(set(fields))):
+            raise ValueError('Decision needs explicit supported reviewed fields')
+        name = decision.get('evidenceFile')
+        if not isinstance(name, str) or not re.fullmatch(r'[a-z0-9][a-z0-9-]*\.md', name):
+            raise ValueError('Unsafe review evidence filename')
+        target = Path(path).parent / name
+        if target.resolve().parent != Path(path).parent.resolve():
+            raise ValueError('Review evidence escaped its directory')
+        actual = digest(target.read_bytes())
+        if actual != decision['evidenceSha256']:
+            raise ValueError('Review evidence changed; retain the original and add a new review')
+        evidence_hashes[name] = actual
+    return ledger['decisions'], {'ledger': digest(raw), 'evidence': evidence_hashes}
+
+
+def annotate_decisions(report, canonical, decisions, *, holds_sha256):
+    """Expose every review event; changed evidence invalidates advice, not history.
+
+    Never select a newest review, suppress an occurrence, change its comparison
+    state, or write a disposition into pending_updates. All bindings must match.
+    """
+    records = defaultdict(list)
+    for row in canonical['ipos']:
+        records[row['id']].append(row)
+    audits = []
+    for decision in decisions:
+        matches = [entry for entry in report['entries']
+                   if entry.get('fingerprint') == decision['fingerprint']]
+        event = {'reviewId': decision['reviewId'], 'fingerprint': decision['fingerprint'],
+                 'decision': decision['decision'], 'reviewedAt': decision['reviewedAt'],
+                 'evidenceFile': decision['evidenceFile'], 'evidenceSha256': decision['evidenceSha256'],
+                 'occurrences': []}
+        for entry in matches:
+            rows = records.get(decision['identity']['id'], [])
+            state = 'applicable'
+            if (entry.get('path') != decision['path'] or entry.get('runId') != decision['runId']
+                    or entry['proposalSha256'] != decision['proposalSha256']
+                    or entry['comparisonState'] == 'malformed_proposal'):
+                state = 'proposal_mismatch'
+            elif len(rows) != 1 or not all(rows[0].get(k) == v for k, v in decision['identity'].items()):
+                state = 'identity_mismatch'
+            else:
+                group = {k: rows[0][k] for k in DOCUMENT_FIELDS if k in rows[0]}
+                current = digest(encoded(without_policy_clock(group)))
+                evidence = entry.get('currentEvidence', {})
+                if (current != decision['acceptedGroupSha256']
+                        or holds_sha256 != decision['displayHoldsSha256']
+                        or evidence.get('status') != 'assessed'
+                        or any(evidence.get('fieldStates', {}).get(f) != 'final_verified'
+                               for f in decision['reviewedFields'])):
+                    state = 'stale_evidence'
+            advice = {'reviewId': decision['reviewId'], 'bindingStatus': state,
+                      'decision': decision['decision'], 'evidenceFile': decision['evidenceFile']}
+            if state == 'applicable':
+                advice.update(reason=decision['reason'], nextAction=decision['nextAction'])
+            else:
+                advice['nextAction'] = 'Re-review this decision against the changed proposal, identity or source evidence.'
+            entry.setdefault('reviewDecisions', []).append(advice)
+            event['occurrences'].append({'inputIndex': entry['inputIndex'], 'bindingStatus': state})
+        # Preserve events even if the matching proposal is absent from this input.
+        event['bindingStatus'] = 'unmatched' if not matches else (
+            'applicable' if all(o['bindingStatus'] == 'applicable' for o in event['occurrences']) else 'needs_revalidation')
+        audits.append(event)
+    report['reviewDecisionAudit'] = {'decisionsRecorded': len(audits), 'resolutionsApplied': 0,
+                                    'events': audits}
+
+
 def report_from_files(data_path, pending_path, *, as_of=None):
     paths = {'canonical': Path(data_path), 'pending': Path(pending_path),
              'displayHolds': ROOT / 'data/public_display_holds.json'}
@@ -210,6 +318,9 @@ def report_from_files(data_path, pending_path, *, as_of=None):
             raise ValueError('Snapshot time needs a timezone, or supply --as-of')
         as_of = stamp.astimezone(ZoneInfo('Asia/Kolkata')).date()
     report = build_report(canonical, pending, as_of=as_of, holds=holds['holds'])
+    decisions, review_hashes = load_decisions(ROOT / 'docs/reviews/pending-proposal-decisions.json')
+    annotate_decisions(report, canonical, decisions, holds_sha256=digest(raw['displayHolds']))
+    report['reviewDecisionInputs'] = review_hashes
     report['inputSha256'] = {k: digest(value) for k, value in raw.items()}
     # A changed validator/hold must not make an old report look current. No
     # mutable Git ref or wall-clock freshness claim substitutes for these bytes.
