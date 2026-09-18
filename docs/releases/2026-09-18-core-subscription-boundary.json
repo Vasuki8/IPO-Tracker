@@ -1,0 +1,210 @@
+{
+  "schemaVersion": 1,
+  "scope": "core-subscription-boundary-prevention-not-numerical-adjudication",
+  "startingCommit": "b3a108785c8f4436cd83a14c2ea408ed1f9e9683",
+  "preservedMaintenanceCommit": "c5c42c7e26f42ac85cfdffbcc280775af40a687c",
+  "pr": 135,
+  "branch": "fix-core-subscription-boundary",
+  "reviewedHead": "7b6d46118a68a869ea52a619438881996b4cac1e",
+  "reviewedTree": "327f84003f3835bd3c82a88fb6c4ffff9de8b31e",
+  "redRegression": {
+    "commit": "5d39041f7ba50e283cedbbc64d67067b96b93156",
+    "workflowRun": 35375027327,
+    "job": 105697583099,
+    "testsAttempted": 1160,
+    "failures": 12,
+    "errors": 4,
+    "scope": "failures-limited-to-six-new-tests-including-eight-diagnostic-subtests",
+    "originalHttpResponses": false
+  },
+  "frozenValidation": {
+    "workflowRun": 35375889352,
+    "job": 105700352246,
+    "status": "success",
+    "python": "3.12.14",
+    "environmentCommand": "uv sync --frozen",
+    "testCommand": "uv run --frozen python -m unittest discover -s tests -v",
+    "tests": 1161,
+    "newTests": 7,
+    "strictValidation": true,
+    "readOnlyProposalAndUpdateHealthReports": true,
+    "compactPublicPayload": {
+      "summaryBytes": 1297834,
+      "masterBytes": 27333929
+    },
+    "supportArtifactBytes": {
+      "missingQueue": 588887,
+      "performanceSummary": 140537
+    }
+  },
+  "unchangedTrees": {
+    "data": "b335ca582f7786f3a09229bd08bc5cfc67c980c7",
+    "ipo": "087bef5f75212d40dec243e1e8b39f8dd464541e",
+    "pyprojectToml": "53bdfaae3a9d0017f3ca31f31ac7c190505234af",
+    "uvLock": "cd94fec59fd2255351863c466bb7a7976a099802"
+  },
+  "localExecution": {
+    "status": "unavailable",
+    "cause": "409 environment_offline",
+    "claimsLocalPass": false,
+    "editTransport": "GitHub repository tools"
+  },
+  "sourceCheck": {
+    "checkedAtUtc": "2026-09-18T17:40:00Z/2026-09-18T17:41:00Z",
+    "successfulRead": "https://www.nseindia.com/api/ipo-current-issue",
+    "rawFieldsConfirmed": [
+      "noOfTime",
+      "noOfsharesBid",
+      "noOfSharesOffered",
+      "category",
+      "series"
+    ],
+    "limitations": [
+      "Read tool did not provide retained full HTTP body hash or source observation time",
+      "Sona/EQ and SpectraA/SME detail URLs and Sona BSE demand page inaccessible through the read tool",
+      "No source-value replacement or denominator equivalence accepted"
+    ]
+  },
+  "p4": {
+    "status": "incomplete",
+    "actionableRecords": 387,
+    "higherPriorityRecords": 56,
+    "sourceReviewItems": 1603,
+    "blockingSourceReviewItems": 1599,
+    "p5OnlySourceReviewItems": 4,
+    "unmappedSourceReviewItems": 0,
+    "pendingProposals": 441
+  },
+  "remaining": [
+    "Review eight historical mixed/unbound snapshot diagnostics against exact issuer/offer/source and denominator evidence or apply evidence-bound public review holds",
+    "Preserve and assess 22 original subscription proposals",
+    "Investigate SpectraA matching source without fuzzy-identity relaxation",
+    "P5/performance expansion stays blocked"
+  ],
+  "mergeCommit": "2ae2f3e7fa1f0a8354744c7e69969f69cf534486",
+  "mergeTree": "327f84003f3835bd3c82a88fb6c4ffff9de8b31e",
+  "browser": {
+    "workflowRun": 35375889499,
+    "job": 105700352448,
+    "status": "success",
+    "nodeTests": 8,
+    "smokeJourneys": 25,
+    "checks": [
+      "mobile layouts through320px",
+      "directory/profile/quickview/comparison/CSV field holds",
+      "subscription freshness",
+      "BSE source authority",
+      "reviewed Emmvee composition and Teamtech hold"
+    ],
+    "artifact": {
+      "id": 10560171584,
+      "bytes": 12507272,
+      "githubReportedSha256": "624932c7467198c19270daa6bdc5ad86e06b44f455cd9338b6dfa61507fefdc2",
+      "downloadedInThisSession": false
+    }
+  },
+  "existingRepairWorkflow": {
+    "id": 35376223422,
+    "head": "2ae2f3e7fa1f0a8354744c7e69969f69cf534486",
+    "status": "in_progress",
+    "note": "Existing ordinary repair mode; outcome not yet accepted or included in this prevention release."
+  },
+  "publicRelease": {
+    "pagesRun": 35376222084,
+    "verificationRun": 35376272766,
+    "verificationJob": 105701565899,
+    "status": "success",
+    "receipt": {
+      "expectedCommit": "2ae2f3e7fa1f0a8354744c7e69969f69cf534486",
+      "status": "passed",
+      "scope": "public-artifact-and-review-delivery-not-source-accuracy",
+      "routeCount": 1371,
+      "sampledProfiles": [
+        "ipo/emmvee/",
+        "ipo/teamtech/",
+        "ipo/shakti-polytarp-limited/",
+        "ipo/kheriaauto/",
+        "ipo/vama-wovenfab-limited/",
+        "ipo/sona/",
+        "ipo/manika/",
+        "ipo/snehaa/",
+        "ipo/sacheerome/"
+      ],
+      "expectedSha256": {
+        "index.html": "7bb7c13dc4c856b9bcb77138e9d9cdfb8934384688e97c27c5bd9d81aa6fec59",
+        "public-quality.js": "4f77006074cb206c2d20c8a6c2557349db42f2dd8b2181b99cd501c80828342a",
+        "public-quality.css": "988dee5e990116eff25b8746a77b0b618b23d5394f3b919d601cceaedd6d4467",
+        "app.js": "aad042ffd8cea3576b5abff34d8b0378e812ab7e4f368f73e162d427201167d3",
+        "company-page.js": "c965ddfd01ab122b196dc58797d299f724b2378092c7ff927c91ea14b132c610",
+        "company.js": "8fba803171c5fd0fb09b95844fc153eaeff159a3a55c92785ef3c9013e08435d",
+        "phase4.js": "d7c69047e184cf5f896a75e61c62150a462ed985deaf93fdd8c0015a212e388f",
+        "methodology.html": "fe6b152b67eeaf0d1b17d7a700e1819fc250256bc022b64c9735c7867d7c546c",
+        "data/ipos-summary.json": "147ac6dde56c2feb653a1bf20ae11185fcb4df4366bc4074f3cabe9317f075d1",
+        "ipo/routes.json": "bc0b8d262041fcd5f08b9e759503da9399516d911d92da9043e5a0a3d37a7313",
+        "ipo/emmvee/index.html": "4502adcd7a5ebb3d4909a9eab28f0562c4efd7f117c0e6a4e1179d0f5fe046a8",
+        "ipo/teamtech/index.html": "724722823686a49c9c8cdb6e6411d47ad5ebbff4d22dbc024143cbad3cc22e8d",
+        "ipo/shakti-polytarp-limited/index.html": "da020c1a8592d2cc5c5992d600117fdebc193069bd8f58f49913d3e2cf390b2c",
+        "ipo/kheriaauto/index.html": "282d1ecea3a969e5e1aa8320f2482c2cd2dcc9e455e4a6edb65c5825004537b7",
+        "ipo/vama-wovenfab-limited/index.html": "0e67b0835622dd9251aa64b48cefb7b0cde1844104bf8c97478a10fb0c63eb2c",
+        "ipo/sona/index.html": "d8c8d87ecb8f1864270fde394ec6f504e44646f31bfe18c23f1beaff99678634",
+        "ipo/manika/index.html": "40f677684570b7080c996d4a4ca9d5e1140e8c1f3bdd318099eafead8625f2f5",
+        "ipo/snehaa/index.html": "fec9ddf9fcec918e1c8230a83c8e51befe9873b55f6fd57c97d179bcb953122f",
+        "ipo/sacheerome/index.html": "75b68d99fe1225a4dad9d1ef8d81baec2a60fce2498585a672451083b4a3f6f5",
+        "data/validation.json": "617bbe9d2e345f0070d143b8a56c7c718e9b2e928e6f91404dd7ad93ad2256f3",
+        "data/missing_queue.json": "9801d5b91631c3592e18130a23d4fa0094c688249648753589f63dd06f585639",
+        "data/phase_status.json": "f4d452746451d20eb309ad6980fb6764d83093bfe43d8cd877398726a9bb9564"
+      },
+      "reviewedPublication": {
+        "status": "not_requested",
+        "scope": "retained-reviewed-evidence-delivery"
+      },
+      "additionalReviewPaths": [
+        "ipo/snehaa/index.html",
+        "ipo/sacheerome/index.html",
+        "data/validation.json",
+        "data/missing_queue.json",
+        "data/phase_status.json"
+      ],
+      "baseUrl": "https://vasuki8.github.io/IPO-Tracker/",
+      "httpChecked": [
+        "index.html",
+        "public-quality.js",
+        "public-quality.css",
+        "app.js",
+        "company-page.js",
+        "company.js",
+        "phase4.js",
+        "methodology.html",
+        "data/ipos-summary.json",
+        "ipo/routes.json",
+        "ipo/emmvee/index.html",
+        "ipo/teamtech/index.html",
+        "ipo/shakti-polytarp-limited/index.html",
+        "ipo/kheriaauto/index.html",
+        "ipo/vama-wovenfab-limited/index.html",
+        "ipo/sona/index.html",
+        "ipo/manika/index.html",
+        "ipo/snehaa/index.html",
+        "ipo/sacheerome/index.html",
+        "data/validation.json",
+        "data/missing_queue.json",
+        "data/phase_status.json"
+      ]
+    },
+    "artifact": {
+      "id": 10560491672,
+      "bytes": 1753,
+      "githubReportedSha256": "b4a62b47dc6019ca70928bae2092d5702a791a83441d28a316af9ef60bd01119",
+      "downloadedInThisSession": false
+    }
+  },
+  "postMergeValidation": {
+    "run": 35376223457,
+    "status": "success"
+  },
+  "postMergeBrowser": {
+    "run": 35376223442,
+    "status": "success"
+  },
+  "recordedAt": "2026-09-18T17:48:53Z"
+}

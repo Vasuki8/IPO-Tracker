@@ -53,9 +53,9 @@ future changes at this boundary also run existing public research journeys.
 
 The test-only parent reproduced all eight mixed totals in frozen CI run
 35375027327 (1,160 tests attempted; all reported failures were in the six new
-boundary tests). The local workspace is disconnected; CI is the execution authority. This note
-does not claim any fresh NSE response or universal correctness of source data.
-Record exact CI, merge and deployment evidence in PROJECT_STATUS.md.
+boundary tests). The local workspace is disconnected; CI is the execution authority. The synthetic regression does not establish universal correctness of source data.
+Final CI, merge and deployment evidence is recorded in PROJECT_STATUS.md and
+[the release receipt](../releases/2026-09-18-core-subscription-boundary.json).
 
 ## Current primary-source check
 
