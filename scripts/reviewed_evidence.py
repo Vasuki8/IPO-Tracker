@@ -76,6 +76,10 @@ def index_groups(groups, registry):
                             str(group.get('sourceReviewUrl') or '')):
             raise ValueError('Reviewed evidence needs an immutable source-review URL')
         corrections = [item for item in registry.get('changes', []) if item['id'] == identifier]
+        if group.get('kind') == 'financials':
+            # Retain historical nonfinancial repair entries without replaying
+            # them as part of a newly reviewed financial-only transaction.
+            corrections = [item for item in corrections if item.get('publicationScope') == 'explicit-reviewed']
         if len(corrections) != len(proofs) or {item['field'] for item in corrections} != set(proofs):
             raise ValueError('Reviewed evidence must match the complete correction-registry group')
         for item in corrections:

@@ -61,7 +61,8 @@ class FinancialGridTests(unittest.TestCase):
     def test_ambiguous_units_labels_and_malformed_cells_fail_closed(self):
         cases = [('EBITDA (%)','ebitdaCr'), ('EBITDA (Margin) (₹ in million)','ebitdaCr'),
                  ('EBITDA to Total Income','ebitdaCr'), ('Net Worth (per share)','netWorthCr'),
-                 ('EBITDA (₹ in billion)','ebitdaCr'), ('Basic Earnings per share (in ₹ million)','eps')]
+                 ('EBITDA (₹ in billion)','ebitdaCr'), ('Basic Earnings per share (in ₹ million)','eps'),
+                 ('Return on Net Worth (₹ in million)','ronwPct'), ('Basic Earnings per share (₹) (%)','eps')]
         for label, metric in cases:
             with self.subTest(label=label), self.assertRaises(ValueError):
                 extract_table(simple(label=label,metric=metric))

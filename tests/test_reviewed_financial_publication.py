@@ -64,6 +64,19 @@ class ReviewedFinancialPublicationTests(unittest.TestCase):
             self.assertEqual(len(row['financials']['periods']),3)
             self.assertTrue(all(len(p)==7 for p in row['financials']['periods']))
 
+    def test_historical_nonfinancial_registry_entries_are_retained_and_not_replayed(self):
+        self.registry['changes'].append({'id':'htel','field':'documentFieldProvenance',
+            'beforeHash':fingerprint(None),'after':{'obsolete':True}})
+        original=copy.deepcopy(self.registry)
+        candidate=self.candidate()
+        self.assertEqual(candidate['ipos'][0]['documentFieldProvenance'],self.payload['ipos'][0]['documentFieldProvenance'])
+        self.assertEqual(self.registry,original)
+        before=copy.deepcopy(self.payload['ipos'])
+        self.assertEqual(apply(self.payload,self.registry,evidence_groups=self.groups),(0,[]))
+        self.assertEqual(self.payload['ipos'],before)
+        self.registry['changes'][-1]['field']='financials'
+        with self.assertRaises(ValueError): self.candidate()
+
     def test_concurrent_value_proof_identity_and_conflict_fail_closed(self):
         for mutation in ('value','proof','identity','conflict'):
             payload=copy.deepcopy(self.payload); row=payload['ipos'][0]

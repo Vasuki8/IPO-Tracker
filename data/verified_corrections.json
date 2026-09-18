@@ -14605,6 +14605,124 @@
         "reviewVersion": "reviewed-intermediary-columns-v1",
         "collectedAt": "2026-09-18T19:40:33.208220+00:00"
       }
+    },
+    {
+      "id": "htel",
+      "identity": {
+        "id": "htel",
+        "company": "Hy-Tech Engineers Limited",
+        "symbol": "HTEL",
+        "openDate": "2026-08-24"
+      },
+      "field": "financials",
+      "beforeHash": "74dbf50424abe3e0d21cf94fbfdbeff2a02aeab424347ff21e412aeabeebdbd9",
+      "after": {
+        "unit": "₹ crore",
+        "periods": [
+          {
+            "period": "FY2026",
+            "patCr": 22.592,
+            "eps": 2.7,
+            "ronwPct": 20.24,
+            "ebitdaCr": 41.686,
+            "revenueCr": 189.404,
+            "netWorthCr": 122.017
+          },
+          {
+            "period": "FY2025",
+            "patCr": 19.619,
+            "eps": 2.35,
+            "ronwPct": 21.39,
+            "ebitdaCr": 35.788,
+            "revenueCr": 161.382,
+            "netWorthCr": 101.251
+          },
+          {
+            "period": "FY2024",
+            "patCr": 11.596,
+            "eps": 1.39,
+            "ronwPct": 15.11,
+            "ebitdaCr": 22.551,
+            "revenueCr": 137.708,
+            "netWorthCr": 82.216
+          }
+        ]
+      },
+      "publicationScope": "explicit-reviewed",
+      "reviewedAt": "2026-09-18T21:01:25.975748+00:00",
+      "reason": "Accept all retained annual financial metrics from reviewed, explicitly dated consolidated source cells; preserve original evidence and history",
+      "source": {
+        "name": "Reviewed Final Prospectus financial tables",
+        "type": "PROSPECTUS",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf"
+      },
+      "evidence": {
+        "documentDate": "2026-08-27",
+        "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+        "page": 282,
+        "sourceReviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/9229780be87876c00759a0ea06aba87fbac1103b/docs/reviews/2026-09-18-reviewed-financial-grids.md",
+        "reviewVersion": "reviewed-financial-grid-v1",
+        "collectedAt": "2026-09-18T20:08:10.932515+00:00"
+      }
+    },
+    {
+      "id": "kissht",
+      "identity": {
+        "id": "kissht",
+        "company": "Onemi Technology Solutions Limited",
+        "symbol": "KISSHT",
+        "openDate": "2026-04-30"
+      },
+      "field": "financials",
+      "beforeHash": "9683d407bff4a1d292eac7545685802ca596664984e22cf0ed06d9b210aab8d0",
+      "after": {
+        "unit": "₹ crore",
+        "periods": [
+          {
+            "period": "FY2025",
+            "eps": 33.09,
+            "patCr": 160.621,
+            "ronwPct": 15.97,
+            "ebitdaCr": 403.368,
+            "revenueCr": 1337.465,
+            "netWorthCr": 1005.994
+          },
+          {
+            "period": "FY2024",
+            "eps": 41.27,
+            "patCr": 197.29,
+            "ronwPct": 24.52,
+            "ebitdaCr": 358.958,
+            "revenueCr": 1674.446,
+            "netWorthCr": 804.569
+          },
+          {
+            "period": "FY2023",
+            "eps": 6.26,
+            "patCr": 27.667,
+            "ronwPct": 4.89,
+            "ebitdaCr": 97.711,
+            "revenueCr": 984.457,
+            "netWorthCr": 566.234
+          }
+        ]
+      },
+      "publicationScope": "explicit-reviewed",
+      "reviewedAt": "2026-09-18T21:01:25.975748+00:00",
+      "reason": "Accept all retained annual financial metrics from reviewed, explicitly dated consolidated source cells; preserve original evidence and history",
+      "source": {
+        "name": "Reviewed Final Prospectus financial tables",
+        "type": "PROSPECTUS",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf"
+      },
+      "evidence": {
+        "documentDate": "2026-05-05",
+        "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+        "page": 335,
+        "sourceReviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/9229780be87876c00759a0ea06aba87fbac1103b/docs/reviews/2026-09-18-reviewed-financial-grids.md",
+        "reviewVersion": "reviewed-financial-grid-v1",
+        "collectedAt": "2026-09-18T20:10:57.584968+00:00"
+      }
     }
   ],
   "fillMissing": [
@@ -14728,6 +14846,17 @@
       "basedOnCommit": "64697fe1d837e422a6678c51959e647fb7ad6e0b",
       "reviewedAt": "2026-09-18T19:47:55+00:00",
       "sourceReviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/b1f086ec6a8097c40fa6d3d2d7d2b9166d695af3/docs/reviews/2026-09-18-intermediary-column-corrections.md",
+      "publicationScope": "explicit-reviewed"
+    },
+    {
+      "kind": "financials",
+      "ids": [
+        "htel",
+        "kissht"
+      ],
+      "basedOnCommit": "07527e52d2a3b590be2851fcb0d578ed3f580136",
+      "reviewedAt": "2026-09-18T21:01:25.975748+00:00",
+      "sourceReviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/9229780be87876c00759a0ea06aba87fbac1103b/docs/reviews/2026-09-18-reviewed-financial-grids.md",
       "publicationScope": "explicit-reviewed"
     }
   ]

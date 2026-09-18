@@ -158,6 +158,10 @@ def extract_table(table):
                 raise ValueError('Percentage cannot supply currency')
         else:
             unit, factor = ('percent', 1) if metric.endswith('Pct') else ('rupees per share', 1)
+            if metric.endswith('Pct') and re.search(r'₹|\bRs\.?|\bINR\b', label, re.I):
+                raise ValueError('Currency annotation cannot supply a percent metric')
+            if not metric.endswith('Pct') and '%' in label:
+                raise ValueError('Percent annotation cannot supply EPS')
             nonnull = [t for t in row['tokens'] if t not in {'-', '–', '—'}]
             if metric.endswith('Pct') and not ('%' in label or (nonnull and all(t.endswith('%') for t in nonnull))):
                 raise ValueError('Percentage unit is not explicit')

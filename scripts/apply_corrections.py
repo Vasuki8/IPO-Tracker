@@ -105,7 +105,10 @@ def apply(payload, registry, *, evidence_groups=(), explicit_review=False):
         if scopes - {None, 'explicit-reviewed'}:
             raise ValueError('Unsupported correction publication scope')
         if 'explicit-reviewed' in scopes and len(scopes) != 1:
-            raise ValueError('Explicit reviewed corrections must cover the whole issuer group')
+            group = evidence_by_id.get(identifier) or {}
+            old_fields = {entry['field'] for entry in corrections if entry.get('publicationScope') is None}
+            if group.get('kind') != 'financials' or 'financials' in old_fields:
+                raise ValueError('Explicit reviewed corrections must cover the whole issuer group')
         if 'explicit-reviewed' in scopes and explicit_review and identifier not in evidence_by_id:
             raise ValueError('Explicit reviewed corrections require matching field proofs')
     repair(payload)
@@ -118,6 +121,7 @@ def apply(payload, registry, *, evidence_groups=(), explicit_review=False):
         if any(explicit):
             if not explicit_review:
                 continue
+            corrections = [entry for entry in corrections if entry.get('publicationScope') == 'explicit-reviewed']
         row = rows.get(identifier)
         if row is None:
             conflicts.append({'id': identifier, 'reason': 'Issuer record no longer exists'})
