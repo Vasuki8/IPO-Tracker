@@ -8,6 +8,7 @@ BSE HTML parser with an IPO-only parser before running update_data.main().
 """
 from __future__ import annotations
 
+import copy
 import json
 import sys
 from pathlib import Path
@@ -154,26 +155,21 @@ def normalize_nse_record(record, kind):
 core.normalize_nse_record = normalize_nse_record
 
 
-# Core NSE payloads sometimes expose only the overall subscription multiple. A
-# top-level dict replacement would erase QIB/NII/Retail values collected earlier
-# from NSE ipo-detail or BSE cumulative demand. Merge that nested object field by
-# field while retaining the normal "new official value wins" behavior elsewhere.
+# Generic issue-feed multiples remain in source-bound observations. The detail
+# collector owns the complete accepted subscription family, including its history.
+# Protect absence as well as existing fields; an incoming-only clock cannot create
+# a new attribution. Keep this compatibility entrypoint for existing callers.
 _original_merge_non_null = core.merge_non_null
 
 
 def merge_non_null_preserving_nested(base, incoming):
     out = _original_merge_non_null(base, incoming)
-    old_subscription = base.get("subscription") if isinstance(base, dict) else None
-    new_subscription = incoming.get("subscription") if isinstance(incoming, dict) else None
-    if isinstance(old_subscription, dict) or isinstance(new_subscription, dict):
-        merged_subscription = {}
-        if isinstance(old_subscription, dict):
-            merged_subscription.update(old_subscription)
-        if isinstance(new_subscription, dict):
-            for key, value in new_subscription.items():
-                if value is not None:
-                    merged_subscription[key] = value
-        out["subscription"] = merged_subscription or None
+    for key in set(base) | set(incoming):
+        if key.startswith("subscription"):
+            if key in base:
+                out[key] = copy.deepcopy(base[key])
+            else:
+                out.pop(key, None)
     return out
 
 

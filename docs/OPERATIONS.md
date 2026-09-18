@@ -27,6 +27,16 @@ The pipeline has a 60-minute total collection budget (`--budget-minutes`, capped
 
 Collectors have read-only repository permissions. They retain a baseline, proposed dataset and tested source commit in a 14-day Actions artifact. Publication runs only from `main`, serializes in one queue, tests current main, and checks that the collector's scripts, locked dependencies and reviewed-correction registry are still current. A supplied collector manifest must contain a valid ancestor commit; missing, empty or malformed manifests fail before any data writes. See `PUBLICATION_SOURCE_GUARD.md` for recovery. A three-way merge preserves unrelated updates. Document values and their evidence, and subscription values and their source/timestamps, merge as atomic groups.
 
+The core NSE current/upcoming/history feed does not own accepted subscription
+snapshots. Its multiples and raw share inputs stay in
+`observations.NSE.subscriptionSummary`, with endpoint/issuer/offer identity,
+collection time, unknown observation time and an unverified denominator. Core
+merging preserves the complete accepted subscription family and history, including
+absence. The dedicated detail collector's existing complete-response rules govern
+accepted updates. Historical mixed snapshots require source reconciliation or an
+explicit review hold; this boundary does not backfill them. See
+[the core subscription review](reviews/2026-09-18-core-subscription-boundary.md).
+
 Conflicting proposals are retained in `data/pending_updates.json`; accepted values are preserved. `documentFields` and `subscriptionSnapshot` in a pending path name the atomic groups defined in `publish_transaction.py`. Review source evidence, then update or recollect the affected group. There is no automatic last-writer-wins conflict resolution. Failed publications retain their original collection artifact; rerun a failed publisher only when its code is still current, otherwise recollect on current main. Publication requests a Pages rebuild explicitly after a bot commit.
 
 `priceSnapshot` keeps listing prices, final-price evidence, observations and calculated returns together. If another collection changed any of those fields, the competing snapshot stays pending rather than mixing one baseline with another return.
