@@ -1,18 +1,16 @@
 # IPO Tracker — prioritized development roadmap
 
-Current execution update (18 September 2026): #108's publication source guard,
-#109's Teamtech document hold and #111's document-conflict wording are released
-and live-verified. #112's durable generated-presentation routing is deployed;
-its actual refresh skipped source and residual collection and published no data
-changes. #110's complete source-review routing is merged after successful
-validation, browser and source-preview checks, and is deployed and live-verified.
-Its source-preview output remains unaccepted. Main now routes all
-1,618 source findings with no unmapped work, while 1,614 findings still block P4.
-These increments preserve canonical values and the P4 gate. The combined #105
-parser/source draft remains unaccepted: the original seven-record transport is
-unavailable, and Teamtech's conflicting prospectus units block its proposed
-replacement. See [PROJECT_STATUS.md](PROJECT_STATUS.md) for release evidence,
-pending checks and the exact next action; the dated audit below is preserved.
+Current execution update (18 September 2026): the earlier public trust,
+freshness, publication guard and source-review routing releases are preserved.
+The completed automatic publication at `3bdbdc5c` exposed active public holds
+missing from operational review after re-extraction, plus three unsupported
+intermediary strings. The next release routes every active hold and withholds
+those three source-checked extraction defects. Its prepared gate has 1,614
+reviews, 1,610 P4 blockers and zero unmapped work; canonical values and all 441
+proposals remain intact. The bounded Emmvee transport is the parallel source
+repair; Teamtech's document conflict and draft #105 remain unresolved. See
+[PROJECT_STATUS.md](PROJECT_STATUS.md) for exact acceptance and release evidence.
+The dated audit below is preserved and must not override current repository data.
 
 Prepared 17 September 2026. Recommendation: make displayed data trustworthy, make repairs and updates dependable, complete P4, then expand historical coverage and investment-research features. Keep the current light dashboard and static GitHub Pages architecture while doing this.
 

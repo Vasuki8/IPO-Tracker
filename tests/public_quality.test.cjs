@@ -37,7 +37,10 @@ test('document conflicts explain unresolved evidence without implying an accepte
     assert.match(html,/Under review/);
   }
   raw.publicQuality.fields.objectsOfIssue.reason='pending_source_repair';
-  assert.match(Q.note(raw,'objectsOfIssue'),/until the accepted repair is published/);
+  const pending = Q.note(raw,'objectsOfIssue');
+  assert.match(pending,/withheld while its source evidence is reviewed/);
+  assert.match(pending,/correction needs matching evidence before publication/);
+  assert.doesNotMatch(pending,/accepted repair/);
 });
 test('a newer collection or history row never replaces accepted subscription values or source time', () => {
   const raw={subscription:{total:2},subscriptionObservedAt:'2026-09-17T20:18:25+05:30',

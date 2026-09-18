@@ -1,0 +1,108 @@
+"""Shared bindings for unresolved public-source holds and operational reviews.
+
+Matching never changes canonical values or resolves a review. Document conflicts
+bind the issuer, offer and PDF bytes; layout holds bind the retained value too.
+"""
+from __future__ import annotations
+
+import copy
+import hashlib
+import json
+import re
+from functools import lru_cache
+from pathlib import Path
+
+from final_prospectus_policy import field_value
+
+ROOT = Path(__file__).resolve().parents[1]
+REGISTRY_PATH = 'data/public_display_holds.json'
+HOLD_REVIEW_TYPES = frozenset({'document_conflict', 'source_display_hold'})
+
+
+def value_digest(value):
+    return hashlib.sha256(json.dumps(value, sort_keys=True, ensure_ascii=False,
+                                    separators=(',', ':'), allow_nan=False).encode()).hexdigest()
+
+
+def _validate_hold(hold):
+    if not isinstance(hold, dict) or not isinstance(hold.get('id'), str) or not hold['id']:
+        raise ValueError('Public display hold requires an issue id')
+    scope = hold.get('scope', 'value')
+    if scope not in {'value', 'document'}:
+        raise ValueError('Unsupported public display hold scope')
+    if not isinstance(hold.get('fields'), dict) or not hold['fields']:
+        raise ValueError('Public display hold requires field bindings')
+    for field, binding in hold['fields'].items():
+        if (not isinstance(field, str) or not field or not isinstance(binding, dict)
+                or not re.fullmatch(r'[a-f0-9]{64}', str(binding.get('sha256') or ''))):
+            raise ValueError('Public display hold requires a field and exact PDF fingerprint')
+        if scope == 'value' and not re.fullmatch(r'[a-f0-9]{64}', str(binding.get('valueDigest') or '')):
+            raise ValueError('Value display hold requires an exact value fingerprint')
+    if scope == 'document':
+        identity = hold.get('identity') or {}
+        keys = ('id', 'company', 'symbol', 'openDate')
+        if (not isinstance(identity, dict)
+                or not all(isinstance(identity.get(key), str) and identity[key] for key in keys)
+                or identity['id'] != hold['id']):
+            raise ValueError('Document display hold requires exact issuer and offer identity')
+
+
+@lru_cache(maxsize=1)
+def display_holds():
+    # Missing or malformed evidence must fail the build, never restore a value
+    # or remove its operational review silently.
+    registry = json.loads((ROOT / REGISTRY_PATH).read_text(encoding='utf-8'))
+    holds = registry.get('holds') if isinstance(registry, dict) else None
+    if not isinstance(holds, list):
+        raise ValueError('Public display hold registry requires a holds list')
+    for hold in holds:
+        _validate_hold(hold)
+    return holds
+
+
+def display_hold_matches(record, field, hold):
+    _validate_hold(hold)
+    if hold['id'] != record.get('id'):
+        return False
+    binding = hold['fields'][field]
+    proof = (record.get('staticFieldProvenance') or {}).get(field) or {}
+    if not isinstance(proof, dict):
+        return False
+    if hold.get('scope', 'value') == 'document':
+        identity = hold['identity']
+        return (all(record.get(key) == identity[key] for key in ('id', 'company', 'symbol', 'openDate'))
+                and proof.get('issueOpenDate') == identity['openDate']
+                and proof.get('sha256') == binding['sha256'])
+    return (proof.get('sha256') == binding['sha256']
+            and value_digest(field_value(record, field)) == binding['valueDigest'])
+
+
+def active_hold_reviews(record, holds=None):
+    """Return one review per exact active hold, preserving distinct findings."""
+    issues = []
+    for hold in display_holds() if holds is None else holds:
+        _validate_hold(hold)
+        if hold['id'] != record.get('id'):
+            continue
+        for field, binding in hold['fields'].items():
+            if not display_hold_matches(record, field, hold):
+                continue
+            scope = hold.get('scope', 'value')
+            proof = (record.get('staticFieldProvenance') or {}).get(field) or {}
+            source = {key: copy.deepcopy(proof[key]) for key in
+                      ('sourceUrl', 'documentType', 'documentDate', 'sha256', 'parserVersion', 'issueOpenDate', 'checkedAt')
+                      if proof.get(key) is not None}
+            metadata = {'registryPath': REGISTRY_PATH, 'holdId': hold['id'], 'scope': scope,
+                        'source': source, 'binding': copy.deepcopy(binding)}
+            for key, target in (('identity', 'identity'), ('review', 'reviewUrl'), ('reviewedAt', 'reviewedAt')):
+                if hold.get(key) is not None:
+                    metadata[target] = copy.deepcopy(hold[key])
+            issue = {
+                'id': record.get('id'), 'field': field, 'severity': 'review',
+                'reason': hold.get('reason') or 'Published value remains withheld pending resolution of the retained source review.',
+                'reviewType': 'document_conflict' if scope == 'document' else 'source_display_hold',
+                'displayHold': metadata,
+            }
+            if issue not in issues:
+                issues.append(issue)
+    return issues

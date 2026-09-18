@@ -15,7 +15,51 @@ authority for completed static terms, explicitly provisional active disclosures,
 source observation versus collection clocks, nulls, source evidence and correction
 history remain mandatory. P4 is incomplete; P5/performance expansion remain gated.
 
-## Current checkpoint — 18 September 2026
+## Current work — 18 September 2026, public source-review repair
+
+The scheduled collector completed after the previous checkpoint and published
+`3bdbdc5cdfb6ad44c230d2977512a2e8fa69fee4`. [Collection/publication 35291533992](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35291533992),
+[Pages 35293612469](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35293612469)
+and [live acceptance 35293644304](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35293644304)
+succeeded. That accepted snapshot has 1,599 reviews, 1,595 P4 blockers, 387 P4
+records plus 51 higher-priority records, and no unmapped reviews. This supersedes
+the earlier unfinished-run observation; it does not establish independent PDF
+acceptance for every automatic extraction. All 441 proposals remain retained.
+
+The next bounded release on `fix-actionable-public-source-holds` closes an exposed
+review-routing defect and withholds three unsupported intermediary extractions.
+Every active document/value hold becomes an explicit manual source-review task,
+even when an automatic extraction repopulates the canonical field. The 1,599
+existing reviews remain intact; 15 active held fields yield **1,614 reviews,
+1,610 P4 blockers and zero unmapped reviews**. Missing fields, availability,
+priority and automatic collection gaps are unchanged; P5 still waits for P4.
+
+Snehaa's lead-manager extraction combines separate role columns; Sacheerome's
+lead-manager extraction does the same and its registrar contains only the
+former-name fragment. Matching official PDFs were downloaded and their physical
+role pages visually checked. [The source review](reviews/2026-09-18-intermediary-column-review.md)
+records URLs, identities, page numbers, bytes, hashes and unresolved replacement
+work. The three public holds preserve every canonical value, proof and correction
+event; no replacement entity was guessed. The public wording no longer implies
+that an accepted replacement is already ready.
+
+Combined local verification passed **1,020 frozen Python regressions and eight
+Node tests**. All 1,366 generated routes validate, with exactly the two affected
+profiles changed. The intermediary checks inspected both profiles and quick views
+at 1,440 and 390 pixels, including withheld values, source links, overflow,
+browser errors and canonical fallback requests. Required PR checks and live
+release verification remain the final acceptance steps for this branch.
+
+Canonical SHA-256 remains `fe8a78b6149d1e8f25b0f81fc16b4ba1e3e00aa59a436d5ae1566d0080d27bcd`;
+the 441-proposal file remains `ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3`.
+The independent Emmvee-only transport is in development on
+`fix-bounded-emmvee-repair`; its four reviewed before-values and proofs still
+match current main. It must use a new current-code/base receipt, preserve newer
+policy timestamps, and protect the accepted facts from old same-PDF extraction.
+Draft #105 and its historical 409/5a63 evidence remain unmerged. Teamtech stays
+held, and neither P5 nor performance coverage is expanded.
+
+## Previous verified checkpoint — 18 September 2026
 
 The latest live-verified main checkpoint recorded here is
 `dd3a9b42057422057c98a16c9b1281cf318a54d8`. The public trust/freshness

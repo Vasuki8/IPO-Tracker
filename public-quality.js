@@ -23,7 +23,7 @@
     composition_review: 'Issue totals or their supporting evidence require review. The complete composition is withheld.',
     quarantined: 'This field is quarantined pending source review.',
     final_evidence_required: 'Matching field-level Final Prospectus evidence is not yet available. This is not proof that the earlier disclosure was wrong.',
-    pending_source_repair: 'A source-backed repair is under review. The earlier value is withheld until the accepted repair is published.',
+    pending_source_repair: 'The retained value is withheld while its source evidence is reviewed. A correction needs matching evidence before publication.',
     document_conflict: 'This prospectus contains conflicting disclosures for this field. The value is withheld until authoritative source evidence resolves the conflict.',
     provisional_expired: 'The provisional bidding disclosure has expired. Final Prospectus verification is required.',
     legacy_projection: 'This cached public record predates field-level checks. Unverified static values are withheld; reload after the public snapshot is rebuilt.',

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "basis": "Presentation-only source reviews. Value-scoped layout holds bind the current source and value; document-scoped contradictions bind exact issuer/offer identity and PDF bytes across URLs and extractions. No canonical correction or P4 resolution.",
+  "basis": "Source review holds shared by public presentation and actionable review gates. Value-scoped layout holds bind the current source and value; document-scoped contradictions bind exact issuer/offer identity and PDF bytes across URLs and extractions. No canonical correction or P4 resolution.",
   "holds": [
     {
       "id": "emmvee",
@@ -206,6 +206,63 @@
           "sourcePhysicalPagesInspected": [
             119,
             120
+          ]
+        }
+      }
+    },
+    {
+      "id": "snehaa",
+      "review": "https://github.com/Vasuki8/IPO-Tracker/blob/main/docs/reviews/2026-09-18-intermediary-column-review.md",
+      "scope": "value",
+      "identity": {
+        "id": "snehaa",
+        "company": "Snehaa Organics Limited",
+        "symbol": "SNEHAA",
+        "openDate": "2025-08-29"
+      },
+      "reviewedAt": "2026-09-18T01:13:01+00:00",
+      "reason": "Withheld lead-manager extraction because the Final Prospectus presents the lead manager and registrar in separate columns, but the retained value concatenates both entities as one lead manager.",
+      "fields": {
+        "leadManagers": {
+          "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+          "valueDigest": "dda1f69e1101a7428084d658a6b84dd9eec18ca2a1c2854691cdc72922017b3e",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+          "documentDate": "2025-09-03",
+          "sourcePhysicalPagesInspected": [
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "sacheerome",
+      "review": "https://github.com/Vasuki8/IPO-Tracker/blob/main/docs/reviews/2026-09-18-intermediary-column-review.md",
+      "scope": "value",
+      "identity": {
+        "id": "sacheerome",
+        "company": "Sacheerome Limited",
+        "symbol": "SACHEEROME",
+        "openDate": "2025-06-09"
+      },
+      "reviewedAt": "2026-09-18T01:13:01+00:00",
+      "reason": "Withheld intermediary extractions because the retained lead-manager value concatenates separate lead-manager and registrar columns, and the registrar value contains only a former-name parenthetical rather than the current registrar entity.",
+      "fields": {
+        "leadManagers": {
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "valueDigest": "8dc9a18e411c677efb85543709ce310b4584f32863dd85f0e21ef457e36d3d25",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "documentDate": "2025-06-12",
+          "sourcePhysicalPagesInspected": [
+            3
+          ]
+        },
+        "registrar": {
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "valueDigest": "d8e95238f95af42a8c08e0278af95f4a9e2b91e6592d20ddd536868f32889024",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "documentDate": "2025-06-12",
+          "sourcePhysicalPagesInspected": [
+            3
           ]
         }
       }

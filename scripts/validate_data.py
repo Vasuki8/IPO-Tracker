@@ -15,6 +15,7 @@ from final_prospectus_policy import is_final_prospectus
 from performance_metrics import refresh_returns
 from issue_composition_checks import COMPOSITION_FIELDS, quarantined_fields, record_composition_problems
 from objects_of_issue_checks import objects_problems, objects_evidence_problems, objects_quarantined
+from source_review_holds import active_hold_reviews
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -23,7 +24,7 @@ def numeric(value):
     return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
 
 
-def validate_record(record):
+def validate_record(record, *, holds=None):
     issues = []
     def add(field, reason, severity="error"):
         issues.append({"id": record.get("id"), "field": field, "severity": severity, "reason": reason})
@@ -149,6 +150,11 @@ def validate_record(record):
     for key, value in (record.get("subscription") or {}).items():
         if value is not None and (not numeric(value) or value < 0):
             add("subscription." + key, "Subscription multiple must be finite and non-negative")
+    # A fresh extraction can repopulate a held field without resolving the
+    # underlying source review. Keep those reviews in the queue and phase gate.
+    for issue in active_hold_reviews(record, holds):
+        if issue not in issues:
+            issues.append(issue)
     return issues
 
 

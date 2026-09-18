@@ -11,6 +11,8 @@ import copy
 import re
 from typing import Any
 
+from source_review_holds import HOLD_REVIEW_TYPES
+
 FINANCIAL_FIELD = re.compile(
     r"financials\.FY\d{4}\.(?:revenueCr|totalIncomeCr|ebitdaCr|patCr|netWorthCr|eps|dilutedEps|ronwPct|roePct)\Z"
 )
@@ -42,7 +44,25 @@ def review_task(record: dict[str, Any], issue: dict[str, Any]) -> dict[str, Any]
     field = issue.get("field")
     financial = isinstance(field, str) and bool(FINANCIAL_FIELD.fullmatch(field))
     gap = "offer.financials" if financial else FINAL_GAPS.get(field) if isinstance(field, str) else None
-    if gap:
+    review_type = issue.get("reviewType")
+    if isinstance(review_type, str) and review_type in HOLD_REVIEW_TYPES:
+        gap = None
+        route = "manual-source-review"
+        action = (
+            "Reconcile the documented conflict against authoritative source evidence or an explicit superseding disclosure; "
+            "another extraction of the same PDF does not resolve this review. Retain the public hold until that review is resolved."
+            if review_type == "document_conflict" else
+            "Review the retained field and source-role or layout evidence, then publish an accepted source-backed correction. "
+            "Retain the public hold until the source and value binding no longer matches."
+        )
+        pointer = str(field).replace("~", "~0").replace("/", "~1")
+        paths = ["/staticFieldProvenance/" + pointer, "/documentFieldProvenance", "/dataCorrections", "/dataReview"]
+    elif review_type is not None:
+        gap = None
+        route = "manual-triage"
+        action = "Identify the unsupported review type and authoritative source with an operator before scheduling source work."
+        paths = ["/dataReview", "/documentFieldProvenance", "/sources"]
+    elif gap:
         route = "final-prospectus-review"
         action = (
             "Review the identified Final Prospectus table and field evidence; retain the hold until an accepted correction. "
@@ -63,7 +83,7 @@ def review_task(record: dict[str, Any], issue: dict[str, Any]) -> dict[str, Any]
         action = "Identify the field and authoritative source with an operator; unsupported or malformed review fields are not sent to an automatic collector."
         paths = ["/dataReview", "/offerDocumentExtraction", "/documentFieldProvenance", "/sources"]
     paths += ["/documents"]
-    return {
+    task = {
         "field": field,
         "reason": issue.get("reason"),
         "route": route,
@@ -71,6 +91,11 @@ def review_task(record: dict[str, Any], issue: dict[str, Any]) -> dict[str, Any]
         "evidencePaths": [path for path in paths if _pointer_exists(record, path)],
         "nextAction": action,
     }
+    if review_type is not None:
+        task["reviewType"] = review_type
+    if issue.get("displayHold") is not None:
+        task["displayHold"] = copy.deepcopy(issue["displayHold"])
+    return task
 
 
 def review_gaps(row: dict[str, Any]) -> set[str]:

@@ -166,7 +166,10 @@ class RetainedProductionDisplayTests(unittest.TestCase):
             self.assertNotIn(field,result)
 
     def test_retained_pr94_holds_bind_current_data_and_remain_presentation_only(self):
-        for hold in (item for item in display_holds() if item.get('scope', 'value') == 'value'):
+        # Later production holds have separate immutable fixtures and regression
+        # tests; this fixture records only the original PR94 values.
+        for hold in (item for item in display_holds()
+                     if item.get('scope', 'value') == 'value' and item['id'] in self.rows):
             row = self.rows[hold['id']]
             for field, binding in hold['fields'].items():
                 # Immutable, selected production values must match every guard;
