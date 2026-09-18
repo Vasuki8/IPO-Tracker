@@ -1,28 +1,28 @@
 {
-  "generatedAt": "2026-09-18T14:28:17+05:30",
+  "generatedAt": "2026-09-18T16:54:20+05:30",
   "asOfDate": "2026-09-18",
-  "recordCount": 1367,
+  "recordCount": 1370,
   "stageCounts": {
     "closed": 56,
-    "filing-pipeline": 11,
+    "filing-pipeline": 12,
     "listed": 1287,
     "open": 8,
     "unknown": 1,
-    "upcoming": 4
+    "upcoming": 6
   },
   "segmentCounts": {
-    "allRecords": 1367,
-    "exchangeStage": 1355,
-    "recentExchange2Y": 442,
+    "allRecords": 1370,
+    "exchangeStage": 1357,
+    "recentExchange2Y": 444,
     "historicalExchange": 913,
-    "offerDocumentEligible": 388,
+    "offerDocumentEligible": 389,
     "openNow": 8,
     "maturedClosed": 1323
   },
   "scores": {
     "exchangeStage": 82.6,
-    "recentExchange2Y": 96.6,
-    "offerDocumentEligible": 69.8,
+    "recentExchange2Y": 96.4,
+    "offerDocumentEligible": 69.7,
     "openSubscription": 90.6,
     "maturedLifecycle": 97.2,
     "provenance": 100.0
@@ -30,114 +30,114 @@
   "coverage": {
     "exchangeStage": {
       "symbol": {
-        "present": 1351,
-        "expected": 1355,
-        "missing": 4,
-        "pct": 99.7
+        "present": 1352,
+        "expected": 1357,
+        "missing": 5,
+        "pct": 99.6
       },
       "board": {
-        "present": 1355,
-        "expected": 1355,
+        "present": 1357,
+        "expected": 1357,
         "missing": 0,
         "pct": 100.0
       },
       "exchange": {
-        "present": 1355,
-        "expected": 1355,
+        "present": 1357,
+        "expected": 1357,
         "missing": 0,
         "pct": 100.0
       },
       "openDate": {
-        "present": 1355,
-        "expected": 1355,
+        "present": 1357,
+        "expected": 1357,
         "missing": 0,
         "pct": 100.0
       },
       "closeDate": {
-        "present": 1355,
-        "expected": 1355,
+        "present": 1357,
+        "expected": 1357,
         "missing": 0,
         "pct": 100.0
       },
       "priceBand": {
         "present": 1336,
-        "expected": 1355,
-        "missing": 19,
-        "pct": 98.6
+        "expected": 1357,
+        "missing": 21,
+        "pct": 98.5
       },
       "lotSize": {
         "present": 436,
-        "expected": 1355,
-        "missing": 919,
-        "pct": 32.2
+        "expected": 1357,
+        "missing": 921,
+        "pct": 32.1
       },
       "issueSizeCr": {
         "present": 392,
-        "expected": 1355,
-        "missing": 963,
+        "expected": 1357,
+        "missing": 965,
         "pct": 28.9
       },
       "issueComposition": {
         "present": 389,
-        "expected": 443,
-        "missing": 54,
-        "pct": 87.8
+        "expected": 445,
+        "missing": 56,
+        "pct": 87.4
       }
     },
     "recentExchange2Y": {
       "symbol": {
-        "present": 438,
-        "expected": 442,
-        "missing": 4,
-        "pct": 99.1
+        "present": 439,
+        "expected": 444,
+        "missing": 5,
+        "pct": 98.9
       },
       "board": {
-        "present": 442,
-        "expected": 442,
+        "present": 444,
+        "expected": 444,
         "missing": 0,
         "pct": 100.0
       },
       "exchange": {
-        "present": 442,
-        "expected": 442,
+        "present": 444,
+        "expected": 444,
         "missing": 0,
         "pct": 100.0
       },
       "openDate": {
-        "present": 442,
-        "expected": 442,
+        "present": 444,
+        "expected": 444,
         "missing": 0,
         "pct": 100.0
       },
       "closeDate": {
-        "present": 442,
-        "expected": 442,
+        "present": 444,
+        "expected": 444,
         "missing": 0,
         "pct": 100.0
       },
       "priceBand": {
         "present": 436,
-        "expected": 442,
-        "missing": 6,
-        "pct": 98.6
+        "expected": 444,
+        "missing": 8,
+        "pct": 98.2
       },
       "lotSize": {
         "present": 429,
-        "expected": 442,
-        "missing": 13,
-        "pct": 97.1
+        "expected": 444,
+        "missing": 15,
+        "pct": 96.6
       },
       "issueSizeCr": {
         "present": 385,
-        "expected": 442,
-        "missing": 57,
-        "pct": 87.1
+        "expected": 444,
+        "missing": 59,
+        "pct": 86.7
       },
       "issueComposition": {
         "present": 388,
-        "expected": 442,
-        "missing": 54,
-        "pct": 87.8
+        "expected": 444,
+        "missing": 56,
+        "pct": 87.4
       }
     },
     "historicalExchange": {
@@ -199,39 +199,39 @@
     "offerDocumentEligible": {
       "registrar": {
         "present": 361,
-        "expected": 388,
-        "missing": 27,
-        "pct": 93.0
+        "expected": 389,
+        "missing": 28,
+        "pct": 92.8
       },
       "leadManagers": {
         "present": 357,
-        "expected": 388,
-        "missing": 31,
-        "pct": 92.0
+        "expected": 389,
+        "missing": 32,
+        "pct": 91.8
       },
       "promoters": {
         "present": 343,
-        "expected": 388,
-        "missing": 45,
-        "pct": 88.4
+        "expected": 389,
+        "missing": 46,
+        "pct": 88.2
       },
       "objectsOfIssue": {
         "present": 93,
-        "expected": 388,
-        "missing": 295,
-        "pct": 24.0
+        "expected": 389,
+        "missing": 296,
+        "pct": 23.9
       },
       "financials": {
         "present": 247,
-        "expected": 388,
-        "missing": 141,
-        "pct": 63.7
+        "expected": 389,
+        "missing": 142,
+        "pct": 63.5
       },
       "promoterShareholding": {
         "present": 225,
-        "expected": 388,
-        "missing": 163,
-        "pct": 58.0
+        "expected": 389,
+        "missing": 164,
+        "pct": 57.8
       }
     },
     "openSubscription": {
@@ -278,20 +278,20 @@
     },
     "provenance": {
       "sources": {
-        "present": 1366,
-        "expected": 1367,
+        "present": 1369,
+        "expected": 1370,
         "missing": 1,
         "pct": 99.9
       },
       "validation": {
-        "present": 1367,
-        "expected": 1367,
+        "present": 1370,
+        "expected": 1370,
         "missing": 0,
         "pct": 100.0
       },
       "documents": {
-        "present": 395,
-        "expected": 395,
+        "present": 396,
+        "expected": 396,
         "missing": 0,
         "pct": 100.0
       }
@@ -300,6 +300,12 @@
   "gapExamples": {
     "recentExchange2Y": {
       "symbol": [
+        {
+          "id": "s-k-offset-limited",
+          "company": "S. K. OFFSET LIMITED",
+          "openDate": "2026-09-23",
+          "stage": "upcoming"
+        },
         {
           "id": "himalaya-nutravedics-india-limited",
           "company": "Himalaya Nutravedics India Limited",
@@ -330,6 +336,18 @@
       "openDate": [],
       "closeDate": [],
       "priceBand": [
+        {
+          "id": "s-k-offset-limited",
+          "company": "S. K. OFFSET LIMITED",
+          "openDate": "2026-09-23",
+          "stage": "upcoming"
+        },
+        {
+          "id": "varmora",
+          "company": "Varmora Granito Limited",
+          "openDate": "2026-09-22",
+          "stage": "upcoming"
+        },
         {
           "id": "himalaya-nutravedics-india-limited",
           "company": "Himalaya Nutravedics India Limited",
@@ -368,6 +386,18 @@
         }
       ],
       "lotSize": [
+        {
+          "id": "s-k-offset-limited",
+          "company": "S. K. OFFSET LIMITED",
+          "openDate": "2026-09-23",
+          "stage": "upcoming"
+        },
+        {
+          "id": "varmora",
+          "company": "Varmora Granito Limited",
+          "openDate": "2026-09-22",
+          "stage": "upcoming"
+        },
         {
           "id": "himalaya-nutravedics-india-limited",
           "company": "Himalaya Nutravedics India Limited",
@@ -449,6 +479,18 @@
       ],
       "issueSizeCr": [
         {
+          "id": "s-k-offset-limited",
+          "company": "S. K. OFFSET LIMITED",
+          "openDate": "2026-09-23",
+          "stage": "upcoming"
+        },
+        {
+          "id": "varmora",
+          "company": "Varmora Granito Limited",
+          "openDate": "2026-09-22",
+          "stage": "upcoming"
+        },
+        {
           "id": "himalaya-nutravedics-india-limited",
           "company": "Himalaya Nutravedics India Limited",
           "openDate": "2026-09-22",
@@ -525,22 +567,22 @@
           "company": "Happy Steels Limited",
           "openDate": "2026-07-09",
           "stage": "listed"
-        },
-        {
-          "id": "icel",
-          "company": "IC Electricals Company Limited-Issue postponed",
-          "openDate": "2026-06-25",
-          "stage": "closed"
-        },
-        {
-          "id": "spgcl-withdrawn-2026-06-24",
-          "company": "Sri Priyanka Geo Commex Limited-Issue Withdrawn",
-          "openDate": "2026-06-24",
-          "stage": "closed"
         }
       ],
       "issueComposition": [
         {
+          "id": "s-k-offset-limited",
+          "company": "S. K. OFFSET LIMITED",
+          "openDate": "2026-09-23",
+          "stage": "upcoming"
+        },
+        {
+          "id": "varmora",
+          "company": "Varmora Granito Limited",
+          "openDate": "2026-09-22",
+          "stage": "upcoming"
+        },
+        {
           "id": "himalaya-nutravedics-india-limited",
           "company": "Himalaya Nutravedics India Limited",
           "openDate": "2026-09-22",
@@ -617,18 +659,6 @@
           "company": "Happy Steels Limited",
           "openDate": "2026-07-09",
           "stage": "listed"
-        },
-        {
-          "id": "icel",
-          "company": "IC Electricals Company Limited-Issue postponed",
-          "openDate": "2026-06-25",
-          "stage": "closed"
-        },
-        {
-          "id": "spgcl-withdrawn-2026-06-24",
-          "company": "Sri Priyanka Geo Commex Limited-Issue Withdrawn",
-          "openDate": "2026-06-24",
-          "stage": "closed"
         }
       ]
     },
