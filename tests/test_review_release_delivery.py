@@ -17,6 +17,7 @@ class ReviewReleaseDeliveryTests(unittest.TestCase):
             target = self.root / name
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text(json.dumps({'path': name}))
+        (self.root/'data/public_display_holds.json').write_text(json.dumps({'holds': []}))
         self.initial = {'expectedSha256': {'index.html': review.public.digest((self.root/'index.html').read_bytes())},
                         'sampledProfiles': ['ipo/snehaa/'], 'routeCount': 2}
 

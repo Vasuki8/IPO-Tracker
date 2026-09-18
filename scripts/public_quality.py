@@ -169,7 +169,8 @@ def project_record(record, *, today=None, holds=None):
             continue
         for field in hold['fields']:
             if _display_hold_matches(record, field, hold):
-                reviews[field] = 'document_conflict' if hold.get('scope') == 'document' else 'pending_source_repair'
+                reviews[field] = ('subscription_snapshot_conflict' if hold.get('scope') == 'subscription_snapshot'
+                                 else 'document_conflict' if hold.get('scope') == 'document' else 'pending_source_repair')
     if set(COMPOSITION_FIELDS) & set(reviews):
         reviews.update({f: 'composition_review' for f in COMPOSITION_FIELDS})
 

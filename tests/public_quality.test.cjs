@@ -92,3 +92,15 @@ test('shared profile renders timeline and withheld fields without requiring brow
     assert.match(html,/href="https:\/\/www\.sebi\.gov\.in\/final\.pdf"/);
   }
 });
+
+test('held market snapshots never leak through raw helpers or a newer chart row', () => {
+  const raw={subscription:{qib:1,nii:2,retail:3,total:987.654},subscriptionHistory:[{total:999,capturedAt:'2026-09-19T01:00:00Z'}],
+    subscriptionSource:'Example (secondary)',subscriptionObservedAt:null,
+    publicQuality:contract({subscription:{state:'under_review',reason:'subscription_snapshot_conflict'}})};
+  assert.equal(Q.snapshot(raw).total,undefined);assert.deepEqual(Q.history(raw),[]);
+  assert.equal(Q.snapshot(raw).observedAt,null);assert.equal(Q.snapshot(raw).authority,'Secondary source');
+  assert.match(Q.note(raw,'subscription'),/unreconciled source or bid-denominator/);
+  assert.doesNotMatch(Q.note(raw,'subscription'),/Final Prospectus|987|999/);
+  assert.match(Q.panel(raw),/Subscription/);assert.match(Q.panel(raw),/unreconciled source or bid-denominator/);
+  assert.equal(raw.subscription.total,987.654);assert.equal(raw.subscriptionHistory[0].total,999);
+});

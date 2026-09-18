@@ -85,7 +85,14 @@ class BseSourceAuthorityTests(unittest.TestCase):
             before = copy.deepcopy(row)
             p = project_record(row, today=date(2026, 9, 18))
             self.assertEqual(p['subscriptionAuthority'], 'official_exchange')
-            self.assertEqual(p['subscription'], row['subscription'])
+            # Host identity never overrides an independent snapshot review.
+            if p['publicQuality']['fields']['subscription']['state'] == 'under_review':
+                self.assertIsNone(p['subscription'])
+                self.assertFalse(p['subscriptionHistory'])
+            else:
+                self.assertEqual(p['subscription'], row['subscription'])
+            isolated = project_record(row, today=date(2026, 9, 18), holds=[])
+            self.assertEqual(isolated['subscription'], row['subscription'])
             for key in ('subscriptionObservedAt', 'subscriptionCollectedAt', 'subscriptionSourceUrl', 'subscriptionTimeBasis'):
                 self.assertEqual(p[key], row.get(key))
             self.assertEqual(row, before)

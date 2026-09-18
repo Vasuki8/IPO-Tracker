@@ -23,7 +23,7 @@ REVIEW_GATE_FILES = {
     'scripts/source_review_holds.py', 'scripts/source_review_queue.py',
     'scripts/validate_data.py', 'data/public_display_holds.json',
 }
-REVIEW_SUPPORT_FILES = {'.github/workflows/source-review.yml'}
+REVIEW_SUPPORT_FILES = {'.github/workflows/source-review.yml', '.github/workflows/public-release.yml'}
 REVIEW_OUTPUT_FILES = {'data/validation.json', 'data/missing_queue.json', 'data/phase_status.json'}
 # A change to this leaf collector can use the existing subscription-only stage.
 # Policy/other collector/dependency changes still require ordinary repair.

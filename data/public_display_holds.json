@@ -1,6 +1,6 @@
 {
-  "version": 2,
-  "basis": "Source review holds shared by public presentation and actionable review gates. Value-scoped layout holds bind the current source and value; document-scoped contradictions bind exact issuer/offer identity and PDF bytes across URLs and extractions. No canonical correction or P4 resolution.",
+  "version": 3,
+  "basis": "Source review holds shared by public presentation and actionable review gates. Value-scoped layout holds bind the current source and value; document-scoped contradictions bind exact issuer/offer identity and PDF bytes across URLs and extractions. No canonical correction or P4 resolution. Subscription-snapshot holds bind exact issuer/offer and retained snapshot facts without inventing PDF evidence. Collection-clock refreshes cannot resolve a held snapshot.",
   "holds": [
     {
       "id": "emmvee",
@@ -266,6 +266,261 @@
           ]
         }
       }
+    },
+    {
+      "id": "sona",
+      "scope": "subscription_snapshot",
+      "identity": {
+        "id": "sona",
+        "company": "Sonaselection India Limited",
+        "symbol": "SONA",
+        "openDate": "2026-09-17",
+        "closeDate": "2026-09-21"
+      },
+      "fields": {
+        "subscription": {
+          "snapshot": {
+            "subscription": {
+              "qib": 0.46,
+              "nii": 0.6,
+              "retail": 1.29,
+              "total": 0.6866133866133867
+            },
+            "subscriptionAsOf": "2026-09-18T21:29:05+05:30",
+            "subscriptionCollectedAt": "2026-09-18T21:29:05+05:30",
+            "subscriptionObservedAt": null,
+            "subscriptionTimeBasis": "collection-only",
+            "subscriptionSource": "BSE cumulative demand",
+            "subscriptionSourceUrl": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7973&status=L"
+          },
+          "snapshotDigest": "0238fc7f9fe2c72591c7caf5aeefa9bb53e3c4448e0ac33517353a018fae95d9"
+        }
+      },
+      "review": "https://github.com/Vasuki8/IPO-Tracker/blob/0b27f66c244074e971a0c7e08591f0b842b3cacf/docs/reviews/2026-09-18-subscription-snapshot-holds.md",
+      "reviewedAt": "2026-09-18T18:08:09.263011+00:00",
+      "reason": "The core feed replaced this total without establishing comparable source/offer and bid-denominator evidence for the complete snapshot. Withhold subscription multiples and historical charts pending source reconciliation; neither the old nor new total is accepted by this review."
+    },
+    {
+      "id": "ssretail",
+      "scope": "subscription_snapshot",
+      "identity": {
+        "id": "ssretail",
+        "company": "SS Retail Limited",
+        "symbol": "SSRETAIL",
+        "openDate": "2026-09-16",
+        "closeDate": "2026-09-18"
+      },
+      "fields": {
+        "subscription": {
+          "snapshot": {
+            "subscription": {
+              "qib": 203.61,
+              "nii": 143.32,
+              "retail": 36.36,
+              "total": 71.33152597873703
+            },
+            "subscriptionAsOf": "2026-09-18T21:29:02+05:30",
+            "subscriptionCollectedAt": "2026-09-18T21:29:02+05:30",
+            "subscriptionObservedAt": null,
+            "subscriptionTimeBasis": "collection-only",
+            "subscriptionSource": "BSE cumulative demand",
+            "subscriptionSourceUrl": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7975&status=L"
+          },
+          "snapshotDigest": "c8c3574543b0922c19481960eff842d8f61c6e1dce2d888a58339e5f0c740620"
+        }
+      },
+      "review": "https://github.com/Vasuki8/IPO-Tracker/blob/0b27f66c244074e971a0c7e08591f0b842b3cacf/docs/reviews/2026-09-18-subscription-snapshot-holds.md",
+      "reviewedAt": "2026-09-18T18:08:09.263011+00:00",
+      "reason": "The core feed replaced this total without establishing comparable source/offer and bid-denominator evidence for the complete snapshot. Withhold subscription multiples and historical charts pending source reconciliation; neither the old nor new total is accepted by this review."
+    },
+    {
+      "id": "jsipl",
+      "scope": "subscription_snapshot",
+      "identity": {
+        "id": "jsipl",
+        "company": "Jindal Supreme (India) Limited",
+        "symbol": "JSIPL",
+        "openDate": "2026-09-16",
+        "closeDate": "2026-09-18"
+      },
+      "fields": {
+        "subscription": {
+          "snapshot": {
+            "subscription": {
+              "qib": 126.41,
+              "nii": 327.99,
+              "retail": 149.34,
+              "total": 125.10088471849866
+            },
+            "subscriptionAsOf": "2026-09-18T21:29:00+05:30",
+            "subscriptionCollectedAt": "2026-09-18T21:29:00+05:30",
+            "subscriptionObservedAt": null,
+            "subscriptionTimeBasis": "collection-only",
+            "subscriptionSource": "BSE cumulative demand",
+            "subscriptionSourceUrl": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7976&status=L"
+          },
+          "snapshotDigest": "97526469a3f18754cfc212e33ca111efb97c61aead72c7c3b5ec7ec0b84b7101"
+        }
+      },
+      "review": "https://github.com/Vasuki8/IPO-Tracker/blob/0b27f66c244074e971a0c7e08591f0b842b3cacf/docs/reviews/2026-09-18-subscription-snapshot-holds.md",
+      "reviewedAt": "2026-09-18T18:08:09.263011+00:00",
+      "reason": "The core feed replaced this total without establishing comparable source/offer and bid-denominator evidence for the complete snapshot. Withhold subscription multiples and historical charts pending source reconciliation; neither the old nor new total is accepted by this review."
+    },
+    {
+      "id": "heromotors",
+      "scope": "subscription_snapshot",
+      "identity": {
+        "id": "heromotors",
+        "company": "Hero Motors Limited",
+        "symbol": "HEROMOTORS",
+        "openDate": "2026-09-16",
+        "closeDate": "2026-09-18"
+      },
+      "fields": {
+        "subscription": {
+          "snapshot": {
+            "subscription": {
+              "qib": 1.49,
+              "nii": 9.86,
+              "retail": 8.23,
+              "total": 4.008565902182924
+            },
+            "subscriptionAsOf": "2026-09-18T21:28:59+05:30",
+            "subscriptionCollectedAt": "2026-09-18T21:28:59+05:30",
+            "subscriptionObservedAt": null,
+            "subscriptionTimeBasis": "collection-only",
+            "subscriptionSource": "BSE cumulative demand",
+            "subscriptionSourceUrl": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7971&status=L"
+          },
+          "snapshotDigest": "9d3f0766f41e0050bdce791c245314ce20b5a2ea23317f46772101dc186c8bc9"
+        }
+      },
+      "review": "https://github.com/Vasuki8/IPO-Tracker/blob/0b27f66c244074e971a0c7e08591f0b842b3cacf/docs/reviews/2026-09-18-subscription-snapshot-holds.md",
+      "reviewedAt": "2026-09-18T18:08:09.263011+00:00",
+      "reason": "The core feed replaced this total without establishing comparable source/offer and bid-denominator evidence for the complete snapshot. Withhold subscription multiples and historical charts pending source reconciliation; neither the old nor new total is accepted by this review."
+    },
+    {
+      "id": "nse",
+      "scope": "subscription_snapshot",
+      "identity": {
+        "id": "nse",
+        "company": "National Stock Exchange of India Limited",
+        "symbol": "NSE",
+        "openDate": "2026-09-17",
+        "closeDate": "2026-09-21"
+      },
+      "fields": {
+        "subscription": {
+          "snapshot": {
+            "subscription": {
+              "qib": 1.53,
+              "nii": 1.68,
+              "retail": 0.72,
+              "total": 0.6040483034227069
+            },
+            "subscriptionAsOf": "2026-09-18T21:29:04+05:30",
+            "subscriptionCollectedAt": "2026-09-18T21:29:04+05:30",
+            "subscriptionObservedAt": null,
+            "subscriptionTimeBasis": "collection-only",
+            "subscriptionSource": "BSE cumulative demand",
+            "subscriptionSourceUrl": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7977&status=L"
+          },
+          "snapshotDigest": "2818fa0ade3a4b052139cd4095ccafd0d9e943de5923ba48137d06a95f288b31"
+        }
+      },
+      "review": "https://github.com/Vasuki8/IPO-Tracker/blob/0b27f66c244074e971a0c7e08591f0b842b3cacf/docs/reviews/2026-09-18-subscription-snapshot-holds.md",
+      "reviewedAt": "2026-09-18T18:08:09.263011+00:00",
+      "reason": "The core feed replaced this total without establishing comparable source/offer and bid-denominator evidence for the complete snapshot. Withhold subscription multiples and historical charts pending source reconciliation; neither the old nor new total is accepted by this review."
+    },
+    {
+      "id": "kheriaauto",
+      "scope": "subscription_snapshot",
+      "identity": {
+        "id": "kheriaauto",
+        "company": "Kheria Autocomp Limited",
+        "symbol": "KHERIAAUTO",
+        "openDate": "2026-09-17",
+        "closeDate": "2026-09-21"
+      },
+      "fields": {
+        "subscription": {
+          "snapshot": {
+            "subscription": {
+              "qib": 0.23,
+              "nii": 0.26,
+              "retail": 0.59,
+              "total": 0.45
+            },
+            "subscriptionAsOf": "2026-09-18T21:29:02+05:30",
+            "subscriptionCollectedAt": "2026-09-18T21:29:02+05:30",
+            "subscriptionObservedAt": "2026-09-18T19:53:17+05:30",
+            "subscriptionTimeBasis": "source-observation",
+            "subscriptionSource": "IPO Premium subscription (secondary)",
+            "subscriptionSourceUrl": "https://www.ipopremium.in/view/subscription"
+          },
+          "snapshotDigest": "73075af7db7c2863de2e3c3f5ebc3e7521cbe5c097b09769a3c865a5ad607d49"
+        }
+      },
+      "review": "https://github.com/Vasuki8/IPO-Tracker/blob/0b27f66c244074e971a0c7e08591f0b842b3cacf/docs/reviews/2026-09-18-subscription-snapshot-holds.md",
+      "reviewedAt": "2026-09-18T18:08:09.263011+00:00",
+      "reason": "The core feed replaced this total without establishing comparable source/offer and bid-denominator evidence for the complete snapshot. Withhold subscription multiples and historical charts pending source reconciliation; neither the old nor new total is accepted by this review."
+    },
+    {
+      "id": "spectraa",
+      "scope": "subscription_snapshot",
+      "identity": {
+        "id": "spectraa",
+        "company": "SpectraA Technology Solutions Limited",
+        "symbol": "SPECTRAA",
+        "openDate": "2026-09-17",
+        "closeDate": "2026-09-21"
+      },
+      "fields": {
+        "subscription": {
+          "snapshot": {
+            "subscription": {
+              "total": 18.43
+            }
+          },
+          "snapshotDigest": "212b33152f0a83be66ce12cfe1c68df574005c3382319277e24bc466039c2c1f"
+        }
+      },
+      "review": "https://github.com/Vasuki8/IPO-Tracker/blob/0b27f66c244074e971a0c7e08591f0b842b3cacf/docs/reviews/2026-09-18-subscription-snapshot-holds.md",
+      "reviewedAt": "2026-09-18T18:08:09.263011+00:00",
+      "reason": "The core feed replaced this total without establishing comparable source/offer and bid-denominator evidence for the complete snapshot. Withhold subscription multiples and historical charts pending source reconciliation; neither the old nor new total is accepted by this review."
+    },
+    {
+      "id": "axiomgas",
+      "scope": "subscription_snapshot",
+      "identity": {
+        "id": "axiomgas",
+        "company": "Axiom Gas Engineering Limited",
+        "symbol": "AXIOMGAS",
+        "openDate": "2026-09-18",
+        "closeDate": "2026-09-22"
+      },
+      "fields": {
+        "subscription": {
+          "snapshot": {
+            "subscription": {
+              "qib": 0.8,
+              "nii": 0.42,
+              "retail": 0.65,
+              "total": 0.58
+            },
+            "subscriptionAsOf": "2026-09-18T21:29:07+05:30",
+            "subscriptionCollectedAt": "2026-09-18T21:29:07+05:30",
+            "subscriptionObservedAt": "2026-09-18T20:41:14+05:30",
+            "subscriptionTimeBasis": "source-observation",
+            "subscriptionSource": "IPO Premium subscription (secondary)",
+            "subscriptionSourceUrl": "https://www.ipopremium.in/view/subscription"
+          },
+          "snapshotDigest": "51bbbef230add30a70311b524674696c73f8e13e2d0ccb882808722c713d2f92"
+        }
+      },
+      "review": "https://github.com/Vasuki8/IPO-Tracker/blob/0b27f66c244074e971a0c7e08591f0b842b3cacf/docs/reviews/2026-09-18-subscription-snapshot-holds.md",
+      "reviewedAt": "2026-09-18T18:08:09.263011+00:00",
+      "reason": "The core feed replaced this total without establishing comparable source/offer and bid-denominator evidence for the complete snapshot. Withhold subscription multiples and historical charts pending source reconciliation; neither the old nor new total is accepted by this review."
     }
   ]
 }
