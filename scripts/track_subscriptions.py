@@ -239,30 +239,110 @@ class NSESubscriptionClient:
             raise
 
     def detail(self, symbol: str, board: str | None = None):
+        series = _nse_api_series(board)
         self._prime()
-        series_options = ["EQ", "SME"] if str(board or "").upper() == "SME" else ["EQ"]
-        last_payload = None
-        last_error = None
-        for series in series_options:
-            try:
-                r = self.s.get(
-                    f"{NSE_API}/ipo-detail",
-                    params={"symbol": symbol, "series": series},
-                    timeout=25,
-                    headers={"Referer": NSE_DETAIL_PAGE},
-                )
-                r.raise_for_status()
-                payload = r.json()
-                last_payload = payload
-                if isinstance(payload, dict) and isinstance(payload.get("bidDetails"), list):
-                    return payload, series
-            except Exception as exc:  # noqa: BLE001 - try the next supported series
-                last_error = exc
-        if last_payload is not None:
-            return last_payload, series_options[-1]
-        if last_error:
-            raise last_error
-        return {}, series_options[-1]
+        r = self.s.get(
+            f"{NSE_API}/ipo-detail",
+            params={"symbol": symbol, "series": series},
+            timeout=25,
+            headers={"Referer": NSE_DETAIL_PAGE},
+        )
+        r.raise_for_status()
+        payload = r.json()
+        if not isinstance(payload, dict) or not isinstance(payload.get("bidDetails"), list):
+            raise ValueError("NSE subscription detail requires category bid rows")
+        return payload, series
+
+
+def _nse_api_series(board: str | None) -> str:
+    # API routing is distinct from the security's trading series: an SME
+    # security-parameters PDF can say EQ while its issue-detail route is SME.
+    series = {"SME": "SME", "MAINBOARD": "EQ"}.get(str(board or "").strip().upper())
+    if not series:
+        raise ValueError("NSE subscription detail requires an explicit supported board")
+    return series
+
+
+def _nse_number(value: Any) -> float | None:
+    """Read complete NSE numeric tokens, including scientific share counts."""
+    if isinstance(value, bool) or value is None:
+        return None
+    text = str(value).strip().replace(",", "")
+    if not re.fullmatch(r"[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?", text):
+        return None
+    number = float(text)
+    return number if math.isfinite(number) else None
+
+
+def _validated_nse_snapshot(record: dict[str, Any], detail: Any, series: str):
+    """Bind headline multiples to the exact issue and their own bid denominators.
+
+    SME bid-count tables, zero-denominator EQ placeholders and demand graphs are
+    not interchangeable subscription observations. Reject them before mutation;
+    the existing caller may try another source without relabelling old facts.
+    """
+    if series != _nse_api_series(record.get("board")):
+        raise ValueError("NSE subscription API series does not match the issue board")
+    info = detail.get("issueInfo") if isinstance(detail, dict) else None
+    rows = info.get("dataList") if isinstance(info, dict) else None
+    if not isinstance(rows, list) or not rows:
+        raise ValueError("NSE subscription detail lacks issuer/offer identity")
+    fields: dict[str, list[Any]] = {}
+    for row in rows:
+        if isinstance(row, dict):
+            fields.setdefault(str(row.get("title") or "").strip(), []).append(row.get("value"))
+    symbol = str(record.get("symbol") or "").strip()
+    if (not symbol or fields.get("Symbol") != [symbol]
+            or str(info.get("symbol") or "").strip() != symbol):
+        raise ValueError("NSE subscription detail symbol is missing or mismatched")
+    # Mainboard responses put the issuer in the first title-only row; SME
+    # responses use heading. Both layouts are retained in the source fixtures.
+    company = info.get("heading")
+    if not company and isinstance(rows[0], dict) and rows[0].get("value") in (None, ""):
+        company = rows[0].get("title")
+    expected_company = re.sub(r"[^A-Z0-9]+", "", str(record.get("company") or "").upper())
+    if (not expected_company or not isinstance(company, str)
+            or re.sub(r"[^A-Z0-9]+", "", company.upper()) != expected_company):
+        raise ValueError("NSE subscription detail issuer is missing or mismatched")
+    periods = fields.get("Issue Period") or []
+    match = re.fullmatch(r"(\d{2}-[A-Za-z]{3}-\d{4})\s+to\s+(\d{2}-[A-Za-z]{3}-\d{4})",
+                         str(periods[0]).strip()) if len(periods) == 1 else None
+    try:
+        dates = [datetime.strptime(value, "%d-%b-%Y").date().isoformat()
+                 for value in match.groups()] if match else []
+    except ValueError:
+        dates = []
+    if not dates or dates != [record.get("openDate"), record.get("closeDate")]:
+        raise ValueError("NSE subscription detail offer dates are missing or mismatched")
+
+    bid_rows = detail.get("bidDetails")
+    if not isinstance(bid_rows, list):
+        raise ValueError("NSE subscription detail requires category bid rows")
+    best: dict[str, tuple[int, float]] = {}
+    for row in bid_rows:
+        if not isinstance(row, dict):
+            continue
+        field, score = _classify_category(_category_text(row))
+        if not field:
+            continue
+        raw_multiple = _first(row, "noOfTime", "subscription", "timesSubscribed", "subscriptionTimes")
+        if raw_multiple is None:
+            continue
+        multiple = _nse_number(raw_multiple)
+        offered = _nse_number(_first(row, "noOfSharesOffered", "noOfShareOffered"))
+        bids = _nse_number(_first(row, "noOfsharesBid", "noOfSharesBid", "noOfshareBid"))
+        if (multiple is None or multiple < 0 or offered is None or offered <= 0
+                or not offered.is_integer() or bids is None or bids < 0 or not bids.is_integer()):
+            raise ValueError(f"NSE subscription {field} lacks valid bid/denominator evidence")
+        # Validate the reported multiple; never create a multiple from bid counts.
+        # The source may round to two decimals or return the full ratio.
+        if not math.isclose(multiple, bids / offered, rel_tol=0, abs_tol=0.00500001):
+            raise ValueError(f"NSE subscription {field} disagrees with its bid denominator")
+        if field not in best or score > best[field][0]:
+            best[field] = (score, multiple)
+    if not best:
+        raise ValueError("NSE subscription detail has no denominator-backed headline multiples")
+    return {key: best[key][1] if key in best else None for key in SNAPSHOT_KEYS}
 
 
 def _find_url(raw: str | None, page_name: str, page_url: str) -> str | None:
@@ -500,8 +580,8 @@ def apply_subscription(
 
 
 def update_record(record: dict[str, Any], detail: Any, *, series="EQ", force_snapshot=False):
-    """Backward-compatible NSE application helper used by tests and callers."""
-    parsed = parse_bid_details(detail)
+    """Apply only an issuer/offer-bound, denominator-backed NSE observation."""
+    parsed = _validated_nse_snapshot(record, detail, series)
     symbol = str(record.get("symbol") or "").strip()
     return apply_subscription(
         record,
