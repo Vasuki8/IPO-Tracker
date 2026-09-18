@@ -1,0 +1,1729 @@
+{
+  "emmvee": [
+    {
+      "path": "/dataCorrections",
+      "operation": "replace",
+      "before": [
+        {
+          "field": "leadManagers",
+          "before": null,
+          "after": [
+            "IIFL Capital Services Limited",
+            "Jefferies India Private Limited",
+            "Kotak Mahindra Capital Company Limited"
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T22:32:50+05:30"
+        },
+        {
+          "field": "registrar",
+          "before": null,
+          "after": "KFin Technologies Limited",
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T22:32:50+05:30"
+        },
+        {
+          "field": "promoters",
+          "before": null,
+          "after": [
+            "namely",
+            "Manjunatha Donthi Venkatarathnaiah",
+            "Shubha Manjunatha"
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T22:32:50+05:30"
+        },
+        {
+          "field": "issueComposition",
+          "before": {
+            "freshShares": 98795483,
+            "ofsShares": 34845069,
+            "freshIssueCr": 2143.862,
+            "ofsCr": 756.138,
+            "totalIssueSizeCr": 2899.9999784,
+            "valuationPriceUsed": 217.0
+          },
+          "after": {
+            "freshShares": 34845069,
+            "ofsShares": 17422535,
+            "freshIssueCr": 378.069,
+            "ofsCr": 378.069,
+            "totalIssueSizeCr": 756.138
+          },
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T22:32:50+05:30"
+        },
+        {
+          "field": "issueSizeCr",
+          "before": 2899.9999784,
+          "after": 756.138,
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T22:32:50+05:30"
+        },
+        {
+          "field": "freshIssueCr",
+          "before": 2143.862,
+          "after": 378.069,
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T22:32:50+05:30"
+        },
+        {
+          "field": "ofsCr",
+          "before": 756.138,
+          "after": 378.069,
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T22:32:50+05:30"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "namely",
+            "Manjunatha Donthi Venkatarathnaiah",
+            "Shubha Manjunatha"
+          ],
+          "after": [
+            "MANJUNATHA DONTHI VENKATARATHNAIAH",
+            "SHUBHA MANJUNATHA DONTHI",
+            "SUHAS DONTHI MANJUNATHA",
+            "SUMANTH MANJUNATHA DONTHI"
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T23:14:29+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": null,
+          "after": [
+            {
+              "purpose": "Repayment/ prepayment, in full or part, of all or certain outstanding borrowings and accrued interest",
+              "amountCr": 1621.294
+            },
+            {
+              "purpose": "General corporate purposes",
+              "amountCr": 438.711
+            },
+            {
+              "purpose": "ompany and our Material Subsidiary, comprising 64.95%, of our total outstanding borrowings as of September",
+              "amountCr": 2.6
+            },
+            {
+              "purpose": "nd our Material Subsidiary. Additionally, such deployment of Net Proceeds is being undertaken in Fiscals",
+              "amountCr": 202.6
+            }
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T23:14:29+05:30"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "MANJUNATHA DONTHI VENKATARATHNAIAH",
+            "SHUBHA MANJUNATHA DONTHI",
+            "SUHAS DONTHI MANJUNATHA",
+            "SUMANTH MANJUNATHA DONTHI"
+          ],
+          "after": [
+            "namely",
+            "Manjunatha Donthi Venkatarathnaiah",
+            "Shubha Manjunatha"
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 27,
+          "correctedAt": "2026-09-17T04:42:00+05:30"
+        },
+        {
+          "field": "shareholding",
+          "before": null,
+          "after": {
+            "promoters": [],
+            "promoterPreIssuePct": 99.22
+          },
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 27,
+          "correctedAt": "2026-09-17T04:42:00+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "Repayment/ prepayment, in full or part, of all or certain outstanding borrowings and accrued interest",
+              "amountCr": 1621.294
+            },
+            {
+              "purpose": "General corporate purposes",
+              "amountCr": 438.711
+            },
+            {
+              "purpose": "ompany and our Material Subsidiary, comprising 64.95%, of our total outstanding borrowings as of September",
+              "amountCr": 2.6
+            },
+            {
+              "purpose": "nd our Material Subsidiary. Additionally, such deployment of Net Proceeds is being undertaken in Fiscals",
+              "amountCr": 202.6
+            }
+          ],
+          "after": null,
+          "reason": "Objects of issue lack matching source-table evidence; withheld pending Final Prospectus revalidation",
+          "reviewKind": "source-evidence-required",
+          "findings": [
+            "Objects of issue need source-table evidence version 1"
+          ],
+          "sourceEvidence": {
+            "source": "Final Prospectus",
+            "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+            "documentType": "PROSPECTUS",
+            "documentDate": "2025-11-14",
+            "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+            "parserVersion": 24,
+            "checkedAt": "2026-09-16T23:14:29+05:30",
+            "issueOpenDate": "2025-11-11",
+            "field": "objectsOfIssue",
+            "value": [
+              {
+                "purpose": "Repayment/ prepayment, in full or part, of all or certain outstanding borrowings and accrued interest",
+                "amountCr": 1621.294
+              },
+              {
+                "purpose": "General corporate purposes",
+                "amountCr": 438.711
+              },
+              {
+                "purpose": "ompany and our Material Subsidiary, comprising 64.95%, of our total outstanding borrowings as of September",
+                "amountCr": 2.6
+              },
+              {
+                "purpose": "nd our Material Subsidiary. Additionally, such deployment of Net Proceeds is being undertaken in Fiscals",
+                "amountCr": 202.6
+              }
+            ],
+            "evidence": {
+              "page": 117,
+              "heading": "OBJECTS OF THE ISSUE",
+              "unit": "million",
+              "rows": [
+                {
+                  "purpose": "Repayment/ prepayment, in full or part, of all or certain outstanding borrowings and accrued interest",
+                  "amountCr": 1621.294
+                },
+                {
+                  "purpose": "General corporate purposes",
+                  "amountCr": 438.711
+                },
+                {
+                  "purpose": "ompany and our Material Subsidiary, comprising 64.95%, of our total outstanding borrowings as of September",
+                  "amountCr": 2.6
+                },
+                {
+                  "purpose": "nd our Material Subsidiary. Additionally, such deployment of Net Proceeds is being undertaken in Fiscals",
+                  "amountCr": 202.6
+                }
+              ]
+            }
+          },
+          "documentEvidence": null,
+          "documentProvenance": {
+            "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+            "documentType": "PROSPECTUS",
+            "documentDate": "2025-11-14",
+            "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+            "parserVersion": 27,
+            "checkedAt": "2026-09-17T04:42:00+05:30",
+            "evidence": {
+              "leadManagers": {
+                "page": 2,
+                "heading": "BOOK RUNNING LEAD MANAGERS",
+                "entities": [
+                  "IIFL Capital Services Limited",
+                  "Jefferies India Private Limited",
+                  "Kotak Mahindra Capital Company Limited"
+                ]
+              },
+              "registrar": {
+                "page": 2,
+                "heading": "REGISTRAR TO THE OFFER",
+                "entities": [
+                  "KFin Technologies Limited"
+                ]
+              },
+              "shareholding": {
+                "page": 113,
+                "heading": "Promoters and Promoter Group",
+                "promoterPreIssuePct": 99.22,
+                "basis": "explicit pre-issue promoter ownership in Final Prospectus"
+              },
+              "issuePrice": {
+                "page": 3,
+                "heading": "INITIAL PUBLIC OFFER OF 133,640,552 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH (“EQUITY SHARES”) OF EMMVEE PHOTOVOLTAIC POWER LIMITED ( “COMPANY”) FOR CASH AT A PRICE OF ₹217 PER EQUITY SHARE",
+                "value": 217.0,
+                "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+                "method": "final-offer-price-v2"
+              }
+            },
+            "sourcePolicy": "final-prospectus-only"
+          },
+          "extractionEvidence": {
+            "offerDocumentExtraction": {
+              "status": "extracted",
+              "parserVersion": 27,
+              "documentUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+              "documentType": "PROSPECTUS",
+              "documentTitle": "Emmvee Photovoltaic Power Limited Final Prospectus",
+              "documentFiledDate": "2025-11-14",
+              "source": "NSE",
+              "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+              "pagesRead": 511,
+              "pageCount": 511,
+              "extractedFields": [
+                "leadManagers",
+                "registrar",
+                "promoters",
+                "lotSize",
+                "shareholding",
+                "issuePrice"
+              ],
+              "canonicalFields": [
+                "freshIssueCr",
+                "issueComposition",
+                "issueSizeCr",
+                "leadManagers",
+                "listing.issuePrice",
+                "lotSize",
+                "objectsOfIssue",
+                "ofsCr",
+                "priceBand",
+                "promoters",
+                "registrar",
+                "shareholding"
+              ],
+              "extractedAt": "2026-09-17T04:42:00+05:30",
+              "conflicts": [
+                "FY2023.dilutedEps",
+                "FY2023.eps",
+                "FY2023.netWorthCr",
+                "FY2023.revenueCr",
+                "FY2024.dilutedEps",
+                "FY2024.eps",
+                "FY2024.netWorthCr",
+                "FY2024.revenueCr",
+                "FY2025.dilutedEps",
+                "FY2025.eps",
+                "FY2025.netWorthCr",
+                "FY2025.revenueCr"
+              ],
+              "sourcePolicy": "final-prospectus-only"
+            }
+          },
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "correctedAt": "2026-09-17T08:47:59.145636+00:00"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "namely",
+            "Manjunatha Donthi Venkatarathnaiah",
+            "Shubha Manjunatha"
+          ],
+          "after": [
+            "MANJUNATHA DONTHI VENKATARATHNAIAH",
+            "SHUBHA MANJUNATHA DONTHI",
+            "SUHAS DONTHI MANJUNATHA",
+            "SUMANTH MANJUNATHA DONTHI"
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 31,
+          "correctedAt": "2026-09-17T14:28:13+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": null,
+          "after": [
+            {
+              "purpose": "Repayment/ prepayment, in full or part, of all or certain outstanding borrowings and accrued interest thereon availed by our Company and our Material Subsidiary, EEPL",
+              "amountCr": 1621.294
+            },
+            {
+              "purpose": "General corporate purposes",
+              "amountCr": 438.711
+            }
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 31,
+          "correctedAt": "2026-09-17T14:28:13+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "Repayment/ prepayment, in full or part, of all or certain outstanding borrowings and accrued interest",
+              "amountCr": 1621.294
+            },
+            {
+              "purpose": "General corporate purposes",
+              "amountCr": 438.711
+            },
+            {
+              "purpose": "ompany and our Material Subsidiary, comprising 64.95%, of our total outstanding borrowings as of September",
+              "amountCr": 2.6
+            },
+            {
+              "purpose": "nd our Material Subsidiary. Additionally, such deployment of Net Proceeds is being undertaken in Fiscals",
+              "amountCr": 202.6
+            }
+          ],
+          "after": null,
+          "reason": "Objects of issue lack matching source-table evidence; withheld pending Final Prospectus revalidation",
+          "reviewKind": "source-evidence-required",
+          "findings": [
+            "Objects of issue need source-table evidence version 1"
+          ],
+          "sourceEvidence": {
+            "source": "Final Prospectus",
+            "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+            "documentType": "PROSPECTUS",
+            "documentDate": "2025-11-14",
+            "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+            "parserVersion": 24,
+            "checkedAt": "2026-09-16T23:14:29+05:30",
+            "issueOpenDate": "2025-11-11",
+            "field": "objectsOfIssue",
+            "value": [
+              {
+                "purpose": "Repayment/ prepayment, in full or part, of all or certain outstanding borrowings and accrued interest",
+                "amountCr": 1621.294
+              },
+              {
+                "purpose": "General corporate purposes",
+                "amountCr": 438.711
+              },
+              {
+                "purpose": "ompany and our Material Subsidiary, comprising 64.95%, of our total outstanding borrowings as of September",
+                "amountCr": 2.6
+              },
+              {
+                "purpose": "nd our Material Subsidiary. Additionally, such deployment of Net Proceeds is being undertaken in Fiscals",
+                "amountCr": 202.6
+              }
+            ],
+            "evidence": {
+              "page": 117,
+              "heading": "OBJECTS OF THE ISSUE",
+              "unit": "million",
+              "rows": [
+                {
+                  "purpose": "Repayment/ prepayment, in full or part, of all or certain outstanding borrowings and accrued interest",
+                  "amountCr": 1621.294
+                },
+                {
+                  "purpose": "General corporate purposes",
+                  "amountCr": 438.711
+                },
+                {
+                  "purpose": "ompany and our Material Subsidiary, comprising 64.95%, of our total outstanding borrowings as of September",
+                  "amountCr": 2.6
+                },
+                {
+                  "purpose": "nd our Material Subsidiary. Additionally, such deployment of Net Proceeds is being undertaken in Fiscals",
+                  "amountCr": 202.6
+                }
+              ]
+            }
+          },
+          "documentEvidence": null,
+          "documentProvenance": {
+            "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+            "documentType": "PROSPECTUS",
+            "documentDate": "2025-11-14",
+            "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+            "parserVersion": 27,
+            "checkedAt": "2026-09-17T04:42:00+05:30",
+            "evidence": {
+              "leadManagers": {
+                "page": 2,
+                "heading": "BOOK RUNNING LEAD MANAGERS",
+                "entities": [
+                  "IIFL Capital Services Limited",
+                  "Jefferies India Private Limited",
+                  "Kotak Mahindra Capital Company Limited"
+                ]
+              },
+              "registrar": {
+                "page": 2,
+                "heading": "REGISTRAR TO THE OFFER",
+                "entities": [
+                  "KFin Technologies Limited"
+                ]
+              },
+              "shareholding": {
+                "page": 113,
+                "heading": "Promoters and Promoter Group",
+                "promoterPreIssuePct": 99.22,
+                "basis": "explicit pre-issue promoter ownership in Final Prospectus"
+              },
+              "issuePrice": {
+                "page": 3,
+                "heading": "INITIAL PUBLIC OFFER OF 133,640,552 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH (“EQUITY SHARES”) OF EMMVEE PHOTOVOLTAIC POWER LIMITED ( “COMPANY”) FOR CASH AT A PRICE OF ₹217 PER EQUITY SHARE",
+                "value": 217.0,
+                "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+                "method": "final-offer-price-v2"
+              }
+            },
+            "sourcePolicy": "final-prospectus-only"
+          },
+          "extractionEvidence": {
+            "offerDocumentExtraction": {
+              "status": "extracted",
+              "parserVersion": 27,
+              "documentUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+              "documentType": "PROSPECTUS",
+              "documentTitle": "Emmvee Photovoltaic Power Limited Final Prospectus",
+              "documentFiledDate": "2025-11-14",
+              "source": "NSE",
+              "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+              "pagesRead": 511,
+              "pageCount": 511,
+              "extractedFields": [
+                "leadManagers",
+                "registrar",
+                "promoters",
+                "lotSize",
+                "shareholding",
+                "issuePrice"
+              ],
+              "canonicalFields": [
+                "freshIssueCr",
+                "issueComposition",
+                "issueSizeCr",
+                "leadManagers",
+                "listing.issuePrice",
+                "lotSize",
+                "objectsOfIssue",
+                "ofsCr",
+                "priceBand",
+                "promoters",
+                "registrar",
+                "shareholding"
+              ],
+              "extractedAt": "2026-09-17T04:42:00+05:30",
+              "conflicts": [
+                "FY2023.dilutedEps",
+                "FY2023.eps",
+                "FY2023.netWorthCr",
+                "FY2023.revenueCr",
+                "FY2024.dilutedEps",
+                "FY2024.eps",
+                "FY2024.netWorthCr",
+                "FY2024.revenueCr",
+                "FY2025.dilutedEps",
+                "FY2025.eps",
+                "FY2025.netWorthCr",
+                "FY2025.revenueCr"
+              ],
+              "sourcePolicy": "final-prospectus-only"
+            }
+          },
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "correctedAt": "2026-09-17T09:21:32.194833+00:00"
+        }
+      ],
+      "after": [
+        {
+          "field": "leadManagers",
+          "before": null,
+          "after": [
+            "IIFL Capital Services Limited",
+            "Jefferies India Private Limited",
+            "Kotak Mahindra Capital Company Limited"
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T22:32:50+05:30"
+        },
+        {
+          "field": "registrar",
+          "before": null,
+          "after": "KFin Technologies Limited",
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T22:32:50+05:30"
+        },
+        {
+          "field": "promoters",
+          "before": null,
+          "after": [
+            "namely",
+            "Manjunatha Donthi Venkatarathnaiah",
+            "Shubha Manjunatha"
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T22:32:50+05:30"
+        },
+        {
+          "field": "issueComposition",
+          "before": {
+            "freshShares": 98795483,
+            "ofsShares": 34845069,
+            "freshIssueCr": 2143.862,
+            "ofsCr": 756.138,
+            "totalIssueSizeCr": 2899.9999784,
+            "valuationPriceUsed": 217.0
+          },
+          "after": {
+            "freshShares": 34845069,
+            "ofsShares": 17422535,
+            "freshIssueCr": 378.069,
+            "ofsCr": 378.069,
+            "totalIssueSizeCr": 756.138
+          },
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T22:32:50+05:30"
+        },
+        {
+          "field": "issueSizeCr",
+          "before": 2899.9999784,
+          "after": 756.138,
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T22:32:50+05:30"
+        },
+        {
+          "field": "freshIssueCr",
+          "before": 2143.862,
+          "after": 378.069,
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T22:32:50+05:30"
+        },
+        {
+          "field": "ofsCr",
+          "before": 756.138,
+          "after": 378.069,
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T22:32:50+05:30"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "namely",
+            "Manjunatha Donthi Venkatarathnaiah",
+            "Shubha Manjunatha"
+          ],
+          "after": [
+            "MANJUNATHA DONTHI VENKATARATHNAIAH",
+            "SHUBHA MANJUNATHA DONTHI",
+            "SUHAS DONTHI MANJUNATHA",
+            "SUMANTH MANJUNATHA DONTHI"
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T23:14:29+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": null,
+          "after": [
+            {
+              "purpose": "Repayment/ prepayment, in full or part, of all or certain outstanding borrowings and accrued interest",
+              "amountCr": 1621.294
+            },
+            {
+              "purpose": "General corporate purposes",
+              "amountCr": 438.711
+            },
+            {
+              "purpose": "ompany and our Material Subsidiary, comprising 64.95%, of our total outstanding borrowings as of September",
+              "amountCr": 2.6
+            },
+            {
+              "purpose": "nd our Material Subsidiary. Additionally, such deployment of Net Proceeds is being undertaken in Fiscals",
+              "amountCr": 202.6
+            }
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T23:14:29+05:30"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "MANJUNATHA DONTHI VENKATARATHNAIAH",
+            "SHUBHA MANJUNATHA DONTHI",
+            "SUHAS DONTHI MANJUNATHA",
+            "SUMANTH MANJUNATHA DONTHI"
+          ],
+          "after": [
+            "namely",
+            "Manjunatha Donthi Venkatarathnaiah",
+            "Shubha Manjunatha"
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 27,
+          "correctedAt": "2026-09-17T04:42:00+05:30"
+        },
+        {
+          "field": "shareholding",
+          "before": null,
+          "after": {
+            "promoters": [],
+            "promoterPreIssuePct": 99.22
+          },
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 27,
+          "correctedAt": "2026-09-17T04:42:00+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "Repayment/ prepayment, in full or part, of all or certain outstanding borrowings and accrued interest",
+              "amountCr": 1621.294
+            },
+            {
+              "purpose": "General corporate purposes",
+              "amountCr": 438.711
+            },
+            {
+              "purpose": "ompany and our Material Subsidiary, comprising 64.95%, of our total outstanding borrowings as of September",
+              "amountCr": 2.6
+            },
+            {
+              "purpose": "nd our Material Subsidiary. Additionally, such deployment of Net Proceeds is being undertaken in Fiscals",
+              "amountCr": 202.6
+            }
+          ],
+          "after": null,
+          "reason": "Objects of issue lack matching source-table evidence; withheld pending Final Prospectus revalidation",
+          "reviewKind": "source-evidence-required",
+          "findings": [
+            "Objects of issue need source-table evidence version 1"
+          ],
+          "sourceEvidence": {
+            "source": "Final Prospectus",
+            "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+            "documentType": "PROSPECTUS",
+            "documentDate": "2025-11-14",
+            "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+            "parserVersion": 24,
+            "checkedAt": "2026-09-16T23:14:29+05:30",
+            "issueOpenDate": "2025-11-11",
+            "field": "objectsOfIssue",
+            "value": [
+              {
+                "purpose": "Repayment/ prepayment, in full or part, of all or certain outstanding borrowings and accrued interest",
+                "amountCr": 1621.294
+              },
+              {
+                "purpose": "General corporate purposes",
+                "amountCr": 438.711
+              },
+              {
+                "purpose": "ompany and our Material Subsidiary, comprising 64.95%, of our total outstanding borrowings as of September",
+                "amountCr": 2.6
+              },
+              {
+                "purpose": "nd our Material Subsidiary. Additionally, such deployment of Net Proceeds is being undertaken in Fiscals",
+                "amountCr": 202.6
+              }
+            ],
+            "evidence": {
+              "page": 117,
+              "heading": "OBJECTS OF THE ISSUE",
+              "unit": "million",
+              "rows": [
+                {
+                  "purpose": "Repayment/ prepayment, in full or part, of all or certain outstanding borrowings and accrued interest",
+                  "amountCr": 1621.294
+                },
+                {
+                  "purpose": "General corporate purposes",
+                  "amountCr": 438.711
+                },
+                {
+                  "purpose": "ompany and our Material Subsidiary, comprising 64.95%, of our total outstanding borrowings as of September",
+                  "amountCr": 2.6
+                },
+                {
+                  "purpose": "nd our Material Subsidiary. Additionally, such deployment of Net Proceeds is being undertaken in Fiscals",
+                  "amountCr": 202.6
+                }
+              ]
+            }
+          },
+          "documentEvidence": null,
+          "documentProvenance": {
+            "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+            "documentType": "PROSPECTUS",
+            "documentDate": "2025-11-14",
+            "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+            "parserVersion": 27,
+            "checkedAt": "2026-09-17T04:42:00+05:30",
+            "evidence": {
+              "leadManagers": {
+                "page": 2,
+                "heading": "BOOK RUNNING LEAD MANAGERS",
+                "entities": [
+                  "IIFL Capital Services Limited",
+                  "Jefferies India Private Limited",
+                  "Kotak Mahindra Capital Company Limited"
+                ]
+              },
+              "registrar": {
+                "page": 2,
+                "heading": "REGISTRAR TO THE OFFER",
+                "entities": [
+                  "KFin Technologies Limited"
+                ]
+              },
+              "shareholding": {
+                "page": 113,
+                "heading": "Promoters and Promoter Group",
+                "promoterPreIssuePct": 99.22,
+                "basis": "explicit pre-issue promoter ownership in Final Prospectus"
+              },
+              "issuePrice": {
+                "page": 3,
+                "heading": "INITIAL PUBLIC OFFER OF 133,640,552 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH (“EQUITY SHARES”) OF EMMVEE PHOTOVOLTAIC POWER LIMITED ( “COMPANY”) FOR CASH AT A PRICE OF ₹217 PER EQUITY SHARE",
+                "value": 217.0,
+                "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+                "method": "final-offer-price-v2"
+              }
+            },
+            "sourcePolicy": "final-prospectus-only"
+          },
+          "extractionEvidence": {
+            "offerDocumentExtraction": {
+              "status": "extracted",
+              "parserVersion": 27,
+              "documentUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+              "documentType": "PROSPECTUS",
+              "documentTitle": "Emmvee Photovoltaic Power Limited Final Prospectus",
+              "documentFiledDate": "2025-11-14",
+              "source": "NSE",
+              "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+              "pagesRead": 511,
+              "pageCount": 511,
+              "extractedFields": [
+                "leadManagers",
+                "registrar",
+                "promoters",
+                "lotSize",
+                "shareholding",
+                "issuePrice"
+              ],
+              "canonicalFields": [
+                "freshIssueCr",
+                "issueComposition",
+                "issueSizeCr",
+                "leadManagers",
+                "listing.issuePrice",
+                "lotSize",
+                "objectsOfIssue",
+                "ofsCr",
+                "priceBand",
+                "promoters",
+                "registrar",
+                "shareholding"
+              ],
+              "extractedAt": "2026-09-17T04:42:00+05:30",
+              "conflicts": [
+                "FY2023.dilutedEps",
+                "FY2023.eps",
+                "FY2023.netWorthCr",
+                "FY2023.revenueCr",
+                "FY2024.dilutedEps",
+                "FY2024.eps",
+                "FY2024.netWorthCr",
+                "FY2024.revenueCr",
+                "FY2025.dilutedEps",
+                "FY2025.eps",
+                "FY2025.netWorthCr",
+                "FY2025.revenueCr"
+              ],
+              "sourcePolicy": "final-prospectus-only"
+            }
+          },
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "correctedAt": "2026-09-17T08:47:59.145636+00:00"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "namely",
+            "Manjunatha Donthi Venkatarathnaiah",
+            "Shubha Manjunatha"
+          ],
+          "after": [
+            "MANJUNATHA DONTHI VENKATARATHNAIAH",
+            "SHUBHA MANJUNATHA DONTHI",
+            "SUHAS DONTHI MANJUNATHA",
+            "SUMANTH MANJUNATHA DONTHI"
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 31,
+          "correctedAt": "2026-09-17T14:28:13+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": null,
+          "after": [
+            {
+              "purpose": "Repayment/ prepayment, in full or part, of all or certain outstanding borrowings and accrued interest thereon availed by our Company and our Material Subsidiary, EEPL",
+              "amountCr": 1621.294
+            },
+            {
+              "purpose": "General corporate purposes",
+              "amountCr": 438.711
+            }
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 31,
+          "correctedAt": "2026-09-17T14:28:13+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "Repayment/ prepayment, in full or part, of all or certain outstanding borrowings and accrued interest",
+              "amountCr": 1621.294
+            },
+            {
+              "purpose": "General corporate purposes",
+              "amountCr": 438.711
+            },
+            {
+              "purpose": "ompany and our Material Subsidiary, comprising 64.95%, of our total outstanding borrowings as of September",
+              "amountCr": 2.6
+            },
+            {
+              "purpose": "nd our Material Subsidiary. Additionally, such deployment of Net Proceeds is being undertaken in Fiscals",
+              "amountCr": 202.6
+            }
+          ],
+          "after": null,
+          "reason": "Objects of issue lack matching source-table evidence; withheld pending Final Prospectus revalidation",
+          "reviewKind": "source-evidence-required",
+          "findings": [
+            "Objects of issue need source-table evidence version 1"
+          ],
+          "sourceEvidence": {
+            "source": "Final Prospectus",
+            "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+            "documentType": "PROSPECTUS",
+            "documentDate": "2025-11-14",
+            "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+            "parserVersion": 24,
+            "checkedAt": "2026-09-16T23:14:29+05:30",
+            "issueOpenDate": "2025-11-11",
+            "field": "objectsOfIssue",
+            "value": [
+              {
+                "purpose": "Repayment/ prepayment, in full or part, of all or certain outstanding borrowings and accrued interest",
+                "amountCr": 1621.294
+              },
+              {
+                "purpose": "General corporate purposes",
+                "amountCr": 438.711
+              },
+              {
+                "purpose": "ompany and our Material Subsidiary, comprising 64.95%, of our total outstanding borrowings as of September",
+                "amountCr": 2.6
+              },
+              {
+                "purpose": "nd our Material Subsidiary. Additionally, such deployment of Net Proceeds is being undertaken in Fiscals",
+                "amountCr": 202.6
+              }
+            ],
+            "evidence": {
+              "page": 117,
+              "heading": "OBJECTS OF THE ISSUE",
+              "unit": "million",
+              "rows": [
+                {
+                  "purpose": "Repayment/ prepayment, in full or part, of all or certain outstanding borrowings and accrued interest",
+                  "amountCr": 1621.294
+                },
+                {
+                  "purpose": "General corporate purposes",
+                  "amountCr": 438.711
+                },
+                {
+                  "purpose": "ompany and our Material Subsidiary, comprising 64.95%, of our total outstanding borrowings as of September",
+                  "amountCr": 2.6
+                },
+                {
+                  "purpose": "nd our Material Subsidiary. Additionally, such deployment of Net Proceeds is being undertaken in Fiscals",
+                  "amountCr": 202.6
+                }
+              ]
+            }
+          },
+          "documentEvidence": null,
+          "documentProvenance": {
+            "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+            "documentType": "PROSPECTUS",
+            "documentDate": "2025-11-14",
+            "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+            "parserVersion": 27,
+            "checkedAt": "2026-09-17T04:42:00+05:30",
+            "evidence": {
+              "leadManagers": {
+                "page": 2,
+                "heading": "BOOK RUNNING LEAD MANAGERS",
+                "entities": [
+                  "IIFL Capital Services Limited",
+                  "Jefferies India Private Limited",
+                  "Kotak Mahindra Capital Company Limited"
+                ]
+              },
+              "registrar": {
+                "page": 2,
+                "heading": "REGISTRAR TO THE OFFER",
+                "entities": [
+                  "KFin Technologies Limited"
+                ]
+              },
+              "shareholding": {
+                "page": 113,
+                "heading": "Promoters and Promoter Group",
+                "promoterPreIssuePct": 99.22,
+                "basis": "explicit pre-issue promoter ownership in Final Prospectus"
+              },
+              "issuePrice": {
+                "page": 3,
+                "heading": "INITIAL PUBLIC OFFER OF 133,640,552 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH (“EQUITY SHARES”) OF EMMVEE PHOTOVOLTAIC POWER LIMITED ( “COMPANY”) FOR CASH AT A PRICE OF ₹217 PER EQUITY SHARE",
+                "value": 217.0,
+                "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+                "method": "final-offer-price-v2"
+              }
+            },
+            "sourcePolicy": "final-prospectus-only"
+          },
+          "extractionEvidence": {
+            "offerDocumentExtraction": {
+              "status": "extracted",
+              "parserVersion": 27,
+              "documentUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+              "documentType": "PROSPECTUS",
+              "documentTitle": "Emmvee Photovoltaic Power Limited Final Prospectus",
+              "documentFiledDate": "2025-11-14",
+              "source": "NSE",
+              "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+              "pagesRead": 511,
+              "pageCount": 511,
+              "extractedFields": [
+                "leadManagers",
+                "registrar",
+                "promoters",
+                "lotSize",
+                "shareholding",
+                "issuePrice"
+              ],
+              "canonicalFields": [
+                "freshIssueCr",
+                "issueComposition",
+                "issueSizeCr",
+                "leadManagers",
+                "listing.issuePrice",
+                "lotSize",
+                "objectsOfIssue",
+                "ofsCr",
+                "priceBand",
+                "promoters",
+                "registrar",
+                "shareholding"
+              ],
+              "extractedAt": "2026-09-17T04:42:00+05:30",
+              "conflicts": [
+                "FY2023.dilutedEps",
+                "FY2023.eps",
+                "FY2023.netWorthCr",
+                "FY2023.revenueCr",
+                "FY2024.dilutedEps",
+                "FY2024.eps",
+                "FY2024.netWorthCr",
+                "FY2024.revenueCr",
+                "FY2025.dilutedEps",
+                "FY2025.eps",
+                "FY2025.netWorthCr",
+                "FY2025.revenueCr"
+              ],
+              "sourcePolicy": "final-prospectus-only"
+            }
+          },
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "correctedAt": "2026-09-17T09:21:32.194833+00:00"
+        },
+        {
+          "field": "issueComposition",
+          "before": {
+            "freshShares": 34845069,
+            "ofsShares": 17422535,
+            "freshIssueCr": 378.069,
+            "ofsCr": 378.069,
+            "totalIssueSizeCr": 756.138
+          },
+          "after": {
+            "freshShares": 98795483,
+            "ofsShares": 34845069,
+            "freshIssueCr": 2143.862,
+            "ofsCr": 756.138,
+            "totalIssueSizeCr": 2900.0,
+            "valuationPriceUsed": 217.0
+          },
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 33,
+          "correctedAt": "2026-09-18T00:37:05.669681+00:00"
+        },
+        {
+          "field": "issueSizeCr",
+          "before": 756.138,
+          "after": 2900.0,
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 33,
+          "correctedAt": "2026-09-18T00:37:05.669681+00:00"
+        },
+        {
+          "field": "freshIssueCr",
+          "before": 378.069,
+          "after": 2143.862,
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 33,
+          "correctedAt": "2026-09-18T00:37:05.669681+00:00"
+        },
+        {
+          "field": "ofsCr",
+          "before": 378.069,
+          "after": 756.138,
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+          "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+          "parserVersion": 33,
+          "correctedAt": "2026-09-18T00:37:05.669681+00:00"
+        }
+      ]
+    },
+    {
+      "path": "/freshIssueCr",
+      "operation": "replace",
+      "before": 378.069,
+      "after": 2143.862
+    },
+    {
+      "path": "/issueComposition/freshIssueCr",
+      "operation": "replace",
+      "before": 378.069,
+      "after": 2143.862
+    },
+    {
+      "path": "/issueComposition/freshShares",
+      "operation": "replace",
+      "before": 34845069,
+      "after": 98795483
+    },
+    {
+      "path": "/issueComposition/ofsCr",
+      "operation": "replace",
+      "before": 378.069,
+      "after": 756.138
+    },
+    {
+      "path": "/issueComposition/ofsShares",
+      "operation": "replace",
+      "before": 17422535,
+      "after": 34845069
+    },
+    {
+      "path": "/issueComposition/totalIssueSizeCr",
+      "operation": "replace",
+      "before": 756.138,
+      "after": 2900.0
+    },
+    {
+      "path": "/issueComposition/valuationPriceUsed",
+      "operation": "add",
+      "after": 217.0
+    },
+    {
+      "path": "/issueSizeCr",
+      "operation": "replace",
+      "before": 756.138,
+      "after": 2900.0
+    },
+    {
+      "path": "/ofsCr",
+      "operation": "replace",
+      "before": 378.069,
+      "after": 756.138
+    },
+    {
+      "path": "/staticFieldProvenance/freshIssueCr/checkedAt",
+      "operation": "replace",
+      "before": "2026-09-16T22:32:50+05:30",
+      "after": "2026-09-18T00:37:05.669681+00:00"
+    },
+    {
+      "path": "/staticFieldProvenance/freshIssueCr/evidence/fields",
+      "operation": "add",
+      "after": {
+        "totalShares": {
+          "page": 3,
+          "row": "INITIAL PUBLIC OFFER OF 133,640,552 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH (“EQUITY SHARES”) OF EMMVEE PHOTOVOLTAIC POWER LIMITED ( “COMPANY”) FOR CASH AT A PRICE OF ₹217 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹215 PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹29,000.00 MILLION",
+          "normalizedValue": 133640552,
+          "basis": "explicit final offer clause"
+        },
+        "totalIssueSizeCr": {
+          "page": 3,
+          "row": "INITIAL PUBLIC OFFER OF 133,640,552 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH (“EQUITY SHARES”) OF EMMVEE PHOTOVOLTAIC POWER LIMITED ( “COMPANY”) FOR CASH AT A PRICE OF ₹217 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹215 PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹29,000.00 MILLION",
+          "normalizedValue": 2900.0,
+          "basis": "explicit final offer clause"
+        },
+        "freshShares": {
+          "page": 3,
+          "row": "FRESH ISSUE OF 98,795,483 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH AGGREGATING TO ₹21,438.62 MILLION",
+          "normalizedValue": 98795483,
+          "basis": "explicit final offer clause"
+        },
+        "freshIssueCr": {
+          "page": 3,
+          "row": "FRESH ISSUE OF 98,795,483 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH AGGREGATING TO ₹21,438.62 MILLION",
+          "normalizedValue": 2143.862,
+          "basis": "explicit final offer clause"
+        },
+        "ofsShares": {
+          "page": 3,
+          "row": "OFFER FOR SALE OF 17,422,535 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH AGGREGATING TO ₹3,780.69 MILLION BY MANJUNATHA DONTHI VENKATARATHNAIAH AND 17,422,534 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH AGGREGATING TO ₹3,780.69 MILLION BY SHUBHA MANJUNATHA DONTHI (THE “PROMOTER SELLING SHAREHOLDERS”) AND SUCH EQUITY SHARES OFFERED BY THE PROMOTER SELLING SHAREHOLDERS (“OFFER FOR SALE” AND TOGETHER WITH THE FRESH ISSUE, THE “OFFER”). ",
+          "normalizedValue": 34845069,
+          "basis": "sum of complete named OFS seller clauses, reconciled with explicit fresh issue and initial offer"
+        },
+        "ofsCr": {
+          "page": 3,
+          "row": "OFFER FOR SALE OF 17,422,535 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH AGGREGATING TO ₹3,780.69 MILLION BY MANJUNATHA DONTHI VENKATARATHNAIAH AND 17,422,534 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH AGGREGATING TO ₹3,780.69 MILLION BY SHUBHA MANJUNATHA DONTHI (THE “PROMOTER SELLING SHAREHOLDERS”) AND SUCH EQUITY SHARES OFFERED BY THE PROMOTER SELLING SHAREHOLDERS (“OFFER FOR SALE” AND TOGETHER WITH THE FRESH ISSUE, THE “OFFER”). ",
+          "normalizedValue": 756.138,
+          "basis": "sum of complete named OFS seller clauses, reconciled with explicit fresh issue and initial offer"
+        },
+        "valuationPriceUsed": {
+          "page": 3,
+          "heading": "INITIAL PUBLIC OFFER OF 133,640,552 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH (“EQUITY SHARES”) OF EMMVEE PHOTOVOLTAIC POWER LIMITED ( “COMPANY”) FOR CASH AT A PRICE OF ₹217 PER EQUITY SHARE",
+          "value": 217.0,
+          "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+          "method": "final-offer-price-v2"
+        }
+      }
+    },
+    {
+      "path": "/staticFieldProvenance/freshIssueCr/evidence/freshIssueCr",
+      "operation": "replace",
+      "before": 378.069,
+      "after": 2143.862
+    },
+    {
+      "path": "/staticFieldProvenance/freshIssueCr/evidence/freshShares",
+      "operation": "replace",
+      "before": 34845069,
+      "after": 98795483
+    },
+    {
+      "path": "/staticFieldProvenance/freshIssueCr/evidence/heading",
+      "operation": "add",
+      "after": "Final offer composition"
+    },
+    {
+      "path": "/staticFieldProvenance/freshIssueCr/evidence/method",
+      "operation": "add",
+      "after": "bounded-final-offer-clauses-v1"
+    },
+    {
+      "path": "/staticFieldProvenance/freshIssueCr/evidence/ofsCr",
+      "operation": "replace",
+      "before": 378.069,
+      "after": 756.138
+    },
+    {
+      "path": "/staticFieldProvenance/freshIssueCr/evidence/ofsShares",
+      "operation": "replace",
+      "before": 17422535,
+      "after": 34845069
+    },
+    {
+      "path": "/staticFieldProvenance/freshIssueCr/evidence/page",
+      "operation": "add",
+      "after": 3
+    },
+    {
+      "path": "/staticFieldProvenance/freshIssueCr/evidence/totalIssueSizeCr",
+      "operation": "replace",
+      "before": 756.138,
+      "after": 2900.0
+    },
+    {
+      "path": "/staticFieldProvenance/freshIssueCr/evidence/totalShares",
+      "operation": "add",
+      "after": 133640552
+    },
+    {
+      "path": "/staticFieldProvenance/freshIssueCr/parserVersion",
+      "operation": "replace",
+      "before": 24,
+      "after": 33
+    },
+    {
+      "path": "/staticFieldProvenance/freshIssueCr/value",
+      "operation": "replace",
+      "before": 378.069,
+      "after": 2143.862
+    },
+    {
+      "path": "/staticFieldProvenance/issueComposition/checkedAt",
+      "operation": "replace",
+      "before": "2026-09-16T22:32:50+05:30",
+      "after": "2026-09-18T00:37:05.669681+00:00"
+    },
+    {
+      "path": "/staticFieldProvenance/issueComposition/evidence/fields",
+      "operation": "add",
+      "after": {
+        "totalShares": {
+          "page": 3,
+          "row": "INITIAL PUBLIC OFFER OF 133,640,552 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH (“EQUITY SHARES”) OF EMMVEE PHOTOVOLTAIC POWER LIMITED ( “COMPANY”) FOR CASH AT A PRICE OF ₹217 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹215 PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹29,000.00 MILLION",
+          "normalizedValue": 133640552,
+          "basis": "explicit final offer clause"
+        },
+        "totalIssueSizeCr": {
+          "page": 3,
+          "row": "INITIAL PUBLIC OFFER OF 133,640,552 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH (“EQUITY SHARES”) OF EMMVEE PHOTOVOLTAIC POWER LIMITED ( “COMPANY”) FOR CASH AT A PRICE OF ₹217 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹215 PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹29,000.00 MILLION",
+          "normalizedValue": 2900.0,
+          "basis": "explicit final offer clause"
+        },
+        "freshShares": {
+          "page": 3,
+          "row": "FRESH ISSUE OF 98,795,483 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH AGGREGATING TO ₹21,438.62 MILLION",
+          "normalizedValue": 98795483,
+          "basis": "explicit final offer clause"
+        },
+        "freshIssueCr": {
+          "page": 3,
+          "row": "FRESH ISSUE OF 98,795,483 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH AGGREGATING TO ₹21,438.62 MILLION",
+          "normalizedValue": 2143.862,
+          "basis": "explicit final offer clause"
+        },
+        "ofsShares": {
+          "page": 3,
+          "row": "OFFER FOR SALE OF 17,422,535 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH AGGREGATING TO ₹3,780.69 MILLION BY MANJUNATHA DONTHI VENKATARATHNAIAH AND 17,422,534 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH AGGREGATING TO ₹3,780.69 MILLION BY SHUBHA MANJUNATHA DONTHI (THE “PROMOTER SELLING SHAREHOLDERS”) AND SUCH EQUITY SHARES OFFERED BY THE PROMOTER SELLING SHAREHOLDERS (“OFFER FOR SALE” AND TOGETHER WITH THE FRESH ISSUE, THE “OFFER”). ",
+          "normalizedValue": 34845069,
+          "basis": "sum of complete named OFS seller clauses, reconciled with explicit fresh issue and initial offer"
+        },
+        "ofsCr": {
+          "page": 3,
+          "row": "OFFER FOR SALE OF 17,422,535 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH AGGREGATING TO ₹3,780.69 MILLION BY MANJUNATHA DONTHI VENKATARATHNAIAH AND 17,422,534 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH AGGREGATING TO ₹3,780.69 MILLION BY SHUBHA MANJUNATHA DONTHI (THE “PROMOTER SELLING SHAREHOLDERS”) AND SUCH EQUITY SHARES OFFERED BY THE PROMOTER SELLING SHAREHOLDERS (“OFFER FOR SALE” AND TOGETHER WITH THE FRESH ISSUE, THE “OFFER”). ",
+          "normalizedValue": 756.138,
+          "basis": "sum of complete named OFS seller clauses, reconciled with explicit fresh issue and initial offer"
+        },
+        "valuationPriceUsed": {
+          "page": 3,
+          "heading": "INITIAL PUBLIC OFFER OF 133,640,552 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH (“EQUITY SHARES”) OF EMMVEE PHOTOVOLTAIC POWER LIMITED ( “COMPANY”) FOR CASH AT A PRICE OF ₹217 PER EQUITY SHARE",
+          "value": 217.0,
+          "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+          "method": "final-offer-price-v2"
+        }
+      }
+    },
+    {
+      "path": "/staticFieldProvenance/issueComposition/evidence/freshIssueCr",
+      "operation": "replace",
+      "before": 378.069,
+      "after": 2143.862
+    },
+    {
+      "path": "/staticFieldProvenance/issueComposition/evidence/freshShares",
+      "operation": "replace",
+      "before": 34845069,
+      "after": 98795483
+    },
+    {
+      "path": "/staticFieldProvenance/issueComposition/evidence/heading",
+      "operation": "add",
+      "after": "Final offer composition"
+    },
+    {
+      "path": "/staticFieldProvenance/issueComposition/evidence/method",
+      "operation": "add",
+      "after": "bounded-final-offer-clauses-v1"
+    },
+    {
+      "path": "/staticFieldProvenance/issueComposition/evidence/ofsCr",
+      "operation": "replace",
+      "before": 378.069,
+      "after": 756.138
+    },
+    {
+      "path": "/staticFieldProvenance/issueComposition/evidence/ofsShares",
+      "operation": "replace",
+      "before": 17422535,
+      "after": 34845069
+    },
+    {
+      "path": "/staticFieldProvenance/issueComposition/evidence/page",
+      "operation": "add",
+      "after": 3
+    },
+    {
+      "path": "/staticFieldProvenance/issueComposition/evidence/totalIssueSizeCr",
+      "operation": "replace",
+      "before": 756.138,
+      "after": 2900.0
+    },
+    {
+      "path": "/staticFieldProvenance/issueComposition/evidence/totalShares",
+      "operation": "add",
+      "after": 133640552
+    },
+    {
+      "path": "/staticFieldProvenance/issueComposition/parserVersion",
+      "operation": "replace",
+      "before": 24,
+      "after": 33
+    },
+    {
+      "path": "/staticFieldProvenance/issueComposition/value/freshIssueCr",
+      "operation": "replace",
+      "before": 378.069,
+      "after": 2143.862
+    },
+    {
+      "path": "/staticFieldProvenance/issueComposition/value/freshShares",
+      "operation": "replace",
+      "before": 34845069,
+      "after": 98795483
+    },
+    {
+      "path": "/staticFieldProvenance/issueComposition/value/ofsCr",
+      "operation": "replace",
+      "before": 378.069,
+      "after": 756.138
+    },
+    {
+      "path": "/staticFieldProvenance/issueComposition/value/ofsShares",
+      "operation": "replace",
+      "before": 17422535,
+      "after": 34845069
+    },
+    {
+      "path": "/staticFieldProvenance/issueComposition/value/totalIssueSizeCr",
+      "operation": "replace",
+      "before": 756.138,
+      "after": 2900.0
+    },
+    {
+      "path": "/staticFieldProvenance/issueComposition/value/valuationPriceUsed",
+      "operation": "add",
+      "after": 217.0
+    },
+    {
+      "path": "/staticFieldProvenance/issueSizeCr/checkedAt",
+      "operation": "replace",
+      "before": "2026-09-16T22:32:50+05:30",
+      "after": "2026-09-18T00:37:05.669681+00:00"
+    },
+    {
+      "path": "/staticFieldProvenance/issueSizeCr/evidence/fields",
+      "operation": "add",
+      "after": {
+        "totalShares": {
+          "page": 3,
+          "row": "INITIAL PUBLIC OFFER OF 133,640,552 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH (“EQUITY SHARES”) OF EMMVEE PHOTOVOLTAIC POWER LIMITED ( “COMPANY”) FOR CASH AT A PRICE OF ₹217 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹215 PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹29,000.00 MILLION",
+          "normalizedValue": 133640552,
+          "basis": "explicit final offer clause"
+        },
+        "totalIssueSizeCr": {
+          "page": 3,
+          "row": "INITIAL PUBLIC OFFER OF 133,640,552 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH (“EQUITY SHARES”) OF EMMVEE PHOTOVOLTAIC POWER LIMITED ( “COMPANY”) FOR CASH AT A PRICE OF ₹217 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹215 PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹29,000.00 MILLION",
+          "normalizedValue": 2900.0,
+          "basis": "explicit final offer clause"
+        },
+        "freshShares": {
+          "page": 3,
+          "row": "FRESH ISSUE OF 98,795,483 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH AGGREGATING TO ₹21,438.62 MILLION",
+          "normalizedValue": 98795483,
+          "basis": "explicit final offer clause"
+        },
+        "freshIssueCr": {
+          "page": 3,
+          "row": "FRESH ISSUE OF 98,795,483 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH AGGREGATING TO ₹21,438.62 MILLION",
+          "normalizedValue": 2143.862,
+          "basis": "explicit final offer clause"
+        },
+        "ofsShares": {
+          "page": 3,
+          "row": "OFFER FOR SALE OF 17,422,535 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH AGGREGATING TO ₹3,780.69 MILLION BY MANJUNATHA DONTHI VENKATARATHNAIAH AND 17,422,534 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH AGGREGATING TO ₹3,780.69 MILLION BY SHUBHA MANJUNATHA DONTHI (THE “PROMOTER SELLING SHAREHOLDERS”) AND SUCH EQUITY SHARES OFFERED BY THE PROMOTER SELLING SHAREHOLDERS (“OFFER FOR SALE” AND TOGETHER WITH THE FRESH ISSUE, THE “OFFER”). ",
+          "normalizedValue": 34845069,
+          "basis": "sum of complete named OFS seller clauses, reconciled with explicit fresh issue and initial offer"
+        },
+        "ofsCr": {
+          "page": 3,
+          "row": "OFFER FOR SALE OF 17,422,535 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH AGGREGATING TO ₹3,780.69 MILLION BY MANJUNATHA DONTHI VENKATARATHNAIAH AND 17,422,534 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH AGGREGATING TO ₹3,780.69 MILLION BY SHUBHA MANJUNATHA DONTHI (THE “PROMOTER SELLING SHAREHOLDERS”) AND SUCH EQUITY SHARES OFFERED BY THE PROMOTER SELLING SHAREHOLDERS (“OFFER FOR SALE” AND TOGETHER WITH THE FRESH ISSUE, THE “OFFER”). ",
+          "normalizedValue": 756.138,
+          "basis": "sum of complete named OFS seller clauses, reconciled with explicit fresh issue and initial offer"
+        },
+        "valuationPriceUsed": {
+          "page": 3,
+          "heading": "INITIAL PUBLIC OFFER OF 133,640,552 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH (“EQUITY SHARES”) OF EMMVEE PHOTOVOLTAIC POWER LIMITED ( “COMPANY”) FOR CASH AT A PRICE OF ₹217 PER EQUITY SHARE",
+          "value": 217.0,
+          "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+          "method": "final-offer-price-v2"
+        }
+      }
+    },
+    {
+      "path": "/staticFieldProvenance/issueSizeCr/evidence/freshIssueCr",
+      "operation": "replace",
+      "before": 378.069,
+      "after": 2143.862
+    },
+    {
+      "path": "/staticFieldProvenance/issueSizeCr/evidence/freshShares",
+      "operation": "replace",
+      "before": 34845069,
+      "after": 98795483
+    },
+    {
+      "path": "/staticFieldProvenance/issueSizeCr/evidence/heading",
+      "operation": "add",
+      "after": "Final offer composition"
+    },
+    {
+      "path": "/staticFieldProvenance/issueSizeCr/evidence/method",
+      "operation": "add",
+      "after": "bounded-final-offer-clauses-v1"
+    },
+    {
+      "path": "/staticFieldProvenance/issueSizeCr/evidence/ofsCr",
+      "operation": "replace",
+      "before": 378.069,
+      "after": 756.138
+    },
+    {
+      "path": "/staticFieldProvenance/issueSizeCr/evidence/ofsShares",
+      "operation": "replace",
+      "before": 17422535,
+      "after": 34845069
+    },
+    {
+      "path": "/staticFieldProvenance/issueSizeCr/evidence/page",
+      "operation": "add",
+      "after": 3
+    },
+    {
+      "path": "/staticFieldProvenance/issueSizeCr/evidence/totalIssueSizeCr",
+      "operation": "replace",
+      "before": 756.138,
+      "after": 2900.0
+    },
+    {
+      "path": "/staticFieldProvenance/issueSizeCr/evidence/totalShares",
+      "operation": "add",
+      "after": 133640552
+    },
+    {
+      "path": "/staticFieldProvenance/issueSizeCr/parserVersion",
+      "operation": "replace",
+      "before": 24,
+      "after": 33
+    },
+    {
+      "path": "/staticFieldProvenance/issueSizeCr/value",
+      "operation": "replace",
+      "before": 756.138,
+      "after": 2900.0
+    },
+    {
+      "path": "/staticFieldProvenance/ofsCr/checkedAt",
+      "operation": "replace",
+      "before": "2026-09-16T22:32:50+05:30",
+      "after": "2026-09-18T00:37:05.669681+00:00"
+    },
+    {
+      "path": "/staticFieldProvenance/ofsCr/evidence/fields",
+      "operation": "add",
+      "after": {
+        "totalShares": {
+          "page": 3,
+          "row": "INITIAL PUBLIC OFFER OF 133,640,552 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH (“EQUITY SHARES”) OF EMMVEE PHOTOVOLTAIC POWER LIMITED ( “COMPANY”) FOR CASH AT A PRICE OF ₹217 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹215 PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹29,000.00 MILLION",
+          "normalizedValue": 133640552,
+          "basis": "explicit final offer clause"
+        },
+        "totalIssueSizeCr": {
+          "page": 3,
+          "row": "INITIAL PUBLIC OFFER OF 133,640,552 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH (“EQUITY SHARES”) OF EMMVEE PHOTOVOLTAIC POWER LIMITED ( “COMPANY”) FOR CASH AT A PRICE OF ₹217 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹215 PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹29,000.00 MILLION",
+          "normalizedValue": 2900.0,
+          "basis": "explicit final offer clause"
+        },
+        "freshShares": {
+          "page": 3,
+          "row": "FRESH ISSUE OF 98,795,483 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH AGGREGATING TO ₹21,438.62 MILLION",
+          "normalizedValue": 98795483,
+          "basis": "explicit final offer clause"
+        },
+        "freshIssueCr": {
+          "page": 3,
+          "row": "FRESH ISSUE OF 98,795,483 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH AGGREGATING TO ₹21,438.62 MILLION",
+          "normalizedValue": 2143.862,
+          "basis": "explicit final offer clause"
+        },
+        "ofsShares": {
+          "page": 3,
+          "row": "OFFER FOR SALE OF 17,422,535 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH AGGREGATING TO ₹3,780.69 MILLION BY MANJUNATHA DONTHI VENKATARATHNAIAH AND 17,422,534 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH AGGREGATING TO ₹3,780.69 MILLION BY SHUBHA MANJUNATHA DONTHI (THE “PROMOTER SELLING SHAREHOLDERS”) AND SUCH EQUITY SHARES OFFERED BY THE PROMOTER SELLING SHAREHOLDERS (“OFFER FOR SALE” AND TOGETHER WITH THE FRESH ISSUE, THE “OFFER”). ",
+          "normalizedValue": 34845069,
+          "basis": "sum of complete named OFS seller clauses, reconciled with explicit fresh issue and initial offer"
+        },
+        "ofsCr": {
+          "page": 3,
+          "row": "OFFER FOR SALE OF 17,422,535 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH AGGREGATING TO ₹3,780.69 MILLION BY MANJUNATHA DONTHI VENKATARATHNAIAH AND 17,422,534 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH AGGREGATING TO ₹3,780.69 MILLION BY SHUBHA MANJUNATHA DONTHI (THE “PROMOTER SELLING SHAREHOLDERS”) AND SUCH EQUITY SHARES OFFERED BY THE PROMOTER SELLING SHAREHOLDERS (“OFFER FOR SALE” AND TOGETHER WITH THE FRESH ISSUE, THE “OFFER”). ",
+          "normalizedValue": 756.138,
+          "basis": "sum of complete named OFS seller clauses, reconciled with explicit fresh issue and initial offer"
+        },
+        "valuationPriceUsed": {
+          "page": 3,
+          "heading": "INITIAL PUBLIC OFFER OF 133,640,552 EQUITY SHARES^ OF FACE VALUE OF ₹2 EACH (“EQUITY SHARES”) OF EMMVEE PHOTOVOLTAIC POWER LIMITED ( “COMPANY”) FOR CASH AT A PRICE OF ₹217 PER EQUITY SHARE",
+          "value": 217.0,
+          "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+          "method": "final-offer-price-v2"
+        }
+      }
+    },
+    {
+      "path": "/staticFieldProvenance/ofsCr/evidence/freshIssueCr",
+      "operation": "replace",
+      "before": 378.069,
+      "after": 2143.862
+    },
+    {
+      "path": "/staticFieldProvenance/ofsCr/evidence/freshShares",
+      "operation": "replace",
+      "before": 34845069,
+      "after": 98795483
+    },
+    {
+      "path": "/staticFieldProvenance/ofsCr/evidence/heading",
+      "operation": "add",
+      "after": "Final offer composition"
+    },
+    {
+      "path": "/staticFieldProvenance/ofsCr/evidence/method",
+      "operation": "add",
+      "after": "bounded-final-offer-clauses-v1"
+    },
+    {
+      "path": "/staticFieldProvenance/ofsCr/evidence/ofsCr",
+      "operation": "replace",
+      "before": 378.069,
+      "after": 756.138
+    },
+    {
+      "path": "/staticFieldProvenance/ofsCr/evidence/ofsShares",
+      "operation": "replace",
+      "before": 17422535,
+      "after": 34845069
+    },
+    {
+      "path": "/staticFieldProvenance/ofsCr/evidence/page",
+      "operation": "add",
+      "after": 3
+    },
+    {
+      "path": "/staticFieldProvenance/ofsCr/evidence/totalIssueSizeCr",
+      "operation": "replace",
+      "before": 756.138,
+      "after": 2900.0
+    },
+    {
+      "path": "/staticFieldProvenance/ofsCr/evidence/totalShares",
+      "operation": "add",
+      "after": 133640552
+    },
+    {
+      "path": "/staticFieldProvenance/ofsCr/parserVersion",
+      "operation": "replace",
+      "before": 24,
+      "after": 33
+    },
+    {
+      "path": "/staticFieldProvenance/ofsCr/value",
+      "operation": "replace",
+      "before": 378.069,
+      "after": 756.138
+    }
+  ]
+}

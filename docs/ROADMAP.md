@@ -1,10 +1,18 @@
 # IPO Tracker — prioritized development roadmap
 
-Current execution update (17 September 2026): the deployed document-hold safeguards
-remain complete. The source-publication guard from #98 is being released as an
-independent increment; the combined parser and seven-record source acceptance
-remain gated. See [PROJECT_STATUS.md](PROJECT_STATUS.md) for verified checks and
-the current checkpoint; the dated audit below is preserved.
+Current execution update (18 September 2026): #108's publication source guard,
+#109's Teamtech document hold and #111's document-conflict wording are released
+and live-verified. #112's durable generated-presentation routing is deployed;
+its actual refresh skipped source and residual collection and published no data
+changes. #110's complete source-review routing is merged after successful
+validation, browser and source-preview checks, and is deployed and live-verified.
+Its source-preview output remains unaccepted. Main now routes all
+1,618 source findings with no unmapped work, while 1,614 findings still block P4.
+These increments preserve canonical values and the P4 gate. The combined #105
+parser/source draft remains unaccepted: the original seven-record transport is
+unavailable, and Teamtech's conflicting prospectus units block its proposed
+replacement. See [PROJECT_STATUS.md](PROJECT_STATUS.md) for release evidence,
+pending checks and the exact next action; the dated audit below is preserved.
 
 Prepared 17 September 2026. Recommendation: make displayed data trustworthy, make repairs and updates dependable, complete P4, then expand historical coverage and investment-research features. Keep the current light dashboard and static GitHub Pages architecture while doing this.
 
@@ -24,19 +32,28 @@ The commercial goal does not relax the P4 correctness gate. P5 and performance e
 
 This plan reviews the current repository, published data, representative live user journeys, recent workflows and pull requests, the earlier technical audit, and retrieved development decisions. The fixed code/data baseline is commit `cc30f3701996232aa0eecd1b8c4adbf710c84735`, published at 18:22 UTC on 17 September. Its Pages deployment succeeded. Live inspection followed that snapshot; date-sensitive labels can change at midnight IST. No production code, data, deployment, or PR was changed during this review.
 
-**Execution reconciliation, 17 September 2026:** main `cf906df7` already includes
-the public field-trust/freshness release and verified live acceptance from
-#100–#103. Those audited omissions below are historical. Source repairs #94/#98/#99
-are now integrated in draft #105 and pass 1,023 frozen regressions; their targeted
-data publication remains blocked on a recoverable or newly accepted seven-record
-bundle and a reviewed publication scope. The independently released #106
-document-scoped public hold closes a newly reproduced mirror-URL/changed-allocation
-display gap, with 966 regressions, 24 browser journeys and live acceptance passed. The
-current canonical report has 385 P4 plus 51 higher-priority actionable records,
-1,614 blocking source-review items and 17 unmapped reviews; P5 remains gated.
-See [project status](PROJECT_STATUS.md) for current release evidence and exact next
-action, and [commercial readiness](COMMERCIAL_READINESS.md) for newly retrieved
-NSE terms and dependency inventory. Preserve this dated audit as history.
+**Execution reconciliation, 18 September 2026:** the public field-trust/freshness
+omissions in the audit below are historical. #100–#103 established the public
+contract and live acceptance; #106 added document-scoped public protection, #108
+released source-manifest safeguards, and #109 expanded Teamtech's hold after
+source review. Main `dd3a9b42` includes #110's review routing: 390 P4 plus 51
+higher-priority records, 1,618 total source findings, 1,614 blocking reviews and
+zero unmapped reviews. Adding five P4 rows routes 17 previously unmapped reviews;
+missing-field coverage and blocking counts do not improve. Main is live-verified,
+including the queue, phase status and completeness script. P4 remains incomplete
+and P5 remains gated. #111 corrects the explanation of document conflicts without
+accepting replacement figures; #112's generated-output classification is now
+verified through an actual `presentation` refresh with source/residual collection
+skipped. The latest #104 head and its public-boundary tests are preserved in the
+#105 draft. Successful #104/#105 previews remain unaccepted. The #105
+draft incorporates #110 at reachable code freeze `409c51c9` with 1,068 frozen
+regressions passed. Complete-PDF execution passed 80 checks and its independent
+replay passed 40 audit checks; neither candidate is published. Preserve each
+execution's exact lineage and Teamtech's hold. [The retained source review](https://github.com/Vasuki8/IPO-Tracker/blob/fix-p4-reviewed-integration/docs/reviews/2026-09-18-source-review/2026-09-18-source-review-409c51c9.md)
+binds the full evidence and recovery instructions to that freeze. Structural
+checks do not reconcile Teamtech's conflicting units. The commercial goal and unresolved permissions/customer
+validation questions remain in force. See [project status](PROJECT_STATUS.md)
+and [commercial readiness](COMMERCIAL_READINESS.md).
 
 **The main finding:** the collection and validation foundations have improved considerably, but internal source-review information does not consistently reach the public website. A page can display disputed values and a broad verification label at the same time. Fix that before adding more analytical features.
 

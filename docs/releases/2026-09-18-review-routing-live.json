@@ -1,0 +1,53 @@
+{
+  "checkedAt": "2026-09-18T00:33:52.924256+00:00",
+  "expectedCommit": "dd3a9b42057422057c98a16c9b1281cf318a54d8",
+  "status": "passed",
+  "scope": "additional-live-routing-artifact-consistency-not-source-acceptance",
+  "baseUrl": "https://vasuki8.github.io/IPO-Tracker/",
+  "httpChecked": [
+    "completeness.js",
+    "data/missing_queue.json",
+    "data/phase_status.json"
+  ],
+  "expectedSha256": {
+    "completeness.js": "11b507f5a3b8348b0bb1deadd6080692ff43e0f782c63ab61c32c03826d2325e",
+    "data/missing_queue.json": "058fa27096c8b3f4585960458e84fc59de17028113898fe700b77001ab329ea0",
+    "data/phase_status.json": "1547d817c050b7e0921ade108c758dd35a5ea486503e83597fa82d03cdd6ea29"
+  },
+  "byteCounts": {
+    "completeness.js": 8066,
+    "data/missing_queue.json": 573984,
+    "data/phase_status.json": 653
+  },
+  "queueCount": 1355,
+  "sourceReviewCount": 1618,
+  "newlyRoutedReviewCounts": {
+    "ardee": 3,
+    "ganeshcp": 2,
+    "glottis": 3,
+    "mbel": 3,
+    "pacedigitk": 6
+  },
+  "phase": {
+    "generatedAt": "2026-09-17T23:49:14.645326+00:00",
+    "p4": {
+      "status": "incomplete",
+      "actionableRecords": 390,
+      "higherPriorityRecords": 51,
+      "semanticErrors": 0,
+      "sourceReviewItems": 1618,
+      "blockingSourceReviewItems": 1614,
+      "p5OnlySourceReviewItems": 4,
+      "unmappedSourceReviewItems": 0,
+      "finalProspectusRevalidationRecords": 325,
+      "finalProspectusRevalidationFields": 1185,
+      "higherPriorityFinalProspectusRevalidationRecords": 29,
+      "higherPriorityFinalProspectusRevalidationFields": 107,
+      "resolvedUnavailableRecords": 5
+    },
+    "p5": {
+      "status": "waiting_for_p4",
+      "actionableRecords": 914
+    }
+  }
+}

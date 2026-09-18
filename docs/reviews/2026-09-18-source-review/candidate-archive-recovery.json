@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "scope": "offline-byte-recovery-of-unaccepted-diagnostics-not-publication-acceptance",
+  "archive": "UNACCEPTED-candidate-records.json.gz",
+  "compressedBytes": 58743,
+  "archiveSha256": "ed6e063ce087bea253d3b730e1facdf1fa4b199afe1eb9f0bb22575dfd629d03",
+  "uncompressedSha256": "92a036c0059bf7836f8b4255bce7594f5557a150cb1536b1c6e1a1dc438ca478",
+  "recoveredOutputs": {
+    "SOURCE_CHECK_PASSED-emmvee-only-ipos.json": {
+      "sha256": "6fff211eb40beaba12c6029cb87938695a58f2d4f1c8bc3414288cfe5f7fcb17",
+      "byteIdentical": true
+    },
+    "UNACCEPTED-seven-record-ipos.json": {
+      "sha256": "c65078d603bbcddb69697910e7bf06105aaaff14035c1256e4096b6de4b87dcf",
+      "byteIdentical": true
+    }
+  },
+  "requiresForByteRecovery": "Exact immutable canonical base plus this archive; original PDF bytes are still required for renewed source extraction and source acceptance."
+}
