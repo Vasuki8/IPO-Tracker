@@ -1,0 +1,326 @@
+{
+  "scope": "subscription-snapshot-provenance-and-delivery-not-source-value-audit",
+  "baselineCommit": "9210afeac2867d2ebbdfadd290706ec6a528bf4c",
+  "pullRequest": 131,
+  "reviewedHead": "40a310075a7bed39403afff10f52a32febe502ac",
+  "testMerge": "303c7d1002807400b20fe5302849f208e5a6bcfe",
+  "mergeCommit": "30e994f7265719cf91e1004df978d403c45093a1",
+  "implementationTree": "e5650c527e746d85c4d81456a1e2e629efecfbf9",
+  "publicationCommit": "70a5133f11bce99f9e432c1ae56b52c29b012593",
+  "publicationTree": "471130c973180688fbeaf82a314f162667a1c072",
+  "validation": {
+    "prRun": 35365121296,
+    "postMergeRun": 35365585590,
+    "status": "success",
+    "frozenCollectorJob": 105667131441,
+    "regressions": 1144,
+    "newRegressions": 15,
+    "environment": "Python 3.12.14; uv sync --frozen",
+    "localFocusedTests": 25,
+    "localNodeTests": 8
+  },
+  "collection": {
+    "runId": 35365585525,
+    "mode": "subscriptions",
+    "collectJob": 105667131441,
+    "publishJob": 105667646819,
+    "jobsSucceeded": true,
+    "attempted": 8,
+    "updated": 7,
+    "bseRouteRecords": 5,
+    "secondaryRecords": 2,
+    "historyEventsAdded": 2,
+    "failed": 1,
+    "failedId": "spectraa",
+    "sourceHealthOk": false,
+    "sourceHealthDegraded": true,
+    "finalProspectusOrPerformanceSourceCollection": false
+  },
+  "artifacts": [
+    {
+      "kind": "original-diagnosis-bundle",
+      "id": 10548793614,
+      "sha256": "5d6add38c8939cecc0b15baaff61cddf071131eedea697f7be1501978617cfab"
+    },
+    {
+      "kind": "pr-ci-report",
+      "id": 10556017355,
+      "sha256": "e0a6b987163607d81b36df09832f31745a6cb08c69e3a6ec943d4577075a3b97"
+    },
+    {
+      "kind": "collected-bundle",
+      "id": 10555793336,
+      "sha256": "cb52f3efdb1e674b21b3d256472cba07378cf9d6209f70ef0f062480c31ca323"
+    },
+    {
+      "kind": "published-tree",
+      "id": 10556480819,
+      "sha256": "381ed0b4cc579fa6c880aad737fe2ef0e13b1eaa1882665e285bd7c0797bc33a"
+    },
+    {
+      "kind": "live-receipt",
+      "id": 10556183396,
+      "sha256": "77ae4cf52159badcdb80216489429478576659238946ad92af01bd0a263c0b2a"
+    }
+  ],
+  "allListedArtifactsDownloadedAndHashVerified": true,
+  "publicationBoundary": {
+    "scope": "subscription-publication-boundary-and-provenance-not-source-value-audit",
+    "derivedClockChanges": {
+      "staticSourcePolicy.checkedAt": 1370,
+      "validation.checkedAt": 7
+    },
+    "publicationCommit": "70a5133f11bce99f9e432c1ae56b52c29b012593",
+    "collectorCommit": "30e994f7265719cf91e1004df978d403c45093a1",
+    "publication": {
+      "runId": "35365585525",
+      "collectorCommit": "30e994f7265719cf91e1004df978d403c45093a1",
+      "status": "published",
+      "pendingConflictCount": 441
+    },
+    "recordCount": 1370,
+    "changedSubscriptionIds": [
+      "sona",
+      "ssretail",
+      "jsipl",
+      "heromotors",
+      "nse",
+      "kheriaauto",
+      "axiomgas"
+    ],
+    "unchangedOutsideSubscriptionUpdatesExceptPolicyClock": 1363,
+    "changedFieldsExcludingPolicyClock": {
+      "subscriptionAsOf": 7,
+      "subscriptionCollectedAt": 7,
+      "subscriptionSourceUrl": 7,
+      "validation": 7,
+      "sources": 7,
+      "subscriptionHistory": 2,
+      "subscriptionObservedAt": 2,
+      "subscription": 2
+    },
+    "historyAdditions": {
+      "kheriaauto": 1,
+      "axiomgas": 1
+    },
+    "oldHistoryPrefixPreservedForAllRecords": true,
+    "allStaticValuesProofsAndCorrectionHistoryPreserved": true,
+    "publishedRecordsMatchCollectedProposalExceptDerivedCheckClocks": true,
+    "pendingCount": 441,
+    "pendingBytesPreserved": true,
+    "allReviewOccurrencesPreserved": true,
+    "existingAuthorityGap": {
+      "collectorRoute": "BSE",
+      "host": "beta.bseindia.com",
+      "records": 5,
+      "publicAuthority": "unknown",
+      "unchangedFromBaseline": true
+    },
+    "activeHolds": 11,
+    "teamtechHeld": true,
+    "emmveeUnheld": true,
+    "spectraaValuesAndClocksUnchanged": true,
+    "phase": {
+      "generatedAt": "2026-09-18T15:59:49.745571+00:00",
+      "p4": {
+        "status": "incomplete",
+        "actionableRecords": 387,
+        "higherPriorityRecords": 55,
+        "semanticErrors": 0,
+        "sourceReviewItems": 1607,
+        "blockingSourceReviewItems": 1603,
+        "p5OnlySourceReviewItems": 4,
+        "unmappedSourceReviewItems": 0,
+        "finalProspectusRevalidationRecords": 321,
+        "finalProspectusRevalidationFields": 1173,
+        "higherPriorityFinalProspectusRevalidationRecords": 29,
+        "higherPriorityFinalProspectusRevalidationFields": 107,
+        "resolvedUnavailableRecords": 5
+      },
+      "p5": {
+        "status": "waiting_for_p4",
+        "actionableRecords": 914
+      }
+    },
+    "observations": [
+      {
+        "id": "sona",
+        "sourceUrl": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7973&status=L",
+        "authority": "unknown",
+        "observedAt": null,
+        "collectedAt": "2026-09-18T21:29:05+05:30",
+        "timeBasis": "collection-only"
+      },
+      {
+        "id": "ssretail",
+        "sourceUrl": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7975&status=L",
+        "authority": "unknown",
+        "observedAt": null,
+        "collectedAt": "2026-09-18T21:29:02+05:30",
+        "timeBasis": "collection-only"
+      },
+      {
+        "id": "jsipl",
+        "sourceUrl": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7976&status=L",
+        "authority": "unknown",
+        "observedAt": null,
+        "collectedAt": "2026-09-18T21:29:00+05:30",
+        "timeBasis": "collection-only"
+      },
+      {
+        "id": "heromotors",
+        "sourceUrl": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7971&status=L",
+        "authority": "unknown",
+        "observedAt": null,
+        "collectedAt": "2026-09-18T21:28:59+05:30",
+        "timeBasis": "collection-only"
+      },
+      {
+        "id": "nse",
+        "sourceUrl": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7977&status=L",
+        "authority": "unknown",
+        "observedAt": null,
+        "collectedAt": "2026-09-18T21:29:04+05:30",
+        "timeBasis": "collection-only"
+      },
+      {
+        "id": "kheriaauto",
+        "sourceUrl": "https://www.ipopremium.in/view/subscription",
+        "authority": "secondary",
+        "observedAt": "2026-09-18T19:53:17+05:30",
+        "collectedAt": "2026-09-18T21:29:02+05:30",
+        "timeBasis": "source-observation"
+      },
+      {
+        "id": "axiomgas",
+        "sourceUrl": "https://www.ipopremium.in/view/subscription",
+        "authority": "secondary",
+        "observedAt": "2026-09-18T20:41:14+05:30",
+        "collectedAt": "2026-09-18T21:29:07+05:30",
+        "timeBasis": "source-observation"
+      }
+    ],
+    "inputHashes": {
+      "baseSha256": "0d2c161fa184499c7427e1ce83feed7c8f244ee8b72defdd0c8f3efbbe62d04e",
+      "publishedSha256": "1b600dc26dbf5ec24908464ba3da3ce3c0798fa3804278b5c85c32fcb0d352eb",
+      "pendingSha256": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+      "holdsSha256": "6045dc717f31be5abe8ecbde432cf50633d69a492477f51264176de3e3d77ed8"
+    },
+    "localProfilesChecked": 1370,
+    "livePathsMatched": 22
+  },
+  "proposalReport": {
+    "summary": {
+      "retainedProposals": 441,
+      "documentFieldProposals": 159,
+      "subscriptionSnapshotProposals": 22,
+      "subscriptionByComparisonState": {
+        "still_conflicting": 22
+      },
+      "subscriptionObservationRelations": {
+        "not_comparable": 14,
+        "proposed_older": 8
+      },
+      "byComparisonState": {
+        "not_assessed": 260,
+        "still_conflicting": 181
+      },
+      "documentWithValueDifferences": 30,
+      "documentWithEvidenceOrReviewDifferences": 159,
+      "duplicateFingerprintOccurrences": 0
+    },
+    "sha256": "97b27d81c930c5163477c8033a4d25e4876e9fa77d03b958c4e64c944982bd4a",
+    "replayed": true,
+    "emmveeAdviceStateBeforeAndAfter": "stale_evidence",
+    "resolutionsApplied": 0
+  },
+  "pagesRun": 35365791253,
+  "liveAcceptanceRun": 35365847478,
+  "liveReceipt": {
+    "expectedCommit": "70a5133f11bce99f9e432c1ae56b52c29b012593",
+    "status": "passed",
+    "scope": "public-artifact-and-review-delivery-not-source-accuracy",
+    "routeCount": 1370,
+    "sampledProfiles": [
+      "ipo/emmvee/",
+      "ipo/teamtech/",
+      "ipo/shakti-polytarp-limited/",
+      "ipo/kheriaauto/",
+      "ipo/vama-wovenfab-limited/",
+      "ipo/sona/",
+      "ipo/manika/",
+      "ipo/snehaa/",
+      "ipo/sacheerome/"
+    ],
+    "expectedSha256": {
+      "index.html": "7bb7c13dc4c856b9bcb77138e9d9cdfb8934384688e97c27c5bd9d81aa6fec59",
+      "public-quality.js": "0045144d13ba815a566d9225d699a18723be33adc179c3e9779f196e1f1d3841",
+      "public-quality.css": "988dee5e990116eff25b8746a77b0b618b23d5394f3b919d601cceaedd6d4467",
+      "app.js": "aad042ffd8cea3576b5abff34d8b0378e812ab7e4f368f73e162d427201167d3",
+      "company-page.js": "c965ddfd01ab122b196dc58797d299f724b2378092c7ff927c91ea14b132c610",
+      "company.js": "8fba803171c5fd0fb09b95844fc153eaeff159a3a55c92785ef3c9013e08435d",
+      "phase4.js": "d7c69047e184cf5f896a75e61c62150a462ed985deaf93fdd8c0015a212e388f",
+      "methodology.html": "fe6b152b67eeaf0d1b17d7a700e1819fc250256bc022b64c9735c7867d7c546c",
+      "data/ipos-summary.json": "9a6d9d7058fa85523db616e61f237cf3b9c746d3581791e05e9921a2d4d622cc",
+      "ipo/routes.json": "6b9e3859a92b347da906b2f77cc4866aa907a4cc561bdf97007bf67188430a13",
+      "ipo/emmvee/index.html": "4502adcd7a5ebb3d4909a9eab28f0562c4efd7f117c0e6a4e1179d0f5fe046a8",
+      "ipo/teamtech/index.html": "724722823686a49c9c8cdb6e6411d47ad5ebbff4d22dbc024143cbad3cc22e8d",
+      "ipo/shakti-polytarp-limited/index.html": "da020c1a8592d2cc5c5992d600117fdebc193069bd8f58f49913d3e2cf390b2c",
+      "ipo/kheriaauto/index.html": "97f1674e32e8ce6eb68814fff18efad00f6ae110f8eab3242bc227f9baebea33",
+      "ipo/vama-wovenfab-limited/index.html": "0e67b0835622dd9251aa64b48cefb7b0cde1844104bf8c97478a10fb0c63eb2c",
+      "ipo/sona/index.html": "d5fcb4d011e25204e766c2777d47b6a6346b8a52bcdee978506822924dfb48f8",
+      "ipo/manika/index.html": "d93ed249adccf3ff72675298747dcb0f294f95e5ebd31fc4d53499aa556d2c13",
+      "ipo/snehaa/index.html": "fec9ddf9fcec918e1c8230a83c8e51befe9873b55f6fd57c97d179bcb953122f",
+      "ipo/sacheerome/index.html": "75b68d99fe1225a4dad9d1ef8d81baec2a60fce2498585a672451083b4a3f6f5",
+      "data/validation.json": "21fe775a7d87e0305b7db15b9a062c7661d1c6fd504ba3c4cdba88c20bc67920",
+      "data/missing_queue.json": "392c91221f25b985b3d32e605bbc6744d733e3b707add3e5d7088decbc5fd284",
+      "data/phase_status.json": "015e7e2b8250bc3e1f7abfd2c18cee422bcd69dda6f36f1d6d3b31592f349086"
+    },
+    "reviewedPublication": {
+      "status": "not_requested",
+      "scope": "retained-reviewed-evidence-delivery"
+    },
+    "additionalReviewPaths": [
+      "ipo/snehaa/index.html",
+      "ipo/sacheerome/index.html",
+      "data/validation.json",
+      "data/missing_queue.json",
+      "data/phase_status.json"
+    ],
+    "baseUrl": "https://vasuki8.github.io/IPO-Tracker/",
+    "httpChecked": [
+      "index.html",
+      "public-quality.js",
+      "public-quality.css",
+      "app.js",
+      "company-page.js",
+      "company.js",
+      "phase4.js",
+      "methodology.html",
+      "data/ipos-summary.json",
+      "ipo/routes.json",
+      "ipo/emmvee/index.html",
+      "ipo/teamtech/index.html",
+      "ipo/shakti-polytarp-limited/index.html",
+      "ipo/kheriaauto/index.html",
+      "ipo/vama-wovenfab-limited/index.html",
+      "ipo/sona/index.html",
+      "ipo/manika/index.html",
+      "ipo/snehaa/index.html",
+      "ipo/sacheerome/index.html",
+      "data/validation.json",
+      "data/missing_queue.json",
+      "data/phase_status.json"
+    ]
+  },
+  "limitations": [
+    "No fresh full-PDF or underlying subscription-multiple accuracy audit; the source bundle diagnoses software provenance.",
+    "Full local attempt had eight missing-workflow-file errors; frozen offline dependencies were unavailable. Frozen/full passes are actual GitHub CI results.",
+    "No new browser interaction suite for this collector-only increment; shared projection regressions, all-profile consistency and the 22-path live receipt were checked.",
+    "Five beta.bseindia.com snapshots remain unknown authority under the unchanged public allowlist, exactly as before this release. Do not promote without primary evidence.",
+    "Five BSE-route source-observation clocks remain unknown; two secondary observations retain distinct source times. SpectraA failed and its values/clocks were preserved.",
+    "Existing policy and validation check timestamps changed; these are not source observation times or numerical corrections.",
+    "P4 remains blocked and all 441 proposals remain pending; old Emmvee operator advice is stale, not automatically renewed.",
+    "No new spending, contracts, outreach, tracking, billing, infrastructure, dependency, writer or permission changes."
+  ]
+}
