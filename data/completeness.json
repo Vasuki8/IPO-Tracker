@@ -1,29 +1,29 @@
 {
-  "generatedAt": "2026-09-18T10:31:50+05:30",
+  "generatedAt": "2026-09-18T11:31:11+05:30",
   "asOfDate": "2026-09-18",
-  "recordCount": 1366,
+  "recordCount": 1367,
   "stageCounts": {
     "closed": 56,
-    "filing-pipeline": 10,
+    "filing-pipeline": 11,
     "listed": 1287,
     "open": 8,
     "unknown": 1,
     "upcoming": 4
   },
   "segmentCounts": {
-    "allRecords": 1366,
+    "allRecords": 1367,
     "exchangeStage": 1355,
     "recentExchange2Y": 442,
     "historicalExchange": 913,
-    "offerDocumentEligible": 387,
+    "offerDocumentEligible": 388,
     "openNow": 8,
     "maturedClosed": 1323
   },
   "scores": {
     "exchangeStage": 82.6,
     "recentExchange2Y": 96.6,
-    "offerDocumentEligible": 70.0,
-    "openSubscription": 78.1,
+    "offerDocumentEligible": 69.8,
+    "openSubscription": 81.2,
     "maturedLifecycle": 97.2,
     "provenance": 100.0
   },
@@ -199,39 +199,39 @@
     "offerDocumentEligible": {
       "registrar": {
         "present": 361,
-        "expected": 387,
-        "missing": 26,
-        "pct": 93.3
+        "expected": 388,
+        "missing": 27,
+        "pct": 93.0
       },
       "leadManagers": {
         "present": 357,
-        "expected": 387,
-        "missing": 30,
-        "pct": 92.2
+        "expected": 388,
+        "missing": 31,
+        "pct": 92.0
       },
       "promoters": {
         "present": 343,
-        "expected": 387,
-        "missing": 44,
-        "pct": 88.6
+        "expected": 388,
+        "missing": 45,
+        "pct": 88.4
       },
       "objectsOfIssue": {
         "present": 93,
-        "expected": 387,
-        "missing": 294,
+        "expected": 388,
+        "missing": 295,
         "pct": 24.0
       },
       "financials": {
         "present": 247,
-        "expected": 387,
-        "missing": 140,
-        "pct": 63.8
+        "expected": 388,
+        "missing": 141,
+        "pct": 63.7
       },
       "promoterShareholding": {
         "present": 225,
-        "expected": 387,
-        "missing": 162,
-        "pct": 58.1
+        "expected": 388,
+        "missing": 163,
+        "pct": 58.0
       }
     },
     "openSubscription": {
@@ -254,10 +254,10 @@
         "pct": 75.0
       },
       "total": {
-        "present": 7,
+        "present": 8,
         "expected": 8,
-        "missing": 1,
-        "pct": 87.5
+        "missing": 0,
+        "pct": 100.0
       }
     },
     "maturedLifecycle": {
@@ -278,20 +278,20 @@
     },
     "provenance": {
       "sources": {
-        "present": 1365,
-        "expected": 1366,
+        "present": 1366,
+        "expected": 1367,
         "missing": 1,
         "pct": 99.9
       },
       "validation": {
-        "present": 1366,
-        "expected": 1366,
+        "present": 1367,
+        "expected": 1367,
         "missing": 0,
         "pct": 100.0
       },
       "documents": {
-        "present": 394,
-        "expected": 394,
+        "present": 395,
+        "expected": 395,
         "missing": 0,
         "pct": 100.0
       }
@@ -1229,14 +1229,7 @@
           "stage": "open"
         }
       ],
-      "total": [
-        {
-          "id": "axiomgas",
-          "company": "Axiom Gas Engineering Limited",
-          "openDate": "2026-09-18",
-          "stage": "open"
-        }
-      ]
+      "total": []
     },
     "maturedLifecycle": {
       "listingDate": [
