@@ -15,44 +15,161 @@ authority for completed static terms, explicitly provisional active disclosures,
 source observation versus collection clocks, nulls, source evidence and correction
 history remain mandatory. P4 is incomplete; P5/performance expansion remain gated.
 
-## Current milestone — protect publication after source-policy changes
+## Current checkpoint — 18 September 2026
 
-Rechecked on 17 September 2026 against main
-`2e0e8541f92608ca71ab76a14232f6626ca43050`. Main, the five relevant open repair
-PRs, canonical data and the deployed document-hold release are unchanged. Pages
-[35283102313](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35283102313)
-and automatic live acceptance
-[35283136925](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35283136925)
-succeeded for that checkpoint.
+The latest live-verified main checkpoint recorded here is
+`dd3a9b42057422057c98a16c9b1281cf318a54d8`. The public trust/freshness
+foundation, document-scoped display holds, source-publication guard, durable
+presentation routing and complete source-review routing are released.
+No new canonical numerical correction or P4 completion is claimed by these releases.
 
-The next complete increment extracts the publication safeguard already developed
-in #98 from draft integration #105, without releasing its unaccepted parser/data
-changes. A collector could previously publish after the reviewed-correction
-registry changed, or bypass verification with an empty supplied manifest. That
-could reintroduce source values collected before a review decision, affecting all
-public research views after publication.
+Current execution verified Git fetch, local worktrees and file edits, the frozen
+Python 3.12 environment through uv, real-browser checks and authenticated GitHub
+connector PR writes. Direct Git push lacked credentials, so publication used the
+authenticated connector. The failed-network and unavailable-checkout observations
+in the historical recovery section describe the earlier session.
 
-Acceptance criteria: require an ancestor collector commit with identical scripts,
-locked dependencies and correction registry; reject missing, empty, malformed or
-stale supplied manifests before any data/proposal write; allow independent
-accepted-data and documentation advances through the existing three-way merge;
-preserve all canonical values, retained proposals and public projections.
+| Released increment | Verified implementation and release evidence |
+| --- | --- |
+| [#108 — publication source guard](https://github.com/Vasuki8/IPO-Tracker/pull/108) | Merge `2af383f85b2b3e435ac2bed67c4f49858afc8024`; [validation 35287605772](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35287605772) passed 983 regressions; [Pages 35287708952](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35287708952) and [live acceptance 35287745632](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35287745632) succeeded. |
+| [#109 — Teamtech document hold](https://github.com/Vasuki8/IPO-Tracker/pull/109) | Reviewed head `195255564b516214a1a11ba3165df6825e69cb8f`, merge `e407f66e6fd1b54ccd2738cd668bd270934b8bef`; [validation 35288159628](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35288159628) passed 984 regressions and [browser 35288159668](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35288159668) passed 24 journeys plus text-boundary checks. [Pages 35288445521](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35288445521) and [live acceptance 35288479984](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35288479984) succeeded; all 1,366 profiles were consistent and 17 complete HTTPS responses matched the checkout. [Publication 35288379070](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35288379070) used `presentation` mode and reported no accepted data changes. |
+| [#111 — document-conflict explanation](https://github.com/Vasuki8/IPO-Tracker/pull/111) | Reviewed head `e4144a23ad75924ca9e43bb825bb8cca3ac7f0b6`, merge `6e9b403629fd4de616b029f966cb41bde3fae09e`; [validation 35289987039](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35289987039) passed 984 regressions and [browser 35289987135](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35289987135) passed 24 journeys plus text boundaries at 1440, 375 and 320 pixels. [Pages 35290242436](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35290242436) and [live acceptance 35290281096](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35290281096) succeeded for 1,366 profiles and 17 complete HTTPS responses. |
+| [#112 — durable presentation routing](https://github.com/Vasuki8/IPO-Tracker/pull/112) | Reviewed head `33382d9697601b4fe3b12b402dc634759bab39fa`, merge `0b3b35b62ad8426fd9689555613aff2e2c278e35`; [validation 35290908623](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35290908623) passed 991 regressions. The classifier-only change did not trigger browser CI. [Pages 35291058960](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35291058960) and [live acceptance 35291091912](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35291091912) succeeded for 1,366 profiles and 17 complete HTTPS responses. [Refresh 35291001582](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35291001582) selected `presentation`, skipped source and residual collection, and published no accepted data changes. |
 
-Implementation is on `fix-current-publication-source-guard`, based on the main
-checkpoint above. **983 Python regressions passed** with Python 3.12.14 and
-`uv sync --frozen`, including real disposable Git histories and no-write CLI
-failure checks. Strict validation has zero errors; seven Node tests and the public
-release verifier pass. All 1,366 profiles and the compact directory rebuild
-without changes, and the canonical dataset, 441 proposals and phase state remain
-byte-identical. PR checks, merge and deployment evidence will be recorded before
-this increment is marked released. See `PUBLICATION_SOURCE_GUARD.md` for the
-recollection procedure; an old collector SHA must never be relabelled.
+[The retained release receipt](releases/2026-09-18-review-reliability.json)
+contains the actual immutable-checkout/served-byte results for #108, #109 and
+#111. These receipts establish public-artifact consistency, not source-value
+accuracy. Canonical data and all 441 proposals remain unchanged at this checkpoint.
 
-In parallel, local source integration `d8eed0555ff1480476a6d48347eec8e3e39b3f28`
-incorporates main into #105's `54054c0e` head. The original seven-record transport
-is still unavailable. New source reconstruction uses the exact current base and
-retained PDF hashes, and is not accepted until its full source review and bounded
-publication checks pass. No P4 completion or broader parser rollout is claimed.
+The publication guard rejects stale collector code, dependencies or correction
+registries before writing data or proposals. A supplied manifest must exist and
+contain a valid, nonempty source commit. Independent accepted-data/documentation advances still use the
+existing three-way merge. Its source from #98 was released separately; the broad
+parser integration remains unaccepted. See `PUBLICATION_SOURCE_GUARD.md`.
+
+Teamtech's Final Prospectus uses **4,548.59 lakh** on pages 22–23 and 87–88, but
+labels the same net proceeds **4,548.59 crores** on page 89. The four-row
+₹45.4859 crore reconstruction is structurally parseable but does not resolve that
+source contradiction. The exact issuer/offer/PDF display hold now survives
+changed allocation values and mirror URLs. Canonical values and correction
+history remain intact. See [the source review](reviews/2026-09-17-teamtech-document-unit-review.md).
+
+#111 now explains document conflicts without implying an accepted replacement
+is ready. Value-scoped holds, source links, composition precedence and public
+contract version 1 remain unchanged. The five generated profile payloads change
+only the objects-review reason. Live Teamtech DOM inspection confirmed the new
+conflict explanation, `Under review` label, withheld allocations and Final
+Prospectus link.
+
+#112 recognizes exact generated profile, route and summary outputs, rejects
+malformed paths and checks both sides of Git renames so protected changes cannot
+hide behind a presentation destination. The actual #111 diff now selects
+`presentation`; canonical data, collector and unknown paths retain `repair`.
+[The mode release receipt](releases/2026-09-18-publication-mode.json) records
+actual source/residual skips and 1,366 unchanged profiles in the successful
+refresh. The preceding [#111 refresh 35290243518](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35290243518)
+had exposed the old `repair` classification. It was cancelled during collection;
+no collection artifact exists and no publish steps ran. The existing push
+concurrency is the likely cause, not a directly verified cancellation annotation.
+The durable classifier fix supplies the ongoing protection.
+
+[#110 — actionable source reviews](https://github.com/Vasuki8/IPO-Tracker/pull/110)
+is merged at `dd3a9b42057422057c98a16c9b1281cf318a54d8`, reviewed head
+`daf180a07aca0e955270eb9675d668fd7ff7aa3e`. [Validation 35288989420](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35288989420),
+[browser 35288989465](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35288989465)
+and both jobs of [source preview 35288989442](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35288989442)
+succeeded. Combining the exact head with #112's main passed **1,007 frozen Python
+regressions and eight Node tests**, with a clean diff and canonical/proposal bytes
+unchanged. [Post-merge validation 35291533965](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35291533965)
+passed 1,007 regressions; [Pages 35291532877](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35291532877)
+and [live acceptance 35291563246](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35291563246)
+succeeded for 1,366 profiles and 17 complete HTTPS responses. Three additional
+complete HTTPS responses—`completeness.js`, the queue and phase status—matched
+this exact merge at 00:33:52 UTC. [Their retained receipt](releases/2026-09-18-review-routing-live.json)
+includes every hash and the five newly routed review counts. Actual browser
+inspection confirmed source-review counts beside missing-field gaps in the
+research-completeness panel. [Post-merge browser 35291534029](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35291534029)
+passed **25 journeys**, eight Node tests and responsive text-boundary checks at
+1440, 375 and 320 pixels. [The complete routing release receipt](releases/2026-09-18-review-routing.json)
+retains the standard live receipt, workflow evidence and source-preview limits.
+The separate [refresh 35291533992](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35291533992)
+was still collecting at 00:49 UTC, with no publish steps run; no collection or
+publication outcome is claimed for it. The retained raw release receipt preserves
+its earlier 00:34:22 observation unchanged.
+
+The queue retains every exact review item independently of missing-field
+coverage, routes supported tasks through existing strict Final Prospectus
+selectors, and leaves listing/unknown-field tasks explicit for manual review.
+The legacy RHP/DRHP helper and retry limits remain unchanged. Actual preview logs
+show 113 unique primary, 27 issuer and 30 residual attempts, zero semantic errors
+and no attempted newly added review-only record. The five newly routed records
+are therefore not fresh source-verified repairs. Artifact metadata was
+retrieved, but report ZIP bytes were unavailable (HTTP 403/502); the logged
+1,599-review preview is **unaccepted** and is not the current main count.
+
+Current main has **390 P4 actionable records plus 51 higher-priority records**,
+zero semantic errors and **1,618 total reviews**: **1,614 blocking reviews**, **four
+P5-only reviews** and **zero unmapped reviews**. Routing added five otherwise
+complete P4 rows covering 17 reviews; it did not resolve those source findings.
+Missing-field coverage and availability counts remain unchanged. The compact
+queue is 573,984 bytes against the unchanged 642,593-byte budget, and its bytes
+and phase status match the reviewed #110 head. P5 remains `waiting_for_p4`.
+
+## Active source-repair draft — #105 remains unaccepted
+
+[#105](https://github.com/Vasuki8/IPO-Tracker/pull/105) remains a draft at head
+`5a63a93dd9f782e3bc9ec853c937fb29661108f4` (tree
+`ff8d3ad790c63e6ff48384e3d512d44d96c2b72c`). It preserves the original
+#94/#98/#99/#104 work and incorporates the released main safeguards. This head
+adds only documentation and retained evidence to the actual `409c51c9` code
+freeze. At this exact head, [validation 35292625526](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35292625526)
+passed **1,068 regressions** and [browser 35292625505](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35292625505)
+passed **25 journeys** plus text-boundary checks at 1440, 375 and 320 pixels.
+[Source preview 35292625507](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35292625507)
+remains in progress and unaccepted. A fresh repository read found #104 at `4d94951be6799e078603edbb99769fcdce4eb4b0`, updated
+17 September at 22:25 UTC. Its four public-boundary integration tests and browser
+workflow filters are preserved in the combined draft; it was not solely
+temporary recovery work. The old Teamtech acceptance expectation was updated to
+retain the document hold after the new page 89 unit finding. The original
+seven-record transport is still unavailable. A new bounded reconstruction has
+its own recorded base/code/source lineage; the historical `d8eed055` result and
+old proposal hash must never be relabelled as current acceptance.
+
+Independent source review corroborates Emmvee's ₹2,143.862 crore fresh issue plus
+₹756.138 crore OFS, totaling ₹2,900 crore. Teamtech's conflicting units remain
+blocking. Historical seven-record output that resolved Teamtech under the earlier
+value-scoped review is explicitly unaccepted. A newer draft guard preserves a
+whole-document hold across initial changed values, mirrors and retained null
+quarantines; scope updates append one audit event without rewriting the original
+snapshot or correction history. After preserving #104's tests and integrating
+main through #110, **1,068 frozen regressions passed** at the reachable draft
+freeze `409c51c939bd839940594278d324016766cb84c6` (tree
+`22d2f1cdf99483755a0cd0032ece03033f065784`, accepted base
+`dd3a9b42057422057c98a16c9b1281cf318a54d8`). The earlier scope-guard review
+passed **43 independent adversarial checks**. The final complete-PDF execution
+passed **80 producer checks**, and its independent replay passed **40 audit
+checks**. Of 13 producer outputs, 11 are byte-identical and the two validation
+reports differ only by their generation timestamp. Both exact diffs reproduce
+their payloads from the immutable base. The Emmvee-only output preserves all
+1,365 other records; the seven-record output preserves 1,359 other records and
+keeps Teamtech null and document-held. Neither output is published. The interim
+execution retains its own lineage, and canonical/proposal files remain unchanged.
+
+[The retained source review](https://github.com/Vasuki8/IPO-Tracker/blob/5a63a93dd9f782e3bc9ec853c937fb29661108f4/docs/reviews/2026-09-18-source-review/2026-09-18-source-review-409c51c9.md)
+records the exact freeze, source identities, full receipt, independent audit,
+field proofs and payload recovery instructions. The raw producer receipt is
+SHA-256 `5764e79158b8bc00285d28749ffa9ae3193b0b9008ace603befec7222c88c16d`.
+The reproducible recovery capsule is **58,743 bytes**. Its documented recovery
+command was run against both archived payloads and reproduced their exact
+recorded hashes. These are diagnostic/review artifacts; no accepted publication
+transport or broad parser rollout is claimed.
+
+Do not merge #105 or enable broad parser collection, P5 or performance expansion
+on this evidence. The source diagnostic must bind the final reachable code
+commit, actual current accepted base, reviewed registry hash and complete source
+PDFs.
+A successful structural parser or test suite does not settle a contradictory
+source document.
 
 ## Previous milestone — document-scoped public review protection, released 17 September 2026
 
@@ -70,8 +187,9 @@ concurrent values; the public projection needs its own document-level hold.
 The bounded fix binds a public document review to the exact issuer, symbol,
 opening date and field-proof PDF hash. Changing a URL or allocation does not
 clear that review. A different document, issuer or offer cannot inherit the hold.
-Existing value-scoped Emmvee, Teamtech and Unimech guards remain separate. Original
-values, correction evidence and pending publication proposals stay intact.
+At that release, the value-scoped Emmvee, Teamtech and Unimech guards remained
+separate; #109 subsequently expanded Teamtech to document scope after new source
+review. Original values, correction evidence and pending proposals stay intact.
 
 Local acceptance: **966 Python regressions** in the frozen uv environment, **seven
 Node quality tests**, source-bound/mirror/changed-value and null-state checks,
@@ -101,15 +219,19 @@ The browser artifact's direct download returned HTTP 403; its reported digest is
 recorded without claiming a local ZIP verification. Browser job logs confirmed
 all 24 journeys; no new mobile screenshot inspection is claimed.
 
-## Preserved source integration and commercial work — 17 September 2026
+## Historical integration checkpoint and commercial work — 17 September 2026
 
-[#105](https://github.com/Vasuki8/IPO-Tracker/pull/105) now contains the combined
+At the initial integration checkpoint, [#105](https://github.com/Vasuki8/IPO-Tracker/pull/105) contained the combined
 #94/#98/#99 source repairs at `54054c0e05d44c03260ddc84950c82d0bf6172bd` (tree
 `162b4291e6877ba84898b426d9d6bd5f0b592d0f`). The three original heads are parents;
 their branches and original work remain intact. The temporary recovery workflow
 was removed. **1,023 tests passed locally with Python 3.12 and `uv sync --frozen`**;
 [GitHub validation 35281606697](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35281606697)
-also passed. Source preview is separate and is not accepted data.
+also passed. The original [#105 source preview 35281606917](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35281606917)
+and [#104 source preview 35281629794](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35281629794)
+both completed successfully; #104's preview completed at 22:52 UTC. Both remain
+unaccepted source outputs. Workflow success did not approve their values or
+authorize broad collection.
 
 That integration remains a draft. The previously cited immutable seven-record
 proposal and its publication transport could not be recovered from accessible
@@ -179,7 +301,7 @@ job cap and fourteen-day workflow artifact retention remain. No new paid service
 tracking, contract, sponsorship or outreach was activated. See
 `PUBLIC_RELEASE_ACCEPTANCE.md` for commands, limitations and recovery.
 
-## What survived the failed response
+## Historical recovery — 17 September 2026
 
 [#100](https://github.com/Vasuki8/IPO-Tracker/pull/100) had already merged as
 `bb2227c727597b7c75ff55c6dc88268860026c41` at 21:30:10 UTC. Its presentation publication
@@ -212,36 +334,39 @@ deployment evidence take precedence over its old completion counts.
 - [#98](https://github.com/Vasuki8/IPO-Tracker/pull/98),
   `fix-reviewed-correction-publication-guard`, head
   `d5e5d0580360a87dffc35b69e674886848b55005`: open, stacked on #94; protects source
-  policy and supplied collector manifests. Integrated into draft #105.
+  policy and supplied collector manifests. Integrated into draft #105; the
+  independent main-compatible safeguard was subsequently released in #108.
 - [#99](https://github.com/Vasuki8/IPO-Tracker/pull/99),
   `fix-kaytex-speb-document-holds`, head `a503531ded368c4eb53ba09cf5c2aafef3391c38`:
   open, stacked on #94 and integrated into draft #105; Kaytex/SPEB source holds and final-preview correction
-  ordering. Preserve its reviewed proposal and manifest handoff.
+  ordering. Preserve its recorded proposal and manifest provenance.
+- [#104](https://github.com/Vasuki8/IPO-Tracker/pull/104), current head
+  `4d94951be6799e078603edbb99769fcdce4eb4b0`: preserved and incorporated into the
+  #105 integration, including four public-boundary tests and browser
+  workflow filters. The earlier temporary-only description was incomplete.
+  Its successful source preview remains unaccepted.
 
-These original branches were not overwritten or retargeted; their changes are
-integrated in #105 but are not merged to main. The latest canonical
-phase report inspected at `e3ee0fe1d43efee3785743388523e1d408ce6008` (21:40:41 UTC)
-has **385 P4 plus 51 higher-priority actionable records**, **zero semantic errors**,
-**1,614 blocking source-review items**, including **17 unmapped items**. P5 is
-`waiting_for_p4`, with 914 queued records. This milestone did not resolve those
-source items or alter the gate. Earlier 385+53/1,615/14 counts belong to the older
-presentation artifact, not the newer canonical snapshot.
+These original branches were preserved. Their combined parser/source release is
+not merged to main; #98's publication safeguard reached main separately through
+#108. The earlier `e3ee0fe1` phase checkpoint had 385 P4 plus 51 higher-priority
+records, 1,614 blocking reviews and 17 unmapped reviews. Current main
+routing counts are distinguished above; neither checkpoint resolves the
+underlying financial or document conflicts. Earlier 385+53/1,615/14 counts belong
+to the older presentation artifact and remain historical.
 
 ## Exact next task
 
-Incorporate the released #106 public document holds into #105 and freeze the
-combined code for explicitly targeted seven-record acceptance.
-The original proposal is unavailable; any replacement needs a new source-reviewed
-acceptance lineage, exact current data base, code manifest and content hashes.
-Reproduce
-Emmvee composition and Teamtech allocations with matching Final Prospectus proofs;
-preserve the five continuing holds, Kaytex/SPEB safeguards, unaffected records and
-proposal history. Recollect under the combined source policy, never relabel an old
-collector manifest. Only source acceptance, reviewed data publication and deployed
-profile verification complete that repair. Do not enable P5/performance meanwhile.
+Prepare and review a bounded Emmvee-only publication transport using the final
+source-checked candidate and the current main publication safeguards.
+Keep #110's source-preview data unaccepted until the actual report and changes can
+be reviewed, and record its separate refresh outcome when available. Keep Teamtech quarantined
+unless authoritative source evidence reconciles or explicitly supersedes the
+unit conflict. Review a bounded Emmvee correction separately from any broad
+parser rollout, preserving unaffected records and all proposal history.
 
-Retained-proposal triage, semantic-review routing, overdue-update detection,
-lifecycle work and the remaining P4 evidence batches are unfinished. Commercial
-source/document/hosting rights, customer validation, dependency/asset notices,
-professional jurisdiction review, telemetry decisions and a restore rehearsal also
-remain unresolved. No monetization activation has been authorized by these checks.
+Retained-proposal reconciliation, overdue-update detection, lifecycle work and
+remaining P4 source batches remain unfinished. Routing #110 must not be counted
+as resolving the 1,618 source findings. Commercial source/document/hosting rights,
+customer validation, dependency/asset notices, professional jurisdiction review,
+telemetry decisions and a restore rehearsal also remain unresolved. No accounts,
+payments, tracking, spending, contracts or outreach were activated by these checks.
