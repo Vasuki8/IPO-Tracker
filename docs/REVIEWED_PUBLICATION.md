@@ -53,3 +53,30 @@ On failure, retain the bundle and request. Rebuild from the newer accepted basel
 and review the conflict; do not drop pending work, mutate hashes or force an old
 proposal through. An ordinary collector-code push still follows its existing
 repair mode; its outcome must not be reported as the bounded reviewed release.
+
+
+## Verify delivery, not only page consistency
+
+The automatic read-only public-release workflow now checks the latest explicit
+reviewed publication against its locally retained value/proof group. Run the same
+check on an immutable deployed checkout:
+
+```sh
+uv run --no-project --python 3.12 python tests/verify_public_release.py \
+  --expected-commit "$(git rev-parse HEAD)" \
+  --base-url https://vasuki8.github.io/IPO-Tracker/ \
+  --check-reviewed-publication
+```
+
+`reviewedPublication.status=passed` means the reviewed group's accepted values,
+original proof artifact, public fields and evidence were delivered together. The
+master dataset and proof artifacts are read locally only. All reviewed profiles
+join the bounded complete-byte HTTPS comparison, not only the ordinary sample.
+A still-withheld repair, wrong public amount/source clock/document, missing issuer,
+malformed scope or changed proof artifact fails. A normal source publication reports
+`not_requested`; that is not a reviewed-repair pass. The overall receipt still
+measures delivery of retained evidence, **not new source-value correctness**.
+
+The completed Emmvee request is #116, published as `3834c732`; do not repeat it on
+recovery. Its original bundle and proof/audit preservation are recorded in
+[the recovery receipt](releases/2026-09-18-reviewed-publication-recovery.json).

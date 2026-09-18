@@ -15,115 +15,87 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
-## Reconciled checkpoint — 18 September 2026
+## Recovery after the interrupted response — 18 September 2026
 
-Actual published main at this implementation baseline is
-`3c948d3b2eeea0c7b446693a4fa6a418d23caa50`, tree
-`afb2c1854485dc669ab09b1b26942b187132a72c`.
-PR #114 merged as `e59b9735305425f99a9b87f5ea0bf0a12c09c3c1` and changed only
-`data/verified_corrections.json`. Its normal refresh [35298017157](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35298017157)
-subsequently published the bot commit above. [Pages 35299431541](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35299431541)
-and [live acceptance 35299463384](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35299463384)
-succeeded. The downloaded Pages artifact 10528823983 matched SHA-256
-`1ba53184f3ce6907c5a7e0ebb9ded03e34dad619bc85c38fa9af670d29e14903`;
-release artifact 10529153179 matched
-`50924b236e434feba2c4bad6fdc22f5aabc938c207890a68c57b7a73d9cbcd1d`.
-The latter checks 1,366 local routes and 17 full live HTTPS responses, not source accuracy.
+The interrupted work **did reach main and publication**. Code [#115](https://github.com/Vasuki8/IPO-Tracker/pull/115)
+merged as `8a2ab9d266c7f7e9a4bcc606e9fccf2397b423d4`; the separate reviewed-only
+request [#116](https://github.com/Vasuki8/IPO-Tracker/pull/116) merged as
+`20d542fcde8b085a49b5443051a7647c624b5680`. Publisher
+[35302828628](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35302828628) produced
+`3834c7323fc7ae794526942f649d128c209a4997`. [Pages 35302925923](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35302925923)
+and [live acceptance 35302956384](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35302956384)
+succeeded. Do not repeat the Emmvee request or reimplement #115.
 
-**Previous handover correction:** #114 did not itself publish canonical data or
-matching field proofs. PR #115 did not exist when checked at this session's start;
-no preceding #115 documentation merge is established. The normal refresh changed
-77 files, including unrelated routine updates, so it was not an Emmvee-only release.
-Those updates are retained as the new baseline. Emmvee's amounts are now correct,
-but its field proofs still contain the rejected legacy composition. Public views
-correctly withhold this mismatch. Finishing the value/proof repair is the earliest
-unmet milestone, before claiming an accepted public numerical repair.
+Recovered and hash-verified the actual Pages archive, retained reviewed bundle and
+live receipt. The source-commit file is the #116 merge, both snapshot hashes match
+the manifest, and replay of the existing transition/precondition checks succeeds.
+Exactly **one canonical record, Emmvee**, changed; the other **1,365 records**,
+record order, Teamtech and all **441 pending proposals** are preserved. Emmvee's
+existing values and allocations were not changed again. The publication paired its
+four composition fields with their exact reviewed proofs and appended **one** proof
+audit event retaining all previous proofs/history. The proposed and published
+record agree apart from the policy check clock. All four public fields are now
+`final_verified`; Teamtech's objects remain withheld and `under_review`.
 
-The trust/freshness contract, display holds, source-commit guard, presentation
-routing and complete source-review routing (#100–#113) are already released.
-Their detailed history remains in [the immutable prior status](https://github.com/Vasuki8/IPO-Tracker/blob/3c948d3b2eeea0c7b446693a4fa6a418d23caa50/docs/PROJECT_STATUS.md)
-and `docs/releases/`; old receipts are not rewritten.
+The [recovery receipt](releases/2026-09-18-reviewed-publication-recovery.json) retains
+exact hashes, the original live receipt and replay results. The 1,366-profile
+consistency check and 17 complete live responses establish served-byte consistency.
+Evidence reuse retains the original 00:37 source-check time, PDF hash, document
+date, source rows, units and parser lineage; this is **not a fresh PDF review**.
 
-Current baseline: 1,366 records; P4 incomplete with 387 actionable records and
-51 higher-priority records; zero strict errors; 1,596 reviews, 1,592 blocking P4,
-four P5-only, zero unmapped. There are 321 P4 final-document revalidation records /
-1,173 fields and 29 higher-priority records / 107 fields. Five resolved-unavailable
-records remain. All 441 pending proposals remain retained. These cohorts overlap.
-P5 remains `waiting_for_p4` with 914 actionable records.
+### This bounded increment: reviewed-release acceptance
 
-## Active milestone: bounded reviewed composition evidence
+Branch `fix-reviewed-release-acceptance` starts at `3834c732`. The existing
+read-only release verifier now has `--check-reviewed-publication`. When the latest
+publication is explicitly `reviewed`, it requires the selected accepted values,
+complete retained proofs, issuer/offer identity, public amounts, source timestamps,
+document hashes/pages and all four profile verification states to agree. Every
+selected profile is added to the full-byte HTTPS checks, even outside the ordinary
+sample. Consistently stale/withheld output no longer passes as a delivered repair.
+Ordinary source releases explicitly report `not_requested`, not reviewed acceptance.
+The master dataset/proof files are read locally, never fetched from the public site.
 
-Branch `fix-reviewed-composition-evidence` is based on the baseline above. It does
-not merge #105's broad parser changes or alter any canonical data in its code PR.
+Acceptance: **16 verifier tests** (eight new), **15 reviewed-publication tests**,
+**five request tests**, and **eight Node quality tests** pass locally using uv and
+the available Python 3.13 environment. Frozen local sync failed DNS and local
+Chromium navigation was administratively blocked; neither is claimed as passing.
+The current published tree passes the new read-only check and the retained-bundle
+replay. This change does not modify any canonical/proposal data, source code,
+public renderer, dependency, permission, workflow writer or phase gate. Only the
+existing read-only release workflow opts into the stronger check. Frozen CI,
+browser CI and the post-merge live receipt remain to be recorded for this branch.
 
-The correction applier pairs the complete four-field composition with its exact
-retained proofs. Exact issuer/offer, before-value and before-proof checks reject
-concurrent changes as a complete group. Previous proofs are appended to correction
-history, not discarded. Already-correct amounts can receive matching proofs;
-reapplication does not duplicate the audit. Other proofs and allocations stay intact.
+Current gate is unchanged: P4 **387 actionable + 51 higher-priority records**,
+**1,596 total source reviews**, **1,592 blocking**, **four P5-only**, **zero unmapped**,
+and zero strict semantic errors. P5 remains `waiting_for_p4`. No completion count
+was improved by hiding work. #105 remains draft at `5a63a93dd9f782e3bc9ec853c937fb29661108f4`;
+its broad parser/source proposal is still unaccepted. Preserve #94/#98/#99/#104.
 
-The existing single serialized publisher gains explicit `reviewed` mode and
-`reviewed_ids`. Preparation is offline, selected-record-only, and uses existing
-correction and Final Prospectus policy checks. Publication rechecks snapshot
-hashes, before-value/proof preconditions, the permitted transition, strict errors
-and all four public verification states. A rehashed arbitrary proposal cannot
-bypass the accepted transition. Document conflicts fail before any writes;
-independent subscription updates survive. Reviewed mode never rewrites pending
-proposal bytes or invokes source/residual collection. Regular modes remain intact.
-The proof index and directory are protected source-policy dependencies.
+No original Git checkout or uncommitted source files survived in this runtime.
+The input ZIPs and screenshot remain untouched. This session recovered a separate
+working copy from the checksum-matched Pages artifact; direct Git clone failed DNS.
+Authenticated connector branch creation succeeded. Remote edits/releases are
+reported only after their actual responses and checks.
 
-### Evidence
+**Next task after this acceptance release:** add a read-only retained-proposal
+reconciliation report, starting with document-field proposals. Classify exact
+already-applied versus still-conflicting groups with current accepted evidence;
+preserve every original proposal and do not auto-resolve by timestamp. Do not start
+that separate milestone in this recovery increment. Commercial rights, audience,
+pricing and privacy decisions remain unresolved; no spending/outreach/access changes.
 
-The retained full-document review supports Emmvee's 98,795,483 fresh shares /
-₹2,143.862 crore, 34,845,069 OFS shares / ₹756.138 crore, and ₹2,900 crore total.
-Page-3 million-denominated clauses, units, exact rows and ₹217 offer price remain
-in the proofs; the original Basis of Allotment qualification is not a later outcome.
-The exact proof file from draft #105 at `5a63a93dd9f782e3bc9ec853c937fb29661108f4`
-has Git blob `5ca3afdf6207c86fbea6f3e5ab236dde6c2fec45` and SHA-256
-`1f8b7ae600da76ea9f62a9771377925d17be3c5d98ebc8080e36b63a9a5795cf`.
-Its original check time `2026-09-18T00:37:05.669681+00:00`, parser-33 lineage,
-PDF hash `85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda`
-and document date are unchanged. [Original source review](https://github.com/Vasuki8/IPO-Tracker/blob/5a63a93dd9f782e3bc9ec853c937fb29661108f4/docs/reviews/2026-09-18-source-review/2026-09-18-source-review-409c51c9.md).
-This is exact evidence reuse, not a fresh full-PDF review, new source download,
-parser-33 rollout or acceptance of the broad diagnostic dataset.
+## Preserved source work and historical evidence
 
-Teamtech remains held: its prospectus says crores on page 89 where other pages say
-lakhs. No assumed typo or estimated reconciliation is accepted. Its record and
-all other unselected records/proposals are outside this correction scope.
+The prior pre-release notes, source receipt hashes, earlier handover correction and
+implementation rationale remain in [the immutable pre-recovery status](https://github.com/Vasuki8/IPO-Tracker/blob/3834c7323fc7ae794526942f649d128c209a4997/docs/PROJECT_STATUS.md).
+The broader source-repair histories are not merged: #94 (`4707df1e`), #98
+(`d5e5d058`), #99 (`a503531d`) and #104 (`4d94951b`) remain preserved in draft #105
+at `5a63a93dd9f782e3bc9ec853c937fb29661108f4`. Its source-code freeze is
+`409c51c939bd839940594278d324016766cb84c6`. Their broad previews remain unaccepted;
+this recovery does not adjudicate their values or repeat their collectors.
 
-### Verification and remaining acceptance
-
-Before the final write-boundary hardening, 1,021 Python regressions passed through
-uv using available Python 3.13.5; eight Node quality tests passed. Local frozen
-installation failed DNS access to the locked packages, and Chromium navigation
-returned `ERR_BLOCKED_BY_ADMINISTRATOR`. Neither a local frozen pass nor local
-browser pass is claimed. Candidate generation rewrote one of 1,366 profiles and
-its compact directory, preserving canonical input and the other 1,365 records.
-
-The final branch adds publisher replay of the accepted transition and one further
-adversarial test. Frozen Python 3.12 CI, actual browser checks and final diff review
-remain required. Browser CI includes a separate candidate site for directory,
-profile, comparison, CSV, three widths, and Teamtech's continuing hold, without
-modifying committed canonical/pending data. No branch code is yet merged or deployed
-at this pre-release checkpoint.
-
-Remaining: complete CI and authorized merge; dispatch the existing refresh with
-`mode=reviewed`, `reviewed_ids=emmvee`; inspect its retained bundle and actual
-publication diff; verify unchanged pending proposals, Pages and live public output.
-Record exact PR/head/merge/data commit and workflow IDs before declaring completion.
-
-## Preserved work, blockers and next task
-
-#105 (`fix-p4-reviewed-integration`) stays draft at
-`5a63a93dd9f782e3bc9ec853c937fb29661108f4`, source code freeze
-`409c51c939bd839940594278d324016766cb84c6`. Original #94/#98/#99/#104 branches
-and diagnostic recovery evidence are preserved; no broad parser acceptance is
-implied by green tests. Its old preview 35292625507 completion is not reverified
-in this bounded milestone. P4 remains the gate.
-
-After bounded Emmvee publication/live acceptance, finish retained-proposal
-lifecycle/reconciliation and overdue-update detection alongside source-backed P4
-batches. Keep unresolved items; never improve completion numbers by dropping them.
-Commercial source/redistribution/hosting permissions, customer validation, pricing,
-privacy measurements and professional jurisdiction review remain unresolved.
-No new services, tracking, accounts, billing, spending, contracts or access changes.
+The retained Emmvee proof is Git blob `5ca3afdf6207c86fbea6f3e5ab236dde6c2fec45`,
+SHA-256 `1f8b7ae600da76ea9f62a9771377925d17be3c5d98ebc8080e36b63a9a5795cf`,
+from PDF `85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda`.
+Its original source review is linked inside the recovery receipt and proof index.
+Teamtech's unresolved page-89 crore/lakh conflict remains a hold, not an assumed typo.
