@@ -15,13 +15,18 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
-## Current checkpoint — official-universe release candidate, 18 September 2026
+## Current checkpoint — official-universe clock closeout, 18 September 2026
 
-Verified main before publication: **`f19a561388cbccd3af93679c9e743838746cad4b`**.
+Current main: **`b23fc366ceeaf72bcc72d810dad26f498e175ffc`** (PR #146).
 Recovery began at `6992dd44`; the intervening scheduled data publication was
 incorporated without changing any of its 1,371 existing records.
 The prior HTEL/Onemi financial release is preserved below and was not repeated.
-Branch: `audit-official-ipo-universe-20260918`; PR/deployment are pending final CI.
+PR #146 passed all 1,283 Python tests on Linux (run `35403902766`) and deployed
+through Pages `35404000924`; live workflow `35404035262` passed. Complete HTTP
+bytes matched for 31 public files including all eight added profiles. The live
+browser check then found collection time labelled as source-record time on the
+new source links. Branch `fix-universe-collection-clock-20260918` preserves the
+unknown source time and records collection time separately; its release is pending.
 
 The [official-universe report](audits/official-universe/2026-09-18/REPORT.md) and
 [reproducible audit](audits/official-universe/2026-09-18/audit.json) establish that
@@ -53,7 +58,7 @@ errors**. P5 remains waiting with 914 records. No P4 reduction is claimed.
 
 Tests: 30 focused universe/evidence tests, 20 affected operational regressions,
 nine Node quality tests and strict validation pass. Direct browser checks cover
-all eight profiles, directory search and mobile layout. Full Linux CI is pending;
+all eight profiles, directory search and mobile layout. Full Linux CI passed;
 the full Windows run retains the two known filesystem limitations. The metadata
 count mismatch found during that run was fixed without weakening validation.
 
@@ -61,9 +66,9 @@ The earlier open PRs #105/#104 (drafts), #99/#98/#94 remain untouched. Commercia
 segment, pricing, revenue model, source redistribution rights and hosting fit
 remain unresolved. No paid services, outreach or permissions changed.
 
-**Exact next task:** finish CI, merge this bounded audit/admission release, verify
-Pages and every new live profile, and record the release SHA. Then review the BSE
-August 2026 missing SME-name cohort from retained evidence. Recover stable SEBI
+**Exact next task:** publish and live-verify the collection-clock correction,
+then record final release evidence. Then review the 12 BSE August 2026 missing
+SME-name candidates from retained evidence. Recover stable SEBI
 draft pagination and the failed NSE historical ranges separately; do not repeat
 verified RHP/final/Other/BSE cohorts or begin numerical backfill.
 

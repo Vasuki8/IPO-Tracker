@@ -237,6 +237,11 @@ class RealUniverseEvidenceTests(unittest.TestCase):
                 self.assertEqual(proposed["ipos"][0], original["ipos"][0])
                 new = proposed["ipos"][1]
                 self.assertEqual(new["status"], "listed")
+                self.assertIsNone(new["source"]["asOf"])
+                self.assertEqual(new["source"]["collectedAt"], vinod["retrievedAt"])
+                self.assertEqual(new["source"]["timeBasis"], "collection_only")
+                self.assertIsNone(new["observations"]["NSE"]["observedAt"])
+                self.assertEqual(new["observations"]["NSE"]["collectedAt"], vinod["retrievedAt"])
                 for field in ("priceBand", "lotSize", "issueSizeCr", "financials", "subscription", "listing", "registrar"):
                     self.assertIsNone(new[field])
                 self.assertEqual(json.loads(tracker.read_text()), original)
