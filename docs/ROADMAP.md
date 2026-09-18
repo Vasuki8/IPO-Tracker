@@ -37,10 +37,13 @@ and immutable release receipts govern the verified checkpoint.
    at `30e994f7`, with live publication `70a5133f`: incomplete responses no longer
    borrow and re-stamp old categories, direct URLs travel with snapshots, and
    changed source/observation evidence remains in history. Missing observation
-   clocks, SpectraA source failure and the beta-host authority gap remain explicit.
+   clocks and SpectraA source failure remain explicit. #133 now verifies the exact
+   BSE beta host and aligns authority labels without inventing observation times;
+   presentation publication `69b2ad59` is accepted. The remaining cross-collector
+   snapshot hand-off is the next integrity repair.
    Historical proposals are not backfilled or automatically resolved.
 3. **Complete P4 with source evidence — blocked.** Current accepted inventory is
-   1,370; P4 has 387 actionable plus 55 higher-priority records and 1,603 blocking
+   1,371; P4 has 387 actionable plus 56 higher-priority records and 1,603 blocking
    source reviews, zero unmapped reviews. All 441 retained proposals remain. Teamtech
    stays held and broad source draft #105 remains unaccepted. Do not weaken the gate,
    remove reviews, invent exclusions or use estimates to improve completion counts.
@@ -67,10 +70,15 @@ and immutable release receipts govern the verified checkpoint.
 
 ### Next reviewable increment
 
-Verify `beta.bseindia.com` against current BSE primary evidence, then align shared
-Python/JavaScript authority rules and real-host tests if justified. Five existing
-BSE-route snapshots remain `unknown` under the public allowlist; their missing
-source-observation times must not become fresh. This gap predates #131.
+The exact BSE beta-host authority repair (#133) is deployed; do not repeat it.
+Trace the core collector's subscription hand-off before further source expansion.
+A retained comparison of `70a5133f` to automatic core publication `eec88efb` shows
+changed totals with unchanged category/source/clock metadata in seven snapshots,
+plus SpectraA's unbound total. Reproduce this from immutable inputs and prevent
+one collector from overwriting part of another collector's attributed snapshot.
+This is not acceptance of either total; require source/issuer/denominator evidence
+for numerical repairs and preserve all original history and pending proposals.
+See `nextRepairDiagnostic` in the [BSE release receipt](releases/2026-09-18-bse-source-authority.json).
 
 Next investigate SpectraA's missing matching source using exact issuer/offer
 identity, not relaxed fuzzy matching. Use the [update-health report](UPDATE_HEALTH.md)
