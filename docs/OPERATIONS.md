@@ -101,6 +101,12 @@ Missing index baselines are retried even when the listing-day equity close is al
 
 `source-review.yml` is a read-only preview for parser changes. It runs the full test suite, applies source repairs to an ephemeral dataset, and retains proposed values and validation findings as an artifact. It watches the primary parser, residual layouts and shared objects checks. The final review processes up to 100 primary documents and 30 residual documents, deriving residual order from the updated queue and reusing the PDF cache. It saves the final repair queue and complete report after both stages and final policy enforcement, before bounded optional diagnostics. It cannot publish data. Review the source results before merging parser changes.
 
+## Source-review work in the queue
+
+The missing-data queue now also retains semantic source reviews, including otherwise complete financial tables with individual conflicting metrics. Use `source_review_queue.expand_review_items(row, queue["sourceReviewDefinitions"])` to inspect exact fields, reasons, source pointers and next actions. Source-review counts are distinct from missing-field coverage and remain actionable even when an unrelated missing field has an availability resolution. Queue rows in Data & sources show both counts.
+
+The strict Final Prospectus runners consume `source_review_queue.actionable_gaps` so supported review tasks can enter their existing source paths. Parser-version, source-identity and retry bounds are unchanged: an unchanged document already attempted by the current parser stays available for manual source review, rather than being downloaded on every run. Listing/date conflicts require issue-specific official exchange evidence; unknown fields require operator triage. Legacy RHP/DRHP fallback scripts receive no new review routes. Routing a review does not resolve it, change canonical values, or open P5 while P4 remains blocked.
+
 ## NSE issuer filing register
 
 `collect_nse_offer_filings.py` reads the official SME and equity offer registers and their linked final-listing XBRL documents. Matching requires the canonical issuer, exact opening date, compatible closing date, and independently matching symbol or ISIN. The collector rejects inconsistent identities, conflicting filings, wrong XML units, undated/future listings, and non-official links. It fills missing issue lots and listing dates and reads the explicit `FinalIssuePrice`; existing conflicting values are preserved. Each accepted value retains the document hash, source field, issuer, and issue dates.

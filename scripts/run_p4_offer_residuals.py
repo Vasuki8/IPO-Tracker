@@ -30,6 +30,7 @@ import final_prospectus_parser as parser  # noqa: E402
 import p4_offer_layouts as residual  # noqa: E402
 import run_offer_documents as base  # noqa: E402
 import update_data as core  # noqa: E402
+from source_review_queue import actionable_gaps  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = base.DATA_FILE
@@ -196,7 +197,7 @@ def p4_offer_queue_order(queue_payload: dict[str, Any]) -> dict[str, int]:
             continue
         if not 0 <= priority <= 4:
             continue
-        missing = [str(field) for field in (row.get("missingFields") or [])]
+        missing = actionable_gaps(row)
         if not any(
             field.startswith("offer.")
             or field.startswith("provenance.finalProspectus.")

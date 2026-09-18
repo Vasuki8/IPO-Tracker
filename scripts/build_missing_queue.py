@@ -14,6 +14,10 @@ become actionable once a Final Prospectus should exist. Open/upcoming issues are
 not asked to provide a document that has not yet been filed; revalidation starts
 once the IPO is listed, seven days after close, or immediately when a Final
 Prospectus is already attached.
+
+Semantic source reviews enter the same operational queue independently of field
+completeness and availability decisions. Their exact field, reason and evidence
+pointers remain separate so routing cannot make missing-value coverage improve.
 """
 from __future__ import annotations
 
@@ -27,6 +31,8 @@ import audit_data_completeness as audit
 import final_prospectus_policy as final_policy
 from issue_composition_checks import quarantined_fields
 from objects_of_issue_checks import objects_quarantined
+from source_review_queue import compact_review_items, review_gaps, review_task
+from validate_data import validate_record
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "ipos.json"
@@ -192,7 +198,8 @@ def analyze_record(record: dict[str, Any], today: date) -> dict[str, Any]:
     rules = expected_rules(record, today, stage=stage)
     rules, raw_missing, actionable, resolved = missing_partition(record, today, rules=rules)
     priority, label = priority_band(record, today, stage=stage, opened=opened)
-    return {"stage": stage, "rules": rules, "rawMissing": raw_missing, "actionable": actionable, "resolved": resolved, "priority": priority, "priorityLabel": label}
+    reviews = [review_task(record, issue) for issue in validate_record(record) if issue.get("severity") == "review"]
+    return {"stage": stage, "rules": rules, "rawMissing": raw_missing, "actionable": actionable, "resolved": resolved, "priority": priority, "priorityLabel": label, "sourceReviewItems": reviews}
 
 
 def _queue_entry_from_analysis(record: dict[str, Any], analysis: dict[str, Any]) -> dict[str, Any] | None:
@@ -200,11 +207,12 @@ def _queue_entry_from_analysis(record: dict[str, Any], analysis: dict[str, Any])
     raw_missing = analysis["rawMissing"]
     missing = analysis["actionable"]
     resolved = analysis["resolved"]
-    if not rules or not raw_missing or not missing:
+    reviews = analysis["sourceReviewItems"]
+    if not missing and not reviews:
         return None
     present_count = len(rules) - len(raw_missing)
     completeness = round(present_count / len(rules) * 100, 1) if rules else 100.0
-    return {"id": record.get("id"), "company": record.get("company"), "symbol": record.get("symbol"), "stage": analysis["stage"], "openDate": record.get("openDate"), "closeDate": record.get("closeDate"), "listingDate": record.get("listingDate"), "priority": analysis["priority"], "priorityLabel": analysis["priorityLabel"], "completenessPct": completeness, "expectedFieldCount": len(rules), "missingFieldCount": len(missing), "missingFields": missing, "resolvedUnavailableFieldCount": len(resolved), "resolvedUnavailableFields": resolved, "profilePath": profile_path(record)}
+    return {"id": record.get("id"), "company": record.get("company"), "symbol": record.get("symbol"), "stage": analysis["stage"], "openDate": record.get("openDate"), "closeDate": record.get("closeDate"), "listingDate": record.get("listingDate"), "priority": analysis["priority"], "priorityLabel": analysis["priorityLabel"], "completenessPct": completeness, "expectedFieldCount": len(rules), "missingFieldCount": len(missing), "missingFields": missing, "resolvedUnavailableFieldCount": len(resolved), "resolvedUnavailableFields": resolved, "profilePath": profile_path(record), "sourceReviewCount": len(reviews), "sourceReviewItems": reviews}
 
 
 def _resolved_entry_from_analysis(record: dict[str, Any], analysis: dict[str, Any]) -> dict[str, Any] | None:
@@ -214,9 +222,14 @@ def _resolved_entry_from_analysis(record: dict[str, Any], analysis: dict[str, An
     return {"id": record.get("id"), "company": record.get("company"), "symbol": record.get("symbol"), "priority": analysis["priority"], "priorityLabel": analysis["priorityLabel"], "resolvedFields": resolved, "resolutions": {field: availability_resolution(record, field) or {} for field in resolved}, "profilePath": profile_path(record)}
 
 
-def operational_queue_entry(row: dict[str, Any]) -> dict[str, Any]:
+def operational_queue_entry(row: dict[str, Any], review_definitions: list[dict[str, Any]] | None = None) -> dict[str, Any]:
     keys = ("id", "company", "stage", "openDate", "priority", "priorityLabel", "completenessPct", "missingFieldCount", "missingFields", "profilePath")
-    return {key: row.get(key) for key in keys}
+    entry = {key: row.get(key) for key in keys}
+    if row.get("sourceReviewItems"):
+        entry["sourceReviewCount"] = row["sourceReviewCount"]
+        entry["sourceReviewItems"] = row["sourceReviewItems"] if review_definitions is None else compact_review_items(row, review_definitions)
+        entry["sourceReviewGaps"] = sorted(review_gaps(row))
+    return entry
 
 
 def operational_resolved_entry(row: dict[str, Any]) -> dict[str, Any]:
@@ -278,9 +291,39 @@ def main(*, payload: dict[str, Any] | None = None, output_file: Path | None = No
     for row in resolved:
         resolved_field_counts.update(row["resolvedFields"])
         resolved_priority_counts[row["priorityLabel"]] += 1
-    output = {"formatVersion": QUEUE_FORMAT_VERSION, "generatedAt": now.isoformat(timespec="seconds"), "asOfDate": today.isoformat(), "recordCount": len(records), "queueCount": len(queue), "priorityCounts": dict(priority_counts), "fieldGapCounts": dict(field_counts.most_common()), "resolvedUnavailableRecordCount": len(resolved), "resolvedUnavailablePriorityCounts": dict(resolved_priority_counts), "resolvedUnavailableFieldCounts": dict(resolved_field_counts.most_common()), "queue": [operational_queue_entry(row) for row in queue], "queueIsComplete": True, "resolvedUnavailable": [operational_resolved_entry(row) for row in resolved], "notes": ["P0/P1 records are repaired before historical records.", "Only lifecycle- and source-appropriate missing fields enter the actionable queue.", "Populated legacy static fields become Final Prospectus revalidation work only after the final filing should exist.", "Fixed-price IPOs may satisfy legacy one-point priceBand revalidation through matching Final Prospectus issue-price evidence; true book-built price bands still require explicit band evidence.", "Open/upcoming IPOs are not blocked on Final Prospectus provenance before listing or the post-close grace period.", "Full non-actionable resolution evidence remains in canonical IPO dataAvailability fields.", "Allotment date is tracked as optional research coverage until a reliable official historical collector exists.", "Blank values are never guessed; canonical mature static values must come from Final Prospectus evidence."]}
+    review_definitions: list[dict[str, Any]] = []
+    operational_queue = [operational_queue_entry(row, review_definitions) for row in queue]
+    output = {
+        "formatVersion": QUEUE_FORMAT_VERSION,
+        "generatedAt": now.isoformat(timespec="seconds"),
+        "asOfDate": today.isoformat(),
+        "recordCount": len(records), "queueCount": len(queue),
+        "priorityCounts": dict(priority_counts), "fieldGapCounts": dict(field_counts.most_common()),
+        "resolvedUnavailableRecordCount": len(resolved),
+        "resolvedUnavailablePriorityCounts": dict(resolved_priority_counts),
+        "resolvedUnavailableFieldCounts": dict(resolved_field_counts.most_common()),
+        "queue": operational_queue, "queueIsComplete": True,
+        "resolvedUnavailable": [operational_resolved_entry(row) for row in resolved],
+        "sourceReviewFormatVersion": 1,
+        "sourceReviewCount": sum(row["sourceReviewCount"] for row in queue),
+        "sourceReviewRecordCount": sum(bool(row["sourceReviewCount"]) for row in queue),
+        "sourceReviewDefinitions": review_definitions,
+        "notes": [
+            "P0/P1 records are repaired before historical records.",
+            "Only lifecycle- and source-appropriate missing fields enter the actionable queue.",
+            "Semantic source reviews also enter the queue, independently of missing fields and availability resolutions.",
+            "Compact sourceReviewItems are [field, sourceReviewDefinitions index] pairs; evidencePaths are JSON pointers relative to the canonical record with the row id.",
+            "sourceReviewGaps select existing source-repair paths; unchanged source/parser retry limits remain in force and manual review stays actionable.",
+            "Populated legacy static fields become Final Prospectus revalidation work only after the final filing should exist.",
+            "Fixed-price IPOs may satisfy legacy one-point priceBand revalidation through matching Final Prospectus issue-price evidence; true book-built price bands still require explicit band evidence.",
+            "Open/upcoming IPOs are not blocked on Final Prospectus provenance before listing or the post-close grace period.",
+            "Full non-actionable resolution evidence remains in canonical IPO dataAvailability fields.",
+            "Allotment date is tracked as optional research coverage until a reliable official historical collector exists.",
+            "Blank values are never guessed; canonical mature static values must come from Final Prospectus evidence.",
+        ],
+    }
     (output_file or OUTPUT_FILE).write_text(json.dumps(output, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
-    print(f"Missing-data queue: records={len(records)}, queued={len(queue)}, resolved-unavailable={len(resolved)}, p0={priority_counts.get('P0 open IPO', 0)}, p1={priority_counts.get('P1 upcoming IPO', 0)}")
+    print(f"Missing-data queue: records={len(records)}, queued={len(queue)}, source-reviews={output['sourceReviewCount']}, resolved-unavailable={len(resolved)}, p0={priority_counts.get('P0 open IPO', 0)}, p1={priority_counts.get('P1 upcoming IPO', 0)}")
     return 0
 
 
