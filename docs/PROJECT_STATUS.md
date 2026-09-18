@@ -15,7 +15,18 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
-## Current execution — subscription proposal triage, 18 September 2026
+## Verified subscription-triage implementation — 18 September 2026
+
+[PR #123](https://github.com/Vasuki8/IPO-Tracker/pull/123) is merged and live at
+`ac847c7f37eba39dff2abac48b86d67e806a3211`, tree
+`83a1eb66ab283dc6f9205c75039205b27c736a54`. Reviewed head is
+`4529cb04857c6c9c5c774c7f12cb5deea7ab2940` on
+`feat-subscription-proposal-triage`. This documentation closeout on
+`docs-subscription-triage-checkpoint` records that completed implementation;
+no second implementation milestone is included. Canonical publication remains
+ordinary filings `61360716df53507128266eebe330cf0273038c84`.
+
+### Starting checkpoint
 
 Starting main is `09a570f52d99d6eb5752c112e7ea34722c341917`, tree
 `143342838d03956144ddef32eea74532602868a4`. The initial current-main read and
@@ -23,7 +34,7 @@ open-PR delta query found no advance since #122. Its Pages deployment
 35309924949 and live acceptance 35309960677 succeeded. #121's evidence-bound
 Emmvee advice is complete and remains applicable; its correction is not repeated.
 
-### Implemented: complete subscription-snapshot reconciliation
+### Completed: complete subscription-snapshot reconciliation
 
 Branch `feat-subscription-proposal-triage` extends the existing read-only report.
 Problem: subscription conflicts were unassessed, and a newer collection timestamp
@@ -55,7 +66,7 @@ observation timestamps; the other 14 have no comparable source observation.
 None is automatically superseded. These are triage findings, not new confirmed
 source errors, resolutions or improvements in P4 completeness.
 
-### Verification and release boundary
+### Verification and release evidence
 
 **16 new subscription tests** and **11 existing advice tests** pass locally through
 uv, covering complete categories, zero/null/false, source changes, spoofed hosts,
@@ -70,8 +81,41 @@ Local frozen sync lacked locked packages. Local uv tests use Python 3.13.5 with
 available dependencies, not a frozen pass. The full local attempt before the final
 category regression ran 1,077 tests with three errors because the Pages mirror
 omits existing workflow files; it is not claimed as a full-suite pass. Require
-complete-repository frozen CI, retained-report inspection, exact-head merge,
-Pages and live-byte acceptance before declaring this branch released.
+complete-repository frozen CI for release rather than counting that local attempt
+as a pass. Those CI and release checks have now completed successfully.
+
+[Frozen PR validation 35311726307](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35311726307)
+passed **all 1,078 regressions** on Python 3.12.14 with `uv sync --frozen`, including
+all 16 new subscription cases, existing document/review-advice tests, report replay,
+protected-input preservation, strict validation and public/support builds. Its
+actual test merge is `99b9e0779bb06e8e6edbdae519ed02e00dbf9dd9`. Downloaded
+artifact 10532924932 verified ZIP SHA-256
+`eed406af2cf6d8d3beb61aad13851af2e3b6cf6b5edce302d4fd807560c01fea`.
+The complete report matches local output byte for byte, SHA-256
+`0fdac17ec96928cc739a74fcd88e829390b62981e1b9d02c21b90b2660d1328f`.
+
+Main had not advanced before merge, the five-file diff was reviewed and no review
+request was outstanding. The merge used the exact expected head with no force or
+protection changes. [Post-merge validation 35312026976](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35312026976)
+also passed. The merge tree is the reviewed tree; canonical/proposal/phase/hold
+bytes and all public payloads remain unchanged from the starting checkpoint.
+
+[Pages 35312026114](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35312026114)
+successfully built and deployed the release. [Live acceptance 35312058886](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35312058886)
+passed on the first attempt with the exact merge commit: all **1,366 profiles**
+consistent and **17 complete public HTTPS responses** matching the immutable
+release. Downloaded live artifact 10533945791 verified SHA-256
+`229e73aa25e59cfcd4002334542b44309048ed34ed9c9ecf407f3815ea858461`;
+its public file hashes match the local accepted tree. Ordinary filings correctly
+reports `reviewedPublication.status=not_requested`, not a new reviewed-repair pass.
+Emmvee's advice applicability was separately verified in the operator report.
+
+[The release receipt](releases/2026-09-18-subscription-proposal-triage.json) retains
+the original live receipt, exact report/code/input hashes, CI bindings, findings
+and limitations. No new browser journey suite or fresh PDF/source audit was run
+for this operator-only increment. All implementation/release acceptance criteria
+for #123 are complete. Retained proposal dispositions and actual source collection
+remain separate work; no source correctness claim follows from these test counts.
 
 No original working tree survived; existing ZIPs were left untouched. The separate
 local mirror comes from Pages artifact 10532438782, verified SHA-256

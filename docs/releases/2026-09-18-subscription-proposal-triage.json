@@ -1,0 +1,177 @@
+{
+  "scope": "read-only-source-bound-subscription-proposal-triage-not-source-acceptance",
+  "baselineCommit": "09a570f52d99d6eb5752c112e7ea34722c341917",
+  "pullRequest": 123,
+  "reviewedHead": "4529cb04857c6c9c5c774c7f12cb5deea7ab2940",
+  "testMerge": "99b9e0779bb06e8e6edbdae519ed02e00dbf9dd9",
+  "mergeCommit": "ac847c7f37eba39dff2abac48b86d67e806a3211",
+  "tree": "83a1eb66ab283dc6f9205c75039205b27c736a54",
+  "canonicalPublicationCommit": "61360716df53507128266eebe330cf0273038c84",
+  "validation": {
+    "runId": 35311726307,
+    "jobId": 105494984634,
+    "status": "success",
+    "python": "3.12.14",
+    "dependencyCommand": "uv sync --frozen",
+    "regressions": 1078,
+    "newSubscriptionTests": 16,
+    "postMergeRunId": 35312026976,
+    "postMergeStatus": "success"
+  },
+  "localChecks": {
+    "newSubscriptionTests": 16,
+    "reviewAdviceTests": 11,
+    "nodeQualityTests": 8,
+    "strictErrors": 0,
+    "strictSourceReviews": 1596,
+    "publicProfilesRebuiltWithoutChanges": 1366,
+    "fullSuitePassed": false,
+    "frozenEnvironmentPassed": false,
+    "limitation": "Available Python 3.13.5 dependencies; locked packages unavailable. The pre-final-test full run attempted 1077 tests with three errors from workflow files omitted by the Pages mirror."
+  },
+  "report": {
+    "schemaVersion": 2,
+    "asOf": "2026-09-18",
+    "summary": {
+      "retainedProposals": 441,
+      "documentFieldProposals": 159,
+      "subscriptionSnapshotProposals": 22,
+      "subscriptionByComparisonState": {
+        "still_conflicting": 22
+      },
+      "subscriptionObservationRelations": {
+        "not_comparable": 14,
+        "proposed_older": 8
+      },
+      "byComparisonState": {
+        "not_assessed": 260,
+        "still_conflicting": 181
+      },
+      "documentWithValueDifferences": 30,
+      "documentWithEvidenceOrReviewDifferences": 159,
+      "duplicateFingerprintOccurrences": 0
+    },
+    "inputSha256": {
+      "canonical": "ecc71c4b53f87178c20e0b1708322a9399da66d22272c6d5e5cc62fd8335672f",
+      "pending": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+      "displayHolds": "e0ccc9b414585e1076acfe538d0fd92ff5b15159ccaa5261d847f95af76db628"
+    },
+    "codePolicySha256": "90aefaaf6dfdfb1de5c65a894606412d9a219d63eda32ec92b223aa10710c801",
+    "reviewDecisionInputs": {
+      "ledger": "f56f021e7c61967eca8a3af032bee6861684e686d75cc00e9ab184a9313a3166",
+      "evidence": {
+        "2026-09-18-emmvee-retained-proposal.md": "7662faae0f9e3d2fb32a8f47bf56a072d3945abb9ccb188d53c57e0c68ed08e7"
+      }
+    },
+    "reportSha256": "0fdac17ec96928cc739a74fcd88e829390b62981e1b9d02c21b90b2660d1328f",
+    "reportBytes": 689984,
+    "artifactId": 10532924932,
+    "artifactSha256": "eed406af2cf6d8d3beb61aad13851af2e3b6cf6b5edce302d4fd807560c01fea",
+    "artifactBytes": 82792,
+    "downloadedAndHashVerified": true,
+    "ciLocalByteIdentical": true,
+    "unchangedDocumentComparisons": 159,
+    "unchangedReviewDecisionAudit": true
+  },
+  "findings": {
+    "subscriptionSnapshotProposals": 22,
+    "missingSnapshotSourceUrl": 22,
+    "exchangeNamedButUnbound": 14,
+    "secondaryLabeled": 8,
+    "olderSourceObservations": 8,
+    "sourceObservationsNotComparable": 14,
+    "resolutionsApplied": 0,
+    "interpretation": "Read-only triage findings, not new confirmed source errors, accepted repairs or dispositions."
+  },
+  "preservation": {
+    "canonicalRecords": 1366,
+    "pendingProposals": 441,
+    "canonicalAndPendingUnchanged": true,
+    "phaseGateUnchanged": true,
+    "p4BlockingReviews": 1592,
+    "p5Status": "waiting_for_p4",
+    "teamtechRemainsHeld": true,
+    "emmveeAdviceStillApplicable": true,
+    "preservedFileSha256": {
+      "data/ipos.json": "ecc71c4b53f87178c20e0b1708322a9399da66d22272c6d5e5cc62fd8335672f",
+      "data/pending_updates.json": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+      "data/phase_status.json": "c201f84719f94bb6dd7a05a97ba6a15f572b7703142c3e297baaa1c0252624a8",
+      "data/public_display_holds.json": "e0ccc9b414585e1076acfe538d0fd92ff5b15159ccaa5261d847f95af76db628",
+      "docs/reviews/pending-proposal-decisions.json": "f56f021e7c61967eca8a3af032bee6861684e686d75cc00e9ab184a9313a3166"
+    }
+  },
+  "pagesRun": 35312026114,
+  "pagesStatus": "success",
+  "liveAcceptanceRun": 35312058886,
+  "liveReceiptArtifact": {
+    "id": 10533945791,
+    "sha256": "229e73aa25e59cfcd4002334542b44309048ed34ed9c9ecf407f3815ea858461",
+    "downloadedAndHashVerified": true
+  },
+  "liveReceipt": {
+    "expectedCommit": "ac847c7f37eba39dff2abac48b86d67e806a3211",
+    "status": "passed",
+    "scope": "public-artifact-consistency-not-source-accuracy",
+    "routeCount": 1366,
+    "sampledProfiles": [
+      "ipo/emmvee/",
+      "ipo/teamtech/",
+      "ipo/shakti-polytarp-limited/",
+      "ipo/kheriaauto/",
+      "ipo/vama-wovenfab-limited/",
+      "ipo/sona/",
+      "ipo/manika/"
+    ],
+    "expectedSha256": {
+      "index.html": "7bb7c13dc4c856b9bcb77138e9d9cdfb8934384688e97c27c5bd9d81aa6fec59",
+      "public-quality.js": "327e7561c91728abd22dbf7d948babbc7b78db3cc29b07355386602e1209d77c",
+      "public-quality.css": "988dee5e990116eff25b8746a77b0b618b23d5394f3b919d601cceaedd6d4467",
+      "app.js": "aad042ffd8cea3576b5abff34d8b0378e812ab7e4f368f73e162d427201167d3",
+      "company-page.js": "c965ddfd01ab122b196dc58797d299f724b2378092c7ff927c91ea14b132c610",
+      "company.js": "8fba803171c5fd0fb09b95844fc153eaeff159a3a55c92785ef3c9013e08435d",
+      "phase4.js": "d7c69047e184cf5f896a75e61c62150a462ed985deaf93fdd8c0015a212e388f",
+      "methodology.html": "fe6b152b67eeaf0d1b17d7a700e1819fc250256bc022b64c9735c7867d7c546c",
+      "data/ipos-summary.json": "d51f0a8f0f6abd6cbc7ca9b440ae1775f4c59afdbff19ea25e582d4987eb8629",
+      "ipo/routes.json": "a07cb2cd58c888f74064cccd5424ee46c1b82632b4df924ade5cef87464cdbee",
+      "ipo/emmvee/index.html": "4502adcd7a5ebb3d4909a9eab28f0562c4efd7f117c0e6a4e1179d0f5fe046a8",
+      "ipo/teamtech/index.html": "724722823686a49c9c8cdb6e6411d47ad5ebbff4d22dbc024143cbad3cc22e8d",
+      "ipo/shakti-polytarp-limited/index.html": "5bcdee8e16db777889de0ef4cb8a737c3b9e63e5e24825d78f03ef563ea20cc5",
+      "ipo/kheriaauto/index.html": "b78a8acbc11a761c57b29aedacfccc956e9abcb9dcda89e03447312bb5d2d0d5",
+      "ipo/vama-wovenfab-limited/index.html": "ed84a83324dea32bf77c914902687b382b9d4d2841f7c4c9aa26dcbe2f70de70",
+      "ipo/sona/index.html": "d4ba380db6858cbc9bd8939998d36d523eeadb817d017da1931e0062db28d2f8",
+      "ipo/manika/index.html": "d93ed249adccf3ff72675298747dcb0f294f95e5ebd31fc4d53499aa556d2c13"
+    },
+    "reviewedPublication": {
+      "status": "not_requested",
+      "scope": "retained-reviewed-evidence-delivery"
+    },
+    "baseUrl": "https://vasuki8.github.io/IPO-Tracker/",
+    "httpChecked": [
+      "index.html",
+      "public-quality.js",
+      "public-quality.css",
+      "app.js",
+      "company-page.js",
+      "company.js",
+      "phase4.js",
+      "methodology.html",
+      "data/ipos-summary.json",
+      "ipo/routes.json",
+      "ipo/emmvee/index.html",
+      "ipo/teamtech/index.html",
+      "ipo/shakti-polytarp-limited/index.html",
+      "ipo/kheriaauto/index.html",
+      "ipo/vama-wovenfab-limited/index.html",
+      "ipo/sona/index.html",
+      "ipo/manika/index.html"
+    ]
+  },
+  "limitations": [
+    "No source collection, new PDF audit, financial correction, proposal resolution or P4-gate relaxation.",
+    "No new browser journey suite for this operator-only increment; existing all-profile consistency and 17 complete HTTPS response checks passed.",
+    "Current canonical publication is ordinary filings; reviewedPublication.status=not_requested is not a new reviewed-repair pass.",
+    "No publisher, public renderer, workflow, dependency, permission, tracking, billing, contract, spending or infrastructure changes.",
+    "All 22 retained subscription groups need original source URL/issuer context before an audited disposition. Other 260 proposal-family occurrences remain explicitly not assessed."
+  ],
+  "nextTask": "Add a read-only overdue-source/publication report using actual stage outcomes and source observation/collection clocks; separate unknown observation, failed/deferred/stale collection and delayed publication without creating alerts or a writer."
+}
