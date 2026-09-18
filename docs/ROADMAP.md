@@ -44,7 +44,7 @@ and immutable release receipts govern the verified checkpoint.
    are recorded in PROJECT_STATUS.md.
    Historical proposals are not backfilled or automatically resolved.
 3. **Complete P4 with source evidence — blocked.** Current accepted inventory is
-   1,371; P4 has 387 actionable plus 56 higher-priority records and 1,603 blocking
+   1,371; P4 has 387 actionable plus 56 higher-priority records and 1,599 blocking
    source reviews, zero unmapped reviews. All 441 retained proposals remain. Teamtech
    stays held and broad source draft #105 remains unaccepted. Do not weaken the gate,
    remove reviews, invent exclusions or use estimates to improve completion counts.

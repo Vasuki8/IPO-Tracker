@@ -176,6 +176,7 @@ def merge_non_null_preserving_nested(base, incoming):
 core.merge_non_null = merge_non_null_preserving_nested
 merge_non_null = merge_non_null_preserving_nested
 
+
 def parse_bse_ipo_html(html, source_url=core.BSE_URL):
     """Parse only equity IPO rows from BSE's mixed public-issues table."""
     soup = BeautifulSoup(html, "html.parser")

@@ -51,8 +51,14 @@ proposals. This implementation is prevention, not source-value adjudication.
 
 The local execution environment is disconnected (`409 environment_offline`).
 Edits use GitHub's repository tools; all new execution evidence must come from
-actual GitHub CI. No local pass is claimed. CI and release results will be recorded
-before closing this increment. The existing source/repair publisher and its
+actual GitHub CI. No local pass is claimed. The test-only parent failed in [run 35375027327](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35375027327),
+reproducing all eight mixed totals. Implementation head
+`7099ac3f246f4581bc1757fdff0484bf49cc2096`, tree
+`f020f59311507d243503e54951329d6cd0de4cde`, passed **1,161 regressions**
+on Python 3.12.14 with `uv sync --frozen` in
+[run 35375378425](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35375378425).
+The same run passed strict validation, compact artifact checks and read-only
+proposal/update-health reports. Browser and release results remain pending. The existing source/repair publisher and its
 permissions, schedules and validation remain unchanged.
 
 The network-free regression reconstructs eight incoming summary rows from the
@@ -63,9 +69,11 @@ See [the boundary review](reviews/2026-09-18-core-subscription-boundary.md).
 
 ### Gate, blockers and next action
 
-Starting accepted inventory: 1,371 records; P4 remains incomplete with 387 actionable
-plus 56 higher-priority records, 1,607 reviews / 1,603 blocking / four P5-only and
-zero unmapped. All 441 retained proposals, including 22 subscription proposals,
+An independent maintenance publication landed as
+`c5c42c7e26f42ac85cfdffbcc280775af40a687c` during this work. Its data changes are
+preserved and are not attributed to this prevention. Current inventory remains
+1,371 records; P4 is incomplete with 387 actionable plus 56 higher-priority records,
+1,603 reviews / 1,599 blocking / four P5-only and zero unmapped. All 441 retained proposals, including 22 subscription proposals,
 remain untouched. Teamtech stays held and accepted Emmvee evidence stays intact.
 #105 is still draft at `5a63a93dd9f782e3bc9ec853c937fb29661108f4`; preserve
 #94/#98/#99/#104 and the `409c51c9` freeze.
