@@ -15,6 +15,7 @@ PRESENTATION_FILES = {
     'ipo/routes.json', 'data/ipos-summary.json',
     '.github/workflows/refresh.yml', '.github/workflows/frontend.yml',
     '.github/workflows/source-hold-evidence.yml',
+    '.github/workflows/source-authority.yml',
 }
 # Review policy changes need fresh queue/gate artifacts, not new source values.
 # Unknown or mixed collector paths still require the normal repair workflow.

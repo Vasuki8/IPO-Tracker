@@ -98,6 +98,7 @@ jobs:
           node tests/frontend_smoke.cjs
           node tests/frontend_quality_layout.cjs
           node tests/frontend_source_holds.cjs
+          node tests/frontend_bse_authority.cjs
           uv run --frozen python tests/verify_public_release.py --expected-commit "$(git rev-parse HEAD)" --base-url "$BASE_URL" > "$SMOKE_ARTIFACT_DIR/public-release.json"
       - name: Rehearse bounded reviewed composition in an isolated site
         shell: bash
