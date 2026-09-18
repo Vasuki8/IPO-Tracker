@@ -4,7 +4,7 @@ on:
   pull_request:
   push:
     branches: [main, data-correctness-and-reliability]
-    paths: ['scripts/**', 'tests/**', '*.js', '.github/workflows/**', 'pyproject.toml', 'uv.lock', 'data/verified_corrections.json']
+    paths: ['scripts/**', 'tests/**', 'tools/**', '*.js', '.github/workflows/**', 'pyproject.toml', 'uv.lock', 'data/verified_corrections.json']
 
 permissions:
   contents: read
@@ -33,6 +33,19 @@ jobs:
           node --check completeness.js
       - name: Run all regression tests together
         run: uv run --frozen python -m unittest discover -s tests -v
+      - name: Report retained proposals before any correction rehearsal
+        run: |
+          mkdir -p artifacts/proposal-reconciliation
+          uv run --frozen python tools/reconcile_pending_updates.py > artifacts/proposal-reconciliation/report.json
+          uv run --frozen python tools/reconcile_pending_updates.py --check-report artifacts/proposal-reconciliation/report.json
+          git diff --exit-code -- data/ipos.json data/pending_updates.json data/phase_status.json data/missing_queue.json
+          git rev-parse HEAD > artifacts/proposal-reconciliation/checkout-commit.txt
+      - name: Retain read-only proposal report
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: proposal-reconciliation-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/proposal-reconciliation/
+          retention-days: 14
       - name: Build and verify compact public browser payloads
         run: |
           uv run --frozen python scripts/build_company_pages.py
