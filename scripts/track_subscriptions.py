@@ -319,6 +319,7 @@ def _validated_nse_snapshot(record: dict[str, Any], detail: Any, series: str):
     if not isinstance(bid_rows, list):
         raise ValueError("NSE subscription detail requires category bid rows")
     best: dict[str, tuple[int, float]] = {}
+    evidence: dict[str, tuple[float, float, float]] = {}
     for row in bid_rows:
         if not isinstance(row, dict):
             continue
@@ -338,6 +339,12 @@ def _validated_nse_snapshot(record: dict[str, Any], detail: Any, series: str):
         # The source may round to two decimals or return the full ratio.
         if not math.isclose(multiple, bids / offered, rel_tol=0, abs_tol=0.00500001):
             raise ValueError(f"NSE subscription {field} disagrees with its bid denominator")
+        observation = (multiple, offered, bids)
+        if field in evidence and evidence[field] != observation:
+            # Neither row order nor a label's classification score can resolve
+            # contradictory observations, including equal ratios on new scope.
+            raise ValueError(f"NSE subscription {field} has conflicting headline rows")
+        evidence[field] = observation
         if field not in best or score > best[field][0]:
             best[field] = (score, multiple)
     if not best:

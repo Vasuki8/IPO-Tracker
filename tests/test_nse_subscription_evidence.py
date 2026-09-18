@@ -131,6 +131,42 @@ class NSESubscriptionEvidenceTests(unittest.TestCase):
         mod.update_record(record, payload, series=series)
         self.assertIsNone(record["subscription"]["retail"])
 
+    def test_conflicting_duplicate_headlines_reject_the_whole_snapshot_in_either_order(self):
+        for conflict in ("multiple", "denominator", "different-priority-label"):
+            for prepend in (False, True):
+                with self.subTest(conflict=conflict, prepend=prepend):
+                    record, payload, series = self.case()
+                    original = next(row for row in payload["bidDetails"] if row.get("srNo") == "3")
+                    duplicate = copy.deepcopy(original)
+                    duplicate["noOfsharesBid"] = str(float(original["noOfsharesBid"]) * 2)
+                    if conflict == "denominator":
+                        # Same reported ratio can still conceal different scope.
+                        duplicate["noOfSharesOffered"] = str(float(original["noOfSharesOffered"]) * 2)
+                    else:
+                        duplicate["noOfTime"] = str(float(original["noOfTime"]) * 2)
+                    if conflict == "different-priority-label":
+                        duplicate["category"] = "Individual Investor"
+                    payload["bidDetails"].insert(0 if prepend else len(payload["bidDetails"]), duplicate)
+                    self.assert_rejected_unchanged(record, payload, series, "conflicting headline rows")
+
+    def test_identical_duplicate_evidence_with_numeric_formatting_variants_is_allowed(self):
+        record, payload, series = self.case()
+        duplicate = copy.deepcopy(payload["bidDetails"][0])
+        duplicate["noOfSharesOffered"] = "2.86E6"
+        duplicate["noOfsharesBid"] = "1,313,250"
+        payload["bidDetails"].append(duplicate)
+        expected = mod.parse_bid_details(payload)
+        mod.update_record(record, payload, series=series)
+        self.assertEqual(record["subscription"], expected)
+
+    def test_valid_nii_subcategory_does_not_conflict_with_aggregate(self):
+        record, payload, series = self.case()
+        aggregate = next(row for row in payload["bidDetails"] if row.get("srNo") == "2")
+        subcategory = next(row for row in payload["bidDetails"] if row.get("srNo") == "2.1")
+        self.assertNotEqual(aggregate["noOfTime"], subcategory["noOfTime"])
+        mod.update_record(record, payload, series=series)
+        self.assertEqual(record["subscription"]["nii"], float(aggregate["noOfTime"]))
+
 
 class NSESubscriptionRoutingTests(unittest.TestCase):
     def test_only_the_board_compatible_api_route_is_requested(self):
