@@ -15,7 +15,127 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
-## Verified recovery milestone — 18 September 2026
+## Current integration checkpoint — 18 September 2026
+
+Accepted data release/current main observed before documentation closeout:
+**`de69f6ce92b94ce0acfbe6709c38a1b170c313a8`**. Recovery started from the supplied
+`64697fe1d837e422a6678c51959e647fb7ad6e0b`; scheduled core publication
+`268946862820bfead2b3b5e0c14c7a1f637d7dd5` arrived during review and was incorporated.
+Earlier completed #108, #114–#117 and #135–#138 were recognized, not reapplied.
+Documentation closeout branch: `docs-p4-integration-20260918`.
+
+### Completed and verified
+
+[PR #139](https://github.com/Vasuki8/IPO-Tracker/pull/139), merged as
+`5039a33853a810b9beafea52a97e8e4e05f38ce1`, adds a reusable paired-column review
+helper and evidence-bound intermediary publication. It requires exact issuer/offer
+identity, role/name spans from one physical table, document hash/date, Final
+Prospectus authority and separate collection/review clocks. Explicit-reviewed
+correction groups remain inert in ordinary registry application. Generic
+re-extraction of the same PDF cannot undo accepted reviewed role evidence;
+different authoritative documents remain eligible. Existing holds/history survive.
+The source-free support publisher produced `08b35e42` with unchanged canonical
+and pending-proposal bytes.
+
+[PR #141](https://github.com/Vasuki8/IPO-Tracker/pull/141), merged as
+`3ef3e3e665eb10752eca7d35d7c273d4e0bd25df`, changes only the reviewed request.
+[Publisher 35390088056](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35390088056)
+selected `reviewed`, skipped source/residual collection, generated a fresh source
+manifest and published `cf4dae81`. Only Snehaa and Sacheerome's intermediary groups
+were accepted; 1,369 other issuer records and all 441 pending proposals survived.
+Snehaa now has Fast Track Finsec / Skyline; Sacheerome has GYR Capital Advisors /
+MUFG Intime India. Complete legal names and matching proofs are retained.
+
+Exact official Final Prospectuses were downloaded and hash/page-tree checked:
+Snehaa (467 pages, physical role table 1, corroborating 83) and Sacheerome
+(293 pages, role table 3, corroborating 52). The source review distinguishes
+Sacheerome's current MUFG legal name from its former Link Intime name. Source
+bytes, role rows and rendered pages were reviewed; this is not a claim to have
+audited every disclosure in both documents. See the immutable linked source
+review and [release receipt](releases/2026-09-18-reviewed-intermediaries.json).
+
+Final PR-head validation 35388997223 passed **1,217 frozen Python 3.12 regressions**;
+source-free preview 35388996960 and release rehearsal 35388997191 passed.
+[Browser 35388996780](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35388996780)
+passed 25 existing journeys, nine Node tests, existing hold/BSE/Emmvee checks and
+both new intermediary profile/quick-view journeys at 1440/375/320 pixels. The
+downloaded artifact checksum matched; both 375-pixel profiles were visually
+inspected. Request validation 35389898010 and five local request tests passed.
+Local Windows full-suite limitations (control-character filenames and symlink
+privilege) were not used to weaken Linux tests; Linux remains the release authority.
+
+[Pages 35390194114](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35390194114)
+and [live acceptance 35390243353](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35390243353)
+passed on `cf4dae81`, including exact reviewed values/proofs and served profile
+bytes. Direct live browser checks also confirmed Snehaa's page-1 role links and
+Sacheerome's page-3 role links in its profile/quick view, with unrelated fields
+still under review. Candidate artifacts were never substituted for deployment.
+
+### Current blockers and next work
+
+P4 is **incomplete: 388 actionable + 55 higher-priority records; 1,598 total
+source reviews, 1,594 blocking, four P5-only, zero unmapped and zero semantic
+errors**. This release removed **three actual blocking reviews** (1,597 → 1,594),
+not three whole-record blockers. Final Prospectus revalidation remains 322 records /
+1,175 fields (higher priority 28 / 105). Inventory remains 1,371. P5 remains
+`waiting_for_p4` with 914 actionable records; performance expansion is gated.
+
+SpectraA's exact NSE SME response now has a retained source/denominator review.
+Its counts-only categories, zero-denominator EQ placeholder and graph total do
+not establish a safe replacement snapshot. The hold remains active.
+[PR #140](https://github.com/Vasuki8/IPO-Tracker/pull/140) merged as
+`a0e7e0214bd161b227e822bbe0c41287f8e23429` after combined validation 35390771579
+passed **1,239 frozen regressions**, including 22 real-response/guard tests.
+The six-file change requires exact issue identity, correct API series and matching
+reported multiples/bid denominators; contradictory duplicate counts fail even
+when a row lacks a multiple. The response fixture stays outside the unrelated
+Final Prospectus preview glob; no workflow or protection was changed. Earlier
+broad previews on obsolete heads remain diagnostic and unaccepted.
+
+[Publisher 35390899139](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35390899139)
+used `subscriptions` mode and published `de69f6ce`. The source stage reports
+`source_blocked`: five attempts, four updated records, zero added history snapshots,
+one failure (SpectraA), zero NSE successes, two BSE and two explicitly labelled
+secondary fallbacks. NSE returned HTTP 403 in the runner. This is a deployed guard,
+not acceptance of a replacement SpectraA number or proof of fresh official NSE
+data. All historical source bindings, 441 proposals and Teamtech's hold remain.
+The four successful refreshes changed collection/check clocks, not subscription
+values or history. Ordinary policy-check clocks were regenerated across the
+inventory; they do not represent a new PDF source review. Snehaa, Sacheerome,
+Teamtech and SpectraA's generated profile bytes match `cf4dae81` exactly.
+
+[Pages 35391159527](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35391159527)
+and [live acceptance 35391206824](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35391206824)
+passed on `de69f6ce`. The [NSE guard release receipt](releases/2026-09-18-nse-detail-guard.json)
+records the exact source outcomes, canonical/proof preservation and served-output
+checks. No additional P4 blocker was removed by this guard release.
+
+Legacy #94/#98/#99 and draft #104 remain preserved. Broad draft #105 stays
+unaccepted at `5a63a93dd9f782e3bc9ec853c937fb29661108f4`; its preview passing does
+not establish source acceptance, and it conflicts with current main. Do not merge
+it wholesale or drop its review evidence. The 22 subscription proposals still
+need original issuer/source evidence; stale operator advice needs revalidation.
+
+**Exact next action:** reproduce the Hy-Tech and Onemi table failures with
+production `pdftotext`, then implement and source-review the shared bounded
+`OTHER FINANCIAL INFORMATION` repair in
+[the source diagnosis](reviews/2026-09-18-financial-seed-inspection.md).
+Both complete PDFs match retained hashes; targeted rendered tables were inspected
+and 102 diagnostic receipt/replay assertions passed. Local pypdf layout is not
+established as production extraction parity; comprehensive competing-table review
+and financial-specific reviewed transport validation remain to do.
+Their 42 financial reviews are exposure, not a promised reduction. Preserve annual
+versus interim periods, units, scope, EPS basis, conflicts and nulls; accept only
+matching Final Prospectus cells through a bounded publication. Add PNGS only if
+its source proves the same layout family.
+
+Commercial rights remain unresolved for collection, excerpts, storage, public
+JSON/CSV and paid reuse. Paying audience, pricing/revenue model, suitable commercial
+hosting, privacy/telemetry and regulatory review remain owner decisions in
+[COMMERCIAL_READINESS.md](COMMERCIAL_READINESS.md). No spending, contracts,
+outreach, billing, infrastructure or material permission changes were made.
+
+## Historical recovery milestone — 18 September 2026
 
 [PR #137](https://github.com/Vasuki8/IPO-Tracker/pull/137) is merged as
 `8dd2a51305a21b5ddb9aebf6c7861128a985ebd0`, tree

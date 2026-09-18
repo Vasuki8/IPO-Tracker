@@ -1,0 +1,882 @@
+{
+  "schemaVersion": 1,
+  "scope": "source-layout-diagnosis-only-no-financial-value-acceptance",
+  "reviewedAt": "2026-09-18T20:22:33.749666+00:00",
+  "extractionEngine": "pypdf 6.18.1 extraction_mode=layout",
+  "productionTextParity": "not-established: local pdftotext unavailable",
+  "parserFileSha256": "e8d2655ab28230bb9504f6f6896364e29ec2358fe3d37304556b24f7968f6574",
+  "parserVersion": 22,
+  "sources": [
+    {
+      "id": "htel",
+      "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+      "requestStartedAt": "2026-09-18T20:07:40.272613+00:00",
+      "collectedAt": "2026-09-18T20:08:10.932515+00:00",
+      "httpStatus": 200,
+      "responseUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+      "httpLastModified": "Fri, 28 Aug 2026 10:32:16 GMT",
+      "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+      "bytes": 7009022,
+      "expectedPageCount": 416,
+      "identity": {
+        "id": "htel",
+        "company": "Hy-Tech Engineers Limited",
+        "symbol": "HTEL",
+        "openDate": "2026-08-24"
+      },
+      "coverDocumentDate": "2026-08-27",
+      "retainedDocumentFiledDate": "2026-08-28",
+      "completePageTreeVerified": true,
+      "renderedPhysicalPagesInspected": [
+        1,
+        68,
+        282,
+        329
+      ],
+      "diagnosticPhysicalPage": 282,
+      "currentHeadingRecognized": false,
+      "currentPageParserResult": {
+        "financials": null,
+        "evidence": {},
+        "conflicts": []
+      },
+      "tableExcerpt": {
+        "firstExtractedLine": 2,
+        "rawLines": [
+          "                                                      OTHER FINANCIAL INFORMATION",
+          "",
+          "                             Particulars                                    For the year ended              For the year ended             For the year ended",
+          "                                                                               March 31, 2026                 March 31, 2025                 March 31, 2024",
+          "Net profit for the year (A) (₹ in million)                                                     225.92                          196.19                        115.96",
+          "Weighted  average  number  of  Equity  Shares  outstanding                                83,531,840                      83,531,840                    83,531,840",
+          "during the year (in number)",
+          "Weighted  average  number  of  Equity  Shares  outstanding                                83,531,840                      83,531,840                    83,531,840",
+          "during the year for basic EPS(i) (in number) (B)",
+          "Weighted  average  number  of  Equity  Shares  outstanding                                83,531,840                      83,531,840                    83,531,840",
+          "during the year for diluted EPS(i) (C)",
+          "Basic Earnings per equity share (in ₹) (D = A/B) (ii)                                              2.70                           2.35                          1.39",
+          "Diluted Earnings per equity share (in ₹) (E = A/C)(iii)                                            2.70                           2.35                          1.39",
+          "Total equity (F) (₹ in million)                                                              1,220.17                        1,012.51                        822.16",
+          "Net profit for the year (G) (₹ in million)                                                     225.92                          196.19                        115.96",
+          "Return on net worth (H) (iv)                                                                  20.24%                          21.39%                        15.11%",
+          "Number of Equity Shares outstanding as at year end (I)                                    83,531,840                      83,531,840                    83,531,840",
+          "Net Asset Value per Equity Share (in ₹) (J = F/I) (in ₹) (v)                                     14.61                           12.12                          9.84",
+          "Net Profit for the year (K) (₹ in million)                                                     225.92                          196.19                        115.96",
+          "Total tax expense (L) (₹ in million)                                                             79.71                           65.75                         42.07",
+          "Finance costs (M) (₹ in million)                                                                 44.71                           48.12                         28.74",
+          "Depreciation and amortization expense (           N) (₹ in million)                            106.83                          101.07                          73.39",
+          "Other Income (O)                                                                                 40.31                           53.25                         34.65",
+          "EBITDA (P = K+L+M+N-O) (₹ in million) (vi)                                                     416.86                          357.88                        225.51",
+          "Total income (₹ in million) (Q)                                                              1,934.35                        1,667.07                      1,411.73",
+          "EBITDA to Total Income (R = P/Q)                                                                   0.22                           0.21                          0.16",
+          "Notes:",
+          "(i)   Earnings per shares (EPS) calculation is in accordance with the notified Indian Accounting Standard (Ind AS) 33 ‘Earnings per",
+          "      share’ prescribed by the Companies (Indian Accounting Standards) Rules, 2015 (as amended).",
+          "(ii)  Basic Earnings per Equity Share (₹) = Net Profit or Loss as restated for the year attributable to equity shareholders by the                         weighted",
+          "      average number of Equity Shares outstanding during the year.",
+          "(iii) Diluted Earnings per Equity Share (₹) = Net Profit or Loss as restated for the year attributable to equity shareholders by th                                  e",
+          "      weighted average number of equity shares outstanding during the year                   .",
+          "(iv)  Return on Net Worth (%) = Net Profit for the year divided by average total equity.",
+          "(v)   Net Asset Value (NAV) per Equity Share (₹) = Net Worth as restated at the end of the year divided by weighted average number                                  of",
+          "      equity shares outstanding as at year end.",
+          "(vi)  EBITDA stands for Earnings before Interest, Taxes, Depreciation, and Amortization. EBITDA is calculated as Net Profit or Loss",
+          "      for the year plus total tax expenses, depreciation and amortization expenses, and finance costs                      less Other Income      ."
+        ],
+        "sha256": "6837cabb16a74ce52a3721f17043526f2b26ceb8c7564d0ad81acd71923e950d",
+        "headingLine": 0,
+        "periodHeaderLine": 3,
+        "tableEndLineExclusive": 26,
+        "currentPeriodColumns": {
+          "years": [
+            "2026",
+            "2025",
+            "2024"
+          ],
+          "annual": [
+            0,
+            1,
+            2
+          ],
+          "positions": [
+            91.0,
+            122.0,
+            153.0
+          ],
+          "interim": false,
+          "header": "                                                      OTHER FINANCIAL INFORMATION\n\n                             Particulars                                    For the year ended              For the year ended             For the year ended\n                                                                               March 31, 2026                 March 31, 2025                 March 31, 2024"
+        },
+        "metricRowSpans": [
+          {
+            "line": 4,
+            "physicalExtractedLine": 6,
+            "fieldPattern": "patCr",
+            "labelSpan": {
+              "start": 0,
+              "end": 23,
+              "text": "Net profit for the year"
+            },
+            "row": "Net profit for the year (A) (₹ in million)                                                     225.92                          196.19                        115.96",
+            "observedCellTokens": [
+              {
+                "start": 95,
+                "end": 101,
+                "token": "225.92"
+              },
+              {
+                "start": 127,
+                "end": 133,
+                "token": "196.19"
+              },
+              {
+                "start": 157,
+                "end": 163,
+                "token": "115.96"
+              }
+            ],
+            "currentTailAccepted": null
+          },
+          {
+            "line": 11,
+            "physicalExtractedLine": 13,
+            "fieldPattern": "eps",
+            "labelSpan": {
+              "start": 0,
+              "end": 31,
+              "text": "Basic Earnings per equity share"
+            },
+            "row": "Basic Earnings per equity share (in ₹) (D = A/B) (ii)                                              2.70                           2.35                          1.39",
+            "observedCellTokens": [
+              {
+                "start": 99,
+                "end": 103,
+                "token": "2.70"
+              },
+              {
+                "start": 130,
+                "end": 134,
+                "token": "2.35"
+              },
+              {
+                "start": 160,
+                "end": 164,
+                "token": "1.39"
+              }
+            ],
+            "currentTailAccepted": null
+          },
+          {
+            "line": 12,
+            "physicalExtractedLine": 14,
+            "fieldPattern": "dilutedEps",
+            "labelSpan": {
+              "start": 0,
+              "end": 33,
+              "text": "Diluted Earnings per equity share"
+            },
+            "row": "Diluted Earnings per equity share (in ₹) (E = A/C)(iii)                                            2.70                           2.35                          1.39",
+            "observedCellTokens": [
+              {
+                "start": 99,
+                "end": 103,
+                "token": "2.70"
+              },
+              {
+                "start": 130,
+                "end": 134,
+                "token": "2.35"
+              },
+              {
+                "start": 160,
+                "end": 164,
+                "token": "1.39"
+              }
+            ],
+            "currentTailAccepted": null
+          },
+          {
+            "line": 14,
+            "physicalExtractedLine": 16,
+            "fieldPattern": "patCr",
+            "labelSpan": {
+              "start": 0,
+              "end": 23,
+              "text": "Net profit for the year"
+            },
+            "row": "Net profit for the year (G) (₹ in million)                                                     225.92                          196.19                        115.96",
+            "observedCellTokens": [
+              {
+                "start": 95,
+                "end": 101,
+                "token": "225.92"
+              },
+              {
+                "start": 127,
+                "end": 133,
+                "token": "196.19"
+              },
+              {
+                "start": 157,
+                "end": 163,
+                "token": "115.96"
+              }
+            ],
+            "currentTailAccepted": null
+          },
+          {
+            "line": 15,
+            "physicalExtractedLine": 17,
+            "fieldPattern": "ronwPct",
+            "labelSpan": {
+              "start": 0,
+              "end": 19,
+              "text": "Return on net worth"
+            },
+            "row": "Return on net worth (H) (iv)                                                                  20.24%                          21.39%                        15.11%",
+            "observedCellTokens": [
+              {
+                "start": 94,
+                "end": 100,
+                "token": "20.24%"
+              },
+              {
+                "start": 126,
+                "end": 132,
+                "token": "21.39%"
+              },
+              {
+                "start": 156,
+                "end": 162,
+                "token": "15.11%"
+              }
+            ],
+            "currentTailAccepted": null
+          },
+          {
+            "line": 18,
+            "physicalExtractedLine": 20,
+            "fieldPattern": "patCr",
+            "labelSpan": {
+              "start": 0,
+              "end": 23,
+              "text": "Net Profit for the year"
+            },
+            "row": "Net Profit for the year (K) (₹ in million)                                                     225.92                          196.19                        115.96",
+            "observedCellTokens": [
+              {
+                "start": 95,
+                "end": 101,
+                "token": "225.92"
+              },
+              {
+                "start": 127,
+                "end": 133,
+                "token": "196.19"
+              },
+              {
+                "start": 157,
+                "end": 163,
+                "token": "115.96"
+              }
+            ],
+            "currentTailAccepted": null
+          },
+          {
+            "line": 23,
+            "physicalExtractedLine": 25,
+            "fieldPattern": "ebitdaCr",
+            "labelSpan": {
+              "start": 0,
+              "end": 6,
+              "text": "EBITDA"
+            },
+            "row": "EBITDA (P = K+L+M+N-O) (₹ in million) (vi)                                                     416.86                          357.88                        225.51",
+            "observedCellTokens": [
+              {
+                "start": 95,
+                "end": 101,
+                "token": "416.86"
+              },
+              {
+                "start": 127,
+                "end": 133,
+                "token": "357.88"
+              },
+              {
+                "start": 157,
+                "end": 163,
+                "token": "225.51"
+              }
+            ],
+            "currentTailAccepted": null
+          },
+          {
+            "line": 24,
+            "physicalExtractedLine": 26,
+            "fieldPattern": "totalIncomeCr",
+            "labelSpan": {
+              "start": 0,
+              "end": 12,
+              "text": "Total income"
+            },
+            "row": "Total income (₹ in million) (Q)                                                              1,934.35                        1,667.07                      1,411.73",
+            "observedCellTokens": [
+              {
+                "start": 93,
+                "end": 101,
+                "token": "1,934.35"
+              },
+              {
+                "start": 125,
+                "end": 133,
+                "token": "1,667.07"
+              },
+              {
+                "start": 155,
+                "end": 163,
+                "token": "1,411.73"
+              }
+            ],
+            "currentTailAccepted": null
+          },
+          {
+            "line": 25,
+            "physicalExtractedLine": 27,
+            "fieldPattern": "ebitdaCr",
+            "labelSpan": {
+              "start": 0,
+              "end": 6,
+              "text": "EBITDA"
+            },
+            "row": "EBITDA to Total Income (R = P/Q)                                                                   0.22                           0.21                          0.16",
+            "observedCellTokens": [
+              {
+                "start": 99,
+                "end": 103,
+                "token": "0.22"
+              },
+              {
+                "start": 130,
+                "end": 134,
+                "token": "0.21"
+              },
+              {
+                "start": 160,
+                "end": 164,
+                "token": "0.16"
+              }
+            ],
+            "currentTailAccepted": null
+          }
+        ],
+        "lineIndexConvention": "rawLines indexes are zero-based; physicalExtractedLine is one-based in the pypdf page text including its PAGE marker; spans are Python start-inclusive/end-exclusive character offsets"
+      },
+      "textCoverage": {
+        "completeDocumentText": true,
+        "pages": 416,
+        "notes": "Hy-Tech full text emitted rotated-text warnings; Onemi complete-page-tree check succeeded but full text was interrupted after relevant pages were separately extracted."
+      },
+      "corroboratingExcerpts": [
+        {
+          "physicalPage": 66,
+          "firstExtractedLine": 2,
+          "rawLines": [
+            "                                            SUMMARY OF FINANCIAL INFORMATION",
+            "",
+            "The  following  tables  set  forth  summary  of  financial  information  derived  from  the  Restated  Consolidated  Financial",
+            "Information. The Restated Consolidated Financial Information has been prepared, based on financial information for the",
+            "Fiscal  2026,  Fiscal  2025      and  Fiscal  2024.  The      Restated  Consolidated  Financial         Information has      been  prepared  in",
+            "accordance with Ind AS and the Companies Act, restated in accordance with the SEBI ICDR Regulations and are presented",
+            "in the section entitled “Financial Information” on page 222.",
+            "",
+            "The summary of financial information presented below should be read in conjunction with the chapters titled “                           Restated",
+            "Consolidated Financial Information” and “Management’s Discussion and Analysis of Financial Condition and Results of",
+            "Operations” on pages 222 and 278 respectively."
+          ],
+          "sha256": "be230496254fd693d2286e5b6a5f88f356d457c78965ab589670ccfcd4523e9a",
+          "purpose": "diagnostic corroboration, not accepted field evidence"
+        },
+        {
+          "physicalPage": 68,
+          "firstExtractedLine": 2,
+          "rawLines": [
+            "                 HY-TECH ENGINEERS LIMITED",
+            "                 CIN: U99999MH1978PLC020853",
+            "                 Annexure II - Restated Consolidated Statement of Profit and Loss",
+            "                 (All amounts are in Rs. Millions, unless otherwise stated)",
+            "",
+            "",
+            "",
+            "                         Particulars                                                                                                                                                         Annexure VI                                     Year ended                          Year ended                               Year ended",
+            "                                                                                                                                                                                                    Notes                                March 31, 2026                      March 31, 2025                          March 31, 2024",
+            "",
+            "",
+            "                   A   Income",
+            "                         Revenue from Operations                                                                                                                                30                                          1,894.04                        1,613.82                           1,377.08",
+            "                         Other Income                                                                                                                                                   31                                               40.31                             53.25                                34.65",
+            "",
+            "                         Total Income (A)                                                                                                                                                                                         1,934.35                        1,667.07                           1,411.73",
+            "",
+            "                   B   Expenses",
+            "                         Cost of Raw Materials and Components Consumed                                                                                       32                                             673.16                           591.77                              504.36",
+            "                         Change in Inventories of Finished Goods and Work in Progress                                                                                                                  33                                              (13.33)                           (33.75)                                             (7.27)",
+            "                         Manufacturing Expenses and Operating Expenses                                                                                          34                                             458.07                           385.35                              343.27",
+            "                         Employee Benefit Expense                                                                                                                             35                                             233.51                           203.23                              192.43",
+            "                         Finance Costs                                                                                                                                                  36                                               44.71                             48.12                                28.74",
+            "                         Depreciation and Amortisation Expenses                                                                                                        37                                             106.83                           101.07                                73.39",
+            "                         Other Expenses                                                                                                                                                38                                             125.77                           109.36                              118.78",
+            "                         Total Expenses (B)                                                                                                                                                                                      1,628.72                        1,405.14                           1,253.70",
+            "",
+            "                   C   Profit Before Tax (A - B) (C)                                                                                                                                                                        305.63                           261.94                              158.03",
+            "",
+            "                   D   Tax Expense :",
+            "                           - Current tax                                                                                                                                                                                                      84.50                             67.39                                42.06",
+            "                           - Current tax relating to prior years                                                                                                                                                                     0.96                               0.27                                   -39",
+            "                           - Deferred tax                                                                                                                                                                                                    (5.75)                            (1.91)                                0.01",
+            "                         Total Tax Expense (D)                                                                                                                                                                                     79.71                             65.75                                42.07",
+            "",
+            "                   E   Profit for the year (C-D)                                                                                                                                                                                225.92                           196.19                              115.96",
+            "",
+            "                   F   Other Comprehensive Income / (Loss)",
+            "                            Items that will not be reclassified to profit or loss",
+            "Employee remeasurement          - Re-measurement gain/(loss) of defined benefit plan                                                                                                                                                                           3.50                                (0.35)                                    (1.68)",
+            "Tax on Emp. Remeasure          - Income tax relating to above                                                                                                                                                                                               (0.88)                              0.09                                  0.42",
+            "                          Total Other Comprehensive Income / ( Loss) (F)                                                                                                                                                                                     2.62                              (0.26)                                        (1.26)",
+            "",
+            "                   G   Total  Comprehensive Income (E+F)                                                                                                                                                           228.54                           195.93                              114.70",
+            "                         Profit for the year attributable to:",
+            "                         (i) Owners of the Company                                                                                                                                                                              225.92                           196.19                              115.96",
+            "                         (ii) Non controlling interest                                                                                                                                                                                    -                                     -                                       -",
+            "                                                                                                                                                                                                                                                         225.92                           196.19                              115.96",
+            "                         Other Comprehensive loss for the year attributable to:",
+            "                         (i) Owners of the Company                                                                                                                                                                                  2.62                              (0.26)                                                                 (1.26)",
+            "                         (ii) Non controlling interest                                                                                                                                                                                    -                                     -                                       -",
+            "                                                                                                                                                                                                                                                             2.62                              (0.26)                                        (1.26)",
+            "",
+            "                         Total Comprehensive Income for the year attributable to:",
+            "                         (i) Owners of the Company                                                                                                                                                                              228.54                           195.93                              114.70",
+            "                         (ii) Non controlling interest                                                                                                                                                                                    -                                                                             -",
+            "                                                                                                                                                                                                                                                         228.54                           195.93                              114.70",
+            "                         Basic earnings per equity share (in Rs.)                                                                                                                                                                2.70                               2.35                                  1.39",
+            "                         Diluted earnings per equity share (in Rs.)                                                                                                                                                             2.70                               2.35                                  1.39",
+            "",
+            ""
+          ],
+          "sha256": "0bcf33ff02da5e1c40847e135efaab59323e1e7d2b455bcfee5fbda7f33fb129",
+          "purpose": "diagnostic corroboration, not accepted field evidence"
+        },
+        {
+          "physicalPage": 329,
+          "firstExtractedLine": 13,
+          "rawLines": [
+            "The computation of net tangible assets, operating profit, net worth, monetary assets, as restated and derived from the",
+            "Restated Consolidated Financial Information, as at and for the financial years ended March 31, 2026, March 31, 2025 and",
+            "March 31, 2024 is set forth below:",
+            "",
+            "                                                                                                           (₹ in million, unless otherwise stated)",
+            "                    Particulars                                 Fiscal 2026                       Fiscal 2025                      Fiscal 2024",
+            "Pre-tax operating profit/loss                                                  310.03                            256.81                           152.12",
+            "Average Pre-tax operating profit                                                                    239.65",
+            "Net Worth                                                                    1,220.17                         1,012.51                            822.16",
+            "Restated Net tangible Assets                                                 1,217.61                         1,010.27                            821.10",
+            "Restated Monetary Assets                                                        26.37                               7.28                             6.04",
+            "Restated Monetary Assets as restated as a % of                                  2.17%                            0.72%                             0.74%",
+            "Restated Net tangible Assets",
+            "Notes:",
+            "1.   Pre-tax operating profit means the profit before finance costs, other income and exceptional items.",
+            "2.   Average Operating Profit is computed as the sum of pre-tax operating profit for the last three years and divided by the number of",
+            "     years.",
+            "3.   Net Worth means the aggregate value of the paid-up share capital and all reserves created out of the profits and securities premium",
+            "     account and debit or credit balance of profit and loss account, after deducting the aggregate value of the accumulated losses,",
+            "     deferred expenditure and miscellaneous expenditure not written off, but does not include reserves created out of revaluation of",
+            "     assets, write-back of depreciation and amalgamation.",
+            "4.   Restated Monetary Assets means  cash  in  hand,  balance  with  bank  in  current  and  deposit  account  (net  of  bank  deposits  not",
+            "     considered as cash and cash equivalent).",
+            "5.   Restated Net tangible Assets mean the sum of all net assets, excluding intangible assets and right of use assets as defined in Indian"
+          ],
+          "sha256": "f75116e7b6ca94adc605d6c680df24096dd0ef96d23fe7b49ab226fc9c8775e7",
+          "purpose": "diagnostic corroboration, not accepted field evidence"
+        }
+      ],
+      "currentFullTextParserResult": {
+        "financials": null,
+        "evidenceCount": 0,
+        "conflicts": []
+      }
+    },
+    {
+      "id": "kissht",
+      "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+      "requestStartedAt": "2026-09-18T20:09:55.566578+00:00",
+      "collectedAt": "2026-09-18T20:10:57.584968+00:00",
+      "httpStatus": 200,
+      "responseUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+      "httpLastModified": "Thu, 18 Jun 2026 06:15:57 GMT",
+      "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+      "bytes": 13579858,
+      "expectedPageCount": 464,
+      "identity": {
+        "id": "kissht",
+        "company": "Onemi Technology Solutions Limited",
+        "symbol": "KISSHT",
+        "openDate": "2026-04-30"
+      },
+      "coverDocumentDate": "2026-05-05",
+      "retainedDocumentFiledDate": "2026-05-06",
+      "completePageTreeVerified": true,
+      "renderedPhysicalPagesInspected": [
+        1,
+        69,
+        70,
+        335
+      ],
+      "diagnosticPhysicalPage": 335,
+      "currentHeadingRecognized": false,
+      "currentPageParserResult": {
+        "financials": null,
+        "evidence": {},
+        "conflicts": []
+      },
+      "tableExcerpt": {
+        "firstExtractedLine": 2,
+        "rawLines": [
+          "                                                       OTHER FINANCIAL INFORMATION",
+          "",
+          "The accounting ratios derived from the Restated Consolidated Financial Information as required under Clause 11 of Part A of",
+          "Schedule VI of the SEBI ICDR Regulations are given below:",
+          "                                                                                                                       (All per share data in ₹, except as mentioned)",
+          "                 Particulars                     As at and for the nine            As at and for the            As at and for the             As at and for the",
+          "                                                  months period ended           financial year ended          financial year ended          financial year ended",
+          "                                                   December 31, 2025               March 31, 2025                March 31, 2024                March 31, 2023",
+          " Basic  Earnings  per  equity  share  (in                              36.98                         33.09                        41.27                           6.26",
+          " ₹)(1)#",
+          " Diluted  earnings  per  equity  share  (in                            15.16                         12.79                        15.54                           2.50",
+          " ₹)(2)#",
+          " Profit for the period/year (in ₹ million)                         1,992.69                      1,606.21                      1,972.90                        276.67",
+          " Return on Net Worth (%)(3)                                         21.18%                        15.97%                        24.52%                         4.89%",
+          " Net  Asset  Value  (“NAV”)  per  Equity                             231.84                        187.58                        168.31                        118.45",
+          " Share (in ₹)(4)#",
+          " EBITDA (in ₹ million)(5)                                          4,884.53                      4,033.68                      3,589.58                        977.11",
+          "#Pursuant to resolutions passed by our Board, and our Shareholders at an extra-ordinary general meeting dated July 8, 2025, each equity share of                     our",
+          "Company of face value of ₹10 each was split into 10 shares of face value of ₹1 each. The information presented is after takin           g into consideration this stock",
+          "split by retrospectively adjusting as if the event had occurred at the beginning of the period pre   sented.",
+          "Notes:",
+          "1.    Basic Earnings per equity share (Basic EPS): Restated Net profit after tax of a company, divided by weighted average no. of Equity Shares outstanding",
+          "      (post-split) during the financial year/relevant period.",
+          "2.    Diluted Earnings per equity share (Diluted EPS): Restated Net Profit after tax of a company, divided by weighted average no. of potential Equity Shares",
+          "      outstanding (post-split) during the financial year/relevant period. Basic and diluted earnings per equity share are computed in accordance with Indian",
+          "      Accounting Standard 33 notified under the Companies (Indian Accounting Standards) Rules of 2015 (as amended) read with the requirements of SEBI",
+          "      ICDR Regulations.",
+          "3.    Return on Net Worth is calculated as Profit/(Loss) for the period/year divided by Net Worth. Net Worth represents the total equity of a company,",
+          "      comprising equity share capital, instruments entirely in the nature of equity, and other equity, as on the last day of the relevant period, in accordance",
+          "      with Regulation 2(1)(hh) of the SEBI ICDR Regulations.",
+          "4.    Net Asset Value (“NAV”) per Equity Share is calculated as Total Equity as restated on the last day of the relevant year divided by number of Equity",
+          "      Shares outstanding as on the last day of the relevant year.",
+          "5.    EBITDA represents profit for the year after adding back total tax expense, finance costs and depreciation and amortization of the relevant period/year."
+        ],
+        "sha256": "fb21505ba45d3a2d7716a1285696fd0c585a1474e0fbc5ff1adfcdc435ca8b17",
+        "headingLine": 0,
+        "periodHeaderLine": 7,
+        "tableEndLineExclusive": 17,
+        "currentPeriodColumns": {
+          "years": [
+            "2025",
+            "2025",
+            "2024",
+            "2023"
+          ],
+          "annual": [
+            1,
+            2,
+            3
+          ],
+          "positions": [
+            66.0,
+            95.0,
+            125.0,
+            155.0
+          ],
+          "interim": true,
+          "header": "The accounting ratios derived from the Restated Consolidated Financial Information as required under Clause 11 of Part A of\nSchedule VI of the SEBI ICDR Regulations are given below:\n                                                                                                                       (All per share data in ₹, except as mentioned)\n                 Particulars                     As at and for the nine            As at and for the            As at and for the             As at and for the\n                                                  months period ended           financial year ended          financial year ended          financial year ended\n                                                   December 31, 2025               March 31, 2025                March 31, 2024                March 31, 2023"
+        },
+        "metricRowSpans": [
+          {
+            "line": 8,
+            "physicalExtractedLine": 10,
+            "fieldPattern": "eps",
+            "labelSpan": {
+              "start": 0,
+              "end": 36,
+              "text": " Basic  Earnings  per  equity  share"
+            },
+            "row": " Basic  Earnings  per  equity  share  (in                              36.98                         33.09                        41.27                           6.26",
+            "observedCellTokens": [
+              {
+                "start": 71,
+                "end": 76,
+                "token": "36.98"
+              },
+              {
+                "start": 101,
+                "end": 106,
+                "token": "33.09"
+              },
+              {
+                "start": 130,
+                "end": 135,
+                "token": "41.27"
+              },
+              {
+                "start": 162,
+                "end": 166,
+                "token": "6.26"
+              }
+            ],
+            "currentTailAccepted": [
+              36.98,
+              33.09,
+              41.27,
+              6.26
+            ]
+          },
+          {
+            "line": 10,
+            "physicalExtractedLine": 12,
+            "fieldPattern": "dilutedEps",
+            "labelSpan": {
+              "start": 0,
+              "end": 38,
+              "text": " Diluted  earnings  per  equity  share"
+            },
+            "row": " Diluted  earnings  per  equity  share  (in                            15.16                         12.79                        15.54                           2.50",
+            "observedCellTokens": [
+              {
+                "start": 71,
+                "end": 76,
+                "token": "15.16"
+              },
+              {
+                "start": 101,
+                "end": 106,
+                "token": "12.79"
+              },
+              {
+                "start": 130,
+                "end": 135,
+                "token": "15.54"
+              },
+              {
+                "start": 162,
+                "end": 166,
+                "token": "2.50"
+              }
+            ],
+            "currentTailAccepted": [
+              15.16,
+              12.79,
+              15.54,
+              2.5
+            ]
+          },
+          {
+            "line": 12,
+            "physicalExtractedLine": 14,
+            "fieldPattern": "patCr",
+            "labelSpan": {
+              "start": 0,
+              "end": 27,
+              "text": " Profit for the period/year"
+            },
+            "row": " Profit for the period/year (in ₹ million)                         1,992.69                      1,606.21                      1,972.90                        276.67",
+            "observedCellTokens": [
+              {
+                "start": 67,
+                "end": 75,
+                "token": "1,992.69"
+              },
+              {
+                "start": 97,
+                "end": 105,
+                "token": "1,606.21"
+              },
+              {
+                "start": 127,
+                "end": 135,
+                "token": "1,972.90"
+              },
+              {
+                "start": 159,
+                "end": 165,
+                "token": "276.67"
+              }
+            ],
+            "currentTailAccepted": [
+              1992.69,
+              1606.21,
+              1972.9,
+              276.67
+            ]
+          },
+          {
+            "line": 13,
+            "physicalExtractedLine": 15,
+            "fieldPattern": "ronwPct",
+            "labelSpan": {
+              "start": 0,
+              "end": 20,
+              "text": " Return on Net Worth"
+            },
+            "row": " Return on Net Worth (%)(3)                                         21.18%                        15.97%                        24.52%                         4.89%",
+            "observedCellTokens": [
+              {
+                "start": 68,
+                "end": 74,
+                "token": "21.18%"
+              },
+              {
+                "start": 98,
+                "end": 104,
+                "token": "15.97%"
+              },
+              {
+                "start": 128,
+                "end": 134,
+                "token": "24.52%"
+              },
+              {
+                "start": 159,
+                "end": 164,
+                "token": "4.89%"
+              }
+            ],
+            "currentTailAccepted": [
+              21.18,
+              15.97,
+              24.52,
+              4.89
+            ]
+          },
+          {
+            "line": 16,
+            "physicalExtractedLine": 18,
+            "fieldPattern": "ebitdaCr",
+            "labelSpan": {
+              "start": 0,
+              "end": 7,
+              "text": " EBITDA"
+            },
+            "row": " EBITDA (in ₹ million)(5)                                          4,884.53                      4,033.68                      3,589.58                        977.11",
+            "observedCellTokens": [
+              {
+                "start": 67,
+                "end": 75,
+                "token": "4,884.53"
+              },
+              {
+                "start": 97,
+                "end": 105,
+                "token": "4,033.68"
+              },
+              {
+                "start": 127,
+                "end": 135,
+                "token": "3,589.58"
+              },
+              {
+                "start": 159,
+                "end": 165,
+                "token": "977.11"
+              }
+            ],
+            "currentTailAccepted": null
+          }
+        ],
+        "lineIndexConvention": "rawLines indexes are zero-based; physicalExtractedLine is one-based in the pypdf page text including its PAGE marker; spans are Python start-inclusive/end-exclusive character offsets"
+      },
+      "textCoverage": {
+        "completeDocumentText": false,
+        "pages": null,
+        "notes": "Hy-Tech full text emitted rotated-text warnings; Onemi complete-page-tree check succeeded but full text was interrupted after relevant pages were separately extracted."
+      },
+      "corroboratingExcerpts": [
+        {
+          "physicalPage": 67,
+          "firstExtractedLine": 2,
+          "rawLines": [
+            "                       SUMMARY OF RESTATED CONSOLIDATED FINANCIAL INFORMATION",
+            "",
+            "The following tables set forth the summary financial information derived from the Restated Consolidated Financial Information",
+            "for the nine months period ended December 31, 2025, and the Financial Years ended March 31, 2025, March 31, 2024 and",
+            "March  31,  2023.  The  summary  financial  information  presented  below  should  be  read  in  conjunction  with  “Restated",
+            "Consolidated  Financial  Information”  and  “Management’s  Discussion  and  Analysis  of  Financial  Condition  and  Results  of",
+            "Operations” on pages 256 and 337, respectively.",
+            ""
+          ],
+          "sha256": "5136e6a20c947713ec0720c783be568c896e6f3d77e8cb545cf70ffdb535bfd1",
+          "purpose": "diagnostic corroboration, not accepted field evidence"
+        },
+        {
+          "physicalPage": 70,
+          "firstExtractedLine": 2,
+          "rawLines": [
+            "                                     SUMMARY OF RESTATED STATEMENT OF PROFIT AND LOSS",
+            "",
+            "                                                                                                                                       (₹ in millions, unless otherwise stated)",
+            "                           Particulars                                    As at and for the nine                As at March               As at March               As at March",
+            "                                                                          months period ended                       31, 2025                 31, 2024                  31, 2023",
+            "                                                                            December 31, 2025",
+            "  Income",
+            "  Revenue from operations                                                                       15,599.00              13,374.65                 16,744.46                   9,844.57",
+            "  Other income                                                                                       240.28                152.23                    258.56                    170.48",
+            "",
+            "  Total Income (I)                                                                              15,839.28              13,526.88                 17,003.02                 10,015.05",
+            "",
+            "  Expenses",
+            "  Employee benefits expenses                                                                      1,873.24               1,932.36                 1,807.56                   1,157.72",
+            "  Impairment on financial instruments                                                             3,446.25               3,268.34                 6,211.51                   2,993.00",
+            "  Finance costs                                                                                   2,057.45               1,644.02                    686.39                    559.02",
+            "  Depreciation and amortization                                                                      162.66                227.02                    228.78                    178.56",
+            "  Other expenses                                                                                  5,635.26               4,292.50                 5,394.37                   4,887.22",
+            "  Total expenses (II)                                                                           13,174.86              11,364.24                 14,328.61                   9,775.52",
+            "",
+            "  Profit before tax (III = I – II)                                                                2,664.42               2,162.64                 2,674.41                     239.53",
+            "",
+            "  Tax expense: (IV)",
+            "  (1) Current tax                                                                                    940.90                379.37                    938.52                    531.40",
+            "  (2) Excess/(Short) Provision of tax for earlier                                                        0.95                17.92                    21.38                    (99.25)",
+            "  years",
+            "  (3) Deferred tax                                                                             (270.12)                    159.14                  (258.39)                  (469.29)",
+            "  Total tax expense                                                                                  671.73                556.43                    701.51                    (37.14)",
+            "",
+            "  Profit for the year (V= III          - IV)                                                      1,992.69               1,606.21                 1,972.90                     276.67",
+            "",
+            "  Other comprehensive income",
+            "  Items that will not be reclassified to profit or loss",
+            "  (i)  Re-measurement gain/ (loss) on defined                                                     (5.81)                  (12.30)                     (1.78)                    (3.82)",
+            "       benefit plans",
+            "  (ii) Income tax relating to items that will not be                                                 1.46                     3.10                      0.45                       0.96",
+            "       reclassified to profit or loss",
+            "",
+            "  Total other comprehensive income (VI)                                                               (4.35)                (9.20)                    (1.33)                    (2.86)",
+            "",
+            "  Total comprehensive income for the year                                                         1,988.34               1,597.01                 1,971.57                     273.81",
+            "  (V+VI)",
+            "",
+            "  Earnings per Equity share# (face value of ₹ 1/                  -",
+            "  per equity share)",
+            "  Basic (₹)                                                                                            36.98                 33.09                    41.27                        6.26",
+            "  Diluted (₹)                                                                                          15.16                 12.79                    15.54                        2.50",
+            "# In terms of paragraph 64 of Indian Accounting Standard 33 Earnings per equity share, “if the number of ordinary shares outsta                            nding increases as a result",
+            "of bonus or split, the calculation of basic and diluted earnings per equity share for all periods pres                 ented shall be adjusted retrospectively. If these changes",
+            "occur after the reporting period but before the financial statements are approved for issue, the per equity share calculation                       s for those and any prior period",
+            "financial statements presented shall be       based on the new number of shares”. Considering the provision of Indian Accounting Standard 33, figure of Basic and",
+            "Diluted EPS and NAV for all the period/year have been restated considering split of equity shares of our Company approved in                          the Board of Directors meeting",
+            "held on July 8, 2025, whereby each equity share of ₹10 was split into 10 equity shares of ₹1 each                  .",
+            ""
+          ],
+          "sha256": "7eb3bb49b7ed8ce310cfa39517bf9007b00ec5fa0d2c25c40ce666988a397e82",
+          "purpose": "diagnostic corroboration, not accepted field evidence"
+        }
+      ]
+    }
+  ]
+}

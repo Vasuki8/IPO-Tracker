@@ -1,0 +1,705 @@
+{
+  "schemaVersion": 1,
+  "status": "published-live-verified-source-stage-degraded",
+  "scope": "nse-detail-guard-and-subscription-boundary-not-new-nse-source-value-acceptance",
+  "baselineCommit": "cf4dae8181fbcc764a9547b096e55138e779da01",
+  "pullRequest": 140,
+  "reviewedHead": "1d125b1c19903f7fbd3885e6115573753343bd1b",
+  "mergeCommit": "a0e7e0214bd161b227e822bbe0c41287f8e23429",
+  "publicationCommit": "de69f6ce92b94ce0acfbe6709c38a1b170c313a8",
+  "reviewedChangedPaths": [
+    "docs/reviews/2026-09-18-spectraa-nse-detail-evidence.json",
+    "docs/reviews/2026-09-18-spectraa-nse-detail-evidence.md",
+    "scripts/track_subscriptions.py",
+    "tests/nse_subscription_detail_20260918.json",
+    "tests/test_nse_subscription_evidence.py",
+    "tests/test_subscription_tracking.py"
+  ],
+  "sourceEvidence": {
+    "immutableCommit": "1d125b1c19903f7fbd3885e6115573753343bd1b",
+    "receiptPath": "docs/reviews/2026-09-18-spectraa-nse-detail-evidence.json",
+    "sha256": "3670101a56b5806b45541d58b5dc03f2a083bad32a2a843a780c96dac5df6c3c",
+    "receipt": {
+      "reviewVersion": 1,
+      "reviewedAt": "2026-09-18T19:51:29.285528+00:00",
+      "baselineCommit": "64697fe1d837e422a6678c51959e647fb7ad6e0b",
+      "identity": {
+        "id": "spectraa",
+        "company": "SpectraA Technology Solutions Limited",
+        "symbol": "SPECTRAA",
+        "board": "SME",
+        "openDate": "2026-09-17",
+        "closeDate": "2026-09-21"
+      },
+      "decision": "retain historical subscription hold; no accepted numerical correction; prevent board/identity/zero-denominator substitution",
+      "sourceAccessConclusion": "Direct reads succeeded; web-reader failures are not evidence that disclosure is absent.",
+      "rawEvidenceDirectory": ".cache/spectraa-evidence-20260918/",
+      "rawBodyRepresentation": "requests response.content: content encoding decoded; no text normalization before hash",
+      "sources": [
+        {
+          "requestUrl": "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p",
+          "collectionStartedAt": "2026-09-18T19:38:37.596503+00:00",
+          "method": "GET",
+          "collectionCompletedAt": "2026-09-18T19:38:39.744031+00:00",
+          "statusCode": 200,
+          "responseUrl": "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p",
+          "bytes": 31366,
+          "sha256": "fff3870e121401755f5c0b64a145b8f7caa748a498c7c6ee8d1ab2a4995e9c21",
+          "bodyFile": "bse-beta-public-index.response",
+          "bodyEncoding": "requests decoded content encoding; bytes before text decoding",
+          "responseDateHeader": "Fri, 18 Sep 2026 19:38:37 GMT",
+          "contentType": "text/html; charset=utf-8"
+        },
+        {
+          "requestUrl": "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p",
+          "collectionStartedAt": "2026-09-18T19:38:36.603995+00:00",
+          "method": "GET",
+          "collectionCompletedAt": "2026-09-18T19:38:37.596503+00:00",
+          "statusCode": 200,
+          "responseUrl": "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new?id=1&Type=p",
+          "bytes": 14287,
+          "sha256": "b534273e5f5247a718f3e46dbe848a7869809cb27ebb889cd1f1548d701e0dda",
+          "bodyFile": "bse-public-index.response",
+          "bodyEncoding": "requests decoded content encoding; bytes before text decoding",
+          "responseDateHeader": "Fri, 18 Sep 2026 19:38:35 GMT",
+          "contentType": "text/html"
+        },
+        {
+          "requestUrl": "https://nsearchives.nseindia.com/content/ipo/ANCHOR_SPECTRAA.zip",
+          "collectionStartedAt": "2026-09-18T19:39:50.878952+00:00",
+          "method": "GET",
+          "collectionCompletedAt": "2026-09-18T19:39:52.367728+00:00",
+          "statusCode": 200,
+          "responseUrl": "https://nsearchives.nseindia.com/content/ipo/ANCHOR_SPECTRAA.zip",
+          "bytes": 313156,
+          "sha256": "945a30ecbea415e95ba6c8077a388dc4309682a191c55b5b98966be964372723",
+          "bodyFile": "nse-anchor-report.response",
+          "bodyEncoding": "requests decoded content encoding; bytes before text decoding",
+          "zipMembers": [
+            {
+              "filename": "ANCHOR_SPECTRAA/",
+              "bytes": 0
+            },
+            {
+              "filename": "ANCHOR_SPECTRAA/Company Anchor Letter.pdf",
+              "bytes": 334135
+            }
+          ],
+          "responseDateHeader": "Fri, 18 Sep 2026 19:39:49 GMT",
+          "contentType": "application/zip"
+        },
+        {
+          "requestUrl": "https://www.nseindia.com/api/ipo-current-issue",
+          "collectionStartedAt": "2026-09-18T19:38:29.834779+00:00",
+          "method": "GET",
+          "collectionCompletedAt": "2026-09-18T19:38:30.716246+00:00",
+          "statusCode": 200,
+          "responseUrl": "https://www.nseindia.com/api/ipo-current-issue",
+          "bytes": 1424,
+          "sha256": "d12649301240d663d0787848da162bc9e321d52b7b3a39072535f0d48935480e",
+          "bodyFile": "nse-current.response",
+          "bodyEncoding": "requests decoded content encoding; bytes before text decoding",
+          "responseDateHeader": "Fri, 18 Sep 2026 19:38:28 GMT",
+          "contentType": "application/json; charset=utf-8"
+        },
+        {
+          "requestUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SPECTRAA&series=EQ",
+          "collectionStartedAt": "2026-09-18T19:38:31.936692+00:00",
+          "method": "GET",
+          "collectionCompletedAt": "2026-09-18T19:38:36.603995+00:00",
+          "statusCode": 200,
+          "responseUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SPECTRAA&series=EQ",
+          "bytes": 7998,
+          "sha256": "ffbe45307b21d88176f72966809117dbc3ad2d63852ec5293375b22d0ffe5853",
+          "bodyFile": "nse-detail-eq.response",
+          "bodyEncoding": "requests decoded content encoding; bytes before text decoding",
+          "responseDateHeader": "Fri, 18 Sep 2026 19:38:34 GMT",
+          "contentType": "application/json; charset=utf-8"
+        },
+        {
+          "requestUrl": "https://www.nseindia.com/api/ipo-detail?symbol=JSIPL&series=EQ",
+          "collectionStartedAt": "2026-09-18T19:42:08.701265+00:00",
+          "method": "GET",
+          "collectionCompletedAt": "2026-09-18T19:42:13.593275+00:00",
+          "statusCode": 200,
+          "responseUrl": "https://www.nseindia.com/api/ipo-detail?symbol=JSIPL&series=EQ",
+          "bytes": 12359,
+          "sha256": "f300ce5efa47732699711854c9b7582222b4af1faf3b81b2272aa84fbda03eb7",
+          "bodyFile": "nse-detail-jsipl-eq.response",
+          "bodyEncoding": "requests decoded content encoding; bytes before text decoding",
+          "responseDateHeader": "Fri, 18 Sep 2026 19:42:11 GMT",
+          "contentType": "application/json; charset=utf-8"
+        },
+        {
+          "requestUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SPECTRAA&series=SME",
+          "collectionStartedAt": "2026-09-18T19:38:31.436729+00:00",
+          "method": "GET",
+          "collectionCompletedAt": "2026-09-18T19:38:31.936692+00:00",
+          "statusCode": 200,
+          "responseUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SPECTRAA&series=SME",
+          "bytes": 12915,
+          "sha256": "bbdc8da8d80c37ed2f03adc1ab8c9bc21b35971d33c2d25836545f0ff0286362",
+          "bodyFile": "nse-detail-sme.response",
+          "bodyEncoding": "requests decoded content encoding; bytes before text decoding",
+          "responseDateHeader": "Fri, 18 Sep 2026 19:38:29 GMT",
+          "contentType": "application/json; charset=utf-8"
+        },
+        {
+          "requestUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SONA&series=EQ",
+          "collectionStartedAt": "2026-09-18T19:42:08.220231+00:00",
+          "method": "GET",
+          "collectionCompletedAt": "2026-09-18T19:42:08.700263+00:00",
+          "statusCode": 200,
+          "responseUrl": "https://www.nseindia.com/api/ipo-detail?symbol=SONA&series=EQ",
+          "bytes": 14092,
+          "sha256": "7a3db748bbff92267ecf2d814d6d2706272bc8bff3949e87299fe631d442f8dc",
+          "bodyFile": "nse-detail-sona-eq.response",
+          "bodyEncoding": "requests decoded content encoding; bytes before text decoding",
+          "responseDateHeader": "Fri, 18 Sep 2026 19:42:06 GMT",
+          "contentType": "application/json; charset=utf-8"
+        },
+        {
+          "requestUrl": "https://nsearchives.nseindia.com/content/ipo/ipo_graph_logic.pdf",
+          "collectionStartedAt": "2026-09-18T19:39:52.367728+00:00",
+          "method": "GET",
+          "collectionCompletedAt": "2026-09-18T19:39:53.187533+00:00",
+          "statusCode": 200,
+          "responseUrl": "https://nsearchives.nseindia.com/content/ipo/ipo_graph_logic.pdf",
+          "bytes": 63849,
+          "sha256": "aea1be50badb33a15243a2c650c295e231f3a3788b27b60b6eadd56a7cee3064",
+          "bodyFile": "nse-graph-logic.response",
+          "bodyEncoding": "requests decoded content encoding; bytes before text decoding",
+          "responseDateHeader": "Fri, 18 Sep 2026 19:39:51 GMT",
+          "contentType": "application/pdf"
+        },
+        {
+          "requestUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SPECTRAA&type=Active",
+          "collectionStartedAt": "2026-09-18T19:38:30.716246+00:00",
+          "method": "GET",
+          "collectionCompletedAt": "2026-09-18T19:38:31.436729+00:00",
+          "statusCode": 200,
+          "responseUrl": "https://www.nseindia.com/market-data/issue-information?series=SME&symbol=SPECTRAA&type=Active",
+          "bytes": 298169,
+          "sha256": "6cea751877d1fad970319ec108774b643cbf5de5e629d3c5abbc98db9a2ecefc",
+          "bodyFile": "nse-issue-page.response",
+          "bodyEncoding": "requests decoded content encoding; bytes before text decoding",
+          "responseDateHeader": "Fri, 18 Sep 2026 19:38:29 GMT",
+          "contentType": "text/html; charset=utf-8"
+        },
+        {
+          "requestUrl": "https://nsearchives.nseindia.com/content/ipo/POSTANCHOR_PARAMETERS_SPECTRAA.zip",
+          "collectionStartedAt": "2026-09-18T19:39:48.694160+00:00",
+          "method": "GET",
+          "collectionCompletedAt": "2026-09-18T19:39:49.711079+00:00",
+          "statusCode": 200,
+          "responseUrl": "https://nsearchives.nseindia.com/content/ipo/POSTANCHOR_PARAMETERS_SPECTRAA.zip",
+          "bytes": 79752,
+          "sha256": "b52a0e8897aca2c45feeb7bc52862a81d1c77cc55fce3677598362d685ddea0d",
+          "bodyFile": "nse-postanchor-parameters.response",
+          "bodyEncoding": "requests decoded content encoding; bytes before text decoding",
+          "zipMembers": [
+            {
+              "filename": "POSTANCHOR_PARAMETERS_SPECTRAA/",
+              "bytes": 0
+            },
+            {
+              "filename": "POSTANCHOR_PARAMETERS_SPECTRAA/POSTANCHOR_PARAMETERS_SPECTRAA.pdf",
+              "bytes": 93664
+            }
+          ],
+          "responseDateHeader": "Fri, 18 Sep 2026 19:39:47 GMT",
+          "contentType": "application/zip"
+        },
+        {
+          "requestUrl": "https://nsearchives.nseindia.com/content/ipo/PREANCHOR_PARAMETERS_SPECTRAA.zip",
+          "collectionStartedAt": "2026-09-18T19:39:49.733922+00:00",
+          "method": "GET",
+          "collectionCompletedAt": "2026-09-18T19:39:50.878062+00:00",
+          "statusCode": 200,
+          "responseUrl": "https://nsearchives.nseindia.com/content/ipo/PREANCHOR_PARAMETERS_SPECTRAA.zip",
+          "bytes": 78717,
+          "sha256": "afa54d7c2e05e96b155f2589035c7f9eb3c2bfeec426f8bc53ede315e856f474",
+          "bodyFile": "nse-preanchor-parameters.response",
+          "bodyEncoding": "requests decoded content encoding; bytes before text decoding",
+          "zipMembers": [
+            {
+              "filename": "PREANCHOR_PARAMETERS_SPECTRAA/",
+              "bytes": 0
+            },
+            {
+              "filename": "PREANCHOR_PARAMETERS_SPECTRAA/PREANCHOR_PARAMETERS_SPECTRAA.pdf",
+              "bytes": 92593
+            }
+          ],
+          "responseDateHeader": "Fri, 18 Sep 2026 19:39:48 GMT",
+          "contentType": "application/zip"
+        }
+      ],
+      "pdfMembers": [
+        {
+          "file": "nse-anchor-report.pdf",
+          "bytes": 334135,
+          "sha256": "aa689765e68e5ab3dccf1a7ae14ebceb2f51c5e4a148d73b5e8c7b3ffdfab9b5"
+        },
+        {
+          "file": "nse-postanchor-parameters.pdf",
+          "bytes": 93664,
+          "sha256": "1009c265bc528563ab2eb4d09a6179dd51d132c51fa6630302a21580879d83ec"
+        },
+        {
+          "file": "nse-preanchor-parameters.pdf",
+          "bytes": 92593,
+          "sha256": "24ec7a79060a0ed2d431f6a2e0ec2e69deb9b6bf395398965e526c9c5a46671c"
+        }
+      ],
+      "fixture": {
+        "path": "tests/nse_subscription_detail_20260918.json",
+        "sha256": "7e1fe25cc410c6810db7f60c32afc78d06f99d29ecb778831da07b2fa2654d9b",
+        "representation": "selected literal source fields; source hashes refer to full response bodies"
+      },
+      "sourceClocks": {
+        "activeCat": "Updated as on 18-Sep-2026 17:00:00",
+        "demandGraph": "As on 18-Sep-2026 17:00:02 IST",
+        "demandGraphALL": "As on 18-Sep-2026 17:00:00 IST",
+        "canonicalObservationTimeChanged": false
+      },
+      "documentIdentity": {
+        "postAnchorMember": "POSTANCHOR_PARAMETERS_SPECTRAA/POSTANCHOR_PARAMETERS_SPECTRAA.pdf",
+        "postAnchorReportingDate": null,
+        "preAnchorMember": "PREANCHOR_PARAMETERS_SPECTRAA/PREANCHOR_PARAMETERS_SPECTRAA.pdf",
+        "preAnchorReportingDate": null,
+        "anchorMember": "ANCHOR_SPECTRAA/Company Anchor Letter.pdf",
+        "anchorReportingDate": "2026-09-16"
+      },
+      "denominatorEvidence": {
+        "unit": "equity shares",
+        "postAnchorQib": 684000,
+        "postAnchorNibIncludingMarketMaker": 697200,
+        "individualInvestor": 1197600,
+        "postAnchorTotal": 2578800,
+        "marketMakerIncludedInNib": 182400,
+        "anchorExcludedFromTotal": 1024800,
+        "source": "post-anchor security parameters, page2 category table and footnote; page1 issue identity",
+        "reviewMethod": "pypdf text extraction and both post-anchor PDF pages visually rendered with Poppler; anchor allocation report page1 visually reviewed",
+        "computedSubscriptionMultiplesAccepted": false
+      },
+      "bseIndexEvidence": {
+        "betaDisplayIpoLinks": 20,
+        "exactSpectraaMatch": false,
+        "mainHostResponse": "JavaScript application shell"
+      },
+      "canonicalMutated": false,
+      "holdMutated": false,
+      "proposalsMutated": false,
+      "p4BlockersRemoved": 0,
+      "nextAction": "Obtain official category subscription multiples with valid denominators and supported scope for this exact live offer; retain hold until reviewed publication."
+    },
+    "fixturePath": "tests/nse_subscription_detail_20260918.json",
+    "fixtureSha256": "7e1fe25cc410c6810db7f60c32afc78d06f99d29ecb778831da07b2fa2654d9b"
+  },
+  "validation": {
+    "pullRequestRun": 35390771579,
+    "pullRequestJob": 105748350929,
+    "conclusion": "success",
+    "regressionTests": 1239,
+    "postMergeRun": 35390899074,
+    "postMergeConclusion": "success",
+    "collectorRegressionTests": 1239,
+    "releaseVerifierTests": 31
+  },
+  "collection": {
+    "run": 35390899139,
+    "collectJob": 105748762440,
+    "publishJob": 105749398500,
+    "workflowConclusion": "success",
+    "mode": "subscriptions",
+    "sourceStageStatus": "source_blocked",
+    "finalProspectusAndPerformanceSourceCollection": false,
+    "health": {
+      "ok": false,
+      "degraded": true,
+      "attempted": 5,
+      "updated": 4,
+      "snapshotsAdded": 0,
+      "failed": 1,
+      "nseRecords": 0,
+      "bseFallbackRecords": 2,
+      "secondaryFallbackRecords": 2,
+      "secondarySources": {
+        "IPO Premium subscription (secondary)": 2
+      },
+      "asOf": "2026-09-19T01:52:15+05:30",
+      "pageHealth": {
+        "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+          "ok": true,
+          "records": 0
+        },
+        "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p": {
+          "ok": true,
+          "records": 20
+        },
+        "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2": {
+          "ok": false,
+          "records": 0,
+          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f9e562518b0>, 'Connection to www.bsesme.c"
+        }
+      },
+      "warnings": [
+        "Kheria Autocomp Limited: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no matching BSE public-issue link); used explicitly labelled IPO Premium subscription (secondary)",
+        "Axiom Gas Engineering Limited: official live feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no matching BSE public-issue link); used explicitly labelled IPO Premium subscription (secondary)"
+      ],
+      "errors": [
+        "SpectraA Technology Solutions Limited: official and secondary subscription feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no matching BSE public-issue link; secondary: IPO Premium subscription (secondary): IPO Premium subscription (secondary) row not found for SpectraA Technology Solutions Limited; Groww IPO subscription (secondary): Groww IPO subscription (secondary) page contained no parseable table rows; IPO Dhamaka subscription (secondary): IPO Dhamaka subscription (secondary) row not found for SpectraA Technology Solu)"
+      ]
+    },
+    "stage": {
+      "stage": "run_priority_subscriptions_v3.py",
+      "status": "source_blocked",
+      "exitCode": 0,
+      "durationSeconds": 39.76,
+      "checkedAt": "2026-09-18T20:22:16.518400+00:00",
+      "diagnostics": "Priority subscription failed: SpectraA Technology Solutions Limited: official and secondary subscription feeds unavailable (NSE: 403 Client Error: Forbidden for url: https://www.nseindia.com/; BSE: no matching BSE public-issue link; secondary: IPO Premium subscription (secondary): IPO Premium subscription (secondary) row not found for SpectraA Technology Solutions Limited; Groww IPO subscription (secondary): Groww IPO subscription (secondary) page contained no parseable table rows; IPO Dhamaka subscription (secondary): IPO Dhamaka subscription (secondary) row not found for SpectraA Technology Solu)\nPriority BSE issue index: 20 links across 2 healthy pages\nIPO Premium subscription (secondary): 4 parseable issues\nPriority subscription Kheria Autocomp Limited [IPO Premium secondary]: QIB=0.23 NII=0.26 Retail=0.59 Total=0.41\nPriority subscription National Stock Exchange of India Limited [BSE]: QIB=1.53 NII=1.68 Retail=0.72 Total=1.16\nPriority subscription Sonaselection India Limited [BSE]: QIB=0.46 NII=0.6 Retail=1.29 Total=0.9\nIPO Dhamaka subscription (secondary): 2 parseable issues\nPriority subscription Axiom Gas Engineering Limited [IPO Premium secondary]: QIB=0.8 NII=0.42 Retail=0.65 Total=0.56\nPriority subscriptions v3: attempted=5 updated=4 snapshots_added=0 failed=1 nse=0 bse=2 secondary=2 secondary_sources={'IPO Premium subscription (secondary)': 2}\n"
+    }
+  },
+  "publicationBoundary": {
+    "status": "passed",
+    "recordCount": 1371,
+    "canonicalSha256": "568b52ffac115885bfec544ebef35ed3dec8cee86b6c2d5f02dfb7186d7f7f7e",
+    "canonicalPublicationManifest": {
+      "runId": "35390899139",
+      "collectorCommit": "a0e7e0214bd161b227e822bbe0c41287f8e23429",
+      "status": "published",
+      "pendingConflictCount": 441
+    },
+    "staticValuesProofsAndCorrectionHistoriesUnchanged": true,
+    "allSubscriptionValuesAndHistoriesUnchanged": true,
+    "refreshedSubscriptions": [
+      {
+        "id": "sona",
+        "source": "BSE cumulative demand",
+        "sourceUrl": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7973&status=L",
+        "previousCollectedAt": "2026-09-18T23:17:12+05:30",
+        "collectedAt": "2026-09-19T01:52:13+05:30",
+        "observedAtUnchanged": true,
+        "timeBasis": "collection-only",
+        "valuesUnchanged": true,
+        "historyUnchanged": true,
+        "addedSourceEntries": [
+          {
+            "name": "BSE cumulative demand",
+            "kind": "exchange",
+            "url": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7973&status=L",
+            "asOf": "2026-09-19T01:52:13+05:30"
+          }
+        ],
+        "replacedSourceEntries": [
+          {
+            "name": "BSE cumulative demand",
+            "kind": "exchange",
+            "url": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7973&status=L",
+            "asOf": "2026-09-18T23:17:12+05:30"
+          }
+        ]
+      },
+      {
+        "id": "nse",
+        "source": "BSE cumulative demand",
+        "sourceUrl": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7977&status=L",
+        "previousCollectedAt": "2026-09-18T23:17:11+05:30",
+        "collectedAt": "2026-09-19T01:52:12+05:30",
+        "observedAtUnchanged": true,
+        "timeBasis": "collection-only",
+        "valuesUnchanged": true,
+        "historyUnchanged": true,
+        "addedSourceEntries": [
+          {
+            "name": "BSE cumulative demand",
+            "kind": "exchange",
+            "url": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7977&status=L",
+            "asOf": "2026-09-19T01:52:12+05:30"
+          }
+        ],
+        "replacedSourceEntries": [
+          {
+            "name": "BSE cumulative demand",
+            "kind": "exchange",
+            "url": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7977&status=L",
+            "asOf": "2026-09-18T23:17:11+05:30"
+          }
+        ]
+      },
+      {
+        "id": "kheriaauto",
+        "source": "IPO Premium subscription (secondary)",
+        "sourceUrl": "https://www.ipopremium.in/view/subscription",
+        "previousCollectedAt": "2026-09-18T23:17:09+05:30",
+        "collectedAt": "2026-09-19T01:52:10+05:30",
+        "observedAtUnchanged": true,
+        "timeBasis": "source-observation",
+        "valuesUnchanged": true,
+        "historyUnchanged": true,
+        "addedSourceEntries": [
+          {
+            "name": "IPO Premium subscription (secondary)",
+            "kind": "secondary-market-data",
+            "url": "https://www.ipopremium.in/view/subscription",
+            "asOf": "2026-09-19T01:52:10+05:30"
+          }
+        ],
+        "replacedSourceEntries": []
+      },
+      {
+        "id": "axiomgas",
+        "source": "IPO Premium subscription (secondary)",
+        "sourceUrl": "https://www.ipopremium.in/view/subscription",
+        "previousCollectedAt": "2026-09-18T23:17:14+05:30",
+        "collectedAt": "2026-09-19T01:52:15+05:30",
+        "observedAtUnchanged": true,
+        "timeBasis": "source-observation",
+        "valuesUnchanged": true,
+        "historyUnchanged": true,
+        "addedSourceEntries": [
+          {
+            "name": "IPO Premium subscription (secondary)",
+            "kind": "secondary-market-data",
+            "url": "https://www.ipopremium.in/view/subscription",
+            "asOf": "2026-09-19T01:52:15+05:30"
+          }
+        ],
+        "replacedSourceEntries": []
+      }
+    ],
+    "derivedClockChanges": {
+      "staticSourcePolicy.checkedAt": 1371,
+      "validation.checkedAt": 4
+    },
+    "protectedFiles": [
+      {
+        "path": "data/pending_updates.json",
+        "sha256": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+        "byteEqualFromBaselineThroughPublication": true
+      },
+      {
+        "path": "data/public_display_holds.json",
+        "sha256": "dd6b07a6ffc3a816f6382d3bc7209487c7e6efb9da37d565d6d8ddaebde3ab85",
+        "byteEqualFromBaselineThroughPublication": true
+      }
+    ],
+    "retainedProposals": 441,
+    "unchangedPublicProfileBytes": [
+      "snehaa",
+      "sacheerome",
+      "spectraa",
+      "teamtech"
+    ],
+    "reviewedIntermediaryProofHashes": {
+      "snehaa": "7f457a82d550bf335553becbbe627afddc5f79f49dd6aab32a7b3e55f912133c",
+      "sacheerome": "99837efcea055b68570ad21f16a4d24dc01f7de09b1183e88249487c6784bff9"
+    },
+    "spectraaSubscriptionHoldActive": true,
+    "sourceReviewIssuesUnchanged": true,
+    "phaseStatus": {
+      "generatedAt": "2026-09-18T20:23:06.322659+00:00",
+      "p4": {
+        "status": "incomplete",
+        "actionableRecords": 388,
+        "higherPriorityRecords": 55,
+        "semanticErrors": 0,
+        "sourceReviewItems": 1598,
+        "blockingSourceReviewItems": 1594,
+        "p5OnlySourceReviewItems": 4,
+        "unmappedSourceReviewItems": 0,
+        "finalProspectusRevalidationRecords": 322,
+        "finalProspectusRevalidationFields": 1175,
+        "higherPriorityFinalProspectusRevalidationRecords": 28,
+        "higherPriorityFinalProspectusRevalidationFields": 105,
+        "resolvedUnavailableRecords": 5
+      },
+      "p5": {
+        "status": "waiting_for_p4",
+        "actionableRecords": 914
+      }
+    }
+  },
+  "artifacts": [
+    {
+      "name": "ipo-collection-35390899139.zip",
+      "id": 10565302661,
+      "sha256": "747eb17e4fa226a127292d7879545c63f94bd8db5d0417b7b812aaf0ae6cd19a",
+      "bytes": 3988828,
+      "matchesGitHubDigest": true,
+      "retainedLocalPath": "../artifacts/nse-detail-guard-release/ipo-collection-35390899139.zip"
+    },
+    {
+      "name": "public-release-35391206824-1.zip",
+      "id": 10565407732,
+      "sha256": "9b37169da1639e404a7afedc5faff905e5c11ce6d02fd3076f28a8d83bfebd46",
+      "bytes": 2225,
+      "matchesGitHubDigest": true,
+      "retainedLocalPath": "../artifacts/nse-detail-guard-release/public-release-35391206824-1.zip"
+    }
+  ],
+  "artifactEntries": {
+    "base.json": "1b675b7b40bec05d6077e10f2e24d0c83a98c9959b5e0d60c04cb5ab9455b6b9",
+    "proposed.json": "6b907a9d8e1f50af03c7a9e57b51f04ffa00400b4db562fac949700d388d5a32",
+    "source-commit.txt": "445e76ee6ae39175d5eaf96aadd4a069476f399f8e5f52449d3c868739e39d82",
+    "attempt-1.json": "27f930914d2940d54058865f98595254f48d73bf1fcb9b414c835cb407fedf8b",
+    "deployment-run.txt": "5e542e31d2c845fa03972fbd9ce3ac8cb56fd5b3e3715630f34f458d23cd0ce9"
+  },
+  "deployment": {
+    "pagesRun": 35391159527,
+    "pagesConclusion": "success",
+    "liveRun": 35391206824,
+    "liveJob": 105749733077,
+    "liveConclusion": "success",
+    "preparedCandidate": false,
+    "receipt": {
+      "expectedCommit": "de69f6ce92b94ce0acfbe6709c38a1b170c313a8",
+      "status": "passed",
+      "scope": "public-artifact-and-review-delivery-not-source-accuracy",
+      "routeCount": 1371,
+      "sampledProfiles": [
+        "ipo/emmvee/",
+        "ipo/teamtech/",
+        "ipo/shakti-polytarp-limited/",
+        "ipo/kheriaauto/",
+        "ipo/vama-wovenfab-limited/",
+        "ipo/sona/",
+        "ipo/manika/",
+        "ipo/snehaa/",
+        "ipo/sacheerome/",
+        "ipo/spectraa/"
+      ],
+      "expectedSha256": {
+        "index.html": "7bb7c13dc4c856b9bcb77138e9d9cdfb8934384688e97c27c5bd9d81aa6fec59",
+        "public-quality.js": "c1af0c3998bf53c582a920419980bccf2c2533e618f7088f665bf438e07c626c",
+        "public-quality.css": "988dee5e990116eff25b8746a77b0b618b23d5394f3b919d601cceaedd6d4467",
+        "app.js": "aad042ffd8cea3576b5abff34d8b0378e812ab7e4f368f73e162d427201167d3",
+        "company-page.js": "c965ddfd01ab122b196dc58797d299f724b2378092c7ff927c91ea14b132c610",
+        "company.js": "8fba803171c5fd0fb09b95844fc153eaeff159a3a55c92785ef3c9013e08435d",
+        "phase4.js": "d7c69047e184cf5f896a75e61c62150a462ed985deaf93fdd8c0015a212e388f",
+        "methodology.html": "fe6b152b67eeaf0d1b17d7a700e1819fc250256bc022b64c9735c7867d7c546c",
+        "data/ipos-summary.json": "311954521a72e6afa6a2b4ba47b1f9afd742abda9034040f56e00e86dc35b179",
+        "ipo/routes.json": "8b96c8daccc44979e82e710117a801baa33b586c88a939d8923ba6fed8d11e2b",
+        "ipo/emmvee/index.html": "4502adcd7a5ebb3d4909a9eab28f0562c4efd7f117c0e6a4e1179d0f5fe046a8",
+        "ipo/teamtech/index.html": "724722823686a49c9c8cdb6e6411d47ad5ebbff4d22dbc024143cbad3cc22e8d",
+        "ipo/shakti-polytarp-limited/index.html": "da020c1a8592d2cc5c5992d600117fdebc193069bd8f58f49913d3e2cf390b2c",
+        "ipo/kheriaauto/index.html": "465b8b06e550738bf74cd25dee879a357522a63a3668a8d393ffbc8c1e2de8d2",
+        "ipo/vama-wovenfab-limited/index.html": "0e67b0835622dd9251aa64b48cefb7b0cde1844104bf8c97478a10fb0c63eb2c",
+        "ipo/sona/index.html": "f8df8068a6b8271fe27712a2cdff9ec0766c2d84ccc8ac77546caa90444e89b7",
+        "ipo/manika/index.html": "40f677684570b7080c996d4a4ca9d5e1140e8c1f3bdd318099eafead8625f2f5",
+        "ipo/snehaa/index.html": "1446a2bcc469bd0842282d32f361daf93db06908f9bcfa477eaf0e61c3a5ba9f",
+        "ipo/sacheerome/index.html": "19b000ff0c19a1b54c3871aa3d06ea2d2e7c41afe26c069d6a9add90b7980b47",
+        "data/validation.json": "e1cf7326ecad60e0b948e9e6b89563f8587dddf278dcb31eb503aefebbafaf8f",
+        "data/missing_queue.json": "e7fa856d252096bd1267e2689acb16ead6f7d4be00ed443e52104bc805237566",
+        "data/phase_status.json": "dfe1691b09919a934ba492b7dfd155d6a8344fc9aa32ceb58681cb7f6d8bd271",
+        "ipo/spectraa/index.html": "ad2c64e03513b27df3187443e44032e82844608734ab64d8e5c49f9fa75c3f31"
+      },
+      "reviewedPublication": {
+        "status": "not_requested",
+        "scope": "retained-reviewed-evidence-delivery"
+      },
+      "subscriptionHolds": [
+        {
+          "id": "sona",
+          "active": false,
+          "snapshotDigest": "0238fc7f9fe2c72591c7caf5aeefa9bb53e3c4448e0ac33517353a018fae95d9"
+        },
+        {
+          "id": "ssretail",
+          "active": false,
+          "snapshotDigest": "c8c3574543b0922c19481960eff842d8f61c6e1dce2d888a58339e5f0c740620"
+        },
+        {
+          "id": "jsipl",
+          "active": false,
+          "snapshotDigest": "97526469a3f18754cfc212e33ca111efb97c61aead72c7c3b5ec7ec0b84b7101"
+        },
+        {
+          "id": "heromotors",
+          "active": false,
+          "snapshotDigest": "9d3f0766f41e0050bdce791c245314ce20b5a2ea23317f46772101dc186c8bc9"
+        },
+        {
+          "id": "nse",
+          "active": false,
+          "snapshotDigest": "2818fa0ade3a4b052139cd4095ccafd0d9e943de5923ba48137d06a95f288b31"
+        },
+        {
+          "id": "kheriaauto",
+          "active": false,
+          "snapshotDigest": "73075af7db7c2863de2e3c3f5ebc3e7521cbe5c097b09769a3c865a5ad607d49"
+        },
+        {
+          "id": "spectraa",
+          "active": true,
+          "snapshotDigest": "212b33152f0a83be66ce12cfe1c68df574005c3382319277e24bc466039c2c1f"
+        },
+        {
+          "id": "axiomgas",
+          "active": false,
+          "snapshotDigest": "51bbbef230add30a70311b524674696c73f8e13e2d0ccb882808722c713d2f92"
+        }
+      ],
+      "additionalReviewPaths": [
+        "ipo/snehaa/index.html",
+        "ipo/sacheerome/index.html",
+        "data/validation.json",
+        "data/missing_queue.json",
+        "data/phase_status.json"
+      ],
+      "baseUrl": "https://vasuki8.github.io/IPO-Tracker/",
+      "httpChecked": [
+        "index.html",
+        "public-quality.js",
+        "public-quality.css",
+        "app.js",
+        "company-page.js",
+        "company.js",
+        "phase4.js",
+        "methodology.html",
+        "data/ipos-summary.json",
+        "ipo/routes.json",
+        "ipo/emmvee/index.html",
+        "ipo/teamtech/index.html",
+        "ipo/shakti-polytarp-limited/index.html",
+        "ipo/kheriaauto/index.html",
+        "ipo/vama-wovenfab-limited/index.html",
+        "ipo/sona/index.html",
+        "ipo/manika/index.html",
+        "ipo/snehaa/index.html",
+        "ipo/sacheerome/index.html",
+        "data/validation.json",
+        "data/missing_queue.json",
+        "data/phase_status.json",
+        "ipo/spectraa/index.html"
+      ]
+    }
+  },
+  "historicalDiagnosticPreview": {
+    "run": 35389311088,
+    "obsoleteHead": "f5616c06",
+    "reportedStatusAt20260918T202500Z": "in_progress",
+    "reportedBy": "integration-coordinator",
+    "accepted": false,
+    "finalHeadValidation": false,
+    "scope": "Earlier broad source preview is diagnostic only and authorizes no canonical update."
+  },
+  "coordinatorLiveDomVerification": {
+    "reportedBy": "integration-coordinator",
+    "observedAt": "2026-09-18T20:27:00Z",
+    "deploymentCommit": "de69f6ce92b94ce0acfbe6709c38a1b170c313a8",
+    "observations": [
+      "The directory SpectraA row shows subscription Under review with the unreconciled source and bid-denominator explanation.",
+      "The SpectraA quick view retains the withheld subscription multiples and history."
+    ],
+    "screenshotClaim": false
+  },
+  "limitations": [
+    "The guard passes retained NSE fixtures; this live run accepted zero NSE records and is not live NSE source acceptance.",
+    "SpectraA source access failed and its historical subscription hold remains active. The separately reviewed graph denominator does not authorize a headline or category numerical correction.",
+    "Existing source-labelled BSE and secondary snapshots only refreshed collection clocks; no new observation time, subscription value or history event was inferred.",
+    "P4 blockers removed by this guard release: zero. P4 remains incomplete, P5 remains waiting_for_p4 and performance expansion remains gated.",
+    "Commercial data rights and redistribution permissions remain unresolved; no new spending, contracts, outreach, permissions or infrastructure changes were made."
+  ]
+}

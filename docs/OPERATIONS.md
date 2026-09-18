@@ -37,6 +37,17 @@ accepted updates. Historical mixed snapshots require source reconciliation or an
 explicit review hold; this boundary does not backfill them. See
 [the core subscription review](reviews/2026-09-18-core-subscription-boundary.md).
 
+NSE detail collection requires the board-compatible API route (`SME` for SME,
+`EQ` for mainboard), exact issuer/symbol/offer dates, a reported category multiple,
+positive offered shares and matching bid arithmetic. Conflicting duplicate
+headline counts reject the response even when one row lacks a multiple. Counts-only
+tables, graph headlines and zero-denominator placeholders cannot supply missing
+subscription values. Rejection preserves the accepted snapshot and its hold;
+another source still needs the existing complete-response checks. API routing is
+distinct from a security's trading-series label. The
+[SpectraA evidence review](reviews/2026-09-18-spectraa-nse-detail-evidence.md)
+records why its official response does not yet resolve its historical hold.
+
 Conflicting proposals are retained in `data/pending_updates.json`; accepted values are preserved. `documentFields` and `subscriptionSnapshot` in a pending path name the atomic groups defined in `publish_transaction.py`. Review source evidence, then update or recollect the affected group. There is no automatic last-writer-wins conflict resolution. Failed publications retain their original collection artifact; rerun a failed publisher only when its code is still current, otherwise recollect on current main. Publication requests a Pages rebuild explicitly after a bot commit.
 
 `priceSnapshot` keeps listing prices, final-price evidence, observations and calculated returns together. If another collection changed any of those fields, the competing snapshot stays pending rather than mixing one baseline with another return.
