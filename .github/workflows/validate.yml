@@ -38,6 +38,8 @@ jobs:
           mkdir -p artifacts/proposal-reconciliation
           uv run --frozen python tools/reconcile_pending_updates.py > artifacts/proposal-reconciliation/report.json
           uv run --frozen python tools/reconcile_pending_updates.py --check-report artifacts/proposal-reconciliation/report.json
+          uv run --frozen python tools/report_update_health.py --as-of "$(date -u +'%Y-%m-%dT%H:%M:%SZ')" > artifacts/proposal-reconciliation/update-health.json
+          uv run --frozen python tools/report_update_health.py --check-report artifacts/proposal-reconciliation/update-health.json
           git diff --exit-code -- data/ipos.json data/pending_updates.json data/phase_status.json data/missing_queue.json
           git rev-parse HEAD > artifacts/proposal-reconciliation/checkout-commit.txt
       - name: Retain read-only proposal report
