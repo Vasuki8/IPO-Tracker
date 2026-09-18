@@ -119,13 +119,26 @@ def main():
     cli.add_argument('--pending', type=Path, default=Path('data/pending_updates.json'))
     cli.add_argument('--run-id', default='local')
     cli.add_argument('--source-commit-file', type=Path)
+    cli.add_argument('--reviewed-manifest', type=Path)
     args = cli.parse_args()
+    if args.reviewed_manifest and args.source_commit_file is None:
+        raise ValueError('Reviewed publication requires the original source-commit manifest')
     source_commit = args.source_commit_file.read_text().strip() if args.source_commit_file else None
     # A supplied but empty manifest is corrupt, not an opt-out from validation.
     if args.source_commit_file is not None:
         verify_source_commit(source_commit)
     values = [json.loads(path.read_text()) for path in (args.base, args.proposed, args.current)]
+    reviewed = None
+    if args.reviewed_manifest:
+        from reviewed_corrections import verify_manifest, validate_records, validate_scope
+        reviewed = verify_manifest(json.loads(args.reviewed_manifest.read_text()), args.base, args.proposed, *values[:2])
     output, conflicts = merge_payload(*values)
+    if reviewed:
+        registry, groups, ids = reviewed
+        if conflicts:
+            raise ValueError('Reviewed publication has concurrent conflicts; no accepted or pending files were changed')
+        validate_scope(values[2], output, ids, allow_meta=True)
+        validate_records(output, registry, groups, ids)
     pending = json.loads(args.pending.read_text()) if args.pending.exists() else {'updates': []}
     fingerprints = {item['fingerprint'] for item in pending['updates']}
     for conflict in conflicts:
@@ -134,8 +147,11 @@ def main():
             pending['updates'].append({**conflict, 'fingerprint': fingerprint, 'runId': args.run_id})
             fingerprints.add(fingerprint)
     output['meta']['publication'] = {'runId': args.run_id, 'collectorCommit': source_commit, 'status': 'published_with_pending_conflicts' if conflicts else 'published', 'pendingConflictCount': len(pending['updates'])}
+    if reviewed:
+        output['meta']['publication'].update({'mode': 'reviewed', 'reviewedIds': ids})
     args.current.write_text(json.dumps(output, ensure_ascii=False, indent=2) + '\n')
-    args.pending.write_text(json.dumps(pending, ensure_ascii=False, indent=2) + '\n')
+    if not reviewed:
+        args.pending.write_text(json.dumps(pending, ensure_ascii=False, indent=2) + '\n')
     print(json.dumps(output['meta']['publication']))
 
 

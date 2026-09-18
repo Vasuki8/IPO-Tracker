@@ -5,13 +5,16 @@ import re
 import subprocess
 from pathlib import Path
 
-# Reviewed corrections are executable publication policy, not ordinary output
-# data. An edit, deletion, or newly introduced registry invalidates an old run.
+# Reviewed corrections and explicit release requests are publication policy,
+# not ordinary output. Changes invalidate an artifact collected before them.
 SOURCE_DEPENDENCIES = (
     'scripts',
     'uv.lock',
     'pyproject.toml',
     'data/verified_corrections.json',
+    'data/reviewed_correction_evidence.json',
+    'data/reviewed_correction_evidence',
+    'data/reviewed_publication_request.json',
 )
 
 

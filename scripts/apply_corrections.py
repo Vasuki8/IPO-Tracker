@@ -10,6 +10,7 @@ from urllib.parse import urlparse
 
 import final_prospectus_policy as source_policy
 from record_integrity import repair
+from reviewed_evidence import attach_evidence, evidence_conflict, index_groups, load_groups
 
 ROOT = Path(__file__).resolve().parents[1]
 _STATIC_TOP_LEVEL = {
@@ -93,7 +94,8 @@ def fill_reviewed_fields(rows, entries):
     return applied, conflicts
 
 
-def apply(payload, registry):
+def apply(payload, registry, *, evidence_groups=()):
+    evidence_by_id = index_groups(evidence_groups, registry)
     repair(payload)
     rows = {row['id']: row for row in payload['ipos']}
     applied, conflicts = 0, []
@@ -107,6 +109,11 @@ def apply(payload, registry):
             continue
         if any(any(row.get(key) != expected for key, expected in entry.get('identity', {}).items()) for entry in corrections):
             conflicts.append({'id': identifier, 'reason': 'Reviewed issuer or offer identity changed'})
+            continue
+        evidence_group = evidence_by_id.get(identifier)
+        problem = evidence_conflict(row, evidence_group) if evidence_group else None
+        if problem:
+            conflicts.append({'id': identifier, 'fields': list(evidence_group['proofs']), 'reason': problem})
             continue
         prohibited = [
             entry['field']
@@ -131,6 +138,8 @@ def apply(payload, registry):
                     record_evidence(row, correction, row.get(field), correction['after'])
                 row[field] = copy.deepcopy(correction['after'])
                 applied += 1
+        if evidence_group:
+            attach_evidence(row, evidence_group)
     filled, fill_conflicts = fill_reviewed_fields(rows, registry.get('fillMissing', []))
     applied += filled
     conflicts.extend(fill_conflicts)
@@ -146,11 +155,18 @@ def main():
     cli = argparse.ArgumentParser()
     cli.add_argument('--data', type=Path, default=ROOT / 'data/ipos.json')
     cli.add_argument('--registry', type=Path, default=ROOT / 'data/verified_corrections.json')
+    cli.add_argument('--evidence-registry', type=Path, help='Explicit evidence registry for an isolated custom-registry run')
     args = cli.parse_args()
     if not args.registry.exists():
         return
     payload = json.loads(args.data.read_text())
-    applied, conflicts = apply(payload, json.loads(args.registry.read_text()))
+    # Production always uses the mandatory evidence registry. Isolated custom
+    # registries preserve their previous API unless evidence is explicitly supplied.
+    evidence_path = args.evidence_registry
+    if evidence_path is None and args.registry.resolve() == (ROOT / 'data/verified_corrections.json').resolve():
+        evidence_path = ROOT / 'data/reviewed_correction_evidence.json'
+    groups = load_groups(evidence_path) if evidence_path is not None else ()
+    applied, conflicts = apply(payload, json.loads(args.registry.read_text()), evidence_groups=groups)
     args.data.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + '\n')
     print(json.dumps({'appliedFields': applied, 'conflicts': conflicts}))
 

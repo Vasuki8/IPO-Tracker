@@ -1,7 +1,7 @@
-"""Select a projection-only rebuild only for an entirely presentation-only push.
+"""Classify a push without turning reviewed-only requests into source collection.
 
-Unknown paths, unavailable history and mixed parser/data pushes keep repair mode.
-This changes no phase gate or source collector permission.
+Unknown paths and unavailable history retain the existing repair behavior.
+A request mixed with other changes fails closed instead of collecting sources.
 """
 from __future__ import annotations
 import os
@@ -15,26 +15,30 @@ PRESENTATION_FILES = {
     'ipo/routes.json', 'data/ipos-summary.json',
     '.github/workflows/refresh.yml', '.github/workflows/frontend.yml',
 }
+REVIEWED_REQUEST = 'data/reviewed_publication_request.json'
+
 
 def push_mode(paths):
+    if paths and REVIEWED_REQUEST in paths:
+        if paths == [REVIEWED_REQUEST]:
+            return 'reviewed'
+        # Not caught by the unavailable-history fallback below. This is an
+        # explicit but invalid request, never permission for broad collection.
+        raise RuntimeError('A reviewed publication request must be the only changed file')
     def presentation(path):
-        # Reject malformed paths rather than normalizing them into an allowlist.
         if not isinstance(path, str) or not path or not path.isprintable() or '\\' in path:
             return False
         pure = PurePosixPath(path)
         if pure.is_absolute() or pure.as_posix() != path or '..' in pure.parts:
             return False
-        # The generator uses lowercase alphanumeric slugs, with hyphens (including
-        # a double hyphen before a collision suffix). Other ipo/ files stay repair.
         profile = re.fullmatch(r'ipo/[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/index\.html', path)
         return (path in PRESENTATION_FILES or path.startswith(('docs/', 'tests/', 'assets/'))
                 or profile is not None
                 or (len(pure.parts) == 1 and (pure.suffix in {'.html', '.css', '.js'} or path == 'README.md')))
     return 'presentation' if paths and all(presentation(path) for path in paths) else 'repair'
 
+
 def main():
-    # A depth-two checkout includes the merge's first parent. A multi-commit push
-    # with unknown earlier history conservatively runs repair instead.
     import json
     from pathlib import Path
     try:
@@ -42,8 +46,7 @@ def main():
         before = event.get('before', '') if isinstance(event, dict) else ''
         if not isinstance(before, str) or not re.fullmatch('[a-f0-9]{40}', before) or before == '0' * 40:
             raise ValueError('No usable push baseline')
-        # Include both sides of renames so a protected deletion cannot be hidden
-        # by a presentation destination. NUL delimiters retain unusual filenames.
+        # Both sides of renames are included; protected deletions cannot be hidden.
         result = subprocess.run(['git', 'diff', '--name-only', '--no-renames', '-z', before, 'HEAD', '--'],
                                 check=True, capture_output=True, text=True)
         paths = result.stdout.rstrip('\0').split('\0') if result.stdout else []
@@ -51,6 +54,7 @@ def main():
     except (OSError, KeyError, ValueError, subprocess.CalledProcessError):
         mode = 'repair'
     print(mode)
+
 
 if __name__ == '__main__':
     main()
