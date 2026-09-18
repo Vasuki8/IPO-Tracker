@@ -45,7 +45,16 @@ def review_task(record: dict[str, Any], issue: dict[str, Any]) -> dict[str, Any]
     financial = isinstance(field, str) and bool(FINANCIAL_FIELD.fullmatch(field))
     gap = "offer.financials" if financial else FINAL_GAPS.get(field) if isinstance(field, str) else None
     review_type = issue.get("reviewType")
-    if isinstance(review_type, str) and review_type in HOLD_REVIEW_TYPES:
+    if review_type == 'subscription_snapshot_conflict':
+        gap = None
+        route = 'manual-source-review'
+        action = ('Reconcile the exact issuer/offer, complete subscription snapshot and bid denominators against '
+                  'issue-specific exchange detail or explicitly labelled secondary evidence. A newer collection '
+                  'clock or a headline total alone cannot resolve this review. Preserve the original snapshot/history.')
+        paths = ['/subscription', '/subscriptionSource', '/subscriptionSourceUrl', '/subscriptionObservedAt',
+                 '/subscriptionCollectedAt', '/subscriptionAsOf', '/subscriptionTimeBasis',
+                 '/subscriptionHistory', '/observations', '/sources', '/dataCorrections']
+    elif isinstance(review_type, str) and review_type in HOLD_REVIEW_TYPES:
         gap = None
         route = "manual-source-review"
         action = (

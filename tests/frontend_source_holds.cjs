@@ -56,9 +56,63 @@ async function main() {
         results.push({id:fixture.id,width,activeFieldsChecked:active,profileAndQuickView:'passed'});
       }
     }
+    // Independently expected active market snapshots, from retained issuer and
+    // source fields. Only collection-clock changes are non-resolving rechecks.
+    const market = JSON.parse(await fs.readFile(path.join(root,'tests/subscription_reviews_retained.json'),'utf8')).ipos;
+    let responsiveMarketChecked=false;
+    for (const fixture of market) {
+      const raw=canonical.find(r=>r.id===fixture.id);
+      const compared=Object.keys(fixture).filter(k=>k!=='status' && k!=='subscriptionHistory' && k!=='subscriptionAsOf' && k!=='subscriptionCollectedAt');
+      if(!raw || !compared.every(k=>JSON.stringify(raw[k])===JSON.stringify(fixture[k]))) {
+        results.push({id:fixture.id,marketHold:'different snapshot; not declared resolved'}); continue;
+      }
+      const responsive=!responsiveMarketChecked;
+      for(const width of responsive ? [1440,375,320] : [375]) {
+        await page.setViewportSize({width,height:900});
+        await page.goto(new URL(raw.profilePath,base).href,{waitUntil:'networkidle'});
+        await page.locator('#companyPage .company-profile').waitFor();
+        const payload=JSON.parse(await page.locator('#ipo-profile-data').textContent()).ipo;
+        assert.ok(!payload.subscription);assert.ok(!payload.subscriptionHistory?.length);
+        assert.equal(payload.publicQuality.fields.subscription.reason,'subscription_snapshot_conflict');
+        const section=page.locator('#company-field-quality .quality-grid > div').filter({has:page.locator('[data-quality-field="subscription"]')});
+        assert.match(await section.innerText(),/Under review/);
+        assert.match(await section.innerText(),/source or bid-denominator/);
+        assert.equal(await page.locator('#company-subscription svg, #company-subscription .subscription-card, #company-subscription table').count(),0);
+        assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
+        if(responsive)await page.screenshot({path:path.join(out,`subscription-hold-${width}.png`),fullPage:true});
+      }
+      await page.goto(new URL('?q='+encodeURIComponent(fixture.company),base).href,{waitUntil:'networkidle'});
+      await page.locator('#freshness.loaded').waitFor();
+      const row=page.locator(`#ipoRows tr[data-id="${fixture.id}"]`);
+      assert.equal(await row.locator('[data-label="Subscription"] .metric').innerText(),'—');
+      assert.match(await row.locator('[data-label="Subscription"]').innerText(),/Under review/);
+      const pendingDownload=page.waitForEvent('download');await page.locator('#exportCsv').click();
+      const download=await pendingDownload;
+      const lines=(await fs.readFile(await download.path(),'utf8')).replace(/^\uFEFF/,'').split('\r\n');
+      const parse=line=>[...line.matchAll(/(?:^|,)(?:"((?:[^"]|"")*)"|([^,]*))/g)].map(c=>(c[1]??c[2]).replace(/""/g,'"'));
+      const headers=parse(lines[0]),values=parse(lines[1]);
+      assert.equal(values[headers.indexOf('Subscription multiple')],'');
+      await row.locator('[data-action="preview"]').click();
+      const modal=page.locator('#detailDialog[open] #company-field-quality .quality-grid > div').filter({has:page.locator('[data-quality-field="subscription"]')});await modal.waitFor();
+      assert.match(await modal.innerText(),/Under review/);
+      assert.equal(await modal.locator('svg, .subscription-card, table').count(),0);
+      await page.keyboard.press('Escape');
+      if(responsive) {
+        await row.locator('[data-action="compare"]').click();
+        await page.locator('#search').fill('Teamtech');
+        await page.locator('#ipoRows tr[data-id="teamtech"] [data-action="compare"]').click();
+        await page.locator('#openCompare').click();
+        const comparison=page.locator('#compareBody tbody tr').filter({has:page.locator('th',{hasText:/^Subscription$/})});
+        assert.match(await comparison.locator('td').first().innerText(),/Under review/);
+        assert.equal(await comparison.locator('td').first().locator('.metric').innerText(),'—');
+        await page.keyboard.press('Escape');
+      }
+      responsiveMarketChecked=true;
+      results.push({id:fixture.id,marketHold:'profile, quick view, directory and CSV passed',responsiveAndComparison:responsive});
+    }
     assert.deepEqual(errors,[]); assert.deepEqual(canonicalRequests,[]);
     await fs.writeFile(path.join(out,'source-holds.json'),JSON.stringify({status:'passed',baseUrl:base.href,results,errors,canonicalRequests},null,2));
-    console.log('PASS source holds: profiles and quick views at 1440/390/320px');
+    console.log('PASS source holds: static and subscription profiles, quick views, directory, CSV and comparison');
   } finally { await browser.close(); }
 }
 main().catch(e=>{console.error(e);process.exitCode=1;});

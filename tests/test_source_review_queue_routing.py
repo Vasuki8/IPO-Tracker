@@ -272,10 +272,13 @@ class CheckedInSourceReviewCoverageTests(unittest.TestCase):
 
     def test_routing_does_not_clear_source_reviews_or_enable_p5(self):
         phase = phase_status.status(self.saved, self.validation)
+        # Compare routing under the same current validator. Committed reports may
+        # predate a new source hold until the serialized review publisher runs.
+        before_routing = phase_status.status(self.previous_queue, self.validation)
 
         self.assertEqual(phase["p4"]["sourceReviewItems"], self.validation["reviewCount"])
         self.assertEqual(phase["p4"]["unmappedSourceReviewItems"], 0)
-        self.assertEqual(phase["p4"]["blockingSourceReviewItems"], self.previous_phase["p4"]["blockingSourceReviewItems"])
+        self.assertEqual(phase["p4"]["blockingSourceReviewItems"], before_routing["p4"]["blockingSourceReviewItems"])
         self.assertEqual(phase["p4"]["p5OnlySourceReviewItems"], self.previous_phase["p4"]["p5OnlySourceReviewItems"])
         self.assertEqual(phase["p4"]["status"], self.previous_phase["p4"]["status"])
         self.assertEqual(phase["p5"]["status"], self.previous_phase["p5"]["status"])

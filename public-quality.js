@@ -19,6 +19,7 @@
     'freshIssueCr', 'ofsCr', 'issueComposition', 'financials', 'promoters', 'leadManagers',
     'registrar', 'objectsOfIssue', 'shareholding', 'listing.issuePrice'];
   const reasons = {
+    subscription_snapshot_conflict: 'This subscription snapshot has unreconciled source or bid-denominator evidence. Multiples and historical charts are withheld pending review; no replacement or final total has been accepted.',
     source_review: 'Source evidence requires review. The affected value is withheld.',
     composition_review: 'Issue totals or their supporting evidence require review. The complete composition is withheld.',
     quarantined: 'This field is quarantined pending source review.',
@@ -76,7 +77,7 @@
     return 'Source authority unverified';
   }
   function snapshot(ipo) {
-    return {...(ipo.subscription || {}), observedAt: ipo.subscriptionTimeBasis === 'collection-only' ? null : timestamp(ipo.subscriptionObservedAt),
+    return {...(ipo.publicQuality?.fields?.subscription?.state === 'under_review' ? {} : ipo.subscription || {}), observedAt: ipo.subscriptionTimeBasis === 'collection-only' ? null : timestamp(ipo.subscriptionObservedAt),
       collectedAt: timestamp(ipo.subscriptionCollectedAt || ipo.subscriptionAsOf),
       source: ipo.subscriptionSource || null, sourceUrl: safeUrl(ipo.subscriptionSourceUrl),
       authority: sourceAuthority(ipo.subscriptionSource, ipo.subscriptionSourceUrl, ipo.subscriptionAuthority)};
@@ -86,12 +87,13 @@
     return `${reported} · Checked at ${formatTime(s.collectedAt)} · ${s.authority || sourceAuthority(s.source,s.sourceUrl)}`;
   }
   function history(ipo) {
+    if (ipo.publicQuality?.fields?.subscription?.state === 'under_review') return [];
     return (ipo.subscriptionHistory || []).filter(r => r && timestamp(r.capturedAt || r.collectedAt))
       .map(r => ({...r, observedAt:timestamp(r.observedAt), collectedAt:timestamp(r.collectedAt || r.capturedAt)}))
       .sort((a,b) => Date.parse(a.collectedAt) - Date.parse(b.collectedAt));
   }
   function panel(ipo) {
-    const fields = Object.keys(ipo.publicQuality?.fields || {}).filter(f => f !== 'listing' && f !== 'subscription');
+    const fields = Object.keys(ipo.publicQuality?.fields || {}).filter(f => f !== 'listing' && (f !== 'subscription' || decision(ipo, f).state === 'under_review'));
     return `<section class="company-section" id="company-field-quality"><h3>Field evidence</h3><p class="company-data-note">Verification applies to each field, not the whole IPO. Review holds remain in the audit trail; missing values are not zero. Provisional disclosures are not final terms.</p><dl class="quality-grid">${fields.map(f => `<div><dt>${esc(fieldNames[f] || f)}</dt><dd>${note(ipo,f)}${reasons[decision(ipo,f).reason] ? `<p class="company-data-note">${esc(reasons[decision(ipo,f).reason])}</p>` : ''}</dd></div>`).join('')}</dl></section>`;
   }
   root.IPOQuality = {labels, fieldNames, decision, sanitize, note, overview, snapshot, freshness, history, formatTime, sourceAuthority, panel};
