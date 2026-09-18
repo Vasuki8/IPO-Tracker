@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-18T13:34:50.336917+00:00",
+  "generatedAt": "2026-09-18T13:53:08.343342+00:00",
   "parserVersion": 22,
   "recordCount": 1370,
   "errorCount": 0,
-  "reviewCount": 1596,
+  "reviewCount": 1607,
   "invalidRecordCount": 0,
-  "reviewRecordCount": 286,
+  "reviewRecordCount": 290,
   "subscriptionAuthority": {
     "officialRecords": 7,
     "secondaryRecords": 9,
@@ -4112,6 +4112,45 @@
       "reason": "Source table/period evidence has not been revalidated"
     },
     {
+      "id": "genxai",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Withheld use-of-proceeds allocations pending authoritative reconciliation of contradictory narrative and table definitions of net proceeds in the same Final Prospectus.",
+      "reviewType": "document_conflict",
+      "displayHold": {
+        "registryPath": "data/public_display_holds.json",
+        "holdId": "genxai",
+        "scope": "document",
+        "source": {
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/GenXAIAnalyticsLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2026-06-10",
+          "sha256": "c810471e52810eaf6ffb7f023b359b82702c486694af19f086dac8b89c0163b0",
+          "parserVersion": 31,
+          "issueOpenDate": "2026-06-05",
+          "checkedAt": "2026-09-17T23:21:37+05:30"
+        },
+        "binding": {
+          "sha256": "c810471e52810eaf6ffb7f023b359b82702c486694af19f086dac8b89c0163b0",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/GenXAIAnalyticsLimited_PROSP.pdf",
+          "documentDate": "2026-06-10",
+          "sourcePhysicalPagesInspected": [
+            100,
+            101,
+            117
+          ]
+        },
+        "identity": {
+          "id": "genxai",
+          "company": "GenXAI Analytics Limited",
+          "symbol": "GENXAI",
+          "openDate": "2026-06-05"
+        },
+        "reviewUrl": "https://github.com/Vasuki8/IPO-Tracker/pull/94",
+        "reviewedAt": "2026-09-17T19:17:00+00:00"
+      }
+    },
+    {
       "id": "cmrgreen",
       "field": "financials.FY2023.patCr",
       "severity": "review",
@@ -4158,6 +4197,47 @@
       "field": "issueComposition",
       "severity": "review",
       "reason": "Contradictory issue terms quarantined; Final Prospectus revalidation is still required"
+    },
+    {
+      "id": "teamtech",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Withheld use-of-proceeds allocations pending authoritative reconciliation of contradictory monetary-unit labels for the same net proceeds in the Final Prospectus: 4,548.59 lakh on pages 22-23 and 87, but 4,548.59 under Amount in Crores on page 89.",
+      "reviewType": "document_conflict",
+      "displayHold": {
+        "registryPath": "data/public_display_holds.json",
+        "holdId": "teamtech",
+        "scope": "document",
+        "source": {
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/TeamtechFormworkSolutionsLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2026-05-22",
+          "sha256": "985909fbad119ffa02604f6fbb2895387a98d817a1fa8b486a7806ac18b537e8",
+          "parserVersion": 31,
+          "issueOpenDate": "2026-05-19",
+          "checkedAt": "2026-09-17T23:40:59+05:30"
+        },
+        "binding": {
+          "sha256": "985909fbad119ffa02604f6fbb2895387a98d817a1fa8b486a7806ac18b537e8",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/TeamtechFormworkSolutionsLimited_PROSP.pdf",
+          "documentDate": "2026-05-22",
+          "sourcePhysicalPagesInspected": [
+            22,
+            23,
+            87,
+            88,
+            89
+          ]
+        },
+        "identity": {
+          "id": "teamtech",
+          "company": "Teamtech Formwork Solutions Limited",
+          "symbol": "TEAMTECH",
+          "openDate": "2026-05-19"
+        },
+        "reviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/main/docs/reviews/2026-09-17-teamtech-document-unit-review.md",
+        "reviewedAt": "2026-09-17T23:37:16+00:00"
+      }
     },
     {
       "id": "nfpsampoor",
@@ -5756,6 +5836,44 @@
       "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
+      "id": "speb",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Withheld use-of-proceeds allocations pending authoritative reconciliation or explicit supersession of the dated Board funding amount in the same Final Prospectus.",
+      "reviewType": "document_conflict",
+      "displayHold": {
+        "registryPath": "data/public_display_holds.json",
+        "holdId": "speb",
+        "scope": "document",
+        "source": {
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-12-03",
+          "sha256": "048405928a44bebad40c08e16256534094b61b1a77890af9072b6cb778b818a2",
+          "parserVersion": 31,
+          "issueOpenDate": "2025-12-01",
+          "checkedAt": "2026-09-18T06:08:22+05:30"
+        },
+        "binding": {
+          "sha256": "048405928a44bebad40c08e16256534094b61b1a77890af9072b6cb778b818a2",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SpebAdhesivesLimited_PROSP.pdf",
+          "documentDate": "2025-12-03",
+          "sourcePhysicalPagesInspected": [
+            119,
+            120
+          ]
+        },
+        "identity": {
+          "id": "speb",
+          "company": "Speb Adhesives Limited",
+          "symbol": "SPEB",
+          "openDate": "2025-12-01"
+        },
+        "reviewUrl": "https://github.com/Vasuki8/IPO-Tracker/pull/99",
+        "reviewedAt": "2026-09-17T20:16:35+00:00"
+      }
+    },
+    {
       "id": "invicta",
       "field": "financials.FY2024.ebitdaCr",
       "severity": "review",
@@ -6998,6 +7116,44 @@
       "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
+      "id": "snehaa",
+      "field": "leadManagers",
+      "severity": "review",
+      "reason": "Withheld lead-manager extraction because the Final Prospectus presents the lead manager and registrar in separate columns, but the retained value concatenates both entities as one lead manager.",
+      "reviewType": "source_display_hold",
+      "displayHold": {
+        "registryPath": "data/public_display_holds.json",
+        "holdId": "snehaa",
+        "scope": "value",
+        "source": {
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-09-03",
+          "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+          "parserVersion": 31,
+          "issueOpenDate": "2025-08-29",
+          "checkedAt": "2026-09-18T06:28:13+05:30"
+        },
+        "binding": {
+          "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+          "valueDigest": "dda1f69e1101a7428084d658a6b84dd9eec18ca2a1c2854691cdc72922017b3e",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+          "documentDate": "2025-09-03",
+          "sourcePhysicalPagesInspected": [
+            1
+          ]
+        },
+        "identity": {
+          "id": "snehaa",
+          "company": "Snehaa Organics Limited",
+          "symbol": "SNEHAA",
+          "openDate": "2025-08-29"
+        },
+        "reviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/main/docs/reviews/2026-09-18-intermediary-column-review.md",
+        "reviewedAt": "2026-09-18T01:13:01+00:00"
+      }
+    },
+    {
       "id": "vikran",
       "field": "financials.FY2023.patCr",
       "severity": "review",
@@ -7356,6 +7512,85 @@
       "field": "financials.FY2025.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "mbel",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Withheld use-of-proceeds allocations because their quoted total conflicts with the same Final Prospectus's explicitly disclosed net proceeds; no adjusted general corporate purposes amount is inferred.",
+      "reviewType": "document_conflict",
+      "displayHold": {
+        "registryPath": "data/public_display_holds.json",
+        "holdId": "mbel",
+        "scope": "document",
+        "source": {
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE08N601015_04AUG2025.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-08-04",
+          "sha256": "e20a311a4d4473a5ee93a683023f831e009a6910524a9044f48d367acf513219",
+          "parserVersion": 31,
+          "issueOpenDate": "2025-07-30",
+          "checkedAt": "2026-09-17T23:15:57+05:30"
+        },
+        "binding": {
+          "sha256": "e20a311a4d4473a5ee93a683023f831e009a6910524a9044f48d367acf513219",
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE08N601015_04AUG2025.pdf",
+          "documentDate": "2025-08-04",
+          "sourcePhysicalPagesInspected": [
+            24,
+            119,
+            120,
+            131,
+            132,
+            133
+          ]
+        },
+        "identity": {
+          "id": "mbel",
+          "company": "M&B Engineering Limited",
+          "symbol": "MBEL",
+          "openDate": "2025-07-30"
+        },
+        "reviewUrl": "https://github.com/Vasuki8/IPO-Tracker/pull/94",
+        "reviewedAt": "2026-09-17T18:54:04+00:00"
+      }
+    },
+    {
+      "id": "kaytex",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Withheld use-of-proceeds allocations pending authoritative reconciliation of contradictory narrative and table definitions of issuer net proceeds in the same Final Prospectus.",
+      "reviewType": "document_conflict",
+      "displayHold": {
+        "registryPath": "data/public_display_holds.json",
+        "holdId": "kaytex",
+        "scope": "document",
+        "source": {
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/KaytexFabricsLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-08-01",
+          "sha256": "a0a9b14c498bdcb7a8b2f8e4c8ebd32406b145f6e87f85a1da1675fab056e934",
+          "parserVersion": 31,
+          "issueOpenDate": "2025-07-29",
+          "checkedAt": "2026-09-18T06:04:00+05:30"
+        },
+        "binding": {
+          "sha256": "a0a9b14c498bdcb7a8b2f8e4c8ebd32406b145f6e87f85a1da1675fab056e934",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/KaytexFabricsLimited_PROSP.pdf",
+          "documentDate": "2025-08-01",
+          "sourcePhysicalPagesInspected": [
+            115
+          ]
+        },
+        "identity": {
+          "id": "kaytex",
+          "company": "Kaytex Fabrics Limited",
+          "symbol": "KAYTEX",
+          "openDate": "2025-07-29"
+        },
+        "reviewUrl": "https://github.com/Vasuki8/IPO-Tracker/pull/99",
+        "reviewedAt": "2026-09-17T20:16:35+00:00"
+      }
     },
     {
       "id": "cpplus",
@@ -8024,6 +8259,82 @@
       "reason": "Objects withheld pending Final Prospectus source-table revalidation"
     },
     {
+      "id": "sacheerome",
+      "field": "leadManagers",
+      "severity": "review",
+      "reason": "Withheld intermediary extractions because the retained lead-manager value concatenates separate lead-manager and registrar columns, and the registrar value contains only a former-name parenthetical rather than the current registrar entity.",
+      "reviewType": "source_display_hold",
+      "displayHold": {
+        "registryPath": "data/public_display_holds.json",
+        "holdId": "sacheerome",
+        "scope": "value",
+        "source": {
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-06-12",
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "parserVersion": 31,
+          "issueOpenDate": "2025-06-09",
+          "checkedAt": "2026-09-18T06:29:41+05:30"
+        },
+        "binding": {
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "valueDigest": "8dc9a18e411c677efb85543709ce310b4584f32863dd85f0e21ef457e36d3d25",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "documentDate": "2025-06-12",
+          "sourcePhysicalPagesInspected": [
+            3
+          ]
+        },
+        "identity": {
+          "id": "sacheerome",
+          "company": "Sacheerome Limited",
+          "symbol": "SACHEEROME",
+          "openDate": "2025-06-09"
+        },
+        "reviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/main/docs/reviews/2026-09-18-intermediary-column-review.md",
+        "reviewedAt": "2026-09-18T01:13:01+00:00"
+      }
+    },
+    {
+      "id": "sacheerome",
+      "field": "registrar",
+      "severity": "review",
+      "reason": "Withheld intermediary extractions because the retained lead-manager value concatenates separate lead-manager and registrar columns, and the registrar value contains only a former-name parenthetical rather than the current registrar entity.",
+      "reviewType": "source_display_hold",
+      "displayHold": {
+        "registryPath": "data/public_display_holds.json",
+        "holdId": "sacheerome",
+        "scope": "value",
+        "source": {
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-06-12",
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "parserVersion": 31,
+          "issueOpenDate": "2025-06-09",
+          "checkedAt": "2026-09-18T06:29:41+05:30"
+        },
+        "binding": {
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "valueDigest": "d8e95238f95af42a8c08e0278af95f4a9e2b91e6592d20ddd536868f32889024",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "documentDate": "2025-06-12",
+          "sourcePhysicalPagesInspected": [
+            3
+          ]
+        },
+        "identity": {
+          "id": "sacheerome",
+          "company": "Sacheerome Limited",
+          "symbol": "SACHEEROME",
+          "openDate": "2025-06-09"
+        },
+        "reviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/main/docs/reviews/2026-09-18-intermediary-column-review.md",
+        "reviewedAt": "2026-09-18T01:13:01+00:00"
+      }
+    },
+    {
       "id": "gangabath",
       "field": "objectsOfIssue",
       "severity": "review",
@@ -8330,6 +8641,45 @@
       "reason": "Source tables disagree; conflicting metric excluded pending review"
     },
     {
+      "id": "shriahimsa",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Withheld use-of-proceeds allocations because the repeated allocation total conflicts with the same Final Prospectus's explicitly disclosed net proceeds; no missing allocation or adjusted amount is inferred.",
+      "reviewType": "document_conflict",
+      "displayHold": {
+        "registryPath": "data/public_display_holds.json",
+        "holdId": "shriahimsa",
+        "scope": "document",
+        "source": {
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/ShriAhimsaNaturalsLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-03-28",
+          "sha256": "eb9fd3588990048a03f5c8602406a45020bebe158f6aa566fd4c028d746177b0",
+          "parserVersion": 31,
+          "issueOpenDate": "2025-03-25",
+          "checkedAt": "2026-09-17T22:42:53+05:30"
+        },
+        "binding": {
+          "sha256": "eb9fd3588990048a03f5c8602406a45020bebe158f6aa566fd4c028d746177b0",
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/ShriAhimsaNaturalsLimited_PROSP.pdf",
+          "documentDate": "2025-03-28",
+          "sourcePhysicalPagesInspected": [
+            22,
+            102,
+            103
+          ]
+        },
+        "identity": {
+          "id": "shriahimsa",
+          "company": "Shri Ahimsa Naturals Limited",
+          "symbol": "SHRIAHIMSA",
+          "openDate": "2025-03-25"
+        },
+        "reviewUrl": "https://github.com/Vasuki8/IPO-Tracker/pull/94",
+        "reviewedAt": "2026-09-17T19:10:06+00:00"
+      }
+    },
+    {
       "id": "rapidfleet",
       "field": "objectsOfIssue",
       "severity": "review",
@@ -8604,6 +8954,32 @@
       "field": "financials.FY2024.revenueCr",
       "severity": "review",
       "reason": "Source tables disagree; conflicting metric excluded pending review"
+    },
+    {
+      "id": "unimech",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Published value remains withheld pending resolution of the retained source review.",
+      "reviewType": "source_display_hold",
+      "displayHold": {
+        "registryPath": "data/public_display_holds.json",
+        "holdId": "unimech",
+        "scope": "value",
+        "source": {
+          "sourceUrl": "https://nsearchives.nseindia.com/corporate/FP_INE0U3I01011_30DEC2024.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2024-12-30",
+          "sha256": "b10afca3e64e8731dd4c4660a99ec720c8f0ec4fa4eb0b524ab441717977cfd3",
+          "parserVersion": 31,
+          "issueOpenDate": "2024-12-23",
+          "checkedAt": "2026-09-17T23:22:39+05:30"
+        },
+        "binding": {
+          "sha256": "b10afca3e64e8731dd4c4660a99ec720c8f0ec4fa4eb0b524ab441717977cfd3",
+          "valueDigest": "a6b6722f90ff70e97c69e50f6aacb87ea0c5dd32a263930312c6b7e560dca830"
+        },
+        "reviewUrl": "https://github.com/Vasuki8/IPO-Tracker/pull/94"
+      }
     },
     {
       "id": "sanathan",
@@ -8940,6 +9316,44 @@
       "field": "leadManagers",
       "severity": "review",
       "reason": "Existing disclosure retained; no supported source-role table was extracted"
+    },
+    {
+      "id": "blackbuck",
+      "field": "objectsOfIssue",
+      "severity": "review",
+      "reason": "Withheld use-of-proceeds allocations because their quoted total conflicts with the same Final Prospectus's explicitly disclosed net proceeds.",
+      "reviewType": "document_conflict",
+      "displayHold": {
+        "registryPath": "data/public_display_holds.json",
+        "holdId": "blackbuck",
+        "scope": "document",
+        "source": {
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2024/1732249559904.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2024-11-18",
+          "sha256": "0a6837d67b0d5b91c5ca9d9f6527c155fc28f9cad4e8654bba803b60c438007b",
+          "parserVersion": 31,
+          "issueOpenDate": "2024-11-13",
+          "checkedAt": "2026-09-17T23:20:37+05:30"
+        },
+        "binding": {
+          "sha256": "0a6837d67b0d5b91c5ca9d9f6527c155fc28f9cad4e8654bba803b60c438007b",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2024/1732249559904.pdf",
+          "documentDate": "2024-11-18",
+          "sourcePhysicalPagesInspected": [
+            124,
+            125
+          ]
+        },
+        "identity": {
+          "id": "blackbuck",
+          "company": "Zinka Logistics Solutions Limited",
+          "symbol": "BLACKBUCK",
+          "openDate": "2024-11-13"
+        },
+        "reviewUrl": "https://github.com/Vasuki8/IPO-Tracker/pull/94",
+        "reviewedAt": "2026-09-17T18:54:04+00:00"
+      }
     },
     {
       "id": "swiggy",
