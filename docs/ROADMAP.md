@@ -49,7 +49,7 @@ and immutable release receipts govern the verified checkpoint.
    in isolation while deployed checks remain read-only. No numerical replacement
    was accepted. Historical proposals are not backfilled or automatically resolved.
 3. **Complete P4 with source evidence — blocked.** Current accepted inventory is
-   1,371; P4 has 388 actionable plus 55 higher-priority records and 1,597 blocking
+   1,371; P4 has 388 actionable plus 55 higher-priority records and 1,594 blocking
    source reviews, zero unmapped reviews. All 441 retained proposals remain. Teamtech
    stays held and broad source draft #105 remains unaccepted. Do not weaken the gate,
    remove reviews, invent exclusions or use estimates to improve completion counts.
@@ -76,20 +76,31 @@ and immutable release receipts govern the verified checkpoint.
 
 ### Next reviewable increment
 
-#135's core prevention and #137's historical hold delivery are merged and verified.
-Do not reapply the older portable patch or repeat #137. The recovered branch,
-failed initial release check, isolated candidate fix and actual source-free review
-publisher are recorded in [PROJECT_STATUS.md](PROJECT_STATUS.md) and the
-[recovery receipt](releases/2026-09-18-subscription-hold-recovery.json).
+#135's core prevention, #137's historical hold delivery and #139/#141's reviewed
+Snehaa/Sacheerome intermediary publication are merged and live-verified. The latter
+removed three blocking source reviews while preserving other records/proposals;
+see [PROJECT_STATUS.md](PROJECT_STATUS.md) and the
+[release receipt](releases/2026-09-18-reviewed-intermediaries.json). Do not repeat
+these releases or apply their registry groups through ordinary collection.
 
-**Next obtain SpectraA's exact issuer/offer/source-detail and bid-denominator
-evidence before a bounded subscription correction.** Its unresolved historical
-snapshot is now withheld, with a manual review task and preserved canonical data.
-A newer headline total, collection clock or history row is not sufficient to
-resolve it. The other seven current snapshots differ from retained historical
-bindings after the independent collector repair; do not overwrite them, equate
-that difference with audited resolution, or discard any of the eight bindings.
-No old total is restored by this release.
+SpectraA's exact official response and post-anchor denominator document have now
+been retained. They do not support a numerical replacement: the category tables
+are counts-only and the graph denominator is not interchangeable with subscription
+categories. Its hold stays active. The other seven current snapshots differ from
+their historical bindings; this difference is not audited resolution, and all
+eight bindings remain.
+
+**Next implement one bounded financial-table repair for Hy-Tech and Onemi.** The
+[source-family selection](reviews/2026-09-18-financial-next-batch.md) identifies
+their shared `OTHER FINANCIAL INFORMATION` heading and annotated rows, with exact
+Final Prospectus pages and failure checks. The
+[completed source diagnosis](reviews/2026-09-18-financial-seed-inspection.md)
+retains the exact source receipts and table spans; first reproduce with production
+`pdftotext`, because local pypdf layout parity is not established. Preserve annual/interim alignment,
+currency units, standalone/consolidated scope, EPS basis and conflicting rows.
+The two issuers expose 42 reviews, not 42 guaranteed removals. Review source cells,
+publish only accepted corrections and measure the actual P4 reduction before
+expanding the batch. PNGS is conditional on matching source layout evidence.
 
 The 22 retained subscription proposals still require original source-link/issuer
 evidence. Emmvee's old operator advice remains subject to evidence revalidation.

@@ -1,0 +1,905 @@
+{
+  "schemaVersion": 1,
+  "status": "published-live-verified",
+  "scope": "bounded-reviewed-intermediary-release",
+  "baselineCommit": "268946862820bfead2b3b5e0c14c7a1f637d7dd5",
+  "sourceAcceptance": {
+    "commit": "b1f086ec6a8097c40fa6d3d2d7d2b9166d695af3",
+    "reviewPath": "docs/reviews/2026-09-18-intermediary-column-corrections.md",
+    "receiptPath": "docs/reviews/2026-09-18-intermediary-column-source-receipt.json",
+    "receiptSha256": "fdd8679d7798af3f583386daa104bb29d8dc2aa7f48e9b3d250099b4070eeaa3",
+    "receipt": {
+      "schemaVersion": 1,
+      "reviewedAt": "2026-09-18T19:47:55+00:00",
+      "sourceReviewVersion": "reviewed-intermediary-columns-v1",
+      "scope": "four-intermediary-fields-only-not-publication",
+      "sources": [
+        {
+          "identity": {
+            "id": "snehaa",
+            "company": "Snehaa Organics Limited",
+            "symbol": "SNEHAA",
+            "openDate": "2025-08-29"
+          },
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-09-03",
+          "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+          "bytes": 18126150,
+          "pageCount": 467,
+          "physicalPage": 1,
+          "extractionEngine": "pypdf 6.18.1 extraction_mode=layout",
+          "fetchedAt": "2026-09-18T19:39:49.028122+00:00",
+          "sourceTextSha256": "2eecb9946699ec024add34c94705ba9d6999a004d0736216ca77444729596f9a",
+          "expected": {
+            "leadManagers": [
+              "FAST TRACK FINSEC PRIVATE LIMITED"
+            ],
+            "registrar": "SKYLINE FINANCIAL SERVICES PRIVATE LIMITED"
+          },
+          "physicalPagesInspected": {
+            "visual": [
+              1,
+              83
+            ],
+            "textContext": [
+              3,
+              17,
+              83,
+              85
+            ]
+          },
+          "download": {
+            "successfulHttpResponse": true,
+            "redirected": false,
+            "completeBytesVerified": true
+          },
+          "fullDocumentTextSearch": {
+            "pages": 467,
+            "rotatedTextWarning": true,
+            "allPagesVisualAudit": false
+          }
+        },
+        {
+          "identity": {
+            "id": "sacheerome",
+            "company": "Sacheerome Limited",
+            "symbol": "SACHEEROME",
+            "openDate": "2025-06-09"
+          },
+          "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2025-06-12",
+          "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+          "bytes": 7589875,
+          "pageCount": 293,
+          "physicalPage": 3,
+          "extractionEngine": "pypdf 6.18.1 extraction_mode=layout",
+          "fetchedAt": "2026-09-18T19:40:33.208220+00:00",
+          "sourceTextSha256": "a72172c41b0e4dcf82e9ccd9059e938f35711f4f4d24d2cbfac0ff97d3736744",
+          "expected": {
+            "leadManagers": [
+              "GYR CAPITAL ADVISORS PRIVATE LIMITED"
+            ],
+            "registrar": "MUFG INTIME INDIA PRIVATE LIMITED"
+          },
+          "physicalPagesInspected": {
+            "visual": [
+              1,
+              3,
+              52
+            ],
+            "textContext": [
+              1,
+              3,
+              52,
+              54
+            ]
+          },
+          "download": {
+            "successfulHttpResponse": true,
+            "redirected": false,
+            "completeBytesVerified": true
+          },
+          "fullDocumentTextSearch": {
+            "pages": 293,
+            "rotatedTextWarning": true,
+            "allPagesVisualAudit": false
+          }
+        }
+      ]
+    }
+  },
+  "support": {
+    "pullRequest": 139,
+    "reviewedHead": "616ea004b1f7bcc0df2fe7e014a079290a068e88",
+    "mergeCommit": "5039a33853a810b9beafea52a97e8e4e05f38ce1",
+    "regressions": {
+      "runId": 35388997223,
+      "status": "success",
+      "python": "3.12.14",
+      "dependencyCommand": "uv sync --frozen",
+      "tests": 1217
+    },
+    "sourcePreview": {
+      "runId": 35388996960,
+      "status": "success",
+      "mode": "review",
+      "sourceCollection": false
+    },
+    "candidateReleaseRun": 35388997191,
+    "browser": {
+      "runId": 35388996780,
+      "status": "success",
+      "existingJourneys": 25,
+      "intermediaries": {
+        "status": "passed",
+        "baseUrl": "http://127.0.0.1:8002/",
+        "results": [
+          {
+            "id": "snehaa",
+            "width": 1440,
+            "profileAndQuickView": "passed",
+            "fields": [
+              "leadManagers",
+              "registrar"
+            ]
+          },
+          {
+            "id": "snehaa",
+            "width": 375,
+            "profileAndQuickView": "passed",
+            "fields": [
+              "leadManagers",
+              "registrar"
+            ]
+          },
+          {
+            "id": "snehaa",
+            "width": 320,
+            "profileAndQuickView": "passed",
+            "fields": [
+              "leadManagers",
+              "registrar"
+            ]
+          },
+          {
+            "id": "sacheerome",
+            "width": 1440,
+            "profileAndQuickView": "passed",
+            "fields": [
+              "leadManagers",
+              "registrar"
+            ]
+          },
+          {
+            "id": "sacheerome",
+            "width": 375,
+            "profileAndQuickView": "passed",
+            "fields": [
+              "leadManagers",
+              "registrar"
+            ]
+          },
+          {
+            "id": "sacheerome",
+            "width": 320,
+            "profileAndQuickView": "passed",
+            "fields": [
+              "leadManagers",
+              "registrar"
+            ]
+          }
+        ],
+        "errors": [],
+        "canonicalRequests": []
+      },
+      "downloadedArtifact": {
+        "id": 10565310426,
+        "bytes": 15741708,
+        "sha256": "977a5b21ce26b3da0003945d65f5a72da4fe695096475b639dc3f047cbdc791c",
+        "checksumVerified": true
+      },
+      "visuallyInspected": [
+        "reviewed-intermediaries/reviewed-snehaa-profile-375.png",
+        "reviewed-intermediaries/reviewed-sacheerome-profile-375.png",
+        "reviewed-intermediaries/reviewed-sacheerome-quick-view-375.png"
+      ],
+      "visualScope": "Both full profile screenshots inspected at original resolution; quick-view screenshot shows the initial modal viewport; lower role content is covered by DOM assertions."
+    },
+    "publicationRun": 35389674378,
+    "publicationMode": "review",
+    "sourceCollection": false,
+    "residualExtraction": false,
+    "publicationCommit": "08b35e42f1cec894f35df7e4718a0c4038cfba2a",
+    "protectedFiles": {
+      "data/ipos.json": {
+        "sha256": {
+          "baseline": "a53c3febc8618a505d712590c38be0ea9c9f6fc86a2510809f0a322abe342153",
+          "supportPublication": "a53c3febc8618a505d712590c38be0ea9c9f6fc86a2510809f0a322abe342153"
+        },
+        "bytesEqual": true
+      },
+      "data/pending_updates.json": {
+        "sha256": {
+          "baseline": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+          "supportPublication": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3"
+        },
+        "bytesEqual": true
+      },
+      "data/public_display_holds.json": {
+        "sha256": {
+          "baseline": "dd6b07a6ffc3a816f6382d3bc7209487c7e6efb9da37d565d6d8ddaebde3ab85",
+          "supportPublication": "dd6b07a6ffc3a816f6382d3bc7209487c7e6efb9da37d565d6d8ddaebde3ab85"
+        },
+        "bytesEqual": true
+      }
+    },
+    "pagesRun": 35389771292,
+    "liveAcceptanceRun": 35389823478,
+    "liveReceipt": {
+      "expectedCommit": "08b35e42f1cec894f35df7e4718a0c4038cfba2a",
+      "status": "passed",
+      "scope": "public-artifact-and-review-delivery-not-source-accuracy",
+      "routeCount": 1371,
+      "sampledProfiles": [
+        "ipo/emmvee/",
+        "ipo/teamtech/",
+        "ipo/shakti-polytarp-limited/",
+        "ipo/kheriaauto/",
+        "ipo/vama-wovenfab-limited/",
+        "ipo/sona/",
+        "ipo/manika/",
+        "ipo/snehaa/",
+        "ipo/sacheerome/",
+        "ipo/spectraa/"
+      ],
+      "expectedSha256": {
+        "index.html": "7bb7c13dc4c856b9bcb77138e9d9cdfb8934384688e97c27c5bd9d81aa6fec59",
+        "public-quality.js": "c1af0c3998bf53c582a920419980bccf2c2533e618f7088f665bf438e07c626c",
+        "public-quality.css": "988dee5e990116eff25b8746a77b0b618b23d5394f3b919d601cceaedd6d4467",
+        "app.js": "aad042ffd8cea3576b5abff34d8b0378e812ab7e4f368f73e162d427201167d3",
+        "company-page.js": "c965ddfd01ab122b196dc58797d299f724b2378092c7ff927c91ea14b132c610",
+        "company.js": "8fba803171c5fd0fb09b95844fc153eaeff159a3a55c92785ef3c9013e08435d",
+        "phase4.js": "d7c69047e184cf5f896a75e61c62150a462ed985deaf93fdd8c0015a212e388f",
+        "methodology.html": "fe6b152b67eeaf0d1b17d7a700e1819fc250256bc022b64c9735c7867d7c546c",
+        "data/ipos-summary.json": "e01ce3e068198bad31ccea0666efdfc51803f86859b95e25bea9fabcbaea0c1c",
+        "ipo/routes.json": "a74d99a0e98b31b1a5ef1dda16f5126849ae8c3cd2075bb4d6371a3ff0d15ff1",
+        "ipo/emmvee/index.html": "4502adcd7a5ebb3d4909a9eab28f0562c4efd7f117c0e6a4e1179d0f5fe046a8",
+        "ipo/teamtech/index.html": "724722823686a49c9c8cdb6e6411d47ad5ebbff4d22dbc024143cbad3cc22e8d",
+        "ipo/shakti-polytarp-limited/index.html": "da020c1a8592d2cc5c5992d600117fdebc193069bd8f58f49913d3e2cf390b2c",
+        "ipo/kheriaauto/index.html": "664328fbc3d9841b8c6faf8792c76c793fb422944ffa98a050fbcdbb7a243f93",
+        "ipo/vama-wovenfab-limited/index.html": "0e67b0835622dd9251aa64b48cefb7b0cde1844104bf8c97478a10fb0c63eb2c",
+        "ipo/sona/index.html": "b881dca5b12ead98a3e574d97f2712b288b970ce7b0961afbdf1e8da5d949dfd",
+        "ipo/manika/index.html": "40f677684570b7080c996d4a4ca9d5e1140e8c1f3bdd318099eafead8625f2f5",
+        "ipo/snehaa/index.html": "fec9ddf9fcec918e1c8230a83c8e51befe9873b55f6fd57c97d179bcb953122f",
+        "ipo/sacheerome/index.html": "75b68d99fe1225a4dad9d1ef8d81baec2a60fce2498585a672451083b4a3f6f5",
+        "data/validation.json": "93985869a2b3e8e0f63e086307789de9166137a6b0634fd285ed526220292866",
+        "data/missing_queue.json": "4ff33c034682ddb13f1673765fcfbe7edc387426ccea7c306e3e063ce837c92a",
+        "data/phase_status.json": "893e4f4aa277254928c5bdc405109f397d68afee85d8bd367857f1dd857d6fd4",
+        "ipo/spectraa/index.html": "ad2c64e03513b27df3187443e44032e82844608734ab64d8e5c49f9fa75c3f31"
+      },
+      "reviewedPublication": {
+        "status": "not_requested",
+        "scope": "retained-reviewed-evidence-delivery"
+      },
+      "subscriptionHolds": [
+        {
+          "id": "sona",
+          "active": false,
+          "snapshotDigest": "0238fc7f9fe2c72591c7caf5aeefa9bb53e3c4448e0ac33517353a018fae95d9"
+        },
+        {
+          "id": "ssretail",
+          "active": false,
+          "snapshotDigest": "c8c3574543b0922c19481960eff842d8f61c6e1dce2d888a58339e5f0c740620"
+        },
+        {
+          "id": "jsipl",
+          "active": false,
+          "snapshotDigest": "97526469a3f18754cfc212e33ca111efb97c61aead72c7c3b5ec7ec0b84b7101"
+        },
+        {
+          "id": "heromotors",
+          "active": false,
+          "snapshotDigest": "9d3f0766f41e0050bdce791c245314ce20b5a2ea23317f46772101dc186c8bc9"
+        },
+        {
+          "id": "nse",
+          "active": false,
+          "snapshotDigest": "2818fa0ade3a4b052139cd4095ccafd0d9e943de5923ba48137d06a95f288b31"
+        },
+        {
+          "id": "kheriaauto",
+          "active": false,
+          "snapshotDigest": "73075af7db7c2863de2e3c3f5ebc3e7521cbe5c097b09769a3c865a5ad607d49"
+        },
+        {
+          "id": "spectraa",
+          "active": true,
+          "snapshotDigest": "212b33152f0a83be66ce12cfe1c68df574005c3382319277e24bc466039c2c1f"
+        },
+        {
+          "id": "axiomgas",
+          "active": false,
+          "snapshotDigest": "51bbbef230add30a70311b524674696c73f8e13e2d0ccb882808722c713d2f92"
+        }
+      ],
+      "additionalReviewPaths": [
+        "ipo/snehaa/index.html",
+        "ipo/sacheerome/index.html",
+        "data/validation.json",
+        "data/missing_queue.json",
+        "data/phase_status.json"
+      ],
+      "baseUrl": "https://vasuki8.github.io/IPO-Tracker/",
+      "httpChecked": [
+        "index.html",
+        "public-quality.js",
+        "public-quality.css",
+        "app.js",
+        "company-page.js",
+        "company.js",
+        "phase4.js",
+        "methodology.html",
+        "data/ipos-summary.json",
+        "ipo/routes.json",
+        "ipo/emmvee/index.html",
+        "ipo/teamtech/index.html",
+        "ipo/shakti-polytarp-limited/index.html",
+        "ipo/kheriaauto/index.html",
+        "ipo/vama-wovenfab-limited/index.html",
+        "ipo/sona/index.html",
+        "ipo/manika/index.html",
+        "ipo/snehaa/index.html",
+        "ipo/sacheerome/index.html",
+        "data/validation.json",
+        "data/missing_queue.json",
+        "data/phase_status.json",
+        "ipo/spectraa/index.html"
+      ]
+    },
+    "phaseStatus": {
+      "generatedAt": "2026-09-18T20:07:54.224647+00:00",
+      "p4": {
+        "status": "incomplete",
+        "actionableRecords": 388,
+        "higherPriorityRecords": 55,
+        "semanticErrors": 0,
+        "sourceReviewItems": 1601,
+        "blockingSourceReviewItems": 1597,
+        "p5OnlySourceReviewItems": 4,
+        "unmappedSourceReviewItems": 0,
+        "finalProspectusRevalidationRecords": 322,
+        "finalProspectusRevalidationFields": 1175,
+        "higherPriorityFinalProspectusRevalidationRecords": 28,
+        "higherPriorityFinalProspectusRevalidationFields": 105,
+        "resolvedUnavailableRecords": 5
+      },
+      "p5": {
+        "status": "waiting_for_p4",
+        "actionableRecords": 914
+      }
+    }
+  },
+  "reviewedRequest": {
+    "pullRequest": 141,
+    "head": "d39094e63064f3e4afecf6458be769e88d7d3f5f",
+    "onlyChangedPath": "data/reviewed_publication_request.json",
+    "ids": [
+      "snehaa",
+      "sacheerome"
+    ],
+    "status": "merged",
+    "mergeCommit": "3ef3e3e665eb10752eca7d35d7c273d4e0bd25df",
+    "validationRun": 35389898010,
+    "validationConclusion": "success"
+  },
+  "reviewedPublication": {
+    "commit": "cf4dae8181fbcc764a9547b096e55138e779da01",
+    "publisherRun": 35390088056,
+    "publisherConclusion": "success",
+    "collectorJob": 105746162467,
+    "publisherJob": 105746326892,
+    "collectionMode": "reviewed",
+    "sourceCollectionSkipped": true,
+    "p4ResidualRepairSkipped": true,
+    "collectorRegressionTests": 1217,
+    "canonicalPublicationManifest": {
+      "runId": "35390088056",
+      "collectorCommit": "3ef3e3e665eb10752eca7d35d7c273d4e0bd25df",
+      "status": "published",
+      "pendingConflictCount": 441,
+      "mode": "reviewed",
+      "reviewedIds": [
+        "snehaa",
+        "sacheerome"
+      ]
+    },
+    "pagesRun": 35390194114,
+    "pagesConclusion": "success",
+    "liveVerificationRun": 35390243353,
+    "liveVerificationJob": 105746655800,
+    "liveVerificationConclusion": "success",
+    "liveVerificationPreparedCandidate": false,
+    "releaseVerifierTests": 31,
+    "independentAudit": {
+      "status": "passed",
+      "baseCommit": "3ef3e3e665eb10752eca7d35d7c273d4e0bd25df",
+      "publishedCommit": "cf4dae8181fbcc764a9547b096e55138e779da01",
+      "bundleManifest": {
+        "schemaVersion": 1,
+        "ids": [
+          "snehaa",
+          "sacheerome"
+        ],
+        "baseSha256": "a53c3febc8618a505d712590c38be0ea9c9f6fc86a2510809f0a322abe342153",
+        "proposedSha256": "7c6b23c21310e43519dcd3c322b27ed9b9f94997c5f26d85762a618390b091f3",
+        "scope": "reviewed-fields-only-no-source-collection"
+      },
+      "bundleSourceCommit": "3ef3e3e665eb10752eca7d35d7c273d4e0bd25df",
+      "bundleRequest": {
+        "schemaVersion": 1,
+        "requestId": "intermediary-source-columns-20260918-1",
+        "ids": [
+          "snehaa",
+          "sacheerome"
+        ]
+      },
+      "canonicalSha256": "1b675b7b40bec05d6077e10f2e24d0c83a98c9959b5e0d60c04cb5ab9455b6b9",
+      "proposalsSha256": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+      "issuerCount": 1371,
+      "changedIssuerIds": [
+        "snehaa",
+        "sacheerome"
+      ],
+      "unchangedIssuers": 1369,
+      "transitions": [
+        {
+          "id": "snehaa",
+          "changedTopLevelFields": [
+            "dataCorrections",
+            "leadManagers",
+            "registrar",
+            "sources",
+            "staticFieldProvenance",
+            "staticSourcePolicy",
+            "validation"
+          ],
+          "values": {
+            "leadManagers": {
+              "before": [
+                "SKYLINE FINANCIAL SERVICES PRIVATE LIMITED FAST TRACK FINSEC PRIVATE LIMITED"
+              ],
+              "after": [
+                "FAST TRACK FINSEC PRIVATE LIMITED"
+              ]
+            },
+            "registrar": {
+              "before": null,
+              "after": "SKYLINE FINANCIAL SERVICES PRIVATE LIMITED"
+            }
+          },
+          "priorCorrectionEvents": 7,
+          "appendedCorrectionEvents": 3,
+          "priorSourceEntries": 3,
+          "appendedSourceEntries": 1,
+          "historicalCorrectionsAndSourcesPreserved": true,
+          "matchingRetainedProofs": true,
+          "publicStates": {
+            "leadManagers": "final_verified",
+            "registrar": "final_verified"
+          }
+        },
+        {
+          "id": "sacheerome",
+          "changedTopLevelFields": [
+            "dataCorrections",
+            "leadManagers",
+            "registrar",
+            "sources",
+            "staticFieldProvenance",
+            "staticSourcePolicy",
+            "validation"
+          ],
+          "values": {
+            "leadManagers": {
+              "before": [
+                "MUFG INTIME INDIA PRIVATE LIMITED GYR CAPITAL ADVISORS PRIVATE LIMITED"
+              ],
+              "after": [
+                "GYR CAPITAL ADVISORS PRIVATE LIMITED"
+              ]
+            },
+            "registrar": {
+              "before": "formerly known As Link Intime India Private Limited",
+              "after": "MUFG INTIME INDIA PRIVATE LIMITED"
+            }
+          },
+          "priorCorrectionEvents": 9,
+          "appendedCorrectionEvents": 3,
+          "priorSourceEntries": 3,
+          "appendedSourceEntries": 1,
+          "historicalCorrectionsAndSourcesPreserved": true,
+          "matchingRetainedProofs": true,
+          "publicStates": {
+            "leadManagers": "final_verified",
+            "registrar": "final_verified"
+          }
+        }
+      ],
+      "protectedFiles": [
+        {
+          "path": "data/pending_updates.json",
+          "sha256": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+          "byteEqualToSupport": true
+        },
+        {
+          "path": "data/public_display_holds.json",
+          "sha256": "dd6b07a6ffc3a816f6382d3bc7209487c7e6efb9da37d565d6d8ddaebde3ab85",
+          "byteEqualToSupport": true
+        }
+      ],
+      "retainedProposals": 441,
+      "removedSourceReviewItems": [
+        {
+          "displayHold": {
+            "binding": {
+              "documentDate": "2025-09-03",
+              "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+              "sourcePhysicalPagesInspected": [
+                1
+              ],
+              "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+              "valueDigest": "dda1f69e1101a7428084d658a6b84dd9eec18ca2a1c2854691cdc72922017b3e"
+            },
+            "holdId": "snehaa",
+            "identity": {
+              "company": "Snehaa Organics Limited",
+              "id": "snehaa",
+              "openDate": "2025-08-29",
+              "symbol": "SNEHAA"
+            },
+            "registryPath": "data/public_display_holds.json",
+            "reviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/main/docs/reviews/2026-09-18-intermediary-column-review.md",
+            "reviewedAt": "2026-09-18T01:13:01+00:00",
+            "scope": "value",
+            "source": {
+              "checkedAt": "2026-09-18T06:28:13+05:30",
+              "documentDate": "2025-09-03",
+              "documentType": "PROSPECTUS",
+              "issueOpenDate": "2025-08-29",
+              "parserVersion": 31,
+              "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+              "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf"
+            }
+          },
+          "field": "leadManagers",
+          "id": "snehaa",
+          "reason": "Withheld lead-manager extraction because the Final Prospectus presents the lead manager and registrar in separate columns, but the retained value concatenates both entities as one lead manager.",
+          "reviewType": "source_display_hold",
+          "severity": "review"
+        },
+        {
+          "displayHold": {
+            "binding": {
+              "documentDate": "2025-06-12",
+              "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+              "sourcePhysicalPagesInspected": [
+                3
+              ],
+              "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+              "valueDigest": "8dc9a18e411c677efb85543709ce310b4584f32863dd85f0e21ef457e36d3d25"
+            },
+            "holdId": "sacheerome",
+            "identity": {
+              "company": "Sacheerome Limited",
+              "id": "sacheerome",
+              "openDate": "2025-06-09",
+              "symbol": "SACHEEROME"
+            },
+            "registryPath": "data/public_display_holds.json",
+            "reviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/main/docs/reviews/2026-09-18-intermediary-column-review.md",
+            "reviewedAt": "2026-09-18T01:13:01+00:00",
+            "scope": "value",
+            "source": {
+              "checkedAt": "2026-09-18T06:29:41+05:30",
+              "documentDate": "2025-06-12",
+              "documentType": "PROSPECTUS",
+              "issueOpenDate": "2025-06-09",
+              "parserVersion": 31,
+              "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+              "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf"
+            }
+          },
+          "field": "leadManagers",
+          "id": "sacheerome",
+          "reason": "Withheld intermediary extractions because the retained lead-manager value concatenates separate lead-manager and registrar columns, and the registrar value contains only a former-name parenthetical rather than the current registrar entity.",
+          "reviewType": "source_display_hold",
+          "severity": "review"
+        },
+        {
+          "displayHold": {
+            "binding": {
+              "documentDate": "2025-06-12",
+              "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+              "sourcePhysicalPagesInspected": [
+                3
+              ],
+              "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+              "valueDigest": "d8e95238f95af42a8c08e0278af95f4a9e2b91e6592d20ddd536868f32889024"
+            },
+            "holdId": "sacheerome",
+            "identity": {
+              "company": "Sacheerome Limited",
+              "id": "sacheerome",
+              "openDate": "2025-06-09",
+              "symbol": "SACHEEROME"
+            },
+            "registryPath": "data/public_display_holds.json",
+            "reviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/main/docs/reviews/2026-09-18-intermediary-column-review.md",
+            "reviewedAt": "2026-09-18T01:13:01+00:00",
+            "scope": "value",
+            "source": {
+              "checkedAt": "2026-09-18T06:29:41+05:30",
+              "documentDate": "2025-06-12",
+              "documentType": "PROSPECTUS",
+              "issueOpenDate": "2025-06-09",
+              "parserVersion": 31,
+              "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+              "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf"
+            }
+          },
+          "field": "registrar",
+          "id": "sacheerome",
+          "reason": "Withheld intermediary extractions because the retained lead-manager value concatenates separate lead-manager and registrar columns, and the registrar value contains only a former-name parenthetical rather than the current registrar entity.",
+          "reviewType": "source_display_hold",
+          "severity": "review"
+        }
+      ],
+      "addedSourceReviewItems": [],
+      "metaChangedKeys": [
+        "generatedAt",
+        "publication",
+        "recordIntegrity"
+      ],
+      "pipelineStageEvidenceUnchanged": true,
+      "phaseStatus": {
+        "generatedAt": "2026-09-18T20:12:33.469413+00:00",
+        "p4": {
+          "status": "incomplete",
+          "actionableRecords": 388,
+          "higherPriorityRecords": 55,
+          "semanticErrors": 0,
+          "sourceReviewItems": 1598,
+          "blockingSourceReviewItems": 1594,
+          "p5OnlySourceReviewItems": 4,
+          "unmappedSourceReviewItems": 0,
+          "finalProspectusRevalidationRecords": 322,
+          "finalProspectusRevalidationFields": 1175,
+          "higherPriorityFinalProspectusRevalidationRecords": 28,
+          "higherPriorityFinalProspectusRevalidationFields": 105,
+          "resolvedUnavailableRecords": 5
+        },
+        "p5": {
+          "status": "waiting_for_p4",
+          "actionableRecords": 914
+        }
+      },
+      "validationSummary": {
+        "recordCount": 1371,
+        "errorCount": 0,
+        "reviewCount": 1598,
+        "invalidRecordCount": 0,
+        "reviewRecordCount": 290
+      },
+      "publishedChangedPaths": [
+        "data/completeness.json",
+        "data/ipos-summary.json",
+        "data/ipos.json",
+        "data/missing_queue.json",
+        "data/performance_summary.json",
+        "data/phase_status.json",
+        "data/validation.json",
+        "docs/DATA_QUALITY.md",
+        "ipo/routes.json",
+        "ipo/sacheerome/index.html",
+        "ipo/snehaa/index.html"
+      ],
+      "artifacts": [
+        {
+          "name": "ipo-collection-35390088056.zip",
+          "artifactId": 10565301411,
+          "bytes": 3983943,
+          "sha256": "c2e7025a04a368b0b98cf5527bb8d1d930466c7e79d211d4f9650b7b641bf5f4",
+          "matchesGitHubDigest": true,
+          "retainedLocalPath": "../artifacts/reviewed-intermediaries-release/ipo-collection-35390088056.zip"
+        },
+        {
+          "name": "public-release-35390243353-1.zip",
+          "artifactId": 10565346592,
+          "bytes": 2594,
+          "sha256": "b2a73ced748e97c9225a70062c1ab69eae01ebd70eaa64503bc017869f1b71a2",
+          "matchesGitHubDigest": true,
+          "retainedLocalPath": "../artifacts/reviewed-intermediaries-release/public-release-35390243353-1.zip"
+        }
+      ],
+      "artifactEntries": {
+        "base.json": "a53c3febc8618a505d712590c38be0ea9c9f6fc86a2510809f0a322abe342153",
+        "proposed.json": "7c6b23c21310e43519dcd3c322b27ed9b9f94997c5f26d85762a618390b091f3",
+        "reviewed.json": "94c4567170c9de9536048a09330eded2174285e17b96b33f9dc32dd9a9b89d0a",
+        "request.json": "69d2475452264a7ea56f17f1969101d3d11c55921fc6ca6699bf862f4f44ebed",
+        "source-commit.txt": "8d8bd449060da490983fb4a6033efaff02d0fa92c463dea0dd47b674e3ecd0ff",
+        "attempt-1.json": "294bfd889617aa02fa883da79c651456aeabd4e2928b0955e92101f6dc1da3ae",
+        "deployment-run.txt": "5a1f22853c177901409edfc6f33ff965b5931b79d0ed15faf1f6cfa48ab01346"
+      },
+      "liveReceipt": {
+        "expectedCommit": "cf4dae8181fbcc764a9547b096e55138e779da01",
+        "status": "passed",
+        "scope": "public-artifact-and-review-delivery-not-source-accuracy",
+        "routeCount": 1371,
+        "sampledProfiles": [
+          "ipo/emmvee/",
+          "ipo/teamtech/",
+          "ipo/shakti-polytarp-limited/",
+          "ipo/kheriaauto/",
+          "ipo/vama-wovenfab-limited/",
+          "ipo/sona/",
+          "ipo/manika/",
+          "ipo/snehaa/",
+          "ipo/sacheerome/",
+          "ipo/spectraa/"
+        ],
+        "expectedSha256": {
+          "index.html": "7bb7c13dc4c856b9bcb77138e9d9cdfb8934384688e97c27c5bd9d81aa6fec59",
+          "public-quality.js": "c1af0c3998bf53c582a920419980bccf2c2533e618f7088f665bf438e07c626c",
+          "public-quality.css": "988dee5e990116eff25b8746a77b0b618b23d5394f3b919d601cceaedd6d4467",
+          "app.js": "aad042ffd8cea3576b5abff34d8b0378e812ab7e4f368f73e162d427201167d3",
+          "company-page.js": "c965ddfd01ab122b196dc58797d299f724b2378092c7ff927c91ea14b132c610",
+          "company.js": "8fba803171c5fd0fb09b95844fc153eaeff159a3a55c92785ef3c9013e08435d",
+          "phase4.js": "d7c69047e184cf5f896a75e61c62150a462ed985deaf93fdd8c0015a212e388f",
+          "methodology.html": "fe6b152b67eeaf0d1b17d7a700e1819fc250256bc022b64c9735c7867d7c546c",
+          "data/ipos-summary.json": "16bd9987b6ad9fbaa42abed3ee4d7d79554d31ccdf08f4f45854c7676c7f770b",
+          "ipo/routes.json": "5b6b07c6cb5eb2ccb1a914b01a4b00332a15fdd00dc43535fc4f655adda10532",
+          "ipo/emmvee/index.html": "4502adcd7a5ebb3d4909a9eab28f0562c4efd7f117c0e6a4e1179d0f5fe046a8",
+          "ipo/teamtech/index.html": "724722823686a49c9c8cdb6e6411d47ad5ebbff4d22dbc024143cbad3cc22e8d",
+          "ipo/shakti-polytarp-limited/index.html": "da020c1a8592d2cc5c5992d600117fdebc193069bd8f58f49913d3e2cf390b2c",
+          "ipo/kheriaauto/index.html": "664328fbc3d9841b8c6faf8792c76c793fb422944ffa98a050fbcdbb7a243f93",
+          "ipo/vama-wovenfab-limited/index.html": "0e67b0835622dd9251aa64b48cefb7b0cde1844104bf8c97478a10fb0c63eb2c",
+          "ipo/sona/index.html": "b881dca5b12ead98a3e574d97f2712b288b970ce7b0961afbdf1e8da5d949dfd",
+          "ipo/manika/index.html": "40f677684570b7080c996d4a4ca9d5e1140e8c1f3bdd318099eafead8625f2f5",
+          "ipo/snehaa/index.html": "1446a2bcc469bd0842282d32f361daf93db06908f9bcfa477eaf0e61c3a5ba9f",
+          "ipo/sacheerome/index.html": "19b000ff0c19a1b54c3871aa3d06ea2d2e7c41afe26c069d6a9add90b7980b47",
+          "data/validation.json": "976baf35cbc9f044246f1dc73022c6516da8bf5bd474b29cead3e7d83dcf51b7",
+          "data/missing_queue.json": "3dde3caff4932880f0855dbf3cae881980f32128100dbb3d9c175d610fe9760f",
+          "data/phase_status.json": "9809575abefdec6447f3a56db6ebca6ba83f41ed2a7763a94f4f094c09c6eefe",
+          "ipo/spectraa/index.html": "ad2c64e03513b27df3187443e44032e82844608734ab64d8e5c49f9fa75c3f31"
+        },
+        "reviewedPublication": {
+          "status": "passed",
+          "scope": "retained-reviewed-evidence-delivery-not-new-source-audit",
+          "canonicalSha256": "1b675b7b40bec05d6077e10f2e24d0c83a98c9959b5e0d60c04cb5ab9455b6b9",
+          "checked": [
+            {
+              "id": "snehaa",
+              "kind": "intermediaries",
+              "fields": [
+                "leadManagers",
+                "registrar"
+              ],
+              "proofsSha256": "124a9c75f62b987e17f4e997782c07284438dacc4e02fe2464768529f8fb1182",
+              "proofsGitBlob": "8e8c78724a4822d9bc444e8afd062bbfd94db157",
+              "sourceReviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/b1f086ec6a8097c40fa6d3d2d7d2b9166d695af3/docs/reviews/2026-09-18-intermediary-column-corrections.md"
+            },
+            {
+              "id": "sacheerome",
+              "kind": "intermediaries",
+              "fields": [
+                "leadManagers",
+                "registrar"
+              ],
+              "proofsSha256": "366158909e934fc5a39388489f76637cc9eb35b1fa196efa00ffe8f845f1ad4e",
+              "proofsGitBlob": "83ab069b092776ec975f259d1058ffdec79b3e9c",
+              "sourceReviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/b1f086ec6a8097c40fa6d3d2d7d2b9166d695af3/docs/reviews/2026-09-18-intermediary-column-corrections.md"
+            }
+          ]
+        },
+        "subscriptionHolds": [
+          {
+            "id": "sona",
+            "active": false,
+            "snapshotDigest": "0238fc7f9fe2c72591c7caf5aeefa9bb53e3c4448e0ac33517353a018fae95d9"
+          },
+          {
+            "id": "ssretail",
+            "active": false,
+            "snapshotDigest": "c8c3574543b0922c19481960eff842d8f61c6e1dce2d888a58339e5f0c740620"
+          },
+          {
+            "id": "jsipl",
+            "active": false,
+            "snapshotDigest": "97526469a3f18754cfc212e33ca111efb97c61aead72c7c3b5ec7ec0b84b7101"
+          },
+          {
+            "id": "heromotors",
+            "active": false,
+            "snapshotDigest": "9d3f0766f41e0050bdce791c245314ce20b5a2ea23317f46772101dc186c8bc9"
+          },
+          {
+            "id": "nse",
+            "active": false,
+            "snapshotDigest": "2818fa0ade3a4b052139cd4095ccafd0d9e943de5923ba48137d06a95f288b31"
+          },
+          {
+            "id": "kheriaauto",
+            "active": false,
+            "snapshotDigest": "73075af7db7c2863de2e3c3f5ebc3e7521cbe5c097b09769a3c865a5ad607d49"
+          },
+          {
+            "id": "spectraa",
+            "active": true,
+            "snapshotDigest": "212b33152f0a83be66ce12cfe1c68df574005c3382319277e24bc466039c2c1f"
+          },
+          {
+            "id": "axiomgas",
+            "active": false,
+            "snapshotDigest": "51bbbef230add30a70311b524674696c73f8e13e2d0ccb882808722c713d2f92"
+          }
+        ],
+        "additionalReviewPaths": [
+          "ipo/snehaa/index.html",
+          "ipo/sacheerome/index.html",
+          "data/validation.json",
+          "data/missing_queue.json",
+          "data/phase_status.json"
+        ],
+        "baseUrl": "https://vasuki8.github.io/IPO-Tracker/",
+        "httpChecked": [
+          "index.html",
+          "public-quality.js",
+          "public-quality.css",
+          "app.js",
+          "company-page.js",
+          "company.js",
+          "phase4.js",
+          "methodology.html",
+          "data/ipos-summary.json",
+          "ipo/routes.json",
+          "ipo/emmvee/index.html",
+          "ipo/teamtech/index.html",
+          "ipo/shakti-polytarp-limited/index.html",
+          "ipo/kheriaauto/index.html",
+          "ipo/vama-wovenfab-limited/index.html",
+          "ipo/sona/index.html",
+          "ipo/manika/index.html",
+          "ipo/snehaa/index.html",
+          "ipo/sacheerome/index.html",
+          "data/validation.json",
+          "data/missing_queue.json",
+          "data/phase_status.json",
+          "ipo/spectraa/index.html"
+        ]
+      }
+    },
+    "coordinatorLiveDomVerification": {
+      "reportedBy": "integration-coordinator",
+      "deploymentCommit": "cf4dae8181fbcc764a9547b096e55138e779da01",
+      "observations": [
+        "Reloaded Snehaa profile shows both complete legal role names and page 1 source links.",
+        "Reloaded Sacheerome profile and quick view show both complete legal role names and page 3 source links.",
+        "Unrelated issue and objects review labels remain visible.",
+        "Browser errors and warnings are empty."
+      ],
+      "screenshotClaim": false
+    }
+  },
+  "limitations": [
+    "The support-only deployment at 08b35e42 retained canonical/proposal bytes unchanged; the separate reviewed request and publication recorded here applied the four accepted intermediary fields.",
+    "Browser candidate tests and immutable live HTTP/DOM checks establish delivery behavior; source correctness rests on the separately retained Final Prospectus review and exact field proofs.",
+    "Complete source PDF text was searched, but only the physical pages listed in the source receipt were visually inspected; rotated-text warnings elsewhere remain disclosed.",
+    "The source-evidence commit records the original review helper scope. The final support implementation also imports its strict proof validator in collector guards to preserve accepted roles during same-document re-extraction, without a global parser rollout or scheduling change.",
+    "Original value holds and all pending proposals remain retained. Corrected values cease to match their previous holds; unrelated issuer facts and P4/P5 rules remain preserved.",
+    "P4 remains incomplete: 388 actionable records, 55 higher priority records, 1598 total source-review items and 1594 blocking items. P5 and performance expansion remain gated.",
+    "Commercial source rights, customer segment, pricing and revenue model remain unresolved; no new spending, outreach, contract, permissions or infrastructure change is authorized by this receipt."
+  ]
+}
