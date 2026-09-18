@@ -17,6 +17,7 @@ from final_prospectus_policy import field_value
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY_PATH = 'data/public_display_holds.json'
 HOLD_REVIEW_TYPES = frozenset({'document_conflict', 'source_display_hold'})
+IDENTITY_KEYS = ('id', 'company', 'symbol', 'openDate')
 
 
 def value_digest(value):
@@ -38,11 +39,12 @@ def _validate_hold(hold):
             raise ValueError('Public display hold requires a field and exact PDF fingerprint')
         if scope == 'value' and not re.fullmatch(r'[a-f0-9]{64}', str(binding.get('valueDigest') or '')):
             raise ValueError('Value display hold requires an exact value fingerprint')
-    if scope == 'document':
-        identity = hold.get('identity') or {}
-        keys = ('id', 'company', 'symbol', 'openDate')
+    # Old value-only reviews retain their original scope. An explicitly supplied
+    # issuer/offer binding must never be silently ignored, including for layout holds.
+    if scope == 'document' or 'identity' in hold:
+        identity = hold.get('identity')
         if (not isinstance(identity, dict)
-                or not all(isinstance(identity.get(key), str) and identity[key] for key in keys)
+                or not all(isinstance(identity.get(key), str) and identity[key] for key in IDENTITY_KEYS)
                 or identity['id'] != hold['id']):
             raise ValueError('Document display hold requires exact issuer and offer identity')
 
@@ -65,14 +67,16 @@ def display_hold_matches(record, field, hold):
     if hold['id'] != record.get('id'):
         return False
     binding = hold['fields'][field]
-    proof = (record.get('staticFieldProvenance') or {}).get(field) or {}
+    provenance = record.get('staticFieldProvenance') or {}
+    proof = provenance.get(field) if isinstance(provenance, dict) else None
     if not isinstance(proof, dict):
         return False
+    identity = hold.get('identity')
+    if identity is not None and (any(record.get(key) != identity[key] for key in IDENTITY_KEYS)
+                                 or proof.get('issueOpenDate') != identity['openDate']):
+        return False
     if hold.get('scope', 'value') == 'document':
-        identity = hold['identity']
-        return (all(record.get(key) == identity[key] for key in ('id', 'company', 'symbol', 'openDate'))
-                and proof.get('issueOpenDate') == identity['openDate']
-                and proof.get('sha256') == binding['sha256'])
+        return proof.get('sha256') == binding['sha256']
     return (proof.get('sha256') == binding['sha256']
             and value_digest(field_value(record, field)) == binding['valueDigest'])
 
