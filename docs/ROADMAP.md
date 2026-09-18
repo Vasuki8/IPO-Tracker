@@ -40,8 +40,9 @@ and immutable release receipts govern the verified checkpoint.
    clocks and SpectraA source failure remain explicit. #133 now verifies the exact
    BSE beta host and aligns authority labels without inventing observation times;
    presentation publication `69b2ad59` is accepted. The remaining cross-collector
-   snapshot hand-off is being repaired in #135; acceptance and release evidence
-   are recorded in PROJECT_STATUS.md.
+   snapshot hand-off prevention (#135) is released at `2ae2f3e7`, with live
+   acceptance 35376272766. Generic summaries remain separate observations;
+   historical mixed snapshots still require source review or evidence-bound holds.
    Historical proposals are not backfilled or automatically resolved.
 3. **Complete P4 with source evidence — blocked.** Current accepted inventory is
    1,371; P4 has 387 actionable plus 56 higher-priority records and 1,599 blocking
@@ -71,10 +72,11 @@ and immutable release receipts govern the verified checkpoint.
 
 ### Next reviewable increment
 
-#135 addresses the core collector's partial subscription hand-off. Generic issue
-feed multiples remain source-bound observations; core refreshes preserve the
-accepted subscription family and history. Complete frozen CI, diff review and
-release verification before marking this prevention complete.
+#135's core-collector prevention is merged and live-verified at `2ae2f3e7`.
+Generic issue-feed multiples remain source-bound observations; core refreshes
+preserve the accepted subscription family and history. Final-head frozen CI passed
+1,161 regressions; browser and public-delivery checks passed. Do not repeat this
+implementation or treat its success as numerical source adjudication.
 
 The retained comparison of `70a5133f` to core publication `eec88efb` remains
 unadjudicated. Review those eight historical snapshots using current exact
