@@ -1,0 +1,30 @@
+name: Verify BSE host evidence
+on:
+  pull_request:
+    paths: ['tests/verify_bse_host_evidence.py', 'tests/test_bse_source_authority.py', '.github/workflows/source-authority.yml']
+permissions:
+  contents: read
+jobs:
+  evidence:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@v10.1.0
+      - run: uv python install 3.12
+      - run: uv sync --frozen
+      - name: Inspect exact BSE hosts without collecting IPO values
+        run: |
+          mkdir -p artifacts/source-authority
+          git rev-parse HEAD > artifacts/source-authority/checkout-commit.txt
+          uv run --frozen python tests/verify_bse_host_evidence.py > artifacts/source-authority/bse.json
+      - name: Retain source evidence including failed inspections
+        if: always()
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: source-authority-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/source-authority/
+          retention-days: 14
