@@ -23,21 +23,24 @@ and immutable release receipts govern the verified checkpoint.
    states, document holds and consistent projections are deployed. Completed static
    terms require matching Final Prospectus evidence; permitted active disclosures
    and market information retain their separate authorities. Missing values, units,
-   correction history and unresolved conflicts must survive. Existing #125's
-   source-hold/queue repair is the next current-base acceptance task; preserve its
-   work rather than recreating it or merging an older candidate blindly. #128's
-   explicit value-hold issuer/offer binding is released at `543c625b`; the same rule
-   is preserved in #125's helper at `f09d272d`, but that larger repair is unaccepted.
+   correction history and unresolved conflicts must survive. #128's explicit
+   issuer/offer binding and #125's shared hold-to-review-queue repair are deployed.
+   #130 verifies delivery of the held profiles and review reports. Do not repeat
+   those releases or copy older candidate artifacts over current accepted data.
 2. **Accurate freshness and dependable repairs — core safeguards deployed, repair
    work still open.** Source/publication guards, the bounded reviewed Emmvee repair,
    reviewed-delivery acceptance, retained document/subscription triage and
    evidence-bound review advice are complete. #126 adds read-only source/outcome,
    observation/collection and publication-delay diagnostics; its implementation
    `edb46e59` is deployed and live-verified. This is not scheduled monitoring or
-   automatic proposal resolution. Diagnose actual overdue collection using current
-   run/job evidence, and recover missing source bindings before resolving proposals.
+   automatic proposal resolution. #131's source-bound subscription writer is released
+   at `30e994f7`, with live publication `70a5133f`: incomplete responses no longer
+   borrow and re-stamp old categories, direct URLs travel with snapshots, and
+   changed source/observation evidence remains in history. Missing observation
+   clocks, SpectraA source failure and the beta-host authority gap remain explicit.
+   Historical proposals are not backfilled or automatically resolved.
 3. **Complete P4 with source evidence — blocked.** Current accepted inventory is
-   1,367; P4 has 387 actionable plus 52 higher-priority records and 1,592 blocking
+   1,370; P4 has 387 actionable plus 55 higher-priority records and 1,603 blocking
    source reviews, zero unmapped reviews. All 441 retained proposals remain. Teamtech
    stays held and broad source draft #105 remains unaccepted. Do not weaken the gate,
    remove reviews, invent exclusions or use estimates to improve completion counts.
@@ -64,15 +67,17 @@ and immutable release receipts govern the verified checkpoint.
 
 ### Next reviewable increment
 
-Complete open #125's current-main reconciliation from `f09d272d`, preserving #128's
-identity rule and all original review fixtures. Regenerate older candidate artifacts;
-never copy them over accepted data or use rehearsal counts as completion targets.
-Verify source-hold routing and withholding
-with preserved canonical/proposal bytes, and complete required source/browser/release
-acceptance. Then diagnose the existing overdue subscription path with the new
-[update-health report](UPDATE_HEALTH.md), without an alert service or another writer.
-The 22 retained subscription proposals still need original source-link and issuer
-evidence before audited disposition. See [operator reconciliation guidance](PROPOSAL_RECONCILIATION.md).
+Verify `beta.bseindia.com` against current BSE primary evidence, then align shared
+Python/JavaScript authority rules and real-host tests if justified. Five existing
+BSE-route snapshots remain `unknown` under the public allowlist; their missing
+source-observation times must not become fresh. This gap predates #131.
+
+Next investigate SpectraA's missing matching source using exact issuer/offer
+identity, not relaxed fuzzy matching. Use the [update-health report](UPDATE_HEALTH.md)
+with current run evidence; do not introduce alerts or another writer. The 22 retained
+subscription proposals still require original source-link/issuer evidence. Emmvee's
+old operator decision is currently `stale_evidence`; revalidate rather than reuse or
+delete it. See [reconciliation guidance](PROPOSAL_RECONCILIATION.md).
 
 Every release must preserve source/document identity, reporting dates and clocks,
 field evidence and correction history; run relevant regressions and source/browser
