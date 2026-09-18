@@ -334,7 +334,8 @@ def prepare_admissions(root, tracker_path, plan, aliases):
             raise ValueError("Draft/filing-only admissions require a separate reviewed batch")
         if not symbol or symbol.upper() in existing_symbols:
             raise ValueError("Symbol already exists; review possible alias before adding")
-        source = {"name": row["source"] + " official issue identity", "url": row["url"], "kind": "exchange", "asOf": row["retrievedAt"]}
+        source = {"name": row["source"] + " official issue identity", "url": row["url"], "kind": "exchange",
+                  "asOf": None, "collectedAt": row["retrievedAt"], "timeBasis": "collection_only"}
         record = {"id": selection["id"], "company": row["issuerName"], "symbol": symbol,
             "board": row["board"], "exchange": row["source"] + (" SME" if row["board"] == "SME" and row["source"] == "BSE" else " Emerge" if row["board"] == "SME" else ""),
             "status": status, "openDate": row["issueOpenDate"], "closeDate": row["issueCloseDate"], "listingDate": row["listingDate"],
@@ -342,7 +343,7 @@ def prepare_admissions(root, tracker_path, plan, aliases):
             "observations": {row["source"]: {"company": row["issuerName"], "symbol": symbol,
                 "openDate": row["issueOpenDate"], "closeDate": row["issueCloseDate"], "listingDate": row["listingDate"],
                 "observedAt": None, "collectedAt": row["retrievedAt"], "timeBasis": "collection_only", "sourceUrl": row["url"]}},
-            "universeAdmission": {"reviewVersion": "official-universe-admission-v1", "reviewedAt": plan["reviewedAt"],
+            "universeAdmission": {"reviewVersion": "official-universe-admission-v2", "reviewedAt": plan["reviewedAt"],
                 "recordId": row["recordId"], "registerResponseSha256": row["responseSha256"], "identitySource": evidence_receipt,
                 "scope": "Issuer, board and exchange lifecycle only; no static terms, financials or subscription accepted"}}
         for field in ("priceBand", "lotSize", "marketLot", "minimumBidQuantity", "minimumApplicationAmount", "issueSizeCr", "freshIssueCr", "ofsCr", "issueComposition", "financials", "subscription", "listing", "allotmentDate", "leadManagers", "registrar", "promoters", "objectsOfIssue", "shareholding"):
