@@ -1,6 +1,7 @@
 """Deployment acceptance catches mixed/stale output without changing source data."""
 import copy
 import importlib.util
+import hashlib
 import json
 from pathlib import Path
 import tempfile
@@ -140,6 +141,161 @@ class PublicReleaseVerifierTests(unittest.TestCase):
         for base in ('http://example.test/', 'file:///tmp/', 'https://user:pass@example.test/', 'https://example.test/?x=1'):
             with self.subTest(base=base), self.assertRaises(ValueError):
                 verify.verify_http(self.root, base, receipt, fetch=missing)
+
+
+    def reviewed_fixture(self):
+        """Independent delivered-data fixture, with an explicitly disclosed zero OFS."""
+        identity = {'id': 'emmvee', 'company': 'Example Ltd', 'symbol': 'EXAMPLE', 'openDate': '2025-11-11'}
+        values = {'issueSizeCr': 100, 'freshIssueCr': 100, 'ofsCr': 0,
+                  'issueComposition': {'freshShares': 10000000, 'ofsShares': 0, 'valuationPriceUsed': 100,
+                                       'freshIssueCr': 100, 'ofsCr': 0, 'totalIssueSizeCr': 100}}
+        source = {'sourceUrl': 'https://example.test/final.pdf', 'documentDate': '2025-11-14',
+                  'sha256': 'a' * 64, 'parserVersion': 33, 'checkedAt': '2026-09-18T00:37:05Z'}
+        proofs = {field: {**source, 'field': field, 'issueOpenDate': identity['openDate'],
+                          'documentType': 'PROSPECTUS', 'value': value,
+                          'evidence': {'page': 3, 'unit': 'crore INR', 'row': 'Reviewed fixture disclosure'}}
+                  for field, value in values.items()}
+        raw = (json.dumps(proofs, ensure_ascii=False, indent=2) + '\n').encode()
+        self.write('data/reviewed_correction_evidence/emmvee.json', raw.decode())
+        self.index = {'schemaVersion': 1, 'groups': [{'identity': identity, 'proofsFile': 'emmvee.json',
+            'sourceProofsSha256': verify.digest(raw),
+            'sourceProofsGitBlob': hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest(),
+            'sourceReviewUrl': 'https://github.com/owner/repo/blob/' + 'b' * 40 + '/review.md'}]}
+        self.write_json('data/reviewed_correction_evidence.json', self.index)
+        self.row.update(identity, issueSizeCr=100)
+        self.row['publicQuality'] = {'version': 1, 'fields': {
+            'issueSizeCr': {'state': 'final_verified', 'source': 0, 'page': 3}}, 'sources': [source]}
+        self.profile = copy.deepcopy(self.row)
+        self.profile.update(copy.deepcopy(values))
+        self.profile['issueComposition'] = {k: values['issueComposition'][k]
+                                           for k in ('freshShares', 'ofsShares', 'valuationPriceUsed')}
+        self.profile['publicQuality']['fields'] = {
+            field: {'state': 'final_verified', 'source': 0, 'page': 3} for field in values}
+        self.canonical = {'meta': {'publication': {'mode': 'reviewed', 'status': 'published', 'reviewedIds': ['emmvee']}},
+                          'ipos': [{**identity, **copy.deepcopy(values), 'staticFieldProvenance': copy.deepcopy(proofs)}]}
+        self.write_json('data/ipos.json', self.canonical)
+        self.save()
+
+    def test_reviewed_delivery_checks_values_proofs_zero_and_does_not_write(self):
+        self.reviewed_fixture()
+        before = self.files()
+        receipt = verify.verify_local(self.root)
+        result = verify.verify_reviewed_publication(self.root, receipt)
+        self.assertEqual(result['status'], 'passed')
+        self.assertEqual(result['checked'][0]['proofsSha256'], self.index['groups'][0]['sourceProofsSha256'])
+        self.assertEqual(result['checked'][0]['id'], 'emmvee')
+        self.assertEqual(before, self.files())
+
+    def test_consistent_but_still_withheld_repair_cannot_pass_reviewed_acceptance(self):
+        self.reviewed_fixture()
+        for record in (self.row, self.profile):
+            for field, decision in record['publicQuality']['fields'].items():
+                record[field] = None
+                decision['state'] = 'under_review'
+        self.save()
+        # This is the actual historical gap: consistency alone is not repair delivery.
+        receipt = verify.verify_local(self.root)
+        before = self.files()
+        with self.assertRaisesRegex(ValueError, 'not delivered'):
+            verify.verify_reviewed_publication(self.root, receipt)
+        self.assertEqual(before, self.files())
+
+    def test_identical_wrong_public_amounts_or_provenance_cannot_pass(self):
+        for defect in ('amount', 'pdf', 'time', 'page', 'zero_as_null', 'zero_as_false'):
+            with self.subTest(defect=defect):
+                self.reviewed_fixture()
+                for record in (self.row, self.profile):
+                    if defect == 'amount':
+                        record['issueSizeCr'] = 101
+                    elif defect == 'pdf':
+                        record['publicQuality']['sources'][0]['sha256'] = 'c' * 64
+                    elif defect == 'time':
+                        record['publicQuality']['sources'][0]['checkedAt'] = '2026-09-18T01:00:00Z'
+                    elif defect == 'page':
+                        record['publicQuality']['fields']['issueSizeCr']['page'] = 4
+                if defect.startswith('zero_as_'):
+                    self.profile['ofsCr'] = None if defect.endswith('null') else False
+                self.save()
+                receipt = verify.verify_local(self.root)
+                with self.assertRaisesRegex(ValueError, 'not delivered'):
+                    verify.verify_reviewed_publication(self.root, receipt)
+
+    def test_reviewed_canonical_value_and_complete_proof_must_match(self):
+        for defect in ('amount', 'proof', 'identity', 'duplicate'):
+            with self.subTest(defect=defect):
+                self.reviewed_fixture()
+                row = self.canonical['ipos'][0]
+                if defect == 'amount':
+                    row['freshIssueCr'] = 90
+                elif defect == 'proof':
+                    row['staticFieldProvenance']['issueSizeCr']['evidence']['row'] = 'Different evidence'
+                elif defect == 'identity':
+                    row['openDate'] = '2026-11-11'
+                else:
+                    self.canonical['ipos'].append(copy.deepcopy(row))
+                self.write_json('data/ipos.json', self.canonical)
+                with self.assertRaises(ValueError):
+                    verify.verify_reviewed_publication(self.root, verify.verify_local(self.root))
+
+    def test_invalid_reviewed_scope_is_failure_not_an_empty_success(self):
+        for ids in (None, [], ['emmvee', 'emmvee'], ['unknown'], 'emmvee', [None], ['']):
+            with self.subTest(ids=ids):
+                self.reviewed_fixture()
+                self.canonical['meta']['publication']['reviewedIds'] = ids
+                self.write_json('data/ipos.json', self.canonical)
+                with self.assertRaises(ValueError):
+                    verify.verify_reviewed_publication(self.root, verify.verify_local(self.root))
+        self.reviewed_fixture()
+        self.canonical['meta']['publication']['status'] = 'published_with_pending_conflicts'
+        self.write_json('data/ipos.json', self.canonical)
+        with self.assertRaisesRegex(ValueError, 'not accepted'):
+            verify.verify_reviewed_publication(self.root, verify.verify_local(self.root))
+
+    def test_missing_tampered_unsafe_or_duplicate_reviewed_artifact_fails(self):
+        for defect in ('missing', 'tampered', 'path', 'git_blob', 'duplicate'):
+            with self.subTest(defect=defect):
+                self.reviewed_fixture()
+                path = self.root / 'data/reviewed_correction_evidence/emmvee.json'
+                if defect == 'missing':
+                    path.unlink()
+                elif defect == 'tampered':
+                    path.write_text('{}')
+                elif defect == 'path':
+                    self.index['groups'][0]['proofsFile'] = '../outside.json'
+                elif defect == 'git_blob':
+                    self.index['groups'][0]['sourceProofsGitBlob'] = 'c' * 40
+                else:
+                    self.index['groups'].append(copy.deepcopy(self.index['groups'][0]))
+                self.write_json('data/reviewed_correction_evidence.json', self.index)
+                with self.assertRaises((OSError, ValueError)):
+                    verify.verify_reviewed_publication(self.root, verify.verify_local(self.root))
+
+    def test_reviewed_profile_is_always_live_checked_without_fetching_master(self):
+        self.reviewed_fixture()
+        receipt = verify.verify_local(self.root)
+        receipt['sampledProfiles'] = []
+        receipt['expectedSha256'].pop('ipo/emmvee/index.html')
+        verify.verify_reviewed_publication(self.root, receipt)
+        self.assertEqual(receipt['sampledProfiles'], ['ipo/emmvee/'])
+        urls = []
+        def fetch(url, limit):
+            urls.append(url)
+            relative = url.removeprefix('https://example.test/')
+            relative += 'index.html' if not relative or relative.endswith('/') else ''
+            return (self.root / relative).read_bytes()[:limit]
+        verify.verify_http(self.root, 'https://example.test/', receipt, fetch=fetch)
+        self.assertIn('https://example.test/ipo/emmvee/', urls)
+        self.assertFalse(any('ipos.json' in url or 'reviewed_correction_evidence' in url for url in urls))
+        with self.assertRaisesRegex(ValueError, 'served bytes'):
+            verify.verify_http(self.root, 'https://example.test/', receipt,
+                               fetch=lambda url, limit: b'old profile' if '/ipo/emmvee/' in url else fetch(url, limit))
+
+    def test_ordinary_release_does_not_claim_reviewed_acceptance(self):
+        before = self.files()
+        result = verify.verify_reviewed_publication(self.root, verify.verify_local(self.root))
+        self.assertEqual(result['status'], 'not_requested')
+        self.assertNotIn('checked', result)
+        self.assertEqual(before, self.files())
 
 
 if __name__ == '__main__':

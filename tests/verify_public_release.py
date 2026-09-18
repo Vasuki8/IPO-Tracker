@@ -155,6 +155,118 @@ def verify_local(root):
     return {'routeCount': len(routes), 'sampledProfiles': selected, 'expectedSha256': hashes}
 
 
+
+def verify_reviewed_publication(root, receipt):
+    """Require delivery of the last reviewed repair, not just matching pages.
+
+    Read canonical data and retained proofs locally only. This is a delivery
+    check against already reviewed evidence, never a new source/PDF audit.
+    Ordinary collection releases do not inherit this reviewed-only assertion.
+    """
+    root = Path(root)
+    canonical_bytes = (root / 'data/ipos.json').read_bytes()
+    canonical = read_json(canonical_bytes)
+    publication = canonical.get('meta', {}).get('publication', {})
+    require(isinstance(publication, dict), 'Malformed publication metadata')
+    if publication.get('mode') != 'reviewed':
+        return {'status': 'not_requested', 'scope': 'retained-reviewed-evidence-delivery'}
+    ids = publication.get('reviewedIds')
+    require(isinstance(ids, list) and ids
+            and all(isinstance(key, str) and key for key in ids)
+            and len(ids) == len(set(ids)), 'Reviewed publication needs unique nonempty issuer IDs')
+    require(publication.get('status') == 'published', 'Reviewed publication is not accepted')
+    fields = ('issueComposition', 'issueSizeCr', 'freshIssueCr', 'ofsCr')
+    public_composition = ('freshShares', 'ofsShares', 'valuationPriceUsed')
+    source_keys = ('sourceUrl', 'documentDate', 'sha256', 'parserVersion', 'checkedAt')
+    index = read_json((root / 'data/reviewed_correction_evidence.json').read_bytes())
+    require(index.get('schemaVersion') == 1 and isinstance(index.get('groups'), list),
+            'Unsupported reviewed evidence index')
+    groups = {}
+    for group in index['groups']:
+        key = group['identity']['id']
+        require(isinstance(key, str) and key not in groups, 'Duplicate reviewed evidence identity')
+        groups[key] = group
+    require(set(ids) <= set(groups), 'Reviewed publication has no retained evidence for an issuer')
+
+    def by_id(rows):
+        require(isinstance(rows, list), 'Missing reviewed issuer inventory')
+        result = {}
+        for row in rows:
+            key = row['id']
+            require(isinstance(key, str) and key not in result, 'Duplicate reviewed issuer ID')
+            result[key] = row
+        return result
+
+    # JSON numbers may differ in int/float representation, never bool/number.
+    def equal(actual, expected):
+        if isinstance(expected, dict):
+            return (isinstance(actual, dict) and actual.keys() == expected.keys()
+                    and all(equal(actual[k], v) for k, v in expected.items()))
+        if isinstance(expected, list):
+            return (isinstance(actual, list) and len(actual) == len(expected)
+                    and all(equal(a, b) for a, b in zip(actual, expected)))
+        if type(expected) in (int, float):
+            return type(actual) in (int, float) and actual == expected
+        return type(actual) is type(expected) and actual == expected
+
+    stored = by_id(canonical['ipos'])
+    summary = by_id(read_json((root / 'data/ipos-summary.json').read_bytes())['ipos'])
+    checked = []
+    for key in ids:
+        group = groups[key]
+        name = group.get('proofsFile')
+        require(isinstance(name, str) and re.fullmatch(r'[a-z0-9][a-z0-9-]*\.json', name),
+                'Unsafe reviewed proof filename')
+        proof_dir = root / 'data/reviewed_correction_evidence'
+        proof_path = proof_dir / name
+        require(proof_path.resolve().parent == proof_dir.resolve(), 'Reviewed proof escaped its directory')
+        raw = proof_path.read_bytes()
+        require(digest(raw) == group.get('sourceProofsSha256'), 'Reviewed proof artifact hash mismatch')
+        blob = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
+        require(blob == group.get('sourceProofsGitBlob'), 'Reviewed proof Git identity mismatch')
+        proofs = read_json(raw)
+        require(isinstance(proofs, dict) and set(proofs) == set(fields), 'Incomplete reviewed composition proofs')
+        identity = group['identity']
+        require(all(isinstance(identity.get(k), str) and identity[k]
+                    for k in ('id', 'company', 'symbol', 'openDate')), 'Incomplete reviewed offer identity')
+        require(key in stored and key in summary, 'Reviewed issuer missing from accepted/public data')
+        path = summary[key]['profilePath']
+        require(isinstance(path, str) and re.fullmatch(r'ipo/[a-z0-9][a-z0-9-]*/', path),
+                'Unsafe reviewed profile path')
+        profile = embedded_profile((root / path / 'index.html').read_bytes())
+        for record in (stored[key], summary[key], profile):
+            require(all(record.get(k) == value for k, value in identity.items()), 'Reviewed offer identity mismatch')
+        projected = decisions(profile)
+        directory = decisions(summary[key])
+        for field in fields:
+            proof = proofs[field]
+            require(proof.get('field') == field and proof.get('issueOpenDate') == identity['openDate'],
+                    'Reviewed field/offer evidence mismatch')
+            require(equal(stored[key].get(field), proof['value'])
+                    and equal(stored[key].get('staticFieldProvenance', {}).get(field), proof),
+                    f'{key}.{field}: accepted value/proof differs from the reviewed evidence')
+            expected = proof['value']
+            if field == 'issueComposition':
+                expected = {k: expected[k] for k in public_composition if k in expected}
+            require(equal(profile.get(field), expected), f'{key}.{field}: reviewed profile value not delivered')
+            expected_source = {k: proof[k] for k in source_keys if k in proof}
+            for decision in ([projected.get(field), directory.get(field)] if field == 'issueSizeCr'
+                             else [projected.get(field)]):
+                require(isinstance(decision, dict) and decision.get('state') == 'final_verified'
+                        and decision.get('sourceEvidence') == expected_source
+                        and decision.get('page') == proof['evidence']['page'],
+                        f'{key}.{field}: reviewed public evidence not delivered')
+        require(equal(summary[key].get('issueSizeCr'), proofs['issueSizeCr']['value']),
+                f'{key}: reviewed directory value not delivered')
+        # The ordinary sampler is not guaranteed to include future reviewed IDs.
+        if path not in receipt['sampledProfiles']:
+            receipt['sampledProfiles'].append(path)
+        receipt['expectedSha256'][path + 'index.html'] = digest((root / path / 'index.html').read_bytes())
+        checked.append({'id': key, 'fields': list(fields), 'proofsSha256': digest(raw),
+                        'proofsGitBlob': blob, 'sourceReviewUrl': group.get('sourceReviewUrl')})
+    return {'status': 'passed', 'scope': 'retained-reviewed-evidence-delivery-not-new-source-audit',
+            'canonicalSha256': digest(canonical_bytes), 'checked': checked}
+
 def validate_base(base):
     parsed = urlsplit(base)
     require(parsed.scheme == 'https' or (parsed.scheme == 'http' and parsed.hostname in {'127.0.0.1', 'localhost', '::1'}), 'Use HTTPS, or HTTP on loopback only')
@@ -188,11 +300,15 @@ def main():
     cli.add_argument('--root', type=Path, default=Path(__file__).resolve().parents[1])
     cli.add_argument('--base-url', help='Optional deployed or loopback site; never rebuilds it')
     cli.add_argument('--expected-commit', required=True, help='Immutable checkout/deployment SHA for this receipt')
+    cli.add_argument('--check-reviewed-publication', action='store_true',
+                     help='Check delivery of the last reviewed value/proof repair, using local evidence only')
     args = cli.parse_args()
     require(bool(re.fullmatch(r'[a-f0-9]{40}', args.expected_commit)), 'Expected commit must be a full SHA')
     receipt = {'expectedCommit': args.expected_commit, 'status': 'failed', 'scope': 'public-artifact-consistency-not-source-accuracy'}
     try:
         receipt.update(verify_local(args.root))
+        if args.check_reviewed_publication:
+            receipt['reviewedPublication'] = verify_reviewed_publication(args.root, receipt)
         if args.base_url:
             receipt['baseUrl'] = validate_base(args.base_url)
             receipt['httpChecked'] = verify_http(args.root, args.base_url, receipt)
