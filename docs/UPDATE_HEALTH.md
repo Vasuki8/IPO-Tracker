@@ -1,0 +1,112 @@
+# Recorded update health — operator report
+
+This read-only report distinguishes **attempt age**, **recorded source outcome**,
+**source observation age**, and **publication delivery evidence**. A recent build,
+zero exit code or unchanged dataset does not prove fresh or correct source values.
+It makes no changes to canonical records, proposals, review decisions or phase gates.
+It does not fetch sources, poll GitHub, send alerts or activate another data writer.
+
+## Generate and reproduce
+
+Use the existing frozen environment (`uv sync --frozen`). Supply a timezone-aware
+assessment instant; the tool intentionally has no hidden wall-clock default:
+
+```sh
+mkdir -p artifacts/update-health
+uv run --frozen python tools/report_update_health.py \
+  --as-of "$(date -u +'%Y-%m-%dT%H:%M:%SZ')" > artifacts/update-health/report.json
+uv run --frozen python tools/report_update_health.py \
+  --check-report artifacts/update-health/report.json
+```
+
+The CLI prints to stdout only. Never redirect over accepted input files. `--data`
+and `--phase` support isolated snapshots. Output binds the exact canonical, phase,
+display-hold and code/policy bytes. Reproduction uses the original assessment
+instant and returns `freshNow: not_asserted`; it is not a check that an old report
+is fresh today. Generate a new report for a new instant. Missing/invalid inputs or
+changed report/input/policy bytes fail explicitly.
+
+The existing read-only **Validate IPO changes** job generates `update-health.json`
+in its already-retained `proposal-reconciliation-<run>-<attempt>` artifact, before
+any correction rehearsals. It records the real checkout SHA and checks that protected
+data files remain unchanged. This adds two offline commands, not a scheduled monitor,
+source request, dependency, permission or artifact-upload job. Existing fourteen-day
+artifact retention applies. There is no addition to public page payloads or tracking.
+
+## Read each independent signal
+
+`stages` preserves the recorded status, exit code, counts and check clocks. Failed,
+source-blocked and deferred work remains visible even when recently attempted.
+`sourceHealth` entries appear as `sources`; a zero-row successful source check is
+not treated as failure. A missing source check time remains unknown, even when its
+parent stage or accepted snapshot has a recent timestamp. Conflicting check clocks
+are not resolved by choosing whichever is newer. Historical/unmonitored entries
+remain present as `recorded_only`, not silently assigned a current live schedule.
+
+`subscriptions` includes issues open according to stored offer dates and not marked
+listed, withdrawn, cancelled or postponed. Every other record remains counted in
+`lifecycleScopes`, including unknown/invalid dates. Dates are not guessed to force
+an issue into a live cohort. Current subscription diagnostics reuse the existing
+source-bound reconciliation rules and public numeric/review policy on copies. They
+do not borrow attached source/history URLs, promote a secondary source to official,
+replace a missing observation with collection time, or infer final subscription
+from the closing date. These conservative snapshot diagnostics may expose gaps
+that a public projection can link through separately matching history.
+
+`acceptedPublication.snapshotAge` is age of the stored snapshot's generation clock,
+**not** source freshness, accepted-commit time, last successful source check or
+actual deployment time. Accepted publication metadata and phase evidence are copied
+unchanged. Live deployment is deliberately `not_assessed_by_this_offline_report`;
+use the existing public-release verifier for served-byte acceptance.
+
+## Operational tolerances, not source guarantees
+
+Initial operator tolerances are 120 minutes for the hourly core collector, 90
+minutes for active subscription checks, 480 minutes for conditional filing work
+with a six-hour fallback, and 30 minutes after collection completion for publication.
+These are triage settings, not an exchange/service SLA or evidence that a scheduled
+run actually fired. `within_tolerance` describes clock age only, never value accuracy
+or source success. Failure/degraded evidence is an independent signal.
+
+Subscription deadlines apply on configured UTC weekdays from 05:30 through 14:00:
+04:00 first scheduled attempt plus 90-minute grace, through 12:30 last attempt plus
+that grace. Outside that window, valid ages remain visible without asserting a
+missed intraday deadline. This mirrors the configured schedule, not an exchange
+holiday/calendar or trading-hours claim. Filing deadlines are conditional on
+recorded higher-priority work. Other stages retain their outcomes without invented
+cadences. A changed collection cron set fails the report until these assumptions
+are reviewed. No P5/performance deadline or expansion is introduced.
+
+## Diagnose an unpublished run separately
+
+An old accepted snapshot alone cannot distinguish no new data, failed collection,
+queue delay or failed publication. Without supplied workflow evidence, delivery
+is `not_assessed`. For a specific run, save fresh GitHub REST responses for
+`GET /repos/Vasuki8/IPO-Tracker/actions/runs/<RUN_ID>` and
+`GET /repos/Vasuki8/IPO-Tracker/actions/runs/<RUN_ID>/jobs?filter=latest&per_page=100`.
+Use all jobs if paginated; `total_count` must match. Supply both snapshots:
+
+```sh
+uv run --frozen python tools/report_update_health.py \
+  --as-of "$(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
+  --workflow-run artifacts/update-health/run.json \
+  --workflow-jobs artifacts/update-health/jobs.json > artifacts/update-health/run-report.json
+```
+
+Run/repository/branch/workflow/attempt bindings are checked. Foreign, ambiguous or
+partial job evidence fails instead of becoming a clean status. Collected work whose
+recorded publisher is still waiting can exceed the 30-minute tolerance. Collection
+failure, publication failure/cancellation, missing completion time and completed
+work without matching acceptance are separate states. A successful no-change run
+may correctly create no new accepted run ID, so it is not labelled a failed release.
+All results describe the **supplied evidence at the assessment instant**, not a live
+poll of the run. Keep the original inputs with the report and retrieve fresh evidence
+before acting on old queued/running states. Reproduction never asserts current state.
+
+No result authorizes a retry or publication. Keep the original collection bundle,
+check the existing source-manifest guard and source evidence, and use the serialized
+publisher. Do not delete proposals, relabel a collector manifest or resolve source
+conflicts merely to remove an overdue signal. P4 and commercial data-rights gates
+remain unchanged. Future always-on monitoring and alert delivery remain separate,
+unimplemented work; this report adds no customer identifiers, paid infrastructure,
+external communications or redistribution of new source material.

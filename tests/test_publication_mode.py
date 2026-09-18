@@ -19,10 +19,10 @@ CONFLICT_EXPLANATION_RELEASE = [
 ]
 
 class PublicationModeTests(unittest.TestCase):
-    def test_presentation_change_set_uses_bounded_rebuild(self):
+    def test_display_hold_changes_rebuild_review_gates_without_collection(self):
         self.assertEqual(push_mode(['scripts/public_quality.py', 'app.js', 'index.html',
             'tests/fixtures/example.json.gz', 'docs/PROJECT_STATUS.md',
-            '.github/workflows/frontend.yml', 'data/public_display_holds.json']), 'presentation')
+            '.github/workflows/frontend.yml', 'data/public_display_holds.json']), 'review')
 
     def test_generated_profiles_in_conflict_explanation_release_use_bounded_rebuild(self):
         self.assertEqual(push_mode(CONFLICT_EXPLANATION_RELEASE), 'presentation')

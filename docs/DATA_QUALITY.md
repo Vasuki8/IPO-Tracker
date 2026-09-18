@@ -1,47 +1,47 @@
 # IPO Tracker Data Quality
 
-Generated: **2026-09-18T06:31:17+05:30**
+Generated: **2026-09-18T17:10:03+05:30**
 
-Records audited: **1,366**
+Records audited: **1,370**
 
 ## Completeness scores
 
 | Area | Score | Records in denominator |
 | --- | ---: | ---: |
-| Actionable exchange terms | 82.6% | 1,355 |
-| Recent exchange terms (2Y) | 96.6% | 442 |
-| Offer-document intelligence | 69.5% | 387 |
-| Live subscription categories | 78.1% | 8 |
+| Actionable exchange terms | 82.6% | 1,357 |
+| Recent exchange terms (2Y) | 96.4% | 444 |
+| Offer-document intelligence | 69.7% | 389 |
+| Live subscription categories | 90.6% | 8 |
 | Matured lifecycle dates | 97.2% | 1,323 |
-| Source/provenance trail | 100.0% | 1,366 |
+| Source/provenance trail | 100.0% | 1,370 |
 
 ## Actionable exchange fields
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| symbol | 1,351 | 1,355 | 4 | 99.7% |
-| board | 1,355 | 1,355 | 0 | 100.0% |
-| exchange | 1,355 | 1,355 | 0 | 100.0% |
-| openDate | 1,355 | 1,355 | 0 | 100.0% |
-| closeDate | 1,355 | 1,355 | 0 | 100.0% |
-| priceBand | 1,336 | 1,355 | 19 | 98.6% |
-| lotSize | 436 | 1,355 | 919 | 32.2% |
-| issueSizeCr | 392 | 1,355 | 963 | 28.9% |
-| issueComposition | 389 | 443 | 54 | 87.8% |
+| symbol | 1,352 | 1,357 | 5 | 99.6% |
+| board | 1,357 | 1,357 | 0 | 100.0% |
+| exchange | 1,357 | 1,357 | 0 | 100.0% |
+| openDate | 1,357 | 1,357 | 0 | 100.0% |
+| closeDate | 1,357 | 1,357 | 0 | 100.0% |
+| priceBand | 1,336 | 1,357 | 21 | 98.5% |
+| lotSize | 436 | 1,357 | 921 | 32.1% |
+| issueSizeCr | 392 | 1,357 | 965 | 28.9% |
+| issueComposition | 389 | 445 | 56 | 87.4% |
 
 ## Recent exchange fields — last 2 years
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| symbol | 438 | 442 | 4 | 99.1% |
-| board | 442 | 442 | 0 | 100.0% |
-| exchange | 442 | 442 | 0 | 100.0% |
-| openDate | 442 | 442 | 0 | 100.0% |
-| closeDate | 442 | 442 | 0 | 100.0% |
-| priceBand | 436 | 442 | 6 | 98.6% |
-| lotSize | 429 | 442 | 13 | 97.1% |
-| issueSizeCr | 385 | 442 | 57 | 87.1% |
-| issueComposition | 388 | 442 | 54 | 87.8% |
+| symbol | 439 | 444 | 5 | 98.9% |
+| board | 444 | 444 | 0 | 100.0% |
+| exchange | 444 | 444 | 0 | 100.0% |
+| openDate | 444 | 444 | 0 | 100.0% |
+| closeDate | 444 | 444 | 0 | 100.0% |
+| priceBand | 436 | 444 | 8 | 98.2% |
+| lotSize | 429 | 444 | 15 | 96.6% |
+| issueSizeCr | 385 | 444 | 59 | 86.7% |
+| issueComposition | 388 | 444 | 56 | 87.4% |
 
 ## Historical exchange fields
 
@@ -61,21 +61,21 @@ Records audited: **1,366**
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| registrar | 357 | 387 | 30 | 92.2% |
-| leadManagers | 352 | 387 | 35 | 91.0% |
-| promoters | 343 | 387 | 44 | 88.6% |
-| objectsOfIssue | 92 | 387 | 295 | 23.8% |
-| financials | 247 | 387 | 140 | 63.8% |
-| promoterShareholding | 223 | 387 | 164 | 57.6% |
+| registrar | 361 | 389 | 28 | 92.8% |
+| leadManagers | 357 | 389 | 32 | 91.8% |
+| promoters | 343 | 389 | 46 | 88.2% |
+| objectsOfIssue | 93 | 389 | 296 | 23.9% |
+| financials | 247 | 389 | 142 | 63.5% |
+| promoterShareholding | 225 | 389 | 164 | 57.8% |
 
 ## Open IPO subscription fields
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| qib | 6 | 8 | 2 | 75.0% |
-| nii | 6 | 8 | 2 | 75.0% |
-| retail | 6 | 8 | 2 | 75.0% |
-| total | 7 | 8 | 1 | 87.5% |
+| qib | 7 | 8 | 1 | 87.5% |
+| nii | 7 | 8 | 1 | 87.5% |
+| retail | 7 | 8 | 1 | 87.5% |
+| total | 8 | 8 | 0 | 100.0% |
 
 ## Matured lifecycle fields
 

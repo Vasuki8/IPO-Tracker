@@ -53,7 +53,7 @@ jobs:
           # Pages propagation may lag the successful deployment event. Retries
           # are bounded; never reinterpret mismatched bytes as a successful run.
           for attempt in 1 2 3; do
-            if uv run --no-project --python 3.12 python tests/verify_public_release.py --expected-commit "$sha" --base-url "$base" > "artifacts/public-release/attempt-$attempt.json"; then
+            if uv run --no-project --python 3.12 python tests/verify_public_release.py --expected-commit "$sha" --base-url "$base" --check-reviewed-publication > "artifacts/public-release/attempt-$attempt.json"; then
               cat "artifacts/public-release/attempt-$attempt.json"
               git diff --exit-code
               exit 0

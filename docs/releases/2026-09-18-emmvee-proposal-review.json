@@ -1,0 +1,203 @@
+{
+  "scope": "retained-proposal-review-advice-not-canonical-correction-or-new-source-audit",
+  "pullRequest": 121,
+  "baselineCommit": "71bec048515b3b1fae2232b5640dac3a55ee7c3b",
+  "reviewedHead": "9d6ad3ae783bbd97888fd95d299d51b00f11ae40",
+  "testMerge": "dcf43a15b171b878b2c91a1b356b35db1ac5622e",
+  "mergeCommit": "3bb08735dfb114bbba08a622df50fce88274defa",
+  "mergedTree": "126c240dc0773b942f02f48ccff3662477ae8cb7",
+  "originalCollection": {
+    "runId": 35204652736,
+    "artifactId": 10489143505,
+    "artifactSha256": "ca493aca0d1ae0b2b40797902378803b732c84b063c15a1a74ec4574b8193923",
+    "sourceCommit": "e2ab245533ed790c50bfd40a14cfb93c6fda2fd3",
+    "completeRetainedGroupsAndIssuerIdentityMatched": true
+  },
+  "reviewDecisionAudit": {
+    "decisionsRecorded": 1,
+    "resolutionsApplied": 0,
+    "events": [
+      {
+        "reviewId": "emmvee-retained-document-2026-09-18",
+        "fingerprint": "15558bebf1ac545501558352946b9104ebf2ce62d499024ae295e783f725c15c",
+        "decision": "do_not_apply_as_proposed",
+        "reviewedAt": "2026-09-18T04:49:59.562981+00:00",
+        "evidenceFile": "2026-09-18-emmvee-retained-proposal.md",
+        "evidenceSha256": "7662faae0f9e3d2fb32a8f47bf56a072d3945abb9ccb188d53c57e0c68ed08e7",
+        "occurrences": [
+          {
+            "inputIndex": 133,
+            "bindingStatus": "applicable"
+          }
+        ],
+        "bindingStatus": "applicable"
+      }
+    ]
+  },
+  "reviewDecisionInputs": {
+    "ledger": "f56f021e7c61967eca8a3af032bee6861684e686d75cc00e9ab184a9313a3166",
+    "evidence": {
+      "2026-09-18-emmvee-retained-proposal.md": "7662faae0f9e3d2fb32a8f47bf56a072d3945abb9ccb188d53c57e0c68ed08e7"
+    }
+  },
+  "validation": {
+    "prRun": 35309035968,
+    "prJob": 105487050144,
+    "postMergeRun": 35309364538,
+    "postMergeJob": 105488004080,
+    "status": "success",
+    "environment": "GitHub Python 3.12; uv sync --frozen",
+    "newRegressionTests": 11,
+    "localNewTestsPassed": 11,
+    "localNodeTestsPassed": 8,
+    "localFullSuite": {
+      "testsAttempted": 1062,
+      "errors": 3,
+      "cause": "Pages mirror omits workflows required by existing tests; not a full local suite pass"
+    },
+    "prReportSha256": "ed5bd99fb60e41fc9e94cdba08c00a60e2b58947e35f5d926564febd37b2b3f4",
+    "prReportMatchedLocalBytes": true,
+    "postMergeReportSha256": "405e2e0a3fcdc9ec9ebaef4cf3e544c0b61c8dcde64eb1a9c25dffa506d11c88",
+    "postMergeReportReplayedLocally": true
+  },
+  "downloadedHashVerifiedArtifacts": [
+    {
+      "kind": "pr-report",
+      "id": 10533095128,
+      "sha256": "149d164deaed4d10da7703dc50792b71beaa7713a2ed62d733003dc71880cbcc"
+    },
+    {
+      "kind": "post-merge-report",
+      "id": 10532925972,
+      "sha256": "79e93da34643104305930955da755ab6b96aaba8d5c7e0a46de532f335a846df"
+    },
+    {
+      "kind": "deployed-tree",
+      "id": 10532318062,
+      "sha256": "96d330369349f7df6fb422a193b9143e518c31f064e0c0497ea9ac4802e7d5a7"
+    },
+    {
+      "kind": "live-receipt",
+      "id": 10533305181,
+      "sha256": "bc68743a0f635c732d5247e5ca4e79bb56819d79c0d285d9c989052757b40950"
+    }
+  ],
+  "concurrentAutomation": {
+    "commit": "61360716df53507128266eebe330cf0273038c84",
+    "runId": 35309048100,
+    "mode": "filings",
+    "allRecordsPolicyClockRefreshed": true,
+    "recordsWithOtherChanges": 36,
+    "generatedProfilesChanged": 4,
+    "retainedPendingBytesUnchanged": true,
+    "emmveeAndTeamtechUnchangedExceptPolicyCheckClock": true,
+    "note": "This existing automatic publication preceded the merge and is preserved, not attributed to this five-file review-only PR. No new adjudication of its unrelated source facts."
+  },
+  "currentReportSummary": {
+    "retainedProposals": 441,
+    "documentFieldProposals": 159,
+    "byComparisonState": {
+      "not_assessed": 282,
+      "still_conflicting": 159
+    },
+    "documentWithValueDifferences": 30,
+    "documentWithEvidenceOrReviewDifferences": 159,
+    "duplicateFingerprintOccurrences": 0
+  },
+  "currentInputSha256": {
+    "canonical": "ecc71c4b53f87178c20e0b1708322a9399da66d22272c6d5e5cc62fd8335672f",
+    "pending": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+    "displayHolds": "e0ccc9b414585e1076acfe538d0fd92ff5b15159ccaa5261d847f95af76db628"
+  },
+  "phaseStatus": {
+    "generatedAt": "2026-09-18T05:01:51.309692+00:00",
+    "p4": {
+      "status": "incomplete",
+      "actionableRecords": 387,
+      "higherPriorityRecords": 51,
+      "semanticErrors": 0,
+      "sourceReviewItems": 1596,
+      "blockingSourceReviewItems": 1592,
+      "p5OnlySourceReviewItems": 4,
+      "unmappedSourceReviewItems": 0,
+      "finalProspectusRevalidationRecords": 321,
+      "finalProspectusRevalidationFields": 1173,
+      "higherPriorityFinalProspectusRevalidationRecords": 29,
+      "higherPriorityFinalProspectusRevalidationFields": 107,
+      "resolvedUnavailableRecords": 5
+    },
+    "p5": {
+      "status": "waiting_for_p4",
+      "actionableRecords": 914
+    }
+  },
+  "pagesRun": 35309363825,
+  "pagesStatus": "success",
+  "liveAcceptanceRun": 35309396845,
+  "liveReceipt": {
+    "expectedCommit": "3bb08735dfb114bbba08a622df50fce88274defa",
+    "status": "passed",
+    "scope": "public-artifact-consistency-not-source-accuracy",
+    "routeCount": 1366,
+    "sampledProfiles": [
+      "ipo/emmvee/",
+      "ipo/teamtech/",
+      "ipo/shakti-polytarp-limited/",
+      "ipo/kheriaauto/",
+      "ipo/vama-wovenfab-limited/",
+      "ipo/sona/",
+      "ipo/manika/"
+    ],
+    "expectedSha256": {
+      "index.html": "7bb7c13dc4c856b9bcb77138e9d9cdfb8934384688e97c27c5bd9d81aa6fec59",
+      "public-quality.js": "327e7561c91728abd22dbf7d948babbc7b78db3cc29b07355386602e1209d77c",
+      "public-quality.css": "988dee5e990116eff25b8746a77b0b618b23d5394f3b919d601cceaedd6d4467",
+      "app.js": "aad042ffd8cea3576b5abff34d8b0378e812ab7e4f368f73e162d427201167d3",
+      "company-page.js": "c965ddfd01ab122b196dc58797d299f724b2378092c7ff927c91ea14b132c610",
+      "company.js": "8fba803171c5fd0fb09b95844fc153eaeff159a3a55c92785ef3c9013e08435d",
+      "phase4.js": "d7c69047e184cf5f896a75e61c62150a462ed985deaf93fdd8c0015a212e388f",
+      "methodology.html": "fe6b152b67eeaf0d1b17d7a700e1819fc250256bc022b64c9735c7867d7c546c",
+      "data/ipos-summary.json": "d51f0a8f0f6abd6cbc7ca9b440ae1775f4c59afdbff19ea25e582d4987eb8629",
+      "ipo/routes.json": "a07cb2cd58c888f74064cccd5424ee46c1b82632b4df924ade5cef87464cdbee",
+      "ipo/emmvee/index.html": "4502adcd7a5ebb3d4909a9eab28f0562c4efd7f117c0e6a4e1179d0f5fe046a8",
+      "ipo/teamtech/index.html": "724722823686a49c9c8cdb6e6411d47ad5ebbff4d22dbc024143cbad3cc22e8d",
+      "ipo/shakti-polytarp-limited/index.html": "5bcdee8e16db777889de0ef4cb8a737c3b9e63e5e24825d78f03ef563ea20cc5",
+      "ipo/kheriaauto/index.html": "b78a8acbc11a761c57b29aedacfccc956e9abcb9dcda89e03447312bb5d2d0d5",
+      "ipo/vama-wovenfab-limited/index.html": "ed84a83324dea32bf77c914902687b382b9d4d2841f7c4c9aa26dcbe2f70de70",
+      "ipo/sona/index.html": "d4ba380db6858cbc9bd8939998d36d523eeadb817d017da1931e0062db28d2f8",
+      "ipo/manika/index.html": "d93ed249adccf3ff72675298747dcb0f294f95e5ebd31fc4d53499aa556d2c13"
+    },
+    "reviewedPublication": {
+      "status": "not_requested",
+      "scope": "retained-reviewed-evidence-delivery"
+    },
+    "baseUrl": "https://vasuki8.github.io/IPO-Tracker/",
+    "httpChecked": [
+      "index.html",
+      "public-quality.js",
+      "public-quality.css",
+      "app.js",
+      "company-page.js",
+      "company.js",
+      "phase4.js",
+      "methodology.html",
+      "data/ipos-summary.json",
+      "ipo/routes.json",
+      "ipo/emmvee/index.html",
+      "ipo/teamtech/index.html",
+      "ipo/shakti-polytarp-limited/index.html",
+      "ipo/kheriaauto/index.html",
+      "ipo/vama-wovenfab-limited/index.html",
+      "ipo/sona/index.html",
+      "ipo/manika/index.html"
+    ]
+  },
+  "limitations": [
+    "Exact retained evidence reuse and original collection comparison, not new PDF retrieval or full-document review.",
+    "All 441 proposals remain pending; the advice does not resolve work or change the P4 gate.",
+    "The current publication is ordinary filings: reviewedPublication.status=not_requested is not a reviewed-repair pass. Current Emmvee bindings passed separately in the operator report.",
+    "Local uv used Python 3.13.5 with available dependencies; locked packages unavailable locally. Complete-repository frozen CI passed independently.",
+    "No new browser journey suite was run for this operator-only increment; 1366 local profiles and 17 full public HTTPS responses were checked.",
+    "No new source-collection code, parser, public rendering, dependency, spending, contracts, outreach, tracking, billing or access changes."
+  ]
+}

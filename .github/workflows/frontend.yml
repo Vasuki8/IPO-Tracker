@@ -11,6 +11,12 @@ on:
       - 'scripts/public_quality.py'
       - 'scripts/source_review_holds.py'
       - 'data/public_display_holds.json'
+      - 'data/verified_corrections.json'
+      - 'data/reviewed_correction_evidence.json'
+      - 'data/reviewed_correction_evidence/**'
+      - 'scripts/reviewed*.py'
+      - 'scripts/apply_corrections.py'
+      - 'scripts/publish_transaction.py'
       - 'tests/frontend*'
       - 'tests/verify_public_release.py'
       - '.github/workflows/frontend.yml'
@@ -25,6 +31,12 @@ on:
       - 'scripts/public_quality.py'
       - 'scripts/source_review_holds.py'
       - 'data/public_display_holds.json'
+      - 'data/verified_corrections.json'
+      - 'data/reviewed_correction_evidence.json'
+      - 'data/reviewed_correction_evidence/**'
+      - 'scripts/reviewed*.py'
+      - 'scripts/apply_corrections.py'
+      - 'scripts/publish_transaction.py'
       - 'tests/frontend*'
       - 'tests/verify_public_release.py'
       - '.github/workflows/frontend.yml'
@@ -85,7 +97,27 @@ jobs:
           PY
           node tests/frontend_smoke.cjs
           node tests/frontend_quality_layout.cjs
+          node tests/frontend_source_holds.cjs
           uv run --frozen python tests/verify_public_release.py --expected-commit "$(git rev-parse HEAD)" --base-url "$BASE_URL" > "$SMOKE_ARTIFACT_DIR/public-release.json"
+      - name: Rehearse bounded reviewed composition in an isolated site
+        shell: bash
+        run: |
+          set -euo pipefail
+          candidate="$RUNNER_TEMP/reviewed-site"
+          mkdir -p "$candidate"
+          tar --exclude=.git --exclude=.venv --exclude=artifacts -cf - . | tar -xf - -C "$candidate"
+          uv run --frozen python scripts/reviewed_corrections.py --ids emmvee --bundle "$RUNNER_TEMP/reviewed-bundle"
+          cp "$RUNNER_TEMP/reviewed-bundle/proposed.json" "$candidate/data/ipos.json"
+          uv run --frozen python "$candidate/scripts/build_company_pages.py"
+          export NODE_PATH="$RUNNER_TEMP/ipo-playwright/node_modules"
+          export BASE_URL=http://127.0.0.1:8001/
+          export SMOKE_ARTIFACT_DIR="$SMOKE_ARTIFACT_DIR/reviewed-candidate"
+          mkdir -p "$SMOKE_ARTIFACT_DIR"
+          python3 -m http.server 8001 --bind 127.0.0.1 --directory "$candidate" > "$SMOKE_ARTIFACT_DIR/server.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          node tests/frontend_reviewed_composition.cjs
+          git diff --exit-code -- data/ipos.json data/pending_updates.json
       - name: Retain screenshots and failure diagnostics
         if: always()
         uses: actions/upload-artifact@v4.6.2

@@ -1,0 +1,173 @@
+{
+  "scope": "explicit-value-hold-identity-release-not-new-source-audit",
+  "baselineCommit": "8cdce86a4dc05421585e042c4207f3cbc06ec22d",
+  "pullRequest": 128,
+  "reviewedHead": "fd2ea8b6585a8114e84ab745f6c3f0db36b002af",
+  "testMerge": "364ff39d8eebfde319852511ed574a0a4343aeea",
+  "mergeCommit": "543c625b9234db7a2b6ab65c6ded624894f74606",
+  "tree": "6a5641f93a218bd434ace573b8787da2ab35dcf5",
+  "canonicalPublicationCommit": "d462f858fcdb18909180f8747c0e2bf0552dd6f8",
+  "tests": {
+    "newIdentityTests": 10,
+    "baselineFailingSubcases": 27,
+    "existingLocalPublicQualityTests": 26,
+    "nodeTests": 8,
+    "frozenRegressions": 1108,
+    "frozenPython": "3.12.14",
+    "frozenSuiteRun": 35318139596,
+    "frozenSuiteJob": 105514284896,
+    "prValidationRun": 35317595704,
+    "postMergeValidationRun": 35318139668,
+    "browserRun": 35317595730,
+    "browserTestMerge": "364ff39d8eebfde319852511ed574a0a4343aeea",
+    "browserJourneys": 25,
+    "browserPageErrors": 0,
+    "freshnessWidths": [
+      1440,
+      375,
+      320
+    ],
+    "reviewedComposition": {
+      "baseUrl": "http://127.0.0.1:8001/",
+      "status": "passed",
+      "results": [
+        "directory accepted amount",
+        "CSV accepted amount and evidence state",
+        "comparison accepted amount",
+        "profile source-linked composition at 1440/375/320px",
+        "Teamtech remains withheld"
+      ],
+      "errors": [],
+      "canonicalRequests": []
+    }
+  },
+  "presentation": {
+    "runId": 35318139596,
+    "publishJobId": 105514388179,
+    "mode": "presentation",
+    "sourceCollection": "skipped",
+    "residualCollection": "skipped",
+    "profilesUnchanged": 1367,
+    "canonicalRewritten": false,
+    "summaryRewritten": false,
+    "acceptedCommitCreated": false
+  },
+  "pagesRun": 35318200827,
+  "liveAcceptanceRun": 35318239203,
+  "downloadedVerifiedArtifacts": [
+    {
+      "id": 10535317830,
+      "kind": "browser",
+      "sha256": "e70ccda4d4e8c1e485f1586216507605f467a3fe747e432985e2a9c7165f5a1a"
+    },
+    {
+      "id": 10535684955,
+      "kind": "live",
+      "sha256": "364e80ca44bfbba02b70d4864921a142afdf68f7313e48933491547d6217da5a"
+    }
+  ],
+  "liveReceipt": {
+    "expectedCommit": "543c625b9234db7a2b6ab65c6ded624894f74606",
+    "status": "passed",
+    "scope": "public-artifact-consistency-not-source-accuracy",
+    "routeCount": 1367,
+    "sampledProfiles": [
+      "ipo/emmvee/",
+      "ipo/teamtech/",
+      "ipo/shakti-polytarp-limited/",
+      "ipo/kheriaauto/",
+      "ipo/vama-wovenfab-limited/",
+      "ipo/sona/",
+      "ipo/manika/"
+    ],
+    "expectedSha256": {
+      "index.html": "7bb7c13dc4c856b9bcb77138e9d9cdfb8934384688e97c27c5bd9d81aa6fec59",
+      "public-quality.js": "327e7561c91728abd22dbf7d948babbc7b78db3cc29b07355386602e1209d77c",
+      "public-quality.css": "988dee5e990116eff25b8746a77b0b618b23d5394f3b919d601cceaedd6d4467",
+      "app.js": "aad042ffd8cea3576b5abff34d8b0378e812ab7e4f368f73e162d427201167d3",
+      "company-page.js": "c965ddfd01ab122b196dc58797d299f724b2378092c7ff927c91ea14b132c610",
+      "company.js": "8fba803171c5fd0fb09b95844fc153eaeff159a3a55c92785ef3c9013e08435d",
+      "phase4.js": "d7c69047e184cf5f896a75e61c62150a462ed985deaf93fdd8c0015a212e388f",
+      "methodology.html": "fe6b152b67eeaf0d1b17d7a700e1819fc250256bc022b64c9735c7867d7c546c",
+      "data/ipos-summary.json": "4b1faf9b4ce5b732a013b401ee5bb5695e6e18b6dcfe9270e574f87b32e60367",
+      "ipo/routes.json": "0406ef83dfacb1149ee618c92276b225da24bc558638c5873a3233b2293797a9",
+      "ipo/emmvee/index.html": "4502adcd7a5ebb3d4909a9eab28f0562c4efd7f117c0e6a4e1179d0f5fe046a8",
+      "ipo/teamtech/index.html": "724722823686a49c9c8cdb6e6411d47ad5ebbff4d22dbc024143cbad3cc22e8d",
+      "ipo/shakti-polytarp-limited/index.html": "da020c1a8592d2cc5c5992d600117fdebc193069bd8f58f49913d3e2cf390b2c",
+      "ipo/kheriaauto/index.html": "5a23271a08169a0f30fff7a1e52093dc7346f158f2b17219a1c120da344b2150",
+      "ipo/vama-wovenfab-limited/index.html": "0e67b0835622dd9251aa64b48cefb7b0cde1844104bf8c97478a10fb0c63eb2c",
+      "ipo/sona/index.html": "a10102b4ec649dccd2077c0cbf32293519b7bc11d05d22311e0df05a98099958",
+      "ipo/manika/index.html": "d93ed249adccf3ff72675298747dcb0f294f95e5ebd31fc4d53499aa556d2c13"
+    },
+    "reviewedPublication": {
+      "status": "not_requested",
+      "scope": "retained-reviewed-evidence-delivery"
+    },
+    "baseUrl": "https://vasuki8.github.io/IPO-Tracker/",
+    "httpChecked": [
+      "index.html",
+      "public-quality.js",
+      "public-quality.css",
+      "app.js",
+      "company-page.js",
+      "company.js",
+      "phase4.js",
+      "methodology.html",
+      "data/ipos-summary.json",
+      "ipo/routes.json",
+      "ipo/emmvee/index.html",
+      "ipo/teamtech/index.html",
+      "ipo/shakti-polytarp-limited/index.html",
+      "ipo/kheriaauto/index.html",
+      "ipo/vama-wovenfab-limited/index.html",
+      "ipo/sona/index.html",
+      "ipo/manika/index.html"
+    ]
+  },
+  "preservation": {
+    "canonicalRecords": 1367,
+    "pendingProposals": 441,
+    "canonicalSha256": "6e71ff58d166875c20fe7bd63ab59f2adef792808efb82606f05560134bdae9c",
+    "pendingSha256": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+    "holdsSha256": "e0ccc9b414585e1076acfe538d0fd92ff5b15159ccaa5261d847f95af76db628",
+    "phaseSha256": "e82e358bfda7598b0273fd8bab68651b0fbadd1bb24d0111d4ab3f593da98d23",
+    "canonicalPendingHoldsAndPhaseUnchanged": true,
+    "publicOutputUnchanged": true,
+    "emmveeAdvice": "applicable-not-resolved",
+    "p4BlockingReviews": 1592,
+    "p4Actionable": 387,
+    "higherPriority": 52,
+    "p5": "waiting_for_p4",
+    "teamtech": "held"
+  },
+  "preservedPr125": {
+    "priorHead": "be7c448544381cdc0723e09b01f3734713ec8f05",
+    "head": "f09d272dcd8f5c087b625d571dfa30a73b084831",
+    "tree": "9493b7af73373e30ae61082286cfba64399362cc",
+    "helperGitBlob": "3f8a7956a780ad36ce5c4208a248e38e4ed3719d",
+    "newTestGitBlob": "c43548790d0591e30a67b30f19307b0c64c78b67",
+    "changedFiles": [
+      "scripts/source_review_holds.py",
+      "tests/test_value_hold_identity.py"
+    ],
+    "currentBaseIntegrationAccepted": false,
+    "merged": false,
+    "localHelperIdentityTestsPassed": 10,
+    "unacceptedRehearsal": {
+      "baseline": "8cdce86a4dc05421585e042c4207f3cbc06ec22d",
+      "activeHolds": 11,
+      "reviews": 1607,
+      "blockingReviews": 1603,
+      "released": false
+    }
+  },
+  "limitations": [
+    "Local full attempt: 1108 tests with six missing-workflow-file errors; not a full pass.",
+    "Local frozen sync lacked locked packages; local targeted passes used uv with available Python 3.13.5.",
+    "Local Chromium returned ERR_BLOCKED_BY_ADMINISTRATOR; browser passes are the recorded GitHub CI results.",
+    "Sacheerome physical page 3 visually rechecked; Snehaa PDF exceeded the web limit and direct download failed. No new full-PDF or byte-hash audit.",
+    "All-profile checks are local CI consistency, not all-profile live HTTP or browser verification.",
+    "Only the identity prerequisite is released; no new role holds, queue changes, source values, proposal resolutions or P4 completion.",
+    "Commercial rights/offering decisions remain unresolved; no spending, outreach, tracking, billing or access changes."
+  ]
+}

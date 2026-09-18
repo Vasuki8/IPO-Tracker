@@ -1,0 +1,36 @@
+name: Verify source-hold evidence
+
+on:
+  pull_request:
+    paths:
+      - 'data/public_display_holds.json'
+      - 'scripts/source_review_holds.py'
+      - 'tests/public_intermediary_reviews_retained.json'
+      - 'tests/verify_intermediary_sources.py'
+      - '.github/workflows/source-hold-evidence.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@v10.1.0
+      - run: uv python install 3.12
+      - run: uv sync --frozen
+      - name: Check exact source bindings and retain pages for visual review
+        run: |
+          uv run --frozen python tests/verify_intermediary_sources.py
+          git diff --exit-code -- data/
+      - name: Retain limited source-review evidence
+        if: always()
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: source-hold-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/intermediary-sources/
+          retention-days: 14
