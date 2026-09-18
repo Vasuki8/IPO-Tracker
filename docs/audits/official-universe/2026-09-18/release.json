@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-18T23:11:52.210750+00:00",
+  "acceptedReleaseCommit": "794a8f6012047a0d817f4363a9374439c9892eb3",
+  "recoveryCommit": "6992dd44c55dfa529cea29cb32a9462d9ca38a78",
+  "preservedScheduledCommit": "f19a561388cbccd3af93679c9e743838746cad4b",
+  "pullRequests": [
+    {
+      "number": 146,
+      "mergeCommit": "b23fc366ceeaf72bcc72d810dad26f498e175ffc",
+      "headCommit": "2b16d34c13698b3d438845a3ad2291bd053b404e",
+      "validationRun": 35403902766,
+      "pythonTests": 1283,
+      "conclusion": "success"
+    },
+    {
+      "number": 147,
+      "mergeCommit": "794a8f6012047a0d817f4363a9374439c9892eb3",
+      "headCommit": "8836f8644c69cd7719a47ab78a59e5da02a692b6",
+      "validationRun": 35404373836,
+      "pythonTests": 1283,
+      "conclusion": "success"
+    }
+  ],
+  "deployment": {
+    "pagesRun": 35404502951,
+    "liveWorkflowRun": 35404532544,
+    "mainValidationRun": 35404503868,
+    "conclusion": "success"
+  },
+  "verification": {
+    "focusedPythonTests": 30,
+    "nodePublicQualityTests": 9,
+    "strictValidationErrors": 0,
+    "unchangedSourceReviewItems": 1556,
+    "httpFilesMatched": 31,
+    "newProfilesChecked": 8,
+    "inventory": 1379,
+    "browserReceipt": "browser-verification.json",
+    "byteReceipt": "live-delivery.json"
+  },
+  "p4": {
+    "before": {
+      "actionable": 387,
+      "higherPriority": 55,
+      "blockingReviews": 1552
+    },
+    "after": {
+      "actionable": 387,
+      "higherPriority": 63,
+      "blockingReviews": 1552
+    },
+    "reductionClaimed": false
+  },
+  "coverageComplete": false,
+  "matchedCandidateRecords": {
+    "NSE": {
+      "matched": 173,
+      "denominator": 174
+    },
+    "BSE": {
+      "matched": 563,
+      "denominator": 1848
+    },
+    "SEBI": {
+      "matched": 2602,
+      "denominator": 5813
+    }
+  },
+  "missingCandidateNames": 2160,
+  "unreconciledTrackerRecords": 227,
+  "acceptedAliases": 5,
+  "recordsAdded": 8,
+  "nextCohort": "next-cohort.json",
+  "activeOtherPRs": [
+    105,
+    104,
+    99,
+    98,
+    94
+  ],
+  "commercialDecisionsUnresolved": [
+    "customer segment",
+    "pricing",
+    "revenue model",
+    "source redistribution rights",
+    "commercial hosting fit"
+  ]
+}

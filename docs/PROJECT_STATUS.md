@@ -15,18 +15,32 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
-## Current checkpoint — official-universe clock closeout, 18 September 2026
+## Current checkpoint — official-universe release verified, 18 September 2026
 
-Current main: **`b23fc366ceeaf72bcc72d810dad26f498e175ffc`** (PR #146).
+Accepted data/main commit observed before documentation closeout:
+**`794a8f6012047a0d817f4363a9374439c9892eb3`** (PR #147).
 Recovery began at `6992dd44`; the intervening scheduled data publication was
 incorporated without changing any of its 1,371 existing records.
 The prior HTEL/Onemi financial release is preserved below and was not repeated.
-PR #146 passed all 1,283 Python tests on Linux (run `35403902766`) and deployed
-through Pages `35404000924`; live workflow `35404035262` passed. Complete HTTP
-bytes matched for 31 public files including all eight added profiles. The live
-browser check then found collection time labelled as source-record time on the
-new source links. Branch `fix-universe-collection-clock-20260918` preserves the
-unknown source time and records collection time separately; its release is pending.
+[PR #146](https://github.com/Vasuki8/IPO-Tracker/pull/146) added the audit and eight
+reviewed identities (`780f3b85`, `2b16d34c`; merge `b23fc366`). Live review caught
+collection time labelled as source-record time on their source links.
+[PR #147](https://github.com/Vasuki8/IPO-Tracker/pull/147) corrected that boundary
+(`8836f864`; merge `794a8f60`), retaining null observation times, collection clocks
+and correction history. Documentation closeout branch:
+`docs-official-universe-release-20260918`.
+
+Both PRs passed all **1,283 Python tests on Linux** (runs
+[35403902766](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35403902766) and
+[35404373836](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35404373836)).
+Final data release: [Pages 35404502951](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35404502951),
+[live verification 35404532544](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35404532544)
+and main validation `35404503868` all succeeded. Complete HTTP bytes matched for
+31 public files including all eight new profiles. Live browser checks verified
+their names, official links, unknown terms and unknown source clocks; directory
+search finds Vinod with its reported listing date. The previously visited Vinod
+page required a fresh browser load after deployment; its plain-URL HTTP bytes
+also matched. See the retained [release receipt](audits/official-universe/2026-09-18/release.json).
 
 The [official-universe report](audits/official-universe/2026-09-18/REPORT.md) and
 [reproducible audit](audits/official-universe/2026-09-18/audit.json) establish that
@@ -66,9 +80,10 @@ The earlier open PRs #105/#104 (drafts), #99/#98/#94 remain untouched. Commercia
 segment, pricing, revenue model, source redistribution rights and hosting fit
 remain unresolved. No paid services, outreach or permissions changed.
 
-**Exact next task:** publish and live-verify the collection-clock correction,
-then record final release evidence. Then review the 12 BSE August 2026 missing
-SME-name candidates from retained evidence. Recover stable SEBI
+**Exact next task:** review the [12 BSE August 2026 missing SME-name candidates](audits/official-universe/2026-09-18/next-cohort.json)
+from the retained archive. Check issuer/symbol/issue-period details and possible
+tracker aliases before accepting any new identities; leave unknown terms null.
+Recover stable SEBI
 draft pagination and the failed NSE historical ranges separately; do not repeat
 verified RHP/final/Other/BSE cohorts or begin numerical backfill.
 
