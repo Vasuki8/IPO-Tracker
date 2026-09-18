@@ -1,0 +1,221 @@
+{
+  "scope": "read-only-update-health-report-release-not-source-accuracy",
+  "baselineCommit": "d462f858fcdb18909180f8747c0e2bf0552dd6f8",
+  "previousCheckpoint": "4552e771bf704d1106c946654b7a8ebf67e785bd",
+  "pullRequest": 126,
+  "reviewedHead": "c758b08b71634fcd57de7819f0cc970099270619",
+  "testMerge": "41ff686eadc523f2684dc9bb1e29d49dcbe04185",
+  "mergeCommit": "edb46e59dfeed64d7cc9f6c8e21b5430d76290aa",
+  "tree": "f298697abb187f57b6449ae6409adef7edb5e84f",
+  "validation": {
+    "prRun": 35314569813,
+    "prJob": 105503365496,
+    "prStatus": "success",
+    "postMergeRun": 35314904775,
+    "postMergeStatus": "success",
+    "remoteEnvironment": "Python 3.12; uv sync --frozen",
+    "localRegressions": 1098,
+    "newRegressions": 20,
+    "nodeTests": 8,
+    "localEnvironment": "uv run --no-project --offline --python /opt/pyvenv/bin/python; Python 3.13.5; available dependencies, not frozen",
+    "strictErrors": 0,
+    "strictReviews": 1596,
+    "publicProfilesRebuiltWithoutChanges": 1367
+  },
+  "report": {
+    "asOf": "2026-09-18T06:22:37+00:00",
+    "summary": {
+      "canonicalRecords": 1367,
+      "lifecycleScopes": {
+        "after_close": 56,
+        "before_open": 4,
+        "not_live_status": 1287,
+        "open_by_recorded_dates": 8,
+        "unknown_dates": 12
+      },
+      "openSubscriptions": 8,
+      "observationStates": {
+        "overdue": 1,
+        "source_time_unknown": 7
+      },
+      "collectionStates": {
+        "missing": 2,
+        "overdue": 6
+      },
+      "stagesNeedingInvestigation": 4,
+      "sourcesNeedingInvestigation": 8
+    },
+    "inputSha256": {
+      "canonical": "6e71ff58d166875c20fe7bd63ab59f2adef792808efb82606f05560134bdae9c",
+      "phase": "e82e358bfda7598b0273fd8bab68651b0fbadd1bb24d0111d4ab3f593da98d23",
+      "displayHolds": "e0ccc9b414585e1076acfe538d0fd92ff5b15159ccaa5261d847f95af76db628"
+    },
+    "codePolicySha256": "13476b74b856c053ec3ac12587559f9fcb185f977d863d923502d6f972466ed9",
+    "reportSha256": "786512d841ccaac27a1dd2b5972e60f4b6d6db88f91f9ee96252e68390071119",
+    "artifactId": 10534319364,
+    "artifactSha256": "4ade7a2533fd6b692e84d3f5f27a53e6b9e913de7b2b66f7c2f42b9798312a63",
+    "downloadedHashVerified": true,
+    "locallyReproducedAtOriginalAssessmentInstant": true,
+    "freshNow": "not_asserted",
+    "mutationsApplied": 0
+  },
+  "workflowEvidenceExercise": {
+    "scope": "consumed-field-excerpts-from-authenticated-run-and-complete-job-inventory-not-unaltered-full-responses",
+    "runEndpoint": "https://api.github.com/repos/Vasuki8/IPO-Tracker/actions/runs/35312842043",
+    "jobsEndpoint": "https://api.github.com/repos/Vasuki8/IPO-Tracker/actions/runs/35312842043/jobs?filter=latest&per_page=100",
+    "runExcerpt": {
+      "id": 35312842043,
+      "name": "Collect and publish IPO data",
+      "head_branch": "main",
+      "head_sha": "4552e771bf704d1106c946654b7a8ebf67e785bd",
+      "path": ".github/workflows/refresh.yml",
+      "event": "schedule",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "created_at": "2026-09-18T05:57:16Z",
+      "updated_at": "2026-09-18T06:01:20Z",
+      "repository": {
+        "full_name": "Vasuki8/IPO-Tracker"
+      },
+      "head_repository": {
+        "full_name": "Vasuki8/IPO-Tracker"
+      }
+    },
+    "jobsExcerpt": {
+      "total_count": 2,
+      "jobs": [
+        {
+          "id": 105498233221,
+          "name": "collect",
+          "run_id": 35312842043,
+          "run_attempt": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-09-18T05:57:18Z",
+          "completed_at": "2026-09-18T06:00:47Z"
+        },
+        {
+          "id": 105498930337,
+          "name": "publish",
+          "run_id": 35312842043,
+          "run_attempt": 1,
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-09-18T06:00:49Z",
+          "completed_at": "2026-09-18T06:01:19Z"
+        }
+      ]
+    },
+    "result": "accepted_run_matches",
+    "assessmentAt": "2026-09-18T06:22:37+00:00"
+  },
+  "preservation": {
+    "canonicalRecords": 1367,
+    "canonicalSha256": "6e71ff58d166875c20fe7bd63ab59f2adef792808efb82606f05560134bdae9c",
+    "pendingProposals": 441,
+    "pendingSha256": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+    "phaseSha256": "e82e358bfda7598b0273fd8bab68651b0fbadd1bb24d0111d4ab3f593da98d23",
+    "baselineFilesUnchanged": true,
+    "proposalSummary": {
+      "retainedProposals": 441,
+      "documentFieldProposals": 159,
+      "subscriptionSnapshotProposals": 22,
+      "subscriptionByComparisonState": {
+        "still_conflicting": 22
+      },
+      "subscriptionObservationRelations": {
+        "not_comparable": 14,
+        "proposed_older": 8
+      },
+      "byComparisonState": {
+        "not_assessed": 260,
+        "still_conflicting": 181
+      },
+      "documentWithValueDifferences": 30,
+      "documentWithEvidenceOrReviewDifferences": 159,
+      "duplicateFingerprintOccurrences": 0
+    },
+    "emmveeAdvice": "applicable; do_not_apply_as_proposed; no resolution",
+    "p4BlockingReviews": 1592,
+    "p4ActionableRecords": 387,
+    "p4HigherPriorityRecords": 52,
+    "p5Status": "waiting_for_p4",
+    "teamtechRemainsHeld": true
+  },
+  "pagesRun": 35314904599,
+  "pagesStatus": "success",
+  "liveAcceptanceRun": 35314937796,
+  "liveArtifact": {
+    "id": 10533879198,
+    "sha256": "d9c0a7abb9ccf0bc97ce41531a1c3474a54b2d854ebc3738190d28954c43061d",
+    "downloadedHashVerified": true
+  },
+  "liveReceipt": {
+    "expectedCommit": "edb46e59dfeed64d7cc9f6c8e21b5430d76290aa",
+    "status": "passed",
+    "scope": "public-artifact-consistency-not-source-accuracy",
+    "routeCount": 1367,
+    "sampledProfiles": [
+      "ipo/emmvee/",
+      "ipo/teamtech/",
+      "ipo/shakti-polytarp-limited/",
+      "ipo/kheriaauto/",
+      "ipo/vama-wovenfab-limited/",
+      "ipo/sona/",
+      "ipo/manika/"
+    ],
+    "expectedSha256": {
+      "index.html": "7bb7c13dc4c856b9bcb77138e9d9cdfb8934384688e97c27c5bd9d81aa6fec59",
+      "public-quality.js": "327e7561c91728abd22dbf7d948babbc7b78db3cc29b07355386602e1209d77c",
+      "public-quality.css": "988dee5e990116eff25b8746a77b0b618b23d5394f3b919d601cceaedd6d4467",
+      "app.js": "aad042ffd8cea3576b5abff34d8b0378e812ab7e4f368f73e162d427201167d3",
+      "company-page.js": "c965ddfd01ab122b196dc58797d299f724b2378092c7ff927c91ea14b132c610",
+      "company.js": "8fba803171c5fd0fb09b95844fc153eaeff159a3a55c92785ef3c9013e08435d",
+      "phase4.js": "d7c69047e184cf5f896a75e61c62150a462ed985deaf93fdd8c0015a212e388f",
+      "methodology.html": "fe6b152b67eeaf0d1b17d7a700e1819fc250256bc022b64c9735c7867d7c546c",
+      "data/ipos-summary.json": "4b1faf9b4ce5b732a013b401ee5bb5695e6e18b6dcfe9270e574f87b32e60367",
+      "ipo/routes.json": "0406ef83dfacb1149ee618c92276b225da24bc558638c5873a3233b2293797a9",
+      "ipo/emmvee/index.html": "4502adcd7a5ebb3d4909a9eab28f0562c4efd7f117c0e6a4e1179d0f5fe046a8",
+      "ipo/teamtech/index.html": "724722823686a49c9c8cdb6e6411d47ad5ebbff4d22dbc024143cbad3cc22e8d",
+      "ipo/shakti-polytarp-limited/index.html": "da020c1a8592d2cc5c5992d600117fdebc193069bd8f58f49913d3e2cf390b2c",
+      "ipo/kheriaauto/index.html": "5a23271a08169a0f30fff7a1e52093dc7346f158f2b17219a1c120da344b2150",
+      "ipo/vama-wovenfab-limited/index.html": "0e67b0835622dd9251aa64b48cefb7b0cde1844104bf8c97478a10fb0c63eb2c",
+      "ipo/sona/index.html": "a10102b4ec649dccd2077c0cbf32293519b7bc11d05d22311e0df05a98099958",
+      "ipo/manika/index.html": "d93ed249adccf3ff72675298747dcb0f294f95e5ebd31fc4d53499aa556d2c13"
+    },
+    "reviewedPublication": {
+      "status": "not_requested",
+      "scope": "retained-reviewed-evidence-delivery"
+    },
+    "baseUrl": "https://vasuki8.github.io/IPO-Tracker/",
+    "httpChecked": [
+      "index.html",
+      "public-quality.js",
+      "public-quality.css",
+      "app.js",
+      "company-page.js",
+      "company.js",
+      "phase4.js",
+      "methodology.html",
+      "data/ipos-summary.json",
+      "ipo/routes.json",
+      "ipo/emmvee/index.html",
+      "ipo/teamtech/index.html",
+      "ipo/shakti-polytarp-limited/index.html",
+      "ipo/kheriaauto/index.html",
+      "ipo/vama-wovenfab-limited/index.html",
+      "ipo/sona/index.html",
+      "ipo/manika/index.html"
+    ]
+  },
+  "preservedRoadmapAuditGitBlob": "fb252a5cefecbb218d8879330849f167735a9c6f",
+  "limitations": [
+    "No new source collection, numerical correction, proposal resolution, fresh PDF audit or browser journey suite.",
+    "Live receipt checks all local profiles and 17 complete HTTPS responses, not all-profile live browser behaviour.",
+    "Local frozen sync lacked locked packages; local tests use available dependencies. Frozen CI passed independently.",
+    "Offline workflow inputs describe supplied evidence, not live polling. Successful no-change runs need not create accepted publications.",
+    "PR #125 remains open and its older candidate must be reconciled separately; its source review is not independently verified by this release.",
+    "No alerts, new writer, paid infrastructure, spending, contracts, outreach, tracking, billing or access changes."
+  ]
+}
