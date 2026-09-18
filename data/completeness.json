@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-09-18T21:29:48+05:30",
+  "generatedAt": "2026-09-18T22:01:10+05:30",
   "asOfDate": "2026-09-18",
-  "recordCount": 1370,
+  "recordCount": 1371,
   "stageCounts": {
     "closed": 56,
     "filing-pipeline": 12,
     "listed": 1287,
     "open": 8,
     "unknown": 1,
-    "upcoming": 6
+    "upcoming": 7
   },
   "segmentCounts": {
-    "allRecords": 1370,
-    "exchangeStage": 1357,
-    "recentExchange2Y": 444,
+    "allRecords": 1371,
+    "exchangeStage": 1358,
+    "recentExchange2Y": 445,
     "historicalExchange": 913,
     "offerDocumentEligible": 389,
     "openNow": 8,
@@ -21,7 +21,7 @@
   },
   "scores": {
     "exchangeStage": 82.6,
-    "recentExchange2Y": 96.4,
+    "recentExchange2Y": 96.3,
     "offerDocumentEligible": 69.7,
     "openSubscription": 90.6,
     "maturedLifecycle": 97.2,
@@ -30,114 +30,114 @@
   "coverage": {
     "exchangeStage": {
       "symbol": {
-        "present": 1352,
-        "expected": 1357,
+        "present": 1353,
+        "expected": 1358,
         "missing": 5,
         "pct": 99.6
       },
       "board": {
-        "present": 1357,
-        "expected": 1357,
+        "present": 1358,
+        "expected": 1358,
         "missing": 0,
         "pct": 100.0
       },
       "exchange": {
-        "present": 1357,
-        "expected": 1357,
+        "present": 1358,
+        "expected": 1358,
         "missing": 0,
         "pct": 100.0
       },
       "openDate": {
-        "present": 1357,
-        "expected": 1357,
+        "present": 1358,
+        "expected": 1358,
         "missing": 0,
         "pct": 100.0
       },
       "closeDate": {
-        "present": 1357,
-        "expected": 1357,
+        "present": 1358,
+        "expected": 1358,
         "missing": 0,
         "pct": 100.0
       },
       "priceBand": {
         "present": 1336,
-        "expected": 1357,
-        "missing": 21,
-        "pct": 98.5
+        "expected": 1358,
+        "missing": 22,
+        "pct": 98.4
       },
       "lotSize": {
         "present": 436,
-        "expected": 1357,
-        "missing": 921,
+        "expected": 1358,
+        "missing": 922,
         "pct": 32.1
       },
       "issueSizeCr": {
         "present": 392,
-        "expected": 1357,
-        "missing": 965,
+        "expected": 1358,
+        "missing": 966,
         "pct": 28.9
       },
       "issueComposition": {
         "present": 389,
-        "expected": 445,
-        "missing": 56,
-        "pct": 87.4
+        "expected": 446,
+        "missing": 57,
+        "pct": 87.2
       }
     },
     "recentExchange2Y": {
       "symbol": {
-        "present": 439,
-        "expected": 444,
+        "present": 440,
+        "expected": 445,
         "missing": 5,
         "pct": 98.9
       },
       "board": {
-        "present": 444,
-        "expected": 444,
+        "present": 445,
+        "expected": 445,
         "missing": 0,
         "pct": 100.0
       },
       "exchange": {
-        "present": 444,
-        "expected": 444,
+        "present": 445,
+        "expected": 445,
         "missing": 0,
         "pct": 100.0
       },
       "openDate": {
-        "present": 444,
-        "expected": 444,
+        "present": 445,
+        "expected": 445,
         "missing": 0,
         "pct": 100.0
       },
       "closeDate": {
-        "present": 444,
-        "expected": 444,
+        "present": 445,
+        "expected": 445,
         "missing": 0,
         "pct": 100.0
       },
       "priceBand": {
         "present": 436,
-        "expected": 444,
-        "missing": 8,
-        "pct": 98.2
+        "expected": 445,
+        "missing": 9,
+        "pct": 98.0
       },
       "lotSize": {
         "present": 429,
-        "expected": 444,
-        "missing": 15,
-        "pct": 96.6
+        "expected": 445,
+        "missing": 16,
+        "pct": 96.4
       },
       "issueSizeCr": {
         "present": 385,
-        "expected": 444,
-        "missing": 59,
-        "pct": 86.7
+        "expected": 445,
+        "missing": 60,
+        "pct": 86.5
       },
       "issueComposition": {
         "present": 388,
-        "expected": 444,
-        "missing": 56,
-        "pct": 87.4
+        "expected": 445,
+        "missing": 57,
+        "pct": 87.2
       }
     },
     "historicalExchange": {
@@ -278,14 +278,14 @@
     },
     "provenance": {
       "sources": {
-        "present": 1369,
-        "expected": 1370,
+        "present": 1370,
+        "expected": 1371,
         "missing": 1,
         "pct": 99.9
       },
       "validation": {
-        "present": 1370,
-        "expected": 1370,
+        "present": 1371,
+        "expected": 1371,
         "missing": 0,
         "pct": 100.0
       },
@@ -343,6 +343,12 @@
           "stage": "upcoming"
         },
         {
+          "id": "poojalogis",
+          "company": "Pooja Logistics Limited",
+          "openDate": "2026-09-23",
+          "stage": "upcoming"
+        },
+        {
           "id": "varmora",
           "company": "Varmora Granito Limited",
           "openDate": "2026-09-22",
@@ -389,6 +395,12 @@
         {
           "id": "s-k-offset-limited",
           "company": "S. K. OFFSET LIMITED",
+          "openDate": "2026-09-23",
+          "stage": "upcoming"
+        },
+        {
+          "id": "poojalogis",
+          "company": "Pooja Logistics Limited",
           "openDate": "2026-09-23",
           "stage": "upcoming"
         },
@@ -469,18 +481,18 @@
           "company": "Rajputana Biodiesel Limited",
           "openDate": "2024-11-26",
           "stage": "listed"
-        },
-        {
-          "id": "c2cw",
-          "company": "C2C Advanced Systems Limited- Withdrawal Window",
-          "openDate": "2024-11-26",
-          "stage": "closed"
         }
       ],
       "issueSizeCr": [
         {
           "id": "s-k-offset-limited",
           "company": "S. K. OFFSET LIMITED",
+          "openDate": "2026-09-23",
+          "stage": "upcoming"
+        },
+        {
+          "id": "poojalogis",
+          "company": "Pooja Logistics Limited",
           "openDate": "2026-09-23",
           "stage": "upcoming"
         },
@@ -560,12 +572,6 @@
           "id": "cmll",
           "company": "Caliber Mining and Logistics Limited",
           "openDate": "2026-07-17",
-          "stage": "listed"
-        },
-        {
-          "id": "happy",
-          "company": "Happy Steels Limited",
-          "openDate": "2026-07-09",
           "stage": "listed"
         }
       ],
@@ -577,6 +583,12 @@
           "stage": "upcoming"
         },
         {
+          "id": "poojalogis",
+          "company": "Pooja Logistics Limited",
+          "openDate": "2026-09-23",
+          "stage": "upcoming"
+        },
+        {
           "id": "varmora",
           "company": "Varmora Granito Limited",
           "openDate": "2026-09-22",
@@ -652,12 +664,6 @@
           "id": "cmll",
           "company": "Caliber Mining and Logistics Limited",
           "openDate": "2026-07-17",
-          "stage": "listed"
-        },
-        {
-          "id": "happy",
-          "company": "Happy Steels Limited",
-          "openDate": "2026-07-09",
           "stage": "listed"
         }
       ]
