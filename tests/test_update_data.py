@@ -182,7 +182,7 @@ class NormalizerTests(unittest.TestCase):
         self.assertEqual(out["subscription"]["qib"], 1.2)
         self.assertEqual(len(out["subscriptionHistory"]), 1)
 
-    def test_core_merge_preserves_category_subscription_when_nse_only_has_total(self):
+    def test_core_merge_preserves_entire_subscription_when_nse_only_has_total(self):
         old = {
             "subscription": {"qib": 7.7, "nii": 1.58, "retail": 0.69, "total": 2.88},
             "subscriptionHistory": [{"capturedAt": "2026-09-12T10:00:00+05:30"}],
@@ -192,7 +192,7 @@ class NormalizerTests(unittest.TestCase):
         self.assertEqual(out["subscription"]["qib"], 7.7)
         self.assertEqual(out["subscription"]["nii"], 1.58)
         self.assertEqual(out["subscription"]["retail"], 0.69)
-        self.assertEqual(out["subscription"]["total"], 3.15)
+        self.assertEqual(out["subscription"]["total"], 2.88)
         self.assertEqual(len(out["subscriptionHistory"]), 1)
 
     def test_conflict_is_not_overwritten(self):

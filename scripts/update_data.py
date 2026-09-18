@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import json
 import math
 import re
@@ -286,6 +287,44 @@ def map_subscription(r):
     return out if any(v is not None for v in out.values()) else None
 
 
+def subscription_summary_observation(row, kind, source, company, symbol, opened, closed):
+    """Retain the issue feed's values without promoting an unverified denominator.
+
+    Summary-feed totals can use a different offered-share denominator from the
+    category detail source. Collection time is not a source observation time.
+    Historical request windows are unavailable here and are not reconstructed.
+    """
+    fields = (
+        "qib", "qualifiedInstitutionalBuyers", "nii", "hni", "nonInstitutionalInvestors",
+        "retail", "rii", "retailIndividualInvestors", "noOfTime", "subscription",
+        "timesSubscribed", "totalSubscription", "noOfsharesBid", "sharesBid",
+        "issueSize", "sharesOffered", "sharesOfferedForSubscription",
+    )
+    raw = {key: copy.deepcopy(row[key]) for key in fields if key in row}
+    if not raw:
+        return None
+    endpoints = {
+        "current": f"{NSE_API}/ipo-current-issue",
+        "upcoming": f"{NSE_API}/all-upcoming-issues?category=ipo",
+        "historical": f"{NSE_API}/public-past-issues",
+    }
+    return {
+        "use": "observation-only",
+        "feedKind": kind,
+        "sourceName": source["name"],
+        "sourceUrl": endpoints.get(kind),
+        "sourcePageUrl": source["url"],
+        "issuer": {"company": company, "symbol": symbol, "openDate": opened, "closeDate": closed},
+        "collectedAt": source["asOf"],
+        "observedAt": None,
+        "timeBasis": "collection-only",
+        "values": map_subscription(row),
+        "valueUnit": "times",
+        "denominatorStatus": "unverified",
+        "rawFields": raw,
+    }
+
+
 def normalize_nse_record(r, kind):
     company = str(
         first(
@@ -332,7 +371,7 @@ def normalize_nse_record(r, kind):
         "ofsCr": number(first(r, "offerForSale", "ofs", "ofsCr")),
         "sharesOffered": shares_offered,
         "sharesBid": integer(first(r, "noOfsharesBid", "sharesBid")),
-        "subscription": map_subscription(r),
+        "subscription": None,  # The detail collector owns accepted subscription snapshots.
         "listing": None,
         "lifecycle": {"stage": "exchange", "stageDate": od},
         "documents": [],
@@ -345,6 +384,9 @@ def normalize_nse_record(r, kind):
                 "priceBand": band,
                 "lotSize": lot,
                 "issueSizeCr": size,
+                "subscriptionSummary": subscription_summary_observation(
+                    r, kind, src, company, str(symbol).strip() if symbol else None, od, cd
+                ),
             }
         },
     }

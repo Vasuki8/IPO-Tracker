@@ -40,7 +40,8 @@ and immutable release receipts govern the verified checkpoint.
    clocks and SpectraA source failure remain explicit. #133 now verifies the exact
    BSE beta host and aligns authority labels without inventing observation times;
    presentation publication `69b2ad59` is accepted. The remaining cross-collector
-   snapshot hand-off is the next integrity repair.
+   snapshot hand-off is being repaired in #135; acceptance and release evidence
+   are recorded in PROJECT_STATUS.md.
    Historical proposals are not backfilled or automatically resolved.
 3. **Complete P4 with source evidence — blocked.** Current accepted inventory is
    1,371; P4 has 387 actionable plus 56 higher-priority records and 1,603 blocking
@@ -70,15 +71,18 @@ and immutable release receipts govern the verified checkpoint.
 
 ### Next reviewable increment
 
-The exact BSE beta-host authority repair (#133) is deployed; do not repeat it.
-Trace the core collector's subscription hand-off before further source expansion.
-A retained comparison of `70a5133f` to automatic core publication `eec88efb` shows
-changed totals with unchanged category/source/clock metadata in seven snapshots,
-plus SpectraA's unbound total. Reproduce this from immutable inputs and prevent
-one collector from overwriting part of another collector's attributed snapshot.
-This is not acceptance of either total; require source/issuer/denominator evidence
-for numerical repairs and preserve all original history and pending proposals.
-See `nextRepairDiagnostic` in the [BSE release receipt](releases/2026-09-18-bse-source-authority.json).
+#135 addresses the core collector's partial subscription hand-off. Generic issue
+feed multiples remain source-bound observations; core refreshes preserve the
+accepted subscription family and history. Complete frozen CI, diff review and
+release verification before marking this prevention complete.
+
+The retained comparison of `70a5133f` to core publication `eec88efb` remains
+unadjudicated. Review those eight historical snapshots using current exact
+source/issuer/offer and bid-denominator evidence before restoring any numerical
+value. If reconciliation is unavailable, retain an explicit evidence-bound public
+review hold; do not infer a replacement, finality or observation time. Preserve
+all original history and pending proposals. See the [boundary review](reviews/2026-09-18-core-subscription-boundary.md)
+and `nextRepairDiagnostic` in the [BSE release receipt](releases/2026-09-18-bse-source-authority.json).
 
 Next investigate SpectraA's missing matching source using exact issuer/offer
 identity, not relaxed fuzzy matching. Use the [update-health report](UPDATE_HEALTH.md)

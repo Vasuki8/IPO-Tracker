@@ -109,12 +109,24 @@ def replay_core():
     guarded = core.merge_non_null(copy.deepcopy(rows[0]), copy.deepcopy(attempts))
     blank_guarded = core.merge_non_null({"id": "blank"}, copy.deepcopy(attempts))
     normalized = {}
-    for kind in ("current", "upcoming", "historical"):
-        normalized[kind] = core.normalize_nse_record(incoming[-1], kind)
-    unsupported = core.normalize_nse_record({**incoming[-1], "noOfTime": "not disclosed", "qib": None}, "current")
+    with patch.object(core, "now_ist", return_value=NOW):
+        for kind in ("current", "upcoming", "historical"):
+            normalized[kind] = core.normalize_nse_record(incoming[-1], kind)
+        unsupported = core.normalize_nse_record({**incoming[-1], "noOfTime": "not disclosed", "qib": None}, "current")
+    source_base = {"ipos": [{"id": "atomic", "observations": {"NSE": {
+        "subscriptionSummary": {"sourceUrl": "https://www.nseindia.com/api/ipo-current-issue",
+            "collectedAt": "2026-09-18T21:00:00+05:30", "values": {"total": 1},
+            "rawFields": {"noOfTime": 1}, "denominatorStatus": "unverified"}}}}]}
+    source_proposed, source_current = copy.deepcopy(source_base), copy.deepcopy(source_base)
+    source_proposed["ipos"][0]["observations"]["NSE"]["subscriptionSummary"]["collectedAt"] = NOW.isoformat()
+    source_current["ipos"][0]["observations"]["NSE"]["subscriptionSummary"]["values"]["total"] = 2
+    source_current["ipos"][0]["observations"]["NSE"]["subscriptionSummary"]["rawFields"]["noOfTime"] = 2
+    source_published, source_conflicts = merge_payload(source_base, source_proposed, source_current)
     return {"before": before, "proposed": proposed, "current": current, "published": published,
             "conflicts": conflicts, "guarded": guarded, "blankGuarded": blank_guarded,
             "normalized": normalized, "unsupported": unsupported,
+            "sourceCurrent": source_current, "sourceProposed": source_proposed,
+            "sourcePublished": source_published, "sourceConflicts": source_conflicts,
             "publicBefore": project_record(rows[0], today=NOW.date(), holds=[]),
             "publicAfter": project_record(next(row for row in proposed["ipos"] if row["id"] == rows[0]["id"]),
                                           today=NOW.date(), holds=[])}
@@ -195,6 +207,16 @@ class CoreSubscriptionBoundaryTests(unittest.TestCase):
         self.assertEqual(result["conflicts"], [])
         self.assertEqual(published["closeDate"], "2026-09-22")
         self.assertIn("subscriptionSummary", published["observations"]["NSE"])
+
+    def test_competing_core_observation_is_retained_whole_for_review(self):
+        result = self.result
+        source = lambda payload: payload["ipos"][0]["observations"]["NSE"]["subscriptionSummary"]
+        self.assertEqual(source(result["sourcePublished"]), source(result["sourceCurrent"]))
+        self.assertEqual(len(result["sourceConflicts"]), 1)
+        conflict = result["sourceConflicts"][0]
+        self.assertEqual(conflict["path"], ["ipos", "atomic", "observations", "NSE", "subscriptionSummary"])
+        self.assertEqual(conflict["proposed"], source(result["sourceProposed"]))
+        self.assertEqual(conflict["status"], "pending_conflict_review")
 
     def test_public_projection_does_not_relabel_previous_subscription(self):
         self.assertEqual(subscription_family(self.result["publicAfter"]),
