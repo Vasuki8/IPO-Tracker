@@ -1,0 +1,153 @@
+{
+  "scope": "read-only-retained-document-proposal-triage-not-source-acceptance",
+  "baselineCommit": "800405b1c19c1c61367eb17b62bf5367267a0f70",
+  "pullRequest": 119,
+  "reviewedHead": "2f3a25d5381e9c68e8bfc69083497c276daed464",
+  "testMerge": "d80797a40804c556e0ae511866a85f0f3802b2bc",
+  "mergeCommit": "cbc55e78e8806ae4641ef14fac39927677dcba01",
+  "tree": "e2f49a1cfd24aa13f646b08278d6f8ea31e940e3",
+  "canonicalPublicationCommit": "3834c7323fc7ae794526942f649d128c209a4997",
+  "validation": {
+    "runId": 35307190366,
+    "jobId": 105481687858,
+    "status": "success",
+    "environment": "uv sync --frozen; Python 3.12",
+    "localRegressions": 1051,
+    "newRegressions": 16,
+    "localNodeTests": 8,
+    "publicProfilesRebuiltWithoutChanges": 1366
+  },
+  "report": {
+    "summary": {
+      "retainedProposals": 441,
+      "documentFieldProposals": 159,
+      "byComparisonState": {
+        "not_assessed": 282,
+        "still_conflicting": 159
+      },
+      "documentWithValueDifferences": 30,
+      "documentWithEvidenceOrReviewDifferences": 159,
+      "duplicateFingerprintOccurrences": 0
+    },
+    "asOf": "2026-09-18",
+    "inputSha256": {
+      "canonical": "553bdd7e541600ed5be3aae696ba39cba563565a8a0925e45153d0c0cc199a1b",
+      "pending": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+      "displayHolds": "e0ccc9b414585e1076acfe538d0fd92ff5b15159ccaa5261d847f95af76db628"
+    },
+    "codePolicySha256": "6a071b6a2d9ba497cedbe05c44ee08d44e27d915ebd87d3bef4a33142b3606ad",
+    "reportSha256": "0cfd41d4526f5911b5d70d51eb4309e9adc392ca35203fecea5ee62d7bc6934e",
+    "artifactId": 10532396046,
+    "artifactSha256": "295f5ed7be0f17c574516ae45c6e6c8aca5d62a1fea46c5f4ca3fbe744f440cd",
+    "artifactZipBytes": 71832,
+    "downloadedHashVerified": true,
+    "ciLocalByteIdentical": true,
+    "resolutionsApplied": 0
+  },
+  "preservation": {
+    "canonicalRecords": 1366,
+    "pendingProposals": 441,
+    "canonicalAndPendingUnchanged": true,
+    "phaseGateUnchanged": true,
+    "p4BlockingReviews": 1592,
+    "p5Status": "waiting_for_p4",
+    "teamtechRemainsHeld": true
+  },
+  "nextProposal": {
+    "id": "emmvee",
+    "inputIndex": 133,
+    "retainedFingerprint": "15558bebf1ac545501558352946b9104ebf2ce62d499024ae295e783f725c15c",
+    "runId": "35204652736",
+    "reason": "The retained proposal differs in allocation as well as composition; the completed composition repair does not adjudicate the whole proposal."
+  },
+  "limitations": [
+    "Report classifications do not accept source values or resolve retained proposals.",
+    "282 other-family proposals remain explicitly not assessed.",
+    "No new PDF review, source collection, public data correction or browser journey suite in this reporting-only increment.",
+    "Local uv tests used Python 3.13.5 and available dependencies; frozen offline sync lacked locked packages. GitHub frozen validation passed independently.",
+    "No spending, contracts, outreach, tracking, billing, new infrastructure or material access changes."
+  ],
+  "pagesRun": 35307316718,
+  "pagesStatus": "success",
+  "liveAcceptanceRun": 35307372609,
+  "liveReceiptArtifact": {
+    "id": 10531752580,
+    "sha256": "4e08004b12d4bfa7cbb723f97ea7f9e89b291f30b5ede2d1c97574bdc4f495cc",
+    "downloadedAndHashVerified": true
+  },
+  "liveReceipt": {
+    "expectedCommit": "cbc55e78e8806ae4641ef14fac39927677dcba01",
+    "status": "passed",
+    "scope": "public-artifact-consistency-not-source-accuracy",
+    "routeCount": 1366,
+    "sampledProfiles": [
+      "ipo/emmvee/",
+      "ipo/teamtech/",
+      "ipo/shakti-polytarp-limited/",
+      "ipo/kheriaauto/",
+      "ipo/vama-wovenfab-limited/",
+      "ipo/sona/",
+      "ipo/manika/"
+    ],
+    "expectedSha256": {
+      "index.html": "7bb7c13dc4c856b9bcb77138e9d9cdfb8934384688e97c27c5bd9d81aa6fec59",
+      "public-quality.js": "327e7561c91728abd22dbf7d948babbc7b78db3cc29b07355386602e1209d77c",
+      "public-quality.css": "988dee5e990116eff25b8746a77b0b618b23d5394f3b919d601cceaedd6d4467",
+      "app.js": "aad042ffd8cea3576b5abff34d8b0378e812ab7e4f368f73e162d427201167d3",
+      "company-page.js": "c965ddfd01ab122b196dc58797d299f724b2378092c7ff927c91ea14b132c610",
+      "company.js": "8fba803171c5fd0fb09b95844fc153eaeff159a3a55c92785ef3c9013e08435d",
+      "phase4.js": "d7c69047e184cf5f896a75e61c62150a462ed985deaf93fdd8c0015a212e388f",
+      "methodology.html": "fe6b152b67eeaf0d1b17d7a700e1819fc250256bc022b64c9735c7867d7c546c",
+      "data/ipos-summary.json": "c2c9a73540725652a3b38dd90fbbc3ebe320d86391324db95147757337a032e8",
+      "ipo/routes.json": "1e656369d4bdfa78d385e07231519bb4a8814b320ac3702abcec101003646b3f",
+      "ipo/emmvee/index.html": "4502adcd7a5ebb3d4909a9eab28f0562c4efd7f117c0e6a4e1179d0f5fe046a8",
+      "ipo/teamtech/index.html": "724722823686a49c9c8cdb6e6411d47ad5ebbff4d22dbc024143cbad3cc22e8d",
+      "ipo/shakti-polytarp-limited/index.html": "5bcdee8e16db777889de0ef4cb8a737c3b9e63e5e24825d78f03ef563ea20cc5",
+      "ipo/kheriaauto/index.html": "b78a8acbc11a761c57b29aedacfccc956e9abcb9dcda89e03447312bb5d2d0d5",
+      "ipo/vama-wovenfab-limited/index.html": "ed84a83324dea32bf77c914902687b382b9d4d2841f7c4c9aa26dcbe2f70de70",
+      "ipo/sona/index.html": "d4ba380db6858cbc9bd8939998d36d523eeadb817d017da1931e0062db28d2f8",
+      "ipo/manika/index.html": "d93ed249adccf3ff72675298747dcb0f294f95e5ebd31fc4d53499aa556d2c13"
+    },
+    "reviewedPublication": {
+      "status": "passed",
+      "scope": "retained-reviewed-evidence-delivery-not-new-source-audit",
+      "canonicalSha256": "553bdd7e541600ed5be3aae696ba39cba563565a8a0925e45153d0c0cc199a1b",
+      "checked": [
+        {
+          "id": "emmvee",
+          "fields": [
+            "issueComposition",
+            "issueSizeCr",
+            "freshIssueCr",
+            "ofsCr"
+          ],
+          "proofsSha256": "1f8b7ae600da76ea9f62a9771377925d17be3c5d98ebc8080e36b63a9a5795cf",
+          "proofsGitBlob": "5ca3afdf6207c86fbea6f3e5ab236dde6c2fec45",
+          "sourceReviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/5a63a93dd9f782e3bc9ec853c937fb29661108f4/docs/reviews/2026-09-18-source-review/2026-09-18-source-review-409c51c9.md"
+        }
+      ]
+    },
+    "baseUrl": "https://vasuki8.github.io/IPO-Tracker/",
+    "httpChecked": [
+      "index.html",
+      "public-quality.js",
+      "public-quality.css",
+      "app.js",
+      "company-page.js",
+      "company.js",
+      "phase4.js",
+      "methodology.html",
+      "data/ipos-summary.json",
+      "ipo/routes.json",
+      "ipo/emmvee/index.html",
+      "ipo/teamtech/index.html",
+      "ipo/shakti-polytarp-limited/index.html",
+      "ipo/kheriaauto/index.html",
+      "ipo/vama-wovenfab-limited/index.html",
+      "ipo/sona/index.html",
+      "ipo/manika/index.html"
+    ]
+  },
+  "postMergeValidationRun": 35307317850,
+  "postMergeValidationStatus": "success"
+}
