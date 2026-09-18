@@ -17,7 +17,9 @@ remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.
 
 ## Current checkpoint — official-universe release candidate, 18 September 2026
 
-Verified main at recovery and before publication: **`6992dd44c55dfa529cea29cb32a9462d9ca38a78`**.
+Verified main before publication: **`f19a561388cbccd3af93679c9e743838746cad4b`**.
+Recovery began at `6992dd44`; the intervening scheduled data publication was
+incorporated without changing any of its 1,371 existing records.
 The prior HTEL/Onemi financial release is preserved below and was not repeated.
 Branch: `audit-official-ipo-universe-20260918`; PR/deployment are pending final CI.
 

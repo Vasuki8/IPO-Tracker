@@ -1,6 +1,6 @@
 # Official IPO-universe name audit — 18 September 2026
 
-**Coverage is incomplete.** This is an issuer/name and lifecycle inventory audit, not a financial backfill or proof that every observed filing became an IPO. Recovery used main `6992dd44c55dfa529cea29cb32a9462d9ca38a78`; no earlier three-source universe audit was found. Previous financial and NSE subscription repairs were preserved.
+**Coverage is incomplete.** This is an issuer/name and lifecycle inventory audit, not a financial backfill or proof that every observed filing became an IPO. Recovery used main `6992dd44c55dfa529cea29cb32a9462d9ca38a78`; no earlier three-source universe audit was found. The scheduled writer subsequently published `f19a561388cbccd3af93679c9e743838746cad4b`; all its existing records were preserved while the same eight reviewed admissions were reapplied. Previous financial and NSE subscription repairs were preserved.
 
 ## Scope and inclusion rules
 
@@ -105,7 +105,7 @@ uv run --frozen python tools/audit_ipo_universe.py reconcile --snapshot docs/aud
 uv run --frozen python tools/audit_ipo_universe.py collect --snapshot docs/audits/official-universe/2026-09-18 --as-of 2026-09-18 --sources NSE --start-year 2000 --max-new-cohorts 4 --retry-failed
 ```
 
-To replay the pre-admission report/proposal, retrieve `data/ipos.json` from commit `6992dd44` into a temporary file and pass `--tracker`. `prepare-admissions` also requires `--admissions .../admissions.json` and a separate `--output`; it rejects writing directly to canonical data. Baseline hashes, exact source identities and existing names/symbols are checked. Five aliases replay their retained BSE identity rows.
+To replay the initial pre-admission report/proposal, retrieve `data/ipos.json` from commit `6992dd44` into a temporary file and pass `--tracker`. `prepare-admissions` also requires `--admissions .../admissions.json` and a separate `--output`; it rejects writing directly to canonical data. The publication replay uses `f19a5613` and `admissions-publication.json`, with its corresponding `audit-before-publication.json`; the original recovery plan/report remain retained. Baseline hashes, exact source identities and existing names/symbols are checked. Five aliases replay their retained BSE identity rows.
 
 Validation: 30 focused tests cover normalization, aliases, collisions, stage separation, board differences, repeated pages, source hashing and eight real BSE layouts plus NSE listing evidence. Nine Node public-quality tests pass. Strict validation reports zero errors. The full Windows suite exposed the record-count metadata mismatch, which was corrected; all 20 affected operational regressions then passed. The two existing Windows path/symlink limitations remain platform-specific; Linux CI is required for release. Direct browser checks passed for directory search, all eight source-linked profiles and the longest new name at 375 pixels; unknown terms stay unavailable. Final PR, CI and deployment evidence are recorded in PROJECT_STATUS and the closeout receipt.
 
