@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 1,
+  "scope": "reviewed-Emmvee-value-proof-release-not-fresh-PDF-audit",
+  "codeHead": "9ada81b07158ea72e597d18731fe9fde694c8304",
+  "codeMerge": "8a2ab9d266c7f7e9a4bcc606e9fccf2397b423d4",
+  "requestHead": "bacff4f2670fa327791a440c88f48e3c4abef5f5",
+  "requestMerge": "20d542fcde8b085a49b5443051a7647c624b5680",
+  "publishedCommit": "3834c7323fc7ae794526942f649d128c209a4997",
+  "publicationRun": 35302828628,
+  "pagesRun": 35302925923,
+  "liveVerificationRun": 35302956384,
+  "bundle": {
+    "bundleSha256": "80981c57cd24832ca87184ef719d070498d286b00a264f9dc3011c2072bc1164",
+    "sourceCommit": "20d542fcde8b085a49b5443051a7647c624b5680",
+    "manifest": {
+      "schemaVersion": 1,
+      "ids": [
+        "emmvee"
+      ],
+      "baseSha256": "04815eeea8c8c364b9949c1def44246c9d9ce609836d727b5bbeec1cb7b3d6ca",
+      "proposedSha256": "ec0a9d496384b8e07118a455967e248d5f2dc52cd79a42b3dd0ef57cbf33931d",
+      "scope": "reviewed-composition-only-no-source-collection"
+    },
+    "request": {
+      "schemaVersion": 1,
+      "requestId": "emmvee-proof-repair-1",
+      "ids": [
+        "emmvee"
+      ]
+    },
+    "recordCount": 1366,
+    "changedIds": [
+      "emmvee"
+    ],
+    "unselectedRecordsUnchanged": 1365,
+    "changedFields": [
+      "staticFieldProvenance",
+      "staticSourcePolicy",
+      "dataCorrections"
+    ],
+    "historyEntriesAdded": 1,
+    "teamtechUnchanged": true,
+    "allocationProofUnchanged": true
+  },
+  "publishedChecks": {
+    "recordCount": 1366,
+    "changedIds": [
+      "emmvee"
+    ],
+    "changedFields": [
+      "dataCorrections",
+      "staticFieldProvenance",
+      "staticSourcePolicy"
+    ],
+    "recordsExactlyMatchAcceptedProposal": true,
+    "unselectedRecordsUnchanged": 1365,
+    "proofAuditEntriesAdded": 1,
+    "allocationsAndExistingDocumentProofsPreserved": true,
+    "pendingCount": 441,
+    "pendingFileSha256": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+    "pendingBytesUnchanged": true,
+    "teamtechUnchangedAndHeld": true,
+    "allFourCompositionFieldsPublicFinalVerified": true
+  },
+  "phaseStatus": {
+    "generatedAt": "2026-09-18T03:21:48.983245+00:00",
+    "p4": {
+      "status": "incomplete",
+      "actionableRecords": 387,
+      "higherPriorityRecords": 51,
+      "semanticErrors": 0,
+      "sourceReviewItems": 1596,
+      "blockingSourceReviewItems": 1592,
+      "p5OnlySourceReviewItems": 4,
+      "unmappedSourceReviewItems": 0,
+      "finalProspectusRevalidationRecords": 321,
+      "finalProspectusRevalidationFields": 1173,
+      "higherPriorityFinalProspectusRevalidationRecords": 29,
+      "higherPriorityFinalProspectusRevalidationFields": 107,
+      "resolvedUnavailableRecords": 5
+    },
+    "p5": {
+      "status": "waiting_for_p4",
+      "actionableRecords": 914
+    }
+  },
+  "publicReleaseReceipt": {
+    "expectedCommit": "3834c7323fc7ae794526942f649d128c209a4997",
+    "status": "passed",
+    "scope": "public-artifact-consistency-not-source-accuracy",
+    "routeCount": 1366,
+    "sampledProfiles": [
+      "ipo/emmvee/",
+      "ipo/teamtech/",
+      "ipo/shakti-polytarp-limited/",
+      "ipo/kheriaauto/",
+      "ipo/vama-wovenfab-limited/",
+      "ipo/sona/",
+      "ipo/manika/"
+    ],
+    "expectedSha256": {
+      "index.html": "7bb7c13dc4c856b9bcb77138e9d9cdfb8934384688e97c27c5bd9d81aa6fec59",
+      "public-quality.js": "327e7561c91728abd22dbf7d948babbc7b78db3cc29b07355386602e1209d77c",
+      "public-quality.css": "988dee5e990116eff25b8746a77b0b618b23d5394f3b919d601cceaedd6d4467",
+      "app.js": "aad042ffd8cea3576b5abff34d8b0378e812ab7e4f368f73e162d427201167d3",
+      "company-page.js": "c965ddfd01ab122b196dc58797d299f724b2378092c7ff927c91ea14b132c610",
+      "company.js": "8fba803171c5fd0fb09b95844fc153eaeff159a3a55c92785ef3c9013e08435d",
+      "phase4.js": "d7c69047e184cf5f896a75e61c62150a462ed985deaf93fdd8c0015a212e388f",
+      "methodology.html": "fe6b152b67eeaf0d1b17d7a700e1819fc250256bc022b64c9735c7867d7c546c",
+      "data/ipos-summary.json": "c2c9a73540725652a3b38dd90fbbc3ebe320d86391324db95147757337a032e8",
+      "ipo/routes.json": "1e656369d4bdfa78d385e07231519bb4a8814b320ac3702abcec101003646b3f",
+      "ipo/emmvee/index.html": "4502adcd7a5ebb3d4909a9eab28f0562c4efd7f117c0e6a4e1179d0f5fe046a8",
+      "ipo/teamtech/index.html": "724722823686a49c9c8cdb6e6411d47ad5ebbff4d22dbc024143cbad3cc22e8d",
+      "ipo/shakti-polytarp-limited/index.html": "5bcdee8e16db777889de0ef4cb8a737c3b9e63e5e24825d78f03ef563ea20cc5",
+      "ipo/kheriaauto/index.html": "b78a8acbc11a761c57b29aedacfccc956e9abcb9dcda89e03447312bb5d2d0d5",
+      "ipo/vama-wovenfab-limited/index.html": "ed84a83324dea32bf77c914902687b382b9d4d2841f7c4c9aa26dcbe2f70de70",
+      "ipo/sona/index.html": "d4ba380db6858cbc9bd8939998d36d523eeadb817d017da1931e0062db28d2f8",
+      "ipo/manika/index.html": "d93ed249adccf3ff72675298747dcb0f294f95e5ebd31fc4d53499aa556d2c13"
+    },
+    "baseUrl": "https://vasuki8.github.io/IPO-Tracker/",
+    "httpChecked": [
+      "index.html",
+      "public-quality.js",
+      "public-quality.css",
+      "app.js",
+      "company-page.js",
+      "company.js",
+      "phase4.js",
+      "methodology.html",
+      "data/ipos-summary.json",
+      "ipo/routes.json",
+      "ipo/emmvee/index.html",
+      "ipo/teamtech/index.html",
+      "ipo/shakti-polytarp-limited/index.html",
+      "ipo/kheriaauto/index.html",
+      "ipo/vama-wovenfab-limited/index.html",
+      "ipo/sona/index.html",
+      "ipo/manika/index.html"
+    ]
+  },
+  "downloadedArtifacts": [
+    {
+      "id": 10530283501,
+      "run": 35302397121,
+      "sha256": "d2335b8dd733dab609675130b5419ca49016403bec7ab9f22e51c19d054da6a4"
+    },
+    {
+      "id": 10530254341,
+      "run": 35302828628,
+      "sha256": "80981c57cd24832ca87184ef719d070498d286b00a264f9dc3011c2072bc1164"
+    },
+    {
+      "id": 10529629804,
+      "run": 35302925923,
+      "sha256": "3069eb30bebb731b3ca8909013ad86791fc08200a28eabcfe7bced8feb4272dd"
+    },
+    {
+      "id": 10531025185,
+      "run": 35302956384,
+      "sha256": "51e3f4f4bd0ea088facaa5fa45c81ad1c7311231089cad0a352baf11d43387bf"
+    }
+  ],
+  "tests": {
+    "frozenPython": 1027,
+    "existingBrowserJourneys": 25,
+    "nodeQualityTests": 8,
+    "candidateBrowserCases": 5,
+    "widths": [
+      1440,
+      375,
+      320
+    ]
+  },
+  "limitations": [
+    "Matching full live bytes is not an all-profile live browser or full-PDF audit.",
+    "Original retained source check time, PDF hash, date, units and parser lineage are reused unchanged.",
+    "P4 remains incomplete; draft #105 and Teamtech remain blocked."
+  ]
+}
