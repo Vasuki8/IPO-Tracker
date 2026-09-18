@@ -15,6 +15,17 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
+## Current verified checkpoint — 18 September 2026
+
+[PR #117](https://github.com/Vasuki8/IPO-Tracker/pull/117) is merged and live at
+`9048e66cb3e5bb2c41ba3c5a1bac07ae3f07eeb5` (tree
+`06984299d90b796608c302dda2351fbd043cc209`). Reviewed head was
+`1a7f9a6f570382bed4437232ea51455879920e5f` on
+`fix-reviewed-release-acceptance`. The interrupted Emmvee publication remains
+`3834c7323fc7ae794526942f649d128c209a4997`; it was recovered, not repeated.
+This documentation-only checkpoint on `docs-reviewed-release-checkpoint` records
+the verified #117 implementation. No further implementation milestone is included.
+
 ## Recovery after the interrupted response — 18 September 2026
 
 The interrupted work **did reach main and publication**. Code [#115](https://github.com/Vasuki8/IPO-Tracker/pull/115)
@@ -43,7 +54,7 @@ consistency check and 17 complete live responses establish served-byte consisten
 Evidence reuse retains the original 00:37 source-check time, PDF hash, document
 date, source rows, units and parser lineage; this is **not a fresh PDF review**.
 
-### This bounded increment: reviewed-release acceptance
+### Completed bounded increment: reviewed-release acceptance
 
 Branch `fix-reviewed-release-acceptance` starts at `3834c732`. The existing
 read-only release verifier now has `--check-reviewed-publication`. When the latest
@@ -60,10 +71,38 @@ Acceptance: **16 verifier tests** (eight new), **15 reviewed-publication tests**
 the available Python 3.13 environment. Frozen local sync failed DNS and local
 Chromium navigation was administratively blocked; neither is claimed as passing.
 The current published tree passes the new read-only check and the retained-bundle
-replay. This change does not modify any canonical/proposal data, source code,
+replay. This change does not modify any canonical/proposal data, source-collection code,
 public renderer, dependency, permission, workflow writer or phase gate. Only the
-existing read-only release workflow opts into the stronger check. Frozen CI,
-browser CI and the post-merge live receipt remain to be recorded for this branch.
+existing read-only release workflow opts into the stronger check.
+
+**Release acceptance completed.** [Frozen GitHub validation 35305148966](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35305148966)
+passed **1,035 Python regressions** using Python 3.12.14 and `uv sync --frozen`,
+JavaScript syntax checks, strict validation, and a zero-change rebuild of all
+1,366 profiles. [Browser CI 35305148950](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35305148950)
+passed **25 journeys with zero page errors**, freshness text boundaries at
+1440/375/320 pixels, and the separate reviewed-composition checks for directory,
+CSV, comparison, source-linked profiles at those widths, and Teamtech withholding.
+Its downloaded artifact was checksum-verified; the 375-pixel Emmvee screenshot
+was inspected. The site did not fetch the master dataset in these checks.
+
+[PR loopback acceptance 35305148993](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35305148993)
+passed the new reviewed delivery check against test merge
+`42b06c3a164083f59c0e0fdad019fa0479b46d25`. Main had not advanced before merge,
+all three PR checks passed and no reviewer approval was outstanding. The merge
+used the exact expected head, without force or protection changes.
+
+[Pages 35305493841](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35305493841)
+successfully deployed #117. [Automatic live acceptance 35305530224](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35305530224)
+passed on the first attempt with `expectedCommit=9048e66cb3e5bb2c41ba3c5a1bac07ae3f07eeb5`
+and **`reviewedPublication.status=passed`**, not merely a generic consistency pass.
+All 1,366 local profiles agree and 17 complete public HTTPS responses match the
+immutable release, including Emmvee's four final-verified fields and retained
+proof identity. The downloaded live receipt and local expected hashes agree.
+Canonical data and all 441 retained proposals remain byte-identical to `3834c732`.
+[The acceptance receipt](releases/2026-09-18-reviewed-release-acceptance.json)
+retains the unaltered live receipt, CI/artifact bindings and limitations. These
+checks verify delivery of previously reviewed evidence, not new PDF accuracy.
+All implementation/release acceptance criteria for #117 are complete.
 
 Current gate is unchanged: P4 **387 actionable + 51 higher-priority records**,
 **1,596 total source reviews**, **1,592 blocking**, **four P5-only**, **zero unmapped**,
