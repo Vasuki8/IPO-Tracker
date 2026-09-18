@@ -1,6 +1,6 @@
 # IPO Tracker Data Quality
 
-Generated: **2026-09-19T01:13:30+05:30**
+Generated: **2026-09-19T01:42:32+05:30**
 
 Records audited: **1,371**
 
@@ -61,7 +61,7 @@ Records audited: **1,371**
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| registrar | 367 | 389 | 22 | 94.3% |
+| registrar | 368 | 389 | 21 | 94.6% |
 | leadManagers | 365 | 389 | 24 | 93.8% |
 | promoters | 343 | 389 | 46 | 88.2% |
 | objectsOfIssue | 93 | 389 | 296 | 23.9% |
