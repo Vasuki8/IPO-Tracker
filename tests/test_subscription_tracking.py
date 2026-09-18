@@ -1,3 +1,4 @@
+import copy
 import importlib.util
 import sys
 import unittest
@@ -142,7 +143,7 @@ class SubscriptionHistoryTests(unittest.TestCase):
         self.assertTrue(added)
         self.assertEqual(len(record["subscriptionHistory"]), 2)
 
-    def test_update_record_preserves_existing_total_when_detail_omits_it(self):
+    def test_incomplete_response_cannot_relabel_an_old_total_as_a_new_observation(self):
         record = {
             "symbol": "TEST",
             "subscription": {"total": 4.8},
@@ -155,11 +156,10 @@ class SubscriptionHistoryTests(unittest.TestCase):
                 {"category": "Retail Individual Investors", "noOfTime": "4.82"},
             ]
         }
-        self.assertTrue(mod.update_record(record, detail))
-        self.assertEqual(record["subscription"]["total"], 4.8)
-        self.assertEqual(record["subscription"]["qib"], 3.16)
-        self.assertEqual(record["subscriptionHistory"][-1]["total"], 4.8)
-        self.assertTrue(any(s.get("name") == "NSE subscription detail" for s in record["sources"]))
+        before = copy.deepcopy(record)
+        with self.assertRaisesRegex(ValueError, "Incomplete subscription response"):
+            mod.update_record(record, detail)
+        self.assertEqual(record, before)
 
 
 if __name__ == "__main__":
