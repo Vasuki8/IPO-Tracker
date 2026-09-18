@@ -247,6 +247,9 @@ def _financial_provenance_valid(
 ) -> bool:
     if not isinstance(evidence, dict):
         return False
+    from review_financial_tables import has_reviewed_financial_evidence
+    if has_reviewed_financial_evidence(record):
+        return True
     if evidence.get("value") != record.get("financials"):
         return False
     detail = evidence.get("evidence")

@@ -178,6 +178,7 @@ def verify_reviewed_publication(root, receipt):
     field_groups = {
         'composition': ('issueComposition', 'issueSizeCr', 'freshIssueCr', 'ofsCr'),
         'intermediaries': ('leadManagers', 'registrar'),
+        'financials': ('financials',),
     }
     public_composition = ('freshShares', 'ofsShares', 'valuationPriceUsed')
     source_keys = ('sourceUrl', 'documentDate', 'sha256', 'parserVersion', 'checkedAt')
