@@ -54,7 +54,10 @@ async function main() {
     assert.equal(profile.subscriptionAuthority, 'official_exchange');
     assert.equal(profile.subscriptionObservedAt, record.subscriptionObservedAt);
     assert.ok(profile.subscriptionObservedAt == null);
-    assert.deepEqual(profile.subscription, record.subscription);
+    // The compact directory carries only total; full category values stay in profiles.
+    assert.equal(profile.subscription.total, record.subscription.total);
+    for (const key of ['subscriptionSourceUrl','subscriptionSource','subscriptionCollectedAt','subscriptionTimeBasis'])
+      assert.equal(profile[key], record[key]);
     for (const width of [1440,375,320]) {
       await page.setViewportSize({width,height:900});
       const text = await page.locator('#company-subscription').innerText();
