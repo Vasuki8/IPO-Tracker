@@ -1,0 +1,437 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-18T21:22:03.359452+00:00",
+  "baseCommit": "4ad09484f1663a873653482408a94b4a06effbf4",
+  "acceptedCommit": "ea5f0f2631051feffb470c2cbd1b596f5767cf06",
+  "supportPr": 143,
+  "supportMerge": "df5196139d8747a3c4422313a9f5355451204eeb",
+  "supportPublication": "88cf2fb68085356f3be5a4be86e7f52dc119a143",
+  "requestPr": 144,
+  "requestMerge": "4ad09484f1663a873653482408a94b4a06effbf4",
+  "sourceReviewCommit": "9229780be87876c00759a0ea06aba87fbac1103b",
+  "changedIssuerIds": [
+    "htel",
+    "kissht"
+  ],
+  "unchangedIssuerCount": 1369,
+  "recordCount": 1371,
+  "pendingProposalCount": 441,
+  "pendingSha256": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+  "canonicalBeforeSha256": "568b52ffac115885bfec544ebef35ed3dec8cee86b6c2d5f02dfb7186d7f7f7e",
+  "canonicalAfterSha256": "ec4dc79659ecbcf8ff1f7729890e8657a51532516eab19c97207a14cb506eef3",
+  "historicalRegistryEntriesPreserved": 459,
+  "removedReviews": [
+    {
+      "id": "htel",
+      "field": "financials.FY2026.revenueCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "htel",
+      "field": "financials.FY2026.ebitdaCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "htel",
+      "field": "financials.FY2026.patCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "htel",
+      "field": "financials.FY2026.netWorthCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "htel",
+      "field": "financials.FY2026.ronwPct",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "htel",
+      "field": "financials.FY2026.eps",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "htel",
+      "field": "financials.FY2026.netWorthCr",
+      "severity": "review",
+      "reason": "Possible percentage-to-currency extraction contamination; verify source row"
+    },
+    {
+      "id": "htel",
+      "field": "financials.FY2024.revenueCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "htel",
+      "field": "financials.FY2024.ebitdaCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "htel",
+      "field": "financials.FY2024.patCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "htel",
+      "field": "financials.FY2024.netWorthCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "htel",
+      "field": "financials.FY2024.ronwPct",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "htel",
+      "field": "financials.FY2024.eps",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "htel",
+      "field": "financials.FY2024.netWorthCr",
+      "severity": "review",
+      "reason": "Possible percentage-to-currency extraction contamination; verify source row"
+    },
+    {
+      "id": "htel",
+      "field": "financials.FY2025.revenueCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "htel",
+      "field": "financials.FY2025.ebitdaCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "htel",
+      "field": "financials.FY2025.patCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "htel",
+      "field": "financials.FY2025.netWorthCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "htel",
+      "field": "financials.FY2025.ronwPct",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "htel",
+      "field": "financials.FY2025.eps",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "htel",
+      "field": "financials.FY2025.netWorthCr",
+      "severity": "review",
+      "reason": "Possible percentage-to-currency extraction contamination; verify source row"
+    },
+    {
+      "id": "kissht",
+      "field": "financials.FY2024.revenueCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "kissht",
+      "field": "financials.FY2024.ebitdaCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "kissht",
+      "field": "financials.FY2024.patCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "kissht",
+      "field": "financials.FY2024.netWorthCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "kissht",
+      "field": "financials.FY2024.ronwPct",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "kissht",
+      "field": "financials.FY2024.eps",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "kissht",
+      "field": "financials.FY2024.netWorthCr",
+      "severity": "review",
+      "reason": "Possible percentage-to-currency extraction contamination; verify source row"
+    },
+    {
+      "id": "kissht",
+      "field": "financials.FY2025.revenueCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "kissht",
+      "field": "financials.FY2025.ebitdaCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "kissht",
+      "field": "financials.FY2025.patCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "kissht",
+      "field": "financials.FY2025.netWorthCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "kissht",
+      "field": "financials.FY2025.ronwPct",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "kissht",
+      "field": "financials.FY2025.eps",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "kissht",
+      "field": "financials.FY2025.netWorthCr",
+      "severity": "review",
+      "reason": "Possible percentage-to-currency extraction contamination; verify source row"
+    },
+    {
+      "id": "kissht",
+      "field": "financials.FY2023.revenueCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "kissht",
+      "field": "financials.FY2023.ebitdaCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "kissht",
+      "field": "financials.FY2023.patCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "kissht",
+      "field": "financials.FY2023.netWorthCr",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "kissht",
+      "field": "financials.FY2023.ronwPct",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "kissht",
+      "field": "financials.FY2023.eps",
+      "severity": "review",
+      "reason": "Source table/period evidence has not been revalidated"
+    },
+    {
+      "id": "kissht",
+      "field": "financials.FY2023.netWorthCr",
+      "severity": "review",
+      "reason": "Possible percentage-to-currency extraction contamination; verify source row"
+    }
+  ],
+  "addedReviews": [],
+  "beforePhase": {
+    "generatedAt": "2026-09-18T21:17:34.542849+00:00",
+    "p4": {
+      "status": "incomplete",
+      "actionableRecords": 388,
+      "higherPriorityRecords": 55,
+      "semanticErrors": 0,
+      "sourceReviewItems": 1598,
+      "blockingSourceReviewItems": 1594,
+      "p5OnlySourceReviewItems": 4,
+      "unmappedSourceReviewItems": 0,
+      "finalProspectusRevalidationRecords": 322,
+      "finalProspectusRevalidationFields": 1175,
+      "higherPriorityFinalProspectusRevalidationRecords": 28,
+      "higherPriorityFinalProspectusRevalidationFields": 105,
+      "resolvedUnavailableRecords": 5
+    },
+    "p5": {
+      "status": "waiting_for_p4",
+      "actionableRecords": 914
+    }
+  },
+  "afterPhase": {
+    "generatedAt": "2026-09-18T21:20:34.151289+00:00",
+    "p4": {
+      "status": "incomplete",
+      "actionableRecords": 387,
+      "higherPriorityRecords": 55,
+      "semanticErrors": 0,
+      "sourceReviewItems": 1556,
+      "blockingSourceReviewItems": 1552,
+      "p5OnlySourceReviewItems": 4,
+      "unmappedSourceReviewItems": 0,
+      "finalProspectusRevalidationRecords": 321,
+      "finalProspectusRevalidationFields": 1174,
+      "higherPriorityFinalProspectusRevalidationRecords": 28,
+      "higherPriorityFinalProspectusRevalidationFields": 104,
+      "resolvedUnavailableRecords": 5
+    },
+    "p5": {
+      "status": "waiting_for_p4",
+      "actionableRecords": 914
+    }
+  },
+  "validationRun": 35395566118,
+  "pythonTests": 1253,
+  "focusedFinancialTests": 13,
+  "publicReleaseVerifierTests": 20,
+  "nodeQualityTests": 9,
+  "sourcePreviewRun": 35395566141,
+  "publicConsistencyRun": 35395566231,
+  "browserRun": 35395566217,
+  "browserArtifactSha256": "eeb6084d4f6a85764c60e7396697172b7ef6ae2d2ad602bf92f6bca5cbe158a5",
+  "browserViewports": [
+    1440,
+    375,
+    320
+  ],
+  "reviewedPublisherRun": 35396161543,
+  "pagesRun": 35396284700,
+  "liveAcceptanceRun": 35396326142,
+  "liveVerification": {
+    "expectedCommit": "ea5f0f2631051feffb470c2cbd1b596f5767cf06",
+    "status": "passed",
+    "scope": "public-artifact-consistency-not-source-accuracy",
+    "routeCount": 1371,
+    "sampledProfiles": [
+      "ipo/emmvee/",
+      "ipo/teamtech/",
+      "ipo/shakti-polytarp-limited/",
+      "ipo/kheriaauto/",
+      "ipo/vama-wovenfab-limited/",
+      "ipo/sona/",
+      "ipo/manika/",
+      "ipo/htel/",
+      "ipo/kissht/"
+    ],
+    "expectedSha256": {
+      "index.html": "7bb7c13dc4c856b9bcb77138e9d9cdfb8934384688e97c27c5bd9d81aa6fec59",
+      "public-quality.js": "c1af0c3998bf53c582a920419980bccf2c2533e618f7088f665bf438e07c626c",
+      "public-quality.css": "988dee5e990116eff25b8746a77b0b618b23d5394f3b919d601cceaedd6d4467",
+      "app.js": "aad042ffd8cea3576b5abff34d8b0378e812ab7e4f368f73e162d427201167d3",
+      "company-page.js": "c965ddfd01ab122b196dc58797d299f724b2378092c7ff927c91ea14b132c610",
+      "company.js": "8fba803171c5fd0fb09b95844fc153eaeff159a3a55c92785ef3c9013e08435d",
+      "phase4.js": "d7c69047e184cf5f896a75e61c62150a462ed985deaf93fdd8c0015a212e388f",
+      "methodology.html": "fe6b152b67eeaf0d1b17d7a700e1819fc250256bc022b64c9735c7867d7c546c",
+      "data/ipos-summary.json": "1c169c6200e5e2f7125419bb8b6024615843a571610822923a92dc93859094fc",
+      "ipo/routes.json": "ce390b75b5c4151acc777f5b44590b3a424a87f092ca5ebe4096d516c892e47d",
+      "ipo/emmvee/index.html": "4502adcd7a5ebb3d4909a9eab28f0562c4efd7f117c0e6a4e1179d0f5fe046a8",
+      "ipo/teamtech/index.html": "724722823686a49c9c8cdb6e6411d47ad5ebbff4d22dbc024143cbad3cc22e8d",
+      "ipo/shakti-polytarp-limited/index.html": "da020c1a8592d2cc5c5992d600117fdebc193069bd8f58f49913d3e2cf390b2c",
+      "ipo/kheriaauto/index.html": "465b8b06e550738bf74cd25dee879a357522a63a3668a8d393ffbc8c1e2de8d2",
+      "ipo/vama-wovenfab-limited/index.html": "0e67b0835622dd9251aa64b48cefb7b0cde1844104bf8c97478a10fb0c63eb2c",
+      "ipo/sona/index.html": "f8df8068a6b8271fe27712a2cdff9ec0766c2d84ccc8ac77546caa90444e89b7",
+      "ipo/manika/index.html": "40f677684570b7080c996d4a4ca9d5e1140e8c1f3bdd318099eafead8625f2f5",
+      "ipo/htel/index.html": "3ccc5042719a8acad685eb1b9cf20c61c18895c5caa111e665811d3e355986ff",
+      "ipo/kissht/index.html": "c2ca5b6f0952fe416965a6420b38634a864a7eae2da81efd13780fd8e660de74"
+    },
+    "reviewedPublication": {
+      "status": "passed",
+      "scope": "retained-reviewed-evidence-delivery-not-new-source-audit",
+      "canonicalSha256": "ec4dc79659ecbcf8ff1f7729890e8657a51532516eab19c97207a14cb506eef3",
+      "checked": [
+        {
+          "id": "htel",
+          "kind": "financials",
+          "fields": [
+            "financials"
+          ],
+          "proofsSha256": "cd8235ec7960a136fd4d714c63b959011d242fe9aeb9b554ecd2f58d1f317e73",
+          "proofsGitBlob": "dfe9cef6c543f06319626b45eea046b65ff9d457",
+          "sourceReviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/9229780be87876c00759a0ea06aba87fbac1103b/docs/reviews/2026-09-18-reviewed-financial-grids.md"
+        },
+        {
+          "id": "kissht",
+          "kind": "financials",
+          "fields": [
+            "financials"
+          ],
+          "proofsSha256": "5a71578678adde394e46aa5eb383e74710815e08988d352e3a7893b4660f1a7a",
+          "proofsGitBlob": "c1c61bdcf27a996953f1ef1cd4fc51127513afbe",
+          "sourceReviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/9229780be87876c00759a0ea06aba87fbac1103b/docs/reviews/2026-09-18-reviewed-financial-grids.md"
+        }
+      ]
+    },
+    "baseUrl": "https://vasuki8.github.io/IPO-Tracker/",
+    "httpChecked": [
+      "index.html",
+      "public-quality.js",
+      "public-quality.css",
+      "app.js",
+      "company-page.js",
+      "company.js",
+      "phase4.js",
+      "methodology.html",
+      "data/ipos-summary.json",
+      "ipo/routes.json",
+      "ipo/emmvee/index.html",
+      "ipo/teamtech/index.html",
+      "ipo/shakti-polytarp-limited/index.html",
+      "ipo/kheriaauto/index.html",
+      "ipo/vama-wovenfab-limited/index.html",
+      "ipo/sona/index.html",
+      "ipo/manika/index.html",
+      "ipo/htel/index.html",
+      "ipo/kissht/index.html"
+    ]
+  },
+  "directBrowserChecks": {
+    "htel": "annual rows and physical-page-282 Final Prospectus source verified",
+    "kissht": "annual rows and physical-page-335 Final Prospectus source verified",
+    "pngsreva": "financial table remains under review and withheld"
+  },
+  "documentationCloseoutBranch": "docs-p4-financial-release-20260918",
+  "olderScheduledArtifact": {
+    "run": 35395047328,
+    "status": "rejected_source_policy_changed",
+    "base": "07527e52d2a3b590be2851fcb0d578ed3f580136"
+  }
+}
