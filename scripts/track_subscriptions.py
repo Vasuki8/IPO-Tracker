@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import html as html_lib
 import json
+import math
 import re
 import sys
 from datetime import datetime
@@ -179,7 +180,9 @@ def append_snapshot(record: dict[str, Any], snapshot: dict[str, Any], *, force=F
     """Append a changed snapshot; preserve a bounded, chronological history."""
     history = [x for x in (record.get("subscriptionHistory") or []) if isinstance(x, dict)]
     history.sort(key=lambda x: str(x.get("capturedAt") or ""))
-    if history and not force and _same_values(history[-1], snapshot):
+    if (history and not force and _same_values(history[-1], snapshot)
+            and all(history[-1].get(key) == snapshot.get(key)
+                    for key in ("source", "sourceUrl", "observedAt"))):
         record["subscriptionHistory"] = history[-MAX_HISTORY:]
         return False
     history.append(snapshot)
@@ -443,20 +446,49 @@ def apply_subscription(
     force_snapshot=False,
     observed_at=None,
 ):
-    if not any(value is not None for value in parsed.values()):
-        raise ValueError("Subscription source returned no headline category rows")
-
+    # Validate the whole source snapshot before touching accepted values/history.
+    # An absent category cannot inherit another observation's number and then be
+    # relabelled with this source's URL or fresh collection clock.
+    if (not isinstance(parsed, dict) or not parsed or set(parsed) - set(SNAPSHOT_KEYS)
+            or any(value is not None and (type(value) not in (int, float)
+                   or not math.isfinite(value) or value < 0) for value in parsed.values())
+            or not any(value is not None for value in parsed.values())):
+        raise ValueError("Subscription source returned invalid or empty headline categories")
+    if not all(isinstance(value, str) and value.strip() for value in (source_name, snapshot_source)):
+        raise ValueError("Subscription source requires explicit source labels")
+    if not isinstance(source_url, str) or any(char.isspace() or ord(char) < 32 for char in source_url):
+        raise ValueError("Subscription source requires a valid HTTPS URL")
+    try:
+        url = urlparse(source_url)
+        if url.scheme != "https" or not url.hostname or url.username or url.password or url.fragment:
+            raise ValueError("Subscription source requires a valid HTTPS URL")
+        url.port  # Reject malformed ports before any mutation.
+    except ValueError as exc:
+        raise ValueError("Subscription source requires a valid HTTPS URL") from exc
     captured_at = core.now_ist().isoformat(timespec="seconds")
-    current = dict(record.get("subscription") or {})
-    for key, value in parsed.items():
-        if value is not None:
-            current[key] = value
+    if observed_at is not None:
+        try:
+            observation = datetime.fromisoformat(observed_at)
+            if observation.utcoffset() is None or observation > datetime.fromisoformat(captured_at):
+                raise ValueError("Source clock is naive or after collection")
+        except (TypeError, ValueError, OverflowError) as exc:
+            raise ValueError("Subscription source observation needs a valid non-future zoned timestamp") from exc
+    previous = record.get("subscription") or {}
+    if not isinstance(previous, dict):
+        raise ValueError("Existing subscription snapshot requires review")
+    missing = [key for key, value in previous.items()
+               if value is not None and parsed.get(key) is None]
+    if missing:
+        raise ValueError("Incomplete subscription response; preserving the entire previous snapshot: "
+                         + ", ".join(sorted(missing)))
+    current = {key: parsed.get(key) for key in SNAPSHOT_KEYS}
     record["subscription"] = current
     record["subscriptionAsOf"] = captured_at
     record["subscriptionCollectedAt"] = captured_at
     record["subscriptionObservedAt"] = observed_at
     record["subscriptionTimeBasis"] = "source-observation" if observed_at else "collection-only"
     record["subscriptionSource"] = source_name
+    record["subscriptionSourceUrl"] = source_url
 
     snapshot = {"capturedAt": captured_at, "observedAt": observed_at, "source": snapshot_source, "sourceUrl": source_url}
     snapshot.update({key: core.number(current.get(key)) for key in SNAPSHOT_KEYS})

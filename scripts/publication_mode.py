@@ -24,6 +24,9 @@ REVIEW_GATE_FILES = {
 }
 REVIEW_SUPPORT_FILES = {'.github/workflows/source-review.yml'}
 REVIEW_OUTPUT_FILES = {'data/validation.json', 'data/missing_queue.json', 'data/phase_status.json'}
+# A change to this leaf collector can use the existing subscription-only stage.
+# Policy/other collector/dependency changes still require ordinary repair.
+SUBSCRIPTION_FILES = {'scripts/track_subscriptions.py'}
 REVIEWED_REQUEST = 'data/reviewed_publication_request.json'
 
 
@@ -44,6 +47,11 @@ def push_mode(paths):
         return (path in PRESENTATION_FILES or path.startswith(('docs/', 'tests/', 'assets/'))
                 or profile is not None
                 or (len(pure.parts) == 1 and (pure.suffix in {'.html', '.css', '.js'} or path == 'README.md')))
+    if (any(isinstance(path, str) and path in SUBSCRIPTION_FILES for path in paths)
+            and all(isinstance(path, str) and (path in SUBSCRIPTION_FILES
+                    or (presentation(path) and (path.startswith(('docs/', 'tests/'))
+                        or path in {'README.md', 'scripts/publication_mode.py'}))) for path in paths)):
+        return 'subscriptions'
     review_change = any(isinstance(path, str) and path in REVIEW_GATE_FILES for path in paths)
     if review_change and all(presentation(path) or (isinstance(path, str) and
                             path in REVIEW_GATE_FILES | REVIEW_OUTPUT_FILES | REVIEW_SUPPORT_FILES) for path in paths):
