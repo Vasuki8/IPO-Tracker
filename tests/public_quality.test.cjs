@@ -25,6 +25,20 @@ test('field-specific states retain zero and block disputed dependent values', ()
   const out = Q.sanitize(raw); assert.equal(out.issueSizeCr,null);
   assert.equal(out.subscription.total,0); assert.equal(out.listing.gainPct,undefined);
 });
+test('document conflicts explain unresolved evidence without implying an accepted repair', () => {
+  const raw = {objectsOfIssue:[{purpose:'Working capital',amountCr:12345}],
+    publicQuality:contract({objectsOfIssue:{state:'under_review',reason:'document_conflict'}})};
+  const out = Q.sanitize(raw);
+  assert.equal(out.objectsOfIssue,null);
+  for (const html of [Q.note(out,'objectsOfIssue'),Q.panel(out)]) {
+    assert.match(html,/This prospectus contains conflicting disclosures for this field\./);
+    assert.match(html,/withheld until authoritative source evidence resolves the conflict\./);
+    assert.doesNotMatch(html,/accepted repair|12345/);
+    assert.match(html,/Under review/);
+  }
+  raw.publicQuality.fields.objectsOfIssue.reason='pending_source_repair';
+  assert.match(Q.note(raw,'objectsOfIssue'),/until the accepted repair is published/);
+});
 test('a newer collection or history row never replaces accepted subscription values or source time', () => {
   const raw={subscription:{total:2},subscriptionObservedAt:'2026-09-17T20:18:25+05:30',
     subscriptionCollectedAt:'2026-09-17T23:14:02+05:30',subscriptionSource:'Example (secondary)',
@@ -61,9 +75,17 @@ test('shared profile renders timeline and withheld fields without requiring brow
   for (const file of ['company-page.js','company.js'])
     vm.runInContext(fs.readFileSync(path.join(__dirname,'..',file),'utf8'), context, {filename:file});
   context.fixture = {id:'test',company:'Test issuer',openDate:'2026-01-01',closeDate:'2026-01-05',
-    issueSizeCr:12345,publicQuality:contract({issueSizeCr:{state:'under_review'},
+    issueSizeCr:12345,objectsOfIssue:[{purpose:'Working capital',amountCr:98765.43}],
+    publicQuality:contract({issueSizeCr:{state:'under_review'},
+      objectsOfIssue:{state:'under_review',reason:'document_conflict',source:0},
       openDate:{state:'reported'},closeDate:{state:'reported'},financials:{state:'under_review'}})};
-  const html=vm.runInContext('companyProfileHtml(fixture, {standalone:true})',context);
-  assert.match(html,/company-timeline/);assert.match(html,/Under review/);
-  assert.doesNotMatch(html,/12,345/);assert.match(html,/Test issuer/);
+  context.fixture.publicQuality.sources=[{sourceUrl:'https://www.sebi.gov.in/final.pdf'}];
+  for (const standalone of [true,false]) {
+    const html=vm.runInContext(`companyProfileHtml(fixture, {standalone:${standalone}})`,context);
+    assert.match(html,/company-timeline/);assert.match(html,/Under review/);
+    assert.doesNotMatch(html,/12,345|98,765\.43|98765\.43|accepted repair/);assert.match(html,/Test issuer/);
+    assert.match(html,/<p class="company-data-note">This prospectus contains conflicting disclosures/);
+    assert.match(html,/until authoritative source evidence resolves the conflict/);
+    assert.match(html,/href="https:\/\/www\.sebi\.gov\.in\/final\.pdf"/);
+  }
 });
