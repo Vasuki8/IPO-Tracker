@@ -207,6 +207,27 @@ async function main() {
       );
   });
 
+  await run('Review-only quality queue row retains source review context', async (page) => {
+    const record = records[0];
+    await page.route('**/data/missing_queue.json', (route) => route.fulfill({
+      json: {
+        formatVersion: 2, asOfDate: '2026-09-17', queueCount: 1,
+        queue: [{ id: record.id, company: record.company, profilePath: record.profilePath,
+          priority: 4, priorityLabel: 'P4 recent history (2y)',
+          missingFieldCount: 0, missingFields: [], completenessPct: 100, sourceReviewCount: 3 }],
+      },
+    }));
+    await openDirectory(page);
+    await navigate(page, 'quality');
+    const row = page.locator('#qualityDashboard .quality-queue-row');
+    await row.waitFor();
+    const text = await row.locator('.quality-missing').textContent();
+    assert.match(text, /0 gaps/);
+    assert.match(text, /100(?:\.0)?%/);
+    assert.match(text, /3 source reviews/, 'Complete field coverage must not hide pending source review');
+    await noOverflow(page, 'Mobile source review queue row');
+  }, { width: 390, height: 844 });
+
   await run('Pagination and page size survive reload', async (page) => {
     await openDirectory(page);
     const first = await rowIds(page);

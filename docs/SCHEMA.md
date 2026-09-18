@@ -118,6 +118,10 @@ The record-level `validation` object above describes exchange comparison only. I
 | `data/phase_status.json` | Evidence gate for P4 completion and P5 activation |
 | `data/pending_updates.json` | Unaccepted concurrent proposals retained for source review |
 
+The compact missing queue retains format version 2 and adds `sourceReviewFormatVersion: 1`. Reviews are generated directly from the same canonical records as completeness, without reading a potentially stale validation report. `missingFields`, `missingFieldCount` and `completenessPct` retain their field-coverage meaning. A review-only row can therefore have no missing fields and still require source work.
+
+Rows with reviews carry `sourceReviewCount`, `sourceReviewItems` as `[field, definitionIndex]` pairs, and `sourceReviewGaps` for supported automatic source routes. The top-level `sourceReviewDefinitions` array preserves each exact reason, route, next action and `evidencePaths`; paths are JSON pointers relative to the canonical record matching the row ID. `scripts/source_review_queue.py::expand_review_items` decodes these tasks without losing duplicate occurrences. Top-level source-review totals are independent of missing-field totals. Unsupported fields and listing conflicts receive explicit manual tasks rather than guessed automatic repairs.
+
 Financial currency values use ₹ crore; RONW/ROE use percentages and EPS uses rupees per share. Fiscal labels must come from table columns. Original source units remain in field evidence. Timestamps retain an explicit UTC offset; operational timestamps may use UTC or Asia/Kolkata.
 
 Financial rows distinguish `revenueCr` from `totalIncomeCr`, and basic `eps` from `dilutedEps`. Financial evidence records zero-based `sourceColumns` and the reporting `scope` where disclosed.

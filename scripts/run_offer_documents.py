@@ -30,6 +30,7 @@ import final_prospectus_identity as identity
 import final_prospectus_parser as parser
 import final_prospectus_policy as source_policy
 import update_data as core
+from source_review_queue import actionable_gaps
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "ipos.json"
@@ -325,6 +326,11 @@ def _load_queue_priorities() -> dict[tuple[str, str], int]:
     priorities: dict[tuple[str, str], int] = {}
     for row in queue.get("queue") or []:
         if not isinstance(row, dict) or not row.get("id"):
+            continue
+        # Review-only rows must have an explicit automatic source route. Manual
+        # listing/unknown-field triage does not trigger an unrelated PDF parse.
+        # Legacy queue rows without this additive field keep their old contract.
+        if row.get("sourceReviewCount") and not actionable_gaps(row):
             continue
         try:
             priority = int(row.get("priority"))
