@@ -15,7 +15,113 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
-## Current integration checkpoint — 18 September 2026
+## Current checkpoint — reviewed financial release, 18 September 2026
+
+Current accepted data/main commit observed before documentation closeout:
+**`ea5f0f2631051feffb470c2cbd1b596f5767cf06`**. Sequential recovery started at
+`07527e52d2a3b590be2851fcb0d578ed3f580136`; the earlier intermediary/NSE work was
+already complete. Documentation closeout branch: `docs-p4-financial-release-20260918`.
+This section supersedes the historical checkpoint below.
+
+### Completed, merged and verified live
+
+[PR #143](https://github.com/Vasuki8/IPO-Tracker/pull/143) merged as
+`df5196139d8747a3c4422313a9f5355451204eeb` (code/evidence commits `9229780b`,
+`e0193a2a`, `79648113`). The shared offline financial-grid helper repairs annotated
+annual consolidated tables, explicit revenue and net-worth rows, wrapped EPS
+labels and separate interim columns. It rejects ambiguous dates/columns/units,
+conflicting scope/values, percentage/currency contamination and incomplete rows.
+Global collectors/parser versions were not expanded.
+
+Reviewed issuers: **Hy-Tech Engineers / HTEL** and **Onemi Technology Solutions /
+KISSHT**. All 36 existing annual metric cells now have matching Final Prospectus
+evidence. The correction fixes switched years, share-count/date tokens stored as
+EPS, total income stored as revenue, interim values stored as annual values, and
+percentages stored as net worth. It preserves all six existing metrics and three
+annual years per issuer; no review was moved into an exclusion or silently dropped.
+
+Both official PDFs were hash-checked and fully extracted with production
+`pdftotext -layout -fixed 3` flags (416/416 and 464/464 pages). Physical ratio,
+revenue and net-worth tables were visually/source reviewed and replayed from
+retained native text spans. Cover dates, filing dates, collection/review clocks,
+reporting periods, units and correction history remain distinct. The source review
+also reconciles Onemi's FY2024 revenue restatement and distinguishes its closing
+net-worth RoNW denominator from HTEL's average-equity denominator. See
+[source review](reviews/2026-09-18-reviewed-financial-grids.md) and
+[machine receipt](reviews/2026-09-18-reviewed-financial-grids.json).
+
+Source-free support publisher [35395932313](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35395932313)
+produced `88cf2fb6`, changing only derived reports. Request-only
+[PR #144](https://github.com/Vasuki8/IPO-Tracker/pull/144) merged as
+`4ad09484f1663a873653482408a94b4a06effbf4`. The existing guarded
+[publisher 35396161543](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35396161543)
+selected `reviewed`, skipped source collection and published `ea5f0f26`.
+Only `htel` and `kissht` canonical records changed. **1,369 other records, all 441
+pending proposals, all 459 earlier registry corrections, unrelated proofs and
+append-only source/correction history were preserved.**
+
+[Validation 35395566118](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35395566118)
+passed **1,253 frozen Python regressions** on Linux. Focused checks include 13 new
+financial parser/publication tests, 20 public-release verifier tests, five request
+tests, strict validation and nine Node public-quality tests. The local full run
+retained the two documented Windows filesystem limitations; Linux tests passed
+without weakening them. [Source preview 35395566141](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35395566141)
+and public consistency 35395566231 passed. [Browser 35395566217](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35395566217)
+passed existing directory/CSV/comparison/hold journeys and both reviewed financial
+profiles/quick views at 1440/375/320 pixels. Its artifact checksum matched and both
+mobile profiles were visually reviewed. An initial delivery-test assumption about
+the compact profile's omitted unit field was fixed; canonical units and all public
+cells are now explicitly checked against the existing table-caption contract.
+
+[Pages 35396284700](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35396284700)
+and [live acceptance 35396326142](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35396326142)
+passed on the accepted data commit. A separate local release verifier checked all
+1,371 routes and compared complete live HTTPS bytes, including both repaired
+profiles and their exact reviewed values/proofs. Direct browser inspection confirmed
+the annual rows and Final Prospectus page-282/page-335 links. PNGS's financial table
+remains withheld. See [release receipt](releases/2026-09-18-reviewed-financial-grids.json).
+
+### Current P4 gate and remaining work
+
+P4 is **incomplete: 387 actionable + 55 higher-priority records**. Source reviews:
+**1,556 total / 1,552 blocking / four P5-only / zero unmapped / zero semantic errors**.
+Before this batch: 388 actionable + 55 higher priority; 1,598 total / 1,594 blocking.
+The verified reduction is **42 blocking source reviews and one actionable P4 record**.
+P4 Final Prospectus revalidation is 321 records / 1,174 fields; higher priority is
+28 records / 104 fields. P5 remains `waiting_for_p4` with 914 actionable records;
+performance expansion remains gated.
+
+PNGS Reva's official PDF was recovered, hash-matched and fully extracted (477/477
+pages). Physical page 331/printed327 reports **Adjusted EBITDA**, partnership-era
+FY2024/FY2023 and explicitly unavailable historical EPS. This is a distinct,
+unsupported representation/layout, not source unavailability. **All 18 PNGS
+reviews remain open.** No adjusted EBITDA was relabelled and no EPS was estimated.
+Other source holds, including SpectraA and Teamtech, remain active. An older
+scheduled artifact from `07527e52` was correctly rejected by source-policy guard
+in run 35395047328; it must be recollected with current policy, never forced through.
+
+Active earlier PRs remain untouched: draft **#105** `fix-p4-reviewed-integration`
+(`5a63a93d`), draft **#104** `integrate-p4-reviewed-repairs` (`4d94951b`), **#99**
+`fix-kaytex-speb-document-holds` (`a503531d`), **#98**
+`fix-reviewed-correction-publication-guard` (`d5e5d058`), and **#94**
+`fix-p4-mixed-ofs-sellers` (`4707df1e`). Their broad/obsolete stacks are not release
+evidence; do not merge them wholesale or repeat already accepted work.
+
+Commercial decisions remain unresolved: paying segment, pricing/revenue model,
+source storage/display/redistribution permissions, hosting fit/cost and applicable
+professional review. No spending, outreach, contracts, permissions, accounts,
+billing, analytics or infrastructure changes were made.
+
+**Exact next task:** inspect PNGS Reva's Final Prospectus annual PAT/net-worth rows
+and definitions alongside page 331. Cluster other documents with explicitly labelled
+Adjusted EBITDA and partnership-era unavailable EPS; implement a separate reviewed
+representation that preserves those distinctions and nulls, then complete the same
+source-reviewed bounded publication chain. Its PDF hash and source excerpt are in
+the machine receipt. Do not reuse the current consolidated grid scope blindly, and
+do not re-review HTEL/KISSHT unless repository evidence changes. This selected
+two-issuer consolidated-table milestone is released and complete; P4 is not.
+
+## Historical integration checkpoint — 18 September 2026
 
 Accepted data release/current main observed before documentation closeout:
 **`de69f6ce92b94ce0acfbe6709c38a1b170c313a8`**. Recovery started from the supplied
