@@ -23,6 +23,14 @@ The pipeline has a 60-minute total collection budget (`--budget-minutes`, capped
 
 ## Scheduling and publication
 
+Use the offline [recorded update-health report](UPDATE_HEALTH.md) to join existing
+source checks, stage outcomes, publication metadata, proposal reconciliation and
+review queues at an explicit assessment time. It prints JSON or Markdown and
+never writes accepted data. Unknown source observations, failed/deferred attempts,
+unavailable sources, unresolved proposals and publication delay are separate
+signals. The [18 September snapshot](audits/operational-health/2026-09-18/REPORT.md)
+retains the real evidence and its limitations; regenerate before acting on it.
+
 `refresh.yml` is the only active data writer. Core collection runs hourly; subscriptions run twice hourly during the configured weekday UTC window. Filing maintenance follows core collection when P0–P3 gaps exist, with a six-hour fallback. Daily maintenance runs at 13:43 UTC. GitHub schedules are best-effort; missed triggers are not evidence of fresh data.
 
 Collectors have read-only repository permissions. They retain a baseline, proposed dataset and tested source commit in a 14-day Actions artifact. Publication runs only from `main`, serializes in one queue, tests current main, and checks that the collector's scripts, locked dependencies and reviewed-correction registry are still current. A supplied collector manifest must contain a valid ancestor commit; missing, empty or malformed manifests fail before any data writes. See `PUBLICATION_SOURCE_GUARD.md` for recovery. A three-way merge preserves unrelated updates. Document values and their evidence, and subscription values and their source/timestamps, merge as atomic groups.
