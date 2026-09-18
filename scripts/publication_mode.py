@@ -22,6 +22,7 @@ REVIEW_GATE_FILES = {
     'scripts/source_review_holds.py', 'scripts/source_review_queue.py',
     'scripts/validate_data.py', 'data/public_display_holds.json',
 }
+REVIEW_SUPPORT_FILES = {'.github/workflows/source-review.yml'}
 REVIEW_OUTPUT_FILES = {'data/validation.json', 'data/missing_queue.json', 'data/phase_status.json'}
 REVIEWED_REQUEST = 'data/reviewed_publication_request.json'
 
@@ -45,7 +46,7 @@ def push_mode(paths):
                 or (len(pure.parts) == 1 and (pure.suffix in {'.html', '.css', '.js'} or path == 'README.md')))
     review_change = any(isinstance(path, str) and path in REVIEW_GATE_FILES for path in paths)
     if review_change and all(presentation(path) or (isinstance(path, str) and
-                            path in REVIEW_GATE_FILES | REVIEW_OUTPUT_FILES) for path in paths):
+                            path in REVIEW_GATE_FILES | REVIEW_OUTPUT_FILES | REVIEW_SUPPORT_FILES) for path in paths):
         return 'review'
     return 'presentation' if paths and all(presentation(path) for path in paths) else 'repair'
 

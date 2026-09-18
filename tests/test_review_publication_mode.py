@@ -13,7 +13,8 @@ class ReviewPublicationTests(unittest.TestCase):
         paths = ['scripts/source_review_holds.py', 'scripts/source_review_queue.py',
                  'scripts/validate_data.py', 'scripts/public_quality.py',
                  'scripts/publication_mode.py', '.github/workflows/refresh.yml',
-                 '.github/workflows/frontend.yml', 'data/public_display_holds.json',
+                 '.github/workflows/frontend.yml', '.github/workflows/source-review.yml',
+                 '.github/workflows/source-hold-evidence.yml', 'data/public_display_holds.json',
                  'data/phase_status.json', 'tests/test_active_display_hold_routing.py',
                  'tests/public_intermediary_reviews_retained.json', 'public-quality.js',
                  'docs/PROJECT_STATUS.md']
@@ -37,6 +38,19 @@ class ReviewPublicationTests(unittest.TestCase):
                 self.assertEqual(push_mode(['data/public_display_holds.json', path]), 'repair')
         with self.assertRaises(RuntimeError):
             push_mode(['data/public_display_holds.json', 'data/reviewed_publication_request.json'])
+
+    def test_scoped_preview_preserves_full_source_checks_for_mixed_changes(self):
+        self.assertEqual(push_mode(['.github/workflows/source-review.yml']), 'repair')
+        self.assertEqual(push_mode(['scripts/validate_data.py', '.github/workflows/source-review.yml']), 'review')
+        for path in ('scripts/offer_parser.py', 'scripts/collect_price_history.py', 'scripts/build_missing_queue.py'):
+            self.assertEqual(push_mode(['scripts/validate_data.py', '.github/workflows/source-review.yml', path]), 'repair')
+        text = (ROOT / '.github/workflows/source-review.yml').read_text()
+        self.assertEqual(text.count("if: steps.scope.outputs.value != 'review'"), 2)
+        self.assertEqual(text.count('python -m unittest discover -s tests -q'), 2)
+        self.assertEqual(text.count('git diff --exit-code -- data/ipos.json data/pending_updates.json data/performance_summary.json'), 2)
+        self.assertIn('scripts/review_source_repairs.py --limit 100 --residual-limit 30', text)
+        self.assertIn('scripts/collect_price_history.py --limit 30', text)
+        self.assertNotIn('contents: write', text)
 
     def test_review_reuses_serialized_writer_with_exact_protected_boundaries(self):
         text = (ROOT / '.github/workflows/refresh.yml').read_text()
