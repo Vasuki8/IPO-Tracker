@@ -66,19 +66,24 @@ def _display_hold_matches(record, field, hold):
     binding = hold['fields'][field]
     proof = (record.get('staticFieldProvenance') or {}).get(field) or {}
     scope = hold.get('scope', 'value')
-    if scope == 'document':
-        identity = hold.get('identity') or {}
+    if scope not in {'value', 'document'}:
+        raise ValueError('Unsupported public display hold scope')
+    # A supplied issuer/offer constraint is authoritative for layout holds too.
+    # Older value-only holds keep their original PDF/value binding; do not invent
+    # identities for them or let an incomplete new binding silently broaden scope.
+    if scope == 'document' or 'identity' in hold:
+        identity = hold.get('identity')
         keys = ('id', 'company', 'symbol', 'openDate')
-        if (not all(isinstance(identity.get(key), str) and identity[key] for key in keys)
+        if (not isinstance(identity, dict)
+                or not all(isinstance(identity.get(key), str) and identity[key] for key in keys)
                 or identity['id'] != hold['id']):
             raise ValueError('Document display hold requires exact issuer and offer identity')
-        # An alternate extraction or mirror URL cannot resolve contradictory
-        # disclosures in the same document. No canonical value or review changes.
-        return (all(record.get(key) == identity[key] for key in keys)
-                and proof.get('issueOpenDate') == identity['openDate']
-                and proof.get('sha256') == binding['sha256'])
-    if scope != 'value':
-        raise ValueError('Unsupported public display hold scope')
+        if (any(record.get(key) != identity[key] for key in keys)
+                or proof.get('issueOpenDate') != identity['openDate']):
+            return False
+    if scope == 'document':
+        # A mirror or a differently parsed value cannot reconcile the same PDF.
+        return proof.get('sha256') == binding['sha256']
     return (proof.get('sha256') == binding['sha256']
             and value_digest(field_value(record, field)) == binding['valueDigest'])
 
