@@ -17,7 +17,7 @@ from urllib.parse import urljoin, urlsplit
 from urllib.request import Request, urlopen
 
 STATIC_FILES = (
-    'index.html', 'public-quality.js', 'public-quality.css', 'app.js',
+    'index.html', 'public-quality.js', 'public-quality.css', 'app.js', 'source-health.js',
     'company-page.js', 'company.js', 'phase4.js', 'methodology.html',
     'data/ipos-summary.json', 'ipo/routes.json',
 )
