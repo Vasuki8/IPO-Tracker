@@ -43,9 +43,13 @@ and immutable release receipts govern the verified checkpoint.
    snapshot hand-off prevention (#135) is released at `2ae2f3e7`, with live
    acceptance 35376272766. Generic summaries remain separate observations;
    historical mixed snapshots still require source review or evidence-bound holds.
-   Historical proposals are not backfilled or automatically resolved.
+   #137 now retains evidence-bound historical subscription holds and delivers
+   active holds into public fields and the manual review queue. Its review-only
+   publication `f6db111a` is live-verified; the recovered PR rehearsal now builds
+   in isolation while deployed checks remain read-only. No numerical replacement
+   was accepted. Historical proposals are not backfilled or automatically resolved.
 3. **Complete P4 with source evidence — blocked.** Current accepted inventory is
-   1,371; P4 has 387 actionable plus 56 higher-priority records and 1,599 blocking
+   1,371; P4 has 388 actionable plus 55 higher-priority records and 1,597 blocking
    source reviews, zero unmapped reviews. All 441 retained proposals remain. Teamtech
    stays held and broad source draft #105 remains unaccepted. Do not weaken the gate,
    remove reviews, invent exclusions or use estimates to improve completion counts.
@@ -72,26 +76,26 @@ and immutable release receipts govern the verified checkpoint.
 
 ### Next reviewable increment
 
-#135's core-collector prevention is merged and live-verified at `2ae2f3e7`.
-Generic issue-feed multiples remain source-bound observations; core refreshes
-preserve the accepted subscription family and history. Final-head frozen CI passed
-1,161 regressions; browser and public-delivery checks passed. Do not repeat this
-implementation or treat its success as numerical source adjudication.
+#135's core prevention and #137's historical hold delivery are merged and verified.
+Do not reapply the older portable patch or repeat #137. The recovered branch,
+failed initial release check, isolated candidate fix and actual source-free review
+publisher are recorded in [PROJECT_STATUS.md](PROJECT_STATUS.md) and the
+[recovery receipt](releases/2026-09-18-subscription-hold-recovery.json).
 
-The retained comparison of `70a5133f` to core publication `eec88efb` remains
-unadjudicated. Review those eight historical snapshots using current exact
-source/issuer/offer and bid-denominator evidence before restoring any numerical
-value. If reconciliation is unavailable, retain an explicit evidence-bound public
-review hold; do not infer a replacement, finality or observation time. Preserve
-all original history and pending proposals. See the [boundary review](reviews/2026-09-18-core-subscription-boundary.md)
-and `nextRepairDiagnostic` in the [BSE release receipt](releases/2026-09-18-bse-source-authority.json).
+**Next obtain SpectraA's exact issuer/offer/source-detail and bid-denominator
+evidence before a bounded subscription correction.** Its unresolved historical
+snapshot is now withheld, with a manual review task and preserved canonical data.
+A newer headline total, collection clock or history row is not sufficient to
+resolve it. The other seven current snapshots differ from retained historical
+bindings after the independent collector repair; do not overwrite them, equate
+that difference with audited resolution, or discard any of the eight bindings.
+No old total is restored by this release.
 
-Next investigate SpectraA's missing matching source using exact issuer/offer
-identity, not relaxed fuzzy matching. Use the [update-health report](UPDATE_HEALTH.md)
-with current run evidence; do not introduce alerts or another writer. The 22 retained
-subscription proposals still require original source-link/issuer evidence. Emmvee's
-old operator decision is currently `stale_evidence`; revalidate rather than reuse or
-delete it. See [reconciliation guidance](PROPOSAL_RECONCILIATION.md).
+The 22 retained subscription proposals still require original source-link/issuer
+evidence. Emmvee's old operator advice remains subject to evidence revalidation.
+Use the [update-health report](UPDATE_HEALTH.md) with actual current workflow
+outcomes, without alerts or another writer. P4 completion, source rights and
+commercial customer validation remain higher priority than coverage expansion.
 
 Every release must preserve source/document identity, reporting dates and clocks,
 field evidence and correction history; run relevant regressions and source/browser
