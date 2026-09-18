@@ -21,11 +21,13 @@ async function main() {
         await page.goto(new URL('ipo/'+id+'/',base).href,{waitUntil:'networkidle'});
         await page.locator('#companyPage .company-profile').waitFor();
         const record=JSON.parse(await page.locator('#ipo-profile-data').textContent()).ipo;
-        assert.deepEqual(record.financials,proof.value);
+        assert.equal(proof.value.unit,'₹ crore');
+        assert.deepEqual(record.financials,{periods:proof.value.periods});
         assert.equal(record.publicQuality.fields.financials.state,'final_verified');
         assert.deepEqual(record.financials.periods.map(p=>p.period),years);
         async function check(container) {
           const section=container.locator('#company-financials');
+          assert.match(await section.innerText(),/Amounts in ₹ crore, except EPS \(₹\) and returns \(%\)/);
           assert.equal(await section.locator('tbody tr').count(),3);
           const note=section.locator('[data-quality-field="financials"]');
           assert.match(await note.innerText(),/Final Prospectus verified/);

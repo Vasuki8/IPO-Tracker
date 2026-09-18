@@ -255,6 +255,9 @@ def verify_reviewed_publication(root, receipt):
             expected = proof['value']
             if field == 'issueComposition':
                 expected = {k: expected[k] for k in public_composition if k in expected}
+            if field == 'financials':
+                require(expected.get('unit') == '₹ crore', 'Reviewed financial unit differs from the public table contract')
+                expected = {'periods': expected['periods']}
             require(equal(profile.get(field), expected), f'{key}.{field}: reviewed profile value not delivered')
             expected_source = {k: proof[k] for k in source_keys if k in proof}
             delivered_decisions = [projected.get(field)]
