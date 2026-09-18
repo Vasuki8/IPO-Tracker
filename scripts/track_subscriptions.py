@@ -320,18 +320,27 @@ def _validated_nse_snapshot(record: dict[str, Any], detail: Any, series: str):
         raise ValueError("NSE subscription detail requires category bid rows")
     best: dict[str, tuple[int, float]] = {}
     evidence: dict[str, tuple[float, float, float]] = {}
+    count_evidence: dict[str, dict[str, float]] = {}
     for row in bid_rows:
         if not isinstance(row, dict):
             continue
         field, score = _classify_category(_category_text(row))
         if not field:
             continue
+        offered = _nse_number(_first(row, "noOfSharesOffered", "noOfShareOffered"))
+        bids = _nse_number(_first(row, "noOfsharesBid", "noOfSharesBid", "noOfshareBid"))
+        known_counts = count_evidence.setdefault(field, {})
+        for name, value in (("offered", offered), ("bids", bids)):
+            if value is not None:
+                if name in known_counts and known_counts[name] != value:
+                    raise ValueError(f"NSE subscription {field} has conflicting headline rows")
+                known_counts[name] = value
+        # A missing multiple does not erase the row's known count evidence.
+        # Counts can reject a conflict, but cannot supply a missing multiple.
         raw_multiple = _first(row, "noOfTime", "subscription", "timesSubscribed", "subscriptionTimes")
         if raw_multiple is None:
             continue
         multiple = _nse_number(raw_multiple)
-        offered = _nse_number(_first(row, "noOfSharesOffered", "noOfShareOffered"))
-        bids = _nse_number(_first(row, "noOfsharesBid", "noOfSharesBid", "noOfshareBid"))
         if (multiple is None or multiple < 0 or offered is None or offered <= 0
                 or not offered.is_integer() or bids is None or bids < 0 or not bids.is_integer()):
             raise ValueError(f"NSE subscription {field} lacks valid bid/denominator evidence")

@@ -14,7 +14,7 @@ mod = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = mod
 spec.loader.exec_module(mod)
 CASES = {case["name"]: case for case in json.loads(
-    (ROOT / "tests/fixtures/nse_subscription_detail_20260918.json").read_text(encoding="utf-8")
+    (ROOT / "tests/nse_subscription_detail_20260918.json").read_text(encoding="utf-8")
 )["cases"]}
 
 
@@ -158,6 +158,42 @@ class NSESubscriptionEvidenceTests(unittest.TestCase):
         expected = mod.parse_bid_details(payload)
         mod.update_record(record, payload, series=series)
         self.assertEqual(record["subscription"], expected)
+
+    def test_missing_multiple_cannot_hide_conflicting_duplicate_counts_in_either_order(self):
+        for count_field in ("noOfSharesOffered", "noOfsharesBid"):
+            for prepend in (False, True):
+                with self.subTest(count_field=count_field, prepend=prepend):
+                    record, payload, series = self.case()
+                    duplicate = copy.deepcopy(payload["bidDetails"][0])
+                    duplicate["noOfTime"] = None
+                    duplicate[count_field] = str(int(duplicate[count_field]) * 2)
+                    payload["bidDetails"].insert(0 if prepend else len(payload["bidDetails"]), duplicate)
+                    self.assert_rejected_unchanged(record, payload, series, "conflicting headline rows")
+
+    def test_identical_counts_with_one_missing_multiple_use_only_the_reported_multiple(self):
+        for prepend in (False, True):
+            with self.subTest(prepend=prepend):
+                record, payload, series = self.case()
+                expected = mod.parse_bid_details(payload)
+                duplicate = copy.deepcopy(payload["bidDetails"][0])
+                duplicate["noOfTime"] = None
+                payload["bidDetails"].insert(0 if prepend else len(payload["bidDetails"]), duplicate)
+                mod.update_record(record, payload, series=series)
+                self.assertEqual(record["subscription"], expected)
+
+    def test_identical_counts_without_any_category_multiple_remain_null(self):
+        record, payload, series = self.case()
+        payload["bidDetails"][0]["noOfTime"] = None
+        payload["bidDetails"].append(copy.deepcopy(payload["bidDetails"][0]))
+        mod.update_record(record, payload, series=series)
+        self.assertIsNone(record["subscription"]["qib"])
+
+    def test_positive_denominator_counts_only_response_does_not_create_multiples(self):
+        record, payload, series = self.case()
+        for row in payload["bidDetails"]:
+            row["noOfTime"] = None
+        payload["bidDetails"].append(copy.deepcopy(payload["bidDetails"][0]))
+        self.assert_rejected_unchanged(record, payload, series, "no denominator-backed headline")
 
     def test_valid_nii_subcategory_does_not_conflict_with_aggregate(self):
         record, payload, series = self.case()

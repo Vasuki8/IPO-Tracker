@@ -13,9 +13,15 @@ source clocks and review version. Full decoded HTTP response bodies, original ZI
 files, extracted PDF members and review renders are retained locally under
 `.cache/spectraa-evidence-20260918/`; these files are ignored rather than publicly
 redistributing complete source documents. The committed
-`tests/fixtures/nse_subscription_detail_20260918.json` contains selected literal
+`tests/nse_subscription_detail_20260918.json` contains selected literal
 identity and category fields from four real responses, with each original body's
 receipt. It is a reduced fixture, not a byte-identical copy of the full response.
+
+The subscription fixture is stored directly under `tests/` so this leaf-collector
+change does not match the source-preview workflow's broad `tests/fixtures/**`
+trigger for unrelated Final Prospectus batch extraction. Its bytes and receipt
+hash are unchanged by the move. No workflow or protection rule is changed, and
+the earlier broad preview's diagnostic artifacts remain unaccepted.
 
 Direct reads succeeded although the web-reader detail calls had failed. The main
 BSE URL returned a JavaScript application shell, and the beta issue index returned
@@ -91,6 +97,12 @@ derives missing multiples nor imports a root/graph total. Valid zero demand on a
 positive denominator remains valid. Absent categories remain null, and the
 existing whole-snapshot completeness guard still protects previously known facts.
 
+Duplicate headline rows must also agree on every known bid count and denominator,
+even when one row has no multiple. Conflicting counts reject the entire snapshot
+in either row order; identical counts permit an explicitly reported multiple but
+never create one. If no supported headline multiple exists, counts alone still
+cannot publish an observation. NII subcategories remain outside the aggregate.
+
 Real [SONA EQ](https://www.nseindia.com/api/ipo-detail?symbol=SONA&series=EQ) and
 [JSIPL EQ](https://www.nseindia.com/api/ipo-detail?symbol=JSIPL&series=EQ) responses
 exercise the mainboard title-row identity layout, positive denominators and
@@ -100,7 +112,7 @@ changed by these control tests. Existing low-level parser fixtures remain valid;
 the synthetic incomplete-response application test gains the required identity
 and denominator fields so it continues to test the same missing-total failure.
 
-Validation: 15 focused source-evidence/routing tests and all 10 existing
+Validation: 22 focused source-evidence/routing tests and all 10 existing
 subscription-tracking tests pass. `git diff --check` passes. A combined
 `PYTHONUTF8=1 uv run --frozen python -m unittest discover -s tests -q` run on the
 shared working tree executed 1,231 tests with seven errors outside this collector:
