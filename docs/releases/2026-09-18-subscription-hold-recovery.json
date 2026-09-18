@@ -1,0 +1,320 @@
+{
+  "scope": "subscription-hold-delivery-recovery-not-numerical-source-acceptance",
+  "baselineCommit": "4688128d226c86fd1194f519a09688fed91297cd",
+  "pullRequest": 137,
+  "recoveredHead": "482eae8a69f452b8e418acbd4303c36edbff248c",
+  "sourceNoteCommit": "0b27f66c244074e971a0c7e08591f0b842b3cacf",
+  "isolatedRehearsalCommit": "fddf7cf9b13b2a55871f54e840b7b0a733934e35",
+  "reviewedHead": "eebd4ff8ba897b91526ac0eaf3986bdffc1795e8",
+  "testMerge": "4419ddb89673c01ff18e514d6c33398d29deb047",
+  "mergeCommit": "8dd2a51305a21b5ddb9aebf6c7861128a985ebd0",
+  "implementationTree": "97db9fa055262310c546c867841109892022bae2",
+  "publicationCommit": "f6db111ac3275a180562e2251c95818b23f4a95f",
+  "publicationTree": "fa05493d9e58ef4dd35df0a451a6ffbb9ce52eb0",
+  "failure": {
+    "run": 35380352028,
+    "error": "spectraa: held subscription leaked",
+    "cause": "PR verifier read committed pre-publisher output; isolated candidate generation now precedes PR acceptance only."
+  },
+  "checks": {
+    "finalValidation": 35383110930,
+    "candidateAcceptance": 35383110680,
+    "sourceHoldEvidence": 35383110671,
+    "bseHostEvidence": 35383110585,
+    "browser": 35383110570,
+    "allFinalPrChecks": "success",
+    "postMergeValidation": 35383599887,
+    "postMergeBrowser": 35383599949,
+    "postMergeChecks": "success",
+    "frozenPython": "3.12.14",
+    "frozenCommand": "uv sync --frozen",
+    "actualPublisherRegressions": 1182,
+    "newHoldAndRecoveryTests": 21,
+    "local": {
+      "python": "3.13.5",
+      "holdTests": 12,
+      "candidateSafetyTests": 8,
+      "routingTests": 1,
+      "nodeTests": 9,
+      "frozen": false
+    }
+  },
+  "browser": {
+    "existingJourneys": 25,
+    "pageErrors": 0,
+    "masterRequests": 0,
+    "subscriptionHoldSurfaces": [
+      "profile",
+      "quick view",
+      "directory",
+      "comparison",
+      "CSV"
+    ],
+    "subscriptionWidths": [
+      1440,
+      375,
+      320
+    ],
+    "staticHolds": "passed",
+    "bseAuthority": "passed",
+    "freshnessLayouts": "passed",
+    "reviewedEmmveeRehearsal": "passed",
+    "inspectedScreenshot": "subscription-hold-375.png"
+  },
+  "publisher": {
+    "run": 35383599928,
+    "collectJob": 105725261384,
+    "publishJob": 105725441173,
+    "mode": "review",
+    "status": "success",
+    "ipoSourceCollection": "skipped",
+    "p4ResidualCollection": "skipped",
+    "newWriter": false
+  },
+  "pagesRun": 35383703226,
+  "pagesStatus": "success",
+  "liveRun": 35383754007,
+  "liveStatus": "passed",
+  "liveReceipt": {
+    "expectedCommit": "f6db111ac3275a180562e2251c95818b23f4a95f",
+    "status": "passed",
+    "scope": "public-artifact-and-review-delivery-not-source-accuracy",
+    "routeCount": 1371,
+    "sampledProfiles": [
+      "ipo/emmvee/",
+      "ipo/teamtech/",
+      "ipo/shakti-polytarp-limited/",
+      "ipo/kheriaauto/",
+      "ipo/vama-wovenfab-limited/",
+      "ipo/sona/",
+      "ipo/manika/",
+      "ipo/snehaa/",
+      "ipo/sacheerome/",
+      "ipo/spectraa/"
+    ],
+    "expectedSha256": {
+      "index.html": "7bb7c13dc4c856b9bcb77138e9d9cdfb8934384688e97c27c5bd9d81aa6fec59",
+      "public-quality.js": "c1af0c3998bf53c582a920419980bccf2c2533e618f7088f665bf438e07c626c",
+      "public-quality.css": "988dee5e990116eff25b8746a77b0b618b23d5394f3b919d601cceaedd6d4467",
+      "app.js": "aad042ffd8cea3576b5abff34d8b0378e812ab7e4f368f73e162d427201167d3",
+      "company-page.js": "c965ddfd01ab122b196dc58797d299f724b2378092c7ff927c91ea14b132c610",
+      "company.js": "8fba803171c5fd0fb09b95844fc153eaeff159a3a55c92785ef3c9013e08435d",
+      "phase4.js": "d7c69047e184cf5f896a75e61c62150a462ed985deaf93fdd8c0015a212e388f",
+      "methodology.html": "fe6b152b67eeaf0d1b17d7a700e1819fc250256bc022b64c9735c7867d7c546c",
+      "data/ipos-summary.json": "7b0b985844d0cdd2f8b8a391712d6905b44a97d0722e218e3ef0da8435e84814",
+      "ipo/routes.json": "b29d2965522c27c7a6437e2687ce2e274b3f8c53565b51ed8b6c5ed06655b8db",
+      "ipo/emmvee/index.html": "4502adcd7a5ebb3d4909a9eab28f0562c4efd7f117c0e6a4e1179d0f5fe046a8",
+      "ipo/teamtech/index.html": "724722823686a49c9c8cdb6e6411d47ad5ebbff4d22dbc024143cbad3cc22e8d",
+      "ipo/shakti-polytarp-limited/index.html": "da020c1a8592d2cc5c5992d600117fdebc193069bd8f58f49913d3e2cf390b2c",
+      "ipo/kheriaauto/index.html": "0857a1def2be09717e39ae171be448ea349d5dfbf6c16a52acd3bea38ce26b95",
+      "ipo/vama-wovenfab-limited/index.html": "0e67b0835622dd9251aa64b48cefb7b0cde1844104bf8c97478a10fb0c63eb2c",
+      "ipo/sona/index.html": "7f53d75fd629e4075978c29e9f2f5bd52cabb5535f6cf73d9a7c9d9d20c27ebb",
+      "ipo/manika/index.html": "40f677684570b7080c996d4a4ca9d5e1140e8c1f3bdd318099eafead8625f2f5",
+      "ipo/snehaa/index.html": "fec9ddf9fcec918e1c8230a83c8e51befe9873b55f6fd57c97d179bcb953122f",
+      "ipo/sacheerome/index.html": "75b68d99fe1225a4dad9d1ef8d81baec2a60fce2498585a672451083b4a3f6f5",
+      "data/validation.json": "dbabdbe92c23b8cadaf4bb5f934ccdc41d33bba2a4a42276c2722e87eb503823",
+      "data/missing_queue.json": "47dc898bf0336c2657ff45a4d100587699e539b34f92d2bd1cfa513e9df54e9a",
+      "data/phase_status.json": "8edca82a0dbe22d94dc69b88a25cbd7aa2b1a32074f83f43614458991524d849",
+      "ipo/spectraa/index.html": "ad2c64e03513b27df3187443e44032e82844608734ab64d8e5c49f9fa75c3f31"
+    },
+    "reviewedPublication": {
+      "status": "not_requested",
+      "scope": "retained-reviewed-evidence-delivery"
+    },
+    "subscriptionHolds": [
+      {
+        "id": "sona",
+        "active": false,
+        "snapshotDigest": "0238fc7f9fe2c72591c7caf5aeefa9bb53e3c4448e0ac33517353a018fae95d9"
+      },
+      {
+        "id": "ssretail",
+        "active": false,
+        "snapshotDigest": "c8c3574543b0922c19481960eff842d8f61c6e1dce2d888a58339e5f0c740620"
+      },
+      {
+        "id": "jsipl",
+        "active": false,
+        "snapshotDigest": "97526469a3f18754cfc212e33ca111efb97c61aead72c7c3b5ec7ec0b84b7101"
+      },
+      {
+        "id": "heromotors",
+        "active": false,
+        "snapshotDigest": "9d3f0766f41e0050bdce791c245314ce20b5a2ea23317f46772101dc186c8bc9"
+      },
+      {
+        "id": "nse",
+        "active": false,
+        "snapshotDigest": "2818fa0ade3a4b052139cd4095ccafd0d9e943de5923ba48137d06a95f288b31"
+      },
+      {
+        "id": "kheriaauto",
+        "active": false,
+        "snapshotDigest": "73075af7db7c2863de2e3c3f5ebc3e7521cbe5c097b09769a3c865a5ad607d49"
+      },
+      {
+        "id": "spectraa",
+        "active": true,
+        "snapshotDigest": "212b33152f0a83be66ce12cfe1c68df574005c3382319277e24bc466039c2c1f"
+      },
+      {
+        "id": "axiomgas",
+        "active": false,
+        "snapshotDigest": "51bbbef230add30a70311b524674696c73f8e13e2d0ccb882808722c713d2f92"
+      }
+    ],
+    "additionalReviewPaths": [
+      "ipo/snehaa/index.html",
+      "ipo/sacheerome/index.html",
+      "data/validation.json",
+      "data/missing_queue.json",
+      "data/phase_status.json"
+    ],
+    "baseUrl": "https://vasuki8.github.io/IPO-Tracker/",
+    "httpChecked": [
+      "index.html",
+      "public-quality.js",
+      "public-quality.css",
+      "app.js",
+      "company-page.js",
+      "company.js",
+      "phase4.js",
+      "methodology.html",
+      "data/ipos-summary.json",
+      "ipo/routes.json",
+      "ipo/emmvee/index.html",
+      "ipo/teamtech/index.html",
+      "ipo/shakti-polytarp-limited/index.html",
+      "ipo/kheriaauto/index.html",
+      "ipo/vama-wovenfab-limited/index.html",
+      "ipo/sona/index.html",
+      "ipo/manika/index.html",
+      "ipo/snehaa/index.html",
+      "ipo/sacheerome/index.html",
+      "data/validation.json",
+      "data/missing_queue.json",
+      "data/phase_status.json",
+      "ipo/spectraa/index.html"
+    ]
+  },
+  "preservation": {
+    "scope": "actual-review-publication-preservation-not-source-number-audit",
+    "publicationCommit": "f6db111ac3275a180562e2251c95818b23f4a95f",
+    "canonicalSha256": "e00a0027d9a458a6f3e9f403c659d34099a1aaaa3f2406793cb90fbb9d2f6128",
+    "pendingSha256": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+    "canonicalRecords": 1371,
+    "pendingProposals": 441,
+    "canonicalAndProposalsByteIdentical": true,
+    "activeSubscriptionHolds": [
+      "spectraa"
+    ],
+    "historicalBindings": 8,
+    "changedProfiles": {
+      "ipo/jsipl/index.html": [
+        "publicQuality",
+        "priceBand"
+      ],
+      "ipo/spectraa/index.html": [
+        "publicQuality",
+        "subscription"
+      ],
+      "ipo/heromotors/index.html": [
+        "publicQuality",
+        "priceBand"
+      ],
+      "ipo/ssretail/index.html": [
+        "publicQuality",
+        "priceBand"
+      ]
+    },
+    "publicProfilesVerified": 1371,
+    "livePaths": 23,
+    "phase": {
+      "generatedAt": "2026-09-18T19:02:46.211801+00:00",
+      "p4": {
+        "status": "incomplete",
+        "actionableRecords": 388,
+        "higherPriorityRecords": 55,
+        "semanticErrors": 0,
+        "sourceReviewItems": 1601,
+        "blockingSourceReviewItems": 1597,
+        "p5OnlySourceReviewItems": 4,
+        "unmappedSourceReviewItems": 0,
+        "finalProspectusRevalidationRecords": 322,
+        "finalProspectusRevalidationFields": 1175,
+        "higherPriorityFinalProspectusRevalidationRecords": 28,
+        "higherPriorityFinalProspectusRevalidationFields": 105,
+        "resolvedUnavailableRecords": 5
+      },
+      "p5": {
+        "status": "waiting_for_p4",
+        "actionableRecords": 914
+      }
+    },
+    "changedDataFiles": [
+      "data/ipos-summary.json",
+      "data/public_display_holds.json",
+      "data/phase_status.json",
+      "data/missing_queue.json",
+      "data/validation.json"
+    ],
+    "emmveeAndTeamtechPublicBytesUnchanged": true
+  },
+  "historicalLineage": {
+    "scope": "historical-dataset-lineage-not-number-accuracy",
+    "currentCommit": "4688128d226c86fd1194f519a09688fed91297cd",
+    "beforeSha256": "1b600dc26dbf5ec24908464ba3da3ce3c0798fa3804278b5c85c32fcb0d352eb",
+    "afterSha256": "60097606443c2460f1672a81e74144c39504ef13527b3de1bd1400b1806b2d6f",
+    "canonicalSha256": "e00a0027d9a458a6f3e9f403c659d34099a1aaaa3f2406793cb90fbb9d2f6128",
+    "pendingSha256": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+    "proposalCount": 441,
+    "eightHistoricalChangesMatchedRetainedDiagnostic": true
+  },
+  "artifacts": [
+    {
+      "kind": "recoveryBaseline",
+      "id": 10561890359,
+      "sha256": "74c1050cd6ab3cdc0ed53017e6bbf495d5754f03ffa9c14da1f89e2eb938fe99",
+      "downloadedAndHashVerified": true
+    },
+    {
+      "kind": "initialFailure",
+      "id": 10561983218,
+      "sha256": "547474620c3b65459485b514aa40ac16c2d062ba5ad71282f89d0b35e6768000",
+      "downloadedAndHashVerified": true
+    },
+    {
+      "kind": "intermediateCandidate",
+      "id": 10562222062,
+      "sha256": "5832ea2441e4512a21d7a828bcae55e4b6d404dd591510ae0429087d89e63f70",
+      "downloadedAndHashVerified": true
+    },
+    {
+      "kind": "finalBrowser",
+      "id": 10562858910,
+      "sha256": "182124b10cae123058f73dcb04e4a3393a91773d3c762afa51e7b222c8c88fdb",
+      "downloadedAndHashVerified": true
+    },
+    {
+      "kind": "publishedTree",
+      "id": 10563099527,
+      "sha256": "54d858f6a3a4c9054f3e78af85914b0cd6c6113dcee8c1ecf1504db4c45e0b7e",
+      "downloadedAndHashVerified": true
+    },
+    {
+      "kind": "liveAcceptance",
+      "id": 10563114491,
+      "sha256": "c223fd2acd98323ff05e811f6a2f5ab6acf82e2d7cacae716665d344081f4cdb",
+      "downloadedAndHashVerified": true
+    }
+  ],
+  "nextTask": "Obtain exact SpectraA issuer/offer/source-detail and bid-denominator evidence before a bounded subscription correction; do not use collection time, old history or a headline total as resolution.",
+  "limitations": [
+    "Hold/source-lineage verification, not a fresh full-document or numerical subscription audit.",
+    "Only SpectraA is active against current canonical bytes; seven different current snapshots are not newly adjudicated or marked resolved.",
+    "All 441 retained proposals remain pending; Teamtech and broad draft #105 remain held/unaccepted; P5/performance remain gated.",
+    "Local focused tests used available Python 3.13 packages; full frozen and browser passes are actual GitHub CI. No local full frozen/browser pass claimed.",
+    "Four public profiles changed: one subscription hold plus three provisional price-band expiries under existing India-date policy. Canonical data did not change.",
+    "No spending, contracts, outreach, tracking, billing, new dependencies, additional writers, source schedules, infrastructure or material access changes."
+  ]
+}
