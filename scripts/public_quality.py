@@ -27,7 +27,7 @@ FIELDS = (*STATIC_CANONICAL_FIELDS, 'marketLot', 'minimumBidQuantity',
 SUMMARY_FIELDS = ('priceBand', 'lotSize', 'issueSizeCr', 'subscription', 'listing',
                   'openDate', 'closeDate', 'listingDate')
 EXCHANGE_HOSTS = {'nseindia.com', 'www.nseindia.com', 'nsearchives.nseindia.com',
-                  'archives.nseindia.com', 'bseindia.com', 'www.bseindia.com',
+                  'archives.nseindia.com', 'bseindia.com', 'www.bseindia.com', 'beta.bseindia.com',
                   'bsesme.com', 'www.bsesme.com'}
 DISPLAY_STATES = {'final_verified', 'provisional', 'reported'}
 
@@ -44,7 +44,10 @@ def safe_url(value):
 
 
 def official_url(value):
-    return bool(safe_url(value) and urlparse(value).hostname in EXCHANGE_HOSTS)
+    # Match the literal authority in both Python and the browser. Do not let
+    # URL normalization promote credentials, encoded hosts or lookalike domains.
+    match = re.fullmatch(r'https://([a-z0-9.-]+)(?::443)?(?:[/?#][^\s\\]*)?', value, re.I) if isinstance(value, str) else None
+    return bool(match and match.group(1).lower() in EXCHANGE_HOSTS)
 
 
 def _proof_source(proof):

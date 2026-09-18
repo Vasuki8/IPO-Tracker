@@ -70,8 +70,9 @@
   }
   function sourceAuthority(source, url, declared) {
     if (declared === 'secondary' || /secondary/i.test(source || '')) return 'Secondary source';
-    const official = new Set(['nseindia.com','www.nseindia.com','nsearchives.nseindia.com','archives.nseindia.com','bseindia.com','www.bseindia.com','bsesme.com','www.bsesme.com']);
-    try { if (safeUrl(url) && official.has(new URL(url).hostname)) return 'Official exchange'; } catch { /* unknown */ }
+    const official = new Set(['nseindia.com','www.nseindia.com','nsearchives.nseindia.com','archives.nseindia.com','bseindia.com','www.bseindia.com','beta.bseindia.com','bsesme.com','www.bsesme.com']);
+    const host = typeof url === 'string' && !/[\s\\]/u.test(url) && /^https:\/\/([a-z0-9.-]+)(?::443)?(?:[/?#][^\s\\]*)?$/i.exec(url);
+    if (host && official.has(host[1].toLowerCase())) return 'Official exchange';
     return 'Source authority unverified';
   }
   function snapshot(ipo) {
