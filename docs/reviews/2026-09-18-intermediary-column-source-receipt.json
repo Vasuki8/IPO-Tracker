@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-18T19:47:55+00:00",
+  "sourceReviewVersion": "reviewed-intermediary-columns-v1",
+  "scope": "four-intermediary-fields-only-not-publication",
+  "sources": [
+    {
+      "identity": {
+        "id": "snehaa",
+        "company": "Snehaa Organics Limited",
+        "symbol": "SNEHAA",
+        "openDate": "2025-08-29"
+      },
+      "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+      "documentType": "PROSPECTUS",
+      "documentDate": "2025-09-03",
+      "sha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+      "bytes": 18126150,
+      "pageCount": 467,
+      "physicalPage": 1,
+      "extractionEngine": "pypdf 6.18.1 extraction_mode=layout",
+      "fetchedAt": "2026-09-18T19:39:49.028122+00:00",
+      "sourceTextSha256": "2eecb9946699ec024add34c94705ba9d6999a004d0736216ca77444729596f9a",
+      "expected": {
+        "leadManagers": [
+          "FAST TRACK FINSEC PRIVATE LIMITED"
+        ],
+        "registrar": "SKYLINE FINANCIAL SERVICES PRIVATE LIMITED"
+      },
+      "physicalPagesInspected": {
+        "visual": [
+          1,
+          83
+        ],
+        "textContext": [
+          3,
+          17,
+          83,
+          85
+        ]
+      },
+      "download": {
+        "successfulHttpResponse": true,
+        "redirected": false,
+        "completeBytesVerified": true
+      },
+      "fullDocumentTextSearch": {
+        "pages": 467,
+        "rotatedTextWarning": true,
+        "allPagesVisualAudit": false
+      }
+    },
+    {
+      "identity": {
+        "id": "sacheerome",
+        "company": "Sacheerome Limited",
+        "symbol": "SACHEEROME",
+        "openDate": "2025-06-09"
+      },
+      "sourceUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+      "documentType": "PROSPECTUS",
+      "documentDate": "2025-06-12",
+      "sha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+      "bytes": 7589875,
+      "pageCount": 293,
+      "physicalPage": 3,
+      "extractionEngine": "pypdf 6.18.1 extraction_mode=layout",
+      "fetchedAt": "2026-09-18T19:40:33.208220+00:00",
+      "sourceTextSha256": "a72172c41b0e4dcf82e9ccd9059e938f35711f4f4d24d2cbfac0ff97d3736744",
+      "expected": {
+        "leadManagers": [
+          "GYR CAPITAL ADVISORS PRIVATE LIMITED"
+        ],
+        "registrar": "MUFG INTIME INDIA PRIVATE LIMITED"
+      },
+      "physicalPagesInspected": {
+        "visual": [
+          1,
+          3,
+          52
+        ],
+        "textContext": [
+          1,
+          3,
+          52,
+          54
+        ]
+      },
+      "download": {
+        "successfulHttpResponse": true,
+        "redirected": false,
+        "completeBytesVerified": true
+      },
+      "fullDocumentTextSearch": {
+        "pages": 293,
+        "rotatedTextWarning": true,
+        "allPagesVisualAudit": false
+      }
+    }
+  ]
+}
