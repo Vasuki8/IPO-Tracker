@@ -60,10 +60,12 @@ source PDFs' accessibility does not establish commercial redistribution rights.
 ## Reusable helper and retained evidence
 
 `scripts/review_intermediary_columns.py`, version
-`reviewed-intermediary-columns-v1`, is a separate review helper. It is not imported
-by a production collector and does not alter global parser versions, scheduling,
-dependencies or broad source extraction. The main parser and residual parser
-remain unchanged by this workstream.
+`reviewed-intermediary-columns-v1`, is a separate review helper. Its extraction
+entrypoint is not wired into production collection and does not alter global
+parser versions, scheduling, dependencies or broad source extraction. Integration
+reuses its strict proof replay to recognize current reviewed roles and preserve
+them against legacy same-PDF extraction and name-token quarantine. The main
+parser and residual parser remain unchanged by this workstream.
 
 The helper supports one current legal entity in each of two explicit cover-role
 columns. It retains the exact full-width physical source lines, role heading,

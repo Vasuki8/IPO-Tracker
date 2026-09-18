@@ -393,6 +393,15 @@ def apply_final_prospectus_static_fields(
     changes: list[dict[str, Any]] = []
     source_url = str(doc.get("url") or "")
     extracted = _static_values(record, parsed)
+    # A reviewed column repair outranks an older generic extraction of the same
+    # document. Keep its current value/proof together until a different source
+    # is accepted or another explicit reviewed transaction replaces it.
+    from review_intermediary_columns import has_reviewed_role_evidence
+    for field in ('leadManagers', 'registrar'):
+        proof = (record.get('staticFieldProvenance') or {}).get(field) or {}
+        if (has_reviewed_role_evidence(record, field)
+                and proof.get('sha256') == sha256):
+            extracted.pop(field, None)
     if "objectsOfIssue" in extracted and (not source_url or not sha256):
         # Raw cells must remain bound to the exact source document when the
         # objects proof is retained independently of later document metadata.

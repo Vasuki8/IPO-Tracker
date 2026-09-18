@@ -279,7 +279,10 @@ def correct_record(record, parsed, doc, digest, pages, page_count):
 
 def quarantine_intermediaries(record):
     """Remove obviously invalid legacy intermediary fragments before revalidation."""
+    from review_intermediary_columns import has_reviewed_role_evidence
     for field in ("leadManagers", "registrar"):
+        if has_reviewed_role_evidence(record, field):
+            continue
         old = record.get(field)
         if field == "leadManagers":
             if not isinstance(old, list):

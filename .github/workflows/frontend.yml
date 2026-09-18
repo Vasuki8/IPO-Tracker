@@ -123,6 +123,39 @@ jobs:
           trap 'kill "$server_pid" 2>/dev/null || true' EXIT
           node tests/frontend_reviewed_composition.cjs
           git diff --exit-code -- data/ipos.json data/pending_updates.json
+      - name: Rehearse bounded reviewed intermediaries in an isolated site
+        shell: bash
+        run: |
+          set -euo pipefail
+          ready="$(uv run --frozen python - <<'PY'
+          import sys
+          sys.path.insert(0, 'scripts')
+          from reviewed_evidence import load_groups
+          groups = load_groups()
+          ids = {g['identity']['id'] for g in groups if g.get('kind') == 'intermediaries'}
+          print('yes' if {'snehaa', 'sacheerome'} <= ids else 'no')
+          PY
+          )"
+          if [[ "$ready" != 'yes' ]]; then
+            echo 'The paired reviewed intermediary evidence is not staged; no rehearsal requested'
+            exit 0
+          fi
+          candidate="$RUNNER_TEMP/reviewed-intermediary-site"
+          mkdir -p "$candidate"
+          tar --exclude=.git --exclude=.venv --exclude=artifacts -cf - . | tar -xf - -C "$candidate"
+          uv run --frozen python scripts/reviewed_corrections.py --ids snehaa,sacheerome --bundle "$RUNNER_TEMP/reviewed-intermediary-bundle"
+          cp "$RUNNER_TEMP/reviewed-intermediary-bundle/proposed.json" "$candidate/data/ipos.json"
+          uv run --frozen python "$candidate/scripts/build_company_pages.py"
+          export REVIEWED_CANDIDATE_ROOT="$candidate"
+          export NODE_PATH="$RUNNER_TEMP/ipo-playwright/node_modules"
+          export BASE_URL=http://127.0.0.1:8002/
+          export SMOKE_ARTIFACT_DIR="$SMOKE_ARTIFACT_DIR/reviewed-intermediaries"
+          mkdir -p "$SMOKE_ARTIFACT_DIR"
+          python3 -m http.server 8002 --bind 127.0.0.1 --directory "$candidate" > "$SMOKE_ARTIFACT_DIR/server.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          node tests/frontend_reviewed_intermediaries.cjs
+          git diff --exit-code -- data/ipos.json data/pending_updates.json
       - name: Retain screenshots and failure diagnostics
         if: always()
         uses: actions/upload-artifact@v4.6.2

@@ -1,9 +1,28 @@
 # Bounded reviewed publication
 
 A corrected value without matching field evidence must remain withheld. This path
-pairs the reviewed four-field composition with its exact retained proofs and uses
+pairs a reviewed field group with its exact retained proofs and uses
 the existing serialized publisher. It is not permission to roll out an unreviewed
 parser or clear unrelated review items. Teamtech remains held.
+
+Supported groups are the original complete four-field composition and an explicit
+`intermediaries` pair (`leadManagers`, `registrar`). The latter requires exact
+issuer/offer identity on each proof, one PDF hash/date, the same physical table,
+replayable role/name column spans, and separate collection/review clocks. It does
+not change the production parser version or schedule broader extraction.
+
+Intermediary corrections carry `publicationScope: explicit-reviewed`. Ordinary
+registry application skips the whole group, including proof attachment; merging
+its support files is not numerical/data acceptance. A support-only release uses
+the existing source-free `review` path. It must then be followed by a separate
+reviewed request for the exact accepted IDs. Mixed source-collector changes
+retain ordinary repair routing. The reviewed source manifest remains mandatory.
+
+Once accepted, exact current reviewed-role evidence survives generic extraction
+of the same PDF bytes, including mirrors, and legacy name-token quarantine.
+Different authoritative documents remain eligible under the normal policy.
+Historical field holds and correction snapshots are preserved. Source acceptance
+does not establish commercial redistribution permission.
 
 ## Prepare a review
 

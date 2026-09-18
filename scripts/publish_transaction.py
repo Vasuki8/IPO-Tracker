@@ -139,7 +139,7 @@ def main():
         registry, groups, ids = reviewed
         if conflicts:
             raise ValueError('Reviewed publication has concurrent conflicts; no accepted or pending files were changed')
-        validate_scope(values[2], output, ids, allow_meta=True)
+        validate_scope(values[2], output, ids, allow_meta=True, groups=groups)
         validate_records(output, registry, groups, ids)
     pending = json.loads(args.pending.read_text()) if args.pending.exists() else {'updates': []}
     fingerprints = {item['fingerprint'] for item in pending['updates']}

@@ -38,7 +38,7 @@ class PublicReleaseVerifierTests(unittest.TestCase):
     def write(self, path, text):
         target = self.root / path
         target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(text, encoding='utf-8')
+        target.write_bytes(text.encode('utf-8'))
 
     def write_json(self, path, data):
         self.write(path, json.dumps(data))
@@ -296,6 +296,92 @@ class PublicReleaseVerifierTests(unittest.TestCase):
         self.assertEqual(result['status'], 'not_requested')
         self.assertNotIn('checked', result)
         self.assertEqual(before, self.files())
+
+    def intermediary_fixture(self):
+        self.reviewed_fixture()
+        group = self.index['groups'][0]
+        group['kind'] = 'intermediaries'
+        prior = self.canonical['ipos'][0]['staticFieldProvenance']['issueSizeCr']
+        values = {'leadManagers': ['Exact Lead Manager Limited'], 'registrar': 'Exact Registrar Limited'}
+        proofs = {field: {**copy.deepcopy(prior), 'field': field, 'value': value,
+                         'evidence': {'page': 7, 'unit': 'legal entity name',
+                                      'row': 'Reviewed side-by-side cover headings and names'}}
+                  for field, value in values.items()}
+        self.save_intermediary_proofs(proofs)
+        self.canonical['ipos'][0].update(copy.deepcopy(values))
+        self.profile.update(copy.deepcopy(values))
+        for field in values:
+            self.profile['publicQuality']['fields'][field] = {'state': 'final_verified', 'source': 0, 'page': 7}
+        self.write_json('data/ipos.json', self.canonical)
+        self.save()
+
+    def save_intermediary_proofs(self, proofs):
+        raw = (json.dumps(proofs, ensure_ascii=False, indent=2) + '\n').encode()
+        group = self.index['groups'][0]
+        group['sourceProofsSha256'] = verify.digest(raw)
+        group['sourceProofsGitBlob'] = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
+        self.write('data/reviewed_correction_evidence/emmvee.json', raw.decode())
+        self.write_json('data/reviewed_correction_evidence.json', self.index)
+        self.canonical['ipos'][0]['staticFieldProvenance'].update(copy.deepcopy(proofs))
+        self.write_json('data/ipos.json', self.canonical)
+
+    def test_reviewed_intermediaries_deliver_paired_profile_values_and_proofs_read_only(self):
+        self.intermediary_fixture()
+        before = self.files()
+        receipt = verify.verify_local(self.root)
+        receipt['sampledProfiles'] = []
+        receipt['expectedSha256'].pop('ipo/emmvee/index.html')
+        result = verify.verify_reviewed_publication(self.root, receipt)
+        self.assertEqual(result['status'], 'passed')
+        self.assertEqual(result['checked'][0]['kind'], 'intermediaries')
+        self.assertEqual(result['checked'][0]['fields'], ['leadManagers', 'registrar'])
+        self.assertEqual(receipt['sampledProfiles'], ['ipo/emmvee/'])
+        self.assertIn('ipo/emmvee/index.html', receipt['expectedSha256'])
+        self.assertEqual(before, self.files())
+
+    def test_reviewed_intermediary_profile_or_optional_directory_mismatch_fails(self):
+        for defect in ('manager', 'registrar', 'state', 'page', 'source', 'directory', 'directory_without_proof'):
+            with self.subTest(defect=defect):
+                self.intermediary_fixture()
+                if defect == 'manager':
+                    self.profile['leadManagers'] = ['Exact Registrar Limited']
+                elif defect == 'registrar':
+                    self.profile['registrar'] = 'Exact Lead Manager Limited'
+                elif defect == 'state':
+                    self.profile['leadManagers'] = None
+                    self.profile['publicQuality']['fields']['leadManagers']['state'] = 'under_review'
+                elif defect == 'page':
+                    self.profile['publicQuality']['fields']['registrar']['page'] = 8
+                elif defect == 'source':
+                    self.profile['publicQuality']['sources'].append({'sourceUrl': 'https://example.test/wrong.pdf'})
+                    self.profile['publicQuality']['fields']['registrar']['source'] = 1
+                else:
+                    self.row['registrar'] = 'Wrong Registrar Limited' if defect == 'directory' else self.profile['registrar']
+                    if defect == 'directory':
+                        self.row['publicQuality']['fields']['registrar'] = copy.deepcopy(self.profile['publicQuality']['fields']['registrar'])
+                self.save()
+                receipt = verify.verify_local(self.root)
+                before = self.files()
+                with self.assertRaisesRegex(ValueError, 'not delivered'):
+                    verify.verify_reviewed_publication(self.root, receipt)
+                self.assertEqual(before, self.files())
+
+    def test_reviewed_intermediary_pair_and_known_kind_are_mandatory(self):
+        for defect in ('missing', 'extra', 'unknown_kind', 'null_kind'):
+            with self.subTest(defect=defect):
+                self.intermediary_fixture()
+                if defect in ('missing', 'extra'):
+                    proofs = json.loads((self.root / 'data/reviewed_correction_evidence/emmvee.json').read_text())
+                    if defect == 'missing':
+                        proofs.pop('registrar')
+                    else:
+                        proofs['issueSizeCr'] = copy.deepcopy(self.canonical['ipos'][0]['staticFieldProvenance']['issueSizeCr'])
+                    self.save_intermediary_proofs(proofs)
+                else:
+                    self.index['groups'][0]['kind'] = 'unknown' if defect == 'unknown_kind' else None
+                    self.write_json('data/reviewed_correction_evidence.json', self.index)
+                with self.assertRaisesRegex(ValueError, 'Incomplete|Unsupported'):
+                    verify.verify_reviewed_publication(self.root, verify.verify_local(self.root))
 
 
 if __name__ == '__main__':

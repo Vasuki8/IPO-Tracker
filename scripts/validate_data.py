@@ -16,6 +16,7 @@ from performance_metrics import refresh_returns
 from issue_composition_checks import COMPOSITION_FIELDS, quarantined_fields, record_composition_problems
 from objects_of_issue_checks import objects_problems, objects_evidence_problems, objects_quarantined
 from source_review_holds import active_hold_reviews
+from review_intermediary_columns import has_reviewed_role_evidence
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -51,17 +52,18 @@ def validate_record(record, *, holds=None):
     for field, reason in (record.get('dataReview') or {}).items():
         if not record.get(field):
             add(field, str(reason), 'review')
-    if record.get('registrar') and not valid_registrar(record['registrar']):
+    reviewed_roles = {field for field in ('leadManagers', 'registrar') if has_reviewed_role_evidence(record, field)}
+    if record.get('registrar') and not valid_registrar(record['registrar']) and 'registrar' not in reviewed_roles:
         add('registrar', 'Invalid intermediary entity: ' + str(record['registrar']))
     for field in (record.get('offerDocumentExtraction') or {}).get('conflicts', []):
         add('financials.' + field, 'Source tables disagree; conflicting metric excluded pending review', 'review')
     if record.get('documentRepair'):
         role_evidence = (record.get('documentFieldProvenance') or {}).get('evidence', {})
         for field in ('leadManagers', 'registrar'):
-            if record.get(field) and not role_evidence.get(field):
+            if record.get(field) and not role_evidence.get(field) and field not in reviewed_roles:
                 add(field, 'Existing disclosure retained; no supported source-role table was extracted', 'review')
     for name in record.get("leadManagers") or []:
-        if not valid_manager(name):
+        if not valid_manager(name) and 'leadManagers' not in reviewed_roles:
             add("leadManagers", "Invalid intermediary entity: " + str(name))
     for field in ("lotSize", "issueSizeCr", "freshIssueCr", "ofsCr"):
         value = record.get(field)
