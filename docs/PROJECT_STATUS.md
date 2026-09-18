@@ -15,135 +15,122 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
-## Current verified implementation — 18 September 2026
+## Verified implementation — 18 September 2026
 
-[PR #126](https://github.com/Vasuki8/IPO-Tracker/pull/126) is merged and deployed at
-`edb46e59dfeed64d7cc9f6c8e21b5430d76290aa`, tree
-`f298697abb187f57b6449ae6409adef7edb5e84f`. Reviewed head is
-`c758b08b71634fcd57de7819f0cc970099270619` on
-`feat-read-only-update-health-20260918`. This documentation closeout on
-`docs-update-health-checkpoint` records the release, not another implementation.
+[PR #128](https://github.com/Vasuki8/IPO-Tracker/pull/128) is merged and live at
+`543c625b9234db7a2b6ab65c6ded624894f74606`, tree
+`6a5641f93a218bd434ace573b8787da2ab35dcf5`. Reviewed head was
+`fd2ea8b6585a8114e84ab745f6c3f0db36b002af` on `fix-value-hold-offer-identity`.
+This documentation closeout on `docs-value-hold-identity-checkpoint` records that
+completed prerequisite, not acceptance of the larger #125 repair.
 
-### Reconciled starting point and preserved ongoing work
+### Recovered state and completed safeguard
 
-Since the prior verified checkpoint `4552e771`, existing core run `35312842043`
-published `d462f858fcdb18909180f8747c0e2bf0552dd6f8` at 06:01:12 UTC. Its Pages
-and live acceptance succeeded as runs `35313116249` and `35313150717`. That
-publication added one record (`swastika-infra-ltd`) and changed 37 existing records
-beyond the policy-check clock. Those are pre-existing automated changes, not
-changes from this report. Current inventory is **1,367**, not 1,366. Original
-subscription-triage implementation #123 and documentation #124 are complete.
+Main had not advanced from `8cdce86a4dc05421585e042c4207f3cbc06ec22d` at recovery
+or immediately before merge. The update-health report and earlier reviewed Emmvee
+repair are complete and were not repeated. #125 remained an older, conflicting
+candidate. Its original parent is `3bdbdc5cdfb6ad44c230d2977512a2e8fa69fee4`, not
+the current accepted dataset; its historical counts cannot be carried into main.
 
-[PR #125](https://github.com/Vasuki8/IPO-Tracker/pull/125), branch
-`fix-actionable-public-source-holds`, remains open and unmerged at
-`be7c448544381cdc0723e09b01f3734713ec8f05`. Its prepared source-hold/queue repair
-uses a different candidate inventory/hash and is not promoted by this increment.
-Its reported source/browser checks have not been independently repeated here.
-Preserve its work and reconcile it with current main before release. Broad draft
-#105 remains unaccepted at `5a63a93dd9f782e3bc9ec853c937fb29661108f4`, source freeze
-`409c51c9`, preserving #94/#98/#99/#104. No source parser or preview was merged.
+Reconciliation exposed a prerequisite: value-scoped holds could supply issuer/offer
+identity, but the public matcher ignored it. The fix requires any explicitly supplied
+ID/company/symbol/opening date and the proof's offer date to agree. Malformed supplied
+identity fails closed. Historical value-only reviews keep their existing PDF/value
+scope without invented identities. Document conflicts still bind the same PDF even
+after a new extraction or mirror. A changed value still needs matching source proof.
 
-### Completed: read-only source and publication health
+Affected users are researchers whose profile/directory/export status could otherwise
+inherit a hold from the wrong issuer or offer. Acceptance: exact matching, no identity
+spillover, malformed bindings rejected, historical rules preserved, identical shared
+public projections and no current accepted-data changes. All criteria for #128 pass.
+[The review note](reviews/2026-09-18-value-hold-identity.md) retains the initial tests,
+source limitations and separate unaccepted #125 rehearsal.
 
-Problem: operators could not distinguish missing/old source observations, failed
-or deferred collection, and actual publication delay. Researchers can otherwise
-mistake a recent build or accepted snapshot for fresh source data.
+### Tests, publication and actual served output
 
-`tools/report_update_health.py` reports those signals separately using the existing
-source-bound subscription and public-quality rules. It requires an explicit zoned
-assessment instant, keeps every lifecycle cohort counted, preserves failed and
-partial outcomes, and never fills an observation time from collection/generation
-clocks. Old stages stay visible without an invented live cadence. Successful
-zero-row checks are not labelled failures. Operational tolerances are labelled
-operator policy, not an exchange-session calendar or service-level guarantee.
+Ten new tests pass locally through uv, along with 26 existing public-quality tests
+and eight Node tests. Against the exact baseline matcher, the new tests reproduced
+27 failing subcases; the fixed matcher passes all ten. The same tests pass against
+the pending shared helper. Synthetic test proofs are not a new disclosure audit.
 
-An old accepted snapshot alone cannot prove publication delay. Optional complete,
-run/attempt/repository-bound GitHub run/jobs evidence distinguishes collection
-failure, publication failure, recorded waiting/overdue work and a completed run
-without matching acceptance (which can be a legitimate no-change). This is offline
-assessment of supplied evidence, not live polling. No result authorizes a retry.
+[Frozen PR validation 35317595704](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35317595704)
+and [post-merge validation 35318139668](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35318139668)
+passed. The existing publication workflow independently ran **1,108 regressions**
+with Python 3.12.14 and `uv sync --frozen`; its recorded collector job is
+105514284896 in run 35318139596. Full local execution attempted 1,108 tests but
+had six missing-workflow-file errors in the Pages mirror; local frozen installation
+lacked locked packages. Those attempts are not counted as full/frozen local passes.
 
-Reports bind input, hold, code and schedule bytes. Reproduction uses the original
-assessment instant and explicitly does **not** assert freshness now. A changed
-collection cron set requires tolerance review. The existing read-only validation
-job retains `update-health.json` in its existing report artifact before correction
-rehearsals. Only two offline workflow commands were added: no schedule, alert,
-writer, dependency, source request, public payload or permission expansion.
-See [UPDATE_HEALTH.md](UPDATE_HEALTH.md) for commands and limitations.
+[Browser CI 35317595730](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35317595730)
+passed **25 journeys with zero page errors**, freshness boundaries at 1440/375/320
+pixels, and separate reviewed-composition checks for directory, CSV, comparison,
+responsive source-linked profiles and Teamtech withholding. Downloaded artifact
+10535317830 was SHA-256 verified. The 375-pixel Emmvee screenshot was inspected.
+Local Chromium navigation was administratively blocked; the browser passes are CI
+results, not local results. The test merge is `364ff39d8eebfde319852511ed574a0a4343aeea`.
 
-### Verified acceptance and measured result
+[Presentation publisher 35318139596](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35318139596)
+explicitly selected `presentation`, skipped source and residual collection, passed
+strict validation and eight Node tests, rebuilt **1,367 profiles with zero writes**,
+and reported no accepted changes to publish. Canonical publication remains core
+`d462f858fcdb18909180f8747c0e2bf0552dd6f8`; no source clocks were refreshed.
 
-All **1,098 local Python regressions**, including **20 new health tests**, passed
-through uv. Eight Node quality tests passed. The exact omitted workflow files were
-recovered and blob-verified, so no local workflow tests were excluded. Local
-`uv sync --frozen --offline` lacked locked packages; local execution used the
-available Python 3.13.5 environment and is **not a local frozen pass**.
+[Pages 35318200827](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35318200827)
+and [live acceptance 35318239203](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35318239203)
+succeeded. The downloaded, checksum-verified first-attempt receipt binds exactly
+`543c625b`, 1,367 local profile consistency checks and **17 complete public HTTPS
+responses**. All expected file hashes match the local accepted tree. The ordinary
+core publication correctly returns `reviewedPublication.status=not_requested`,
+not a new reviewed repair. [The release receipt](releases/2026-09-18-value-hold-identity.json)
+preserves the original live receipt, tests, artifact hashes and limitations.
 
-[Frozen PR validation 35314569813](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35314569813)
-passed the full suite, report generation/replay, protected-input checks, strict
-validation and generated/support checks using Python 3.12 and `uv sync --frozen`.
-Its test merge was `41ff686eadc523f2684dc9bb1e29d49dcbe04185`. Downloaded artifact
-10534319364 verified ZIP SHA-256
-`4ade7a2533fd6b692e84d3f5f27a53e6b9e913de7b2b66f7c2f42b9798312a63`.
-The health report reproduced locally at its original **06:22:37 UTC** assessment;
-report SHA-256 is `786512d841ccaac27a1dd2b5972e60f4b6d6db88f91f9ee96252e68390071119`.
-[Post-merge validation 35314904775](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35314904775)
-also succeeded. All four uploaded code/test/workflow/guide blobs match tested bytes.
+All 1,367 canonical records, 441 pending proposals, phase/hold/ledger bytes and public
+payloads remain unchanged. Proposal report replay passes and Emmvee's advice remains
+applicable; this is not a proposal resolution. P4 stays at **387 actionable plus 52
+higher-priority records, 1,592 blocking source reviews, zero unmapped**. Teamtech
+remains held, and P5/performance expansion remains gated.
 
-At that assessment, eight issues were open by recorded dates: **seven unknown source
-observation times**, **one overdue observation**, **six overdue collection times**
-and **two missing collection times**. Twelve records with unknown lifecycle dates
-remain counted. These are operational evidence gaps, not new source errors or
-resolved reviews. Consumed-field excerpts from the actual completed core run and
-its complete two-job inventory separately produced `accepted_run_matches`; this
-neither refreshes its source observations nor proves a new source-value review.
+### Preserved unfinished integration and exact next task
 
-All **1,367 profiles rebuilt without changes**. Strict validation remains zero
-semantic errors and 1,596 reviews. All accepted baseline file bytes are unchanged
-by #126, including canonical data, **441 pending proposals**, phase state, display
-holds and public output. The 159 document and 22 subscription proposal comparisons
-remain unresolved; 260 other-family proposals remain unassessed. Emmvee's existing
-`do_not_apply_as_proposed` advice is still applicable, not a proposal resolution.
+#125's branch `fix-actionable-public-source-holds` was fast-forwarded from
+`be7c448544381cdc0723e09b01f3734713ec8f05` to
+`f09d272dcd8f5c087b625d571dfa30a73b084831`, tree
+`9493b7af73373e30ae61082286cfba64399362cc`. Only its shared helper and the ten
+identity tests changed; the helper blob `3f8a7956a780ad36ce5c4208a248e38e4ed3719d`
+matches the locally tested bytes. Original source notes, fixtures, generated
+candidate reports and history are retained. **This is not a rebase, full #125
+acceptance or a merge.** Its proposed new role holds are not activated on main.
 
-[Pages 35314904599](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35314904599)
-deployed the exact merge. [Live acceptance 35314937796](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35314937796)
-passed on its first attempt: all 1,367 local profiles consistent and **17 complete
-HTTPS responses** matching the immutable release. Downloaded artifact 10533879198
-verified SHA-256 `d9c0a7abb9ccf0bc97ce41531a1c3474a54b2d854ebc3738190d28954c43061d`;
-its file hashes match local output. Ordinary core publication correctly reports
-`reviewedPublication.status=not_requested`, not a new reviewed repair.
+A separate current-baseline rehearsal produced 11 active holds / 1,607 total reviews /
+1,603 blocking reviews, not the older candidate's 15 / 1,614 / 1,610. These numbers
+are UNACCEPTED rehearsal results, not the deployed gate. Emmvee correctly stays
+unheld. That partial rehearsal does not replace #125's original full tests/fixtures.
 
-[The retained receipt](releases/2026-09-18-update-health-report.json) includes the
-unaltered live receipt values, report/input hashes, run/job excerpts and exact
-limitations. No new browser journey suite, source collection or PDF review ran
-for this offline operator-only change. All implementation/release acceptance
-criteria for #126 are complete; scheduled monitoring is not implemented.
+Sacheerome physical page 3 was visually rechecked on the official PDF: manager and
+registrar columns are separate and the former-name line is subordinate. Snehaa's
+18,126,150-byte PDF exceeded the web reader limit and direct download failed.
+Its earlier immutable review is preserved. No fresh byte-hash/full-PDF verification,
+replacement names, numerical corrections or source rights are claimed here.
 
-The runtime working copy is a labelled artifact mirror, not remote Git history.
-The checksum-verified baseline archive is Pages artifact 10533717197, SHA-256
-`d0d7911a9b6f77b60d85d2eb2f48d7ab8ec55a2863dfb6c66d59f50f3759e6b5`.
-Original archives remain untouched. Direct Git access failed DNS; authenticated
-GitHub reads/writes and CI supplied the remote verification evidence.
+**Next:** finish current-main reconciliation of #125 using its updated helper,
+original review fixtures/note and the complete accepted inventory. Regenerate
+queue/validation/phase/profile artifacts instead of copying older outputs; verify
+all held fields remain actionable and every original review/proposal is preserved.
+Complete source-binding, frozen regression, browser and publication-scope checks
+before merging, then verify the actual deployed result. Preserve #128's identity
+rule through the helper extraction. Do not adopt the rehearsal counts as targets.
 
-### Remaining gate and exact next task
+After that, diagnose the overdue subscription path from current run/source evidence.
+The 22 retained subscription proposals still need original source-link/issuer
+support before audited disposition. Broad #105 stays draft/unaccepted at
+`5a63a93dd9f782e3bc9ec853c937fb29661108f4`; preserve #94/#98/#99/#104 and freeze
+`409c51c9`. Commercial rights, customer segment, pricing and privacy choices remain
+unresolved. No spending, contracts, outreach, tracking, billing, dependency,
+permissions or architecture changes were introduced.
 
-P4 remains **incomplete: 387 actionable + 52 higher-priority records**, **1,596**
-total reviews, **1,592 blocking**, **four P5-only**, **zero unmapped** and zero strict
-semantic errors. Teamtech remains held. P5/performance expansion stays gated.
-Commercial source rights, audience, pricing and privacy decisions remain unresolved;
-no spending, contracts, outreach, tracking, billing or access changes were introduced.
-
-**Next concrete task:** reconcile existing #125 with the latest accepted baseline
-and preserve the newer reporting/review tooling. Review its exact source-hold and
-queue changes, verify all 1,367 records and 441 retained proposals are preserved,
-then complete its source, regression, browser and deployment acceptance before
-merging. Do not substitute its older prepared counts/hash for current main. After
-that repair, use a newly generated health report plus the actual latest subscription
-run/jobs to diagnose overdue collection; recover original source URL/issuer evidence
-before any disposition of the 22 retained subscription proposals. Do not add alerts
-or a new writer as a substitute for repairing the existing path.
-
-[ROADMAP.md](ROADMAP.md) now separates current dependency order from its complete,
-byte-preserved [dated audit](ROADMAP_DATED_AUDIT.md). Earlier checkpoint details and
-source lineage remain in [the prior immutable status](https://github.com/Vasuki8/IPO-Tracker/blob/d462f858fcdb18909180f8747c0e2bf0552dd6f8/docs/PROJECT_STATUS.md)
-and existing release/review receipts. No prior audit or retained work is discarded.
+The working copies are separate checksum-verified Pages mirrors, not remote Git
+clones; direct Git DNS failed. Original archives and the unfinished local rehearsal
+are preserved. The baseline artifact is 10535895104, SHA-256
+`25d74a1160f7fc74d12623cc6e78fd20f540d017de01a9420f14332e4658bf59`.
+[The previous full checkpoint](https://github.com/Vasuki8/IPO-Tracker/blob/8cdce86a4dc05421585e042c4207f3cbc06ec22d/docs/PROJECT_STATUS.md)
+and existing release receipts retain all prior implementation and commercial context.

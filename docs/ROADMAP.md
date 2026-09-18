@@ -25,7 +25,9 @@ and immutable release receipts govern the verified checkpoint.
    and market information retain their separate authorities. Missing values, units,
    correction history and unresolved conflicts must survive. Existing #125's
    source-hold/queue repair is the next current-base acceptance task; preserve its
-   work rather than recreating it or merging an older candidate blindly.
+   work rather than recreating it or merging an older candidate blindly. #128's
+   explicit value-hold issuer/offer binding is released at `543c625b`; the same rule
+   is preserved in #125's helper at `f09d272d`, but that larger repair is unaccepted.
 2. **Accurate freshness and dependable repairs — core safeguards deployed, repair
    work still open.** Source/publication guards, the bounded reviewed Emmvee repair,
    reviewed-delivery acceptance, retained document/subscription triage and
@@ -62,7 +64,10 @@ and immutable release receipts govern the verified checkpoint.
 
 ### Next reviewable increment
 
-Reconcile open #125 with current main, verify source-hold routing and withholding
+Complete open #125's current-main reconciliation from `f09d272d`, preserving #128's
+identity rule and all original review fixtures. Regenerate older candidate artifacts;
+never copy them over accepted data or use rehearsal counts as completion targets.
+Verify source-hold routing and withholding
 with preserved canonical/proposal bytes, and complete required source/browser/release
 acceptance. Then diagnose the existing overdue subscription path with the new
 [update-health report](UPDATE_HEALTH.md), without an alert service or another writer.
