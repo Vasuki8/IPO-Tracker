@@ -18,7 +18,7 @@ from objects_evidence_fixtures import objects_parsed
 
 
 class SourceReviewReportTests(unittest.TestCase):
-    def preview(self, directory, *, invalid=False, interrupt=False, residual=False, unsupported=False, untouched=False, queue_case=False):
+    def preview(self, directory, *, invalid=False, interrupt=False, residual=False, unsupported=False, untouched=False, queue_case=False, reviewed=False):
         root = Path(directory)
         (root / "data").mkdir()
         cache = root / "cache"
@@ -29,6 +29,27 @@ class SourceReviewReportTests(unittest.TestCase):
             {"id": "first", "company": "First Limited"},
             {"id": "second", "company": "Second Limited"},
         ]}))
+        registry = {"reviewedObjects": []}
+        if reviewed:
+            initial = json.loads(data_file.read_text())
+            identity = {"id": "first", "company": "First Limited", "symbol": "FIRST", "openDate": "2026-01-01"}
+            initial["ipos"][0].update(identity)
+            initial["ipos"][0].update(
+                closeDate="2026-01-03", listingDate="2026-01-08",
+                documents=[{"type": "PROSPECTUS", "url": "https://www.sebi.gov.in/files/first.pdf"}],
+            )
+            data_file.write_text(json.dumps(initial))
+            registry["reviewedObjects"].append({
+                "identity": identity,
+                "beforeHash": review.corrections.fingerprint([{"purpose": "Working capital", "amountCr": 10.0}]),
+                "source": {"type": "PROSPECTUS", "url": "https://www.sebi.gov.in/files/first.pdf"},
+                "evidence": {"sha256": hashlib.sha256(b"cached PDF").hexdigest()},
+                "findings": ["The reviewed document gives conflicting net proceeds."],
+                "reason": "Withheld pending authoritative source reconciliation.",
+                "scope": "document",
+                "reviewedAt": "2026-09-17T20:00:00+00:00",
+            })
+        (root / "data/verified_corrections.json").write_text(json.dumps(registry))
         if queue_case:
             initial = json.loads(data_file.read_text())
             for record in initial["ipos"]:
@@ -75,7 +96,7 @@ class SourceReviewReportTests(unittest.TestCase):
             else:
                 review.final_policy.policy.apply_final_prospectus_static_fields(
                     record, objects_parsed(rows),
-                    {"type": "PROSPECTUS", **document(record)}, sha256="source-bytes",
+                    {"type": "PROSPECTUS", **document(record)}, sha256=hashlib.sha256(b"cached PDF").hexdigest(),
                 )
             record["p4OfferResidualRepair"] = {"status": "updated", "changedFields": ["objectsOfIssue"]}
             kwargs["checkpoint"](payload)
@@ -162,6 +183,26 @@ class SourceReviewReportTests(unittest.TestCase):
         self.assertIsNone(data["ipos"][0]["objectsOfIssue"])
         self.assertEqual(data["ipos"][0]["objectsOfIssueReview"]["status"], "quarantined")
         self.assertIsNone(report["records"][0]["objectsOfIssue"])
+        self.assertEqual({k: v for k, v in report["after"].items() if k != "generatedAt"},
+                         {k: v for k, v in review.validate_payload(data).items() if k != "generatedAt"})
+
+    def test_new_residual_allocation_receives_document_review_before_report_and_queue(self):
+        with tempfile.TemporaryDirectory() as directory:
+            _, report, data, _ = self.preview(directory, residual=True, reviewed=True, interrupt=True)
+            queue = json.loads((Path(directory) / "data/missing_queue.json").read_text())
+        row = data["ipos"][0]
+        self.assertIsNone(row["objectsOfIssue"])
+        held = row["objectsOfIssueReview"]
+        self.assertEqual(held["status"], "quarantined")
+        self.assertEqual(held["reviewKind"], "source-review")
+        self.assertEqual(held["snapshot"]["reviewedSource"]["scope"], "document")
+        self.assertEqual(held["snapshot"]["before"], [{"purpose": "Working capital", "amountCr": 10.0}])
+        self.assertEqual(held["snapshot"]["sourceEvidence"]["sha256"], hashlib.sha256(b"cached PDF").hexdigest())
+        self.assertNotIn("objectsOfIssue", row["staticFieldProvenance"])
+        self.assertIsNone(report["records"][0]["objectsOfIssue"])
+        self.assertEqual(report["residuals"]["changedFields"], 1)
+        entry = next(item for item in queue["queue"] if item["id"] == "first")
+        self.assertIn("offer.objectsOfIssue", entry["missingFields"])
         self.assertEqual({k: v for k, v in report["after"].items() if k != "generatedAt"},
                          {k: v for k, v in review.validate_payload(data).items() if k != "generatedAt"})
 

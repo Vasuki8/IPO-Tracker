@@ -4,7 +4,32 @@ Evidence checked on 17 September 2026. This note records code integration and
 the remaining release gate; it does not accept a source-preview dataset or
 invalidate an earlier review because its working files are unavailable.
 
-## Preserved work and verified checks
+## Recovered evidence and revised scope — 18 September 2026
+
+The [new reconstruction](2026-09-17-source-reconstruction.md) recovered a
+reproducible diagnostic lineage using the exact current canonical snapshot and
+complete Emmvee/Teamtech PDFs. It did not recover the original `5516...` artifact.
+The separate Emmvee composition check passes, but renewed full-source review
+found contradictory Teamtech units on page 89. The earlier four-allocation
+acceptance requirement below is superseded by that source finding: keep Teamtech
+under a document-scoped hold until authoritative reconciliation. Never promote
+the old seven-record diagnostic, whose earlier value-scoped policy permitted the
+Teamtech replacement.
+
+The released #108 guard, #109 public hold and #111 conflict explanation are
+incorporated in this draft. The latest fetch also recovered substantive #104
+work at `4d94951be6799e078603edbb99769fcdce4eb4b0`: four public-boundary tests
+and browser-workflow dependency filters. Its history and checks are preserved.
+The older Teamtech test expectation is superseded by the page-89 source finding:
+the same document remains quarantined, with its snapshot and source link intact.
+The draft canonical policy also holds initial changed/mirrored allocations from
+an identified contradictory PDF and supports an audited expansion of retained
+null value reviews. These safeguards and the new reconstruction do not accept
+broad parser output or authorize P5/performance expansion. The complete release
+still needs a reviewed, bounded publication path; the main project checkpoint
+records its latest evidence.
+
+## Historical integration checks, with current branch reconciliation
 
 The accepted public release was on main
 `cf906df7ccc9bcf40881743b0af39480858a612e`. Its Pages deployment
@@ -29,15 +54,18 @@ support-artifact checks, with zero strict errors. The integration CI used Python
 #105 preserves the three repair heads as commit parents and removes its temporary
 recovery workflow. Its integration leaves canonical `data/ipos.json`, retained
 `data/pending_updates.json`, public display holds and existing public renderers
-unchanged. #104 remains a separate recovery-only draft at
-`5700a6614326ff259a8ffe07cc49be15494785a8`; do not duplicate its integration effort.
-The original #94/#98/#99 branches remain intact.
+unchanged at that historical checkpoint. The earlier assessment of #104 as a
+recovery-only draft at `5700a661` was stale: its actual `4d94951b` integration
+above is now preserved in #105. The original #94/#98/#99/#104 branches remain
+intact. Use the main project checkpoint for the current #105 head.
 
 The #99 source preview
 [35271722183](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35271722183)
 completed successfully; its older PR text saying it was running is stale. #105's
-new preview [35281606917](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35281606917)
-was still running when checked. Neither preview is a targeted accepted release.
+preview [35281606917](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35281606917)
+and #104's [35281629794](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35281629794)
+also completed successfully. These broad previews remain unaccepted; none is a
+targeted publication transport or evidence that Teamtech's conflict is resolved.
 
 ## Missing acceptance transport
 

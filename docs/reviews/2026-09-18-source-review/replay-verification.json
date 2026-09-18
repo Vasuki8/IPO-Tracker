@@ -1,0 +1,290 @@
+{
+  "schemaVersion": 1,
+  "status": "REPLAY_VERIFIED",
+  "verifiedAt": "2026-09-18T00:40:38.634347+00:00",
+  "producerExitCode": 0,
+  "reviewedAt": "2026-09-18T00:37:05.669681+00:00",
+  "frozen": {
+    "codeCommit": "409c51c939bd839940594278d324016766cb84c6",
+    "codeTree": "22d2f1cdf99483755a0cd0032ece03033f065784",
+    "baseCommit": "dd3a9b42057422057c98a16c9b1281cf318a54d8",
+    "basePayloadSha256": "29e2c170165e9dad215f786b1805fb8e18680dd43b219a59c29a5954a4160e5c",
+    "registrySha256": "14bb49fa3069d8adf31231cf8e0c09eb9d431cf4e0c21133f3d31bf41fdc7636",
+    "helperSha256": "8a239493546c719465e0a0e5e4192022f1e50638d0dbac68fbe45d179337bcd8",
+    "checkoutClean": true
+  },
+  "producerChecks": {
+    "count": 80,
+    "allPassed": true
+  },
+  "independentAuditChecks": {
+    "count": 40,
+    "allPassed": true,
+    "checks": {
+      "Exact frozen HEAD and tree": true,
+      "Actual new execution lineage and timestamp": true,
+      "Frozen checkout clean": true,
+      "Canonical payload unchanged and base pinned": true,
+      "Registry bytes pinned": true,
+      "Executed helper bytes pinned": true,
+      "All 80 producer checks passed": true,
+      "Exact replay producer file set": true,
+      "Allowed timestamp-only change: SOURCE_CHECK_PASSED-emmvee-only-validation.json": true,
+      "Allowed timestamp-only change: UNACCEPTED-seven-record-validation.json": true,
+      "Eleven exact outputs and two timestamp-only validation reports": true,
+      "Full receipt exact": true,
+      "Exact diff independently replays: SOURCE_CHECK_PASSED-emmvee-only": true,
+      "Exact scope, order and count: SOURCE_CHECK_PASSED-emmvee-only": true,
+      "Metadata preserved: SOURCE_CHECK_PASSED-emmvee-only": true,
+      "Payload and diff hashes bound: SOURCE_CHECK_PASSED-emmvee-only": true,
+      "Exact diff independently replays: UNACCEPTED-seven-record": true,
+      "Exact scope, order and count: UNACCEPTED-seven-record": true,
+      "Metadata preserved: UNACCEPTED-seven-record": true,
+      "Payload and diff hashes bound: UNACCEPTED-seven-record": true,
+      "Emmvee only four fields, four proofs and history": true,
+      "Emmvee exact prior history and four events": true,
+      "Emmvee whole-document metadata and objects unchanged": true,
+      "Emmvee identical between both outputs": true,
+      "Emmvee four exported proofs exact and source-bound": true,
+      "Emmvee composition matches independently established source values": true,
+      "Final held allocation and scope: blackbuck": true,
+      "Final held allocation and scope: genxai": true,
+      "Final held allocation and scope: mbel": true,
+      "Final held allocation and scope: shriahimsa": true,
+      "Final held allocation and scope: teamtech": true,
+      "Final held allocation and scope: unimech": true,
+      "Teamtech raw four-row evidence exact and explicitly UNACCEPTED": true,
+      "Teamtech raw evidence identity and source exact": true,
+      "Teamtech document hold exact source hash": true,
+      "Teamtech source acceptance and publication blocked": true,
+      "Exact source and full page coverage: emmvee": true,
+      "Exact source and full page coverage: teamtech": true,
+      "All observed code and policy bytes unchanged": true,
+      "Final frozen checkout still clean": true
+    }
+  },
+  "fileComparison": {
+    "producerFileCount": 13,
+    "byteIdenticalCount": 11,
+    "timestampOnlyValidationFiles": [
+      "SOURCE_CHECK_PASSED-emmvee-only-validation.json",
+      "UNACCEPTED-seven-record-validation.json"
+    ],
+    "firstOutputCompanionFilesExcluded": [
+      "2026-09-18-source-review-409c51c9.json",
+      "2026-09-18-source-review-409c51c9.md",
+      "UNACCEPTED-candidate-records.json.gz",
+      "UNACCEPTED-seven-record-exact-diff.json.gz",
+      "candidate-archive-recovery.json"
+    ],
+    "files": {
+      "SOURCE_CHECK_PASSED-emmvee-only-exact-diff.json": {
+        "firstSha256": "bd927f43dc66d8474fbbf045e62c0673b556461cabde155dc94d2343be60ede7",
+        "replaySha256": "bd927f43dc66d8474fbbf045e62c0673b556461cabde155dc94d2343be60ede7",
+        "byteIdentical": true
+      },
+      "SOURCE_CHECK_PASSED-emmvee-only-ipos.json": {
+        "firstSha256": "6fff211eb40beaba12c6029cb87938695a58f2d4f1c8bc3414288cfe5f7fcb17",
+        "replaySha256": "6fff211eb40beaba12c6029cb87938695a58f2d4f1c8bc3414288cfe5f7fcb17",
+        "byteIdentical": true
+      },
+      "SOURCE_CHECK_PASSED-emmvee-only-validation.json": {
+        "firstSha256": "79ffe0fca47b5ebe8c3f3674fbf324f9f12602dba2005bbde278c43b1464649f",
+        "replaySha256": "1a38efc71d5b0871ca5f189c8b70c5ea8755110208151d03b90b66f74367cb44",
+        "byteIdentical": false,
+        "onlyGeneratedAtDiffers": true,
+        "firstGeneratedAt": "2026-09-18T00:37:15.953641+00:00",
+        "replayGeneratedAt": "2026-09-18T00:38:13.253864+00:00"
+      },
+      "UNACCEPTED-seven-record-exact-diff.json": {
+        "firstSha256": "4ed7f3e48b349d9f418be294f606d5b058ff15dab39b74411ab15833712beedb",
+        "replaySha256": "4ed7f3e48b349d9f418be294f606d5b058ff15dab39b74411ab15833712beedb",
+        "byteIdentical": true
+      },
+      "UNACCEPTED-seven-record-ipos.json": {
+        "firstSha256": "c65078d603bbcddb69697910e7bf06105aaaff14035c1256e4096b6de4b87dcf",
+        "replaySha256": "c65078d603bbcddb69697910e7bf06105aaaff14035c1256e4096b6de4b87dcf",
+        "byteIdentical": true
+      },
+      "UNACCEPTED-seven-record-validation.json": {
+        "firstSha256": "73cb6fac16d5c1e73229c8806f027bb2361b4dfbe8f02f825329b931a00a5a48",
+        "replaySha256": "87ec5504972da787f6e02dc31143c331a0d9e1155410d3f694d8f864e642a390",
+        "byteIdentical": false,
+        "onlyGeneratedAtDiffers": true,
+        "firstGeneratedAt": "2026-09-18T00:37:16.807279+00:00",
+        "replayGeneratedAt": "2026-09-18T00:38:14.103913+00:00"
+      },
+      "emmvee-full-parser-diagnostic.json": {
+        "firstSha256": "421ac9d68d978d4db7eca156be573d19eece8e42961e65fda4aabd6d73481e0b",
+        "replaySha256": "421ac9d68d978d4db7eca156be573d19eece8e42961e65fda4aabd6d73481e0b",
+        "byteIdentical": true
+      },
+      "emmvee-production-text.txt": {
+        "firstSha256": "294f180e7910ddc09fe7729a3d30c1ed597673bc9bce55e166d09ef1fb51eacf",
+        "replaySha256": "294f180e7910ddc09fe7729a3d30c1ed597673bc9bce55e166d09ef1fb51eacf",
+        "byteIdentical": true
+      },
+      "emmvee-source-checked-field-proofs.json": {
+        "firstSha256": "1f8b7ae600da76ea9f62a9771377925d17be3c5d98ebc8080e36b63a9a5795cf",
+        "replaySha256": "1f8b7ae600da76ea9f62a9771377925d17be3c5d98ebc8080e36b63a9a5795cf",
+        "byteIdentical": true
+      },
+      "source-acceptance-receipt.json": {
+        "firstSha256": "5764e79158b8bc00285d28749ffa9ae3193b0b9008ace603befec7222c88c16d",
+        "replaySha256": "5764e79158b8bc00285d28749ffa9ae3193b0b9008ace603befec7222c88c16d",
+        "byteIdentical": true
+      },
+      "teamtech-UNACCEPTED-parser-evidence.json": {
+        "firstSha256": "5112ae883695ce15900e563f87c7f0805c0f9a4a7bfc5f0bab90e1583ed01f67",
+        "replaySha256": "5112ae883695ce15900e563f87c7f0805c0f9a4a7bfc5f0bab90e1583ed01f67",
+        "byteIdentical": true
+      },
+      "teamtech-full-parser-diagnostic.json": {
+        "firstSha256": "c0d66cdf4ef0a6268102e85b7329199844769e5e59993adf9b511e1122e30b60",
+        "replaySha256": "c0d66cdf4ef0a6268102e85b7329199844769e5e59993adf9b511e1122e30b60",
+        "byteIdentical": true
+      },
+      "teamtech-production-text.txt": {
+        "firstSha256": "7d89661142c20549eb85ac9361cb60d1acd21423cd7d41a5ccaf93488906229e",
+        "replaySha256": "7d89661142c20549eb85ac9361cb60d1acd21423cd7d41a5ccaf93488906229e",
+        "byteIdentical": true
+      }
+    }
+  },
+  "outputScope": {
+    "SOURCE_CHECK_PASSED-emmvee-only": {
+      "changedIds": [
+        "emmvee"
+      ],
+      "unchangedOtherRecords": 1365,
+      "metadataPreserved": true,
+      "exactDiffReplays": true,
+      "strictErrors": 0
+    },
+    "UNACCEPTED-seven-record": {
+      "changedIds": [
+        "blackbuck",
+        "emmvee",
+        "genxai",
+        "mbel",
+        "shriahimsa",
+        "teamtech",
+        "unimech"
+      ],
+      "unchangedOtherRecords": 1359,
+      "metadataPreserved": true,
+      "exactDiffReplays": true,
+      "strictErrors": 0
+    }
+  },
+  "finalHolds": {
+    "blackbuck": {
+      "nullAndQuarantined": true,
+      "noLiveProof": true,
+      "absentFromExtractionFields": true,
+      "pendingAndNotVerified": true,
+      "exactOriginalSnapshotAndHistory": true,
+      "otherFieldsAndProofsUnchanged": true,
+      "scope": "document"
+    },
+    "genxai": {
+      "nullAndQuarantined": true,
+      "noLiveProof": true,
+      "absentFromExtractionFields": true,
+      "pendingAndNotVerified": true,
+      "exactOriginalSnapshotAndHistory": true,
+      "otherFieldsAndProofsUnchanged": true,
+      "scope": "document"
+    },
+    "mbel": {
+      "nullAndQuarantined": true,
+      "noLiveProof": true,
+      "absentFromExtractionFields": true,
+      "pendingAndNotVerified": true,
+      "exactOriginalSnapshotAndHistory": true,
+      "otherFieldsAndProofsUnchanged": true,
+      "scope": "document"
+    },
+    "shriahimsa": {
+      "nullAndQuarantined": true,
+      "noLiveProof": true,
+      "absentFromExtractionFields": true,
+      "pendingAndNotVerified": true,
+      "exactOriginalSnapshotAndHistory": true,
+      "otherFieldsAndProofsUnchanged": true,
+      "scope": "document"
+    },
+    "teamtech": {
+      "nullAndQuarantined": true,
+      "noLiveProof": true,
+      "absentFromExtractionFields": true,
+      "pendingAndNotVerified": true,
+      "exactOriginalSnapshotAndHistory": true,
+      "otherFieldsAndProofsUnchanged": true,
+      "scope": "document"
+    },
+    "unimech": {
+      "nullAndQuarantined": true,
+      "noLiveProof": true,
+      "absentFromExtractionFields": true,
+      "pendingAndNotVerified": true,
+      "exactOriginalSnapshotAndHistory": true,
+      "otherFieldsAndProofsUnchanged": true,
+      "scope": "value"
+    }
+  },
+  "teamtechRawEvidence": {
+    "status": "UNACCEPTED",
+    "canonicalAcceptance": false,
+    "rowCount": 4,
+    "totalCr": "45.4859",
+    "exactMatchToIndependentSourceEvidence": true,
+    "sourceUnitContradiction": "Physical/printed page 89 labels the same 4,548.59 net-proceeds amount in crores; pages 22–23 and 87 label it in lakhs. No inferred unit correction accepted."
+  },
+  "sources": {
+    "emmvee": {
+      "url": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+      "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+      "date": "2025-11-14",
+      "pageCount": 511,
+      "bytes": 11360516,
+      "pagesRead": 511,
+      "textSha256": "294f180e7910ddc09fe7729a3d30c1ed597673bc9bce55e166d09ef1fb51eacf",
+      "networkRequests": 0,
+      "newDownloads": 0,
+      "identityCheck": "runner.extract passed"
+    },
+    "teamtech": {
+      "url": "https://nsearchives.nseindia.com/emerge/corporates/content/TeamtechFormworkSolutionsLimited_PROSP.pdf",
+      "sha256": "985909fbad119ffa02604f6fbb2895387a98d817a1fa8b486a7806ac18b537e8",
+      "date": "2026-05-22",
+      "pageCount": 372,
+      "bytes": 8669697,
+      "pagesRead": 372,
+      "textSha256": "7d89661142c20549eb85ac9361cb60d1acd21423cd7d41a5ccaf93488906229e",
+      "networkRequests": 0,
+      "newDownloads": 0,
+      "identityCheck": "runner.extract passed"
+    }
+  },
+  "sourceClaims": {
+    "emmvee": "Reproduces the separately established composition source check; no new visual source review in this replay.",
+    "teamtech": "Source acceptance remains blocked; raw table reconstruction does not resolve the page 89 unit contradiction.",
+    "publicationAllowed": false,
+    "lineage": "This receipt describes the actual 409c51c9 execution only; the prior ba24d54a lineage remains separate and is not relabeled."
+  },
+  "actions": {
+    "producerRuns": 1,
+    "codeEdits": false,
+    "canonicalEdits": false,
+    "sourcePdfEdits": false,
+    "remoteOperations": false,
+    "broadTestSuite": false,
+    "additionalArtifact": "replay-verification.json"
+  },
+  "portableCopy": {
+    "originalAuditSha256": "be9e81d9b466888511254bb80d6472b744fc40e47efdc40941f9afa1580b8d49",
+    "change": "Only transient execution-directory fields firstOutput and replayOutput are omitted; all findings, checks, actual commit/tree/base and producer output hashes are retained unchanged. The original audit remains unmodified.",
+    "recovery": "Use the exact frozen commit and relative artifact names from the source-review note; scratch execution directories are not recovery dependencies."
+  }
+}

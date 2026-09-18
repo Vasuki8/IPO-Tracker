@@ -3,6 +3,7 @@ import argparse
 import copy
 import hashlib
 import json
+import re
 from collections import defaultdict
 from datetime import date
 from pathlib import Path
@@ -19,6 +20,31 @@ _STATIC_TOP_LEVEL = {
 
 def fingerprint(value):
     return hashlib.sha256(json.dumps(value, sort_keys=True, ensure_ascii=False, separators=(',', ':')).encode()).hexdigest()
+
+
+def _sha256(value):
+    return isinstance(value, str) and re.fullmatch(r'[0-9a-f]{64}', value) is not None
+
+
+def _document_objects_proof_matches(proof, value, identity, evidence):
+    if (not isinstance(proof, dict) or proof.get('value') != value
+            or proof.get('sha256') != evidence['sha256']
+            or proof.get('issueOpenDate') != identity['openDate']):
+        return False
+    try:
+        return (source_policy.is_final_prospectus({'type': proof.get('documentType'),
+                                                   'url': proof.get('sourceUrl')})
+                and urlparse(str(proof.get('sourceUrl') or '')).scheme == 'https')
+    except ValueError:
+        return False
+
+
+def _objects_review_source(entry):
+    return {
+        'reason': entry['reason'], 'findings': copy.deepcopy(entry['findings']),
+        'source': copy.deepcopy(entry['source']), 'evidence': copy.deepcopy(entry['evidence']),
+        'scope': entry.get('scope', 'value'),
+    }
 
 
 def record_evidence(row, entry, before, after):
@@ -93,6 +119,98 @@ def fill_reviewed_fields(rows, entries):
     return applied, conflicts
 
 
+def quarantine_reviewed_objects(rows, entries):
+    """Withdraw allocations within the exact source scope that a review rejected.
+
+    Source-table syntax alone cannot prove a table's purpose or reconcile a
+    prospectus contradiction. Preserve the reviewed source and previous proof
+    using the normal quarantine path, without replacing unrelated evidence.
+    """
+    from enforce_final_prospectus_policy import _quarantine_invalid_objects
+
+    applied, conflicts = 0, []
+    for entry in entries:
+        identity = entry.get('identity') or {}
+        source = entry.get('source') or {}
+        evidence = entry.get('evidence') or {}
+        if (not all(identity.get(key) for key in ('id', 'company', 'symbol', 'openDate'))
+                or not _final_prospectus_source(entry)
+                or urlparse(source.get('url', '')).scheme != 'https'
+                or not evidence.get('sha256') or not entry.get('beforeHash')
+                or entry.get('scope', 'value') not in {'value', 'document'}
+                or not entry.get('findings') or not entry.get('reason') or not entry.get('reviewedAt')):
+            raise ValueError('An objects review requires exact identity, value hash and Final Prospectus evidence')
+        document_review = entry.get('scope', 'value') == 'document'
+        if document_review and (not _sha256(evidence['sha256']) or not _sha256(entry['beforeHash'])):
+            raise ValueError('A document-scoped objects review requires lowercase SHA-256 document and value hashes')
+        row = rows.get(identity['id'])
+        if row is None or any(row.get(key) != value for key, value in identity.items()):
+            conflicts.append({'id': identity['id'], 'field': 'objectsOfIssue',
+                              'reason': 'Reviewed issuer or offer identity changed'})
+            continue
+        value = row.get('objectsOfIssue')
+        if value in (None, []):
+            review = row.get('objectsOfIssueReview') or {}
+            if not document_review or not isinstance(review, dict) or review.get('status') != 'quarantined':
+                continue
+            snapshot = review.get('snapshot') or {}
+            if not isinstance(snapshot, dict):
+                snapshot = {}
+            retained_value = snapshot.get('before')
+            proof = snapshot.get('sourceEvidence') or {}
+            if isinstance(proof, dict) and _sha256(proof.get('sha256')) and proof['sha256'] != evidence['sha256']:
+                continue
+            if (not isinstance(retained_value, list) or not retained_value
+                    or not _document_objects_proof_matches(proof, retained_value, identity, evidence)):
+                conflicts.append({'id': identity['id'], 'field': 'objectsOfIssue',
+                                  'reason': 'Retained objects review source changed; preserving its snapshot and evidence'})
+                continue
+            previous = review.get('activeSourceReview') or snapshot.get('reviewedSource') or {}
+            active = {**_objects_review_source(entry), 'identity': copy.deepcopy(identity),
+                      'reviewedAt': entry['reviewedAt']}
+            if previous == active or (not review.get('activeSourceReview') and isinstance(previous, dict)
+                                      and previous.get('scope') == 'document'
+                                      and (previous.get('evidence') or {}).get('sha256') == evidence['sha256']):
+                continue
+            # Keep the original withdrawal and its evidence immutable. This
+            # separate revision expands the active hold without inventing a
+            # second allocation withdrawal or rewriting correction history.
+            review['activeSourceReview'] = copy.deepcopy(active)
+            row.setdefault('dataCorrections', []).append({
+                'field': 'objectsOfIssueReview.activeSourceReview',
+                'before': copy.deepcopy(previous), 'after': copy.deepcopy(active),
+                'reason': 'Expanded the retained objects review to the identified Final Prospectus document',
+                'sourceUrl': source['url'], 'sha256': evidence['sha256'],
+                'correctedAt': entry['reviewedAt'],
+            })
+            applied += 1
+            continue
+        # A layout review rejects one value; a document contradiction cannot
+        # be resolved by a different extraction or a mirror of the same bytes.
+        if not document_review and fingerprint(value) != entry['beforeHash']:
+            continue
+        proof = (row.get('staticFieldProvenance') or {}).get('objectsOfIssue') or {}
+        if (document_review and isinstance(proof, dict)
+                and _sha256(proof.get('sha256'))
+                and proof['sha256'] != evidence['sha256']):
+            # Different authoritative document bytes undergo ordinary policy;
+            # an old document review must not become a recurring conflict.
+            continue
+        matched = (isinstance(proof, dict) and proof.get('value') == value
+                   and proof.get('sha256') == evidence['sha256'])
+        if document_review:
+            matched = _document_objects_proof_matches(proof, value, identity, evidence)
+        else:
+            matched = matched and proof.get('sourceUrl') == source['url']
+        if not matched:
+            conflicts.append({'id': identity['id'], 'field': 'objectsOfIssue',
+                              'reason': 'Reviewed objects source changed; preserving the current value and evidence'})
+            continue
+        _quarantine_invalid_objects(row, entry['reviewedAt'], reviewed_source=_objects_review_source(entry))
+        applied += 1
+    return applied, conflicts
+
+
 def apply(payload, registry):
     repair(payload)
     rows = {row['id']: row for row in payload['ipos']}
@@ -134,6 +252,9 @@ def apply(payload, registry):
     filled, fill_conflicts = fill_reviewed_fields(rows, registry.get('fillMissing', []))
     applied += filled
     conflicts.extend(fill_conflicts)
+    quarantined, review_conflicts = quarantine_reviewed_objects(rows, registry.get('reviewedObjects', []))
+    applied += quarantined
+    conflicts.extend(review_conflicts)
     payload.setdefault('meta', {})['schemaVersion'] = max(5, payload.get('meta', {}).get('schemaVersion', 0))
     payload.setdefault('meta', {})['reviewedCorrectionStatus'] = {'registryRevision': registry.get('revision'), 'appliedFields': applied, 'conflicts': conflicts}
     payload['meta']['initialSourceRepair'] = registry.get('summary', {})

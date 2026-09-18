@@ -1,0 +1,372 @@
+{
+  "schemaVersion": 1,
+  "status": "UNACCEPTED",
+  "publicationAllowed": false,
+  "executionReviewedAt": "2026-09-18T00:37:05.669681+00:00",
+  "code": {
+    "actualCommit": "409c51c939bd839940594278d324016766cb84c6",
+    "tree": "22d2f1cdf99483755a0cd0032ece03033f065784",
+    "baseCommit": "dd3a9b42057422057c98a16c9b1281cf318a54d8",
+    "basePayloadSha256": "29e2c170165e9dad215f786b1805fb8e18680dd43b219a59c29a5954a4160e5c",
+    "remoteRef": "refs/heads/p4-source-review-code-freeze-2026-09-18",
+    "remoteVerification": "git ls-remote confirmed the exact commit after the execution",
+    "registrySha256": "14bb49fa3069d8adf31231cf8e0c09eb9d431cf4e0c21133f3d31bf41fdc7636",
+    "publicDisplayHoldsSha256": "e0ccc9b414585e1076acfe538d0fd92ff5b15159ccaa5261d847f95af76db628",
+    "reconstructionScript": "scripts/reconstruct_source_review.py",
+    "reconstructionScriptSha256": "8a239493546c719465e0a0e5e4192022f1e50638d0dbac68fbe45d179337bcd8",
+    "observedCodeFileCount": 115
+  },
+  "lineage": {
+    "distinctFromOriginalMissingProposal": "5516b3ad6ba4345abc25d7a9b2771eb5c3b32f00e9163f30167da9d6b80cf6f6",
+    "originalProposalRecovered": false,
+    "priorReceiptUnchanged": true,
+    "rule": "This receipt identifies its actual executed commit. Any later code/base change requires another execution; never relabel this commit or receipt.",
+    "priorHistoricalCodeCommits": [
+      "d8eed0555ff1480476a6d48347eec8e3e39b3f28",
+      "ba24d54a36f9b4ee52079dc0aa9ffece685b4e8a"
+    ]
+  },
+  "verification": {
+    "technicalChecksPassed": 80,
+    "allTechnicalChecksPassed": true,
+    "strictErrorsByPayload": {
+      "SOURCE_CHECK_PASSED-emmvee-only-ipos.json": 0,
+      "UNACCEPTED-seven-record-ipos.json": 0
+    },
+    "fullReceipt": "source-acceptance-receipt.json",
+    "fullReceiptSha256": "5764e79158b8bc00285d28749ffa9ae3193b0b9008ace603befec7222c88c16d",
+    "independentReplay": {
+      "status": "REPLAY_VERIFIED",
+      "producerChecks": 80,
+      "independentAuditChecks": 40,
+      "allPassed": true,
+      "producerFilesCompared": 13,
+      "byteIdenticalProducerFiles": 11,
+      "onlyDifferences": "The two validation reports differ only at /generatedAt.",
+      "exactDiffsIndependentlyReplay": true,
+      "auditFile": "replay-verification.json",
+      "auditSha256": "9ea0649d17a985f8929a3711785d22ae5b37f8d0dc95aae22870b10a68d26d85",
+      "originalAuditSha256": "be9e81d9b466888511254bb80d6472b744fc40e47efdc40941f9afa1580b8d49",
+      "originalAuditPreserved": true,
+      "portableAuditOmitsOnlyTransientExecutionDirectoryFields": true,
+      "checkoutClean": true
+    },
+    "sourcePagesRead": {
+      "emmvee": 511,
+      "teamtech": 372
+    },
+    "newPdfDownloads": 0,
+    "producerNetworkRequests": 0,
+    "limits": "These are offline source/proposal checks, not publication, deployment or proof that every source value is correct.",
+    "additionalDiffReview": "All six held records preserve every non-objects field proof and document-evidence entry. Emmvee proof artifact contains exactly the four repaired fields, each bound to the reviewed Emmvee PDF."
+  },
+  "outputs": {
+    "SOURCE_CHECK_PASSED-emmvee-only-ipos.json": {
+      "sha256": "6fff211eb40beaba12c6029cb87938695a58f2d4f1c8bc3414288cfe5f7fcb17",
+      "changedIds": [
+        "emmvee"
+      ],
+      "unchangedOtherRecords": 1365,
+      "metadataPreserved": true,
+      "strictErrors": 0,
+      "reviewCount": 1618,
+      "exactDiff": "SOURCE_CHECK_PASSED-emmvee-only-exact-diff.json",
+      "exactDiffSha256": "bd927f43dc66d8474fbbf045e62c0673b556461cabde155dc94d2343be60ede7"
+    },
+    "UNACCEPTED-seven-record-ipos.json": {
+      "sha256": "c65078d603bbcddb69697910e7bf06105aaaff14035c1256e4096b6de4b87dcf",
+      "changedIds": [
+        "blackbuck",
+        "emmvee",
+        "genxai",
+        "mbel",
+        "shriahimsa",
+        "teamtech",
+        "unimech"
+      ],
+      "unchangedOtherRecords": 1359,
+      "metadataPreserved": true,
+      "strictErrors": 0,
+      "reviewCount": 1624,
+      "exactDiff": "UNACCEPTED-seven-record-exact-diff.json",
+      "exactDiffSha256": "4ed7f3e48b349d9f418be294f606d5b058ff15dab39b74411ab15833712beedb"
+    }
+  },
+  "changedScope": {
+    "SOURCE_CHECK_PASSED-emmvee-only-exact-diff.json": {
+      "emmvee": {
+        "changedTopLevelFields": [
+          "dataCorrections",
+          "freshIssueCr",
+          "issueComposition",
+          "issueSizeCr",
+          "ofsCr",
+          "staticFieldProvenance"
+        ],
+        "appendedCorrectionEvents": 4
+      }
+    },
+    "UNACCEPTED-seven-record-exact-diff.json": {
+      "genxai": {
+        "changedTopLevelFields": [
+          "dataCorrections",
+          "documentFieldProvenance",
+          "objectsOfIssue",
+          "objectsOfIssueReview",
+          "offerDocumentExtraction",
+          "staticFieldProvenance",
+          "staticSourcePolicy"
+        ],
+        "appendedCorrectionEvents": 1
+      },
+      "teamtech": {
+        "changedTopLevelFields": [
+          "dataCorrections",
+          "documentFieldProvenance",
+          "objectsOfIssue",
+          "objectsOfIssueReview",
+          "offerDocumentExtraction",
+          "staticFieldProvenance",
+          "staticSourcePolicy"
+        ],
+        "appendedCorrectionEvents": 1
+      },
+      "emmvee": {
+        "changedTopLevelFields": [
+          "dataCorrections",
+          "freshIssueCr",
+          "issueComposition",
+          "issueSizeCr",
+          "ofsCr",
+          "staticFieldProvenance"
+        ],
+        "appendedCorrectionEvents": 4
+      },
+      "mbel": {
+        "changedTopLevelFields": [
+          "dataCorrections",
+          "documentFieldProvenance",
+          "objectsOfIssue",
+          "objectsOfIssueReview",
+          "offerDocumentExtraction",
+          "staticFieldProvenance",
+          "staticSourcePolicy"
+        ],
+        "appendedCorrectionEvents": 1
+      },
+      "shriahimsa": {
+        "changedTopLevelFields": [
+          "dataCorrections",
+          "documentFieldProvenance",
+          "objectsOfIssue",
+          "objectsOfIssueReview",
+          "offerDocumentExtraction",
+          "staticFieldProvenance",
+          "staticSourcePolicy"
+        ],
+        "appendedCorrectionEvents": 1
+      },
+      "unimech": {
+        "changedTopLevelFields": [
+          "dataCorrections",
+          "documentFieldProvenance",
+          "objectsOfIssue",
+          "objectsOfIssueReview",
+          "offerDocumentExtraction",
+          "staticFieldProvenance",
+          "staticSourcePolicy"
+        ],
+        "appendedCorrectionEvents": 1
+      },
+      "blackbuck": {
+        "changedTopLevelFields": [
+          "dataCorrections",
+          "documentFieldProvenance",
+          "objectsOfIssue",
+          "objectsOfIssueReview",
+          "offerDocumentExtraction",
+          "staticFieldProvenance",
+          "staticSourcePolicy"
+        ],
+        "appendedCorrectionEvents": 1
+      }
+    }
+  },
+  "sources": {
+    "emmvee": {
+      "url": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+      "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+      "date": "2025-11-14",
+      "pageCount": 511,
+      "bytes": 11360516,
+      "pagesRead": 511,
+      "textSha256": "294f180e7910ddc09fe7729a3d30c1ed597673bc9bce55e166d09ef1fb51eacf",
+      "networkRequests": 0,
+      "newDownloads": 0,
+      "identityCheck": "runner.extract passed"
+    },
+    "teamtech": {
+      "url": "https://nsearchives.nseindia.com/emerge/corporates/content/TeamtechFormworkSolutionsLimited_PROSP.pdf",
+      "sha256": "985909fbad119ffa02604f6fbb2895387a98d817a1fa8b486a7806ac18b537e8",
+      "date": "2026-05-22",
+      "pageCount": 372,
+      "bytes": 8669697,
+      "pagesRead": 372,
+      "textSha256": "7d89661142c20549eb85ac9361cb60d1acd21423cd7d41a5ccaf93488906229e",
+      "networkRequests": 0,
+      "newDownloads": 0,
+      "identityCheck": "runner.extract passed"
+    }
+  },
+  "retainedHolds": {
+    "blackbuck": {
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2024/1732249559904.pdf",
+      "registryPdfSha256": "0a6837d67b0d5b91c5ca9d9f6527c155fc28f9cad4e8654bba803b60c438007b",
+      "recoveredPdfSha256": "0a6837d67b0d5b91c5ca9d9f6527c155fc28f9cad4e8654bba803b60c438007b",
+      "verification": "exact bytes recovered and hash-checked; full source not re-reviewed in this reconstruction",
+      "scope": "document"
+    },
+    "genxai": {
+      "url": "https://nsearchives.nseindia.com/emerge/corporates/content/GenXAIAnalyticsLimited_PROSP.pdf",
+      "registryPdfSha256": "c810471e52810eaf6ffb7f023b359b82702c486694af19f086dac8b89c0163b0",
+      "recoveredPdfSha256": null,
+      "verification": "full PDF unavailable here; preserving existing reviewed hold, not claiming new source acceptance",
+      "scope": "document"
+    },
+    "mbel": {
+      "url": "https://nsearchives.nseindia.com/corporate/FP_INE08N601015_04AUG2025.pdf",
+      "registryPdfSha256": "e20a311a4d4473a5ee93a683023f831e009a6910524a9044f48d367acf513219",
+      "recoveredPdfSha256": "e20a311a4d4473a5ee93a683023f831e009a6910524a9044f48d367acf513219",
+      "verification": "exact bytes recovered and hash-checked; full source not re-reviewed in this reconstruction",
+      "scope": "document"
+    },
+    "shriahimsa": {
+      "url": "https://nsearchives.nseindia.com/emerge/corporates/content/ShriAhimsaNaturalsLimited_PROSP.pdf",
+      "registryPdfSha256": "eb9fd3588990048a03f5c8602406a45020bebe158f6aa566fd4c028d746177b0",
+      "recoveredPdfSha256": null,
+      "verification": "full PDF unavailable here; preserving existing reviewed hold, not claiming new source acceptance",
+      "scope": "document"
+    },
+    "unimech": {
+      "url": "https://nsearchives.nseindia.com/corporate/FP_INE0U3I01011_30DEC2024.pdf",
+      "registryPdfSha256": "b10afca3e64e8731dd4c4660a99ec720c8f0ec4fa4eb0b524ab441717977cfd3",
+      "recoveredPdfSha256": "b10afca3e64e8731dd4c4660a99ec720c8f0ec4fa4eb0b524ab441717977cfd3",
+      "verification": "exact bytes recovered and hash-checked; full source not re-reviewed in this reconstruction",
+      "scope": "value"
+    }
+  },
+  "emmvee": {
+    "sourceCheck": "passed",
+    "publication": "not accepted or published",
+    "fields": [
+      "issueComposition",
+      "issueSizeCr",
+      "freshIssueCr",
+      "ofsCr"
+    ],
+    "expectedComposition": {
+      "freshShares": 98795483,
+      "ofsShares": 34845069,
+      "freshIssueCr": 2143.862,
+      "ofsCr": 756.138,
+      "totalIssueSizeCr": 2900.0,
+      "valuationPriceUsed": 217.0
+    },
+    "preservedObjectsCr": [
+      1621.294,
+      438.711
+    ],
+    "completeObjectsProofPreserved": true,
+    "allOtherFieldProofsAndWholeDocumentMetadataPreserved": true,
+    "priorCorrectionHistoryPreserved": true,
+    "appendedCorrectionEvents": 4,
+    "unrelatedRecordsPreserved": 1365,
+    "provenanceFile": "emmvee-source-checked-field-proofs.json",
+    "provenanceSha256": "1f8b7ae600da76ea9f62a9771377925d17be3c5d98ebc8080e36b63a9a5795cf"
+  },
+  "teamtech": {
+    "sourceCheck": "blocked",
+    "candidateDisposition": "objectsOfIssue is null; document-scoped quarantine persists after final policy; objectsOfIssue remains pending and no live field proof remains",
+    "rawRowsStatus": "UNACCEPTED parser diagnostic only",
+    "rawAllocationTotalCr": 45.4859,
+    "rawEvidenceFile": "teamtech-UNACCEPTED-parser-evidence.json",
+    "rawEvidenceSha256": "5112ae883695ce15900e563f87c7f0805c0f9a4a7bfc5f0bab90e1583ed01f67",
+    "conflict": "Physical/printed p89 MEANS OF FINANCE numeric heading Amount in Crores applies to Net Proceeds 4,548.59 and TOTAL 4,548.59; pp22-23/87 state the same budget in lakhs (45.4859 crore).",
+    "secondaryDiscrepancy": "p90 quotation footnote 1,192.36 lakh differs from itemized and printed subtotal 1,192.35 lakh on pp91-92; no partial-spend reconciliation found.",
+    "authoritativeReconciliationRequired": true
+  },
+  "blockingRequirements": [
+    "Authoritative reconciliation or explicit supersession of Teamtech's source-unit contradiction; retain a document-scoped hold meanwhile.",
+    "Complete a separately accepted targeted publication transport bound to this exact code/base and approved diff; the actual combined code and current main base are now frozen and were executed.",
+    "Do not publish the broad automatic repair preview: its scope is not this seven-record proposal.",
+    "Original proposal and transport unavailable; any accepted replacement must retain a distinct new lineage and exact scope.",
+    "P4 correctness gate remains blocked; no P5 or performance expansion is enabled by these structural checks."
+  ],
+  "nextAction": "Keep the seven-record diagnostic unaccepted and Teamtech held. Complete targeted acceptance transport if an independently approved Emmvee-only repair is selected; obtain authoritative reconciliation before accepting Teamtech. Any source-selector, policy or canonical-base change requires a new run at its actual immutable commit.",
+  "actions": {
+    "canonicalWrites": false,
+    "codeEdits": false,
+    "networkRequests": 0,
+    "workflowDispatches": false,
+    "commits": false,
+    "publication": false
+  },
+  "completedRequirements": {
+    "actualCodeAndCurrentMainBaseFrozenAndExecuted": true,
+    "sourceRegistryAndCompleteCodePolicyManifestRecorded": true,
+    "lineage": "The immutable raw receipt contains generic refreeze wording; this compact assessment records the completed 409c51c9 code/base freeze. It does not change or relabel the raw receipt."
+  },
+  "durableDiffStorage": {
+    "producerFile": "UNACCEPTED-seven-record-exact-diff.json",
+    "durableFile": "UNACCEPTED-seven-record-exact-diff.json.gz",
+    "compression": "gzip; mtime=0",
+    "compressedSha256": "1075416914211b43dbf7e3936f49f7f206f9cdd607c7c56f6c6ba860af5f9d43",
+    "compressedBytes": 47328,
+    "uncompressedSha256": "4ed7f3e48b349d9f418be294f606d5b058ff15dab39b74411ab15833712beedb",
+    "uncompressedBytes": 748793,
+    "recovery": "gzip -dk UNACCEPTED-seven-record-exact-diff.json.gz",
+    "producerReceiptOutputNamesPreserved": true
+  },
+  "reproduction": {
+    "codeCommit": "409c51c939bd839940594278d324016766cb84c6",
+    "baseCommit": "dd3a9b42057422057c98a16c9b1281cf318a54d8",
+    "registrySha256": "14bb49fa3069d8adf31231cf8e0c09eb9d431cf4e0c21133f3d31bf41fdc7636",
+    "reviewedAt": "2026-09-18T00:37:05.669681+00:00",
+    "script": "scripts/reconstruct_source_review.py",
+    "environment": "uv run --frozen; provide exact PDFs matching sources and retainedHolds; use a new output directory outside the checkout",
+    "network": "The producer forbids PDF network access. Dependency setup and separate Git verification are outside that offline scope."
+  },
+  "durableCandidateArchive": {
+    "status": "passed",
+    "scope": "offline-byte-recovery-of-unaccepted-diagnostics-not-publication-acceptance",
+    "archive": "UNACCEPTED-candidate-records.json.gz",
+    "compressedBytes": 58743,
+    "archiveSha256": "ed6e063ce087bea253d3b730e1facdf1fa4b199afe1eb9f0bb22575dfd629d03",
+    "uncompressedSha256": "92a036c0059bf7836f8b4255bce7594f5557a150cb1536b1c6e1a1dc438ca478",
+    "recoveredOutputs": {
+      "SOURCE_CHECK_PASSED-emmvee-only-ipos.json": {
+        "sha256": "6fff211eb40beaba12c6029cb87938695a58f2d4f1c8bc3414288cfe5f7fcb17",
+        "byteIdentical": true
+      },
+      "UNACCEPTED-seven-record-ipos.json": {
+        "sha256": "c65078d603bbcddb69697910e7bf06105aaaff14035c1256e4096b6de4b87dcf",
+        "byteIdentical": true
+      }
+    },
+    "requiresForByteRecovery": "Exact immutable canonical base plus this archive; original PDF bytes are still required for renewed source extraction and source acceptance.",
+    "recoveryVerificationFile": "candidate-archive-recovery.json",
+    "recoveryVerificationSha256": "0640e5573adad311c131fca70e7499a59982092289a679f600e12876f67edf7c",
+    "acceptance": false,
+    "recoveryInstructions": "Load the immutable base payload, replace records by id only for each output's changedIds using archive.records, preserve order and metadata, serialize JSON with indent=2 and ensure_ascii=False plus a trailing newline, then assert the receipt output SHA-256. This reconstructs already generated diagnostic bytes; it does not perform source acceptance."
+  },
+  "durableArtifacts": {
+    "source-acceptance-receipt.json": "5764e79158b8bc00285d28749ffa9ae3193b0b9008ace603befec7222c88c16d",
+    "SOURCE_CHECK_PASSED-emmvee-only-exact-diff.json": "bd927f43dc66d8474fbbf045e62c0673b556461cabde155dc94d2343be60ede7",
+    "emmvee-source-checked-field-proofs.json": "1f8b7ae600da76ea9f62a9771377925d17be3c5d98ebc8080e36b63a9a5795cf",
+    "teamtech-UNACCEPTED-parser-evidence.json": "5112ae883695ce15900e563f87c7f0805c0f9a4a7bfc5f0bab90e1583ed01f67",
+    "UNACCEPTED-seven-record-exact-diff.json.gz": "1075416914211b43dbf7e3936f49f7f206f9cdd607c7c56f6c6ba860af5f9d43",
+    "UNACCEPTED-candidate-records.json.gz": "ed6e063ce087bea253d3b730e1facdf1fa4b199afe1eb9f0bb22575dfd629d03",
+    "candidate-archive-recovery.json": "0640e5573adad311c131fca70e7499a59982092289a679f600e12876f67edf7c",
+    "replay-verification.json": "9ea0649d17a985f8929a3711785d22ae5b37f8d0dc95aae22870b10a68d26d85"
+  }
+}

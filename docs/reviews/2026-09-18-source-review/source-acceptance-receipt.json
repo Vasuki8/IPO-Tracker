@@ -1,0 +1,744 @@
+{
+  "schemaVersion": 1,
+  "status": "UNACCEPTED",
+  "publicationAllowed": false,
+  "reconstructionScriptSha256": "8a239493546c719465e0a0e5e4192022f1e50638d0dbac68fbe45d179337bcd8",
+  "reviewedAt": "2026-09-18T00:37:05.669681+00:00",
+  "newLineage": true,
+  "originalProposalRecovered": false,
+  "originalProposalSha256": "5516b3ad6ba4345abc25d7a9b2771eb5c3b32f00e9163f30167da9d6b80cf6f6",
+  "originalProposalAssessment": "Missing immutable working artifact; this reconstruction does not invalidate or recreate its identity.",
+  "baseCommit": "dd3a9b42057422057c98a16c9b1281cf318a54d8",
+  "basePayloadSha256": "29e2c170165e9dad215f786b1805fb8e18680dd43b219a59c29a5954a4160e5c",
+  "observedCodeCommit": "409c51c939bd839940594278d324016766cb84c6",
+  "observedCodeTree": "22d2f1cdf99483755a0cd0032ece03033f065784",
+  "codeCommitAvailability": "Caller-pinned exact checkout; remote publication is not checked by this offline harness",
+  "registrySha256": "14bb49fa3069d8adf31231cf8e0c09eb9d431cf4e0c21133f3d31bf41fdc7636",
+  "immutableParserFiles": {
+    "scripts/final_prospectus_parser.py": "503750e3c3d935af98037abd86f8ff647a46ca72d29db93b35944ab4bd2bafe0",
+    "scripts/offer_parser.py": "e8d2655ab28230bb9504f6f6896364e29ec2358fe3d37304556b24f7968f6574",
+    "scripts/p4_offer_parser.py": "5d65cdcb264f97a555b72407403b8d352de866a2bf7c0a65f56dc4572575a4ea",
+    "scripts/objects_of_issue_checks.py": "1d0f1d5813a8dd93773769c41249ef891100c3482952c050aae6e1f919537f0f",
+    "scripts/issue_composition_checks.py": "1aeaed38bc3df2ed8009c9bb0a08c249a37cb999fefc11b99dfffde11063f891"
+  },
+  "parserVersion": 33,
+  "recordCount": 1366,
+  "outputs": {
+    "SOURCE_CHECK_PASSED-emmvee-only-ipos.json": {
+      "sha256": "6fff211eb40beaba12c6029cb87938695a58f2d4f1c8bc3414288cfe5f7fcb17",
+      "changedIds": [
+        "emmvee"
+      ],
+      "unchangedOtherRecords": 1365,
+      "metadataPreserved": true,
+      "strictErrors": 0,
+      "reviewCount": 1618,
+      "exactDiff": "SOURCE_CHECK_PASSED-emmvee-only-exact-diff.json",
+      "exactDiffSha256": "bd927f43dc66d8474fbbf045e62c0673b556461cabde155dc94d2343be60ede7"
+    },
+    "UNACCEPTED-seven-record-ipos.json": {
+      "sha256": "c65078d603bbcddb69697910e7bf06105aaaff14035c1256e4096b6de4b87dcf",
+      "changedIds": [
+        "blackbuck",
+        "emmvee",
+        "genxai",
+        "mbel",
+        "shriahimsa",
+        "teamtech",
+        "unimech"
+      ],
+      "unchangedOtherRecords": 1359,
+      "metadataPreserved": true,
+      "strictErrors": 0,
+      "reviewCount": 1624,
+      "exactDiff": "UNACCEPTED-seven-record-exact-diff.json",
+      "exactDiffSha256": "4ed7f3e48b349d9f418be294f606d5b058ff15dab39b74411ab15833712beedb"
+    }
+  },
+  "sources": {
+    "emmvee": {
+      "url": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+      "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+      "date": "2025-11-14",
+      "pageCount": 511,
+      "bytes": 11360516,
+      "pagesRead": 511,
+      "textSha256": "294f180e7910ddc09fe7729a3d30c1ed597673bc9bce55e166d09ef1fb51eacf",
+      "networkRequests": 0,
+      "newDownloads": 0,
+      "identityCheck": "runner.extract passed"
+    },
+    "teamtech": {
+      "url": "https://nsearchives.nseindia.com/emerge/corporates/content/TeamtechFormworkSolutionsLimited_PROSP.pdf",
+      "sha256": "985909fbad119ffa02604f6fbb2895387a98d817a1fa8b486a7806ac18b537e8",
+      "date": "2026-05-22",
+      "pageCount": 372,
+      "bytes": 8669697,
+      "pagesRead": 372,
+      "textSha256": "7d89661142c20549eb85ac9361cb60d1acd21423cd7d41a5ccaf93488906229e",
+      "networkRequests": 0,
+      "newDownloads": 0,
+      "identityCheck": "runner.extract passed"
+    }
+  },
+  "retainedHolds": {
+    "blackbuck": {
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2024/1732249559904.pdf",
+      "registryPdfSha256": "0a6837d67b0d5b91c5ca9d9f6527c155fc28f9cad4e8654bba803b60c438007b",
+      "recoveredPdfSha256": "0a6837d67b0d5b91c5ca9d9f6527c155fc28f9cad4e8654bba803b60c438007b",
+      "verification": "exact bytes recovered and hash-checked; full source not re-reviewed in this reconstruction",
+      "scope": "document"
+    },
+    "genxai": {
+      "url": "https://nsearchives.nseindia.com/emerge/corporates/content/GenXAIAnalyticsLimited_PROSP.pdf",
+      "registryPdfSha256": "c810471e52810eaf6ffb7f023b359b82702c486694af19f086dac8b89c0163b0",
+      "recoveredPdfSha256": null,
+      "verification": "full PDF unavailable here; preserving existing reviewed hold, not claiming new source acceptance",
+      "scope": "document"
+    },
+    "mbel": {
+      "url": "https://nsearchives.nseindia.com/corporate/FP_INE08N601015_04AUG2025.pdf",
+      "registryPdfSha256": "e20a311a4d4473a5ee93a683023f831e009a6910524a9044f48d367acf513219",
+      "recoveredPdfSha256": "e20a311a4d4473a5ee93a683023f831e009a6910524a9044f48d367acf513219",
+      "verification": "exact bytes recovered and hash-checked; full source not re-reviewed in this reconstruction",
+      "scope": "document"
+    },
+    "shriahimsa": {
+      "url": "https://nsearchives.nseindia.com/emerge/corporates/content/ShriAhimsaNaturalsLimited_PROSP.pdf",
+      "registryPdfSha256": "eb9fd3588990048a03f5c8602406a45020bebe158f6aa566fd4c028d746177b0",
+      "recoveredPdfSha256": null,
+      "verification": "full PDF unavailable here; preserving existing reviewed hold, not claiming new source acceptance",
+      "scope": "document"
+    },
+    "unimech": {
+      "url": "https://nsearchives.nseindia.com/corporate/FP_INE0U3I01011_30DEC2024.pdf",
+      "registryPdfSha256": "b10afca3e64e8731dd4c4660a99ec720c8f0ec4fa4eb0b524ab441717977cfd3",
+      "recoveredPdfSha256": "b10afca3e64e8731dd4c4660a99ec720c8f0ec4fa4eb0b524ab441717977cfd3",
+      "verification": "exact bytes recovered and hash-checked; full source not re-reviewed in this reconstruction",
+      "scope": "value"
+    }
+  },
+  "emmveeComposition": {
+    "sourceCheck": "passed",
+    "publication": "blocked pending separately frozen current code, base and targeted transport",
+    "expected": {
+      "freshShares": 98795483,
+      "ofsShares": 34845069,
+      "freshIssueCr": 2143.862,
+      "ofsCr": 756.138,
+      "totalIssueSizeCr": 2900.0,
+      "valuationPriceUsed": 217.0
+    },
+    "physicalPagesVisuallyReviewed": [
+      3,
+      11,
+      21,
+      117
+    ],
+    "printedPageMapping": {
+      "3": "unnumbered cover",
+      "11": 6,
+      "21": 16,
+      "117": 112
+    },
+    "context": "Both named OFS sellers on cover; aggregate definition p11; full offer-size table p21; fresh gross/net and allocations p117; deployment text p118.",
+    "basisOfAllotmentFootnote": "Final Prospectus amounts marked subject to finalisation of Basis of Allotment; exact source wording retained, no later allotment outcome claimed.",
+    "preservedObjectsCr": [
+      1621.294,
+      438.711
+    ],
+    "completeObjectsProofPreserved": true,
+    "wholeDocumentMetadata": "Preserved unchanged; new parser-33 provenance is field-specific for the four composition fields."
+  },
+  "teamtechAllocations": {
+    "sourceCheck": "blocked",
+    "structuralCheck": "passed, insufficient for source acceptance",
+    "currentPolicyDisposition": "held by current document-scoped policy; raw four-row parse remains UNACCEPTED",
+    "expectedRows": [
+      {
+        "purpose": "Funding of Capital Expenditure towards purchase of Plant and Machineries for new manufacturing unit",
+        "amountCr": 11.9235
+      },
+      {
+        "purpose": "Repayment/prepayment of all or certain of our borrowing availed by your company.",
+        "amountCr": 15.5
+      },
+      {
+        "purpose": "To meet the working capital requirements",
+        "amountCr": 13.7688
+      },
+      {
+        "purpose": "General Corporate Purpose*",
+        "amountCr": 4.2936
+      }
+    ],
+    "expectedTotalCr": 45.4859,
+    "physicalAndPrintedPages": [
+      22,
+      23,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92
+    ],
+    "conflict": "Physical/printed p89 MEANS OF FINANCE numeric heading Amount in Crores applies to Net Proceeds 4,548.59 and TOTAL 4,548.59; pp22-23/87 state the same budget in lakhs (45.4859 crore).",
+    "secondaryDiscrepancy": "p90 quotation footnote 1,192.36 lakh differs from itemized and printed subtotal 1,192.35 lakh on pp91-92; no partial-spend reconciliation found.",
+    "notAnAcceptedCorrection": "The four-row candidate remains diagnostic. No inferred unit typo, adjusted amount, or purpose rewrite resolves the source contradiction."
+  },
+  "blockingRequirements": [
+    "Authoritative reconciliation or explicit supersession of Teamtech's source-unit contradiction; retain a document-scoped hold meanwhile.",
+    "Refreeze actual current main base, combined code commit/tree and complete publication transport after the independent source guard and public-hold releases.",
+    "Do not publish the broad automatic repair preview: its scope is not this seven-record proposal.",
+    "Original proposal and transport unavailable; any accepted replacement must retain a distinct new lineage and exact scope.",
+    "P4 correctness gate remains blocked; no P5 or performance expansion is enabled by these structural checks."
+  ],
+  "observedCodeFiles": {
+    ".github/workflows/audit-p4-residuals.yml": "54e30e34d0d1958cf6dba1826edfc5a627fff498522de65c41db40924e834278",
+    ".github/workflows/frontend.yml": "a0b428042a7273911d083d14aa05f99481a774d093052a7fe2411616b41b7eec",
+    ".github/workflows/probe-p2-sebi-backfill.yml": "5a607ce1b76f5b8d124e9b97bc5fa46409ed549a597d0043e46ce6daba405d8b",
+    ".github/workflows/probe-p4-bse-modern.yml": "f32f5c42d9175cf88093d4a2321cce27a07040671786d29106328d58cda407a9",
+    ".github/workflows/probe-p4-nse-matching.yml": "a9bfb8d3394c7f8d2572bc008b68af05f76c10b26eaca1a55dd5001a3178e253",
+    ".github/workflows/probe-phase45a-bse-isd.yml": "dc4b2401cbd47519d7db0815f3531e45c74260f05cf88ff30f28fb10921b8f9b",
+    ".github/workflows/probe-phase45b-offer-layouts.yml": "ffdc3f60880527d69d079bd046557bd594ebb334f1baf712ca0622a7f0858dc8",
+    ".github/workflows/public-release.yml": "6652ad8710915bfb98352b718a9a79cd5d0472547fd455a771dd2c0f5b0dc9d1",
+    ".github/workflows/refresh.yml": "ef8b8d23d7bc7eb03bc772131d06d7a2c767aaca488d9606cbf2125d8a4bca51",
+    ".github/workflows/source-review.yml": "31e29ed1909661bb921dc7f0ad76a24f344bf780f4ca41b5b9c10ed612db3802",
+    ".github/workflows/test-phase45a.yml": "52c79438e286a2694418be68e6e276afa52dd2c0185361f09bac9de5db223568",
+    ".github/workflows/validate.yml": "d6b531cc8d5139694873cbe5b3c8482676e2d6ebcbd2befbc8b1bec8ee6decc9",
+    "data/public_display_holds.json": "e0ccc9b414585e1076acfe538d0fd92ff5b15159ccaa5261d847f95af76db628",
+    "data/verified_corrections.json": "14bb49fa3069d8adf31231cf8e0c09eb9d431cf4e0c21133f3d31bf41fdc7636",
+    "pyproject.toml": "c7adc2c4111bfaf389402c2ed20e6ce0c6956e60a5b430a7c175e00276d7eca3",
+    "scripts/apply_corrections.py": "1097c39b112087ee990be79a81d65324b3b80d33da2d41923cdbce3aaaf230ac",
+    "scripts/apply_p4_record_repairs.py": "37ec84d3c2ad575074d681502c08c24521a73d4f25d2ce4f74c689c412e12c17",
+    "scripts/apply_p4_record_repairs_v2.py": "204110c68d8d746c56a7bbcd65261ccb7c777dfc7eca3fb05e2bcb705329b699",
+    "scripts/apply_verified_filing_offer_fields.py": "6260dfcb39a457325b59ff2193740f4788cb0b0cb0c0a1237c8300a21c8b2782",
+    "scripts/apply_verified_lot_sizes.py": "3bbfee629fc0d1465948543011d31a22945fc504cdd9b8e4b2d71f650c895c36",
+    "scripts/apply_verified_offer_residuals_v2.py": "886289dda63f650d50d2c374b1765dec2ee77e894b4fd0d5e22488736c1d8871",
+    "scripts/apply_verified_p4_final_composition.py": "e37d8f4e0ca99a48da42c0df35da717e77222c801b74ca53b56de19dc6ef5ee9",
+    "scripts/apply_verified_p4_final_issue_terms.py": "5f172ef361a281dabc076929adfa408541c25d54731df855b3d60771ac430a0f",
+    "scripts/apply_verified_p4_nse_issue_terms.py": "c1668c0d523e207a849d05ab03a14b025057617e5905eded930fc501d0faef8d",
+    "scripts/apply_verified_p4_nse_issue_terms_v2.py": "7187df69562d7142d8ea5f0f2e39da95c8b069b11547cf9d15d67df8e02a5a23",
+    "scripts/apply_verified_p4_nse_issue_terms_v3.py": "6f0a5e83f6529a148bc100bd547b92d670047ca230eb8a68dd16bd951baa321c",
+    "scripts/apply_verified_p4_official_issue_terms.py": "bcb451594f970f9cbd046648b3677220316654703951615304dda3cf0aa74c42",
+    "scripts/apply_verified_p4_official_issue_terms_v2.py": "397192be0f0c5fd06241f7e322bbaf69c4ba7e83f94fe234246952557597f81a",
+    "scripts/apply_verified_recent_issue_terms.py": "e440df2ffa3139095c35eeda71db7e1dae3ebf36402d2e6fcdc53e6b19217d4c",
+    "scripts/apply_verified_recent_offer_fields.py": "df09e0b24b929c8113754cb0c185308792a4340afacd8ff5f0a68d70b4afa9d5",
+    "scripts/audit_data_completeness.py": "82946e602c8ea415d993a5cf32436c83138b3644b490b5c677c3bfbbf9549410",
+    "scripts/audit_p4_residuals.py": "bbb54e0cbb270fba409dc1f42cadf59bf18185d714d928d754d0f7bdfdd92d73",
+    "scripts/backfill_bse_history.py": "5465be4f78adec4449ca2b41822ba930f5791095ddf8f7fc6b3a61e0f8394ef3",
+    "scripts/backfill_bse_history_v2.py": "bb715fe592da55f2207ad3b97839c358988d83b87b7b95dec6eb13b726106cea",
+    "scripts/backfill_p4_lot_sizes.py": "60a4324ff64a64b46ec5d15259c35591dac762cfafc9c9486b9f74e703517e3c",
+    "scripts/backfill_recent_nse_lot_sizes.py": "ba5912ecfd3dc83061b2bdcd0abdacbfda18527fc42e10d69e26da5a12002314",
+    "scripts/backfill_recent_sebi_other_docs_lot_sizes.py": "2faa7baf673435e5f3b603633257eedfd8188a0288c523ebe7ec1a53235ef949",
+    "scripts/build_company_pages.py": "a2a07ad1db32a80ba120567a879842cc5de0ff30d5f6d792f991d79041cef04c",
+    "scripts/build_missing_queue.py": "00d0a9615963e323558c0553aacba39ebf44462047e70775c76d2cac43cabe03",
+    "scripts/build_performance_summary.py": "376156ca56508230434f1e45f5caf297559c9a3d3830c5540ba80968a723b8f4",
+    "scripts/collect_final_issue_prices.py": "24a23f72af2dcbe9bdd756beaac6c892b1be1b9444cd0398ccb44a74f20dd0a7",
+    "scripts/collect_nse_offer_filings.py": "fce9ba84dde4fd353df10deb0d87dbfa9e6e0c11a0bafee2a996c0cea8bbc132",
+    "scripts/collect_nse_offer_filings_final_policy.py": "4a1df02a5c5cfdaa27bf7192055d9661e718bd93b8353b8e2924884e9f70ca7b",
+    "scripts/collect_price_history.py": "a4a6cc94a9927b21351cc0f87103a915408f0f1a1dbdc78fe5b620403b98f4e5",
+    "scripts/critical_backfill.py": "424cb776692e066a3f5e85b61c649a8cbe9c96e9a873698362776aa249169b7c",
+    "scripts/enforce_final_prospectus_policy.py": "b50f17a8a666877fd953c3bcd0f6f50c1aff7ab5c2ae9762d6bb20aa0ad511e5",
+    "scripts/enrich_exchange_details.py": "9d6e79fab0ce74505a2750907fcc0ea13be2fe8d0f978070bdbebe50d939500b",
+    "scripts/enrich_exchange_details_v2.py": "42f2bdd1c0cf8049f70f3864bba1da2ca4e847b0ddeb3bceeb7aaf9ec6160e65",
+    "scripts/enrich_issuer_offer_docs.py": "542d81db666d2c0b5d33f6002ca0786eb5874766bc4baa9c7507adb32a978d5c",
+    "scripts/enrich_nse_issue_information.py": "09139f236c40875dffab7d89954ea603caf152b8a382d9d9479474ab8700f66f",
+    "scripts/enrich_nse_issue_terms.py": "512cd7043375e17a923ba6c6fbebb2107a4b598f4c6f6f8f95c7c9c9b93007fc",
+    "scripts/enrich_nse_primary_market_reports.py": "fbddca44f82f561c5f0fc1aaddecd2bcacf76aa0f12eb3eb1ace2ee1ffcb22eb",
+    "scripts/enrich_nse_primary_market_reports_v2.py": "6f86ff60ce48b2c6d588cc0a7e57c6dadb81f0bf44db9f52ad442bbc1d54bf29",
+    "scripts/enrich_nse_primary_market_reports_v3.py": "1b05e9bd7462c7c2dc18e8e1e2d98a79eef30fec9975576f5bd7508215d431f8",
+    "scripts/enrich_offer_docs.py": "d9d36b17f6a0c5051477ba4e2fbf77d4144b4906d223f846133c2b23a2709c81",
+    "scripts/enrich_recent_offer_terms.py": "b229adb2eda361c1a118281f42390d83944f40bb466b916d71aeceafb03e80dc",
+    "scripts/enrich_sebi_document_links.py": "735c8a04fbd7055533e5861daadaa8728570668d9a6645aad6fccf00bb4a567d",
+    "scripts/enrich_sebi_priority_registers.py": "d83ff92c7bfd85934beba19d5ca506a2b3a519cbeaed2e7b22d5a749f97630bf",
+    "scripts/enrich_sebi_priority_registers_v2.py": "6e41e753abe80f0807c217cabb89e7a032fa13b9962f100367379bacd7a47e87",
+    "scripts/final_prospectus_identity.py": "40f41fbe28363404484bc266091e63e6e50f7a7f954aefa22d0b82fb09fbd4ff",
+    "scripts/final_prospectus_parser.py": "503750e3c3d935af98037abd86f8ff647a46ca72d29db93b35944ab4bd2bafe0",
+    "scripts/final_prospectus_policy.py": "a9aecd75a638b0bd1a1562ca8f56e56e5fbfd58457ccd61f178bff2369ad8ffa",
+    "scripts/issue_composition_checks.py": "1aeaed38bc3df2ed8009c9bb0a08c249a37cb999fefc11b99dfffde11063f891",
+    "scripts/issuer_offer_registry.py": "87f2f80644c41428799f2a241070cc25575be114686e14331d37fa7dac1a5645",
+    "scripts/legacy_offer_parser.py": "fe0945a09b1d9f36ffe07c679fb1b8843746b1019910a9c02f4f21ea444a91ec",
+    "scripts/normalize_source_health.py": "12d1d7f076e828bd3816d26845902240f953a1ac1220099d9ccca9801f4c856c",
+    "scripts/objects_of_issue_checks.py": "1d0f1d5813a8dd93773769c41249ef891100c3482952c050aae6e1f919537f0f",
+    "scripts/offer_parser.py": "e8d2655ab28230bb9504f6f6896364e29ec2358fe3d37304556b24f7968f6574",
+    "scripts/p4_history_guard.py": "9edb0fa5cd3824395f511f5c286f3a6c5caf144050f503e9b8cd6f91f437ee32",
+    "scripts/p4_offer_layouts.py": "98f598bd608dad3a28e70635579fd509d9896f5c87ab2b0cf3dfbaa21c7d2352",
+    "scripts/p4_offer_parser.py": "5d65cdcb264f97a555b72407403b8d352de866a2bf7c0a65f56dc4572575a4ea",
+    "scripts/parser_loader.py": "e89e2f9f374327366208f14bdd294b5b58a38df9d1354278010ecbd36c577d12",
+    "scripts/performance_metrics.py": "4dfd7131b26673e21b72637561b7131c2989299e6d95e592cf4215ec5a721c1f",
+    "scripts/performance_tracking.py": "f1425a6ff7ff813b466d0f9b7f168e40c3cf910f2878f473316d3d4f298bb96e",
+    "scripts/phase_status.py": "e9d58c86af6f10bd247b7e98df55238b30762660453d3de9c989d37cefc978d5",
+    "scripts/priority_subscriptions.py": "e451f3035d9e6c3ce2865fa74cac2095c8e11e3198a37279a54690e9dfff149b",
+    "scripts/prune_p4_legacy_debt_symbols.py": "65b7c21e2f1b9b9be82b7ec5d92588b0ebf6bbd90400e4e61398f1943b3936e9",
+    "scripts/prune_p4_verified_non_ipo.py": "d6512827e9f8cdddd5b5fcecdc30cb15d954a6771087793434dc31b77e23777b",
+    "scripts/public_quality.py": "8119052398d7eeac1b993da65753e3f538993c1923d86de585d181c407078785",
+    "scripts/publication_mode.py": "c9431e712ab557c7e95d74c55d4b6e4014fc26a80a65c8b3e962d0dba0076763",
+    "scripts/publication_source_policy.py": "ff9b712c8931a424c6c287c1d86b37e3c729ac4d91aeb4c97dc5de764ad7cf9b",
+    "scripts/publish_transaction.py": "afecb83d6e4a10bbc820d632ed79687f8340f070caf9f484d3dce3e004169fb5",
+    "scripts/reconstruct_source_review.py": "8a239493546c719465e0a0e5e4192022f1e50638d0dbac68fbe45d179337bcd8",
+    "scripts/record_integrity.py": "e07abdf7262e3a48baf55d3b72e5839d6b37d357ca789c1260d7193c3a1d28d3",
+    "scripts/review_source_repairs.py": "9c8de4d3c9c389d225655988f84b6b729f908c027896f29c40e44ef4bab06ac8",
+    "scripts/run_critical_offer_backfill.py": "dc7858fbcf3663cb57182f33ae3334e5238d30ae056c40aa2a0d3f103c5f977f",
+    "scripts/run_issuer_offer_docs.py": "c1bf88adf5645de0794aae1ddc17d0e061f4a8babe5e8244df98208199af157b",
+    "scripts/run_offer_docs_v10.py": "2a28141b265d4e66bc7555c9e997bd1c987aef9c89a65ae77f9b745a5984fc99",
+    "scripts/run_offer_docs_v11.py": "7fdd1450c6f3dbd3afc6166ef20af13db4a6929c22cefd30aaa977fea34c8103",
+    "scripts/run_offer_docs_v12.py": "a2539cd64da006355853511d2d024f3f36890b0a5631ee7a90d8829e99df0995",
+    "scripts/run_offer_docs_v13.py": "d9d267e7422445a51b703cdf0be3672012cad06e98b4e9fc3f9da1545e777cfb",
+    "scripts/run_offer_docs_v14.py": "3fd5dd2268b6bf98c96884558190d49bad3b4f01f13424ddf0938e5a5989da28",
+    "scripts/run_offer_docs_v2.py": "12e4228b98470a882d6f4c0ab151b3d68710e3aafcb98ee07fa8828fb35096a4",
+    "scripts/run_offer_docs_v3.py": "373fd5fcfda1745b8d02bc1bf8e9b37e550b8922f69a11857077d51482b34418",
+    "scripts/run_offer_docs_v4.py": "77cc1eb4d00cc26cf385186acbd8c4d8b214a935c40ade526cc6e856a961e853",
+    "scripts/run_offer_docs_v5.py": "817be65ebf0e2645503d1906898bef734c8b050c82748762d99656aa39e25376",
+    "scripts/run_offer_docs_v6.py": "ec38fb58365177defb16305731c7a97dc5527019c5019c8d50529ac2f2aa077e",
+    "scripts/run_offer_docs_v7.py": "2c5485501653597453e3999e9e656a4daea8e35ed65329a76910770da569dd2b",
+    "scripts/run_offer_docs_v8.py": "a142f1b68552ea82955dc35a14db76cba731bd478cb9ecf76b99f5c0a9fbbed2",
+    "scripts/run_offer_docs_v9.py": "380cc17aec307be8080df155561c2aff25fc334fbf01914e2377654d700b5eba",
+    "scripts/run_offer_documents.py": "34dba5b6a44e2359e8175f201b39bd3dd9454367f5aa4f4b2dbce45889999c31",
+    "scripts/run_p4_bse_issue_terms.py": "d56c6d0028f271b0e2b6f86f143c5d47ed314aced0b7827b0d10a3bab11f4b1c",
+    "scripts/run_p4_offer_residuals.py": "2ea40719a5ae1c79e4f17ac8305e5901d8e51853257abd87e8f22169204f940f",
+    "scripts/run_p4_official_issue_terms.py": "e79b1e42345ee56a9d9e9f815f5bae7f982915c502c2d3bba92edb1c43930871",
+    "scripts/run_pipeline.py": "46120901fdfc487fd7d14f4363ea7892803f48491898ce49dadc9f287589d839",
+    "scripts/run_priority_subscriptions_v2.py": "917ae4e0c7761c2753fc49b1e9e734a77471e6eac8982ea4f39174dfdb847509",
+    "scripts/run_priority_subscriptions_v3.py": "cc590cb1364c7d5672691971b93af7a283b122969fee0f63b6774dc04072debc",
+    "scripts/run_update.py": "f37f8b0f59f0590eb49671bc99402775a058935a57e4b265eff3748ef9b2897a",
+    "scripts/run_update_final_policy.py": "5a2bd1c4246fcf0a03fe245707e91aa861aa69334b50c15bdc587e670b90858d",
+    "scripts/run_update_v2.py": "fad899c43ccb0aadb66e4c427a6e300775941cb00f6bce5c371045727b5f2b59",
+    "scripts/source_review_queue.py": "d0bad85247db010a4db7a77b0b10938406fa31d78a01a69e9685290e3839a895",
+    "scripts/track_subscriptions.py": "6c035f658df7cf157d3eff67494bd7c5c11139fa9b59eb081e68839d2b6af354",
+    "scripts/update_data.py": "83bfa877fbaae5c9395369ae27119a6f35e7f51881532463b050c64d6bfd4dc8",
+    "scripts/validate_data.py": "097ae195cd234ec2c455be37f7cba774e38d0e5a1d510e98d7c24552f30b255b",
+    "uv.lock": "cb8f0a5f4f0e92c449d67b81309364744fc83a000eaef965e0bbc274a0607a5d"
+  },
+  "checks": [
+    {
+      "name": "Exact observed code commit; never substitute an equal-tree remote commit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Pinned base is an ancestor of the actual reviewed code",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Tracked code and data are unmodified",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Current canonical payload exactly matches the recorded main base",
+      "passed": true,
+      "detail": "29e2c170165e9dad215f786b1805fb8e18680dd43b219a59c29a5954a4160e5c"
+    },
+    {
+      "name": "Exact explicitly pinned correction registry",
+      "passed": true,
+      "detail": "14bb49fa3069d8adf31231cf8e0c09eb9d431cf4e0c21133f3d31bf41fdc7636"
+    },
+    {
+      "name": "Immutable reviewed parser/structural-check file: scripts/final_prospectus_parser.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Immutable reviewed parser/structural-check file: scripts/offer_parser.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Immutable reviewed parser/structural-check file: scripts/p4_offer_parser.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Immutable reviewed parser/structural-check file: scripts/objects_of_issue_checks.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Immutable reviewed parser/structural-check file: scripts/issue_composition_checks.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Current producer is parser 33",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Exact unique base record count",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Recovered retained-hold PDF hash: blackbuck",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Recovered retained-hold PDF hash: mbel",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Recovered retained-hold PDF hash: unimech",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Exact source PDF hash: emmvee",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Exact Final Prospectus link: emmvee",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No contradictory linked PDF hash: emmvee",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Exact Final Prospectus reporting date: emmvee",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No network calls: emmvee",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "One actual complete-PDF extraction: emmvee",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Full source pages consumed by current parser: emmvee",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Ordered complete physical-page markers: emmvee",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Exact source PDF hash: teamtech",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Exact Final Prospectus link: teamtech",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No contradictory linked PDF hash: teamtech",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Exact Final Prospectus reporting date: teamtech",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No network calls: teamtech",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "One actual complete-PDF extraction: teamtech",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Full source pages consumed by current parser: teamtech",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Ordered complete physical-page markers: teamtech",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Source-confirmed full Emmvee composition",
+      "passed": true,
+      "detail": {
+        "freshShares": 98795483,
+        "ofsShares": 34845069,
+        "freshIssueCr": 2143.862,
+        "ofsCr": 756.138,
+        "totalIssueSizeCr": 2900.0,
+        "valuationPriceUsed": 217.0
+      }
+    },
+    {
+      "name": "Exact claimed-page composition source text: totalShares",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Exact claimed-page composition source text: totalIssueSizeCr",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Exact claimed-page composition source text: freshShares",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Exact claimed-page composition source text: freshIssueCr",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Exact claimed-page composition source text: ofsShares",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Exact claimed-page composition source text: ofsCr",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Exact claimed-page composition source text: valuationPriceUsed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Both named seller clauses, amounts and summation basis retained: ofsShares",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Both named seller clauses, amounts and summation basis retained: ofsCr",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Independent physical page 11 aggregate corroboration",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Exactly four Emmvee correction events",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Emmvee composition consistency",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Emmvee allocations and complete allocation proof preserved exactly",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Source-bound field proof: issueComposition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Source-bound field proof: issueSizeCr",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Source-bound field proof: freshIssueCr",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Source-bound field proof: ofsCr",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "All unrelated Emmvee fields and whole-document metadata preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "All unrelated Emmvee field proofs preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Complete prior Emmvee correction history preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Existing registry applies exact six retained-value holds",
+      "passed": true,
+      "detail": {
+        "applied": 6,
+        "conflicts": []
+      }
+    },
+    {
+      "name": "Teamtech parser retains exact four table-purpose strings and amounts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Teamtech structural table check only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Current document-scoped policy blocks same-document Teamtech restoration",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Continuing hold preserves exact value, source proof and pending state: blackbuck",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Prior correction history retained: blackbuck",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Continuing hold preserves exact value, source proof and pending state: genxai",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Prior correction history retained: genxai",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Continuing hold preserves exact value, source proof and pending state: mbel",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Prior correction history retained: mbel",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Continuing hold preserves exact value, source proof and pending state: shriahimsa",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Prior correction history retained: shriahimsa",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Continuing hold preserves exact value, source proof and pending state: teamtech",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Prior correction history retained: teamtech",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Continuing hold preserves exact value, source proof and pending state: unimech",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Prior correction history retained: unimech",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Exact record scope: SOURCE_CHECK_PASSED-emmvee-only-ipos.json",
+      "passed": true,
+      "detail": [
+        "emmvee"
+      ]
+    },
+    {
+      "name": "All payload metadata preserved: SOURCE_CHECK_PASSED-emmvee-only-ipos.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Strict whole-payload validation: SOURCE_CHECK_PASSED-emmvee-only-ipos.json",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "New lineage is not relabeled as missing original: SOURCE_CHECK_PASSED-emmvee-only-ipos.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Exact record scope: UNACCEPTED-seven-record-ipos.json",
+      "passed": true,
+      "detail": [
+        "blackbuck",
+        "emmvee",
+        "genxai",
+        "mbel",
+        "shriahimsa",
+        "teamtech",
+        "unimech"
+      ]
+    },
+    {
+      "name": "All payload metadata preserved: UNACCEPTED-seven-record-ipos.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Strict whole-payload validation: UNACCEPTED-seven-record-ipos.json",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "name": "New lineage is not relabeled as missing original: UNACCEPTED-seven-record-ipos.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Input canonical payload and review registry were not modified",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Observed code and policy files were not modified",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No tracked checkout changes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Reconstruction helper bytes unchanged during execution",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "actions": {
+    "canonicalWrites": false,
+    "codeEdits": false,
+    "networkRequests": 0,
+    "workflowDispatches": false,
+    "commits": false,
+    "publication": false
+  }
+}

@@ -297,7 +297,7 @@ class ObjectsTableParserTests(unittest.TestCase):
         self.assertEqual(parser.merge_parsed(source, supplement)["fieldEvidence"], source["fieldEvidence"])
 
     def test_residual_version_advances_for_existing_record_retries(self):
-        self.assertEqual(parser.PARSER_VERSION, 4)
+        self.assertEqual(parser.PARSER_VERSION, 5)
 
 
 if __name__ == "__main__":

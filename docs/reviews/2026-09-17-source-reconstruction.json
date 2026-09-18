@@ -1,0 +1,296 @@
+{
+  "schemaVersion": 1,
+  "status": "UNACCEPTED",
+  "publicationAllowed": false,
+  "reviewedAt": "2026-09-17T23:44:25.717897+00:00",
+  "newLineage": true,
+  "originalProposalRecovered": false,
+  "originalProposalSha256": "5516b3ad6ba4345abc25d7a9b2771eb5c3b32f00e9163f30167da9d6b80cf6f6",
+  "originalProposalAssessment": "Missing immutable working artifact; this reconstruction does not invalidate or recreate its identity.",
+  "baseCommit": "2e0e8541f92608ca71ab76a14232f6626ca43050",
+  "basePayloadSha256": "29e2c170165e9dad215f786b1805fb8e18680dd43b219a59c29a5954a4160e5c",
+  "observedCodeCommit": "d8eed0555ff1480476a6d48347eec8e3e39b3f28",
+  "observedCodeTree": "8a6375f1df9f336f1b09716928d28693bd6c3bd4",
+  "codeCommitLocalOnly": true,
+  "registrySha256": "0e151d73d64b85bd598b9c83e5c12ee2a27376cf35cb0db901a94c2422d72cb4",
+  "parserVersion": 33,
+  "recordCount": 1366,
+  "outputs": {
+    "SOURCE_CHECK_PASSED-emmvee-only-ipos.json": {
+      "sha256": "00b6c5c6a2ed427127cd39dbde4c7f2cc766bb41eb3597752fdb1146631dfce6",
+      "changedIds": [
+        "emmvee"
+      ],
+      "unchangedOtherRecords": 1365,
+      "metadataPreserved": true,
+      "strictErrors": 0,
+      "reviewCount": 1618,
+      "exactDiff": "SOURCE_CHECK_PASSED-emmvee-only-exact-diff.json",
+      "exactDiffSha256": "bba0a9a6906f6d65da9b1cc6139574bd87d1eb51f7a5b8fec63e45989f1086d6"
+    },
+    "UNACCEPTED-seven-record-ipos.json": {
+      "sha256": "9486eb77906508b7224e596e9efa6de7942794d5b3f4e6264675e6415d59d687",
+      "changedIds": [
+        "blackbuck",
+        "emmvee",
+        "genxai",
+        "mbel",
+        "shriahimsa",
+        "teamtech",
+        "unimech"
+      ],
+      "unchangedOtherRecords": 1359,
+      "metadataPreserved": true,
+      "strictErrors": 0,
+      "reviewCount": 1623,
+      "exactDiff": "UNACCEPTED-seven-record-exact-diff.json",
+      "exactDiffSha256": "6bb8fb4c8add010ef0690121ac8ea3b99ac221a5bc85781720040c52b9a608cc"
+    }
+  },
+  "sources": {
+    "emmvee": {
+      "url": "https://nsearchives.nseindia.com/corporate/FP_INE1C6T01020_14NOV2025.pdf",
+      "sha256": "85eb9319dc01027821813c71d3702164911442a14547ad72cc04270ea6612eda",
+      "date": "2025-11-14",
+      "pageCount": 511,
+      "bytes": 11360516,
+      "pagesRead": 511,
+      "textSha256": "294f180e7910ddc09fe7729a3d30c1ed597673bc9bce55e166d09ef1fb51eacf",
+      "networkRequests": 0,
+      "newDownloads": 0,
+      "identityCheck": "runner.extract passed"
+    },
+    "teamtech": {
+      "url": "https://nsearchives.nseindia.com/emerge/corporates/content/TeamtechFormworkSolutionsLimited_PROSP.pdf",
+      "sha256": "985909fbad119ffa02604f6fbb2895387a98d817a1fa8b486a7806ac18b537e8",
+      "date": "2026-05-22",
+      "pageCount": 372,
+      "bytes": 8669697,
+      "pagesRead": 372,
+      "textSha256": "7d89661142c20549eb85ac9361cb60d1acd21423cd7d41a5ccaf93488906229e",
+      "networkRequests": 0,
+      "newDownloads": 0,
+      "identityCheck": "runner.extract passed"
+    }
+  },
+  "retainedHolds": {
+    "blackbuck": {
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2024/1732249559904.pdf",
+      "registryPdfSha256": "0a6837d67b0d5b91c5ca9d9f6527c155fc28f9cad4e8654bba803b60c438007b",
+      "recoveredPdfSha256": "0a6837d67b0d5b91c5ca9d9f6527c155fc28f9cad4e8654bba803b60c438007b",
+      "verification": "exact bytes recovered and hash-checked; full source not re-reviewed in this reconstruction",
+      "scope": "document"
+    },
+    "genxai": {
+      "url": "https://nsearchives.nseindia.com/emerge/corporates/content/GenXAIAnalyticsLimited_PROSP.pdf",
+      "registryPdfSha256": "c810471e52810eaf6ffb7f023b359b82702c486694af19f086dac8b89c0163b0",
+      "recoveredPdfSha256": null,
+      "verification": "full PDF unavailable here; preserving existing reviewed hold, not claiming new source acceptance",
+      "scope": "document"
+    },
+    "mbel": {
+      "url": "https://nsearchives.nseindia.com/corporate/FP_INE08N601015_04AUG2025.pdf",
+      "registryPdfSha256": "e20a311a4d4473a5ee93a683023f831e009a6910524a9044f48d367acf513219",
+      "recoveredPdfSha256": "e20a311a4d4473a5ee93a683023f831e009a6910524a9044f48d367acf513219",
+      "verification": "exact bytes recovered and hash-checked; full source not re-reviewed in this reconstruction",
+      "scope": "document"
+    },
+    "shriahimsa": {
+      "url": "https://nsearchives.nseindia.com/emerge/corporates/content/ShriAhimsaNaturalsLimited_PROSP.pdf",
+      "registryPdfSha256": "eb9fd3588990048a03f5c8602406a45020bebe158f6aa566fd4c028d746177b0",
+      "recoveredPdfSha256": null,
+      "verification": "full PDF unavailable here; preserving existing reviewed hold, not claiming new source acceptance",
+      "scope": "document"
+    },
+    "unimech": {
+      "url": "https://nsearchives.nseindia.com/corporate/FP_INE0U3I01011_30DEC2024.pdf",
+      "registryPdfSha256": "b10afca3e64e8731dd4c4660a99ec720c8f0ec4fa4eb0b524ab441717977cfd3",
+      "recoveredPdfSha256": "b10afca3e64e8731dd4c4660a99ec720c8f0ec4fa4eb0b524ab441717977cfd3",
+      "verification": "exact bytes recovered and hash-checked; full source not re-reviewed in this reconstruction",
+      "scope": "value"
+    }
+  },
+  "emmveeComposition": {
+    "sourceCheck": "passed",
+    "publication": "blocked pending separately frozen current code, base and targeted transport",
+    "expected": {
+      "freshShares": 98795483,
+      "ofsShares": 34845069,
+      "freshIssueCr": 2143.862,
+      "ofsCr": 756.138,
+      "totalIssueSizeCr": 2900.0,
+      "valuationPriceUsed": 217.0
+    },
+    "physicalPagesVisuallyReviewed": [
+      3,
+      11,
+      21,
+      117
+    ],
+    "printedPageMapping": {
+      "3": "unnumbered cover",
+      "11": 6,
+      "21": 16,
+      "117": 112
+    },
+    "context": "Both named OFS sellers on cover; aggregate definition p11; full offer-size table p21; fresh gross/net and allocations p117; deployment text p118.",
+    "basisOfAllotmentFootnote": "Final Prospectus amounts marked subject to finalisation of Basis of Allotment; exact source wording retained, no later allotment outcome claimed.",
+    "preservedObjectsCr": [
+      1621.294,
+      438.711
+    ],
+    "completeObjectsProofPreserved": true,
+    "wholeDocumentMetadata": "Preserved unchanged; new parser-33 provenance is field-specific for the four composition fields."
+  },
+  "teamtechAllocations": {
+    "sourceCheck": "blocked",
+    "structuralCheck": "passed, insufficient for source acceptance",
+    "expectedRows": [
+      {
+        "purpose": "Funding of Capital Expenditure towards purchase of Plant and Machineries for new manufacturing unit",
+        "amountCr": 11.9235
+      },
+      {
+        "purpose": "Repayment/prepayment of all or certain of our borrowing availed by your company.",
+        "amountCr": 15.5
+      },
+      {
+        "purpose": "To meet the working capital requirements",
+        "amountCr": 13.7688
+      },
+      {
+        "purpose": "General Corporate Purpose*",
+        "amountCr": 4.2936
+      }
+    ],
+    "expectedTotalCr": 45.4859,
+    "physicalAndPrintedPages": [
+      22,
+      23,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92
+    ],
+    "conflict": "Physical/printed p89 MEANS OF FINANCE numeric heading Amount in Crores applies to Net Proceeds 4,548.59 and TOTAL 4,548.59; pp22-23/87 state the same budget in lakhs (45.4859 crore).",
+    "secondaryDiscrepancy": "p90 quotation footnote 1,192.36 lakh differs from itemized and printed subtotal 1,192.35 lakh on pp91-92; no partial-spend reconciliation found.",
+    "notAnAcceptedCorrection": "The four-row candidate remains diagnostic. No inferred unit typo, adjusted amount, or purpose rewrite resolves the source contradiction."
+  },
+  "blockingRequirements": [
+    "Authoritative reconciliation or explicit supersession of Teamtech's source-unit contradiction; retain a document-scoped hold meanwhile.",
+    "Refreeze actual current main base, combined code commit/tree and complete publication transport after the independent source guard and public-hold releases.",
+    "Do not publish the broad automatic repair preview: its scope is not this seven-record proposal.",
+    "Original proposal and transport unavailable; any accepted replacement must retain a distinct new lineage and exact scope.",
+    "P4 correctness gate remains blocked; no P5 or performance expansion is enabled by these structural checks."
+  ],
+  "actions": {
+    "canonicalWrites": false,
+    "codeEdits": false,
+    "networkRequests": 0,
+    "workflowDispatches": false,
+    "commits": false,
+    "publication": false
+  },
+  "observedCodeCommitNote": "The observed combined commit was local when reviewed. Its identity must remain exact; an equal-tree remote commit is not the same acceptance code commit.",
+  "sourceContext": {
+    "teamtechReviewTimestamp": "2026-09-17T23:37:16+00:00",
+    "teamtechContradictions": [
+      {
+        "severity": "blocking for no-source-contradiction acceptance",
+        "physicalPage": 89,
+        "section": "MEANS OF FINANCE",
+        "header": "Amount in Crores",
+        "rows": [
+          "Net Proceeds 4,548.59",
+          "TOTAL 4,548.59"
+        ],
+        "scope": "Exact same net-proceeds financing budget as the repeated tables on22-23,87-88. Header visually attached to numeric column, not detached section prose.",
+        "conflict": "Literal p89 amount is4548.59crore; repeated source/lakh reconciliation gives45.4859crore. Factor100 source conflict.",
+        "assessment": "Strong internal evidence suggests a header error, but that is an inference and does not remove the source contradiction."
+      },
+      {
+        "severity": "secondary supporting-project inconsistency",
+        "physicalPages": [
+          90,
+          91,
+          92
+        ],
+        "p90": "Footnote states quotations aggregating to Rs1,192.36lakhs within Rs1,300.00lakhs machinery budget.",
+        "p91p92": "Seven quote items total and printed subtotal areRs1,192.35lakhs.",
+        "componentsLakhs": [
+          "278.24",
+          "94.40",
+          "212.40",
+          "47.79",
+          "197.26",
+          "289.10",
+          "73.16"
+        ],
+        "componentSumLakhs": "1192.35",
+        "differenceLakhs": "0.01",
+        "differenceRupees": "1000",
+        "assessment": "Quotation subtotal, not a separate explicit net-allocation amount. No source evidence of prior/partial spending explains the difference; p93 says orders have not been placed."
+      },
+      {
+        "severity": "purpose wording variation",
+        "physicalPages": [
+          23,
+          87,
+          88,
+          89,
+          100
+        ],
+        "assessment": "Allocation tables23/87 say new manufacturing unit; deployment88 and detailed heading89 say expansion of existing manufacturing unit. Detailed89 describes purchasing machinery for new Kondapur facility while expanding company manufacturing capacity. Preserve exact accepted table wording; do not silently rewrite."
+      },
+      {
+        "severity": "secondary prose enumeration omission",
+        "physicalPage": 287,
+        "assessment": "Two regulatory-confirmation prose passages enumerate net-proceeds uses as working capital, bank repayment and GCP, omitting the capex allocation shown in tables23/87/88 and monitoring-heads100. These are incomplete prose lists, not competing numeric allocation tables; retain as source-context limitation."
+      }
+    ],
+    "teamtechVisualPages": [
+      87,
+      88,
+      89,
+      90,
+      91,
+      92
+    ],
+    "teamtechTextContext": "cover1; summary22-23; Objects of Issue87-100; targeted cross-reference checks41,44,45,286,287",
+    "fullAdapterVerification": "The frozen uv environment subsequently ran the real runner.extract identity check and production final-prospectus adapter over all 372 Teamtech and 511 Emmvee pages. Earlier standalone reviewer dependency limits do not limit this later execution.",
+    "sourceAcquisition": "Previously recovered exact PDF bytes; no new downloads. This review timestamp is not a new source publication or observation date."
+  },
+  "verification": {
+    "technicalChecks": 72,
+    "allTechnicalChecksPassed": true,
+    "scope": "Offline source reconstruction and strict full-payload validation, not new unit/browser/deployment verification",
+    "receiptFile": "source-acceptance-receipt.json",
+    "receiptSha256": "134bf7a14d30bc6da8269aaa4ae60046c772e586bb6c150612d25a68a471470c",
+    "codeManifestInFullReceipt": "observedCodeFiles",
+    "sourceAssertionsAndPolicyChecksInFullReceipt": "checks",
+    "deterministicReplay": "Passed: both payloads, exact diffs, full source texts, parser diagnostics, field proofs and full source-acceptance receipt reproduced byte-identically. Strict validation reports differed only in their actual generatedAt timestamps; both retained zero errors."
+  },
+  "reproduction": {
+    "script": "reconstruct_bounded_source_candidate.py",
+    "codeCommitRequired": "d8eed0555ff1480476a6d48347eec8e3e39b3f28",
+    "recordedReviewTimestamp": "2026-09-17T23:44:25.717897+00:00",
+    "instructions": "2026-09-17-source-reconstruction.md",
+    "inputFilenames": [
+      "emmvee.pdf",
+      "teamtech.pdf",
+      "unimech.pdf",
+      "blackbuck.pdf",
+      "mbel.pdf"
+    ],
+    "note": "No full Shriahimsa or GenXAI PDFs were recovered in this execution. Preserve those existing registry holds; do not assert fresh full-source review.",
+    "historicalScript": "reconstruct_historical_d8_candidate.py",
+    "historicalScriptSha256": "f150e8d3328d4ed3d43f9bafd44ceec973dadc7ab6dc91d4e1aa05c6f3c6b334",
+    "scriptSha256": "8a239493546c719465e0a0e5e4192022f1e50638d0dbac68fbe45d179337bcd8",
+    "newRunInstruction": "The parameterized helper requires exact expected code/base commits and registry SHA-256. Each fresh full-source execution records the actual commit/tree as a new lineage; it never relabels the historical d8 receipt. Parser bytes remain pinned. Current document-scoped Teamtech holds are respected.",
+    "newScriptVerification": "Syntax checked only after parameterization; await newly frozen code/registry before new producer execution. Historical 72 checks and deterministic replay used the preserved historical script.",
+    "currentRepositoryScript": "scripts/reconstruct_source_review.py",
+    "historicalScriptNote": "The script and historicalScript entries identify the original local diagnostic execution. They are historical metadata, not durable repository paths. Use currentRepositoryScript with an actual clean, immutable current code commit for a new receipt; never relabel this historical receipt."
+  }
+}

@@ -1,0 +1,520 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-18 00:27:36 UTC",
+  "repository": "Vasuki8/IPO-Tracker",
+  "pullRequest": 112,
+  "expectedCommit": "0b3b35b62ad8426fd9689555613aff2e2c278e35",
+  "reviewedHead": "33382d9697601b4fe3b12b402dc634759bab39fa",
+  "verificationScope": "Read-only inspection of GitHub workflow metadata, completed job steps, actual job logs and public-release JSON receipts.",
+  "refresh": {
+    "id": 35291001582,
+    "name": "Collect and publish IPO data",
+    "head_sha": "0b3b35b62ad8426fd9689555613aff2e2c278e35",
+    "event": "push",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-09-18T00:23:43Z",
+    "updated_at": "2026-09-18T00:24:34Z",
+    "html_url": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35291001582",
+    "run_attempt": 1,
+    "jobs": [
+      {
+        "id": 105433658043,
+        "name": "collect",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 35291001582,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v7.0.1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run astral-sh/setup-uv@v10.1.0",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run uv python install 3.12",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Run uv sync --frozen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Resolve collection mode",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Install bounded PDF table extraction when needed",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Verify the collector",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Save collection baseline",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 9
+          },
+          {
+            "name": "Collect sources with explicit stage outcomes",
+            "status": "completed",
+            "conclusion": "skipped",
+            "number": 10
+          },
+          {
+            "name": "Repair recent P4 Final Prospectus residuals",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 11
+          },
+          {
+            "name": "Prepare collected snapshot",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 12
+          },
+          {
+            "name": "Run actions/upload-artifact@v4.6.2",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13
+          },
+          {
+            "name": "Post Run astral-sh/setup-uv@v10.1.0",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 25
+          },
+          {
+            "name": "Post Run actions/checkout@v7.0.1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 26
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 27
+          }
+        ]
+      },
+      {
+        "id": 105433714594,
+        "name": "publish",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 35291001582,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@v7.0.1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run astral-sh/setup-uv@v10.1.0",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run uv python install 3.12",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Run actions/download-artifact@v4.3.0",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Merge, validate, and publish from current main",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Request Pages rebuild after bot publication",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Post Run astral-sh/setup-uv@v10.1.0",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13
+          },
+          {
+            "name": "Post Run actions/checkout@v7.0.1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          }
+        ]
+      }
+    ],
+    "mode": "presentation",
+    "sourceCollection": {
+      "outcome": "skipped",
+      "evidence": "GitHub job step 'Collect sources with explicit stage outcomes' conclusion is skipped."
+    },
+    "residualCollection": {
+      "outcome": "skipped-inside-successful-step",
+      "evidence": "2026-09-18T00:24:12.2926330Z Skipping P4 Final Prospectus residual repair for presentation mode"
+    },
+    "logEvidence": [
+      "2026-09-18T00:24:08.7482630Z Collection mode: presentation",
+      "2026-09-18T00:24:08.7630288Z Skipping poppler-utils for presentation mode",
+      "2026-09-18T00:24:12.1928945Z Ran 991 tests in 2.039s"
+    ],
+    "publication": {
+      "jobId": 105433714594,
+      "mode": "presentation",
+      "generatedRoutes": 1366,
+      "writtenRoutes": 0,
+      "unchangedRoutes": 1366,
+      "dataRewrite": false,
+      "summaryWrite": false,
+      "acceptedChangesPublished": false,
+      "logEvidence": [
+        "2026-09-18T00:24:29.6533427Z Company routes: records=1366, routes=1366, written=0, unchanged=1366, removed=0, dataRewrite=no, summaryWrite=no, summaryBytes=1293692",
+        "2026-09-18T00:24:30.8476687Z No accepted data changes to publish"
+      ]
+    }
+  },
+  "postMergeValidation": {
+    "id": 35291001790,
+    "name": "Validate IPO changes",
+    "head_sha": "0b3b35b62ad8426fd9689555613aff2e2c278e35",
+    "event": "push",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-09-18T00:23:43Z",
+    "updated_at": "2026-09-18T00:24:07Z",
+    "html_url": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35291001790",
+    "run_attempt": 1,
+    "jobId": 105433601658,
+    "pythonTests": 991,
+    "logEvidence": [
+      "2026-09-18T00:23:58.0902583Z Ran 991 tests in 2.081s"
+    ]
+  },
+  "pages": [
+    {
+      "id": 35291000314,
+      "name": "pages build and deployment",
+      "head_sha": "0b3b35b62ad8426fd9689555613aff2e2c278e35",
+      "event": "dynamic",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-09-18T00:23:42Z",
+      "updated_at": "2026-09-18T00:24:08Z",
+      "html_url": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35291000314",
+      "run_attempt": 1
+    },
+    {
+      "id": 35291058960,
+      "name": "pages build and deployment",
+      "head_sha": "0b3b35b62ad8426fd9689555613aff2e2c278e35",
+      "event": "dynamic",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-09-18T00:24:31Z",
+      "updated_at": "2026-09-18T00:24:57Z",
+      "html_url": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35291058960",
+      "run_attempt": 1
+    }
+  ],
+  "liveAcceptance": {
+    "status": "passed",
+    "localRouteCount": 1366,
+    "liveHttpFileCount": 17,
+    "automaticRuns": [
+      {
+        "id": 35291034761,
+        "name": "Verify public release",
+        "head_sha": "0b3b35b62ad8426fd9689555613aff2e2c278e35",
+        "event": "workflow_run",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-09-18T00:24:09Z",
+        "updated_at": "2026-09-18T00:24:41Z",
+        "html_url": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35291034761",
+        "run_attempt": 1,
+        "jobId": 105433697646,
+        "triggeringPagesRunId": 35291000314,
+        "artifacts": [
+          {
+            "id": 10526305691,
+            "name": "public-release-35291034761-1",
+            "size_in_bytes": 1414,
+            "url": "https://api.github.com/repos/Vasuki8/IPO-Tracker/actions/artifacts/10526305691",
+            "archive_download_url": "https://api.github.com/repos/Vasuki8/IPO-Tracker/actions/artifacts/10526305691/zip",
+            "expired": false,
+            "created_at": "2026-09-18T00:24:38Z",
+            "expires_at": "2026-10-02T00:24:37Z",
+            "updated_at": "2026-09-18T00:24:38Z",
+            "digest": "sha256:85a04fe046b177a8e5bd1967e344291595cba8afc58a421265fd88530c65487a",
+            "workflow_run": {
+              "id": 35291034761,
+              "repository_id": 1366866944,
+              "head_repository_id": 1366866944,
+              "head_branch": "main",
+              "head_sha": "0b3b35b62ad8426fd9689555613aff2e2c278e35"
+            }
+          }
+        ]
+      },
+      {
+        "id": 35291091912,
+        "name": "Verify public release",
+        "head_sha": "0b3b35b62ad8426fd9689555613aff2e2c278e35",
+        "event": "workflow_run",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-09-18T00:24:59Z",
+        "updated_at": "2026-09-18T00:25:20Z",
+        "html_url": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35291091912",
+        "run_attempt": 1,
+        "jobId": 105433870516,
+        "triggeringPagesRunId": 35291058960,
+        "artifacts": [
+          {
+            "id": 10525799694,
+            "name": "public-release-35291091912-1",
+            "size_in_bytes": 1414,
+            "url": "https://api.github.com/repos/Vasuki8/IPO-Tracker/actions/artifacts/10525799694",
+            "archive_download_url": "https://api.github.com/repos/Vasuki8/IPO-Tracker/actions/artifacts/10525799694/zip",
+            "expired": false,
+            "created_at": "2026-09-18T00:25:16Z",
+            "expires_at": "2026-10-02T00:25:16Z",
+            "updated_at": "2026-09-18T00:25:16Z",
+            "digest": "sha256:41d525350d6b34dfbd5bce77a77fa581b00907f41c6b8abad1191416cabe740c",
+            "workflow_run": {
+              "id": 35291091912,
+              "repository_id": 1366866944,
+              "head_repository_id": 1366866944,
+              "head_branch": "main",
+              "head_sha": "0b3b35b62ad8426fd9689555613aff2e2c278e35"
+            }
+          }
+        ]
+      }
+    ],
+    "receiptsIdentical": true,
+    "receipt": {
+      "expectedCommit": "0b3b35b62ad8426fd9689555613aff2e2c278e35",
+      "status": "passed",
+      "scope": "public-artifact-consistency-not-source-accuracy",
+      "routeCount": 1366,
+      "sampledProfiles": [
+        "ipo/emmvee/",
+        "ipo/teamtech/",
+        "ipo/shakti-polytarp-limited/",
+        "ipo/kheriaauto/",
+        "ipo/vama-wovenfab-limited/",
+        "ipo/sona/",
+        "ipo/manika/"
+      ],
+      "expectedSha256": {
+        "index.html": "7bb7c13dc4c856b9bcb77138e9d9cdfb8934384688e97c27c5bd9d81aa6fec59",
+        "public-quality.js": "327e7561c91728abd22dbf7d948babbc7b78db3cc29b07355386602e1209d77c",
+        "public-quality.css": "988dee5e990116eff25b8746a77b0b618b23d5394f3b919d601cceaedd6d4467",
+        "app.js": "aad042ffd8cea3576b5abff34d8b0378e812ab7e4f368f73e162d427201167d3",
+        "company-page.js": "c965ddfd01ab122b196dc58797d299f724b2378092c7ff927c91ea14b132c610",
+        "company.js": "8fba803171c5fd0fb09b95844fc153eaeff159a3a55c92785ef3c9013e08435d",
+        "phase4.js": "d7c69047e184cf5f896a75e61c62150a462ed985deaf93fdd8c0015a212e388f",
+        "methodology.html": "fe6b152b67eeaf0d1b17d7a700e1819fc250256bc022b64c9735c7867d7c546c",
+        "data/ipos-summary.json": "d90275e0e39b9a7e7e06837ea4ed472994375f485e8490e4d98121c3b5148f0c",
+        "ipo/routes.json": "b35e39781f3868b755c56e02b827ee933fb17e1fec87412e482bcb773e13ddef",
+        "ipo/emmvee/index.html": "9bebc399bab6bf699d4d5cbb23c84aa704bc52160d1b7e833daed82905610aac",
+        "ipo/teamtech/index.html": "724722823686a49c9c8cdb6e6411d47ad5ebbff4d22dbc024143cbad3cc22e8d",
+        "ipo/shakti-polytarp-limited/index.html": "5bcdee8e16db777889de0ef4cb8a737c3b9e63e5e24825d78f03ef563ea20cc5",
+        "ipo/kheriaauto/index.html": "016bd885008a6fd554469135b06f9e22f9d567170b4a3735fa3cfe45eaa25a46",
+        "ipo/vama-wovenfab-limited/index.html": "ed84a83324dea32bf77c914902687b382b9d4d2841f7c4c9aa26dcbe2f70de70",
+        "ipo/sona/index.html": "19c40fbf4d9dafdb64edb0952c8c168e2943ec7d8f49108d43c09c13b2ca2e2c",
+        "ipo/manika/index.html": "d93ed249adccf3ff72675298747dcb0f294f95e5ebd31fc4d53499aa556d2c13"
+      },
+      "baseUrl": "https://vasuki8.github.io/IPO-Tracker/",
+      "httpChecked": [
+        "index.html",
+        "public-quality.js",
+        "public-quality.css",
+        "app.js",
+        "company-page.js",
+        "company.js",
+        "phase4.js",
+        "methodology.html",
+        "data/ipos-summary.json",
+        "ipo/routes.json",
+        "ipo/emmvee/index.html",
+        "ipo/teamtech/index.html",
+        "ipo/shakti-polytarp-limited/index.html",
+        "ipo/kheriaauto/index.html",
+        "ipo/vama-wovenfab-limited/index.html",
+        "ipo/sona/index.html",
+        "ipo/manika/index.html"
+      ]
+    },
+    "receiptSource": "Actual JSON printed by the successful Verify immutable public output job step; timestamps stripped before parsing.",
+    "limits": [
+      "The receipt checks public-artifact consistency, not source-value accuracy.",
+      "All 1366 routes are checked against the immutable repository projection; 17 files are fetched from the live site.",
+      "No manual workflow dispatch, cancellation, retry or GitHub write action was performed."
+    ]
+  },
+  "previousRefresh": {
+    "purpose": "Read-only verification of the cancelled PR #111 refresh; no remote actions or repository changes.",
+    "previousRun": {
+      "id": 35290243518,
+      "url": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35290243518",
+      "apiUrl": "https://api.github.com/repos/Vasuki8/IPO-Tracker/actions/runs/35290243518",
+      "headSha": "6e9b403629fd4de616b029f966cb41bde3fae09e",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "createdAt": "2026-09-18T00:13:06Z",
+      "startedAt": "2026-09-18T00:13:06Z",
+      "updatedAt": "2026-09-18T00:23:59Z",
+      "attempt": 1
+    },
+    "jobs": [
+      {
+        "id": 105431305151,
+        "name": "collect",
+        "url": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35290243518/job/105431305151",
+        "status": "completed",
+        "conclusion": "cancelled",
+        "startedAt": "2026-09-18T00:13:08Z",
+        "completedAt": "2026-09-18T00:23:58Z",
+        "runner": "GitHub Actions 1000003827",
+        "steps": [
+          {
+            "name": "Collect sources with explicit stage outcomes",
+            "conclusion": "cancelled",
+            "startedAt": "2026-09-18T00:13:37Z",
+            "completedAt": "2026-09-18T00:23:56Z"
+          },
+          {
+            "name": "Repair recent P4 Final Prospectus residuals",
+            "conclusion": "skipped",
+            "startedAt": "2026-09-18T00:23:56Z",
+            "completedAt": "2026-09-18T00:23:56Z"
+          },
+          {
+            "name": "Prepare collected snapshot",
+            "conclusion": "skipped",
+            "startedAt": "2026-09-18T00:23:56Z",
+            "completedAt": "2026-09-18T00:23:56Z"
+          },
+          {
+            "name": "Run actions/upload-artifact@v4.6.2",
+            "conclusion": "skipped",
+            "startedAt": "2026-09-18T00:23:56Z",
+            "completedAt": "2026-09-18T00:23:56Z"
+          }
+        ]
+      },
+      {
+        "id": 105433657611,
+        "name": "publish",
+        "url": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35290243518/job/105433657611",
+        "status": "completed",
+        "conclusion": "cancelled",
+        "startedAt": "2026-09-18T00:23:59Z",
+        "completedAt": "2026-09-18T00:23:58Z",
+        "runner": null,
+        "steps": []
+      }
+    ],
+    "logSource": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35290243518/job/105431305151",
+    "exactLogExcerpts": [
+      "2026-09-18T00:13:18.0690150Z Collection mode: repair",
+      "2026-09-18T00:23:56.7225474Z ##[error]The operation was canceled.",
+      "2026-09-18T00:23:57.0001351Z Terminate orphan process: pid (3122) (uv)",
+      "2026-09-18T00:23:57.0024735Z Terminate orphan process: pid (3125) (python)",
+      "2026-09-18T00:23:57.0092990Z Terminate orphan process: pid (3340) (python)"
+    ],
+    "completedCollectionStageBeforeCancellation": {
+      "stage": "run_offer_documents.py",
+      "loggedAt": "2026-09-18T00:22:27.9483388Z",
+      "parserVersion": 31,
+      "attempted": 100,
+      "changedFields": 25,
+      "failed": 3,
+      "status": "updated",
+      "note": "These are runner-local stage results. Collect was subsequently cancelled, snapshot preparation/artifact upload were skipped, and publish had no steps."
+    },
+    "artifacts": {
+      "apiUrl": "https://api.github.com/repos/Vasuki8/IPO-Tracker/actions/runs/35290243518/artifacts",
+      "totalCount": 0
+    },
+    "successor": {
+      "prUrl": "https://github.com/Vasuki8/IPO-Tracker/pull/112",
+      "mergedAt": "2026-09-18T00:23:41Z",
+      "mergeCommit": "0b3b35b62ad8426fd9689555613aff2e2c278e35",
+      "runId": 35291001582,
+      "runUrl": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35291001582",
+      "event": "push",
+      "createdAt": "2026-09-18T00:23:43Z",
+      "headSha": "0b3b35b62ad8426fd9689555613aff2e2c278e35"
+    },
+    "workflowEvidence": {
+      "url": "https://github.com/Vasuki8/IPO-Tracker/blob/6e9b403629fd4de616b029f966cb41bde3fae09e/.github/workflows/refresh.yml",
+      "exactConcurrencyLines": [
+        "concurrency:",
+        "  group: ipo-refresh-${{ github.event_name == 'push' && github.ref || github.run_id }}",
+        "  cancel-in-progress: ${{ github.event_name == 'push' }}"
+      ],
+      "resolvedPushGroup": "ipo-refresh-refs/heads/main"
+    },
+    "conclusion": {
+      "confirmed": "PR #111 refresh was cancelled after PR #112 merged. Cancellation occurred during collection; no publish steps ran and no collection artifact exists.",
+      "inference": "Existing push concurrency is the likely cause: both runs are pushes to main and share the configured cancel-in-progress group; the successor was created 13 seconds before the cancellation log. The fetched job log does not explicitly name the successor or concurrency as the cancellation cause.",
+      "limitation": "The connector rejects check-run/annotation API endpoints. No direct supersession annotation was available.",
+      "timestampCaveat": "GitHub reports the unstarted publish job starting at 00:23:59Z and completing at 00:23:58Z; do not derive a duration from those metadata values."
+    }
+  }
+}

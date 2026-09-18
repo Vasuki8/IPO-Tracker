@@ -393,6 +393,47 @@ def apply_final_prospectus_static_fields(
     changes: list[dict[str, Any]] = []
     source_url = str(doc.get("url") or "")
     extracted = _static_values(record, parsed)
+    review = record.get("objectsOfIssueReview") or {}
+    snapshot = review.get("snapshot") or {}
+    active = review.get("activeSourceReview") or {}
+    if not isinstance(active, dict):
+        active = {}
+    active_identity = active.get("identity") or {}
+    active_evidence = active.get("evidence") or {}
+    retained_proof = snapshot.get("sourceEvidence") or {}
+    if not isinstance(active_identity, dict):
+        active_identity = {}
+    if not isinstance(active_evidence, dict):
+        active_evidence = {}
+    if not isinstance(retained_proof, dict):
+        retained_proof = {}
+    active_matches = (active.get("scope") == "document"
+                      and isinstance(active_evidence.get("sha256"), str)
+                      and re.fullmatch(r"[0-9a-f]{64}", active_evidence["sha256"])
+                      and active_evidence["sha256"] == retained_proof.get("sha256")
+                      and retained_proof.get("issueOpenDate") == record.get("openDate")
+                      and isinstance(snapshot.get("before"), list) and bool(snapshot["before"])
+                      and retained_proof.get("value") == snapshot["before"]
+                      and all(active_identity.get(key) for key in ("id", "company", "symbol", "openDate"))
+                      and all(record.get(key) == value for key, value in active_identity.items()))
+    if active_matches:
+        try:
+            active_matches = (is_final_prospectus({"type": retained_proof.get("documentType"),
+                                                   "url": retained_proof.get("sourceUrl")})
+                              and urlparse(str(retained_proof.get("sourceUrl") or "")).scheme == "https")
+        except ValueError:
+            active_matches = False
+    # An unrelated or malformed overlay cannot replace the historical guard.
+    reviewed = active if active_matches else snapshot.get("reviewedSource") or {}
+    if ("objectsOfIssue" in extracted and reviewed and sha256
+            and sha256 == (reviewed.get("evidence") or {}).get("sha256")
+            and (reviewed.get("scope") == "document"
+                 or extracted["objectsOfIssue"] == snapshot.get("before"))):
+        # Table syntax cannot resolve a known source contradiction. A review
+        # of the whole document requires different authoritative document
+        # bytes; a mirror URL does not resolve the source contradiction. A
+        # value-scoped layout repair may supply a corrected allocation list.
+        extracted.pop("objectsOfIssue")
     if "objectsOfIssue" in extracted and (not source_url or not sha256):
         # Raw cells must remain bound to the exact source document when the
         # objects proof is retained independently of later document metadata.
