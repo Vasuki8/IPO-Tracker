@@ -57,8 +57,30 @@ def value_digest(value):
 @lru_cache(maxsize=1)
 def display_holds():
     # Missing/malformed registry is a build failure, never silent permission to
-    # restore a previously reviewed value. Entries are exact source/value guards.
+    # restore a previously reviewed value. Document reviews bind issuer, offer
+    # and PDF bytes; layout reviews remain exact source/value guards.
     return json.loads((ROOT / 'data/public_display_holds.json').read_text(encoding='utf-8'))['holds']
+
+
+def _display_hold_matches(record, field, hold):
+    binding = hold['fields'][field]
+    proof = (record.get('staticFieldProvenance') or {}).get(field) or {}
+    scope = hold.get('scope', 'value')
+    if scope == 'document':
+        identity = hold.get('identity') or {}
+        keys = ('id', 'company', 'symbol', 'openDate')
+        if (not all(isinstance(identity.get(key), str) and identity[key] for key in keys)
+                or identity['id'] != hold['id']):
+            raise ValueError('Document display hold requires exact issuer and offer identity')
+        # An alternate extraction or mirror URL cannot resolve contradictory
+        # disclosures in the same document. No canonical value or review changes.
+        return (all(record.get(key) == identity[key] for key in keys)
+                and proof.get('issueOpenDate') == identity['openDate']
+                and proof.get('sha256') == binding['sha256'])
+    if scope != 'value':
+        raise ValueError('Unsupported public display hold scope')
+    return (proof.get('sha256') == binding['sha256']
+            and value_digest(field_value(record, field)) == binding['valueDigest'])
 
 
 def _proof_source(proof):
@@ -177,12 +199,9 @@ def project_record(record, *, today=None, holds=None):
     for hold in display_holds() if holds is None else holds:
         if hold['id'] != record.get('id'):
             continue
-        for field, binding in hold['fields'].items():
-            value = field_value(record, field)
-            proof = (record.get('staticFieldProvenance') or {}).get(field) or {}
-            if (proof.get('sha256') == binding['sha256']
-                    and value_digest(value) == binding['valueDigest']):
-                reviews[field] = 'pending_source_repair'
+        for field in hold['fields']:
+            if _display_hold_matches(record, field, hold):
+                reviews[field] = 'document_conflict' if hold.get('scope') == 'document' else 'pending_source_repair'
     if set(COMPOSITION_FIELDS) & set(reviews):
         reviews.update({f: 'composition_review' for f in COMPOSITION_FIELDS})
 

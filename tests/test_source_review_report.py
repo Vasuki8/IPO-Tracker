@@ -43,7 +43,7 @@ class SourceReviewReportTests(unittest.TestCase):
                 "identity": identity,
                 "beforeHash": review.corrections.fingerprint([{"purpose": "Working capital", "amountCr": 10.0}]),
                 "source": {"type": "PROSPECTUS", "url": "https://www.sebi.gov.in/files/first.pdf"},
-                "evidence": {"sha256": "source-bytes"},
+                "evidence": {"sha256": hashlib.sha256(b"cached PDF").hexdigest()},
                 "findings": ["The reviewed document gives conflicting net proceeds."],
                 "reason": "Withheld pending authoritative source reconciliation.",
                 "scope": "document",
@@ -96,7 +96,7 @@ class SourceReviewReportTests(unittest.TestCase):
             else:
                 review.final_policy.policy.apply_final_prospectus_static_fields(
                     record, objects_parsed(rows),
-                    {"type": "PROSPECTUS", **document(record)}, sha256="source-bytes",
+                    {"type": "PROSPECTUS", **document(record)}, sha256=hashlib.sha256(b"cached PDF").hexdigest(),
                 )
             record["p4OfferResidualRepair"] = {"status": "updated", "changedFields": ["objectsOfIssue"]}
             kwargs["checkpoint"](payload)
@@ -197,7 +197,7 @@ class SourceReviewReportTests(unittest.TestCase):
         self.assertEqual(held["reviewKind"], "source-review")
         self.assertEqual(held["snapshot"]["reviewedSource"]["scope"], "document")
         self.assertEqual(held["snapshot"]["before"], [{"purpose": "Working capital", "amountCr": 10.0}])
-        self.assertEqual(held["snapshot"]["sourceEvidence"]["sha256"], "source-bytes")
+        self.assertEqual(held["snapshot"]["sourceEvidence"]["sha256"], hashlib.sha256(b"cached PDF").hexdigest())
         self.assertNotIn("objectsOfIssue", row["staticFieldProvenance"])
         self.assertIsNone(report["records"][0]["objectsOfIssue"])
         self.assertEqual(report["residuals"]["changedFields"], 1)

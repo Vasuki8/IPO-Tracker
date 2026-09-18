@@ -1,0 +1,243 @@
+{
+  "issuer": "Teamtech Formwork Solutions Limited",
+  "disposition": "HOLD: conflicting source units for same net-proceeds amount on physical page89",
+  "source": {
+    "path": "/workspace/scratch/032a0581ffbf/p4-emmvee-qa/ci-35235987847/exact-objects-sources/teamtech.pdf",
+    "sha256": "985909fbad119ffa02604f6fbb2895387a98d817a1fa8b486a7806ac18b537e8",
+    "bytes": 8669697,
+    "pageCount": 372,
+    "coverDate": "22.05.2026",
+    "coverType": "Prospectus",
+    "officialUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/TeamtechFormworkSolutionsLimited_PROSP.pdf"
+  },
+  "coverage": {
+    "fullIndependentPopplerPages": 372,
+    "nonemptyIndependentPages": 372,
+    "fullCanonicalPopplerLayoutPages": 372,
+    "nonemptyCanonicalLayoutPages": 372,
+    "canonicalPageLimit": 520,
+    "truncatedByPageLimit": false,
+    "relevantTextContext": "cover1; summary22-23; Objects of Issue87-100; targeted cross-reference checks41,44,45,286,287",
+    "visuallyInspectedPages": [
+      87,
+      88,
+      89,
+      90,
+      91,
+      92
+    ],
+    "limit": "All372pages were text-extracted and searched; manual visual inspection focused on six relevant pages, not all372. Direct final_prospectus_parser import unavailable because requests is missing; strict p4 objects parser run directly on full text with canonical Poppler flags.",
+    "fullTextHashes": {
+      "full-canonical-layout.txt": "7d89661142c20549eb85ac9361cb60d1acd21423cd7d41a5ccaf93488906229e",
+      "full-poppler-layout.txt": "535be056b3365a8e527f050d5fa19bf4973e3b5f6a0c5672ecd647e85d5ab2a9"
+    },
+    "physicalPrintedPageMap": [
+      {
+        "physicalPage": 22,
+        "printedPage": "22"
+      },
+      {
+        "physicalPage": 23,
+        "printedPage": "23"
+      },
+      {
+        "physicalPage": 87,
+        "printedPage": "87"
+      },
+      {
+        "physicalPage": 88,
+        "printedPage": "88"
+      },
+      {
+        "physicalPage": 89,
+        "printedPage": "89"
+      },
+      {
+        "physicalPage": 90,
+        "printedPage": "90"
+      },
+      {
+        "physicalPage": 91,
+        "printedPage": "91"
+      },
+      {
+        "physicalPage": 92,
+        "printedPage": "92"
+      }
+    ]
+  },
+  "fourAllocations": [
+    {
+      "purpose": "Funding of Capital Expenditure towards purchase of Plant and Machineries for new manufacturing unit",
+      "amountLakhs": "1192.35",
+      "amountCr": "11.9235",
+      "pages": [
+        23,
+        87,
+        88
+      ]
+    },
+    {
+      "purpose": "Repayment/prepayment of all or certain of our borrowing availed by your company.",
+      "amountLakhs": "1550.00",
+      "amountCr": "15.5000",
+      "pages": [
+        23,
+        87,
+        93
+      ],
+      "splitPage88": {
+        "repaymentOfCashCreditLakhs": "700.00",
+        "repaymentOfTermLoanLakhs": "850.00"
+      }
+    },
+    {
+      "purpose": "To meet the working capital requirements",
+      "amountLakhs": "1376.88",
+      "amountCr": "13.7688",
+      "pages": [
+        23,
+        87,
+        88,
+        95
+      ]
+    },
+    {
+      "purpose": "General Corporate Purpose*",
+      "amountLakhs": "429.36",
+      "amountCr": "4.2936",
+      "pages": [
+        23,
+        87,
+        88,
+        97
+      ]
+    }
+  ],
+  "netReconciliation": {
+    "pages": [
+      22,
+      23,
+      87
+    ],
+    "sourceUnit": "lakhs",
+    "gross": "5014.80",
+    "issueExpenses": "466.21",
+    "net": "4548.59",
+    "netCr": "45.4859",
+    "sumAllocationsLakhs": "4548.59",
+    "sumAllocationsCr": "45.4859",
+    "independentGrossSharePriceEvidence": "Physical pages1/22:7,960,000shares at Rs63 =Rs501,480,000 =Rs5,014.80lakhs =Rs50.148crore",
+    "expensesCorroborationPages": [
+      97,
+      98
+    ]
+  },
+  "projectCostsNotAllocations": {
+    "page": 90,
+    "sourceIntroduction": "The estimated cost of setting up the proposed manufacturing facility is set out below:",
+    "sourceUnit": "Rs in Lakhs",
+    "rows": [
+      {
+        "purpose": "Cost of Land",
+        "lakhs": "120.75",
+        "crore": "1.2075"
+      },
+      {
+        "purpose": "Cost of Building",
+        "lakhs": "1000.00",
+        "crore": "10.0000"
+      },
+      {
+        "purpose": "Cost of Plant and Machinery*",
+        "lakhs": "1300.00",
+        "crore": "13.0000"
+      }
+    ],
+    "totalLakhs": "2420.75",
+    "totalCr": "24.2075",
+    "basis": "A project-cost table within detailed plant/machinery subsection, not the four-purpose utilization table. Footnote explicitly describes management-estimated machinery cost, obtained quotations, and balance proposed for internal accruals or bank borrowings."
+  },
+  "contradictions": [
+    {
+      "severity": "blocking for no-source-contradiction acceptance",
+      "physicalPage": 89,
+      "section": "MEANS OF FINANCE",
+      "header": "Amount in Crores",
+      "rows": [
+        "Net Proceeds 4,548.59",
+        "TOTAL 4,548.59"
+      ],
+      "scope": "Exact same net-proceeds financing budget as the repeated tables on22-23,87-88. Header visually attached to numeric column, not detached section prose.",
+      "conflict": "Literal p89 amount is4548.59crore; repeated source/lakh reconciliation gives45.4859crore. Factor100 source conflict.",
+      "assessment": "Strong internal evidence suggests a header error, but that is an inference and does not remove the source contradiction."
+    },
+    {
+      "severity": "secondary supporting-project inconsistency",
+      "physicalPages": [
+        90,
+        91,
+        92
+      ],
+      "p90": "Footnote states quotations aggregating to Rs1,192.36lakhs within Rs1,300.00lakhs machinery budget.",
+      "p91p92": "Seven quote items total and printed subtotal areRs1,192.35lakhs.",
+      "componentsLakhs": [
+        "278.24",
+        "94.40",
+        "212.40",
+        "47.79",
+        "197.26",
+        "289.10",
+        "73.16"
+      ],
+      "componentSumLakhs": "1192.35",
+      "differenceLakhs": "0.01",
+      "differenceRupees": "1000",
+      "assessment": "Quotation subtotal, not a separate explicit net-allocation amount. No source evidence of prior/partial spending explains the difference; p93 says orders have not been placed."
+    },
+    {
+      "severity": "purpose wording variation",
+      "physicalPages": [
+        23,
+        87,
+        88,
+        89,
+        100
+      ],
+      "assessment": "Allocation tables23/87 say new manufacturing unit; deployment88 and detailed heading89 say expansion of existing manufacturing unit. Detailed89 describes purchasing machinery for new Kondapur facility while expanding company manufacturing capacity. Preserve exact accepted table wording; do not silently rewrite."
+    },
+    {
+      "severity": "secondary prose enumeration omission",
+      "physicalPage": 287,
+      "assessment": "Two regulatory-confirmation prose passages enumerate net-proceeds uses as working capital, bank repayment and GCP, omitting the capex allocation shown in tables23/87/88 and monitoring-heads100. These are incomplete prose lists, not competing numeric allocation tables; retain as source-context limitation."
+    }
+  ],
+  "parserObservation": {
+    "scope": "p4_offer_parser.extract_objects over all372 canonical-layout text pages; no fixture claims",
+    "returnsFourRows": true,
+    "totalCr": "45.4859",
+    "objects_evidence_problems": [],
+    "selectedEvidencePage": 23,
+    "sourceRowPages": [
+      23,
+      23,
+      23,
+      23
+    ],
+    "reconciliationPages": [
+      22
+    ],
+    "tableScope": "unspecified",
+    "assessment": "Parser validation does not detect page89 source-unit conflict and cannot substitute for full source acceptance."
+  },
+  "changes": "Only intermediate extracts, rendered review PNGs and this report were written under teamtech-review. No code, canonical records, source PDFs, remote resources, or fixtures were changed.",
+  "reviewedAt": "2026-09-17T23:37:16+00:00",
+  "codeObservation": {
+    "checkout": "/workspace/scratch/a745f2066b1c/IPO-Tracker-source-release",
+    "head": "d8eed0555ff1480476a6d48347eec8e3e39b3f28",
+    "p4OfferParserSha256": "5d65cdcb264f97a555b72407403b8d352de866a2bf7c0a65f56dc4572575a4ea",
+    "offerParserSha256": "e8d2655ab28230bb9504f6f6896364e29ec2358fe3d37304556b24f7968f6574",
+    "objectsChecksSha256": "1d0f1d5813a8dd93773769c41249ef891100c3482952c050aae6e1f919537f0f",
+    "parserResultSha256": "4bc76a8382011fb77d39cda96904ef79629e82c601256c2a5b33f25c52d724b5"
+  }
+}

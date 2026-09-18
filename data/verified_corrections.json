@@ -1,5 +1,5 @@
 {
-  "revision": "2026-09-17-review-kaytex-speb-document-consistency",
+  "revision": "2026-09-17-teamtech-document-units",
   "basedOnCommit": "eef493b2eec6b0f0ab9cefad8b45b9d5759bc86b",
   "generatedAt": "2026-09-14T12:16:27.134108+00:00",
   "parserVersion": 18,
@@ -14582,14 +14582,28 @@
           88,
           89,
           90
-        ]
+        ],
+        "sourceUnitReview": {
+          "review": "docs/reviews/2026-09-17-teamtech-document-unit-review.md",
+          "physicalPages": [
+            22,
+            23,
+            87,
+            88,
+            89
+          ],
+          "pageCount": 372,
+          "sourceTextSha256": "7d89661142c20549eb85ac9361cb60d1acd21423cd7d41a5ccaf93488906229e",
+          "decision": "unaccepted_source_unit_conflict"
+        }
       },
       "findings": [
-        "The CI candidate contains a project-cost subtable within the first capital-expenditure object, rather than the complete allocation of net issue proceeds. Land, building and part of machinery costs are not established as IPO-funded allocations."
+        "The CI candidate contains a project-cost subtable within the first capital-expenditure object, rather than the complete allocation of net issue proceeds. Land, building and part of machinery costs are not established as IPO-funded allocations.",
+        "Physical and printed pages 22-23 and 87-88 express net proceeds of 4,548.59 lakh (45.4859 crore), while the Means of Finance table on page 89 labels the same 4,548.59 net proceeds as Amount in Crores. The inspected source does not explicitly correct or supersede this conflicting unit."
       ],
-      "reason": "Withheld a project-cost breakdown that was incorrectly presented as the complete allocation of net issue proceeds.",
-      "reviewedAt": "2026-09-17T18:54:04+00:00",
-      "scope": "value"
+      "reason": "Withheld use-of-proceeds allocations pending authoritative reconciliation of contradictory monetary-unit labels for the same net proceeds in the Final Prospectus; the earlier project-cost table rejection remains valid.",
+      "reviewedAt": "2026-09-17T23:37:16+00:00",
+      "scope": "document"
     },
     {
       "identity": {

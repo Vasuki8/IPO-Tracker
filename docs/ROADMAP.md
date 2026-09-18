@@ -1,5 +1,11 @@
 # IPO Tracker — prioritized development roadmap
 
+Current execution update (17 September 2026): the deployed document-hold safeguards
+remain complete. The source-publication guard from #98 is being released as an
+independent increment; the combined parser and seven-record source acceptance
+remain gated. See [PROJECT_STATUS.md](PROJECT_STATUS.md) for verified checks and
+the current checkpoint; the dated audit below is preserved.
+
 Prepared 17 September 2026. Recommendation: make displayed data trustworthy, make repairs and updates dependable, complete P4, then expand historical coverage and investment-research features. Keep the current light dashboard and static GitHub Pages architecture while doing this.
 
 **Commercial product direction — confirmed by the owner.** IPO Tracker is intended to become a public commercial product with future monetization. Treat this as a standing requirement for product, data, design and engineering decisions. Optimize for customer trust, repeat use, discoverability, accessibility, dependable operation and sustainable cost. The target paying customer, pricing and revenue model remain decisions to validate; no specific monetization model has been selected.
@@ -17,6 +23,20 @@ Commercial planning begins alongside the essential repairs. The following adjust
 The commercial goal does not relax the P4 correctness gate. P5 and performance expansion remain gated. It also does not authorize immediate accounts, payments, ads, paid services or a broad rewrite. Reassess priorities using the latest repository and deployment state; retain the dated audit below as historical evidence.
 
 This plan reviews the current repository, published data, representative live user journeys, recent workflows and pull requests, the earlier technical audit, and retrieved development decisions. The fixed code/data baseline is commit `cc30f3701996232aa0eecd1b8c4adbf710c84735`, published at 18:22 UTC on 17 September. Its Pages deployment succeeded. Live inspection followed that snapshot; date-sensitive labels can change at midnight IST. No production code, data, deployment, or PR was changed during this review.
+
+**Execution reconciliation, 17 September 2026:** main `cf906df7` already includes
+the public field-trust/freshness release and verified live acceptance from
+#100–#103. Those audited omissions below are historical. Source repairs #94/#98/#99
+are now integrated in draft #105 and pass 1,023 frozen regressions; their targeted
+data publication remains blocked on a recoverable or newly accepted seven-record
+bundle and a reviewed publication scope. The independently released #106
+document-scoped public hold closes a newly reproduced mirror-URL/changed-allocation
+display gap, with 966 regressions, 24 browser journeys and live acceptance passed. The
+current canonical report has 385 P4 plus 51 higher-priority actionable records,
+1,614 blocking source-review items and 17 unmapped reviews; P5 remains gated.
+See [project status](PROJECT_STATUS.md) for current release evidence and exact next
+action, and [commercial readiness](COMMERCIAL_READINESS.md) for newly retrieved
+NSE terms and dependency inventory. Preserve this dated audit as history.
 
 **The main finding:** the collection and validation foundations have improved considerably, but internal source-review information does not consistently reach the public website. A page can display disputed values and a broad verification label at the same time. Fix that before adding more analytical features.
 

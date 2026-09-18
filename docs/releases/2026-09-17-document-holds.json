@@ -1,0 +1,132 @@
+{
+  "recordedAt": "2026-09-17T22:36:13Z",
+  "scope": "public-document-hold-release-not-canonical-source-repair",
+  "pullRequest": 106,
+  "codeCommit": "d9001a0ed4e5d0e3926976d7158a85b333f34cfd",
+  "mergeCommit": "fe053a4c6e79ca1d6fcfdc2ed5b6704a14993b12",
+  "runs": {
+    "pullRequestValidation": 35282355631,
+    "pullRequestBrowser": 35282355685,
+    "pagesDeployment": 35282621904,
+    "automaticLiveAcceptance": 35282660194,
+    "presentationPublication": 35282622791
+  },
+  "checks": {
+    "pythonRegressions": 966,
+    "nodeQualityTests": 7,
+    "browserJourneys": 24,
+    "freshnessLayoutWidths": [
+      1440,
+      375,
+      320
+    ],
+    "publicProfiles": 1366,
+    "retainedProposals": 441,
+    "canonicalSourceRepairsPublished": false
+  },
+  "publication": {
+    "mode": "presentation",
+    "result": "No accepted data changes to publish; generated public output unchanged"
+  },
+  "browserArtifact": {
+    "id": 10523320159,
+    "githubReportedSha256": "d67e68d7d5e03d77897120e89ec420ae683f29de21475e80c9f28ac436151731",
+    "archiveDownloadVerified": false,
+    "limitation": "Direct artifact download returned HTTP 403. Browser job logs were read; the live GenXAI profile was inspected in the browser."
+  },
+  "preservation": {
+    "scope": "presentation-only",
+    "inputCommit": "cf906df7ccc9bcf40881743b0af39480858a612e",
+    "testedCommit": "d9001a0ed4e5d0e3926976d7158a85b333f34cfd",
+    "preserved": {
+      "data/ipos.json": {
+        "sha256": "29e2c170165e9dad215f786b1805fb8e18680dd43b219a59c29a5954a4160e5c",
+        "bytes": 26762994
+      },
+      "data/pending_updates.json": {
+        "sha256": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+        "bytes": 12256367
+      },
+      "data/phase_status.json": {
+        "sha256": "676bb357229afd46da84261bf33f7bddc460266049e55a96fcda42fa062b2837",
+        "bytes": 654
+      },
+      "data/verified_corrections.json": {
+        "sha256": "19cfc1498857e48fce49e13ced10c14df9bfde6f7aa472e3313b397a0fc355ce",
+        "bytes": 586302
+      }
+    }
+  },
+  "automaticLiveReceipt": {
+    "expectedCommit": "fe053a4c6e79ca1d6fcfdc2ed5b6704a14993b12",
+    "status": "passed",
+    "scope": "public-artifact-consistency-not-source-accuracy",
+    "routeCount": 1366,
+    "sampledProfiles": [
+      "ipo/emmvee/",
+      "ipo/teamtech/",
+      "ipo/shakti-polytarp-limited/",
+      "ipo/kheriaauto/",
+      "ipo/vama-wovenfab-limited/",
+      "ipo/sona/",
+      "ipo/manika/"
+    ],
+    "expectedSha256": {
+      "index.html": "7bb7c13dc4c856b9bcb77138e9d9cdfb8934384688e97c27c5bd9d81aa6fec59",
+      "public-quality.js": "eac3c30733604ed8790a7ba7ec95bc12672826023627836650d7409862699b33",
+      "public-quality.css": "988dee5e990116eff25b8746a77b0b618b23d5394f3b919d601cceaedd6d4467",
+      "app.js": "aad042ffd8cea3576b5abff34d8b0378e812ab7e4f368f73e162d427201167d3",
+      "company-page.js": "c965ddfd01ab122b196dc58797d299f724b2378092c7ff927c91ea14b132c610",
+      "company.js": "8fba803171c5fd0fb09b95844fc153eaeff159a3a55c92785ef3c9013e08435d",
+      "phase4.js": "d7c69047e184cf5f896a75e61c62150a462ed985deaf93fdd8c0015a212e388f",
+      "methodology.html": "fe6b152b67eeaf0d1b17d7a700e1819fc250256bc022b64c9735c7867d7c546c",
+      "data/ipos-summary.json": "d90275e0e39b9a7e7e06837ea4ed472994375f485e8490e4d98121c3b5148f0c",
+      "ipo/routes.json": "6629e42263a9ad88acdfea5a45b77afb8a59eb5aa48e2105e9169764c5e04fb5",
+      "ipo/emmvee/index.html": "9bebc399bab6bf699d4d5cbb23c84aa704bc52160d1b7e833daed82905610aac",
+      "ipo/teamtech/index.html": "ec7a90412879b6d204a22907138b0a5f0acd9a9c82a7a86f36ff24b61c283bce",
+      "ipo/shakti-polytarp-limited/index.html": "5bcdee8e16db777889de0ef4cb8a737c3b9e63e5e24825d78f03ef563ea20cc5",
+      "ipo/kheriaauto/index.html": "016bd885008a6fd554469135b06f9e22f9d567170b4a3735fa3cfe45eaa25a46",
+      "ipo/vama-wovenfab-limited/index.html": "ed84a83324dea32bf77c914902687b382b9d4d2841f7c4c9aa26dcbe2f70de70",
+      "ipo/sona/index.html": "19c40fbf4d9dafdb64edb0952c8c168e2943ec7d8f49108d43c09c13b2ca2e2c",
+      "ipo/manika/index.html": "d93ed249adccf3ff72675298747dcb0f294f95e5ebd31fc4d53499aa556d2c13"
+    },
+    "baseUrl": "https://vasuki8.github.io/IPO-Tracker/",
+    "httpChecked": [
+      "index.html",
+      "public-quality.js",
+      "public-quality.css",
+      "app.js",
+      "company-page.js",
+      "company.js",
+      "phase4.js",
+      "methodology.html",
+      "data/ipos-summary.json",
+      "ipo/routes.json",
+      "ipo/emmvee/index.html",
+      "ipo/teamtech/index.html",
+      "ipo/shakti-polytarp-limited/index.html",
+      "ipo/kheriaauto/index.html",
+      "ipo/vama-wovenfab-limited/index.html",
+      "ipo/sona/index.html",
+      "ipo/manika/index.html"
+    ]
+  },
+  "remainingGate": {
+    "p4": "incomplete",
+    "p4ActionableRecords": 385,
+    "higherPriorityRecords": 51,
+    "blockingSourceReviewItems": 1614,
+    "unmappedSourceReviewItems": 17,
+    "p5": "waiting_for_p4",
+    "sourceIntegrationPullRequest": 105,
+    "sourceIntegrationHead": "54054c0e05d44c03260ddc84950c82d0bf6172bd",
+    "sourceAcceptance": "Original seven-record payload/transport unavailable; fresh bounded acceptance and publication-scope review required."
+  },
+  "independentLiveAcceptance": {
+    "status": "passed",
+    "expectedCommit": "fe053a4c6e79ca1d6fcfdc2ed5b6704a14993b12",
+    "routeCount": 1366,
+    "httpResponseCount": 17,
+    "matchesAutomaticReceipt": true
+  }
+}

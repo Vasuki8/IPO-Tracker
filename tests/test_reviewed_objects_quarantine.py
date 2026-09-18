@@ -33,7 +33,8 @@ def record(entry):
     source = entry['source']
     proof = {'value': copy.deepcopy(value), 'sourceUrl': source['url'],
              'sha256': entry['evidence']['sha256'], 'documentType': 'PROSPECTUS',
-             'parserVersion': 31, 'evidence': {'retained': 'old source-table evidence'}}
+             'parserVersion': 31, 'issueOpenDate': entry['identity']['openDate'],
+             'evidence': {'retained': 'old source-table evidence'}}
     return {
         **entry['identity'], 'objectsOfIssue': value,
         'leadManagers': ['Previously Verified Manager Limited'], 'lotSize': 100,
@@ -52,6 +53,20 @@ def record(entry):
 class ReviewedObjectsQuarantineTests(unittest.TestCase):
     def registry(self):
         return {'revision': REGISTRY['revision'], 'reviewedObjects': copy.deepcopy(ENTRIES)}
+
+    def old_teamtech_quarantine(self, *, mirrored=False):
+        entry = copy.deepcopy(next(item for item in ENTRIES if item['identity']['id'] == 'teamtech'))
+        old_entry = copy.deepcopy(entry)
+        old_entry['scope'] = 'value'
+        old_entry['reviewedAt'] = '2026-09-17T18:54:04+00:00'
+        old_entry['findings'] = old_entry['findings'][:1]
+        old_entry['evidence'].pop('sourceUnitReview', None)
+        if mirrored:
+            old_entry['source']['url'] = 'https://www.sebi.gov.in/mirrored-teamtech-prospectus.pdf'
+        row = record(old_entry)
+        self.assertEqual(corrections.apply({'ipos': [row]}, {'reviewedObjects': [old_entry]}), (1, []))
+        self.assertIsNone(row['objectsOfIssue'])
+        return row, entry
 
     def test_source_review_overrides_a_structurally_valid_legacy_proof(self):
         entry = next(item for item in ENTRIES if item['identity']['id'] == 'blackbuck')
@@ -195,7 +210,7 @@ class ReviewedObjectsQuarantineTests(unittest.TestCase):
                 self.assertIn('offer.objectsOfIssue', queue.queue_entry(row, date(2026, 9, 17))['missingFields'])
                 self.assertFalse(pages.public_profile_record(row).get('objectsOfIssue'))
 
-    def test_value_scoped_layout_review_allows_corrected_allocations_from_same_document(self):
+    def test_teamtech_complete_table_cannot_resolve_the_document_unit_conflict(self):
         entry = next(item for item in ENTRIES if item['identity']['id'] == 'teamtech')
         row = record(entry)
         corrections.apply({'ipos': [row]}, {'reviewedObjects': [entry]})
@@ -203,8 +218,130 @@ class ReviewedObjectsQuarantineTests(unittest.TestCase):
         self.assertEqual([item['amountCr'] for item in values], [11.9235, 15.5, 13.7688, 4.2936])
         policy.apply_final_prospectus_static_fields(
             row, {'objectsOfIssue': values, 'fieldEvidence': details}, entry['source'], sha256=entry['evidence']['sha256'])
-        self.assertEqual(row['objectsOfIssue'], values)
-        self.assertEqual(row['objectsOfIssueReview']['status'], 'resolved')
+        self.assertIsNone(row['objectsOfIssue'])
+        self.assertEqual(row['objectsOfIssueReview']['status'], 'quarantined')
+        self.assertEqual(row['objectsOfIssueReview']['snapshot']['reviewedSource']['scope'], 'document')
+
+    def test_document_scope_upgrade_preserves_retained_snapshot_and_blocks_same_pdf_repair(self):
+        values, details = parser.extract_objects((ROOT / 'tests/fixtures/objects-source-acceptance/teamtech.txt').read_text())
+        self.assertEqual([item['amountCr'] for item in values], [11.9235, 15.5, 13.7688, 4.2936])
+        for mirrored in (False, True):
+            with self.subTest(mirrored=mirrored):
+                row, entry = self.old_teamtech_quarantine(mirrored=mirrored)
+                old_review = copy.deepcopy(row['objectsOfIssueReview'])
+                snapshot_bytes = json.dumps(old_review['snapshot'], ensure_ascii=False)
+                history_bytes = json.dumps(row['dataCorrections'], ensure_ascii=False)
+                self.assertEqual(corrections.apply({'ipos': [row]}, {'reviewedObjects': [entry]}), (1, []))
+                active = row['objectsOfIssueReview']['activeSourceReview']
+                self.assertEqual(active['scope'], 'document')
+                self.assertEqual(active['identity'], entry['identity'])
+                self.assertEqual(active['evidence'], entry['evidence'])
+                self.assertEqual({key: value for key, value in row['objectsOfIssueReview'].items()
+                                  if key != 'activeSourceReview'}, old_review)
+                self.assertEqual(json.dumps(row['dataCorrections'][:-1], ensure_ascii=False), history_bytes)
+                revision = row['dataCorrections'][-1]
+                self.assertEqual(revision['field'], 'objectsOfIssueReview.activeSourceReview')
+                self.assertEqual(revision['before'], old_review['snapshot']['reviewedSource'])
+                self.assertEqual(revision['after'], active)
+                self.assertEqual(revision['correctedAt'], entry['reviewedAt'])
+                once = copy.deepcopy(row)
+                self.assertEqual(corrections.apply({'ipos': [row]}, {'reviewedObjects': [entry]}), (0, []))
+                self.assertEqual(row, once)
+                parsed = {'objectsOfIssue': values, 'fieldEvidence': details}
+                self.assertEqual(policy.apply_final_prospectus_static_fields(
+                    row, parsed, entry['source'], sha256=entry['evidence']['sha256']), [])
+                self.assertIsNone(row['objectsOfIssue'])
+                self.assertEqual(row['objectsOfIssueReview']['status'], 'quarantined')
+                self.assertNotIn('objectsOfIssue', row['staticFieldProvenance'])
+                self.assertEqual(row['dataCorrections'], once['dataCorrections'])
+                self.assertEqual(json.dumps(row['objectsOfIssueReview']['snapshot'], ensure_ascii=False), snapshot_bytes)
+                later_source = {**entry['source'], 'url': 'https://www.sebi.gov.in/corrected-teamtech-final.pdf'}
+                policy.apply_final_prospectus_static_fields(row, parsed, later_source, sha256='a' * 64)
+                self.assertEqual(row['objectsOfIssue'], values)
+                self.assertEqual(row['objectsOfIssueReview']['status'], 'resolved')
+                self.assertEqual(corrections.apply({'ipos': [row]}, {'reviewedObjects': [entry]}), (0, []))
+                self.assertEqual(row['dataCorrections'], once['dataCorrections'])
+                self.assertEqual(json.dumps(row['objectsOfIssueReview']['snapshot'], ensure_ascii=False), snapshot_bytes)
+                policy.apply_final_prospectus_static_fields(row, parsed, entry['source'], sha256=entry['evidence']['sha256'])
+                self.assertEqual(row['staticFieldProvenance']['objectsOfIssue']['sha256'], 'a' * 64)
+
+    def test_null_scope_upgrade_requires_retained_allocation_and_exact_source_binding(self):
+        mutations = (
+            ('issueOpenDate', None), ('issueOpenDate', '2020-01-01'),
+            ('documentType', 'RHP'), ('sourceUrl', 'http://example.test/source.pdf'),
+            ('sha256', 'unknown'), ('sha256', 'b' * 64), ('value', []),
+        )
+        for key, value in mutations:
+            with self.subTest(key=key, value=value):
+                row, entry = self.old_teamtech_quarantine()
+                row['objectsOfIssueReview']['snapshot']['sourceEvidence'][key] = value
+                before = copy.deepcopy(row)
+                applied, conflicts = corrections.apply({'ipos': [row]}, {'reviewedObjects': [entry]})
+                self.assertEqual(applied, 0)
+                self.assertEqual(len(conflicts), 0 if key == 'sha256' and value == 'b' * 64 else 1)
+                self.assertEqual(row, before)
+        for retained in (None, []):
+            with self.subTest(retained=retained):
+                row, entry = self.old_teamtech_quarantine()
+                row['objectsOfIssueReview']['snapshot']['before'] = retained
+                row['objectsOfIssueReview']['snapshot']['sourceEvidence']['value'] = retained
+                before = copy.deepcopy(row)
+                applied, conflicts = corrections.apply({'ipos': [row]}, {'reviewedObjects': [entry]})
+                self.assertEqual((applied, len(conflicts)), (0, 1))
+                self.assertEqual(row, before)
+
+    def test_stale_active_identity_cannot_prevent_correct_scope_upgrade(self):
+        row, entry = self.old_teamtech_quarantine()
+        stale = {**copy.deepcopy(row['objectsOfIssueReview']['snapshot']['reviewedSource']),
+                 'scope': 'document', 'identity': {**entry['identity'], 'openDate': '2020-01-01'}}
+        row['objectsOfIssueReview']['activeSourceReview'] = copy.deepcopy(stale)
+        snapshot = copy.deepcopy(row['objectsOfIssueReview']['snapshot'])
+        history = copy.deepcopy(row['dataCorrections'])
+        self.assertEqual(corrections.apply({'ipos': [row]}, {'reviewedObjects': [entry]}), (1, []))
+        self.assertEqual(row['objectsOfIssueReview']['activeSourceReview']['identity'], entry['identity'])
+        self.assertEqual(row['objectsOfIssueReview']['snapshot'], snapshot)
+        self.assertEqual(row['dataCorrections'][:-1], history)
+        self.assertEqual(row['dataCorrections'][-1]['before'], stale)
+        values, details = parser.extract_objects((ROOT / 'tests/fixtures/objects-source-acceptance/teamtech.txt').read_text())
+        policy.apply_final_prospectus_static_fields(
+            row, {'objectsOfIssue': values, 'fieldEvidence': details}, entry['source'], sha256=entry['evidence']['sha256'])
+        self.assertIsNone(row['objectsOfIssue'])
+
+    def test_malformed_active_overlay_cannot_shadow_existing_document_hold(self):
+        entry = next(item for item in ENTRIES if item['identity']['id'] == 'teamtech')
+        values, details = parser.extract_objects((ROOT / 'tests/fixtures/objects-source-acceptance/teamtech.txt').read_text())
+        active = {'scope': 'document', 'identity': copy.deepcopy(entry['identity']),
+                  'evidence': copy.deepcopy(entry['evidence'])}
+        overlays = (
+            {**active, 'scope': 'value'}, {**active, 'evidence': {'sha256': 'b' * 64}},
+            {**active, 'evidence': {'sha256': 'unknown'}}, {**active, 'evidence': []},
+            {**active, 'identity': {**entry['identity'], 'company': 'Another Issuer Limited'}},
+            {**active, 'identity': []}, ['malformed overlay'],
+        )
+        for overlay in overlays:
+            with self.subTest(overlay=overlay):
+                row = record(entry)
+                corrections.apply({'ipos': [row]}, {'reviewedObjects': [entry]})
+                row['objectsOfIssueReview']['activeSourceReview'] = copy.deepcopy(overlay)
+                policy.apply_final_prospectus_static_fields(
+                    row, {'objectsOfIssue': values, 'fieldEvidence': details}, entry['source'], sha256=entry['evidence']['sha256'])
+                self.assertIsNone(row['objectsOfIssue'])
+                self.assertEqual(row['objectsOfIssueReview']['status'], 'quarantined')
+
+    def test_document_review_requires_real_document_and_value_digest_shapes(self):
+        for key in ('sha256', 'beforeHash'):
+            for value in (None, 'unknown', 'a' * 63, 'A' * 64, 123):
+                with self.subTest(key=key, value=value):
+                    entry = copy.deepcopy(next(item for item in ENTRIES if item['identity']['id'] == 'teamtech'))
+                    row = record(entry)
+                    if key == 'sha256':
+                        entry['evidence'][key] = value
+                    else:
+                        entry[key] = value
+                    before = copy.deepcopy(row)
+                    with self.assertRaises(ValueError):
+                        corrections.apply({'ipos': [row]}, {'reviewedObjects': [entry]})
+                    self.assertEqual(row, before)
 
     def test_exact_reviewed_values_are_withheld_with_complete_previous_proofs(self):
         rows = [record(entry) for entry in ENTRIES]
@@ -248,6 +385,8 @@ class ReviewedObjectsQuarantineTests(unittest.TestCase):
         for row in rows:
             row['objectsOfIssue'] = [{'purpose': 'Reviewed later allocation', 'amountCr': 1.0}]
             row['staticFieldProvenance']['objectsOfIssue']['value'] = copy.deepcopy(row['objectsOfIssue'])
+            if next(e for e in ENTRIES if e['identity']['id'] == row['id'])['scope'] == 'document':
+                row['staticFieldProvenance']['objectsOfIssue']['sha256'] = 'b' * 64
         before = copy.deepcopy(rows)
         self.assertEqual(corrections.apply({'ipos': rows}, self.registry()), (0, []))
         self.assertEqual(rows, before)
@@ -266,6 +405,54 @@ class ReviewedObjectsQuarantineTests(unittest.TestCase):
                     self.assertEqual(applied, 0)
                     self.assertEqual(len(conflicts), 1)
                     self.assertEqual(row, before)
+
+    def test_document_review_withholds_initial_changed_allocation_and_mirror_without_snapshot(self):
+        for entry in ENTRIES:
+            if entry['scope'] != 'document':
+                continue
+            for mirrored in (False, True):
+                with self.subTest(id=entry['identity']['id'], mirrored=mirrored):
+                    row = record(entry)
+                    row['objectsOfIssue'] = [{'purpose': 'A different extraction from the reviewed document', 'amountCr': 10.0}]
+                    proof = row['staticFieldProvenance']['objectsOfIssue']
+                    proof['value'] = copy.deepcopy(row['objectsOfIssue'])
+                    if mirrored:
+                        proof['sourceUrl'] = 'https://www.sebi.gov.in/mirrored-prospectus.pdf'
+                    before = copy.deepcopy(row)
+                    self.assertNotIn('objectsOfIssueReview', row)
+                    self.assertEqual(corrections.apply({'ipos': [row]}, {'reviewedObjects': [entry]}), (1, []))
+                    self.assertIsNone(row['objectsOfIssue'])
+                    snapshot = row['objectsOfIssueReview']['snapshot']
+                    self.assertEqual(snapshot['before'], before['objectsOfIssue'])
+                    self.assertEqual(snapshot['sourceEvidence'], before['staticFieldProvenance']['objectsOfIssue'])
+                    self.assertEqual(row['dataCorrections'], before['dataCorrections'] + [snapshot])
+
+    def test_document_review_requires_matching_field_offer_date_and_final_document(self):
+        entry = next(item for item in ENTRIES if item['identity']['id'] == 'teamtech')
+        for key, value in (('issueOpenDate', None), ('issueOpenDate', '2020-01-01'),
+                           ('documentType', 'RHP'), ('sourceUrl', 'http://example.test/source.pdf')):
+            with self.subTest(key=key, value=value):
+                row = record(entry)
+                row['staticFieldProvenance']['objectsOfIssue'][key] = value
+                before = copy.deepcopy(row)
+                applied, conflicts = corrections.apply({'ipos': [row]}, {'reviewedObjects': [entry]})
+                self.assertEqual(applied, 0)
+                self.assertEqual(len(conflicts), 1)
+                self.assertEqual(row, before)
+
+    def test_value_review_preserves_new_allocation_and_does_not_inherit_document_scope(self):
+        entry = next(item for item in ENTRIES if item['identity']['id'] == 'unimech')
+        row = record(entry)
+        corrections.apply({'ipos': [row]}, {'reviewedObjects': [entry]})
+        values, details = parser.extract_objects(
+            '[PAGE 1]\nOBJECTS OF THE ISSUE\n(Rs. in Crores)\nParticulars Amount\n'
+            'Working capital requirements 10.00\nGeneral corporate purposes 5.00\nTotal 15.00\n')
+        policy.apply_final_prospectus_static_fields(
+            row, {'objectsOfIssue': values, 'fieldEvidence': details}, entry['source'], sha256=entry['evidence']['sha256'])
+        self.assertEqual(row['objectsOfIssue'], values)
+        self.assertEqual(row['objectsOfIssueReview']['status'], 'resolved')
+        self.assertEqual(corrections.apply({'ipos': [row]}, {'reviewedObjects': [entry]}), (0, []))
+        self.assertEqual(row['objectsOfIssue'], values)
 
     def test_missing_identity_or_non_final_source_cannot_trigger_review(self):
         for mutation in ('identity', 'source'):
