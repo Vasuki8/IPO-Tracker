@@ -76,6 +76,12 @@ def validate_scope(before, after, ids, *, allow_meta=False, groups=None):
                 raise ValueError('Reviewed publication changed an unselected issuer')
             continue
         fields = selected_fields.get(identifier, set(COMPOSITION_FIELDS))
+        if 'financials' in fields:
+            def metric_paths(value):
+                return {row['period'] + '.' + key for row in (value or {}).get('periods', [])
+                        for key in row if key != 'period'}
+            if not metric_paths(original.get('financials')) <= metric_paths(updated.get('financials')):
+                raise ValueError('Reviewed financial publication cannot discard retained periods or metrics')
         allowed = fields | {'staticFieldProvenance', 'staticSourcePolicy', 'dataCorrections', 'sources'}
         if allow_meta:
             allowed.add('validation')

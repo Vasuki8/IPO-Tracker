@@ -74,6 +74,9 @@ def _final_proof(record, field, value):
     # "validated" label) have no physical source location. Do not elevate them.
     if not isinstance(detail, dict) or not detail:
         return None
+    if field == 'financials' and detail.get('method') == 'reviewed-financial-grid-v1':
+        from review_financial_tables import has_reviewed_financial_evidence
+        return proof if has_reviewed_financial_evidence(record) else None
     pages = [row.get('page') for row in detail.values() if isinstance(row, dict)] if field == 'financials' else [detail.get('page')]
     if not pages or any(type(page) is not int or page < 1 for page in pages):
         return None

@@ -37,7 +37,9 @@ REVIEWED_SUPPORT_FILES = REVIEWED_SUPPORT_DISCRIMINATORS | {
     'scripts/apply_corrections.py', 'scripts/publish_transaction.py',
     'scripts/validate_data.py', 'scripts/run_offer_documents.py',
     'scripts/final_prospectus_policy.py',
+    'scripts/enforce_final_prospectus_policy.py',
     'scripts/review_intermediary_columns.py',
+    'scripts/review_financial_tables.py',
     'data/verified_corrections.json', 'data/reviewed_correction_evidence.json',
 }
 # A change to this leaf collector can use the existing subscription-only stage.

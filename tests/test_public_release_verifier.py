@@ -186,6 +186,29 @@ class PublicReleaseVerifierTests(unittest.TestCase):
         self.assertEqual(result['checked'][0]['id'], 'emmvee')
         self.assertEqual(before, self.files())
 
+    def test_financial_delivery_checks_all_cells_with_compact_public_unit_contract(self):
+        self.reviewed_fixture()
+        value = {'unit': '₹ crore', 'periods': [{'period': 'FY2025', 'revenueCr': 189.404, 'eps': 2.7}]}
+        proof = copy.deepcopy(self.canonical['ipos'][0]['staticFieldProvenance']['issueSizeCr'])
+        proof.update(field='financials', value=value)
+        proofs = {'financials': proof}
+        raw = (json.dumps(proofs, ensure_ascii=False, indent=2) + '\n').encode()
+        self.write('data/reviewed_correction_evidence/emmvee.json', raw.decode())
+        group = self.index['groups'][0]
+        group.update(kind='financials', sourceProofsSha256=verify.digest(raw),
+                     sourceProofsGitBlob=hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest())
+        self.write_json('data/reviewed_correction_evidence.json', self.index)
+        self.canonical['ipos'][0].update(financials=value, staticFieldProvenance=proofs)
+        self.write_json('data/ipos.json', self.canonical)
+        self.profile['financials'] = {'periods': copy.deepcopy(value['periods'])}
+        self.profile['publicQuality']['fields']['financials'] = {'state':'final_verified','source':0,'page':3}
+        self.save()
+        self.assertEqual(verify.verify_reviewed_publication(self.root, verify.verify_local(self.root))['status'], 'passed')
+        self.profile['financials']['periods'][0]['eps'] = 83531840
+        self.save()
+        with self.assertRaisesRegex(ValueError, 'not delivered'):
+            verify.verify_reviewed_publication(self.root, verify.verify_local(self.root))
+
     def test_consistent_but_still_withheld_repair_cannot_pass_reviewed_acceptance(self):
         self.reviewed_fixture()
         for record in (self.row, self.profile):

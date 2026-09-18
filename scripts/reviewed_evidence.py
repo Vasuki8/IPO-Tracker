@@ -28,6 +28,8 @@ def group_fields(group):
         return set(COMPOSITION_FIELDS)
     if kind == 'intermediaries':
         return set(INTERMEDIARY_FIELDS)
+    if kind == 'financials':
+        return {'financials'}
     raise ValueError('Unsupported reviewed field-evidence kind')
 
 
@@ -74,6 +76,10 @@ def index_groups(groups, registry):
                             str(group.get('sourceReviewUrl') or '')):
             raise ValueError('Reviewed evidence needs an immutable source-review URL')
         corrections = [item for item in registry.get('changes', []) if item['id'] == identifier]
+        if group.get('kind') == 'financials':
+            # Retain historical nonfinancial repair entries without replaying
+            # them as part of a newly reviewed financial-only transaction.
+            corrections = [item for item in corrections if item.get('publicationScope') == 'explicit-reviewed']
         if len(corrections) != len(proofs) or {item['field'] for item in corrections} != set(proofs):
             raise ValueError('Reviewed evidence must match the complete correction-registry group')
         for item in corrections:
@@ -92,6 +98,14 @@ def index_groups(groups, registry):
                     or type(detail.get('page')) is not int or detail['page'] < 1
                     or not proof.get('checkedAt')):
                 raise ValueError('Reviewed field evidence does not match its accepted correction')
+            if group.get('kind') == 'financials':
+                from review_financial_tables import has_reviewed_financial_evidence
+                if (item.get('publicationScope') != 'explicit-reviewed'
+                        or proof.get('identity') != identity
+                        or not has_reviewed_financial_evidence({**identity, 'financials': proof['value'],
+                            'staticFieldProvenance': {'financials': proof}})
+                        or datetime.fromisoformat(group['reviewedAt']).utcoffset() is None):
+                    raise ValueError('Financial corrections require complete reviewed source grids')
             if group.get('kind') == 'intermediaries':
                 if item.get('publicationScope') != 'explicit-reviewed':
                     raise ValueError('Intermediary corrections require explicit reviewed publication')

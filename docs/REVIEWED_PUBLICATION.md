@@ -99,3 +99,26 @@ measures delivery of retained evidence, **not new source-value correctness**.
 The completed Emmvee request is #116, published as `3834c732`; do not repeat it on
 recovery. Its original bundle and proof/audit preservation are recorded in
 [the recovery receipt](releases/2026-09-18-reviewed-publication-recovery.json).
+
+## Reviewed annual financial grids
+
+The `financials` group is a complete field transaction: every retained period and
+metric needs a replayable cell from a reviewed annual consolidated table. The
+offline helper `review_financial_tables.py` uses physical headers/columns, exact
+metric names, known units and explicit scope. It excludes dated interim columns
+and rejects ambiguity, contradictory repeated values and incomplete rows. It is
+not a generic collector fallback or permission to clear a source conflict.
+
+Current staged batch: `htel,kissht`; source review:
+[annual financial grids](reviews/2026-09-18-reviewed-financial-grids.md).
+Each group's historical nonfinancial correction entries remain in the registry.
+They are not replayed by the financial transaction; ordinary registry application
+skips the staged issuer group. An overlapping historical financial correction is
+rejected. The scoped publisher preserves all other facts, proofs and history.
+Same-document generic re-extraction cannot undo a valid reviewed financial proof.
+
+Stage code/evidence first, using the source-free support route. Then submit a
+separate request-only PR for these two IDs. The browser rehearsal checks profiles
+and quick views at 1440/375/320 pixels and verifies that PNGS's unresolved financial
+review remains withheld. Do not include PNGS in this request: Adjusted EBITDA and
+partnership-era unavailable EPS require a distinct source review and representation.

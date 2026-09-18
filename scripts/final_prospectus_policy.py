@@ -397,6 +397,10 @@ def apply_final_prospectus_static_fields(
     # document. Keep its current value/proof together until a different source
     # is accepted or another explicit reviewed transaction replaces it.
     from review_intermediary_columns import has_reviewed_role_evidence
+    from review_financial_tables import has_reviewed_financial_evidence
+    financial_proof = (record.get('staticFieldProvenance') or {}).get('financials') or {}
+    if has_reviewed_financial_evidence(record) and financial_proof.get('sha256') == sha256:
+        extracted.pop('financials', None)
     for field in ('leadManagers', 'registrar'):
         proof = (record.get('staticFieldProvenance') or {}).get(field) or {}
         if (has_reviewed_role_evidence(record, field)

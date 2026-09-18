@@ -1,0 +1,2966 @@
+{
+  "ipos": [
+    {
+      "id": "htel",
+      "matchKey": "HYTECHENGINEERS",
+      "symbol": "HTEL",
+      "company": "Hy-Tech Engineers Limited",
+      "board": "Mainboard",
+      "exchange": "NSE",
+      "status": "listed",
+      "listingDate": "2026-09-01",
+      "priceBand": {
+        "min": 50.0,
+        "max": 53.0
+      },
+      "lifecycle": {
+        "stage": "exchange",
+        "stageDate": "2026-08-24"
+      },
+      "sources": [
+        {
+          "name": "NSE historical",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+          "asOf": "2026-09-12T08:19:32+05:30"
+        },
+        {
+          "name": "Hy-Tech Engineers final IPO terms",
+          "kind": "validated-market-terms",
+          "url": "https://www.merchantbanker.in/blog/ipo-details/hy-tech-engineers-limited-ipo-details",
+          "asOf": "2026-09-13T09:34:39+05:30"
+        }
+      ],
+      "source": {
+        "name": "NSE historical",
+        "kind": "exchange",
+        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+        "asOf": "2026-09-12T08:19:32+05:30"
+      },
+      "observations": {
+        "NSE": {
+          "openDate": "2026-08-24",
+          "closeDate": "2026-08-27",
+          "priceBand": {
+            "min": 53.0,
+            "max": 53.0
+          },
+          "lotSize": null,
+          "issueSizeCr": null
+        },
+        "SEBI-offer": {
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "documentType": "PROSPECTUS",
+          "documentFiledDate": "2026-08-28",
+          "parserVersion": 13,
+          "lotSize": 283,
+          "priceBand": {
+            "min": 50.0,
+            "max": 53.0
+          }
+        }
+      },
+      "documents": [
+        {
+          "type": "PROSPECTUS",
+          "title": "Hy Tech Engineers Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/hy-tech-engineers-limited-prospectus_104093.html",
+          "filedDate": "2026-08-28",
+          "source": "SEBI",
+          "sourcePage": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=12&ssid=15"
+        },
+        {
+          "type": "PROSPECTUS",
+          "title": "SEBI PROSPECTUS",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "source": "SEBI",
+          "filedDate": "2026-08-28",
+          "sourcePage": "https://www.sebi.gov.in/filings/public-issues/aug-2026/hy-tech-engineers-limited-prospectus_104093.html",
+          "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+          "verifiedAt": "2026-09-17T02:14:28+05:30"
+        }
+      ],
+      "validation": {
+        "status": "single-source",
+        "checkedAt": "2026-09-16T05:55:26+05:30",
+        "checks": [],
+        "independentSources": [
+          "Hy-Tech",
+          "NSE"
+        ]
+      },
+      "profilePath": "ipo/htel/",
+      "openDate": "2026-08-24",
+      "closeDate": "2026-08-27",
+      "freshIssueCr": 60.0,
+      "ofsCr": 75.734,
+      "issueSizeCr": 135.734,
+      "leadManagers": [
+        "New Berry Capitals Private Limited"
+      ],
+      "registrar": "Bigshare Services Private Limited",
+      "promoters": [
+        "HEMANT TUKARAM MONDKAR",
+        "SUREKHA HEMANT MONDKAR",
+        "ASHWIN HEMANT MONDKAR"
+      ],
+      "financials": {
+        "unit": "₹ crore",
+        "periods": [
+          {
+            "period": "FY2026",
+            "revenueCr": 193.435,
+            "ebitdaCr": 41.686,
+            "patCr": 22.592,
+            "netWorthCr": 2.024,
+            "ronwPct": 20.24,
+            "eps": 83531840.0
+          },
+          {
+            "period": "FY2024",
+            "revenueCr": 166.707,
+            "ebitdaCr": 35.788,
+            "patCr": 19.619,
+            "netWorthCr": 2.139,
+            "ronwPct": 21.39,
+            "eps": 83531840.0
+          },
+          {
+            "period": "FY2025",
+            "revenueCr": 141.173,
+            "ebitdaCr": 22.551,
+            "patCr": 11.596,
+            "netWorthCr": 1.511,
+            "ronwPct": 15.11,
+            "eps": 83531840.0
+          }
+        ]
+      },
+      "objectsOfIssue": null,
+      "shareholding": {
+        "promoters": [],
+        "promoterPreIssuePct": 97.99
+      },
+      "issueComposition": {
+        "freshShares": 11320754,
+        "ofsShares": 14289450,
+        "freshIssueCr": 60.0,
+        "ofsCr": 75.734,
+        "totalIssueSizeCr": 135.734,
+        "valuationPriceUsed": 53.0
+      },
+      "offerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 31,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+        "documentType": "PROSPECTUS",
+        "documentTitle": "SEBI PROSPECTUS",
+        "documentFiledDate": "2026-08-28",
+        "source": "SEBI",
+        "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+        "pagesRead": 416,
+        "pageCount": 416,
+        "extractedFields": [
+          "leadManagers",
+          "registrar",
+          "promoters",
+          "lotSize",
+          "priceBand",
+          "issuePrice",
+          "issueComposition"
+        ],
+        "canonicalFields": [
+          "freshIssueCr",
+          "issueComposition",
+          "issueSizeCr",
+          "leadManagers",
+          "listing.issuePrice",
+          "lotSize",
+          "ofsCr",
+          "priceBand",
+          "promoters",
+          "registrar"
+        ],
+        "extractedAt": "2026-09-17T14:50:43+05:30",
+        "conflicts": [],
+        "sourcePolicy": "final-prospectus-only"
+      },
+      "lotSize": 283,
+      "minInvestment": 14999.0,
+      "dataCorrections": [
+        {
+          "field": "leadManagers",
+          "before": [
+            "Email New Berry Capitals Private Limited",
+            "Hy-Tech Engineers Private Limited",
+            "Hy-Tech Engineers Limited"
+          ],
+          "after": [
+            "New Berry Capitals Private Limited"
+          ],
+          "reason": "Corrected from bounded source-table/role extraction; unsupported intermediary fragments quarantined",
+          "parserVersion": 18,
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+          "correctedAt": "2026-09-14T12:16:27.134108+00:00"
+        },
+        {
+          "field": "registrar",
+          "before": "Hy-Tech Engineers Private Limited",
+          "after": "Bigshare Services Private Limited",
+          "reason": "Corrected from bounded source-table/role extraction; unsupported intermediary fragments quarantined",
+          "parserVersion": 18,
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+          "correctedAt": "2026-09-14T12:16:27.134108+00:00"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "ARE HEMANT TUKARAM MONDKAR",
+            "SUREKHA HEMANT MONDKAR",
+            "SHARE RESERV ATION AMONG QIBs",
+            "NIIs",
+            "& RIBs Fresh Issue",
+            "Offer for Sale 11",
+            "320",
+            "754^ Equity Shares of face value ₹5 each aggregating to ₹ 600.00 million 14",
+            "289",
+            "450^ Equity Shares of face value ₹5 each aggregating to ₹757.34 million 25",
+            "610",
+            "204^ Equity Shares of face value of ₹5 each aggregating to ₹1"
+          ],
+          "after": [
+            "ARE HEMANT TUKARAM MONDKAR",
+            "SUREKHA HEMANT MONDKAR",
+            "ASHWIN HEMANT MONDKAR"
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:22:46+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "BASIS FOR OFFER PRICE",
+              "amountCr": 111.0
+            },
+            {
+              "purpose": "STATEMENT OF POSSIBLE SPECIAL TAX BENEFITS",
+              "amountCr": 119.0
+            },
+            {
+              "purpose": "SECTION IV – ABOUT THE COMPANY",
+              "amountCr": 126.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW",
+              "amountCr": 126.0
+            },
+            {
+              "purpose": "OUR BUSINESS",
+              "amountCr": 172.0
+            },
+            {
+              "purpose": "KEY INDUSTRY REGULATIONS AND POLICIES",
+              "amountCr": 189.0
+            },
+            {
+              "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+              "amountCr": 195.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT",
+              "amountCr": 200.0
+            },
+            {
+              "purpose": "OUR PROMOTER AND PROMOTER GROUP",
+              "amountCr": 215.0
+            },
+            {
+              "purpose": "GROUP COMPANIES",
+              "amountCr": 219.0
+            },
+            {
+              "purpose": "DIVIDEND POLICY",
+              "amountCr": 221.0
+            }
+          ],
+          "after": [
+            {
+              "purpose": "repayment or repayment, in full or in part, of certain outstanding borrowings availed by our Company",
+              "amountCr": 16.0
+            },
+            {
+              "purpose": "unding capital expenditure requirement of our Company 299.66 299.66 50.00",
+              "amountCr": 24.966
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+          "parserVersion": 22,
+          "residualParserVersion": 1,
+          "correctedAt": "2026-09-16T09:22:46+05:30"
+        },
+        {
+          "field": "priceBand",
+          "before": {
+            "min": 53.0,
+            "max": 53.0
+          },
+          "after": {
+            "min": 50.0,
+            "max": 53.0
+          },
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+          "parserVersion": 23,
+          "correctedAt": "2026-09-16T11:18:42+05:30"
+        },
+        {
+          "field": "issueComposition",
+          "before": {
+            "freshShares": 11320754,
+            "ofsShares": 14289450,
+            "freshIssueCr": 60.0,
+            "ofsCr": 75.734,
+            "totalIssueSizeCr": 60.0,
+            "valuationPriceUsed": 53.0
+          },
+          "after": {
+            "freshShares": 11320754,
+            "ofsShares": 14289450,
+            "freshIssueCr": 60.0,
+            "ofsCr": 75.734,
+            "totalIssueSizeCr": 135.734,
+            "valuationPriceUsed": 53.0
+          },
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T11:35:49+05:30"
+        },
+        {
+          "field": "issueSizeCr",
+          "before": 60.0,
+          "after": 135.734,
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T11:35:49+05:30"
+        },
+        {
+          "field": "listing.issuePrice",
+          "before": null,
+          "after": 53.0,
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+          "parserVersion": 27,
+          "correctedAt": "2026-09-17T04:36:27+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "repayment or repayment, in full or in part, of certain outstanding borrowings availed by our Company",
+              "amountCr": 16.0
+            },
+            {
+              "purpose": "unding capital expenditure requirement of our Company 299.66 299.66 50.00",
+              "amountCr": 24.966
+            }
+          ],
+          "after": null,
+          "reason": "Invalid objects of issue quarantined pending Final Prospectus revalidation",
+          "findings": [
+            "Objects-of-issue row 2 purpose ends in a numeric table column; amount alignment needs review"
+          ],
+          "sourceEvidence": {
+            "source": "Final Prospectus",
+            "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+            "documentType": "PROSPECTUS",
+            "documentDate": "2026-08-28",
+            "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+            "parserVersion": 27,
+            "checkedAt": "2026-09-17T05:04:19+05:30",
+            "issueOpenDate": "2026-08-24",
+            "field": "objectsOfIssue",
+            "value": [
+              {
+                "purpose": "repayment or repayment, in full or in part, of certain outstanding borrowings availed by our Company",
+                "amountCr": 16.0
+              },
+              {
+                "purpose": "unding capital expenditure requirement of our Company 299.66 299.66 50.00",
+                "amountCr": 24.966
+              }
+            ],
+            "evidence": {
+              "page": 103,
+              "heading": "OBJECTS OF THE ISSUE",
+              "unit": "million",
+              "rows": [
+                {
+                  "purpose": "repayment or repayment, in full or in part, of certain outstanding borrowings availed by our Company",
+                  "amountCr": 16.0
+                },
+                {
+                  "purpose": "unding capital expenditure requirement of our Company 299.66 299.66 50.00",
+                  "amountCr": 24.966
+                }
+              ]
+            }
+          },
+          "documentEvidence": {
+            "page": 103,
+            "heading": "OBJECTS OF THE ISSUE",
+            "unit": "million",
+            "rows": [
+              {
+                "purpose": "repayment or repayment, in full or in part, of certain outstanding borrowings availed by our Company",
+                "amountCr": 16.0
+              },
+              {
+                "purpose": "unding capital expenditure requirement of our Company 299.66 299.66 50.00",
+                "amountCr": 24.966
+              }
+            ]
+          },
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+          "correctedAt": "2026-09-17T00:08:43.420328+00:00"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "ARE HEMANT TUKARAM MONDKAR",
+            "SUREKHA HEMANT MONDKAR",
+            "ASHWIN HEMANT MONDKAR"
+          ],
+          "after": [
+            "HEMANT TUKARAM MONDKAR",
+            "SUREKHA HEMANT MONDKAR",
+            "ASHWIN HEMANT MONDKAR"
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+          "parserVersion": 29,
+          "correctedAt": "2026-09-17T09:05:17+05:30"
+        }
+      ],
+      "documentFieldProvenance": {
+        "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+        "documentType": "PROSPECTUS",
+        "documentDate": "2026-08-28",
+        "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+        "parserVersion": 31,
+        "checkedAt": "2026-09-17T14:50:43+05:30",
+        "evidence": {
+          "priceBand": {
+            "page": 12,
+            "heading": "Floor Price of ₹50 per Equity Share to the Cap Price of ₹53",
+            "value": {
+              "min": 50.0,
+              "max": 53.0
+            },
+            "basis": "explicit Price Band/Floor Price/Cap Price in Final Prospectus"
+          },
+          "lotSize": {
+            "page": 9,
+            "heading": "Bid Lot” 283 Equity Shares",
+            "value": 283,
+            "basis": "explicit Bid Lot/Minimum Bid Lot in Final Prospectus"
+          },
+          "leadManagers": {
+            "page": 2,
+            "heading": "BOOK RUNNING LEAD MANAGER",
+            "entities": [
+              "New Berry Capitals Private Limited"
+            ]
+          },
+          "registrar": {
+            "page": 2,
+            "heading": "REGISTRAR TO THE OFFER",
+            "entities": [
+              "Bigshare Services Private Limited"
+            ]
+          },
+          "promoters": {
+            "page": 1,
+            "heading": "OUR PROMOTERS",
+            "rows": [
+              "OUR PROMOTERS ARE HEMANT TUKARAM MONDKAR, SUREKHA HEMANT MONDKAR AND ASHWIN",
+              "HEMANT MONDKAR"
+            ],
+            "entities": [
+              "HEMANT TUKARAM MONDKAR",
+              "SUREKHA HEMANT MONDKAR",
+              "ASHWIN HEMANT MONDKAR"
+            ],
+            "method": "bounded-promoter-heading-v1"
+          },
+          "issuePrice": {
+            "page": 3,
+            "heading": "INITIAL PUBLIC OFFER OF 25,610,204^ EQUITY SHARES OF FACE VALUE OF ₹5 EACH (“EQUITY SHARES”) OF HY-TECH ENGINEERS LIMITED (“COMPANY”) FOR CASH AT A PRICE OF ₹53 PER EQUITY SHARE",
+            "value": 53.0,
+            "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+            "method": "final-offer-price-v2"
+          },
+          "issueComposition": {
+            "basis": "validated Final Prospectus issue composition",
+            "method": "bounded-final-offer-clauses-v1",
+            "page": 3,
+            "heading": "Final offer composition",
+            "fields": {
+              "totalShares": {
+                "page": 3,
+                "row": "INITIAL PUBLIC OFFER OF 25,610,204^ EQUITY SHARES OF FACE VALUE OF ₹5 EACH (“EQUITY SHARES”) OF HY-TECH ENGINEERS LIMITED (“COMPANY”) FOR CASH AT A PRICE OF ₹53 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹48 PER EQUITY SHARE) (THE “OFFER PRICE”) AGGREGATING TO ₹1,357.34 MILLION",
+                "normalizedValue": 25610204,
+                "basis": "explicit final offer clause"
+              },
+              "totalIssueSizeCr": {
+                "page": 3,
+                "row": "INITIAL PUBLIC OFFER OF 25,610,204^ EQUITY SHARES OF FACE VALUE OF ₹5 EACH (“EQUITY SHARES”) OF HY-TECH ENGINEERS LIMITED (“COMPANY”) FOR CASH AT A PRICE OF ₹53 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹48 PER EQUITY SHARE) (THE “OFFER PRICE”) AGGREGATING TO ₹1,357.34 MILLION",
+                "normalizedValue": 135.734,
+                "basis": "explicit final offer clause"
+              },
+              "freshShares": {
+                "page": 3,
+                "row": "FRESH ISSUE OF 11,320,754^ EQUITY SHARES AGGREGATING TO ₹600.00 MILLION",
+                "normalizedValue": 11320754,
+                "basis": "explicit final offer clause"
+              },
+              "freshIssueCr": {
+                "page": 3,
+                "row": "FRESH ISSUE OF 11,320,754^ EQUITY SHARES AGGREGATING TO ₹600.00 MILLION",
+                "normalizedValue": 60.0,
+                "basis": "explicit final offer clause"
+              },
+              "ofsShares": {
+                "page": 3,
+                "row": "OFFER FOR SALE OF 14,289,450^ EQUITY SHARES",
+                "normalizedValue": 14289450,
+                "basis": "explicit final offer clause"
+              },
+              "ofsCr": {
+                "page": 12,
+                "row": "Offer for Sale of 14,289,450^ Equity Shares aggregating to ₹757.34 million",
+                "normalizedValue": 75.734,
+                "basis": "explicit final offer clause"
+              },
+              "valuationPriceUsed": {
+                "page": 3,
+                "heading": "INITIAL PUBLIC OFFER OF 25,610,204^ EQUITY SHARES OF FACE VALUE OF ₹5 EACH (“EQUITY SHARES”) OF HY-TECH ENGINEERS LIMITED (“COMPANY”) FOR CASH AT A PRICE OF ₹53 PER EQUITY SHARE",
+                "value": 53.0,
+                "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+                "method": "final-offer-price-v2"
+              }
+            },
+            "totalShares": 25610204,
+            "freshShares": 11320754,
+            "ofsShares": 14289450,
+            "freshIssueCr": 60.0,
+            "ofsCr": 75.734,
+            "totalIssueSizeCr": 135.734
+          }
+        },
+        "sourcePolicy": "final-prospectus-only"
+      },
+      "documentRepair": {
+        "status": "no_change",
+        "financialStatus": "needs_review",
+        "lastAttemptAt": "2026-09-17T14:50:43+05:30",
+        "parserVersion": 31,
+        "sourcePolicy": "final-prospectus-only"
+      },
+      "nseOfferFilings": {
+        "id": "htel",
+        "status": "no_match",
+        "changedFields": [],
+        "documentsAdded": 0,
+        "lastAttemptAt": "2026-09-15T20:51:23+00:00",
+        "fingerprint": "bb1df8791775f1504ae0cdb4791261e26d687e71b59739668e7eb820375c0a12"
+      },
+      "p4OfferResidualRepair": {
+        "status": "no_change",
+        "parserVersion": 4,
+        "mainParserVersion": 31,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+        "checkedAt": "2026-09-17T14:50:43+05:30",
+        "changedFields": []
+      },
+      "staticFieldProvenance": {
+        "leadManagers": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2026-08-28",
+          "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-17T14:50:43+05:30",
+          "issueOpenDate": "2026-08-24",
+          "field": "leadManagers",
+          "value": [
+            "New Berry Capitals Private Limited"
+          ],
+          "evidence": {
+            "page": 2,
+            "heading": "BOOK RUNNING LEAD MANAGER",
+            "entities": [
+              "New Berry Capitals Private Limited"
+            ]
+          }
+        },
+        "promoters": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2026-08-28",
+          "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-17T14:50:43+05:30",
+          "issueOpenDate": "2026-08-24",
+          "field": "promoters",
+          "value": [
+            "HEMANT TUKARAM MONDKAR",
+            "SUREKHA HEMANT MONDKAR",
+            "ASHWIN HEMANT MONDKAR"
+          ],
+          "evidence": {
+            "page": 1,
+            "heading": "OUR PROMOTERS",
+            "rows": [
+              "OUR PROMOTERS ARE HEMANT TUKARAM MONDKAR, SUREKHA HEMANT MONDKAR AND ASHWIN",
+              "HEMANT MONDKAR"
+            ],
+            "entities": [
+              "HEMANT TUKARAM MONDKAR",
+              "SUREKHA HEMANT MONDKAR",
+              "ASHWIN HEMANT MONDKAR"
+            ],
+            "method": "bounded-promoter-heading-v1"
+          }
+        },
+        "priceBand": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2026-08-28",
+          "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-17T14:50:43+05:30",
+          "issueOpenDate": "2026-08-24",
+          "field": "priceBand",
+          "value": {
+            "min": 50.0,
+            "max": 53.0
+          },
+          "evidence": {
+            "page": 12,
+            "heading": "Floor Price of ₹50 per Equity Share to the Cap Price of ₹53",
+            "value": {
+              "min": 50.0,
+              "max": 53.0
+            },
+            "basis": "explicit Price Band/Floor Price/Cap Price in Final Prospectus"
+          }
+        },
+        "registrar": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2026-08-28",
+          "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-17T14:50:43+05:30",
+          "issueOpenDate": "2026-08-24",
+          "field": "registrar",
+          "value": "Bigshare Services Private Limited",
+          "evidence": {
+            "page": 2,
+            "heading": "REGISTRAR TO THE OFFER",
+            "entities": [
+              "Bigshare Services Private Limited"
+            ]
+          }
+        },
+        "issueComposition": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2026-08-28",
+          "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-17T14:50:43+05:30",
+          "issueOpenDate": "2026-08-24",
+          "field": "issueComposition",
+          "value": {
+            "freshShares": 11320754,
+            "ofsShares": 14289450,
+            "freshIssueCr": 60.0,
+            "ofsCr": 75.734,
+            "totalIssueSizeCr": 135.734,
+            "valuationPriceUsed": 53.0
+          },
+          "evidence": {
+            "basis": "validated Final Prospectus issue composition",
+            "method": "bounded-final-offer-clauses-v1",
+            "page": 3,
+            "heading": "Final offer composition",
+            "fields": {
+              "totalShares": {
+                "page": 3,
+                "row": "INITIAL PUBLIC OFFER OF 25,610,204^ EQUITY SHARES OF FACE VALUE OF ₹5 EACH (“EQUITY SHARES”) OF HY-TECH ENGINEERS LIMITED (“COMPANY”) FOR CASH AT A PRICE OF ₹53 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹48 PER EQUITY SHARE) (THE “OFFER PRICE”) AGGREGATING TO ₹1,357.34 MILLION",
+                "normalizedValue": 25610204,
+                "basis": "explicit final offer clause"
+              },
+              "totalIssueSizeCr": {
+                "page": 3,
+                "row": "INITIAL PUBLIC OFFER OF 25,610,204^ EQUITY SHARES OF FACE VALUE OF ₹5 EACH (“EQUITY SHARES”) OF HY-TECH ENGINEERS LIMITED (“COMPANY”) FOR CASH AT A PRICE OF ₹53 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹48 PER EQUITY SHARE) (THE “OFFER PRICE”) AGGREGATING TO ₹1,357.34 MILLION",
+                "normalizedValue": 135.734,
+                "basis": "explicit final offer clause"
+              },
+              "freshShares": {
+                "page": 3,
+                "row": "FRESH ISSUE OF 11,320,754^ EQUITY SHARES AGGREGATING TO ₹600.00 MILLION",
+                "normalizedValue": 11320754,
+                "basis": "explicit final offer clause"
+              },
+              "freshIssueCr": {
+                "page": 3,
+                "row": "FRESH ISSUE OF 11,320,754^ EQUITY SHARES AGGREGATING TO ₹600.00 MILLION",
+                "normalizedValue": 60.0,
+                "basis": "explicit final offer clause"
+              },
+              "ofsShares": {
+                "page": 3,
+                "row": "OFFER FOR SALE OF 14,289,450^ EQUITY SHARES",
+                "normalizedValue": 14289450,
+                "basis": "explicit final offer clause"
+              },
+              "ofsCr": {
+                "page": 12,
+                "row": "Offer for Sale of 14,289,450^ Equity Shares aggregating to ₹757.34 million",
+                "normalizedValue": 75.734,
+                "basis": "explicit final offer clause"
+              },
+              "valuationPriceUsed": {
+                "page": 3,
+                "heading": "INITIAL PUBLIC OFFER OF 25,610,204^ EQUITY SHARES OF FACE VALUE OF ₹5 EACH (“EQUITY SHARES”) OF HY-TECH ENGINEERS LIMITED (“COMPANY”) FOR CASH AT A PRICE OF ₹53 PER EQUITY SHARE",
+                "value": 53.0,
+                "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+                "method": "final-offer-price-v2"
+              }
+            },
+            "totalShares": 25610204,
+            "freshShares": 11320754,
+            "ofsShares": 14289450,
+            "freshIssueCr": 60.0,
+            "ofsCr": 75.734,
+            "totalIssueSizeCr": 135.734
+          }
+        },
+        "issueSizeCr": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2026-08-28",
+          "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-17T14:50:43+05:30",
+          "issueOpenDate": "2026-08-24",
+          "field": "issueSizeCr",
+          "value": 135.734,
+          "evidence": {
+            "basis": "validated Final Prospectus issue composition",
+            "method": "bounded-final-offer-clauses-v1",
+            "page": 3,
+            "heading": "Final offer composition",
+            "fields": {
+              "totalShares": {
+                "page": 3,
+                "row": "INITIAL PUBLIC OFFER OF 25,610,204^ EQUITY SHARES OF FACE VALUE OF ₹5 EACH (“EQUITY SHARES”) OF HY-TECH ENGINEERS LIMITED (“COMPANY”) FOR CASH AT A PRICE OF ₹53 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹48 PER EQUITY SHARE) (THE “OFFER PRICE”) AGGREGATING TO ₹1,357.34 MILLION",
+                "normalizedValue": 25610204,
+                "basis": "explicit final offer clause"
+              },
+              "totalIssueSizeCr": {
+                "page": 3,
+                "row": "INITIAL PUBLIC OFFER OF 25,610,204^ EQUITY SHARES OF FACE VALUE OF ₹5 EACH (“EQUITY SHARES”) OF HY-TECH ENGINEERS LIMITED (“COMPANY”) FOR CASH AT A PRICE OF ₹53 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹48 PER EQUITY SHARE) (THE “OFFER PRICE”) AGGREGATING TO ₹1,357.34 MILLION",
+                "normalizedValue": 135.734,
+                "basis": "explicit final offer clause"
+              },
+              "freshShares": {
+                "page": 3,
+                "row": "FRESH ISSUE OF 11,320,754^ EQUITY SHARES AGGREGATING TO ₹600.00 MILLION",
+                "normalizedValue": 11320754,
+                "basis": "explicit final offer clause"
+              },
+              "freshIssueCr": {
+                "page": 3,
+                "row": "FRESH ISSUE OF 11,320,754^ EQUITY SHARES AGGREGATING TO ₹600.00 MILLION",
+                "normalizedValue": 60.0,
+                "basis": "explicit final offer clause"
+              },
+              "ofsShares": {
+                "page": 3,
+                "row": "OFFER FOR SALE OF 14,289,450^ EQUITY SHARES",
+                "normalizedValue": 14289450,
+                "basis": "explicit final offer clause"
+              },
+              "ofsCr": {
+                "page": 12,
+                "row": "Offer for Sale of 14,289,450^ Equity Shares aggregating to ₹757.34 million",
+                "normalizedValue": 75.734,
+                "basis": "explicit final offer clause"
+              },
+              "valuationPriceUsed": {
+                "page": 3,
+                "heading": "INITIAL PUBLIC OFFER OF 25,610,204^ EQUITY SHARES OF FACE VALUE OF ₹5 EACH (“EQUITY SHARES”) OF HY-TECH ENGINEERS LIMITED (“COMPANY”) FOR CASH AT A PRICE OF ₹53 PER EQUITY SHARE",
+                "value": 53.0,
+                "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+                "method": "final-offer-price-v2"
+              }
+            },
+            "totalShares": 25610204,
+            "freshShares": 11320754,
+            "ofsShares": 14289450,
+            "freshIssueCr": 60.0,
+            "ofsCr": 75.734,
+            "totalIssueSizeCr": 135.734
+          }
+        },
+        "freshIssueCr": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2026-08-28",
+          "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-17T14:50:43+05:30",
+          "issueOpenDate": "2026-08-24",
+          "field": "freshIssueCr",
+          "value": 60.0,
+          "evidence": {
+            "basis": "validated Final Prospectus issue composition",
+            "method": "bounded-final-offer-clauses-v1",
+            "page": 3,
+            "heading": "Final offer composition",
+            "fields": {
+              "totalShares": {
+                "page": 3,
+                "row": "INITIAL PUBLIC OFFER OF 25,610,204^ EQUITY SHARES OF FACE VALUE OF ₹5 EACH (“EQUITY SHARES”) OF HY-TECH ENGINEERS LIMITED (“COMPANY”) FOR CASH AT A PRICE OF ₹53 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹48 PER EQUITY SHARE) (THE “OFFER PRICE”) AGGREGATING TO ₹1,357.34 MILLION",
+                "normalizedValue": 25610204,
+                "basis": "explicit final offer clause"
+              },
+              "totalIssueSizeCr": {
+                "page": 3,
+                "row": "INITIAL PUBLIC OFFER OF 25,610,204^ EQUITY SHARES OF FACE VALUE OF ₹5 EACH (“EQUITY SHARES”) OF HY-TECH ENGINEERS LIMITED (“COMPANY”) FOR CASH AT A PRICE OF ₹53 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹48 PER EQUITY SHARE) (THE “OFFER PRICE”) AGGREGATING TO ₹1,357.34 MILLION",
+                "normalizedValue": 135.734,
+                "basis": "explicit final offer clause"
+              },
+              "freshShares": {
+                "page": 3,
+                "row": "FRESH ISSUE OF 11,320,754^ EQUITY SHARES AGGREGATING TO ₹600.00 MILLION",
+                "normalizedValue": 11320754,
+                "basis": "explicit final offer clause"
+              },
+              "freshIssueCr": {
+                "page": 3,
+                "row": "FRESH ISSUE OF 11,320,754^ EQUITY SHARES AGGREGATING TO ₹600.00 MILLION",
+                "normalizedValue": 60.0,
+                "basis": "explicit final offer clause"
+              },
+              "ofsShares": {
+                "page": 3,
+                "row": "OFFER FOR SALE OF 14,289,450^ EQUITY SHARES",
+                "normalizedValue": 14289450,
+                "basis": "explicit final offer clause"
+              },
+              "ofsCr": {
+                "page": 12,
+                "row": "Offer for Sale of 14,289,450^ Equity Shares aggregating to ₹757.34 million",
+                "normalizedValue": 75.734,
+                "basis": "explicit final offer clause"
+              },
+              "valuationPriceUsed": {
+                "page": 3,
+                "heading": "INITIAL PUBLIC OFFER OF 25,610,204^ EQUITY SHARES OF FACE VALUE OF ₹5 EACH (“EQUITY SHARES”) OF HY-TECH ENGINEERS LIMITED (“COMPANY”) FOR CASH AT A PRICE OF ₹53 PER EQUITY SHARE",
+                "value": 53.0,
+                "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+                "method": "final-offer-price-v2"
+              }
+            },
+            "totalShares": 25610204,
+            "freshShares": 11320754,
+            "ofsShares": 14289450,
+            "freshIssueCr": 60.0,
+            "ofsCr": 75.734,
+            "totalIssueSizeCr": 135.734
+          }
+        },
+        "ofsCr": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2026-08-28",
+          "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-17T14:50:43+05:30",
+          "issueOpenDate": "2026-08-24",
+          "field": "ofsCr",
+          "value": 75.734,
+          "evidence": {
+            "basis": "validated Final Prospectus issue composition",
+            "method": "bounded-final-offer-clauses-v1",
+            "page": 3,
+            "heading": "Final offer composition",
+            "fields": {
+              "totalShares": {
+                "page": 3,
+                "row": "INITIAL PUBLIC OFFER OF 25,610,204^ EQUITY SHARES OF FACE VALUE OF ₹5 EACH (“EQUITY SHARES”) OF HY-TECH ENGINEERS LIMITED (“COMPANY”) FOR CASH AT A PRICE OF ₹53 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹48 PER EQUITY SHARE) (THE “OFFER PRICE”) AGGREGATING TO ₹1,357.34 MILLION",
+                "normalizedValue": 25610204,
+                "basis": "explicit final offer clause"
+              },
+              "totalIssueSizeCr": {
+                "page": 3,
+                "row": "INITIAL PUBLIC OFFER OF 25,610,204^ EQUITY SHARES OF FACE VALUE OF ₹5 EACH (“EQUITY SHARES”) OF HY-TECH ENGINEERS LIMITED (“COMPANY”) FOR CASH AT A PRICE OF ₹53 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹48 PER EQUITY SHARE) (THE “OFFER PRICE”) AGGREGATING TO ₹1,357.34 MILLION",
+                "normalizedValue": 135.734,
+                "basis": "explicit final offer clause"
+              },
+              "freshShares": {
+                "page": 3,
+                "row": "FRESH ISSUE OF 11,320,754^ EQUITY SHARES AGGREGATING TO ₹600.00 MILLION",
+                "normalizedValue": 11320754,
+                "basis": "explicit final offer clause"
+              },
+              "freshIssueCr": {
+                "page": 3,
+                "row": "FRESH ISSUE OF 11,320,754^ EQUITY SHARES AGGREGATING TO ₹600.00 MILLION",
+                "normalizedValue": 60.0,
+                "basis": "explicit final offer clause"
+              },
+              "ofsShares": {
+                "page": 3,
+                "row": "OFFER FOR SALE OF 14,289,450^ EQUITY SHARES",
+                "normalizedValue": 14289450,
+                "basis": "explicit final offer clause"
+              },
+              "ofsCr": {
+                "page": 12,
+                "row": "Offer for Sale of 14,289,450^ Equity Shares aggregating to ₹757.34 million",
+                "normalizedValue": 75.734,
+                "basis": "explicit final offer clause"
+              },
+              "valuationPriceUsed": {
+                "page": 3,
+                "heading": "INITIAL PUBLIC OFFER OF 25,610,204^ EQUITY SHARES OF FACE VALUE OF ₹5 EACH (“EQUITY SHARES”) OF HY-TECH ENGINEERS LIMITED (“COMPANY”) FOR CASH AT A PRICE OF ₹53 PER EQUITY SHARE",
+                "value": 53.0,
+                "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+                "method": "final-offer-price-v2"
+              }
+            },
+            "totalShares": 25610204,
+            "freshShares": 11320754,
+            "ofsShares": 14289450,
+            "freshIssueCr": 60.0,
+            "ofsCr": 75.734,
+            "totalIssueSizeCr": 135.734
+          }
+        },
+        "lotSize": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2026-08-28",
+          "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-17T14:50:43+05:30",
+          "issueOpenDate": "2026-08-24",
+          "field": "lotSize",
+          "value": 283,
+          "evidence": {
+            "page": 9,
+            "heading": "Bid Lot” 283 Equity Shares",
+            "value": 283,
+            "basis": "explicit Bid Lot/Minimum Bid Lot in Final Prospectus"
+          }
+        },
+        "listing.issuePrice": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2026-08-28",
+          "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-17T14:50:43+05:30",
+          "issueOpenDate": "2026-08-24",
+          "field": "listing.issuePrice",
+          "value": 53.0,
+          "evidence": {
+            "page": 3,
+            "heading": "INITIAL PUBLIC OFFER OF 25,610,204^ EQUITY SHARES OF FACE VALUE OF ₹5 EACH (“EQUITY SHARES”) OF HY-TECH ENGINEERS LIMITED (“COMPANY”) FOR CASH AT A PRICE OF ₹53 PER EQUITY SHARE",
+            "value": 53.0,
+            "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+            "method": "final-offer-price-v2"
+          }
+        }
+      },
+      "staticSourcePolicy": {
+        "policy": "final-prospectus-only",
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+        "documentType": "PROSPECTUS",
+        "checkedAt": "2026-09-18T20:23:00.148262+00:00",
+        "verifiedFields": [
+          "freshIssueCr",
+          "issueComposition",
+          "issueSizeCr",
+          "leadManagers",
+          "listing.issuePrice",
+          "lotSize",
+          "ofsCr",
+          "priceBand",
+          "promoters",
+          "registrar"
+        ],
+        "pendingRevalidationFields": [
+          "financials",
+          "objectsOfIssue",
+          "shareholding"
+        ],
+        "status": "pending-revalidation",
+        "marketStaticTerms": "observation-only"
+      },
+      "lotSizeEvidence": {
+        "source": "Final Prospectus",
+        "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+        "documentType": "PROSPECTUS",
+        "documentDate": "2026-08-28",
+        "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+        "parserVersion": 31,
+        "checkedAt": "2026-09-17T14:50:43+05:30",
+        "issueOpenDate": "2026-08-24",
+        "field": "lotSize",
+        "value": 283,
+        "evidence": {
+          "page": 9,
+          "heading": "Bid Lot” 283 Equity Shares",
+          "value": 283,
+          "basis": "explicit Bid Lot/Minimum Bid Lot in Final Prospectus"
+        }
+      },
+      "listing": {
+        "issuePrice": 53.0,
+        "issuePriceEvidence": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": "2026-08-28",
+          "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-17T14:50:43+05:30",
+          "issueOpenDate": "2026-08-24",
+          "field": "listing.issuePrice",
+          "value": 53.0,
+          "evidence": {
+            "page": 3,
+            "heading": "INITIAL PUBLIC OFFER OF 25,610,204^ EQUITY SHARES OF FACE VALUE OF ₹5 EACH (“EQUITY SHARES”) OF HY-TECH ENGINEERS LIMITED (“COMPANY”) FOR CASH AT A PRICE OF ₹53 PER EQUITY SHARE",
+            "value": 53.0,
+            "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+            "method": "final-offer-price-v2"
+          }
+        }
+      },
+      "objectsOfIssueReview": {
+        "status": "quarantined",
+        "checkedAt": "2026-09-17T00:08:43.420328+00:00",
+        "snapshot": {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "repayment or repayment, in full or in part, of certain outstanding borrowings availed by our Company",
+              "amountCr": 16.0
+            },
+            {
+              "purpose": "unding capital expenditure requirement of our Company 299.66 299.66 50.00",
+              "amountCr": 24.966
+            }
+          ],
+          "after": null,
+          "reason": "Invalid objects of issue quarantined pending Final Prospectus revalidation",
+          "findings": [
+            "Objects-of-issue row 2 purpose ends in a numeric table column; amount alignment needs review"
+          ],
+          "sourceEvidence": {
+            "source": "Final Prospectus",
+            "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+            "documentType": "PROSPECTUS",
+            "documentDate": "2026-08-28",
+            "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+            "parserVersion": 27,
+            "checkedAt": "2026-09-17T05:04:19+05:30",
+            "issueOpenDate": "2026-08-24",
+            "field": "objectsOfIssue",
+            "value": [
+              {
+                "purpose": "repayment or repayment, in full or in part, of certain outstanding borrowings availed by our Company",
+                "amountCr": 16.0
+              },
+              {
+                "purpose": "unding capital expenditure requirement of our Company 299.66 299.66 50.00",
+                "amountCr": 24.966
+              }
+            ],
+            "evidence": {
+              "page": 103,
+              "heading": "OBJECTS OF THE ISSUE",
+              "unit": "million",
+              "rows": [
+                {
+                  "purpose": "repayment or repayment, in full or in part, of certain outstanding borrowings availed by our Company",
+                  "amountCr": 16.0
+                },
+                {
+                  "purpose": "unding capital expenditure requirement of our Company 299.66 299.66 50.00",
+                  "amountCr": 24.966
+                }
+              ]
+            }
+          },
+          "documentEvidence": {
+            "page": 103,
+            "heading": "OBJECTS OF THE ISSUE",
+            "unit": "million",
+            "rows": [
+              {
+                "purpose": "repayment or repayment, in full or in part, of certain outstanding borrowings availed by our Company",
+                "amountCr": 16.0
+              },
+              {
+                "purpose": "unding capital expenditure requirement of our Company 299.66 299.66 50.00",
+                "amountCr": 24.966
+              }
+            ]
+          },
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787913136327.pdf",
+          "sha256": "80e725bfa930875a995043c3dd1ede119446a03653e7baaccf9fe84f53670839",
+          "correctedAt": "2026-09-17T00:08:43.420328+00:00"
+        }
+      }
+    },
+    {
+      "id": "kissht",
+      "matchKey": "ONEMITECHNOLOGYSOLUTIONS",
+      "symbol": "KISSHT",
+      "company": "Onemi Technology Solutions Limited",
+      "board": "Mainboard",
+      "exchange": "NSE",
+      "status": "listed",
+      "listingDate": "2026-05-08",
+      "priceBand": {
+        "min": 162.0,
+        "max": 171.0
+      },
+      "lifecycle": {
+        "stage": "exchange",
+        "stageDate": "2026-04-30"
+      },
+      "sources": [
+        {
+          "name": "NSE historical",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+          "asOf": "2026-09-12T08:19:31+05:30"
+        },
+        {
+          "name": "NSE primary-market monthly report",
+          "kind": "exchange",
+          "url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-06/Exchange_Data_Primary_Market_20260612135555.xlsx",
+          "asOf": "2026-09-13T16:13:10+05:30"
+        },
+        {
+          "name": "NSE issue information",
+          "kind": "exchange",
+          "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=KISSHT&type=Past",
+          "asOf": "2026-09-13T17:12:18+05:30"
+        },
+        {
+          "name": "SEBI final Prospectus",
+          "kind": "regulatory-filing",
+          "url": "https://www.sebi.gov.in/filings/public-issues/may-2026/onemi-technology-solutions-limited-prospectus_102192.html",
+          "asOf": "2026-09-14T03:04:01+05:30"
+        }
+      ],
+      "source": {
+        "name": "NSE historical",
+        "kind": "exchange",
+        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+        "asOf": "2026-09-12T08:19:31+05:30"
+      },
+      "observations": {
+        "NSE": {
+          "openDate": "2026-04-30",
+          "closeDate": "2026-05-05",
+          "priceBand": {
+            "min": 171.0,
+            "max": 171.0
+          },
+          "lotSize": null,
+          "issueSizeCr": null
+        },
+        "Offer-document": {
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "documentType": "Prospectus",
+          "documentFiledDate": null,
+          "parserVersion": 13,
+          "source": "SEBI",
+          "lotSize": 87,
+          "priceBand": {
+            "min": 162.0,
+            "max": 171.0
+          }
+        },
+        "NSEFinalIssuePrice": {
+          "source": "NSE primary-market monthly report",
+          "sourceUrl": "https://nsearchives.nseindia.com//web/mediaattachment/2026-06/Exchange_Data_Primary_Market_20260612135555.xlsx",
+          "sha256": "0baac27e3e3256470d986fbf1fd8d4bc6671be9eacd470c8f20c54ba1d296437",
+          "company": "Onemi Technology Solutions Limited",
+          "symbol": null,
+          "issueOpenDate": "2026-04-30",
+          "issueCloseDate": "2026-05-05",
+          "field": "Issue_Price",
+          "value": 171.0
+        },
+        "FinalProspectus": {
+          "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "documentType": "PROSPECTUS",
+          "documentFiledDate": null,
+          "parserVersion": 31,
+          "source": "SEBI",
+          "sourcePolicy": "final-prospectus-only",
+          "canonicalStaticFieldsWritten": [
+            "freshIssueCr",
+            "issueComposition",
+            "issueSizeCr",
+            "leadManagers",
+            "listing.issuePrice",
+            "lotSize",
+            "objectsOfIssue",
+            "ofsCr",
+            "priceBand",
+            "promoters",
+            "registrar",
+            "shareholding"
+          ],
+          "lotSize": 87,
+          "priceBand": {
+            "min": 162.0,
+            "max": 171.0
+          },
+          "issueComposition": {
+            "freshShares": 49707602,
+            "ofsShares": 4439788,
+            "freshIssueCr": 850.0,
+            "ofsCr": 75.92,
+            "totalIssueSizeCr": 925.92,
+            "valuationPriceUsed": 171.0
+          }
+        }
+      },
+      "documents": [
+        {
+          "type": "PROSPECTUS",
+          "title": "OnEMI Technology Solutions Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/may-2026/onemi-technology-solutions-limited-prospectus_102192.html",
+          "filedDate": "2026-05-06",
+          "source": "SEBI",
+          "sourcePage": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do"
+        },
+        {
+          "type": "RHP",
+          "title": "OnEMI Technology Solutions Limited - RHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/onemi-technology-solutions-limited-rhp_102191.html",
+          "filedDate": "2026-04-27",
+          "source": "SEBI",
+          "sourcePage": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do"
+        },
+        {
+          "type": "PROSPECTUS",
+          "title": "Prospectus",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "source": "SEBI",
+          "filedDate": "2026-05-06",
+          "sourcePage": "https://www.sebi.gov.in/filings/public-issues/may-2026/onemi-technology-solutions-limited-prospectus_102192.html",
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "verifiedAt": "2026-09-16T10:10:16+05:30"
+        },
+        {
+          "type": "RHP",
+          "title": "SEBI RHP",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763229125.pdf",
+          "source": "SEBI",
+          "filedDate": "2026-04-27",
+          "sourcePage": "https://www.sebi.gov.in/filings/public-issues/apr-2026/onemi-technology-solutions-limited-rhp_102191.html"
+        }
+      ],
+      "validation": {
+        "status": "verified",
+        "checkedAt": "2026-09-17T14:52:53+05:30",
+        "checks": [],
+        "independentSources": [
+          "NSE",
+          "SEBI"
+        ]
+      },
+      "profilePath": "ipo/kissht/",
+      "openDate": "2026-04-30",
+      "closeDate": "2026-05-05",
+      "sharesOffered": 54147390,
+      "issueSizeCr": 925.92,
+      "freshIssueCr": 850.0,
+      "ofsCr": 75.92,
+      "issueComposition": {
+        "freshShares": 49707602,
+        "ofsShares": 4439788,
+        "freshIssueCr": 850.0,
+        "ofsCr": 75.92,
+        "totalIssueSizeCr": 925.92,
+        "valuationPriceUsed": 171.0
+      },
+      "lotSize": 87,
+      "minimumBidQuantity": 87,
+      "marketLot": 87,
+      "nseIssueInfoLotBackfill": {
+        "status": "filled",
+        "lastAttemptAt": "2026-09-13T17:12:18+05:30",
+        "pageUrl": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=KISSHT&type=Past",
+        "apiUrl": "https://www.nseindia.com/api/ipo-detail?symbol=KISSHT&series=EQ",
+        "lotSize": 87,
+        "error": null
+      },
+      "registrar": "KFin Technologies Limited",
+      "leadManagers": [
+        "JM Financial Limited",
+        "HSBC Securities and Capital Markets (India) Private Limited",
+        "Nuvama Wealth Management Limited"
+      ],
+      "promoters": [
+        "RANVIR SINGH",
+        "KRISHNAN VISHWANATHAN"
+      ],
+      "financials": {
+        "unit": "₹ crore",
+        "periods": [
+          {
+            "period": "FY2024",
+            "revenueCr": 2.3,
+            "ebitdaCr": 488.453,
+            "patCr": 199.269,
+            "netWorthCr": 2.118,
+            "ronwPct": 21.18,
+            "eps": 31.0
+          },
+          {
+            "period": "FY2025",
+            "revenueCr": 1674.463,
+            "ebitdaCr": 403.368,
+            "patCr": 160.621,
+            "netWorthCr": 1.597,
+            "ronwPct": 15.97,
+            "eps": 2023.0
+          },
+          {
+            "period": "FY2023",
+            "revenueCr": -0.017,
+            "ebitdaCr": 358.958,
+            "patCr": 197.29,
+            "netWorthCr": 2.452,
+            "ronwPct": 24.52,
+            "eps": 49.0
+          }
+        ]
+      },
+      "objectsOfIssue": [
+        {
+          "purpose": "Augmenting the capital base of our Subsidiary, Si Creva, to meet its future capital requirements arising out of the growth of our Subsidiary, Si Creva’s, business",
+          "amountCr": 637.5
+        },
+        {
+          "purpose": "General corporate purposes^",
+          "amountCr": 156.585
+        }
+      ],
+      "shareholding": {
+        "promoters": [],
+        "promoterPreIssuePct": 22.0
+      },
+      "issuerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 31,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+        "documentType": "PROSPECTUS",
+        "documentTitle": "Prospectus",
+        "sourcePage": "https://www.sebi.gov.in/filings/public-issues/may-2026/onemi-technology-solutions-limited-prospectus_102192.html",
+        "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+        "pagesRead": 464,
+        "pageCount": 464,
+        "extractedFields": [
+          "leadManagers",
+          "registrar",
+          "lotSize",
+          "objectsOfIssue",
+          "promoters",
+          "priceBand",
+          "issuePrice",
+          "issueComposition"
+        ],
+        "canonicalFields": [
+          "freshIssueCr",
+          "issueComposition",
+          "issueSizeCr",
+          "leadManagers",
+          "listing.issuePrice",
+          "lotSize",
+          "objectsOfIssue",
+          "ofsCr",
+          "priceBand",
+          "promoters",
+          "registrar",
+          "shareholding"
+        ],
+        "changedFields": [],
+        "extractedAt": "2026-09-18T23:36:47+05:30",
+        "source": "SEBI",
+        "sourcePolicy": "final-prospectus-only"
+      },
+      "dataCorrections": [
+        {
+          "field": "leadManagers",
+          "before": [
+            "BSE Limited",
+            "India Limited",
+            "THE BRLMS CONTACT PERSON TELEPHONE AND E-MAIL JM Financial Limited",
+            "India) Private Limited",
+            "Nuvama Wealth Management Limited"
+          ],
+          "after": [
+            "JM Financial Limited",
+            "Nuvama Wealth Management Limited"
+          ],
+          "reason": "Corrected from bounded source-table/role extraction; unsupported intermediary fragments quarantined",
+          "parserVersion": 18,
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "correctedAt": "2026-09-14T12:16:27.134108+00:00"
+        },
+        {
+          "field": "leadManagers",
+          "before": [
+            "JM Financial Limited",
+            "Nuvama Wealth Management Limited"
+          ],
+          "after": [
+            "JM Financial Limited",
+            "HSBC Securities and Capital Markets (India) Private Limited",
+            "Nuvama Wealth Management Limited"
+          ],
+          "reason": "Revalidated financial table or intermediary role against source document",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 21,
+          "correctedAt": "2026-09-15T13:19:58+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "BASIS FOR OFFER PRICE",
+              "amountCr": 122.0
+            },
+            {
+              "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
+              "amountCr": 138.0
+            },
+            {
+              "purpose": "SECTION IV: ABOUT OUR COMPANY",
+              "amountCr": 145.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW",
+              "amountCr": 145.0
+            },
+            {
+              "purpose": "OUR BUSINESS",
+              "amountCr": 177.0
+            },
+            {
+              "purpose": "KEY REGULATIONS AND POLICIES",
+              "amountCr": 208.0
+            },
+            {
+              "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+              "amountCr": 225.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT",
+              "amountCr": 237.0
+            },
+            {
+              "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
+              "amountCr": 251.0
+            },
+            {
+              "purpose": "OUR GROUP COMPANIES",
+              "amountCr": 254.0
+            },
+            {
+              "purpose": "DIVIDEND POLICY",
+              "amountCr": 255.0
+            }
+          ],
+          "after": [
+            {
+              "purpose": "ugmenting the capital base of our Subsidiary, Si Creva, to meet its future capital requirements arising out of the",
+              "amountCr": 637.5
+            },
+            {
+              "purpose": "ugmenting the capital base of our Subsidiary, Si Creva, 6,375.00 6,375.00",
+              "amountCr": 637.5
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 22,
+          "residualParserVersion": 3,
+          "correctedAt": "2026-09-16T10:10:16+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "BASIS FOR OFFER PRICE",
+              "amountCr": 122.0
+            },
+            {
+              "purpose": "STATEMENT OF SPECIAL TAX BENEFITS",
+              "amountCr": 138.0
+            },
+            {
+              "purpose": "SECTION IV: ABOUT OUR COMPANY",
+              "amountCr": 145.0
+            },
+            {
+              "purpose": "INDUSTRY OVERVIEW",
+              "amountCr": 145.0
+            },
+            {
+              "purpose": "OUR BUSINESS",
+              "amountCr": 177.0
+            },
+            {
+              "purpose": "KEY REGULATIONS AND POLICIES",
+              "amountCr": 208.0
+            },
+            {
+              "purpose": "HISTORY AND CERTAIN CORPORATE MATTERS",
+              "amountCr": 225.0
+            },
+            {
+              "purpose": "OUR MANAGEMENT",
+              "amountCr": 237.0
+            },
+            {
+              "purpose": "OUR PROMOTERS AND PROMOTER GROUP",
+              "amountCr": 251.0
+            },
+            {
+              "purpose": "OUR GROUP COMPANIES",
+              "amountCr": 254.0
+            },
+            {
+              "purpose": "DIVIDEND POLICY",
+              "amountCr": 255.0
+            }
+          ],
+          "after": [
+            {
+              "purpose": "ugmenting the capital base of our Subsidiary, Si Creva, to meet its future capital requirements arising out of the",
+              "amountCr": 637.5
+            },
+            {
+              "purpose": "ugmenting the capital base of our Subsidiary, Si Creva, 6,375.00 6,375.00",
+              "amountCr": 637.5
+            }
+          ],
+          "reason": "Revalidated a recent P4 offer-document residual against a strict source layout",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 22,
+          "residualParserVersion": 3,
+          "correctedAt": "2026-09-16T10:13:41+05:30"
+        },
+        {
+          "field": "issueComposition",
+          "before": {
+            "freshShares": 49707602,
+            "ofsShares": 4439788,
+            "freshIssueCr": 850.0,
+            "ofsCr": 75.9204,
+            "totalIssueSizeCr": 925.92,
+            "valuationPriceUsed": 171.0
+          },
+          "after": {
+            "freshShares": 49707602,
+            "ofsShares": 168483022,
+            "freshIssueCr": 850.0,
+            "ofsCr": 75.92,
+            "totalIssueSizeCr": 925.92,
+            "valuationPriceUsed": 171.0
+          },
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T11:39:32+05:30"
+        },
+        {
+          "field": "ofsCr",
+          "before": 75.9204,
+          "after": 75.92,
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 24,
+          "correctedAt": "2026-09-16T11:39:32+05:30"
+        },
+        {
+          "field": "issueComposition",
+          "before": {
+            "issueComposition": {
+              "freshShares": 49707602,
+              "ofsShares": 168483022,
+              "freshIssueCr": 850.0,
+              "ofsCr": 75.92,
+              "totalIssueSizeCr": 925.92,
+              "valuationPriceUsed": 171.0
+            },
+            "issueSizeCr": 925.92,
+            "freshIssueCr": 850.0,
+            "ofsCr": 75.92
+          },
+          "after": {
+            "issueComposition": null,
+            "issueSizeCr": null,
+            "freshIssueCr": null,
+            "ofsCr": null
+          },
+          "reason": "Inconsistent canonical issue amounts/counts quarantined pending Final Prospectus revalidation",
+          "findings": [
+            {
+              "field": "issueComposition.ofsCr",
+              "reason": "Share count times valuation price does not match amount; source or discount evidence needs review"
+            }
+          ],
+          "sourceEvidence": {
+            "issueComposition": {
+              "source": "Final Prospectus",
+              "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+              "documentType": "PROSPECTUS",
+              "documentDate": null,
+              "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+              "parserVersion": 26,
+              "checkedAt": "2026-09-17T02:11:19+05:30",
+              "issueOpenDate": "2026-04-30",
+              "field": "issueComposition",
+              "value": {
+                "freshShares": 49707602,
+                "ofsShares": 168483022,
+                "freshIssueCr": 850.0,
+                "ofsCr": 75.92,
+                "totalIssueSizeCr": 925.92,
+                "valuationPriceUsed": 171.0
+              },
+              "evidence": {
+                "basis": "validated Final Prospectus issue composition",
+                "freshShares": 49707602,
+                "ofsShares": 168483022,
+                "freshIssueCr": 850.0,
+                "ofsCr": 75.92,
+                "totalIssueSizeCr": 925.92
+              }
+            },
+            "issueSizeCr": {
+              "source": "Final Prospectus",
+              "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+              "documentType": "PROSPECTUS",
+              "documentDate": null,
+              "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+              "parserVersion": 26,
+              "checkedAt": "2026-09-17T02:11:19+05:30",
+              "issueOpenDate": "2026-04-30",
+              "field": "issueSizeCr",
+              "value": 925.92,
+              "evidence": {
+                "basis": "validated Final Prospectus issue composition",
+                "freshShares": 49707602,
+                "ofsShares": 168483022,
+                "freshIssueCr": 850.0,
+                "ofsCr": 75.92,
+                "totalIssueSizeCr": 925.92
+              }
+            },
+            "freshIssueCr": {
+              "source": "Final Prospectus",
+              "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+              "documentType": "PROSPECTUS",
+              "documentDate": null,
+              "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+              "parserVersion": 26,
+              "checkedAt": "2026-09-17T02:11:19+05:30",
+              "issueOpenDate": "2026-04-30",
+              "field": "freshIssueCr",
+              "value": 850.0,
+              "evidence": {
+                "basis": "validated Final Prospectus issue composition",
+                "freshShares": 49707602,
+                "ofsShares": 168483022,
+                "freshIssueCr": 850.0,
+                "ofsCr": 75.92,
+                "totalIssueSizeCr": 925.92
+              }
+            },
+            "ofsCr": {
+              "source": "Final Prospectus",
+              "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+              "documentType": "PROSPECTUS",
+              "documentDate": null,
+              "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+              "parserVersion": 26,
+              "checkedAt": "2026-09-17T02:11:19+05:30",
+              "issueOpenDate": "2026-04-30",
+              "field": "ofsCr",
+              "value": 75.92,
+              "evidence": {
+                "basis": "validated Final Prospectus issue composition",
+                "freshShares": 49707602,
+                "ofsShares": 168483022,
+                "freshIssueCr": 850.0,
+                "ofsCr": 75.92,
+                "totalIssueSizeCr": 925.92
+              }
+            }
+          },
+          "correctedAt": "2026-09-16T23:02:27.703175+00:00"
+        },
+        {
+          "field": "issueComposition",
+          "before": null,
+          "after": {
+            "freshShares": 49707602,
+            "ofsShares": 4439788,
+            "freshIssueCr": 850.0,
+            "ofsCr": 75.92,
+            "totalIssueSizeCr": 925.92,
+            "valuationPriceUsed": 171.0
+          },
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 27,
+          "correctedAt": "2026-09-17T04:53:23+05:30"
+        },
+        {
+          "field": "issueSizeCr",
+          "before": null,
+          "after": 925.92,
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 27,
+          "correctedAt": "2026-09-17T04:53:23+05:30"
+        },
+        {
+          "field": "freshIssueCr",
+          "before": null,
+          "after": 850.0,
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 27,
+          "correctedAt": "2026-09-17T04:53:23+05:30"
+        },
+        {
+          "field": "ofsCr",
+          "before": null,
+          "after": 75.92,
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 27,
+          "correctedAt": "2026-09-17T04:53:23+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "ugmenting the capital base of our Subsidiary, Si Creva, to meet its future capital requirements arising out of the",
+              "amountCr": 637.5
+            },
+            {
+              "purpose": "ugmenting the capital base of our Subsidiary, Si Creva, 6,375.00 6,375.00",
+              "amountCr": 637.5
+            }
+          ],
+          "after": null,
+          "reason": "Invalid objects of issue quarantined pending Final Prospectus revalidation",
+          "findings": [
+            "Objects-of-issue row 2 purpose ends in a numeric table column; amount alignment needs review"
+          ],
+          "sourceEvidence": {
+            "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+            "documentType": "PROSPECTUS",
+            "documentDate": "2026-05-06",
+            "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+            "parserVersion": 22,
+            "checkedAt": "2026-09-16T10:10:16+05:30",
+            "migratedFrom": "offerDocumentExtraction"
+          },
+          "documentEvidence": null,
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "correctedAt": "2026-09-17T00:08:43.420328+00:00"
+        },
+        {
+          "field": "promoters",
+          "before": [
+            "ARE RANVIR SINGH",
+            "KRISHNAN VISHWANATHAN"
+          ],
+          "after": [
+            "RANVIR SINGH",
+            "KRISHNAN VISHWANATHAN"
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 29,
+          "correctedAt": "2026-09-17T09:27:53+05:30"
+        },
+        {
+          "field": "priceBand",
+          "before": {
+            "min": 171.0,
+            "max": 171.0
+          },
+          "after": {
+            "min": 162.0,
+            "max": 171.0
+          },
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 31,
+          "correctedAt": "2026-09-17T14:45:18+05:30"
+        },
+        {
+          "field": "objectsOfIssue",
+          "before": null,
+          "after": [
+            {
+              "purpose": "Augmenting the capital base of our Subsidiary, Si Creva, to meet its future capital requirements arising out of the growth of our Subsidiary, Si Creva’s, business",
+              "amountCr": 637.5
+            },
+            {
+              "purpose": "General corporate purposes^",
+              "amountCr": 156.585
+            }
+          ],
+          "reason": "Final Prospectus is the canonical source for static IPO data",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 31,
+          "correctedAt": "2026-09-17T14:45:18+05:30"
+        }
+      ],
+      "documentFieldProvenance": {
+        "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+        "documentType": "PROSPECTUS",
+        "documentDate": null,
+        "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+        "parserVersion": 31,
+        "checkedAt": "2026-09-18T23:36:47+05:30",
+        "evidence": {
+          "priceBand": {
+            "page": 13,
+            "heading": "Price band of a minimum price of ₹162 per Equity Share (i.e., the Floor Price) and the maximum price of ₹171 per Equity Share (i.e., the Cap Price)",
+            "value": {
+              "min": 162.0,
+              "max": 171.0
+            },
+            "basis": "explicit Price Band/Floor Price/Cap Price in Final Prospectus"
+          },
+          "lotSize": {
+            "page": 10,
+            "heading": "Bid Lot 87 Equity Shares",
+            "value": 87,
+            "basis": "explicit Bid Lot/Minimum Bid Lot in Final Prospectus"
+          },
+          "leadManagers": {
+            "page": 2,
+            "heading": "BOOK RUNNING LEAD MANAGERS",
+            "entities": [
+              "JM Financial Limited",
+              "HSBC Securities and Capital Markets (India) Private Limited",
+              "Nuvama Wealth Management Limited"
+            ]
+          },
+          "registrar": {
+            "page": 3,
+            "heading": "REGISTRAR TO THE OFFER",
+            "entities": [
+              "KFin Technologies Limited"
+            ]
+          },
+          "promoters": {
+            "page": 1,
+            "heading": "THE PROMOTERS OF OUR COMPANY",
+            "rows": [
+              "THE PROMOTERS OF OUR COMPANY ARE RANVIR SINGH AND KRISHNAN VISHWANATHAN"
+            ],
+            "entities": [
+              "RANVIR SINGH",
+              "KRISHNAN VISHWANATHAN"
+            ],
+            "method": "bounded-promoter-heading-v1"
+          },
+          "objectsOfIssue": {
+            "schemaVersion": 1,
+            "page": 121,
+            "heading": "OBJECTS OF THE OFFER",
+            "headingRaw": "                                                                                  OBJECTS OF THE OFFER",
+            "unit": "million",
+            "unitText": "                                                                                                                                                                            (in ₹ million)",
+            "unitPage": 122,
+            "tableHeaders": [
+              {
+                "page": 122,
+                "text": "                                                                                   Particulars                                                                          Amount#"
+              }
+            ],
+            "rows": [
+              {
+                "purpose": "Augmenting the capital base of our Subsidiary, Si Creva, to meet its future capital requirements arising out of the growth of our Subsidiary, Si Creva’s, business",
+                "amountCr": 637.5
+              },
+              {
+                "purpose": "General corporate purposes^",
+                "amountCr": 156.585
+              }
+            ],
+            "sourceRows": [
+              {
+                "page": 122,
+                "lines": [
+                  {
+                    "page": 122,
+                    "text": "                    Augmenting      the capital   base of our Subsidiary, Si       Creva,   to meet   its future capital   requirements arising out of the                    6,375.00"
+                  },
+                  {
+                    "page": 122,
+                    "text": "                    growth of our Subsidiary, Si Creva’s, business"
+                  }
+                ],
+                "purposeSpans": [
+                  {
+                    "line": 0,
+                    "start": 20,
+                    "end": 154
+                  },
+                  {
+                    "line": 1,
+                    "start": 20,
+                    "end": 66
+                  }
+                ],
+                "amountToken": "6,375.00",
+                "normalizedValue": 637.5,
+                "amountSpan": {
+                  "line": 0,
+                  "start": 174,
+                  "end": 182
+                },
+                "purpose": "Augmenting the capital base of our Subsidiary, Si Creva, to meet its future capital requirements arising out of the growth of our Subsidiary, Si Creva’s, business"
+              },
+              {
+                "page": 122,
+                "lines": [
+                  {
+                    "page": 122,
+                    "text": "                    General corporate purposes^                                                                                                                               1,565.85"
+                  }
+                ],
+                "purposeSpans": [
+                  {
+                    "line": 0,
+                    "start": 20,
+                    "end": 47
+                  }
+                ],
+                "amountToken": "1,565.85",
+                "normalizedValue": 156.585,
+                "amountSpan": {
+                  "line": 0,
+                  "start": 174,
+                  "end": 182
+                },
+                "purpose": "General corporate purposes^"
+              }
+            ],
+            "tableScope": "net",
+            "tableTotal": {
+              "page": 122,
+              "purpose": "Net Proceeds",
+              "amountToken": "7,940.85",
+              "normalizedValue": 794.085,
+              "lines": [
+                {
+                  "page": 122,
+                  "text": "                    Net Proceeds                                                                                                                                              7,940.85"
+                }
+              ],
+              "purposeSpans": [
+                {
+                  "line": 0,
+                  "start": 20,
+                  "end": 32
+                }
+              ],
+              "amountSpan": {
+                "line": 0,
+                "start": 174,
+                "end": 182
+              }
+            }
+          },
+          "issuePrice": {
+            "page": 4,
+            "heading": "INITIAL PUBLIC OFFERING OF 54,147,390^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH (“EQUITY SHARES”) OF ONEMI TECHNOLOGY SOLUTIONS LIMITED (“OUR COMPANY” OR “THE COMPANY”) FOR CASH AT A PRICE OF ₹171 PER EQUITY SHARE",
+            "value": 171.0,
+            "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+            "method": "final-offer-price-v2"
+          },
+          "issueComposition": {
+            "basis": "validated Final Prospectus issue composition",
+            "method": "bounded-final-offer-clauses-v1",
+            "page": 4,
+            "heading": "Final offer composition",
+            "fields": {
+              "totalShares": {
+                "page": 4,
+                "row": "INITIAL PUBLIC OFFERING OF 54,147,390^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH (“EQUITY SHARES”) OF ONEMI TECHNOLOGY SOLUTIONS LIMITED (“OUR COMPANY” OR “THE COMPANY”) FOR CASH AT A PRICE OF ₹171 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹170 PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹9,259.20 MILLION",
+                "normalizedValue": 54147390,
+                "basis": "explicit final offer clause"
+              },
+              "totalIssueSizeCr": {
+                "page": 4,
+                "row": "INITIAL PUBLIC OFFERING OF 54,147,390^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH (“EQUITY SHARES”) OF ONEMI TECHNOLOGY SOLUTIONS LIMITED (“OUR COMPANY” OR “THE COMPANY”) FOR CASH AT A PRICE OF ₹171 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹170 PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹9,259.20 MILLION",
+                "normalizedValue": 925.92,
+                "basis": "explicit final offer clause"
+              },
+              "freshShares": {
+                "page": 4,
+                "row": "FRESH ISSUE OF 49,707,602^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH AGGREGATING TO ₹ 8,500.00 MILLION",
+                "normalizedValue": 49707602,
+                "basis": "explicit final offer clause"
+              },
+              "freshIssueCr": {
+                "page": 4,
+                "row": "FRESH ISSUE OF 49,707,602^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH AGGREGATING TO ₹ 8,500.00 MILLION",
+                "normalizedValue": 850.0,
+                "basis": "explicit final offer clause"
+              },
+              "ofsShares": {
+                "page": 4,
+                "row": "OFFER FOR SALE OF 4,439,788^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH AGGREGATING TO ₹759.20 MILLION",
+                "normalizedValue": 4439788,
+                "basis": "explicit final offer clause"
+              },
+              "ofsCr": {
+                "page": 4,
+                "row": "OFFER FOR SALE OF 4,439,788^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH AGGREGATING TO ₹759.20 MILLION",
+                "normalizedValue": 75.92,
+                "basis": "explicit final offer clause"
+              },
+              "valuationPriceUsed": {
+                "page": 4,
+                "heading": "INITIAL PUBLIC OFFERING OF 54,147,390^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH (“EQUITY SHARES”) OF ONEMI TECHNOLOGY SOLUTIONS LIMITED (“OUR COMPANY” OR “THE COMPANY”) FOR CASH AT A PRICE OF ₹171 PER EQUITY SHARE",
+                "value": 171.0,
+                "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+                "method": "final-offer-price-v2"
+              }
+            },
+            "totalShares": 54147390,
+            "freshShares": 49707602,
+            "ofsShares": 4439788,
+            "freshIssueCr": 850.0,
+            "ofsCr": 75.92,
+            "totalIssueSizeCr": 925.92
+          }
+        },
+        "sourcePolicy": "final-prospectus-only"
+      },
+      "documentRepair": {
+        "status": "no_change",
+        "financialStatus": "needs_review",
+        "lastAttemptAt": "2026-09-17T23:35:04+05:30",
+        "parserVersion": 31,
+        "sourcePolicy": "final-prospectus-only"
+      },
+      "offerDocumentExtraction": {
+        "status": "extracted",
+        "parserVersion": 31,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+        "documentType": "PROSPECTUS",
+        "documentTitle": "Prospectus",
+        "documentFiledDate": "2026-05-06",
+        "source": "SEBI",
+        "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+        "pagesRead": 464,
+        "pageCount": 464,
+        "extractedFields": [
+          "leadManagers",
+          "registrar",
+          "lotSize",
+          "objectsOfIssue",
+          "promoters",
+          "priceBand",
+          "issuePrice",
+          "issueComposition"
+        ],
+        "canonicalFields": [
+          "freshIssueCr",
+          "issueComposition",
+          "issueSizeCr",
+          "leadManagers",
+          "listing.issuePrice",
+          "lotSize",
+          "objectsOfIssue",
+          "ofsCr",
+          "priceBand",
+          "promoters",
+          "registrar",
+          "shareholding"
+        ],
+        "extractedAt": "2026-09-17T23:35:04+05:30",
+        "conflicts": [],
+        "sourcePolicy": "final-prospectus-only"
+      },
+      "listing": {
+        "issuePrice": 171.0,
+        "issuePriceEvidence": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": null,
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-18T23:36:47+05:30",
+          "issueOpenDate": "2026-04-30",
+          "field": "listing.issuePrice",
+          "value": 171.0,
+          "evidence": {
+            "page": 4,
+            "heading": "INITIAL PUBLIC OFFERING OF 54,147,390^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH (“EQUITY SHARES”) OF ONEMI TECHNOLOGY SOLUTIONS LIMITED (“OUR COMPANY” OR “THE COMPANY”) FOR CASH AT A PRICE OF ₹171 PER EQUITY SHARE",
+            "value": 171.0,
+            "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+            "method": "final-offer-price-v2"
+          }
+        },
+        "gainPct": null
+      },
+      "p4OfferResidualRepair": {
+        "status": "updated",
+        "parserVersion": 3,
+        "mainParserVersion": 22,
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+        "checkedAt": "2026-09-16T10:10:16+05:30",
+        "changedFields": [
+          "objectsOfIssue",
+          "documents"
+        ]
+      },
+      "staticFieldProvenance": {
+        "lotSize": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": null,
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-18T23:36:47+05:30",
+          "issueOpenDate": "2026-04-30",
+          "field": "lotSize",
+          "value": 87,
+          "evidence": {
+            "page": 10,
+            "heading": "Bid Lot 87 Equity Shares",
+            "value": 87,
+            "basis": "explicit Bid Lot/Minimum Bid Lot in Final Prospectus"
+          }
+        },
+        "leadManagers": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": null,
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-18T23:36:47+05:30",
+          "issueOpenDate": "2026-04-30",
+          "field": "leadManagers",
+          "value": [
+            "JM Financial Limited",
+            "HSBC Securities and Capital Markets (India) Private Limited",
+            "Nuvama Wealth Management Limited"
+          ],
+          "evidence": {
+            "page": 2,
+            "heading": "BOOK RUNNING LEAD MANAGERS",
+            "entities": [
+              "JM Financial Limited",
+              "HSBC Securities and Capital Markets (India) Private Limited",
+              "Nuvama Wealth Management Limited"
+            ]
+          }
+        },
+        "promoters": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": null,
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-18T23:36:47+05:30",
+          "issueOpenDate": "2026-04-30",
+          "field": "promoters",
+          "value": [
+            "RANVIR SINGH",
+            "KRISHNAN VISHWANATHAN"
+          ],
+          "evidence": {
+            "page": 1,
+            "heading": "THE PROMOTERS OF OUR COMPANY",
+            "rows": [
+              "THE PROMOTERS OF OUR COMPANY ARE RANVIR SINGH AND KRISHNAN VISHWANATHAN"
+            ],
+            "entities": [
+              "RANVIR SINGH",
+              "KRISHNAN VISHWANATHAN"
+            ],
+            "method": "bounded-promoter-heading-v1"
+          }
+        },
+        "priceBand": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": null,
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-18T23:36:47+05:30",
+          "issueOpenDate": "2026-04-30",
+          "field": "priceBand",
+          "value": {
+            "min": 162.0,
+            "max": 171.0
+          },
+          "evidence": {
+            "page": 13,
+            "heading": "Price band of a minimum price of ₹162 per Equity Share (i.e., the Floor Price) and the maximum price of ₹171 per Equity Share (i.e., the Cap Price)",
+            "value": {
+              "min": 162.0,
+              "max": 171.0
+            },
+            "basis": "explicit Price Band/Floor Price/Cap Price in Final Prospectus"
+          }
+        },
+        "registrar": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": null,
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-18T23:36:47+05:30",
+          "issueOpenDate": "2026-04-30",
+          "field": "registrar",
+          "value": "KFin Technologies Limited",
+          "evidence": {
+            "page": 3,
+            "heading": "REGISTRAR TO THE OFFER",
+            "entities": [
+              "KFin Technologies Limited"
+            ]
+          }
+        },
+        "shareholding": {
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": null,
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 13,
+          "checkedAt": "2026-09-14T03:04:01+05:30",
+          "migratedFrom": "issuerDocumentExtraction"
+        },
+        "listing.issuePrice": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": null,
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-18T23:36:47+05:30",
+          "issueOpenDate": "2026-04-30",
+          "field": "listing.issuePrice",
+          "value": 171.0,
+          "evidence": {
+            "page": 4,
+            "heading": "INITIAL PUBLIC OFFERING OF 54,147,390^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH (“EQUITY SHARES”) OF ONEMI TECHNOLOGY SOLUTIONS LIMITED (“OUR COMPANY” OR “THE COMPANY”) FOR CASH AT A PRICE OF ₹171 PER EQUITY SHARE",
+            "value": 171.0,
+            "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+            "method": "final-offer-price-v2"
+          }
+        },
+        "issueComposition": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": null,
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-18T23:36:47+05:30",
+          "issueOpenDate": "2026-04-30",
+          "field": "issueComposition",
+          "value": {
+            "freshShares": 49707602,
+            "ofsShares": 4439788,
+            "freshIssueCr": 850.0,
+            "ofsCr": 75.92,
+            "totalIssueSizeCr": 925.92,
+            "valuationPriceUsed": 171.0
+          },
+          "evidence": {
+            "basis": "validated Final Prospectus issue composition",
+            "method": "bounded-final-offer-clauses-v1",
+            "page": 4,
+            "heading": "Final offer composition",
+            "fields": {
+              "totalShares": {
+                "page": 4,
+                "row": "INITIAL PUBLIC OFFERING OF 54,147,390^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH (“EQUITY SHARES”) OF ONEMI TECHNOLOGY SOLUTIONS LIMITED (“OUR COMPANY” OR “THE COMPANY”) FOR CASH AT A PRICE OF ₹171 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹170 PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹9,259.20 MILLION",
+                "normalizedValue": 54147390,
+                "basis": "explicit final offer clause"
+              },
+              "totalIssueSizeCr": {
+                "page": 4,
+                "row": "INITIAL PUBLIC OFFERING OF 54,147,390^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH (“EQUITY SHARES”) OF ONEMI TECHNOLOGY SOLUTIONS LIMITED (“OUR COMPANY” OR “THE COMPANY”) FOR CASH AT A PRICE OF ₹171 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹170 PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹9,259.20 MILLION",
+                "normalizedValue": 925.92,
+                "basis": "explicit final offer clause"
+              },
+              "freshShares": {
+                "page": 4,
+                "row": "FRESH ISSUE OF 49,707,602^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH AGGREGATING TO ₹ 8,500.00 MILLION",
+                "normalizedValue": 49707602,
+                "basis": "explicit final offer clause"
+              },
+              "freshIssueCr": {
+                "page": 4,
+                "row": "FRESH ISSUE OF 49,707,602^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH AGGREGATING TO ₹ 8,500.00 MILLION",
+                "normalizedValue": 850.0,
+                "basis": "explicit final offer clause"
+              },
+              "ofsShares": {
+                "page": 4,
+                "row": "OFFER FOR SALE OF 4,439,788^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH AGGREGATING TO ₹759.20 MILLION",
+                "normalizedValue": 4439788,
+                "basis": "explicit final offer clause"
+              },
+              "ofsCr": {
+                "page": 4,
+                "row": "OFFER FOR SALE OF 4,439,788^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH AGGREGATING TO ₹759.20 MILLION",
+                "normalizedValue": 75.92,
+                "basis": "explicit final offer clause"
+              },
+              "valuationPriceUsed": {
+                "page": 4,
+                "heading": "INITIAL PUBLIC OFFERING OF 54,147,390^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH (“EQUITY SHARES”) OF ONEMI TECHNOLOGY SOLUTIONS LIMITED (“OUR COMPANY” OR “THE COMPANY”) FOR CASH AT A PRICE OF ₹171 PER EQUITY SHARE",
+                "value": 171.0,
+                "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+                "method": "final-offer-price-v2"
+              }
+            },
+            "totalShares": 54147390,
+            "freshShares": 49707602,
+            "ofsShares": 4439788,
+            "freshIssueCr": 850.0,
+            "ofsCr": 75.92,
+            "totalIssueSizeCr": 925.92
+          }
+        },
+        "issueSizeCr": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": null,
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-18T23:36:47+05:30",
+          "issueOpenDate": "2026-04-30",
+          "field": "issueSizeCr",
+          "value": 925.92,
+          "evidence": {
+            "basis": "validated Final Prospectus issue composition",
+            "method": "bounded-final-offer-clauses-v1",
+            "page": 4,
+            "heading": "Final offer composition",
+            "fields": {
+              "totalShares": {
+                "page": 4,
+                "row": "INITIAL PUBLIC OFFERING OF 54,147,390^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH (“EQUITY SHARES”) OF ONEMI TECHNOLOGY SOLUTIONS LIMITED (“OUR COMPANY” OR “THE COMPANY”) FOR CASH AT A PRICE OF ₹171 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹170 PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹9,259.20 MILLION",
+                "normalizedValue": 54147390,
+                "basis": "explicit final offer clause"
+              },
+              "totalIssueSizeCr": {
+                "page": 4,
+                "row": "INITIAL PUBLIC OFFERING OF 54,147,390^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH (“EQUITY SHARES”) OF ONEMI TECHNOLOGY SOLUTIONS LIMITED (“OUR COMPANY” OR “THE COMPANY”) FOR CASH AT A PRICE OF ₹171 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹170 PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹9,259.20 MILLION",
+                "normalizedValue": 925.92,
+                "basis": "explicit final offer clause"
+              },
+              "freshShares": {
+                "page": 4,
+                "row": "FRESH ISSUE OF 49,707,602^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH AGGREGATING TO ₹ 8,500.00 MILLION",
+                "normalizedValue": 49707602,
+                "basis": "explicit final offer clause"
+              },
+              "freshIssueCr": {
+                "page": 4,
+                "row": "FRESH ISSUE OF 49,707,602^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH AGGREGATING TO ₹ 8,500.00 MILLION",
+                "normalizedValue": 850.0,
+                "basis": "explicit final offer clause"
+              },
+              "ofsShares": {
+                "page": 4,
+                "row": "OFFER FOR SALE OF 4,439,788^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH AGGREGATING TO ₹759.20 MILLION",
+                "normalizedValue": 4439788,
+                "basis": "explicit final offer clause"
+              },
+              "ofsCr": {
+                "page": 4,
+                "row": "OFFER FOR SALE OF 4,439,788^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH AGGREGATING TO ₹759.20 MILLION",
+                "normalizedValue": 75.92,
+                "basis": "explicit final offer clause"
+              },
+              "valuationPriceUsed": {
+                "page": 4,
+                "heading": "INITIAL PUBLIC OFFERING OF 54,147,390^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH (“EQUITY SHARES”) OF ONEMI TECHNOLOGY SOLUTIONS LIMITED (“OUR COMPANY” OR “THE COMPANY”) FOR CASH AT A PRICE OF ₹171 PER EQUITY SHARE",
+                "value": 171.0,
+                "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+                "method": "final-offer-price-v2"
+              }
+            },
+            "totalShares": 54147390,
+            "freshShares": 49707602,
+            "ofsShares": 4439788,
+            "freshIssueCr": 850.0,
+            "ofsCr": 75.92,
+            "totalIssueSizeCr": 925.92
+          }
+        },
+        "freshIssueCr": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": null,
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-18T23:36:47+05:30",
+          "issueOpenDate": "2026-04-30",
+          "field": "freshIssueCr",
+          "value": 850.0,
+          "evidence": {
+            "basis": "validated Final Prospectus issue composition",
+            "method": "bounded-final-offer-clauses-v1",
+            "page": 4,
+            "heading": "Final offer composition",
+            "fields": {
+              "totalShares": {
+                "page": 4,
+                "row": "INITIAL PUBLIC OFFERING OF 54,147,390^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH (“EQUITY SHARES”) OF ONEMI TECHNOLOGY SOLUTIONS LIMITED (“OUR COMPANY” OR “THE COMPANY”) FOR CASH AT A PRICE OF ₹171 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹170 PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹9,259.20 MILLION",
+                "normalizedValue": 54147390,
+                "basis": "explicit final offer clause"
+              },
+              "totalIssueSizeCr": {
+                "page": 4,
+                "row": "INITIAL PUBLIC OFFERING OF 54,147,390^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH (“EQUITY SHARES”) OF ONEMI TECHNOLOGY SOLUTIONS LIMITED (“OUR COMPANY” OR “THE COMPANY”) FOR CASH AT A PRICE OF ₹171 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹170 PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹9,259.20 MILLION",
+                "normalizedValue": 925.92,
+                "basis": "explicit final offer clause"
+              },
+              "freshShares": {
+                "page": 4,
+                "row": "FRESH ISSUE OF 49,707,602^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH AGGREGATING TO ₹ 8,500.00 MILLION",
+                "normalizedValue": 49707602,
+                "basis": "explicit final offer clause"
+              },
+              "freshIssueCr": {
+                "page": 4,
+                "row": "FRESH ISSUE OF 49,707,602^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH AGGREGATING TO ₹ 8,500.00 MILLION",
+                "normalizedValue": 850.0,
+                "basis": "explicit final offer clause"
+              },
+              "ofsShares": {
+                "page": 4,
+                "row": "OFFER FOR SALE OF 4,439,788^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH AGGREGATING TO ₹759.20 MILLION",
+                "normalizedValue": 4439788,
+                "basis": "explicit final offer clause"
+              },
+              "ofsCr": {
+                "page": 4,
+                "row": "OFFER FOR SALE OF 4,439,788^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH AGGREGATING TO ₹759.20 MILLION",
+                "normalizedValue": 75.92,
+                "basis": "explicit final offer clause"
+              },
+              "valuationPriceUsed": {
+                "page": 4,
+                "heading": "INITIAL PUBLIC OFFERING OF 54,147,390^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH (“EQUITY SHARES”) OF ONEMI TECHNOLOGY SOLUTIONS LIMITED (“OUR COMPANY” OR “THE COMPANY”) FOR CASH AT A PRICE OF ₹171 PER EQUITY SHARE",
+                "value": 171.0,
+                "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+                "method": "final-offer-price-v2"
+              }
+            },
+            "totalShares": 54147390,
+            "freshShares": 49707602,
+            "ofsShares": 4439788,
+            "freshIssueCr": 850.0,
+            "ofsCr": 75.92,
+            "totalIssueSizeCr": 925.92
+          }
+        },
+        "ofsCr": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": null,
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-18T23:36:47+05:30",
+          "issueOpenDate": "2026-04-30",
+          "field": "ofsCr",
+          "value": 75.92,
+          "evidence": {
+            "basis": "validated Final Prospectus issue composition",
+            "method": "bounded-final-offer-clauses-v1",
+            "page": 4,
+            "heading": "Final offer composition",
+            "fields": {
+              "totalShares": {
+                "page": 4,
+                "row": "INITIAL PUBLIC OFFERING OF 54,147,390^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH (“EQUITY SHARES”) OF ONEMI TECHNOLOGY SOLUTIONS LIMITED (“OUR COMPANY” OR “THE COMPANY”) FOR CASH AT A PRICE OF ₹171 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹170 PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹9,259.20 MILLION",
+                "normalizedValue": 54147390,
+                "basis": "explicit final offer clause"
+              },
+              "totalIssueSizeCr": {
+                "page": 4,
+                "row": "INITIAL PUBLIC OFFERING OF 54,147,390^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH (“EQUITY SHARES”) OF ONEMI TECHNOLOGY SOLUTIONS LIMITED (“OUR COMPANY” OR “THE COMPANY”) FOR CASH AT A PRICE OF ₹171 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹170 PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹9,259.20 MILLION",
+                "normalizedValue": 925.92,
+                "basis": "explicit final offer clause"
+              },
+              "freshShares": {
+                "page": 4,
+                "row": "FRESH ISSUE OF 49,707,602^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH AGGREGATING TO ₹ 8,500.00 MILLION",
+                "normalizedValue": 49707602,
+                "basis": "explicit final offer clause"
+              },
+              "freshIssueCr": {
+                "page": 4,
+                "row": "FRESH ISSUE OF 49,707,602^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH AGGREGATING TO ₹ 8,500.00 MILLION",
+                "normalizedValue": 850.0,
+                "basis": "explicit final offer clause"
+              },
+              "ofsShares": {
+                "page": 4,
+                "row": "OFFER FOR SALE OF 4,439,788^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH AGGREGATING TO ₹759.20 MILLION",
+                "normalizedValue": 4439788,
+                "basis": "explicit final offer clause"
+              },
+              "ofsCr": {
+                "page": 4,
+                "row": "OFFER FOR SALE OF 4,439,788^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH AGGREGATING TO ₹759.20 MILLION",
+                "normalizedValue": 75.92,
+                "basis": "explicit final offer clause"
+              },
+              "valuationPriceUsed": {
+                "page": 4,
+                "heading": "INITIAL PUBLIC OFFERING OF 54,147,390^ EQUITY SHARES OF FACE VALUE OF ₹1 EACH (“EQUITY SHARES”) OF ONEMI TECHNOLOGY SOLUTIONS LIMITED (“OUR COMPANY” OR “THE COMPANY”) FOR CASH AT A PRICE OF ₹171 PER EQUITY SHARE",
+                "value": 171.0,
+                "basis": "explicit fixed Offer/Issue Price in Final Prospectus",
+                "method": "final-offer-price-v2"
+              }
+            },
+            "totalShares": 54147390,
+            "freshShares": 49707602,
+            "ofsShares": 4439788,
+            "freshIssueCr": 850.0,
+            "ofsCr": 75.92,
+            "totalIssueSizeCr": 925.92
+          }
+        },
+        "objectsOfIssue": {
+          "source": "Final Prospectus",
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "documentType": "PROSPECTUS",
+          "documentDate": null,
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "parserVersion": 31,
+          "checkedAt": "2026-09-18T23:36:47+05:30",
+          "issueOpenDate": "2026-04-30",
+          "field": "objectsOfIssue",
+          "value": [
+            {
+              "purpose": "Augmenting the capital base of our Subsidiary, Si Creva, to meet its future capital requirements arising out of the growth of our Subsidiary, Si Creva’s, business",
+              "amountCr": 637.5
+            },
+            {
+              "purpose": "General corporate purposes^",
+              "amountCr": 156.585
+            }
+          ],
+          "evidence": {
+            "schemaVersion": 1,
+            "page": 121,
+            "heading": "OBJECTS OF THE OFFER",
+            "headingRaw": "                                                                                  OBJECTS OF THE OFFER",
+            "unit": "million",
+            "unitText": "                                                                                                                                                                            (in ₹ million)",
+            "unitPage": 122,
+            "tableHeaders": [
+              {
+                "page": 122,
+                "text": "                                                                                   Particulars                                                                          Amount#"
+              }
+            ],
+            "rows": [
+              {
+                "purpose": "Augmenting the capital base of our Subsidiary, Si Creva, to meet its future capital requirements arising out of the growth of our Subsidiary, Si Creva’s, business",
+                "amountCr": 637.5
+              },
+              {
+                "purpose": "General corporate purposes^",
+                "amountCr": 156.585
+              }
+            ],
+            "sourceRows": [
+              {
+                "page": 122,
+                "lines": [
+                  {
+                    "page": 122,
+                    "text": "                    Augmenting      the capital   base of our Subsidiary, Si       Creva,   to meet   its future capital   requirements arising out of the                    6,375.00"
+                  },
+                  {
+                    "page": 122,
+                    "text": "                    growth of our Subsidiary, Si Creva’s, business"
+                  }
+                ],
+                "purposeSpans": [
+                  {
+                    "line": 0,
+                    "start": 20,
+                    "end": 154
+                  },
+                  {
+                    "line": 1,
+                    "start": 20,
+                    "end": 66
+                  }
+                ],
+                "amountToken": "6,375.00",
+                "normalizedValue": 637.5,
+                "amountSpan": {
+                  "line": 0,
+                  "start": 174,
+                  "end": 182
+                },
+                "purpose": "Augmenting the capital base of our Subsidiary, Si Creva, to meet its future capital requirements arising out of the growth of our Subsidiary, Si Creva’s, business"
+              },
+              {
+                "page": 122,
+                "lines": [
+                  {
+                    "page": 122,
+                    "text": "                    General corporate purposes^                                                                                                                               1,565.85"
+                  }
+                ],
+                "purposeSpans": [
+                  {
+                    "line": 0,
+                    "start": 20,
+                    "end": 47
+                  }
+                ],
+                "amountToken": "1,565.85",
+                "normalizedValue": 156.585,
+                "amountSpan": {
+                  "line": 0,
+                  "start": 174,
+                  "end": 182
+                },
+                "purpose": "General corporate purposes^"
+              }
+            ],
+            "tableScope": "net",
+            "tableTotal": {
+              "page": 122,
+              "purpose": "Net Proceeds",
+              "amountToken": "7,940.85",
+              "normalizedValue": 794.085,
+              "lines": [
+                {
+                  "page": 122,
+                  "text": "                    Net Proceeds                                                                                                                                              7,940.85"
+                }
+              ],
+              "purposeSpans": [
+                {
+                  "line": 0,
+                  "start": 20,
+                  "end": 32
+                }
+              ],
+              "amountSpan": {
+                "line": 0,
+                "start": 174,
+                "end": 182
+              }
+            }
+          }
+        }
+      },
+      "staticSourcePolicy": {
+        "policy": "final-prospectus-only",
+        "documentUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+        "documentType": "PROSPECTUS",
+        "checkedAt": "2026-09-18T20:23:00.148262+00:00",
+        "verifiedFields": [
+          "freshIssueCr",
+          "issueComposition",
+          "issueSizeCr",
+          "leadManagers",
+          "listing.issuePrice",
+          "lotSize",
+          "objectsOfIssue",
+          "ofsCr",
+          "priceBand",
+          "promoters",
+          "registrar",
+          "shareholding"
+        ],
+        "pendingRevalidationFields": [
+          "financials"
+        ],
+        "status": "pending-revalidation",
+        "marketStaticTerms": "observation-only"
+      },
+      "lotSizeEvidence": {
+        "source": "Final Prospectus",
+        "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+        "documentType": "PROSPECTUS",
+        "documentDate": null,
+        "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+        "parserVersion": 31,
+        "checkedAt": "2026-09-18T23:36:47+05:30",
+        "issueOpenDate": "2026-04-30",
+        "field": "lotSize",
+        "value": 87,
+        "evidence": {
+          "page": 10,
+          "heading": "Bid Lot 87 Equity Shares",
+          "value": 87,
+          "basis": "explicit Bid Lot/Minimum Bid Lot in Final Prospectus"
+        }
+      },
+      "issueCompositionReview": {
+        "status": "resolved",
+        "fields": [],
+        "checkedAt": "2026-09-16T23:02:27.703175+00:00",
+        "snapshot": {
+          "field": "issueComposition",
+          "before": {
+            "issueComposition": {
+              "freshShares": 49707602,
+              "ofsShares": 168483022,
+              "freshIssueCr": 850.0,
+              "ofsCr": 75.92,
+              "totalIssueSizeCr": 925.92,
+              "valuationPriceUsed": 171.0
+            },
+            "issueSizeCr": 925.92,
+            "freshIssueCr": 850.0,
+            "ofsCr": 75.92
+          },
+          "after": {
+            "issueComposition": null,
+            "issueSizeCr": null,
+            "freshIssueCr": null,
+            "ofsCr": null
+          },
+          "reason": "Inconsistent canonical issue amounts/counts quarantined pending Final Prospectus revalidation",
+          "findings": [
+            {
+              "field": "issueComposition.ofsCr",
+              "reason": "Share count times valuation price does not match amount; source or discount evidence needs review"
+            }
+          ],
+          "sourceEvidence": {
+            "issueComposition": {
+              "source": "Final Prospectus",
+              "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+              "documentType": "PROSPECTUS",
+              "documentDate": null,
+              "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+              "parserVersion": 26,
+              "checkedAt": "2026-09-17T02:11:19+05:30",
+              "issueOpenDate": "2026-04-30",
+              "field": "issueComposition",
+              "value": {
+                "freshShares": 49707602,
+                "ofsShares": 168483022,
+                "freshIssueCr": 850.0,
+                "ofsCr": 75.92,
+                "totalIssueSizeCr": 925.92,
+                "valuationPriceUsed": 171.0
+              },
+              "evidence": {
+                "basis": "validated Final Prospectus issue composition",
+                "freshShares": 49707602,
+                "ofsShares": 168483022,
+                "freshIssueCr": 850.0,
+                "ofsCr": 75.92,
+                "totalIssueSizeCr": 925.92
+              }
+            },
+            "issueSizeCr": {
+              "source": "Final Prospectus",
+              "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+              "documentType": "PROSPECTUS",
+              "documentDate": null,
+              "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+              "parserVersion": 26,
+              "checkedAt": "2026-09-17T02:11:19+05:30",
+              "issueOpenDate": "2026-04-30",
+              "field": "issueSizeCr",
+              "value": 925.92,
+              "evidence": {
+                "basis": "validated Final Prospectus issue composition",
+                "freshShares": 49707602,
+                "ofsShares": 168483022,
+                "freshIssueCr": 850.0,
+                "ofsCr": 75.92,
+                "totalIssueSizeCr": 925.92
+              }
+            },
+            "freshIssueCr": {
+              "source": "Final Prospectus",
+              "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+              "documentType": "PROSPECTUS",
+              "documentDate": null,
+              "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+              "parserVersion": 26,
+              "checkedAt": "2026-09-17T02:11:19+05:30",
+              "issueOpenDate": "2026-04-30",
+              "field": "freshIssueCr",
+              "value": 850.0,
+              "evidence": {
+                "basis": "validated Final Prospectus issue composition",
+                "freshShares": 49707602,
+                "ofsShares": 168483022,
+                "freshIssueCr": 850.0,
+                "ofsCr": 75.92,
+                "totalIssueSizeCr": 925.92
+              }
+            },
+            "ofsCr": {
+              "source": "Final Prospectus",
+              "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+              "documentType": "PROSPECTUS",
+              "documentDate": null,
+              "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+              "parserVersion": 26,
+              "checkedAt": "2026-09-17T02:11:19+05:30",
+              "issueOpenDate": "2026-04-30",
+              "field": "ofsCr",
+              "value": 75.92,
+              "evidence": {
+                "basis": "validated Final Prospectus issue composition",
+                "freshShares": 49707602,
+                "ofsShares": 168483022,
+                "freshIssueCr": 850.0,
+                "ofsCr": 75.92,
+                "totalIssueSizeCr": 925.92
+              }
+            }
+          },
+          "correctedAt": "2026-09-16T23:02:27.703175+00:00"
+        },
+        "resolvedAt": "2026-09-17T04:53:23+05:30",
+        "resolvedSourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf"
+      },
+      "objectsOfIssueReview": {
+        "status": "resolved",
+        "checkedAt": "2026-09-17T00:08:43.420328+00:00",
+        "snapshot": {
+          "field": "objectsOfIssue",
+          "before": [
+            {
+              "purpose": "ugmenting the capital base of our Subsidiary, Si Creva, to meet its future capital requirements arising out of the",
+              "amountCr": 637.5
+            },
+            {
+              "purpose": "ugmenting the capital base of our Subsidiary, Si Creva, 6,375.00 6,375.00",
+              "amountCr": 637.5
+            }
+          ],
+          "after": null,
+          "reason": "Invalid objects of issue quarantined pending Final Prospectus revalidation",
+          "findings": [
+            "Objects-of-issue row 2 purpose ends in a numeric table column; amount alignment needs review"
+          ],
+          "sourceEvidence": {
+            "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+            "documentType": "PROSPECTUS",
+            "documentDate": "2026-05-06",
+            "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+            "parserVersion": 22,
+            "checkedAt": "2026-09-16T10:10:16+05:30",
+            "migratedFrom": "offerDocumentExtraction"
+          },
+          "documentEvidence": null,
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf",
+          "sha256": "2bde179647fe3c68c86079da1269657c0002e2c4515119b3527f5223bb5dbb19",
+          "correctedAt": "2026-09-17T00:08:43.420328+00:00"
+        },
+        "resolvedAt": "2026-09-17T14:45:18+05:30",
+        "resolvedSourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf"
+      }
+    }
+  ]
+}

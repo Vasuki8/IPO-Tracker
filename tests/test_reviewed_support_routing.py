@@ -15,6 +15,7 @@ SUPPORT_RELEASE = [
     'scripts/validate_data.py', 'scripts/run_offer_documents.py',
     'scripts/final_prospectus_policy.py',
     'scripts/review_intermediary_columns.py',
+    'scripts/review_financial_tables.py', 'scripts/enforce_final_prospectus_policy.py',
     'data/verified_corrections.json', 'data/reviewed_correction_evidence.json',
     'data/reviewed_correction_evidence/example-issuer.json',
     'tests/test_reviewed_support_routing.py', 'tests/verify_public_release.py',

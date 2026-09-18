@@ -17,6 +17,7 @@ from issue_composition_checks import COMPOSITION_FIELDS, quarantined_fields, rec
 from objects_of_issue_checks import objects_problems, objects_evidence_problems, objects_quarantined
 from source_review_holds import active_hold_reviews
 from review_intermediary_columns import has_reviewed_role_evidence
+from review_financial_tables import has_reviewed_financial_evidence
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -130,6 +131,8 @@ def validate_record(record, *, holds=None):
                 add(section + "." + field, "Return does not match its source prices and dated baselines")
     financials = record.get("financials") or {}
     evidence = (record.get("documentFieldProvenance") or {}).get("evidence", {}).get("financials", {})
+    if has_reviewed_financial_evidence(record):
+        evidence = provenance['financials']['evidence']['cells']
     seen = set()
     for row in financials.get("periods", []):
         period = row.get("period")
