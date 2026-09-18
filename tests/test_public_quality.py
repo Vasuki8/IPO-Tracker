@@ -194,12 +194,14 @@ class DocumentReviewDisplayTests(unittest.TestCase):
         self.assertIsNone(actual['objectsOfIssue'])
         decision = actual['publicQuality']['fields']['objectsOfIssue']
         self.assertEqual(decision['state'], 'under_review')
-        self.assertEqual(decision['reason'], 'pending_source_repair')
+        self.assertEqual(decision['reason'], 'document_conflict')
         self.assertEqual(actual['publicQuality']['sources'][decision['source']]['sha256'],
                          row['staticFieldProvenance']['objectsOfIssue']['sha256'])
         profile = public_profile_record(row)
         self.assertNotIn('objectsOfIssue', profile)
         self.assertEqual(profile['publicQuality']['fields']['objectsOfIssue']['state'], 'under_review')
+        self.assertEqual(profile['publicQuality']['fields']['objectsOfIssue']['reason'], 'document_conflict')
+        self.assertNotIn('objectsOfIssue', public_summary_record(row))
         self.assertEqual(row, before)
 
     def test_all_reviewed_documents_bind_real_issuer_offer_and_field_proofs(self):
