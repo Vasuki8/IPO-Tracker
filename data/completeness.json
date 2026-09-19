@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-09-19T20:02:12+05:30",
+  "generatedAt": "2026-09-19T20:44:06+05:30",
   "asOfDate": "2026-09-19",
-  "recordCount": 1406,
+  "recordCount": 1424,
   "stageCounts": {
-    "closed": 91,
+    "closed": 109,
     "filing-pipeline": 12,
     "listed": 1288,
     "open": 5,
@@ -11,133 +11,133 @@
     "upcoming": 9
   },
   "segmentCounts": {
-    "allRecords": 1406,
-    "exchangeStage": 1393,
-    "recentExchange2Y": 480,
+    "allRecords": 1424,
+    "exchangeStage": 1411,
+    "recentExchange2Y": 498,
     "historicalExchange": 913,
     "offerDocumentEligible": 390,
     "openNow": 5,
-    "maturedClosed": 1350
+    "maturedClosed": 1368
   },
   "scores": {
-    "exchangeStage": 81.9,
-    "recentExchange2Y": 93.6,
+    "exchangeStage": 81.5,
+    "recentExchange2Y": 92.2,
     "offerDocumentEligible": 70.6,
     "openSubscription": 85.0,
-    "maturedLifecycle": 95.3,
-    "provenance": 100.0
+    "maturedLifecycle": 94.0,
+    "provenance": 99.4
   },
   "coverage": {
     "exchangeStage": {
       "symbol": {
-        "present": 1386,
-        "expected": 1393,
+        "present": 1404,
+        "expected": 1411,
         "missing": 7,
         "pct": 99.5
       },
       "board": {
-        "present": 1393,
-        "expected": 1393,
+        "present": 1411,
+        "expected": 1411,
         "missing": 0,
         "pct": 100.0
       },
       "exchange": {
-        "present": 1393,
-        "expected": 1393,
+        "present": 1411,
+        "expected": 1411,
         "missing": 0,
         "pct": 100.0
       },
       "openDate": {
-        "present": 1393,
-        "expected": 1393,
+        "present": 1411,
+        "expected": 1411,
         "missing": 0,
         "pct": 100.0
       },
       "closeDate": {
-        "present": 1393,
-        "expected": 1393,
+        "present": 1411,
+        "expected": 1411,
         "missing": 0,
         "pct": 100.0
       },
       "priceBand": {
         "present": 1339,
-        "expected": 1393,
-        "missing": 54,
-        "pct": 96.1
+        "expected": 1411,
+        "missing": 72,
+        "pct": 94.9
       },
       "lotSize": {
         "present": 439,
-        "expected": 1393,
-        "missing": 954,
-        "pct": 31.5
+        "expected": 1411,
+        "missing": 972,
+        "pct": 31.1
       },
       "issueSizeCr": {
         "present": 394,
-        "expected": 1393,
-        "missing": 999,
-        "pct": 28.3
+        "expected": 1411,
+        "missing": 1017,
+        "pct": 27.9
       },
       "issueComposition": {
         "present": 392,
-        "expected": 481,
-        "missing": 89,
-        "pct": 81.5
+        "expected": 499,
+        "missing": 107,
+        "pct": 78.6
       }
     },
     "recentExchange2Y": {
       "symbol": {
-        "present": 473,
-        "expected": 480,
+        "present": 491,
+        "expected": 498,
         "missing": 7,
-        "pct": 98.5
+        "pct": 98.6
       },
       "board": {
-        "present": 480,
-        "expected": 480,
+        "present": 498,
+        "expected": 498,
         "missing": 0,
         "pct": 100.0
       },
       "exchange": {
-        "present": 480,
-        "expected": 480,
+        "present": 498,
+        "expected": 498,
         "missing": 0,
         "pct": 100.0
       },
       "openDate": {
-        "present": 480,
-        "expected": 480,
+        "present": 498,
+        "expected": 498,
         "missing": 0,
         "pct": 100.0
       },
       "closeDate": {
-        "present": 480,
-        "expected": 480,
+        "present": 498,
+        "expected": 498,
         "missing": 0,
         "pct": 100.0
       },
       "priceBand": {
         "present": 439,
-        "expected": 480,
-        "missing": 41,
-        "pct": 91.5
+        "expected": 498,
+        "missing": 59,
+        "pct": 88.2
       },
       "lotSize": {
         "present": 432,
-        "expected": 480,
-        "missing": 48,
-        "pct": 90.0
+        "expected": 498,
+        "missing": 66,
+        "pct": 86.7
       },
       "issueSizeCr": {
         "present": 387,
-        "expected": 480,
-        "missing": 93,
-        "pct": 80.6
+        "expected": 498,
+        "missing": 111,
+        "pct": 77.7
       },
       "issueComposition": {
         "present": 391,
-        "expected": 480,
-        "missing": 89,
-        "pct": 81.5
+        "expected": 498,
+        "missing": 107,
+        "pct": 78.5
       }
     },
     "historicalExchange": {
@@ -263,31 +263,31 @@
     "maturedLifecycle": {
       "listingDate": {
         "present": 1286,
-        "expected": 1350,
-        "missing": 64,
-        "pct": 95.3
+        "expected": 1368,
+        "missing": 82,
+        "pct": 94.0
       }
     },
     "optionalLifecycle": {
       "allotmentDate": {
         "present": 0,
-        "expected": 1350,
-        "missing": 1350,
+        "expected": 1368,
+        "missing": 1368,
         "pct": 0.0
       }
     },
     "provenance": {
       "sources": {
-        "present": 1405,
-        "expected": 1406,
+        "present": 1423,
+        "expected": 1424,
         "missing": 1,
         "pct": 99.9
       },
       "validation": {
         "present": 1406,
-        "expected": 1406,
-        "missing": 0,
-        "pct": 100.0
+        "expected": 1424,
+        "missing": 18,
+        "pct": 98.7
       },
       "documents": {
         "present": 397,
