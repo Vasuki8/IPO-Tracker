@@ -56,6 +56,41 @@ def now_ist():
     return datetime.now(IST)
 
 
+def collection_check(url, records=0, error=None, **scope):
+    """Receipt for a completed source collection attempt; never an observation."""
+    result = {"url": url, **scope, "checkedAt": now_ist().isoformat(timespec="seconds"),
+              "status": "failed" if error else "refreshed" if records else "checked",
+              "records": records}
+    if error:
+        result["error"] = str(error)
+    return result
+
+
+def collection_health(checks, records=0, **details):
+    attempted = [item for item in checks if item["status"] != "deferred"]
+    failures = [item for item in attempted if item["status"] == "failed"]
+    succeeded = len(attempted) - len(failures)
+    result = {"ok": succeeded > 0, "status": "failed" if not succeeded else
+              "refreshed" if records else "checked", "records": records,
+              "attempted": len(attempted), "failed": len(failures),
+              "deferred": len(checks) - len(attempted), "checks": checks, **details}
+    if attempted:
+        result["checkedAt"] = attempted[-1]["checkedAt"]
+    if failures:
+        result["errors"] = [f'{item["url"]}: {item["error"]}' for item in failures]
+    return result
+
+
+def deferred_collection(previous, reason):
+    result = {"status": "deferred", "reason": reason}
+    # Keep the last real attempt, including failures, without recursive snapshots
+    # or moving its clock onto this unattempted decision.
+    last = previous.get("lastAttempt") if previous.get("status") == "deferred" else previous
+    if last:
+        result["lastAttempt"] = copy.deepcopy(last)
+    return result
+
+
 def slugify(v: str) -> str:
     return re.sub(r"[^a-zA-Z0-9]+", "-", v.strip().lower()).strip("-") or "ipo"
 
@@ -506,7 +541,7 @@ class NSEClient:
         for k in ("data", "records", "result"):
             if isinstance(data.get(k), list):
                 return data[k]
-        return []
+        raise ValueError("Unsupported NSE response shape; an empty issue list was not established")
 
     def current(self):
         return self.get("/ipo-current-issue")
@@ -531,46 +566,60 @@ class SEBIClient:
 
     def fetch_recent_filings(self, max_pages=4):
         out = []
+        self.collection_checks = []
         for page in range(1, max_pages + 1):
-            r = self.s.get(SEBI_URL, params={"page": page}, timeout=30)
-            r.raise_for_status()
-            soup = BeautifulSoup(r.text, "html.parser")
-            for a in soup.select("a[href]"):
-                title = " ".join(a.stripped_strings).strip()
-                up = title.upper()
-                if not title or not any(
-                    x in up for x in ("DRHP", "RHP", "PROSPECTUS", "RED HERRING")
-                ):
-                    continue
-                typ = (
-                    "UDRHP"
-                    if "UDRHP" in up or "UPDATED DRAFT" in up
-                    else "DRHP"
-                    if "DRHP" in up or "DRAFT" in up
-                    else "RHP"
-                    if "RHP" in up or "RED HERRING" in up
-                    else "PROSPECTUS"
-                )
-                out.append(
-                    {
-                        "company": re.sub(
-                            r"\s*[-–:]?\s*(UDRHP|DRHP|RHP|RED HERRING PROSPECTUS|PROSPECTUS).*",
-                            "",
-                            title,
-                            flags=re.I,
-                        ).strip(),
-                        "type": typ,
-                        "title": title,
-                        "url": urljoin(SEBI_HOME, a.get("href")),
-                        "filedDate": iso_date(
-                            a.find_parent().get_text(" ", strip=True)
-                            if a.find_parent()
-                            else ""
-                        ),
-                    }
-                )
+            url = f"{SEBI_URL}&page={page}"
+            try:
+                r = self.s.get(SEBI_URL, params={"page": page}, timeout=30)
+                r.raise_for_status()
+                rows = self.parse_filings(r.text)
+                out.extend(rows)
+                self.collection_checks.append(collection_check(url, len(rows),
+                    error=None if rows else "No filings parsed; disclosure absence not established", page=page))
+            except Exception as exc:
+                self.collection_checks.append(collection_check(url, error=exc, page=page))
             time.sleep(0.15)
         return dedupe_dicts(out, ("url", "type"))
+
+    @staticmethod
+    def parse_filings(html):
+        out = []
+        soup = BeautifulSoup(html, "html.parser")
+        for a in soup.select("a[href]"):
+            title = " ".join(a.stripped_strings).strip()
+            up = title.upper()
+            if not title or not any(
+                x in up for x in ("DRHP", "RHP", "PROSPECTUS", "RED HERRING")
+            ):
+                continue
+            typ = (
+                "UDRHP"
+                if "UDRHP" in up or "UPDATED DRAFT" in up
+                else "DRHP"
+                if "DRHP" in up or "DRAFT" in up
+                else "RHP"
+                if "RHP" in up or "RED HERRING" in up
+                else "PROSPECTUS"
+            )
+            out.append(
+                {
+                    "company": re.sub(
+                        r"\s*[-–:]?\s*(UDRHP|DRHP|RHP|RED HERRING PROSPECTUS|PROSPECTUS).*",
+                        "",
+                        title,
+                        flags=re.I,
+                    ).strip(),
+                    "type": typ,
+                    "title": title,
+                    "url": urljoin(SEBI_HOME, a.get("href")),
+                    "filedDate": iso_date(
+                        a.find_parent().get_text(" ", strip=True)
+                        if a.find_parent()
+                        else ""
+                    ),
+                }
+            )
+        return out
 
 
 class BSEClient:
@@ -796,9 +845,14 @@ def main():
     p.add_argument("--sebi-pages", type=int, default=6)
     a = p.parse_args()
 
+    # Wrappers clean existing records before a successful refresh. A metadata-only
+    # failed/empty run must preserve the actual accepted payload, not that view.
+    accepted = json.loads(DATA_FILE.read_text(encoding="utf-8")) if DATA_FILE.exists() else {"meta": {}, "ipos": []}
     existing = load_existing()
     records = {}
-    errors = []
+    errors = [error for error in accepted.get("meta", {}).get("errors", [])
+              if not str(error).startswith(("NSE current:", "NSE upcoming:", "NSE live/upcoming:",
+                                             "NSE history ", "SEBI filings:", "BSE public issues:"))]
     health = {}
     fetched = False
 
@@ -810,16 +864,21 @@ def main():
 
     n = NSEClient()
     gathered = []
-    try:
-        cur = n.current()
-        up = n.upcoming()
-        gathered += [normalize_nse_record(x, "current") for x in cur]
-        gathered += [normalize_nse_record(x, "upcoming") for x in up]
-        health["NSE-live"] = {"ok": True, "records": len(cur) + len(up)}
-        fetched |= bool(cur or up)
-    except Exception as e:
-        errors.append(f"NSE live/upcoming: {e}")
-        health["NSE-live"] = {"ok": False, "error": str(e)}
+    live_checks = []
+    live_count = 0
+    for stage, collect in (("current", n.current), ("upcoming", n.upcoming)):
+        url = f"{NSE_API}/ipo-current-issue" if stage == "current" else f"{NSE_API}/all-upcoming-issues?category=ipo"
+        try:
+            rows = collect()
+            normalized = [normalize_nse_record(x, stage) for x in rows]
+            gathered.extend(normalized)
+            live_count += len(rows)
+            fetched |= bool(rows)
+            live_checks.append(collection_check(url, len(rows)))
+        except Exception as exc:
+            errors.append(f"NSE {stage}: {exc}")
+            live_checks.append(collection_check(url, error=exc))
+    health["NSE-live"] = collection_health(live_checks, live_count)
 
     end = now_ist().date()
     start = (
@@ -828,18 +887,29 @@ def main():
         else end - timedelta(days=max(a.history_days, 1))
     )
     hcount = 0
+    history_checks = []
+    history_deferred = False
     for s, e in history_ranges(start, end):
+        url = f"{NSE_API}/public-past-issues?from_date={s:%d-%m-%Y}&to_date={e:%d-%m-%Y}"
+        scope = {"fromDate": s.isoformat(), "toDate": e.isoformat()}
+        if history_deferred:
+            history_checks.append({"url": url, **scope, "status": "deferred",
+                                   "reason": "Stopped after earlier history failure"})
+            continue
         try:
             rows = n.past(s, e)
+            normalized = [normalize_nse_record(x, "historical") for x in rows]
             hcount += len(rows)
-            gathered += [normalize_nse_record(x, "historical") for x in rows]
+            gathered.extend(normalized)
             fetched |= bool(rows)
+            history_checks.append(collection_check(url, len(rows), **scope))
             time.sleep(0.2)
         except Exception as ex:
             errors.append(f"NSE history {s}..{e}: {ex}")
+            history_checks.append(collection_check(url, error=ex, **scope))
             if not a.bootstrap_history:
-                break
-    health["NSE-history"] = {"ok": hcount > 0, "records": hcount}
+                history_deferred = True
+    health["NSE-history"] = collection_health(history_checks, hcount)
 
     for item in gathered:
         key = item["matchKey"]
@@ -856,43 +926,52 @@ def main():
         )
         records[key] = merged
 
-    if not a.skip_sebi:
+    for key, skip, client_type, source_url, label, attach in (
+        ("SEBI", a.skip_sebi, SEBIClient, SEBI_URL, "SEBI filings", attach_sebi),
+        ("BSE", a.skip_bse, BSEClient, BSE_URL, "BSE public issues", attach_bse),
+    ):
+        if skip:
+            previous = accepted.get("meta", {}).get("sourceHealth", {}).get(key, {})
+            health[key] = deferred_collection(previous, f"Explicit --skip-{key.lower()}")
+            continue
+        client = client_type()
+        checks = []
+        count = attached = 0
+        processing_error = None
+        phase = "collection"
         try:
-            filings = SEBIClient().fetch_recent_filings(a.sebi_pages)
-            attached = attach_sebi(records, filings)
-            health["SEBI"] = {
-                "ok": bool(filings),
-                "records": len(filings),
-                "companiesAttached": attached,
-            }
-            if not filings:
-                errors.append("SEBI filings: no records parsed")
-            fetched |= bool(filings)
-        except Exception as e:
-            errors.append(f"SEBI filings: {e}")
-            health["SEBI"] = {"ok": False, "error": str(e)}
-
-    if not a.skip_bse:
-        try:
-            rows = BSEClient().current_issues()
-            attached = attach_bse(records, rows)
-            health["BSE"] = {
-                "ok": bool(rows),
-                "records": len(rows),
-                "companiesAttached": attached,
-            }
-            if not rows:
-                errors.append("BSE public issues: no rows parsed")
+            rows = client.fetch_recent_filings(a.sebi_pages) if key == "SEBI" else client.current_issues()
+            checks = list(getattr(client, "collection_checks", []))
+            count = len(rows)
+            if not checks:
+                checks.append(collection_check(source_url, count,
+                    error=None if count else "No records parsed; disclosure absence not established"))
+            phase = "attachment"
+            candidate_records = copy.deepcopy(records)
+            attached = attach(candidate_records, rows)
+            records = candidate_records
             fetched |= bool(rows)
-        except Exception as e:
-            errors.append(f"BSE public issues: {e}")
-            health["BSE"] = {"ok": False, "error": str(e)}
+        except Exception as exc:
+            if not checks:
+                checks = list(getattr(client, "collection_checks", []))
+            if not checks:
+                checks.append(collection_check(source_url, error=exc))
+            processing_error = f"{phase}: {exc}"
+        health[key] = collection_health(checks, count, companiesAttached=attached)
+        if processing_error:
+            health[key].update(ok=False, status="failed", processingError=processing_error)
+            health[key].setdefault("errors", []).append(processing_error)
+        errors.extend(f"{label}: {error}" for error in health[key].get("errors", []))
 
-    if not fetched and records:
-        print("No source refreshed. Existing dataset preserved.", file=sys.stderr)
-        return 2
     if not fetched:
-        return 2
+        meta = accepted.setdefault("meta", {})
+        meta.setdefault("sourceHealth", {}).update(health)
+        meta["errors"] = errors
+        DATA_FILE.write_text(json.dumps(accepted, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        print("No source rows refreshed. Accepted records preserved; check outcomes retained.", file=sys.stderr)
+        attempted = [value for value in health.values() if value.get("attempted")]
+        return 0 if attempted and all(value.get("ok") and not value.get("failed")
+                                      for value in attempted) else 2
 
     for x in records.values():
         sanitize_issue_size(x)

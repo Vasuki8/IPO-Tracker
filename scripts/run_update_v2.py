@@ -154,10 +154,11 @@ def parse_bse_sme_html(html: str, source_url: str = BSE_SME_CURRENT_URL) -> list
     return core.dedupe_dicts(out, ("matchKey", "openDate", "closeDate"))
 
 
-def aggregate_bse_current_issues(session, page_urls=None) -> list[dict[str, Any]]:
+def aggregate_bse_current_issues(session, page_urls=None, checks=None) -> list[dict[str, Any]]:
     urls = list(page_urls or [*core.BSE_URLS, BSE_SME_CURRENT_URL])
     rows: list[dict[str, Any]] = []
     failures: list[str] = []
+    checks = checks if checks is not None else []
 
     for url in urls:
         try:
@@ -168,9 +169,12 @@ def aggregate_bse_current_issues(session, page_urls=None) -> list[dict[str, Any]
             else:
                 parsed = gated.parse_bse_ipo_html(response.text, url)
             rows.extend(parsed)
+            checks.append(core.collection_check(url, len(parsed), error=None if parsed else
+                "No IPO rows parsed; disclosure absence not established"))
             print(f"BSE current source {url}: {len(parsed)} IPO rows")
         except Exception as exc:  # one BSE endpoint must not suppress the others
             failures.append(f"{url}: {exc}")
+            checks.append(core.collection_check(url, error=exc))
             print(f"BSE current source failed {url}: {exc}", file=sys.stderr)
 
     if rows:
@@ -181,7 +185,8 @@ def aggregate_bse_current_issues(session, page_urls=None) -> list[dict[str, Any]
 
 
 def current_issues_aggregate(self):
-    return aggregate_bse_current_issues(self.s)
+    self.collection_checks = []
+    return aggregate_bse_current_issues(self.s, checks=self.collection_checks)
 
 
 core.BSEClient.current_issues = current_issues_aggregate

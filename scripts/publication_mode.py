@@ -45,6 +45,12 @@ REVIEWED_SUPPORT_FILES = REVIEWED_SUPPORT_DISCRIMINATORS | {
 # A change to this leaf collector can use the existing subscription-only stage.
 # Policy/other collector/dependency changes still require ordinary repair.
 SUBSCRIPTION_FILES = {'scripts/track_subscriptions.py'}
+# Core collector changes should exercise the existing core stage on release.
+# Mixed parser/policy/dependency edits still take the ordinary repair route.
+CORE_FILES = {'scripts/update_data.py', 'scripts/run_update.py', 'scripts/run_update_v2.py',
+              'scripts/run_update_final_policy.py', 'scripts/normalize_source_health.py'}
+# The shared transport may accompany a core release; alone it still selects repair.
+CORE_SUPPORT_FILES = {'scripts/publish_transaction.py'}
 REVIEWED_REQUEST = 'data/reviewed_publication_request.json'
 
 
@@ -76,6 +82,11 @@ def push_mode(paths):
                     or (presentation(path) and (path.startswith(('docs/', 'tests/'))
                         or path in {'README.md', 'scripts/publication_mode.py'}))) for path in paths)):
         return 'subscriptions'
+    if (any(isinstance(path, str) and path in CORE_FILES for path in paths)
+            and all(isinstance(path, str) and (path in CORE_FILES | CORE_SUPPORT_FILES
+                    or (presentation(path) and (path.startswith(('docs/', 'tests/'))
+                        or path in {'README.md', 'scripts/publication_mode.py'}))) for path in paths)):
+        return 'core'
     review_change = any(isinstance(path, str) and path in REVIEW_GATE_FILES for path in paths)
     if review_change and all(presentation(path) or (isinstance(path, str) and
                             path in REVIEW_GATE_FILES | REVIEW_OUTPUT_FILES | REVIEW_SUPPORT_FILES) for path in paths):

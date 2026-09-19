@@ -83,8 +83,29 @@ class BSESMECoreCoverageTests(unittest.TestCase):
         main = "https://www.bseindia.com/main"
         sme = mod.BSE_SME_CURRENT_URL
         session = FakeSession({main: RuntimeError("blocked"), sme: SME_HTML})
-        rows = mod.aggregate_bse_current_issues(session, [main, sme])
+        checks = []
+        rows = mod.aggregate_bse_current_issues(session, [main, sme], checks)
         self.assertEqual([row["company"] for row in rows], ["Panchatv Bharat Limited"])
+        health = mod.core.collection_health(checks, len(rows))
+        self.assertTrue(health['ok'])
+        self.assertEqual(health['failed'], 1)
+        self.assertEqual(checks[0]['url'], main)
+        self.assertEqual(checks[0]['error'], 'blocked')
+        self.assertIn('checkedAt', checks[1])
+
+    def test_all_bse_failures_keep_receipts_when_aggregate_raises(self):
+        checks = []
+        with self.assertRaises(RuntimeError):
+            mod.aggregate_bse_current_issues(FakeSession({}), ['https://bse.test/one', 'https://bse.test/two'], checks)
+        self.assertEqual(len(checks), 2)
+        self.assertTrue(all(item['status'] == 'failed' and item['checkedAt'] for item in checks))
+
+    def test_empty_bse_page_does_not_establish_absent_disclosures(self):
+        checks = []
+        rows = mod.aggregate_bse_current_issues(FakeSession({'https://bse.test': '<html></html>'}), ['https://bse.test'], checks)
+        self.assertEqual(rows, [])
+        self.assertEqual(checks[0]['status'], 'failed')
+        self.assertIn('absence not established', checks[0]['error'])
 
 
 class P4NSEHistoryGuardTests(unittest.TestCase):

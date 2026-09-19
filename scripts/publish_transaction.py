@@ -56,7 +56,10 @@ def merge_value(before, proposed, current, path, conflicts):
         return clone(current)
     if current_comparison == before_comparison:
         return clone(proposed)
-    if (not path or path[-1] not in ATOMIC_FIELDS) and all(isinstance(value, dict) for value in (before, proposed, current)):
+    # An outcome, its receipts and its clock describe one attempt. Competing
+    # source/stage entries retain the accepted whole entry, never a hybrid.
+    attempt_entry = len(path) == 3 and path[0] == 'meta' and path[1] in {'sourceHealth', 'pipelineStages'}
+    if not attempt_entry and (not path or path[-1] not in ATOMIC_FIELDS) and all(isinstance(value, dict) for value in (before, proposed, current)):
         output = {}
         grouped = set()
         if len(path) == 2 and path[0] == 'ipos':
