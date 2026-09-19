@@ -24,9 +24,9 @@ Support [PR #168](https://github.com/Vasuki8/IPO-Tracker/pull/168) merged as
 `4d2d558b318d7982d17e116dc92341f774d8b4d9`. The separate single-file request,
 [PR #169](https://github.com/Vasuki8/IPO-Tracker/pull/169), merged as
 `974f2d3b4cd872495dfb8d229366c2fa44997981` from `a6bb21315238121d5df97aed08db932ffaa55480`.
-Documentation closeout branch: `docs-bse-active-offer-closeout`; PR link is added
-in the final closeout commit. Its commit and check evidence are identified by Git
-history containing this checkpoint.
+Documentation closeout branch: `docs-bse-active-offer-closeout`,
+[PR #170](https://github.com/Vasuki8/IPO-Tracker/pull/170). Its commit and check
+evidence are identified by the linked PR and Git history containing this checkpoint.
 
 Recovery began at `5e8642f3` (#167). After the connection interruption, a fresh
 fetch found independently scheduled core publication
