@@ -1,0 +1,52 @@
+{
+  "assessmentBase": "1e86840856525db2ee2b436ed64f2b6e60374ee0",
+  "initialMain": "4c5f1af5f8ed1d7930b8c1ae3ac0131e7b8f0d2d",
+  "researchPr": 166,
+  "researchCommit": "de09c162cae491ce2f0dae16f21349d9a14091aa",
+  "mergedCommit": "3481d89a21e77ac1f302bdc9171dd8eb5b67ee4a",
+  "prValidationRun": 35423499597,
+  "pythonTests": 1354,
+  "focusedAuditTests": 7,
+  "nodeTests": 38,
+  "pagesRun": 35423604707,
+  "pagesConclusion": "success",
+  "liveReceipt": "live-delivery.json",
+  "liveExactFiles": 27,
+  "localChecks": {
+    "base": "1e86840856525db2ee2b436ed64f2b6e60374ee0",
+    "reproduced": [
+      "inventory",
+      "exposure"
+    ],
+    "priorRegisterByteIdentical": true,
+    "protectedPathsUnchanged": [
+      "data",
+      "ipo",
+      "app.js",
+      "public-quality.js",
+      "source-health.js",
+      "scripts",
+      ".github",
+      "pyproject.toml",
+      "uv.lock"
+    ],
+    "existingLocalMarkdownLinks": 59
+  },
+  "strictValidation": {
+    "recordCount": 1404,
+    "errors": 0,
+    "reviews": 1557
+  },
+  "p4": {
+    "actionableRecords": 408,
+    "higherPriorityRecords": 67,
+    "blockingReviews": 1553,
+    "totalReviews": 1557,
+    "unmapped": 0
+  },
+  "scope": "Research and read-only audit helpers/tests only; data, proposals, review status and public runtime unchanged. Receipt describes research merge before documentation closeout.",
+  "mainValidationRun": 35423605159,
+  "mainValidationConclusion": "success",
+  "publicVerificationRun": 35423628525,
+  "publicVerificationConclusion": "success"
+}
