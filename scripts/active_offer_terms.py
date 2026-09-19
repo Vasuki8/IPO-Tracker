@@ -1,4 +1,4 @@
-"""Reviewed active NSE bidding disclosures; never Final Prospectus facts.
+"""Reviewed active exchange disclosures; never Final Prospectus facts.
 
 Parsing produces candidates only. Selection requires a separately reviewed,
 source-byte-bound receipt and the same active issuer/offer. No network or writes.
@@ -11,10 +11,16 @@ import re
 from datetime import date, datetime
 from decimal import Decimal
 from zoneinfo import ZoneInfo
+from bse_active_offer_terms import VERSION as BSE_VERSION, FIELDS as BSE_FIELDS, IDENTITY as BSE_IDENTITY
 
 VERSION = 'nse-labelled-active-terms-v1'
-FIELDS = {'priceBand', 'lotSize', 'minimumBidQuantity', 'issueComposition'}
+NSE_FIELDS = {'priceBand', 'lotSize', 'minimumBidQuantity', 'issueComposition'}
+FIELDS = NSE_FIELDS | BSE_FIELDS
 IDENTITY = ('id', 'company', 'symbol', 'board', 'openDate', 'closeDate')
+
+
+def identity_fields(receipt):
+    return BSE_IDENTITY if receipt.get('parserVersion') == BSE_VERSION else IDENTITY
 
 
 def digest(value):
@@ -137,29 +143,45 @@ def _timestamp(value):
 
 def validate_receipt(receipt, identity):
     """Validate an approved receipt without giving parser success review status."""
-    if (receipt.get('schemaVersion') != 1 or receipt.get('parserVersion') != VERSION
-            or receipt.get('identity') != {key: identity[key] for key in IDENTITY}
-            or set(receipt.get('fields') or {}) - FIELDS or not receipt.get('fields')):
+    bse = receipt.get('parserVersion') == BSE_VERSION
+    if (receipt.get('schemaVersion') != 1 or receipt.get('parserVersion') not in {VERSION, BSE_VERSION}
+            or receipt.get('identity') != {key: identity[key] for key in identity_fields(receipt)}
+            or set(receipt.get('fields') or {}) - (BSE_FIELDS if bse else NSE_FIELDS) or not receipt.get('fields')):
         raise ValueError('Invalid reviewed active offer identity/schema')
     board = identity['board']
     if board not in {'SME', 'Mainboard'}:
         raise ValueError('Unsupported offer board')
-    series = 'SME' if board == 'SME' else 'EQ'
-    expected = f"https://www.nseindia.com/api/ipo-detail?symbol={identity['symbol']}&series={series}"
     source = receipt['source']
-    if (source.get('url') != expected or source.get('authority') != 'official_exchange'
-            or source.get('name') != 'NSE' or source.get('observedAt') is not None
+    if (source.get('authority') != 'official_exchange'
+            or source.get('name') != ('BSE' if bse else 'NSE') or source.get('observedAt') is not None
             or 'observedAt' not in source
             or hashlib.sha256(source['responseText'].encode()).hexdigest() != source.get('sha256')):
         raise ValueError('Active terms need exact official response bytes and an unknown source clock')
     collected = _timestamp(source['collectedAt'])
+    if bse:
+        index = source['index']
+        if (index.get('observedAt') is not None or 'observedAt' not in index
+                or hashlib.sha256(index['responseText'].encode()).hexdigest() != index.get('sha256')):
+            raise ValueError('BSE terms need exact current-index bytes and an unknown observation clock')
+        collected = max(collected, _timestamp(index['collectedAt']))
+    else:
+        series = 'SME' if board == 'SME' else 'EQ'
+        expected = f"https://www.nseindia.com/api/ipo-detail?symbol={identity['symbol']}&series={series}"
+        if source.get('url') != expected:
+            raise ValueError('Active NSE terms need the exact official symbol/series URL')
     review = receipt['review']
     if (review.get('version') != 1 or review.get('status') != 'accepted'
             or _timestamp(review['reviewedAt']) < collected
             or not re.fullmatch(r'https://github\.com/Vasuki8/IPO-Tracker/blob/[a-f0-9]{40}/docs/reviews/[a-z0-9.-]+\.md', str(review.get('url') or ''))):
         raise ValueError('Active terms require an immutable, dated source review')
-    parsed = parse_response(source['responseText'], identity)
-    if parsed != {'fields': receipt['fields'], 'unresolved': receipt.get('unresolved')}:
+    expected = {'fields': receipt['fields'], 'unresolved': receipt.get('unresolved')}
+    if bse:
+        from bse_active_offer_terms import parse_response as parse_bse_response
+        parsed = parse_bse_response(source, identity)
+        expected['sourceIdentity'] = receipt.get('sourceIdentity')
+    else:
+        parsed = parse_response(source['responseText'], identity)
+    if parsed != expected:
         raise ValueError('Reviewed terms do not replay from exact source rows')
     return receipt['fields']
 

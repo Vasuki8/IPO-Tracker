@@ -25,7 +25,7 @@ VERSION = 1
 ROOT = Path(__file__).resolve().parents[1]
 FIELDS = (*STATIC_CANONICAL_FIELDS, 'marketLot', 'minimumBidQuantity',
           'openDate', 'closeDate', 'listingDate', 'allotmentDate', 'subscription', 'listing')
-SUMMARY_FIELDS = ('priceBand', 'lotSize', 'issueSizeCr', 'subscription', 'listing',
+SUMMARY_FIELDS = ('priceBand', 'lotSize', 'marketLot', 'minimumBidQuantity', 'issueSizeCr', 'subscription', 'listing',
                   'openDate', 'closeDate', 'listingDate')
 EXCHANGE_HOSTS = {'nseindia.com', 'www.nseindia.com', 'nsearchives.nseindia.com',
                   'archives.nseindia.com', 'bseindia.com', 'www.bseindia.com', 'beta.bseindia.com',

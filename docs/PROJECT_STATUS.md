@@ -15,7 +15,80 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
-## Current checkpoint — commercial publication-scope review released, 19 September 2026
+## Current checkpoint — BSE active-offer implementation prepared, 19 September 2026
+
+Recovered and refetched GitHub main:
+`5e8642f34447ee56f9026ad23b61838b66204162` (#167). Its Pages run
+35423848340 and public verification 35423880430 succeeded. Completed commercial,
+operational, universe and NSE active-term work was recognized and preserved.
+Open #94, #98, #99 and draft #104/#105 remain untouched. Main was unprotected
+and had no rulesets at recovery; current PR checks must still pass before merge.
+
+Interruption recovery: refetched main is now
+`2d07c3b63a631a3560f75996180fe0fb7979f665`, the independently scheduled core
+publication from run 35425291431 (collector 105850056326, publisher 105851229914).
+Pages 35425762822 and public verification 35425782777 passed; direct bytes for the
+home page, summary, P4 gate, status document and FX profile match that main.
+It adds Elevate Campuses and Unitec Fibres without removing any issuer: inventory
+is now **1,406**, with **69** higher-priority P4 records. The four selected BSE
+identities and receipt before-values remain unchanged. This update is incorporated.
+The interrupted source-evidence commit exists on GitHub; the implementation tree,
+branch and PR did not exist at recovery. The source commit has now been placed on
+the named branch; support upload resumes without repeating its source review.
+
+Active branch: `fix-bse-active-offer-receipts`; implementation is not yet merged
+or confirmed deployed at this checkpoint. Source-evidence commit:
+`f16287080613b57b000a227fca9d90eab1b72b25`. The
+[five-offer source review](reviews/2026-09-19-bse-active-offer-source-review.md)
+retains exact response hashes, source URLs, table/row locators, currency evidence,
+separate collection/review clocks and unknown source observations. Official FX
+and Robokidz advertisement pages were rendered and inspected independently.
+
+Problem/users: researchers cannot use the five newly admitted BSE upcoming SME
+offers' terms safely without field-specific evidence. Four price bands and eight
+separately labelled market-lot/minimum-bid-quantity values are supported. Vivekanand
+has an empty detail page and a changed index band, so it remains unresolved. BSE
+detail share counts do not establish whole-offer totals. No bid lot, canonical
+symbol, minimum application amount, total or composition is inferred.
+
+Implementation adds a strict BSE parser family to the existing reviewed receipt
+and atomic publication path. Ordinary corrections remain inert. The receipt
+replays the index and detail responses; holds, conflicts, canonical identity,
+source clocks and IST expiry control the same public decisions. Quantity labels
+and sources now flow to comparisons and CSV as well as profiles/quick views.
+Release checks cover shared quantities and prevent an invented public symbol.
+
+Local validation: **1,373 Python tests pass** under uv/Python 3.12; **43 release
+tests also pass with only the standard library**; **38 Node tests pass**. The
+isolated candidate rebuild verified all **1,404 directory/profile pairs**.
+Local Chromium acquisition failed with CDN timeout/502 responses; required CI
+browser rehearsals remain pending and must pass before merge. New browser
+coverage spans all four issuers, desktop/375px/320px, quick views, comparisons,
+CSV, unknown observations, separate quantities, the rejected fifth issuer and
+expiry. No browser pass is claimed yet.
+
+Current P4 is **408 actionable + 69 higher priority; 1,553 blocking / 1,557 total
+reviews; zero errors/unmapped; 1,406 records; 441 unresolved proposals**. The
+prepared five-issuer cohort reduces core missing fields **25 → 21**, without
+removing a record or source review. P5/performance remain gated. Source permissions,
+operator/jurisdictions, permitted hosting, audience, pricing and revenue model
+remain unresolved; no commercial clearance or new spending/access is introduced.
+
+The [bounded core-schedule diagnosis](reviews/2026-09-19-core-schedule-diagnosis.md)
+finds no demonstrated routing bug: the old core artifact was correctly rejected,
+the replacement push collected at 01:39:43Z, and the later successful scheduled
+run was filings. The subsequent successful scheduled core run now supplies fresh
+attempt evidence, so no manual dispatch is needed for that old gap. BSE primary
+parse/timeout failures and the bounded SEBI-register timeout remain visible.
+Do not rerun the obsolete publisher or change cron/tolerances without evidence.
+
+Remaining acceptance: pass current PR validation/source preview/browser checks;
+merge support and verify its review-only publication; submit the four-ID request
+as a separate single-file PR; inspect accepted record/proposal preservation;
+verify Pages and exact public delivery; replace this preparation checkpoint with
+commit, PR, run and live evidence. Exact next task is that bounded release flow.
+
+## Previous checkpoint — commercial publication-scope review released, 19 September 2026
 
 Verified research-release main: **`3481d89a21e77ac1f302bdc9171dd8eb5b67ee4a`**,
 merged in [PR #166](https://github.com/Vasuki8/IPO-Tracker/pull/166); research commit

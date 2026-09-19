@@ -61,8 +61,12 @@ def index_groups(groups, registry):
     for group in groups:
         identity = group.get('identity') or {}
         identifier = identity.get('id')
+        required = ('id', 'company', 'symbol', 'openDate')
+        if group.get('kind') == 'active-offer-terms':
+            from active_offer_terms import identity_fields
+            required = identity_fields((group.get('proofs') or {}).get('activeOfferTerms', {}).get('value', {}))
         if (not all(isinstance(identity.get(k), str) and identity[k]
-                    for k in ('id', 'company', 'symbol', 'openDate'))
+                    for k in required)
                 or identifier in result):
             raise ValueError('Reviewed evidence needs a unique exact issuer/offer identity')
         date.fromisoformat(identity['openDate'])
