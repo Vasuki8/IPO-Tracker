@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-09-19T08:41:23+05:30",
+  "generatedAt": "2026-09-19T09:18:23+05:30",
   "asOfDate": "2026-09-19",
-  "recordCount": 1379,
+  "recordCount": 1404,
   "stageCounts": {
-    "closed": 66,
+    "closed": 91,
     "filing-pipeline": 12,
     "listed": 1288,
     "open": 5,
@@ -11,133 +11,133 @@
     "upcoming": 7
   },
   "segmentCounts": {
-    "allRecords": 1379,
-    "exchangeStage": 1366,
-    "recentExchange2Y": 453,
+    "allRecords": 1404,
+    "exchangeStage": 1391,
+    "recentExchange2Y": 478,
     "historicalExchange": 913,
     "offerDocumentEligible": 390,
     "openNow": 5,
-    "maturedClosed": 1325
+    "maturedClosed": 1350
   },
   "scores": {
-    "exchangeStage": 82.5,
-    "recentExchange2Y": 95.8,
+    "exchangeStage": 82.0,
+    "recentExchange2Y": 93.7,
     "offerDocumentEligible": 70.6,
     "openSubscription": 85.0,
-    "maturedLifecycle": 97.1,
-    "provenance": 100.0
+    "maturedLifecycle": 95.3,
+    "provenance": 99.2
   },
   "coverage": {
     "exchangeStage": {
       "symbol": {
-        "present": 1361,
-        "expected": 1366,
+        "present": 1386,
+        "expected": 1391,
         "missing": 5,
         "pct": 99.6
       },
       "board": {
-        "present": 1366,
-        "expected": 1366,
+        "present": 1391,
+        "expected": 1391,
         "missing": 0,
         "pct": 100.0
       },
       "exchange": {
-        "present": 1366,
-        "expected": 1366,
+        "present": 1391,
+        "expected": 1391,
         "missing": 0,
         "pct": 100.0
       },
       "openDate": {
-        "present": 1366,
-        "expected": 1366,
+        "present": 1391,
+        "expected": 1391,
         "missing": 0,
         "pct": 100.0
       },
       "closeDate": {
-        "present": 1366,
-        "expected": 1366,
+        "present": 1391,
+        "expected": 1391,
         "missing": 0,
         "pct": 100.0
       },
       "priceBand": {
         "present": 1339,
-        "expected": 1366,
-        "missing": 27,
-        "pct": 98.0
+        "expected": 1391,
+        "missing": 52,
+        "pct": 96.3
       },
       "lotSize": {
         "present": 439,
-        "expected": 1366,
-        "missing": 927,
-        "pct": 32.1
+        "expected": 1391,
+        "missing": 952,
+        "pct": 31.6
       },
       "issueSizeCr": {
         "present": 392,
-        "expected": 1366,
-        "missing": 974,
-        "pct": 28.7
+        "expected": 1391,
+        "missing": 999,
+        "pct": 28.2
       },
       "issueComposition": {
         "present": 392,
-        "expected": 454,
-        "missing": 62,
-        "pct": 86.3
+        "expected": 479,
+        "missing": 87,
+        "pct": 81.8
       }
     },
     "recentExchange2Y": {
       "symbol": {
-        "present": 448,
-        "expected": 453,
+        "present": 473,
+        "expected": 478,
         "missing": 5,
-        "pct": 98.9
+        "pct": 99.0
       },
       "board": {
-        "present": 453,
-        "expected": 453,
+        "present": 478,
+        "expected": 478,
         "missing": 0,
         "pct": 100.0
       },
       "exchange": {
-        "present": 453,
-        "expected": 453,
+        "present": 478,
+        "expected": 478,
         "missing": 0,
         "pct": 100.0
       },
       "openDate": {
-        "present": 453,
-        "expected": 453,
+        "present": 478,
+        "expected": 478,
         "missing": 0,
         "pct": 100.0
       },
       "closeDate": {
-        "present": 453,
-        "expected": 453,
+        "present": 478,
+        "expected": 478,
         "missing": 0,
         "pct": 100.0
       },
       "priceBand": {
         "present": 439,
-        "expected": 453,
-        "missing": 14,
-        "pct": 96.9
+        "expected": 478,
+        "missing": 39,
+        "pct": 91.8
       },
       "lotSize": {
         "present": 432,
-        "expected": 453,
-        "missing": 21,
-        "pct": 95.4
+        "expected": 478,
+        "missing": 46,
+        "pct": 90.4
       },
       "issueSizeCr": {
         "present": 385,
-        "expected": 453,
-        "missing": 68,
-        "pct": 85.0
+        "expected": 478,
+        "missing": 93,
+        "pct": 80.5
       },
       "issueComposition": {
         "present": 391,
-        "expected": 453,
-        "missing": 62,
-        "pct": 86.3
+        "expected": 478,
+        "missing": 87,
+        "pct": 81.8
       }
     },
     "historicalExchange": {
@@ -263,31 +263,31 @@
     "maturedLifecycle": {
       "listingDate": {
         "present": 1286,
-        "expected": 1325,
-        "missing": 39,
-        "pct": 97.1
+        "expected": 1350,
+        "missing": 64,
+        "pct": 95.3
       }
     },
     "optionalLifecycle": {
       "allotmentDate": {
         "present": 0,
-        "expected": 1325,
-        "missing": 1325,
+        "expected": 1350,
+        "missing": 1350,
         "pct": 0.0
       }
     },
     "provenance": {
       "sources": {
-        "present": 1378,
-        "expected": 1379,
+        "present": 1403,
+        "expected": 1404,
         "missing": 1,
         "pct": 99.9
       },
       "validation": {
         "present": 1379,
-        "expected": 1379,
-        "missing": 0,
-        "pct": 100.0
+        "expected": 1404,
+        "missing": 25,
+        "pct": 98.2
       },
       "documents": {
         "present": 397,
@@ -415,10 +415,16 @@
           "stage": "closed"
         },
         {
-          "id": "happy",
-          "company": "Happy Steels Limited",
-          "openDate": "2026-07-09",
-          "stage": "listed"
+          "id": "phychem-technologies",
+          "company": "PHYCHEM TECHNOLOGIES LIMITED",
+          "openDate": "2026-08-31",
+          "stage": "closed"
+        },
+        {
+          "id": "paluck-technologies",
+          "company": "Paluck Technologies Limited",
+          "openDate": "2026-08-28",
+          "stage": "closed"
         }
       ],
       "lotSize": [
@@ -501,15 +507,15 @@
           "stage": "closed"
         },
         {
-          "id": "happy",
-          "company": "Happy Steels Limited",
-          "openDate": "2026-07-09",
-          "stage": "listed"
+          "id": "phychem-technologies",
+          "company": "PHYCHEM TECHNOLOGIES LIMITED",
+          "openDate": "2026-08-31",
+          "stage": "closed"
         },
         {
-          "id": "icel",
-          "company": "IC Electricals Company Limited-Issue postponed",
-          "openDate": "2026-06-25",
+          "id": "paluck-technologies",
+          "company": "Paluck Technologies Limited",
+          "openDate": "2026-08-28",
           "stage": "closed"
         }
       ],
@@ -1300,75 +1306,75 @@
           "stage": "closed"
         },
         {
-          "id": "icel",
-          "company": "IC Electricals Company Limited-Issue postponed",
-          "openDate": "2026-06-25",
+          "id": "phychem-technologies",
+          "company": "PHYCHEM TECHNOLOGIES LIMITED",
+          "openDate": "2026-08-31",
           "stage": "closed"
         },
         {
-          "id": "spgcl-withdrawn-2026-06-24",
-          "company": "Sri Priyanka Geo Commex Limited-Issue Withdrawn",
-          "openDate": "2026-06-24",
+          "id": "paluck-technologies",
+          "company": "Paluck Technologies Limited",
+          "openDate": "2026-08-28",
           "stage": "closed"
         },
         {
-          "id": "rsl-withdrawal-option-2026-03-12",
-          "company": "Rajputana Stainless Limited-Special Withdrawal Option",
-          "openDate": "2026-03-12",
+          "id": "complete-sports-and-management-india",
+          "company": "COMPLETE SPORTS AND MANAGEMENT INDIA LIMITED",
+          "openDate": "2026-08-28",
           "stage": "closed"
         },
         {
-          "id": "sampoorna-withdrawn-2026-02-04",
-          "company": "NFP Sampoorna Foods Limited-Issue Withdrawn",
-          "openDate": "2026-02-04",
+          "id": "kwick-forensic-solutions",
+          "company": "Kwick Forensic Solutions Limited",
+          "openDate": "2026-08-27",
           "stage": "closed"
         },
         {
-          "id": "c2cw",
-          "company": "C2C Advanced Systems Limited- Withdrawal Window",
-          "openDate": "2024-11-26",
+          "id": "mopshop-distribution",
+          "company": "MOPSHOP DISTRIBUTION LIMITED",
+          "openDate": "2026-08-19",
           "stage": "closed"
         },
         {
-          "id": "sartelefpo",
-          "company": "SAR Televenture Limited - FPO",
-          "openDate": "2024-07-22",
+          "id": "dhanwel-hybrid-seeds",
+          "company": "Dhanwel Hybrid Seeds Limited",
+          "openDate": "2026-08-19",
           "stage": "closed"
         },
         {
-          "id": "pkh-withdrawn-2023-06-30",
-          "company": "PKH Ventures Limited - Issue Withdrawn",
-          "openDate": "2023-06-30",
+          "id": "technocrats-plasma-systems",
+          "company": "TECHNOCRATS PLASMA SYSTEMS LIMITED",
+          "openDate": "2026-08-14",
           "stage": "closed"
         },
         {
-          "id": "pkh",
-          "company": "PKH Ventures Limited",
-          "openDate": "2023-06-30",
+          "id": "ens-enterprises",
+          "company": "ENS ENTERPRISES LIMITED",
+          "openDate": "2026-08-14",
           "stage": "closed"
         },
         {
-          "id": "dcx",
-          "company": "DCX System limited",
-          "openDate": "2022-10-31",
+          "id": "q-t-foods",
+          "company": "Q&T FOODS LIMITED",
+          "openDate": "2026-08-12",
           "stage": "closed"
         },
         {
-          "id": "ruchisoya",
-          "company": "Ruchi Soya Industries Limited",
-          "openDate": "2022-03-24",
+          "id": "sham-foam",
+          "company": "SHAM FOAM LIMITED",
+          "openDate": "2026-08-11",
           "stage": "closed"
         },
         {
-          "id": "propequity",
-          "company": "P.E. Analytics Limited",
-          "openDate": "2022-03-22",
+          "id": "lapl-automotive",
+          "company": "LAPL AUTOMOTIVE LIMITED",
+          "openDate": "2026-08-06",
           "stage": "closed"
         },
         {
-          "id": "timescan",
-          "company": "Timescan Logistics (India) Private Limited",
-          "openDate": "2021-12-31",
+          "id": "aegeus-technologies",
+          "company": "Aegeus Technologies Limited",
+          "openDate": "2026-08-04",
           "stage": "closed"
         }
       ]

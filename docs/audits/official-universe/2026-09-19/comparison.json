@@ -1,0 +1,99 @@
+{
+  "baselineCommit": "be97b7966e647601141116447421af5c2d72634e",
+  "beforeAdmissions": {
+    "trackerRecords": 1379,
+    "bySource": [
+      {
+        "source": "BSE",
+        "sourceRecords": 1848,
+        "uniqueNormalizedNames": 1830,
+        "distinctSourceRecords": 1848,
+        "matchedRecords": 563,
+        "classifications": {
+          "exact_match": 205,
+          "genuinely_missing": 1276,
+          "known_alias": 5,
+          "normalized_match": 353,
+          "possible_duplicate_requires_review": 9
+        }
+      },
+      {
+        "source": "NSE",
+        "sourceRecords": 174,
+        "uniqueNormalizedNames": 174,
+        "distinctSourceRecords": 174,
+        "matchedRecords": 173,
+        "classifications": {
+          "exact_match": 173,
+          "genuinely_missing": 1
+        }
+      },
+      {
+        "source": "SEBI",
+        "sourceRecords": 5858,
+        "uniqueNormalizedNames": 3083,
+        "distinctSourceRecords": 5858,
+        "matchedRecords": 2615,
+        "classifications": {
+          "exact_match": 1852,
+          "genuinely_missing": 3093,
+          "known_alias": 11,
+          "normalized_match": 752,
+          "possible_duplicate_requires_review": 47,
+          "source_unavailable_not_verified": 103
+        }
+      }
+    ],
+    "missingCandidateNames": 2174
+  },
+  "afterAdmissions": {
+    "trackerRecords": 1404,
+    "bySource": [
+      {
+        "source": "BSE",
+        "sourceRecords": 1848,
+        "uniqueNormalizedNames": 1830,
+        "distinctSourceRecords": 1848,
+        "matchedRecords": 588,
+        "classifications": {
+          "exact_match": 230,
+          "genuinely_missing": 1250,
+          "known_alias": 5,
+          "normalized_match": 353,
+          "possible_duplicate_requires_review": 10
+        }
+      },
+      {
+        "source": "NSE",
+        "sourceRecords": 174,
+        "uniqueNormalizedNames": 174,
+        "distinctSourceRecords": 174,
+        "matchedRecords": 173,
+        "classifications": {
+          "exact_match": 173,
+          "genuinely_missing": 1
+        }
+      },
+      {
+        "source": "SEBI",
+        "sourceRecords": 5858,
+        "uniqueNormalizedNames": 3083,
+        "distinctSourceRecords": 5858,
+        "matchedRecords": 2618,
+        "classifications": {
+          "exact_match": 1852,
+          "genuinely_missing": 3090,
+          "known_alias": 11,
+          "normalized_match": 755,
+          "possible_duplicate_requires_review": 47,
+          "source_unavailable_not_verified": 103
+        }
+      }
+    ],
+    "missingCandidateNames": 2148
+  },
+  "distinctNewDraftFilings": 45,
+  "recordsAddedThisRun": 25,
+  "acceptedAliasesAdded": 0,
+  "existingAliasesRetained": 5
+}
