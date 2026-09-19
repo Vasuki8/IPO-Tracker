@@ -71,7 +71,8 @@ succeeded. If the latest retained stage failed, its earlier success is unknown;
 the tool does not invent historical outcomes. Explicit `source_unavailable` is
 separate from a source/parser `source_blocked` diagnostic and from retryable failure.
 The Python/JavaScript outcome and check-clock contract uses the same golden cases
-in `tests/fixtures/operational_health.json`.
+in `tests/contracts/operational_health.json`. Clock contracts are kept outside the
+document-fixture trigger; operational tests do not request a source-repair crawl.
 
 Public source diagnostics use those same recorded outcome/check-clock rules.
 Missing checks display `Not available`, never the dataset generation timestamp;

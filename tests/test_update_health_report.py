@@ -230,7 +230,7 @@ class UpdateHealthTests(unittest.TestCase):
         self.assertNotIn('report_update_health', (ROOT / '.github/workflows/refresh.yml').read_text())
 
     def test_python_javascript_recorded_outcome_and_clock_contract(self):
-        cases = json.loads((ROOT / 'tests/fixtures/operational_health.json').read_text())
+        cases = json.loads((ROOT / 'tests/contracts/operational_health.json').read_text())
         for case in cases:
             with self.subTest(case=case['name']):
                 self.assertEqual(health.recorded_outcome(case['health']), case['outcome'])
