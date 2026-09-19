@@ -148,6 +148,29 @@ commit time, per-source acceptance time, or deployment time. Those remain unknow
 Later bounded canonical changes can also leave the last collector-publication
 metadata unchanged. Do not describe its workflow window as the latest data edit.
 
+### Reviewed provisional offer receipts
+
+Schema 3 also inspects every retained `activeOfferTerms` entry, including null,
+malformed, conflicting, held and expired receipts. The report reuses the existing
+receipt validator, exact source-response replay and public projection on copies.
+It does not accept a correction, remove a review or recollect a source. JSON and
+Markdown show source URL/hash, parser/review version, observation, collection and
+review clocks, unresolved disclosures, field display decisions and next action.
+
+These are bounded source reviews, not a scheduled collector. No hourly or
+subscription deadline is assigned to them. A newer general NSE check, collection,
+review or build cannot supply their missing source observation. Future receipt
+clocks require investigation. Replay validity is separate from provisional public
+eligibility: existing holds and same-offer conflicts still win, and receipts remain
+listed after expiry at the end of the recorded close date in Asia/Kolkata. Field
+decisions explicitly identify whether they use this receipt or another source.
+
+Receipt acceptance time and publication lag remain unknown. A source review clock
+is not an accepted-publication clock; the last dataset publisher may predate a
+later bounded canonical change. Inspect the immutable release and live delivery
+evidence separately. Receipt summaries do not alter source/stage failure or
+overdue counts, unresolved proposal counts, or P4 review counts.
+
 Optional `--proposal-workflows` accepts an array of `{run, jobs}` GitHub snapshots
 for retained proposal `runId` values, with the same repository/workflow/attempt and
 complete-page checks. Exact proposal creation age stays unknown because current
