@@ -1,0 +1,195 @@
+{
+  "verifiedAt": "2026-09-19T14:37:50.664356+00:00",
+  "baseline": "0a393cd40ec910958c9d685d586076d3b0e6f8f6",
+  "acceptedCommit": "40a24ca1cc2e5310825aad36769ee3cad75fe9ae",
+  "status": "passed",
+  "recordCount": 1406,
+  "changedRecords": [
+    {
+      "id": "axiomgas",
+      "fields": [
+        "activeOfferTerms",
+        "dataCorrections"
+      ],
+      "originalReceiptRetainedInCorrectionHistory": true,
+      "scalarIssueSizeCr": null
+    },
+    {
+      "id": "varmora",
+      "fields": [
+        "activeOfferTerms",
+        "dataCorrections"
+      ],
+      "originalReceiptRetainedInCorrectionHistory": true,
+      "scalarIssueSizeCr": null
+    }
+  ],
+  "unselectedRecordsExactlyPreserved": 1404,
+  "canonicalSha256": {
+    "before": "2514c25566fd5dfac8f53c196fb9ae087be5c1a8ac1c27e49b743a00d78d1aa9",
+    "after": "4ed448add9610185a0a4d78a981987b7dbaab7e8f6138b55c23d9897aa2b8d2f"
+  },
+  "protectedFiles": {
+    "data/pending_updates.json": {
+      "unchanged": true,
+      "sha256": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3"
+    },
+    "data/public_display_holds.json": {
+      "unchanged": true,
+      "sha256": "296ddc61a3f7f8c8dbb06d86bbb9ca92d67203230ef66c834cb34e4eced588b6"
+    }
+  },
+  "pendingProposals": 441,
+  "validationIssuesExactlyPreserved": 1557,
+  "expandedSourceReviewsExactlyPreserved": 1557,
+  "sourceReviewRecordCount": 290,
+  "unavailableResolutionsExactlyPreserved": true,
+  "phase": {
+    "before": {
+      "p4": {
+        "status": "incomplete",
+        "actionableRecords": 408,
+        "higherPriorityRecords": 69,
+        "semanticErrors": 0,
+        "sourceReviewItems": 1557,
+        "blockingSourceReviewItems": 1553,
+        "p5OnlySourceReviewItems": 4,
+        "unmappedSourceReviewItems": 0,
+        "finalProspectusRevalidationRecords": 321,
+        "finalProspectusRevalidationFields": 1174,
+        "higherPriorityFinalProspectusRevalidationRecords": 28,
+        "higherPriorityFinalProspectusRevalidationFields": 104,
+        "resolvedUnavailableRecords": 5
+      },
+      "p5": {
+        "status": "waiting_for_p4",
+        "actionableRecords": 914
+      }
+    },
+    "after": {
+      "p4": {
+        "status": "incomplete",
+        "actionableRecords": 408,
+        "higherPriorityRecords": 67,
+        "semanticErrors": 0,
+        "sourceReviewItems": 1557,
+        "blockingSourceReviewItems": 1553,
+        "p5OnlySourceReviewItems": 4,
+        "unmappedSourceReviewItems": 0,
+        "finalProspectusRevalidationRecords": 321,
+        "finalProspectusRevalidationFields": 1174,
+        "higherPriorityFinalProspectusRevalidationRecords": 28,
+        "higherPriorityFinalProspectusRevalidationFields": 104,
+        "resolvedUnavailableRecords": 5
+      },
+      "p5": {
+        "status": "waiting_for_p4",
+        "actionableRecords": 914
+      }
+    }
+  },
+  "performanceValuesExactlyPreserved": true,
+  "sourceHealthExactlyPreserved": true,
+  "publication": {
+    "runId": "35448941571",
+    "collectorCommit": "90ce951c8d9a6e176f07d5d647e0e7057d4b9967",
+    "status": "published",
+    "pendingConflictCount": 441,
+    "mode": "reviewed",
+    "reviewedIds": [
+      "axiomgas",
+      "varmora"
+    ]
+  },
+  "remainingCohortGaps": [
+    {
+      "id": "poojalogis",
+      "company": "Pooja Logistics Limited",
+      "stage": "upcoming",
+      "openDate": "2026-09-23",
+      "priority": 1,
+      "priorityLabel": "P1 upcoming IPO",
+      "completenessPct": 90.9,
+      "missingFieldCount": 1,
+      "missingFields": [
+        "exchange.issueSizeCr"
+      ],
+      "profilePath": "ipo/poojalogis/"
+    }
+  ],
+  "schemaVersion": 1,
+  "scope": "qualified-whole-offer-amount-release-and-interruption-recovery",
+  "support": {
+    "pr": 171,
+    "head": "6bdcb9b72fbd0249a19ac68d9ddf865edb96c29a",
+    "merge": "4a8ff79a19df59faf49677931516312b366fa4ee",
+    "reviewPublication": "ec31caea26de73fb0a7e373247b22b5535524022",
+    "validationRun": 35448476902,
+    "sourcePreviewRun": 35448476877,
+    "holdEvidenceRun": 35448476880,
+    "releaseCandidateRun": 35448476898,
+    "browserRun": 35448476884,
+    "mainValidationRun": 35448752007,
+    "mainBrowserRun": 35448752008
+  },
+  "request": {
+    "pr": 172,
+    "head": "1cbb313b8d1ded2e82859eecefb5a18cec36073a",
+    "merge": "90ce951c8d9a6e176f07d5d647e0e7057d4b9967",
+    "validationRun": 35448832878,
+    "publisherRun": 35448941571,
+    "collectorJob": 105912618954,
+    "publisherJob": 105912760095
+  },
+  "deployment": {
+    "pagesRun": 35449044417,
+    "publicVerifierRun": 35449087717,
+    "directVerifierFiles": 20,
+    "additionalExactByteFiles": 11
+  },
+  "tests": {
+    "python": 1392,
+    "standardLibraryRelease": 43,
+    "node": 39,
+    "qualifiedAmount": 19,
+    "receiptHealth": 8,
+    "browserSmoke": 25,
+    "browserCohortViewports": [
+      1440,
+      375,
+      320
+    ],
+    "allDirectoryProfilePairs": 1406
+  },
+  "recovery": {
+    "initialMain": "0a393cd40ec910958c9d685d586076d3b0e6f8f6",
+    "preexistingSourceCommits": [
+      "70a47cb05b9d8b3fc4f0d182600e51b46bd0be3e",
+      "6e2df0a4d4c8b736d0c07d526b3b844eaecd0b49"
+    ],
+    "implementationInitiallyUncommitted": true,
+    "preservedLocalImplementation": "4af01723d141446d92d108510f7874d3fac3cd71",
+    "preservedLocalBranch": "recover-qualified-offer-amounts",
+    "publishedImplementationMatchesRecoveredCode": true,
+    "duplicateImplementationPRCreated": false
+  },
+  "stalePublication": {
+    "run": 35448787952,
+    "job": 105912749302,
+    "status": "rejected",
+    "reason": "Collector code or reviewed-correction policy changed after collection; retained artifact must be recollected with current code and policy",
+    "bypassed": false,
+    "reviewedPublisherSucceededSeparately": true
+  },
+  "sourceReview": {
+    "immutableCommit": "6e2df0a4d4c8b736d0c07d526b3b844eaecd0b49",
+    "path": "docs/reviews/2026-09-19-qualified-offer-amount-source-review.md",
+    "originalSourceHashesRecomputed": true,
+    "amountAndQualificationPagesVisuallyChecked": true,
+    "transcriptionsAreManual": true,
+    "observationTimeUnknown": true,
+    "poojaAmount": "disclosure-absent-in-inspected-current-documents"
+  },
+  "nextTask": "Bounded multi-document diagnosis of the promoter/subtotal/page-locator family, starting with held Vinod Texworld; establish intended promoter/group scope and actual source row pages before proposing any replacement.",
+  "commercial": "Rights, permitted hosting, operator/jurisdictions, customer segment, pricing and revenue model remain unresolved; no commercial activation."
+}
