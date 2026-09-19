@@ -1,6 +1,12 @@
 name: Audit official IPO universe — BSE June cohort
 
 on:
+  pull_request:
+    paths:
+      - 'tools/review_bse_universe_cohort.py'
+      - 'tests/test_universe_bse_cohort_review.py'
+      - '.github/workflows/audit-official-universe.yml'
+      - 'docs/audits/official-universe/2026-09-19/next-cohort.json'
   push:
     branches: [audit-official-universe-bse-june-20260919]
     paths:
