@@ -14,6 +14,7 @@ from pathlib import Path
 from publication_source_policy import verify_source_commit
 from record_integrity import repair
 from update_data import build_validation
+from accepted_data_guard import assert_preserved
 
 MISSING = object()
 FIELD_GROUPS = {
@@ -73,7 +74,7 @@ def merge_value(before, proposed, current, path, conflicts):
                 output[key] = merged
         return output
     # Append-only observations preserve both accepted event histories.
-    if path and path[-1] in {'subscriptionHistory', 'dataCorrections'} and all(isinstance(value, list) for value in (before, proposed, current)) and proposed[:len(before)] == before and current[:len(before)] == before:
+    if path and path[-1] in {'subscriptionHistory', 'dataCorrections', 'sourceObservationHistory'} and all(isinstance(value, list) for value in (before, proposed, current)) and proposed[:len(before)] == before and current[:len(before)] == before:
         output = copy.deepcopy(current)
         for value in proposed[len(before):]:
             if value not in output:
@@ -138,6 +139,7 @@ def main():
         from reviewed_corrections import verify_manifest, validate_records, validate_scope
         reviewed = verify_manifest(json.loads(args.reviewed_manifest.read_text()), args.base, args.proposed, *values[:2])
     output, conflicts = merge_payload(*values)
+    assert_preserved(values[2], output)
     if reviewed:
         registry, groups, ids = reviewed
         if conflicts:

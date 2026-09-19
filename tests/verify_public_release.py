@@ -210,6 +210,59 @@ def verify_active_offer_delivery(stored, profile, summary, group, proofs):
                         'Conditional amount document location/unit not delivered')
 
 
+def verify_accepted_preservation(root, receipt, baseline):
+    """Check prior accepted state even when the latest publication is ordinary.
+
+    Matching blanks in two generated surfaces are not conservation evidence.
+    Baseline is supplied independently from the previous Git main commit.
+    """
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
+    from accepted_data_guard import assert_preserved, present
+    from public_quality import project_record, SUMMARY_FIELDS
+    from build_company_pages import _compact
+    root = Path(root)
+    canonical = read_json((root / 'data/ipos.json').read_bytes())
+    previous = read_json(Path(baseline).read_bytes())
+    result = assert_preserved(previous, canonical)
+    summaries = {r['id']: r for r in read_json((root / 'data/ipos-summary.json').read_bytes())['ipos']}
+    holds = read_json((root / 'data/public_display_holds.json').read_bytes())['holds']
+    checked = []
+    for row in canonical['ipos']:
+        fields = set((row.get('activeOfferTerms') or {}).get('fields') or {})
+        fields.update(row.get('staticFieldProvenance') or {})
+        if not fields:
+            continue
+        key = row['id']
+        require(key in summaries, key + ': protected issuer missing from directory')
+        summary = summaries[key]
+        path = summary['profilePath']
+        require(re.fullmatch(r'ipo/[a-z0-9][a-z0-9-]*/', path), 'Unsafe protected profile path')
+        profile = embedded_profile((root / path / 'index.html').read_bytes())
+        expected = _compact(project_record(row, holds=holds))
+        if expected.get('financials'):
+            expected['financials'] = {'periods': [{k: v for k, v in p.items()
+                if k in ('period', 'revenueCr', 'ebitdaCr', 'patCr', 'netWorthCr', 'ronwPct', 'roePct', 'eps')}
+                for p in expected['financials']['periods']]}
+        if expected.get('issueComposition'):
+            expected['issueComposition'] = {k: v for k, v in expected['issueComposition'].items()
+                if k in ('freshShares', 'ofsShares', 'freshValueCr', 'ofsValueCr', 'valuationPriceUsed', 'qualifiers')}
+        expected_decisions = decisions(expected)
+        for field in fields:
+            for public_row in ((summary, profile) if field in {*SUMMARY_FIELDS, 'issueAmountScenarios'} else (profile,)):
+                require(field_value(public_row, field) == field_value(expected, field),
+                        f'{key}.{field}: accepted projection not delivered')
+                require(decisions(public_row).get(field) == expected_decisions[field],
+                        f'{key}.{field}: accepted state/evidence not delivered')
+        # HTTP-check every active receipt, including expired/held projections.
+        if row.get('activeOfferTerms'):
+            receipt['expectedSha256'][path + 'index.html'] = digest((root / path / 'index.html').read_bytes())
+            if path not in receipt['sampledProfiles']:
+                receipt['sampledProfiles'].append(path)
+        checked.append({'id': key, 'fields': sorted(fields)})
+    return {**result, 'baselineSha256': digest(Path(baseline).read_bytes()),
+            'scope': 'prior-accepted-records-evidence-history-and-public-projection', 'checked': checked}
+
+
 def verify_reviewed_publication(root, receipt):
     """Require delivery of the last reviewed repair, not just matching pages.
 
@@ -378,11 +431,14 @@ def main():
     cli.add_argument('--expected-commit', required=True, help='Immutable checkout/deployment SHA for this receipt')
     cli.add_argument('--check-reviewed-publication', action='store_true',
                      help='Check delivery of the last reviewed value/proof repair, using local evidence only')
+    cli.add_argument('--accepted-baseline', type=Path)
     args = cli.parse_args()
     require(bool(re.fullmatch(r'[a-f0-9]{40}', args.expected_commit)), 'Expected commit must be a full SHA')
     receipt = {'expectedCommit': args.expected_commit, 'status': 'failed', 'scope': 'public-artifact-consistency-not-source-accuracy'}
     try:
         receipt.update(verify_local(args.root))
+        if args.accepted_baseline:
+            receipt['acceptedPreservation'] = verify_accepted_preservation(args.root, receipt, args.accepted_baseline)
         if args.check_reviewed_publication:
             receipt['reviewedPublication'] = verify_reviewed_publication(args.root, receipt)
         if args.base_url:

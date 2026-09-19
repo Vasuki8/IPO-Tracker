@@ -30,8 +30,12 @@ jobs:
         with:
           ref: ${{ github.event.workflow_run.head_sha || github.sha }}
           persist-credentials: false
+          fetch-depth: 2
       - uses: astral-sh/setup-uv@v10.1.0
       - run: uv python install 3.12
+      - run: uv sync --frozen
+      - name: Retain independent previous accepted state
+        run: git show HEAD^:data/ipos.json > /tmp/ipo-release-accepted.json
       - name: Test release verification
         run: uv run --no-project --python 3.12 python -m unittest discover -s tests -p 'test_*release*.py' -v
       - name: Prepare isolated PR review output
@@ -74,7 +78,7 @@ jobs:
           # Bounded retries do not reinterpret mismatched bytes as success.
           for attempt in 1 2 3; do
             receipt="artifacts/public-release/${prefix}attempt-$attempt.json"
-            if uv run --no-project --python 3.12 python tests/verify_review_release.py --root "$root" --expected-commit "$sha" --base-url "$base" > "$receipt"; then
+            if uv run --frozen python tests/verify_review_release.py --root "$root" --expected-commit "$sha" --base-url "$base" --accepted-baseline /tmp/ipo-release-accepted.json > "$receipt"; then
               cat "$receipt"
               git diff --exit-code
               exit 0

@@ -813,7 +813,8 @@ def attach_bse(records, rows):
             (rec.get("sources") or []) + (b.get("sources") or []),
             ("name", "url"),
         )
-        rec.setdefault("observations", {}).update(b.get("observations") or {})
+        from accepted_data_guard import merge_observations_for_receipt
+        rec.update(merge_observations_for_receipt(rec, b))
         records[k] = merge_fill_only(rec, b, protected)
         count += 1
     return count

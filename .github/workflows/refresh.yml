@@ -175,6 +175,7 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             uv sync --frozen
+            cp data/ipos.json /tmp/ipo-publication-accepted.json
             if [[ "$MODE" == "presentation" ]]; then
               # Rebuild from current accepted data; no collector, correction,
               # proposal reconciliation or phase-state mutation on this path.
@@ -217,6 +218,8 @@ jobs:
                 git add data/ ipo/ docs/DATA_QUALITY.md
               fi
             fi
+            uv run --frozen python scripts/accepted_data_guard.py --base /tmp/ipo-publication-accepted.json
+            uv run --frozen python tests/verify_public_release.py --expected-commit "$(git rev-parse HEAD)" --accepted-baseline /tmp/ipo-publication-accepted.json > /tmp/ipo-accepted-delivery.json
             if git diff --cached --quiet; then
               echo 'No accepted data changes to publish'
               exit 0

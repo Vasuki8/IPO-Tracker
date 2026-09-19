@@ -171,7 +171,10 @@ class FinalProspectusObjectsGateTests(unittest.TestCase):
                 enforcement.apply_policy({"ipos": [record]})
                 self.assertNotIn("objectsOfIssue", record["staticFieldProvenance"])
                 self.assertNotIn("objectsOfIssue", record["staticSourcePolicy"]["verifiedFields"])
-                self.assertEqual(record["dataCorrections"], [])
+                history = record['dataCorrections']
+                self.assertEqual(history[-1]['field'], 'staticFieldProvenance.objectsOfIssue')
+                self.assertEqual(history[-1]['before']['value'], value)
+                self.assertIsNone(history[-1]['after'])
 
     def test_legacy_rows_without_raw_evidence_are_withheld_without_calling_them_wrong(self):
         record = self.record()
