@@ -13,7 +13,7 @@ function runtime() {
   vm.runInContext(fs.readFileSync(path.join(root,'source-health.js'),'utf8'), context);
   return {context,panel};
 }
-const fixtures = JSON.parse(fs.readFileSync(path.join(__dirname,'fixtures/operational_health.json'),'utf8'));
+const fixtures = JSON.parse(fs.readFileSync(path.join(__dirname,'contracts/operational_health.json'),'utf8'));
 for (const fixture of fixtures) test('recorded source semantics: '+fixture.name,()=>{
   const {context}=runtime();
   context.input=fixture.health;

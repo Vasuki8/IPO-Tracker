@@ -21,7 +21,7 @@ on:
       - 'scripts/run_update.py'
       - 'tests/frontend*'
       - 'tests/source_health.test.cjs'
-      - 'tests/fixtures/operational_health.json'
+      - 'tests/contracts/operational_health.json'
       - 'tests/verify_public_release.py'
       - '.github/workflows/frontend.yml'
   push:
@@ -45,7 +45,7 @@ on:
       - 'scripts/run_update.py'
       - 'tests/frontend*'
       - 'tests/source_health.test.cjs'
-      - 'tests/fixtures/operational_health.json'
+      - 'tests/contracts/operational_health.json'
       - 'tests/verify_public_release.py'
       - '.github/workflows/frontend.yml'
   workflow_dispatch:
