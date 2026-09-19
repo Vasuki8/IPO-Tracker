@@ -1,0 +1,57 @@
+name: Audit official IPO universe — BSE June cohort
+
+on:
+  push:
+    branches: [audit-official-universe-bse-june-20260919]
+    paths:
+      - 'tools/review_bse_universe_cohort.py'
+      - 'tests/test_universe_bse_cohort_review.py'
+      - '.github/workflows/audit-official-universe.yml'
+      - 'docs/audits/official-universe/2026-09-19/next-cohort.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: official-universe-bse-june-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  capture-and-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v10.1.0
+      - run: uv python install 3.12
+      - run: uv sync --frozen
+      - name: Run official-universe identity regressions
+        run: |
+          uv run --frozen python -m unittest \
+            tests.test_official_universe \
+            tests.test_universe_continuation \
+            tests.test_universe_bse_cohort_review -v
+      - name: Capture and review only the bounded June BSE cohort
+        run: |
+          uv run --frozen python tools/review_bse_universe_cohort.py \
+            --base-snapshot docs/audits/official-universe/2026-09-19 \
+            --snapshot docs/audits/official-universe/2026-09-19-bse-june \
+            --cohort docs/audits/official-universe/2026-09-19/next-cohort.json \
+            --tracker data/ipos.json \
+            --baseline-commit 345e2c1e0c14b7d66475391b23c9e216362d614e \
+            --as-of 2026-09-19
+      - name: Prove collection did not mutate canonical data
+        run: git diff --exit-code -- data/ipos.json data/pending_updates.json
+      - name: Commit retained official-source evidence to this audit branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/audits/official-universe/2026-09-19-bse-june
+          if git diff --cached --quiet; then
+            echo "No new audit evidence"
+          else
+            git commit -m "Capture BSE June universe identity evidence"
+            git push origin HEAD:${{ github.ref_name }}
+          fi
