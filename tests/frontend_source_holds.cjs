@@ -56,6 +56,39 @@ async function main() {
         results.push({id:fixture.id,width,activeFieldsChecked:active,profileAndQuickView:'passed'});
       }
     }
+    const vinodFixture=JSON.parse(await fs.readFile(path.join(root,'tests/vinod_shareholding_retained.json'),'utf8')).ipos[0];
+    const vinod=canonical.find(r=>r.id===vinodFixture.id);
+    assert.ok(vinod, 'Reviewed Vinod identity remains in the inventory');
+    const vinodActive=JSON.stringify(vinod.shareholding)===JSON.stringify(vinodFixture.shareholding) &&
+      vinod.staticFieldProvenance?.shareholding?.sha256===vinodFixture.staticFieldProvenance.shareholding.sha256 &&
+      ['company','symbol','openDate'].every(k=>vinod[k]===vinodFixture[k]);
+    if(vinodActive) {
+      for(const width of [1440,390,320]) {
+        await page.setViewportSize({width,height:900});
+        await page.goto(new URL(vinod.profilePath,base).href,{waitUntil:'networkidle'});
+        const profile=page.locator('#companyPage .company-profile');await profile.waitFor();
+        const payload=JSON.parse(await page.locator('#ipo-profile-data').textContent()).ipo;
+        assert.ok(payload.shareholding==null);
+        assert.equal(payload.publicQuality.fields.shareholding.reason,'pending_source_repair');
+        assert.match(await profile.locator('[data-quality-field="shareholding"]').first().innerText(),/Under review/);
+        assert.ok(!(await profile.innerText()).includes('93.11'));
+        assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
+        await page.screenshot({path:path.join(out,`vinod-hold-${width}.png`),fullPage:true});
+        await page.goto(new URL('?q='+encodeURIComponent(vinod.company),base).href,{waitUntil:'networkidle'});
+        await page.locator('#freshness.loaded').waitFor();
+        const row=page.locator('#ipoRows tr[data-id="vinod"]');
+        assert.ok(!(await row.innerText()).includes('93.11'));
+        await row.locator('[data-action="preview"]').click();
+        const modal=page.locator('#detailDialog[open] .company-profile');await modal.waitFor();
+        assert.match(await modal.locator('[data-quality-field="shareholding"]').first().innerText(),/Under review/);
+        assert.ok(!(await modal.innerText()).includes('93.11'));
+        await page.keyboard.press('Escape');
+      }
+      const pendingDownload=page.waitForEvent('download');await page.locator('#exportCsv').click();
+      const download=await pendingDownload;
+      assert.ok(!(await fs.readFile(await download.path(),'utf8')).includes('93.11'));
+      results.push({id:'vinod',shareholdingHold:'profile, quick view, directory and CSV passed',widths:[1440,390,320]});
+    } else results.push({id:'vinod',shareholdingHold:'different source/value; not declared resolved'});
     // Independently expected active market snapshots, from retained issuer and
     // source fields. Only collection-clock changes are non-resolving rechecks.
     const market = JSON.parse(await fs.readFile(path.join(root,'tests/subscription_reviews_retained.json'),'utf8')).ipos;

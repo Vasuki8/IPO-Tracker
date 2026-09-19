@@ -1,0 +1,277 @@
+{
+  "total_count": 2,
+  "jobs": [
+    {
+      "id": 105816767523,
+      "run_id": 35413219212,
+      "workflow_name": "Collect and publish IPO data",
+      "head_branch": "main",
+      "run_url": "https://api.github.com/repos/Vasuki8/IPO-Tracker/actions/runs/35413219212",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOUXi8AM8AAAAYoyu8Iw",
+      "head_sha": "432c9fa1853fb1cab23f5d7fbc834499edf6994b",
+      "url": "https://api.github.com/repos/Vasuki8/IPO-Tracker/actions/jobs/105816767523",
+      "html_url": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35413219212/job/105816767523",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-09-19T01:37:19Z",
+      "started_at": "2026-09-19T01:37:21Z",
+      "completed_at": "2026-09-19T01:47:57Z",
+      "name": "collect",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-09-19T01:37:22Z",
+          "completed_at": "2026-09-19T01:37:23Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-09-19T01:37:23Z",
+          "completed_at": "2026-09-19T01:37:26Z"
+        },
+        {
+          "name": "Run astral-sh/setup-uv@v10.1.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-09-19T01:37:26Z",
+          "completed_at": "2026-09-19T01:37:28Z"
+        },
+        {
+          "name": "Run uv python install 3.12",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-09-19T01:37:28Z",
+          "completed_at": "2026-09-19T01:37:29Z"
+        },
+        {
+          "name": "Run uv sync --frozen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-09-19T01:37:29Z",
+          "completed_at": "2026-09-19T01:37:29Z"
+        },
+        {
+          "name": "Resolve collection mode",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-09-19T01:37:29Z",
+          "completed_at": "2026-09-19T01:37:30Z"
+        },
+        {
+          "name": "Install bounded PDF table extraction when needed",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-09-19T01:37:30Z",
+          "completed_at": "2026-09-19T01:37:40Z"
+        },
+        {
+          "name": "Verify the collector",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-09-19T01:37:40Z",
+          "completed_at": "2026-09-19T01:38:11Z"
+        },
+        {
+          "name": "Save collection baseline",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-09-19T01:38:11Z",
+          "completed_at": "2026-09-19T01:38:11Z"
+        },
+        {
+          "name": "Collect sources with explicit stage outcomes",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-09-19T01:38:11Z",
+          "completed_at": "2026-09-19T01:47:53Z"
+        },
+        {
+          "name": "Repair recent P4 Final Prospectus residuals",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-09-19T01:47:53Z",
+          "completed_at": "2026-09-19T01:47:53Z"
+        },
+        {
+          "name": "Prepare bounded reviewed corrections without source collection",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 12,
+          "started_at": "2026-09-19T01:47:53Z",
+          "completed_at": "2026-09-19T01:47:53Z"
+        },
+        {
+          "name": "Prepare collected snapshot",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-09-19T01:47:53Z",
+          "completed_at": "2026-09-19T01:47:53Z"
+        },
+        {
+          "name": "Run actions/upload-artifact@v4.6.2",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-09-19T01:47:53Z",
+          "completed_at": "2026-09-19T01:47:55Z"
+        },
+        {
+          "name": "Post Run astral-sh/setup-uv@v10.1.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-09-19T01:47:55Z",
+          "completed_at": "2026-09-19T01:47:55Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28,
+          "started_at": "2026-09-19T01:47:55Z",
+          "completed_at": "2026-09-19T01:47:55Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29,
+          "started_at": "2026-09-19T01:47:55Z",
+          "completed_at": "2026-09-19T01:47:55Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Vasuki8/IPO-Tracker/check-runs/105816767523",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000004458,
+      "runner_name": "GitHub Actions 1000004458",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 105818244398,
+      "run_id": 35413219212,
+      "workflow_name": "Collect and publish IPO data",
+      "head_branch": "main",
+      "run_url": "https://api.github.com/repos/Vasuki8/IPO-Tracker/actions/runs/35413219212",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOUXi8AM8AAAAYo0JFLg",
+      "head_sha": "432c9fa1853fb1cab23f5d7fbc834499edf6994b",
+      "url": "https://api.github.com/repos/Vasuki8/IPO-Tracker/actions/jobs/105818244398",
+      "html_url": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35413219212/job/105818244398",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-09-19T01:47:57Z",
+      "started_at": "2026-09-19T01:47:59Z",
+      "completed_at": "2026-09-19T01:48:32Z",
+      "name": "publish",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-09-19T01:47:59Z",
+          "completed_at": "2026-09-19T01:48:00Z"
+        },
+        {
+          "name": "Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-09-19T01:48:00Z",
+          "completed_at": "2026-09-19T01:48:06Z"
+        },
+        {
+          "name": "Run astral-sh/setup-uv@v10.1.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-09-19T01:48:06Z",
+          "completed_at": "2026-09-19T01:48:08Z"
+        },
+        {
+          "name": "Run uv python install 3.12",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-09-19T01:48:08Z",
+          "completed_at": "2026-09-19T01:48:09Z"
+        },
+        {
+          "name": "Run actions/download-artifact@v4.3.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-09-19T01:48:09Z",
+          "completed_at": "2026-09-19T01:48:10Z"
+        },
+        {
+          "name": "Merge, validate, and publish from current main",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-09-19T01:48:10Z",
+          "completed_at": "2026-09-19T01:48:28Z"
+        },
+        {
+          "name": "Request Pages rebuild after bot publication",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-09-19T01:48:28Z",
+          "completed_at": "2026-09-19T01:48:29Z"
+        },
+        {
+          "name": "Post Run astral-sh/setup-uv@v10.1.0",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-09-19T01:48:29Z",
+          "completed_at": "2026-09-19T01:48:29Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v7.0.1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-09-19T01:48:29Z",
+          "completed_at": "2026-09-19T01:48:30Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-09-19T01:48:30Z",
+          "completed_at": "2026-09-19T01:48:30Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Vasuki8/IPO-Tracker/check-runs/105818244398",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000004464,
+      "runner_name": "GitHub Actions 1000004464",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

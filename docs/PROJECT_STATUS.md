@@ -15,49 +15,73 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
-## Current checkpoint — core source clocks, 19 September 2026
+## Current checkpoint — core clocks and release source review, 19 September 2026
 
-Recovered current main **`ac51bebeb75a1afd41150a061288d4078e0e89c9`**; no new
-repository changes since the completed commercial handover. Pages **35410409056**
-and deployed acceptance **35410439478** succeeded at that commit. Recognized
-completed financial #143/#144, universe, operational #149–151 and commercial
-#152/#153 work; the stale roadmap instruction to repeat Hy-Tech/Onemi is corrected.
+Verified published main **`5ea15921c2a2e742b282acefad6df366dab0c58f`**.
+Recovered from `ac51bebeb75a1afd41150a061288d4078e0e89c9`; completed financial
+#143/#144, universe #145–148, operational #149–151 and commercial #152/#153
+work is preserved. Hy-Tech/Onemi's accepted repair is not repeated.
 
-Selected the earlier unfinished operational dependency: core sources have recorded
-outcomes but no evidence-bound check clocks. Operators and public source diagnostics
-cannot date those attempts. Branch **`fix-core-source-attempt-clocks`** implements
-future endpoint/page/range receipts, partial failures, explicit skips without new
-clocks, successful empty NSE checks, and metadata preservation on all-source failure.
-Unknown observations remain unknown; attachment failures preserve accepted rows.
-Release routing uses the existing core workflow and its bounded filing maintenance.
+**Core-clock milestone is deployed.** [PR #154](https://github.com/Vasuki8/IPO-Tracker/pull/154)
+merged `089a9464`/`7c9de7f8` as `9878e0f6`; [PR #155](https://github.com/Vasuki8/IPO-Tracker/pull/155)
+merged `ac6a318f`/`5927d9de`/`383d9a30` as `432c9fa1`. Actual endpoint/page/range
+attempts now retain check clocks, partial failures and explicit deferred states.
+Unknown observation time stays unknown. Concurrent publication keeps each outcome
+and its clock together. Seven reviewed BSE-only identities survive independent
+NSE success/BSE failure. Their exact retained official HTML receipts replayed.
+All 1,379 IDs and eight admission receipts survive; 441 proposals are byte-identical.
 
-Acceptance still pending at this implementation checkpoint: full Linux CI, PR
-merge, real core collection/publication, deployed/browser verification, before/after
-operational report and final release receipt. No canonical changes made locally.
-Current P4: **387 actionable + 63 higher-priority; 1,552 blocking / 1,556 total
-reviews; zero semantic errors/unmapped reviews**. Inventory 1,379; 441 pending
-proposals; P5 waits for P4. Strict validation passed; 36 Node public-quality/health
-tests passed. Windows runs require UTF-8; Linux CI also covers filesystem-only cases.
+Full Linux validation **35413034691** passed **1,311 Python tests**, strict zero
+errors, retained-proposal checks and public generation. **36 Node tests**, browser
+**35413034726**, and both scoped source-preview jobs **35413034734** passed.
+Two local Windows filesystem limitations pass on Linux; tests were not weakened.
+First collector **35412526647** was cancelled before publication when inspection
+found the legacy identity cleanup issue; no accepted data was lost. Superseded
+preview **35412888497** was cancelled while correcting core-preview scope.
 
-PR #154 merged as `9878e0f6` after **1,309 Linux Python tests**, browser workflow
-35412354120 and validation 35412354118 passed. Its first core collection run
-35412526647 was deliberately cancelled before publication: release inspection
-found the older core cleanup would remove seven reviewed BSE-only admissions.
-Follow-up branch `fix-core-preserve-reviewed-identity` retains source/observation
-URLs bound to `universeAdmission.identitySource`; legacy validation-only cleanup
-is unchanged. Seven actual admitted records are frozen fixtures, tested through
-the complete core wrapper with an independent successful NSE response and BSE
-failure. Re-run the existing workflow after this preservation fix passes CI.
+Core refresh **35413219212** published `5ea15921`; Pages **35413782301** and
+deployed verification **35413803388** succeeded. Direct live verification matched
+13 canonical/proposal/phase and reviewed/admitted-profile routes; additional
+public verification checked 18 routes. Browser diagnostics show NSE 12 rows,
+2 successful checks; BSE 8 rows with 2 failures out of 3 attempts. NSE history
+retains a successful empty dated range. SEBI has 13 unique filings across four
+successful requests; this is not a historical/pagination completeness claim.
+None of these collections invents a source-observation clock.
 
-Old PRs #94/#98/#99/#104/#105 remain separate and unmerged; do not apply their broad
-or superseded stacks. Commercial audience, pricing/revenue, source redistribution,
-hosting suitability, legal operator, privacy and professional-review decisions
-remain unresolved; the register below is current. No spending, tracking, contracts,
-access changes, P5 or performance expansion introduced.
+The after report at **01:53Z** records 5 failed sources, 1 partial failure,
+27 successful entries, 0 known overdue source checks/stages, 3 stages and 6 sources
+needing investigation, and 441 unresolved proposals. Two subscription observations
+exceed age tolerance outside the configured monitoring window; do not label this
+a missed intraday deadline. BSE primary-page parsing and SME timeout remain open.
+See the [audit and immutable receipts](audits/operational-health/2026-09-19-core-clocks/REPORT.md).
 
-**Exact next action:** finish validation, merge this bounded milestone, verify real
-published source receipts and unchanged observation semantics, then return to
-evidence-backed P4 source-family triage (PNGS Reva is conditional, not preapproved).
+**Release follow-up pending:** bounded filing maintenance also populated Vinod
+financials, objects and shareholding. Independent official PDF hash/visual review
+passed all nine financial and five objects amounts, but rejected the derived
+93.11% ownership and incorrect page locator. A source/issuer/offer/value-bound
+hold on branch **`fix-core-release-source-hold`** preserves canonical value/history
+and adds an actionable manual review. See [the exact source review](reviews/2026-09-19-vinod-publication-source-review.md).
+Focused hold tests and strict validation pass; complete CI, review-only publication
+and live hold acceptance remain required before closeout. No numerical correction
+or P4 reduction is claimed.
+
+Published P4 before this hold: **387 actionable + 63 higher-priority; 1,552
+blocking / 1,556 total reviews**. Local held projection: **1,553 blocking / 1,557
+total**, with the same record counts, zero semantic errors/unmapped reviews and
+four P5-only reviews. P5 waits for P4 (914 records). The increase is one newly
+documented source defect, with all earlier reviews retained.
+
+Old PRs #94/#98/#99/#104/#105 remain separate and unmerged. Audience, pricing,
+revenue, source redistribution rights, hosting suitability, legal operator,
+privacy and professional-review decisions remain unresolved in the commercial
+register. No spending, tracking, contracts, access changes or P5 expansion.
+
+**Exact next action:** finish and publish the bounded Vinod hold, verify its live
+profile and manual queue, and close the operational release. Then triage the
+current/upcoming offer-term cohort (Axiom Gas, Varmora, Pooja Logistics) against
+matching official lifecycle/document evidence. Retain SpectraA's hold. Separately
+cluster the exposed shareholding subtotal/page-locator family before any shared
+numeric repair; PNGS Reva's adjusted EBITDA/partnership EPS remains conditional.
 
 ## Previous checkpoint — commercial evidence review, 19 September 2026
 
