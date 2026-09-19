@@ -15,7 +15,41 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
-## Current checkpoint — commercial evidence review, 19 September 2026
+## Current checkpoint — core source clocks, 19 September 2026
+
+Recovered current main **`ac51bebeb75a1afd41150a061288d4078e0e89c9`**; no new
+repository changes since the completed commercial handover. Pages **35410409056**
+and deployed acceptance **35410439478** succeeded at that commit. Recognized
+completed financial #143/#144, universe, operational #149–151 and commercial
+#152/#153 work; the stale roadmap instruction to repeat Hy-Tech/Onemi is corrected.
+
+Selected the earlier unfinished operational dependency: core sources have recorded
+outcomes but no evidence-bound check clocks. Operators and public source diagnostics
+cannot date those attempts. Branch **`fix-core-source-attempt-clocks`** implements
+future endpoint/page/range receipts, partial failures, explicit skips without new
+clocks, successful empty NSE checks, and metadata preservation on all-source failure.
+Unknown observations remain unknown; attachment failures preserve accepted rows.
+Release routing uses the existing core workflow and its bounded filing maintenance.
+
+Acceptance still pending at this implementation checkpoint: full Linux CI, PR
+merge, real core collection/publication, deployed/browser verification, before/after
+operational report and final release receipt. No canonical changes made locally.
+Current P4: **387 actionable + 63 higher-priority; 1,552 blocking / 1,556 total
+reviews; zero semantic errors/unmapped reviews**. Inventory 1,379; 441 pending
+proposals; P5 waits for P4. Strict validation passed; 36 Node public-quality/health
+tests passed. Windows runs require UTF-8; Linux CI also covers filesystem-only cases.
+
+Old PRs #94/#98/#99/#104/#105 remain separate and unmerged; do not apply their broad
+or superseded stacks. Commercial audience, pricing/revenue, source redistribution,
+hosting suitability, legal operator, privacy and professional-review decisions
+remain unresolved; the register below is current. No spending, tracking, contracts,
+access changes, P5 or performance expansion introduced.
+
+**Exact next action:** finish validation, merge this bounded milestone, verify real
+published source receipts and unchanged observation semantics, then return to
+evidence-backed P4 source-family triage (PNGS Reva is conditional, not preapproved).
+
+## Previous checkpoint — commercial evidence review, 19 September 2026
 
 Current verified research-release main: **`c39c823c715599d9a169ed2b7a773a4c3cd98482`**.
 Assessment base was `11a62c47f64506fb3fbccdec8ba7f88e43d8c468`; the final

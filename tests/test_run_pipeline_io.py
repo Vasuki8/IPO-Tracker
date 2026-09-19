@@ -80,6 +80,24 @@ class PipelineIoTests(unittest.TestCase):
         self.assertEqual(self.data.read_bytes(), before)
         self.assertIn("Restored the previous valid dataset", report["diagnostics"])
 
+    def test_failed_stage_retains_new_failure_metadata_and_accepted_rows(self):
+        payload = {"meta": {}, "ipos": [{"id": "a", "company": "A", "issueSizeCr": None}]}
+        self.write_payload(payload)
+        failure = {"ok": False, "checkedAt": "2026-09-19T00:01:00+05:30", "error": "HTTP 403"}
+
+        def collector(*_args, **_kwargs):
+            payload['meta']['sourceHealth'] = {'NSE-live': failure}
+            self.write_payload(payload)
+            return SimpleNamespace(stdout='No source rows refreshed', returncode=2)
+
+        with patch.object(mod.subprocess, 'run', side_effect=collector):
+            report = mod.step('run_update_final_policy.py')
+        self.assertEqual(report['status'], 'failed')
+        mod.flush_pipeline_reports()
+        result = json.loads(self.data.read_text())
+        self.assertEqual(result['ipos'], payload['ipos'])
+        self.assertEqual(result['meta']['sourceHealth']['NSE-live'], failure)
+
     def test_flush_persists_all_reports_once(self):
         self.write_payload({"meta": {"pipelineStages": {"old.py": {"status": "no_change"}}}, "ipos": []})
         mod.PIPELINE_REPORTS.update(

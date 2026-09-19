@@ -1,6 +1,6 @@
 # IPO Tracker — prioritized development roadmap
 
-## Current execution — 18 September 2026
+## Current execution — 19 September 2026
 
 This is a public commercial product in development. Paying audience, pricing and
 revenue model are undecided. Customer trust, source rights, accessible mobile
@@ -49,7 +49,7 @@ and immutable release receipts govern the verified checkpoint.
    in isolation while deployed checks remain read-only. No numerical replacement
    was accepted. Historical proposals are not backfilled or automatically resolved.
 3. **Complete P4 with source evidence — blocked.** Current accepted inventory is
-   1,371; P4 has 388 actionable plus 55 higher-priority records and 1,594 blocking
+   1,379; P4 has 387 actionable plus 63 higher-priority records and 1,552 blocking
    source reviews, zero unmapped reviews. All 441 retained proposals remain. Teamtech
    stays held and broad source draft #105 remains unaccepted. Do not weaken the gate,
    remove reviews, invent exclusions or use estimates to improve completion counts.
@@ -90,17 +90,25 @@ categories. Its hold stays active. The other seven current snapshots differ from
 their historical bindings; this difference is not audited resolution, and all
 eight bindings remain.
 
-**Next implement one bounded financial-table repair for Hy-Tech and Onemi.** The
+**Hy-Tech and Onemi financial-table repair is complete** in #143/#144, with
+accepted canonical publication `ea5f0f26` and 42 blocking reviews removed. The
 [source-family selection](reviews/2026-09-18-financial-next-batch.md) identifies
 their shared `OTHER FINANCIAL INFORMATION` heading and annotated rows, with exact
 Final Prospectus pages and failure checks. The
 [completed source diagnosis](reviews/2026-09-18-financial-seed-inspection.md)
-retains the exact source receipts and table spans; first reproduce with production
-`pdftotext`, because local pypdf layout parity is not established. Preserve annual/interim alignment,
-currency units, standalone/consolidated scope, EPS basis and conflicting rows.
-The two issuers expose 42 reviews, not 42 guaranteed removals. Review source cells,
-publish only accepted corrections and measure the actual P4 reduction before
-expanding the batch. PNGS is conditional on matching source layout evidence.
+retains the exact source receipts and table spans. Do not repeat that batch.
+The official-universe admission and operational/public-label releases #145–151,
+and commercial evidence review #152/#153, are also complete; use their receipts
+in [PROJECT_STATUS.md](PROJECT_STATUS.md).
+
+**Current increment: future core-source attempt clocks.** The operational report
+still lacks real NSE/BSE/SEBI check clocks. Add them at actual collection, preserve
+partial/failed/deferred evidence and unknown observation times, test the writer
+and consumer contracts, then verify the published receipts. This closes the
+known freshness dependency without changing P4 numerical authority or enabling P5.
+After release, return to the highest-leverage evidenced P4 source family. PNGS
+Reva's adjusted EBITDA/partnership EPS remains unsupported; inspect its retained
+18 reviews and several matching real documents before selecting a reusable repair.
 
 The 22 retained subscription proposals still require original source-link/issuer
 evidence. Emmvee's old operator advice remains subject to evidence revalidation.

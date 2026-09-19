@@ -33,6 +33,28 @@ retains the real evidence and its limitations; regenerate before acting on it.
 
 `refresh.yml` is the only active data writer. Core collection runs hourly; subscriptions run twice hourly during the configured weekday UTC window. Filing maintenance follows core collection when P0–P3 gaps exist, with a six-hour fallback. Daily maintenance runs at 13:43 UTC. GitHub schedules are best-effort; missed triggers are not evidence of fresh data.
 
+Core NSE live/history, SEBI and BSE health now records future completed collection
+attempts in `meta.sourceHealth`: endpoint/page/date-range receipts, `checkedAt`,
+row counts and failure reasons. The aggregate check clock is the last actual
+attempt, not the dataset build, publication or source observation. No older check
+or observation time is reconstructed. A successful empty NSE response means
+checked with zero rows; an unsupported response or unparsed SEBI/BSE page remains
+a failure, not proof that a disclosure is absent. Partial success retains failed
+siblings. An explicit skip has `status: deferred`, no new check clock and the
+previous real outcome under `lastAttempt`; repeating a skip does not nest history.
+
+When no rows arrive, the existing collector retains new diagnostics alongside the
+unchanged accepted rows and metadata. It returns failure if attempted collection
+failed, and success for valid empty checks. Attachment failures discard that
+source's incomplete changes. Stage time-budget deferrals do not run the collector
+and cannot mint source checks. Source clocks still cannot establish field accuracy.
+Each source-health or stage entry merges as a whole: concurrent attempts cannot combine
+one outcome with another attempt's clock or receipts. The existing metadata
+conflict policy retains the accepted entry; other sources merge independently.
+Narrow core collector/transport pushes select the existing `core` workflow, including
+its conditional bounded filing maintenance; mixed parser/policy/dependency changes
+retain the ordinary repair route. Inspect the resulting canonical/proposal diff.
+
 Collectors have read-only repository permissions. They retain a baseline, proposed dataset and tested source commit in a 14-day Actions artifact. Publication runs only from `main`, serializes in one queue, tests current main, and checks that the collector's scripts, locked dependencies and reviewed-correction registry are still current. A supplied collector manifest must contain a valid ancestor commit; missing, empty or malformed manifests fail before any data writes. See `PUBLICATION_SOURCE_GUARD.md` for recovery. A three-way merge preserves unrelated updates. Document values and their evidence, and subscription values and their source/timestamps, merge as atomic groups.
 
 The core NSE current/upcoming/history feed does not own accepted subscription

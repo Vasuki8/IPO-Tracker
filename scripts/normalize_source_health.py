@@ -20,6 +20,10 @@ def normalize_source_health(payload: dict) -> dict:
     history = health.get("NSE-history")
     if not isinstance(history, dict):
         return payload
+    # New collectors retain explicit request receipts/outcomes, including partial
+    # success and unattempted ranges. Legacy row-count repair must not rewrite them.
+    if "checks" in history or history.get("status") == "deferred":
+        return payload
 
     errors = [str(item) for item in (meta.get("errors") or [])]
     history_errors = [item for item in errors if item.startswith("NSE history ")]

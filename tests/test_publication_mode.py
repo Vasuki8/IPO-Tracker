@@ -19,6 +19,19 @@ CONFLICT_EXPLANATION_RELEASE = [
 ]
 
 class PublicationModeTests(unittest.TestCase):
+    def test_core_collector_release_executes_core_without_broad_repair(self):
+        paths = ['scripts/update_data.py', 'scripts/run_update_v2.py',
+                 'scripts/normalize_source_health.py', 'scripts/publication_mode.py',
+                 'tests/test_core_collection_clocks.py', 'docs/OPERATIONS.md']
+        self.assertEqual(push_mode(paths), 'core')
+        self.assertEqual(push_mode(paths + ['scripts/publish_transaction.py']), 'core')
+        self.assertEqual(push_mode(['scripts/publish_transaction.py']), 'repair')
+        for other in ['scripts/run_pipeline.py', 'scripts/final_prospectus_policy.py',
+                      'scripts/final_prospectus_parser.py', 'uv.lock', 'data/ipos.json',
+                      'scripts/track_subscriptions.py', '.github/workflows/refresh.yml']:
+            with self.subTest(other=other):
+                self.assertEqual(push_mode(paths + [other]), 'repair')
+
     def test_display_hold_changes_rebuild_review_gates_without_collection(self):
         self.assertEqual(push_mode(['scripts/public_quality.py', 'app.js', 'index.html',
             'tests/fixtures/example.json.gz', 'docs/PROJECT_STATUS.md',

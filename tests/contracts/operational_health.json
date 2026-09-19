@@ -1,5 +1,27 @@
 [
   {
+    "name": "core receipt partial failure across local midnight",
+    "health": {
+      "ok": true, "status": "refreshed", "records": 1,
+      "attempted": 2, "failed": 1, "deferred": 0,
+      "checkedAt": "2026-09-19T00:01:00+05:30",
+      "errors": ["https://www.nseindia.com/api/all-upcoming-issues?category=ipo: HTTP 503"],
+      "checks": [
+        {"url": "https://www.nseindia.com/api/ipo-current-issue", "status": "refreshed", "records": 1, "checkedAt": "2026-09-18T23:59:00+05:30"},
+        {"url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo", "status": "failed", "records": 0, "error": "HTTP 503", "checkedAt": "2026-09-19T00:01:00+05:30"}
+      ]
+    },
+    "outcome": "partial_failure", "clock": "valid"
+  },
+  {
+    "name": "core skipped source retains last failure without borrowing its clock",
+    "health": {
+      "status": "deferred", "reason": "Explicit --skip-bse",
+      "lastAttempt": {"ok": false, "error": "HTTP 403", "checkedAt": "2026-09-18T23:59:00+05:30"}
+    },
+    "outcome": "deferred", "clock": "missing"
+  },
+  {
     "name": "successful zero rows",
     "health": {
       "ok": true,
