@@ -52,7 +52,8 @@ The source's 8,328,000 demand denominator is a different tranche.
 **Varmora:** [issuer advertisement linked by JM Financial](https://www.jmfl.com/Common/getFile/6031),
 17,920,536 bytes, SHA256
 `2287c54ae752a60cf2ed733940fa3e723bcd3a6e245641cb00f0619410417ea4`.
-Physical page 1 is Financial Express printed page 16, dated 17 September.
+Physical page 1 is Financial Express printed page 16, published 17 September. The issuer-signed date is 16 September, verified on
+physical page 5 (printed page 20); both dates remain separate.
 The offer-details table has two price groups, each with share and monetary
 columns. The selected row is Total Offer Size, not Fresh Issue, Offer for Sale
 or post-offer market capitalization. Both explicit monetary legs reconcile to

@@ -81,12 +81,14 @@
       "localFileName": "varmora-advertisement.pdf",
       "sha256": "2287c54ae752a60cf2ed733940fa3e723bcd3a6e245641cb00f0619410417ea4",
       "bytes": 17920536,
-      "documentDate": "2026-09-17",
+      "documentDate": "2026-09-16",
       "bodyWrittenAt": "2026-09-19T13:36:54.256721+00:00",
       "observationTime": null,
       "pages": 15,
       "retrievalStatus": 200,
-      "retrievalClockBasis": "No response completion clock was recorded by the initial downloader. bodyWrittenAt is the local file persistence timestamp immediately after the complete HTTP body was read; it is not a source observation timestamp."
+      "retrievalClockBasis": "No response completion clock was recorded by the initial downloader. bodyWrittenAt is the local file persistence timestamp immediately after the complete HTTP body was read; it is not a source observation timestamp.",
+      "publicationDate": "2026-09-17",
+      "documentDateLocator": "Physical PDF page 5, newspaper printed page 20, issuer signature footer"
     },
     "authority": "Issuer price-band advertisement published in Financial Express and linked by named lead manager JM Financial",
     "reviewMethod": "Visual inspection of PDF physical page 1, newspaper printed page 16, at 150dpi; scanned page",
@@ -447,5 +449,7 @@
     "note": "Coverage reduction contingent on reviewed publication and explicit price-basis/qualifier rendering. No final-prospectus review may be cleared."
   },
   "familyStatus": "Independent source review complete; no further discovery required for this bounded active-amount family. Axiom and Varmora support qualified monetary displays; Pooja remains unresolved.",
-  "independentReviewOriginalSha256": "126bfc1b03a067023960784e63ae641569e60c91ec593d8e18d0119b08d6afe2"
+  "independentReviewOriginalSha256": "126bfc1b03a067023960784e63ae641569e60c91ec593d8e18d0119b08d6afe2",
+  "finalMetadataReviewAt": "2026-09-19T13:58:44.750002+00:00",
+  "metadataCorrection": "Varmora issuer-signed date is 16 September; newspaper publication is 17 September. Confirmed independently on physical PDF page 5."
 }
