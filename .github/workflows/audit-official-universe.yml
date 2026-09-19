@@ -1,68 +1,80 @@
-name: Browser accept official IPO universe admissions
+name: Reconcile official IPO universe admissions
 
 on:
   push:
     branches: [audit-official-universe-bse-june-20260919]
     paths:
       - '.github/workflows/audit-official-universe.yml'
-      - 'docs/audits/official-universe/2026-09-19-bse-april/browser-check.cjs'
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
-  group: official-universe-browser-${{ github.ref }}
+  group: official-universe-reconcile-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  browser:
+  reconcile:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    env:
-      BASE_URL: http://127.0.0.1:8006/
-      SMOKE_ARTIFACT_DIR: ${{ github.workspace }}/artifacts/official-universe
     steps:
       - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
       - uses: astral-sh/setup-uv@v10.1.0
       - run: uv python install 3.12
       - run: uv sync --frozen
-      - name: Rebuild public pages and prove canonical data is untouched
+      - name: Reapply reviewed admissions onto current main
+        shell: bash
         run: |
-          uv run --frozen python scripts/build_company_pages.py
-          git diff --exit-code -- data/ipos.json
-          node --test tests/public_quality.test.cjs tests/source_health.test.cjs
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: Install isolated browser runtime
-        run: |
-          mkdir -p "$RUNNER_TEMP/ipo-playwright" "$SMOKE_ARTIFACT_DIR"
-          cd "$RUNNER_TEMP/ipo-playwright"
-          npm install --no-save --package-lock=false playwright@1.62.1
-          npx --no-install playwright install --with-deps chromium
-      - name: Exercise all 30 newly admitted public profiles and directory searches
-        run: |
-          export NODE_PATH="$RUNNER_TEMP/ipo-playwright/node_modules"
-          python3 -m http.server 8006 --bind 127.0.0.1 > "$SMOKE_ARTIFACT_DIR/server.log" 2>&1 &
-          server_pid=$!
-          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
-          python3 - <<'PY'
-          import time, urllib.request
-          for _ in range(60):
-              try:
-                  with urllib.request.urlopen('http://127.0.0.1:8006/', timeout=1) as r:
-                      if r.status == 200: break
-              except OSError: pass
-              time.sleep(0.25)
-          else:
-              raise SystemExit('Local server did not start')
+          set -euo pipefail
+          git fetch origin main
+          git show origin/main:data/ipos.json > data/ipos.json
+          uv run --frozen python - <<'PY'
+          import json
+          from pathlib import Path
+          import sys
+          sys.path.insert(0, str(Path("tools").resolve()))
+          import audit_ipo_universe as audit
+
+          tracker = Path("data/ipos.json")
+          snapshots = [
+              Path("docs/audits/official-universe/2026-09-19-bse-june"),
+              Path("docs/audits/official-universe/2026-09-19-bse-may"),
+              Path("docs/audits/official-universe/2026-09-19-bse-april"),
+          ]
+          counts = []
+          for snapshot in snapshots:
+              plan = json.loads((snapshot / "admissions.json").read_text(encoding="utf-8"))
+              plan["baselineSha256"] = audit.digest(tracker.read_bytes())
+              aliases = json.loads((snapshot / "aliases.json").read_text(encoding="utf-8"))
+              proposed = audit.prepare_admissions(snapshot, tracker, plan, aliases)
+              tracker.write_text(json.dumps(proposed, indent=2) + "\n", encoding="utf-8")
+              counts.append(len(plan["records"]))
+          if counts != [18, 10, 2]:
+              raise SystemExit(f"unexpected reviewed admission counts: {counts}")
+          payload = json.loads(tracker.read_text(encoding="utf-8"))
+          if len(payload.get("ipos") or []) != 1436:
+              raise SystemExit(f"unexpected reconciled inventory: {len(payload.get('ipos') or [])}")
+          print({"cohorts": counts, "recordCount": len(payload["ipos"])})
           PY
-          node docs/audits/official-universe/2026-09-19-bse-april/browser-check.cjs
-      - name: Retain browser receipt
-        if: always()
-        uses: actions/upload-artifact@v4.6.2
-        with:
-          name: official-universe-browser-${{ github.run_id }}-${{ github.run_attempt }}
-          path: artifacts/official-universe/
-          if-no-files-found: error
-          retention-days: 14
+      - name: Regenerate and validate derived output
+        run: |
+          uv run --frozen python scripts/validate_data.py --strict
+          uv run --frozen python scripts/build_company_pages.py
+          uv run --frozen python scripts/audit_data_completeness.py
+          uv run --frozen python scripts/build_missing_queue.py
+          uv run --frozen python scripts/phase_status.py
+          uv run --frozen python scripts/build_performance_summary.py
+          uv run --frozen python -m unittest discover -s tests -q
+          node --test tests/public_quality.test.cjs tests/source_health.test.cjs
+      - name: Commit reconciled audit output
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name ipo-tracker-bot
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/ ipo/ docs/DATA_QUALITY.md
+          git diff --cached --exit-code && { echo "No reconciliation changes"; exit 0; } || true
+          git commit -m "Reconcile reviewed universe admissions with current main"
+          git push origin HEAD:audit-official-universe-bse-june-20260919
