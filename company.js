@@ -276,7 +276,8 @@ function companyOverviewFacts(ipo) {
         : null,
     ],
   ];
-  return `<dl class="company-fact-grid">${facts.map(([label, value]) => `<div class="company-fact"><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(companyText(value))}${['Fresh issue', 'Offer for sale'].includes(label) && IPOQuality.decision(ipo, 'issueComposition').state === 'provisional' ? IPOQuality.note(ipo, 'issueComposition') : ''}</dd></div>`).join('')}</dl>`;
+  const quantityFields = {'Market lot': 'marketLot', 'Minimum bid quantity': 'minimumBidQuantity'};
+  return `<dl class="company-fact-grid">${facts.map(([label, value]) => `<div class="company-fact"><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(companyText(value))}${quantityFields[label] ? IPOQuality.note(ipo, quantityFields[label]) : ['Fresh issue', 'Offer for sale'].includes(label) && IPOQuality.decision(ipo, 'issueComposition').state === 'provisional' ? IPOQuality.note(ipo, 'issueComposition') : ''}</dd></div>`).join('')}</dl>`;
 }
 function companySubscriptionSection(ipo, heading = 'h3') {
   if (!companyHasSubscription(ipo)) return '';

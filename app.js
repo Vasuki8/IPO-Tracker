@@ -786,6 +786,8 @@ function openComparison() {
         (ipo.lotSize == null ? '—' : `${Number(ipo.lotSize).toLocaleString('en-IN')} shares`) + IPOQuality.note(ipo, 'lotSize'),
     ],
     ['1 lot at cap', (ipo) => rupees(oneLotAtCap(ipo))],
+    ['Market lot', (ipo) => (ipo.marketLot == null ? '—' : `${Number(ipo.marketLot).toLocaleString('en-IN')} shares`) + IPOQuality.note(ipo, 'marketLot')],
+    ['Minimum bid quantity', (ipo) => (ipo.minimumBidQuantity == null ? '—' : `${Number(ipo.minimumBidQuantity).toLocaleString('en-IN')} shares`) + IPOQuality.note(ipo, 'minimumBidQuantity')],
     ['Bidding opens', (ipo) => prettyDate(ipo.openDate)],
     ['Bidding closes', (ipo) => prettyDate(ipo.closeDate)],
     ['Listing date', (ipo) => prettyDate(ipo.listingDate)],
@@ -833,7 +835,14 @@ function exportCsv() {
     'Lot evidence state',
     'Issue size evidence state',
     'Subscription source',
+    'Market lot shares',
+    'Minimum bid quantity shares',
+    'Market lot evidence state',
+    'Minimum bid quantity evidence state',
+    'Market lot source URL',
+    'Minimum bid quantity source URL',
   ];
+  const fieldSourceUrl = (ipo, field) => ipo.publicQuality?.sources?.[IPOQuality.decision(ipo, field).source]?.sourceUrl || '';
   const lines = filtered().map((ipo) => [
     ipo.company,
     ipo.symbol,
@@ -860,6 +869,12 @@ function exportCsv() {
     IPOQuality.decision(ipo, 'lotSize').state,
     IPOQuality.decision(ipo, 'issueSizeCr').state,
     latestSubscription(ipo).source,
+    ipo.marketLot,
+    ipo.minimumBidQuantity,
+    IPOQuality.decision(ipo, 'marketLot').state,
+    IPOQuality.decision(ipo, 'minimumBidQuantity').state,
+    fieldSourceUrl(ipo, 'marketLot'),
+    fieldSourceUrl(ipo, 'minimumBidQuantity'),
   ]);
   const blob = new Blob(
     ['\uFEFF' + [header, ...lines].map((row) => row.map(quote).join(',')).join('\r\n')],

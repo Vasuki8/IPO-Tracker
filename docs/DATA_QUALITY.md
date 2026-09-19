@@ -1,47 +1,47 @@
 # IPO Tracker Data Quality
 
-Generated: **2026-09-19T10:29:57+05:30**
+Generated: **2026-09-19T11:37:24+05:30**
 
-Records audited: **1,404**
+Records audited: **1,406**
 
 ## Completeness scores
 
 | Area | Score | Records in denominator |
 | --- | ---: | ---: |
-| Actionable exchange terms | 82.0% | 1,391 |
-| Recent exchange terms (2Y) | 93.7% | 478 |
+| Actionable exchange terms | 81.9% | 1,393 |
+| Recent exchange terms (2Y) | 93.5% | 480 |
 | Offer-document intelligence | 70.6% | 390 |
 | Live subscription categories | 85.0% | 5 |
 | Matured lifecycle dates | 95.3% | 1,350 |
-| Source/provenance trail | 99.2% | 1,404 |
+| Source/provenance trail | 100.0% | 1,406 |
 
 ## Actionable exchange fields
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| symbol | 1,386 | 1,391 | 5 | 99.6% |
-| board | 1,391 | 1,391 | 0 | 100.0% |
-| exchange | 1,391 | 1,391 | 0 | 100.0% |
-| openDate | 1,391 | 1,391 | 0 | 100.0% |
-| closeDate | 1,391 | 1,391 | 0 | 100.0% |
-| priceBand | 1,339 | 1,391 | 52 | 96.3% |
-| lotSize | 439 | 1,391 | 952 | 31.6% |
-| issueSizeCr | 392 | 1,391 | 999 | 28.2% |
-| issueComposition | 392 | 479 | 87 | 81.8% |
+| symbol | 1,386 | 1,393 | 7 | 99.5% |
+| board | 1,393 | 1,393 | 0 | 100.0% |
+| exchange | 1,393 | 1,393 | 0 | 100.0% |
+| openDate | 1,393 | 1,393 | 0 | 100.0% |
+| closeDate | 1,393 | 1,393 | 0 | 100.0% |
+| priceBand | 1,339 | 1,393 | 54 | 96.1% |
+| lotSize | 439 | 1,393 | 954 | 31.5% |
+| issueSizeCr | 392 | 1,393 | 1,001 | 28.1% |
+| issueComposition | 392 | 481 | 89 | 81.5% |
 
 ## Recent exchange fields — last 2 years
 
 | Field | Present | Expected | Missing | Coverage |
 | --- | ---: | ---: | ---: | ---: |
-| symbol | 473 | 478 | 5 | 99.0% |
-| board | 478 | 478 | 0 | 100.0% |
-| exchange | 478 | 478 | 0 | 100.0% |
-| openDate | 478 | 478 | 0 | 100.0% |
-| closeDate | 478 | 478 | 0 | 100.0% |
-| priceBand | 439 | 478 | 39 | 91.8% |
-| lotSize | 432 | 478 | 46 | 90.4% |
-| issueSizeCr | 385 | 478 | 93 | 80.5% |
-| issueComposition | 391 | 478 | 87 | 81.8% |
+| symbol | 473 | 480 | 7 | 98.5% |
+| board | 480 | 480 | 0 | 100.0% |
+| exchange | 480 | 480 | 0 | 100.0% |
+| openDate | 480 | 480 | 0 | 100.0% |
+| closeDate | 480 | 480 | 0 | 100.0% |
+| priceBand | 439 | 480 | 41 | 91.5% |
+| lotSize | 432 | 480 | 48 | 90.0% |
+| issueSizeCr | 385 | 480 | 95 | 80.2% |
+| issueComposition | 391 | 480 | 89 | 81.5% |
 
 ## Historical exchange fields
 

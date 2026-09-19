@@ -148,6 +148,8 @@ def public_summary_record(record: dict[str, Any]) -> dict[str, Any]:
             "listingDate": record.get("listingDate"),
             "priceBand": price_band,
             "lotSize": record.get("lotSize"),
+            "marketLot": record.get("marketLot"),
+            "minimumBidQuantity": record.get("minimumBidQuantity"),
             "issueSizeCr": record.get("issueSizeCr"),
             "subscription": subscription,
             "publicQuality": summary_quality(record["publicQuality"]),

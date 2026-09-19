@@ -25,8 +25,8 @@ STATIC_FILES = (
 )
 CLOCKS = ('subscriptionObservedAt', 'subscriptionCollectedAt', 'subscriptionTimeBasis',
           'subscriptionSource', 'subscriptionSourceUrl', 'subscriptionAuthority')
-SHARED = ('id', 'company', 'profilePath', 'openDate', 'closeDate', 'listingDate',
-          'priceBand', 'lotSize', 'issueSizeCr', *CLOCKS)
+SHARED = ('id', 'company', 'symbol', 'profilePath', 'openDate', 'closeDate', 'listingDate',
+          'priceBand', 'lotSize', 'marketLot', 'minimumBidQuantity', 'issueSizeCr', *CLOCKS)
 STATES = {'final_verified', 'provisional', 'reported', 'under_review',
           'awaiting_disclosure', 'source_unavailable'}
 DISPLAY = {'final_verified', 'provisional', 'reported'}
@@ -164,7 +164,9 @@ def verify_active_offer_delivery(stored, profile, summary, group, proofs):
     from active_offer_terms import validate_receipt
     proof = proofs['activeOfferTerms']
     active = proof['value']
-    fields = validate_receipt(active, group['identity'])
+    fields = validate_receipt(active, stored)
+    require(all(record.get('symbol') == stored.get('symbol') for record in (profile, summary)),
+            'Active offer publication changed the canonical symbol')
     require(proof.get('field') == 'activeOfferTerms'
             and proof.get('sourceUrl') == active['source']['url']
             and proof.get('sha256') == active['source']['sha256']
@@ -188,7 +190,7 @@ def verify_active_offer_delivery(stored, profile, summary, group, proofs):
     for field, term in fields.items():
         for record in (profile, summary):
             quality = decisions(record)
-            if record is summary and field not in quality and field not in record:
+            if record is summary and field == 'issueComposition' and field not in quality and field not in record:
                 continue
             decision = quality.get(field) or {}
             # A rebuilt expired disclosure is withheld; an older immutable
@@ -210,6 +212,7 @@ def verify_reviewed_publication(root, receipt):
     check against already reviewed evidence, never a new source/PDF audit.
     Ordinary collection releases do not inherit this reviewed-only assertion.
     """
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
     root = Path(root)
     canonical_bytes = (root / 'data/ipos.json').read_bytes()
     canonical = read_json(canonical_bytes)
@@ -282,8 +285,12 @@ def verify_reviewed_publication(root, receipt):
         proofs = read_json(raw)
         require(isinstance(proofs, dict) and set(proofs) == set(fields), 'Incomplete reviewed field-group proofs')
         identity = group['identity']
+        required_identity = ('id', 'company', 'symbol', 'openDate')
+        if kind == 'active-offer-terms':
+            from active_offer_terms import identity_fields
+            required_identity = identity_fields(proofs['activeOfferTerms']['value'])
         require(all(isinstance(identity.get(k), str) and identity[k]
-                    for k in ('id', 'company', 'symbol', 'openDate')), 'Incomplete reviewed offer identity')
+                    for k in required_identity), 'Incomplete reviewed offer identity')
         require(key in stored and key in summary, 'Reviewed issuer missing from accepted/public data')
         path = summary[key]['profilePath']
         require(isinstance(path, str) and re.fullmatch(r'ipo/[a-z0-9][a-z0-9-]*/', path),

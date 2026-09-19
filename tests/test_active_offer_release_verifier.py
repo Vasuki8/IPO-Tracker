@@ -21,7 +21,8 @@ class ActiveOfferReleaseVerifierTests(unittest.TestCase):
         self.clock = clock
         for name in verify.STATIC_FILES: self.write(name, 'fixture')
         index = json.loads((ROOT / 'data/reviewed_correction_evidence.json').read_text(encoding='utf-8'))
-        self.groups = [group for group in index['groups'] if group.get('kind') == 'active-offer-terms']
+        self.groups = [group for group in index['groups'] if group.get('kind') == 'active-offer-terms'
+                       and group['identity']['id'] in {'axiomgas', 'varmora', 'poojalogis'}]
         self.assertEqual(len(self.groups), 3)
         before = json.loads((ROOT / 'tests/fixtures/active-offer-terms/before.json').read_text())
         self.stored, self.profiles, self.summaries = [], [], []
@@ -43,7 +44,7 @@ class ActiveOfferReleaseVerifierTests(unittest.TestCase):
                 profile['publicQuality']['fields'][field] = {'state': 'provisional', 'until': identity['closeDate'],
                                                             'row': proof['row'], 'table': proof['table'], 'source': 0}
             summary = copy.deepcopy(profile)
-            for field in ('issueComposition', 'minimumBidQuantity'):
+            for field in ('issueComposition',):
                 summary.pop(field, None); summary['publicQuality']['fields'].pop(field, None)
             self.profiles.append(profile); self.summaries.append(summary)
         self.save()

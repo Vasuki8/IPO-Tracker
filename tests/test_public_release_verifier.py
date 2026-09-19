@@ -90,6 +90,20 @@ class PublicReleaseVerifierTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'source-health.js: served bytes'):
             verify.verify_http(self.root, 'https://example.test/IPO-Tracker/', receipt, fetch=fetch)
 
+    def test_ordinary_release_rejects_shared_quantity_mismatch_with_identical_evidence(self):
+        for field in ('marketLot', 'minimumBidQuantity'):
+            with self.subTest(field=field):
+                self.row[field] = self.profile[field] = 1200
+                for row in (self.row, self.profile):
+                    row['publicQuality']['fields'][field] = {'state': 'provisional', 'until': '2099-01-01'}
+                self.save()
+                verify.verify_local(self.root)
+                self.row[field] = 2400
+                self.save()
+                with self.assertRaisesRegex(ValueError, 'directory/profile mismatch: ' + field):
+                    verify.verify_local(self.root)
+                self.row[field] = 1200
+
     def test_reintroduced_held_values_fail_even_when_both_surfaces_agree(self):
         self.row['issueSizeCr'] = self.profile['issueSizeCr'] = 123
         self.save()

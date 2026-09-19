@@ -178,6 +178,16 @@ Composition keeps explicit `up_to` qualifications and undisclosed legs stay null
 The response has no observation timestamp, so `observedAt` stays null while
 collection and review clocks remain distinct.
 
+The reviewed BSE `DisplayIPO` family also binds one current-index row to its
+exact detail URL, issuer, board and offer window. `bse_active_offer_terms.py`
+replays both retained HTML responses and their hashes. Only matching price bands,
+separately labelled market lots and minimum bid quantities qualify. The table's
+share count does not establish the whole offer, composition, bid lot or minimum
+application amount. A BSE source symbol remains in the receipt's `sourceIdentity`;
+it does not fill an absent canonical symbol. Any later conflicting canonical
+symbol invalidates that receipt. Empty or conflicting pages stay unresolved.
+See the [five-issuer BSE source review](reviews/2026-09-19-bse-active-offer-source-review.md).
+
 New receipts use `kind: active-offer-terms` in the existing reviewed evidence
 registry and an `explicit-reviewed` correction. Deploy support/evidence first,
 then submit only `data/reviewed_publication_request.json` on a separate PR. Ordinary
@@ -199,6 +209,11 @@ For a reproducible historical browser rehearsal, use
 and serve that isolated directory for `tests/frontend_active_offer_terms.cjs`.
 The test fixes its issue-date clock; production and reviewed publication always
 use the real clock. See the [three-issuer source review](reviews/2026-09-19-active-offer-source-review.md).
+For the BSE family, add `--family bse` and use
+`tests/frontend_bse_active_offer_terms.cjs`. The quantity fields retain their own
+source decisions in profiles, quick views, comparisons and CSV exports; missing
+bid lots and application amounts remain empty. The ordinary release verifier
+also checks shared quantity and symbol consistency after later routine updates.
 
 The read-only public release verifier replays the accepted receipt against its
 retained proof and Git blob identity, then checks exact provisional values,
