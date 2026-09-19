@@ -49,7 +49,7 @@ and immutable release receipts govern the verified checkpoint.
    in isolation while deployed checks remain read-only. No numerical replacement
    was accepted. Historical proposals are not backfilled or automatically resolved.
 3. **Complete P4 with source evidence — blocked.** Current accepted inventory is
-   1,379; P4 has 387 actionable plus 63 higher-priority records and 1,553 blocking
+   1,404; P4 has 408 actionable plus 67 higher-priority records and 1,553 blocking
    source reviews, zero unmapped reviews. All 441 retained proposals remain. Teamtech
    stays held and broad source draft #105 remains unaccepted. Do not weaken the gate,
    remove reviews, invent exclusions or use estimates to improve completion counts.
@@ -111,10 +111,17 @@ bounded value hold and review-only release are complete in #156 and
 remain retained. The separate historical NSE evidence check currently receives
 regional-unavailability HTML; keep it failed and retry unchanged after recovery.
 
-**Next P4 increment:** inspect current/upcoming offer-term gaps for Axiom Gas,
-Varmora and Pooja Logistics, group matching official source layouts, and select a
-shared repair only after lifecycle and field evidence support it. SpectraA remains
-held. The newly identified promoter/subtotal/page-locator family needs a bounded
+**The Axiom Gas, Varmora and Pooja Logistics active-term family is complete** in
+#158–161: nine supported exchange gaps filled, explicit provisional labels and
+expiry retained, three total amounts still unknown. Source reviews were preserved.
+The [universe continuation](audits/official-universe/2026-09-19/REPORT.md) adds 25
+reviewed BSE identities and recovers bounded SEBI draft-year cohorts; it does not
+establish complete coverage or reduce numerical P4 blockers.
+
+**Next numerical P4 increment:** inspect the shared BSE current/upcoming identity
+and offer-detail family for FX Multitech, Robokidz Eduventures, Vivekanand Cotspin,
+Himalaya Nutravedics India and S. K. Offset. Keep the NSE total amounts for a
+separate qualified floor/cap family. SpectraA remains held. The promoter/subtotal/page-locator family needs a bounded
 multi-document diagnosis, not an automatic 93.10 replacement. PNGS Reva's adjusted
 EBITDA/partnership EPS remains unsupported and conditional on source inspection.
 No P4 blocker reduction follows from the clock release; the Vinod hold adds one

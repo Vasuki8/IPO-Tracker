@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import collections
+import calendar
 import copy
 import datetime as dt
 import difflib
@@ -15,6 +16,7 @@ import gzip
 import hashlib
 import json
 import math
+import os
 from pathlib import Path
 import re
 import time
@@ -24,7 +26,7 @@ from urllib.parse import parse_qs, urlencode, urljoin, urlparse
 import requests
 from bs4 import BeautifulSoup
 
-VERSION = "official-universe-v1"
+VERSION = "official-universe-v2"
 ROOT = Path(__file__).resolve().parents[1]
 SEBI = "https://www.sebi.gov.in"
 SEBI_REGISTERS = {"draft": (10, "Draft Offer Documents filed with SEBI"),
@@ -44,6 +46,54 @@ def dump(path: Path, value):
     temporary = path.with_suffix(path.suffix + ".tmp")
     temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     temporary.replace(path)
+
+
+def fork_snapshot(source: Path, target: Path, as_of: str):
+    """Continue verified captures without refetching or rewriting their clocks."""
+    source, target = source.resolve(), target.resolve()
+    dt.date.fromisoformat(as_of)
+    if source == target or (target.exists() and any(target.iterdir())):
+        raise ValueError("Continuation requires a new snapshot destination")
+    # Replay hashes and parser boundaries before trusting inherited observations.
+    manifest, _, _ = load_observations(source)
+    if as_of < manifest["asOf"]:
+        raise ValueError("Continuation date precedes the original snapshot")
+
+    def rebase(value):
+        if isinstance(value, list):
+            return [rebase(x) for x in value]
+        if not isinstance(value, dict):
+            return value
+        result = {k: rebase(v) for k, v in value.items()}
+        if value.get("rawFile"):
+            result["rawFile"] = Path(os.path.relpath((source / value["rawFile"]).resolve(), target)).as_posix()
+        return result
+
+    inherited = rebase(manifest)
+    inherited.update(asOf=as_of, toolVersion=VERSION,
+        continuedFrom={"captureFile": Path(os.path.relpath(source / "capture.json", target)).as_posix(),
+                       "sha256": digest((source / "capture.json").read_bytes()), "asOf": manifest["asOf"]})
+    for name in ("aliases.json", "alias-source-receipts.json", "admission-source-receipts.json"):
+        if (source / name).exists():
+            dump(target / name, rebase(json.loads((source / name).read_text(encoding="utf-8"))))
+    dump(target / "capture.json", inherited)
+    return inherited
+
+
+def sebi_windows(as_of, start_year, period):
+    end_date = dt.date.fromisoformat(as_of)
+    for year in range(end_date.year, start_year - 1, -1):
+        if period == "year":
+            yield str(year), f"{year}-01-01", min(f"{year}-12-31", as_of)
+        elif period == "month":
+            for month in range(1, 13):
+                start = dt.date(year, month, 1)
+                if start > end_date:
+                    break
+                end = min(dt.date(year, month, calendar.monthrange(year, month)[1]), end_date)
+                yield f"{year}-{month:02}", start.isoformat(), end.isoformat()
+        else:
+            raise ValueError("Unsupported SEBI date period")
 
 
 def normalize_name(value: str) -> str:
@@ -147,6 +197,8 @@ def parse_sebi(content: bytes, receipt):
             officialIdentifier=(re.search(r"_(\d+)\.html", links[0]["url"]).group(1) if re.search(r"_(\d+)\.html", links[0]["url"]) else None), scope=scope))
     if len(rows) != end - start + 1:
         raise ValueError(f"SEBI row count {len(rows)} differs from displayed range {start}-{end}")
+    if receipt.get("fromDate") and any(not receipt["fromDate"] <= r["filingDate"] <= receipt["toDate"] for r in rows):
+        raise ValueError("SEBI returned filings outside the requested date window")
     return rows, {"start": start, "end": end, "reportedTotal": total, "pages": math.ceil(total / 25)}
 
 
@@ -335,15 +387,15 @@ def prepare_admissions(root, tracker_path, plan, aliases):
         if not symbol or symbol.upper() in existing_symbols:
             raise ValueError("Symbol already exists; review possible alias before adding")
         source = {"name": row["source"] + " official issue identity", "url": row["url"], "kind": "exchange",
-                  "asOf": None, "collectedAt": row["retrievedAt"], "timeBasis": "collection_only"}
+                  "asOf": None, "collectedAt": evidence_receipt["retrievedAt"], "timeBasis": "collection_only"}
         record = {"id": selection["id"], "company": row["issuerName"], "symbol": symbol,
             "board": row["board"], "exchange": row["source"] + (" SME" if row["board"] == "SME" and row["source"] == "BSE" else " Emerge" if row["board"] == "SME" else ""),
             "status": status, "openDate": row["issueOpenDate"], "closeDate": row["issueCloseDate"], "listingDate": row["listingDate"],
             "lifecycle": {"stage": "exchange", "stageDate": row["issueOpenDate"]}, "documents": [], "sources": [source], "source": source,
             "observations": {row["source"]: {"company": row["issuerName"], "symbol": symbol,
                 "openDate": row["issueOpenDate"], "closeDate": row["issueCloseDate"], "listingDate": row["listingDate"],
-                "observedAt": None, "collectedAt": row["retrievedAt"], "timeBasis": "collection_only", "sourceUrl": row["url"]}},
-            "universeAdmission": {"reviewVersion": "official-universe-admission-v2", "reviewedAt": plan["reviewedAt"],
+                "observedAt": None, "collectedAt": evidence_receipt["retrievedAt"], "timeBasis": "collection_only", "sourceUrl": row["url"]}},
+            "universeAdmission": {"reviewVersion": "official-universe-admission-v3", "reviewedAt": plan["reviewedAt"],
                 "recordId": row["recordId"], "registerResponseSha256": row["responseSha256"], "identitySource": evidence_receipt,
                 "scope": "Issuer, board and exchange lifecycle only; no static terms, financials or subscription accepted"}}
         for field in ("priceBand", "lotSize", "marketLot", "minimumBidQuantity", "minimumApplicationAmount", "issueSizeCr", "freshIssueCr", "ofsCr", "issueComposition", "financials", "subscription", "listing", "allotmentDate", "leadManagers", "registrar", "promoters", "objectsOfIssue", "shareholding"):
@@ -411,8 +463,30 @@ class Capture:
         time.sleep(.25)
         return receipt
 
-    def sebi(self):
+    def sebi(self, registers=None, start_year=None, period="year"):
         for register, (smid, label) in SEBI_REGISTERS.items():
+            if registers and register not in registers:
+                continue
+            if start_year is not None:
+                for window_key, start, end in sebi_windows(self.as_of, start_year, period):
+                    first = None
+                    page = 0
+                    while page == 0 or page < first["bounds"]["pages"]:
+                        fields = {"nextValue": str(page), "next": "n", "search": "",
+                            "fromDate": dt.date.fromisoformat(start).strftime("%d-%m-%Y"),
+                            "toDate": dt.date.fromisoformat(end).strftime("%d-%m-%Y"),
+                            "fromYear": "", "toYear": "", "deptId": "-1", "sid": "3", "ssid": "15", "smid": str(smid),
+                            "ssidhidden": "15", "intmid": "-1", "sText": "Filings", "ssText": "Public Issues", "smText": label, "doDirect": str(page)}
+                        item = self.fetch(f"SEBI-{register}-{window_key}-{page:04}", "SEBI", SEBI + "/sebiweb/ajax/home/getnewslistinfo.jsp",
+                            data=fields, register=register, page=page, fromDate=start, toDate=end)
+                        if page == 0:
+                            first = item
+                            if not first or first["status"] != "verified_response":
+                                break
+                        page += 1
+                        if self.count >= self.max_new:
+                            return
+                continue
             url = SEBI + "/sebiweb/home/HomeAction.do?" + urlencode({"doListing": "yes", "sid": 3, "smid": smid, "ssid": 15})
             first = self.fetch(f"SEBI-{register}-0000", "SEBI", url, register=register, page=0)
             if not first or first["status"] != "verified_response":
@@ -475,6 +549,9 @@ class Capture:
 
 def load_observations(root):
     manifest = json.loads((root / "capture.json").read_text(encoding="utf-8"))
+    lineage = manifest.get("continuedFrom")
+    if lineage and digest((root / lineage["captureFile"]).read_bytes()) != lineage["sha256"]:
+        raise ValueError("Inherited capture manifest changed")
     records, gaps = [], []
     for receipt in manifest["cohorts"].values():
         if receipt["status"] != "verified_response":
@@ -591,17 +668,20 @@ def build(root, tracker_path, aliases_path, report_dir=None):
     for row in results:
         row["periodYear"] = (row.get("filingDate") or row.get("issueOpenDate") or "unknown")[:4]
     progress = []
-    for register in SEBI_REGISTERS:
-        cohorts = [c for c in manifest["cohorts"].values() if c["source"] == "SEBI" and c["register"] == register and c["status"] == "verified_response"]
+    windows = {(c["register"], c.get("fromDate"), c.get("toDate")) for c in manifest["cohorts"].values() if c["source"] == "SEBI"}
+    windows.update((register, None, None) for register in SEBI_REGISTERS)
+    for register, window_start, window_end in sorted(windows, key=lambda x: (x[0], x[1] or "", x[2] or "")):
+        cohorts = [c for c in manifest["cohorts"].values() if c["source"] == "SEBI" and c["register"] == register and c.get("fromDate") == window_start and c.get("toDate") == window_end and c["status"] == "verified_response"]
         first = next((c for c in cohorts if c["page"] == 0), None)
         total = first["bounds"]["reportedTotal"] if first else None
         expected = set(range(first["bounds"]["pages"])) if first else set()
         missing = sorted(expected - {c["page"] for c in cohorts})
         same_total = bool(first) and all(c["bounds"]["reportedTotal"] == total for c in cohorts)
-        register_rows = [r for r in results if r["source"] == "SEBI" and r["register"] == register]
+        cohort_keys = {c["key"] for c in cohorts}
+        register_rows = [r for r in results if r["cohort"] in cohort_keys]
         urls = [r["url"] for r in register_rows]
         duplicate_urls = len(urls) - len(set(urls))
-        progress.append({"register": register, "reportedRows": total, "capturedRows": len(urls),
+        progress.append({"register": register, "fromDate": window_start, "toDate": window_end, "reportedRows": total, "capturedRows": len(urls),
             "verifiedPages": len(cohorts), "missingPages": missing, "duplicatePrimaryUrls": duplicate_urls,
             "completeRegisterTraversal": bool(first) and same_total and not missing and len(urls) == total and duplicate_urls == 0})
     duplicates = []
@@ -658,12 +738,15 @@ def build(root, tracker_path, aliases_path, report_dir=None):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=("collect", "reconcile", "prepare-admissions"))
+    parser.add_argument("command", choices=("collect", "reconcile", "prepare-admissions", "continue-snapshot"))
     parser.add_argument("--snapshot", type=Path, required=True)
+    parser.add_argument("--base-snapshot", type=Path)
     parser.add_argument("--as-of", default=dt.date.today().isoformat())
     parser.add_argument("--sources", default="NSE,BSE,SEBI")
     parser.add_argument("--start-year", type=int, default=2000)
     parser.add_argument("--nse-period", choices=("year", "quarter"), default="year")
+    parser.add_argument("--sebi-register", choices=tuple(SEBI_REGISTERS))
+    parser.add_argument("--sebi-period", choices=("all", "year", "month"), default="all")
     parser.add_argument("--max-new-cohorts", type=int, default=500)
     parser.add_argument("--retry-failed", action="store_true")
     parser.add_argument("--tracker", type=Path, default=ROOT / "data/ipos.json")
@@ -672,7 +755,11 @@ def main():
     parser.add_argument("--output", type=Path)
     parser.add_argument("--report-dir", type=Path)
     args = parser.parse_args()
-    if args.command == "prepare-admissions":
+    if args.command == "continue-snapshot":
+        if not args.base_snapshot:
+            parser.error("--base-snapshot is required for continuation")
+        fork_snapshot(args.base_snapshot, args.snapshot, args.as_of)
+    elif args.command == "prepare-admissions":
         if not args.admissions or not args.output or args.output.resolve() == (ROOT / "data/ipos.json").resolve():
             parser.error("Explicit --admissions and a separate proposal --output are required")
         plan = json.loads(args.admissions.read_text(encoding="utf-8"))
@@ -688,7 +775,8 @@ def main():
             elif source == "BSE":
                 capture.bse()
             elif source == "SEBI":
-                capture.sebi()
+                capture.sebi([args.sebi_register] if args.sebi_register else None,
+                    args.start_year if args.sebi_period != "all" else None, args.sebi_period)
             else:
                 raise ValueError("Unknown source " + source)
 
