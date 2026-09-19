@@ -166,3 +166,41 @@ The strict Final Prospectus runners consume `source_review_queue.actionable_gaps
 Repair, maintenance, and P4 collect up to 150 candidate records and discover at most five issuers' RHP/final PDF documents per run. Completed records checkpoint independently while other downloads continue. The register fingerprint and a seven-day retry interval avoid repeating unchanged source attempts. Newly discovered documents still undergo the parser's opening-page issuer check. P5 uses the same register for older issues only after the correctness gate passes.
 
 Parser 22 supports selected-financial-information headings, staggered annual dates, explicit lakh and `₹ Mn` units, and standalone/consolidated scope changes inside shared or continued tables. Financial fixtures retain original PDF spacing and actual disclosed numeric rows.
+
+## Reviewed active offer terms
+
+`activeOfferTerms` holds separately reviewed provisional disclosures for the exact
+issuer, board and offer window. `active_offer_terms.py` replays retained NSE
+`issueInfo.dataList` bytes, SHA256 and row locators. It accepts explicit price
+bands, bid lots, separately labelled minimum quantities and supported fresh/OFS
+composition; it never calculates a total issue amount from shares and a cap price.
+Composition keeps explicit `up_to` qualifications and undisclosed legs stay null.
+The response has no observation timestamp, so `observedAt` stays null while
+collection and review clocks remain distinct.
+
+New receipts use `kind: active-offer-terms` in the existing reviewed evidence
+registry and an `explicit-reviewed` correction. Deploy support/evidence first,
+then submit only `data/reviewed_publication_request.json` on a separate PR. Ordinary
+scheduled apply is inert. Preparation verifies source-byte replay, before-value
+preconditions, exact public values and source review. The existing publisher
+merges the entire receipt atomically and appends source/correction history;
+canonical static fields, Final Prospectus proofs and static policy are untouched.
+
+Public projection and active completeness use the same reviewed eligibility
+rules. Existing holds win. Conflicting same-offer NSE/BSE evidence stays a manual
+review with pointers to the receipt and observations. Disclosures expire after
+the close date in IST, including cached browser output; closed/withdrawn/cancelled
+or mismatched offers do not qualify. Expiry restores missing-field work rather
+than promoting provisional terms to final facts. Source recovery and conditional
+floor/cap amount layouts remain separate work, not availability exclusions.
+
+For a reproducible historical browser rehearsal, use
+`uv run --frozen python tests/prepare_active_offer_site.py --output <new-directory>`
+and serve that isolated directory for `tests/frontend_active_offer_terms.cjs`.
+The test fixes its issue-date clock; production and reviewed publication always
+use the real clock. See the [three-issuer source review](reviews/2026-09-19-active-offer-source-review.md).
+
+The read-only public release verifier replays the accepted receipt against its
+retained proof and Git blob identity, then checks exact provisional values,
+qualifications, source clocks and expiry in public files. After expiry it accepts
+properly withheld regenerated fields; it never promotes active terms to Final facts.

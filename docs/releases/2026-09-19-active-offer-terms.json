@@ -1,0 +1,436 @@
+{
+  "schemaVersion": 1,
+  "milestone": "Reviewed active NSE labelled offer terms",
+  "baselineMain": "e0094dce2649e3c5761ded4c4de32e7649da4f1f",
+  "supportPr": 158,
+  "sourceCommit": "1fb4c7d12e1a5eb616a4db16b304a0aeda32103f",
+  "implementationCommit": "e158ee56f2bdf280fd2dc2c8cba8c0de7b60858b",
+  "state": "accepted, deployed and verified live",
+  "sourceReview": "docs/reviews/2026-09-19-active-offer-source-review.md",
+  "measurement": {
+    "before": {
+      "phaseStatus": {
+        "generatedAt": "2026-09-19T02:57:27.248942+00:00",
+        "p4": {
+          "status": "incomplete",
+          "actionableRecords": 387,
+          "higherPriorityRecords": 63,
+          "semanticErrors": 0,
+          "sourceReviewItems": 1557,
+          "blockingSourceReviewItems": 1553,
+          "p5OnlySourceReviewItems": 4,
+          "unmappedSourceReviewItems": 0,
+          "finalProspectusRevalidationRecords": 321,
+          "finalProspectusRevalidationFields": 1174,
+          "higherPriorityFinalProspectusRevalidationRecords": 28,
+          "higherPriorityFinalProspectusRevalidationFields": 104,
+          "resolvedUnavailableRecords": 5
+        },
+        "p5": {
+          "status": "waiting_for_p4",
+          "actionableRecords": 914
+        }
+      },
+      "reviewCount": 1557,
+      "errorCount": 0,
+      "inventory": 1379,
+      "cohort": {
+        "axiomgas": [
+          "exchange.priceBand",
+          "exchange.lotSize",
+          "exchange.issueSizeCr",
+          "exchange.issueComposition"
+        ],
+        "varmora": [
+          "exchange.priceBand",
+          "exchange.lotSize",
+          "exchange.issueSizeCr",
+          "exchange.issueComposition"
+        ],
+        "poojalogis": [
+          "exchange.priceBand",
+          "exchange.lotSize",
+          "exchange.issueSizeCr",
+          "exchange.issueComposition"
+        ]
+      },
+      "fieldGapCounts": {
+        "exchange.issueSizeCr": 969,
+        "exchange.lotSize": 925,
+        "exchange.issueComposition": 60,
+        "exchange.priceBand": 30,
+        "exchange.symbol": 5
+      }
+    },
+    "after": {
+      "phaseStatus": {
+        "generatedAt": "2026-09-19T03:22:11.303115+00:00",
+        "p4": {
+          "status": "incomplete",
+          "actionableRecords": 387,
+          "higherPriorityRecords": 63,
+          "semanticErrors": 0,
+          "sourceReviewItems": 1557,
+          "blockingSourceReviewItems": 1553,
+          "p5OnlySourceReviewItems": 4,
+          "unmappedSourceReviewItems": 0,
+          "finalProspectusRevalidationRecords": 321,
+          "finalProspectusRevalidationFields": 1174,
+          "higherPriorityFinalProspectusRevalidationRecords": 28,
+          "higherPriorityFinalProspectusRevalidationFields": 104,
+          "resolvedUnavailableRecords": 5
+        },
+        "p5": {
+          "status": "waiting_for_p4",
+          "actionableRecords": 914
+        }
+      },
+      "reviewCount": 1557,
+      "errorCount": 0,
+      "inventory": 1379,
+      "cohort": {
+        "axiomgas": [
+          "exchange.issueSizeCr"
+        ],
+        "varmora": [
+          "exchange.issueSizeCr"
+        ],
+        "poojalogis": [
+          "exchange.issueSizeCr"
+        ]
+      },
+      "fieldGapCounts": {
+        "exchange.issueSizeCr": 969,
+        "exchange.lotSize": 922,
+        "exchange.issueComposition": 57,
+        "exchange.priceBand": 27,
+        "exchange.symbol": 5
+      }
+    },
+    "pendingSha256": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+    "changedIds": [
+      "axiomgas",
+      "varmora",
+      "poojalogis"
+    ],
+    "retainedValidationIssues": 1557,
+    "retainedExpandedQueueReviews": 1557,
+    "removedReviewItems": 0,
+    "acceptedFieldGapReduction": 9
+  },
+  "localTests": {
+    "focusedPython": 14,
+    "node": 38,
+    "browser": {
+      "status": "passed",
+      "baseUrl": "http://127.0.0.1:8005/",
+      "results": [
+        {
+          "id": "axiomgas",
+          "width": 1440,
+          "profileAndQuickView": "passed"
+        },
+        {
+          "id": "axiomgas",
+          "width": 375,
+          "profileAndQuickView": "passed"
+        },
+        {
+          "id": "axiomgas",
+          "width": 320,
+          "profileAndQuickView": "passed"
+        },
+        {
+          "id": "varmora",
+          "width": 1440,
+          "profileAndQuickView": "passed"
+        },
+        {
+          "id": "varmora",
+          "width": 375,
+          "profileAndQuickView": "passed"
+        },
+        {
+          "id": "varmora",
+          "width": 320,
+          "profileAndQuickView": "passed"
+        },
+        {
+          "id": "poojalogis",
+          "width": 1440,
+          "profileAndQuickView": "passed"
+        },
+        {
+          "id": "poojalogis",
+          "width": 375,
+          "profileAndQuickView": "passed"
+        },
+        {
+          "id": "poojalogis",
+          "width": 320,
+          "profileAndQuickView": "passed"
+        }
+      ],
+      "errors": [],
+      "canonicalRequests": []
+    },
+    "fullPython": {
+      "count": 1327,
+      "errors": [
+        "known Windows control-character filename limitation",
+        "known Windows symlink privilege limitation"
+      ]
+    },
+    "strictErrors": 0
+  },
+  "ci": {
+    "validation": {
+      "run": 35418119511,
+      "status": "success",
+      "pythonTests": 1332
+    },
+    "supportPreview": {
+      "run": 35417390906,
+      "status": "success"
+    },
+    "browser": {
+      "run": 35418119472,
+      "status": "success",
+      "nodeTests": 38
+    },
+    "releaseCandidate": {
+      "run": 35418119491,
+      "status": "success"
+    }
+  },
+  "publication": {
+    "requestId": "nse-active-offer-terms-20260919-1",
+    "ids": [
+      "axiomgas",
+      "varmora",
+      "poojalogis"
+    ],
+    "supportRun": 35417569744,
+    "acceptedRun": 35417782070,
+    "finalReviewOnlyRun": 35418300903,
+    "acceptedPages": 35417847172,
+    "finalPages": 35418352442,
+    "status": "success",
+    "finalReviewDiff": [
+      "data/validation.json",
+      "data/missing_queue.json",
+      "data/phase_status.json"
+    ],
+    "finalReviewChange": "Generated report clocks only; accepted data unchanged"
+  },
+  "liveVerification": {
+    "run": 35418374265,
+    "status": "success",
+    "receipt": "2026-09-19-active-offer-live.json",
+    "browser": "2026-09-19-active-offer-browser.json"
+  },
+  "verifiedMain": "689eb4124c253d1fe59f20f9834e8fddaee2bd51",
+  "prs": [
+    158,
+    159,
+    160
+  ],
+  "commits": {
+    "supportMerge": "a310209e59fa4455f5c80848f6e35a4a1c5fc0c7",
+    "activeClockIsolation": "4b245d4119f461a2ea9a83a754fb3a40e27b9a40",
+    "requestMerge": "9c404bea6e7edbeccee4680e7cce7d0984d6c57e",
+    "acceptedData": "f0419d59cabc39a047c2fb2d69b3fb216c45c693",
+    "verifierFix": "18ada890b8b94842d23b07120f6d5c59bb339f63",
+    "verifierMerge": "9fd5ef2bc17b09a33951e253861d28bc3299d7b9",
+    "finalReviewReports": "689eb4124c253d1fe59f20f9834e8fddaee2bd51"
+  },
+  "resolvedReleaseFailures": [
+    {
+      "run": 35417222255,
+      "reason": "Initial clock metadata addition affected existing Final proof projection",
+      "resolution": "4b245d41 restricts added clocks to active receipts; final browser passed"
+    },
+    {
+      "run": 35417869059,
+      "reason": "Delivery verifier did not support newly accepted active receipt kind",
+      "resolution": "PR160 adds read-only source replay and exact public delivery checks; final verification passed"
+    }
+  ],
+  "acceptedAudit": {
+    "publication": {
+      "runId": "35417782070",
+      "collectorCommit": "9c404bea6e7edbeccee4680e7cce7d0984d6c57e",
+      "status": "published",
+      "pendingConflictCount": 441,
+      "mode": "reviewed",
+      "reviewedIds": [
+        "axiomgas",
+        "varmora",
+        "poojalogis"
+      ]
+    },
+    "changedIds": [
+      "axiomgas",
+      "varmora",
+      "poojalogis"
+    ],
+    "inventory": 1379,
+    "pendingByteIdentical": true,
+    "phaseStatus": {
+      "generatedAt": "2026-09-19T03:22:11.303115+00:00",
+      "p4": {
+        "status": "incomplete",
+        "actionableRecords": 387,
+        "higherPriorityRecords": 63,
+        "semanticErrors": 0,
+        "sourceReviewItems": 1557,
+        "blockingSourceReviewItems": 1553,
+        "p5OnlySourceReviewItems": 4,
+        "unmappedSourceReviewItems": 0,
+        "finalProspectusRevalidationRecords": 321,
+        "finalProspectusRevalidationFields": 1174,
+        "higherPriorityFinalProspectusRevalidationRecords": 28,
+        "higherPriorityFinalProspectusRevalidationFields": 104,
+        "resolvedUnavailableRecords": 5
+      },
+      "p5": {
+        "status": "waiting_for_p4",
+        "actionableRecords": 914
+      }
+    }
+  },
+  "pendingSha256": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+  "sourceFamilyBoundary": [
+    {
+      "id": "axiomgas",
+      "company": "Axiom Gas Engineering Limited",
+      "symbol": "AXIOMGAS",
+      "board": "SME",
+      "sourceFamilies": [
+        "NSE"
+      ],
+      "remainingGaps": [
+        "exchange.issueSizeCr"
+      ]
+    },
+    {
+      "id": "fx-multitech-limited",
+      "company": "FX MULTITECH LIMITED",
+      "symbol": null,
+      "board": "SME",
+      "sourceFamilies": [
+        "BSE"
+      ],
+      "remainingGaps": [
+        "exchange.symbol",
+        "exchange.priceBand",
+        "exchange.lotSize",
+        "exchange.issueSizeCr",
+        "exchange.issueComposition"
+      ]
+    },
+    {
+      "id": "robokidz-eduventures-limited",
+      "company": "ROBOKIDZ EDUVENTURES LIMITED",
+      "symbol": null,
+      "board": "SME",
+      "sourceFamilies": [
+        "BSE"
+      ],
+      "remainingGaps": [
+        "exchange.symbol",
+        "exchange.priceBand",
+        "exchange.lotSize",
+        "exchange.issueSizeCr",
+        "exchange.issueComposition"
+      ]
+    },
+    {
+      "id": "vivekanand-cotspin-limited",
+      "company": "Vivekanand Cotspin Limited",
+      "symbol": null,
+      "board": "SME",
+      "sourceFamilies": [
+        "BSE"
+      ],
+      "remainingGaps": [
+        "exchange.symbol",
+        "exchange.priceBand",
+        "exchange.lotSize",
+        "exchange.issueSizeCr",
+        "exchange.issueComposition"
+      ]
+    },
+    {
+      "id": "himalaya-nutravedics-india-limited",
+      "company": "Himalaya Nutravedics India Limited",
+      "symbol": null,
+      "board": "SME",
+      "sourceFamilies": [
+        "BSE"
+      ],
+      "remainingGaps": [
+        "exchange.symbol",
+        "exchange.priceBand",
+        "exchange.lotSize",
+        "exchange.issueSizeCr",
+        "exchange.issueComposition"
+      ]
+    },
+    {
+      "id": "s-k-offset-limited",
+      "company": "S. K. OFFSET LIMITED",
+      "symbol": null,
+      "board": "SME",
+      "sourceFamilies": [
+        "BSE"
+      ],
+      "remainingGaps": [
+        "exchange.symbol",
+        "exchange.priceBand",
+        "exchange.lotSize",
+        "exchange.issueSizeCr",
+        "exchange.issueComposition"
+      ]
+    },
+    {
+      "id": "varmora",
+      "company": "Varmora Granito Limited",
+      "symbol": "VARMORA",
+      "board": "Mainboard",
+      "sourceFamilies": [
+        "NSE",
+        "BSE"
+      ],
+      "remainingGaps": [
+        "exchange.issueSizeCr"
+      ]
+    },
+    {
+      "id": "poojalogis",
+      "company": "Pooja Logistics Limited",
+      "symbol": "POOJALOGIS",
+      "board": "SME",
+      "sourceFamilies": [
+        "NSE"
+      ],
+      "remainingGaps": [
+        "exchange.issueSizeCr"
+      ]
+    }
+  ],
+  "nextTask": "Review shared BSE current/upcoming identity and offer-detail layouts for the five SME records with 25 retained exchange gaps; preserve all holds.",
+  "previousRequestCompletion": {
+    "ids": [
+      "htel",
+      "kissht"
+    ],
+    "pr": 144,
+    "publisher": 35396161543,
+    "pages": 35396284700,
+    "liveVerification": 35396326142,
+    "acceptedAncestor": "ea5f0f2631051feffb470c2cbd1b596f5767cf06",
+    "retainedProofsMatch": true,
+    "note": "The request marker was advanced only after confirming completed publication and retained history; no pending request was discarded."
+  }
+}
