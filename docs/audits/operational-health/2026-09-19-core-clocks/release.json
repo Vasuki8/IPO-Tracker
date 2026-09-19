@@ -1,0 +1,158 @@
+{
+  "scope": "Core source-clock release and evidence-bound publication follow-up; no P4 numerical correction claim",
+  "assessmentBase": "ac51bebeb75a1afd41150a061288d4078e0e89c9",
+  "corePublication": "5ea15921c2a2e742b282acefad6df366dab0c58f",
+  "finalDataPublication": "118a5dd33913c5a2f76d15ad5939574eb5e85af3",
+  "mergedPRs": [
+    {
+      "number": 154,
+      "merge": "9878e0f6117385b1a9fc03df9710f867d0472208"
+    },
+    {
+      "number": 155,
+      "merge": "432c9fa1853fb1cab23f5d7fbc834499edf6994b"
+    },
+    {
+      "number": 156,
+      "merge": "06bd9f778d9403efdaa84a16e5a949fb25c5341f",
+      "commits": [
+        "6d073ab51f680f8a3e349877497a775da8d1130c",
+        "c392c02bc97aaa1bdffe1305293778d7064c063a"
+      ]
+    }
+  ],
+  "workflows": {
+    "coreRefresh": 35413219212,
+    "corePages": 35413782301,
+    "coreLiveAcceptance": 35413803388,
+    "finalLinuxValidation": 35414579930,
+    "finalBrowser": 35414579922,
+    "reviewOnlyPublication": 35414832256,
+    "reviewPages": 35414893422,
+    "reviewLiveAcceptance": 35414917011,
+    "historicalNseEvidence": {
+      "run": 35414579942,
+      "attempts": 2,
+      "status": "failed_source_unavailable",
+      "receipt": "nse-access-gap.json"
+    }
+  },
+  "tests": {
+    "pythonLinuxPassed": 1314,
+    "nodePassed": 36,
+    "strictErrors": 0,
+    "windowsOnlyLimits": [
+      "control-character filename",
+      "symlink privilege"
+    ],
+    "beforeAndAfterReportsReproduced": true,
+    "finalReportReproduced": true,
+    "comparisonStableAcrossHashSeeds": [
+      1,
+      17
+    ]
+  },
+  "sourceChecks": {
+    "reviewedBseIdentitiesReplayed": 7,
+    "allAdmissionReceiptsPreserved": 8,
+    "vinod": {
+      "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788775122933.pdf",
+      "sha256": "992cbd49f1a810bd5023b38fee33915069885229d5a49715cb787de4dd335766",
+      "financialValuesMatched": 9,
+      "allocationValuesMatched": 5,
+      "shareholding": "rejected; held; no replacement accepted",
+      "review": "../../../reviews/2026-09-19-vinod-publication-source-review.md"
+    }
+  },
+  "preservation": {
+    "canonicalRecords": 1379,
+    "pendingProposals": 441,
+    "pendingBytesUnchanged": true,
+    "canonicalChangesInHoldPublication": 0,
+    "priorReviewsRetained": 1556,
+    "newManualReviews": 1
+  },
+  "p4Before": {
+    "actionable": 387,
+    "higherPriority": 63,
+    "blockingReviews": 1552,
+    "totalReviews": 1556
+  },
+  "p4After": {
+    "status": "incomplete",
+    "actionableRecords": 387,
+    "higherPriorityRecords": 63,
+    "semanticErrors": 0,
+    "sourceReviewItems": 1557,
+    "blockingSourceReviewItems": 1553,
+    "p5OnlySourceReviewItems": 4,
+    "unmappedSourceReviewItems": 0,
+    "finalProspectusRevalidationRecords": 321,
+    "finalProspectusRevalidationFields": 1174,
+    "higherPriorityFinalProspectusRevalidationRecords": 28,
+    "higherPriorityFinalProspectusRevalidationFields": 104,
+    "resolvedUnavailableRecords": 5
+  },
+  "p5": {
+    "status": "waiting_for_p4",
+    "actionableRecords": 914
+  },
+  "operationalAssessment": {
+    "asOf": "2026-09-19T02:12:42.628400+00:00",
+    "summary": {
+      "canonicalRecords": 1379,
+      "lifecycleScopes": {
+        "after_close": 66,
+        "before_open": 7,
+        "not_live_status": 1288,
+        "open_by_recorded_dates": 5,
+        "unknown_dates": 13
+      },
+      "openSubscriptions": 5,
+      "observationStates": {
+        "outside_monitoring_deadline": 2,
+        "source_time_unknown": 3
+      },
+      "collectionStates": {
+        "missing": 1,
+        "outside_monitoring_deadline": 4
+      },
+      "sourceOutcomes": {
+        "failed": 5,
+        "partial_failure": 1,
+        "successful": 27
+      },
+      "stageOutcomes": {
+        "source_blocked": 3,
+        "successful": 10,
+        "unknown": 1
+      },
+      "overdueSourceChecks": 0,
+      "overdueStages": 0,
+      "observationsOlderThanTolerance": 2,
+      "unresolvedProposals": 441,
+      "stagesNeedingInvestigation": 3,
+      "sourcesNeedingInvestigation": 6
+    },
+    "receipt": "final-operational.json"
+  },
+  "live": {
+    "coreByteChecks": 13,
+    "additionalCorePublicChecks": 18,
+    "holdByteChecks": 9,
+    "holdCheckedAt": "2026-09-19T02:12:42.628400+00:00",
+    "holdReceipt": "hold-live-verification.json",
+    "browserReceipts": [
+      "live-browser.json",
+      "hold-live-browser.json"
+    ]
+  },
+  "remaining": [
+    "NSE historical source-evidence access unavailable; retry unchanged checker after access returns",
+    "BSE primary current-page parser and SME connection timeout",
+    "Vinod and related shareholding subtotal/locator family requires source-reviewed repair",
+    "P4 review and proposal backlogs; SpectraA and other retained holds",
+    "Commercial rights, audience, pricing/revenue, hosting, legal/privacy and professional review decisions"
+  ],
+  "nextTask": "Current/upcoming Axiom Gas, Varmora and Pooja Logistics offer-term source-family triage; do not repeat completed financial batch or remove holds."
+}

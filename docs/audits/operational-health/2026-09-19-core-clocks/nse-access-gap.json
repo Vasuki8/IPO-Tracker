@@ -1,0 +1,54 @@
+{
+  "scope": "independent current-source access diagnostic; not changed-PDF evidence",
+  "workflowRun": 35414579942,
+  "attempts": 2,
+  "status": "source_unavailable",
+  "expectedPdfHashesUnchanged": true,
+  "historicalCacheCountsAsCurrentPass": false,
+  "sourceGuardChanged": false,
+  "releaseDecision": "Protective Vinod hold is supported by independently retrieved SEBI evidence and passed software/browser tests. Unchanged historical NSE evidence check remains failed and unresolved; no protection or check was changed.",
+  "checks": [
+    {
+      "id": "snehaa",
+      "checkedAt": "2026-09-19T02:06:54.393859+00:00",
+      "url": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+      "expectedBytes": 18126150,
+      "expectedSha256": "05326ed87f0869904f25d9be04e93a59f9a6491e45446bd0f098c10150daee73",
+      "httpStatus": 200,
+      "finalUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SnehaaOrganicsLimited_PROSP.pdf",
+      "headers": {
+        "Content-Type": "text/html",
+        "ETag": "\"ce58a4304b575578aec65748f4ab0ca9:1752039111.116147\"",
+        "Last-Modified": "Wed, 09 Jul 2025 05:31:51 GMT",
+        "Content-Encoding": "gzip",
+        "Date": "Sat, 19 Sep 2026 02:07:26 GMT",
+        "Content-Length": "7490"
+      },
+      "actualBytes": 18590,
+      "actualSha256": "0f05ce4fab93074df34160d8e94eba05e77bba76a9576c9172166fac279b446a",
+      "matchesExpected": false
+    },
+    {
+      "id": "sacheerome",
+      "checkedAt": "2026-09-19T02:06:54.393859+00:00",
+      "url": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+      "expectedBytes": 7589875,
+      "expectedSha256": "f5abf7b4258fd52c88aadcac66bcd65c96ded9c952c1e7fe364a0a4fc4c3c07e",
+      "httpStatus": 200,
+      "finalUrl": "https://nsearchives.nseindia.com/emerge/corporates/content/SacheeromeLimited_PROSP.pdf",
+      "headers": {
+        "Content-Type": "text/html",
+        "ETag": "\"ce58a4304b575578aec65748f4ab0ca9:1752039111.116147\"",
+        "Last-Modified": "Wed, 09 Jul 2025 05:31:51 GMT",
+        "Content-Encoding": "gzip",
+        "Date": "Sat, 19 Sep 2026 02:07:27 GMT",
+        "Content-Length": "7490"
+      },
+      "actualBytes": 18590,
+      "actualSha256": "0f05ce4fab93074df34160d8e94eba05e77bba76a9576c9172166fac279b446a",
+      "matchesExpected": false
+    }
+  ],
+  "responseMeaning": "HTML Service Temporarily Unavailable page states regional unavailability; no conclusion about underlying PDF changes.",
+  "nextAction": "Retry the unchanged NSE source-evidence workflow after official access returns; keep original hashes and reviews."
+}
