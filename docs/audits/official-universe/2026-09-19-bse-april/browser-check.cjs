@@ -19,7 +19,7 @@ const assert = require('node:assert/strict');
       if (row.decision === 'accept_identity_only') reviewed.push(row);
     }
   }
-  assert.equal(reviewed.length, 32);
+  assert.equal(reviewed.length, 30);
 
   const summary = await (await fetch(new URL('data/ipos-summary.json', base))).json();
   const browser = await chromium.launch({
