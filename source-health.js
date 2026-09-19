@@ -36,15 +36,15 @@ const SOURCE_HEALTH_INFO = {
   },
   'Offer-docs': {
     label: 'Offer docs',
-    role: 'Structured SEBI offer-document extraction',
-    scope: 'Abridged prospectus / RHP fields such as issue composition, managers and financials',
+    role: 'Retained offer-document extraction diagnostics',
+    scope: 'Legacy extraction outcomes; completed static terms still require matching Final Prospectus evidence',
     url: 'https://www.sebi.gov.in/filings/public-issues.html'
   },
   'IPO-subscription': {
     label: 'Subscription feed',
-    role: 'Live category-wise IPO subscription tracking',
-    scope: 'QIB, NII/HNI, Retail/Individual and Total demand snapshots',
-    url: 'https://www.nseindia.com/market-data/all-upcoming-issues-ipo'
+    role: 'Subscription sources vary by issue',
+    scope: 'Official exchange and labelled secondary snapshots; each company retains its source link and observation time',
+    url: null
   },
   'NSE-subscription': {
     label: 'Subscription feed',
@@ -61,6 +61,7 @@ function nseHistoryError(meta) {
 
 function sourceHealthError(key, health) {
   if (health?.error) return String(health.error);
+  if (Array.isArray(health?.errors) && health.errors.length) return health.errors.map(String).join(' · ');
   const errors = Array.isArray(state.meta?.errors) ? state.meta.errors : [];
   const prefixes = {
     'NSE-live': ['NSE live/upcoming:'],
@@ -74,45 +75,59 @@ function sourceHealthError(key, health) {
   return errors.find(message => prefixes.some(prefix => String(message).startsWith(prefix))) || null;
 }
 
-function sourceHealthState(key, health) {
-  if (!health) return { ok: null, label: 'Not checked', note: 'No health metadata is available for this source yet.' };
-  const error = sourceHealthError(key, health);
-  const records = Number(health.records || 0);
+function recordedSourceOutcome(value) {
+  if (!value || typeof value !== 'object' || Array.isArray(value) || !Object.keys(value).length) return 'unknown';
+  for (const key of ['ok', 'degraded', 'available']) if (key in value && typeof value[key] !== 'boolean') return 'invalid';
+  if ('failed' in value && (typeof value.failed !== 'number' || !Number.isFinite(value.failed) || value.failed < 0) || value.exitCode != null && !Number.isInteger(value.exitCode)) return 'invalid';
+  const status = value.status;
+  if (['source_unavailable', 'unavailable'].includes(status) || value.available === false) return 'source_unavailable';
+  if (status === 'source_blocked') return 'source_blocked';
+  const errors = Array.isArray(value.errors) ? value.errors.length > 0 : !!value.errors;
+  const failed = value.ok === false || ['failed', 'failure', 'timed_out', 'cancelled'].includes(status) || !!value.error || errors || (value.failed || 0) > 0 || (value.exitCode || 0) !== 0;
+  if (failed) return typeof value.failed === 'number' && value.failed > 0 && value.ok === true ? 'partial_failure' : 'failed';
+  if (status === 'deferred') return 'deferred';
+  if (value.degraded === true) return 'degraded';
+  if (status != null && !['updated', 'no_change', 'completed', 'checked', 'refreshed'].includes(status)) return 'unknown';
+  return value.ok === true || ['updated', 'no_change', 'completed', 'checked', 'refreshed'].includes(status) ? 'successful' : 'unknown';
+}
 
-  if (key === 'NSE-history' && !error && records === 0) {
-    return { ok: true, label: 'Healthy', note: health.note || 'Checked successfully · 0 new historical rows' };
-  }
-  if (error) return { ok: false, label: 'Failed', note: 'The most recent source request or parser attempt reported an error.' };
-  if (health.ok) return { ok: true, label: 'Healthy', note: health.note || 'Latest source check completed successfully.' };
-  return { ok: false, label: 'Failed', note: health.note || 'The latest source refresh did not complete successfully.' };
+function sourceClockIdentity(value) {
+  if (value == null) return {state: 'missing'};
+  if (typeof value !== 'string') return {state: 'invalid'};
+  const match = value.match(/^(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2}):(\d{2})(?:\.(\d{1,6}))?(Z|[+-]\d{2}:\d{2})$/);
+  if (!match) return {state: 'invalid'};
+  const [, y, m, d, h, min, sec, fraction, zone] = match;
+  const wall = new Date(0);
+  wall.setUTCFullYear(Number(y), Number(m)-1, Number(d));
+  wall.setUTCHours(Number(h), Number(min), Number(sec), 0);
+  if (Number(y) < 1 || wall.getUTCFullYear() !== Number(y) || wall.getUTCMonth()+1 !== Number(m) || wall.getUTCDate() !== Number(d) || Number(h)>23 || Number(min)>59 || Number(sec)>59) return {state: 'invalid'};
+  const offset = zone === 'Z' ? 0 : (Number(zone.slice(1,3))*60 + Number(zone.slice(4))) * (zone[0] === '-' ? -1 : 1);
+  if (zone !== 'Z' && (Number(zone.slice(1,3))>23 || Number(zone.slice(4))>59)) return {state: 'invalid'};
+  const milliseconds = wall.getTime() - offset*60000;
+  // Preserve microsecond differences when comparing aliases, as Python does.
+  return {state: 'valid', identity: String(BigInt(milliseconds)*1000n + BigInt((fraction || '').padEnd(6,'0')))};
+}
+
+function sourceCheckClock(value) {
+  value = value && typeof value === 'object' && !Array.isArray(value) ? value : {};
+  const chosen = 'checkedAt' in value ? value.checkedAt : value.asOf;
+  const selected = sourceClockIdentity(chosen);
+  if ('checkedAt' in value && 'asOf' in value && JSON.stringify(sourceClockIdentity(value.checkedAt)) !== JSON.stringify(sourceClockIdentity(value.asOf))) return {state: 'conflicting_check_clocks', stored: chosen};
+  return {state: selected.state, stored: chosen ?? null};
+}
+
+function sourceHealthState(key, health) {
+  // Unbound legacy meta.errors can describe a failed fallback before a later
+  // success. Retain them as diagnostics, not a replacement for this outcome.
+  const outcome = recordedSourceOutcome(health);
+  const labels = {successful:'Collection reported', failed:'Collection failed', partial_failure:'Partial failure', source_blocked:'Source blocked', source_unavailable:'Source unavailable', deferred:'Deferred', degraded:'Degraded', invalid:'Invalid metadata', unknown:'Outcome unknown'};
+  return {outcome, ok: outcome === 'successful' ? true : ['failed','partial_failure','source_blocked','source_unavailable'].includes(outcome) ? false : null,
+    label: labels[outcome], note: health?.note || 'Recorded collection outcome only; source observation time and field verification are separate.'};
 }
 
 function renderSourceHealthSemantically() {
   baseSourceHealthRenderer();
   if (!els.health) return;
-
-  const history = state.meta?.sourceHealth?.['NSE-history'];
-  if (history) {
-    const item = [...els.health.querySelectorAll('.health-item')]
-      .find(node => node.querySelector('strong')?.textContent === 'NSE-history');
-    if (item) {
-      const error = history.error || nseHistoryError(state.meta);
-      const records = Number(history.records || 0);
-      const dot = item.querySelector('.health-dot');
-      const note = item.querySelector('span:last-child');
-
-      if (!error && records === 0) {
-        if (dot) dot.className = 'health-dot health-ok';
-        if (note) note.textContent = history.note || 'checked · 0 new rows';
-      } else if (!error && history.ok) {
-        if (dot) dot.className = 'health-dot health-ok';
-        if (note) note.textContent = history.note || `${records.toLocaleString('en-IN')} rows`;
-      } else {
-        if (dot) dot.className = 'health-dot health-bad';
-        if (note) note.textContent = 'refresh failed';
-      }
-    }
-  }
 
   scheduleHealthInteractivity();
 }
@@ -142,6 +157,11 @@ function scheduleHealthInteractivity() {
     els.health.querySelectorAll('.health-item').forEach(item => {
       const key = healthKeyFromItem(item);
       if (!key) return;
+      const status = sourceHealthState(key, state.meta?.sourceHealth?.[key]);
+      const dot = item.querySelector('.health-dot');
+      const note = item.querySelector('span:last-child');
+      if (dot) dot.className = 'health-dot ' + (status.ok === true ? 'health-ok' : status.ok === false ? 'health-bad' : 'health-unknown');
+      if (note) note.textContent = status.label;
       item.dataset.sourceHealthKey = key;
       item.setAttribute('role', 'button');
       item.setAttribute('tabindex', '0');
@@ -169,9 +189,11 @@ function healthExtraDiagnostics(key, health) {
   const parts = [];
   if (health.companiesAttached != null) parts.push(`${Number(health.companiesAttached).toLocaleString('en-IN')} companies attached`);
   if (health.attempted != null) parts.push(`${Number(health.attempted).toLocaleString('en-IN')} attempted`);
+  if (health.failed != null) parts.push(`${Number(health.failed).toLocaleString('en-IN')} failed`);
   if (health.snapshotsAdded != null) parts.push(`+${Number(health.snapshotsAdded).toLocaleString('en-IN')} snapshots`);
   if (health.bseFallbackRecords != null && Number(health.bseFallbackRecords) > 0) parts.push(`${Number(health.bseFallbackRecords).toLocaleString('en-IN')} BSE fallback`);
-  if (key === 'NSE-history' && Number(health.records || 0) === 0 && !sourceHealthError(key, health)) {
+  if (health.secondaryFallbackRecords != null && Number(health.secondaryFallbackRecords) > 0) parts.push(`${Number(health.secondaryFallbackRecords).toLocaleString('en-IN')} secondary fallback`);
+  if (key === 'NSE-history' && Number(health.records || 0) === 0 && recordedSourceOutcome(health) === 'successful' && !sourceHealthError(key, health)) {
     parts.push('zero rows is valid when no IPO entered the checked history window');
   }
   return parts.length ? parts.join(' · ') : 'No extra diagnostic counters were recorded for this source.';
@@ -203,11 +225,11 @@ function openHealthDetail(key) {
   }
 
   const health = state.meta?.sourceHealth?.[key];
-  const info = SOURCE_HEALTH_INFO[key] || { label: key, role: 'Official data source', scope: 'Tracker data source', url: null };
+  const info = SOURCE_HEALTH_INFO[key] || { label: key, role: 'Source authority not assessed', scope: 'Tracker data source', url: null };
   const status = sourceHealthState(key, health);
   const error = sourceHealthError(key, health);
-  const checkedAt = health?.checkedAt || health?.asOf || state.meta?.generatedAt;
-  const checkedLabel = checkedAt ? formatTimestamp(checkedAt) : 'Not available';
+  const checked = sourceCheckClock(health);
+  const checkedLabel = checked.state === 'valid' ? formatTimestamp(checked.stored) : checked.state === 'conflicting_check_clocks' ? 'Conflicting check timestamps' : checked.state === 'invalid' ? 'Invalid check timestamp' : 'Not available';
   const statusClass = status.ok === true ? 'ok' : status.ok === false ? 'bad' : 'unknown';
   const refreshNote = health?.note || status.note;
 
@@ -219,13 +241,14 @@ function openHealthDetail(key) {
     <div class="health-detail-grid">
       <div class="health-detail-cell"><div class="health-detail-label">Status</div><div class="health-detail-value"><span class="health-detail-status ${statusClass}">${escapeHtml(status.label)}</span></div></div>
       <div class="health-detail-cell"><div class="health-detail-label">Latest result</div><div class="health-detail-value">${escapeHtml(healthMetricText(key, health))}</div></div>
-      <div class="health-detail-cell"><div class="health-detail-label">Last dataset check</div><div class="health-detail-value">${escapeHtml(checkedLabel)}</div></div>
+      <div class="health-detail-cell"><div class="health-detail-label">Last source check</div><div class="health-detail-value">${escapeHtml(checkedLabel)}</div></div>
       <div class="health-detail-cell"><div class="health-detail-label">Role</div><div class="health-detail-value">${escapeHtml(info.role)}</div></div>
     </div>
     <div class="health-detail-body">
       <div class="health-detail-section${error ? ' error' : ''}">
-        <strong>${error ? 'Latest error' : 'What happened'}</strong>
+        <strong>${error ? 'Retained diagnostic' : 'What happened'}</strong>
         <p>${escapeHtml(error || refreshNote)}</p>
+        <p>A collection result does not establish a fresh source observation or verify the issue’s terms. Missing check times remain unavailable.</p>
         ${info.url ? `<a class="health-detail-link" href="${escapeAttr(info.url)}" target="_blank" rel="noopener">Open official source ↗</a>` : ''}
       </div>
       <div class="health-detail-section">

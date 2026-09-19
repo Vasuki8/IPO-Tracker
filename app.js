@@ -1190,7 +1190,7 @@ async function init() {
     if (Number.isFinite(age) && age > 36 * 60 * 60 * 1000) els.freshness.classList.add('stale');
     els.freshness.textContent = `${state.meta.seed ? 'Preview data' : 'Snapshot'} · ${generated}`;
     els.freshness.title =
-      'Dataset publication time. Individual figures retain their own source timestamps.';
+      'Dataset generation time. Source observations and accepted publication timing are separate.';
     els.recordCount.textContent = `${state.data.length.toLocaleString('en-IN')} records · Mainboard & SME`;
   } catch (error) {
     state.loadError = true;

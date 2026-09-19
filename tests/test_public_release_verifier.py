@@ -79,6 +79,17 @@ class PublicReleaseVerifierTests(unittest.TestCase):
         with self.assertRaises(OSError):
             verify.verify_local(self.root)
 
+    def test_stale_source_health_script_fails_live_release_acceptance(self):
+        receipt = verify.verify_local(self.root)
+        def fetch(url, limit):
+            path = url.removeprefix('https://example.test/IPO-Tracker/')
+            if path == 'source-health.js':
+                return b'old source clock fallback'
+            path = path + 'index.html' if not path or path.endswith('/') else path
+            return (self.root / path).read_bytes()[:limit]
+        with self.assertRaisesRegex(ValueError, 'source-health.js: served bytes'):
+            verify.verify_http(self.root, 'https://example.test/IPO-Tracker/', receipt, fetch=fetch)
+
     def test_reintroduced_held_values_fail_even_when_both_surfaces_agree(self):
         self.row['issueSizeCr'] = self.profile['issueSizeCr'] = 123
         self.save()

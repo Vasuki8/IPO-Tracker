@@ -74,6 +74,13 @@ The Python/JavaScript outcome and check-clock contract uses the same golden case
 in `tests/contracts/operational_health.json`. Clock contracts are kept outside the
 document-fixture trigger; operational tests do not request a source-repair crawl.
 
+Public source diagnostics use those same recorded outcome/check-clock rules.
+Missing checks display `Not available`, never the dataset generation timestamp;
+conflicting and invalid checks are labelled explicitly. A `Collection reported`
+label describes the retained outcome and does not claim current source freshness.
+Legacy global errors remain visible as retained diagnostics without overriding a
+separately recorded source outcome. No new public dashboard or data fields are added.
+
 `subscriptions` includes issues open according to stored offer dates and not marked
 listed, withdrawn, cancelled or postponed. Every other record remains counted in
 `lifecycleScopes`, including unknown/invalid dates. Dates are not guessed to force

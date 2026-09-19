@@ -20,6 +20,8 @@ on:
       - 'scripts/update_data.py'
       - 'scripts/run_update.py'
       - 'tests/frontend*'
+      - 'tests/source_health.test.cjs'
+      - 'tests/contracts/operational_health.json'
       - 'tests/verify_public_release.py'
       - '.github/workflows/frontend.yml'
   push:
@@ -42,6 +44,8 @@ on:
       - 'scripts/update_data.py'
       - 'scripts/run_update.py'
       - 'tests/frontend*'
+      - 'tests/source_health.test.cjs'
+      - 'tests/contracts/operational_health.json'
       - 'tests/verify_public_release.py'
       - '.github/workflows/frontend.yml'
   workflow_dispatch:
@@ -69,7 +73,7 @@ jobs:
         run: |
           uv run --frozen python scripts/build_company_pages.py
           git diff --exit-code -- data/ipos.json
-          node --test tests/public_quality.test.cjs
+          node --test tests/public_quality.test.cjs tests/source_health.test.cjs
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
