@@ -25,8 +25,9 @@ Support [PR #171](https://github.com/Vasuki8/IPO-Tracker/pull/171), head
 [PR #172](https://github.com/Vasuki8/IPO-Tracker/pull/172), head
 `1cbb313b8d1ded2e82859eecefb5a18cec36073a`, merged as
 `90ce951c8d9a6e176f07d5d647e0e7057d4b9967`. Documentation closeout branch:
-`docs-qualified-amount-recovery-closeout`; its PR/commit is identified by the
-Git history containing this checkpoint.
+`docs-qualified-amount-recovery-closeout`, [PR #173](https://github.com/Vasuki8/IPO-Tracker/pull/173),
+initial documentation commit `85405fb44b3c8f6acd68477e645194b3dc9675c0`.
+Its final commit and checks are identified by the linked PR and containing Git history.
 
 Recovery freshly verified main `0a393cd4`, completed BSE #168–170, subsequent
 scheduled core `20068a87`/filings `0a393cd4`, their successful deployment and
