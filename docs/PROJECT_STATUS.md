@@ -20,8 +20,8 @@ remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.
 Current verified release main: **`689eb4124c253d1fe59f20f9834e8fddaee2bd51`**.
 Accepted three-issuer data: **`f0419d59cabc39a047c2fb2d69b3fb216c45c693`**;
 assessment base: `e0094dce2649e3c5761ded4c4de32e7649da4f1f`. Documentation
-closeout branch is `docs-active-offer-release-20260919`; its PR/commit is identified
-by Git history containing this checkpoint. See the [release receipt](releases/2026-09-19-active-offer-terms.json),
+closeout branch is `docs-active-offer-release-20260919`, [PR #161](https://github.com/Vasuki8/IPO-Tracker/pull/161);
+its commit is identified by Git history containing this checkpoint. See the [release receipt](releases/2026-09-19-active-offer-terms.json),
 [exact-byte live verification](releases/2026-09-19-active-offer-live.json) and
 [source review](reviews/2026-09-19-active-offer-source-review.md). Completed
 financial #143/#144, universe #145–148, operations #149–151/#154–157 and commercial
