@@ -1,0 +1,273 @@
+{
+  "schemaVersion": 1,
+  "assessedDateUtc": "2026-09-19",
+  "baseCommit": "1e86840856525db2ee2b436ed64f2b6e60374ee0",
+  "scope": "Delta research. Existing 17–19 September register remains authority for already checked sources. No permission, legal opinion, contract or full dependency clearance.",
+  "primarySources": [
+    {
+      "name": "BSE",
+      "url": "https://www.bseindia.com/static/about/disclaimer.aspx",
+      "checkedDateUtc": "2026-09-19",
+      "access": "Earlier cohort HTTP 403; this cohort research-browser fetch also inaccessible.",
+      "permission": "Unknown",
+      "attributionAndApi": "Not verified",
+      "professionalReview": true
+    },
+    {
+      "name": "BSE market data legal",
+      "url": "https://marketdata.bseindia.com/legal",
+      "checkedDateUtc": "2026-09-19",
+      "access": "Ordinary interactive browser, public Legal link from portal.",
+      "observedText": "No legal documents available.",
+      "scope": "Portal offers products, pricing and registration/KYC/agreement/payment flow; public footer Disclaimer click exposed no readable terms. No login, geographic declaration, registration or agreement acceptance.",
+      "permission": "Unknown; product presence is not entitlement.",
+      "attributionAndApi": "Not verified",
+      "professionalReview": true
+    },
+    {
+      "name": "IPO Watch",
+      "url": "https://ipowatch.in/term-of-use/",
+      "checkedDateUtc": "2026-09-19",
+      "publishedVersion": null,
+      "locator": "Access to the Site / Certain Restrictions / copyright and trademark paragraphs",
+      "commercialUse": "Limited personal/noncommercial grant; commercial exploitation and copying/republication/display restricted.",
+      "redistribution": "Restrictions also address building similar/competitive websites.",
+      "attributionAndApi": "Proprietary notices must remain; attribution is not an independent grant. No project API entitlement established.",
+      "ambiguity": "Lumino source link does not establish reproduced original content; factual extraction and terms applicability need review.",
+      "professionalReview": true
+    },
+    {
+      "name": "IPO Central",
+      "url": "https://ipocentral.in/terms-of-use/",
+      "retrievedAt": "2026-09-19T04:54:41.807344+00:00",
+      "httpStatus": 200,
+      "responseSha256": "87bbf82a9af607ed82b2c206c2aa16f672202c416d064fe970a5688051fa577d",
+      "access": "Ordinary HTTP GET after web research tool returned 403.",
+      "publishedVersion": null,
+      "locator": "Limited License / Viral Distribution / Commercial Licenses",
+      "commercialUse": "Personal/noncommercial use; commercial permission must be written.",
+      "redistribution": "Copying, publishing and display outside the stated grant require permission. Designated viral distribution is limited, noncommercial and revocable.",
+      "attributionAndApi": "No attribution-only exception or applicable API license established.",
+      "ambiguity": "Steamhouse source and VerifiedTerms observation references are not per-field provenance or legal clearance.",
+      "professionalReview": true
+    },
+    {
+      "name": "Ubuntu Poppler",
+      "url": "https://changelogs.ubuntu.com/changelogs/pool/main/p/poppler/poppler_24.02.0-1ubuntu9.9/copyright",
+      "retrievedAt": "2026-09-19T04:54:42.270578+00:00",
+      "httpStatus": 200,
+      "responseSha256": "484de4197d7d27f12f5b18df19e557808fa0bbbd060004bd56385c5f7cbfd880",
+      "locator": "Files: * and file-specific copyright stanzas",
+      "commercialUse": "Conditional software use; principal declaration GPL-2 or GPL-3, with component-specific terms.",
+      "redistribution": "Notice/source and other applicable license obligations require complete artifact review before runtime distribution.",
+      "attributionAndApi": "Retain applicable notices; software license does not grant rights to parsed documents.",
+      "ambiguity": "Exact installed binary bytes and every transitive OS component not inspected; no inference that output JSON is GPL.",
+      "professionalReview": true
+    }
+  ],
+  "runtimeEvidence": {
+    "runUrl": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35413219212",
+    "jobUrl": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35413219212/job/105816767523",
+    "jobId": 105816767523,
+    "platform": "Ubuntu 24.04.5 / ubuntu-24.04",
+    "packages": {
+      "poppler-utils": "24.02.0-1ubuntu9.9",
+      "libpoppler134": "24.02.0-1ubuntu9.9",
+      "poppler-data": "0.4.12-1"
+    },
+    "resolvedActions": {
+      "actions/checkout@v7.0.1": "3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "astral-sh/setup-uv@v10.1.0": "bec219d24cd3e171d82865faccec33120bb574f4",
+      "actions/upload-artifact@v4.6.2": "ea165f8d65b6e75b540449e92b4886f43607fa02"
+    },
+    "boundedLogLines": [
+      "2026-09-19T01:37:22.2583115Z 24.04.5",
+      "2026-09-19T01:37:22.2585177Z Image: ubuntu-24.04",
+      "2026-09-19T01:37:22.6267777Z Download action repository 'actions/checkout@v7.0.1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)",
+      "2026-09-19T01:37:22.7200350Z Download action repository 'astral-sh/setup-uv@v10.1.0' (SHA:bec219d24cd3e171d82865faccec33120bb574f4)",
+      "2026-09-19T01:37:23.2202565Z Download action repository 'actions/upload-artifact@v4.6.2' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)",
+      "2026-09-19T01:37:36.7078421Z Get:2 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 poppler-data all 0.4.12-1 [2060 kB]",
+      "2026-09-19T01:37:36.7523453Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libpoppler134 amd64 24.02.0-1ubuntu9.9 [1118 kB]",
+      "2026-09-19T01:37:36.8193926Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 poppler-utils amd64 24.02.0-1ubuntu9.9 [212 kB]"
+    ]
+  },
+  "softwareNotices": [
+    {
+      "name": "checkout",
+      "url": "https://raw.githubusercontent.com/actions/checkout/3d3c42e5aac5ba805825da76410c181273ba90b1/LICENSE",
+      "resolvedUrl": "https://raw.githubusercontent.com/actions/checkout/3d3c42e5aac5ba805825da76410c181273ba90b1/LICENSE",
+      "retrievedAt": "2026-09-19T05:06:02.277255+00:00",
+      "httpStatus": 200,
+      "bytes": 1097,
+      "responseSha256": "3e855ffa704114a51628ef8f0bf3aeb41728adf9d9070e263bf58aa5640b0eb5",
+      "license": "MIT",
+      "commercialUse": "Conditional under applicable software license; not a data-use entitlement.",
+      "redistribution": "Preserve applicable notices and license conditions; bundled dependencies not exhaustively inspected.",
+      "scope": "Observed CI version/commit matched to published notice.",
+      "professionalReview": "Required before complete runtime/container redistribution."
+    },
+    {
+      "name": "setup-uv",
+      "url": "https://raw.githubusercontent.com/astral-sh/setup-uv/bec219d24cd3e171d82865faccec33120bb574f4/LICENSE",
+      "resolvedUrl": "https://raw.githubusercontent.com/astral-sh/setup-uv/bec219d24cd3e171d82865faccec33120bb574f4/LICENSE",
+      "retrievedAt": "2026-09-19T05:06:02.598339+00:00",
+      "httpStatus": 200,
+      "bytes": 1083,
+      "responseSha256": "933c6b13611b145de8fc8016281b2733e4a38c66f431de5bf48ed89b42af164b",
+      "license": "MIT",
+      "commercialUse": "Conditional under applicable software license; not a data-use entitlement.",
+      "redistribution": "Preserve applicable notices and license conditions; bundled dependencies not exhaustively inspected.",
+      "scope": "Observed CI version/commit matched to published notice.",
+      "professionalReview": "Required before complete runtime/container redistribution."
+    },
+    {
+      "name": "upload-artifact",
+      "url": "https://raw.githubusercontent.com/actions/upload-artifact/ea165f8d65b6e75b540449e92b4886f43607fa02/LICENSE",
+      "resolvedUrl": "https://raw.githubusercontent.com/actions/upload-artifact/ea165f8d65b6e75b540449e92b4886f43607fa02/LICENSE",
+      "retrievedAt": "2026-09-19T05:06:02.878689+00:00",
+      "httpStatus": 200,
+      "bytes": 1097,
+      "responseSha256": "3e855ffa704114a51628ef8f0bf3aeb41728adf9d9070e263bf58aa5640b0eb5",
+      "license": "MIT",
+      "commercialUse": "Conditional under applicable software license; not a data-use entitlement.",
+      "redistribution": "Preserve applicable notices and license conditions; bundled dependencies not exhaustively inspected.",
+      "scope": "Observed CI version/commit matched to published notice.",
+      "professionalReview": "Required before complete runtime/container redistribution."
+    },
+    {
+      "name": "setup-node",
+      "url": "https://raw.githubusercontent.com/actions/setup-node/v4/LICENSE",
+      "resolvedUrl": "https://raw.githubusercontent.com/actions/setup-node/v4/LICENSE",
+      "retrievedAt": "2026-09-19T05:06:03.051277+00:00",
+      "httpStatus": 200,
+      "bytes": 1096,
+      "responseSha256": "7d070f6b64d9bcc530fe99cc21eaaa4b3c364e0b2d367d7735671fa202a03b32",
+      "license": "MIT",
+      "commercialUse": "Conditional under applicable software license; not a data-use entitlement.",
+      "redistribution": "Preserve applicable notices and license conditions; bundled dependencies not exhaustively inspected.",
+      "scope": "v4 tag at retrieval; not bound to a run-resolved commit.",
+      "professionalReview": "Required before complete runtime/container redistribution."
+    },
+    {
+      "name": "download-artifact",
+      "url": "https://raw.githubusercontent.com/actions/download-artifact/v4.3.0/LICENSE",
+      "resolvedUrl": "https://raw.githubusercontent.com/actions/download-artifact/v4.3.0/LICENSE",
+      "retrievedAt": "2026-09-19T05:06:03.229088+00:00",
+      "httpStatus": 200,
+      "bytes": 1097,
+      "responseSha256": "3e855ffa704114a51628ef8f0bf3aeb41728adf9d9070e263bf58aa5640b0eb5",
+      "license": "MIT",
+      "commercialUse": "Conditional under applicable software license; not a data-use entitlement.",
+      "redistribution": "Preserve applicable notices and license conditions; bundled dependencies not exhaustively inspected.",
+      "scope": "Configured version tag at retrieval.",
+      "professionalReview": "Required before complete runtime/container redistribution."
+    },
+    {
+      "name": "playwright",
+      "url": "https://raw.githubusercontent.com/microsoft/playwright/v1.62.1/LICENSE",
+      "resolvedUrl": "https://raw.githubusercontent.com/microsoft/playwright/v1.62.1/LICENSE",
+      "retrievedAt": "2026-09-19T05:06:03.480162+00:00",
+      "httpStatus": 200,
+      "bytes": 11601,
+      "responseSha256": "45873d00a0dd243596deb4aa23b2493b3d1f0671921bf2538ea431d7380220eb",
+      "license": "Apache-2.0",
+      "commercialUse": "Conditional under applicable software license; not a data-use entitlement.",
+      "redistribution": "Preserve applicable notices and license conditions; bundled dependencies not exhaustively inspected.",
+      "scope": "Configured version tag at retrieval.",
+      "professionalReview": "Required before complete runtime/container redistribution."
+    },
+    {
+      "name": "poppler-data",
+      "url": "https://changelogs.ubuntu.com/changelogs/pool/main/p/poppler-data/poppler-data_0.4.12-1/copyright",
+      "resolvedUrl": "https://changelogs.ubuntu.com/changelogs/pool/main/p/poppler-data/poppler-data_0.4.12-1/copyright",
+      "retrievedAt": "2026-09-19T05:06:03.999175+00:00",
+      "httpStatus": 200,
+      "bytes": 39160,
+      "responseSha256": "b6641f2e367897bef0bcc438146cad733bc0dfe0166e2f105d44c5eff72a731e",
+      "license": "File-specific BSD-3-Clause (notice typo BSD-3-cluase), MIT, GPL-2 and AGPL-3+",
+      "commercialUse": "Conditional under applicable software license; not a data-use entitlement.",
+      "redistribution": "Mixed component obligations; whole-package professional review required.",
+      "scope": "Observed CI version/commit matched to published notice.",
+      "professionalReview": "Required before complete runtime/container redistribution."
+    }
+  ],
+  "newHttpReceipts": [
+    {
+      "name": "IPO Watch",
+      "url": "https://ipowatch.in/term-of-use/",
+      "resolvedUrl": "https://ipowatch.in/term-of-use/",
+      "retrievedAt": "2026-09-19T05:06:01.943955+00:00",
+      "httpStatus": 200,
+      "bytes": 391526,
+      "responseSha256": "8e0981ff8b675029ef82a272c5404a3cc139fe855d31557d3c8f2307285a915e"
+    },
+    {
+      "name": "checkout",
+      "url": "https://raw.githubusercontent.com/actions/checkout/3d3c42e5aac5ba805825da76410c181273ba90b1/LICENSE",
+      "resolvedUrl": "https://raw.githubusercontent.com/actions/checkout/3d3c42e5aac5ba805825da76410c181273ba90b1/LICENSE",
+      "retrievedAt": "2026-09-19T05:06:02.277255+00:00",
+      "httpStatus": 200,
+      "bytes": 1097,
+      "responseSha256": "3e855ffa704114a51628ef8f0bf3aeb41728adf9d9070e263bf58aa5640b0eb5"
+    },
+    {
+      "name": "setup-uv",
+      "url": "https://raw.githubusercontent.com/astral-sh/setup-uv/bec219d24cd3e171d82865faccec33120bb574f4/LICENSE",
+      "resolvedUrl": "https://raw.githubusercontent.com/astral-sh/setup-uv/bec219d24cd3e171d82865faccec33120bb574f4/LICENSE",
+      "retrievedAt": "2026-09-19T05:06:02.598339+00:00",
+      "httpStatus": 200,
+      "bytes": 1083,
+      "responseSha256": "933c6b13611b145de8fc8016281b2733e4a38c66f431de5bf48ed89b42af164b"
+    },
+    {
+      "name": "upload-artifact",
+      "url": "https://raw.githubusercontent.com/actions/upload-artifact/ea165f8d65b6e75b540449e92b4886f43607fa02/LICENSE",
+      "resolvedUrl": "https://raw.githubusercontent.com/actions/upload-artifact/ea165f8d65b6e75b540449e92b4886f43607fa02/LICENSE",
+      "retrievedAt": "2026-09-19T05:06:02.878689+00:00",
+      "httpStatus": 200,
+      "bytes": 1097,
+      "responseSha256": "3e855ffa704114a51628ef8f0bf3aeb41728adf9d9070e263bf58aa5640b0eb5"
+    },
+    {
+      "name": "setup-node",
+      "url": "https://raw.githubusercontent.com/actions/setup-node/v4/LICENSE",
+      "resolvedUrl": "https://raw.githubusercontent.com/actions/setup-node/v4/LICENSE",
+      "retrievedAt": "2026-09-19T05:06:03.051277+00:00",
+      "httpStatus": 200,
+      "bytes": 1096,
+      "responseSha256": "7d070f6b64d9bcc530fe99cc21eaaa4b3c364e0b2d367d7735671fa202a03b32"
+    },
+    {
+      "name": "download-artifact",
+      "url": "https://raw.githubusercontent.com/actions/download-artifact/v4.3.0/LICENSE",
+      "resolvedUrl": "https://raw.githubusercontent.com/actions/download-artifact/v4.3.0/LICENSE",
+      "retrievedAt": "2026-09-19T05:06:03.229088+00:00",
+      "httpStatus": 200,
+      "bytes": 1097,
+      "responseSha256": "3e855ffa704114a51628ef8f0bf3aeb41728adf9d9070e263bf58aa5640b0eb5"
+    },
+    {
+      "name": "playwright",
+      "url": "https://raw.githubusercontent.com/microsoft/playwright/v1.62.1/LICENSE",
+      "resolvedUrl": "https://raw.githubusercontent.com/microsoft/playwright/v1.62.1/LICENSE",
+      "retrievedAt": "2026-09-19T05:06:03.480162+00:00",
+      "httpStatus": 200,
+      "bytes": 11601,
+      "responseSha256": "45873d00a0dd243596deb4aa23b2493b3d1f0671921bf2538ea431d7380220eb"
+    },
+    {
+      "name": "poppler-data",
+      "url": "https://changelogs.ubuntu.com/changelogs/pool/main/p/poppler-data/poppler-data_0.4.12-1/copyright",
+      "resolvedUrl": "https://changelogs.ubuntu.com/changelogs/pool/main/p/poppler-data/poppler-data_0.4.12-1/copyright",
+      "retrievedAt": "2026-09-19T05:06:03.999175+00:00",
+      "httpStatus": 200,
+      "bytes": 39160,
+      "responseSha256": "b6641f2e367897bef0bcc438146cad733bc0dfe0166e2f105d44c5eff72a731e"
+    }
+  ],
+  "limitations": [
+    "Terms text is not republished; locators, paraphrases and response hashes retained.",
+    "No approved interim collection/publication policy is inferred from this research.",
+    "No permission bypass, outreach, purchases, agreement acceptance, tracking or canonical writes."
+  ]
+}
