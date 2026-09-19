@@ -1,0 +1,44 @@
+{
+  "checkedDateUtc": "2026-09-19",
+  "baseUrl": "https://vasuki8.github.io/IPO-Tracker/",
+  "mode": "Actual deployed browser DOM, real clock, no fixture override",
+  "status": "passed",
+  "profiles": {
+    "axiomgas": {
+      "priceBand": [
+        51,
+        54
+      ],
+      "bidLot": 2000,
+      "freshShares": 9398000,
+      "qualifier": "up_to"
+    },
+    "varmora": {
+      "priceBand": [
+        140,
+        148
+      ],
+      "bidLot": 101,
+      "minimumBidQuantity": 101,
+      "freshValueCr": 320,
+      "ofsShares": 26217634,
+      "qualifier": "up_to"
+    },
+    "poojalogis": {
+      "priceBand": [
+        109,
+        115
+      ],
+      "bidLot": 1200,
+      "freshShares": 3846000
+    }
+  },
+  "sharedChecks": [
+    "Provisional disclosure labels and source links",
+    "Source observation time unavailable with separate collection timestamp",
+    "Issue total blank and awaiting disclosure",
+    "Market lot remains unknown",
+    "No SME minimum quantity inferred"
+  ],
+  "rehearsal": "See parent release receipt localTests browser section"
+}

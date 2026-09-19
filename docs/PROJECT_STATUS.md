@@ -15,7 +15,103 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
-## Current checkpoint — core clocks released and source hold verified, 19 September 2026
+## Current checkpoint — reviewed active offer terms released, 19 September 2026
+
+Current verified release main: **`689eb4124c253d1fe59f20f9834e8fddaee2bd51`**.
+Accepted three-issuer data: **`f0419d59cabc39a047c2fb2d69b3fb216c45c693`**;
+assessment base: `e0094dce2649e3c5761ded4c4de32e7649da4f1f`. Documentation
+closeout branch is `docs-active-offer-release-20260919`, [PR #161](https://github.com/Vasuki8/IPO-Tracker/pull/161);
+its commit is identified by Git history containing this checkpoint. See the [release receipt](releases/2026-09-19-active-offer-terms.json),
+[exact-byte live verification](releases/2026-09-19-active-offer-live.json) and
+[source review](reviews/2026-09-19-active-offer-source-review.md). Completed
+financial #143/#144, universe #145–148, operations #149–151/#154–157 and commercial
+#152/#153 work was recognized and preserved. The previous exact next task is now
+complete for the supported NSE labelled-table family.
+
+**Problem and affected users:** current/upcoming IPO researchers could see the
+offer windows but not independently reviewable active bidding terms. The shared
+NSE `issueInfo.dataList` parser now retains exact response bytes/hash, issuer,
+symbol, board, dates, row/table, unit, review version and correction history.
+Accepted provisional receipts remain separate from completed static facts.
+Source observation stays unknown; collection/review clocks are distinct.
+
+**Source-reviewed and live:** Axiom Gas shows INR 51–54, bid lot 2,000 and fresh
+up to 9,398,000 shares; Varmora shows INR 140–148, bid lot 101, separately labelled
+minimum quantity 101, fresh up to INR 320 crore and OFS up to 26,217,634 shares;
+Pooja Logistics shows INR 109–115, bid lot 1,200 and fresh 3,846,000 shares.
+Every accepted field carries provisional authority, a source link and IST expiry.
+Market lot, unknown minimum quantities and all three total issue amounts stay
+unknown. No total is calculated from shares times cap price. Existing subscription
+observations are unchanged; SpectraA remains held.
+
+Rendered document review confirmed Axiom's 16 September revision explicitly
+supersedes its older 50–53 advertisement. Varmora's RHP and issuer advertisement
+confirm the fresh/OFS and floor/cap distinction; its retained floor share count
+cannot be multiplied by the cap price to establish a total. Pooja's NSE detail
+supports the accepted terms, but the RHP connection failed and ratios archive
+timed out; placeholder issuer PDF links were rejected. These access gaps remain
+open. Immutable source review commit: `1fb4c7d12e1a5eb616a4db16b304a0aeda32103f`.
+
+**Measured result:** the three issuers' exchange gaps fell **12 → 3**: nine actual
+missing fields filled, with only total issue amounts remaining. Global price-band
+gaps **30 → 27**, bid-lot gaps **925 → 922**, composition gaps **60 → 57**;
+amount gaps remain **969**. This is not a source-review-count reduction. All
+**1,557 validation issues and expanded queue reviews** are identical to baseline;
+all **441 proposals are byte-identical**, inventory remains **1,379**, queue **1,364**.
+Only these three canonical records changed, within reviewed receipt/source/history/
+validation scope. Static values, Final Prospectus proofs, holds and policy remain.
+
+- [PR #158](https://github.com/Vasuki8/IPO-Tracker/pull/158): shared parser, reviewed transport and public eligibility; implementation `e158ee56`, isolated active clock metadata `4b245d41`, merge `a310209e`.
+- [PR #159](https://github.com/Vasuki8/IPO-Tracker/pull/159): bounded request `5bbc3809`, merge `9c404bea`; existing publisher **35417782070** accepted exactly three IDs at `f0419d59`.
+- [PR #160](https://github.com/Vasuki8/IPO-Tracker/pull/160): read-only delivery verifier `18ada890`, merge `9fd5ef2b`; retained source-proof Git identity and active receipt/value/qualification/clock/expiry checks.
+
+**Tests:** final PR validation **35418119511** passed **1,332 Python tests**, strict
+validation (zero errors), proposal checks and public generation. Browser
+**35418119472** passed the existing regressions, **38 Node tests**, and the new
+three-real-document cohort at 1440/375/320px across profiles, directory, quick view,
+comparison and CSV, including provisional expiry. Focused parser tests cover both
+composition layouts, reservations, units, ambiguous columns/labels, identity,
+contradictions and separate quantities. Four new delivery tests independently
+passed. Local Windows retains only the two known filename/symlink limitations;
+the complete Linux suite passes them unchanged. Source correctness was separately
+reviewed against the official response bytes and documents, not inferred from CI.
+
+**Deployment:** support publisher **35417569744**, bounded publisher **35417782070**
+and final review-only publisher **35418300903** succeeded. Final publication only
+refreshed three generated report clocks; accepted data/proofs stayed unchanged.
+Pages **35417847172** deployed accepted data; Pages **35418352442** deployed the
+final release. Live verification **35418374265** passed. The earlier accepted-data
+verification **35417869059** failed because its verifier did not recognize the new
+receipt kind; #160 fixed that delivery-contract gap without changing accepted values.
+Independent HTTPS verification matches all selected public artifact bytes and
+checks the 1,379-route manifest; actual live browser checks confirm all three
+profiles' values, null totals, provisional labels and unknown source clocks.
+
+**Current P4 remains incomplete:** **387 actionable + 63 higher-priority records;
+1,553 blocking / 1,557 total reviews**, four P5-only, zero semantic errors and
+zero unmapped reviews. Final Prospectus revalidation remains 321 P4 records /
+1,174 fields and 28 higher-priority records / 104 fields. P5 remains waiting (914).
+No remaining acceptance criteria for this bounded source family. Qualified total
+amount layouts, Pooja source recovery, Vinod shareholding subtotal/page locators,
+SpectraA and other holds remain unresolved. Historical Snehaa/Sacheerome NSE PDF
+access failure is still open; no old cached evidence is represented as a new pass.
+
+Old PRs #94/#98/#99/#104/#105 and the unrelated `fix-nse-detail-denominators`
+worktree remain untouched. No active development PR remains from this milestone
+after documentation closeout. Audience, pricing/revenue, redistribution rights,
+hosting suitability, legal operator/privacy and professional review remain owner
+decisions. No new spending, contracts, tracking, permissions, P5 or performance.
+
+**Exact next task:** inspect the shared BSE current/upcoming detail and identity
+layout for **FX Multitech, Robokidz Eduventures, Vivekanand Cotspin, Himalaya
+Nutravedics India and S. K. Offset**. These five SME records have 25 retained
+exchange gaps (symbol, price, lot, total and composition); this is a candidate
+batch size, not a promised reduction. Bind official identities/windows and review
+multiple real documents before proposing fields. Keep the three NSE total amounts
+for a separate qualified floor/cap amount family and retain all existing holds.
+
+
+## Previous checkpoint — core clocks released and source hold verified, 19 September 2026
 
 Current verified data-release main: **`118a5dd33913c5a2f76d15ad5939574eb5e85af3`**.
 Core publication is `5ea15921c2a2e742b282acefad6df366dab0c58f`; assessment base
