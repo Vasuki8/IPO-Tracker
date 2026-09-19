@@ -15,7 +15,85 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
-## Current checkpoint — official-universe release verified, 18 September 2026
+## Current checkpoint — operational health release, 18–19 September 2026
+
+Recovery started at **`4f0e5599be8d9230bdd9b929aec6382e8c600be5`** after
+the completed official-universe release. The existing read-only report from
+PR #126 was extended; source repairs, inventory admissions and operational
+writers were not duplicated. Current accepted main before documentation closeout:
+**b6d82f7824758d0cb3ae767e2e5673f8a1f6b208**.
+
+[PR #149](https://github.com/Vasuki8/IPO-Tracker/pull/149) joins the existing
+source-health, stage, proposal reconciliation, review-decision, queue and phase
+evidence in `tools/report_update_health.py` (`7f97991e`, `7b5549ce`; merge `04e795e8`).
+It adds JSON/Markdown views, explicit source roles, independent check/observation
+clocks, latest retained stage success, failure/deferral reasons, publication
+execution windows, and all retained proposal identities/ages/next actions.
+No alerts, network collection or competing state store were added.
+
+[PR #150](https://github.com/Vasuki8/IPO-Tracker/pull/150) corrects public clock
+and authority labels (`e30aa734`, `e08eed05`, `0f6ed615`, `dd344fd5`; merge `b6d82f78`).
+Unknown source checks no longer borrow the dataset generation time. Deferred,
+failed, degraded and unavailable outcomes remain distinct. Mixed subscription
+diagnostics expose their retained failures and secondary-source counts; source
+roles do not establish field authority. The snapshot tooltip identifies generation
+time separately from source observation and accepted publication. The existing
+presentation route was verified before release to avoid repair collection.
+
+The [frozen operational assessment](audits/operational-health/2026-09-18/REPORT.md)
+at **2026-09-18T23:38:00Z** retains 33 source entries and 14 stage entries:
+**5 failed source entries**, **3 blocked stages**, **0 overdue monitored source
+checks/stages**, and one unknown subscription-stage outcome. These are retained
+outcomes, including historical entries, not five newly failing sources in one run.
+Five active-by-recorded-date subscriptions include **2 observations older than
+the 90-minute tolerance** and **3 unknown observation times**. Subscription
+monitoring deadlines were inactive at that instant; absence of an overdue signal
+does not establish freshness. Eight source entries need investigation.
+
+All **441 pending proposals** remain unresolved: 181 still conflicting, 260 not
+assessed. Exact creation ages are unknown for all 441; four bound origin workflow
+windows are retained separately. The existing Emmvee decision remains visible
+with its stale-evidence/revalidation flag. No equality/age signal resolves a review.
+All **1,556 source reviews**, including **1,552 blocking** and four P5-only, remain.
+The accepted collector metadata names run `35402275281`: publisher execution
+22:45:54–22:46:28Z, collection completion to publisher completion **37 seconds**.
+Exact accepted-commit and per-source acceptance timestamps remain unknown; later
+identity edits are not misrepresented as that earlier publisher execution.
+
+Tests: **29 focused operational tests**, **34 Node/public-quality tests**, all
+**1,293 Python tests on Linux**, strict validation with **zero semantic errors**,
+exact offline report reproduction and protected-data byte checks. Windows retains
+the two known filesystem-only test errors. Browser CI checks diagnostic clocks,
+text bounds and existing public behavior at **320, 375 and 1,440 pixels**.
+Final PR validation: [35407785625](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35407785625) and [35407821461](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35407821461). Browser [35407821463](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35407821463) and candidate-release [35407821459](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35407821459) passed. Clock fixtures were separated from document fixtures without weakening assertions or source-review rules.
+Combined main validation `35408036734` and browser checks `35408036728` also passed.
+Publication [35408036765](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35408036765) confirmed presentation mode, 1,379 unchanged company pages, no data rewrite and no summary rewrite. [Pages 35408105745](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35408105745) and [live verification 35408140207](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35408140207) passed. All 24 checked live files matched the immutable release, including `source-health.js`; direct live browser checks confirmed unknown check times, retained SpectraA errors and mixed-source labels. See the [release receipt](audits/operational-health/2026-09-18/release.json).
+
+Canonical inventory remains **1,379**; this work changed no canonical values,
+proposals, source-review dispositions or source proofs. P4 remains **387 actionable
++ 63 higher priority**, **1,552 blocking reviews**. P5 remains waiting with 914
+records. No P4 blocker reduction is claimed.
+
+Unresolved operational gaps: core source check times are missing; source-level
+observation times and historical last-success clocks are not recorded; exact
+proposal creation and accepted-publication clocks are absent. SpectraA subscription
+collection is blocked by unavailable matching feeds. Legacy BSE-history metadata
+still describes the old collector failure even though the separate universe audit
+recovered an archive. These remain visible; no source failure was treated as completion.
+
+Older open work remains untouched: #105/#104 drafts, #99, #98 and #94. Customer
+segment, pricing/revenue model, source redistribution rights and hosting fit remain
+unresolved; no spending, outreach, contracts or permission changes were made.
+
+**Exact next operational task:** add evidence-bound check timestamps for future
+NSE/BSE/SEBI attempts inside the existing core collector, with failed/deferred
+attempt tests. Keep observations unknown when sources supply no timestamp; never
+retrofill check times from build/stage clocks. Separately, the next universe cohort
+remains the 12 retained August BSE SME candidates; P4 source repairs retain priority.
+
+Operational counts were recomputed unchanged at **2026-09-19T00:07:30.687014+00:00**. The receipt retains the report digest and input hashes. The snapshot is not an always-on monitor. Documentation closeout branch: `docs-operational-health-release-20260918`.
+
+## Historical checkpoint — official-universe release verified, 18 September 2026
 
 Accepted data/main commit observed before documentation closeout:
 **`794a8f6012047a0d817f4363a9374439c9892eb3`** (PR #147).
