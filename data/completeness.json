@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-19T04:26:58+05:30",
+  "generatedAt": "2026-09-19T07:18:22+05:30",
   "asOfDate": "2026-09-19",
   "recordCount": 1379,
   "stageCounts": {
@@ -15,17 +15,17 @@
     "exchangeStage": 1366,
     "recentExchange2Y": 453,
     "historicalExchange": 913,
-    "offerDocumentEligible": 389,
+    "offerDocumentEligible": 390,
     "openNow": 5,
     "maturedClosed": 1325
   },
   "scores": {
     "exchangeStage": 82.4,
     "recentExchange2Y": 95.6,
-    "offerDocumentEligible": 70.7,
+    "offerDocumentEligible": 70.6,
     "openSubscription": 85.0,
     "maturedLifecycle": 97.1,
-    "provenance": 99.7
+    "provenance": 100.0
   },
   "coverage": {
     "exchangeStage": {
@@ -199,39 +199,39 @@
     "offerDocumentEligible": {
       "registrar": {
         "present": 368,
-        "expected": 389,
-        "missing": 21,
-        "pct": 94.6
+        "expected": 390,
+        "missing": 22,
+        "pct": 94.4
       },
       "leadManagers": {
         "present": 365,
-        "expected": 389,
-        "missing": 24,
-        "pct": 93.8
+        "expected": 390,
+        "missing": 25,
+        "pct": 93.6
       },
       "promoters": {
         "present": 343,
-        "expected": 389,
-        "missing": 46,
-        "pct": 88.2
+        "expected": 390,
+        "missing": 47,
+        "pct": 87.9
       },
       "objectsOfIssue": {
-        "present": 93,
-        "expected": 389,
+        "present": 94,
+        "expected": 390,
         "missing": 296,
-        "pct": 23.9
+        "pct": 24.1
       },
       "financials": {
-        "present": 247,
-        "expected": 389,
+        "present": 248,
+        "expected": 390,
         "missing": 142,
-        "pct": 63.5
+        "pct": 63.6
       },
       "promoterShareholding": {
-        "present": 234,
-        "expected": 389,
+        "present": 235,
+        "expected": 390,
         "missing": 155,
-        "pct": 60.2
+        "pct": 60.3
       }
     },
     "openSubscription": {
@@ -284,14 +284,14 @@
         "pct": 99.9
       },
       "validation": {
-        "present": 1371,
+        "present": 1379,
         "expected": 1379,
-        "missing": 8,
-        "pct": 99.4
+        "missing": 0,
+        "pct": 100.0
       },
       "documents": {
-        "present": 396,
-        "expected": 396,
+        "present": 397,
+        "expected": 397,
         "missing": 0,
         "pct": 100.0
       }
@@ -707,6 +707,12 @@
     "offerDocumentEligible": {
       "registrar": [
         {
+          "id": "vinod",
+          "company": "Vinod Texworld Limited",
+          "openDate": "2026-09-09",
+          "stage": "listed"
+        },
+        {
           "id": "happy",
           "company": "Happy Steels Limited",
           "openDate": "2026-07-09",
@@ -789,15 +795,15 @@
           "company": "Apex Ecotech Limited",
           "openDate": "2024-11-27",
           "stage": "listed"
-        },
-        {
-          "id": "neelam",
-          "company": "Neelam Linens and Garments (India) Limited",
-          "openDate": "2024-11-08",
-          "stage": "listed"
         }
       ],
       "leadManagers": [
+        {
+          "id": "vinod",
+          "company": "Vinod Texworld Limited",
+          "openDate": "2026-09-09",
+          "stage": "listed"
+        },
         {
           "id": "happy",
           "company": "Happy Steels Limited",
@@ -881,15 +887,15 @@
           "company": "Jainik Power Cables Limited",
           "openDate": "2025-06-10",
           "stage": "listed"
-        },
-        {
-          "id": "nikita",
-          "company": "Nikita Papers Limited",
-          "openDate": "2025-05-27",
-          "stage": "listed"
         }
       ],
       "promoters": [
+        {
+          "id": "vinod",
+          "company": "Vinod Texworld Limited",
+          "openDate": "2026-09-09",
+          "stage": "listed"
+        },
         {
           "id": "happy",
           "company": "Happy Steels Limited",
@@ -972,12 +978,6 @@
           "id": "snehaa",
           "company": "Snehaa Organics Limited",
           "openDate": "2025-08-29",
-          "stage": "listed"
-        },
-        {
-          "id": "indiqube",
-          "company": "Indiqube Spaces Limited",
-          "openDate": "2025-07-23",
           "stage": "listed"
         }
       ],
