@@ -1,0 +1,157 @@
+{
+  "assessedMain": "338af7fdfbf724f40cacabaf0ddd8d422580000f",
+  "reviewedAt": "2026-09-19T18:00:49.630838+00:00",
+  "scope": "Two upcoming equity IPOs, reviewed BSE current-index/DisplayIPO provisional price, market lot and minimum bid quantity only",
+  "sourceReceipts": [
+    {
+      "id": "index",
+      "url": "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p",
+      "attemptedAt": "2026-09-19T17:51:53.650804+00:00",
+      "observedAt": null,
+      "error": "HTTP Error 403: Forbidden",
+      "checkedAt": "2026-09-19T17:52:01.109534+00:00"
+    },
+    {
+      "id": "elevate-campuses-limited",
+      "url": "https://beta.bseindia.com/markets/publicIssues/DisplayIPO.aspx?id=4838&type=IPO&idtype=1&status=F&IPONo=7987&startdt=23/09/2026",
+      "attemptedAt": "2026-09-19T17:52:01.110118+00:00",
+      "observedAt": null,
+      "error": "HTTP Error 403: Forbidden",
+      "checkedAt": "2026-09-19T17:52:07.491256+00:00"
+    },
+    {
+      "id": "unitec-fibres-limited",
+      "url": "https://beta.bseindia.com/markets/publicIssues/DisplayIPO.aspx?id=4839&type=IPO&idtype=1&status=F&IPONo=7988&startdt=23/09/2026",
+      "attemptedAt": "2026-09-19T17:52:07.491668+00:00",
+      "observedAt": null,
+      "error": "HTTP Error 403: Forbidden",
+      "checkedAt": "2026-09-19T17:52:12.742744+00:00"
+    },
+    {
+      "id": "index",
+      "url": "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p",
+      "attemptedAt": "2026-09-19T17:53:15.008658+00:00",
+      "observedAt": null,
+      "requestHeaders": {
+        "User-Agent": "Mozilla/5.0"
+      },
+      "status": 200,
+      "finalUrl": "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p",
+      "sha256": "695b2dd4b27112d60fb025d5f5d231ddae232f790edabc43c1fe98482fcb3667",
+      "bytes": 32242,
+      "collectedAt": "2026-09-19T17:53:23.111330+00:00"
+    },
+    {
+      "id": "elevate-campuses-limited",
+      "url": "https://beta.bseindia.com/markets/publicIssues/DisplayIPO.aspx?id=4838&type=IPO&idtype=1&status=F&IPONo=7987&startdt=23/09/2026",
+      "attemptedAt": "2026-09-19T17:53:23.112894+00:00",
+      "observedAt": null,
+      "requestHeaders": {
+        "User-Agent": "Mozilla/5.0"
+      },
+      "status": 200,
+      "finalUrl": "https://beta.bseindia.com/markets/publicIssues/DisplayIPO.aspx?id=4838&type=IPO&idtype=1&status=F&IPONo=7987&startdt=23/09/2026",
+      "sha256": "722d3fbade89f9bcaacfee35c5bf4013b980c9097f550afbe076344b67608bce",
+      "bytes": 34946,
+      "collectedAt": "2026-09-19T17:53:28.979278+00:00"
+    },
+    {
+      "id": "unitec-fibres-limited",
+      "url": "https://beta.bseindia.com/markets/publicIssues/DisplayIPO.aspx?id=4839&type=IPO&idtype=1&status=F&IPONo=7988&startdt=23/09/2026",
+      "attemptedAt": "2026-09-19T17:53:28.980682+00:00",
+      "observedAt": null,
+      "requestHeaders": {
+        "User-Agent": "Mozilla/5.0"
+      },
+      "status": 200,
+      "finalUrl": "https://beta.bseindia.com/markets/publicIssues/DisplayIPO.aspx?id=4839&type=IPO&idtype=1&status=F&IPONo=7988&startdt=23/09/2026",
+      "sha256": "a6a015452c24a064f44a3b901393d0b39e2fdd050367e2f4c1fccdac23d2bf35",
+      "bytes": 34798,
+      "collectedAt": "2026-09-19T17:53:35.987908+00:00"
+    }
+  ],
+  "currencyMarker": {
+    "url": "https://beta.bseindia.com/include/images/rs_b.gif",
+    "status": 200,
+    "bytes": 265,
+    "sha256": "780cc4f5c88a8c41047804b4fa764872b6648ed1df2927225996c5d1bca6a4bc",
+    "collectedAt": "2026-09-19T05:42:50.729875+00:00"
+  },
+  "currencyFixture": "tests/fixtures/bse-active-offer-terms/rupee.gif.gz",
+  "acceptedCandidates": {
+    "elevate-campuses-limited": {
+      "priceBand": {
+        "min": 343.0,
+        "max": 362.0
+      },
+      "marketLot": 41,
+      "minimumBidQuantity": 41
+    },
+    "unitec-fibres-limited": {
+      "priceBand": {
+        "min": 83.0,
+        "max": 88.0
+      },
+      "marketLot": 1600,
+      "minimumBidQuantity": 3200
+    }
+  },
+  "physicalEvidence": {
+    "elevate-campuses-limited": {
+      "detailTable": "/html/tables/2",
+      "priceRow": 9,
+      "marketLotRow": 13,
+      "minimumBidQuantityRow": 14,
+      "indexTable": "/html/tables/3",
+      "indexRow": 11,
+      "sourceSymbol": "ELEVATE",
+      "issueId": "4838",
+      "ipoNumber": "7987",
+      "rawIndexBoard": "MainBoard"
+    },
+    "unitec-fibres-limited": {
+      "detailTable": "/html/tables/2",
+      "priceRow": 9,
+      "marketLotRow": 15,
+      "minimumBidQuantityRow": 16,
+      "indexTable": "/html/tables/3",
+      "indexRow": 12,
+      "sourceSymbol": "UNITEC",
+      "issueId": "4839",
+      "ipoNumber": "7988",
+      "rawIndexBoard": "SME"
+    }
+  },
+  "authority": "Official exchange active disclosure; explicitly provisional through 2026-09-25 IST; not Final Prospectus static authority",
+  "documentAttempts": [
+    {
+      "id": "elevate-ad",
+      "url": "https://listing.bseindia.com/Download//PreAnchor/PriceBandAdvertisement_20260918185757.pdf",
+      "attemptedAt": "2026-09-19T17:55:20.777348+00:00",
+      "requestHeaders": {
+        "User-Agent": "Mozilla/5.0"
+      },
+      "error": "HTTP Error 502: Bad Gateway",
+      "checkedAt": "2026-09-19T17:55:31.548933+00:00"
+    },
+    {
+      "id": "elevate-rhp",
+      "url": "https://listing.bseindia.com/Download/8888888/PreAnchor/RHP_20260918210237.pdf",
+      "attemptedAt": "2026-09-19T17:55:31.549521+00:00",
+      "requestHeaders": {
+        "User-Agent": "Mozilla/5.0"
+      },
+      "error": "HTTP Error 502: Bad Gateway",
+      "checkedAt": "2026-09-19T17:55:41.092851+00:00"
+    }
+  ],
+  "unresolved": {
+    "lotSize": "Market Lot does not establish bidding increment",
+    "issueSizeCr": "No explicit whole-offer monetary amount; linked sources unavailable",
+    "issueComposition": "Detail share counts do not establish fresh/OFS breakdown",
+    "minimumApplicationAmount": "Not inferred from a quantity; application category evidence required",
+    "canonicalSymbol": "Out of terms-only scope; preserve source symbol inside receipt",
+    "sourceObservation": "Source clock blank; observedAt remains null"
+  },
+  "independentReview": "Exact bytes, hashes, currency asset, all identity/date/type/row bindings and unchanged original-four parser output independently checked; no additional authority inferred"
+}
