@@ -1,0 +1,1527 @@
+{
+  "formatVersion": 1,
+  "assessedDateUtc": "2026-09-19",
+  "baseCommit": "1e86840856525db2ee2b436ed64f2b6e60374ee0",
+  "scope": "Exact named inputs only; URL mentions include history, notes and unresolved proposals. Host counts are not accepted-fact counts or rights clearance. Three examples per host; all counts retained.",
+  "inputs": [
+    {
+      "path": "data/ipos.json",
+      "sha256": "0713fb661ab39e253b38061f5b5eff1ae017c1467c1fd2930598ce5e43b70300",
+      "bytes": 27830228,
+      "urlMentions": 19382
+    },
+    {
+      "path": "data/ipos-summary.json",
+      "sha256": "10891dd8f40d73823f7e41d3691b0b64ec6bae5bf8410729e18effdabc215b7e",
+      "bytes": 1327892,
+      "urlMentions": 490
+    },
+    {
+      "path": "data/pending_updates.json",
+      "sha256": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+      "bytes": 12256367,
+      "urlMentions": 5231
+    },
+    {
+      "path": "scripts/issuer_offer_registry.py",
+      "sha256": "87f2f80644c41428799f2a241070cc25575be114686e14331d37fa7dac1a5645",
+      "bytes": 20869,
+      "urlMentions": 76
+    },
+    {
+      "path": "scripts/run_priority_subscriptions_v3.py",
+      "sha256": "cc590cb1364c7d5672691971b93af7a283b122969fee0f63b6774dc04072debc",
+      "bytes": 21837,
+      "urlMentions": 6
+    }
+  ],
+  "uniqueHosts": 61,
+  "hosts": [
+    {
+      "host": "aasthaspintex.com",
+      "mentionsByFile": {
+        "data/ipos.json": 2
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/80/observations/VerifiedOfferFields/sourceUrl",
+          "url": "https://aasthaspintex.com/pdf/RHP/RHP_Aastha.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/80/sources/5/url",
+          "url": "https://aasthaspintex.com/pdf/RHP/RHP_Aastha.pdf"
+        }
+      ]
+    },
+    {
+      "host": "anawilvapi.in",
+      "mentionsByFile": {
+        "data/ipos.json": 4
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/60/dataCorrections/0/sourceUrl",
+          "url": "https://anawilvapi.in/uploads/investors/Prospectus.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/60/observations/VerifiedP4FinalIssueTerms/sourceUrls/0",
+          "url": "https://anawilvapi.in/uploads/investors/RHP-Anawil%20Wire%20and%20Engineering%20Limited.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/60/sources/1/url",
+          "url": "https://anawilvapi.in/uploads/investors/RHP-Anawil%20Wire%20and%20Engineering%20Limited.pdf"
+        }
+      ]
+    },
+    {
+      "host": "archives.nseindia.com",
+      "mentionsByFile": {
+        "data/ipos.json": 6
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/1362/activeOfferTerms/source/responseText",
+          "url": "https://archives.nseindia.com/content/circulars/IPO53197.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/1362/dataCorrections/0/after/source/responseText",
+          "url": "https://archives.nseindia.com/content/circulars/IPO53197.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/1368/activeOfferTerms/source/responseText",
+          "url": "https://archives.nseindia.com/content/circulars/IPO53197.pdf"
+        }
+      ]
+    },
+    {
+      "host": "beta.bseindia.com",
+      "mentionsByFile": {
+        "data/ipos-summary.json": 10,
+        "data/ipos.json": 219,
+        "data/pending_updates.json": 72
+      },
+      "examples": [
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/ipos/0/subscriptionSourceUrl",
+          "url": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7973&status=L"
+        },
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/ipos/1/subscriptionSourceUrl",
+          "url": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7975&status=L"
+        },
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/ipos/10/subscriptionSourceUrl",
+          "url": "https://beta.bseindia.com/markets/publicIssues/CummDemandSchedule.aspx?ID=7959&status=L"
+        }
+      ]
+    },
+    {
+      "host": "bidcollection.nseindia.com",
+      "mentionsByFile": {
+        "data/ipos.json": 6
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/1362/activeOfferTerms/source/responseText",
+          "url": "https://bidcollection.nseindia.com/asba"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/1362/dataCorrections/0/after/source/responseText",
+          "url": "https://bidcollection.nseindia.com/asba"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/1368/activeOfferTerms/source/responseText",
+          "url": "https://bidcollection.nseindia.com/asba"
+        }
+      ]
+    },
+    {
+      "host": "centurymedia.in",
+      "mentionsByFile": {
+        "data/ipos.json": 25,
+        "data/pending_updates.json": 15
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/9/dataCorrections/0/sourceUrl",
+          "url": "https://centurymedia.in/wp-content/uploads/2026/09/Red-Herring-Prospectus.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/9/dataCorrections/1/sourceUrl",
+          "url": "https://centurymedia.in/wp-content/uploads/2026/09/Red-Herring-Prospectus.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/9/dataCorrections/2/sourceUrl",
+          "url": "https://centurymedia.in/wp-content/uploads/2026/09/Red-Herring-Prospectus.pdf"
+        }
+      ]
+    },
+    {
+      "host": "economictimes.indiatimes.com",
+      "mentionsByFile": {
+        "data/ipos.json": 4
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/32/sources/2/url",
+          "url": "https://economictimes.indiatimes.com/lumino-industries-ltd/ipos/companyid-2253079.cms"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/39/sources/1/url",
+          "url": "https://economictimes.indiatimes.com/abh-healthcare-ltd/ipos/companyid-2468180.cms"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/43/sources/1/url",
+          "url": "https://economictimes.indiatimes.com/sunshine-pictures-ltd/ipos/companyid-2252698.cms"
+        }
+      ]
+    },
+    {
+      "host": "english.metrovaartha.com",
+      "mentionsByFile": {
+        "data/ipos.json": 3
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/15/observations/VerifiedTerms/sourceUrl",
+          "url": "https://english.metrovaartha.com/economy/market/rentomojo-limiteds-initial-public-offer-to-open-on-september-09-2026"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/15/sources/2/url",
+          "url": "https://english.metrovaartha.com/economy/market/rentomojo-limiteds-initial-public-offer-to-open-on-september-09-2026"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/23/sources/2/url",
+          "url": "https://english.metrovaartha.com/economy/market/pranav-constructions-limiteds-initial-public-offering-to-open-on-monday-september-07-2026-price-band-set-at-118-to-124-per-equity-share"
+        }
+      ]
+    },
+    {
+      "host": "github.com",
+      "mentionsByFile": {
+        "data/ipos-summary.json": 3,
+        "data/ipos.json": 23
+      },
+      "examples": [
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/ipos/1362/publicQuality/sources/0/reviewUrl",
+          "url": "https://github.com/Vasuki8/IPO-Tracker/blob/1fb4c7d12e1a5eb616a4db16b304a0aeda32103f/docs/reviews/2026-09-19-active-offer-source-review.md"
+        },
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/ipos/1368/publicQuality/sources/0/reviewUrl",
+          "url": "https://github.com/Vasuki8/IPO-Tracker/blob/1fb4c7d12e1a5eb616a4db16b304a0aeda32103f/docs/reviews/2026-09-19-active-offer-source-review.md"
+        },
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/ipos/1370/publicQuality/sources/0/reviewUrl",
+          "url": "https://github.com/Vasuki8/IPO-Tracker/blob/1fb4c7d12e1a5eb616a4db16b304a0aeda32103f/docs/reviews/2026-09-19-active-offer-source-review.md"
+        }
+      ]
+    },
+    {
+      "host": "groww.in",
+      "mentionsByFile": {
+        "data/ipos.json": 1,
+        "scripts/run_priority_subscriptions_v3.py": 2
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/46/sources/2/url",
+          "url": "https://groww.in/blog/horizon-industrial-parks-ipo-to-open-on-august-17-2026"
+        },
+        {
+          "file": "scripts/run_priority_subscriptions_v3.py",
+          "pointerOrLine": "line:384",
+          "url": "https://groww.in/ipo"
+        },
+        {
+          "file": "scripts/run_priority_subscriptions_v3.py",
+          "pointerOrLine": "line:44",
+          "url": "https://groww.in/ipo/subscription"
+        }
+      ]
+    },
+    {
+      "host": "injectopolymers.in",
+      "mentionsByFile": {
+        "data/ipos.json": 12,
+        "data/pending_updates.json": 2
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/7/dataCorrections/1/sourceUrl",
+          "url": "https://injectopolymers.in/wp-content/uploads/2026/09/1.-RHP_07.09.2026.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/7/dataCorrections/2/sourceUrl",
+          "url": "https://injectopolymers.in/wp-content/uploads/2026/09/1.-RHP_07.09.2026.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/7/dataCorrections/3/sourceUrl",
+          "url": "https://injectopolymers.in/wp-content/uploads/2026/09/1.-RHP_07.09.2026.pdf"
+        }
+      ]
+    },
+    {
+      "host": "ipobarta.ai",
+      "mentionsByFile": {
+        "data/ipos.json": 1
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/1350/observations/VerifiedFilingOfferFields/verificationUrl",
+          "url": "https://ipobarta.ai/ipo/upcoming-ipos/company/nopaperforms-solutions-ipo/2796"
+        }
+      ]
+    },
+    {
+      "host": "ipocentral.in",
+      "mentionsByFile": {
+        "data/ipos.json": 2
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/14/observations/VerifiedTerms/sourceUrl",
+          "url": "https://ipocentral.in/steamhouse-india-ipo-gmp-price-date-allotment/"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/14/sources/2/url",
+          "url": "https://ipocentral.in/steamhouse-india-ipo-gmp-price-date-allotment/"
+        }
+      ]
+    },
+    {
+      "host": "ipodhamaka.in",
+      "mentionsByFile": {
+        "data/ipos-summary.json": 3,
+        "data/ipos.json": 10,
+        "data/pending_updates.json": 4,
+        "scripts/run_priority_subscriptions_v3.py": 2
+      },
+      "examples": [
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/ipos/11/subscriptionSourceUrl",
+          "url": "https://ipodhamaka.in/subscription/"
+        },
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/ipos/12/subscriptionSourceUrl",
+          "url": "https://ipodhamaka.in/subscription/"
+        },
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/ipos/13/subscriptionSourceUrl",
+          "url": "https://ipodhamaka.in/subscription/"
+        }
+      ]
+    },
+    {
+      "host": "ipostatus.integratedregistry.in",
+      "mentionsByFile": {
+        "data/ipos.json": 4,
+        "data/pending_updates.json": 2,
+        "scripts/issuer_offer_registry.py": 2
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/7/documents/1/url",
+          "url": "https://ipostatus.integratedregistry.in/PDFFILES/INJECTORHP.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/7/issuerDocumentExtraction/documentUrl",
+          "url": "https://ipostatus.integratedregistry.in/PDFFILES/INJECTORHP.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/7/issuerDocumentExtraction/sourcePage",
+          "url": "https://ipostatus.integratedregistry.in/RegistrarsToSTANew.aspx"
+        }
+      ]
+    },
+    {
+      "host": "ipowatch.in",
+      "mentionsByFile": {
+        "data/ipos.json": 1
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/32/sources/3/url",
+          "url": "https://ipowatch.in/lumino-industries-ipo/"
+        }
+      ]
+    },
+    {
+      "host": "jindalsupreme.com",
+      "mentionsByFile": {
+        "data/ipos.json": 1,
+        "data/pending_updates.json": 6
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/2/sources/2/url",
+          "url": "https://jindalsupreme.com/investor-relations/"
+        },
+        {
+          "file": "data/pending_updates.json",
+          "pointerOrLine": "/updates/3/base/2/url",
+          "url": "https://jindalsupreme.com/investor-relations/"
+        },
+        {
+          "file": "data/pending_updates.json",
+          "pointerOrLine": "/updates/3/proposed/2/url",
+          "url": "https://jindalsupreme.com/investor-relations/"
+        }
+      ]
+    },
+    {
+      "host": "mtinews.in",
+      "mentionsByFile": {
+        "data/ipos.json": 3
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/22/sources/2/url",
+          "url": "https://mtinews.in/glass-wall-systems-india-limiteds-initial-public-offering-to-open-on-tuesday-september-8-2026-price-band-of-%E2%82%B9172-%E2%82%B9182-per-equity-share-of-face-value-of/"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/30/sources/1/url",
+          "url": "https://mtinews.in/priority-jewels-limiteds-initial-public-offering-to-open-on-friday-august-28-2026-price-band-set-at-rs-190-rs-200-per-equity-shares-of-face-value-of-rs-10-each/?amp=1"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/42/sources/1/url",
+          "url": "https://mtinews.in/gaja-alternative-asset-management-limiteds-initial-public-offer-to-open-on-wednesday-august-19-2026/?amp=1"
+        }
+      ]
+    },
+    {
+      "host": "nsdl.com",
+      "mentionsByFile": {
+        "data/ipos.json": 2
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/268/dataCorrections/3/sourceUrl",
+          "url": "https://nsdl.com/nsdl/2026-03/Intimation_of_Price_Band_with_ad_final.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/268/sources/3/url",
+          "url": "https://nsdl.com/nsdl/2026-03/Intimation_of_Price_Band_with_ad_final.pdf"
+        }
+      ]
+    },
+    {
+      "host": "nsearchives.nseindia.com",
+      "mentionsByFile": {
+        "data/ipos-summary.json": 336,
+        "data/ipos.json": 9647,
+        "data/pending_updates.json": 2601,
+        "scripts/issuer_offer_registry.py": 10
+      },
+      "examples": [
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/ipos/101/publicQuality/sources/0/sourceUrl",
+          "url": "https://nsearchives.nseindia.com/emerge/corporates/content/Value360CommunicationsLimited_PROSP.pdf"
+        },
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/ipos/103/publicQuality/sources/0/sourceUrl",
+          "url": "https://nsearchives.nseindia.com/emerge/corporates/content/AmbaAutoSalesandServicesLimited_PROSP.pdf"
+        },
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/ipos/103/publicQuality/sources/1/sourceUrl",
+          "url": "https://nsearchives.nseindia.com/emerge/corporates/content/AmbaAutoSalesandServicesLimited_PROSP.pdf"
+        }
+      ]
+    },
+    {
+      "host": "omgalaxymould.com",
+      "mentionsByFile": {
+        "data/ipos.json": 12,
+        "data/pending_updates.json": 6,
+        "scripts/issuer_offer_registry.py": 2
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/12/dataCorrections/0/sourceUrl",
+          "url": "https://omgalaxymould.com/wp-content/uploads/2026/09/Project-Om_-RHP_with_RFS.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/12/dataCorrections/1/sourceUrl",
+          "url": "https://omgalaxymould.com/wp-content/uploads/2026/09/Project-Om_-RHP_with_RFS.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/12/dataCorrections/2/sourceUrl",
+          "url": "https://omgalaxymould.com/wp-content/uploads/2026/09/Project-Om_-RHP_with_RFS.pdf"
+        }
+      ]
+    },
+    {
+      "host": "raksantransformers.com",
+      "mentionsByFile": {
+        "data/ipos.json": 25,
+        "data/pending_updates.json": 13
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/11/dataCorrections/0/sourceUrl",
+          "url": "https://raksantransformers.com/assets/pdf/drhp.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/11/dataCorrections/1/sourceUrl",
+          "url": "https://raksantransformers.com/assets/pdf/drhp.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/11/dataCorrections/2/sourceUrl",
+          "url": "https://raksantransformers.com/assets/pdf/drhp.pdf"
+        }
+      ]
+    },
+    {
+      "host": "shaktipolytarp.com",
+      "mentionsByFile": {
+        "data/ipos.json": 5,
+        "data/pending_updates.json": 8,
+        "scripts/issuer_offer_registry.py": 2
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/5/documents/1/url",
+          "url": "https://shaktipolytarp.com/wp-content/uploads/2025/10/DRHP_Shakti_29092025.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/5/issuerDocumentExtraction/documentUrl",
+          "url": "https://shaktipolytarp.com/wp-content/uploads/2025/10/DRHP_Shakti_29092025.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/5/issuerDocumentExtraction/sourcePage",
+          "url": "https://shaktipolytarp.com/ipo-drhp-and-industry-report/"
+        }
+      ]
+    },
+    {
+      "host": "speedexind.com",
+      "mentionsByFile": {
+        "data/ipos.json": 13
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/13/dataCorrections/1/sourceUrl",
+          "url": "https://speedexind.com/wp-content/uploads/2026/09/SPeedex-RHP.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/13/dataCorrections/2/sourceUrl",
+          "url": "https://speedexind.com/wp-content/uploads/2026/09/SPeedex-RHP.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/13/dataCorrections/3/sourceUrl",
+          "url": "https://speedexind.com/wp-content/uploads/2026/09/SPeedex-RHP.pdf"
+        }
+      ]
+    },
+    {
+      "host": "sr-website-01.shiprocket.in",
+      "mentionsByFile": {
+        "data/ipos.json": 2
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/49/observations/VerifiedOfferFields/sourceUrl",
+          "url": "https://sr-website-01.shiprocket.in/sr-website/1.%20Shiprocket%20Standalone%20financials%20FY%2024-25-ulD9o9.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/49/sources/1/url",
+          "url": "https://sr-website-01.shiprocket.in/sr-website/1.%20Shiprocket%20Standalone%20financials%20FY%2024-25-ulD9o9.pdf"
+        }
+      ]
+    },
+    {
+      "host": "ssmobile.com",
+      "mentionsByFile": {
+        "data/ipos.json": 1,
+        "data/pending_updates.json": 6
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/1/sources/2/url",
+          "url": "https://ssmobile.com/aboutus/investor/keyDocuments.php"
+        },
+        {
+          "file": "data/pending_updates.json",
+          "pointerOrLine": "/updates/1/base/2/url",
+          "url": "https://ssmobile.com/aboutus/investor/keyDocuments.php"
+        },
+        {
+          "file": "data/pending_updates.json",
+          "pointerOrLine": "/updates/1/proposed/2/url",
+          "url": "https://ssmobile.com/aboutus/investor/keyDocuments.php"
+        }
+      ]
+    },
+    {
+      "host": "sunshinepictures.in",
+      "mentionsByFile": {
+        "data/ipos-summary.json": 1,
+        "data/ipos.json": 30,
+        "data/pending_updates.json": 35,
+        "scripts/issuer_offer_registry.py": 2
+      },
+      "examples": [
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/ipos/43/publicQuality/sources/0/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/43/dataCorrections/10/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/43/dataCorrections/11/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf"
+        }
+      ]
+    },
+    {
+      "host": "vamawoven.com",
+      "mentionsByFile": {
+        "data/ipos.json": 15,
+        "data/pending_updates.json": 6,
+        "scripts/issuer_offer_registry.py": 2
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/4/dataCorrections/1/sourceUrl",
+          "url": "https://vamawoven.com/wp-content/uploads/2026/09/RHP_VamaWovenfabLimited-2.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/4/dataCorrections/2/sourceUrl",
+          "url": "https://vamawoven.com/wp-content/uploads/2026/09/RHP_VamaWovenfabLimited-2.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/4/dataCorrections/3/sourceUrl",
+          "url": "https://vamawoven.com/wp-content/uploads/2026/09/RHP_VamaWovenfabLimited-2.pdf"
+        }
+      ]
+    },
+    {
+      "host": "www.acml.in",
+      "mentionsByFile": {
+        "data/ipos.json": 2
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/16/observations/VerifiedTerms/sourceUrl",
+          "url": "https://www.acml.in/market/IPO/NewIssueDetail/1731106"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/16/sources/2/url",
+          "url": "https://www.acml.in/market/IPO/NewIssueDetail/1731106"
+        }
+      ]
+    },
+    {
+      "host": "www.adani.com",
+      "mentionsByFile": {
+        "data/ipos-summary.json": 1,
+        "data/ipos.json": 1
+      },
+      "examples": [
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/meta/sourceHealth/P4-verified-non-IPO-cleanup/removed/0/evidence2",
+          "url": "https://www.adani.com/newsroom/media-releases/adani-enterprises-launches-its-3rd-public-issue-of-ncds-of-rs1000-crore"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/meta/sourceHealth/P4-verified-non-IPO-cleanup/removed/0/evidence2",
+          "url": "https://www.adani.com/newsroom/media-releases/adani-enterprises-launches-its-3rd-public-issue-of-ncds-of-rs1000-crore"
+        }
+      ]
+    },
+    {
+      "host": "www.alphave.in",
+      "mentionsByFile": {
+        "data/ipos.json": 5
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/16/observations/VerifiedOfferFields/sourceUrl",
+          "url": "https://www.alphave.in/ipo/manipal-payment-and-identity-solutions/shareholding"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/16/sources/3/url",
+          "url": "https://www.alphave.in/ipo/manipal-payment-and-identity-solutions/shareholding"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/17/observations/VerifiedOfferFields/sourceUrl",
+          "url": "https://www.alphave.in/ipo/lcc-projects"
+        }
+      ]
+    },
+    {
+      "host": "www.artofjewellery.com",
+      "mentionsByFile": {
+        "data/ipos.json": 1
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/45/sources/1/url",
+          "url": "https://www.artofjewellery.com/NewsMore?id=1328"
+        }
+      ]
+    },
+    {
+      "host": "www.bseindia.com",
+      "mentionsByFile": {
+        "data/ipos-summary.json": 5,
+        "data/ipos.json": 21,
+        "data/pending_updates.json": 11,
+        "scripts/issuer_offer_registry.py": 2
+      },
+      "examples": [
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/meta/errors/0",
+          "url": "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p:"
+        },
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/meta/sourceHealth/BSE-history-detail/error",
+          "url": "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P:"
+        },
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/meta/sourceHealth/BSE-history-detail/hosts/0",
+          "url": "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=2&Type=P"
+        }
+      ]
+    },
+    {
+      "host": "www.bsesme.com",
+      "mentionsByFile": {
+        "data/ipos-summary.json": 3,
+        "data/ipos.json": 4
+      },
+      "examples": [
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/meta/errors/1",
+          "url": "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2:"
+        },
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/meta/sourceHealth/BSE/checks/2/url",
+          "url": "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2"
+        },
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/meta/sourceHealth/BSE/errors/1",
+          "url": "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2:"
+        }
+      ]
+    },
+    {
+      "host": "www.business-standard.com",
+      "mentionsByFile": {
+        "data/ipos.json": 3
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/1356/sources/1/url",
+          "url": "https://www.business-standard.com/markets/ipo/spectraa-technology-solutions-ltd-ipo-96530"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/25/sources/1/url",
+          "url": "https://www.business-standard.com/markets/ipo/rays-of-belief-ltd-ipo-96457"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/37/sources/1/url",
+          "url": "https://www.business-standard.com/markets/ipo/madhur-knit-crafts-ltd-ipo-96159"
+        }
+      ]
+    },
+    {
+      "host": "www.equentis.com",
+      "mentionsByFile": {
+        "data/ipos.json": 1
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/35/sources/1/url",
+          "url": "https://www.equentis.com/ipos/symbiotec-pharma-ipo_36114"
+        }
+      ]
+    },
+    {
+      "host": "www.finsso.co.in",
+      "mentionsByFile": {
+        "data/ipos.json": 3
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/20/sources/2/url",
+          "url": "https://www.finsso.co.in/ipo_detail.php?ipo=Mzk3"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/21/sources/2/url",
+          "url": "https://www.finsso.co.in/ipo_detail.php?ipo=Mzkz"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/34/sources/1/url",
+          "url": "https://www.finsso.co.in/ipo_detail.php?ipo=Mzg1"
+        }
+      ]
+    },
+    {
+      "host": "www.hiparks.com",
+      "mentionsByFile": {
+        "data/ipos.json": 1
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/46/sources/1/url",
+          "url": "https://www.hiparks.com/press-release/horizon-industrial-parks-limiteds-initial-public-offer-to-open-on-monday-august-17-2026"
+        }
+      ]
+    },
+    {
+      "host": "www.idbidirect.in",
+      "mentionsByFile": {
+        "data/ipos.json": 2
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/17/observations/VerifiedTerms/sourceUrl",
+          "url": "https://www.idbidirect.in/Markets/ipo/Iposynopsis.aspx?code=85600&compname=LCC-Projects-Ltd&pagename=ForthComing-Issues"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/17/sources/2/url",
+          "url": "https://www.idbidirect.in/Markets/ipo/Iposynopsis.aspx?code=85600&compname=LCC-Projects-Ltd&pagename=ForthComing-Issues"
+        }
+      ]
+    },
+    {
+      "host": "www.ifinltd.in",
+      "mentionsByFile": {
+        "data/ipos.json": 2
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/19/observations/VerifiedTerms/sourceUrl",
+          "url": "https://www.ifinltd.in/ipo/new-issue-details/1731103/47"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/19/sources/2/url",
+          "url": "https://www.ifinltd.in/ipo/new-issue-details/1731103/47"
+        }
+      ]
+    },
+    {
+      "host": "www.innovision.co.in",
+      "mentionsByFile": {
+        "data/ipos.json": 2
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/116/observations/VerifiedOfferFields/sourceUrl",
+          "url": "https://www.innovision.co.in/public/uploads/631573851.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/116/sources/5/url",
+          "url": "https://www.innovision.co.in/public/uploads/631573851.pdf"
+        }
+      ]
+    },
+    {
+      "host": "www.ipoplatform.com",
+      "mentionsByFile": {
+        "data/ipos.json": 1
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/1351/observations/VerifiedFilingOfferFields/verificationUrl",
+          "url": "https://www.ipoplatform.com/ipo/mkc-agro-fresh-ipo/4803"
+        }
+      ]
+    },
+    {
+      "host": "www.ipopremium.in",
+      "mentionsByFile": {
+        "data/ipos-summary.json": 6,
+        "data/ipos.json": 59,
+        "data/pending_updates.json": 70,
+        "scripts/run_priority_subscriptions_v3.py": 2
+      },
+      "examples": [
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/ipos/1354/subscriptionSourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription"
+        },
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/ipos/1362/subscriptionSourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription"
+        },
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/ipos/4/subscriptionSourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription"
+        }
+      ]
+    },
+    {
+      "host": "www.junipergreenenergy.com",
+      "mentionsByFile": {
+        "data/ipos.json": 2
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/62/observations/VerifiedOfferFields/sourceUrl",
+          "url": "https://www.junipergreenenergy.com/wp-content/uploads/2025/06/JuniperGreenEnergyLimitedDRHP.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/62/sources/4/url",
+          "url": "https://www.junipergreenenergy.com/wp-content/uploads/2025/06/JuniperGreenEnergyLimitedDRHP.pdf"
+        }
+      ]
+    },
+    {
+      "host": "www.kheria.com",
+      "mentionsByFile": {
+        "data/ipos.json": 2,
+        "data/pending_updates.json": 4
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/1354/dataCorrections/0/sourceUrl",
+          "url": "https://www.kheria.com/documents/issue-documents/rhp.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/1354/sources/1/url",
+          "url": "https://www.kheria.com/documents/issue-documents/rhp.pdf"
+        },
+        {
+          "file": "data/pending_updates.json",
+          "pointerOrLine": "/updates/163/base/1/url",
+          "url": "https://www.kheria.com/documents/issue-documents/rhp.pdf"
+        }
+      ]
+    },
+    {
+      "host": "www.kissht.com",
+      "mentionsByFile": {
+        "data/ipos.json": 2
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/102/dataCorrections/16/after/financials/evidence/tables/0/rawLines/75",
+          "url": "https://www.kissht.com/investor-relations."
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/102/staticFieldProvenance/financials/evidence/tables/0/rawLines/75",
+          "url": "https://www.kissht.com/investor-relations."
+        }
+      ]
+    },
+    {
+      "host": "www.livemint.com",
+      "mentionsByFile": {
+        "data/ipos.json": 1
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/33/sources/1/url",
+          "url": "https://www.livemint.com/market/ipo/sumax-engineering-ltd-ipo-ipo1292"
+        }
+      ]
+    },
+    {
+      "host": "www.merchantbanker.in",
+      "mentionsByFile": {
+        "data/ipos.json": 3
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/28/sources/2/url",
+          "url": "https://www.merchantbanker.in/blog/ipo-details/purple-style-labs-limited-ipo-analysis"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/33/sources/2/url",
+          "url": "https://www.merchantbanker.in/blog/ipo-details/sumax-engineering-limited-ipo-details"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/38/sources/1/url",
+          "url": "https://www.merchantbanker.in/blog/ipo-details/hy-tech-engineers-limited-ipo-details"
+        }
+      ]
+    },
+    {
+      "host": "www.mfnewsdaily.in",
+      "mentionsByFile": {
+        "data/ipos.json": 1
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/1348/observations/VerifiedFilingOfferFields/verificationUrl",
+          "url": "https://www.mfnewsdaily.in/torrent-gas-files-updated-drhp-for-public-issue-promoter-torrent-investments-to-offload-up-to-33-5-crore-shares-via-pure-ofs/"
+        }
+      ]
+    },
+    {
+      "host": "www.moneycontrol.com",
+      "mentionsByFile": {
+        "data/ipos.json": 3
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/24/sources/1/url",
+          "url": "https://www.moneycontrol.com/ipo/qualiance-international-qil-ipodetail"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/27/sources/1/url",
+          "url": "https://www.moneycontrol.com/ipo/shanti-inorganics-sil34-ipodetail/"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/29/sources/1/url",
+          "url": "https://www.moneycontrol.com/ipo/ashutosh-fibre-ltd-ipo-afl05-ipodetail"
+        }
+      ]
+    },
+    {
+      "host": "www.muthootsecurities.com",
+      "mentionsByFile": {
+        "data/ipos.json": 1
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/44/sources/1/url",
+          "url": "https://www.muthootsecurities.com/IPO/IPO-Synopsis/Shankesh-Jewellers-Ltd/2/96152"
+        }
+      ]
+    },
+    {
+      "host": "www.nseindia.com",
+      "mentionsByFile": {
+        "data/ipos-summary.json": 10,
+        "data/ipos.json": 4374,
+        "data/pending_updates.json": 80
+      },
+      "examples": [
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/ipos/0/publicQuality/sources/0/sourceUrl",
+          "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo"
+        },
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/ipos/1353/publicQuality/sources/0/sourceUrl",
+          "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo"
+        },
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/ipos/1362/publicQuality/sources/0/sourceUrl",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=AXIOMGAS&series=SME"
+        }
+      ]
+    },
+    {
+      "host": "www.orientpublication.com",
+      "mentionsByFile": {
+        "data/ipos.json": 2
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/26/sources/2/url",
+          "url": "https://www.orientpublication.com/2026/08/deepa-jewellers-limiteds-initial-public.html"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/32/sources/1/url",
+          "url": "https://www.orientpublication.com/2026/08/lumino-industries-limiteds-initial.html?m=1"
+        }
+      ]
+    },
+    {
+      "host": "www.orklaindia.com",
+      "mentionsByFile": {
+        "data/ipos-summary.json": 1,
+        "data/ipos.json": 23,
+        "scripts/issuer_offer_registry.py": 2
+      },
+      "examples": [
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/ipos/184/publicQuality/sources/0/sourceUrl",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/184/dataCorrections/0/sourceUrl",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/184/dataCorrections/1/sourceUrl",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf"
+        }
+      ]
+    },
+    {
+      "host": "www.plindia.com",
+      "mentionsByFile": {
+        "data/ipos.json": 3
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/18/observations/VerifiedTerms/sourceUrl",
+          "url": "https://www.plindia.com/ipo/karamtara-engineering-limited-ipo/"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/18/sources/2/url",
+          "url": "https://www.plindia.com/ipo/karamtara-engineering-limited-ipo/"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/31/sources/1/url",
+          "url": "https://www.plindia.com/ipo/esds-software-solution-limited-ipo/"
+        }
+      ]
+    },
+    {
+      "host": "www.pninews.com",
+      "mentionsByFile": {
+        "data/ipos.json": 1
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/28/sources/1/url",
+          "url": "https://www.pninews.com/purple-style-labs-limiteds-initial-public-offering-ipo-opens-on-monday-august-31-2026-price-band-has-been-fixed-at-rs-546-to-rs-575-per-equity-share/"
+        }
+      ]
+    },
+    {
+      "host": "www.rajputanastainless.com",
+      "mentionsByFile": {
+        "data/ipos.json": 2
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/117/observations/VerifiedOfferFields/sourceUrl",
+          "url": "https://www.rajputanastainless.com/public/frontend/assets/pdf/RSL_Prospectus_Project-Steel_Final.pdf"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/117/sources/4/url",
+          "url": "https://www.rajputanastainless.com/public/frontend/assets/pdf/RSL_Prospectus_Project-Steel_Final.pdf"
+        }
+      ]
+    },
+    {
+      "host": "www.rrfinance.com",
+      "mentionsByFile": {
+        "data/ipos.json": 2
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/36/sources/1/url",
+          "url": "https://www.rrfinance.com/OurProducts/PublicIssues/Ongoing-Public-Issue-Details.aspx?Pname=Skyways+Air+Services+Limited&sch_code=SCH-1458"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/40/sources/1/url",
+          "url": "https://www.rrfinance.com/OurProducts/PublicIssues/Ongoing-Public-Issue-Details.aspx?sch_code=SCH-1457"
+        }
+      ]
+    },
+    {
+      "host": "www.sebi.gov.in",
+      "mentionsByFile": {
+        "data/ipos-summary.json": 111,
+        "data/ipos.json": 4760,
+        "data/pending_updates.json": 2290,
+        "scripts/issuer_offer_registry.py": 52
+      },
+      "examples": [
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/ipos/10/publicQuality/sources/0/sourceUrl",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789531557213.pdf"
+        },
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/ipos/102/publicQuality/sources/0/sourceUrl",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jun-2026/1781763357383.pdf"
+        },
+        {
+          "file": "data/ipos-summary.json",
+          "pointerOrLine": "/ipos/106/publicQuality/sources/0/sourceUrl",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2026/1776237369286.pdf"
+        }
+      ]
+    },
+    {
+      "host": "www.sushilfinance.com",
+      "mentionsByFile": {
+        "data/ipos.json": 1
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/41/sources/2/url",
+          "url": "https://www.sushilfinance.com/blogs/IPO-Note/Tempsens-Instruments-India-Limited-IPO"
+        }
+      ]
+    },
+    {
+      "host": "youtu.be",
+      "mentionsByFile": {
+        "data/ipos.json": 12
+      },
+      "examples": [
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/1362/activeOfferTerms/source/responseText",
+          "url": "https://youtu.be/UJ394m2Q3rg"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/1362/activeOfferTerms/source/responseText",
+          "url": "https://youtu.be/cIUJOIH0x4c"
+        },
+        {
+          "file": "data/ipos.json",
+          "pointerOrLine": "/ipos/1362/dataCorrections/0/after/source/responseText",
+          "url": "https://youtu.be/UJ394m2Q3rg"
+        }
+      ]
+    }
+  ],
+  "canonicalSecondarySubscriptionLabels": [
+    {
+      "id": "vama-wovenfab-limited",
+      "status": "closed",
+      "source": "IPO Premium subscription (secondary)",
+      "sourceUrl": null
+    },
+    {
+      "id": "shakti-polytarp-limited",
+      "status": "closed",
+      "source": "IPO Premium subscription (secondary)",
+      "sourceUrl": null
+    },
+    {
+      "id": "injecto-polymers-limited",
+      "status": "closed",
+      "source": "IPO Premium subscription (secondary)",
+      "sourceUrl": null
+    },
+    {
+      "id": "century-business-media-limited",
+      "status": "closed",
+      "source": "IPO Premium subscription (secondary)",
+      "sourceUrl": null
+    },
+    {
+      "id": "raksan-transformers-limited",
+      "status": "closed",
+      "source": "IPO Dhamaka subscription (secondary)",
+      "sourceUrl": null
+    },
+    {
+      "id": "om-galaxy-limited",
+      "status": "closed",
+      "source": "IPO Dhamaka subscription (secondary)",
+      "sourceUrl": null
+    },
+    {
+      "id": "maharaja-speedex-india-limited",
+      "status": "closed",
+      "source": "IPO Dhamaka subscription (secondary)",
+      "sourceUrl": null
+    },
+    {
+      "id": "kheriaauto",
+      "status": "open",
+      "source": "IPO Premium subscription (secondary)",
+      "sourceUrl": "https://www.ipopremium.in/view/subscription"
+    },
+    {
+      "id": "axiomgas",
+      "status": "open",
+      "source": "IPO Premium subscription (secondary)",
+      "sourceUrl": "https://www.ipopremium.in/view/subscription"
+    }
+  ],
+  "software": [
+    {
+      "name": "pypdf",
+      "version": "6.18.1",
+      "licenseDeclaration": "BSD-3-Clause",
+      "releaseUrl": "https://pypi.org/project/pypdf/6.18.1/",
+      "notices": [
+        {
+          "path": "pypdf-6.18.1.dist-info/licenses/LICENSE",
+          "bytes": 1605,
+          "sha256": "a97ac230e5f33ef10a5367a850eb01f91f1a0b064e34742c7794d2294557f524"
+        }
+      ]
+    },
+    {
+      "name": "fonttools",
+      "version": "4.65.0",
+      "licenseDeclaration": "MIT",
+      "releaseUrl": "https://pypi.org/project/fonttools/4.65.0/",
+      "notices": [
+        {
+          "path": "fonttools-4.65.0.dist-info/licenses/LICENSE",
+          "bytes": 1093,
+          "sha256": "22bef80697ecfaa17f97e62b9a26dfa12820be05583e8dd12ad169b241274c99"
+        },
+        {
+          "path": "fonttools-4.65.0.dist-info/licenses/LICENSE.external",
+          "bytes": 20410,
+          "sha256": "b082a5f86775b2641f01bccb8b9c82908481de5f502bb254b1e13bfc2a9f303d"
+        }
+      ]
+    },
+    {
+      "name": "beautifulsoup4",
+      "version": "4.15.0",
+      "licenseDeclaration": "MIT License",
+      "releaseUrl": "https://pypi.org/project/beautifulsoup4/4.15.0/",
+      "notices": [
+        {
+          "path": "beautifulsoup4-4.15.0.dist-info/licenses/AUTHORS",
+          "bytes": 2201,
+          "sha256": "b989238918e1fdac1e46717cb405b63e92497a272413af0d989c1df6c8abcb6f"
+        },
+        {
+          "path": "beautifulsoup4-4.15.0.dist-info/licenses/LICENSE",
+          "bytes": 1441,
+          "sha256": "55b4d8d4b1e5bc86d10efac91b74c87bcb77526b0f5b9edaf8b9cd2adc7397b2"
+        }
+      ]
+    },
+    {
+      "name": "requests",
+      "version": "2.34.2",
+      "licenseDeclaration": "Apache-2.0",
+      "releaseUrl": "https://pypi.org/project/requests/2.34.2/",
+      "notices": [
+        {
+          "path": "requests-2.34.2.dist-info/licenses/LICENSE",
+          "bytes": 10142,
+          "sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b"
+        },
+        {
+          "path": "requests-2.34.2.dist-info/licenses/NOTICE",
+          "bytes": 38,
+          "sha256": "f5110972dedad2b4e9d314518daf3b7d72d6e02e499acd802181de6f74571dcc"
+        }
+      ]
+    },
+    {
+      "name": "tzdata",
+      "version": "2026.4",
+      "licenseDeclaration": "Apache-2.0",
+      "releaseUrl": "https://pypi.org/project/tzdata/2026.4/",
+      "notices": [
+        {
+          "path": "tzdata-2026.4.dist-info/licenses/LICENSE",
+          "bytes": 625,
+          "sha256": "df58f69ea88683035d720b5375bcef0cf5aeaa98a1d098d572e0992c378deb46"
+        },
+        {
+          "path": "tzdata-2026.4.dist-info/licenses/licenses/LICENSE_APACHE",
+          "bytes": 11357,
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        }
+      ]
+    },
+    {
+      "name": "certifi",
+      "version": "2026.7.22",
+      "licenseDeclaration": "MPL-2.0",
+      "releaseUrl": "https://pypi.org/project/certifi/2026.7.22/",
+      "notices": [
+        {
+          "path": "certifi-2026.7.22.dist-info/licenses/LICENSE",
+          "bytes": 989,
+          "sha256": "e93716da6b9c0d5a4a1df60fe695b370f0695603d21f6f83f053e42cfc10caf7"
+        }
+      ]
+    },
+    {
+      "name": "charset-normalizer",
+      "version": "3.5.1",
+      "licenseDeclaration": "MIT",
+      "releaseUrl": "https://pypi.org/project/charset-normalizer/3.5.1/",
+      "notices": [
+        {
+          "path": "charset_normalizer-3.5.1.dist-info/licenses/LICENSE",
+          "bytes": 1092,
+          "sha256": "18577485d3704f1a479ded8e573c0976cfed315fd2fd17983fa988da4c2f70d1"
+        }
+      ]
+    },
+    {
+      "name": "idna",
+      "version": "3.19",
+      "licenseDeclaration": "BSD-3-Clause",
+      "releaseUrl": "https://pypi.org/project/idna/3.19/",
+      "notices": [
+        {
+          "path": "idna-3.19.dist-info/licenses/LICENSE.md",
+          "bytes": 1541,
+          "sha256": "1a9a4f0e3d479a27240ddd59a9137a66ab4a0f9dfdc8ca6188cc0bfd85187f04"
+        }
+      ]
+    },
+    {
+      "name": "soupsieve",
+      "version": "2.9.2",
+      "licenseDeclaration": "MIT",
+      "releaseUrl": "https://pypi.org/project/soupsieve/2.9.2/",
+      "notices": [
+        {
+          "path": "soupsieve-2.9.2.dist-info/licenses/LICENSE.md",
+          "bytes": 1096,
+          "sha256": "76a0acdb98c3a63681e20b6f096699ef8cad5fb35d56eef8387e0fa71d797a9a"
+        }
+      ]
+    },
+    {
+      "name": "typing-extensions",
+      "version": "4.16.0",
+      "licenseDeclaration": "PSF-2.0",
+      "releaseUrl": "https://pypi.org/project/typing-extensions/4.16.0/",
+      "notices": [
+        {
+          "path": "typing_extensions-4.16.0.dist-info/licenses/LICENSE",
+          "bytes": 13936,
+          "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf"
+        }
+      ]
+    },
+    {
+      "name": "urllib3",
+      "version": "2.7.0",
+      "licenseDeclaration": "MIT",
+      "releaseUrl": "https://pypi.org/project/urllib3/2.7.0/",
+      "notices": [
+        {
+          "path": "urllib3-2.7.0.dist-info/licenses/LICENSE.txt",
+          "bytes": 1093,
+          "sha256": "130e3a64d5fdd5d096a752694634a7d9df284469de86e5732100268041e3d686"
+        }
+      ]
+    }
+  ]
+}

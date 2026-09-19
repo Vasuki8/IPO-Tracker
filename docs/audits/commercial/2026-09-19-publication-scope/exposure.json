@@ -1,0 +1,4295 @@
+{
+  "schemaVersion": 1,
+  "baseCommit": "1e86840856525db2ee2b436ed64f2b6e60374ee0",
+  "assessedDateUtc": "2026-09-19",
+  "scope": "Seven exact provider/issuer host families plus all canonical secondary subscription labels; static committed public artifacts, not a new source/legal review.",
+  "inputs": [
+    {
+      "path": "data/ipos.json",
+      "sha256": "0713fb661ab39e253b38061f5b5eff1ae017c1467c1fd2930598ce5e43b70300",
+      "bytes": 27830228
+    },
+    {
+      "path": "data/ipos-summary.json",
+      "sha256": "10891dd8f40d73823f7e41d3691b0b64ec6bae5bf8410729e18effdabc215b7e",
+      "bytes": 1327892
+    },
+    {
+      "path": "data/pending_updates.json",
+      "sha256": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+      "bytes": 12256367
+    },
+    {
+      "path": "app.js",
+      "sha256": "48d28d288e3fe38a17ff88bc8b94180fd4d26816637d02740876ae38aabbea7a",
+      "bytes": 50990
+    },
+    {
+      "path": "public-quality.js",
+      "sha256": "3547bf1fd2ec68db2097591e4f1df2c83bc97cc91547b2cd886cb5fd59b2776a",
+      "bytes": 9043
+    },
+    {
+      "path": "scripts/build_company_pages.py",
+      "sha256": "1363b62522f9d272ca9c5231d65746f5d1fa38b2ce1bf501fadcf33c46062641",
+      "bytes": 17532
+    },
+    {
+      "path": "uv.lock",
+      "sha256": "cb8f0a5f4f0e92c449d67b81309364744fc83a000eaef965e0bbc274a0607a5d",
+      "bytes": 65321
+    },
+    {
+      "path": "data/public_display_holds.json",
+      "sha256": "296ddc61a3f7f8c8dbb06d86bbb9ca92d67203230ef66c834cb34e4eced588b6",
+      "bytes": 24616
+    },
+    {
+      "path": "data/phase_status.json",
+      "sha256": "7aeee5be56805859ff9685bb346121a0f5102065f8118bdab5f493e62ac749e7",
+      "bytes": 653
+    },
+    {
+      "path": "ipo/vama-wovenfab-limited/index.html",
+      "sha256": "0e67b0835622dd9251aa64b48cefb7b0cde1844104bf8c97478a10fb0c63eb2c",
+      "bytes": 8298
+    },
+    {
+      "path": "ipo/shakti-polytarp-limited/index.html",
+      "sha256": "da020c1a8592d2cc5c5992d600117fdebc193069bd8f58f49913d3e2cf390b2c",
+      "bytes": 9991
+    },
+    {
+      "path": "ipo/injecto-polymers-limited/index.html",
+      "sha256": "63f891122bae42ebb77568b76de5756061554678c543959bd11e0e8d4c6916f9",
+      "bytes": 7914
+    },
+    {
+      "path": "ipo/century-business-media-limited/index.html",
+      "sha256": "c04a5cfe02b8e288b6d1c747ee21e38e4cb80baaee88aa532f631790aa44b4cb",
+      "bytes": 7761
+    },
+    {
+      "path": "ipo/raksan-transformers-limited/index.html",
+      "sha256": "78efe82dbbea35327f76fa8fa50aaf8ecbc00d122de0d859d529201041ccbf3e",
+      "bytes": 5560
+    },
+    {
+      "path": "ipo/om-galaxy-limited/index.html",
+      "sha256": "5055e4fbdd845588dc8452c4bec37f3743365c3bf98735e1f3cabddee560a704",
+      "bytes": 5451
+    },
+    {
+      "path": "ipo/maharaja-speedex-india-limited/index.html",
+      "sha256": "109c484a6391f9fa2c7bfd3fa7b7be99eec5f375d3364f0d479ed0bf40261642",
+      "bytes": 5642
+    },
+    {
+      "path": "ipo/steamhouse/index.html",
+      "sha256": "4c0d8901c9e58b83d3307b278354a5c580bfd526c3f28dba09cd9c11816357ac",
+      "bytes": 7184
+    },
+    {
+      "path": "ipo/lumino/index.html",
+      "sha256": "3b64287f92b8a9ea11b66e3d5d46503a9f9116a43b5ad6b234644df78d6efd8f",
+      "bytes": 6577
+    },
+    {
+      "path": "ipo/sunshine/index.html",
+      "sha256": "e51f3861b2b93fd91ce3a473dc55e1ed73f972b774fe9f3b8743813d1a4d49e2",
+      "bytes": 6450
+    },
+    {
+      "path": "ipo/orklaindia/index.html",
+      "sha256": "5f0d65c289a71e89d784ecaa82cc06e7fa68fb82457a18c5d2643271401e97b9",
+      "bytes": 6688
+    },
+    {
+      "path": "ipo/kheriaauto/index.html",
+      "sha256": "479ab8f2b5f4d3436f715c304a09759900c0b571ba19509e547641808ab48e58",
+      "bytes": 6780
+    },
+    {
+      "path": "ipo/axiomgas/index.html",
+      "sha256": "a1571b95dae1f78056c88bf4d2449a0ba57e1dbd7f949f9390b5eb0bc4f1a3dd",
+      "bytes": 6475
+    }
+  ],
+  "cohort": [
+    {
+      "id": "vama-wovenfab-limited",
+      "company": "Vama Wovenfab Limited",
+      "status": "closed",
+      "profilePath": "ipo/vama-wovenfab-limited/",
+      "secondarySubscription": {
+        "label": "IPO Premium subscription (secondary)",
+        "sourceUrl": null,
+        "sourceUrlBinding": "missing_not_inferred_from_history",
+        "canonicalFields": [
+          "nii",
+          "qib",
+          "retail",
+          "total"
+        ],
+        "profileFields": [
+          "nii",
+          "qib",
+          "retail",
+          "total"
+        ],
+        "profileState": "reported",
+        "summaryTotalPresent": true,
+        "summaryState": "reported",
+        "csvColumns": [
+          "Subscription multiple",
+          "Subscription source observation time",
+          "Subscription collection time",
+          "Subscription source authority",
+          "Subscription source"
+        ],
+        "sourceObservedAt": "2026-09-17T20:23:13+05:30",
+        "collectedAt": "2026-09-17T23:13:57+05:30",
+        "canonicalHistoryCount": 12,
+        "publicProfileHistoryCount": 12
+      },
+      "canonicalReferences": [
+        {
+          "pointer": "/sources/1/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/0/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/1/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/2/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/3/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/4/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/5/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/6/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/7/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/8/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/9/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/10/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/11/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "profileReferences": [
+        {
+          "pointer": "/subscriptionSourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/0/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/1/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/2/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/3/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/4/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/5/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/6/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/7/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/8/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/9/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/10/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/11/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/sources/1/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "summaryReferences": [
+        {
+          "pointer": "/subscriptionSourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "fieldProofBindings": [],
+      "historyLocations": [
+        "/subscriptionHistory"
+      ],
+      "correctionCount": 7,
+      "extractionMetadata": {
+        "offerDocumentExtraction": {
+          "sourceUrl": "https://vamawoven.com/wp-content/uploads/2026/09/RHP_VamaWovenfabLimited-2.pdf",
+          "status": "extracted"
+        },
+        "issuerDocumentExtraction": {
+          "sourceUrl": "https://vamawoven.com/wp-content/uploads/2026/09/RHP_VamaWovenfabLimited-2.pdf",
+          "status": "extracted"
+        }
+      },
+      "canonicalPointer": "/ipos/4",
+      "profileFile": "ipo/vama-wovenfab-limited/index.html"
+    },
+    {
+      "id": "shakti-polytarp-limited",
+      "company": "Shakti Polytarp Limited",
+      "status": "closed",
+      "profilePath": "ipo/shakti-polytarp-limited/",
+      "secondarySubscription": {
+        "label": "IPO Premium subscription (secondary)",
+        "sourceUrl": null,
+        "sourceUrlBinding": "missing_not_inferred_from_history",
+        "canonicalFields": [
+          "nii",
+          "qib",
+          "retail",
+          "total"
+        ],
+        "profileFields": [
+          "nii",
+          "qib",
+          "retail",
+          "total"
+        ],
+        "profileState": "reported",
+        "summaryTotalPresent": true,
+        "summaryState": "reported",
+        "csvColumns": [
+          "Subscription multiple",
+          "Subscription source observation time",
+          "Subscription collection time",
+          "Subscription source authority",
+          "Subscription source"
+        ],
+        "sourceObservedAt": "2026-09-17T17:06:05+05:30",
+        "collectedAt": "2026-09-17T23:13:51+05:30",
+        "canonicalHistoryCount": 13,
+        "publicProfileHistoryCount": 13
+      },
+      "canonicalReferences": [
+        {
+          "pointer": "/sources/1/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/0/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/1/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/2/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/3/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/4/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/5/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/6/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/7/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/8/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/9/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/10/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/11/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/12/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "profileReferences": [
+        {
+          "pointer": "/subscriptionSourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/0/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/1/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/2/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/3/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/4/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/5/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/6/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/7/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/8/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/9/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/10/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/11/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/12/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/sources/1/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "summaryReferences": [
+        {
+          "pointer": "/subscriptionSourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "fieldProofBindings": [],
+      "historyLocations": [
+        "/subscriptionHistory"
+      ],
+      "correctionCount": 1,
+      "extractionMetadata": {
+        "offerDocumentExtraction": {
+          "sourceUrl": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260911-17/20260911-17.pdf",
+          "status": "extracted"
+        },
+        "issuerDocumentExtraction": {
+          "sourceUrl": "https://shaktipolytarp.com/wp-content/uploads/2025/10/DRHP_Shakti_29092025.pdf",
+          "status": "extracted"
+        }
+      },
+      "canonicalPointer": "/ipos/5",
+      "profileFile": "ipo/shakti-polytarp-limited/index.html"
+    },
+    {
+      "id": "injecto-polymers-limited",
+      "company": "INJECTO POLYMERS LIMITED",
+      "status": "closed",
+      "profilePath": "ipo/injecto-polymers-limited/",
+      "secondarySubscription": {
+        "label": "IPO Premium subscription (secondary)",
+        "sourceUrl": null,
+        "sourceUrlBinding": "missing_not_inferred_from_history",
+        "canonicalFields": [
+          "nii",
+          "qib",
+          "retail",
+          "total"
+        ],
+        "profileFields": [
+          "nii",
+          "qib",
+          "retail",
+          "total"
+        ],
+        "profileState": "reported",
+        "summaryTotalPresent": true,
+        "summaryState": "reported",
+        "csvColumns": [
+          "Subscription multiple",
+          "Subscription source observation time",
+          "Subscription collection time",
+          "Subscription source authority",
+          "Subscription source"
+        ],
+        "sourceObservedAt": "2026-09-16T16:51:09+05:30",
+        "collectedAt": "2026-09-16T22:53:15+05:30",
+        "canonicalHistoryCount": 9,
+        "publicProfileHistoryCount": 9
+      },
+      "canonicalReferences": [
+        {
+          "pointer": "/sources/0/url",
+          "url": "https://ipodhamaka.in/subscription/",
+          "provider": "IPO Dhamaka"
+        },
+        {
+          "pointer": "/sources/2/url",
+          "url": "https://ipostatus.integratedregistry.in/RegistrarsToSTANew.aspx",
+          "provider": "Integrated Registry"
+        },
+        {
+          "pointer": "/sources/3/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/source/url",
+          "url": "https://ipodhamaka.in/subscription/",
+          "provider": "IPO Dhamaka"
+        },
+        {
+          "pointer": "/documents/1/url",
+          "url": "https://ipostatus.integratedregistry.in/PDFFILES/INJECTORHP.pdf",
+          "provider": "Integrated Registry"
+        },
+        {
+          "pointer": "/subscriptionHistory/1/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/2/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/3/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/4/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/5/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/6/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/7/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/8/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/issuerDocumentExtraction/documentUrl",
+          "url": "https://ipostatus.integratedregistry.in/PDFFILES/INJECTORHP.pdf",
+          "provider": "Integrated Registry"
+        },
+        {
+          "pointer": "/issuerDocumentExtraction/sourcePage",
+          "url": "https://ipostatus.integratedregistry.in/RegistrarsToSTANew.aspx",
+          "provider": "Integrated Registry"
+        }
+      ],
+      "profileReferences": [
+        {
+          "pointer": "/subscriptionSourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/1/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/2/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/3/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/4/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/5/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/6/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/7/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/8/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/documents/1/url",
+          "url": "https://ipostatus.integratedregistry.in/PDFFILES/INJECTORHP.pdf",
+          "provider": "Integrated Registry"
+        },
+        {
+          "pointer": "/sources/0/url",
+          "url": "https://ipodhamaka.in/subscription/",
+          "provider": "IPO Dhamaka"
+        },
+        {
+          "pointer": "/sources/2/url",
+          "url": "https://ipostatus.integratedregistry.in/RegistrarsToSTANew.aspx",
+          "provider": "Integrated Registry"
+        },
+        {
+          "pointer": "/sources/3/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "summaryReferences": [
+        {
+          "pointer": "/subscriptionSourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "fieldProofBindings": [],
+      "historyLocations": [
+        "/subscriptionHistory"
+      ],
+      "correctionCount": 7,
+      "extractionMetadata": {
+        "offerDocumentExtraction": {
+          "sourceUrl": "https://injectopolymers.in/wp-content/uploads/2026/09/1.-RHP_07.09.2026.pdf",
+          "status": "extracted"
+        },
+        "issuerDocumentExtraction": {
+          "sourceUrl": "https://ipostatus.integratedregistry.in/PDFFILES/INJECTORHP.pdf",
+          "status": "extracted"
+        }
+      },
+      "canonicalPointer": "/ipos/7",
+      "profileFile": "ipo/injecto-polymers-limited/index.html"
+    },
+    {
+      "id": "century-business-media-limited",
+      "company": "CENTURY BUSINESS MEDIA LIMITED",
+      "status": "closed",
+      "profilePath": "ipo/century-business-media-limited/",
+      "secondarySubscription": {
+        "label": "IPO Premium subscription (secondary)",
+        "sourceUrl": null,
+        "sourceUrlBinding": "missing_not_inferred_from_history",
+        "canonicalFields": [
+          "nii",
+          "qib",
+          "retail",
+          "total"
+        ],
+        "profileFields": [
+          "nii",
+          "qib",
+          "retail",
+          "total"
+        ],
+        "profileState": "reported",
+        "summaryTotalPresent": true,
+        "summaryState": "reported",
+        "csvColumns": [
+          "Subscription multiple",
+          "Subscription source observation time",
+          "Subscription collection time",
+          "Subscription source authority",
+          "Subscription source"
+        ],
+        "sourceObservedAt": "2026-09-16T19:21:06+05:30",
+        "collectedAt": "2026-09-16T22:53:08+05:30",
+        "canonicalHistoryCount": 9,
+        "publicProfileHistoryCount": 9
+      },
+      "canonicalReferences": [
+        {
+          "pointer": "/sources/0/url",
+          "url": "https://ipodhamaka.in/subscription/",
+          "provider": "IPO Dhamaka"
+        },
+        {
+          "pointer": "/sources/2/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/source/url",
+          "url": "https://ipodhamaka.in/subscription/",
+          "provider": "IPO Dhamaka"
+        },
+        {
+          "pointer": "/subscriptionHistory/1/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/2/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/3/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/4/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/5/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/6/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/7/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/8/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "profileReferences": [
+        {
+          "pointer": "/subscriptionSourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/1/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/2/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/3/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/4/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/5/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/6/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/7/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/8/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/sources/0/url",
+          "url": "https://ipodhamaka.in/subscription/",
+          "provider": "IPO Dhamaka"
+        },
+        {
+          "pointer": "/sources/2/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "summaryReferences": [
+        {
+          "pointer": "/subscriptionSourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "fieldProofBindings": [],
+      "historyLocations": [
+        "/subscriptionHistory"
+      ],
+      "correctionCount": 5,
+      "extractionMetadata": {
+        "offerDocumentExtraction": {
+          "sourceUrl": "https://centurymedia.in/wp-content/uploads/2026/09/Red-Herring-Prospectus.pdf",
+          "status": "extracted"
+        },
+        "issuerDocumentExtraction": {
+          "sourceUrl": "https://centurymedia.in/wp-content/uploads/2026/09/Red-Herring-Prospectus.pdf",
+          "status": "extracted"
+        }
+      },
+      "canonicalPointer": "/ipos/9",
+      "profileFile": "ipo/century-business-media-limited/index.html"
+    },
+    {
+      "id": "raksan-transformers-limited",
+      "company": "RAKSAN TRANSFORMERS LIMITED",
+      "status": "closed",
+      "profilePath": "ipo/raksan-transformers-limited/",
+      "secondarySubscription": {
+        "label": "IPO Dhamaka subscription (secondary)",
+        "sourceUrl": null,
+        "sourceUrlBinding": "missing_not_inferred_from_history",
+        "canonicalFields": [
+          "nii",
+          "qib",
+          "retail",
+          "total"
+        ],
+        "profileFields": [
+          "nii",
+          "qib",
+          "retail",
+          "total"
+        ],
+        "profileState": "reported",
+        "summaryTotalPresent": true,
+        "summaryState": "reported",
+        "csvColumns": [
+          "Subscription multiple",
+          "Subscription source observation time",
+          "Subscription collection time",
+          "Subscription source authority",
+          "Subscription source"
+        ],
+        "sourceObservedAt": null,
+        "collectedAt": null,
+        "canonicalHistoryCount": 1,
+        "publicProfileHistoryCount": 1
+      },
+      "canonicalReferences": [
+        {
+          "pointer": "/sources/0/url",
+          "url": "https://ipodhamaka.in/subscription/",
+          "provider": "IPO Dhamaka"
+        },
+        {
+          "pointer": "/source/url",
+          "url": "https://ipodhamaka.in/subscription/",
+          "provider": "IPO Dhamaka"
+        }
+      ],
+      "profileReferences": [
+        {
+          "pointer": "/subscriptionSourceUrl",
+          "url": "https://ipodhamaka.in/subscription/",
+          "provider": "IPO Dhamaka"
+        },
+        {
+          "pointer": "/sources/0/url",
+          "url": "https://ipodhamaka.in/subscription/",
+          "provider": "IPO Dhamaka"
+        }
+      ],
+      "summaryReferences": [
+        {
+          "pointer": "/subscriptionSourceUrl",
+          "url": "https://ipodhamaka.in/subscription/",
+          "provider": "IPO Dhamaka"
+        }
+      ],
+      "fieldProofBindings": [],
+      "historyLocations": [
+        "/subscriptionHistory"
+      ],
+      "correctionCount": 5,
+      "extractionMetadata": {
+        "offerDocumentExtraction": {
+          "sourceUrl": "https://raksantransformers.com/assets/pdf/drhp.pdf",
+          "status": "extracted"
+        },
+        "issuerDocumentExtraction": {
+          "sourceUrl": "https://raksantransformers.com/assets/pdf/drhp.pdf",
+          "status": "extracted"
+        }
+      },
+      "canonicalPointer": "/ipos/11",
+      "profileFile": "ipo/raksan-transformers-limited/index.html"
+    },
+    {
+      "id": "om-galaxy-limited",
+      "company": "OM GALAXY LIMITED",
+      "status": "closed",
+      "profilePath": "ipo/om-galaxy-limited/",
+      "secondarySubscription": {
+        "label": "IPO Dhamaka subscription (secondary)",
+        "sourceUrl": null,
+        "sourceUrlBinding": "missing_not_inferred_from_history",
+        "canonicalFields": [
+          "nii",
+          "qib",
+          "retail",
+          "total"
+        ],
+        "profileFields": [
+          "nii",
+          "qib",
+          "retail",
+          "total"
+        ],
+        "profileState": "reported",
+        "summaryTotalPresent": true,
+        "summaryState": "reported",
+        "csvColumns": [
+          "Subscription multiple",
+          "Subscription source observation time",
+          "Subscription collection time",
+          "Subscription source authority",
+          "Subscription source"
+        ],
+        "sourceObservedAt": null,
+        "collectedAt": null,
+        "canonicalHistoryCount": 1,
+        "publicProfileHistoryCount": 1
+      },
+      "canonicalReferences": [
+        {
+          "pointer": "/sources/0/url",
+          "url": "https://ipodhamaka.in/subscription/",
+          "provider": "IPO Dhamaka"
+        },
+        {
+          "pointer": "/source/url",
+          "url": "https://ipodhamaka.in/subscription/",
+          "provider": "IPO Dhamaka"
+        }
+      ],
+      "profileReferences": [
+        {
+          "pointer": "/subscriptionSourceUrl",
+          "url": "https://ipodhamaka.in/subscription/",
+          "provider": "IPO Dhamaka"
+        },
+        {
+          "pointer": "/sources/0/url",
+          "url": "https://ipodhamaka.in/subscription/",
+          "provider": "IPO Dhamaka"
+        }
+      ],
+      "summaryReferences": [
+        {
+          "pointer": "/subscriptionSourceUrl",
+          "url": "https://ipodhamaka.in/subscription/",
+          "provider": "IPO Dhamaka"
+        }
+      ],
+      "fieldProofBindings": [],
+      "historyLocations": [
+        "/subscriptionHistory"
+      ],
+      "correctionCount": 4,
+      "extractionMetadata": {
+        "offerDocumentExtraction": {
+          "sourceUrl": "https://omgalaxymould.com/wp-content/uploads/2026/09/Project-Om_-RHP_with_RFS.pdf",
+          "status": "extracted"
+        },
+        "issuerDocumentExtraction": {
+          "sourceUrl": "https://omgalaxymould.com/wp-content/uploads/2026/09/Project-Om_-RHP_with_RFS.pdf",
+          "status": "extracted"
+        }
+      },
+      "canonicalPointer": "/ipos/12",
+      "profileFile": "ipo/om-galaxy-limited/index.html"
+    },
+    {
+      "id": "maharaja-speedex-india-limited",
+      "company": "Maharaja & Speedex India Limited",
+      "status": "closed",
+      "profilePath": "ipo/maharaja-speedex-india-limited/",
+      "secondarySubscription": {
+        "label": "IPO Dhamaka subscription (secondary)",
+        "sourceUrl": null,
+        "sourceUrlBinding": "missing_not_inferred_from_history",
+        "canonicalFields": [
+          "nii",
+          "qib",
+          "retail",
+          "total"
+        ],
+        "profileFields": [
+          "nii",
+          "qib",
+          "retail",
+          "total"
+        ],
+        "profileState": "reported",
+        "summaryTotalPresent": true,
+        "summaryState": "reported",
+        "csvColumns": [
+          "Subscription multiple",
+          "Subscription source observation time",
+          "Subscription collection time",
+          "Subscription source authority",
+          "Subscription source"
+        ],
+        "sourceObservedAt": null,
+        "collectedAt": null,
+        "canonicalHistoryCount": 1,
+        "publicProfileHistoryCount": 1
+      },
+      "canonicalReferences": [
+        {
+          "pointer": "/sources/0/url",
+          "url": "https://ipodhamaka.in/subscription/",
+          "provider": "IPO Dhamaka"
+        },
+        {
+          "pointer": "/source/url",
+          "url": "https://ipodhamaka.in/subscription/",
+          "provider": "IPO Dhamaka"
+        }
+      ],
+      "profileReferences": [
+        {
+          "pointer": "/subscriptionSourceUrl",
+          "url": "https://ipodhamaka.in/subscription/",
+          "provider": "IPO Dhamaka"
+        },
+        {
+          "pointer": "/sources/0/url",
+          "url": "https://ipodhamaka.in/subscription/",
+          "provider": "IPO Dhamaka"
+        }
+      ],
+      "summaryReferences": [
+        {
+          "pointer": "/subscriptionSourceUrl",
+          "url": "https://ipodhamaka.in/subscription/",
+          "provider": "IPO Dhamaka"
+        }
+      ],
+      "fieldProofBindings": [],
+      "historyLocations": [
+        "/subscriptionHistory"
+      ],
+      "correctionCount": 6,
+      "extractionMetadata": {
+        "offerDocumentExtraction": {
+          "sourceUrl": "https://speedexind.com/wp-content/uploads/2026/09/SPeedex-RHP.pdf",
+          "status": "extracted"
+        },
+        "issuerDocumentExtraction": {
+          "sourceUrl": "https://speedexind.com/wp-content/uploads/2026/09/SPeedex-RHP.pdf",
+          "status": "extracted"
+        }
+      },
+      "canonicalPointer": "/ipos/13",
+      "profileFile": "ipo/maharaja-speedex-india-limited/index.html"
+    },
+    {
+      "id": "steamhouse",
+      "company": "Steamhouse India Limited",
+      "status": "closed",
+      "profilePath": "ipo/steamhouse/",
+      "secondarySubscription": null,
+      "canonicalReferences": [
+        {
+          "pointer": "/sources/2/url",
+          "url": "https://ipocentral.in/steamhouse-india-ipo-gmp-price-date-allotment/",
+          "provider": "IPO Central"
+        },
+        {
+          "pointer": "/observations/VerifiedTerms/sourceUrl",
+          "url": "https://ipocentral.in/steamhouse-india-ipo-gmp-price-date-allotment/",
+          "provider": "IPO Central"
+        }
+      ],
+      "profileReferences": [
+        {
+          "pointer": "/sources/2/url",
+          "url": "https://ipocentral.in/steamhouse-india-ipo-gmp-price-date-allotment/",
+          "provider": "IPO Central"
+        }
+      ],
+      "summaryReferences": [],
+      "fieldProofBindings": [],
+      "historyLocations": [],
+      "correctionCount": 12,
+      "extractionMetadata": {
+        "offerDocumentExtraction": {
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789450736463.pdf",
+          "status": "extracted"
+        }
+      },
+      "canonicalPointer": "/ipos/14",
+      "profileFile": "ipo/steamhouse/index.html"
+    },
+    {
+      "id": "lumino",
+      "company": "Lumino Industries Limited",
+      "status": "listed",
+      "profilePath": "ipo/lumino/",
+      "secondarySubscription": null,
+      "canonicalReferences": [
+        {
+          "pointer": "/sources/3/url",
+          "url": "https://ipowatch.in/lumino-industries-ipo/",
+          "provider": "IPO Watch"
+        }
+      ],
+      "profileReferences": [
+        {
+          "pointer": "/sources/3/url",
+          "url": "https://ipowatch.in/lumino-industries-ipo/",
+          "provider": "IPO Watch"
+        }
+      ],
+      "summaryReferences": [],
+      "fieldProofBindings": [],
+      "historyLocations": [],
+      "correctionCount": 27,
+      "extractionMetadata": {
+        "offerDocumentExtraction": {
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788760904072.pdf",
+          "status": "extracted"
+        }
+      },
+      "canonicalPointer": "/ipos/32",
+      "profileFile": "ipo/lumino/index.html"
+    },
+    {
+      "id": "sunshine",
+      "company": "Sunshine Pictures Limited",
+      "status": "listed",
+      "profilePath": "ipo/sunshine/",
+      "secondarySubscription": null,
+      "canonicalReferences": [
+        {
+          "pointer": "/sources/3/url",
+          "url": "https://sunshinepictures.in/offer-documents/",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/observations/FinalProspectus/documentUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/documents/2/url",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/documents/2/sourcePage",
+          "url": "https://sunshinepictures.in/offer-documents/",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/offerDocumentExtraction/documentUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/dataCorrections/6/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/dataCorrections/7/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/dataCorrections/8/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/dataCorrections/9/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/dataCorrections/10/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/dataCorrections/11/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/dataCorrections/12/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/documentFieldProvenance/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/p4OfferResidualRepair/documentUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/staticFieldProvenance/priceBand/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/staticFieldProvenance/lotSize/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/staticFieldProvenance/leadManagers/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/staticFieldProvenance/registrar/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/staticFieldProvenance/promoters/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/staticFieldProvenance/financials/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/staticFieldProvenance/listing.issuePrice/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/staticFieldProvenance/issueComposition/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/staticFieldProvenance/issueSizeCr/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/staticFieldProvenance/freshIssueCr/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/staticFieldProvenance/ofsCr/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/staticSourcePolicy/documentUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/listing/issuePriceEvidence/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/lotSizeEvidence/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/issuerDocumentExtraction/documentUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/issuerDocumentExtraction/sourcePage",
+          "url": "https://sunshinepictures.in/offer-documents/",
+          "provider": "Sunshine"
+        }
+      ],
+      "profileReferences": [
+        {
+          "pointer": "/publicQuality/sources/0/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/documents/2/url",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/sources/3/url",
+          "url": "https://sunshinepictures.in/offer-documents/",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/offerDocumentExtraction/documentUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        }
+      ],
+      "summaryReferences": [
+        {
+          "pointer": "/publicQuality/sources/0/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        }
+      ],
+      "fieldProofBindings": [
+        {
+          "field": "priceBand",
+          "provider": "Sunshine",
+          "sourceUrl": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "sourceSha256": "b2684db49a98a25ce387c6e1c709a32dcd90e9566b9477d4a5328c230f4a5c65",
+          "canonicalPointer": "/staticFieldProvenance/priceBand",
+          "canonicalValuePresent": true,
+          "profileValuePresent": true,
+          "profileState": "final_verified",
+          "summaryValuePresent": true,
+          "summaryState": "final_verified",
+          "csvColumns": [
+            "Price minimum INR",
+            "Price maximum INR"
+          ],
+          "retainedProofTextCandidates": [
+            {
+              "pointer": "/staticFieldProvenance/priceBand/evidence/heading",
+              "characters": 129,
+              "sha256": "d29679677a332e7e1ef8391d4a4b78ffd42fa323d2f155f7a7e14744f74aed2a"
+            },
+            {
+              "pointer": "/staticFieldProvenance/priceBand/evidence/basis",
+              "characters": 61,
+              "sha256": "d3831bde678bcfcc9c37efa45ce013b297101b4d04e7a21a73c926a09d52ceca"
+            }
+          ]
+        },
+        {
+          "field": "lotSize",
+          "provider": "Sunshine",
+          "sourceUrl": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "sourceSha256": "b2684db49a98a25ce387c6e1c709a32dcd90e9566b9477d4a5328c230f4a5c65",
+          "canonicalPointer": "/staticFieldProvenance/lotSize",
+          "canonicalValuePresent": true,
+          "profileValuePresent": true,
+          "profileState": "final_verified",
+          "summaryValuePresent": true,
+          "summaryState": "final_verified",
+          "csvColumns": [
+            "Lot size shares",
+            "One lot at cap INR"
+          ],
+          "retainedProofTextCandidates": [
+            {
+              "pointer": "/staticFieldProvenance/lotSize/evidence/heading",
+              "characters": 25,
+              "sha256": "56f71add6c223022e706ec785f36666e79f6513f2d2c3b28e708a9b15154c04a"
+            },
+            {
+              "pointer": "/staticFieldProvenance/lotSize/evidence/basis",
+              "characters": 52,
+              "sha256": "2445e4547103c29b5ad0635a7dc2595cde8e09989ec1b386e64b03be3c7093cf"
+            }
+          ]
+        },
+        {
+          "field": "leadManagers",
+          "provider": "Sunshine",
+          "sourceUrl": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "sourceSha256": "b2684db49a98a25ce387c6e1c709a32dcd90e9566b9477d4a5328c230f4a5c65",
+          "canonicalPointer": "/staticFieldProvenance/leadManagers",
+          "canonicalValuePresent": true,
+          "profileValuePresent": true,
+          "profileState": "final_verified",
+          "summaryValuePresent": false,
+          "summaryState": "not_in_payload",
+          "csvColumns": [],
+          "retainedProofTextCandidates": [
+            {
+              "pointer": "/staticFieldProvenance/leadManagers/evidence/heading",
+              "characters": 25,
+              "sha256": "c1cb18cb7a883f3bf260001af6244d94b6d9700183cdf30a3a4c9b962bd81268"
+            },
+            {
+              "pointer": "/staticFieldProvenance/leadManagers/evidence/entities/0",
+              "characters": 36,
+              "sha256": "037f8482fe73a5664b8439049c59d23e70a9033bfb8107df48c883872f54615e"
+            }
+          ]
+        },
+        {
+          "field": "registrar",
+          "provider": "Sunshine",
+          "sourceUrl": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "sourceSha256": "b2684db49a98a25ce387c6e1c709a32dcd90e9566b9477d4a5328c230f4a5c65",
+          "canonicalPointer": "/staticFieldProvenance/registrar",
+          "canonicalValuePresent": true,
+          "profileValuePresent": true,
+          "profileState": "final_verified",
+          "summaryValuePresent": false,
+          "summaryState": "not_in_payload",
+          "csvColumns": [],
+          "retainedProofTextCandidates": [
+            {
+              "pointer": "/staticFieldProvenance/registrar/evidence/heading",
+              "characters": 22,
+              "sha256": "4a533fc1da29203c68566b798191dc7ffde46c238ed55b6933c7d4a695ae0311"
+            },
+            {
+              "pointer": "/staticFieldProvenance/registrar/evidence/entities/0",
+              "characters": 33,
+              "sha256": "f3fc5628f7da3db9c15162559b0e89b11df79545dcf37248196aded7285f3e3c"
+            }
+          ]
+        },
+        {
+          "field": "promoters",
+          "provider": "Sunshine",
+          "sourceUrl": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "sourceSha256": "b2684db49a98a25ce387c6e1c709a32dcd90e9566b9477d4a5328c230f4a5c65",
+          "canonicalPointer": "/staticFieldProvenance/promoters",
+          "canonicalValuePresent": true,
+          "profileValuePresent": true,
+          "profileState": "final_verified",
+          "summaryValuePresent": false,
+          "summaryState": "not_in_payload",
+          "csvColumns": [],
+          "retainedProofTextCandidates": [
+            {
+              "pointer": "/staticFieldProvenance/promoters/evidence/heading",
+              "characters": 13,
+              "sha256": "8ff226d9860cd599a5968405d1b7acf29cb45ccb0f0beabafc7b33de205bb0fc"
+            },
+            {
+              "pointer": "/staticFieldProvenance/promoters/evidence/rows/0",
+              "characters": 96,
+              "sha256": "50d24cbe889159fc1c6c28b1a9bf44d51b8638e3ae2db30877015356b641a661"
+            },
+            {
+              "pointer": "/staticFieldProvenance/promoters/evidence/entities/0",
+              "characters": 19,
+              "sha256": "a9c2f07069b94944945ab9623f2baf97dfc7662efa6459c86d3eeb157169eb87"
+            },
+            {
+              "pointer": "/staticFieldProvenance/promoters/evidence/entities/1",
+              "characters": 18,
+              "sha256": "3e864d03c5bb98fea1a0dc86c074d78d9c8c9bcf60ef85e6dbf8e4a674ba9743"
+            },
+            {
+              "pointer": "/staticFieldProvenance/promoters/evidence/entities/2",
+              "characters": 18,
+              "sha256": "3d2f681ed341bbe6451736631de0618d1650a34f3d66050829d8112c21fc82eb"
+            },
+            {
+              "pointer": "/staticFieldProvenance/promoters/evidence/entities/3",
+              "characters": 17,
+              "sha256": "90607b69371a34525705a4a968e8ba3116a20c1790007cb089138a033087c2ad"
+            },
+            {
+              "pointer": "/staticFieldProvenance/promoters/evidence/method",
+              "characters": 27,
+              "sha256": "caa4b59056d3498d2c6036c52eedc2800f4ce8456210e1e612577f78b74681f4"
+            }
+          ]
+        },
+        {
+          "field": "financials",
+          "provider": "Sunshine",
+          "sourceUrl": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "sourceSha256": "b2684db49a98a25ce387c6e1c709a32dcd90e9566b9477d4a5328c230f4a5c65",
+          "canonicalPointer": "/staticFieldProvenance/financials",
+          "canonicalValuePresent": true,
+          "profileValuePresent": false,
+          "profileState": "under_review",
+          "summaryValuePresent": false,
+          "summaryState": "not_in_payload",
+          "csvColumns": [],
+          "retainedProofTextCandidates": [
+            {
+              "pointer": "/staticFieldProvenance/financials/evidence/FY2026.revenueCr/header",
+              "characters": 505,
+              "sha256": "5e3a41d82fca6752a59a8e805e5603e92f700359ec9a2dccc71c0da93b7ee992"
+            },
+            {
+              "pointer": "/staticFieldProvenance/financials/evidence/FY2026.revenueCr/row",
+              "characters": 143,
+              "sha256": "6fae1e0c81d8971fa91eb7c511e2c86df3cb31a1f646aca75af989fa451bafb8"
+            },
+            {
+              "pointer": "/staticFieldProvenance/financials/evidence/FY2026.revenueCr/scope",
+              "characters": 11,
+              "sha256": "f416648f8086113fd1eeb0441e81931dcc5fb1e0525c38beba86b12f86f94dc6"
+            },
+            {
+              "pointer": "/staticFieldProvenance/financials/evidence/FY2026.revenueCr/originalUnit",
+              "characters": 4,
+              "sha256": "b5a73d6e9a6d9cc28978a15eae70da2e6aee7c5dfdeb0e909514112c01a2187d"
+            },
+            {
+              "pointer": "/staticFieldProvenance/financials/evidence/FY2025.revenueCr/header",
+              "characters": 505,
+              "sha256": "5e3a41d82fca6752a59a8e805e5603e92f700359ec9a2dccc71c0da93b7ee992"
+            },
+            {
+              "pointer": "/staticFieldProvenance/financials/evidence/FY2025.revenueCr/row",
+              "characters": 143,
+              "sha256": "6fae1e0c81d8971fa91eb7c511e2c86df3cb31a1f646aca75af989fa451bafb8"
+            },
+            {
+              "pointer": "/staticFieldProvenance/financials/evidence/FY2025.revenueCr/scope",
+              "characters": 11,
+              "sha256": "f416648f8086113fd1eeb0441e81931dcc5fb1e0525c38beba86b12f86f94dc6"
+            },
+            {
+              "pointer": "/staticFieldProvenance/financials/evidence/FY2025.revenueCr/originalUnit",
+              "characters": 4,
+              "sha256": "b5a73d6e9a6d9cc28978a15eae70da2e6aee7c5dfdeb0e909514112c01a2187d"
+            },
+            {
+              "pointer": "/staticFieldProvenance/financials/evidence/FY2024.revenueCr/header",
+              "characters": 505,
+              "sha256": "5e3a41d82fca6752a59a8e805e5603e92f700359ec9a2dccc71c0da93b7ee992"
+            },
+            {
+              "pointer": "/staticFieldProvenance/financials/evidence/FY2024.revenueCr/row",
+              "characters": 143,
+              "sha256": "6fae1e0c81d8971fa91eb7c511e2c86df3cb31a1f646aca75af989fa451bafb8"
+            },
+            {
+              "pointer": "/staticFieldProvenance/financials/evidence/FY2024.revenueCr/scope",
+              "characters": 11,
+              "sha256": "f416648f8086113fd1eeb0441e81931dcc5fb1e0525c38beba86b12f86f94dc6"
+            },
+            {
+              "pointer": "/staticFieldProvenance/financials/evidence/FY2024.revenueCr/originalUnit",
+              "characters": 4,
+              "sha256": "b5a73d6e9a6d9cc28978a15eae70da2e6aee7c5dfdeb0e909514112c01a2187d"
+            },
+            {
+              "pointer": "/staticFieldProvenance/financials/evidence/FY2026.ronwPct/header",
+              "characters": 485,
+              "sha256": "16ad8aeeefa63e88d0fecbcce785f9b999ae35857ea7c11e403e7b41539ba7b1"
+            },
+            {
+              "pointer": "/staticFieldProvenance/financials/evidence/FY2026.ronwPct/row",
+              "characters": 142,
+              "sha256": "bacd020ffcec3f0f6388427703f1e1e6f69e19520b7333bd13c17998d356c039"
+            },
+            {
+              "pointer": "/staticFieldProvenance/financials/evidence/FY2026.ronwPct/scope",
+              "characters": 11,
+              "sha256": "f416648f8086113fd1eeb0441e81931dcc5fb1e0525c38beba86b12f86f94dc6"
+            },
+            {
+              "pointer": "/staticFieldProvenance/financials/evidence/FY2026.ronwPct/originalUnit",
+              "characters": 7,
+              "sha256": "fd86717aca41c558c78c19ab2b50691179a57ba5200bc7e3317be70efd4043ad"
+            },
+            {
+              "pointer": "/staticFieldProvenance/financials/evidence/FY2025.ronwPct/header",
+              "characters": 485,
+              "sha256": "16ad8aeeefa63e88d0fecbcce785f9b999ae35857ea7c11e403e7b41539ba7b1"
+            },
+            {
+              "pointer": "/staticFieldProvenance/financials/evidence/FY2025.ronwPct/row",
+              "characters": 142,
+              "sha256": "bacd020ffcec3f0f6388427703f1e1e6f69e19520b7333bd13c17998d356c039"
+            },
+            {
+              "pointer": "/staticFieldProvenance/financials/evidence/FY2025.ronwPct/scope",
+              "characters": 11,
+              "sha256": "f416648f8086113fd1eeb0441e81931dcc5fb1e0525c38beba86b12f86f94dc6"
+            },
+            {
+              "pointer": "/staticFieldProvenance/financials/evidence/FY2025.ronwPct/originalUnit",
+              "characters": 7,
+              "sha256": "fd86717aca41c558c78c19ab2b50691179a57ba5200bc7e3317be70efd4043ad"
+            },
+            {
+              "pointer": "/staticFieldProvenance/financials/evidence/FY2024.ronwPct/header",
+              "characters": 485,
+              "sha256": "16ad8aeeefa63e88d0fecbcce785f9b999ae35857ea7c11e403e7b41539ba7b1"
+            },
+            {
+              "pointer": "/staticFieldProvenance/financials/evidence/FY2024.ronwPct/row",
+              "characters": 142,
+              "sha256": "bacd020ffcec3f0f6388427703f1e1e6f69e19520b7333bd13c17998d356c039"
+            },
+            {
+              "pointer": "/staticFieldProvenance/financials/evidence/FY2024.ronwPct/scope",
+              "characters": 11,
+              "sha256": "f416648f8086113fd1eeb0441e81931dcc5fb1e0525c38beba86b12f86f94dc6"
+            },
+            {
+              "pointer": "/staticFieldProvenance/financials/evidence/FY2024.ronwPct/originalUnit",
+              "characters": 7,
+              "sha256": "fd86717aca41c558c78c19ab2b50691179a57ba5200bc7e3317be70efd4043ad"
+            }
+          ]
+        },
+        {
+          "field": "listing.issuePrice",
+          "provider": "Sunshine",
+          "sourceUrl": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "sourceSha256": "b2684db49a98a25ce387c6e1c709a32dcd90e9566b9477d4a5328c230f4a5c65",
+          "canonicalPointer": "/staticFieldProvenance/listing.issuePrice",
+          "canonicalValuePresent": true,
+          "profileValuePresent": true,
+          "profileState": "final_verified",
+          "summaryValuePresent": false,
+          "summaryState": "not_in_payload",
+          "csvColumns": [],
+          "retainedProofTextCandidates": [
+            {
+              "pointer": "/staticFieldProvenance/listing.issuePrice/evidence/heading",
+              "characters": 202,
+              "sha256": "9f1f6bbe96ea5db28e734097aa08cad96d3af6b8a1f8289edccfb8794eebd5a7"
+            },
+            {
+              "pointer": "/staticFieldProvenance/listing.issuePrice/evidence/basis",
+              "characters": 52,
+              "sha256": "cde47ecfc8fd26bdf2c92d9eef590272769c97a1148d531df0c39226494cf798"
+            },
+            {
+              "pointer": "/staticFieldProvenance/listing.issuePrice/evidence/method",
+              "characters": 20,
+              "sha256": "40bfbd022d9e0d578d516c27598a93b414320af291a724711553e7bc994af2df"
+            }
+          ]
+        },
+        {
+          "field": "issueComposition",
+          "provider": "Sunshine",
+          "sourceUrl": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "sourceSha256": "b2684db49a98a25ce387c6e1c709a32dcd90e9566b9477d4a5328c230f4a5c65",
+          "canonicalPointer": "/staticFieldProvenance/issueComposition",
+          "canonicalValuePresent": true,
+          "profileValuePresent": true,
+          "profileState": "final_verified",
+          "summaryValuePresent": false,
+          "summaryState": "not_in_payload",
+          "csvColumns": [],
+          "retainedProofTextCandidates": [
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/basis",
+              "characters": 44,
+              "sha256": "aac1f5c27285cb65f7f7a7650d2aad9c9a39c8670a0f8de6b2a5db1405552b8d"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/method",
+              "characters": 30,
+              "sha256": "02943f1b39ee82b260bb45d63cee14e61dda579dce5d3592ad6f13378af937d7"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/heading",
+              "characters": 23,
+              "sha256": "27917f7c021990692e00945217365697db296182befb0969a26eace79ee0c2e3"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/totalShares/row",
+              "characters": 307,
+              "sha256": "4b8a0a650d455cf36f28a73e3447a51b79eb5bfdee020020d558a8b153537a34"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/totalShares/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/totalIssueSizeCr/row",
+              "characters": 307,
+              "sha256": "4b8a0a650d455cf36f28a73e3447a51b79eb5bfdee020020d558a8b153537a34"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/totalIssueSizeCr/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/freshShares/row",
+              "characters": 95,
+              "sha256": "f4621216fa024d6c2e42e4b4cbb9295d6f616274db8dca30d6d35a761f0c9dc5"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/freshShares/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/freshIssueCr/row",
+              "characters": 95,
+              "sha256": "f4621216fa024d6c2e42e4b4cbb9295d6f616274db8dca30d6d35a761f0c9dc5"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/freshIssueCr/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/ofsShares/row",
+              "characters": 98,
+              "sha256": "a4e70e9b38586f47ecc4bf9497699c4844821d55bdceec69bb173038ce10782c"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/ofsShares/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/ofsCr/row",
+              "characters": 98,
+              "sha256": "a4e70e9b38586f47ecc4bf9497699c4844821d55bdceec69bb173038ce10782c"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/ofsCr/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/valuationPriceUsed/heading",
+              "characters": 202,
+              "sha256": "9f1f6bbe96ea5db28e734097aa08cad96d3af6b8a1f8289edccfb8794eebd5a7"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/valuationPriceUsed/basis",
+              "characters": 52,
+              "sha256": "cde47ecfc8fd26bdf2c92d9eef590272769c97a1148d531df0c39226494cf798"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/valuationPriceUsed/method",
+              "characters": 20,
+              "sha256": "40bfbd022d9e0d578d516c27598a93b414320af291a724711553e7bc994af2df"
+            }
+          ]
+        },
+        {
+          "field": "issueSizeCr",
+          "provider": "Sunshine",
+          "sourceUrl": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "sourceSha256": "b2684db49a98a25ce387c6e1c709a32dcd90e9566b9477d4a5328c230f4a5c65",
+          "canonicalPointer": "/staticFieldProvenance/issueSizeCr",
+          "canonicalValuePresent": true,
+          "profileValuePresent": true,
+          "profileState": "final_verified",
+          "summaryValuePresent": true,
+          "summaryState": "final_verified",
+          "csvColumns": [
+            "Issue size crore INR"
+          ],
+          "retainedProofTextCandidates": [
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/basis",
+              "characters": 44,
+              "sha256": "aac1f5c27285cb65f7f7a7650d2aad9c9a39c8670a0f8de6b2a5db1405552b8d"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/method",
+              "characters": 30,
+              "sha256": "02943f1b39ee82b260bb45d63cee14e61dda579dce5d3592ad6f13378af937d7"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/heading",
+              "characters": 23,
+              "sha256": "27917f7c021990692e00945217365697db296182befb0969a26eace79ee0c2e3"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/totalShares/row",
+              "characters": 307,
+              "sha256": "4b8a0a650d455cf36f28a73e3447a51b79eb5bfdee020020d558a8b153537a34"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/totalShares/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/totalIssueSizeCr/row",
+              "characters": 307,
+              "sha256": "4b8a0a650d455cf36f28a73e3447a51b79eb5bfdee020020d558a8b153537a34"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/totalIssueSizeCr/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/freshShares/row",
+              "characters": 95,
+              "sha256": "f4621216fa024d6c2e42e4b4cbb9295d6f616274db8dca30d6d35a761f0c9dc5"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/freshShares/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/freshIssueCr/row",
+              "characters": 95,
+              "sha256": "f4621216fa024d6c2e42e4b4cbb9295d6f616274db8dca30d6d35a761f0c9dc5"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/freshIssueCr/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/ofsShares/row",
+              "characters": 98,
+              "sha256": "a4e70e9b38586f47ecc4bf9497699c4844821d55bdceec69bb173038ce10782c"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/ofsShares/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/ofsCr/row",
+              "characters": 98,
+              "sha256": "a4e70e9b38586f47ecc4bf9497699c4844821d55bdceec69bb173038ce10782c"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/ofsCr/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/valuationPriceUsed/heading",
+              "characters": 202,
+              "sha256": "9f1f6bbe96ea5db28e734097aa08cad96d3af6b8a1f8289edccfb8794eebd5a7"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/valuationPriceUsed/basis",
+              "characters": 52,
+              "sha256": "cde47ecfc8fd26bdf2c92d9eef590272769c97a1148d531df0c39226494cf798"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/valuationPriceUsed/method",
+              "characters": 20,
+              "sha256": "40bfbd022d9e0d578d516c27598a93b414320af291a724711553e7bc994af2df"
+            }
+          ]
+        },
+        {
+          "field": "freshIssueCr",
+          "provider": "Sunshine",
+          "sourceUrl": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "sourceSha256": "b2684db49a98a25ce387c6e1c709a32dcd90e9566b9477d4a5328c230f4a5c65",
+          "canonicalPointer": "/staticFieldProvenance/freshIssueCr",
+          "canonicalValuePresent": true,
+          "profileValuePresent": true,
+          "profileState": "final_verified",
+          "summaryValuePresent": false,
+          "summaryState": "not_in_payload",
+          "csvColumns": [],
+          "retainedProofTextCandidates": [
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/basis",
+              "characters": 44,
+              "sha256": "aac1f5c27285cb65f7f7a7650d2aad9c9a39c8670a0f8de6b2a5db1405552b8d"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/method",
+              "characters": 30,
+              "sha256": "02943f1b39ee82b260bb45d63cee14e61dda579dce5d3592ad6f13378af937d7"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/heading",
+              "characters": 23,
+              "sha256": "27917f7c021990692e00945217365697db296182befb0969a26eace79ee0c2e3"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/totalShares/row",
+              "characters": 307,
+              "sha256": "4b8a0a650d455cf36f28a73e3447a51b79eb5bfdee020020d558a8b153537a34"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/totalShares/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/totalIssueSizeCr/row",
+              "characters": 307,
+              "sha256": "4b8a0a650d455cf36f28a73e3447a51b79eb5bfdee020020d558a8b153537a34"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/totalIssueSizeCr/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/freshShares/row",
+              "characters": 95,
+              "sha256": "f4621216fa024d6c2e42e4b4cbb9295d6f616274db8dca30d6d35a761f0c9dc5"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/freshShares/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/freshIssueCr/row",
+              "characters": 95,
+              "sha256": "f4621216fa024d6c2e42e4b4cbb9295d6f616274db8dca30d6d35a761f0c9dc5"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/freshIssueCr/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/ofsShares/row",
+              "characters": 98,
+              "sha256": "a4e70e9b38586f47ecc4bf9497699c4844821d55bdceec69bb173038ce10782c"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/ofsShares/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/ofsCr/row",
+              "characters": 98,
+              "sha256": "a4e70e9b38586f47ecc4bf9497699c4844821d55bdceec69bb173038ce10782c"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/ofsCr/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/valuationPriceUsed/heading",
+              "characters": 202,
+              "sha256": "9f1f6bbe96ea5db28e734097aa08cad96d3af6b8a1f8289edccfb8794eebd5a7"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/valuationPriceUsed/basis",
+              "characters": 52,
+              "sha256": "cde47ecfc8fd26bdf2c92d9eef590272769c97a1148d531df0c39226494cf798"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/valuationPriceUsed/method",
+              "characters": 20,
+              "sha256": "40bfbd022d9e0d578d516c27598a93b414320af291a724711553e7bc994af2df"
+            }
+          ]
+        },
+        {
+          "field": "ofsCr",
+          "provider": "Sunshine",
+          "sourceUrl": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "sourceSha256": "b2684db49a98a25ce387c6e1c709a32dcd90e9566b9477d4a5328c230f4a5c65",
+          "canonicalPointer": "/staticFieldProvenance/ofsCr",
+          "canonicalValuePresent": true,
+          "profileValuePresent": true,
+          "profileState": "final_verified",
+          "summaryValuePresent": false,
+          "summaryState": "not_in_payload",
+          "csvColumns": [],
+          "retainedProofTextCandidates": [
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/basis",
+              "characters": 44,
+              "sha256": "aac1f5c27285cb65f7f7a7650d2aad9c9a39c8670a0f8de6b2a5db1405552b8d"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/method",
+              "characters": 30,
+              "sha256": "02943f1b39ee82b260bb45d63cee14e61dda579dce5d3592ad6f13378af937d7"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/heading",
+              "characters": 23,
+              "sha256": "27917f7c021990692e00945217365697db296182befb0969a26eace79ee0c2e3"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/totalShares/row",
+              "characters": 307,
+              "sha256": "4b8a0a650d455cf36f28a73e3447a51b79eb5bfdee020020d558a8b153537a34"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/totalShares/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/totalIssueSizeCr/row",
+              "characters": 307,
+              "sha256": "4b8a0a650d455cf36f28a73e3447a51b79eb5bfdee020020d558a8b153537a34"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/totalIssueSizeCr/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/freshShares/row",
+              "characters": 95,
+              "sha256": "f4621216fa024d6c2e42e4b4cbb9295d6f616274db8dca30d6d35a761f0c9dc5"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/freshShares/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/freshIssueCr/row",
+              "characters": 95,
+              "sha256": "f4621216fa024d6c2e42e4b4cbb9295d6f616274db8dca30d6d35a761f0c9dc5"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/freshIssueCr/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/ofsShares/row",
+              "characters": 98,
+              "sha256": "a4e70e9b38586f47ecc4bf9497699c4844821d55bdceec69bb173038ce10782c"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/ofsShares/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/ofsCr/row",
+              "characters": 98,
+              "sha256": "a4e70e9b38586f47ecc4bf9497699c4844821d55bdceec69bb173038ce10782c"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/ofsCr/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/valuationPriceUsed/heading",
+              "characters": 202,
+              "sha256": "9f1f6bbe96ea5db28e734097aa08cad96d3af6b8a1f8289edccfb8794eebd5a7"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/valuationPriceUsed/basis",
+              "characters": 52,
+              "sha256": "cde47ecfc8fd26bdf2c92d9eef590272769c97a1148d531df0c39226494cf798"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/valuationPriceUsed/method",
+              "characters": 20,
+              "sha256": "40bfbd022d9e0d578d516c27598a93b414320af291a724711553e7bc994af2df"
+            }
+          ]
+        }
+      ],
+      "historyLocations": [],
+      "correctionCount": 13,
+      "extractionMetadata": {
+        "offerDocumentExtraction": {
+          "sourceUrl": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "status": "extracted"
+        },
+        "issuerDocumentExtraction": {
+          "sourceUrl": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "status": "extracted"
+        }
+      },
+      "canonicalPointer": "/ipos/43",
+      "profileFile": "ipo/sunshine/index.html"
+    },
+    {
+      "id": "orklaindia",
+      "company": "Orkla India Limited",
+      "status": "listed",
+      "profilePath": "ipo/orklaindia/",
+      "secondarySubscription": null,
+      "canonicalReferences": [
+        {
+          "pointer": "/sources/3/url",
+          "url": "https://www.orklaindia.com/offer-documents/prospectus/",
+          "provider": "Orkla"
+        },
+        {
+          "pointer": "/observations/FinalProspectus/documentUrl",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "provider": "Orkla"
+        },
+        {
+          "pointer": "/documents/1/url",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "provider": "Orkla"
+        },
+        {
+          "pointer": "/documents/1/sourcePage",
+          "url": "https://www.orklaindia.com/offer-documents/prospectus/",
+          "provider": "Orkla"
+        },
+        {
+          "pointer": "/listing/issuePriceEvidence/sourceUrl",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "provider": "Orkla"
+        },
+        {
+          "pointer": "/staticFieldProvenance/priceBand/sourceUrl",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "provider": "Orkla"
+        },
+        {
+          "pointer": "/staticFieldProvenance/lotSize/sourceUrl",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "provider": "Orkla"
+        },
+        {
+          "pointer": "/staticFieldProvenance/leadManagers/sourceUrl",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "provider": "Orkla"
+        },
+        {
+          "pointer": "/staticFieldProvenance/registrar/sourceUrl",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "provider": "Orkla"
+        },
+        {
+          "pointer": "/staticFieldProvenance/promoters/sourceUrl",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "provider": "Orkla"
+        },
+        {
+          "pointer": "/staticFieldProvenance/listing.issuePrice/sourceUrl",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "provider": "Orkla"
+        },
+        {
+          "pointer": "/staticFieldProvenance/issueComposition/sourceUrl",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "provider": "Orkla"
+        },
+        {
+          "pointer": "/staticFieldProvenance/issueSizeCr/sourceUrl",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "provider": "Orkla"
+        },
+        {
+          "pointer": "/staticFieldProvenance/freshIssueCr/sourceUrl",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "provider": "Orkla"
+        },
+        {
+          "pointer": "/staticFieldProvenance/ofsCr/sourceUrl",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "provider": "Orkla"
+        },
+        {
+          "pointer": "/documentFieldProvenance/sourceUrl",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "provider": "Orkla"
+        },
+        {
+          "pointer": "/lotSizeEvidence/sourceUrl",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "provider": "Orkla"
+        },
+        {
+          "pointer": "/dataCorrections/0/sourceUrl",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "provider": "Orkla"
+        },
+        {
+          "pointer": "/dataCorrections/1/sourceUrl",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "provider": "Orkla"
+        },
+        {
+          "pointer": "/dataCorrections/2/sourceUrl",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "provider": "Orkla"
+        },
+        {
+          "pointer": "/dataCorrections/3/sourceUrl",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "provider": "Orkla"
+        },
+        {
+          "pointer": "/issuerDocumentExtraction/documentUrl",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "provider": "Orkla"
+        },
+        {
+          "pointer": "/issuerDocumentExtraction/sourcePage",
+          "url": "https://www.orklaindia.com/offer-documents/prospectus/",
+          "provider": "Orkla"
+        }
+      ],
+      "profileReferences": [
+        {
+          "pointer": "/publicQuality/sources/0/sourceUrl",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "provider": "Orkla"
+        },
+        {
+          "pointer": "/documents/1/url",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "provider": "Orkla"
+        },
+        {
+          "pointer": "/sources/3/url",
+          "url": "https://www.orklaindia.com/offer-documents/prospectus/",
+          "provider": "Orkla"
+        }
+      ],
+      "summaryReferences": [
+        {
+          "pointer": "/publicQuality/sources/0/sourceUrl",
+          "url": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "provider": "Orkla"
+        }
+      ],
+      "fieldProofBindings": [
+        {
+          "field": "priceBand",
+          "provider": "Orkla",
+          "sourceUrl": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "sourceSha256": "1a3e82f54f7b624901b47632b9c5307da6c2905455278a311cd9db3872d2e7fe",
+          "canonicalPointer": "/staticFieldProvenance/priceBand",
+          "canonicalValuePresent": true,
+          "profileValuePresent": true,
+          "profileState": "final_verified",
+          "summaryValuePresent": true,
+          "summaryState": "final_verified",
+          "csvColumns": [
+            "Price minimum INR",
+            "Price maximum INR"
+          ],
+          "retainedProofTextCandidates": [
+            {
+              "pointer": "/staticFieldProvenance/priceBand/evidence/heading",
+              "characters": 91,
+              "sha256": "8d5fd2051aa3e05d0aa01b105fac5f8d19e9a756b7facc071e109ca8369d5bad"
+            },
+            {
+              "pointer": "/staticFieldProvenance/priceBand/evidence/basis",
+              "characters": 61,
+              "sha256": "d3831bde678bcfcc9c37efa45ce013b297101b4d04e7a21a73c926a09d52ceca"
+            }
+          ]
+        },
+        {
+          "field": "lotSize",
+          "provider": "Orkla",
+          "sourceUrl": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "sourceSha256": "1a3e82f54f7b624901b47632b9c5307da6c2905455278a311cd9db3872d2e7fe",
+          "canonicalPointer": "/staticFieldProvenance/lotSize",
+          "canonicalValuePresent": true,
+          "profileValuePresent": true,
+          "profileState": "final_verified",
+          "summaryValuePresent": true,
+          "summaryState": "final_verified",
+          "csvColumns": [
+            "Lot size shares",
+            "One lot at cap INR"
+          ],
+          "retainedProofTextCandidates": [
+            {
+              "pointer": "/staticFieldProvenance/lotSize/evidence/heading",
+              "characters": 24,
+              "sha256": "cb6b34f94f17735cfb5cae30a96adf65e1a13a51f5ea8bedb3b5e07a811a8f13"
+            },
+            {
+              "pointer": "/staticFieldProvenance/lotSize/evidence/basis",
+              "characters": 52,
+              "sha256": "2445e4547103c29b5ad0635a7dc2595cde8e09989ec1b386e64b03be3c7093cf"
+            }
+          ]
+        },
+        {
+          "field": "leadManagers",
+          "provider": "Orkla",
+          "sourceUrl": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "sourceSha256": "1a3e82f54f7b624901b47632b9c5307da6c2905455278a311cd9db3872d2e7fe",
+          "canonicalPointer": "/staticFieldProvenance/leadManagers",
+          "canonicalValuePresent": true,
+          "profileValuePresent": true,
+          "profileState": "final_verified",
+          "summaryValuePresent": false,
+          "summaryState": "not_in_payload",
+          "csvColumns": [],
+          "retainedProofTextCandidates": [
+            {
+              "pointer": "/staticFieldProvenance/leadManagers/evidence/heading",
+              "characters": 26,
+              "sha256": "1759c69977a0122cdb033cf1164bf287eb07768095fe04dea8b0bc86343a06e3"
+            },
+            {
+              "pointer": "/staticFieldProvenance/leadManagers/evidence/entities/0",
+              "characters": 24,
+              "sha256": "b0165693e253546b569b6d13e3164cc0cf41d9da4c4738cb189a255a45ef4f11"
+            },
+            {
+              "pointer": "/staticFieldProvenance/leadManagers/evidence/entities/1",
+              "characters": 46,
+              "sha256": "139409454b3ace61712995c1bb759729005717a856f3d2a596959918ae82f5f0"
+            },
+            {
+              "pointer": "/staticFieldProvenance/leadManagers/evidence/entities/2",
+              "characters": 33,
+              "sha256": "cad35c2759a8788eda424fc719a6dc4b3466065c2c5d21852b5d4890cd2dc07e"
+            },
+            {
+              "pointer": "/staticFieldProvenance/leadManagers/evidence/entities/3",
+              "characters": 38,
+              "sha256": "e8f045c472f15c0632417402fb85f8b89a2c78c1aa2405c275b38a7cde2ce0be"
+            }
+          ]
+        },
+        {
+          "field": "registrar",
+          "provider": "Orkla",
+          "sourceUrl": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "sourceSha256": "1a3e82f54f7b624901b47632b9c5307da6c2905455278a311cd9db3872d2e7fe",
+          "canonicalPointer": "/staticFieldProvenance/registrar",
+          "canonicalValuePresent": true,
+          "profileValuePresent": true,
+          "profileState": "final_verified",
+          "summaryValuePresent": false,
+          "summaryState": "not_in_payload",
+          "csvColumns": [],
+          "retainedProofTextCandidates": [
+            {
+              "pointer": "/staticFieldProvenance/registrar/evidence/heading",
+              "characters": 22,
+              "sha256": "4a533fc1da29203c68566b798191dc7ffde46c238ed55b6933c7d4a695ae0311"
+            },
+            {
+              "pointer": "/staticFieldProvenance/registrar/evidence/entities/0",
+              "characters": 25,
+              "sha256": "c848c176a600773e1412002475030b8e7795c9ba27d8a348c1b50b849ceff7ad"
+            }
+          ]
+        },
+        {
+          "field": "promoters",
+          "provider": "Orkla",
+          "sourceUrl": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "sourceSha256": "1a3e82f54f7b624901b47632b9c5307da6c2905455278a311cd9db3872d2e7fe",
+          "canonicalPointer": "/staticFieldProvenance/promoters",
+          "canonicalValuePresent": true,
+          "profileValuePresent": true,
+          "profileState": "final_verified",
+          "summaryValuePresent": false,
+          "summaryState": "not_in_payload",
+          "csvColumns": [],
+          "retainedProofTextCandidates": [
+            {
+              "pointer": "/staticFieldProvenance/promoters/evidence/heading",
+              "characters": 13,
+              "sha256": "8ff226d9860cd599a5968405d1b7acf29cb45ccb0f0beabafc7b33de205bb0fc"
+            },
+            {
+              "pointer": "/staticFieldProvenance/promoters/evidence/rows/0",
+              "characters": 80,
+              "sha256": "42b82aa651e2664f46bb1ea367cefb74f470f3c6a01568aadce3ac79c75a450f"
+            },
+            {
+              "pointer": "/staticFieldProvenance/promoters/evidence/entities/0",
+              "characters": 9,
+              "sha256": "83871446e36dfa7d3e7f0aad67375db7d7f3d6cecb4b63c706aa7ea1abda8f7e"
+            },
+            {
+              "pointer": "/staticFieldProvenance/promoters/evidence/entities/1",
+              "characters": 21,
+              "sha256": "3efa51d1fc7a5281de5c31f6f0f108394792e1729ecd20c9404c25678263e3be"
+            },
+            {
+              "pointer": "/staticFieldProvenance/promoters/evidence/entities/2",
+              "characters": 28,
+              "sha256": "55f48afe48f16e130ca1eeaae9a239cdd479808e3e36d6814ad2f887129030e5"
+            },
+            {
+              "pointer": "/staticFieldProvenance/promoters/evidence/method",
+              "characters": 27,
+              "sha256": "caa4b59056d3498d2c6036c52eedc2800f4ce8456210e1e612577f78b74681f4"
+            }
+          ]
+        },
+        {
+          "field": "listing.issuePrice",
+          "provider": "Orkla",
+          "sourceUrl": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "sourceSha256": "1a3e82f54f7b624901b47632b9c5307da6c2905455278a311cd9db3872d2e7fe",
+          "canonicalPointer": "/staticFieldProvenance/listing.issuePrice",
+          "canonicalValuePresent": true,
+          "profileValuePresent": true,
+          "profileState": "final_verified",
+          "summaryValuePresent": false,
+          "summaryState": "not_in_payload",
+          "csvColumns": [],
+          "retainedProofTextCandidates": [
+            {
+              "pointer": "/staticFieldProvenance/listing.issuePrice/evidence/heading",
+              "characters": 127,
+              "sha256": "a99e94bfa10c411e06531981c565eff4fe1c11be8e739f6d20c42c5842a9a3ed"
+            },
+            {
+              "pointer": "/staticFieldProvenance/listing.issuePrice/evidence/basis",
+              "characters": 52,
+              "sha256": "cde47ecfc8fd26bdf2c92d9eef590272769c97a1148d531df0c39226494cf798"
+            },
+            {
+              "pointer": "/staticFieldProvenance/listing.issuePrice/evidence/method",
+              "characters": 20,
+              "sha256": "40bfbd022d9e0d578d516c27598a93b414320af291a724711553e7bc994af2df"
+            }
+          ]
+        },
+        {
+          "field": "issueComposition",
+          "provider": "Orkla",
+          "sourceUrl": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "sourceSha256": "1a3e82f54f7b624901b47632b9c5307da6c2905455278a311cd9db3872d2e7fe",
+          "canonicalPointer": "/staticFieldProvenance/issueComposition",
+          "canonicalValuePresent": true,
+          "profileValuePresent": true,
+          "profileState": "final_verified",
+          "summaryValuePresent": false,
+          "summaryState": "not_in_payload",
+          "csvColumns": [],
+          "retainedProofTextCandidates": [
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/basis",
+              "characters": 44,
+              "sha256": "aac1f5c27285cb65f7f7a7650d2aad9c9a39c8670a0f8de6b2a5db1405552b8d"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/method",
+              "characters": 30,
+              "sha256": "02943f1b39ee82b260bb45d63cee14e61dda579dce5d3592ad6f13378af937d7"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/heading",
+              "characters": 23,
+              "sha256": "27917f7c021990692e00945217365697db296182befb0969a26eace79ee0c2e3"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/totalShares/row",
+              "characters": 294,
+              "sha256": "6ff7042e3e59e92c74b89f5d7d90d25dd342577c17ebfc2012d38238bb3e496f"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/totalShares/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/totalIssueSizeCr/row",
+              "characters": 294,
+              "sha256": "6ff7042e3e59e92c74b89f5d7d90d25dd342577c17ebfc2012d38238bb3e496f"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/totalIssueSizeCr/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/ofsShares/row",
+              "characters": 356,
+              "sha256": "6518b8ee96bd337d39ef967550271b11306dfd7a2fa14bdb3a87f8333b321197"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/ofsShares/basis",
+              "characters": 57,
+              "sha256": "b5ad7beec331ff1163f447703631d5e71a3c4492160ea1680221727697252798"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/ofsCr/row",
+              "characters": 356,
+              "sha256": "6518b8ee96bd337d39ef967550271b11306dfd7a2fa14bdb3a87f8333b321197"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/ofsCr/basis",
+              "characters": 57,
+              "sha256": "b5ad7beec331ff1163f447703631d5e71a3c4492160ea1680221727697252798"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/freshShares/row",
+              "characters": 294,
+              "sha256": "6ff7042e3e59e92c74b89f5d7d90d25dd342577c17ebfc2012d38238bb3e496f"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/freshShares/basis",
+              "characters": 59,
+              "sha256": "c8bdaec292a87907d91554aeb87d5318221e910c984c0b619ec3cc3a49a1632a"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/freshIssueCr/row",
+              "characters": 294,
+              "sha256": "6ff7042e3e59e92c74b89f5d7d90d25dd342577c17ebfc2012d38238bb3e496f"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueComposition/evidence/fields/freshIssueCr/basis",
+              "characters": 59,
+              "sha256": "c8bdaec292a87907d91554aeb87d5318221e910c984c0b619ec3cc3a49a1632a"
+            }
+          ]
+        },
+        {
+          "field": "issueSizeCr",
+          "provider": "Orkla",
+          "sourceUrl": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "sourceSha256": "1a3e82f54f7b624901b47632b9c5307da6c2905455278a311cd9db3872d2e7fe",
+          "canonicalPointer": "/staticFieldProvenance/issueSizeCr",
+          "canonicalValuePresent": true,
+          "profileValuePresent": true,
+          "profileState": "final_verified",
+          "summaryValuePresent": true,
+          "summaryState": "final_verified",
+          "csvColumns": [
+            "Issue size crore INR"
+          ],
+          "retainedProofTextCandidates": [
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/basis",
+              "characters": 44,
+              "sha256": "aac1f5c27285cb65f7f7a7650d2aad9c9a39c8670a0f8de6b2a5db1405552b8d"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/method",
+              "characters": 30,
+              "sha256": "02943f1b39ee82b260bb45d63cee14e61dda579dce5d3592ad6f13378af937d7"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/heading",
+              "characters": 23,
+              "sha256": "27917f7c021990692e00945217365697db296182befb0969a26eace79ee0c2e3"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/totalShares/row",
+              "characters": 294,
+              "sha256": "6ff7042e3e59e92c74b89f5d7d90d25dd342577c17ebfc2012d38238bb3e496f"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/totalShares/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/totalIssueSizeCr/row",
+              "characters": 294,
+              "sha256": "6ff7042e3e59e92c74b89f5d7d90d25dd342577c17ebfc2012d38238bb3e496f"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/totalIssueSizeCr/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/ofsShares/row",
+              "characters": 356,
+              "sha256": "6518b8ee96bd337d39ef967550271b11306dfd7a2fa14bdb3a87f8333b321197"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/ofsShares/basis",
+              "characters": 57,
+              "sha256": "b5ad7beec331ff1163f447703631d5e71a3c4492160ea1680221727697252798"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/ofsCr/row",
+              "characters": 356,
+              "sha256": "6518b8ee96bd337d39ef967550271b11306dfd7a2fa14bdb3a87f8333b321197"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/ofsCr/basis",
+              "characters": 57,
+              "sha256": "b5ad7beec331ff1163f447703631d5e71a3c4492160ea1680221727697252798"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/freshShares/row",
+              "characters": 294,
+              "sha256": "6ff7042e3e59e92c74b89f5d7d90d25dd342577c17ebfc2012d38238bb3e496f"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/freshShares/basis",
+              "characters": 59,
+              "sha256": "c8bdaec292a87907d91554aeb87d5318221e910c984c0b619ec3cc3a49a1632a"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/freshIssueCr/row",
+              "characters": 294,
+              "sha256": "6ff7042e3e59e92c74b89f5d7d90d25dd342577c17ebfc2012d38238bb3e496f"
+            },
+            {
+              "pointer": "/staticFieldProvenance/issueSizeCr/evidence/fields/freshIssueCr/basis",
+              "characters": 59,
+              "sha256": "c8bdaec292a87907d91554aeb87d5318221e910c984c0b619ec3cc3a49a1632a"
+            }
+          ]
+        },
+        {
+          "field": "freshIssueCr",
+          "provider": "Orkla",
+          "sourceUrl": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "sourceSha256": "1a3e82f54f7b624901b47632b9c5307da6c2905455278a311cd9db3872d2e7fe",
+          "canonicalPointer": "/staticFieldProvenance/freshIssueCr",
+          "canonicalValuePresent": true,
+          "profileValuePresent": true,
+          "profileState": "final_verified",
+          "summaryValuePresent": false,
+          "summaryState": "not_in_payload",
+          "csvColumns": [],
+          "retainedProofTextCandidates": [
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/basis",
+              "characters": 44,
+              "sha256": "aac1f5c27285cb65f7f7a7650d2aad9c9a39c8670a0f8de6b2a5db1405552b8d"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/method",
+              "characters": 30,
+              "sha256": "02943f1b39ee82b260bb45d63cee14e61dda579dce5d3592ad6f13378af937d7"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/heading",
+              "characters": 23,
+              "sha256": "27917f7c021990692e00945217365697db296182befb0969a26eace79ee0c2e3"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/totalShares/row",
+              "characters": 294,
+              "sha256": "6ff7042e3e59e92c74b89f5d7d90d25dd342577c17ebfc2012d38238bb3e496f"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/totalShares/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/totalIssueSizeCr/row",
+              "characters": 294,
+              "sha256": "6ff7042e3e59e92c74b89f5d7d90d25dd342577c17ebfc2012d38238bb3e496f"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/totalIssueSizeCr/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/ofsShares/row",
+              "characters": 356,
+              "sha256": "6518b8ee96bd337d39ef967550271b11306dfd7a2fa14bdb3a87f8333b321197"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/ofsShares/basis",
+              "characters": 57,
+              "sha256": "b5ad7beec331ff1163f447703631d5e71a3c4492160ea1680221727697252798"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/ofsCr/row",
+              "characters": 356,
+              "sha256": "6518b8ee96bd337d39ef967550271b11306dfd7a2fa14bdb3a87f8333b321197"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/ofsCr/basis",
+              "characters": 57,
+              "sha256": "b5ad7beec331ff1163f447703631d5e71a3c4492160ea1680221727697252798"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/freshShares/row",
+              "characters": 294,
+              "sha256": "6ff7042e3e59e92c74b89f5d7d90d25dd342577c17ebfc2012d38238bb3e496f"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/freshShares/basis",
+              "characters": 59,
+              "sha256": "c8bdaec292a87907d91554aeb87d5318221e910c984c0b619ec3cc3a49a1632a"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/freshIssueCr/row",
+              "characters": 294,
+              "sha256": "6ff7042e3e59e92c74b89f5d7d90d25dd342577c17ebfc2012d38238bb3e496f"
+            },
+            {
+              "pointer": "/staticFieldProvenance/freshIssueCr/evidence/fields/freshIssueCr/basis",
+              "characters": 59,
+              "sha256": "c8bdaec292a87907d91554aeb87d5318221e910c984c0b619ec3cc3a49a1632a"
+            }
+          ]
+        },
+        {
+          "field": "ofsCr",
+          "provider": "Orkla",
+          "sourceUrl": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "sourceSha256": "1a3e82f54f7b624901b47632b9c5307da6c2905455278a311cd9db3872d2e7fe",
+          "canonicalPointer": "/staticFieldProvenance/ofsCr",
+          "canonicalValuePresent": true,
+          "profileValuePresent": true,
+          "profileState": "final_verified",
+          "summaryValuePresent": false,
+          "summaryState": "not_in_payload",
+          "csvColumns": [],
+          "retainedProofTextCandidates": [
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/basis",
+              "characters": 44,
+              "sha256": "aac1f5c27285cb65f7f7a7650d2aad9c9a39c8670a0f8de6b2a5db1405552b8d"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/method",
+              "characters": 30,
+              "sha256": "02943f1b39ee82b260bb45d63cee14e61dda579dce5d3592ad6f13378af937d7"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/heading",
+              "characters": 23,
+              "sha256": "27917f7c021990692e00945217365697db296182befb0969a26eace79ee0c2e3"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/totalShares/row",
+              "characters": 294,
+              "sha256": "6ff7042e3e59e92c74b89f5d7d90d25dd342577c17ebfc2012d38238bb3e496f"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/totalShares/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/totalIssueSizeCr/row",
+              "characters": 294,
+              "sha256": "6ff7042e3e59e92c74b89f5d7d90d25dd342577c17ebfc2012d38238bb3e496f"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/totalIssueSizeCr/basis",
+              "characters": 27,
+              "sha256": "5a64926b9daffc48ded05ed8ba8556d2bec3c9a64fab25acee4609ef6c333e0b"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/ofsShares/row",
+              "characters": 356,
+              "sha256": "6518b8ee96bd337d39ef967550271b11306dfd7a2fa14bdb3a87f8333b321197"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/ofsShares/basis",
+              "characters": 57,
+              "sha256": "b5ad7beec331ff1163f447703631d5e71a3c4492160ea1680221727697252798"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/ofsCr/row",
+              "characters": 356,
+              "sha256": "6518b8ee96bd337d39ef967550271b11306dfd7a2fa14bdb3a87f8333b321197"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/ofsCr/basis",
+              "characters": 57,
+              "sha256": "b5ad7beec331ff1163f447703631d5e71a3c4492160ea1680221727697252798"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/freshShares/row",
+              "characters": 294,
+              "sha256": "6ff7042e3e59e92c74b89f5d7d90d25dd342577c17ebfc2012d38238bb3e496f"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/freshShares/basis",
+              "characters": 59,
+              "sha256": "c8bdaec292a87907d91554aeb87d5318221e910c984c0b619ec3cc3a49a1632a"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/freshIssueCr/row",
+              "characters": 294,
+              "sha256": "6ff7042e3e59e92c74b89f5d7d90d25dd342577c17ebfc2012d38238bb3e496f"
+            },
+            {
+              "pointer": "/staticFieldProvenance/ofsCr/evidence/fields/freshIssueCr/basis",
+              "characters": 59,
+              "sha256": "c8bdaec292a87907d91554aeb87d5318221e910c984c0b619ec3cc3a49a1632a"
+            }
+          ]
+        }
+      ],
+      "historyLocations": [],
+      "correctionCount": 6,
+      "extractionMetadata": {
+        "offerDocumentExtraction": {
+          "sourceUrl": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1762153611434.pdf",
+          "status": "extracted"
+        },
+        "issuerDocumentExtraction": {
+          "sourceUrl": "https://www.orklaindia.com/wp-content/uploads/sites/3/2025/11/Orkla-India-Limited-Prospectus.pdf",
+          "status": "extracted"
+        }
+      },
+      "canonicalPointer": "/ipos/184",
+      "profileFile": "ipo/orklaindia/index.html"
+    },
+    {
+      "id": "kheriaauto",
+      "company": "Kheria Autocomp Limited",
+      "status": "open",
+      "profilePath": "ipo/kheriaauto/",
+      "secondarySubscription": {
+        "label": "IPO Premium subscription (secondary)",
+        "sourceUrl": "https://www.ipopremium.in/view/subscription",
+        "sourceUrlBinding": "stored",
+        "canonicalFields": [
+          "nii",
+          "qib",
+          "retail",
+          "total"
+        ],
+        "profileFields": [
+          "nii",
+          "qib",
+          "retail",
+          "total"
+        ],
+        "profileState": "reported",
+        "summaryTotalPresent": true,
+        "summaryState": "reported",
+        "csvColumns": [
+          "Subscription multiple",
+          "Subscription source observation time",
+          "Subscription collection time",
+          "Subscription source authority",
+          "Subscription source"
+        ],
+        "sourceObservedAt": "2026-09-18T19:53:17+05:30",
+        "collectedAt": "2026-09-19T01:52:10+05:30",
+        "canonicalHistoryCount": 7,
+        "publicProfileHistoryCount": 7
+      },
+      "canonicalReferences": [
+        {
+          "pointer": "/sources/3/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/0/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/1/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/2/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/3/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/4/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/5/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/6/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionSourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "profileReferences": [
+        {
+          "pointer": "/subscriptionSourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/0/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/1/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/2/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/3/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/4/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/5/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/6/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/sources/3/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "summaryReferences": [
+        {
+          "pointer": "/subscriptionSourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "fieldProofBindings": [],
+      "historyLocations": [
+        "/subscriptionHistory"
+      ],
+      "correctionCount": 1,
+      "extractionMetadata": {},
+      "canonicalPointer": "/ipos/1354",
+      "profileFile": "ipo/kheriaauto/index.html"
+    },
+    {
+      "id": "axiomgas",
+      "company": "Axiom Gas Engineering Limited",
+      "status": "open",
+      "profilePath": "ipo/axiomgas/",
+      "secondarySubscription": {
+        "label": "IPO Premium subscription (secondary)",
+        "sourceUrl": "https://www.ipopremium.in/view/subscription",
+        "sourceUrlBinding": "stored",
+        "canonicalFields": [
+          "nii",
+          "qib",
+          "retail",
+          "total"
+        ],
+        "profileFields": [
+          "nii",
+          "qib",
+          "retail",
+          "total"
+        ],
+        "profileState": "reported",
+        "summaryTotalPresent": true,
+        "summaryState": "reported",
+        "csvColumns": [
+          "Subscription multiple",
+          "Subscription source observation time",
+          "Subscription collection time",
+          "Subscription source authority",
+          "Subscription source"
+        ],
+        "sourceObservedAt": "2026-09-18T20:41:14+05:30",
+        "collectedAt": "2026-09-19T01:52:15+05:30",
+        "canonicalHistoryCount": 3,
+        "publicProfileHistoryCount": 3
+      },
+      "canonicalReferences": [
+        {
+          "pointer": "/sources/2/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/0/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/1/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/2/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionSourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "profileReferences": [
+        {
+          "pointer": "/subscriptionSourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/0/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/1/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/subscriptionHistory/2/sourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/sources/2/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "summaryReferences": [
+        {
+          "pointer": "/subscriptionSourceUrl",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "fieldProofBindings": [],
+      "historyLocations": [
+        "/subscriptionHistory"
+      ],
+      "correctionCount": 1,
+      "extractionMetadata": {},
+      "canonicalPointer": "/ipos/1362",
+      "profileFile": "ipo/axiomgas/index.html"
+    }
+  ],
+  "pendingProposals": [
+    {
+      "index": 6,
+      "pointer": "/updates/6",
+      "id": "vama-wovenfab-limited",
+      "path": [
+        "ipos",
+        "vama-wovenfab-limited",
+        "subscriptionSnapshot"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "28a4d6d457cbb52ed0ffbcc9a3909c8cc1d6c96e84c17d46e2ab5bb0239558a6",
+      "runId": "35056273505",
+      "providerReferences": [],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 7,
+      "pointer": "/updates/7",
+      "id": "vama-wovenfab-limited",
+      "path": [
+        "ipos",
+        "vama-wovenfab-limited",
+        "sources"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "41881e5441bfa0593305454ab5d428e379b77ab0789f31b74eeb1454f0660513",
+      "runId": "35056273505",
+      "providerReferences": [
+        {
+          "pointer": "/base/1/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/base/3/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/base/4/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/base/5/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/base/6/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/base/7/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/1/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/3/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/4/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/5/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/6/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/7/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/8/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 8,
+      "pointer": "/updates/8",
+      "id": "shakti-polytarp-limited",
+      "path": [
+        "ipos",
+        "shakti-polytarp-limited",
+        "documentFields"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "654a229054cc46db9e85907535f0a71f471c361e24888d806b881fae5d2e357d",
+      "runId": "35056273505",
+      "providerReferences": [],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 9,
+      "pointer": "/updates/9",
+      "id": "shakti-polytarp-limited",
+      "path": [
+        "ipos",
+        "shakti-polytarp-limited",
+        "subscriptionSnapshot"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "3d209a2e1e6f9e01a9428fe9ed2782862e37dfe67f8f987035627f6e5c1073f5",
+      "runId": "35056273505",
+      "providerReferences": [],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 10,
+      "pointer": "/updates/10",
+      "id": "shakti-polytarp-limited",
+      "path": [
+        "ipos",
+        "shakti-polytarp-limited",
+        "documents"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "b312819be62501f8aa2d0634966e28bbb9751893a43347ad736f9430afb0d2d8",
+      "runId": "35056273505",
+      "providerReferences": [],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 11,
+      "pointer": "/updates/11",
+      "id": "shakti-polytarp-limited",
+      "path": [
+        "ipos",
+        "shakti-polytarp-limited",
+        "p4OfferResidualRepair",
+        "checkedAt"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "6b8473603714680c8a5fd4f5395fe1cfa75c84efe445bb800f89e6df48b39fd2",
+      "runId": "35056273505",
+      "providerReferences": [],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 12,
+      "pointer": "/updates/12",
+      "id": "shakti-polytarp-limited",
+      "path": [
+        "ipos",
+        "shakti-polytarp-limited",
+        "sources"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "7fbc70cd255be0f3c1b55defa458a7d2068ec8fab04eae03db8f21db2c8bd3c2",
+      "runId": "35056273505",
+      "providerReferences": [
+        {
+          "pointer": "/base/1/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/base/3/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/base/4/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/base/5/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/base/6/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/base/7/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/1/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/3/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/4/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/5/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/6/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/7/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/8/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 18,
+      "pointer": "/updates/18",
+      "id": "injecto-polymers-limited",
+      "path": [
+        "ipos",
+        "injecto-polymers-limited",
+        "subscriptionSnapshot"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "9251429cabbdeede1bf56c7a53c449e88deab8ab01c14b8bad425d35ebd08e61",
+      "runId": "35056273505",
+      "providerReferences": [],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 19,
+      "pointer": "/updates/19",
+      "id": "injecto-polymers-limited",
+      "path": [
+        "ipos",
+        "injecto-polymers-limited",
+        "sources"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "b025ce96c15ab413c6ceda25c62641c62f0983766ae0808f836d9d8f32c3989c",
+      "runId": "35056273505",
+      "providerReferences": [
+        {
+          "pointer": "/base/0/url",
+          "url": "https://ipodhamaka.in/subscription/",
+          "provider": "IPO Dhamaka"
+        },
+        {
+          "pointer": "/base/2/url",
+          "url": "https://ipostatus.integratedregistry.in/RegistrarsToSTANew.aspx",
+          "provider": "Integrated Registry"
+        },
+        {
+          "pointer": "/base/3/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/base/5/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/base/6/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/base/7/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/base/8/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/base/9/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/0/url",
+          "url": "https://ipodhamaka.in/subscription/",
+          "provider": "IPO Dhamaka"
+        },
+        {
+          "pointer": "/proposed/2/url",
+          "url": "https://ipostatus.integratedregistry.in/RegistrarsToSTANew.aspx",
+          "provider": "Integrated Registry"
+        },
+        {
+          "pointer": "/proposed/3/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/5/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/6/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/7/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/8/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/9/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/10/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 20,
+      "pointer": "/updates/20",
+      "id": "century-business-media-limited",
+      "path": [
+        "ipos",
+        "century-business-media-limited",
+        "subscriptionSnapshot"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "6368cef6b1c9fef25bef9457fd0ad1a03e8b043e3c00110521dafc5c0c2a9e53",
+      "runId": "35056273505",
+      "providerReferences": [],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 21,
+      "pointer": "/updates/21",
+      "id": "century-business-media-limited",
+      "path": [
+        "ipos",
+        "century-business-media-limited",
+        "sources"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "31353ddf71fa1d341886402c1d96ba74298fef13965944b9283376c257688d9d",
+      "runId": "35056273505",
+      "providerReferences": [
+        {
+          "pointer": "/base/0/url",
+          "url": "https://ipodhamaka.in/subscription/",
+          "provider": "IPO Dhamaka"
+        },
+        {
+          "pointer": "/base/2/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/base/4/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/base/5/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/base/6/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/base/7/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/base/8/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/0/url",
+          "url": "https://ipodhamaka.in/subscription/",
+          "provider": "IPO Dhamaka"
+        },
+        {
+          "pointer": "/proposed/2/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/4/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/5/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/6/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/7/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/8/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/9/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 22,
+      "pointer": "/updates/22",
+      "id": "om-galaxy-limited",
+      "path": [
+        "ipos",
+        "om-galaxy-limited",
+        "documentFields"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "c600c0cda286d27a1d816d1d993a22503f0f1f80c422dd7a120a863ff84da4a5",
+      "runId": "35056273505",
+      "providerReferences": [],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 23,
+      "pointer": "/updates/23",
+      "id": "om-galaxy-limited",
+      "path": [
+        "ipos",
+        "om-galaxy-limited",
+        "documents"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "5f475fc1b8bad29319e88b386bdc870b04970724e071d44110c7f3f7a848d003",
+      "runId": "35056273505",
+      "providerReferences": [],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 24,
+      "pointer": "/updates/24",
+      "id": "om-galaxy-limited",
+      "path": [
+        "ipos",
+        "om-galaxy-limited",
+        "p4OfferResidualRepair",
+        "checkedAt"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "79f1b67533629bfae69537d3e5e92c97e5bb91e1acda6328f32009255ac68f60",
+      "runId": "35056273505",
+      "providerReferences": [],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 25,
+      "pointer": "/updates/25",
+      "id": "steamhouse",
+      "path": [
+        "ipos",
+        "steamhouse",
+        "documentFields"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "79671618079f5b026da1c3e8b010ddcc9b25a16fc9b981ec4ef65febf917411d",
+      "runId": "35056273505",
+      "providerReferences": [],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 26,
+      "pointer": "/updates/26",
+      "id": "steamhouse",
+      "path": [
+        "ipos",
+        "steamhouse",
+        "documents"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "d320395cf123c224edc1df1a57391dcaee8cf45bf8ef688b018f91043fbff14c",
+      "runId": "35056273505",
+      "providerReferences": [],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 27,
+      "pointer": "/updates/27",
+      "id": "steamhouse",
+      "path": [
+        "ipos",
+        "steamhouse",
+        "p4OfferResidualRepair",
+        "checkedAt"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "5371c23f58e95e4c430fe9581bcca4d4c2debb5e60504a99947d2c406ac79427",
+      "runId": "35056273505",
+      "providerReferences": [],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 93,
+      "pointer": "/updates/93",
+      "id": "vama-wovenfab-limited",
+      "path": [
+        "ipos",
+        "vama-wovenfab-limited",
+        "subscriptionSnapshot"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "e0beae408b3d59d20645e8b5aa4762fe3c4aa62b3ffc8797f56f1fbca5a77101",
+      "runId": "35204652736",
+      "providerReferences": [],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 94,
+      "pointer": "/updates/94",
+      "id": "vama-wovenfab-limited",
+      "path": [
+        "ipos",
+        "vama-wovenfab-limited",
+        "sources"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "1b714c107fdb120ed6e84502ef92c08f834b61db48a0436881a319a56a8c7b50",
+      "runId": "35204652736",
+      "providerReferences": [
+        {
+          "pointer": "/base/1/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/1/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/3/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 95,
+      "pointer": "/updates/95",
+      "id": "shakti-polytarp-limited",
+      "path": [
+        "ipos",
+        "shakti-polytarp-limited",
+        "subscriptionSnapshot"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "7b945d894c76788492a638d5100b17be69eb6c59eac132e92c4585e11af77f90",
+      "runId": "35204652736",
+      "providerReferences": [],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 96,
+      "pointer": "/updates/96",
+      "id": "shakti-polytarp-limited",
+      "path": [
+        "ipos",
+        "shakti-polytarp-limited",
+        "sources"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "f6ea2702b4c5b1c24c635c3144ec999e4c39e161513d38608e6b9461599f0413",
+      "runId": "35204652736",
+      "providerReferences": [
+        {
+          "pointer": "/base/1/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/1/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/3/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 98,
+      "pointer": "/updates/98",
+      "id": "century-business-media-limited",
+      "path": [
+        "ipos",
+        "century-business-media-limited",
+        "documentFields"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "a7fd78f41a4fdb1d6fcced25142fa8dadece87ae706542e8f3a303385eee56e2",
+      "runId": "35204652736",
+      "providerReferences": [],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 99,
+      "pointer": "/updates/99",
+      "id": "raksan-transformers-limited",
+      "path": [
+        "ipos",
+        "raksan-transformers-limited",
+        "documentFields"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "b7e3bda90d856f50da77abdb11534f6f5b81d73a2c3472873a0a4e253b8089c9",
+      "runId": "35204652736",
+      "providerReferences": [],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 100,
+      "pointer": "/updates/100",
+      "id": "steamhouse",
+      "path": [
+        "ipos",
+        "steamhouse",
+        "documentFields"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "72e3bfd310d0d747326d4555bff27e9c6b6159d9646a4afc4e5fd262957bf7ad",
+      "runId": "35204652736",
+      "providerReferences": [],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 162,
+      "pointer": "/updates/162",
+      "id": "kheriaauto",
+      "path": [
+        "ipos",
+        "kheriaauto",
+        "subscriptionSnapshot"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "14e86172a9778ff835360762b94e8e5bd7d22608380c9127f1dd1b2c3cdf61f0",
+      "runId": "35204652736",
+      "providerReferences": [],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 163,
+      "pointer": "/updates/163",
+      "id": "kheriaauto",
+      "path": [
+        "ipos",
+        "kheriaauto",
+        "sources"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "1fc4396f3161ed50c26758badb71ccfaf843568bb398585c8c1daecbf1095d1a",
+      "runId": "35204652736",
+      "providerReferences": [
+        {
+          "pointer": "/base/3/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/3/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/4/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 180,
+      "pointer": "/updates/180",
+      "id": "sunshine",
+      "path": [
+        "ipos",
+        "sunshine",
+        "documentFields"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "bdf5b49bc5c19da0cd3a5c038db648556b99f0eb2e1e40db1fd5b6d7a4081375",
+      "runId": "35254384128",
+      "providerReferences": [
+        {
+          "pointer": "/base/documentFieldProvenance/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/base/offerDocumentExtraction/documentUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/base/issuerDocumentExtraction/documentUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/base/issuerDocumentExtraction/sourcePage",
+          "url": "https://sunshinepictures.in/offer-documents/",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/base/staticFieldProvenance/priceBand/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/base/staticFieldProvenance/lotSize/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/base/staticFieldProvenance/leadManagers/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/base/staticFieldProvenance/registrar/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/base/staticFieldProvenance/promoters/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/base/staticFieldProvenance/financials/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/base/staticFieldProvenance/listing.issuePrice/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/base/staticFieldProvenance/issueComposition/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/base/staticFieldProvenance/issueSizeCr/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/base/staticFieldProvenance/freshIssueCr/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/base/staticFieldProvenance/ofsCr/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/base/staticSourcePolicy/documentUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/proposed/documentFieldProvenance/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/proposed/offerDocumentExtraction/documentUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/proposed/issuerDocumentExtraction/documentUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/proposed/issuerDocumentExtraction/sourcePage",
+          "url": "https://sunshinepictures.in/offer-documents/",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/proposed/staticFieldProvenance/priceBand/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/proposed/staticFieldProvenance/lotSize/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/proposed/staticFieldProvenance/leadManagers/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/proposed/staticFieldProvenance/registrar/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/proposed/staticFieldProvenance/promoters/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/proposed/staticFieldProvenance/financials/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/proposed/staticFieldProvenance/listing.issuePrice/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/proposed/staticFieldProvenance/issueComposition/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/proposed/staticFieldProvenance/issueSizeCr/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/proposed/staticFieldProvenance/freshIssueCr/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/proposed/staticFieldProvenance/ofsCr/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        }
+      ],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 181,
+      "pointer": "/updates/181",
+      "id": "sunshine",
+      "path": [
+        "ipos",
+        "sunshine",
+        "priceSnapshot"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "26288e99ac76f928f8b3d23abc43a41fa2b9e443c16d38792692696fd00fb16c",
+      "runId": "35254384128",
+      "providerReferences": [
+        {
+          "pointer": "/base/listing/issuePriceEvidence/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/proposed/listing/issuePriceEvidence/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        }
+      ],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 182,
+      "pointer": "/updates/182",
+      "id": "sunshine",
+      "path": [
+        "ipos",
+        "sunshine",
+        "lotTerms"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "51bddf505b04c445f73d3a33d2ea3466a441f2bc2989eb8337f0b5b392347c30",
+      "runId": "35254384128",
+      "providerReferences": [
+        {
+          "pointer": "/base/lotSizeEvidence/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        },
+        {
+          "pointer": "/proposed/lotSizeEvidence/sourceUrl",
+          "url": "https://sunshinepictures.in/wp-content/uploads/2026/08/FinalSunshineProspectus-GYR.pdf",
+          "provider": "Sunshine"
+        }
+      ],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 183,
+      "pointer": "/updates/183",
+      "id": "sunshine",
+      "path": [
+        "ipos",
+        "sunshine",
+        "p4OfferResidualRepair",
+        "checkedAt"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "710215574470fd255c930193ff7e8b62112336ebe695e617474ac5726316099c",
+      "runId": "35254384128",
+      "providerReferences": [],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 406,
+      "pointer": "/updates/406",
+      "id": "vama-wovenfab-limited",
+      "path": [
+        "ipos",
+        "vama-wovenfab-limited",
+        "sources"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "8476c5c23287a20170a2ed86458f6735b2e0b51a99a09a761f089890a268de90",
+      "runId": "35257821039",
+      "providerReferences": [
+        {
+          "pointer": "/base/1/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/base/3/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/1/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 407,
+      "pointer": "/updates/407",
+      "id": "shakti-polytarp-limited",
+      "path": [
+        "ipos",
+        "shakti-polytarp-limited",
+        "sources"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "674e3d2628cb676b2eb20f50ac834bc97efd408629b31822c230628280882f4d",
+      "runId": "35257821039",
+      "providerReferences": [
+        {
+          "pointer": "/base/1/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/base/3/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/1/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 439,
+      "pointer": "/updates/439",
+      "id": "kheriaauto",
+      "path": [
+        "ipos",
+        "kheriaauto",
+        "subscriptionSnapshot"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "f18cf34069c9b0da4ad40246709115fbec18c0ae6d176301d8a34122650ff6a9",
+      "runId": "35257821039",
+      "providerReferences": [],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    },
+    {
+      "index": 440,
+      "pointer": "/updates/440",
+      "id": "kheriaauto",
+      "path": [
+        "ipos",
+        "kheriaauto",
+        "sources"
+      ],
+      "status": "pending_conflict_review",
+      "fingerprint": "2176798f2c45a83bd3698fdf26dac9b5acb24444d069907de9e7637519e1150e",
+      "runId": "35257821039",
+      "providerReferences": [
+        {
+          "pointer": "/base/3/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/base/4/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        },
+        {
+          "pointer": "/proposed/3/url",
+          "url": "https://www.ipopremium.in/view/subscription",
+          "provider": "IPO Premium"
+        }
+      ],
+      "meaning": "Unresolved proposal, not accepted field provenance."
+    }
+  ],
+  "summary": {
+    "canonicalRecords": 1404,
+    "cohortRecords": 13,
+    "secondaryLabelRecords": 9,
+    "secondaryProfileValueRecords": 9,
+    "secondarySummaryTotalRecords": 9,
+    "secondaryPublicHistoryRows": 56,
+    "directStaticProofFields": 21,
+    "publicDirectStaticProofFields": 20,
+    "pendingProposalDenominator": 441,
+    "cohortOrProviderLinkedProposals": 34,
+    "providerCanonicalReferences": {
+      "IPO Central": 2,
+      "IPO Dhamaka": 10,
+      "IPO Premium": 59,
+      "IPO Watch": 1,
+      "Integrated Registry": 4,
+      "Orkla": 23,
+      "Sunshine": 30
+    }
+  },
+  "csvEvidence": {
+    "path": "app.js",
+    "function": "exportCsv",
+    "fields": {
+      "priceBand": [
+        "Price minimum INR",
+        "Price maximum INR"
+      ],
+      "lotSize": [
+        "Lot size shares",
+        "One lot at cap INR"
+      ],
+      "issueSizeCr": [
+        "Issue size crore INR"
+      ],
+      "subscription": [
+        "Subscription multiple",
+        "Subscription source observation time",
+        "Subscription collection time",
+        "Subscription source authority",
+        "Subscription source"
+      ]
+    },
+    "meaning": "Source inspection: filtered sanitized summary, with latestSubscription calling IPOQuality.snapshot. No CSV was executed or downloaded by this appendix."
+  },
+  "limitations": [
+    "References/labels do not establish exact upstream attribution, copyright ownership or permission.",
+    "Missing top-level secondary source URLs stay missing; source/history links cannot supply them.",
+    "Source holds affect public values, not access to raw data, history, repository commits or artifacts.",
+    "Only selected current profiles and named input files are enumerated; all Git history and remote workflow artifacts are not exhaustively scanned.",
+    "Proof text is represented by pointers, lengths and hashes, not duplicated excerpts.",
+    "No collection, canonical/proposal/review changes or permission decisions."
+  ]
+}

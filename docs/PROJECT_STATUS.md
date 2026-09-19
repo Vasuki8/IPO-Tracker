@@ -15,7 +15,62 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
-## Current checkpoint — operational receipt visibility released, 19 September 2026
+## Current checkpoint — commercial publication-scope review, 19 September 2026
+
+Assessment main: **`1e86840856525db2ee2b436ed64f2b6e60374ee0`** (scheduled filings update incorporated from initial `4c5f1af5`), including completed
+operational #164–165 and universe #162–163. Sequential branch:
+`research-commercial-publication-scope`; PR/merge/deployment receipts are recorded
+at release closeout. Previous commercial #152–153 research was reused with original
+check dates. The exact next publication-mapping task is implemented in the
+[commercial audit](audits/commercial/2026-09-19-publication-scope/REPORT.md),
+[field/surface map](audits/commercial/2026-09-19-publication-scope/exposure.json),
+[current inventory](audits/commercial/2026-09-19-publication-scope/inventory.json)
+and updated [commercial decision register](COMMERCIAL_READINESS.md).
+
+The 13-issuer map covers nine canonical secondary subscription records (six IPO
+Premium, three IPO Dhamaka), **56 public profile history rows**, **21 issuer-hosted
+static proofs / 20 corresponding profile values**, and **34 of 441 unresolved
+proposals**. Seven missing top-level subscription source URLs remain unknown.
+Orkla/Sunshine proofs, held Sunshine financials, Injecto registrar references,
+Lumino/Steamhouse secondary links, raw JSON/history and CSV scope are distinguished.
+No source link is treated as field provenance or permission. Inventory is now
+**61 hosts**, up from 58 through links inside retained NSE responses; eleven Python
+package versions and notice hashes are unchanged.
+
+New primary checks cover IPO Watch, IPO Central, Economic Times, Moneycontrol,
+Business Standard and Mint. BSE's public Legal page exposes no documents;
+disclaimer and product rights remain unresolved. Completed collector logs bind
+Poppler/libpoppler134 24.02.0-1ubuntu9.9 and poppler-data 0.4.12-1 to matching Ubuntu
+copyright notices; six action/tool top-level licenses were inspected. Chromium,
+bundled/transitive notices and SVG provenance remain open. Existing NSE/SEBI,
+issuer, core-secondary and hosting evidence was carried without claiming refresh.
+
+Four customer hypotheses, proposed privacy-conscious measurements/retention, cost
+categories and support/correction process are retained. **Commercial launch is
+not cleared.** Owner must identify operator/jurisdictions and review owner; direct
+professional assessment of interim collection/publication boundaries and permitted
+hosting; and later validate audience/pricing. No contacts, spend, contracts,
+accounts, tracking, ads or infrastructure changes. No public behavior change.
+
+P4 is unchanged: **408 actionable + 67 higher priority; 1,553 blocking / 1,557 total
+reviews; 0 errors / 0 unmapped; 1,404 canonical records**. P5/performance remain
+gated. Canonical values, pending proposals and review state are outside this diff.
+Seven focused audit tests and 38 Node public-quality/source-health tests pass.
+Both audit JSON artifacts replay exactly; prior register bytes and protected
+paths are unchanged; 59 local Markdown links resolve. Strict validation passes
+with 1,404 records, zero errors and 1,557 reviews. Remaining release acceptance:
+full PR CI, merge and exact live documentation checks.
+Preserved open work: #94, #98, #99 and drafts #104/#105.
+
+**Exact next commercial task:** owner-directed professional review of the completed
+13-issuer packet and interim publication policy. Independent next research cohort:
+map broker/lead-manager/small-news retained material, starting with
+`www.ipoplatform.com`, `www.equentis.com`, `www.idbidirect.in`, `www.plindia.com` and
+`ipobarta.ai`, then inspect applicable public terms. BSE agreement recovery remains
+blocked on accessible applicable terms or separately authorized outreach. Do not
+repeat the completed packet unless its bound inputs change.
+
+## Previous checkpoint — operational receipt visibility released, 19 September 2026
 
 Verified release main: **`aa4d5b4709a5b62bb4be8fa5ba95800984df8be9`**, merged in
 [PR #164](https://github.com/Vasuki8/IPO-Tracker/pull/164); implementation
