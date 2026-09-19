@@ -15,6 +15,73 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
+## Commercial-readiness checkpoint — five-host rights cohort, 19 September 2026
+
+Recovered current `main` at **`0bae00b3f0aeb6119d4310f1be04f253e31c1b90`**,
+read the current roadmap/status/commercial register, and reused the completed
+13-issuer publication packet rather than repeating it. The exact independent
+research cohort named by the prior commercial checkpoint is complete:
+`www.ipoplatform.com`, `ipobarta.ai`, `www.idbidirect.in`, `www.plindia.com`
+and `www.equentis.com`. The current inventory maps **8 stored mentions / 6 unique
+URLs / 6 IPO records** across those hosts. See the
+[bounded rights report](audits/commercial/2026-09-19-secondary-reference-rights/REPORT.md)
+and updated [commercial register](COMMERCIAL_READINESS.md).
+
+IPO Platform requires express written permission for content use/reproduction/
+distribution; IPOBarta prohibits copying, scraping, redistribution and commercial
+exploitation without permission; IDBI Direct reserves portal content and limits
+ordinary site information to personal use absent express permission; PL Capital
+prohibits reproduction under its stated terms and also states that links from
+another website/document require prior written consent. Equentis publishes
+general Terms last revised 31 March 2025 and identifies a website/IP section, but
+the accessible text representation did not expose that section's operative body;
+no express reuse grant was verified, so permission remains **unknown** rather than
+assumed. These terms are mapped to current proof/source roles; no conclusion is
+made here about legal protectability of isolated facts or enforceability.
+
+BSE's current Self Data Feed portal now supplies additional primary evidence of a
+licensing path: registration/KYC → data-plan selection → pricing/agreement →
+payment. That does **not** establish reuse rights for the project's existing IPO
+portal/public-page routes; the applicable agreement/disclaimer remains unresolved.
+GitHub Pages was rechecked against current official limits/additional terms:
+Pages is primarily a project showcase and is not intended/allowed as free hosting
+for an online business, e-commerce site or commercial SaaS. Current/future product
+fit therefore remains a hosting decision before monetized activation.
+
+The four existing customer hypotheses remain the active validation set: active
+retail IPO researchers, research-heavy long-term investors, small advisor/research
+teams and finance/content professionals. No demand or pricing evidence was created.
+The privacy-conscious acquisition/search/profile/comparison/watchlist/repeat/
+conversion plan remains **disabled**, with no analytics scripts, cookies,
+fingerprinting or identifiers added. Cost categories remain hosting/domain/CDN,
+data licensing, database/auth, payments, email/push, CI/monitoring and
+support/source review. The existing source/correction/rights/privacy incident
+process remains the support baseline.
+
+Current accepted data state is unchanged by this documentation-only work:
+**1,436 canonical records; P4 incomplete with 438 actionable + 67
+higher-priority records, 1,553 blocking / 1,557 total source reviews, zero
+semantic errors / zero unmapped reviews; P5 has 914 records waiting for P4**.
+No canonical values, proposals, review holds, collectors, publication policy,
+analytics, billing, authentication, ads or performance/P5 state changed.
+
+Owner decisions remain: identify legal operator and target jurisdictions; name a
+rights-review owner; obtain professional review of the interim public boundary
+(including raw JSON, proof links, CSV/export, history and the PL linking clause);
+and select a commercially suitable host before monetized activation. Vendor
+outreach, paid advice engagement, contracts and spend require separate approval.
+
+Release branch: `commercial-rights-secondary-cohort`. PR/validation/merge
+receipt will be filled in during release closeout below.
+
+**Exact next commercial task after this cohort:** complete owner-directed
+professional review of the existing 13-issuer packet plus this five-host cohort.
+Independent no-outreach research can continue with `www.alphave.in`,
+`english.metrovaartha.com`, `mtinews.in`, `www.finsso.co.in` and
+`www.merchantbanker.in`, prioritising references that back public values. BSE
+applicable agreement text, Chromium/vendored notices and inline SVG provenance
+remain open.
+
 ## Operational reliability checkpoint — explicit operator clocks, 19 September 2026
 
 Recovered current `main` at **`338af7fdfbf724f40cacabaf0ddd8d422580000f`** and reconciled the independently scheduled core publication **`c4e5e4bb0670ea2ae58305ebd1f8cf6ee26a2453`** before review. The existing read-only health workstream was reused rather than replaced: `tools/report_update_health.py`, source-health metadata, pipeline stage outcomes, accepted publication metadata, proposal reconciliation, phase status and the source-review queue remain the state authorities. No collector, writer, alert service, schedule, paid service or competing state store was added.
