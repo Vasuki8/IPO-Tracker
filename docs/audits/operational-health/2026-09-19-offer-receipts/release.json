@@ -1,0 +1,212 @@
+{
+  "scope": "read-only operational receipt visibility; no data correction or source-freshness claim",
+  "baseCommit": "5531a7cfbc668f0929a7264d599f1b41804c61e1",
+  "implementationCommit": "2b5f5d3c41fcec97f5a19d14663d3918a719fdbe",
+  "releaseCommit": "aa4d5b4709a5b62bb4be8fa5ba95800984df8be9",
+  "pullRequest": "https://github.com/Vasuki8/IPO-Tracker/pull/164",
+  "closeoutBranch": "docs-operational-offer-receipts-closeout",
+  "closeoutCommit": "Identified by Git history containing this receipt; no self-referential hash invented.",
+  "tests": {
+    "focusedHealth": 40,
+    "nodePublicQualityAndSharedClock": 38,
+    "linuxPython": 1347,
+    "linuxStatus": "passed",
+    "localPython": 1347,
+    "localPythonErrors": [
+      "Existing Windows newline filename restriction",
+      "Existing Windows symlink privilege restriction"
+    ],
+    "strictValidation": {
+      "records": 1404,
+      "errors": 0,
+      "reviews": 1557
+    },
+    "reportReplay": "reproduced at original asOf, freshNow not_asserted"
+  },
+  "workflows": [
+    {
+      "id": 35421655528,
+      "name": "PR validation",
+      "conclusion": "success",
+      "headSha": "2b5f5d3c41fcec97f5a19d14663d3918a719fdbe",
+      "url": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35421655528"
+    },
+    {
+      "id": 35421730603,
+      "name": "Main validation",
+      "conclusion": "success",
+      "headSha": "aa4d5b4709a5b62bb4be8fa5ba95800984df8be9",
+      "url": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35421730603"
+    },
+    {
+      "id": 35421729869,
+      "name": "Pages",
+      "conclusion": "success",
+      "headSha": "aa4d5b4709a5b62bb4be8fa5ba95800984df8be9",
+      "url": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35421729869"
+    },
+    {
+      "id": 35421750703,
+      "name": "Public release verification",
+      "conclusion": "success",
+      "headSha": "aa4d5b4709a5b62bb4be8fa5ba95800984df8be9",
+      "url": "https://github.com/Vasuki8/IPO-Tracker/actions/runs/35421750703"
+    }
+  ],
+  "liveReceipts": [
+    "live-verification.json",
+    "live-report.json"
+  ],
+  "publicBehaviorChanges": false,
+  "canonicalChanges": 0,
+  "proposalResolutions": 0,
+  "phase": {
+    "generatedAt": "2026-09-19T03:48:28.406239+00:00",
+    "p4": {
+      "status": "incomplete",
+      "actionableRecords": 408,
+      "higherPriorityRecords": 67,
+      "semanticErrors": 0,
+      "sourceReviewItems": 1557,
+      "blockingSourceReviewItems": 1553,
+      "p5OnlySourceReviewItems": 4,
+      "unmappedSourceReviewItems": 0,
+      "finalProspectusRevalidationRecords": 321,
+      "finalProspectusRevalidationFields": 1174,
+      "higherPriorityFinalProspectusRevalidationRecords": 28,
+      "higherPriorityFinalProspectusRevalidationFields": 104,
+      "resolvedUnavailableRecords": 5
+    },
+    "p5": {
+      "status": "waiting_for_p4",
+      "actionableRecords": 914
+    }
+  },
+  "operationalAsOf": "2026-09-19T04:30:00+00:00",
+  "operationalSummary": {
+    "canonicalRecords": 1404,
+    "lifecycleScopes": {
+      "after_close": 91,
+      "before_open": 7,
+      "not_live_status": 1288,
+      "open_by_recorded_dates": 5,
+      "unknown_dates": 13
+    },
+    "openSubscriptions": 5,
+    "retainedOfferReceipts": 3,
+    "offerReceiptStates": {
+      "provisional": 3
+    },
+    "offerReceiptUnknownObservations": 3,
+    "observationStates": {
+      "outside_monitoring_deadline": 2,
+      "source_time_unknown": 3
+    },
+    "collectionStates": {
+      "missing": 1,
+      "outside_monitoring_deadline": 4
+    },
+    "sourceOutcomes": {
+      "failed": 5,
+      "partial_failure": 1,
+      "successful": 27
+    },
+    "stageOutcomes": {
+      "source_blocked": 3,
+      "successful": 10,
+      "unknown": 1
+    },
+    "overdueSourceChecks": 3,
+    "overdueStages": 1,
+    "observationsOlderThanTolerance": 2,
+    "unresolvedProposals": 441,
+    "stagesNeedingInvestigation": 4,
+    "sourcesNeedingInvestigation": 8
+  },
+  "sourceChecks": {
+    "scope": "offline retained response replay; no source refetch",
+    "receipts": [
+      {
+        "id": "axiomgas",
+        "source": {
+          "name": "NSE",
+          "authority": "official_exchange",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=AXIOMGAS&series=SME",
+          "sha256": "9a2a3901052e7d9354c252820212ec5d9b39ad76fc79f3f5e102a5ea7088a8ce"
+        },
+        "receiptValidation": "replayed",
+        "observedAt": null
+      },
+      {
+        "id": "varmora",
+        "source": {
+          "name": "NSE",
+          "authority": "official_exchange",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=VARMORA&series=EQ",
+          "sha256": "998c9afe8b5a6a7216dd675f85b4120efe4c24e703815f96e7a668c14a8263dd"
+        },
+        "receiptValidation": "replayed",
+        "observedAt": null
+      },
+      {
+        "id": "poojalogis",
+        "source": {
+          "name": "NSE",
+          "authority": "official_exchange",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=POOJALOGIS&series=SME",
+          "sha256": "1662fe9ba50928c9715fcd0bb2c367270371bef54810ea6c456a05521289505e"
+        },
+        "receiptValidation": "replayed",
+        "observedAt": null
+      }
+    ]
+  },
+  "laterWorkflowAssessment": {
+    "runId": "35418300903",
+    "collectorCommit": "9fd5ef2bc17b09a33951e253861d28bc3299d7b9",
+    "runAttempt": 1,
+    "recordedRunStatus": "completed",
+    "recordedRunConclusion": "success",
+    "recordedRunUpdatedAt": "2026-09-19T03:22:20Z",
+    "jobs": {
+      "collect": {
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-09-19T03:21:13Z",
+        "completed_at": "2026-09-19T03:21:54Z"
+      },
+      "publish": {
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-09-19T03:21:56Z",
+        "completed_at": "2026-09-19T03:22:20Z"
+      }
+    },
+    "scope": "supplied-workflow-snapshot-not-live-polling-or-source-acceptance",
+    "timeSinceCollectionCompleted": {
+      "stored": "2026-09-19T03:21:54Z",
+      "thresholdMinutes": 30,
+      "state": "overdue",
+      "ageMinutes": 68.1
+    },
+    "state": "completed_without_matching_acceptance",
+    "nextAction": "Inspect this run and retained bundle; source-manifest validation and source review still govern any retry."
+  },
+  "remainingAcceptanceCriteria": [],
+  "remainingBlockers": [
+    "Three overdue core source checks and one overdue core stage at frozen assessment",
+    "Five failed sources and one partial failure remain; BSE parsing/SME timeout unresolved",
+    "441 retained unresolved proposals; exact creation time unknown",
+    "Per-source and per-receipt accepted publication timestamps unknown",
+    "P4 incomplete; P5/performance remain gated",
+    "Commercial rights, permitted hosting, audience, pricing and revenue model undecided"
+  ],
+  "preservedOpenPRs": [
+    94,
+    98,
+    99,
+    104,
+    105
+  ],
+  "nextOperationalTask": "Diagnose the three overdue core checks with fresh scheduled run/job evidence; distinguish scheduling delay, failed collection and publication delay before a bounded existing-workflow retry."
+}

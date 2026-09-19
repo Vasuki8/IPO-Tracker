@@ -15,14 +15,19 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
-## Current checkpoint — operational receipt visibility, 19 September 2026
+## Current checkpoint — operational receipt visibility released, 19 September 2026
 
-Verified main baseline: **`5531a7cfbc668f0929a7264d599f1b41804c61e1`**. Sequential
-branch: `fix-operational-offer-receipts`. The existing operational/source-clock
+Verified release main: **`aa4d5b4709a5b62bb4be8fa5ba95800984df8be9`**, merged in
+[PR #164](https://github.com/Vasuki8/IPO-Tracker/pull/164); implementation
+`2b5f5d3c41fcec97f5a19d14663d3918a719fdbe`. Baseline was `5531a7cf`.
+Documentation closeout branch: `docs-operational-offer-receipts-closeout`; its
+commit is identified by Git history containing this checkpoint. The existing operational/source-clock
 releases and universe #162–163 are complete; no earlier repair was repeated.
 See the [operational audit](audits/operational-health/2026-09-19-offer-receipts/REPORT.md),
 [bound report](audits/operational-health/2026-09-19-offer-receipts/report.json) and
 [human view](audits/operational-health/2026-09-19-offer-receipts/operator-view.md).
+The [release receipt](audits/operational-health/2026-09-19-offer-receipts/release.json)
+records exact validation and deployment evidence.
 
 The read-only operator report now includes the three retained reviewed provisional
 offer receipts (Axiom Gas, Varmora, Pooja Logistics). Source-response replay and
@@ -53,10 +58,16 @@ P5/performance remain gated. Commercial source permissions, permitted hosting,
 customer segment, pricing and revenue model remain unresolved.
 
 Tests: **40 focused health tests**, **38 Node tests**, strict validation pass.
-The full local Python run executed **1,347 tests** with only the known Windows
-newline-filename and symlink-privilege errors. Remaining acceptance: Linux CI,
-normal PR merge, Pages/deployed verification and immutable closeout receipt.
-No new source-correctness or blocker-reduction claim is made.
+**All 1,347 Python tests pass on Linux**, including the two local Windows
+filesystem limitations. PR validation **35421655528** and main validation
+**35421730603** passed, including report replay and generated public artifacts.
+Pages **35421729869** and deployed verification **35421750703** passed. The
+[live verifier](audits/operational-health/2026-09-19-offer-receipts/live-verification.json)
+checked 21 public files; [eight additional exact-byte checks](audits/operational-health/2026-09-19-offer-receipts/live-report.json)
+include the new report/operator view, summary, phase, source-health script and all
+three receipt profiles. Public behavior remains unchanged. No implementation or
+release acceptance criteria remain for this bounded milestone. No new source
+correctness or blocker reduction is claimed.
 
 Preserved open work: #94, #98, #99 and drafts #104/#105. No other branch was
 modified. **Exact next operational task:** investigate the three overdue core
