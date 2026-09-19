@@ -15,7 +15,68 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
-## Current checkpoint — operational health release, 18–19 September 2026
+## Current checkpoint — commercial evidence review, 19 September 2026
+
+Current main at assessment: **`11a62c47f64506fb3fbccdec8ba7f88e43d8c468`**.
+Fetched current main and recognized completed PRs #149–151 before research.
+This sequential milestone updates [COMMERCIAL_READINESS.md](COMMERCIAL_READINESS.md)
+and retains a [dated research receipt](audits/commercial/2026-09-19/REPORT.md),
+reproducible inventory and verbatim prior register. Branch:
+`docs-commercial-rights-20260919`; research commit `e766387e21966912b751887d73957e2082bfd22f`.
+[PR #152](https://github.com/Vasuki8/IPO-Tracker/pull/152) contains this research;
+merge/deployment closeout is recorded after required validation.
+
+Local checks passed: exact offline inventory reproduction, byte-identical prior
+register, local document links, protected-data/public-output diff, and strict
+validation (zero errors, 1,556 retained reviews). All **34 Node public-quality and
+source-health tests** passed; initial sandbox process-spawn denial was resolved
+by running the same tests with approved execution permissions. Full Python
+regression evidence will come from the existing PR validation workflow.
+
+New primary restrictions recorded for IPO Premium, Groww, IPO Dhamaka, Orkla,
+Sunshine and Integrated Registry. Six configured issuer/registrar hosts plus four
+additional issuer hosts reviewed; missing permission remains unknown. Recent
+17 September NSE/SEBI/Pages evidence carried with its original check date. BSE
+website terms remain inaccessible (403); data portal supplies no readable agreement.
+The bounded inventory has **58 hostnames**, eleven locked package notice inventories,
+and **nine canonical secondary subscription labels** (six IPO Premium, three IPO
+Dhamaka). Historical references are not represented as accepted facts or permissions.
+
+Live canonical, proposal and summary JSON routes returned HTTP 200. Rights review
+therefore includes raw/public history and exports, even when interface holds hide a
+value. No source/data permission obtained and no access/publication policy changed.
+GitHub Actions service/billing/privacy reviewed; Cloudflare Pages remains an
+unselected static candidate with explicit file/build limits, not a migration approval.
+Windows tzdata and transitive notices narrow prior software gaps; exact CI binary,
+asset provenance and project license questions remain.
+
+Four unvalidated customer hypotheses: active retail researchers, long-term investors,
+small advisor/research teams and finance editors. Candidate free/paid workflows,
+a disabled aggregate-first measurement plan, retention/consent questions, seven
+cost categories and correction/incident responsibilities are documented. Pricing,
+legal operator/jurisdictions, source rights, permitted hosting, outreach, review
+budget, code licensing, support capacity and privacy decisions remain with owner.
+Qualified review is required for the actual data uses and regulatory/privacy scope.
+No contracts, contacts, purchases, tracking, billing or accounts were introduced.
+
+P4 unchanged: **387 actionable + 63 higher-priority**, **1,552 blocking reviews**,
+1,556 total reviews (four P5-only). Canonical inventory **1,379**, proposals **441**;
+P5 remains waiting with 914 records. No numerical correction or blocker reduction.
+Older open PRs #105/#104 (draft), #99, #98 and #94 remain untouched.
+
+Deployment baseline: main `11a62c47` [Pages 35408488832](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35408488832)
+and [live verification 35408521200](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35408521200)
+passed. This milestone changes research documentation only; no public behavior change.
+
+**Exact next commercial task:** map the nine secondary subscription records plus
+Orkla/Sunshine/Integrated Registry evidence to published fields/excerpts, raw
+JSON/proposals/history and exports, then use the packet for owner-directed
+professional review of interim collection/publication policy. Recover readable BSE
+terms through permitted access; continue unreviewed hosts without treating gaps as
+permission. Spending/outreach/contracts and material access changes require owner
+approval. P4 engineering priority and existing operational/universe next tasks remain.
+
+## Previous checkpoint — operational health release, 18–19 September 2026
 
 Recovery started at **`4f0e5599be8d9230bdd9b929aec6382e8c600be5`** after
 the completed official-universe release. The existing read-only report from
