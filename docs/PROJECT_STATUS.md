@@ -15,6 +15,39 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
+## Accepted-data recovery — implementation checkpoint, 19 September 2026
+
+Recovered latest main `338af7fdfbf724f40cacabaf0ddd8d422580000f`; its 1,436-record
+live directory exactly matches the deployed JSON (SHA256
+`a4b709081bb6042ef48b01ab0dd67a3f0bb3ffc28e4f32f04e2d9c762cc3a3f6`).
+The four BSE receipts accepted in `599798ff` are still absent at this baseline.
+Their current offer identities/dates/observations match; no applicable hold or
+expiry prevents the existing reviewed request from restoring the original twelve
+fields and exact history. No restoration is claimed by this support checkpoint.
+
+The implementation retains accepted evidence/history through core cleanup,
+rejects unexplained losses around every pipeline stage and before publication,
+and checks ordinary deployed output against an independent previous-main
+baseline. A complete source observation can supersede an older one with retained
+history; incomplete recollection cannot erase an existing receipt conflict or
+attach its new clock to borrowed old values. Final Prospectus policy transitions
+archive exact prior provenance, including unchanged-value source replacements;
+empty extraction preserves the previous document evidence. The existing
+reviewed-correction/hold/source checks remain in force.
+
+Current P4: **438 actionable / 67 higher priority; 1,553 blocking / 1,557 total
+source reviews; zero semantic errors/unmapped reviews**. Final revalidation is
+321 records / 1,174 fields; P5's 914 records remain waiting for P4. Existing
+441 proposals, holds, unrelated records, the April–June identity admissions and
+open work #94/#98/#99/#104/#105 remain untouched by this support change.
+
+Remaining acceptance: merge verified protection; publish the four-issuer request;
+then source-review and publish Elevate/Unitec's six additional provisional fields;
+run one ordinary production core refresh; inspect the live directory, profiles,
+quick views, comparison, CSV and mobile rendering; replace this checkpoint with
+actual commits, checks, deployment/refresh receipts and fixed-cohort coverage.
+See [recovery review](reviews/2026-09-19-accepted-data-recovery.md).
+
 ## Official IPO-universe coverage checkpoint — BSE April–June 2026 reviewed, 19 September 2026
 
 Recovered current `main` at **`2edf544c78109f8cadce0722b4dfa0b164d6a5ea`** before reconciliation. Existing official-universe releases #146/#162 were reused rather than recrawled. Open [PR #175](https://github.com/Vasuki8/IPO-Tracker/pull/175) now continues the bounded BSE historical review through June, May and April 2026 and has been reconciled onto that current main without rolling back the independently published filings update.

@@ -262,3 +262,20 @@ The read-only public release verifier replays the accepted receipt against its
 retained proof and Git blob identity, then checks exact provisional values,
 qualifications, source clocks and expiry in public files. After expiry it accepts
 properly withheld regenerated fields; it never promotes active terms to Final facts.
+
+## Accepted-data conservation
+
+Every pipeline stage and serialized publication compares its candidate against
+its independent accepted baseline with `accepted_data_guard.py`. Valid JSON with
+missing accepted rows, receipts, provenance, history or applicable holds fails the
+same boundary as a corrupt write. Pipeline failures retain the previous dataset
+and diagnostic stage outcome; publishers stop before accepted/pending file writes
+or commit. After policy/build steps, the publisher repeats conservation and checks
+public projections. Deployed verification receives the previous Git parent even
+for ordinary updates; matching blanks cannot establish conservation.
+
+Complete observations replace whole source observations with retained history.
+Incomplete receipt comparisons retain the prior whole observation and original
+clock. Final Prospectus policy stores exact provenance transitions in correction
+history, including withheld proofs; a fresh check alone does not rewrite unchanged
+proofs. Provisional expiry affects public eligibility without deleting receipts.

@@ -16,6 +16,7 @@ import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
+from accepted_data_guard import assert_preserved
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data/ipos.json"
@@ -23,6 +24,9 @@ MEANINGFUL_FIELDS = (
     "id", "symbol", "company", "openDate", "closeDate", "listingDate", "priceBand",
     "lotSize", "issueSizeCr", "issueComposition", "leadManagers", "registrar",
     "financials", "shareholding", "subscription", "listing", "performance",
+    "activeOfferTerms", "dataCorrections", "staticFieldProvenance",
+    "documentFieldProvenance", "subscriptionHistory", "universeAdmission",
+    "sourceObservationHistory",
 )
 PIPELINE_REPORTS: dict[str, dict] = {}
 LAST_SUPPORT_REBUILD_HASH: str | None = None
@@ -73,13 +77,15 @@ def step(script, *args, timeout=600):
             changed = False
         else:
             payload = _load_bytes(after_bytes)
+            assert_preserved(before_payload, payload)
             changed = content_hash(payload) != before_hash
-    except (ValueError, OSError, json.JSONDecodeError):
+    except (ValueError, OSError, json.JSONDecodeError) as error:
         DATA.write_bytes(before_bytes)
         payload = before_payload
         changed = False
         exit_code = 1
         log += "\nRestored the previous valid dataset after an incomplete write"
+        log += "\n" + str(error)
     blocked = bool(re.search(r"403|Forbidden|ConnectTimeout|ConnectionError|source_blocked|[\"']failed[\"']\s*:\s*[1-9]", log, re.I))
     outcome = "failed" if exit_code else "updated" if changed else "source_blocked" if blocked else "no_change"
     report = {"stage": script, "status": outcome, "exitCode": exit_code, "durationSeconds": round(time.monotonic() - start, 2), "checkedAt": datetime.now(timezone.utc).isoformat(), "diagnostics": log[-1800:]}

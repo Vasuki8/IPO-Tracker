@@ -20,6 +20,7 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 import update_data as core  # noqa: E402
+from accepted_data_guard import durable_record, merge_observations_for_receipt
 
 # Re-export helpers used by the regression tests.
 canonical_company = core.canonical_company
@@ -83,6 +84,12 @@ def clean_existing_record(record):
     sources = list(rec.get("sources") or [])
     if not sources and rec.get("source"):
         sources = [rec["source"]]
+
+    # Receipts, corrections, holds and their source observations outlive an
+    # endpoint refresh, including expiry/conflict. Never use public eligibility
+    # to decide whether history should persist, and never restamp retained data.
+    if durable_record({k: v for k, v in rec.items() if k != 'universeAdmission'}):
+        return copy.deepcopy(rec)
 
     # Reviewed universe identity is durable evidence, not a disposable current
     # page comparison. Bind preservation to its admitted source URL.
@@ -170,6 +177,8 @@ _original_merge_non_null = core.merge_non_null
 
 def merge_non_null_preserving_nested(base, incoming):
     out = _original_merge_non_null(base, incoming)
+    if base.get('activeOfferTerms'):
+        out.update(merge_observations_for_receipt(base, incoming))
     for key in set(base) | set(incoming):
         if key.startswith("subscription"):
             if key in base:
