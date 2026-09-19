@@ -101,14 +101,22 @@ The official-universe admission and operational/public-label releases #145–151
 and commercial evidence review #152/#153, are also complete; use their receipts
 in [PROJECT_STATUS.md](PROJECT_STATUS.md).
 
-**Current increment: future core-source attempt clocks.** The operational report
-still lacks real NSE/BSE/SEBI check clocks. Add them at actual collection, preserve
-partial/failed/deferred evidence and unknown observation times, test the writer
-and consumer contracts, then verify the published receipts. This closes the
-known freshness dependency without changing P4 numerical authority or enabling P5.
-After release, return to the highest-leverage evidenced P4 source family. PNGS
-Reva's adjusted EBITDA/partnership EPS remains unsupported; inspect its retained
-18 reviews and several matching real documents before selecting a reusable repair.
+**Core-source attempt clocks are deployed** in #154/#155 and publication
+`5ea15921`. Actual NSE/BSE/SEBI checks, successful empty ranges, partial failures,
+unknown observations and reviewed BSE identity retention are verified live.
+The existing maintenance stage also refreshed Vinod: financial/objects values pass
+source review, but its derived promoter percentage and page locator do not. Finish
+the bounded value hold and review-only release before closing this milestone;
+canonical source history and all existing proposals/reviews remain retained.
+
+**Next P4 increment:** inspect current/upcoming offer-term gaps for Axiom Gas,
+Varmora and Pooja Logistics, group matching official source layouts, and select a
+shared repair only after lifecycle and field evidence support it. SpectraA remains
+held. The newly identified promoter/subtotal/page-locator family needs a bounded
+multi-document diagnosis, not an automatic 93.10 replacement. PNGS Reva's adjusted
+EBITDA/partnership EPS remains unsupported and conditional on source inspection.
+No P4 blocker reduction follows from the clock release; the Vinod hold adds one
+documented review (1,553 blocking / 1,557 total after its pending publication).
 
 The 22 retained subscription proposals still require original source-link/issuer
 evidence. Emmvee's old operator advice remains subject to evidence revalidation.
