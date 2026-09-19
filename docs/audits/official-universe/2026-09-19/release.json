@@ -1,0 +1,207 @@
+{
+  "schemaVersion": 1,
+  "status": "merged, deployed and verified live",
+  "baselineCommit": "be97b7966e647601141116447421af5c2d72634e",
+  "implementationCommit": "cf21055c02319bc49a2c87df7f4714b1866e9e82",
+  "mergeCommit": "46e4bbaffa8df49480f352a2b9346c9661cd2864",
+  "pr": "https://github.com/Vasuki8/IPO-Tracker/pull/162",
+  "closeoutBranch": "docs-universe-continuation-closeout",
+  "validationRun": 35420466941,
+  "mainValidationRun": 35420562959,
+  "pythonTests": 1339,
+  "nodeTests": 38,
+  "focusedIdentityTests": 30,
+  "focusedContinuationTests": 7,
+  "strictErrors": 0,
+  "localFullSuiteLimitations": [
+    "Windows control-character filename",
+    "Windows symlink privilege"
+  ],
+  "linuxFullSuite": "passed without exclusions",
+  "browser": {
+    "profiles": 25,
+    "viewportChecks": 75,
+    "directorySearches": 25,
+    "widths": [
+      1440,
+      375,
+      320
+    ],
+    "status": "passed"
+  },
+  "pagesRun": 35420562278,
+  "deployedVerificationRun": 35420613423,
+  "liveDeliveryReceipt": "live-delivery.json",
+  "liveBrowserReceipt": "live-browser.json",
+  "httpArtifactCount": 52,
+  "sourceDenominators": [
+    {
+      "source": "BSE",
+      "sourceRecords": 1848,
+      "uniqueNormalizedNames": 1830,
+      "distinctSourceRecords": 1848,
+      "matchedRecords": 588,
+      "classifications": {
+        "exact_match": 230,
+        "genuinely_missing": 1250,
+        "known_alias": 5,
+        "normalized_match": 353,
+        "possible_duplicate_requires_review": 10
+      }
+    },
+    {
+      "source": "NSE",
+      "sourceRecords": 174,
+      "uniqueNormalizedNames": 174,
+      "distinctSourceRecords": 174,
+      "matchedRecords": 173,
+      "classifications": {
+        "exact_match": 173,
+        "genuinely_missing": 1
+      }
+    },
+    {
+      "source": "SEBI",
+      "sourceRecords": 5858,
+      "uniqueNormalizedNames": 3083,
+      "distinctSourceRecords": 5858,
+      "matchedRecords": 2618,
+      "classifications": {
+        "exact_match": 1852,
+        "genuinely_missing": 3090,
+        "known_alias": 11,
+        "normalized_match": 755,
+        "possible_duplicate_requires_review": 47,
+        "source_unavailable_not_verified": 103
+      }
+    }
+  ],
+  "missingCandidateNames": 2148,
+  "trackerOnlyRecords": 227,
+  "draftRecovery": {
+    "periodStart": "2004-01-01",
+    "periodEnd": "2026-09-19",
+    "selectedWindows": 31,
+    "sourceRows": 2210,
+    "uniquePrimaryUrls": 2210,
+    "newPrimaryUrls": 45
+  },
+  "recordsAdded": 25,
+  "inventory": 1404,
+  "existingAliasesRetained": 5,
+  "aliasesAdded": 0,
+  "preservation": {
+    "baselineCommit": "be97b7966e647601141116447421af5c2d72634e",
+    "baselineSha256": "4cffb257218c616dc36f7f756cee4b824544f94afcf2f9eac23550baab9e9f1b",
+    "canonicalSha256": "78f2585a49857940e587be3c17989b0ce42d2858620bee9276c7bb3108227a3f",
+    "existingRecordCount": 1379,
+    "existingRecordsUnchanged": true,
+    "existingMetadataUnchangedExcept": [
+      "generatedAt",
+      "recordCount"
+    ],
+    "addedIds": [
+      "advance-technoforge",
+      "gulf-lloyds-india",
+      "mopshop-distribution",
+      "q-t-foods",
+      "sham-foam",
+      "phychem-technologies",
+      "complete-sports-and-management-india",
+      "paluck-technologies",
+      "kwick-forensic-solutions",
+      "dhanwel-hybrid-seeds",
+      "ens-enterprises",
+      "technocrats-plasma-systems",
+      "lapl-automotive",
+      "g-v-electricals",
+      "aegeus-technologies",
+      "fusion-klassroom-edutech",
+      "dhaval-packaging",
+      "oneindig-technologies",
+      "h-r-hygiene-products",
+      "poojaa-precision-engg",
+      "silverstorm-parks-and-resorts",
+      "shree-balaji-mala-textiles",
+      "sotefin-bharat",
+      "millworks-technologies",
+      "devson-catalyst"
+    ],
+    "recordCount": 1404,
+    "pendingSha256": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+    "sourceReviewsBefore": 1557,
+    "blockingReviewsBefore": 1553,
+    "sourceReviewsAfter": 1557,
+    "allPriorValidationIssuesIdentical": true,
+    "allPriorExpandedQueueReviewsIdentical": true,
+    "pendingByteIdentical": true,
+    "phaseStatus": {
+      "generatedAt": "2026-09-19T03:48:28.406239+00:00",
+      "p4": {
+        "status": "incomplete",
+        "actionableRecords": 408,
+        "higherPriorityRecords": 67,
+        "semanticErrors": 0,
+        "sourceReviewItems": 1557,
+        "blockingSourceReviewItems": 1553,
+        "p5OnlySourceReviewItems": 4,
+        "unmappedSourceReviewItems": 0,
+        "finalProspectusRevalidationRecords": 321,
+        "finalProspectusRevalidationFields": 1174,
+        "higherPriorityFinalProspectusRevalidationRecords": 28,
+        "higherPriorityFinalProspectusRevalidationFields": 104,
+        "resolvedUnavailableRecords": 5
+      },
+      "p5": {
+        "status": "waiting_for_p4",
+        "actionableRecords": 914
+      }
+    },
+    "addedProfilePaths": [
+      "ipo/advance-technoforge/",
+      "ipo/gulf-lloyds-india/",
+      "ipo/mopshop-distribution/",
+      "ipo/q-t-foods/",
+      "ipo/sham-foam/",
+      "ipo/phychem-technologies/",
+      "ipo/complete-sports-and-management-india/",
+      "ipo/paluck-technologies/",
+      "ipo/kwick-forensic-solutions/",
+      "ipo/dhanwel-hybrid-seeds/",
+      "ipo/ens-enterprises/",
+      "ipo/technocrats-plasma-systems/",
+      "ipo/lapl-automotive/",
+      "ipo/g-v-electricals/",
+      "ipo/aegeus-technologies/",
+      "ipo/fusion-klassroom-edutech/",
+      "ipo/dhaval-packaging/",
+      "ipo/oneindig-technologies/",
+      "ipo/h-r-hygiene-products/",
+      "ipo/poojaa-precision-engg/",
+      "ipo/silverstorm-parks-and-resorts/",
+      "ipo/shree-balaji-mala-textiles/",
+      "ipo/sotefin-bharat/",
+      "ipo/millworks-technologies/",
+      "ipo/devson-catalyst/"
+    ]
+  },
+  "offlineReproduction": {
+    "status": "byte-identical",
+    "files": [
+      "audit.json",
+      "records.jsonl",
+      "missing.jsonl",
+      "identity-review.jsonl",
+      "missing-issuers.json"
+    ]
+  },
+  "scope": "Issuer/name/lifecycle audit only; no accepted numerical repairs or P5/performance expansion",
+  "remainingGaps": [
+    "NSE four historical-quarter timeouts and prior annual failures",
+    "BSE no independent global total/current fixed-price gaps",
+    "Unfiltered SEBI and 2026 annual inconsistencies retained; dated windows separately reconciled",
+    "Dhanwel June/August identity/lifecycle collision",
+    "2148 unmatched normalized candidate names; professional/commercial rights questions remain"
+  ],
+  "nextTask": "Review 18 BSE June 2026 candidates in next-cohort.json; preserve Dhanwel conflict; retry failed NSE cohorts after access changes; reuse complete SEBI windows."
+}
