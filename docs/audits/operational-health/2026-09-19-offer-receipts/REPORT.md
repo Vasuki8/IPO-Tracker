@@ -69,6 +69,22 @@ the only two errors are the existing Windows newline-filename and symlink-privil
 limitations. Linux CI and release evidence will be recorded in the closeout.
 No browser behavior changes; no new numerical source review or repair is claimed.
 
+Released through [PR #164](https://github.com/Vasuki8/IPO-Tracker/pull/164),
+implementation `2b5f5d3c41fcec97f5a19d14663d3918a719fdbe`, merge
+`aa4d5b4709a5b62bb4be8fa5ba95800984df8be9`. **All 1,347 Linux tests pass** in
+PR validation **35421655528** and main validation **35421730603**. Pages
+**35421729869** and live verification **35421750703** passed. The
+[release receipt](release.json), [21-file live verifier](live-verification.json)
+and [eight targeted live byte comparisons](live-report.json) confirm delivery of
+the report and unchanged public profiles. No bounded acceptance criteria remain.
+
+The retained [later refresh run](latest-run.json) and [complete jobs](latest-jobs.json)
+for **35418300903** show success without a matching accepted run ID; its general
+collection step was skipped. The existing delivery assessment is
+`completed_without_matching_acceptance`, not publication failure. It does not
+refresh the older core check clocks. Exact no-change/retry decisions still require
+the original bundle and existing source-manifest safeguards.
+
 Replay on the implementation checkout with its unchanged data/policy inputs:
 
 ```sh

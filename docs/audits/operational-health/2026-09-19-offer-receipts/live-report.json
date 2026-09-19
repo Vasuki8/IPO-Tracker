@@ -1,0 +1,64 @@
+{
+  "expectedCommit": "aa4d5b4709a5b62bb4be8fa5ba95800984df8be9",
+  "checkedAt": "2026-09-19T04:37:33.888951+00:00",
+  "status": "passed",
+  "scope": "exact live report/public payload/profile delivery; not source freshness",
+  "checks": [
+    {
+      "path": "docs/audits/operational-health/2026-09-19-offer-receipts/report.json",
+      "status": 200,
+      "sha256": "42ea22e1a0b111594a4a67ae0e5ddca3f576854c44797d0d3e97a9cad247be0c",
+      "expectedSha256": "42ea22e1a0b111594a4a67ae0e5ddca3f576854c44797d0d3e97a9cad247be0c",
+      "matches": true
+    },
+    {
+      "path": "docs/audits/operational-health/2026-09-19-offer-receipts/operator-view.md",
+      "status": 200,
+      "sha256": "b6688daab912c03164d9fb9b9987abe59f22f2f166d9492e70e3780dc14925be",
+      "expectedSha256": "b6688daab912c03164d9fb9b9987abe59f22f2f166d9492e70e3780dc14925be",
+      "matches": true
+    },
+    {
+      "path": "data/ipos-summary.json",
+      "status": 200,
+      "sha256": "7f70d14bc5bb6f9973a843dda5fdcd38a084fe6399ed0a3eaac7ea645d0fc54e",
+      "expectedSha256": "7f70d14bc5bb6f9973a843dda5fdcd38a084fe6399ed0a3eaac7ea645d0fc54e",
+      "matches": true
+    },
+    {
+      "path": "data/phase_status.json",
+      "status": 200,
+      "sha256": "c9cfcac09f5f6b17c2da3b0089003ea1447743d87f1894a43467796e46ab9250",
+      "expectedSha256": "c9cfcac09f5f6b17c2da3b0089003ea1447743d87f1894a43467796e46ab9250",
+      "matches": true
+    },
+    {
+      "path": "source-health.js",
+      "status": 200,
+      "sha256": "de95f0b377032fd9cfa29d24031988cc68efeacfb8987b6e1cf0d8472e5a807c",
+      "expectedSha256": "de95f0b377032fd9cfa29d24031988cc68efeacfb8987b6e1cf0d8472e5a807c",
+      "matches": true
+    },
+    {
+      "path": "ipo/axiomgas/index.html",
+      "status": 200,
+      "sha256": "a1571b95dae1f78056c88bf4d2449a0ba57e1dbd7f949f9390b5eb0bc4f1a3dd",
+      "expectedSha256": "a1571b95dae1f78056c88bf4d2449a0ba57e1dbd7f949f9390b5eb0bc4f1a3dd",
+      "matches": true
+    },
+    {
+      "path": "ipo/varmora/index.html",
+      "status": 200,
+      "sha256": "26fe8944a0ad543a2ea7c81d02c2e33ab888165cd1ed3cf84f6549f73c73c4de",
+      "expectedSha256": "26fe8944a0ad543a2ea7c81d02c2e33ab888165cd1ed3cf84f6549f73c73c4de",
+      "matches": true
+    },
+    {
+      "path": "ipo/poojalogis/index.html",
+      "status": 200,
+      "sha256": "4506b235487e952946b824d6d32f00b1d10d4b85afd448ec90330a5ce1c8a563",
+      "expectedSha256": "4506b235487e952946b824d6d32f00b1d10d4b85afd448ec90330a5ce1c8a563",
+      "matches": true
+    }
+  ]
+}
