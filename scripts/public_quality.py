@@ -52,8 +52,10 @@ def official_url(value):
 
 
 def _proof_source(proof):
-    return {key: proof[key] for key in ('sourceUrl', 'documentDate', 'sha256', 'parserVersion', 'checkedAt',
-                                      'observedAt', 'collectedAt', 'reviewUrl')
+    keys = ('sourceUrl', 'documentDate', 'sha256', 'parserVersion', 'checkedAt')
+    if proof.get('activeOfferReceipt'):
+        keys += ('observedAt', 'collectedAt', 'reviewUrl')
+    return {key: proof[key] for key in keys
             if proof.get(key) is not None or (key == 'observedAt' and key in proof)}
 
 
@@ -201,6 +203,7 @@ def project_record(record, *, today=None, holds=None):
             decision = {'state': 'provisional', 'until': record['closeDate'],
                         'row': active[field]['row'], 'table': active[field]['table']}
             attach_source(decision, {'sourceUrl': source['url'], 'sha256': source['sha256'],
+                'activeOfferReceipt': True,
                 'observedAt': source['observedAt'], 'collectedAt': source['collectedAt'],
                 'checkedAt': receipt['review']['reviewedAt'], 'reviewUrl': receipt['review']['url'],
                 'parserVersion': receipt['parserVersion']})
