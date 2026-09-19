@@ -12,10 +12,11 @@ from datetime import date, datetime
 from decimal import Decimal
 from zoneinfo import ZoneInfo
 from bse_active_offer_terms import VERSION as BSE_VERSION, FIELDS as BSE_FIELDS, IDENTITY as BSE_IDENTITY
+from qualified_offer_amounts import FIELD as AMOUNT_FIELD
 
 VERSION = 'nse-labelled-active-terms-v1'
 NSE_FIELDS = {'priceBand', 'lotSize', 'minimumBidQuantity', 'issueComposition'}
-FIELDS = NSE_FIELDS | BSE_FIELDS
+FIELDS = NSE_FIELDS | BSE_FIELDS | {AMOUNT_FIELD}
 IDENTITY = ('id', 'company', 'symbol', 'board', 'openDate', 'closeDate')
 
 
@@ -146,7 +147,7 @@ def validate_receipt(receipt, identity):
     bse = receipt.get('parserVersion') == BSE_VERSION
     if (receipt.get('schemaVersion') != 1 or receipt.get('parserVersion') not in {VERSION, BSE_VERSION}
             or receipt.get('identity') != {key: identity[key] for key in identity_fields(receipt)}
-            or set(receipt.get('fields') or {}) - (BSE_FIELDS if bse else NSE_FIELDS) or not receipt.get('fields')):
+            or set(receipt.get('fields') or {}) - (BSE_FIELDS if bse else NSE_FIELDS | {AMOUNT_FIELD}) or not receipt.get('fields')):
         raise ValueError('Invalid reviewed active offer identity/schema')
     board = identity['board']
     if board not in {'SME', 'Mainboard'}:
@@ -174,7 +175,8 @@ def validate_receipt(receipt, identity):
             or _timestamp(review['reviewedAt']) < collected
             or not re.fullmatch(r'https://github\.com/Vasuki8/IPO-Tracker/blob/[a-f0-9]{40}/docs/reviews/[a-z0-9.-]+\.md', str(review.get('url') or ''))):
         raise ValueError('Active terms require an immutable, dated source review')
-    expected = {'fields': receipt['fields'], 'unresolved': receipt.get('unresolved')}
+    expected = {'fields': {key: value for key, value in receipt['fields'].items() if key != AMOUNT_FIELD},
+                'unresolved': receipt.get('unresolved')}
     if bse:
         from bse_active_offer_terms import parse_response as parse_bse_response
         parsed = parse_bse_response(source, identity)
@@ -183,7 +185,40 @@ def validate_receipt(receipt, identity):
         parsed = parse_response(source['responseText'], identity)
     if parsed != expected:
         raise ValueError('Reviewed terms do not replay from exact source rows')
+    if 'amountEvidence' in receipt or AMOUNT_FIELD in receipt['fields']:
+        from qualified_offer_amounts import validate
+        if bse or validate(receipt['amountEvidence'], identity, parsed['fields']['priceBand']['value']) != receipt['fields'].get(AMOUNT_FIELD):
+            raise ValueError('Conditional amount does not match its separately reviewed document')
     return receipt['fields']
+
+
+def _base_receipt(receipt):
+    """An invalid supplement must not invalidate unrelated accepted NSE rows."""
+    return {key: ({field: proof for field, proof in value.items() if field != AMOUNT_FIELD}
+                  if key == 'fields' else value)
+            for key, value in receipt.items() if key != 'amountEvidence'}
+
+
+def validated_fields(receipt, identity):
+    """Replay accepted base terms even when their separate supplement is invalid."""
+    try:
+        return validate_receipt(receipt, identity)
+    except (KeyError, ValueError, TypeError, AttributeError, OverflowError):
+        return validate_receipt(_base_receipt(receipt), identity)
+
+
+def field_source(receipt, field):
+    """Keep the issuer advertisement separate from the underlying NSE response."""
+    envelope = receipt['amountEvidence'] if field == AMOUNT_FIELD else receipt
+    source = envelope['source']
+    return {'sourceUrl': source['url'], 'sha256': source['sha256'],
+            'activeOfferReceipt': True, 'observedAt': source['observedAt'],
+            'collectedAt': source['collectedAt'], 'checkedAt': envelope['review']['reviewedAt'],
+            'reviewUrl': envelope['review']['url'], 'parserVersion': envelope['parserVersion'],
+            **({'documentDate': source['documentDate'], 'authority': source['authority'],
+                'collectionTimeBasis': source['collectionTimeBasis'],
+                **({'publicationDate': source['publicationDate']} if source.get('publicationDate') else {})}
+               if field == AMOUNT_FIELD else {})}
 
 
 def receipt_problems(record):
@@ -191,22 +226,35 @@ def receipt_problems(record):
     receipt = record.get('activeOfferTerms')
     if receipt is None:
         return {}
+    problems = {}
     try:
         fields = validate_receipt(receipt, record)
     except (KeyError, ValueError, TypeError, AttributeError, OverflowError) as exc:
-        return {field: 'Invalid active offer receipt: ' + str(exc) for field in sorted(FIELDS)}
-    problems = {}
+        try:
+            fields = validate_receipt(_base_receipt(receipt), record)
+        except (KeyError, ValueError, TypeError, AttributeError, OverflowError):
+            return {field: 'Invalid active offer receipt: ' + str(exc) for field in sorted(FIELDS)}
+        problems[AMOUNT_FIELD] = 'Invalid conditional amount receipt: ' + str(exc)
     for family in ('NSE', 'BSE'):
         observation = (record.get('observations') or {}).get(family)
         if not isinstance(observation, dict):
             continue
         if observation.get('openDate') == record['openDate'] and observation.get('closeDate') == record['closeDate']:
+            if AMOUNT_FIELD in fields and any(value is not None for value in
+                    (observation.get('issueSizeCr'), (observation.get('staticOfferTerms') or {}).get('issueSizeCr'))):
+                from qualified_offer_amounts import amount_observation
+                reviewed = receipt['amountEvidence'].get('reviewedDerivedObservations', {}).get(family)
+                if (not reviewed or amount_observation(observation) != reviewed
+                        or observation.get('issueSizeCrEvidence')):
+                    problems[AMOUNT_FIELD] = f'Conditional amount needs review against same-offer {family} monetary evidence'
             for field, proof in fields.items():
                 # Compare both retained locations, so one cannot mask a conflict
                 # in the other. Do not compare derived total issue amounts.
                 values = [observation.get(field), (observation.get('staticOfferTerms') or {}).get(field)]
                 if any(value is not None and value != proof['value'] for value in values):
                     problems[field] = f'Active offer receipt conflicts with same-offer {family} {field}; source review required'
+    if 'priceBand' in problems and AMOUNT_FIELD in receipt.get('fields', {}):
+        problems[AMOUNT_FIELD] = 'Conditional amounts conflict with same-offer price-band evidence'
     return problems
 
 
@@ -217,7 +265,7 @@ def accepted_terms(record, today=None):
     if not isinstance(receipt, dict):
         return {}
     try:
-        fields = validate_receipt(receipt, record)
+        fields = validated_fields(receipt, record)
         opens, closes = [date.fromisoformat(record[k]) for k in ('openDate', 'closeDate')]
         collected_day = _timestamp(receipt['source']['collectedAt']).astimezone(ZoneInfo('Asia/Kolkata')).date()
         if (opens > closes or not collected_day <= today <= closes
@@ -225,6 +273,11 @@ def accepted_terms(record, today=None):
                 or (record.get('listingDate') and date.fromisoformat(record['listingDate']) <= today)):
             return {}
         problems = receipt_problems(record)
+        if AMOUNT_FIELD in fields:
+            evidence = receipt['amountEvidence']
+            if any(_timestamp(value).astimezone(ZoneInfo('Asia/Kolkata')).date() > today
+                   for value in (evidence['source']['collectedAt'], evidence['review']['reviewedAt'])):
+                problems[AMOUNT_FIELD] = 'Conditional amount evidence is not yet eligible'
         return {field: proof for field, proof in fields.items() if field not in problems}
     except (KeyError, ValueError, TypeError, AttributeError, OverflowError):
         return {}

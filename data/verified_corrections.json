@@ -14735,7 +14735,7 @@
         "closeDate": "2026-09-22"
       },
       "field": "activeOfferTerms",
-      "beforeHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+      "beforeHash": "905ba691797e8b340848e41f6a53d79374ddaeba20bd561a617c35074bfca8af",
       "after": {
         "schemaVersion": 1,
         "parserVersion": "nse-labelled-active-terms-v1",
@@ -14759,8 +14759,8 @@
         "review": {
           "version": 1,
           "status": "accepted",
-          "reviewedAt": "2026-09-19T02:44:41+00:00",
-          "url": "https://github.com/Vasuki8/IPO-Tracker/blob/1fb4c7d12e1a5eb616a4db16b304a0aeda32103f/docs/reviews/2026-09-19-active-offer-source-review.md"
+          "reviewedAt": "2026-09-19T13:58:44.750002+00:00",
+          "url": "https://github.com/Vasuki8/IPO-Tracker/blob/6e2df0a4d4c8b736d0c07d526b3b844eaecd0b49/docs/reviews/2026-09-19-qualified-offer-amount-source-review.md"
         },
         "fields": {
           "priceBand": {
@@ -14797,24 +14797,87 @@
             "title": "Issue Size",
             "raw": "\"Initial Public Offer comprising of Fresh Issue up to 93,98,000 Equity Shares (including Market Maker portion of 4,78,000 Equity Shares and Anchor allocation 10,70,000 Equity Shares)\"",
             "table": "/issueInfo/dataList"
+          },
+          "issueAmountScenarios": {
+            "value": {
+              "floorPrice": 51.0,
+              "capPrice": 54.0,
+              "atFloorCr": 47.9298,
+              "atCapCr": 50.7492,
+              "qualifier": "subject_to_basis_of_allotment",
+              "qualification": "Based on up to 93,98,000 shares; subject to finalisation of the Basis of Allotment."
+            },
+            "unit": "INR crore",
+            "sourceUnit": "INR lakh",
+            "page": 1,
+            "row": "Issue size would aggregate",
+            "table": "8. Monitoring Agency; revised paragraph and attached footnote"
           }
         },
         "unresolved": {
           "minimumBidQuantity": "disclosure-absent",
           "issueSizeCr": "disclosure-absent: no explicit total INR amount in the supported source table"
+        },
+        "amountEvidence": {
+          "schemaVersion": 1,
+          "parserVersion": "reviewed-floor-cap-amounts-v1",
+          "identity": {
+            "id": "axiomgas",
+            "company": "Axiom Gas Engineering Limited",
+            "symbol": "AXIOMGAS",
+            "board": "SME",
+            "openDate": "2026-09-18",
+            "closeDate": "2026-09-22"
+          },
+          "source": {
+            "name": "Axiom issuer corrigendum",
+            "authority": "issuer_disclosure",
+            "authorityEvidence": "Issuer-hosted Price Band Revision cum Corrigendum in merged advertisement/RHP bundle",
+            "url": "https://axiomgas.com/uploads/investors/PB_AP_RHP_MERGED.pdf",
+            "sha256": "f171f2d945a297488025dd4041f84bd1dc886599dc0757e5fbe6bfc0fc91ee05",
+            "bytes": 10529275,
+            "pages": 386,
+            "documentType": "Price Band Revision cum Corrigendum",
+            "documentDate": "2026-09-16",
+            "collectedAt": "2026-09-19T13:35:39.007023+00:00",
+            "collectionTimeBasis": "response-body-persisted",
+            "observedAt": null
+          },
+          "transcription": {
+            "method": "independently-reviewed-visual-transcription",
+            "issuer": "Axiom Gas Engineering Limited",
+            "page": 1,
+            "layout": "qualified-issue-paragraph",
+            "locator": "8. Monitoring Agency; revised paragraph and attached footnote",
+            "amountSentence": "Based on the Price Band of ₹ 51 to ₹ 54 per Equity Share, the Issue size would aggregate to ₹ 4,792.98 lakhs at the Floor Price and ₹ 5,074.92 lakhs at the Cap Price*.",
+            "qualificationText": "*Calculated on the basis of up to 93,98,000 Equity Shares offered in the Issue and subject to finalisation of the Basis of Allotment.",
+            "supersessionText": "the Price Band has been revised from ₹ 50 to ₹ 53 per Equity Share to ₹ 51 to ₹ 54 per Equity Share."
+          },
+          "review": {
+            "version": 1,
+            "status": "accepted",
+            "reviewedAt": "2026-09-19T13:58:44.750002+00:00",
+            "url": "https://github.com/Vasuki8/IPO-Tracker/blob/6e2df0a4d4c8b736d0c07d526b3b844eaecd0b49/docs/reviews/2026-09-19-qualified-offer-amount-source-review.md",
+            "transcriptionSha256": "663b06c02f9fcd7d914828aa12fc4647b1cca7590d1c216445eda54d2c5227d7",
+            "sourceMetadataSha256": "fe33bd27abb76112565498140123f319fb9f2395cdc0236419f5e0fa659b0d72",
+            "derivedObservationSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+          },
+          "reviewedDerivedObservations": {}
         }
       },
       "publicationScope": "explicit-reviewed",
-      "reviewedAt": "2026-09-19T02:44:41+00:00",
+      "reviewedAt": "2026-09-19T13:58:44.750002+00:00",
       "source": {
         "name": "NSE active offer detail",
         "url": "https://www.nseindia.com/api/ipo-detail?symbol=AXIOMGAS&series=SME"
       },
       "evidence": {
         "sha256": "9a2a3901052e7d9354c252820212ec5d9b39ad76fc79f3f5e102a5ea7088a8ce",
-        "reviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/1fb4c7d12e1a5eb616a4db16b304a0aeda32103f/docs/reviews/2026-09-19-active-offer-source-review.md"
+        "reviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/6e2df0a4d4c8b736d0c07d526b3b844eaecd0b49/docs/reviews/2026-09-19-qualified-offer-amount-source-review.md",
+        "amountDocumentSha256": "f171f2d945a297488025dd4041f84bd1dc886599dc0757e5fbe6bfc0fc91ee05",
+        "amountDocumentUrl": "https://axiomgas.com/uploads/investors/PB_AP_RHP_MERGED.pdf"
       },
-      "reason": "Accept source-reviewed active bidding terms separately from final static facts; preserve unknown totals and quantities"
+      "reason": "Add separately source-reviewed conditional whole-offer amounts; preserve original NSE terms, unknown final scalar and all history"
     },
     {
       "id": "varmora",
@@ -14827,7 +14890,7 @@
         "closeDate": "2026-09-24"
       },
       "field": "activeOfferTerms",
-      "beforeHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+      "beforeHash": "7a7238c944ef00cc8ee68417ea493f767543be47fb93ea236c7c78f9e4d8aa51",
       "after": {
         "schemaVersion": 1,
         "parserVersion": "nse-labelled-active-terms-v1",
@@ -14851,8 +14914,8 @@
         "review": {
           "version": 1,
           "status": "accepted",
-          "reviewedAt": "2026-09-19T02:44:41+00:00",
-          "url": "https://github.com/Vasuki8/IPO-Tracker/blob/1fb4c7d12e1a5eb616a4db16b304a0aeda32103f/docs/reviews/2026-09-19-active-offer-source-review.md"
+          "reviewedAt": "2026-09-19T13:58:44.750002+00:00",
+          "url": "https://github.com/Vasuki8/IPO-Tracker/blob/6e2df0a4d4c8b736d0c07d526b3b844eaecd0b49/docs/reviews/2026-09-19-qualified-offer-amount-source-review.md"
         },
         "fields": {
           "priceBand": {
@@ -14898,23 +14961,155 @@
             "title": "Issue Size",
             "raw": "\"Initial Public offering comprising of fresh issue of aggregating up to Rs. 3,200.00 million and Offer for sale up to 26,217,634 Equity shares.\"",
             "table": "/issueInfo/dataList"
+          },
+          "issueAmountScenarios": {
+            "value": {
+              "floorPrice": 140.0,
+              "capPrice": 148.0,
+              "atFloorCr": 687.047,
+              "atCapCr": 708.021,
+              "qualifier": "up_to",
+              "qualification": "Up to the disclosed amount at each price; final offer terms remain unknown."
+            },
+            "unit": "INR crore",
+            "sourceUnit": "INR million",
+            "page": 1,
+            "row": "Total Offer Size",
+            "table": "Offer details at Floor Price and Cap Price; newspaper printed page 16"
           }
         },
         "unresolved": {
           "issueSizeCr": "disclosure-absent: no explicit total INR amount in the supported source table"
+        },
+        "amountEvidence": {
+          "schemaVersion": 1,
+          "parserVersion": "reviewed-floor-cap-amounts-v1",
+          "identity": {
+            "id": "varmora",
+            "company": "Varmora Granito Limited",
+            "symbol": "VARMORA",
+            "board": "Mainboard",
+            "openDate": "2026-09-22",
+            "closeDate": "2026-09-24"
+          },
+          "source": {
+            "name": "Varmora issuer advertisement via JM Financial",
+            "authority": "issuer_disclosure",
+            "authorityEvidence": "Issuer price-band advertisement published in Financial Express and linked by named lead manager JM Financial",
+            "url": "https://www.jmfl.com/Common/getFile/6031",
+            "sha256": "2287c54ae752a60cf2ed733940fa3e723bcd3a6e245641cb00f0619410417ea4",
+            "bytes": 17920536,
+            "pages": 15,
+            "documentType": "Price Band Advertisement",
+            "documentDate": "2026-09-16",
+            "collectedAt": "2026-09-19T13:36:54.256721+00:00",
+            "collectionTimeBasis": "response-body-persisted",
+            "observedAt": null,
+            "publicationDate": "2026-09-17",
+            "documentDateLocator": "Physical PDF page 5, newspaper printed page 20, issuer signature footer"
+          },
+          "transcription": {
+            "method": "independently-reviewed-visual-transcription",
+            "issuer": "Varmora Granito Limited",
+            "page": 1,
+            "layout": "floor-cap-offer-table",
+            "locator": "Offer details at Floor Price and Cap Price; newspaper printed page 16",
+            "columns": [
+              {
+                "priceHeader": "At Floor Price of ₹140 per Equity Share",
+                "shareHeader": "Up to no. of Equity Shares of face value of ₹ 2 each",
+                "amountHeader": "Up to amount (₹ in million)"
+              },
+              {
+                "priceHeader": "At Cap Price of ₹148 per Equity Share",
+                "shareHeader": "Up to no. of Equity Shares of face value of ₹ 2 each",
+                "amountHeader": "Up to amount (₹ in million)"
+              }
+            ],
+            "rows": [
+              {
+                "label": "Fresh Issue",
+                "cells": [
+                  "2,28,57,142",
+                  "3,200.00",
+                  "2,16,21,621",
+                  "3,200.00"
+                ]
+              },
+              {
+                "label": "Offer for Sale",
+                "cells": [
+                  "2,62,17,634",
+                  "3,670.47",
+                  "2,62,17,634",
+                  "3,880.21"
+                ]
+              },
+              {
+                "label": "Total Offer Size",
+                "cells": [
+                  "4,90,74,776",
+                  "6,870.47",
+                  "4,78,39,255",
+                  "7,080.21"
+                ]
+              },
+              {
+                "label": "Post-Offer market capitalization of the Company",
+                "cells": [
+                  "22,72,47,345",
+                  "31,814.63",
+                  "22,60,11,824",
+                  "33,449.75"
+                ]
+              }
+            ]
+          },
+          "review": {
+            "version": 1,
+            "status": "accepted",
+            "reviewedAt": "2026-09-19T13:58:44.750002+00:00",
+            "url": "https://github.com/Vasuki8/IPO-Tracker/blob/6e2df0a4d4c8b736d0c07d526b3b844eaecd0b49/docs/reviews/2026-09-19-qualified-offer-amount-source-review.md",
+            "transcriptionSha256": "c28fd7a7d700f07d6d078f4d97e842ed2a1588d6ba0a39f523a2a41076773206",
+            "sourceMetadataSha256": "8cd9653da5f6f2fdf0ef283e09ffa2a62f0570179368599f0aed9b450c80f32f",
+            "derivedObservationSha256": "93c6e5207ccedc6c35d8659e58e0de8037421d4855f395f6e703c56b14622b24"
+          },
+          "reviewedDerivedObservations": {
+            "NSE": {
+              "amount": 726.31,
+              "staticAmount": 726.31,
+              "sourceUrl": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+              "issuer": {
+                "company": "Varmora Granito Limited",
+                "symbol": "VARMORA",
+                "openDate": "2026-09-22",
+                "closeDate": "2026-09-24"
+              },
+              "rawFields": {
+                "issueSize": "49074776",
+                "series": "EQ"
+              },
+              "priceBand": {
+                "min": 140.0,
+                "max": 148.0
+              }
+            }
+          }
         }
       },
       "publicationScope": "explicit-reviewed",
-      "reviewedAt": "2026-09-19T02:44:41+00:00",
+      "reviewedAt": "2026-09-19T13:58:44.750002+00:00",
       "source": {
         "name": "NSE active offer detail",
         "url": "https://www.nseindia.com/api/ipo-detail?symbol=VARMORA&series=EQ"
       },
       "evidence": {
         "sha256": "998c9afe8b5a6a7216dd675f85b4120efe4c24e703815f96e7a668c14a8263dd",
-        "reviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/1fb4c7d12e1a5eb616a4db16b304a0aeda32103f/docs/reviews/2026-09-19-active-offer-source-review.md"
+        "reviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/6e2df0a4d4c8b736d0c07d526b3b844eaecd0b49/docs/reviews/2026-09-19-qualified-offer-amount-source-review.md",
+        "amountDocumentSha256": "2287c54ae752a60cf2ed733940fa3e723bcd3a6e245641cb00f0619410417ea4",
+        "amountDocumentUrl": "https://www.jmfl.com/Common/getFile/6031"
       },
-      "reason": "Accept source-reviewed active bidding terms separately from final static facts; preserve unknown totals and quantities"
+      "reason": "Add separately source-reviewed conditional whole-offer amounts; preserve original NSE terms, unknown final scalar and all history"
     },
     {
       "id": "poojalogis",

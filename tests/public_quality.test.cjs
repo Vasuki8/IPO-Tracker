@@ -121,3 +121,22 @@ test('held market snapshots never leak through raw helpers or a newer chart row'
   assert.match(Q.panel(raw),/Subscription/);assert.match(Q.panel(raw),/unreconciled source or bid-denominator/);
   assert.equal(raw.subscription.total,987.654);assert.equal(raw.subscriptionHistory[0].total,999);
 });
+
+
+test('conditional whole-offer amounts keep qualifications, source and expiry without filling a scalar', () => {
+  const raw={issueAmountScenarios:{floorPrice:140,capPrice:148,atFloorCr:687.047,atCapCr:708.021,
+    qualifier:'up_to',qualification:'Up to the disclosed amount at each price; final offer terms remain unknown.'},
+    publicQuality:{version:1,fields:{issueAmountScenarios:{state:'provisional',until:'2999-01-01',source:0,page:1}},
+      sources:[{sourceUrl:'https://www.jmfl.com/Common/getFile/6031',authority:'issuer_disclosure',documentDate:'2026-09-17'}]}};
+  assert.equal(Q.amountText(raw,()=> '—'),'Up to ₹687.047 cr at ₹140 floor; up to ₹708.021 cr at ₹148 cap');
+  assert.match(Q.amountNote(raw),/final offer terms remain unknown/);
+  assert.match(Q.amountNote(raw),/getFile\/6031#page=1/);
+  assert.equal(raw.issueSizeCr,undefined);
+  raw.publicQuality.fields.issueAmountScenarios.until='2026-09-22';
+  assert.equal(Q.sanitize(raw,new Date('2026-09-22T18:29:59Z')).issueAmountScenarios.atCapCr,708.021);
+  assert.equal(Q.sanitize(raw,new Date('2026-09-22T18:30:00Z')).issueAmountScenarios,null);
+  raw.publicQuality.fields.issueAmountScenarios.state='under_review';
+  assert.equal(Q.amountScenarios(raw),null);assert.equal(Q.amountText(raw,()=> '—'),'—');
+  assert.equal(Q.amountField(raw),'issueAmountScenarios');
+  assert.match(Q.amountNote(raw),/Under review/);assert.doesNotMatch(Q.amountNote(raw),/Awaiting disclosure/);
+});

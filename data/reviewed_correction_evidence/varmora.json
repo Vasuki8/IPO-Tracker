@@ -24,8 +24,8 @@
       "review": {
         "version": 1,
         "status": "accepted",
-        "reviewedAt": "2026-09-19T02:44:41+00:00",
-        "url": "https://github.com/Vasuki8/IPO-Tracker/blob/1fb4c7d12e1a5eb616a4db16b304a0aeda32103f/docs/reviews/2026-09-19-active-offer-source-review.md"
+        "reviewedAt": "2026-09-19T13:58:44.750002+00:00",
+        "url": "https://github.com/Vasuki8/IPO-Tracker/blob/6e2df0a4d4c8b736d0c07d526b3b844eaecd0b49/docs/reviews/2026-09-19-qualified-offer-amount-source-review.md"
       },
       "fields": {
         "priceBand": {
@@ -71,10 +71,140 @@
           "title": "Issue Size",
           "raw": "\"Initial Public offering comprising of fresh issue of aggregating up to Rs. 3,200.00 million and Offer for sale up to 26,217,634 Equity shares.\"",
           "table": "/issueInfo/dataList"
+        },
+        "issueAmountScenarios": {
+          "value": {
+            "floorPrice": 140.0,
+            "capPrice": 148.0,
+            "atFloorCr": 687.047,
+            "atCapCr": 708.021,
+            "qualifier": "up_to",
+            "qualification": "Up to the disclosed amount at each price; final offer terms remain unknown."
+          },
+          "unit": "INR crore",
+          "sourceUnit": "INR million",
+          "page": 1,
+          "row": "Total Offer Size",
+          "table": "Offer details at Floor Price and Cap Price; newspaper printed page 16"
         }
       },
       "unresolved": {
         "issueSizeCr": "disclosure-absent: no explicit total INR amount in the supported source table"
+      },
+      "amountEvidence": {
+        "schemaVersion": 1,
+        "parserVersion": "reviewed-floor-cap-amounts-v1",
+        "identity": {
+          "id": "varmora",
+          "company": "Varmora Granito Limited",
+          "symbol": "VARMORA",
+          "board": "Mainboard",
+          "openDate": "2026-09-22",
+          "closeDate": "2026-09-24"
+        },
+        "source": {
+          "name": "Varmora issuer advertisement via JM Financial",
+          "authority": "issuer_disclosure",
+          "authorityEvidence": "Issuer price-band advertisement published in Financial Express and linked by named lead manager JM Financial",
+          "url": "https://www.jmfl.com/Common/getFile/6031",
+          "sha256": "2287c54ae752a60cf2ed733940fa3e723bcd3a6e245641cb00f0619410417ea4",
+          "bytes": 17920536,
+          "pages": 15,
+          "documentType": "Price Band Advertisement",
+          "documentDate": "2026-09-16",
+          "collectedAt": "2026-09-19T13:36:54.256721+00:00",
+          "collectionTimeBasis": "response-body-persisted",
+          "observedAt": null,
+          "publicationDate": "2026-09-17",
+          "documentDateLocator": "Physical PDF page 5, newspaper printed page 20, issuer signature footer"
+        },
+        "transcription": {
+          "method": "independently-reviewed-visual-transcription",
+          "issuer": "Varmora Granito Limited",
+          "page": 1,
+          "layout": "floor-cap-offer-table",
+          "locator": "Offer details at Floor Price and Cap Price; newspaper printed page 16",
+          "columns": [
+            {
+              "priceHeader": "At Floor Price of ₹140 per Equity Share",
+              "shareHeader": "Up to no. of Equity Shares of face value of ₹ 2 each",
+              "amountHeader": "Up to amount (₹ in million)"
+            },
+            {
+              "priceHeader": "At Cap Price of ₹148 per Equity Share",
+              "shareHeader": "Up to no. of Equity Shares of face value of ₹ 2 each",
+              "amountHeader": "Up to amount (₹ in million)"
+            }
+          ],
+          "rows": [
+            {
+              "label": "Fresh Issue",
+              "cells": [
+                "2,28,57,142",
+                "3,200.00",
+                "2,16,21,621",
+                "3,200.00"
+              ]
+            },
+            {
+              "label": "Offer for Sale",
+              "cells": [
+                "2,62,17,634",
+                "3,670.47",
+                "2,62,17,634",
+                "3,880.21"
+              ]
+            },
+            {
+              "label": "Total Offer Size",
+              "cells": [
+                "4,90,74,776",
+                "6,870.47",
+                "4,78,39,255",
+                "7,080.21"
+              ]
+            },
+            {
+              "label": "Post-Offer market capitalization of the Company",
+              "cells": [
+                "22,72,47,345",
+                "31,814.63",
+                "22,60,11,824",
+                "33,449.75"
+              ]
+            }
+          ]
+        },
+        "review": {
+          "version": 1,
+          "status": "accepted",
+          "reviewedAt": "2026-09-19T13:58:44.750002+00:00",
+          "url": "https://github.com/Vasuki8/IPO-Tracker/blob/6e2df0a4d4c8b736d0c07d526b3b844eaecd0b49/docs/reviews/2026-09-19-qualified-offer-amount-source-review.md",
+          "transcriptionSha256": "c28fd7a7d700f07d6d078f4d97e842ed2a1588d6ba0a39f523a2a41076773206",
+          "sourceMetadataSha256": "8cd9653da5f6f2fdf0ef283e09ffa2a62f0570179368599f0aed9b450c80f32f",
+          "derivedObservationSha256": "93c6e5207ccedc6c35d8659e58e0de8037421d4855f395f6e703c56b14622b24"
+        },
+        "reviewedDerivedObservations": {
+          "NSE": {
+            "amount": 726.31,
+            "staticAmount": 726.31,
+            "sourceUrl": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+            "issuer": {
+              "company": "Varmora Granito Limited",
+              "symbol": "VARMORA",
+              "openDate": "2026-09-22",
+              "closeDate": "2026-09-24"
+            },
+            "rawFields": {
+              "issueSize": "49074776",
+              "series": "EQ"
+            },
+            "priceBand": {
+              "min": 140.0,
+              "max": 148.0
+            }
+          }
+        }
       }
     },
     "sourceUrl": "https://www.nseindia.com/api/ipo-detail?symbol=VARMORA&series=EQ",

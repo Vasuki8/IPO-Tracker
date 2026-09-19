@@ -192,8 +192,14 @@ def expected_exchange_rules(record: dict[str, Any], today: date) -> list[FieldRu
     if record.get('activeOfferTerms'):
         from public_quality import project_record
         projected = project_record(record, today=today)
+        # Active total-amount coverage can be an explicitly disclosed pair of
+        # whole-offer scenarios. The final/scalar field remains null. A hold,
+        # invalid receipt or IST expiry withholds the pair and restores this gap.
+        conditional_amount = (projected['publicQuality']['fields'].get('issueAmountScenarios', {}).get('state') == 'provisional'
+                              and present(projected.get('issueAmountScenarios')))
         return [(name, lambda row, name=name, predicate=predicate:
-                 predicate(row) or (projected['publicQuality']['fields'].get(name, {}).get('state') == 'provisional'
+                 predicate(row) or (name == 'issueSizeCr' and conditional_amount)
+                 or (projected['publicQuality']['fields'].get(name, {}).get('state') == 'provisional'
                                     and predicate(projected))) for name, predicate in CORE_EXCHANGE_FIELDS]
     return list(CORE_EXCHANGE_FIELDS)
 

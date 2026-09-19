@@ -121,8 +121,7 @@ def display_hold_matches(record, field, hold):
         return (all(record.get(key) == value for key, value in hold['identity'].items())
                 and value_digest(snapshot_facts(subscription_snapshot(record)))
                     == value_digest(snapshot_facts(binding['snapshot'])))
-    provenance = record.get('staticFieldProvenance') or {}
-    proof = provenance.get(field) if isinstance(provenance, dict) else None
+    proof, value = _held_field_evidence(record, field)
     if not isinstance(proof, dict):
         return False
     identity = hold.get('identity')
@@ -132,7 +131,30 @@ def display_hold_matches(record, field, hold):
     if hold.get('scope', 'value') == 'document':
         return proof.get('sha256') == binding['sha256']
     return (proof.get('sha256') == binding['sha256']
-            and value_digest(field_value(record, field)) == binding['valueDigest'])
+            and value_digest(value) == binding['valueDigest'])
+
+
+def _held_field_evidence(record, field):
+    """Read an amount receipt for a hold without creating static provenance.
+
+    Holds bind retained evidence even when it no longer passes parsing or has
+    expired; parser success must never be required to retain an existing review.
+    """
+    if field == 'issueAmountScenarios':
+        receipt = record.get('activeOfferTerms')
+        amount = receipt.get('amountEvidence') if isinstance(receipt, dict) else None
+        if not isinstance(amount, dict):
+            return None, None
+        identity, source = amount.get('identity') or {}, amount.get('source') or {}
+        if any(identity.get(key) != record.get(key) for key in (*IDENTITY_KEYS, 'board', 'closeDate')):
+            return None, None
+        proof = {'sourceUrl': source.get('url'), 'sha256': source.get('sha256'),
+                 'documentDate': source.get('documentDate'), 'documentType': source.get('documentType'),
+                 'issueOpenDate': identity.get('openDate'), 'parserVersion': amount.get('parserVersion'),
+                 'checkedAt': (amount.get('review') or {}).get('reviewedAt')}
+        return proof, ((receipt.get('fields') or {}).get(field) or {}).get('value')
+    provenance = record.get('staticFieldProvenance') or {}
+    return (provenance.get(field) if isinstance(provenance, dict) else None), field_value(record, field)
 
 
 def active_hold_reviews(record, holds=None):
@@ -146,7 +168,7 @@ def active_hold_reviews(record, holds=None):
             if not display_hold_matches(record, field, hold):
                 continue
             scope = hold.get('scope', 'value')
-            proof = (record.get('staticFieldProvenance') or {}).get(field) or {}
+            proof = _held_field_evidence(record, field)[0] or {}
             source = {key: copy.deepcopy(proof[key]) for key in
                       ('sourceUrl', 'documentType', 'documentDate', 'sha256', 'parserVersion', 'issueOpenDate', 'checkedAt')
                       if proof.get(key) is not None}

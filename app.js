@@ -342,7 +342,7 @@ function renderTable() {
         ipo.validation?.status === 'conflict'
           ? ` · <span class="validation validation-conflict">Source conflict</span>`
           : '';
-      return `<tr data-id="${escapeAttr(ipo.id)}"><td data-label="Company"><div class="company-cell"><span class="ipo-monogram tone-${index % 4}" aria-hidden="true">${escapeHtml(initials)}</span><div class="ipo-company">${companyLink(ipo)}<span class="symbol">${escapeHtml([ipo.symbol, ipo.board || ipo.exchange].filter(Boolean).join(' · '))}${validation}</span></div></div></td><td class="status-cell" data-label="Status">${status === 'pipeline' ? '<span class="badge badge-pipeline">Dates pending</span>' : badge(status)}</td><td class="date-cell" data-label="Key dates">${keyDates(ipo)}</td><td class="numeric" data-label="Price band"><span class="metric">${priceBand(ipo)}</span>${IPOQuality.note(ipo, 'priceBand')}</td><td class="numeric" data-label="Issue size"><span class="metric">${money(ipo.issueSizeCr)}</span>${IPOQuality.note(ipo, 'issueSizeCr')}</td><td class="numeric" data-label="Subscription">${subscriptionCell(ipo)}</td><td class="numeric" data-label="${showReturns ? 'Listing return' : '1 lot at cap'}">${showReturns ? `<span class="metric">${listingReturn(ipo)}</span>` : lotCostCell(ipo) + IPOQuality.note(ipo, 'lotSize')}</td><td class="actions-cell" data-label="Actions">${rowActions(ipo)}</td></tr>`;
+      return `<tr data-id="${escapeAttr(ipo.id)}"><td data-label="Company"><div class="company-cell"><span class="ipo-monogram tone-${index % 4}" aria-hidden="true">${escapeHtml(initials)}</span><div class="ipo-company">${companyLink(ipo)}<span class="symbol">${escapeHtml([ipo.symbol, ipo.board || ipo.exchange].filter(Boolean).join(' · '))}${validation}</span></div></div></td><td class="status-cell" data-label="Status">${status === 'pipeline' ? '<span class="badge badge-pipeline">Dates pending</span>' : badge(status)}</td><td class="date-cell" data-label="Key dates">${keyDates(ipo)}</td><td class="numeric" data-label="Price band"><span class="metric">${priceBand(ipo)}</span>${IPOQuality.note(ipo, 'priceBand')}</td><td class="numeric" data-label="Issue size"><span class="metric">${escapeHtml(IPOQuality.amountText(ipo, money))}</span>${IPOQuality.amountNote(ipo)}</td><td class="numeric" data-label="Subscription">${subscriptionCell(ipo)}</td><td class="numeric" data-label="${showReturns ? 'Listing return' : '1 lot at cap'}">${showReturns ? `<span class="metric">${listingReturn(ipo)}</span>` : lotCostCell(ipo) + IPOQuality.note(ipo, 'lotSize')}</td><td class="actions-cell" data-label="Actions">${rowActions(ipo)}</td></tr>`;
     })
     .join('');
   document.getElementById('resultCount').textContent = rows.length
@@ -474,7 +474,7 @@ async function openDetail(id) {
   if (!ipo) return;
   els.dialogBody.innerHTML = `<div class="detail-grid">
     <div class="detail-card"><div class="detail-label">Price band</div><div class="detail-value">${priceBand(ipo)}</div></div>
-    <div class="detail-card"><div class="detail-label">Issue size</div><div class="detail-value">${money(ipo.issueSizeCr)}</div></div>
+    <div class="detail-card"><div class="detail-label">Issue size</div><div class="detail-value">${escapeHtml(IPOQuality.amountText(ipo, money))}</div>${IPOQuality.amountNote(ipo)}</div>
     <div class="detail-card"><div class="detail-label">Open date</div><div class="detail-value">${prettyDate(ipo.openDate)}</div></div>
     <div class="detail-card"><div class="detail-label">Close date</div><div class="detail-value">${prettyDate(ipo.closeDate)}</div></div>
   </div>`;
@@ -779,7 +779,7 @@ function openComparison() {
     ],
     ['Board', (ipo) => escapeHtml(ipo.board || '—')],
     ['Price band', (ipo) => priceBand(ipo) + IPOQuality.note(ipo, 'priceBand')],
-    ['Issue size', (ipo) => money(ipo.issueSizeCr) + IPOQuality.note(ipo, 'issueSizeCr')],
+    ['Issue size', (ipo) => escapeHtml(IPOQuality.amountText(ipo, money)) + IPOQuality.amountNote(ipo)],
     [
       'Lot size',
       (ipo) =>
@@ -841,6 +841,16 @@ function exportCsv() {
     'Minimum bid quantity evidence state',
     'Market lot source URL',
     'Minimum bid quantity source URL',
+    'Whole-offer amount at floor INR crore (provisional)',
+    'Floor price INR per share',
+    'Whole-offer amount at cap INR crore (provisional)',
+    'Cap price INR per share',
+    'Conditional amount qualification',
+    'Conditional amount evidence state',
+    'Conditional amount source URL',
+    'Conditional amount document date',
+    'Conditional amount publication date',
+    'Conditional amount valid through IST',
   ];
   const fieldSourceUrl = (ipo, field) => ipo.publicQuality?.sources?.[IPOQuality.decision(ipo, field).source]?.sourceUrl || '';
   const lines = filtered().map((ipo) => [
@@ -875,6 +885,16 @@ function exportCsv() {
     IPOQuality.decision(ipo, 'minimumBidQuantity').state,
     fieldSourceUrl(ipo, 'marketLot'),
     fieldSourceUrl(ipo, 'minimumBidQuantity'),
+    IPOQuality.amountScenarios(ipo)?.atFloorCr,
+    IPOQuality.amountScenarios(ipo)?.floorPrice,
+    IPOQuality.amountScenarios(ipo)?.atCapCr,
+    IPOQuality.amountScenarios(ipo)?.capPrice,
+    IPOQuality.amountScenarios(ipo)?.qualification,
+    ipo.publicQuality?.fields?.issueAmountScenarios ? IPOQuality.decision(ipo, 'issueAmountScenarios').state : '',
+    fieldSourceUrl(ipo, 'issueAmountScenarios'),
+    ipo.publicQuality?.sources?.[IPOQuality.decision(ipo, 'issueAmountScenarios').source]?.documentDate || '',
+    ipo.publicQuality?.sources?.[IPOQuality.decision(ipo, 'issueAmountScenarios').source]?.publicationDate || '',
+    IPOQuality.amountScenarios(ipo) ? ipo.closeDate : '',
   ]);
   const blob = new Blob(
     ['\uFEFF' + [header, ...lines].map((row) => row.map(quote).join(',')).join('\r\n')],

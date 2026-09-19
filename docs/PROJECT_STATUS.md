@@ -15,7 +15,62 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
-## Current checkpoint — reviewed BSE active terms released, 19 September 2026
+## Current checkpoint — qualified offer amounts awaiting reviewed publication, 19 September 2026
+
+Recovered and re-fetched main is `0a393cd40ec910958c9d685d586076d3b0e6f8f6`.
+The exact next task below was unfinished. The three-issuer source family has now
+been inspected completely; this checkpoint records support work, **not a completed
+data release**. Branch `fix-p4-qualified-offer-amounts`; the support PR and commit
+are identified by the Git history containing this checkpoint. Immutable source
+review `6e2df0a4d4c8b736d0c07d526b3b844eaecd0b49` corrects Varmora's signed
+document date (16 September) separately from publication (17 September).
+See [source review](reviews/2026-09-19-qualified-offer-amount-source-review.md)
+and its [document/attempt receipts](reviews/2026-09-19-qualified-offer-amount-source-review.json).
+
+The shared repair replays two independently inspected source layouts: Axiom's
+revised floor/cap paragraph and Varmora's complete four-column offer table.
+It retains explicit whole-offer amounts of **47.9298 / 50.7492 crore** for Axiom
+(51 / 54 INR/share, subject to final Basis of Allotment) and **up to 687.047 /
+708.021 crore** for Varmora (140 / 148 INR/share). Unit conversion is the only
+amount transformation. Canonical `issueSizeCr` stays null; a separate qualified
+pair is eligible only while its reviewed active offer remains current.
+
+Pooja's RHP and financial-ratios advertisement archives were recovered and
+inspected, including a successful retry after an incomplete ZIP. Their whole-offer
+amount is a placeholder. This is disclosure absent in inspected documents;
+no numerical correction is approved. Earlier collection failures remain recorded.
+The selected source family is exhausted at two supported and one unresolved issuer.
+
+The bounded candidate changes only Axiom/Varmora receipts and their appended
+source/correction history. All 1,404 other records are identical. At the real
+19 September clock, the cohort's active amount gaps are **3 before / 1 proposed**,
+and higher-priority P4 records are **69 before / 67 proposed**. P4 actionable
+records remain 408; all 1,553 blocking / 1,557 total source reviews are identical;
+zero errors / zero unmapped; 321 records / 1,174 Final Prospectus revalidation
+fields remain. All five unavailable resolutions are unchanged. This is explicit
+provisional coverage, not final amount verification or source-review removal.
+Expiry, invalidity, contradictions and holds restore the missing amount gap.
+All 441 pending proposals and P5's 914 `waiting_for_p4` records remain untouched.
+
+Local validation: 1,389 Python tests and 39 Node tests pass under uv/Python 3.12;
+16 focused amount tests include both real sources, independent review pins,
+ambiguous columns/units, incomplete qualifications, actual registry holds,
+conflicting official evidence, expiry and bounded publication. Strict validation
+has zero errors and all 1,406 directory/profile pairs pass. Public generation
+changes no accepted canonical/profile/summary files in the support phase.
+Local Chromium download failed; browser CI acceptance is still required.
+Deployment and live verification remain pending. The existing read-only source
+health report and publication support routing receive the minimum adaptations
+needed for a separate PDF evidence source and actual amount holds.
+
+**Exact next task:** finish this support PR's browser/release checks, merge it,
+then submit only the separate reviewed-publication request for `axiomgas,varmora`.
+Verify the accepted canonical diff, generated public files, actual deployment,
+live amounts/qualification/provenance and before/after P4 counts. Update this
+checkpoint with PRs, commits, tests, release receipts and the next source family.
+Do not repeat the source inspection or change Pooja's unsupported amount.
+
+## Previous checkpoint — reviewed BSE active terms released, 19 September 2026
 
 Verified data-release main: **`599798ff18e92e8ad9fc0da0f99a98f6fb5ce1ad`**.
 Support [PR #168](https://github.com/Vasuki8/IPO-Tracker/pull/168) merged as

@@ -1,0 +1,670 @@
+[
+  {
+    "id": "axiomgas",
+    "matchKey": "AXIOMGASENGINEERING",
+    "symbol": "AXIOMGAS",
+    "company": "Axiom Gas Engineering Limited",
+    "board": "SME",
+    "exchange": "NSE Emerge",
+    "status": "open",
+    "openDate": "2026-09-18",
+    "closeDate": "2026-09-22",
+    "sharesOffered": 8328000,
+    "lifecycle": {
+      "stage": "exchange",
+      "stageDate": "2026-09-18"
+    },
+    "sources": [
+      {
+        "name": "NSE upcoming",
+        "kind": "exchange",
+        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+        "asOf": "2026-09-17T13:13:27+05:30"
+      },
+      {
+        "name": "NSE current",
+        "kind": "exchange",
+        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+        "asOf": "2026-09-18T11:28:00+05:30"
+      },
+      {
+        "name": "IPO Premium subscription (secondary)",
+        "kind": "secondary-market-data",
+        "url": "https://www.ipopremium.in/view/subscription",
+        "asOf": "2026-09-18T14:27:38+05:30"
+      },
+      {
+        "name": "NSE active offer detail",
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=AXIOMGAS&series=SME",
+        "observedAt": null,
+        "collectedAt": "2026-09-19T02:30:05.462927+00:00"
+      }
+    ],
+    "source": {
+      "name": "NSE upcoming",
+      "kind": "exchange",
+      "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+      "asOf": "2026-09-17T13:13:27+05:30"
+    },
+    "observations": {
+      "NSE": {
+        "openDate": "2026-09-18",
+        "closeDate": "2026-09-22",
+        "priceBand": null,
+        "lotSize": null,
+        "issueSizeCr": null,
+        "subscriptionSummary": {
+          "use": "observation-only",
+          "feedKind": "current",
+          "sourceName": "NSE current",
+          "sourceUrl": "https://www.nseindia.com/api/ipo-current-issue",
+          "sourcePageUrl": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+          "issuer": {
+            "company": "Axiom Gas Engineering Limited",
+            "symbol": "AXIOMGAS",
+            "openDate": "2026-09-18",
+            "closeDate": "2026-09-22"
+          },
+          "collectedAt": "2026-09-19T16:35:07+05:30",
+          "observedAt": null,
+          "timeBasis": "collection-only",
+          "values": {
+            "qib": null,
+            "nii": null,
+            "retail": null,
+            "total": 0.58
+          },
+          "valueUnit": "times",
+          "denominatorStatus": "unverified",
+          "rawFields": {
+            "noOfTime": "0.58",
+            "noOfsharesBid": "4808000",
+            "noOfSharesOffered": "8328000",
+            "series": "SME"
+          }
+        },
+        "staticOfferTerms": {}
+      }
+    },
+    "staticSourcePolicy": {
+      "policy": "final-prospectus-only",
+      "marketStaticTerms": "observation-only",
+      "status": "awaiting-final-prospectus",
+      "documentUrl": null,
+      "documentType": null,
+      "checkedAt": "2026-09-19T11:27:55.414534+00:00",
+      "verifiedFields": [],
+      "pendingRevalidationFields": []
+    },
+    "documents": [],
+    "staticFieldProvenance": {},
+    "sebiFinalProspectusSearch": {
+      "status": "no-final-prospectus",
+      "linksAdded": 0,
+      "lastAttemptAt": "2026-09-19T07:10:19+05:30",
+      "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+      "parserVersion": 4
+    },
+    "nseOfferFilings": {
+      "id": "axiomgas",
+      "status": "no_match",
+      "changedFields": [],
+      "documentsAdded": 0,
+      "lastAttemptAt": "2026-09-17T07:44:45+00:00",
+      "fingerprint": "606db2864a4a4537e56e8822f7c59a9682f9806e67949bb413f6cf90e5522ffe"
+    },
+    "nseFinalProspectusDiscovery": {
+      "id": "axiomgas",
+      "company": "Axiom Gas Engineering Limited",
+      "openDate": "2026-09-18",
+      "status": "no_final_prospectus",
+      "documentUrl": null,
+      "lastAttemptAt": "2026-09-17T07:44:47+00:00",
+      "fingerprint": "e67f363b03327a672daf2ac17b3ebe5f85d31fbbeaca005e7cde798517aa16f3"
+    },
+    "validation": {
+      "status": "single-source",
+      "checkedAt": "2026-09-19T16:43:35+05:30",
+      "checks": [],
+      "independentSources": [
+        "IPO",
+        "NSE"
+      ]
+    },
+    "profilePath": "ipo/axiomgas/",
+    "sharesBid": 4808000,
+    "subscription": {
+      "qib": 0.8,
+      "nii": 0.42,
+      "retail": 0.65,
+      "total": 0.56
+    },
+    "subscriptionAsOf": "2026-09-19T01:52:15+05:30",
+    "subscriptionCollectedAt": "2026-09-19T01:52:15+05:30",
+    "subscriptionObservedAt": "2026-09-18T20:41:14+05:30",
+    "subscriptionTimeBasis": "source-observation",
+    "subscriptionSource": "IPO Premium subscription (secondary)",
+    "subscriptionHistory": [
+      {
+        "capturedAt": "2026-09-18T14:27:38+05:30",
+        "observedAt": "2026-09-18T14:25:03+05:30",
+        "source": "IPO Premium subscription (secondary)",
+        "sourceUrl": "https://www.ipopremium.in/view/subscription",
+        "qib": 0.54,
+        "nii": 0.25,
+        "retail": 0.41,
+        "total": 0.35
+      },
+      {
+        "capturedAt": "2026-09-18T19:04:10+05:30",
+        "observedAt": "2026-09-18T18:53:17+05:30",
+        "source": "IPO Premium subscription (secondary)",
+        "sourceUrl": "https://www.ipopremium.in/view/subscription",
+        "qib": 0.8,
+        "nii": 0.42,
+        "retail": 0.64,
+        "total": 0.56
+      },
+      {
+        "capturedAt": "2026-09-18T21:29:07+05:30",
+        "observedAt": "2026-09-18T20:41:14+05:30",
+        "source": "IPO Premium subscription (secondary)",
+        "sourceUrl": "https://www.ipopremium.in/view/subscription",
+        "qib": 0.8,
+        "nii": 0.42,
+        "retail": 0.65,
+        "total": 0.56
+      }
+    ],
+    "subscriptionSourceUrl": "https://www.ipopremium.in/view/subscription",
+    "dataCorrections": [
+      {
+        "field": "activeOfferTerms",
+        "before": null,
+        "after": {
+          "schemaVersion": 1,
+          "parserVersion": "nse-labelled-active-terms-v1",
+          "identity": {
+            "id": "axiomgas",
+            "company": "Axiom Gas Engineering Limited",
+            "symbol": "AXIOMGAS",
+            "board": "SME",
+            "openDate": "2026-09-18",
+            "closeDate": "2026-09-22"
+          },
+          "source": {
+            "name": "NSE",
+            "authority": "official_exchange",
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=AXIOMGAS&series=SME",
+            "sha256": "9a2a3901052e7d9354c252820212ec5d9b39ad76fc79f3f5e102a5ea7088a8ce",
+            "responseText": "{\"companyName\":\"AXIOMGAS\",\"metaInfo\":{},\"bidDetails\":[{\"category\":\"Qualified Institutional Buyers(QIBs)\",\"noOfshareBid\":\"572000\",\"noofapplication\":\"3\",\"srNo\":\"1\"},{\"category\":\"Foreign Institutional Investors(FIIs)\",\"noOfshareBid\":\"186000\",\"noofapplication\":\"1\",\"srNo\":\"1(a)\"},{\"category\":\"Domestic Financial Institutions(Banks/ Financial Institutions(FIs)/ Insurance Companies)\",\"noOfshareBid\":\"0\",\"noofapplication\":\"0\",\"srNo\":\"1(b)\"},{\"category\":\"Mutual funds\",\"noOfshareBid\":\"0\",\"noofapplication\":\"0\",\"srNo\":\"1(c)\"},{\"category\":\"Others\",\"noOfshareBid\":\"386000\",\"noofapplication\":\"2\",\"srNo\":\"1(d)\"},{\"category\":\"Non Institutional Investors\",\"noOfshareBid\":\"1964000\",\"noofapplication\":\"43\",\"srNo\":\"2\"},{\"category\":\"Non Institutional Investors(Bid amount of more than Ten Lakh Rupees)\",\"noOfshareBid\":\"1370000\",\"noofapplication\":\"4\",\"srNo\":\"2.1\"},{\"category\":\"Corporates\",\"noOfshareBid\":\"980000\",\"noofapplication\":\"1\",\"srNo\":\"2.1(a)\"},{\"category\":\"Individuals(IND category bidding for more than 2 Lots)\",\"noOfshareBid\":\"390000\",\"noofapplication\":\"3\",\"srNo\":\"2.1(b)\"},{\"category\":\"Others\",\"noOfshareBid\":\"0\",\"noofapplication\":\"0\",\"srNo\":\"2.1(c)\"},{\"category\":\"Non Institutional Investors(Bid amount of more than Two Lakh Rupees upto Ten Lakh Rupees)\",\"noOfshareBid\":\"594000\",\"noofapplication\":\"39\",\"srNo\":\"2.2\"},{\"category\":\"Corporates\",\"noOfshareBid\":\"0\",\"noofapplication\":\"0\",\"srNo\":\"2.2(a)\"},{\"category\":\"Individuals(IND category bidding for more than 2 Lots)\",\"noOfshareBid\":\"594000\",\"noofapplication\":\"39\",\"srNo\":\"2.2(b)\"},{\"category\":\"Others\",\"noOfshareBid\":\"0\",\"noofapplication\":\"0\",\"srNo\":\"2.2(c)\"},{\"category\":\"Individual Investors (IND category bidding for 2 Lots)\",\"noOfshareBid\":\"2272000\",\"noofapplication\":\"568\",\"srNo\":\"3\"},{\"category\":\"Total\",\"noOfshareBid\":\"4808000\",\"noofapplication\":\"614\",\"srNo\":null}],\"issueInfo\":{\"dataList\":[{\"title\":null,\"value\":\"\\\"*As per SEBI circular no SEBI/HO/CFD/DIL2/CIR/P/2019/76 dated 28 June 2019 all are requested to comply with the provisions of the aforementioned circular which states as below: Intermediaries shall retain physical application forms submitted by retail individual investors with UPI as a payment mechanism, for a period of six months and thereafter forward the same to the issuer/ Registrar to Issue. However in case of Electronic forms printouts of such applications need not be retained or sent to the issuer. Intermediaries shall, at all times, maintain the electronic records relating to such forms for a minimum period of three years.\\\"\"},{\"title\":\"Symbol\",\"value\":\"AXIOMGAS\"},{\"title\":\"Issue Period\",\"value\":\"18-Sep-2026 to 22-Sep-2026\"},{\"title\":\"Cut-off time for UPI Mandate Confirmation\",\"value\":\"22-Sep-2026 (upto 5:00 PM) The cut-off time for UPI mandate acceptance is 05:00 PM on last day of IPO bidding. Further bids with confirmed status of mandate amount blocked (RC100) shall be considered as valid applications and hence investors are advised to submit their UPI applications in IPO well in advance to avoid any last minute technical/systemic constraints that may hamper their ability to participate in IPOs by successfully accepting the mandate.\"},{\"title\":\"Issue Size\",\"value\":\"\\\"Initial Public Offer comprising of Fresh Issue up to 93,98,000 Equity Shares (including Market Maker portion of 4,78,000 Equity Shares and Anchor allocation 10,70,000 Equity Shares)\\\"\"},{\"title\":\"Issue Type\",\"value\":\"Book Building\"},{\"title\":\"Price Range\",\"value\":\"Rs.51 to Rs.54 per equity share\"},{\"title\":\"Lot Size\",\"value\":\"2000 Equity Shares\"},{\"title\":\"Face Value\",\"value\":\"Rs.5 per Equity Share\"},{\"title\":\"Tick Size\",\"value\":\"Re.1/-\"},{\"title\":\"IPO Market Timings\",\"value\":\"10.00 a.m. to 5.00 p.m. (Bidding Timings on Issue Closure upto 4:00 P.M.)\"},{\"title\":\"Maximum Bid Quantity for QIB Investors\",\"value\":\"\\\"78,50,000 Equity shares (Calculated at Higher Price band)\\\"\"},{\"title\":\"Maximum Bid Quantity for NIB Investors\",\"value\":\"\\\"71,36,000 Equity shares (Calculated at Higher Price band)\\\"\"},{\"title\":\"Book Running Lead Managers\",\"value\":\"SKI Capital Services Limited\"},{\"title\":\"Sponsor Bank\",\"value\":\"ICICI Bank Limited\"},{\"title\":\"Categories\",\"value\":\"\\\"FI, IC, MF, FII, OTH, CO, IND and NOH\\\"\"},{\"title\":\"Sub-Categories applicable for UPI\",\"value\":\"\\\"IND (Up to Rs. 5,00,000)\\\"\"},{\"title\":\"Name of the Registrar\",\"value\":\"KFin Technologies Limited\"},{\"title\":\"Address of the Registrar\",\"value\":\"\\\"Selenium Tower B, Plot No. 31-32, Gachibowli, Financial District,Nanakramguda, Serilingampally, Hyderabad  500032, Telangana \\\"\"},{\"title\":\"Contact person name number and Email id\",\"value\":\"\\\"M Murali Krishna, 91 40 6716 2222, agel.ipo@kfintech.com \\\"\"},{\"title\":\"e-form link\",\"value\":\"https://bidcollection.nseindia.com/asba\"},{\"title\":\"Branches of Self Certified Syndicate Banks (SCSBs) where syndicate / sub syndicate member to submit ASBA form\",\"value\":\"<a href=http://www.sebi.gov.in/sebiweb/other/OtherAction.do?doRecognisedFpi=yes&intmId=35 target=new>SCSB List</a>\"},{\"title\":\"Red Herring Prospectus\",\"value\":\"https://nsearchives.nseindia.com/content/ipo/RHP_AXIOMGAS.zip\"},{\"title\":\"Ratios / Basis of Issue Price\",\"value\":\"https://nsearchives.nseindia.com/content/ipo/RATIOS_AXIOMGAS.zip\"},{\"title\":\"Sample Application Forms\",\"value\":\"https://nsearchives.nseindia.com/content/ipo/FORMS_AXIOMGAS.zip\"},{\"title\":\"Security Parameters \",\"value\":\"https://nsearchives.nseindia.com/content/ipo/PREANCHOR_PARAMETERS_AXIOMGAS.zip\"},{\"title\":\"Security Parameters (Post Anchor)\",\"value\":\"https://nsearchives.nseindia.com/content/ipo/POSTANCHOR_PARAMETERS_AXIOMGAS.zip\"},{\"title\":\"Anchor Allocation Report\",\"value\":\"https://nsearchives.nseindia.com/content/ipo/ANCHOR_AXIOMGAS.zip\"},{\"title\":\"Processing of ASBA Applications\",\"value\":\"<a href=https://archives.nseindia.com/content/circulars/IPO53197.pdf target=new>NSE Circular on ASBA Application Processing</a>\"},{\"title\":\"List of mobile applications accepting UPI as Payment Option\",\"value\":\"<a href=https://www.sebi.gov.in/sebiweb/other/OtherAction.do?doRecognisedFpi=yes&intmId=43 target=new>Mobile APP for UPI</a>\"},{\"title\":\"Video link  for UPI based ASBA process\",\"value\":\"<a href=https://youtu.be/UJ394m2Q3rg target=new>UPI Based ASBA Process</a>\"},{\"title\":\"Video link  for BHIM UPI Registration\",\"value\":\"<a href=https://youtu.be/cIUJOIH0x4c target=new>BHIM UPI Registration</a>\"}],\"heading\":\"Axiom Gas Engineering Limited\",\"symbol\":\"AXIOMGAS\"},\"activeCat\":{\"dataList\":[{\"category\":\"Category\",\"noOfShareOffered\":\"No.of shares offered/reserved\",\"noOfSharesBid\":\"No. of shares bid for\",\"noOfTotalMeant\":\"No. of times of total meant for the category\",\"srNo\":\"Sr.No.\"},{\"category\":\"Qualified Institutional Buyers(QIBs)\",\"noOfShareOffered\":\"0\",\"noOfSharesBid\":\"572000\",\"noOfTotalMeant\":\"0.00\",\"srNo\":\"1\"},{\"category\":\"Foreign Institutional Investors(FIIs)\",\"noOfShareOffered\":\"\",\"noOfSharesBid\":\"186000\",\"noOfTotalMeant\":\"\",\"srNo\":\"1(a)\"},{\"category\":\"Domestic Financial Institutions(Banks/ Financial Institutions(FIs)/ Insurance Companies)\",\"noOfShareOffered\":\"\",\"noOfSharesBid\":\"0\",\"noOfTotalMeant\":\"\",\"srNo\":\"1(b)\"},{\"category\":\"Mutual funds\",\"noOfShareOffered\":\"\",\"noOfSharesBid\":\"0\",\"noOfTotalMeant\":\"\",\"srNo\":\"1(c)\"},{\"category\":\"Others\",\"noOfShareOffered\":\"\",\"noOfSharesBid\":\"386000\",\"noOfTotalMeant\":\"\",\"srNo\":\"1(d)\"},{\"category\":\"Non Institutional Investors\",\"noOfShareOffered\":\"0\",\"noOfSharesBid\":\"1964000\",\"noOfTotalMeant\":\"0.00\",\"srNo\":\"2\"},{\"category\":\"Non Institutional Investors(Bid amount of more than Ten Lakh Rupees)\",\"noOfShareOffered\":\"0\",\"noOfSharesBid\":\"1370000\",\"noOfTotalMeant\":\"0.00\",\"srNo\":\"2.1\"},{\"category\":\"Corporates\",\"noOfShareOffered\":\"\",\"noOfSharesBid\":\"980000\",\"noOfTotalMeant\":\"\",\"srNo\":\"2.1(a)\"},{\"category\":\"Individuals(Other than RIIs)\",\"noOfShareOffered\":\"\",\"noOfSharesBid\":\"390000\",\"noOfTotalMeant\":\"\",\"srNo\":\"2.1(b)\"},{\"category\":\"Others\",\"noOfShareOffered\":\"\",\"noOfSharesBid\":\"0\",\"noOfTotalMeant\":\"\",\"srNo\":\"2.1(c)\"},{\"category\":\"Non Institutional Investors(Bid amount of more than Two Lakh Rupees upto Ten Lakh Rupees)\",\"noOfShareOffered\":\"0\",\"noOfSharesBid\":\"594000\",\"noOfTotalMeant\":\"0.00\",\"srNo\":\"2.2\"},{\"category\":\"Corporates\",\"noOfShareOffered\":\"\",\"noOfSharesBid\":\"0\",\"noOfTotalMeant\":\"\",\"srNo\":\"2.2(a)\"},{\"category\":\"Individuals(Other than RIIs)\",\"noOfShareOffered\":\"\",\"noOfSharesBid\":\"594000\",\"noOfTotalMeant\":\"\",\"srNo\":\"2.2(b)\"},{\"category\":\"Others\",\"noOfShareOffered\":\"\",\"noOfSharesBid\":\"0\",\"noOfTotalMeant\":\"\",\"srNo\":\"2.2(c)\"},{\"category\":\"Total\",\"noOfShareOffered\":\"0.0\",\"noOfSharesBid\":\"2536000.0\",\"noOfTotalMeant\":\"0.00\",\"srNo\":null}],\"heading\":null,\"symbol\":null,\"updateTime\":\"Updated as on 18-Sep-2026 17:00:00\"},\"demandGraph\":{\"noOfShare\":\"Cumulative Demand(no. of shares in lakhs)\",\"note\":\" Cumulative (NSE) bid quantity at each price point includes the quantity (NSE) bidded at that relevant price point and all valid bids above that price point.\",\"totalBidAtCutOff\":\"-\",\"heading1\":\"Axiom Gas Engineering Limited- Graphical display of bids received *\",\"TOTAL_BIDS\":\"4808000\",\"totalIssueSize\":\"8328000\",\"heading2\":\"(* indicates bids position and not necessarily the subscription to the issue)\",\"plotData\":{\"51\":\"48,08,000\",\"53\":\"38,16,000\",\"54\":\"37,92,000\"},\"noOfTimesIssueSubscribed\":\"0.58\",\"graphData\":[{\"type\":\"51\",\"value\":\"9.92\"},{\"type\":\"53\",\"value\":\"0.24\"},{\"type\":\"54\",\"value\":\"37.92\"}],\"graphLogic\":\"https://nsearchives.nseindia.com/content/ipo/ipo_graph_logic.pdf\",\"totalBidRecieved\":\"4808000\",\"timestamp\":\"As on 18-Sep-2026 17:00:02 IST\"},\"demandDataNSE\":[{\"company\":\"Axiom Gas Engineering Limited\",\"cumQty\":\"37,92,000\",\"price\":\"54\",\"symbol\":\"AXIOMGAS\",\"timestamp\":\"18-Sep-2026 17:00:02\"},{\"company\":\"Axiom Gas Engineering Limited\",\"cumQty\":\"38,16,000\",\"price\":\"53\",\"symbol\":\"AXIOMGAS\",\"timestamp\":\"18-Sep-2026 17:00:02\"},{\"company\":\"Axiom Gas Engineering Limited\",\"cumQty\":\"48,08,000\",\"price\":\"51\",\"symbol\":\"AXIOMGAS\",\"timestamp\":\"18-Sep-2026 17:00:02\"}],\"demandDataBSE\":[{\"company\":\"Axiom Gas Engineering Limited\",\"cumQty\":\"37,92,000\",\"price\":\"54\",\"symbol\":\"AXIOMGAS\",\"timestamp\":\"18-SEP-2026 17:00:00\"},{\"company\":\"Axiom Gas Engineering Limited\",\"cumQty\":\"38,16,000\",\"price\":\"53\",\"symbol\":\"AXIOMGAS\",\"timestamp\":\"18-SEP-2026 17:00:00\"},{\"company\":\"Axiom Gas Engineering Limited\",\"cumQty\":\"48,08,000\",\"price\":\"51\",\"symbol\":\"AXIOMGAS\",\"timestamp\":\"18-SEP-2026 17:00:00\"}],\"demandGraphALL\":{\"noOfShare\":\"Cumulative Demand(no. of shares in lakhs)\",\"note\":\"Cumulative bid quantity at each price point includes the quantity bid at that relevant price point and all valid bids at the next higher price point.  The graph is updated every hour.\",\"totalBidAtCutOff\":\"-\",\"heading1\":\"Axiom Gas Engineering Limited- Graphical display of bids received *\",\"TOTAL_BIDS\":\"4808000\",\"totalIssueSize\":\"8328000\",\"heading2\":\"(* indicates bids position and not necessarily the subscription to the issue)\",\"plotData\":{\"51\":\"48,08,000\",\"53\":\"38,16,000\",\"54\":\"37,92,000\"},\"noOfTimesIssueSubscribed\":\"0.58\",\"graphData\":[{\"type\":\"51\",\"value\":\"9.92\"},{\"type\":\"53\",\"value\":\"0.24\"},{\"type\":\"54\",\"value\":\"37.92\"}],\"graphLogic\":\"https://nsearchives.nseindia.com/content/ipo/ipo_graph_logic.pdf\",\"totalBidRecieved\":\"4808000\",\"timestamp\":\"As on 18-Sep-2026 17:00:00 IST\"}}",
+            "observedAt": null,
+            "collectedAt": "2026-09-19T02:30:05.462927+00:00"
+          },
+          "review": {
+            "version": 1,
+            "status": "accepted",
+            "reviewedAt": "2026-09-19T02:44:41+00:00",
+            "url": "https://github.com/Vasuki8/IPO-Tracker/blob/1fb4c7d12e1a5eb616a4db16b304a0aeda32103f/docs/reviews/2026-09-19-active-offer-source-review.md"
+          },
+          "fields": {
+            "priceBand": {
+              "value": {
+                "min": 51.0,
+                "max": 54.0
+              },
+              "unit": "INR/share",
+              "row": 6,
+              "title": "Price Range",
+              "raw": "Rs.51 to Rs.54 per equity share",
+              "table": "/issueInfo/dataList"
+            },
+            "lotSize": {
+              "value": 2000,
+              "unit": "shares",
+              "row": 7,
+              "title": "Lot Size",
+              "raw": "2000 Equity Shares",
+              "table": "/issueInfo/dataList"
+            },
+            "issueComposition": {
+              "value": {
+                "freshShares": 9398000,
+                "ofsShares": null,
+                "freshValueCr": null,
+                "ofsValueCr": null,
+                "qualifiers": {
+                  "freshShares": "up_to"
+                }
+              },
+              "unit": "shares; INR crore (million / 10)",
+              "row": 4,
+              "title": "Issue Size",
+              "raw": "\"Initial Public Offer comprising of Fresh Issue up to 93,98,000 Equity Shares (including Market Maker portion of 4,78,000 Equity Shares and Anchor allocation 10,70,000 Equity Shares)\"",
+              "table": "/issueInfo/dataList"
+            }
+          },
+          "unresolved": {
+            "minimumBidQuantity": "disclosure-absent",
+            "issueSizeCr": "disclosure-absent: no explicit total INR amount in the supported source table"
+          }
+        },
+        "reason": "Accept source-reviewed active bidding terms separately from final static facts; preserve unknown totals and quantities",
+        "sourceUrl": "https://www.nseindia.com/api/ipo-detail?symbol=AXIOMGAS&series=SME",
+        "evidence": {
+          "sha256": "9a2a3901052e7d9354c252820212ec5d9b39ad76fc79f3f5e102a5ea7088a8ce",
+          "reviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/1fb4c7d12e1a5eb616a4db16b304a0aeda32103f/docs/reviews/2026-09-19-active-offer-source-review.md"
+        },
+        "correctedAt": "2026-09-19T02:44:41+00:00",
+        "sourceReviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/1fb4c7d12e1a5eb616a4db16b304a0aeda32103f/docs/reviews/2026-09-19-active-offer-source-review.md"
+      }
+    ],
+    "activeOfferTerms": {
+      "schemaVersion": 1,
+      "parserVersion": "nse-labelled-active-terms-v1",
+      "identity": {
+        "id": "axiomgas",
+        "company": "Axiom Gas Engineering Limited",
+        "symbol": "AXIOMGAS",
+        "board": "SME",
+        "openDate": "2026-09-18",
+        "closeDate": "2026-09-22"
+      },
+      "source": {
+        "name": "NSE",
+        "authority": "official_exchange",
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=AXIOMGAS&series=SME",
+        "sha256": "9a2a3901052e7d9354c252820212ec5d9b39ad76fc79f3f5e102a5ea7088a8ce",
+        "responseText": "{\"companyName\":\"AXIOMGAS\",\"metaInfo\":{},\"bidDetails\":[{\"category\":\"Qualified Institutional Buyers(QIBs)\",\"noOfshareBid\":\"572000\",\"noofapplication\":\"3\",\"srNo\":\"1\"},{\"category\":\"Foreign Institutional Investors(FIIs)\",\"noOfshareBid\":\"186000\",\"noofapplication\":\"1\",\"srNo\":\"1(a)\"},{\"category\":\"Domestic Financial Institutions(Banks/ Financial Institutions(FIs)/ Insurance Companies)\",\"noOfshareBid\":\"0\",\"noofapplication\":\"0\",\"srNo\":\"1(b)\"},{\"category\":\"Mutual funds\",\"noOfshareBid\":\"0\",\"noofapplication\":\"0\",\"srNo\":\"1(c)\"},{\"category\":\"Others\",\"noOfshareBid\":\"386000\",\"noofapplication\":\"2\",\"srNo\":\"1(d)\"},{\"category\":\"Non Institutional Investors\",\"noOfshareBid\":\"1964000\",\"noofapplication\":\"43\",\"srNo\":\"2\"},{\"category\":\"Non Institutional Investors(Bid amount of more than Ten Lakh Rupees)\",\"noOfshareBid\":\"1370000\",\"noofapplication\":\"4\",\"srNo\":\"2.1\"},{\"category\":\"Corporates\",\"noOfshareBid\":\"980000\",\"noofapplication\":\"1\",\"srNo\":\"2.1(a)\"},{\"category\":\"Individuals(IND category bidding for more than 2 Lots)\",\"noOfshareBid\":\"390000\",\"noofapplication\":\"3\",\"srNo\":\"2.1(b)\"},{\"category\":\"Others\",\"noOfshareBid\":\"0\",\"noofapplication\":\"0\",\"srNo\":\"2.1(c)\"},{\"category\":\"Non Institutional Investors(Bid amount of more than Two Lakh Rupees upto Ten Lakh Rupees)\",\"noOfshareBid\":\"594000\",\"noofapplication\":\"39\",\"srNo\":\"2.2\"},{\"category\":\"Corporates\",\"noOfshareBid\":\"0\",\"noofapplication\":\"0\",\"srNo\":\"2.2(a)\"},{\"category\":\"Individuals(IND category bidding for more than 2 Lots)\",\"noOfshareBid\":\"594000\",\"noofapplication\":\"39\",\"srNo\":\"2.2(b)\"},{\"category\":\"Others\",\"noOfshareBid\":\"0\",\"noofapplication\":\"0\",\"srNo\":\"2.2(c)\"},{\"category\":\"Individual Investors (IND category bidding for 2 Lots)\",\"noOfshareBid\":\"2272000\",\"noofapplication\":\"568\",\"srNo\":\"3\"},{\"category\":\"Total\",\"noOfshareBid\":\"4808000\",\"noofapplication\":\"614\",\"srNo\":null}],\"issueInfo\":{\"dataList\":[{\"title\":null,\"value\":\"\\\"*As per SEBI circular no SEBI/HO/CFD/DIL2/CIR/P/2019/76 dated 28 June 2019 all are requested to comply with the provisions of the aforementioned circular which states as below: Intermediaries shall retain physical application forms submitted by retail individual investors with UPI as a payment mechanism, for a period of six months and thereafter forward the same to the issuer/ Registrar to Issue. However in case of Electronic forms printouts of such applications need not be retained or sent to the issuer. Intermediaries shall, at all times, maintain the electronic records relating to such forms for a minimum period of three years.\\\"\"},{\"title\":\"Symbol\",\"value\":\"AXIOMGAS\"},{\"title\":\"Issue Period\",\"value\":\"18-Sep-2026 to 22-Sep-2026\"},{\"title\":\"Cut-off time for UPI Mandate Confirmation\",\"value\":\"22-Sep-2026 (upto 5:00 PM) The cut-off time for UPI mandate acceptance is 05:00 PM on last day of IPO bidding. Further bids with confirmed status of mandate amount blocked (RC100) shall be considered as valid applications and hence investors are advised to submit their UPI applications in IPO well in advance to avoid any last minute technical/systemic constraints that may hamper their ability to participate in IPOs by successfully accepting the mandate.\"},{\"title\":\"Issue Size\",\"value\":\"\\\"Initial Public Offer comprising of Fresh Issue up to 93,98,000 Equity Shares (including Market Maker portion of 4,78,000 Equity Shares and Anchor allocation 10,70,000 Equity Shares)\\\"\"},{\"title\":\"Issue Type\",\"value\":\"Book Building\"},{\"title\":\"Price Range\",\"value\":\"Rs.51 to Rs.54 per equity share\"},{\"title\":\"Lot Size\",\"value\":\"2000 Equity Shares\"},{\"title\":\"Face Value\",\"value\":\"Rs.5 per Equity Share\"},{\"title\":\"Tick Size\",\"value\":\"Re.1/-\"},{\"title\":\"IPO Market Timings\",\"value\":\"10.00 a.m. to 5.00 p.m. (Bidding Timings on Issue Closure upto 4:00 P.M.)\"},{\"title\":\"Maximum Bid Quantity for QIB Investors\",\"value\":\"\\\"78,50,000 Equity shares (Calculated at Higher Price band)\\\"\"},{\"title\":\"Maximum Bid Quantity for NIB Investors\",\"value\":\"\\\"71,36,000 Equity shares (Calculated at Higher Price band)\\\"\"},{\"title\":\"Book Running Lead Managers\",\"value\":\"SKI Capital Services Limited\"},{\"title\":\"Sponsor Bank\",\"value\":\"ICICI Bank Limited\"},{\"title\":\"Categories\",\"value\":\"\\\"FI, IC, MF, FII, OTH, CO, IND and NOH\\\"\"},{\"title\":\"Sub-Categories applicable for UPI\",\"value\":\"\\\"IND (Up to Rs. 5,00,000)\\\"\"},{\"title\":\"Name of the Registrar\",\"value\":\"KFin Technologies Limited\"},{\"title\":\"Address of the Registrar\",\"value\":\"\\\"Selenium Tower B, Plot No. 31-32, Gachibowli, Financial District,Nanakramguda, Serilingampally, Hyderabad  500032, Telangana \\\"\"},{\"title\":\"Contact person name number and Email id\",\"value\":\"\\\"M Murali Krishna, 91 40 6716 2222, agel.ipo@kfintech.com \\\"\"},{\"title\":\"e-form link\",\"value\":\"https://bidcollection.nseindia.com/asba\"},{\"title\":\"Branches of Self Certified Syndicate Banks (SCSBs) where syndicate / sub syndicate member to submit ASBA form\",\"value\":\"<a href=http://www.sebi.gov.in/sebiweb/other/OtherAction.do?doRecognisedFpi=yes&intmId=35 target=new>SCSB List</a>\"},{\"title\":\"Red Herring Prospectus\",\"value\":\"https://nsearchives.nseindia.com/content/ipo/RHP_AXIOMGAS.zip\"},{\"title\":\"Ratios / Basis of Issue Price\",\"value\":\"https://nsearchives.nseindia.com/content/ipo/RATIOS_AXIOMGAS.zip\"},{\"title\":\"Sample Application Forms\",\"value\":\"https://nsearchives.nseindia.com/content/ipo/FORMS_AXIOMGAS.zip\"},{\"title\":\"Security Parameters \",\"value\":\"https://nsearchives.nseindia.com/content/ipo/PREANCHOR_PARAMETERS_AXIOMGAS.zip\"},{\"title\":\"Security Parameters (Post Anchor)\",\"value\":\"https://nsearchives.nseindia.com/content/ipo/POSTANCHOR_PARAMETERS_AXIOMGAS.zip\"},{\"title\":\"Anchor Allocation Report\",\"value\":\"https://nsearchives.nseindia.com/content/ipo/ANCHOR_AXIOMGAS.zip\"},{\"title\":\"Processing of ASBA Applications\",\"value\":\"<a href=https://archives.nseindia.com/content/circulars/IPO53197.pdf target=new>NSE Circular on ASBA Application Processing</a>\"},{\"title\":\"List of mobile applications accepting UPI as Payment Option\",\"value\":\"<a href=https://www.sebi.gov.in/sebiweb/other/OtherAction.do?doRecognisedFpi=yes&intmId=43 target=new>Mobile APP for UPI</a>\"},{\"title\":\"Video link  for UPI based ASBA process\",\"value\":\"<a href=https://youtu.be/UJ394m2Q3rg target=new>UPI Based ASBA Process</a>\"},{\"title\":\"Video link  for BHIM UPI Registration\",\"value\":\"<a href=https://youtu.be/cIUJOIH0x4c target=new>BHIM UPI Registration</a>\"}],\"heading\":\"Axiom Gas Engineering Limited\",\"symbol\":\"AXIOMGAS\"},\"activeCat\":{\"dataList\":[{\"category\":\"Category\",\"noOfShareOffered\":\"No.of shares offered/reserved\",\"noOfSharesBid\":\"No. of shares bid for\",\"noOfTotalMeant\":\"No. of times of total meant for the category\",\"srNo\":\"Sr.No.\"},{\"category\":\"Qualified Institutional Buyers(QIBs)\",\"noOfShareOffered\":\"0\",\"noOfSharesBid\":\"572000\",\"noOfTotalMeant\":\"0.00\",\"srNo\":\"1\"},{\"category\":\"Foreign Institutional Investors(FIIs)\",\"noOfShareOffered\":\"\",\"noOfSharesBid\":\"186000\",\"noOfTotalMeant\":\"\",\"srNo\":\"1(a)\"},{\"category\":\"Domestic Financial Institutions(Banks/ Financial Institutions(FIs)/ Insurance Companies)\",\"noOfShareOffered\":\"\",\"noOfSharesBid\":\"0\",\"noOfTotalMeant\":\"\",\"srNo\":\"1(b)\"},{\"category\":\"Mutual funds\",\"noOfShareOffered\":\"\",\"noOfSharesBid\":\"0\",\"noOfTotalMeant\":\"\",\"srNo\":\"1(c)\"},{\"category\":\"Others\",\"noOfShareOffered\":\"\",\"noOfSharesBid\":\"386000\",\"noOfTotalMeant\":\"\",\"srNo\":\"1(d)\"},{\"category\":\"Non Institutional Investors\",\"noOfShareOffered\":\"0\",\"noOfSharesBid\":\"1964000\",\"noOfTotalMeant\":\"0.00\",\"srNo\":\"2\"},{\"category\":\"Non Institutional Investors(Bid amount of more than Ten Lakh Rupees)\",\"noOfShareOffered\":\"0\",\"noOfSharesBid\":\"1370000\",\"noOfTotalMeant\":\"0.00\",\"srNo\":\"2.1\"},{\"category\":\"Corporates\",\"noOfShareOffered\":\"\",\"noOfSharesBid\":\"980000\",\"noOfTotalMeant\":\"\",\"srNo\":\"2.1(a)\"},{\"category\":\"Individuals(Other than RIIs)\",\"noOfShareOffered\":\"\",\"noOfSharesBid\":\"390000\",\"noOfTotalMeant\":\"\",\"srNo\":\"2.1(b)\"},{\"category\":\"Others\",\"noOfShareOffered\":\"\",\"noOfSharesBid\":\"0\",\"noOfTotalMeant\":\"\",\"srNo\":\"2.1(c)\"},{\"category\":\"Non Institutional Investors(Bid amount of more than Two Lakh Rupees upto Ten Lakh Rupees)\",\"noOfShareOffered\":\"0\",\"noOfSharesBid\":\"594000\",\"noOfTotalMeant\":\"0.00\",\"srNo\":\"2.2\"},{\"category\":\"Corporates\",\"noOfShareOffered\":\"\",\"noOfSharesBid\":\"0\",\"noOfTotalMeant\":\"\",\"srNo\":\"2.2(a)\"},{\"category\":\"Individuals(Other than RIIs)\",\"noOfShareOffered\":\"\",\"noOfSharesBid\":\"594000\",\"noOfTotalMeant\":\"\",\"srNo\":\"2.2(b)\"},{\"category\":\"Others\",\"noOfShareOffered\":\"\",\"noOfSharesBid\":\"0\",\"noOfTotalMeant\":\"\",\"srNo\":\"2.2(c)\"},{\"category\":\"Total\",\"noOfShareOffered\":\"0.0\",\"noOfSharesBid\":\"2536000.0\",\"noOfTotalMeant\":\"0.00\",\"srNo\":null}],\"heading\":null,\"symbol\":null,\"updateTime\":\"Updated as on 18-Sep-2026 17:00:00\"},\"demandGraph\":{\"noOfShare\":\"Cumulative Demand(no. of shares in lakhs)\",\"note\":\" Cumulative (NSE) bid quantity at each price point includes the quantity (NSE) bidded at that relevant price point and all valid bids above that price point.\",\"totalBidAtCutOff\":\"-\",\"heading1\":\"Axiom Gas Engineering Limited- Graphical display of bids received *\",\"TOTAL_BIDS\":\"4808000\",\"totalIssueSize\":\"8328000\",\"heading2\":\"(* indicates bids position and not necessarily the subscription to the issue)\",\"plotData\":{\"51\":\"48,08,000\",\"53\":\"38,16,000\",\"54\":\"37,92,000\"},\"noOfTimesIssueSubscribed\":\"0.58\",\"graphData\":[{\"type\":\"51\",\"value\":\"9.92\"},{\"type\":\"53\",\"value\":\"0.24\"},{\"type\":\"54\",\"value\":\"37.92\"}],\"graphLogic\":\"https://nsearchives.nseindia.com/content/ipo/ipo_graph_logic.pdf\",\"totalBidRecieved\":\"4808000\",\"timestamp\":\"As on 18-Sep-2026 17:00:02 IST\"},\"demandDataNSE\":[{\"company\":\"Axiom Gas Engineering Limited\",\"cumQty\":\"37,92,000\",\"price\":\"54\",\"symbol\":\"AXIOMGAS\",\"timestamp\":\"18-Sep-2026 17:00:02\"},{\"company\":\"Axiom Gas Engineering Limited\",\"cumQty\":\"38,16,000\",\"price\":\"53\",\"symbol\":\"AXIOMGAS\",\"timestamp\":\"18-Sep-2026 17:00:02\"},{\"company\":\"Axiom Gas Engineering Limited\",\"cumQty\":\"48,08,000\",\"price\":\"51\",\"symbol\":\"AXIOMGAS\",\"timestamp\":\"18-Sep-2026 17:00:02\"}],\"demandDataBSE\":[{\"company\":\"Axiom Gas Engineering Limited\",\"cumQty\":\"37,92,000\",\"price\":\"54\",\"symbol\":\"AXIOMGAS\",\"timestamp\":\"18-SEP-2026 17:00:00\"},{\"company\":\"Axiom Gas Engineering Limited\",\"cumQty\":\"38,16,000\",\"price\":\"53\",\"symbol\":\"AXIOMGAS\",\"timestamp\":\"18-SEP-2026 17:00:00\"},{\"company\":\"Axiom Gas Engineering Limited\",\"cumQty\":\"48,08,000\",\"price\":\"51\",\"symbol\":\"AXIOMGAS\",\"timestamp\":\"18-SEP-2026 17:00:00\"}],\"demandGraphALL\":{\"noOfShare\":\"Cumulative Demand(no. of shares in lakhs)\",\"note\":\"Cumulative bid quantity at each price point includes the quantity bid at that relevant price point and all valid bids at the next higher price point.  The graph is updated every hour.\",\"totalBidAtCutOff\":\"-\",\"heading1\":\"Axiom Gas Engineering Limited- Graphical display of bids received *\",\"TOTAL_BIDS\":\"4808000\",\"totalIssueSize\":\"8328000\",\"heading2\":\"(* indicates bids position and not necessarily the subscription to the issue)\",\"plotData\":{\"51\":\"48,08,000\",\"53\":\"38,16,000\",\"54\":\"37,92,000\"},\"noOfTimesIssueSubscribed\":\"0.58\",\"graphData\":[{\"type\":\"51\",\"value\":\"9.92\"},{\"type\":\"53\",\"value\":\"0.24\"},{\"type\":\"54\",\"value\":\"37.92\"}],\"graphLogic\":\"https://nsearchives.nseindia.com/content/ipo/ipo_graph_logic.pdf\",\"totalBidRecieved\":\"4808000\",\"timestamp\":\"As on 18-Sep-2026 17:00:00 IST\"}}",
+        "observedAt": null,
+        "collectedAt": "2026-09-19T02:30:05.462927+00:00"
+      },
+      "review": {
+        "version": 1,
+        "status": "accepted",
+        "reviewedAt": "2026-09-19T02:44:41+00:00",
+        "url": "https://github.com/Vasuki8/IPO-Tracker/blob/1fb4c7d12e1a5eb616a4db16b304a0aeda32103f/docs/reviews/2026-09-19-active-offer-source-review.md"
+      },
+      "fields": {
+        "priceBand": {
+          "value": {
+            "min": 51.0,
+            "max": 54.0
+          },
+          "unit": "INR/share",
+          "row": 6,
+          "title": "Price Range",
+          "raw": "Rs.51 to Rs.54 per equity share",
+          "table": "/issueInfo/dataList"
+        },
+        "lotSize": {
+          "value": 2000,
+          "unit": "shares",
+          "row": 7,
+          "title": "Lot Size",
+          "raw": "2000 Equity Shares",
+          "table": "/issueInfo/dataList"
+        },
+        "issueComposition": {
+          "value": {
+            "freshShares": 9398000,
+            "ofsShares": null,
+            "freshValueCr": null,
+            "ofsValueCr": null,
+            "qualifiers": {
+              "freshShares": "up_to"
+            }
+          },
+          "unit": "shares; INR crore (million / 10)",
+          "row": 4,
+          "title": "Issue Size",
+          "raw": "\"Initial Public Offer comprising of Fresh Issue up to 93,98,000 Equity Shares (including Market Maker portion of 4,78,000 Equity Shares and Anchor allocation 10,70,000 Equity Shares)\"",
+          "table": "/issueInfo/dataList"
+        }
+      },
+      "unresolved": {
+        "minimumBidQuantity": "disclosure-absent",
+        "issueSizeCr": "disclosure-absent: no explicit total INR amount in the supported source table"
+      }
+    }
+  },
+  {
+    "id": "varmora",
+    "matchKey": "VARMORAGRANITO",
+    "symbol": "VARMORA",
+    "company": "Varmora Granito Limited",
+    "board": "Mainboard",
+    "exchange": "NSE",
+    "status": "upcoming",
+    "openDate": "2026-09-22",
+    "closeDate": "2026-09-24",
+    "sharesOffered": 49074776,
+    "lifecycle": {
+      "stage": "exchange",
+      "stageDate": "2026-09-22"
+    },
+    "sources": [
+      {
+        "name": "NSE upcoming",
+        "kind": "exchange",
+        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+        "asOf": "2026-09-18T16:50:36+05:30"
+      },
+      {
+        "name": "NSE active offer detail",
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=VARMORA&series=EQ",
+        "observedAt": null,
+        "collectedAt": "2026-09-19T02:30:05.723182+00:00"
+      },
+      {
+        "name": "BSE public issue",
+        "kind": "exchange",
+        "url": "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p",
+        "asOf": "2026-09-19T16:36:02+05:30"
+      }
+    ],
+    "source": {
+      "name": "NSE upcoming",
+      "kind": "exchange",
+      "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+      "asOf": "2026-09-18T16:50:36+05:30"
+    },
+    "observations": {
+      "NSE": {
+        "openDate": "2026-09-22",
+        "closeDate": "2026-09-24",
+        "priceBand": {
+          "min": 140.0,
+          "max": 148.0
+        },
+        "lotSize": null,
+        "issueSizeCr": 726.31,
+        "subscriptionSummary": {
+          "use": "observation-only",
+          "feedKind": "upcoming",
+          "sourceName": "NSE upcoming",
+          "sourceUrl": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "sourcePageUrl": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+          "issuer": {
+            "company": "Varmora Granito Limited",
+            "symbol": "VARMORA",
+            "openDate": "2026-09-22",
+            "closeDate": "2026-09-24"
+          },
+          "collectedAt": "2026-09-19T16:35:07+05:30",
+          "observedAt": null,
+          "timeBasis": "collection-only",
+          "values": null,
+          "valueUnit": "times",
+          "denominatorStatus": "unverified",
+          "rawFields": {
+            "issueSize": "49074776",
+            "series": "EQ"
+          }
+        },
+        "staticOfferTerms": {
+          "issueSizeCr": 726.31,
+          "priceBand": {
+            "min": 140.0,
+            "max": 148.0
+          }
+        }
+      },
+      "BSE": {
+        "openDate": "2026-09-22",
+        "closeDate": "2026-09-24",
+        "priceBand": {
+          "min": 140.0,
+          "max": 148.0
+        },
+        "lotSize": null,
+        "issueSizeCr": null,
+        "issueType": "IPO",
+        "staticOfferTerms": {
+          "priceBand": {
+            "min": 140.0,
+            "max": 148.0
+          }
+        }
+      }
+    },
+    "staticSourcePolicy": {
+      "policy": "final-prospectus-only",
+      "marketStaticTerms": "observation-only",
+      "status": "awaiting-final-prospectus",
+      "documentUrl": null,
+      "documentType": null,
+      "checkedAt": "2026-09-19T11:27:55.414534+00:00",
+      "verifiedFields": [],
+      "pendingRevalidationFields": []
+    },
+    "documents": [],
+    "staticFieldProvenance": {},
+    "sebiFinalProspectusSearch": {
+      "status": "no-final-prospectus",
+      "linksAdded": 0,
+      "lastAttemptAt": "2026-09-19T01:11:25+05:30",
+      "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+      "parserVersion": 4
+    },
+    "nseOfferFilings": {
+      "id": "varmora",
+      "status": "no_match",
+      "changedFields": [],
+      "documentsAdded": 0,
+      "lastAttemptAt": "2026-09-18T16:29:21+00:00",
+      "fingerprint": "eadebae5d27e6ad01c922aa6b236090a760c49315d2c11d54455706cbaeaf233"
+    },
+    "nseFinalProspectusDiscovery": {
+      "id": "varmora",
+      "company": "Varmora Granito Limited",
+      "openDate": "2026-09-22",
+      "status": "no_final_prospectus",
+      "documentUrl": null,
+      "lastAttemptAt": "2026-09-18T11:22:34+00:00",
+      "fingerprint": "9cbcf18fb54885c1d1e00a7c4097c054b7cc0a2b3711dadd69aed4008a1aee7e"
+    },
+    "validation": {
+      "status": "verified",
+      "checkedAt": "2026-09-19T16:43:35+05:30",
+      "checks": [
+        {
+          "field": "openDate",
+          "nse": "2026-09-22",
+          "bse": "2026-09-22",
+          "match": true
+        },
+        {
+          "field": "closeDate",
+          "nse": "2026-09-24",
+          "bse": "2026-09-24",
+          "match": true
+        },
+        {
+          "field": "priceBand",
+          "nse": {
+            "min": 140.0,
+            "max": 148.0
+          },
+          "bse": {
+            "min": 140.0,
+            "max": 148.0
+          },
+          "match": true
+        }
+      ],
+      "independentSources": [
+        "BSE",
+        "NSE"
+      ]
+    },
+    "profilePath": "ipo/varmora/",
+    "issueType": "IPO",
+    "dataCorrections": [
+      {
+        "field": "activeOfferTerms",
+        "before": null,
+        "after": {
+          "schemaVersion": 1,
+          "parserVersion": "nse-labelled-active-terms-v1",
+          "identity": {
+            "id": "varmora",
+            "company": "Varmora Granito Limited",
+            "symbol": "VARMORA",
+            "board": "Mainboard",
+            "openDate": "2026-09-22",
+            "closeDate": "2026-09-24"
+          },
+          "source": {
+            "name": "NSE",
+            "authority": "official_exchange",
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=VARMORA&series=EQ",
+            "sha256": "998c9afe8b5a6a7216dd675f85b4120efe4c24e703815f96e7a668c14a8263dd",
+            "responseText": "{\"companyName\":\"VARMORA\",\"metaInfo\":{},\"bidDetails\":[{\"category\":\"Total\",\"noOfSharesOffered\":\"0.0\",\"noOfTime\":\"0.00\",\"noOfsharesBid\":\"0.0\",\"srNo\":null}],\"issueInfo\":{\"dataList\":[{\"title\":\"Varmora Granito Limited\",\"value\":\"\"},{\"title\":null,\"value\":\"\\\"*As per SEBI circular no SEBI/HO/CFD/DIL2/CIR/P/2019/76 dated 28 June 28 2019 all are requested to comply with the provisions of the aforementioned circular which states as below: Intermediaries shall retain physical application forms submitted by retail individual investors with UPI as a payment mechanism, for a period of six months and thereafter forward the same to the issuer/ Registrar to Issue. However in case of Electronic forms printouts of such applications need not be retained or sent to the issuer. Intermediaries shall at all times maintain the electronic records relating to such forms for a minimum period of three years.\\\"\"},{\"title\":\"Symbol\",\"value\":\"VARMORA\"},{\"title\":\"Issue Period\",\"value\":\"22-Sep-2026 to 24-Sep-2026\"},{\"title\":\"Cut-off time for UPI Mandate Confirmation\",\"value\":\"\\\"24-Sep-2026 (upto 5:00 PM) The new cut-off time for UPI mandate acceptance is 05:00 PM on last day of IPO bidding. Further bids with confirmed status of mandate amount blocked (RC100) shall be considered as valid applications and hence, investors are advised to submit their UPI applications in IPO well in advance to avoid any last minute technical/systemic constraints that may hamper their ability to participate in IPOs by successfully accepting the mandate.\\\"\"},{\"title\":\"Issue Size\",\"value\":\"\\\"Initial Public offering comprising of fresh issue of aggregating up to Rs. 3,200.00 million and Offer for sale up to 26,217,634 Equity shares.\\\"\"},{\"title\":\"Issue Type\",\"value\":\"Book Building\"},{\"title\":\"Price Range\",\"value\":\"Rs. 140 to Rs. 148 per Equity Share\"},{\"title\":\"Discount\",\"value\":\"NA\"},{\"title\":\"Face Value\",\"value\":\"Rs. 2 per Equity Share\"},{\"title\":\"Tick Size\",\"value\":\"Re. 1\"},{\"title\":\"Bid Lot\",\"value\":\"101 Equity Shares and in multiples thereof\"},{\"title\":\"Minimum Order Quantity\",\"value\":\"101 Equity Shares\"},{\"title\":\"Maximum Subscription Amount for Retail Investor\",\"value\":\"\\\"Rs. 2,00,000\\\"\"},{\"title\":\"IPO Market Timings\",\"value\":\"10.00 a.m. to 5.00 p.m.\"},{\"title\":\"Book Running Lead Managers\",\"value\":\"\\\"JM Financial Limited, Goldman Sachs (India) Securities Private Limited and SBI Capital Markets Limited\\\"\"},{\"title\":\"Sponsor Bank\",\"value\":\"HDFC Bank Limited and Kotak Mahindra Bank Limited\"},{\"title\":\"Categories\",\"value\":\"\\\"FI, IC, MF, FII, OTH, CO, IND, and NOH\\\"\"},{\"title\":\"Sub-Categories applicable for UPI\",\"value\":\"IND (upto 5 Lakhs)\"},{\"title\":\"Name of the Registrar\",\"value\":\"KFin Technologies Limited\"},{\"title\":\"Address of the Registrar\",\"value\":\"\\\"Selenium Tower B, Plot No.31 and 32, Gachibowli, Financial District, Nanakramguda, Serilingampally, Hyderabad 500 032, Telangana, India\\\"\"},{\"title\":\"Contact person name number and Email id\",\"value\":\"\\\"M Murali Krishna, +91 40 6716 2222, vgl.ipo@kfintech.com\\\"\"},{\"title\":\"e-form link\",\"value\":\"https://bidcollection.nseindia.com/asba\"},{\"title\":\"Branches of Self Certified Syndicate Banks (SCSBs) where syndicate / sub syndicate member to submit ASBA form\",\"value\":\"<a href=http://www.sebi.gov.in/sebiweb/other/OtherAction.do?doRecognisedFpi=yes&intmId=35 target=new>SCSB List</a>\"},{\"title\":\"Ratios / Basis of Issue Price\",\"value\":\"https://nsearchives.nseindia.com/content/ipo/RATIOS_VARMORA.zip\"},{\"title\":\"Red Herring Prospectus\",\"value\":\"https://nsearchives.nseindia.com/content/ipo/RHP_VARMORA.zip\"},{\"title\":\"Bidding Centers\",\"value\":\"https://nsearchives.nseindia.com/content/ipo/BIDDING_CENTERS_VARMORA.zip\"},{\"title\":\"Sample Application Forms\",\"value\":\"https://nsearchives.nseindia.com/content/ipo/FORMS_VARMORA.zip\"},{\"title\":\"Security Parameters (Pre Anchor)\",\"value\":\"https://nsearchives.nseindia.com/content/ipo/PREANCHOR_PARAMETERS_VARMORA.zip\"},{\"title\":\"Processing of ASBA Applications\",\"value\":\"<a href=https://archives.nseindia.com/content/circulars/IPO53197.pdf target=new>NSE Circular on ASBA Application Processing</a>\"},{\"title\":\"Remark\",\"value\":\"\\\"The dedicated window provided for bid modification (modification of selected fields viz. DP ID/Client ID or Pan ID, Bank code and Location code) on T+1 day (T being last day of bidding) shall not be available now. The bid modification of selected fields shall be allowed during bidding period of IPO only.\\\"\"},{\"title\":\"List of mobile applications accepting UPI as Payment Option\",\"value\":\"<a href=https://www.sebi.gov.in/sebiweb/other/OtherAction.do?doRecognisedFpi=yes&intmId=43 target=new>Mobile APP for UPI</a>\"},{\"title\":\"Video link  for UPI based ASBA process\",\"value\":\"<a href=https://youtu.be/UJ394m2Q3rg target=new>UPI Based ASBA Process</a>\"},{\"title\":\"Video link  for BHIM UPI Registration\",\"value\":\"<a href=https://youtu.be/cIUJOIH0x4c target=new>BHIM UPI Registration</a>\"}],\"symbol\":\"VARMORA\"},\"activeCat\":{\"dataList\":[{\"category\":\"Category\",\"noOfShareOffered\":\"No.of shares offered/reserved\",\"noOfSharesBid\":\"No. of shares bid for\",\"noOfTotalMeant\":\"No. of times of total meant for the category\",\"srNo\":\"Sr.No.\"},{\"category\":\"Total\",\"noOfShareOffered\":\"0.0\",\"noOfSharesBid\":\"0.0\",\"noOfTotalMeant\":\"0.00\",\"srNo\":null}],\"heading\":null,\"symbol\":null,\"updateTime\":\"Updated as on null\"},\"demandGraph\":{\"noOfShare\":\"Cumulative Demand(no. of shares in lakhs)\",\"totalIssueSize\":\"49074776\",\"note\":\"Cumulative (NSE) bid quantity at each price point includes the quantity (NSE) bidded at that relevant price point and all valid bids above that price point.\",\"heading1\":\"Varmora Granito Limited- Graphical display of bids received *\",\"heading2\":\"(* indicates bids position and not necessarily the subscription to the issue)\",\"plotData\":{\"-\":\"-\"},\"graphData\":[]},\"demandDataNSE\":[{\"company\":\"Varmora Granito Limited\",\"cumQty\":\"-\",\"price\":\"-\",\"symbol\":\"VARMORA\",\"timestamp\":\"-\"}],\"demandDataBSE\":[{\"company\":\"Varmora Granito Limited\",\"cumQty\":\"-\",\"price\":\"-\",\"symbol\":\"VARMORA\",\"timestamp\":\"-\"}],\"demandGraphALL\":{\"noOfShare\":\"Cumulative Demand(no. of shares in lakhs)\",\"totalIssueSize\":\"49074776\",\"note\":\" Cumulative bid quantity at each price point includes the quantity bid at that relevant price point and all valid bids at the next higher price point as specified. The graph is updated every hour.\",\"heading1\":\"Varmora Granito Limited- Graphical display of bids received *\",\"heading2\":\"(* indicates bids position and not necessarily the subscription to the issue)\",\"plotData\":{\"-\":\"-\"},\"graphData\":[]}}",
+            "observedAt": null,
+            "collectedAt": "2026-09-19T02:30:05.723182+00:00"
+          },
+          "review": {
+            "version": 1,
+            "status": "accepted",
+            "reviewedAt": "2026-09-19T02:44:41+00:00",
+            "url": "https://github.com/Vasuki8/IPO-Tracker/blob/1fb4c7d12e1a5eb616a4db16b304a0aeda32103f/docs/reviews/2026-09-19-active-offer-source-review.md"
+          },
+          "fields": {
+            "priceBand": {
+              "value": {
+                "min": 140.0,
+                "max": 148.0
+              },
+              "unit": "INR/share",
+              "row": 7,
+              "title": "Price Range",
+              "raw": "Rs. 140 to Rs. 148 per Equity Share",
+              "table": "/issueInfo/dataList"
+            },
+            "lotSize": {
+              "value": 101,
+              "unit": "shares",
+              "row": 11,
+              "title": "Bid Lot",
+              "raw": "101 Equity Shares and in multiples thereof",
+              "table": "/issueInfo/dataList"
+            },
+            "minimumBidQuantity": {
+              "value": 101,
+              "unit": "shares",
+              "row": 12,
+              "title": "Minimum Order Quantity",
+              "raw": "101 Equity Shares",
+              "table": "/issueInfo/dataList"
+            },
+            "issueComposition": {
+              "value": {
+                "freshShares": null,
+                "ofsShares": 26217634,
+                "freshValueCr": 320.0,
+                "ofsValueCr": null,
+                "qualifiers": {
+                  "freshValueCr": "up_to",
+                  "ofsShares": "up_to"
+                }
+              },
+              "unit": "shares; INR crore (million / 10)",
+              "row": 5,
+              "title": "Issue Size",
+              "raw": "\"Initial Public offering comprising of fresh issue of aggregating up to Rs. 3,200.00 million and Offer for sale up to 26,217,634 Equity shares.\"",
+              "table": "/issueInfo/dataList"
+            }
+          },
+          "unresolved": {
+            "issueSizeCr": "disclosure-absent: no explicit total INR amount in the supported source table"
+          }
+        },
+        "reason": "Accept source-reviewed active bidding terms separately from final static facts; preserve unknown totals and quantities",
+        "sourceUrl": "https://www.nseindia.com/api/ipo-detail?symbol=VARMORA&series=EQ",
+        "evidence": {
+          "sha256": "998c9afe8b5a6a7216dd675f85b4120efe4c24e703815f96e7a668c14a8263dd",
+          "reviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/1fb4c7d12e1a5eb616a4db16b304a0aeda32103f/docs/reviews/2026-09-19-active-offer-source-review.md"
+        },
+        "correctedAt": "2026-09-19T02:44:41+00:00",
+        "sourceReviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/1fb4c7d12e1a5eb616a4db16b304a0aeda32103f/docs/reviews/2026-09-19-active-offer-source-review.md"
+      }
+    ],
+    "activeOfferTerms": {
+      "schemaVersion": 1,
+      "parserVersion": "nse-labelled-active-terms-v1",
+      "identity": {
+        "id": "varmora",
+        "company": "Varmora Granito Limited",
+        "symbol": "VARMORA",
+        "board": "Mainboard",
+        "openDate": "2026-09-22",
+        "closeDate": "2026-09-24"
+      },
+      "source": {
+        "name": "NSE",
+        "authority": "official_exchange",
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=VARMORA&series=EQ",
+        "sha256": "998c9afe8b5a6a7216dd675f85b4120efe4c24e703815f96e7a668c14a8263dd",
+        "responseText": "{\"companyName\":\"VARMORA\",\"metaInfo\":{},\"bidDetails\":[{\"category\":\"Total\",\"noOfSharesOffered\":\"0.0\",\"noOfTime\":\"0.00\",\"noOfsharesBid\":\"0.0\",\"srNo\":null}],\"issueInfo\":{\"dataList\":[{\"title\":\"Varmora Granito Limited\",\"value\":\"\"},{\"title\":null,\"value\":\"\\\"*As per SEBI circular no SEBI/HO/CFD/DIL2/CIR/P/2019/76 dated 28 June 28 2019 all are requested to comply with the provisions of the aforementioned circular which states as below: Intermediaries shall retain physical application forms submitted by retail individual investors with UPI as a payment mechanism, for a period of six months and thereafter forward the same to the issuer/ Registrar to Issue. However in case of Electronic forms printouts of such applications need not be retained or sent to the issuer. Intermediaries shall at all times maintain the electronic records relating to such forms for a minimum period of three years.\\\"\"},{\"title\":\"Symbol\",\"value\":\"VARMORA\"},{\"title\":\"Issue Period\",\"value\":\"22-Sep-2026 to 24-Sep-2026\"},{\"title\":\"Cut-off time for UPI Mandate Confirmation\",\"value\":\"\\\"24-Sep-2026 (upto 5:00 PM) The new cut-off time for UPI mandate acceptance is 05:00 PM on last day of IPO bidding. Further bids with confirmed status of mandate amount blocked (RC100) shall be considered as valid applications and hence, investors are advised to submit their UPI applications in IPO well in advance to avoid any last minute technical/systemic constraints that may hamper their ability to participate in IPOs by successfully accepting the mandate.\\\"\"},{\"title\":\"Issue Size\",\"value\":\"\\\"Initial Public offering comprising of fresh issue of aggregating up to Rs. 3,200.00 million and Offer for sale up to 26,217,634 Equity shares.\\\"\"},{\"title\":\"Issue Type\",\"value\":\"Book Building\"},{\"title\":\"Price Range\",\"value\":\"Rs. 140 to Rs. 148 per Equity Share\"},{\"title\":\"Discount\",\"value\":\"NA\"},{\"title\":\"Face Value\",\"value\":\"Rs. 2 per Equity Share\"},{\"title\":\"Tick Size\",\"value\":\"Re. 1\"},{\"title\":\"Bid Lot\",\"value\":\"101 Equity Shares and in multiples thereof\"},{\"title\":\"Minimum Order Quantity\",\"value\":\"101 Equity Shares\"},{\"title\":\"Maximum Subscription Amount for Retail Investor\",\"value\":\"\\\"Rs. 2,00,000\\\"\"},{\"title\":\"IPO Market Timings\",\"value\":\"10.00 a.m. to 5.00 p.m.\"},{\"title\":\"Book Running Lead Managers\",\"value\":\"\\\"JM Financial Limited, Goldman Sachs (India) Securities Private Limited and SBI Capital Markets Limited\\\"\"},{\"title\":\"Sponsor Bank\",\"value\":\"HDFC Bank Limited and Kotak Mahindra Bank Limited\"},{\"title\":\"Categories\",\"value\":\"\\\"FI, IC, MF, FII, OTH, CO, IND, and NOH\\\"\"},{\"title\":\"Sub-Categories applicable for UPI\",\"value\":\"IND (upto 5 Lakhs)\"},{\"title\":\"Name of the Registrar\",\"value\":\"KFin Technologies Limited\"},{\"title\":\"Address of the Registrar\",\"value\":\"\\\"Selenium Tower B, Plot No.31 and 32, Gachibowli, Financial District, Nanakramguda, Serilingampally, Hyderabad 500 032, Telangana, India\\\"\"},{\"title\":\"Contact person name number and Email id\",\"value\":\"\\\"M Murali Krishna, +91 40 6716 2222, vgl.ipo@kfintech.com\\\"\"},{\"title\":\"e-form link\",\"value\":\"https://bidcollection.nseindia.com/asba\"},{\"title\":\"Branches of Self Certified Syndicate Banks (SCSBs) where syndicate / sub syndicate member to submit ASBA form\",\"value\":\"<a href=http://www.sebi.gov.in/sebiweb/other/OtherAction.do?doRecognisedFpi=yes&intmId=35 target=new>SCSB List</a>\"},{\"title\":\"Ratios / Basis of Issue Price\",\"value\":\"https://nsearchives.nseindia.com/content/ipo/RATIOS_VARMORA.zip\"},{\"title\":\"Red Herring Prospectus\",\"value\":\"https://nsearchives.nseindia.com/content/ipo/RHP_VARMORA.zip\"},{\"title\":\"Bidding Centers\",\"value\":\"https://nsearchives.nseindia.com/content/ipo/BIDDING_CENTERS_VARMORA.zip\"},{\"title\":\"Sample Application Forms\",\"value\":\"https://nsearchives.nseindia.com/content/ipo/FORMS_VARMORA.zip\"},{\"title\":\"Security Parameters (Pre Anchor)\",\"value\":\"https://nsearchives.nseindia.com/content/ipo/PREANCHOR_PARAMETERS_VARMORA.zip\"},{\"title\":\"Processing of ASBA Applications\",\"value\":\"<a href=https://archives.nseindia.com/content/circulars/IPO53197.pdf target=new>NSE Circular on ASBA Application Processing</a>\"},{\"title\":\"Remark\",\"value\":\"\\\"The dedicated window provided for bid modification (modification of selected fields viz. DP ID/Client ID or Pan ID, Bank code and Location code) on T+1 day (T being last day of bidding) shall not be available now. The bid modification of selected fields shall be allowed during bidding period of IPO only.\\\"\"},{\"title\":\"List of mobile applications accepting UPI as Payment Option\",\"value\":\"<a href=https://www.sebi.gov.in/sebiweb/other/OtherAction.do?doRecognisedFpi=yes&intmId=43 target=new>Mobile APP for UPI</a>\"},{\"title\":\"Video link  for UPI based ASBA process\",\"value\":\"<a href=https://youtu.be/UJ394m2Q3rg target=new>UPI Based ASBA Process</a>\"},{\"title\":\"Video link  for BHIM UPI Registration\",\"value\":\"<a href=https://youtu.be/cIUJOIH0x4c target=new>BHIM UPI Registration</a>\"}],\"symbol\":\"VARMORA\"},\"activeCat\":{\"dataList\":[{\"category\":\"Category\",\"noOfShareOffered\":\"No.of shares offered/reserved\",\"noOfSharesBid\":\"No. of shares bid for\",\"noOfTotalMeant\":\"No. of times of total meant for the category\",\"srNo\":\"Sr.No.\"},{\"category\":\"Total\",\"noOfShareOffered\":\"0.0\",\"noOfSharesBid\":\"0.0\",\"noOfTotalMeant\":\"0.00\",\"srNo\":null}],\"heading\":null,\"symbol\":null,\"updateTime\":\"Updated as on null\"},\"demandGraph\":{\"noOfShare\":\"Cumulative Demand(no. of shares in lakhs)\",\"totalIssueSize\":\"49074776\",\"note\":\"Cumulative (NSE) bid quantity at each price point includes the quantity (NSE) bidded at that relevant price point and all valid bids above that price point.\",\"heading1\":\"Varmora Granito Limited- Graphical display of bids received *\",\"heading2\":\"(* indicates bids position and not necessarily the subscription to the issue)\",\"plotData\":{\"-\":\"-\"},\"graphData\":[]},\"demandDataNSE\":[{\"company\":\"Varmora Granito Limited\",\"cumQty\":\"-\",\"price\":\"-\",\"symbol\":\"VARMORA\",\"timestamp\":\"-\"}],\"demandDataBSE\":[{\"company\":\"Varmora Granito Limited\",\"cumQty\":\"-\",\"price\":\"-\",\"symbol\":\"VARMORA\",\"timestamp\":\"-\"}],\"demandGraphALL\":{\"noOfShare\":\"Cumulative Demand(no. of shares in lakhs)\",\"totalIssueSize\":\"49074776\",\"note\":\" Cumulative bid quantity at each price point includes the quantity bid at that relevant price point and all valid bids at the next higher price point as specified. The graph is updated every hour.\",\"heading1\":\"Varmora Granito Limited- Graphical display of bids received *\",\"heading2\":\"(* indicates bids position and not necessarily the subscription to the issue)\",\"plotData\":{\"-\":\"-\"},\"graphData\":[]}}",
+        "observedAt": null,
+        "collectedAt": "2026-09-19T02:30:05.723182+00:00"
+      },
+      "review": {
+        "version": 1,
+        "status": "accepted",
+        "reviewedAt": "2026-09-19T02:44:41+00:00",
+        "url": "https://github.com/Vasuki8/IPO-Tracker/blob/1fb4c7d12e1a5eb616a4db16b304a0aeda32103f/docs/reviews/2026-09-19-active-offer-source-review.md"
+      },
+      "fields": {
+        "priceBand": {
+          "value": {
+            "min": 140.0,
+            "max": 148.0
+          },
+          "unit": "INR/share",
+          "row": 7,
+          "title": "Price Range",
+          "raw": "Rs. 140 to Rs. 148 per Equity Share",
+          "table": "/issueInfo/dataList"
+        },
+        "lotSize": {
+          "value": 101,
+          "unit": "shares",
+          "row": 11,
+          "title": "Bid Lot",
+          "raw": "101 Equity Shares and in multiples thereof",
+          "table": "/issueInfo/dataList"
+        },
+        "minimumBidQuantity": {
+          "value": 101,
+          "unit": "shares",
+          "row": 12,
+          "title": "Minimum Order Quantity",
+          "raw": "101 Equity Shares",
+          "table": "/issueInfo/dataList"
+        },
+        "issueComposition": {
+          "value": {
+            "freshShares": null,
+            "ofsShares": 26217634,
+            "freshValueCr": 320.0,
+            "ofsValueCr": null,
+            "qualifiers": {
+              "freshValueCr": "up_to",
+              "ofsShares": "up_to"
+            }
+          },
+          "unit": "shares; INR crore (million / 10)",
+          "row": 5,
+          "title": "Issue Size",
+          "raw": "\"Initial Public offering comprising of fresh issue of aggregating up to Rs. 3,200.00 million and Offer for sale up to 26,217,634 Equity shares.\"",
+          "table": "/issueInfo/dataList"
+        }
+      },
+      "unresolved": {
+        "issueSizeCr": "disclosure-absent: no explicit total INR amount in the supported source table"
+      }
+    }
+  }
+]

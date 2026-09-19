@@ -9,13 +9,14 @@
   const fieldNames = {
     priceBand: 'Price band', lotSize: 'Bid lot', marketLot: 'Market lot',
     minimumBidQuantity: 'Minimum bid quantity', issueSizeCr: 'Issue size',
+    issueAmountScenarios: 'Conditional whole-offer amounts',
     freshIssueCr: 'Fresh issue', ofsCr: 'Offer for sale', issueComposition: 'Issue composition',
     financials: 'Financials', promoters: 'Promoters', leadManagers: 'Lead managers',
     registrar: 'Registrar', objectsOfIssue: 'Use of proceeds', shareholding: 'Shareholding',
     'listing.issuePrice': 'Final issue price', listing: 'Listing data', subscription: 'Subscription',
     openDate: 'Opening date', closeDate: 'Closing date', listingDate: 'Listing date', allotmentDate: 'Allotment date',
   };
-  const staticFields = ['priceBand', 'lotSize', 'marketLot', 'minimumBidQuantity', 'issueSizeCr',
+  const staticFields = ['priceBand', 'lotSize', 'marketLot', 'minimumBidQuantity', 'issueSizeCr', 'issueAmountScenarios',
     'freshIssueCr', 'ofsCr', 'issueComposition', 'financials', 'promoters', 'leadManagers',
     'registrar', 'objectsOfIssue', 'shareholding', 'listing.issuePrice'];
   const reasons = {
@@ -70,6 +71,23 @@
     const count = fields.filter(f => decision(ipo,f).state === 'under_review').length;
     return `<span class="validation ${count ? 'validation-conflict' : 'validation-single-source'}">${count ? 'Some fields under review' : 'Field-level evidence'}</span>`;
   }
+  function amountScenarios(ipo) {
+    return decision(ipo, 'issueAmountScenarios').state === 'provisional' ? ipo.issueAmountScenarios : null;
+  }
+  function amountField(ipo) {
+    return amountScenarios(ipo) || (ipo.publicQuality?.fields?.issueAmountScenarios && ipo.issueSizeCr == null) ? 'issueAmountScenarios' : 'issueSizeCr';
+  }
+  function amountText(ipo, scalarFormatter) {
+    const pair = amountScenarios(ipo);
+    if (!pair) return scalarFormatter(ipo.issueSizeCr);
+    const n = value => Number(value).toLocaleString('en-IN', {maximumFractionDigits: 6});
+    const prefix = pair.qualifier === 'up_to' ? 'Up to ' : '';
+    return `${prefix}₹${n(pair.atFloorCr)} cr at ₹${n(pair.floorPrice)} floor; ${prefix.toLowerCase()}₹${n(pair.atCapCr)} cr at ₹${n(pair.capPrice)} cap`;
+  }
+  function amountNote(ipo) {
+    const pair = amountScenarios(ipo);
+    return (pair ? `<small class="quality-amount-qualification">${esc(pair.qualification)}</small>` : '') + note(ipo, amountField(ipo));
+  }
   function sourceAuthority(source, url, declared) {
     if (declared === 'secondary' || /secondary/i.test(source || '')) return 'Secondary source';
     const official = new Set(['nseindia.com','www.nseindia.com','nsearchives.nseindia.com','archives.nseindia.com','bseindia.com','www.bseindia.com','beta.bseindia.com','bsesme.com','www.bsesme.com']);
@@ -97,6 +115,7 @@
     const fields = Object.keys(ipo.publicQuality?.fields || {}).filter(f => f !== 'listing' && (f !== 'subscription' || decision(ipo, f).state === 'under_review'));
     return `<section class="company-section" id="company-field-quality"><h3>Field evidence</h3><p class="company-data-note">Verification applies to each field, not the whole IPO. Review holds remain in the audit trail; missing values are not zero. Provisional disclosures are not final terms.</p><dl class="quality-grid">${fields.map(f => `<div><dt>${esc(fieldNames[f] || f)}</dt><dd>${note(ipo,f)}${reasons[decision(ipo,f).reason] ? `<p class="company-data-note">${esc(reasons[decision(ipo,f).reason])}</p>` : ''}</dd></div>`).join('')}</dl></section>`;
   }
-  root.IPOQuality = {labels, fieldNames, decision, sanitize, note, overview, snapshot, freshness, history, formatTime, sourceAuthority, panel};
+  root.IPOQuality = {labels, fieldNames, decision, sanitize, note, overview, snapshot, freshness, history, formatTime, sourceAuthority, panel,
+    amountScenarios, amountField, amountText, amountNote};
   if (typeof module !== 'undefined' && module.exports) module.exports = root.IPOQuality;
 })(globalThis);

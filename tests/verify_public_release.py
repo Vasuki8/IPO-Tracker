@@ -26,7 +26,7 @@ STATIC_FILES = (
 CLOCKS = ('subscriptionObservedAt', 'subscriptionCollectedAt', 'subscriptionTimeBasis',
           'subscriptionSource', 'subscriptionSourceUrl', 'subscriptionAuthority')
 SHARED = ('id', 'company', 'symbol', 'profilePath', 'openDate', 'closeDate', 'listingDate',
-          'priceBand', 'lotSize', 'marketLot', 'minimumBidQuantity', 'issueSizeCr', *CLOCKS)
+          'priceBand', 'lotSize', 'marketLot', 'minimumBidQuantity', 'issueSizeCr', 'issueAmountScenarios', *CLOCKS)
 STATES = {'final_verified', 'provisional', 'reported', 'under_review',
           'awaiting_disclosure', 'source_unavailable'}
 DISPLAY = {'final_verified', 'provisional', 'reported'}
@@ -161,7 +161,7 @@ def verify_local(root):
 def verify_active_offer_delivery(stored, profile, summary, group, proofs):
     """Check receipt delivery without treating provisional rows as final proofs."""
     sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
-    from active_offer_terms import validate_receipt
+    from active_offer_terms import validate_receipt, field_source
     proof = proofs['activeOfferTerms']
     active = proof['value']
     fields = validate_receipt(active, stored)
@@ -182,12 +182,14 @@ def verify_active_offer_delivery(stored, profile, summary, group, proofs):
             return [compact(item) for item in value]
         return value
 
-    source = active['source']
-    expected_source = {'sourceUrl': source['url'], 'sha256': source['sha256'],
-                       'parserVersion': active['parserVersion'], 'checkedAt': active['review']['reviewedAt'],
-                       'collectedAt': source['collectedAt'], 'reviewUrl': active['review']['url']}
     expired = datetime.now(ZoneInfo('Asia/Kolkata')).date().isoformat() > active['identity']['closeDate']
+    if 'issueAmountScenarios' in fields and stored.get('issueSizeCr') is None:
+        for record in (profile, summary):
+            require(record.get('issueSizeCr') is None
+                    and decisions(record)['issueSizeCr']['state'] not in DISPLAY,
+                    'Conditional amount must not promote an unknown scalar issue size')
     for field, term in fields.items():
+        expected_source = compact({key: value for key, value in field_source(active, field).items() if key != 'activeOfferReceipt'})
         for record in (profile, summary):
             quality = decisions(record)
             if record is summary and field == 'issueComposition' and field not in quality and field not in record:
@@ -203,6 +205,9 @@ def verify_active_offer_delivery(stored, profile, summary, group, proofs):
                     and decision.get('row') == term['row'] and decision.get('table') == term['table']
                     and compact(decision.get('sourceEvidence')) == expected_source,
                     f'{field}: active offer evidence not delivered')
+            if field == 'issueAmountScenarios':
+                require(all(decision.get(key) == term[key] for key in ('page', 'unit', 'sourceUnit')),
+                        'Conditional amount document location/unit not delivered')
 
 
 def verify_reviewed_publication(root, receipt):
