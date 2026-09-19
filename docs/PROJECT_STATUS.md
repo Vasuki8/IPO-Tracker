@@ -20,8 +20,8 @@ remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.
 Current verified data-release main: **`118a5dd33913c5a2f76d15ad5939574eb5e85af3`**.
 Core publication is `5ea15921c2a2e742b282acefad6df366dab0c58f`; assessment base
 was `ac51bebeb75a1afd41150a061288d4078e0e89c9`. Documentation closeout branch is
-`docs-core-release-closeout`; its commit/PR is identified by Git history containing
-this checkpoint. The [release receipt](audits/operational-health/2026-09-19-core-clocks/release.json)
+`docs-core-release-closeout`, [PR #157](https://github.com/Vasuki8/IPO-Tracker/pull/157);
+its commit is identified by Git history containing this checkpoint. The [release receipt](audits/operational-health/2026-09-19-core-clocks/release.json)
 binds commits, source evidence, checks and live artifacts. Completed financial
 #143/#144, universe #145–148, operational #149–151 and commercial #152/#153 work
 was recognized and preserved. Hy-Tech/Onemi was not repeated.

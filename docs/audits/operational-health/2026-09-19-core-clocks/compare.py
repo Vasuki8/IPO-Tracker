@@ -10,6 +10,8 @@ p.add_argument('--base', required=True)
 p.add_argument('--head', default='HEAD')
 p.add_argument('--output', type=Path, required=True)
 a = p.parse_args()
+a.base = subprocess.check_output(['git', 'rev-parse', '--verify', '--end-of-options', a.base + '^{commit}'], text=True).strip()
+a.head = subprocess.check_output(['git', 'rev-parse', '--verify', '--end-of-options', a.head + '^{commit}'], text=True).strip()
 
 def blob(ref, path):
     return subprocess.check_output(['git', 'show', f'{ref}:{path}'])

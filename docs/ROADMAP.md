@@ -105,7 +105,8 @@ in [PROJECT_STATUS.md](PROJECT_STATUS.md).
 `5ea15921`. Actual NSE/BSE/SEBI checks, successful empty ranges, partial failures,
 unknown observations and reviewed BSE identity retention are verified live.
 The existing maintenance stage also refreshed Vinod: financial/objects values pass
-source review, but its derived promoter percentage and page locator do not. The bounded value hold and review-only release are complete in #156 and
+source review, but its derived promoter percentage and page locator do not. The
+bounded value hold and review-only release are complete in #156 and
 `118a5dd3`, verified live. Canonical source history and all earlier proposals/reviews
 remain retained. The separate historical NSE evidence check currently receives
 regional-unavailability HTML; keep it failed and retry unchanged after recovery.
