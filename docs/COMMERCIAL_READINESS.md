@@ -2,15 +2,27 @@
 
 IPO Tracker is intended to become a public commercial product. Audience, pricing and revenue model remain undecided. **Commercial launch is not cleared:** data permissions, public redistribution scope and hosting suitability remain unresolved. This register is research and a decision plan, not a legal opinion or proof of demand.
 
-Assessment: **19 September 2026 UTC**, against main `1e86840856525db2ee2b436ed64f2b6e60374ee0`. The completed #152–153 research is carried forward with original check dates; it was not repeated. This continuation completes its bounded publication-scope task and checks remaining major news references and runtime notices. See the [publication report](audits/commercial/2026-09-19-publication-scope/REPORT.md), [field/surface map](audits/commercial/2026-09-19-publication-scope/exposure.json), [current inventory](audits/commercial/2026-09-19-publication-scope/inventory.json), [new primary evidence](audits/commercial/2026-09-19-publication-scope/primary-evidence.json) and verbatim [previous register](audits/commercial/2026-09-19-publication-scope/previous-register.md).
+Assessment: **19 September 2026 UTC**. This continuation recovered current
+`main` at **`0bae00b3f0aeb6119d4310f1be04f253e31c1b90`**. The completed #152–153
+research and the 13-issuer publication-scope packet are carried forward without
+repeating their primary-source checks. This continuation completes the exact
+documented five-host broker/lead-manager/small-news cohort, adds current BSE
+data-licensing-path evidence, and refreshes the current GitHub Pages commercial
+hosting restriction. See the
+[secondary-reference rights report](audits/commercial/2026-09-19-secondary-reference-rights/REPORT.md),
+the [publication report](audits/commercial/2026-09-19-publication-scope/REPORT.md),
+[field/surface map](audits/commercial/2026-09-19-publication-scope/exposure.json),
+[current inventory](audits/commercial/2026-09-19-publication-scope/inventory.json),
+[primary evidence](audits/commercial/2026-09-19-publication-scope/primary-evidence.json)
+and verbatim [previous register](audits/commercial/2026-09-19-publication-scope/previous-register.md).
 
 ## Decision table
 
 | Area | Known | Uncertain | Blocked | Owner decision required | Professional review required |
 | --- | --- | --- | --- | --- | --- |
 | Current data publication | 13-issuer map: nine secondary subscription records, 56 public history rows, 21 restricted-host proof bindings (20 public values), 34 related proposals; six more secondary providers checked | Application to facts, excerpts, compilations, collection and retained history; project-specific permissions | Claiming clearance or extending affected redistribution without a documented basis | Identify operator/jurisdictions and rights-review owner; choose interim publication policy using the completed packet | Yes: current collection, display, JSON/CSV, history and lawful evidence retention |
-| BSE and other hosts | Disclaimer remains inaccessible; public portal Legal page has no documents; 61 hosts inventoried | Product entitlements, attribution and third-party rights | Permission inferred from accessibility or licensing-portal existence | Approve any eventual vendor contact/quote separately | Yes: applicable agreements and rights holders |
-| Hosting | Pages commercial restrictions; an unselected static alternative assessed | Actual product fit, account terms, plan, logs, migration | Commercial activation on an unverified arrangement | Select permitted host and approve account/contract/spend/migration | Yes: service/content/privacy fit |
+| BSE and other hosts | Disclaimer remains inaccessible; public portal Legal page has no documents; 61 hosts inventoried; current Self Data Feed route explicitly uses plan selection, pricing/agreement and payment | Applicable IPO/public-page agreement, product entitlements, attribution and third-party rights | Permission inferred from accessibility or licensing-portal existence | Approve any eventual vendor contact/quote separately | Yes: applicable agreements and rights holders |
+| Hosting | GitHub Pages restriction rechecked 19 Sep: project showcase use is supported, but free hosting for an online business/e-commerce/commercial SaaS is restricted; an unselected static alternative remains assessed | Actual current/future product fit, account terms, plan, logs, migration | Commercial activation on an unverified arrangement | Select permitted host and approve account/contract/spend/migration | Yes: service/content/privacy fit |
 | Software/assets | Eleven locked packages unchanged; CI Poppler versions and published notices matched; six tool/action top-level licenses checked; no project LICENSE/NOTICE | Exact binary/vendored notices and SVG origin | Declaring a runtime bundle cleared or licensing all data | Code license and asset provenance, separate from data rights | Before mixed-license distribution or new data grants |
 | Product | Four hypotheses below; existing workflows can be tested | Repeated demand, willingness to pay, support needs | Evidence-based pricing/billing claim | Initial interview cohort and outreach authorization | Regulatory scope of actual offering |
 | Measurement | No analytics activated; host processing can exist without an SDK | Consent/lawful basis, processor logs, repeat-visit design | Telemetry activation before review | Purposes, processor, retention and consent design | Privacy, jurisdictions and transfers |
@@ -24,7 +36,7 @@ Dates below identify evidence checks, not permission dates. No project-specific 
 | --- | --- | --- | --- | --- |
 | NSE; 17 Sep, carried | [Terms](https://www.nseindia.com/static/nse-terms-of-use), Use 2, 8–9, updated 29 Oct 2025; [copyright](https://www.nseindia.com/static/nse-copyright), updated 21 Oct 2025 | Permission requirements include storage, redistribution and display; systematic automated collection restricted. Download permission limited to personal/non-commercial/educational purposes | Retain notices; attribution is not permission. No project API entitlement established; specific-area terms can supersede general terms | Review website/API/archive routes and third-party documents. Professional review required |
 | NSE licensed data; 17 Sep, carried | [Data policy](https://www.nseindia.com/static/market-data/nse-data-policy), 11 Dec 2025; [products](https://www.nseindia.com/static/market-data/real-time-data-subscription), 9 Sep 2026 | Agreement controls use, handling and redistribution; includes delayed/historical/corporate data; indices separately licensed | Display media, non-display use, attribution, exports and retention need agreed scope | IPO facts, derivatives, JSON/CSV and costs unresolved; professional review required |
-| BSE; 19 Sep | [Disclaimer](https://www.bseindia.com/static/about/disclaimer.aspx), [beta route](https://beta.bseindia.com/static/about/disclaimer.aspx), [data portal Legal](https://marketdata.bseindia.com/legal) | **Unknown**: prior disclaimer responses 403; continuation still inaccessible. Interactive public Legal page says “No legal documents available.” Footer Disclaimer exposed no readable terms | Commercial permission, attribution, API and export/retention entitlements **not verified**. Portal registration/KYC/agreement flow was not entered | Public route exhausted for this check; owner-authorized agreement recovery/review needed. BSE Indices terms cannot substitute for IPO terms |
+| BSE; 19 Sep | [Disclaimer](https://www.bseindia.com/static/about/disclaimer.aspx), [beta route](https://beta.bseindia.com/static/about/disclaimer.aspx), [data portal Legal](https://marketdata.bseindia.com/legal), [Self Data Feed](https://marketdata.bseindia.com/) | **Unknown for current IPO/public-page reuse**: disclaimer remains inaccessible and Legal exposes no documents. Self Data Feed explicitly routes users through registration/KYC, plan selection, pricing/agreements and payment, confirming an agreement-based licensing path for data feeds | Commercial permission, attribution, API and export/retention entitlements for the project’s existing IPO routes **not verified**. The data-feed licensing path is not a grant for scraped/public portal content | Owner-authorized agreement recovery/review still needed. Do not substitute data-product availability or BSE Indices terms for applicable IPO rights |
 | SEBI; 17 Sep, carried | [Website policy](https://www.sebi.gov.in/website-policy.html), Copyright and Linking Policy | Reproduction requires permission; third-party materials need rights-holder permission; direct linking and framing treated separately | Attribution accompanies permitted reproduction; no commercial/API grant established | Separate regulator-authored material from issuer documents; review excerpts, caching, exports and third-party rights professionally |
 
 ## Secondary sources actually used
@@ -63,6 +75,27 @@ All rows checked **19 Sep 2026**. This bounded review covers the six non-exchang
 
 Professional review is advisable for every unresolved data row. Missing terms mean **permission unknown**. Remaining hosts stay in inventory. Record each rights holder, exact agreement/version, collection method, jurisdictions, display/export/derivative scope, attribution, retention/termination and review owner before declaring clearance.
 
+### Five-host retained-reference cohort — 19 September 2026
+
+The exact next research cohort from the prior checkpoint is complete. The current
+inventory maps **8 mentions across 6 unique URLs / 6 IPO records**: IPO Platform
+and IPOBarta are field-level verification URLs; IDBI Direct and PL Capital support
+`VerifiedTerms` evidence plus retained source links; Equentis is a retained source
+reference. See the [bounded report](audits/commercial/2026-09-19-secondary-reference-rights/REPORT.md).
+
+| Source; checked | Primary terms | Commercial use / redistribution / display | Attribution / API licensing | Current retained use / unresolved review |
+| --- | --- | --- | --- | --- |
+| IPO Platform; 19 Sep | [Terms](https://www.ipoplatform.com/terms-conditions), Intellectual Property | Terms state website content may not be used, reproduced or distributed without express written permission; no project permission established | No attribution-only exception or applicable data/API licence found | MKC Agro Fresh verification URL. Isolated facts/linking/evidence retention still need professional review |
+| IPOBarta.AI; 19 Sep | [Terms](https://ipobarta.ai/legal/terms-and-conditions), User Conduct | Copying, scraping, redistributing or commercially exploiting content without permission is prohibited | No attribution-only or syndication/API grant verified | NoPaperForms Solutions verification URL. Professional review required |
+| IDBI Direct; 19 Sep | [Terms](https://www.idbidirect.in/Common_Controls/Term_condition.aspx), Proprietary and Intellectual Property Rights | Portal content is reserved; reproduction/storage/transmission requires express permission and site information is described as personal-use material | Publication grants no licence; no applicable IPO-data API entitlement found | LCC Projects `VerifiedTerms` source and retained source URL. Professional review required |
+| PL Capital; 19 Sep | [Terms](https://www.plindia.com/terms-of-use-privacy-policy/), Terms & Conditions | Owned/licensed material reproduction is prohibited except under the copyright notice; terms also require prior written consent to create a link from another website/document | No applicable API/data grant found | Karamtara `VerifiedTerms` plus Karamtara/ESDS source URLs. Linking clause is directly relevant; applicability/enforceability needs professional review |
+| Equentis; 19 Sep | [Terms](https://www.equentis.com/term-of-service), last revision 31 Mar 2025 | Terms govern website use and identify a website/IP section, but the accessible text representation did not expose that section’s operative body; **no express reuse grant verified** | No applicable IPO syndication/API grant verified | Symbiotec Pharma source URL. Permission remains unknown; recover operative IP text only through permitted access |
+
+These findings do not decide whether isolated facts are protectable, whether a
+specific link is contractually binding, or what legal exceptions may apply. They
+do establish that public accessibility is not a sufficient commercial-clearance
+basis.
+
 ## Publication scope and hosting
 
 Unauthenticated live requests on 19 Sep to `data/ipos.json`, `data/pending_updates.json` and `data/ipos-summary.json` returned HTTP 200 and JSON prefixes. The public repository retains proofs/history. **UI holds are not access controls:** assess raw canonical/proposal files, generated profiles, CSV exports, correction excerpts, repository history and downloadable workflow artifacts. The receipt records bounded checks, not a complete artifact audit. No data, permissions or deployment configuration changed.
@@ -71,7 +104,7 @@ The [completed map](audits/commercial/2026-09-19-publication-scope/REPORT.md) di
 
 | Service; checked | Primary terms | Suitability / obligations / remaining review |
 | --- | --- | --- |
-| GitHub Pages; 17 Sep, carried | [Usage limits](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits) | Restrictions cover online business, commercial transactions and commercial SaaS; sensitive transactions excluded. Current/future fit unestablished. Hosting grants no data rights; no applicable attribution/API exception established. Owner/professional review before commercial activation |
+| GitHub Pages; 19 Sep, refreshed | [Usage limits](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits); [additional product terms](https://docs.github.com/en/site-policy/github-terms/github-terms-for-additional-products-and-features), effective 27 Aug 2026 | GitHub describes Pages primarily as a project showcase and says it is not intended/allowed as free hosting for an online business, e-commerce site or a site primarily facilitating commercial transactions/providing commercial SaaS; some donation/crowdfunding monetization is separately permitted. Current informational-site and future paid-product fit remain unestablished. Hosting grants no data rights. Owner/professional review before monetized activation |
 | GitHub Actions; 19 Sep | [Additional terms, Actions](https://docs.github.com/en/site-policy/github-terms/github-terms-for-additional-products-and-features); [billing](https://docs.github.com/en/billing/concepts/product-billing/github-actions) | Software development/testing/publication has a stated scope; resale of Actions, CDN/serverless misuse and unrelated hosted-runner work restricted. Public standard runner use is free under published rules; account storage/other costs unknown. No data entitlement follows. Review recurring collection's actual service fit, not just CI success |
 | GitHub hosting privacy; 19 Sep | [Privacy statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement), automatically collected data | Describes IP/device/service usage and website activity processing. No SDK does not mean no host logs. Actual retention/controller/processor roles unverified; privacy review required |
 | Cloudflare Pages; 19 Sep; **candidate only** | [Self-serve agreement](https://www.cloudflare.com/terms/), 12 Sep 2025, 2.1/2.2.1(h)/2.5; [Developer Platform terms](https://www.cloudflare.com/service-specific-terms-developer-platform/); [limits](https://developers.cloudflare.com/pages/platform/limits/) | Entity access/content hosting contemplated; customer must hold content rights/licenses. No blanket product clearance inferred. Free services restrict card-information processing. Free limits include 500 builds/month and 25 MiB/file; current canonical JSON is 27,830,228 bytes, exceeding that asset limit. Plan, logs/DPA, notices, limits, rollback/URLs need owner/professional review; no account/contract created |
@@ -163,4 +196,14 @@ The [operational report](UPDATE_HEALTH.md) and PRs #149–150 already distinguis
 4. Select a permitted hosting/publication boundary; assess processor roles, logs/transfers, termination and support before migration.
 5. Approve proportionate measurement and sustainable correction/support capacity. Before paid launch resolve consumer/refund/cancellation, payment/tax and retention obligations. Select code/asset licensing independently of data rights.
 
-**Exact next commercial task:** the 13-issuer publication packet is complete. Owner identifies operator/jurisdictions and a review owner, then directs professional assessment of an interim collection/publication policy covering the mapped values, proofs, raw files, exports and history. No policy change is authorized by this research. Independent next research cohort: map broker/lead-manager and small-news references in the 61-host inventory to retained material, starting with `www.ipoplatform.com`, `www.equentis.com`, `www.idbidirect.in`, `www.plindia.com`, and `ipobarta.ai`; inspect their applicable terms without accounts or outreach. BSE product agreements, Chromium/vendored notices and SVG provenance remain open. Outreach, paid advice engagement, vendor requests and policy/access changes still require owner authorization.
+**Exact next commercial task:** owner identifies the legal operator, target
+jurisdictions and rights-review owner, then directs professional assessment of an
+interim collection/publication policy covering the completed 13-issuer packet
+plus the five-host cohort above, including proof URLs, raw files, exports and
+history. No policy change is authorized by this research. Independent next
+research cohort: rank remaining non-official hosts by whether they back public
+values rather than merely links, starting with `www.alphave.in`,
+`english.metrovaartha.com`, `mtinews.in`, `www.finsso.co.in` and
+`www.merchantbanker.in`. BSE applicable agreement text, Chromium/vendored
+notices and SVG provenance remain open. Outreach, paid advice engagement, vendor
+requests and policy/access changes still require owner authorization.
