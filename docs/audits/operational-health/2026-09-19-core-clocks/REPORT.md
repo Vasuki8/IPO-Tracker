@@ -85,12 +85,30 @@ SME endpoint timed out; absence of IPOs is not inferred.
 The normal core maintenance stage also populated Vinod's financials, objects and
 shareholding. [Official source review](../../../reviews/2026-09-19-vinod-publication-source-review.md)
 confirms all nine financial and five allocation amounts. It rejects the derived
-93.11% ownership and incorrect locator. An exact value-scoped hold is being
-released through the existing review-only path; no collector or canonical writer
-change is required. Preserve all source/correction history and publish the new
-manual review. Final acceptance of that hold remains pending at this checkpoint.
+93.11% ownership and incorrect locator. An exact value-scoped hold was released in [PR #156](https://github.com/Vasuki8/IPO-Tracker/pull/156),
+merge `06bd9f77`, with review publication `118a5dd3`. No collector or canonical
+writer changed. All source/correction history remains; the new manual review is
+published. Pages **35414893422** and live verification **35414917011** passed;
+[nine targeted live byte checks](hold-live-verification.json) and [browser evidence](hold-live-browser.json)
+confirm the held field and queue. All 1,314 Linux tests and expanded browser checks
+passed in **35414579930** / **35414579922**; all 36 Node tests passed.
 
 P4 before the hold is unchanged at 387 actionable + 63 higher-priority, 1,552
-blocking / 1,556 total reviews. Local held projection adds one review: 1,553 /
+blocking / 1,556 total reviews. Verified held publication adds one review: 1,553 /
 1,557, with zero semantic errors or unmapped reviews. No numerical repair or
 blocker reduction is claimed for this operational milestone.
+
+The [final operational report](final-operational.json), assessed at 02:12:42Z,
+reproduces at `118a5dd3` with the retained core run/jobs. The earlier after report
+also reproduced from an isolated `5ea15921` export. See [release.json](release.json)
+for the final gate, workflow and preservation receipt. No more implementation or
+publication work remains in this bounded milestone.
+
+The historical NSE evidence workflow **35414579942** failed both attempts because
+unchanged Snehaa/Sacheerome URLs returned an 18,590-byte regional-unavailability
+HTML response. The [independent receipt](nse-access-gap.json) records exact status,
+headers and hashes. No underlying PDF change is established; original identities
+and holds remain. This unrelated source-access failure stays open and is not a
+current source pass. Vinod's SEBI document was independently retrieved and reviewed;
+all software/browser checks for the protective hold passed. The normal merge did
+not modify or bypass repository protections or weaken the source checker.

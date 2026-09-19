@@ -49,7 +49,7 @@ and immutable release receipts govern the verified checkpoint.
    in isolation while deployed checks remain read-only. No numerical replacement
    was accepted. Historical proposals are not backfilled or automatically resolved.
 3. **Complete P4 with source evidence — blocked.** Current accepted inventory is
-   1,379; P4 has 387 actionable plus 63 higher-priority records and 1,552 blocking
+   1,379; P4 has 387 actionable plus 63 higher-priority records and 1,553 blocking
    source reviews, zero unmapped reviews. All 441 retained proposals remain. Teamtech
    stays held and broad source draft #105 remains unaccepted. Do not weaken the gate,
    remove reviews, invent exclusions or use estimates to improve completion counts.
@@ -105,9 +105,11 @@ in [PROJECT_STATUS.md](PROJECT_STATUS.md).
 `5ea15921`. Actual NSE/BSE/SEBI checks, successful empty ranges, partial failures,
 unknown observations and reviewed BSE identity retention are verified live.
 The existing maintenance stage also refreshed Vinod: financial/objects values pass
-source review, but its derived promoter percentage and page locator do not. Finish
-the bounded value hold and review-only release before closing this milestone;
-canonical source history and all existing proposals/reviews remain retained.
+source review, but its derived promoter percentage and page locator do not. The
+bounded value hold and review-only release are complete in #156 and
+`118a5dd3`, verified live. Canonical source history and all earlier proposals/reviews
+remain retained. The separate historical NSE evidence check currently receives
+regional-unavailability HTML; keep it failed and retry unchanged after recovery.
 
 **Next P4 increment:** inspect current/upcoming offer-term gaps for Axiom Gas,
 Varmora and Pooja Logistics, group matching official source layouts, and select a
@@ -116,7 +118,7 @@ held. The newly identified promoter/subtotal/page-locator family needs a bounded
 multi-document diagnosis, not an automatic 93.10 replacement. PNGS Reva's adjusted
 EBITDA/partnership EPS remains unsupported and conditional on source inspection.
 No P4 blocker reduction follows from the clock release; the Vinod hold adds one
-documented review (1,553 blocking / 1,557 total after its pending publication).
+documented review (1,553 blocking / 1,557 total in the verified publication).
 
 The 22 retained subscription proposals still require original source-link/issuer
 evidence. Emmvee's old operator advice remains subject to evidence revalidation.

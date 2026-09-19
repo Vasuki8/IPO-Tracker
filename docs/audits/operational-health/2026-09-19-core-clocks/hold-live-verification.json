@@ -1,0 +1,64 @@
+{
+  "status": "passed",
+  "checkedAt": "2026-09-19T02:12:42.628400+00:00",
+  "expectedCommit": "118a5dd33913c5a2f76d15ad5939574eb5e85af3",
+  "httpChecks": [
+    {
+      "path": "data/ipos.json",
+      "status": 200,
+      "bytes": 27672972,
+      "sha256": "024b8ded7eb413c03806aa329e6ee2b26c74f6080e7e9b003c6135e76f556054"
+    },
+    {
+      "path": "data/pending_updates.json",
+      "status": 200,
+      "bytes": 12256367,
+      "sha256": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3"
+    },
+    {
+      "path": "data/phase_status.json",
+      "status": 200,
+      "bytes": 653,
+      "sha256": "354b48312b092801e647f5c3a27bdf20ede998c3bfdac7ccf084b60b213a4679"
+    },
+    {
+      "path": "data/validation.json",
+      "status": 200,
+      "bytes": 308531,
+      "sha256": "6f1e6c20ca0344859750e24d2277b8a4d23d2d6f1644ea3a74741c64360dcee6"
+    },
+    {
+      "path": "data/missing_queue.json",
+      "status": 200,
+      "bytes": 587669,
+      "sha256": "31996bf3eba079799d8b690bf198f39fce641d8439e32bf907ff9000aec9d450"
+    },
+    {
+      "path": "data/public_display_holds.json",
+      "status": 200,
+      "bytes": 24616,
+      "sha256": "296ddc61a3f7f8c8dbb06d86bbb9ca92d67203230ef66c834cb34e4eced588b6"
+    },
+    {
+      "path": "data/ipos-summary.json",
+      "status": 200,
+      "bytes": 1307094,
+      "sha256": "53fe9e23e49ac80d2d571191a1139be42d56cbf6db629b76d4cf8930c9ed0023"
+    },
+    {
+      "path": "ipo/vinod/index.html",
+      "status": 200,
+      "bytes": 5692,
+      "sha256": "f2f3b8a50b026472bbf79e39370a98515bc3507912c9de4301a59270753fc952"
+    },
+    {
+      "path": "source-health.js",
+      "status": 200,
+      "bytes": 15512,
+      "sha256": "de95f0b377032fd9cfa29d24031988cc68efeacfb8987b6e1cf0d8472e5a807c"
+    }
+  ],
+  "vinodShareholding": "withheld with manual review; canonical93.11 and three corrections retained",
+  "previousReviewsRetained": 1556,
+  "newReviews": 1
+}

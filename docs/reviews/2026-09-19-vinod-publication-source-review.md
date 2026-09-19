@@ -44,3 +44,12 @@ Follow-up source-family work must distinguish promoters from promoter group,
 prefer an explicit matched aggregate where that is the intended field, never add
 rounded percentages to invent it, and cite the actual row page. Inspect multiple
 real documents and measure affected canonical records before a shared parser repair.
+
+Release acceptance: [PR #156](https://github.com/Vasuki8/IPO-Tracker/pull/156),
+merge `06bd9f77`, review-only publication `118a5dd3`. At 02:12Z, exact live profile
+and review-report bytes matched that publication: shareholding is withheld with
+one manual review; canonical 93.11 and all three correction events are retained.
+P4 increases by one documented review to 1,553 blocking / 1,557 total.
+All 1,314 Linux tests, 36 Node tests and expanded desktop/mobile browser checks
+pass. Historical NSE source access remains separately unavailable; that does not
+alter this SEBI PDF review. See the [release receipt](../audits/operational-health/2026-09-19-core-clocks/release.json).

@@ -1,0 +1,188 @@
+{
+  "base": "5ea15921c2a2e742b282acefad6df366dab0c58f",
+  "head": "118a5dd33913c5a2f76d15ad5939574eb5e85af3",
+  "recordCountBefore": 1379,
+  "recordCountAfter": 1379,
+  "added": [],
+  "removed": [],
+  "changedRecordCount": 0,
+  "changedPaths": {},
+  "nonPolicyClockChanges": [],
+  "pendingBytesUnchanged": true,
+  "phaseBefore": {
+    "generatedAt": "2026-09-19T01:48:23.929719+00:00",
+    "p4": {
+      "status": "incomplete",
+      "actionableRecords": 387,
+      "higherPriorityRecords": 63,
+      "semanticErrors": 0,
+      "sourceReviewItems": 1556,
+      "blockingSourceReviewItems": 1552,
+      "p5OnlySourceReviewItems": 4,
+      "unmappedSourceReviewItems": 0,
+      "finalProspectusRevalidationRecords": 321,
+      "finalProspectusRevalidationFields": 1174,
+      "higherPriorityFinalProspectusRevalidationRecords": 28,
+      "higherPriorityFinalProspectusRevalidationFields": 104,
+      "resolvedUnavailableRecords": 5
+    },
+    "p5": {
+      "status": "waiting_for_p4",
+      "actionableRecords": 914
+    }
+  },
+  "phaseAfter": {
+    "generatedAt": "2026-09-19T02:10:41.543614+00:00",
+    "p4": {
+      "status": "incomplete",
+      "actionableRecords": 387,
+      "higherPriorityRecords": 63,
+      "semanticErrors": 0,
+      "sourceReviewItems": 1557,
+      "blockingSourceReviewItems": 1553,
+      "p5OnlySourceReviewItems": 4,
+      "unmappedSourceReviewItems": 0,
+      "finalProspectusRevalidationRecords": 321,
+      "finalProspectusRevalidationFields": 1174,
+      "higherPriorityFinalProspectusRevalidationRecords": 28,
+      "higherPriorityFinalProspectusRevalidationFields": 104,
+      "resolvedUnavailableRecords": 5
+    },
+    "p5": {
+      "status": "waiting_for_p4",
+      "actionableRecords": 914
+    }
+  },
+  "coreHealth": {
+    "NSE-live": {
+      "ok": true,
+      "status": "refreshed",
+      "records": 12,
+      "attempted": 2,
+      "failed": 0,
+      "deferred": 0,
+      "checks": [
+        {
+          "url": "https://www.nseindia.com/api/ipo-current-issue",
+          "checkedAt": "2026-09-19T07:08:40+05:30",
+          "status": "refreshed",
+          "records": 5
+        },
+        {
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "checkedAt": "2026-09-19T07:08:40+05:30",
+          "status": "refreshed",
+          "records": 7
+        }
+      ],
+      "checkedAt": "2026-09-19T07:08:40+05:30"
+    },
+    "NSE-history": {
+      "ok": true,
+      "status": "checked",
+      "records": 0,
+      "attempted": 1,
+      "failed": 0,
+      "deferred": 0,
+      "checks": [
+        {
+          "url": "https://www.nseindia.com/api/public-past-issues?from_date=18-09-2026&to_date=19-09-2026",
+          "fromDate": "2026-09-18",
+          "toDate": "2026-09-19",
+          "checkedAt": "2026-09-19T07:09:01+05:30",
+          "status": "checked",
+          "records": 0
+        }
+      ],
+      "checkedAt": "2026-09-19T07:09:01+05:30"
+    },
+    "BSE": {
+      "ok": true,
+      "status": "refreshed",
+      "records": 8,
+      "attempted": 3,
+      "failed": 2,
+      "deferred": 0,
+      "checks": [
+        {
+          "url": "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p",
+          "checkedAt": "2026-09-19T07:09:10+05:30",
+          "status": "failed",
+          "records": 0,
+          "error": "No IPO rows parsed; disclosure absence not established"
+        },
+        {
+          "url": "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p",
+          "checkedAt": "2026-09-19T07:09:11+05:30",
+          "status": "refreshed",
+          "records": 8
+        },
+        {
+          "url": "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2",
+          "checkedAt": "2026-09-19T07:09:41+05:30",
+          "status": "failed",
+          "records": 0,
+          "error": "HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f7e6dc436e0>, 'Connection to www.bsesme.com timed out. (connect timeout=30)'))"
+        }
+      ],
+      "companiesAttached": 8,
+      "checkedAt": "2026-09-19T07:09:41+05:30",
+      "errors": [
+        "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p: No IPO rows parsed; disclosure absence not established",
+        "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2: HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f7e6dc436e0>, 'Connection to www.bsesme.com timed out. (connect timeout=30)'))"
+      ]
+    },
+    "SEBI": {
+      "ok": true,
+      "status": "refreshed",
+      "records": 13,
+      "attempted": 4,
+      "failed": 0,
+      "deferred": 0,
+      "checks": [
+        {
+          "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&sid=3&smid=0&ssid=0&page=1",
+          "page": 1,
+          "checkedAt": "2026-09-19T07:09:04+05:30",
+          "status": "refreshed",
+          "records": 13
+        },
+        {
+          "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&sid=3&smid=0&ssid=0&page=2",
+          "page": 2,
+          "checkedAt": "2026-09-19T07:09:05+05:30",
+          "status": "refreshed",
+          "records": 13
+        },
+        {
+          "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&sid=3&smid=0&ssid=0&page=3",
+          "page": 3,
+          "checkedAt": "2026-09-19T07:09:07+05:30",
+          "status": "refreshed",
+          "records": 13
+        },
+        {
+          "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&sid=3&smid=0&ssid=0&page=4",
+          "page": 4,
+          "checkedAt": "2026-09-19T07:09:08+05:30",
+          "status": "refreshed",
+          "records": 13
+        }
+      ],
+      "companiesAttached": 9,
+      "checkedAt": "2026-09-19T07:09:08+05:30"
+    }
+  },
+  "publication": {
+    "runId": "35413219212",
+    "collectorCommit": "432c9fa1853fb1cab23f5d7fbc834499edf6994b",
+    "status": "published",
+    "pendingConflictCount": 441
+  },
+  "sha256": {
+    "data/ipos.json": "024b8ded7eb413c03806aa329e6ee2b26c74f6080e7e9b003c6135e76f556054",
+    "data/pending_updates.json": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+    "data/ipos-summary.json": "53fe9e23e49ac80d2d571191a1139be42d56cbf6db629b76d4cf8930c9ed0023",
+    "data/phase_status.json": "354b48312b092801e647f5c3a27bdf20ede998c3bfdac7ccf084b60b213a4679"
+  }
+}

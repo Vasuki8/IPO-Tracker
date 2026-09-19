@@ -10,6 +10,8 @@ p.add_argument('--base', required=True)
 p.add_argument('--head', default='HEAD')
 p.add_argument('--output', type=Path, required=True)
 a = p.parse_args()
+a.base = subprocess.check_output(['git', 'rev-parse', '--verify', '--end-of-options', a.base + '^{commit}'], text=True).strip()
+a.head = subprocess.check_output(['git', 'rev-parse', '--verify', '--end-of-options', a.head + '^{commit}'], text=True).strip()
 
 def blob(ref, path):
     return subprocess.check_output(['git', 'show', f'{ref}:{path}'])
@@ -37,7 +39,7 @@ def changes(x, y, prefix=''):
                 out.extend(changes(x[key], y[key], path))
         return out
     return [prefix]
-for key in before.keys() & after.keys():
+for key in sorted(before.keys() & after.keys()):
     paths = changes(before[key], after[key])
     if paths:
         changed.append(key)
@@ -47,7 +49,7 @@ for key in before.keys() & after.keys():
             non_clock.append({'id': key, 'paths': substantive})
 out = {'base': a.base, 'head': a.head, 'recordCountBefore': len(before), 'recordCountAfter': len(after),
        'added': sorted(after.keys() - before.keys()), 'removed': sorted(before.keys() - after.keys()),
-       'changedRecordCount': len(changed), 'changedPaths': dict(counts.most_common()),
+       'changedRecordCount': len(changed), 'changedPaths': dict(sorted(counts.items(), key=lambda item: (-item[1], item[0]))),
        'nonPolicyClockChanges': sorted(non_clock, key=lambda x:x['id']),
        'pendingBytesUnchanged': blob(a.base, 'data/pending_updates.json') == blob(a.head, 'data/pending_updates.json'),
        'phaseBefore': read(a.base, 'data/phase_status.json'), 'phaseAfter': read(a.head, 'data/phase_status.json'),

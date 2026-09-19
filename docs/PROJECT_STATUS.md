@@ -15,73 +15,101 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
-## Current checkpoint — core clocks and release source review, 19 September 2026
+## Current checkpoint — core clocks released and source hold verified, 19 September 2026
 
-Verified published main **`5ea15921c2a2e742b282acefad6df366dab0c58f`**.
-Recovered from `ac51bebeb75a1afd41150a061288d4078e0e89c9`; completed financial
-#143/#144, universe #145–148, operational #149–151 and commercial #152/#153
-work is preserved. Hy-Tech/Onemi's accepted repair is not repeated.
+Current verified data-release main: **`118a5dd33913c5a2f76d15ad5939574eb5e85af3`**.
+Core publication is `5ea15921c2a2e742b282acefad6df366dab0c58f`; assessment base
+was `ac51bebeb75a1afd41150a061288d4078e0e89c9`. Documentation closeout branch is
+`docs-core-release-closeout`, [PR #157](https://github.com/Vasuki8/IPO-Tracker/pull/157);
+its commit is identified by Git history containing this checkpoint. The [release receipt](audits/operational-health/2026-09-19-core-clocks/release.json)
+binds commits, source evidence, checks and live artifacts. Completed financial
+#143/#144, universe #145–148, operational #149–151 and commercial #152/#153 work
+was recognized and preserved. Hy-Tech/Onemi was not repeated.
 
-**Core-clock milestone is deployed.** [PR #154](https://github.com/Vasuki8/IPO-Tracker/pull/154)
-merged `089a9464`/`7c9de7f8` as `9878e0f6`; [PR #155](https://github.com/Vasuki8/IPO-Tracker/pull/155)
-merged `ac6a318f`/`5927d9de`/`383d9a30` as `432c9fa1`. Actual endpoint/page/range
-attempts now retain check clocks, partial failures and explicit deferred states.
-Unknown observation time stays unknown. Concurrent publication keeps each outcome
-and its clock together. Seven reviewed BSE-only identities survive independent
-NSE success/BSE failure. Their exact retained official HTML receipts replayed.
-All 1,379 IDs and eight admission receipts survive; 441 proposals are byte-identical.
+**Completed:** core sources now record actual endpoint/page/range attempt clocks,
+partial failures and explicit deferred states. Unknown source observation stays
+unknown; concurrent publication keeps an outcome and its clock together. Seven
+reviewed BSE-only identities survive an independent NSE success/BSE failure;
+their exact retained official HTML receipts replayed. All **1,379 IDs**, all eight
+admission receipts and **441 byte-identical proposals** survive publication.
 
-Full Linux validation **35413034691** passed **1,311 Python tests**, strict zero
-errors, retained-proposal checks and public generation. **36 Node tests**, browser
-**35413034726**, and both scoped source-preview jobs **35413034734** passed.
-Two local Windows filesystem limitations pass on Linux; tests were not weakened.
-First collector **35412526647** was cancelled before publication when inspection
-found the legacy identity cleanup issue; no accepted data was lost. Superseded
-preview **35412888497** was cancelled while correcting core-preview scope.
+- [PR #154](https://github.com/Vasuki8/IPO-Tracker/pull/154): `089a9464` / `7c9de7f8`, merged `9878e0f6`.
+- [PR #155](https://github.com/Vasuki8/IPO-Tracker/pull/155): `ac6a318f` / `5927d9de` / `383d9a30`, merged `432c9fa1`.
+- [PR #156](https://github.com/Vasuki8/IPO-Tracker/pull/156): `6d073ab5` / `c392c02b`, merged `06bd9f77`.
 
-Core refresh **35413219212** published `5ea15921`; Pages **35413782301** and
-deployed verification **35413803388** succeeded. Direct live verification matched
-13 canonical/proposal/phase and reviewed/admitted-profile routes; additional
-public verification checked 18 routes. Browser diagnostics show NSE 12 rows,
-2 successful checks; BSE 8 rows with 2 failures out of 3 attempts. NSE history
-retains a successful empty dated range. SEBI has 13 unique filings across four
-successful requests; this is not a historical/pagination completeness claim.
-None of these collections invents a source-observation clock.
+Release inspection cancelled first collector **35412526647** before publication
+when legacy cleanup threatened seven accepted admissions; no accepted data was
+lost. Superseded preview **35412888497** was cancelled while core preview was
+restricted to its existing retained-data path. Final preview **35413034734** passed
+both jobs; mixed parser changes retain their original full source preview.
 
-The after report at **01:53Z** records 5 failed sources, 1 partial failure,
-27 successful entries, 0 known overdue source checks/stages, 3 stages and 6 sources
-needing investigation, and 441 unresolved proposals. Two subscription observations
-exceed age tolerance outside the configured monitoring window; do not label this
-a missed intraday deadline. BSE primary-page parsing and SME timeout remain open.
-See the [audit and immutable receipts](audits/operational-health/2026-09-19-core-clocks/REPORT.md).
+**Source-review follow-up:** existing bounded filing maintenance populated Vinod's
+financials, objects and shareholding. Independent SEBI PDF/hash/visual review passed
+all **nine financial and five allocation amounts**. Its derived 93.11% promoter
+percentage and wrong page locator failed review. An exact issuer/offer/PDF/value
+hold now withholds shareholding and adds one manual review, retaining the canonical
+value, empty parsed names, proof and three correction events. No 93.10 replacement
+is accepted. See [physical pages, units and findings](reviews/2026-09-19-vinod-publication-source-review.md).
+This is an added visible defect, not a claimed P4 reduction. The value binding covers
+the whole object; a future names/value change requires review, not automatic acceptance.
 
-**Release follow-up pending:** bounded filing maintenance also populated Vinod
-financials, objects and shareholding. Independent official PDF hash/visual review
-passed all nine financial and five objects amounts, but rejected the derived
-93.11% ownership and incorrect page locator. A source/issuer/offer/value-bound
-hold on branch **`fix-core-release-source-hold`** preserves canonical value/history
-and adds an actionable manual review. See [the exact source review](reviews/2026-09-19-vinod-publication-source-review.md).
-Focused hold tests and strict validation pass; complete CI, review-only publication
-and live hold acceptance remain required before closeout. No numerical correction
-or P4 reduction is claimed.
+**Tests:** final Linux validation **35414579930** passed **1,314 Python tests**,
+strict validation with zero errors, retained-proposal checks and public generation.
+All **36 Node tests** and browser **35414579922** passed, including Vinod profile
+and quick view at 1440/390/320px, CSV, prior holds and financial/intermediary
+regressions. Local Windows has only the two known filename/symlink limitations,
+which pass on Linux. Historical before/after reports and the final report reproduce;
+the Git comparison is deterministic across hash seeds. Diff review confirmed all
+1,556 prior review issues and queue tasks remain, with exactly one new manual hold.
 
-Published P4 before this hold: **387 actionable + 63 higher-priority; 1,552
-blocking / 1,556 total reviews**. Local held projection: **1,553 blocking / 1,557
-total**, with the same record counts, zero semantic errors/unmapped reviews and
-four P5-only reviews. P5 waits for P4 (914 records). The increase is one newly
-documented source defect, with all earlier reviews retained.
+**Published and live:** core refresh **35413219212**, Pages **35413782301** and
+deployed verification **35413803388** succeeded at `5ea15921`. Review-only refresh
+**35414832256** published `118a5dd3`; Pages **35414893422** and live verification
+**35414917011** succeeded. Nine additional exact-byte live checks confirm canonical,
+proposals, phase/validation/queue/hold registry, summary, Vinod profile and source
+health code. Live browser shows Shareholding **Under review**, promoter pre-issue
+as a dash, and matched financial/objects values retained. Earlier 13 exact-byte and
+18 public-route checks verified core/admitted profiles and source diagnostics.
 
-Old PRs #94/#98/#99/#104/#105 remain separate and unmerged. Audience, pricing,
-revenue, source redistribution rights, hosting suitability, legal operator,
-privacy and professional-review decisions remain unresolved in the commercial
-register. No spending, tracking, contracts, access changes or P5 expansion.
+NSE live has 12 rows and two successful attempts; history has a successful empty
+dated range. SEBI has 13 unique filings across four requests, not a full-history
+coverage claim. BSE retains eight rows plus two failures out of three attempts.
+The final operational report at **02:12:42Z** records **5 failed sources, 1 partial
+failure, 27 successful entries; 0 known overdue source checks/stages; 3 stages and
+6 sources needing investigation; 441 unresolved proposals**. Two subscription
+observations exceed tolerance outside monitoring hours, not a missed intraday SLA.
 
-**Exact next action:** finish and publish the bounded Vinod hold, verify its live
-profile and manual queue, and close the operational release. Then triage the
-current/upcoming offer-term cohort (Axiom Gas, Varmora, Pooja Logistics) against
-matching official lifecycle/document evidence. Retain SpectraA's hold. Separately
-cluster the exposed shareholding subtotal/page-locator family before any shared
-numeric repair; PNGS Reva's adjusted EBITDA/partnership EPS remains conditional.
+**External evidence check remains failed:** **35414579942**, both attempts, could
+not retrieve unchanged Snehaa/Sacheerome PDFs. Independent requests received HTTP
+200 HTML declaring regional unavailability (18,590 bytes), not matching PDFs.
+Original hashes/holds and the fail-closed checker remain unchanged; cached old PDFs
+do not count as a current pass. This does not affect Vinod's retrieved SEBI evidence.
+The protective hold was merged through the normal authorized workflow with that
+unrelated access gap explicitly unresolved; no checks or protections were changed.
+See [the access receipt](audits/operational-health/2026-09-19-core-clocks/nse-access-gap.json).
+
+**Current P4:** **387 actionable + 63 higher-priority; 1,553 blocking / 1,557 total
+reviews**, four P5-only, zero semantic errors/unmapped reviews. Before this hold:
+1,552 / 1,556. P5 remains waiting (914 records); 321 P4 records need Final Prospectus
+revalidation. No remaining implementation/release acceptance criteria for this
+bounded milestone; numerical shareholding repair and source-access recovery remain
+separate open work. BSE primary-page parsing/SME timeout, SpectraA, other source
+holds and proposal backlog remain unresolved.
+
+Old PRs #94/#98/#99/#104/#105 remain separate and unmerged; no active development
+PR from this milestone remains after documentation closeout. The unrelated
+`fix-nse-detail-denominators` worktree is preserved. Audience, pricing/revenue,
+redistribution rights, hosting suitability, legal operator/privacy and professional
+review remain owner decisions. No spending, tracking, contracts, material access
+changes, P5 or performance expansion.
+
+**Exact next task:** source-review the current/upcoming offer-term cohort Axiom Gas,
+Varmora and Pooja Logistics against matching official lifecycle/document evidence,
+cluster common layouts, and repair only supported fields. Keep SpectraA held.
+Also retain the newly exposed shareholding subtotal/page-locator family for bounded
+multi-document diagnosis; PNGS Reva's adjusted EBITDA/partnership EPS remains
+conditional. Retry the unchanged NSE historical evidence check once access returns;
+no unattended retry or monitoring was configured.
 
 ## Previous checkpoint — commercial evidence review, 19 September 2026
 
