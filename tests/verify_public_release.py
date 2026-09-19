@@ -13,6 +13,8 @@ import json
 from pathlib import Path
 import re
 import sys
+from datetime import datetime
+from zoneinfo import ZoneInfo
 from urllib.parse import urljoin, urlsplit
 from urllib.request import Request, urlopen
 
@@ -156,6 +158,51 @@ def verify_local(root):
 
 
 
+def verify_active_offer_delivery(stored, profile, summary, group, proofs):
+    """Check receipt delivery without treating provisional rows as final proofs."""
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
+    from active_offer_terms import validate_receipt
+    proof = proofs['activeOfferTerms']
+    active = proof['value']
+    fields = validate_receipt(active, group['identity'])
+    require(proof.get('field') == 'activeOfferTerms'
+            and proof.get('sourceUrl') == active['source']['url']
+            and proof.get('sha256') == active['source']['sha256']
+            and group.get('sourceReviewUrl') == active['review']['url']
+            and group.get('reviewedAt') == active['review']['reviewedAt']
+            and stored.get('activeOfferTerms') == active,
+            'Accepted active offer receipt differs from reviewed evidence')
+
+    def compact(value):
+        if isinstance(value, dict):
+            return {key: compact(item) for key, item in value.items() if item is not None and item != '' and item != [] and item != {}}
+        if isinstance(value, list):
+            return [compact(item) for item in value]
+        return value
+
+    source = active['source']
+    expected_source = {'sourceUrl': source['url'], 'sha256': source['sha256'],
+                       'parserVersion': active['parserVersion'], 'checkedAt': active['review']['reviewedAt'],
+                       'collectedAt': source['collectedAt'], 'reviewUrl': active['review']['url']}
+    expired = datetime.now(ZoneInfo('Asia/Kolkata')).date().isoformat() > active['identity']['closeDate']
+    for field, term in fields.items():
+        for record in (profile, summary):
+            quality = decisions(record)
+            if record is summary and field not in quality and field not in record:
+                continue
+            decision = quality.get(field) or {}
+            # A rebuilt expired disclosure is withheld; an older immutable
+            # artifact may still carry its exact until date for browser expiry.
+            if expired and decision.get('state') in {'awaiting_disclosure', 'under_review'}:
+                require(record.get(field) is None, 'Expired active term remains populated')
+                continue
+            require(compact(record.get(field)) == compact(term['value']), f'{field}: active offer value not delivered')
+            require(decision.get('state') == 'provisional' and decision.get('until') == active['identity']['closeDate']
+                    and decision.get('row') == term['row'] and decision.get('table') == term['table']
+                    and compact(decision.get('sourceEvidence')) == expected_source,
+                    f'{field}: active offer evidence not delivered')
+
+
 def verify_reviewed_publication(root, receipt):
     """Require delivery of the last reviewed repair, not just matching pages.
 
@@ -179,6 +226,7 @@ def verify_reviewed_publication(root, receipt):
         'composition': ('issueComposition', 'issueSizeCr', 'freshIssueCr', 'ofsCr'),
         'intermediaries': ('leadManagers', 'registrar'),
         'financials': ('financials',),
+        'active-offer-terms': ('activeOfferTerms',),
     }
     public_composition = ('freshShares', 'ofsShares', 'valuationPriceUsed')
     source_keys = ('sourceUrl', 'documentDate', 'sha256', 'parserVersion', 'checkedAt')
@@ -245,7 +293,9 @@ def verify_reviewed_publication(root, receipt):
             require(all(record.get(k) == value for k, value in identity.items()), 'Reviewed offer identity mismatch')
         projected = decisions(profile)
         directory = decisions(summary[key])
-        for field in fields:
+        if kind == 'active-offer-terms':
+            verify_active_offer_delivery(stored[key], profile, summary[key], group, proofs)
+        for field in (() if kind == 'active-offer-terms' else fields):
             proof = proofs[field]
             require(proof.get('field') == field and proof.get('issueOpenDate') == identity['openDate'],
                     'Reviewed field/offer evidence mismatch')

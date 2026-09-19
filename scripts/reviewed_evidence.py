@@ -89,6 +89,8 @@ def index_groups(groups, registry):
             proof = proofs[field]
             if group.get('kind') == 'active-offer-terms':
                 from active_offer_terms import validate_receipt
+                if hashlib.sha1(b'blob ' + str(len(blob)).encode() + b'\0' + blob).hexdigest() != group.get('sourceProofsGitBlob'):
+                    raise ValueError('Active offer proof Git identity mismatch')
                 receipt = item['after']
                 validate_receipt(receipt, identity)
                 if (item.get('publicationScope') != 'explicit-reviewed'

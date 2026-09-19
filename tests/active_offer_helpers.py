@@ -39,6 +39,7 @@ def cohort():
                        'sourceReviewUrl': REVIEW_URL, 'reviewedAt': REVIEWED_AT,
                        'beforeProofHashes': {'activeOfferTerms': digest(row.get('activeOfferTerms'))},
                        'proofsFile': row['id'] + '.json', 'proofs': proofs,
+                       'sourceProofsGitBlob': hashlib.sha1(b'blob ' + str(len(blob)).encode() + b'\0' + blob).hexdigest(),
                        'sourceProofsSha256': hashlib.sha256(blob).hexdigest()})
         registry['changes'].append({'id': row['id'], 'identity': identity, 'field': 'activeOfferTerms',
                                    'beforeHash': digest(row.get('activeOfferTerms')), 'after': copy.deepcopy(receipt),
