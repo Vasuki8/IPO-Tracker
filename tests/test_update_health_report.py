@@ -301,6 +301,39 @@ class UpdateHealthTests(unittest.TestCase):
         queue['queueCount']=2
         with self.assertRaises(ValueError): health.build_report(self.payload,self.phase,[],as_of=AT,queue=queue)
 
+    def test_source_operator_row_keeps_observation_collection_and_publication_separate(self):
+        self.payload['meta']['sourceHealth']['NSE-live'] = {
+            'status':'checked', 'checkedAt':RECENT, 'observedAt':OLD, 'records':0}
+        self.payload['meta']['publication'].update(runId='11',collectorCommit='b'*40)
+        self.jobs['jobs'][1].update(status='completed',conclusion='success',
+                                    started_at='2026-09-18T07:01:00Z',
+                                    completed_at='2026-09-18T07:02:00Z')
+        row = next(r for r in self.build(workflow=True)['sources'] if r['name']=='NSE-live')
+        self.assertEqual(row['lastSourceObservation']['stored'], OLD)
+        self.assertEqual(row['sourceFreshness']['state'], 'overdue')
+        self.assertEqual(row['lastCollection']['stored'], RECENT)
+        self.assertEqual(row['lastCollection']['state'], 'within_tolerance')
+        self.assertEqual(row['lastAcceptedPublication']['runId'], '11')
+        self.assertIsNone(row['lastAcceptedPublication']['acceptedAt'])
+        self.assertEqual(row['publicationLag']['minutes'], 2)
+        self.assertIn('stale_source', row['operationalStatus']['signals'])
+
+    def test_unresolved_proposal_age_summary_preserves_unknown_exact_age(self):
+        pending={'summary':{'retainedProposals':2},'entries':[
+            {'inputIndex':0,'fingerprint':'a','runId':'11','comparisonState':'still_conflicting','nextAction':'review'},
+            {'inputIndex':1,'fingerprint':'b','runId':'12','comparisonState':'still_conflicting','nextAction':'review'}]}
+        self.jobs['jobs'][1].update(status='completed',conclusion='success',
+                                    started_at='2026-09-18T07:01:00Z',
+                                    completed_at='2026-09-18T07:02:00Z')
+        proposals=health.proposal_health(pending,[{'run':self.run,'jobs':self.jobs}],health.instant(AT))
+        summary=health.unresolved_proposal_age(proposals)
+        self.assertEqual(summary['state'],'exact_age_unknown')
+        self.assertEqual(summary['retainedProposals'],2)
+        self.assertEqual(summary['exactAgeUnknown'],2)
+        self.assertEqual(summary['originWindowAvailable'],1)
+        self.assertEqual(summary['youngestOriginPublisherMinimumMinutes'],58)
+        self.assertEqual(summary['oldestOriginPublisherMaximumMinutes'],59)
+
     def test_human_report_preserves_unknowns_and_escapes_diagnostics(self):
         self.payload['meta']['sourceHealth']['NSE-live'] = {'ok':False, 'error':'failed | retry\nlater'}
         report = self.build()
@@ -308,8 +341,10 @@ class UpdateHealthTests(unittest.TestCase):
         rendered = health.markdown_report(report)
         self.assertIn('Exact accepted publication time: **unknown**', rendered)
         self.assertIn('failed &#124; retry', rendered)
-        self.assertIn('NSE-live / official_exchange', rendered)
-        self.assertIn('unknown (missing)', rendered)
+        self.assertIn('| NSE-live | official_exchange |', rendered)
+        self.assertIn('source_observation_unknown', rendered)
+        self.assertIn('Last accepted publication', rendered)
+        self.assertIn('Publication lag', rendered)
         self.assertEqual(report, before)
 
     def test_conflicting_acceptance_cannot_supply_accepted_publisher_window(self):
