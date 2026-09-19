@@ -1,0 +1,329 @@
+{
+  "schemaVersion": 1,
+  "milestone": "Reviewed BSE active offer prices and separate market-lot/minimum-bid quantities",
+  "state": "accepted, deployed and verified live",
+  "verifiedDataMain": "599798ff18e92e8ad9fc0da0f99a98f6fb5ce1ad",
+  "initialMain": "5e8642f34447ee56f9026ad23b61838b66204162",
+  "recoveredMain": "2d07c3b63a631a3560f75996180fe0fb7979f665",
+  "sourceCommit": "f16287080613b57b000a227fca9d90eab1b72b25",
+  "implementationCommit": "b16661c8aa7c57600e49d3dd8a6c22a4fd6b954e",
+  "supportPr": 168,
+  "supportMerge": "1e2e08e4e0f1f144f2220d17526fbe7fb0351e6d",
+  "supportPublication": "4d2d558b318d7982d17e116dc92341f774d8b4d9",
+  "requestPr": 169,
+  "requestCommit": "a6bb21315238121d5df97aed08db932ffaa55480",
+  "requestMerge": "974f2d3b4cd872495dfb8d229366c2fa44997981",
+  "requestId": "bse-active-offer-terms-20260919-1",
+  "sourceReview": "../reviews/2026-09-19-bse-active-offer-source-review.md",
+  "measurement": {
+    "before": {
+      "commit": "2d07c3b63a631a3560f75996180fe0fb7979f665",
+      "inventory": 1406,
+      "phaseStatus": {
+        "generatedAt": "2026-09-19T06:07:26.224809+00:00",
+        "p4": {
+          "status": "incomplete",
+          "actionableRecords": 408,
+          "higherPriorityRecords": 69,
+          "semanticErrors": 0,
+          "sourceReviewItems": 1557,
+          "blockingSourceReviewItems": 1553,
+          "p5OnlySourceReviewItems": 4,
+          "unmappedSourceReviewItems": 0,
+          "finalProspectusRevalidationRecords": 321,
+          "finalProspectusRevalidationFields": 1174,
+          "higherPriorityFinalProspectusRevalidationRecords": 28,
+          "higherPriorityFinalProspectusRevalidationFields": 104,
+          "resolvedUnavailableRecords": 5
+        },
+        "p5": {
+          "status": "waiting_for_p4",
+          "actionableRecords": 914
+        }
+      },
+      "errorCount": 0,
+      "reviewCount": 1557,
+      "cohort": {
+        "vivekanand-cotspin-limited": [
+          "symbol",
+          "priceBand",
+          "lotSize",
+          "issueSizeCr",
+          "issueComposition"
+        ],
+        "fx-multitech-limited": [
+          "symbol",
+          "priceBand",
+          "lotSize",
+          "issueSizeCr",
+          "issueComposition"
+        ],
+        "robokidz-eduventures-limited": [
+          "symbol",
+          "priceBand",
+          "lotSize",
+          "issueSizeCr",
+          "issueComposition"
+        ],
+        "himalaya-nutravedics-india-limited": [
+          "symbol",
+          "priceBand",
+          "lotSize",
+          "issueSizeCr",
+          "issueComposition"
+        ],
+        "s-k-offset-limited": [
+          "symbol",
+          "priceBand",
+          "lotSize",
+          "issueSizeCr",
+          "issueComposition"
+        ]
+      }
+    },
+    "after": {
+      "commit": "599798ff18e92e8ad9fc0da0f99a98f6fb5ce1ad",
+      "status": "passed",
+      "baselineCommit": "2d07c3b63a631a3560f75996180fe0fb7979f665",
+      "publication": {
+        "runId": "35428300106",
+        "collectorCommit": "974f2d3b4cd872495dfb8d229366c2fa44997981",
+        "status": "published",
+        "pendingConflictCount": 441,
+        "mode": "reviewed",
+        "reviewedIds": [
+          "fx-multitech-limited",
+          "robokidz-eduventures-limited",
+          "himalaya-nutravedics-india-limited",
+          "s-k-offset-limited"
+        ]
+      },
+      "inventory": 1406,
+      "changedIds": [
+        "fx-multitech-limited",
+        "robokidz-eduventures-limited",
+        "himalaya-nutravedics-india-limited",
+        "s-k-offset-limited"
+      ],
+      "changedFields": {
+        "fx-multitech-limited": [
+          "activeOfferTerms",
+          "sources",
+          "validation",
+          "dataCorrections"
+        ],
+        "robokidz-eduventures-limited": [
+          "activeOfferTerms",
+          "sources",
+          "validation",
+          "dataCorrections"
+        ],
+        "himalaya-nutravedics-india-limited": [
+          "activeOfferTerms",
+          "sources",
+          "validation",
+          "dataCorrections"
+        ],
+        "s-k-offset-limited": [
+          "activeOfferTerms",
+          "sources",
+          "validation",
+          "dataCorrections"
+        ]
+      },
+      "metaChangedKeys": [
+        "publication",
+        "recordIntegrity",
+        "generatedAt"
+      ],
+      "pendingSha256": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+      "pendingByteIdentical": true,
+      "holdsByteIdentical": true,
+      "unselectedRecordsIdentical": true,
+      "cohort": {
+        "fx-multitech-limited": [
+          "symbol",
+          "lotSize",
+          "issueSizeCr",
+          "issueComposition"
+        ],
+        "robokidz-eduventures-limited": [
+          "symbol",
+          "lotSize",
+          "issueSizeCr",
+          "issueComposition"
+        ],
+        "himalaya-nutravedics-india-limited": [
+          "symbol",
+          "lotSize",
+          "issueSizeCr",
+          "issueComposition"
+        ],
+        "s-k-offset-limited": [
+          "symbol",
+          "lotSize",
+          "issueSizeCr",
+          "issueComposition"
+        ],
+        "vivekanand-cotspin-limited": [
+          "symbol",
+          "priceBand",
+          "lotSize",
+          "issueSizeCr",
+          "issueComposition"
+        ]
+      },
+      "phaseStatus": {
+        "generatedAt": "2026-09-19T07:05:21.269624+00:00",
+        "p4": {
+          "status": "incomplete",
+          "actionableRecords": 408,
+          "higherPriorityRecords": 69,
+          "semanticErrors": 0,
+          "sourceReviewItems": 1557,
+          "blockingSourceReviewItems": 1553,
+          "p5OnlySourceReviewItems": 4,
+          "unmappedSourceReviewItems": 0,
+          "finalProspectusRevalidationRecords": 321,
+          "finalProspectusRevalidationFields": 1174,
+          "higherPriorityFinalProspectusRevalidationRecords": 28,
+          "higherPriorityFinalProspectusRevalidationFields": 104,
+          "resolvedUnavailableRecords": 5
+        },
+        "p5": {
+          "status": "waiting_for_p4",
+          "actionableRecords": 914
+        }
+      },
+      "errorCount": 0,
+      "reviewCount": 1557,
+      "reviewedDelivery": {
+        "status": "passed",
+        "scope": "retained-reviewed-evidence-delivery-not-new-source-audit",
+        "canonicalSha256": "985e38310db90239beefee506c8ddd74596788f49da12c41efd8a20eb2eca178",
+        "checked": [
+          {
+            "id": "fx-multitech-limited",
+            "kind": "active-offer-terms",
+            "fields": [
+              "activeOfferTerms"
+            ],
+            "proofsSha256": "3b54d063552f23dec3aa1895536a8a52f0f2fba56984c12a393633be38369379",
+            "proofsGitBlob": "1a9094affec9ef8f5387c6cb41f483e49513a3ac",
+            "sourceReviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/f16287080613b57b000a227fca9d90eab1b72b25/docs/reviews/2026-09-19-bse-active-offer-source-review.md"
+          },
+          {
+            "id": "robokidz-eduventures-limited",
+            "kind": "active-offer-terms",
+            "fields": [
+              "activeOfferTerms"
+            ],
+            "proofsSha256": "0512d0f94a9b9016ea5c742062a4e5b874c0dd4a9af7fc73ef20b132e3e79a99",
+            "proofsGitBlob": "e52768df199759bea4f4d4b50a5756d8bce1fe0a",
+            "sourceReviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/f16287080613b57b000a227fca9d90eab1b72b25/docs/reviews/2026-09-19-bse-active-offer-source-review.md"
+          },
+          {
+            "id": "himalaya-nutravedics-india-limited",
+            "kind": "active-offer-terms",
+            "fields": [
+              "activeOfferTerms"
+            ],
+            "proofsSha256": "2365e3904e1c98b76df67e5c538df2dac51d2f1fe68864e94cae8bfabf894ed9",
+            "proofsGitBlob": "759fa99a41828567ddc324098c08675b5e16f2e2",
+            "sourceReviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/f16287080613b57b000a227fca9d90eab1b72b25/docs/reviews/2026-09-19-bse-active-offer-source-review.md"
+          },
+          {
+            "id": "s-k-offset-limited",
+            "kind": "active-offer-terms",
+            "fields": [
+              "activeOfferTerms"
+            ],
+            "proofsSha256": "d32e5ba68e7bfe839d3dc5b640b98ce4b4d2c3fdf68b145c1c4bb6bd066160dd",
+            "proofsGitBlob": "b73a6ea259d35b172b31d0b6916213429dfcd4af",
+            "sourceReviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/f16287080613b57b000a227fca9d90eab1b72b25/docs/reviews/2026-09-19-bse-active-offer-source-review.md"
+          }
+        ]
+      },
+      "localProfilePairs": 1406,
+      "canonicalSha256": "985e38310db90239beefee506c8ddd74596788f49da12c41efd8a20eb2eca178",
+      "validationIssuesIdentical": true,
+      "expandedQueueReviewsIdentical": true,
+      "retainedExpandedReviews": 1557,
+      "removedReviewItems": 0,
+      "acceptedCoreGapReduction": 4,
+      "separateQuantityValues": 8,
+      "performanceValuesUnchanged": true
+    }
+  },
+  "localTests": {
+    "fullPython": 1373,
+    "focusedBsePython": 18,
+    "stdlibReleasePython": 43,
+    "node": 38,
+    "strictErrors": 0,
+    "publicProfilePairs": 1406,
+    "browserRuntime": "Local Chromium CDN download failed; required GitHub CI browser passed and desktop/320px screenshots were visually inspected."
+  },
+  "ci": {
+    "supportValidation": 35427787091,
+    "sourcePreview": 35427787077,
+    "supportReleaseCandidate": 35427787098,
+    "supportBrowser": 35427787080,
+    "mainValidation": 35428021138,
+    "mainBrowser": 35428021140,
+    "requestValidation": 35428200100,
+    "allListedConclusions": "success",
+    "browserArtifact": 10579562986,
+    "browserReceipt": "2026-09-19-bse-active-offer-browser.json",
+    "existingSmokeChecks": 25
+  },
+  "publication": {
+    "supportRun": 35428021153,
+    "supportPages": 35428076250,
+    "supportVerifier": 35428095989,
+    "reviewedRun": 35428300106,
+    "collectorJob": 105858053604,
+    "publisherJob": 105858167409,
+    "pages": 35428372558,
+    "verifier": 35428395090,
+    "allListedConclusions": "success",
+    "sourceCollectionSkipped": true,
+    "residualRepairSkipped": true
+  },
+  "liveVerification": {
+    "publicVerifierReceipt": "2026-09-19-bse-active-offer-live.json",
+    "httpFiles": 22,
+    "additionalExactByteChecks": 9,
+    "directReceipt": "2026-09-19-bse-active-offer-direct-live.json"
+  },
+  "operationalHealth": "2026-09-19-bse-active-offer-health.json",
+  "resolvedReleaseFailures": [
+    {
+      "run": 35428037274,
+      "commit": "1e2e08e4e0f1f144f2220d17526fbe7fb0351e6d",
+      "reason": "Initial code deployment retained the old compact summary, causing the new minimumBidQuantity comparison to reject Varmora.",
+      "resolution": "Review publication 4d2d558b regenerated the summary; subsequent support and accepted-data live verifiers passed. No canonical value changed during support publication."
+    }
+  ],
+  "interruptionRecovery": {
+    "sourceCommitRetained": true,
+    "implementationUploadWasAbsent": true,
+    "implementationReuploadedWithEveryBlobAndTreeVerified": true,
+    "independentCoreRunPreserved": 35425291431,
+    "independentCorePages": 35425762822,
+    "independentCoreVerifier": 35425782777,
+    "newCoreRecords": [
+      "elevate-campuses-limited",
+      "unitec-fibres-limited"
+    ],
+    "localPreuploadBranchPreserved": "local-bse-preupload-20260919"
+  },
+  "blockers": [
+    "Vivekanand detail table is empty; its current 35-37 observation and historical 32-37 evidence are retained.",
+    "No supported bid lots, whole-offer totals, composition, canonical symbols or minimum application amounts were established by the BSE family.",
+    "BSE primary/SME source failures and other source/document failures remain recorded.",
+    "P4 remains incomplete; P5/performance expansion remains disabled.",
+    "Commercial source permissions, operator/jurisdictions, permitted hosting, audience, pricing and revenue model remain unresolved."
+  ],
+  "nextTask": "Review the separate qualified NSE floor/cap total-amount disclosure family for Axiom Gas, Varmora and Pooja Logistics; preserve the remaining BSE gaps and all holds."
+}

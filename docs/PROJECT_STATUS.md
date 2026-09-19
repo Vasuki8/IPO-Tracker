@@ -15,78 +15,113 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
-## Current checkpoint — BSE active-offer implementation prepared, 19 September 2026
+## Current checkpoint — reviewed BSE active terms released, 19 September 2026
 
-Recovered and refetched GitHub main:
-`5e8642f34447ee56f9026ad23b61838b66204162` (#167). Its Pages run
-35423848340 and public verification 35423880430 succeeded. Completed commercial,
-operational, universe and NSE active-term work was recognized and preserved.
-Open #94, #98, #99 and draft #104/#105 remain untouched. Main was unprotected
-and had no rulesets at recovery; current PR checks must still pass before merge.
+Verified data-release main: **`599798ff18e92e8ad9fc0da0f99a98f6fb5ce1ad`**.
+Support [PR #168](https://github.com/Vasuki8/IPO-Tracker/pull/168) merged as
+`1e2e08e4e0f1f144f2220d17526fbe7fb0351e6d`; implementation commit
+`b16661c8aa7c57600e49d3dd8a6c22a4fd6b954e`. Review-only publication was
+`4d2d558b318d7982d17e116dc92341f774d8b4d9`. The separate single-file request,
+[PR #169](https://github.com/Vasuki8/IPO-Tracker/pull/169), merged as
+`974f2d3b4cd872495dfb8d229366c2fa44997981` from `a6bb21315238121d5df97aed08db932ffaa55480`.
+Documentation closeout branch: `docs-bse-active-offer-closeout`,
+[PR #170](https://github.com/Vasuki8/IPO-Tracker/pull/170). Its commit and check
+evidence are identified by the linked PR and Git history containing this checkpoint.
 
-Interruption recovery: refetched main is now
-`2d07c3b63a631a3560f75996180fe0fb7979f665`, the independently scheduled core
-publication from run 35425291431 (collector 105850056326, publisher 105851229914).
-Pages 35425762822 and public verification 35425782777 passed; direct bytes for the
-home page, summary, P4 gate, status document and FX profile match that main.
-It adds Elevate Campuses and Unitec Fibres without removing any issuer: inventory
-is now **1,406**, with **69** higher-priority P4 records. The four selected BSE
-identities and receipt before-values remain unchanged. This update is incorporated.
-The interrupted source-evidence commit exists on GitHub; the implementation tree,
-branch and PR did not exist at recovery. The source commit has now been placed on
-the named branch; support upload resumes without repeating its source review.
+Recovery began at `5e8642f3` (#167). After the connection interruption, a fresh
+fetch found independently scheduled core publication
+`2d07c3b63a631a3560f75996180fe0fb7979f665`, verified by Pages 35425762822 and
+verifier 35425782777. Its two added issuers, Elevate Campuses and Unitec Fibres,
+were preserved: inventory rose from 1,404 to **1,406**, and higher-priority P4
+records from 67 to **69**. The interrupted source commit existed on GitHub;
+the implementation tree/branch/PR did not. Upload resumed through the connected
+GitHub API, verifying every blob and the complete tree against local content.
+Local preupload commits remain on `local-bse-preupload-20260919`. No earlier
+commercial, operational, universe or NSE receipt work was repeated.
 
-Active branch: `fix-bse-active-offer-receipts`; implementation is not yet merged
-or confirmed deployed at this checkpoint. Source-evidence commit:
-`f16287080613b57b000a227fca9d90eab1b72b25`. The
-[five-offer source review](reviews/2026-09-19-bse-active-offer-source-review.md)
-retains exact response hashes, source URLs, table/row locators, currency evidence,
-separate collection/review clocks and unknown source observations. Official FX
-and Robokidz advertisement pages were rendered and inspected independently.
+Problem/users: IPO researchers needed evidence for the five newly admitted BSE
+upcoming SME offers. The bounded current-index/detail family now supplies:
 
-Problem/users: researchers cannot use the five newly admitted BSE upcoming SME
-offers' terms safely without field-specific evidence. Four price bands and eight
-separately labelled market-lot/minimum-bid-quantity values are supported. Vivekanand
-has an empty detail page and a changed index band, so it remains unresolved. BSE
-detail share counts do not establish whole-offer totals. No bid lot, canonical
-symbol, minimum application amount, total or composition is inferred.
+| Issuer | Provisional band, INR/share | Market lot, shares | Minimum bid quantity, shares | Valid through close date, IST |
+|---|---:|---:|---:|---|
+| FX Multitech | 110–116 | 1,200 | 2,400 | 23 September 2026 |
+| Robokidz Eduventures | 100–106 | 1,200 | 2,400 | 23 September 2026 |
+| Himalaya Nutravedics India | 100–106 | 1,200 | 2,400 | 24 September 2026 |
+| S. K. Offset | 119–125 | 1,000 | 2,000 | 25 September 2026 |
 
-Implementation adds a strict BSE parser family to the existing reviewed receipt
-and atomic publication path. Ordinary corrections remain inert. The receipt
-replays the index and detail responses; holds, conflicts, canonical identity,
-source clocks and IST expiry control the same public decisions. Quantity labels
-and sources now flow to comparisons and CSV as well as profiles/quick views.
-Release checks cover shared quantities and prevent an invented public symbol.
+The [source review](reviews/2026-09-19-bse-active-offer-source-review.md) is bound
+to immutable `f16287080613b57b000a227fca9d90eab1b72b25`. It retains five exact
+detail responses, the index, source URLs/hashes, identity, table/row locators,
+units and the currency asset. The FX and Robokidz official advertisement pages
+were rendered and inspected independently. Collection, review and unknown source
+observation clocks remain distinct. Source identity symbols do not fill canonical
+symbols. Receipt replay, existing holds, same-offer conflicts and IST expiry
+control the same projected values across directory, profiles, quick views,
+comparisons and CSV. Expired or invalid receipts restore the unresolved gaps.
 
-Local validation: **1,373 Python tests pass** under uv/Python 3.12; **43 release
-tests also pass with only the standard library**; **38 Node tests pass**. The
-isolated candidate rebuild verified all **1,404 directory/profile pairs**.
-Local Chromium acquisition failed with CDN timeout/502 responses; required CI
-browser rehearsals remain pending and must pass before merge. New browser
-coverage spans all four issuers, desktop/375px/320px, quick views, comparisons,
-CSV, unknown observations, separate quantities, the rejected fifth issuer and
-expiry. No browser pass is claimed yet.
+Vivekanand's detail table remains empty. Its latest retained index observation is
+35–37; the earlier 32–37 observation remains in committed historical evidence.
+No receipt was approved for it. BSE detail share counts do not establish whole
+issue totals. **Bid lots, canonical symbols, total amounts, composition and
+minimum application amounts remain unknown** in this batch; none was inferred.
+The Himalaya/S. K. advertisement-link failures remain documented.
 
-Current P4 is **408 actionable + 69 higher priority; 1,553 blocking / 1,557 total
-reviews; zero errors/unmapped; 1,406 records; 441 unresolved proposals**. The
-prepared five-issuer cohort reduces core missing fields **25 → 21**, without
-removing a record or source review. P5/performance remain gated. Source permissions,
-operator/jurisdictions, permitted hosting, audience, pricing and revenue model
-remain unresolved; no commercial clearance or new spending/access is introduced.
+The accepted transaction changed exactly four records, limited to
+`activeOfferTerms`, source/correction history and validation metadata. All **1,402
+unselected records**, all **441 pending proposals**, all holds and all **1,557
+validation/expanded-queue source reviews** are preserved exactly. No review was
+removed. Performance values are unchanged; its regenerated summary changed only
+its generation timestamp. The existing core source checks were not refreshed by
+this reviewed publication. See the [release receipt](releases/2026-09-19-bse-active-offer-terms.json).
 
-The [bounded core-schedule diagnosis](reviews/2026-09-19-core-schedule-diagnosis.md)
-finds no demonstrated routing bug: the old core artifact was correctly rejected,
-the replacement push collected at 01:39:43Z, and the later successful scheduled
-run was filings. The subsequent successful scheduled core run now supplies fresh
-attempt evidence, so no manual dispatch is needed for that old gap. BSE primary
-parse/timeout failures and the bounded SEBI-register timeout remain visible.
-Do not rerun the obsolete publisher or change cron/tolerances without evidence.
+The five-offer core gaps fell **25 → 21**, with eight additional separately
+labelled quantity values. P4 remains **408 actionable + 69 higher priority;
+1,553 blocking / 1,557 total reviews; zero errors / zero unmapped**. Final
+Prospectus revalidation remains **321 records / 1,174 fields**. P5's 914 records
+remain `waiting_for_p4`; neither P5 nor performance expansion was enabled.
 
-Remaining acceptance: pass current PR validation/source preview/browser checks;
-merge support and verify its review-only publication; submit the four-ID request
-as a separate single-file PR; inspect accepted record/proposal preservation;
-verify Pages and exact public delivery; replace this preparation checkpoint with
-commit, PR, run and live evidence. Exact next task is that bounded release flow.
+Validation: **1,373 Python tests pass** under uv/Python 3.12, including **18 BSE
+family tests**; **43 release tests also pass with only the standard library**;
+**38 Node tests pass**. Strict validation and all **1,406 directory/profile pairs**
+pass. All five support PR checks passed: validation 35427787091, source preview
+35427787077, release candidate 35427787098 and browser 35427787080. Main validation
+35428021138/browser 35428021140 and request validation 35428200100 also passed.
+Browser coverage includes 25 existing smoke checks, prior reviewed families and
+all four BSE issuers at 1440/375/320px, exports, comparisons, unknown clocks,
+separate quantities, the rejected fifth issuer and expiry. Desktop/320px
+screenshots were visually inspected. The local Chromium download failed; the
+[successful CI browser receipt](releases/2026-09-19-bse-active-offer-browser.json)
+records actual browser acceptance.
+
+Reviewed publisher **35428300106** succeeded (collector 105858053604, publisher
+105858167409), skipping source collection and residual repair. Accepted Pages
+**35428372558** and deployed verifier **35428395090** passed. The
+[22-file live verification](releases/2026-09-19-bse-active-offer-live.json) and
+[nine additional exact-byte checks](releases/2026-09-19-bse-active-offer-direct-live.json)
+match `599798ff`, including all four accepted profiles, the unresolved Vivekanand
+profile, shared scripts, summary and P4 gate. Initial support verifier 35428037274
+caught the old Varmora summary before regeneration; review publication `4d2d558b`
+resolved it before the request merge. The support-output requirement is documented
+in [OPERATIONS.md](OPERATIONS.md).
+
+The [07:07Z operational checkpoint](releases/2026-09-19-bse-active-offer-health.json)
+has **zero overdue source checks/stages**, **6 failed + 1 partial + 26 successful
+sources**, seven sources/four stages needing investigation, and seven provisional
+offer receipts with unknown observations. The scheduled core run fixed the old
+attempt-age gap; BSE primary/SME failures, SEBI register timeout and other source
+failures remain. See the [bounded diagnosis](reviews/2026-09-19-core-schedule-diagnosis.md).
+
+No implementation, source-review or data-release acceptance criteria remain for
+this bounded batch. This is not P4 completion or commercial clearance. Commercial
+source/redistribution permissions, operator/jurisdictions, permitted hosting,
+audience, pricing and revenue model remain unresolved. No spending, outreach,
+tracking, accounts, billing, access changes or infrastructure migration occurred.
+Preserved open work: #94, #98, #99 and drafts #104/#105.
+
+**Exact next task:** review the separate qualified NSE floor/cap total-amount
+family for Axiom Gas, Varmora and Pooja Logistics. Preserve qualifications and
+unsupported values; retain the BSE gaps, Vivekanand evidence and every hold.
+Do not start P5 or performance expansion.
 
 ## Previous checkpoint — commercial publication-scope review released, 19 September 2026
 

@@ -196,6 +196,14 @@ preconditions, exact public values and source review. The existing publisher
 merges the entire receipt atomically and appends source/correction history;
 canonical static fields, Final Prospectus proofs and static policy are untouched.
 
+When support changes the compact public contract, include the corresponding
+deterministically rebuilt public output from the same accepted input in its PR.
+This prevents the initial automatic Pages deployment from briefly carrying an
+old summary with new verifier rules. The canonical/proposal preservation checks
+still apply; the separate review publisher must subsequently pass. The BSE
+support release exposed this transition for Varmora's minimum quantity, then
+resolved it in review publication `4d2d558b` before the BSE request was merged.
+
 Public projection and active completeness use the same reviewed eligibility
 rules. Existing holds win. Conflicting same-offer NSE/BSE evidence stays a manual
 review with pointers to the receipt and observations. Disclosures expire after

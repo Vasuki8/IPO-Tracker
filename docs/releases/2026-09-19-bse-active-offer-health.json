@@ -1,0 +1,476 @@
+{
+  "schemaVersion": 1,
+  "scope": "compact-excerpt-of-read-only-operational-report-not-source-accuracy",
+  "asOf": "2026-09-19T07:07:00+00:00",
+  "inputCommit": "599798ff18e92e8ad9fc0da0f99a98f6fb5ce1ad",
+  "inputSha256": {
+    "canonical": "985e38310db90239beefee506c8ddd74596788f49da12c41efd8a20eb2eca178",
+    "phase": "808cda6c957b3b437bb3134ca09eecf4d2b68d8d894c4ff8542d1bfb7e1909a2",
+    "displayHolds": "296ddc61a3f7f8c8dbb06d86bbb9ca92d67203230ef66c834cb34e4eced588b6",
+    "pending": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+    "sourceReviewQueue": "9d924bbb8135942af759b712ac6827e362b909a1ca77ce814b5a172d67134c71"
+  },
+  "codePolicySha256": "24f648d3210531daa714a7eb2b1d94f6e413feb78fd6346ad6be7341fb8dab26",
+  "summary": {
+    "canonicalRecords": 1406,
+    "lifecycleScopes": {
+      "after_close": 91,
+      "before_open": 9,
+      "not_live_status": 1288,
+      "open_by_recorded_dates": 5,
+      "unknown_dates": 13
+    },
+    "openSubscriptions": 5,
+    "retainedOfferReceipts": 7,
+    "offerReceiptStates": {
+      "provisional": 7
+    },
+    "offerReceiptUnknownObservations": 7,
+    "observationStates": {
+      "outside_monitoring_deadline": 2,
+      "source_time_unknown": 3
+    },
+    "collectionStates": {
+      "missing": 1,
+      "outside_monitoring_deadline": 4
+    },
+    "sourceOutcomes": {
+      "failed": 6,
+      "partial_failure": 1,
+      "successful": 26
+    },
+    "stageOutcomes": {
+      "failed": 1,
+      "source_blocked": 3,
+      "successful": 9,
+      "unknown": 1
+    },
+    "overdueSourceChecks": 0,
+    "overdueStages": 0,
+    "observationsOlderThanTolerance": 2,
+    "unresolvedProposals": 441,
+    "stagesNeedingInvestigation": 4,
+    "sourcesNeedingInvestigation": 7
+  },
+  "coreSources": [
+    {
+      "name": "BSE",
+      "monitoring": "core",
+      "reportedOutcome": "refreshed",
+      "exitCode": null,
+      "durationSeconds": null,
+      "failureEvidence": true,
+      "degraded": false,
+      "counts": {
+        "attempted": 3,
+        "failed": 2,
+        "records": 10
+      },
+      "storedCheckClocks": {
+        "checkedAt": "2026-09-19T11:29:55+05:30"
+      },
+      "attemptFreshness": {
+        "stored": "2026-09-19T11:29:55+05:30",
+        "thresholdMinutes": 120,
+        "state": "within_tolerance",
+        "ageMinutes": 67.083
+      },
+      "collectionOutcome": "partial_failure",
+      "latestFailureOrDeferredReason": {
+        "errors": [
+          "https://www.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p: No IPO rows parsed; disclosure absence not established",
+          "https://www.bsesme.com/PublicIssues/PublicIssues.aspx?id=2: HTTPSConnectionPool(host='www.bsesme.com', port=443): Max retries exceeded with url: /PublicIssues/PublicIssues.aspx?id=2 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bsesme.com', port=443) at 0x7f22be367b60>, 'Connection to www.bsesme.com timed out. (connect timeout=30)'))"
+        ]
+      },
+      "lastSuccessfulRecordedOutcome": null,
+      "requiresInvestigation": true,
+      "evidenceSha256": "b5e10789d4ca3663352704a61d4a70cd69767dc4a88b6924145bffe2da56e7e6",
+      "nextAction": "Review failed items individually; successful items do not clear the failures.",
+      "authority": "official_exchange",
+      "authorityMeaning": "Source role only; field authority and issuer binding require separate source review.",
+      "lastSourceObservation": {
+        "stored": null,
+        "thresholdMinutes": null,
+        "state": "missing"
+      },
+      "observationMeaning": "Explicit sourceHealth.observedAt only; no check, build or stage clock fallback.",
+      "relatedStage": "run_update_final_policy.py",
+      "lastSuccessfulStageOutcome": {
+        "status": "updated",
+        "checkedAt": "2026-09-19T05:59:57.874451+00:00"
+      },
+      "stageHistoryMeaning": "Only the latest retained stage outcome is available; a wrapper success is not success of every source.",
+      "lastAcceptedPublication": {
+        "runId": "35428300106",
+        "acceptedAt": null,
+        "publisherWindow": null,
+        "scope": "Dataset publisher evidence; per-source acceptance time is not recorded."
+      },
+      "publicationLag": {
+        "state": "unknown",
+        "minutes": null
+      }
+    },
+    {
+      "name": "NSE-live",
+      "monitoring": "core",
+      "reportedOutcome": "refreshed",
+      "exitCode": null,
+      "durationSeconds": null,
+      "failureEvidence": false,
+      "degraded": false,
+      "counts": {
+        "attempted": 2,
+        "failed": 0,
+        "records": 12
+      },
+      "storedCheckClocks": {
+        "checkedAt": "2026-09-19T11:27:57+05:30"
+      },
+      "attemptFreshness": {
+        "stored": "2026-09-19T11:27:57+05:30",
+        "thresholdMinutes": 120,
+        "state": "within_tolerance",
+        "ageMinutes": 69.05
+      },
+      "collectionOutcome": "successful",
+      "latestFailureOrDeferredReason": {},
+      "lastSuccessfulRecordedOutcome": {
+        "status": "refreshed",
+        "checkedAt": "2026-09-19T11:27:57+05:30"
+      },
+      "requiresInvestigation": false,
+      "evidenceSha256": "44344cc68496d2067820e67c38074bdcb42dbf73f4416154e244e3ae7d932225",
+      "nextAction": "A recorded success is not source freshness or field verification; inspect independent clocks and reviews.",
+      "authority": "official_exchange",
+      "authorityMeaning": "Source role only; field authority and issuer binding require separate source review.",
+      "lastSourceObservation": {
+        "stored": null,
+        "thresholdMinutes": null,
+        "state": "missing"
+      },
+      "observationMeaning": "Explicit sourceHealth.observedAt only; no check, build or stage clock fallback.",
+      "relatedStage": "run_update_final_policy.py",
+      "lastSuccessfulStageOutcome": {
+        "status": "updated",
+        "checkedAt": "2026-09-19T05:59:57.874451+00:00"
+      },
+      "stageHistoryMeaning": "Only the latest retained stage outcome is available; a wrapper success is not success of every source.",
+      "lastAcceptedPublication": {
+        "runId": "35428300106",
+        "acceptedAt": null,
+        "publisherWindow": null,
+        "scope": "Dataset publisher evidence; per-source acceptance time is not recorded."
+      },
+      "publicationLag": {
+        "state": "unknown",
+        "minutes": null
+      }
+    },
+    {
+      "name": "SEBI",
+      "monitoring": "core",
+      "reportedOutcome": "refreshed",
+      "exitCode": null,
+      "durationSeconds": null,
+      "failureEvidence": false,
+      "degraded": false,
+      "counts": {
+        "attempted": 4,
+        "failed": 0,
+        "records": 13
+      },
+      "storedCheckClocks": {
+        "checkedAt": "2026-09-19T11:29:22+05:30"
+      },
+      "attemptFreshness": {
+        "stored": "2026-09-19T11:29:22+05:30",
+        "thresholdMinutes": 120,
+        "state": "within_tolerance",
+        "ageMinutes": 67.633
+      },
+      "collectionOutcome": "successful",
+      "latestFailureOrDeferredReason": {},
+      "lastSuccessfulRecordedOutcome": {
+        "status": "refreshed",
+        "checkedAt": "2026-09-19T11:29:22+05:30"
+      },
+      "requiresInvestigation": false,
+      "evidenceSha256": "2b0f1ee51edd64e1d83d990dc0813fc6e1bfdebe8c0befcbdff10508aa501b63",
+      "nextAction": "A recorded success is not source freshness or field verification; inspect independent clocks and reviews.",
+      "authority": "official_regulator",
+      "authorityMeaning": "Source role only; field authority and issuer binding require separate source review.",
+      "lastSourceObservation": {
+        "stored": null,
+        "thresholdMinutes": null,
+        "state": "missing"
+      },
+      "observationMeaning": "Explicit sourceHealth.observedAt only; no check, build or stage clock fallback.",
+      "relatedStage": "run_update_final_policy.py",
+      "lastSuccessfulStageOutcome": {
+        "status": "updated",
+        "checkedAt": "2026-09-19T05:59:57.874451+00:00"
+      },
+      "stageHistoryMeaning": "Only the latest retained stage outcome is available; a wrapper success is not success of every source.",
+      "lastAcceptedPublication": {
+        "runId": "35428300106",
+        "acceptedAt": null,
+        "publisherWindow": null,
+        "scope": "Dataset publisher evidence; per-source acceptance time is not recorded."
+      },
+      "publicationLag": {
+        "state": "unknown",
+        "minutes": null
+      }
+    }
+  ],
+  "offerReceipts": [
+    {
+      "id": "fx-multitech-limited",
+      "state": "provisional",
+      "receiptSha256": "0735428846cac7a3fa78c993f6d91faa8ba6fd490a6dfcf1c0b7b08fa2715217",
+      "receiptValidation": "replayed",
+      "parserVersion": "bse-displayipo-active-terms-v1",
+      "clocks": {
+        "observation": {
+          "stored": null,
+          "thresholdMinutes": null,
+          "state": "missing"
+        },
+        "collection": {
+          "stored": "2026-09-19T05:33:03.629891+00:00",
+          "thresholdMinutes": null,
+          "state": "recorded_only",
+          "ageMinutes": 93.94
+        },
+        "review": {
+          "stored": "2026-09-19T05:44:56.779027+00:00",
+          "thresholdMinutes": null,
+          "state": "recorded_only",
+          "ageMinutes": 82.054
+        }
+      },
+      "provisionalUntil": "2026-09-23",
+      "expiryTimezone": "Asia/Kolkata",
+      "provisionalFields": [
+        "marketLot",
+        "minimumBidQuantity",
+        "priceBand"
+      ],
+      "acceptedAt": null,
+      "publicationMeaning": "Per-receipt accepted publication time is not recorded; dataset publisher timing cannot supply it."
+    },
+    {
+      "id": "robokidz-eduventures-limited",
+      "state": "provisional",
+      "receiptSha256": "60f91851c8b29891f30ab5aacd1fe85fb278caef7ea8a988071c0ac442c15779",
+      "receiptValidation": "replayed",
+      "parserVersion": "bse-displayipo-active-terms-v1",
+      "clocks": {
+        "observation": {
+          "stored": null,
+          "thresholdMinutes": null,
+          "state": "missing"
+        },
+        "collection": {
+          "stored": "2026-09-19T05:33:03.837838+00:00",
+          "thresholdMinutes": null,
+          "state": "recorded_only",
+          "ageMinutes": 93.936
+        },
+        "review": {
+          "stored": "2026-09-19T05:44:56.779027+00:00",
+          "thresholdMinutes": null,
+          "state": "recorded_only",
+          "ageMinutes": 82.054
+        }
+      },
+      "provisionalUntil": "2026-09-23",
+      "expiryTimezone": "Asia/Kolkata",
+      "provisionalFields": [
+        "marketLot",
+        "minimumBidQuantity",
+        "priceBand"
+      ],
+      "acceptedAt": null,
+      "publicationMeaning": "Per-receipt accepted publication time is not recorded; dataset publisher timing cannot supply it."
+    },
+    {
+      "id": "axiomgas",
+      "state": "provisional",
+      "receiptSha256": "905ba691797e8b340848e41f6a53d79374ddaeba20bd561a617c35074bfca8af",
+      "receiptValidation": "replayed",
+      "parserVersion": "nse-labelled-active-terms-v1",
+      "clocks": {
+        "observation": {
+          "stored": null,
+          "thresholdMinutes": null,
+          "state": "missing"
+        },
+        "collection": {
+          "stored": "2026-09-19T02:30:05.462927+00:00",
+          "thresholdMinutes": null,
+          "state": "recorded_only",
+          "ageMinutes": 276.909
+        },
+        "review": {
+          "stored": "2026-09-19T02:44:41+00:00",
+          "thresholdMinutes": null,
+          "state": "recorded_only",
+          "ageMinutes": 262.317
+        }
+      },
+      "provisionalUntil": "2026-09-22",
+      "expiryTimezone": "Asia/Kolkata",
+      "provisionalFields": [
+        "issueComposition",
+        "lotSize",
+        "priceBand"
+      ],
+      "acceptedAt": null,
+      "publicationMeaning": "Per-receipt accepted publication time is not recorded; dataset publisher timing cannot supply it."
+    },
+    {
+      "id": "himalaya-nutravedics-india-limited",
+      "state": "provisional",
+      "receiptSha256": "a8b4cd56fe87135b150e0eed80928a325daedda4922f32d6aab414d1ea638dcd",
+      "receiptValidation": "replayed",
+      "parserVersion": "bse-displayipo-active-terms-v1",
+      "clocks": {
+        "observation": {
+          "stored": null,
+          "thresholdMinutes": null,
+          "state": "missing"
+        },
+        "collection": {
+          "stored": "2026-09-19T05:33:35.601947+00:00",
+          "thresholdMinutes": null,
+          "state": "recorded_only",
+          "ageMinutes": 93.407
+        },
+        "review": {
+          "stored": "2026-09-19T05:44:56.779027+00:00",
+          "thresholdMinutes": null,
+          "state": "recorded_only",
+          "ageMinutes": 82.054
+        }
+      },
+      "provisionalUntil": "2026-09-24",
+      "expiryTimezone": "Asia/Kolkata",
+      "provisionalFields": [
+        "marketLot",
+        "minimumBidQuantity",
+        "priceBand"
+      ],
+      "acceptedAt": null,
+      "publicationMeaning": "Per-receipt accepted publication time is not recorded; dataset publisher timing cannot supply it."
+    },
+    {
+      "id": "s-k-offset-limited",
+      "state": "provisional",
+      "receiptSha256": "2432185ed70b4eace843ffad16330afd24f299051ce53cecdffb430d2cc25d4d",
+      "receiptValidation": "replayed",
+      "parserVersion": "bse-displayipo-active-terms-v1",
+      "clocks": {
+        "observation": {
+          "stored": null,
+          "thresholdMinutes": null,
+          "state": "missing"
+        },
+        "collection": {
+          "stored": "2026-09-19T05:33:35.369819+00:00",
+          "thresholdMinutes": null,
+          "state": "recorded_only",
+          "ageMinutes": 93.411
+        },
+        "review": {
+          "stored": "2026-09-19T05:44:56.779027+00:00",
+          "thresholdMinutes": null,
+          "state": "recorded_only",
+          "ageMinutes": 82.054
+        }
+      },
+      "provisionalUntil": "2026-09-25",
+      "expiryTimezone": "Asia/Kolkata",
+      "provisionalFields": [
+        "marketLot",
+        "minimumBidQuantity",
+        "priceBand"
+      ],
+      "acceptedAt": null,
+      "publicationMeaning": "Per-receipt accepted publication time is not recorded; dataset publisher timing cannot supply it."
+    },
+    {
+      "id": "varmora",
+      "state": "provisional",
+      "receiptSha256": "7a7238c944ef00cc8ee68417ea493f767543be47fb93ea236c7c78f9e4d8aa51",
+      "receiptValidation": "replayed",
+      "parserVersion": "nse-labelled-active-terms-v1",
+      "clocks": {
+        "observation": {
+          "stored": null,
+          "thresholdMinutes": null,
+          "state": "missing"
+        },
+        "collection": {
+          "stored": "2026-09-19T02:30:05.723182+00:00",
+          "thresholdMinutes": null,
+          "state": "recorded_only",
+          "ageMinutes": 276.905
+        },
+        "review": {
+          "stored": "2026-09-19T02:44:41+00:00",
+          "thresholdMinutes": null,
+          "state": "recorded_only",
+          "ageMinutes": 262.317
+        }
+      },
+      "provisionalUntil": "2026-09-24",
+      "expiryTimezone": "Asia/Kolkata",
+      "provisionalFields": [
+        "issueComposition",
+        "lotSize",
+        "minimumBidQuantity",
+        "priceBand"
+      ],
+      "acceptedAt": null,
+      "publicationMeaning": "Per-receipt accepted publication time is not recorded; dataset publisher timing cannot supply it."
+    },
+    {
+      "id": "poojalogis",
+      "state": "provisional",
+      "receiptSha256": "b0d72957721554acfb636cf402683c0db5f7c1933e4b510c77c50d1a6e3fe70d",
+      "receiptValidation": "replayed",
+      "parserVersion": "nse-labelled-active-terms-v1",
+      "clocks": {
+        "observation": {
+          "stored": null,
+          "thresholdMinutes": null,
+          "state": "missing"
+        },
+        "collection": {
+          "stored": "2026-09-19T02:30:26.012131+00:00",
+          "thresholdMinutes": null,
+          "state": "recorded_only",
+          "ageMinutes": 276.566
+        },
+        "review": {
+          "stored": "2026-09-19T02:44:41+00:00",
+          "thresholdMinutes": null,
+          "state": "recorded_only",
+          "ageMinutes": 262.317
+        }
+      },
+      "provisionalUntil": "2026-09-25",
+      "expiryTimezone": "Asia/Kolkata",
+      "provisionalFields": [
+        "issueComposition",
+        "lotSize",
+        "priceBand"
+      ],
+      "acceptedAt": null,
+      "publicationMeaning": "Per-receipt accepted publication time is not recorded; dataset publisher timing cannot supply it."
+    }
+  ],
+  "reproduce": "At inputCommit, run: uv run --frozen python tools/report_update_health.py --as-of 2026-09-19T07:07:00Z. This file retains the named report fields; it is not the full report."
+}
