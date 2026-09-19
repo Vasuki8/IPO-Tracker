@@ -15,6 +15,37 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
+## Operational reliability checkpoint — explicit operator clocks, 19 September 2026
+
+Recovered current `main` at **`338af7fdfbf724f40cacabaf0ddd8d422580000f`** and reconciled the independently scheduled core publication **`c4e5e4bb0670ea2ae58305ebd1f8cf6ee26a2453`** before review. The existing read-only health workstream was reused rather than replaced: `tools/report_update_health.py`, source-health metadata, pipeline stage outcomes, accepted publication metadata, proposal reconciliation, phase status and the source-review queue remain the state authorities. No collector, writer, alert service, schedule, paid service or competing state store was added.
+
+[PR #178](https://github.com/Vasuki8/IPO-Tracker/pull/178) makes schema-v4 operator output directly expose source name/authority, explicit source observation, source-observation freshness, last collection attempt, latest retained successful parent-stage outcome, accepted dataset-publication evidence, publication lag, independent stale/overdue signals, retained failure/deferred reason, unresolved-proposal age and next action. Missing source observation stays `source_time_unknown`; a recent scrape/check never refreshes it. Proposal creation age remains unknown, with originating publisher execution bounds kept separately when supplied. The public source-health contract and Python share the existing recorded-outcome/check-clock fixtures; no public UI or payload changed.
+
+The populated PR artifact `proposal-reconciliation-35461049702-1` (artifact **10589644380**) assessed the reconciled accepted state at **2026-09-19T18:24:38Z** and reproduced byte-for-byte. Current recorded operational counts are:
+
+| Signal | Recorded state |
+| --- | ---: |
+| Canonical records | 1,436 |
+| Source outcomes | 27 successful / 5 failed / 1 partial failure |
+| Explicit source-observation states | 33 unknown / 0 measured stale |
+| Overdue source checks | 1 |
+| Stage outcomes | 9 successful / 3 source-blocked / 1 failed / 1 unknown |
+| Overdue stages | 0 |
+| Sources / stages needing investigation | 7 / 4 |
+| Active subscription snapshots | 5 |
+| Active observations older than tolerance | 2 |
+| Unresolved proposals | 441; exact creation age unknown for all 441 |
+| Source-review queue | 1,419 records / 1,557 items |
+| P4 blocking source reviews | 1,553 |
+
+The latest accepted core publisher metadata is run **35459976197** from collector commit `338af7f`; the accepted snapshot generation clock is **2026-09-19T18:13:19.391359Z**. Retained live workflow evidence records collector completion at **18:12:59Z** and publisher completion at **18:13:37Z**, a **0.633-minute** collection-completion-to-publisher-completion interval. Exact accepted-commit/per-source publication time remains unknown by contract. Pages run **35460516708** and immutable public-release verifier **35460542876** passed for published commit `c4e5e4bb`.
+
+Validation on PR head `e0991a4db3502507eecd332a775b18e9341ae64a`: **1,404 uv/Python tests passed** in run **35461049702**, including the requested missing-observation, unchanged-observation/new-collection, failed/deferred/unavailable collection, delayed publication, stale secondary/current official, active provisional, unresolved proposal and timezone cases. The same run passed JavaScript syntax checks, Python/JavaScript operational contract fixtures, health-report reproduction, strict data validation, public payload generation and compact-support checks. No canonical IPO values, P4 source repairs, P5/performance state or public behavior changed.
+
+Remaining operational limitations are evidence limitations, not silently normalized successes: all 33 top-level source-health entries still lack an explicit source observation clock; BSE retains a partial-failure outcome, IPO-subscription retains a failed outcome, and SEBI-priority-registers is the one overdue recorded source check. The routine validation artifact intentionally does not poll GitHub for live workflow evidence, so its per-source publication lag remains unknown unless retained run/jobs snapshots are supplied.
+
+**Exact next operational task after this release:** add a read-only, retained accepted-publisher run/jobs snapshot to the existing operational-health artifact path so routine reports populate publication lag without live polling, mutation or alerts; then separately audit which official source responses actually provide trustworthy observation timestamps and record only those source-provided clocks. Do not substitute collection time where the source exposes no observation time.
+
 ## Official IPO-universe coverage checkpoint — BSE April–June 2026 reviewed, 19 September 2026
 
 Recovered current `main` at **`2edf544c78109f8cadce0722b4dfa0b164d6a5ea`** before reconciliation. Existing official-universe releases #146/#162 were reused rather than recrawled. Open [PR #175](https://github.com/Vasuki8/IPO-Tracker/pull/175) now continues the bounded BSE historical review through June, May and April 2026 and has been reconciled onto that current main without rolling back the independently published filings update.
