@@ -15,7 +15,95 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
-## Current checkpoint — reviewed active offer terms released, 19 September 2026
+## Current checkpoint — official-universe continuation released, 19 September 2026
+
+Current verified data-release main: **`46e4bbaffa8df49480f352a2b9346c9661cd2864`**. Assessment baseline was
+`be97b7966e647601141116447421af5c2d72634e`; implementation/data commit
+`cf21055c02319bc49a2c87df7f4714b1866e9e82`, [PR #162](https://github.com/Vasuki8/IPO-Tracker/pull/162).
+Documentation closeout branch: `docs-universe-continuation-closeout`; its commit
+is identified by Git history containing this checkpoint. The [audit report](audits/official-universe/2026-09-19/REPORT.md),
+[release receipt](audits/official-universe/2026-09-19/release.json),
+[source/period/board/stage denominators](audits/official-universe/2026-09-19/audit.json)
+and [live delivery receipt](audits/official-universe/2026-09-19/live-delivery.json)
+are durable. Previous universe #145–148, operations/commercial releases and
+active-term #158–161 work was recognized and preserved.
+
+**Coverage remains incomplete.** These denominators are distinct observed
+equity-public-issue candidates, not unique IPO companies or an all-India total:
+
+| Source | Matched / observed candidates | Rate | Missing-name rows | Identity review / unverified |
+|---|---:|---:|---:|---:|
+| NSE | 173 / 174 | 99.43% | 1 | 0 / 0 |
+| BSE | 588 / 1,848 | 31.82% | 1,250 | 10 / 0 |
+| SEBI | 2,618 / 5,858 | 44.69% | 3,090 | 47 / 103 |
+
+There are **2,148 unmatched normalized candidate names**, **227 tracker-only
+records** and five retained approved alias bindings. Missing names still require
+identity/initial-offering review; tracker-only does not mean invalid. Distinct
+filing stages, addenda, repeated offers, board disagreements and source failures
+remain visible. Draft filing alone never establishes an upcoming IPO.
+
+**Completed historical work:** reused the original BSE archive (1,282 book-built,
+558 fixed-price rows, plus eight current observations) and verified SEBI RHP/final/
+Other Documents traversals without refetching them. Recovered the draft register
+through **22 annual windows (2004–2025) + nine monthly windows (2026 through
+19 September)**: **2,210 rows / 2,210 unique primary URLs**, including **45 newly
+captured filing URLs**. The unfiltered 2,208/2,210 inconsistency and incomplete
+2026 annual window remain retained, alongside the successful bounded windows.
+The 2024 timeout recovered on one retry. Snapshot continuation binds the original
+manifest hash and preserves original response bytes and collection dates.
+
+**Admissions:** all 25 July/August BSE SME candidates were source-reviewed against
+archive names/boards and exact detail-page Equity security, symbol and issue
+period. They are admitted as **closed; listing unknown**, with every numerical
+term/financial/subscription field null. Detail collection time uses the actual
+detail receipt; observation remains unknown. Inventory **1,379 → 1,404**, stable
+routes **1,404**. Existing 1,379 records/profiles, 1,557 reviews and 441 byte-identical
+proposals remain unchanged. BSE matches rise 563 → 588. One additional missing-name
+row becomes an explicit review, not an accepted match: June 23 Dhanwel Hybird Seeds
+and August 19–21 Dhanwel Hybrid Seeds share DHANWEL but differ in offer dates.
+No alias, cancellation, second issuer or offer merge was inferred.
+
+**Tests:** Linux CI **35420466941** passed **1,339 Python tests** and strict validation,
+with zero errors; 30 existing identity tests and seven new continuation/real-cohort
+tests cover normalization, aliases, collisions, stages, boards, dates and source
+hashes. All 38 Node tests passed. Five machine audit outputs reproduce byte-for-byte.
+The 25 admitted profiles and directory searches passed **75 viewport checks** at
+1440/375/320px, with no page errors, overflow or master-data fetch. Local full Python
+had only the two known Windows filename/symlink limitations; Linux passes them.
+
+**Published/live:** Pages **35420562278** and deployed verification **35420613423** succeeded.
+The bounded delivery script checked every admitted profile's identity, null terms,
+unknown observation clock and source link against exact deployed bytes, plus the
+existing public/review artifacts. Live browser checks confirm the new issuer pages.
+No remaining release acceptance criteria for this bounded continuation.
+
+**Remaining gaps:** new NSE historical requests for 2025 Q2, 2024 Q4, 2020 Q1 and
+2015 Q1 timed out; prior annual failures remain. NSE's Adani partly-paid/call-money
+event classification remains unresolved. BSE has no independent archive total;
+current fixed-price/main-host gaps remain. Pre-2004 draft, separate SME and
+exhaustive cancellation coverage are not claimed. No unsupported exclusions,
+financial backfill or silent resolution of prior source holds occurred.
+
+**P4 remains blocked:** **408 actionable + 67 higher priority** (previously 387 +
+63), **1,553 blocking / 1,557 total reviews**, four P5-only, zero errors/unmapped.
+The increase exposes newly admitted incomplete records; it is not a blocker
+reduction. P5 remains waiting (914). All existing numerical holds, including
+SpectraA and Vinod, remain. Old PRs #94/#98/#99/#104/#105 and the unrelated
+`fix-nse-detail-denominators` worktree are untouched. No active development PR from
+this milestone remains after documentation closeout. Customer/pricing/revenue,
+redistribution rights, hosting suitability and professional/privacy review remain
+owner decisions; no spending, tracking, contracts or material permissions changed.
+
+**Exact next universe task:** review the **18 BSE June 2026 unmatched candidates**
+in [next-cohort.json](audits/official-universe/2026-09-19/next-cohort.json), preserving
+the separate Dhanwel June/August lifecycle conflict. Retry only the recorded NSE
+quarters after endpoint access changes; reuse the completed SEBI windows.
+The separate numerical P4 task remains the five BSE current/upcoming detail-layout
+family recorded in ROADMAP; it was not replaced by a financial backfill.
+
+
+## Previous checkpoint — reviewed active offer terms released, 19 September 2026
 
 Current verified release main: **`689eb4124c253d1fe59f20f9834e8fddaee2bd51`**.
 Accepted three-issuer data: **`f0419d59cabc39a047c2fb2d69b3fb216c45c693`**;
