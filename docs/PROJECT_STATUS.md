@@ -17,21 +17,25 @@ remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.
 
 ## Current checkpoint — commercial evidence review, 19 September 2026
 
-Current main at assessment: **`11a62c47f64506fb3fbccdec8ba7f88e43d8c468`**.
+Current verified research-release main: **`c39c823c715599d9a169ed2b7a773a4c3cd98482`**.
+Assessment base was `11a62c47f64506fb3fbccdec8ba7f88e43d8c468`; the final
+documentation closeout commit is identified by Git history containing this checkpoint.
 Fetched current main and recognized completed PRs #149–151 before research.
 This sequential milestone updates [COMMERCIAL_READINESS.md](COMMERCIAL_READINESS.md)
 and retains a [dated research receipt](audits/commercial/2026-09-19/REPORT.md),
-reproducible inventory and verbatim prior register. Branch:
-`docs-commercial-rights-20260919`; research commit `e766387e21966912b751887d73957e2082bfd22f`.
-[PR #152](https://github.com/Vasuki8/IPO-Tracker/pull/152) contains this research;
-merge/deployment closeout is recorded after required validation.
+reproducible inventory and verbatim prior register.
+[PR #152](https://github.com/Vasuki8/IPO-Tracker/pull/152) merged research commits
+`e766387e` and `4eb0fb50` as `c39c823c`. Research branch
+`docs-commercial-rights-20260919` is merged. Documentation closeout branch:
+`docs-commercial-release-20260919`.
 
 Local checks passed: exact offline inventory reproduction, byte-identical prior
 register, local document links, protected-data/public-output diff, and strict
 validation (zero errors, 1,556 retained reviews). All **34 Node public-quality and
 source-health tests** passed; initial sandbox process-spawn denial was resolved
-by running the same tests with approved execution permissions. Full Python
-regression evidence will come from the existing PR validation workflow.
+by running the same tests with approved execution permissions. All **1,293 Python tests** passed on Linux in
+[validation 35410043930](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35410043930),
+along with public generation, retained-proposal checks and strict validation.
 
 New primary restrictions recorded for IPO Premium, Groww, IPO Dhamaka, Orkla,
 Sunshine and Integrated Registry. Six configured issuer/registrar hosts plus four
@@ -64,9 +68,12 @@ P4 unchanged: **387 actionable + 63 higher-priority**, **1,552 blocking reviews*
 P5 remains waiting with 914 records. No numerical correction or blocker reduction.
 Older open PRs #105/#104 (draft), #99, #98 and #94 remain untouched.
 
-Deployment baseline: main `11a62c47` [Pages 35408488832](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35408488832)
-and [live verification 35408521200](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35408521200)
-passed. This milestone changes research documentation only; no public behavior change.
+Research release [Pages 35410171795](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35410171795)
+and [live verification 35410194991](https://github.com/Vasuki8/IPO-Tracker/actions/runs/35410194991)
+passed for `c39c823c`. At **2026-09-19T00:42Z**, direct live SHA-256 comparisons
+matched COMMERCIAL_READINESS, the research report/inventory, index.html and
+source-health.js to the immutable merge. See [release.json](audits/commercial/2026-09-19/release.json).
+Research documentation only; no public product behavior or protected-data changes.
 
 **Exact next commercial task:** map the nine secondary subscription records plus
 Orkla/Sunshine/Integrated Registry evidence to published fields/excerpts, raw
