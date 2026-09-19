@@ -40,7 +40,7 @@ jobs:
           cd "$RUNNER_TEMP/ipo-playwright"
           npm install --no-save --package-lock=false playwright@1.62.1
           npx --no-install playwright install --with-deps chromium
-      - name: Exercise all 32 newly admitted public profiles and directory searches
+      - name: Exercise all 30 newly admitted public profiles and directory searches
         run: |
           export NODE_PATH="$RUNNER_TEMP/ipo-playwright/node_modules"
           python3 -m http.server 8006 --bind 127.0.0.1 > "$SMOKE_ARTIFACT_DIR/server.log" 2>&1 &
