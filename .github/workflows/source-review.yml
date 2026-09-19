@@ -38,13 +38,13 @@ jobs:
             mode="$(uv run --frozen python - <<'PYCODE'
           import os, re, subprocess, sys
           sys.path.insert(0, 'scripts')
-          from publication_mode import push_mode
+          from publication_mode import source_preview_mode
           base = os.environ['BASE_SHA']
           if not re.fullmatch(r'[a-f0-9]{40}', base):
               raise SystemExit('Missing immutable PR baseline')
           diff = subprocess.run(['git', 'diff', '--name-only', '--no-renames', '-z', base, 'HEAD', '--'],
                                 check=True, capture_output=True, text=True).stdout
-          print(push_mode(diff.rstrip('\0').split('\0') if diff else []))
+          print(source_preview_mode(diff.rstrip('\0').split('\0') if diff else []))
           PYCODE
             )"
           fi
@@ -109,13 +109,13 @@ jobs:
             mode="$(uv run --frozen python - <<'PYCODE'
           import os, re, subprocess, sys
           sys.path.insert(0, 'scripts')
-          from publication_mode import push_mode
+          from publication_mode import source_preview_mode
           base = os.environ['BASE_SHA']
           if not re.fullmatch(r'[a-f0-9]{40}', base):
               raise SystemExit('Missing immutable PR baseline')
           diff = subprocess.run(['git', 'diff', '--name-only', '--no-renames', '-z', base, 'HEAD', '--'],
                                 check=True, capture_output=True, text=True).stdout
-          print(push_mode(diff.rstrip('\0').split('\0') if diff else []))
+          print(source_preview_mode(diff.rstrip('\0').split('\0') if diff else []))
           PYCODE
             )"
           fi

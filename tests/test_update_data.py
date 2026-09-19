@@ -166,6 +166,19 @@ class NormalizerTests(unittest.TestCase):
         }
         self.assertIsNone(mod.clean_existing_record(rec))
 
+    def test_reviewed_identity_does_not_preserve_an_unrelated_bse_comparison(self):
+        identity = 'https://beta.bseindia.com/reviewed-identity'
+        comparison = 'https://beta.bseindia.com/current-page'
+        rec = {'company': 'Reviewed Limited',
+               'universeAdmission': {'identitySource': {'url': identity}},
+               'sources': [{'name': 'BSE official issue identity', 'url': identity},
+                           {'name': 'BSE public issue', 'url': comparison}],
+               'observations': {'BSE': {'sourceUrl': comparison, 'openDate': '2026-09-01'}}}
+        out = mod.clean_existing_record(rec)
+        self.assertEqual(out['sources'], [rec['sources'][0]])
+        self.assertNotIn('BSE', out['observations'])
+        self.assertEqual(out['universeAdmission'], rec['universeAdmission'])
+
     def test_bse_subscription_source_survives_core_cleanup(self):
         rec = {
             "company": "Example Limited",

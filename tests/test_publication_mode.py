@@ -8,7 +8,7 @@ import unittest
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
-from publication_mode import push_mode
+from publication_mode import push_mode, source_preview_mode
 
 # Retain the actual PR #111 diff without requiring its history in shallow CI.
 CONFLICT_EXPLANATION_RELEASE = [
@@ -25,6 +25,10 @@ class PublicationModeTests(unittest.TestCase):
                  'tests/test_core_collection_clocks.py', 'docs/OPERATIONS.md']
         self.assertEqual(push_mode(paths), 'core')
         self.assertEqual(push_mode(paths + ['scripts/publish_transaction.py']), 'core')
+        self.assertEqual(push_mode(paths + ['.github/workflows/source-review.yml']), 'core')
+        self.assertEqual(source_preview_mode(paths), 'review')
+        self.assertEqual(source_preview_mode(paths + ['scripts/final_prospectus_parser.py']), 'repair')
+        self.assertEqual(source_preview_mode([]), 'repair')
         self.assertEqual(push_mode(['scripts/publish_transaction.py']), 'repair')
         for other in ['scripts/run_pipeline.py', 'scripts/final_prospectus_policy.py',
                       'scripts/final_prospectus_parser.py', 'uv.lock', 'data/ipos.json',

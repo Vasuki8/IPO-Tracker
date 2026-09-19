@@ -39,6 +39,16 @@ reviews; zero semantic errors/unmapped reviews**. Inventory 1,379; 441 pending
 proposals; P5 waits for P4. Strict validation passed; 36 Node public-quality/health
 tests passed. Windows runs require UTF-8; Linux CI also covers filesystem-only cases.
 
+PR #154 merged as `9878e0f6` after **1,309 Linux Python tests**, browser workflow
+35412354120 and validation 35412354118 passed. Its first core collection run
+35412526647 was deliberately cancelled before publication: release inspection
+found the older core cleanup would remove seven reviewed BSE-only admissions.
+Follow-up branch `fix-core-preserve-reviewed-identity` retains source/observation
+URLs bound to `universeAdmission.identitySource`; legacy validation-only cleanup
+is unchanged. Seven actual admitted records are frozen fixtures, tested through
+the complete core wrapper with an independent successful NSE response and BSE
+failure. Re-run the existing workflow after this preservation fix passes CI.
+
 Old PRs #94/#98/#99/#104/#105 remain separate and unmerged; do not apply their broad
 or superseded stacks. Commercial audience, pricing/revenue, source redistribution,
 hosting suitability, legal operator, privacy and professional-review decisions

@@ -46,7 +46,10 @@ previous real outcome under `lastAttempt`; repeating a skip does not nest histor
 When no rows arrive, the existing collector retains new diagnostics alongside the
 unchanged accepted rows and metadata. It returns failure if attempted collection
 failed, and success for valid empty checks. Attachment failures discard that
-source's incomplete changes. Stage time-budget deferrals do not run the collector
+source's incomplete changes. Reviewed universe identity source/observation URLs
+bound to `universeAdmission.identitySource` survive core cleanup even when BSE's
+current-page request fails or the issuer no longer appears there. Stage time-budget
+deferrals do not run the collector
 and cannot mint source checks. Source clocks still cannot establish field accuracy.
 Each source-health or stage entry merges as a whole: concurrent attempts cannot combine
 one outcome with another attempt's clock or receipts. The existing metadata
@@ -54,6 +57,10 @@ conflict policy retains the accepted entry; other sources merge independently.
 Narrow core collector/transport pushes select the existing `core` workflow, including
 its conditional bounded filing maintenance; mixed parser/policy/dependency changes
 retain the ordinary repair route. Inspect the resulting canonical/proposal diff.
+The source-preview workflow maps a core-only PR to its existing retained-data
+validation path. Core requests run at release; a metadata/identity change must not
+fall through the old non-review branch into unrelated financial or market-history
+collection. Mixed parser changes keep their full source preview.
 
 Collectors have read-only repository permissions. They retain a baseline, proposed dataset and tested source commit in a 14-day Actions artifact. Publication runs only from `main`, serializes in one queue, tests current main, and checks that the collector's scripts, locked dependencies and reviewed-correction registry are still current. A supplied collector manifest must contain a valid ancestor commit; missing, empty or malformed manifests fail before any data writes. See `PUBLICATION_SOURCE_GUARD.md` for recovery. A three-way merge preserves unrelated updates. Document values and their evidence, and subscription values and their source/timestamps, merge as atomic groups.
 
