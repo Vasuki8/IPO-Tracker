@@ -1,0 +1,64 @@
+{
+  "status": "passed",
+  "baseUrl": "http://127.0.0.1:8007/",
+  "results": [
+    {
+      "id": "axiomgas",
+      "width": 1440,
+      "directoryProfileQuickView": "passed"
+    },
+    {
+      "id": "axiomgas",
+      "width": 375,
+      "directoryProfileQuickView": "passed"
+    },
+    {
+      "id": "axiomgas",
+      "width": 320,
+      "directoryProfileQuickView": "passed"
+    },
+    {
+      "id": "varmora",
+      "width": 1440,
+      "directoryProfileQuickView": "passed"
+    },
+    {
+      "id": "varmora",
+      "width": 375,
+      "directoryProfileQuickView": "passed"
+    },
+    {
+      "id": "varmora",
+      "width": 320,
+      "directoryProfileQuickView": "passed"
+    }
+  ],
+  "checks": [
+    "conditional source amounts",
+    "distinct document source",
+    "original scalar null",
+    "CSV",
+    "comparison",
+    "IST expiry",
+    "Pooja unresolved"
+  ],
+  "errors": [],
+  "canonicalRequests": [],
+  "sourceCommit": "6bdcb9b72fbd0249a19ac68d9ddf865edb96c29a",
+  "workflowRun": 35448476884,
+  "job": 105911421109,
+  "artifact": 10586247466,
+  "artifactZipSha256": "dfb27d58bfaede79adef2d93290634c5e1983911c4666f2726f77b99070679d4",
+  "visuallyInspected": [
+    "axiomgas-320.png",
+    "varmora-1440.png"
+  ],
+  "screenshotSha256": {
+    "axiomgas-1440.png": "13557fa8c8aa0c1c226dc990a13e207c65354bf7dced6fa921a88bf04f1b1753",
+    "axiomgas-320.png": "a0cd3a6bb95159f33f5bbf76158900ac6aedd12de9f3a3e3999739c98ca27c5f",
+    "axiomgas-375.png": "c3db7053f49710ed110fc2952a401812c0c45f47b704853416c52d9f5dc4b8c8",
+    "varmora-1440.png": "3c1d3eede325d0d0334d76e7b8b35bdf2d0fad0b81e0d161fd8c2ac53f48f338",
+    "varmora-320.png": "820beb881f81a99ebb549b6411f1e192a2ee90b98ec222eff7c521f62b4b018c",
+    "varmora-375.png": "5ae6132ce838f8a76086a11f7dcf3a5127bf54d47384c2fb7c4049457399d50c"
+  }
+}

@@ -49,7 +49,7 @@ and immutable release receipts govern the verified checkpoint.
    in isolation while deployed checks remain read-only. No numerical replacement
    was accepted. Historical proposals are not backfilled or automatically resolved.
 3. **Complete P4 with source evidence — blocked.** Current accepted inventory is
-   1,406; P4 has 408 actionable plus 69 higher-priority records and 1,553 blocking
+   1,406; P4 has 408 actionable plus 67 higher-priority records and 1,553 blocking
    source reviews, zero unmapped reviews. All 441 retained proposals remain. Teamtech
    stays held and broad source draft #105 remains unaccepted. Do not weaken the gate,
    remove reviews, invent exclusions or use estimates to improve completion counts.
@@ -126,11 +126,14 @@ was removed. Vivekanand's empty detail table remains unresolved. Bid lots, whole
 offer totals, composition, canonical symbols and application amounts stay unknown.
 See the [release evidence](releases/2026-09-19-bse-active-offer-terms.json).
 
-**Next numerical P4 increment:** review the separate qualified NSE floor/cap
-total-amount family for Axiom Gas, Varmora and Pooja Logistics. Do not turn a
-conditional amount, tranche or share count into a whole-offer amount. Preserve
-the remaining BSE gaps until independently supported. SpectraA remains held.
-The promoter/subtotal/page-locator family needs a bounded
+**The qualified whole-offer amount family is complete** in #171/#172 and
+accepted publication `40a24ca1`: Axiom and Varmora now have separate, explicitly
+conditional floor/cap amounts; canonical scalar totals stay unknown. Pooja's
+recovered current documents retain placeholders, so its amount gap stays open.
+Cohort amount gaps fell 3 to 1 and higher-priority P4 records 69 to 67; all 1,557
+source reviews and 441 proposals remain. See the [verified recovery receipt](releases/2026-09-19-qualified-offer-recovery.json).
+
+**Next P4 source family:** The promoter/subtotal/page-locator family needs a bounded
 multi-document diagnosis, not an automatic 93.10 replacement. PNGS Reva's adjusted
 EBITDA/partnership EPS remains unsupported and conditional on source inspection.
 No P4 blocker reduction follows from the clock release; the Vinod hold adds one
