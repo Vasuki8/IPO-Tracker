@@ -1,6 +1,7 @@
 'use strict';
 // Inspect real generated profiles and quick views. No response interception.
 const assert = require('node:assert/strict');
+const {isDeepStrictEqual} = require('node:util');
 const fs = require('node:fs/promises');
 const path = require('node:path');
 const {chromium} = require('playwright');
@@ -59,7 +60,7 @@ async function main() {
     const vinodFixture=JSON.parse(await fs.readFile(path.join(root,'tests/vinod_shareholding_retained.json'),'utf8')).ipos[0];
     const vinod=canonical.find(r=>r.id===vinodFixture.id);
     assert.ok(vinod, 'Reviewed Vinod identity remains in the inventory');
-    const vinodActive=JSON.stringify(vinod.shareholding)===JSON.stringify(vinodFixture.shareholding) &&
+    const vinodActive=isDeepStrictEqual(vinod.shareholding,vinodFixture.shareholding) &&
       vinod.staticFieldProvenance?.shareholding?.sha256===vinodFixture.staticFieldProvenance.shareholding.sha256 &&
       ['company','symbol','openDate'].every(k=>vinod[k]===vinodFixture[k]);
     if(vinodActive) {
