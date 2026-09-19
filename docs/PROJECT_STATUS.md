@@ -22,7 +22,9 @@ Fetched current main and recognized completed PRs #149–151 before research.
 This sequential milestone updates [COMMERCIAL_READINESS.md](COMMERCIAL_READINESS.md)
 and retains a [dated research receipt](audits/commercial/2026-09-19/REPORT.md),
 reproducible inventory and verbatim prior register. Branch:
-`docs-commercial-rights-20260919`; PR/validation closeout follows below.
+`docs-commercial-rights-20260919`; research commit `e766387e21966912b751887d73957e2082bfd22f`.
+[PR #152](https://github.com/Vasuki8/IPO-Tracker/pull/152) contains this research;
+merge/deployment closeout is recorded after required validation.
 
 Local checks passed: exact offline inventory reproduction, byte-identical prior
 register, local document links, protected-data/public-output diff, and strict

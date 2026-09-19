@@ -34,7 +34,7 @@ Missing top-level source URLs remain null in the inventory; they are not invente
 
 ## Evidence carried and newly retrieved
 
-The [previous register](previous-register.md) is an exact byte copy of the base commercial document. Its 17 September NSE, SEBI, GitHub Pages and direct-library evidence was still recent and was not redundantly refetched. All new checks in the current register are dated 19 September UTC; dates displayed by publishers are recorded separately. No term page was accepted, no gated residency confirmation selected, and no exchange/vendor was contacted.
+The [previous register](previous-register.md) is an exact byte copy of the base commercial document. Its 17 September NSE, SEBI, GitHub Pages and direct-library evidence was still recent and was not redundantly refetched. All new checks in the current register are dated 19 September UTC; dates displayed by publishers are recorded separately. No acceptance button, account signup or gated residency confirmation was used, and no exchange/vendor was contacted.
 
 New primary terms reviewed: IPO Premium terms/disclaimer dated 3 September; main-platform Groww terms dated 19 August; IPO Dhamaka terms dated 5 September; Orkla prospectus disclaimer; Sunshine website terms with raw displayed date `8-12-2025`; Integrated Registry disclaimer. Also inspected Om Galaxy, Shakti, Vama, Century, Raksan and Injecto issuer pages and Speedex merchandise terms. For pages without a located reuse grant, the outcome is **unverified**, not permission. All exact official URLs and relevant sections are in the current register.
 
