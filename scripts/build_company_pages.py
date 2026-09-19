@@ -212,7 +212,7 @@ def public_profile_record(record: dict[str, Any]) -> dict[str, Any]:
         ),
         "issueComposition": _pick(
             record.get("issueComposition"),
-            ("freshShares", "ofsShares", "freshValueCr", "ofsValueCr", "valuationPriceUsed"),
+            ("freshShares", "ofsShares", "freshValueCr", "ofsValueCr", "valuationPriceUsed", "qualifiers"),
         ),
         "leadManagers": record.get("leadManagers"),
         "registrar": record.get("registrar"),

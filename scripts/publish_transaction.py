@@ -33,7 +33,7 @@ FIELD_GROUPS = {
 }
 # Summary observations retain their own numbers, raw inputs and clocks even when
 # concurrent core runs disagree. The unaccepted whole observation stays pending.
-ATOMIC_FIELDS = {'financials', 'documentFieldProvenance', 'offerDocumentExtraction', 'performance', 'listing', 'subscriptionSummary', *FIELD_GROUPS}
+ATOMIC_FIELDS = {'activeOfferTerms', 'financials', 'documentFieldProvenance', 'offerDocumentExtraction', 'performance', 'listing', 'subscriptionSummary', *FIELD_GROUPS}
 
 
 def clone(value):

@@ -60,7 +60,8 @@
     const baseUrl = safeUrl(source?.sourceUrl);
     const url = baseUrl && Number.isInteger(d.page) && d.page > 0 ? baseUrl.split('#')[0] + '#page=' + d.page : baseUrl;
     const label = labels[d.state] || labels.under_review;
-    const title = reasons[d.reason] || (d.state === 'provisional' ? `Active-issue disclosure; valid through ${d.until}. Not final IPO terms.` : label);
+    const clockNote = source?.collectedAt ? ` Source time ${source.observedAt ? formatTime(source.observedAt) : 'unavailable'}; collected ${formatTime(source.collectedAt)}.` : '';
+    const title = reasons[d.reason] || (d.state === 'provisional' ? `Active-issue disclosure; valid through ${d.until}. Not final IPO terms.${clockNote}` : label);
     return `<small class="quality-note quality-${esc(d.state)}" data-quality-field="${esc(field)}" title="${esc(title)}">${esc(label)}${url ? ` <a href="${esc(url)}" target="_blank" rel="noopener noreferrer" aria-label="Source for ${esc(fieldNames[field] || field)}">Source ↗</a>` : ''}</small>`;
   }
   function overview(ipo) {

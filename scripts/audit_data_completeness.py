@@ -187,6 +187,14 @@ def expected_exchange_rules(record: dict[str, Any], today: date) -> list[FieldRu
     opened = parse_iso_date(record.get("openDate"))
     if opened and opened < today - timedelta(days=RECENT_EXCHANGE_DAYS) and not has_offer_document(record):
         return [rule for rule in CORE_EXCHANGE_FIELDS if rule[0] != "issueComposition"]
+    # Only independently reviewed, still-active source receipts fill these gaps.
+    # Public hold/review decisions remain authoritative for receipt eligibility.
+    if record.get('activeOfferTerms'):
+        from public_quality import project_record
+        projected = project_record(record, today=today)
+        return [(name, lambda row, name=name, predicate=predicate:
+                 predicate(row) or (projected['publicQuality']['fields'].get(name, {}).get('state') == 'provisional'
+                                    and predicate(projected))) for name, predicate in CORE_EXCHANGE_FIELDS]
     return list(CORE_EXCHANGE_FIELDS)
 
 
@@ -370,7 +378,9 @@ def main() -> int:
             "provenance": dynamic_coverage(records, provenance_builder),
         },
         "gapExamples": {
-            "recentExchange2Y": group_gap_examples(recent_exchange, CORE_EXCHANGE_FIELDS),
+            "recentExchange2Y": {name: examples_for_gap(recent_exchange,
+                lambda row, name=name: next((predicate(row) for field, predicate in exchange_builder(row)
+                                            if field == name), True)) for name, _ in CORE_EXCHANGE_FIELDS},
             "offerDocumentEligible": group_gap_examples(offer_doc_records, OFFER_DOC_FIELDS),
             "openSubscription": group_gap_examples(open_records, LIVE_SUBSCRIPTION_FIELDS),
             "maturedLifecycle": group_gap_examples(matured_closed, MATURED_LIFECYCLE_FIELDS),
@@ -379,6 +389,7 @@ def main() -> int:
             "Coverage uses lifecycle- and availability-specific denominators; pre-exchange DRHP records are not penalized for undisclosed exchange terms.",
             "Fresh/OFS composition is actionable for recent IPOs and records with an official offer document, but not for older exchange-only records whose archive pages do not expose the split.",
             "recentExchange2Y isolates current collector quality from sparse older historical records.",
+            "Reviewed active offer receipts satisfy only their eligible provisional fields; expiry and source-review holds restore the gaps. They never verify completed static terms.",
             "offerDocumentEligible only expects structured research fields when an RHP/Prospectus-like official document is attached.",
             "openSubscription only expects category-wise subscription data while bidding is currently open.",
             "maturedLifecycle treats listing date as the actionable official lifecycle field. Allotment date remains reported as an optional observation until a reliable official historical collector exists.",

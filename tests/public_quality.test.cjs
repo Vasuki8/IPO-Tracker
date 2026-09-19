@@ -19,6 +19,23 @@ test('provisional expiry uses IST and is re-evaluated for cached records', () =>
   raw.publicQuality.fields.priceBand.until='tomorrow';
   assert.equal(Q.sanitize(raw).priceBand,null);
 });
+
+test('active offer composition qualifiers expire at the same IST boundary as bidding terms', () => {
+  const raw={priceBand:{min:51,max:54},lotSize:2000,issueComposition:{freshShares:9398000,qualifiers:{freshShares:'up_to'}},
+    publicQuality:contract(Object.fromEntries(['priceBand','lotSize','issueComposition'].map(field=>[field,{state:'provisional',until:'2026-09-22'}])))};
+  const before=Q.sanitize(raw,new Date('2026-09-22T18:29:59Z'));
+  assert.deepEqual(before.issueComposition,raw.issueComposition);
+  const after=Q.sanitize(raw,new Date('2026-09-22T18:30:00Z'));
+  for(const field of ['priceBand','lotSize','issueComposition']) assert.equal(after[field],null);
+});
+
+test('active offer source metadata keeps absent observation unknown despite a collection clock', () => {
+  const raw={publicQuality:{version:1,fields:{lotSize:{state:'provisional',until:'2999-01-01',source:0}},sources:[{
+    sourceUrl:'https://www.nseindia.com/api/ipo-detail?symbol=EXAMPLE&series=SME',collectedAt:'2026-09-19T02:30:05Z'}]}};
+  assert.match(Q.note(raw,'lotSize'),/Source time unavailable; collected/);
+  raw.publicQuality.sources[0].observedAt=null;
+  assert.match(Q.note(raw,'lotSize'),/Source time unavailable; collected/);
+});
 test('field-specific states retain zero and block disputed dependent values', () => {
   const raw = {issueSizeCr:120,subscription:{total:0},listing:{issuePrice:50,gainPct:10},
     publicQuality:contract({issueSizeCr:{state:'under_review'},subscription:{state:'reported'},'listing.issuePrice':{state:'under_review'},listing:{state:'reported'}})};

@@ -45,7 +45,14 @@ def review_task(record: dict[str, Any], issue: dict[str, Any]) -> dict[str, Any]
     financial = isinstance(field, str) and bool(FINANCIAL_FIELD.fullmatch(field))
     gap = "offer.financials" if financial else FINAL_GAPS.get(field) if isinstance(field, str) else None
     review_type = issue.get("reviewType")
-    if review_type == 'subscription_snapshot_conflict':
+    if review_type == 'active_offer_terms_conflict':
+        gap = None
+        route = 'manual-source-review'
+        action = ('Reconcile this issuer/offer against the exact reviewed active disclosure and conflicting official '
+                  'exchange rows or explicit superseding notice. Preserve the receipt and contradictory evidence; '
+                  'collection recency alone cannot resolve the review. Completed static terms still require Final Prospectus evidence.')
+        paths = ['/activeOfferTerms', '/observations', '/sources', '/dataCorrections', '/dataReview']
+    elif review_type == 'subscription_snapshot_conflict':
         gap = None
         route = 'manual-source-review'
         action = ('Reconcile the exact issuer/offer, complete subscription snapshot and bid denominators against '
@@ -91,7 +98,7 @@ def review_task(record: dict[str, Any], issue: dict[str, Any]) -> dict[str, Any]
         route = "manual-triage"
         action = "Identify the field and authoritative source with an operator; unsupported or malformed review fields are not sent to an automatic collector."
         paths = ["/dataReview", "/offerDocumentExtraction", "/documentFieldProvenance", "/sources"]
-    paths += ["/documents"]
+    paths += ["/documents", "/activeOfferTerms"]
     task = {
         "field": field,
         "reason": issue.get("reason"),
