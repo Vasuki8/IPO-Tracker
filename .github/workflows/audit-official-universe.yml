@@ -1,26 +1,26 @@
-name: Audit official IPO universe — BSE April cohort
+name: Reconcile official IPO universe — BSE April cohort
 
 on:
   push:
     branches: [audit-official-universe-bse-june-20260919]
     paths:
       - '.github/workflows/audit-official-universe.yml'
-      - 'tools/review_bse_universe_cohort.py'
-      - 'tests/test_universe_bse_cohort_review.py'
-      - 'docs/audits/official-universe/2026-09-19-bse-may/next-cohort.json'
+      - 'tools/summarize_official_universe.py'
+      - 'tests/test_official_universe_summary.py'
+      - 'docs/audits/official-universe/2026-09-19-bse-april/admissions.json'
 
 permissions:
   contents: write
 
 concurrency:
-  group: official-universe-bse-april-${{ github.ref }}
+  group: official-universe-bse-april-reconcile-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
-  capture-april:
+  reconcile-april:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -28,32 +28,84 @@ jobs:
       - uses: astral-sh/setup-uv@v10.1.0
       - run: uv python install 3.12
       - run: uv sync --frozen
-      - name: Run universe identity regressions
+      - name: Run universe regressions
         run: |
           uv run --frozen python -m unittest \
             tests.test_official_universe \
             tests.test_universe_continuation \
             tests.test_universe_bse_cohort_review \
             tests.test_official_universe_summary -v
-      - name: Capture and review BSE April 2026 cohort
+      - name: Build reviewed April admission proposal separately
         run: |
-          uv run --frozen python tools/review_bse_universe_cohort.py \
-            --base-snapshot docs/audits/official-universe/2026-09-19-bse-may \
+          uv run --frozen python tools/audit_ipo_universe.py prepare-admissions \
             --snapshot docs/audits/official-universe/2026-09-19-bse-april \
-            --cohort docs/audits/official-universe/2026-09-19-bse-may/next-cohort.json \
             --tracker data/ipos.json \
-            --baseline-commit ${GITHUB_SHA} \
-            --as-of 2026-09-19
-      - name: Prove source review did not mutate canonical data
-        run: git diff --exit-code -- data/ipos.json data/pending_updates.json
-      - name: Commit retained April evidence
+            --aliases docs/audits/official-universe/2026-09-19-bse-april/aliases.json \
+            --admissions docs/audits/official-universe/2026-09-19-bse-april/admissions.json \
+            --output /tmp/ipos-april-proposed.json
+          uv run --frozen python - <<'PY'
+          import json
+          from pathlib import Path
+          old=json.loads(Path("data/ipos.json").read_text())
+          new=json.loads(Path("/tmp/ipos-april-proposed.json").read_text())
+          review=json.loads(Path("docs/audits/official-universe/2026-09-19-bse-april/admission-review.json").read_text())
+          accepted=[r for r in review["records"] if r["decision"]=="accept_identity_only"]
+          if len(accepted)!=2 or len(new["ipos"])!=len(old["ipos"])+len(accepted):
+              raise SystemExit("April proposal count mismatch")
+          if new["ipos"][:len(old["ipos"])] != old["ipos"]:
+              raise SystemExit("April proposal changed pre-existing records")
+          Path("data/ipos.json").write_text(json.dumps(new,indent=2,ensure_ascii=False)+"\n")
+          PY
+      - name: Reconcile April snapshot and write continuation checkpoint
+        run: |
+          uv run --frozen python tools/audit_ipo_universe.py reconcile \
+            --snapshot docs/audits/official-universe/2026-09-19-bse-april \
+            --aliases docs/audits/official-universe/2026-09-19-bse-april/aliases.json \
+            --report-dir docs/audits/official-universe/2026-09-19-bse-april
+          uv run --frozen python tools/summarize_official_universe.py \
+            --audit docs/audits/official-universe/2026-09-19-bse-april/audit.json \
+            --missing docs/audits/official-universe/2026-09-19-bse-april/missing.jsonl \
+            --current-review docs/audits/official-universe/2026-09-19-bse-april/admission-review.json \
+            --output docs/audits/official-universe/2026-09-19-bse-april/coverage-summary.json \
+            --report docs/audits/official-universe/2026-09-19-bse-april/COVERAGE_REPORT.md \
+            --next-cohort docs/audits/official-universe/2026-09-19-bse-april/next-cohort.json
+      - name: Validate, rebuild and verify April identities
+        run: |
+          uv run --frozen python scripts/validate_data.py --strict
+          uv run --frozen python scripts/build_missing_queue.py
+          uv run --frozen python scripts/phase_status.py
+          uv run --frozen python scripts/audit_data_completeness.py
+          uv run --frozen python scripts/build_company_pages.py
+          node --test tests/public_quality.test.cjs tests/source_health.test.cjs
+          uv run --frozen python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path("docs/audits/official-universe/2026-09-19-bse-april")
+          review=json.loads((root/"admission-review.json").read_text())
+          data=json.loads(Path("data/ipos.json").read_text())
+          by_id={r["id"]:r for r in data["ipos"]}
+          accepted=[r for r in review["records"] if r["decision"]=="accept_identity_only"]
+          for evidence in accepted:
+              row=by_id[evidence["proposedId"]]
+              ident=evidence["identity"]
+              if row["company"]!=ident["issuerName"] or row["symbol"]!=ident["symbol"]:
+                  raise SystemExit("April identity mismatch: "+evidence["proposedId"])
+              if row["board"]!="SME" or row["status"]!="closed" or row["listingDate"] is not None:
+                  raise SystemExit("April lifecycle mismatch: "+evidence["proposedId"])
+              for field in ("priceBand","lotSize","issueSizeCr","financials","subscription","listing"):
+                  if row.get(field) is not None:
+                      raise SystemExit("Invented field "+field+" for "+evidence["proposedId"])
+          print(f"verified {len(accepted)} April identity-only admissions")
+          PY
+      - name: Commit April admissions, reports and public projections
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/audits/official-universe/2026-09-19-bse-april
+          git add data/ipos.json data/ipos-summary.json data/missing_queue.json data/phase_status.json data/validation.json data/completeness.json \
+            docs/DATA_QUALITY.md docs/audits/official-universe/2026-09-19-bse-april ipo
           if git diff --cached --quiet; then
-            echo "No new April audit evidence"
+            echo "No generated April changes"
           else
-            git commit -m "Capture BSE April universe identity evidence"
+            git commit -m "Admit and reconcile BSE April universe identities"
             git push origin HEAD:${{ github.ref_name }}
           fi
