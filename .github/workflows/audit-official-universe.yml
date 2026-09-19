@@ -1,0 +1,68 @@
+name: Browser accept official IPO universe admissions
+
+on:
+  push:
+    branches: [audit-official-universe-bse-june-20260919]
+    paths:
+      - '.github/workflows/audit-official-universe.yml'
+      - 'docs/audits/official-universe/2026-09-19-bse-april/browser-check.cjs'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: official-universe-browser-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      BASE_URL: http://127.0.0.1:8006/
+      SMOKE_ARTIFACT_DIR: ${{ github.workspace }}/artifacts/official-universe
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: astral-sh/setup-uv@v10.1.0
+      - run: uv python install 3.12
+      - run: uv sync --frozen
+      - name: Rebuild public pages and prove canonical data is untouched
+        run: |
+          uv run --frozen python scripts/build_company_pages.py
+          git diff --exit-code -- data/ipos.json
+          node --test tests/public_quality.test.cjs tests/source_health.test.cjs
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated browser runtime
+        run: |
+          mkdir -p "$RUNNER_TEMP/ipo-playwright" "$SMOKE_ARTIFACT_DIR"
+          cd "$RUNNER_TEMP/ipo-playwright"
+          npm install --no-save --package-lock=false playwright@1.62.1
+          npx --no-install playwright install --with-deps chromium
+      - name: Exercise all 30 newly admitted public profiles and directory searches
+        run: |
+          export NODE_PATH="$RUNNER_TEMP/ipo-playwright/node_modules"
+          python3 -m http.server 8006 --bind 127.0.0.1 > "$SMOKE_ARTIFACT_DIR/server.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          python3 - <<'PY'
+          import time, urllib.request
+          for _ in range(60):
+              try:
+                  with urllib.request.urlopen('http://127.0.0.1:8006/', timeout=1) as r:
+                      if r.status == 200: break
+              except OSError: pass
+              time.sleep(0.25)
+          else:
+              raise SystemExit('Local server did not start')
+          PY
+          node docs/audits/official-universe/2026-09-19-bse-april/browser-check.cjs
+      - name: Retain browser receipt
+        if: always()
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: official-universe-browser-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/official-universe/
+          if-no-files-found: error
+          retention-days: 14

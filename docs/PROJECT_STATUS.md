@@ -15,6 +15,30 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
+## Official IPO-universe coverage checkpoint — BSE April–June 2026 reviewed, 19 September 2026
+
+Recovered current `main` at **`2edf544c78109f8cadce0722b4dfa0b164d6a5ea`** before reconciliation. Existing official-universe releases #146/#162 were reused rather than recrawled. Open [PR #175](https://github.com/Vasuki8/IPO-Tracker/pull/175) now continues the bounded BSE historical review through June, May and April 2026 and has been reconciled onto that current main without rolling back the independently published filings update.
+
+This is an **inventory/identity audit**, not a numerical backfill. Thirty unambiguous BSE SME issuer identities were admitted from retained official historical archive rows plus independent BSE detail responses that replay exact issuer name, Equity security type, symbol and issue period: **18 June + 10 May + 2 April**. Unknown listing dates, prices, lots, issue sizes, composition, financials and subscription fields remain null. The canonical inventory is **1,436** records, up from 1,406. The inherited Dhanwel June/August spelling/lifecycle collision remains review-only; no fuzzy merge was used.
+
+The retained official-source denominator is bounded by the captured ranges and **does not establish all-time complete coverage**:
+
+| Source | Denominator | Matched | Match rate | Exact | Normalized | Alias | Duplicate review | Missing | Unverified |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| BSE | 1,848 | 618 | 33.44% | 260 | 353 | 5 | 11 | 1,219 | 0 |
+| NSE | 174 | 173 | 99.43% | 173 | 0 | 0 | 0 | 1 | 0 |
+| SEBI | 5,858 | 2,630 | 44.90% | 1,858 | 761 | 11 | 47 | 3,078 | 103 |
+
+For 2026 BSE SME completed issues, the retained denominator is **96**, with **69 matched (71.88%)**, **25 missing** and **2 duplicate-review** records; the five retained upcoming BSE SME records are 5/5 matched. Current/open/upcoming stages are not inferred from draft filings. The detailed machine-readable capture, reconciliation, alias, collision and source-receipt files plus the human coverage report are under `docs/audits/official-universe/2026-09-19-bse-{june,may,april}/`.
+
+Source-access bounds remain explicit: retained BSE evidence spans **2002-01-28 through 2026-09-23**; retained NSE evidence spans **2025-01-06 through 2026-09-23**; retained SEBI evidence spans **2003-12-01 through 2026-09-18**. Historical NSE cohorts outside the retained range timed out in this audit. SEBI still has 103 unverified records plus pre-2004/dedicated-SME/cancellation coverage gaps. These gaps are not treated as matches or completion.
+
+Reconciliation lineage: two-parent merge **`eeb4ddae282fbd07d4f3cfc1a597818f048d09b8`** incorporated current main; temporary branch-only reconciliation support **`5976ce54d7d2fd1ab047b860670f4bfe5eb2063b`** was removed after use; regenerated reconciled data commit **`d410d642defd1282be4cd229a23fb9a817b423de`** applied exactly [18, 10, 2] reviewed admissions to current main; **`b7eed604b3f52f4e9717e1d6e72f68dfc46b8c45`** restored the read-only browser workflow. Reconciliation run **35456494878** passed strict validation, Node public-quality/source-health checks and **1,402 uv/Python tests**; it reported `recordCount: 1436`. Clean PR validation **35456599095** passed, and browser run **35456596086** rebuilt public pages without changing canonical data and exercised all 30 new profile/directory journeys successfully.
+
+No P4 numerical repair, freshness tooling, source-review weakening or P5/performance expansion is part of this milestone. Deployment is **not yet recorded at this pre-merge checkpoint**; merge, Pages publication and live verification must complete before release closeout.
+
+**Exact next universe task after release closeout:** source-review the retained **March 2026 BSE cohort of six** — Emiac Technologies Limited, Highness Microelectronics Limited, Tipco Engineering India Limited, SPECIALITY MEDICINES LIMITED, Novus Loyalty Limited and ELFIN AGRO INDIA LIMITED — using the same archive/detail identity contract. Do not auto-admit any candidate, do not repeat April–June, and keep ambiguous lifecycle/name collisions review-only.
+
 ## Current checkpoint — qualified whole-offer amounts released, 19 September 2026
 
 Verified data-release main: **`40a24ca1cc2e5310825aad36769ee3cad75fe9ae`**.
