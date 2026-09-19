@@ -153,9 +153,15 @@ No analytics, accounts, billing, ads, contacts, contracts, spend or hosting chan
 Seven focused audit tests cover exact hosts, hostile lookalikes, pointer escaping,
 source-link versus field-proof attribution, missing clocks/URLs, zero versus null,
 held evidence, profile identity and duplicate payload rejection. Both JSON outputs
-were reproduced from current base bytes. Strict validation and normal PR regressions
-must pass before merge; final run/deployment evidence belongs in PROJECT_STATUS
-and this cohort's release receipt. No product behavior or canonical values change.
+were reproduced from current base bytes. Strict validation passed with zero errors;
+38 Node regressions passed. [PR #166](https://github.com/Vasuki8/IPO-Tracker/pull/166)
+merged research commit `de09c162cae491ce2f0dae16f21349d9a14091aa` as
+`3481d89a21e77ac1f302bdc9171dd8eb5b67ee4a`. PR validation **35423499597** passed
+all **1,354 Python tests**; main validation **35423605159**, Pages **35423604707**
+and public release verification **35423628525** succeeded. [27 direct checks](live-delivery.json)
+matched live bytes to that merge, including raw files and all 13 mapped profiles.
+The [release receipt](release.json) describes the research merge before this
+documentation closeout. No product behavior or canonical values changed.
 P4 remains **408 actionable + 67 higher priority; 1,553 blocking / 1,557 total
 reviews; zero errors/unmapped**. No source correctness or blocker reduction claim.
 

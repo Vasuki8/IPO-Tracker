@@ -15,12 +15,16 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
-## Current checkpoint — commercial publication-scope review, 19 September 2026
+## Current checkpoint — commercial publication-scope review released, 19 September 2026
 
-Assessment main: **`1e86840856525db2ee2b436ed64f2b6e60374ee0`** (scheduled filings update incorporated from initial `4c5f1af5`), including completed
-operational #164–165 and universe #162–163. Sequential branch:
-`research-commercial-publication-scope`; PR/merge/deployment receipts are recorded
-at release closeout. Previous commercial #152–153 research was reused with original
+Verified research-release main: **`3481d89a21e77ac1f302bdc9171dd8eb5b67ee4a`**,
+merged in [PR #166](https://github.com/Vasuki8/IPO-Tracker/pull/166); research commit
+`de09c162cae491ce2f0dae16f21349d9a14091aa`. Assessment main was
+`1e86840856525db2ee2b436ed64f2b6e60374ee0` (scheduled filings update incorporated
+from initial `4c5f1af5`), including completed operational #164–165 and universe
+#162–163. Documentation closeout branch: `docs-commercial-publication-scope-closeout`;
+its commit is identified by Git history containing this checkpoint.
+Previous commercial #152–153 research was reused with original
 check dates. The exact next publication-mapping task is implemented in the
 [commercial audit](audits/commercial/2026-09-19-publication-scope/REPORT.md),
 [field/surface map](audits/commercial/2026-09-19-publication-scope/exposure.json),
@@ -57,9 +61,18 @@ reviews; 0 errors / 0 unmapped; 1,404 canonical records**. P5/performance remain
 gated. Canonical values, pending proposals and review state are outside this diff.
 Seven focused audit tests and 38 Node public-quality/source-health tests pass.
 Both audit JSON artifacts replay exactly; prior register bytes and protected
-paths are unchanged; 59 local Markdown links resolve. Strict validation passes
-with 1,404 records, zero errors and 1,557 reviews. Remaining release acceptance:
-full PR CI, merge and exact live documentation checks.
+paths are unchanged; local Markdown links resolve. Strict validation passes
+with 1,404 records, zero errors and 1,557 reviews. **All 1,354 Python tests pass**
+in PR validation **35423499597**; main validation **35423605159** also passed,
+including proposal reconciliation and generated public artifacts. Pages
+**35423604707** and public verification **35423628525** passed.
+[27 direct live checks](audits/commercial/2026-09-19-publication-scope/live-delivery.json)
+matched the immutable research merge exactly, including the register/audit,
+raw canonical/proposal/summary data and all 13 mapped profiles. The
+[release receipt](audits/commercial/2026-09-19-publication-scope/release.json)
+records the evidence before documentation closeout. No release acceptance
+criteria remain for this bounded research milestone; no commercial clearance
+or P4 blocker reduction is claimed.
 Preserved open work: #94, #98, #99 and drafts #104/#105.
 
 **Exact next commercial task:** owner-directed professional review of the completed
