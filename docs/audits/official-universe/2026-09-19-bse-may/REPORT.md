@@ -1,4 +1,4 @@
-# BSE June 2026 official-universe source review
+# BSE May 2026 official-universe source review
 
 This is an identity/lifecycle review only. It continues the released official-universe snapshot without recrawling completed NSE/SEBI/BSE archive cohorts. Canonical `data/ipos.json` is not changed by this stage.
 
