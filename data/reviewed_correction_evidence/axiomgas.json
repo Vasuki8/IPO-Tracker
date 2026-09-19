@@ -24,8 +24,8 @@
       "review": {
         "version": 1,
         "status": "accepted",
-        "reviewedAt": "2026-09-19T02:44:41+00:00",
-        "url": "https://github.com/Vasuki8/IPO-Tracker/blob/1fb4c7d12e1a5eb616a4db16b304a0aeda32103f/docs/reviews/2026-09-19-active-offer-source-review.md"
+        "reviewedAt": "2026-09-19T13:58:44.750002+00:00",
+        "url": "https://github.com/Vasuki8/IPO-Tracker/blob/6e2df0a4d4c8b736d0c07d526b3b844eaecd0b49/docs/reviews/2026-09-19-qualified-offer-amount-source-review.md"
       },
       "fields": {
         "priceBand": {
@@ -62,11 +62,72 @@
           "title": "Issue Size",
           "raw": "\"Initial Public Offer comprising of Fresh Issue up to 93,98,000 Equity Shares (including Market Maker portion of 4,78,000 Equity Shares and Anchor allocation 10,70,000 Equity Shares)\"",
           "table": "/issueInfo/dataList"
+        },
+        "issueAmountScenarios": {
+          "value": {
+            "floorPrice": 51.0,
+            "capPrice": 54.0,
+            "atFloorCr": 47.9298,
+            "atCapCr": 50.7492,
+            "qualifier": "subject_to_basis_of_allotment",
+            "qualification": "Based on up to 93,98,000 shares; subject to finalisation of the Basis of Allotment."
+          },
+          "unit": "INR crore",
+          "sourceUnit": "INR lakh",
+          "page": 1,
+          "row": "Issue size would aggregate",
+          "table": "8. Monitoring Agency; revised paragraph and attached footnote"
         }
       },
       "unresolved": {
         "minimumBidQuantity": "disclosure-absent",
         "issueSizeCr": "disclosure-absent: no explicit total INR amount in the supported source table"
+      },
+      "amountEvidence": {
+        "schemaVersion": 1,
+        "parserVersion": "reviewed-floor-cap-amounts-v1",
+        "identity": {
+          "id": "axiomgas",
+          "company": "Axiom Gas Engineering Limited",
+          "symbol": "AXIOMGAS",
+          "board": "SME",
+          "openDate": "2026-09-18",
+          "closeDate": "2026-09-22"
+        },
+        "source": {
+          "name": "Axiom issuer corrigendum",
+          "authority": "issuer_disclosure",
+          "authorityEvidence": "Issuer-hosted Price Band Revision cum Corrigendum in merged advertisement/RHP bundle",
+          "url": "https://axiomgas.com/uploads/investors/PB_AP_RHP_MERGED.pdf",
+          "sha256": "f171f2d945a297488025dd4041f84bd1dc886599dc0757e5fbe6bfc0fc91ee05",
+          "bytes": 10529275,
+          "pages": 386,
+          "documentType": "Price Band Revision cum Corrigendum",
+          "documentDate": "2026-09-16",
+          "collectedAt": "2026-09-19T13:35:39.007023+00:00",
+          "collectionTimeBasis": "response-body-persisted",
+          "observedAt": null
+        },
+        "transcription": {
+          "method": "independently-reviewed-visual-transcription",
+          "issuer": "Axiom Gas Engineering Limited",
+          "page": 1,
+          "layout": "qualified-issue-paragraph",
+          "locator": "8. Monitoring Agency; revised paragraph and attached footnote",
+          "amountSentence": "Based on the Price Band of ₹ 51 to ₹ 54 per Equity Share, the Issue size would aggregate to ₹ 4,792.98 lakhs at the Floor Price and ₹ 5,074.92 lakhs at the Cap Price*.",
+          "qualificationText": "*Calculated on the basis of up to 93,98,000 Equity Shares offered in the Issue and subject to finalisation of the Basis of Allotment.",
+          "supersessionText": "the Price Band has been revised from ₹ 50 to ₹ 53 per Equity Share to ₹ 51 to ₹ 54 per Equity Share."
+        },
+        "review": {
+          "version": 1,
+          "status": "accepted",
+          "reviewedAt": "2026-09-19T13:58:44.750002+00:00",
+          "url": "https://github.com/Vasuki8/IPO-Tracker/blob/6e2df0a4d4c8b736d0c07d526b3b844eaecd0b49/docs/reviews/2026-09-19-qualified-offer-amount-source-review.md",
+          "transcriptionSha256": "663b06c02f9fcd7d914828aa12fc4647b1cca7590d1c216445eda54d2c5227d7",
+          "sourceMetadataSha256": "fe33bd27abb76112565498140123f319fb9f2395cdc0236419f5e0fa659b0d72",
+          "derivedObservationSha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+        },
+        "reviewedDerivedObservations": {}
       }
     },
     "sourceUrl": "https://www.nseindia.com/api/ipo-detail?symbol=AXIOMGAS&series=SME",

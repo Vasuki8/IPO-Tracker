@@ -20,7 +20,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from reconcile_pending_updates import (ROOT, SUBSCRIPTION_FIELDS, clock, digest,
                                        encoded, equal, read_json, subscription_evidence)
 import reconcile_pending_updates as reconciliation
-from active_offer_terms import FIELDS as OFFER_FIELDS, validate_receipt, receipt_problems
+from active_offer_terms import FIELDS as OFFER_FIELDS, validate_receipt, validated_fields, receipt_problems, field_source
 
 REPOSITORY = 'Vasuki8/IPO-Tracker'
 # Operator tolerances, NOT exchange sessions, source SLAs or proof of missed runs.
@@ -328,6 +328,10 @@ def offer_receipt_health(record, holds, now):
         fields = validate_receipt(original, record)
     except (KeyError, ValueError, TypeError, AttributeError, OverflowError) as error:
         issues['receipt'] = str(error)
+        try:
+            fields = validated_fields(receipt, record)
+        except (KeyError, ValueError, TypeError, AttributeError, OverflowError):
+            pass
     valid = not issues
     if valid:
         issues.update(receipt_problems(record))
@@ -342,15 +346,19 @@ def offer_receipt_health(record, holds, now):
     # can expose a different source for a field; bind decisions to this receipt.
     public = reconciliation.project_record(copy.deepcopy(record), today=today, holds=holds)['publicQuality']
     decisions = {}
-    for field in sorted(OFFER_FIELDS):
+    for field in sorted(OFFER_FIELDS & public['fields'].keys()):
         decision = copy.deepcopy(public['fields'].get(field, {'state': 'unknown'}))
         index = decision.pop('source', None)
         proof = public['sources'][index] if type(index) is int else {}
-        decision['usesThisReceipt'] = bool(valid and field in fields
+        expected_source = field_source(receipt, field) if field in fields else {}
+        decision['usesThisReceipt'] = bool(field in fields
             and decision['state'] == 'provisional'
-            and proof.get('sha256') == source.get('sha256')
-            and proof.get('sourceUrl') == source.get('url')
-            and proof.get('reviewUrl') == review.get('url'))
+            and proof.get('sha256') == expected_source.get('sha256')
+            and proof.get('sourceUrl') == expected_source.get('sourceUrl')
+            and proof.get('reviewUrl') == expected_source.get('reviewUrl'))
+        if field == 'issueAmountScenarios' and expected_source:
+            decision['documentSource'] = copy.deepcopy(expected_source)
+            decision['documentSource'].pop('activeOfferReceipt', None)
         decisions[field] = decision
     exposed = [field for field, decision in decisions.items() if decision['usesThisReceipt']]
     scope = lifecycle(record, today)

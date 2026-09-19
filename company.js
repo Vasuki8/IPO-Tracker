@@ -218,7 +218,7 @@ function companyKpis(ipo) {
       : 'Shares per lot';
   const cards = [
     ['Price band', priceBand(ipo), 'Price per share', '', 'priceBand'],
-    ['Issue size', money(ipo.issueSizeCr), 'Total offer value', '', 'issueSizeCr'],
+    ['Issue size', IPOQuality.amountText(ipo, money), IPOQuality.amountScenarios(ipo)?.qualification || 'Total offer value', '', IPOQuality.amountField(ipo)],
     ['Bid lot', ipo.lotSize == null ? '—' : `${companyShares(ipo.lotSize)} shares`, lotNote, '', 'lotSize'],
     [
       'Subscription',

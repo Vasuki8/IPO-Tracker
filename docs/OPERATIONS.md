@@ -210,7 +210,42 @@ review with pointers to the receipt and observations. Disclosures expire after
 the close date in IST, including cached browser output; closed/withdrawn/cancelled
 or mismatched offers do not qualify. Expiry restores missing-field work rather
 than promoting provisional terms to final facts. Source recovery and conditional
-floor/cap amount layouts remain separate work, not availability exclusions.
+floor/cap amount layouts require separate evidence, not availability exclusions.
+
+The reviewed Axiom/Varmora qualified amount family adds `issueAmountScenarios`
+through an optional independently reviewed `activeOfferTerms.amountEvidence`.
+Its floor/cap whole-offer monetary amounts are explicit issuer disclosures; the
+only numeric transformation is conversion from the printed INR unit to crore.
+The existing `issueSizeCr` scalar remains null. The active exchange amount
+coverage check accepts a complete publicly eligible pair, with its qualifications,
+without asserting Final Prospectus completion. Invalidity, a relevant hold,
+contradiction or expiry restores `exchange.issueSizeCr` to the queue. No review
+or availability exclusion is removed to make this count fall.
+
+`qualified_offer_amounts.py` replays independently reviewed visual transcriptions
+of scanned source pages. Their original document hashes and metadata, physical
+pages, row/column locators, units and explicit supersession are retained. Source
+fixture Git identities and the reviewed derived-observation context are pinned
+in protected code, separately from the candidate's own hashes. A rehashed
+candidate cannot claim the old review. New source acceptance needs a new immutable
+review and updated binding. Unsupported paragraphs, extra/ambiguous columns,
+unknown units, missing qualifications and contradictory totals fail closed.
+
+Public document evidence belongs to the amount pair, separately from the NSE
+detail evidence for the band and bid lot. Varmora's issuer-signed document date
+(16 September) remains separate from newspaper publication (17 September).
+Source observation is unknown; body-persistence collection clocks are labelled
+in the receipt. The read-only health report uses this same per-field provenance;
+its small adaptation is required so a valid supplement is not falsely marked
+withheld because its PDF hash differs from the NSE response hash.
+
+The scalar sort and CSV column remain separate; CSV exports the two amounts,
+price bases, qualification, document/publication dates, source and expiry in
+labelled columns. Directories, profiles, quick views and comparisons use the
+same conditional text and hold/expiry note. Use `--family amounts` with
+`tests/prepare_active_offer_site.py` and `tests/frontend_qualified_offer_amounts.cjs`
+for the isolated frozen-date browser rehearsal. Pooja's recovered RHP and
+advertisement still lack an explicit total amount; its gap remains unresolved.
 
 For a reproducible historical browser rehearsal, use
 `uv run --frozen python tests/prepare_active_offer_site.py --output <new-directory>`

@@ -17,7 +17,7 @@ class ActiveOfferReleaseVerifierTests(unittest.TestCase):
         directory = tempfile.TemporaryDirectory(); self.addCleanup(directory.cleanup)
         self.root = Path(directory.name)
         clock = self.enterContext(patch.object(verify, 'datetime', wraps=datetime))
-        clock.now.return_value = datetime(2026, 9, 19, 3, tzinfo=timezone.utc)
+        clock.now.return_value = datetime(2026, 9, 19, 14, tzinfo=timezone.utc)
         self.clock = clock
         for name in verify.STATIC_FILES: self.write(name, 'fixture')
         index = json.loads((ROOT / 'data/reviewed_correction_evidence.json').read_text(encoding='utf-8'))
@@ -43,6 +43,16 @@ class ActiveOfferReleaseVerifierTests(unittest.TestCase):
                     profile[field] = {key: value for key, value in profile[field].items() if value is not None}
                 profile['publicQuality']['fields'][field] = {'state': 'provisional', 'until': identity['closeDate'],
                                                             'row': proof['row'], 'table': proof['table'], 'source': 0}
+                if field == 'issueAmountScenarios':
+                    amount = active['amountEvidence']; document = amount['source']
+                    profile['publicQuality']['sources'].append({
+                        'sourceUrl': document['url'], 'sha256': document['sha256'],
+                        'documentDate': document['documentDate'], 'authority': document['authority'],
+                        'collectionTimeBasis': document['collectionTimeBasis'],
+                        'parserVersion': amount['parserVersion'], 'collectedAt': document['collectedAt'],
+                        'checkedAt': amount['review']['reviewedAt'], 'reviewUrl': amount['review']['url'],
+                        **({'publicationDate': document['publicationDate']} if document.get('publicationDate') else {})})
+                    profile['publicQuality']['fields'][field].update(source=1, **{k: proof[k] for k in ('page','unit','sourceUnit')})
             summary = copy.deepcopy(profile)
             for field in ('issueComposition',):
                 summary.pop(field, None); summary['publicQuality']['fields'].pop(field, None)

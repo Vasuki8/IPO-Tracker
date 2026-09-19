@@ -19,3 +19,8 @@
   max-width: 100%;
   line-height: 1.5;
 }
+
+.quality-amount-qualification { display: block; max-width: 28rem; margin-top: .3rem; color: var(--muted, #657080); font-size: .73rem; line-height: 1.45; white-space: normal; }
+[data-quality-field="issueAmountScenarios"] { white-space: normal; }
+.numeric:has([data-quality-field="issueAmountScenarios"]) .metric { display: block; max-width: 17rem; min-width: 10rem; white-space: normal; font-size: .85rem; line-height: 1.45; }
+.company-kpi:has([data-quality-field="issueAmountScenarios"]) .company-kpi-value { font-size: 1rem; line-height: 1.5; overflow-wrap: anywhere; }

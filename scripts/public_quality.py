@@ -19,7 +19,7 @@ from issue_composition_checks import COMPOSITION_FIELDS, quarantined_fields
 from objects_of_issue_checks import objects_quarantined
 from source_review_holds import display_holds, display_hold_matches as _display_hold_matches, value_digest
 from validate_data import validate_record
-from active_offer_terms import accepted_terms
+from active_offer_terms import accepted_terms, field_source
 
 VERSION = 1
 ROOT = Path(__file__).resolve().parents[1]
@@ -52,9 +52,9 @@ def official_url(value):
 
 
 def _proof_source(proof):
-    keys = ('sourceUrl', 'documentDate', 'sha256', 'parserVersion', 'checkedAt')
+    keys = ('sourceUrl', 'documentDate', 'publicationDate', 'sha256', 'parserVersion', 'checkedAt')
     if proof.get('activeOfferReceipt'):
-        keys += ('observedAt', 'collectedAt', 'reviewUrl')
+        keys += ('observedAt', 'collectedAt', 'collectionTimeBasis', 'reviewUrl', 'authority')
     return {key: proof[key] for key in keys
             if proof.get(key) is not None or (key == 'observedAt' and key in proof)}
 
@@ -180,6 +180,8 @@ def project_record(record, *, today=None, holds=None):
                                  else 'document_conflict' if hold.get('scope') == 'document' else 'pending_source_repair')
     if set(COMPOSITION_FIELDS) & set(reviews):
         reviews.update({f: 'composition_review' for f in COMPOSITION_FIELDS})
+    if (set(COMPOSITION_FIELDS) | {'priceBand'}) & set(reviews):
+        reviews['issueAmountScenarios'] = 'composition_review'
 
     quality = {}
     active = accepted_terms(record, today)
@@ -191,22 +193,35 @@ def project_record(record, *, today=None, holds=None):
                 sources.append(source)
             decision['source'] = sources.index(source)
 
-    for field in FIELDS:
-        value = field_value(record, field)
+    # Only records with the supplement need the extra public decision. This
+    # preserves existing public payloads and every unrelated issuer exactly.
+    receipt = record.get('activeOfferTerms')
+    has_scenarios = ('issueAmountScenarios' in record or (isinstance(receipt, dict)
+                     and ('amountEvidence' in receipt or 'issueAmountScenarios' in (receipt.get('fields') or {}))))
+    fields = (*FIELDS, 'issueAmountScenarios') if has_scenarios else FIELDS
+    output.pop('issueAmountScenarios', None)
+    for field in fields:
+        value = None if field == 'issueAmountScenarios' else field_value(record, field)
         decision = {'state': 'awaiting_disclosure'}
         proof = None
+        if field == 'issueAmountScenarios' and field in active:
+            # This field is evaluated after the ordinary terms. Their final
+            # decisions can discover missing authority even without a retained
+            # review item; those withheld inputs must also withhold the pair.
+            pair = active[field]['value']
+            dependencies = (*COMPOSITION_FIELDS, 'priceBand')
+            if (any(quality[name]['state'] == 'under_review' for name in dependencies)
+                    or output.get('priceBand') != {'min': pair['floorPrice'], 'max': pair['capPrice']}):
+                reviews[field] = 'composition_review'
         if field in reviews:
             decision = {'state': 'under_review', 'reason': reviews[field]}
         elif not present(value) and field in active:
             receipt = record['activeOfferTerms']
-            source = receipt['source']
             decision = {'state': 'provisional', 'until': record['closeDate'],
                         'row': active[field]['row'], 'table': active[field]['table']}
-            attach_source(decision, {'sourceUrl': source['url'], 'sha256': source['sha256'],
-                'activeOfferReceipt': True,
-                'observedAt': source['observedAt'], 'collectedAt': source['collectedAt'],
-                'checkedAt': receipt['review']['reviewedAt'], 'reviewUrl': receipt['review']['url'],
-                'parserVersion': receipt['parserVersion']})
+            if field == 'issueAmountScenarios':
+                decision.update({key: active[field][key] for key in ('page', 'unit', 'sourceUnit')})
+            attach_source(decision, field_source(receipt, field))
             _set(output, field, copy.deepcopy(active[field]['value']))
         elif not present(value):
             availability = next((v for k, v in (record.get('dataAvailability') or {}).items()
@@ -256,7 +271,8 @@ def project_record(record, *, today=None, holds=None):
 def summary_quality(quality):
     """Keep only directory decisions and their referenced deduplicated sources."""
     out = {'version': VERSION, 'fields': {}, 'sources': []}
-    for field in SUMMARY_FIELDS:
+    fields = (*SUMMARY_FIELDS, 'issueAmountScenarios') if 'issueAmountScenarios' in quality['fields'] else SUMMARY_FIELDS
+    for field in fields:
         decision = dict(quality['fields'][field])
         if 'source' in decision:
             source = quality['sources'][decision['source']]

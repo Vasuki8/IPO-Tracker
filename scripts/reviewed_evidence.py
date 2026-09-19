@@ -97,6 +97,11 @@ def index_groups(groups, registry):
                     raise ValueError('Active offer proof Git identity mismatch')
                 receipt = item['after']
                 validate_receipt(receipt, identity)
+                if receipt.get('amountEvidence'):
+                    amount = receipt['amountEvidence']
+                    if (amount['review']['url'] != group['sourceReviewUrl']
+                            or amount['review']['reviewedAt'] != group['reviewedAt']):
+                        raise ValueError('Conditional amount requires this explicit source-review acceptance')
                 if (item.get('publicationScope') != 'explicit-reviewed'
                         or item.get('identity') != identity or proof.get('field') != field
                         or proof.get('value') != receipt or proof.get('sourceUrl') != receipt['source']['url']

@@ -42,6 +42,9 @@ REVIEWED_SUPPORT_FILES = REVIEWED_SUPPORT_DISCRIMINATORS | {
     'scripts/review_financial_tables.py',
     'scripts/active_offer_terms.py', 'scripts/audit_data_completeness.py',
     'scripts/bse_active_offer_terms.py',
+    'scripts/qualified_offer_amounts.py',
+    'scripts/source_review_holds.py',
+    'tools/report_update_health.py',
     'scripts/source_review_queue.py',
     'data/verified_corrections.json', 'data/reviewed_correction_evidence.json',
 }
