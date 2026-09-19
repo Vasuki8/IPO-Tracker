@@ -20,6 +20,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from reconcile_pending_updates import (ROOT, SUBSCRIPTION_FIELDS, clock, digest,
                                        encoded, equal, read_json, subscription_evidence)
 import reconcile_pending_updates as reconciliation
+from active_offer_terms import FIELDS as OFFER_FIELDS, validate_receipt, receipt_problems
 
 REPOSITORY = 'Vasuki8/IPO-Tracker'
 # Operator tolerances, NOT exchange sessions, source SLAs or proof of missed runs.
@@ -310,6 +311,74 @@ def proposal_health(pending_report, bundles, now):
             'entries': entries}
 
 
+def offer_receipt_health(record, holds, now):
+    """Inspect every retained receipt, including invalid, held and expired ones.
+
+    Reuse source replay and public projection; no second acceptance policy or
+    scheduled collector is introduced. Review and collection clocks are not
+    source observation or accepted publication clocks.
+    """
+    original = record['activeOfferTerms']
+    receipt = original if isinstance(original, dict) else {}
+    source = receipt.get('source') if isinstance(receipt.get('source'), dict) else {}
+    review = receipt.get('review') if isinstance(receipt.get('review'), dict) else {}
+    issues = {}
+    fields = {}
+    try:
+        fields = validate_receipt(original, record)
+    except (KeyError, ValueError, TypeError, AttributeError, OverflowError) as error:
+        issues['receipt'] = str(error)
+    valid = not issues
+    if valid:
+        issues.update(receipt_problems(record))
+    clocks = {'observation': age(source.get('observedAt'), now),
+              'collection': age(source.get('collectedAt'), now),
+              'review': age(review.get('reviewedAt'), now)}
+    for name, value in clocks.items():
+        if value['state'] in {'invalid', 'future_timestamp'}:
+            issues[name + 'Clock'] = value['state']
+    today = now.astimezone(ZoneInfo('Asia/Kolkata')).date()
+    # project_record works on a copy and applies the shared holds/reviews. It
+    # can expose a different source for a field; bind decisions to this receipt.
+    public = reconciliation.project_record(copy.deepcopy(record), today=today, holds=holds)['publicQuality']
+    decisions = {}
+    for field in sorted(OFFER_FIELDS):
+        decision = copy.deepcopy(public['fields'].get(field, {'state': 'unknown'}))
+        index = decision.pop('source', None)
+        proof = public['sources'][index] if type(index) is int else {}
+        decision['usesThisReceipt'] = bool(valid and field in fields
+            and decision['state'] == 'provisional'
+            and proof.get('sha256') == source.get('sha256')
+            and proof.get('sourceUrl') == source.get('url')
+            and proof.get('reviewUrl') == review.get('url'))
+        decisions[field] = decision
+    exposed = [field for field, decision in decisions.items() if decision['usesThisReceipt']]
+    scope = lifecycle(record, today)
+    state = ('invalid_receipt' if not valid else 'review_required' if issues else
+             'expired' if scope == 'after_close' else
+             'inactive_lifecycle' if scope not in {'before_open', 'open_by_recorded_dates'} else
+             'provisional' if exposed else 'not_displayed')
+    if state == 'provisional' and any(not decisions[field]['usesThisReceipt'] for field in fields):
+        state = 'partially_withheld'
+    action = ('Inspect the retained receipt, clock or field review; do not reaccept it from parser success.'
+              if issues or state in {'partially_withheld', 'not_displayed'} else
+              'Retain the receipt history; completed static terms require matching Final Prospectus evidence.'
+              if state in {'expired', 'inactive_lifecycle'} else
+              'Keep terms explicitly provisional; review official changes and expiry without inferring source freshness.')
+    return {'id': record['id'], 'company': record.get('company'), 'state': state,
+        'lifecycle': scope, 'receiptSha256': digest(encoded(original)),
+        'receiptValidation': 'replayed' if valid else 'rejected',
+        'source': {key: copy.deepcopy(source.get(key)) for key in ('name', 'authority', 'url', 'sha256')},
+        'parserVersion': receipt.get('parserVersion'), 'review': copy.deepcopy(review),
+        'clocks': clocks, 'clockMeaning': 'Recorded receipt clocks; no scheduled freshness deadline. Review is not publication.',
+        'provisionalUntil': record.get('closeDate'), 'expiryTimezone': 'Asia/Kolkata',
+        'publicFields': decisions, 'provisionalFields': exposed,
+        'unresolved': copy.deepcopy(receipt.get('unresolved')), 'issues': issues,
+        'acceptedAt': None, 'publicationLag': {'state': 'unknown', 'minutes': None},
+        'publicationMeaning': 'Per-receipt accepted publication time is not recorded; dataset publisher timing cannot supply it.',
+        'nextAction': action}
+
+
 def build_report(payload, phase, holds, *, as_of, run=None, jobs=None,
                  pending_report=None, proposal_runs=None, queue=None):
     now = instant(as_of)
@@ -371,6 +440,7 @@ def build_report(payload, phase, holds, *, as_of, run=None, jobs=None,
             'issues': evidence['issues'], 'snapshotSha256': digest(encoded(group)),
             'finality': evidence['finality'],
             'nextAction': 'Check issue-bound source evidence; collection time cannot supply an observation or final subscription.'})
+    offer_receipts = [offer_receipt_health(row, holds, now) for row in rows if 'activeOfferTerms' in row]
     publication = meta.get('publication', {})
     if not isinstance(publication, dict):
         raise ValueError('Malformed accepted publication metadata')
@@ -388,7 +458,7 @@ def build_report(payload, phase, holds, *, as_of, run=None, jobs=None,
             'publisherWindow': copy.deepcopy(delivery.get('publisherWindow')),
             'scope': 'Dataset publisher evidence; per-source acceptance time is not recorded.'}
         source['publicationLag'] = copy.deepcopy(delivery.get('collectionToPublisherCompletion', {'state': 'unknown', 'minutes': None}))
-    return {'schemaVersion': 2, 'scope': 'read-only-recorded-operational-health-not-source-accuracy',
+    return {'schemaVersion': 3, 'scope': 'read-only-recorded-operational-health-not-source-accuracy',
         'asOf': now.isoformat(), 'mutationsApplied': 0,
         'policy': {'thresholdMinutes': LIMITS, 'subscriptionDeadlineActive': subscription_deadline(now),
                    'scheduleBasis': 'configured UTC weekdays, not an exchange holiday/session calendar',
@@ -400,9 +470,13 @@ def build_report(payload, phase, holds, *, as_of, run=None, jobs=None,
             'delivery': delivery,
             'liveDeployment': 'not_assessed_by_this_offline_report'},
         'stages': stage_rows, 'sources': source_rows, 'subscriptions': subscriptions,
+        'offerReceipts': offer_receipts,
         'proposals': proposals, 'sourceReviewQueue': queue_evidence,
         'summary': {'canonicalRecords': len(rows), 'lifecycleScopes': dict(sorted(Counter(scopes).items())),
             'openSubscriptions': len(subscriptions),
+            'retainedOfferReceipts': len(offer_receipts),
+            'offerReceiptStates': dict(sorted(Counter(r['state'] for r in offer_receipts).items())),
+            'offerReceiptUnknownObservations': sum(r['clocks']['observation']['state'] == 'missing' for r in offer_receipts),
             'observationStates': dict(sorted(Counter(r['observationFreshness']['state'] for r in subscriptions).items())),
             'collectionStates': dict(sorted(Counter(r['collectionFreshness']['state'] for r in subscriptions).items())),
             'sourceOutcomes': dict(sorted(Counter(r.get('collectionOutcome', 'unknown') for r in source_rows).items())),
@@ -420,6 +494,7 @@ def build_report(payload, phase, holds, *, as_of, run=None, jobs=None,
             'Proposal creation and exact accepted-commit timestamps are absent; workflow execution windows remain separately labelled.',
             'Within tolerance describes clock age only, never source success or accurate financial values.',
             'Unknown/invalid lifecycle dates remain counted; no live deadline is guessed for those records.',
+            'Offer receipt replay verifies retained evidence only; it does not recollect sources, resolve reviews or prove present source freshness.',
             'Successful no-change runs need not create a publication; an old snapshot alone does not prove publication delay.']}
 
 
@@ -498,6 +573,14 @@ def markdown_report(report):
     lines += table(['Issuer', 'Source / authority', 'Observation', 'Collection', 'Public state / finality', 'Next action'],
         ([r['id'], r['source'], clock_cell(r['observationFreshness']), clock_cell(r['collectionFreshness']),
           {'publicState': r['publicState'], 'finality': r['finality']}, r['nextAction']] for r in report['subscriptions']))
+    lines += ['## Retained provisional offer receipts', '',
+        'Every stored receipt remains listed after expiry or a failed review. Replay uses the existing source and public-display policies; it is not a new source check. Review time is not accepted publication time.', '',
+        'No scheduled collection deadline applies to these bounded reviews. Unknown observation times remain unknown; the general NSE collector clock does not refresh these receipts.', '']
+    lines += table(['Issuer / state', 'Source', 'Observation', 'Collection', 'Review', 'Provisional through (IST)', 'Fields / unresolved / issues', 'Next action'],
+        ([f"{r['id']} / {r['state']}", r['source'], clock_cell(r['clocks']['observation']),
+          clock_cell(r['clocks']['collection']), clock_cell(r['clocks']['review']), r['provisionalUntil'],
+          {'publicFields': r['publicFields'], 'unresolved': r['unresolved'], 'issues': r['issues']}, r['nextAction']]
+         for r in report['offerReceipts']))
     proposals = report['proposals']
     lines += ['## Retained proposals and reviews', '',
         f"Unresolved envelopes: **{cell(proposals['retainedProposals'])}**. Exact creation age unknown: **{cell(proposals.get('exactAgeUnknown'))}**. Resolutions applied: **0**.", '',

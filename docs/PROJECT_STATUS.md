@@ -15,7 +15,56 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
-## Current checkpoint — official-universe continuation released, 19 September 2026
+## Current checkpoint — operational receipt visibility, 19 September 2026
+
+Verified main baseline: **`5531a7cfbc668f0929a7264d599f1b41804c61e1`**. Sequential
+branch: `fix-operational-offer-receipts`. The existing operational/source-clock
+releases and universe #162–163 are complete; no earlier repair was repeated.
+See the [operational audit](audits/operational-health/2026-09-19-offer-receipts/REPORT.md),
+[bound report](audits/operational-health/2026-09-19-offer-receipts/report.json) and
+[human view](audits/operational-health/2026-09-19-offer-receipts/operator-view.md).
+
+The read-only operator report now includes the three retained reviewed provisional
+offer receipts (Axiom Gas, Varmora, Pooja Logistics). Source-response replay and
+public projection are reused, including holds, conflicting fields, invalid receipts,
+future clocks and expiry at midnight in India. Observation, collection and review
+remain separate; exact receipt acceptance/publication time stays unknown. No new
+writer, source request, workflow, alert or public behavior was introduced.
+
+Frozen at **04:30:00Z**: **5 failed sources, 1 partial failure, 27 recorded successes;
+3 overdue source checks, 1 overdue core stage; 8 sources and 4 stages needing
+investigation; 441 unresolved proposals**. Three subscription observations are
+unknown and two are older than tolerance outside the Saturday monitoring window.
+All three reviewed offer receipts are provisional with unknown source observations.
+All proposal origin windows remain available, with exact proposal creation ages
+unknown. Older successful bounded releases did not refresh the general core checks.
+
+The accepted publisher metadata still points to **35417782070**, with job window
+03:11:03–03:11:33Z. This predates later universe admission; it is not the latest
+canonical edit or exact acceptance time. Later successful run **35418300903** had
+no matching accepted run ID and skipped general source collection; no publication
+failure or source freshness is inferred. Prior Pages **35420840497** and public
+verification **35420860238** passed on baseline main.
+
+Preservation checks confirm byte-identical canonical records, proposals, phase,
+queue, holds and correction/review registries. P4 is unchanged: **408 actionable +
+67 higher priority; 1,553 blocking / 1,557 total reviews; 0 errors / 0 unmapped**.
+P5/performance remain gated. Commercial source permissions, permitted hosting,
+customer segment, pricing and revenue model remain unresolved.
+
+Tests: **40 focused health tests**, **38 Node tests**, strict validation pass.
+The full local Python run executed **1,347 tests** with only the known Windows
+newline-filename and symlink-privilege errors. Remaining acceptance: Linux CI,
+normal PR merge, Pages/deployed verification and immutable closeout receipt.
+No new source-correctness or blocker-reduction claim is made.
+
+Preserved open work: #94, #98, #99 and drafts #104/#105. No other branch was
+modified. **Exact next operational task:** investigate the three overdue core
+source checks using fresh run/job evidence; distinguish missing scheduled attempts,
+collection failure and publication delay before any guarded retry. Retain BSE's
+parse/timeout failures, source blocks and proposals. Do not start P5.
+
+## Previous checkpoint — official-universe continuation released, 19 September 2026
 
 Current verified data-release main: **`46e4bbaffa8df49480f352a2b9346c9661cd2864`**. Assessment baseline was
 `be97b7966e647601141116447421af5c2d72634e`; implementation/data commit
