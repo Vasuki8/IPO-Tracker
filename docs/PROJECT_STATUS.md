@@ -71,8 +71,16 @@ rights-review owner; obtain professional review of the interim public boundary
 and select a commercially suitable host before monetized activation. Vendor
 outreach, paid advice engagement, contracts and spend require separate approval.
 
-Release branch: `commercial-rights-secondary-cohort`. PR/validation/merge
-receipt will be filled in during release closeout below.
+Release complete: [PR #179](https://github.com/Vasuki8/IPO-Tracker/pull/179)
+merged as **`e4511e5a0305251fd24419788599ac4481de5a49`** from documentation head
+`0a61c3a8a1280eab12da3ddbb75972d389416bbd`. The PR changed exactly three
+documentation files: this status, the commercial register and the bounded audit
+report. It was mergeable with no review threads or requested changes. No branch
+workflow was triggered for this docs-only change, so no CI pass is claimed. The
+pre-merge accepted data artifacts remained at 1,436 records / zero validation
+errors / 1,557 reviews, and the diff contains no canonical/public data, source
+code, workflow or configuration path. Main advanced only by the documentation
+merge.
 
 **Exact next commercial task after this cohort:** complete owner-directed
 professional review of the existing 13-issuer packet plus this five-host cohort.
