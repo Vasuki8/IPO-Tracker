@@ -1,0 +1,451 @@
+{
+  "reviewVersion": "independent-active-amount-source-review-v1",
+  "reviewedAt": "2026-09-19T13:46:31.667736+00:00",
+  "repositoryMain": "0a393cd40ec910958c9d685d586076d3b0e6f8f6",
+  "scope": "Independent read-only review of explicitly source-reported whole-offer floor/cap amounts; no canonical acceptance or implied finality.",
+  "axiomgas": {
+    "identity": {
+      "company": "Axiom Gas Engineering Limited",
+      "cin": "U23201GJ2007PLC051590",
+      "symbol": "AXIOMGAS",
+      "board": "SME",
+      "openDate": "2026-09-18",
+      "closeDate": "2026-09-22"
+    },
+    "document": {
+      "url": "https://axiomgas.com/uploads/investors/PB_AP_RHP_MERGED.pdf",
+      "localFileSha256": "f171f2d945a297488025dd4041f84bd1dc886599dc0757e5fbe6bfc0fc91ee05",
+      "localFileName": "axiom-merged.pdf",
+      "sha256": "f171f2d945a297488025dd4041f84bd1dc886599dc0757e5fbe6bfc0fc91ee05",
+      "bytes": 10529275,
+      "documentDate": "2026-09-16",
+      "bodyWrittenAt": "2026-09-19T13:35:39.007023+00:00",
+      "observationTime": null,
+      "pages": 386,
+      "retrievalStatus": 200,
+      "retrievalClockBasis": "No response completion clock was recorded by the initial downloader. bodyWrittenAt is the local file persistence timestamp immediately after the complete HTTP body was read; it is not a source observation timestamp."
+    },
+    "authority": "Issuer-hosted Price Band Revision cum Corrigendum in merged advertisement/RHP bundle",
+    "reviewMethod": "Visual inspection of PDF physical page 1 at 150dpi; first page is scanned",
+    "renderedPageSha256": "2f4b28e584078a2bc157811950ad8dd0e6ec3484c539613ab14321e10f7cfad6",
+    "renderedPageName": "axiom-page1.png",
+    "locator": {
+      "pdfPage": 1,
+      "section": "8. Monitoring Agency",
+      "paragraph": "Revised disclosure after Pursuant to the revision of the Price Band"
+    },
+    "amounts": {
+      "sourceUnit": "INR lakh",
+      "scope": "whole issue",
+      "floor": {
+        "priceINRPerShare": "51",
+        "sourceAmount": "4792.98",
+        "amountCr": "47.9298"
+      },
+      "cap": {
+        "priceINRPerShare": "54",
+        "sourceAmount": "5074.92",
+        "amountCr": "50.7492"
+      }
+    },
+    "qualifications": [
+      "Conditional amounts the issuer says would aggregate at floor/cap; neither is a final issue amount.",
+      "Source footnote calculates on up to 93,98,000 equity shares subject to finalisation of the Basis of Allotment.",
+      "Issue is fresh equity shares only; reservations are included in the whole issue."
+    ],
+    "supersession": {
+      "previousBand": "50-53 INR/share",
+      "revisedBand": "51-54 INR/share",
+      "basis": "Explicit introductory revision of September 8 price-band advertisement, not implicit newest-wins.",
+      "oldEvidencePreserved": true
+    },
+    "rejections": [
+      "NSE demandGraph.totalIssueSize of 8,328,000 is a different tranche than the 9,398,000 whole issue.",
+      "Do not multiply sharesOffered or a demand denominator by cap price.",
+      "Do not select earlier 50-53 band or paragraph 8 earlier monitoring-agency disclosure from the same page.",
+      "Do not present either amount as final proceeds or known single-valued issueSizeCr."
+    ]
+  },
+  "varmora": {
+    "identity": {
+      "company": "Varmora Granito Limited",
+      "cin": "U26914GJ2003PLC043194",
+      "symbol": "VARMORA",
+      "board": "Mainboard",
+      "openDate": "2026-09-22",
+      "closeDate": "2026-09-24"
+    },
+    "document": {
+      "url": "https://www.jmfl.com/Common/getFile/6031",
+      "localFileSha256": "2287c54ae752a60cf2ed733940fa3e723bcd3a6e245641cb00f0619410417ea4",
+      "localFileName": "varmora-advertisement.pdf",
+      "sha256": "2287c54ae752a60cf2ed733940fa3e723bcd3a6e245641cb00f0619410417ea4",
+      "bytes": 17920536,
+      "documentDate": "2026-09-17",
+      "bodyWrittenAt": "2026-09-19T13:36:54.256721+00:00",
+      "observationTime": null,
+      "pages": 15,
+      "retrievalStatus": 200,
+      "retrievalClockBasis": "No response completion clock was recorded by the initial downloader. bodyWrittenAt is the local file persistence timestamp immediately after the complete HTTP body was read; it is not a source observation timestamp."
+    },
+    "authority": "Issuer price-band advertisement published in Financial Express and linked by named lead manager JM Financial",
+    "reviewMethod": "Visual inspection of PDF physical page 1, newspaper printed page 16, at 150dpi; scanned page",
+    "renderedPageSha256": "1bb526f4793c2954fe55dc49e9f4ef25c085dfd48a5dd7bd1a93f715989a9d51",
+    "renderedPageName": "varmora-page1.png",
+    "locator": {
+      "pdfPage": 1,
+      "printedPage": 16,
+      "table": "Details of Fresh Issue, Offer for Sale, Total Offer Size and post-Offer market capitalization at Floor Price and Cap Price",
+      "row": "Total Offer Size",
+      "floorColumn": "At Floor Price of ₹140 per Equity Share",
+      "capColumn": "At Cap Price of ₹148 per Equity Share",
+      "amountSubheader": "Up to amount (₹ in million)"
+    },
+    "amounts": {
+      "sourceUnit": "INR million",
+      "scope": "whole offer",
+      "qualifier": "up_to",
+      "floor": {
+        "priceINRPerShare": "140",
+        "sourceAmount": "6870.47",
+        "amountCr": "687.047",
+        "wholeOfferShares": "49074776"
+      },
+      "cap": {
+        "priceINRPerShare": "148",
+        "sourceAmount": "7080.21",
+        "amountCr": "708.021",
+        "wholeOfferShares": "47839255"
+      }
+    },
+    "adjacentRows": [
+      {
+        "label": "Fresh Issue",
+        "floorShares": "22857142",
+        "floorAmountMillion": "3200.00",
+        "capShares": "21621621",
+        "capAmountMillion": "3200.00"
+      },
+      {
+        "label": "Offer for Sale",
+        "floorShares": "26217634",
+        "floorAmountMillion": "3670.47",
+        "capShares": "26217634",
+        "capAmountMillion": "3880.21"
+      },
+      {
+        "label": "Post-Offer market capitalization of the Company",
+        "floorShares": "227247345",
+        "floorAmountMillion": "31814.63",
+        "capShares": "226011824",
+        "capAmountMillion": "33449.75"
+      }
+    ],
+    "qualifications": [
+      "Both monetary columns explicitly say up to.",
+      "Offer comprises fresh amount and OFS; floor and cap share counts differ because fresh shares vary by price.",
+      "Advertisement is provisional; final total shares/price and monetary values remain placeholders in reviewed RHP cover."
+    ],
+    "rejections": [
+      "Do not multiply NSE floor-column 49,074,776 shares by cap price 148 (retained 726.31 crore is unsupported).",
+      "Do not select fresh issue alone or OFS alone as whole offer.",
+      "Do not select post-offer market capitalization row.",
+      "Do not conflate INR million with crore or lakh.",
+      "Do not clear existing final-prospectus reviews on this evidence."
+    ]
+  },
+  "poojalogis": {
+    "identity": {
+      "company": "Pooja Logistics Limited",
+      "cin": "U60300DL2011PLC228491",
+      "symbol": "POOJALOGIS",
+      "board": "SME",
+      "openDate": "2026-09-23",
+      "closeDate": "2026-09-25"
+    },
+    "archive": {
+      "url": "https://nsearchives.nseindia.com/content/ipo/RHP_POOJALOGIS.zip",
+      "localFileSha256": "f1a284055dd3d271a00ff8ee91e39a37c82a8fda9cc7efb12cc27ff9e0f7aa39",
+      "localFileName": "pooja-rhp.zip",
+      "sha256": "f1a284055dd3d271a00ff8ee91e39a37c82a8fda9cc7efb12cc27ff9e0f7aa39",
+      "bytes": 12377797,
+      "documentDate": null,
+      "bodyWrittenAt": "2026-09-19T13:35:43.884180+00:00",
+      "observationTime": null,
+      "pages": null,
+      "retrievalStatus": 200,
+      "retrievalClockBasis": "No response completion clock was recorded by the initial downloader. bodyWrittenAt is the local file persistence timestamp immediately after complete HTTP body retrieval; it is not a source observation timestamp."
+    },
+    "document": {
+      "url": "https://nsearchives.nseindia.com/content/ipo/RHP_POOJALOGIS.zip",
+      "localFileSha256": "e53f1eb90eb8850c6ef9f84a03d444052eba13d186fc62d02b2a82a1a866c847",
+      "localFileName": "RHP_Pooja Logistics_17.09.2026.pdf",
+      "sha256": "e53f1eb90eb8850c6ef9f84a03d444052eba13d186fc62d02b2a82a1a866c847",
+      "bytes": 8660157,
+      "documentDate": "2026-09-17",
+      "observationTime": null,
+      "pages": 395,
+      "extractedAt": "2026-09-19T13:37:35.737950+00:00",
+      "archiveSha256": "f1a284055dd3d271a00ff8ee91e39a37c82a8fda9cc7efb12cc27ff9e0f7aa39",
+      "contentKind": "Extracted PDF member; retrieved inside the NSE archive, not through a standalone PDF URL"
+    },
+    "archiveMember": "RHP_POOJALOGIS/RHP_Pooja Logistics_17.09.2026.pdf",
+    "findings": [
+      {
+        "pdfPage": 1,
+        "table": "Details of the Issue to Public",
+        "rows": [
+          "Fresh Issue",
+          "Total Issue Size"
+        ],
+        "amount": "₹ [●] Lakhs",
+        "wholeIssueShares": 3846000,
+        "ofs": "NIL",
+        "priceBand": "109 to 115"
+      },
+      {
+        "pdfPage": 2,
+        "section": "Details of the Issue",
+        "totalAmount": "₹ [●] Lakhs",
+        "wholeIssueShares": 3846000,
+        "marketMakerShares": 198000,
+        "employeeShares": 72000,
+        "netIssueShares": 3576000,
+        "qualification": "Subject to finalization of basis of allotment."
+      },
+      {
+        "pdfPage": 66,
+        "printedPage": 61,
+        "section": "The Issue notes, note 5",
+        "finding": "Employee reservation allocation mentions Employee Discount without establishing a numeric discount; do not infer zero or a discount amount."
+      }
+    ],
+    "status": "Recovered and reviewed current RHP, issuer price-band advertisement, AP and official security-parameter table. Whole-offer monetary amounts are placeholders or absent in relevant rows. Do not publish inferred floor/cap values; retain monetary blocker. Existing failed collection attempts remain history and new successful recoveries are new evidence.",
+    "rejections": [
+      "Do not infer monetary issue amount by multiplying 3,846,000 shares by 115.",
+      "Do not select QIB maximum application amount or net issue amount as whole issue.",
+      "Do not clear previous retrieval failure as nonexistent history; record recovery result as new evidence."
+    ],
+    "reviewMethod": "Rendered physical RHP pages 1 and 2 visually inspected; relevant RHP text searched; all three Financial Express advertisement pages visually inspected; AP/preanchor relevant tables text-extracted.",
+    "renderedPages": [
+      "/workspace/scratch/a6eff400e0a1/nse-amount-review/pooja-rhp-page1.png",
+      "/workspace/scratch/a6eff400e0a1/nse-amount-review/pooja-rhp-page2.png",
+      "/workspace/scratch/a6eff400e0a1/nse-amount-review/pooja-advertisement-1.png",
+      "/workspace/scratch/a6eff400e0a1/nse-amount-review/pooja-advertisement-2.png",
+      "/workspace/scratch/a6eff400e0a1/nse-amount-review/pooja-advertisement-3.png"
+    ],
+    "ratiosArchive": {
+      "url": "https://nsearchives.nseindia.com/content/ipo/RATIOS_POOJALOGIS.zip",
+      "file": "/workspace/scratch/a6eff400e0a1/nse-amount-review/pooja-ratios-retry.zip",
+      "startedAt": "2026-09-19T13:40:45.012509+00:00",
+      "collectedAt": "2026-09-19T13:40:53.281049+00:00",
+      "status": 200,
+      "sha256": "cb5b21ac34f72c83c2f274c6b740f1af4ebb44c84796eaf6ca5e9a7df4970933",
+      "bytes": 3829320,
+      "contentType": "application/zip",
+      "zipValid": true,
+      "crcCheck": "zipfile.ZipFile.testzip returned None"
+    },
+    "priceBandAdvertisement": {
+      "url": "https://nsearchives.nseindia.com/content/ipo/RATIOS_POOJALOGIS.zip",
+      "archiveMember": "RATIOS_POOJALOGIS/Pre-Issue_Financial Express_Mumbai_18-09-2026.pdf",
+      "localFileSha256": "00b4350743f3c1dc13320f28ea0f11b0aa95ac12dc228be70fe1f6b879bac54b",
+      "localFileName": "pooja-ratios-Pre-Issue_Financial_Express_Mumbai_18-09-2026.pdf",
+      "sha256": "00b4350743f3c1dc13320f28ea0f11b0aa95ac12dc228be70fe1f6b879bac54b",
+      "bytes": 2089563,
+      "pages": 3,
+      "documentDate": "2026-09-17",
+      "publicationDate": "2026-09-18",
+      "pdfPage": 1,
+      "printedPage": 31,
+      "issuer": "Pooja Logistics Limited",
+      "cin": "U60300DL2011PLC228491",
+      "sourceUnit": "INR lakh",
+      "wholeIssueAmount": "₹ [●] lakhs",
+      "wholeIssueShares": 3846000,
+      "qualifier": "Subject to finalization of basis of allotment",
+      "priceBand": {
+        "min": 109,
+        "max": 115
+      },
+      "minimumBidQuantity": 2400,
+      "bidMultiple": 1200,
+      "finding": "No explicit whole-offer monetary amount or floor/cap total amount in this 3-page advertisement. Minimum bid banner is not a category-specific permission statement.",
+      "archiveSha256": "cb5b21ac34f72c83c2f274c6b740f1af4ebb44c84796eaf6ca5e9a7df4970933",
+      "pageOutcomes": [
+        {
+          "pdfPage": 1,
+          "printedPage": 31,
+          "finding": "Issuer identity and CIN, provisional whole-issue amount placeholders, total/fresh shares and reservations, price band and bid minimum/multiple visually reviewed. No whole-issue conditional monetary amount."
+        },
+        {
+          "pdfPage": 2,
+          "printedPage": 32,
+          "finding": "Financial comparisons, acquisition cost, shareholding and issue timetable; no whole-offer INR total. No proceeds number selected from financial tables."
+        },
+        {
+          "pdfPage": 3,
+          "printedPage": 33,
+          "finding": "Issue intermediaries, availability statements, legal disclaimer and issuer-signed document date September 17, 2026; no whole-offer monetary total."
+        }
+      ]
+    },
+    "additionalOfficialSources": [
+      {
+        "archiveReceipt": {
+          "url": "https://nsearchives.nseindia.com/content/ipo/FORMS_POOJALOGIS.zip",
+          "file": "/workspace/scratch/a6eff400e0a1/nse-amount-review/pooja-forms.zip",
+          "startedAt": "2026-09-19T13:39:08.766196+00:00",
+          "collectedAt": "2026-09-19T13:39:19.645406+00:00",
+          "exit": 0,
+          "http": "200 application/zip",
+          "stderr": "",
+          "observedAt": null,
+          "bytes": 3661582,
+          "sha256": "c67e9731ed6d8e4e84df1c39ac7133fe1b80c2e3d09d214da169aef70c28fa93"
+        },
+        "members": [
+          {
+            "file": "FORMS_POOJALOGIS/Abridged Prospectus.pdf",
+            "sha256": "f9c6e42671aab609ff4fa929c573a9c7ed65b0812023bb07b3ce2fa15e469902",
+            "bytes": 893339,
+            "page": 1,
+            "finding": "Whole offer monetary amount is placeholder."
+          },
+          {
+            "file": "FORMS_POOJALOGIS/Pooja Logistics_Employee.pdf",
+            "sha256": "0e5d2a8d0ce2b73abb9bf185a72a38176f94b836a452c2e87607bbcc7beaa3be",
+            "bytes": 1016503,
+            "page": 1,
+            "finding": "Blank Employee Discount form column does not establish discount amount or zero discount."
+          }
+        ]
+      },
+      {
+        "archiveReceipt": {
+          "url": "https://nsearchives.nseindia.com/content/ipo/PREANCHOR_PARAMETERS_POOJALOGIS.zip",
+          "file": "/workspace/scratch/a6eff400e0a1/nse-amount-review/pooja-preanchor.zip",
+          "startedAt": "2026-09-19T13:39:08.766430+00:00",
+          "collectedAt": "2026-09-19T13:39:16.568492+00:00",
+          "exit": 0,
+          "http": "200 application/zip",
+          "stderr": "",
+          "observedAt": null,
+          "bytes": 80880,
+          "sha256": "29f1adc9379070d16c11baf6374cbf15f579a0cec82d6f48faf1cc12c67bb725"
+        },
+        "members": [
+          {
+            "file": "PREANCHOR_PARAMETERS_POOJALOGIS/PREANCHOR_PARAMETERS_POOJALOGIS.pdf",
+            "sha256": "91483d54bb5279f9bf154308cf54ff21452cdd8ee49038a8982ec5230f7fd961",
+            "bytes": 95353,
+            "pages": 3,
+            "finding": "Page 1 Issue size is 3,846,000 shares; no whole-issue INR total. Page 2 QIB Max Value Rs.41,12,40,000 and NIB Max Value Rs.20,70,00,000 are category bid limits at 115; neither is whole offer amount."
+          }
+        ]
+      }
+    ],
+    "sourceRecoveryHistory": {
+      "priorRepositoryAttempts": [
+        {
+          "url": "https://nsearchives.nseindia.com/content/ipo/RHP_POOJALOGIS.zip",
+          "error": "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
+          "checkedAt": "2026-09-19T02:33:13.510896+00:00"
+        },
+        {
+          "url": "https://nsearchives.nseindia.com/content/ipo/RATIOS_POOJALOGIS.zip",
+          "error": "HTTPSConnectionPool(host='nsearchives.nseindia.com', port=443): Read timed out. (read timeout=45)",
+          "checkedAt": "2026-09-19T02:33:39.382354+00:00"
+        }
+      ],
+      "currentAttempts": [
+        {
+          "source": "RHP archive",
+          "outcome": "success",
+          "sha256": "f1a284055dd3d271a00ff8ee91e39a37c82a8fda9cc7efb12cc27ff9e0f7aa39",
+          "bytes": 12377797,
+          "bodyWrittenAt": "2026-09-19T13:35:43.884180+00:00",
+          "clockBasis": "No response completion clock was recorded by the initial downloader. bodyWrittenAt is the local file persistence timestamp immediately after complete HTTP body retrieval; it is not a source observation timestamp."
+        },
+        {
+          "source": "Ratios archive first curl attempt",
+          "receipt": {
+            "url": "https://nsearchives.nseindia.com/content/ipo/RATIOS_POOJALOGIS.zip",
+            "file": "/workspace/scratch/a6eff400e0a1/nse-amount-review/pooja-ratios.zip",
+            "startedAt": "2026-09-19T13:39:08.765661+00:00",
+            "collectedAt": "2026-09-19T13:39:18.873935+00:00",
+            "exit": 0,
+            "http": "200 application/zip",
+            "stderr": "",
+            "observedAt": null,
+            "bytes": 3829320,
+            "sha256": "cb5b21ac34f72c83c2f274c6b740f1af4ebb44c84796eaf6ca5e9a7df4970933"
+          },
+          "outcome": "Not accepted as retained source evidence: later local artifact is truncated and differs from receipt hash. The download receipt alone does not establish a valid retained ZIP.",
+          "laterLocalArtifactBytes": 1830912,
+          "laterLocalArtifactSha256": "96d690ef5074bfe6c9ef680ce396a965f4d1ff21e3e3bcdf088288735ee61447",
+          "laterLocalArtifactZipValid": false,
+          "classification": "retryable-collection-failure"
+        },
+        {
+          "source": "Ratios archive independent filename retry",
+          "receipt": {
+            "url": "https://nsearchives.nseindia.com/content/ipo/RATIOS_POOJALOGIS.zip",
+            "file": "/workspace/scratch/a6eff400e0a1/nse-amount-review/pooja-ratios-retry.zip",
+            "startedAt": "2026-09-19T13:40:45.012509+00:00",
+            "collectedAt": "2026-09-19T13:40:53.281049+00:00",
+            "status": 200,
+            "sha256": "cb5b21ac34f72c83c2f274c6b740f1af4ebb44c84796eaf6ca5e9a7df4970933",
+            "bytes": 3829320,
+            "contentType": "application/zip",
+            "zipValid": true,
+            "crcCheck": "zipfile.ZipFile.testzip returned None"
+          },
+          "outcome": "success; all ZIP member CRC checks pass; reviewed Financial Express advertisement physical pages 1-3"
+        },
+        {
+          "source": "Forms archive",
+          "receipt": {
+            "url": "https://nsearchives.nseindia.com/content/ipo/FORMS_POOJALOGIS.zip",
+            "file": "/workspace/scratch/a6eff400e0a1/nse-amount-review/pooja-forms.zip",
+            "startedAt": "2026-09-19T13:39:08.766196+00:00",
+            "collectedAt": "2026-09-19T13:39:19.645406+00:00",
+            "exit": 0,
+            "http": "200 application/zip",
+            "stderr": "",
+            "observedAt": null,
+            "bytes": 3661582,
+            "sha256": "c67e9731ed6d8e4e84df1c39ac7133fe1b80c2e3d09d214da169aef70c28fa93"
+          },
+          "outcome": "success; AP and eligible employee application form reviewed for monetary scope"
+        },
+        {
+          "source": "Pre-anchor security parameters archive",
+          "receipt": {
+            "url": "https://nsearchives.nseindia.com/content/ipo/PREANCHOR_PARAMETERS_POOJALOGIS.zip",
+            "file": "/workspace/scratch/a6eff400e0a1/nse-amount-review/pooja-preanchor.zip",
+            "startedAt": "2026-09-19T13:39:08.766430+00:00",
+            "collectedAt": "2026-09-19T13:39:16.568492+00:00",
+            "exit": 0,
+            "http": "200 application/zip",
+            "stderr": "",
+            "observedAt": null,
+            "bytes": 80880,
+            "sha256": "29f1adc9379070d16c11baf6374cbf15f579a0cec82d6f48faf1cc12c67bb725"
+          },
+          "outcome": "success; relevant issue size and category limit tables reviewed"
+        }
+      ]
+    }
+  },
+  "measurement": {
+    "missingAmountCoverageBefore": 3,
+    "supportedAmountDisplayRepairs": 2,
+    "unresolvedAmountCoverageAfterIfAccepted": 1,
+    "canonicalFinalIssueAmountValuesEstablished": 0,
+    "blockingSourceReviewReductionSupported": 0,
+    "note": "Coverage reduction contingent on reviewed publication and explicit price-basis/qualifier rendering. No final-prospectus review may be cleared."
+  },
+  "familyStatus": "Independent source review complete; no further discovery required for this bounded active-amount family. Axiom and Varmora support qualified monetary displays; Pooja remains unresolved.",
+  "independentReviewOriginalSha256": "126bfc1b03a067023960784e63ae641569e60c91ec593d8e18d0119b08d6afe2"
+}

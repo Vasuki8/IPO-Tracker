@@ -1,0 +1,97 @@
+{
+  "identity": {
+    "id": "varmora",
+    "company": "Varmora Granito Limited",
+    "symbol": "VARMORA",
+    "board": "Mainboard",
+    "openDate": "2026-09-22",
+    "closeDate": "2026-09-24"
+  },
+  "source": {
+    "name": "Varmora issuer advertisement via JM Financial",
+    "authority": "issuer_disclosure",
+    "authorityEvidence": "Issuer price-band advertisement published in Financial Express and linked by named lead manager JM Financial",
+    "url": "https://www.jmfl.com/Common/getFile/6031",
+    "sha256": "2287c54ae752a60cf2ed733940fa3e723bcd3a6e245641cb00f0619410417ea4",
+    "bytes": 17920536,
+    "pages": 15,
+    "documentType": "Price Band Advertisement",
+    "documentDate": "2026-09-17",
+    "collectedAt": "2026-09-19T13:36:54.256721+00:00",
+    "collectionTimeBasis": "response-body-persisted",
+    "observedAt": null
+  },
+  "transcription": {
+    "method": "independently-reviewed-visual-transcription",
+    "issuer": "Varmora Granito Limited",
+    "page": 1,
+    "layout": "floor-cap-offer-table",
+    "locator": "Offer details at Floor Price and Cap Price; newspaper printed page 16",
+    "columns": [
+      {
+        "priceHeader": "At Floor Price of ₹140 per Equity Share",
+        "shareHeader": "Up to no. of Equity Shares of face value of ₹ 2 each",
+        "amountHeader": "Up to amount (₹ in million)"
+      },
+      {
+        "priceHeader": "At Cap Price of ₹148 per Equity Share",
+        "shareHeader": "Up to no. of Equity Shares of face value of ₹ 2 each",
+        "amountHeader": "Up to amount (₹ in million)"
+      }
+    ],
+    "rows": [
+      {
+        "label": "Fresh Issue",
+        "cells": [
+          "2,28,57,142",
+          "3,200.00",
+          "2,16,21,621",
+          "3,200.00"
+        ]
+      },
+      {
+        "label": "Offer for Sale",
+        "cells": [
+          "2,62,17,634",
+          "3,670.47",
+          "2,62,17,634",
+          "3,880.21"
+        ]
+      },
+      {
+        "label": "Total Offer Size",
+        "cells": [
+          "4,90,74,776",
+          "6,870.47",
+          "4,78,39,255",
+          "7,080.21"
+        ]
+      },
+      {
+        "label": "Post-Offer market capitalization of the Company",
+        "cells": [
+          "22,72,47,345",
+          "31,814.63",
+          "22,60,11,824",
+          "33,449.75"
+        ]
+      }
+    ]
+  },
+  "transcriptionSha256": "c28fd7a7d700f07d6d078f4d97e842ed2a1588d6ba0a39f523a2a41076773206",
+  "expected": {
+    "value": {
+      "floorPrice": 140.0,
+      "capPrice": 148.0,
+      "atFloorCr": 687.047,
+      "atCapCr": 708.021,
+      "qualifier": "up_to",
+      "qualification": "Up to the disclosed amount at each price; final offer terms remain unknown."
+    },
+    "unit": "INR crore",
+    "sourceUnit": "INR million",
+    "page": 1,
+    "row": "Total Offer Size",
+    "table": "Offer details at Floor Price and Cap Price; newspaper printed page 16"
+  }
+}
