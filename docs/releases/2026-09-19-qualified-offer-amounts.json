@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-19T14:37:01.002697+00:00",
+  "family": "reviewed qualified floor/cap whole-offer amounts",
+  "recoveredMain": "0a393cd40ec910958c9d685d586076d3b0e6f8f6",
+  "sourceReviewCommit": "6e2df0a4d4c8b736d0c07d526b3b844eaecd0b49",
+  "support": {
+    "pr": 171,
+    "commit": "6bdcb9b72fbd0249a19ac68d9ddf865edb96c29a",
+    "merge": "4a8ff79a19df59faf49677931516312b366fa4ee",
+    "reviewPublication": "ec31caea26de73fb0a7e373247b22b5535524022",
+    "publisherRun": 35448752026,
+    "checks": {
+      "validation": 35448476902,
+      "sourcePreview": 35448476877,
+      "sourceHoldEvidence": 35448476880,
+      "publicCandidate": 35448476898,
+      "browser": 35448476884,
+      "mainValidation": 35448752007,
+      "mainBrowser": 35448752008
+    }
+  },
+  "request": {
+    "pr": 172,
+    "commit": "1cbb313b8d1ded2e82859eecefb5a18cec36073a",
+    "merge": "90ce951c8d9a6e176f07d5d647e0e7057d4b9967",
+    "validationRun": 35448832878,
+    "requestId": "qualified-offer-amounts-20260919-1"
+  },
+  "publication": {
+    "commit": "40a24ca1cc2e5310825aad36769ee3cad75fe9ae",
+    "parent": "90ce951c8d9a6e176f07d5d647e0e7057d4b9967",
+    "run": 35448941571,
+    "collectJob": 105912618954,
+    "publishJob": 105912760095,
+    "mode": "reviewed",
+    "status": "success",
+    "sourceCollection": false,
+    "residualRepair": false,
+    "ids": [
+      "axiomgas",
+      "varmora"
+    ],
+    "canonicalBeforeSha256": "2514c25566fd5dfac8f53c196fb9ae087be5c1a8ac1c27e49b743a00d78d1aa9",
+    "canonicalAfterSha256": "4ed448add9610185a0a4d78a981987b7dbaab7e8f6138b55c23d9897aa2b8d2f",
+    "proposedSha256": "a9c5e719b572cc86d9f0cc2fa07cab62277ba6b907ad05204b3a6db98c61ce89",
+    "changedRecordFields": {
+      "axiomgas": [
+        "activeOfferTerms",
+        "dataCorrections"
+      ],
+      "varmora": [
+        "activeOfferTerms",
+        "dataCorrections"
+      ]
+    }
+  },
+  "before": {
+    "generatedAt": "2026-09-19T14:27:47.572257+00:00",
+    "p4": {
+      "status": "incomplete",
+      "actionableRecords": 408,
+      "higherPriorityRecords": 69,
+      "semanticErrors": 0,
+      "sourceReviewItems": 1557,
+      "blockingSourceReviewItems": 1553,
+      "p5OnlySourceReviewItems": 4,
+      "unmappedSourceReviewItems": 0,
+      "finalProspectusRevalidationRecords": 321,
+      "finalProspectusRevalidationFields": 1174,
+      "higherPriorityFinalProspectusRevalidationRecords": 28,
+      "higherPriorityFinalProspectusRevalidationFields": 104,
+      "resolvedUnavailableRecords": 5
+    },
+    "p5": {
+      "status": "waiting_for_p4",
+      "actionableRecords": 914
+    }
+  },
+  "after": {
+    "generatedAt": "2026-09-19T14:32:14.081731+00:00",
+    "p4": {
+      "status": "incomplete",
+      "actionableRecords": 408,
+      "higherPriorityRecords": 67,
+      "semanticErrors": 0,
+      "sourceReviewItems": 1557,
+      "blockingSourceReviewItems": 1553,
+      "p5OnlySourceReviewItems": 4,
+      "unmappedSourceReviewItems": 0,
+      "finalProspectusRevalidationRecords": 321,
+      "finalProspectusRevalidationFields": 1174,
+      "higherPriorityFinalProspectusRevalidationRecords": 28,
+      "higherPriorityFinalProspectusRevalidationFields": 104,
+      "resolvedUnavailableRecords": 5
+    },
+    "p5": {
+      "status": "waiting_for_p4",
+      "actionableRecords": 914
+    }
+  },
+  "amountCoverage": {
+    "cohortGapBefore": 3,
+    "cohortGapAfter": 1,
+    "allIssueSizeGapsBefore": 996,
+    "allIssueSizeGapsAfter": 994,
+    "meaning": "explicit provisional qualified pair; final scalar remains null; not source-review removal",
+    "unresolved": [
+      "poojalogis"
+    ]
+  },
+  "preservation": {
+    "recordCount": 1406,
+    "unselectedRecordsEqual": 1404,
+    "issuerOrderEqual": true,
+    "validationIssuesEqual": true,
+    "expandedQueueSourceReviewsEqual": true,
+    "resolvedUnavailableEqual": true,
+    "pendingProposalCount": 441,
+    "protectedFileSha256": {
+      "data/pending_updates.json": "ed4b1ae67dfc0b9a9a92090749e24c631933a884a92e6fe9576a6af1f8ba68a3",
+      "data/public_display_holds.json": "296ddc61a3f7f8c8dbb06d86bbb9ca92d67203230ef66c834cb34e4eced588b6"
+    },
+    "performanceValuesEqual": true,
+    "performanceSummaryChangedKeys": [
+      "generatedAt"
+    ],
+    "historyPrefixPreserved": true
+  },
+  "tests": {
+    "pythonFull": 1392,
+    "amountFamily": 16,
+    "node": 39,
+    "strictErrors": 0,
+    "allDirectoryProfilePairs": 1406,
+    "browserWidths": [
+      1440,
+      375,
+      320
+    ]
+  },
+  "deployment": {
+    "pagesRun": 35449044417,
+    "pagesStatus": "success",
+    "verifierRun": 35449087717,
+    "verifierStatus": "success",
+    "exactLiveFiles": 26,
+    "additionalDirectChecks": 9
+  },
+  "independentAudit": "passed; exact records, history, queue/reviews/proposals/holds, quantities, expiry and performance preservation checked read-only",
+  "concurrentScheduledRun": {
+    "run": 35448787952,
+    "status": "failed_before_publication",
+    "reason": "Collector code or reviewed-correction policy changed after collection; retained artifact must be recollected with current code and policy",
+    "canonicalWritesPublished": false
+  },
+  "nextTask": "Preserve and recover the four previously accepted BSE receipts/history removed by core commit20068a87; see the separate regression diagnosis."
+}

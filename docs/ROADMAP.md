@@ -118,18 +118,32 @@ The [universe continuation](audits/official-universe/2026-09-19/REPORT.md) adds 
 reviewed BSE identities and recovers bounded SEBI draft-year cohorts; it does not
 establish complete coverage or reduce numerical P4 blockers.
 
-**The bounded BSE active-offer family is complete** in #168/#169 and accepted
-publication `599798ff`: four reviewed price bands and eight separately labelled
-market-lot/minimum-bid values are live, with source clocks, holds and IST expiry.
-The five-offer cohort's core gaps fell from 25 to 21; no P4 record or source review
-was removed. Vivekanand's empty detail table remains unresolved. Bid lots, whole
-offer totals, composition, canonical symbols and application amounts stay unknown.
-See the [release evidence](releases/2026-09-19-bse-active-offer-terms.json).
+**The bounded BSE active-offer family was accepted** in #168/#169 and
+publication `599798ff`, with four price bands and eight separately labelled
+market-lot/minimum-bid values. Recovery of current main found that scheduled core
+`20068a87` subsequently deleted all four receipts, history events and detail
+sources. The prior live checkpoint does not describe current delivery. See the
+[regression diagnosis](reviews/2026-09-19-bse-receipt-preservation-regression.md).
+Vivekanand's empty detail table and the other bid-lot/whole-total/composition/symbol
+and application-amount gaps remain unresolved.
 
-**Next numerical P4 increment:** review the separate qualified NSE floor/cap
-total-amount family for Axiom Gas, Varmora and Pooja Logistics. Do not turn a
-conditional amount, tranche or share count into a whole-offer amount. Preserve
-the remaining BSE gaps until independently supported. SpectraA remains held.
+**The qualified whole-offer amount family is complete** in #171/#172 and
+publication `40a24ca1`. Two real reviewed layouts supply separate qualified
+floor/cap pairs for Axiom Gas and Varmora. Pooja's recovered RHP/advertisement
+leave its amount undisclosed. Active amount gaps fell 3 → 1, higher-priority P4
+records 69 → 67; 408 P4 records and all 1,553 blocking / 1,557 total reviews remain.
+The scalar remains null; qualifications, per-field source evidence, holds and
+expiry are enforced. See the [release receipt](releases/2026-09-19-qualified-offer-amounts.json).
+
+**Next numerical P4 increment:** preserve durable reviewed BSE receipts/history
+through `clean_existing_record()` and a successful core refresh, then recover the
+four exact prior receipts after replay against current identity, official
+observations, holds and lifecycle. Do not roll back whole records. Expected
+eligible recovery is four price-band gaps and eight quantity values; it is not
+new source-review resolution. Then reassess Elevate Campuses/Unitec Fibres detail
+sources. Keep Vivekanand unresolved and SpectraA held; its inspected counts do not
+support category multiples. Do not repeat the exhausted qualified-amount source
+inspection without new evidence.
 The promoter/subtotal/page-locator family needs a bounded
 multi-document diagnosis, not an automatic 93.10 replacement. PNGS Reva's adjusted
 EBITDA/partnership EPS remains unsupported and conditional on source inspection.
