@@ -180,6 +180,50 @@ def health_entry(name, value, kind, now, active, filing_work):
             'nextAction': OUTCOME_ACTIONS[collection_outcome]}
 
 
+def source_freshness(value, kind, now, active, filing_work):
+    """Classify only an explicit source observation against operator tolerances."""
+    value = value if isinstance(value, dict) else {}
+    limit = LIMITS.get(kind)
+    due = kind != 'subscriptions' or (active and subscription_deadline(now))
+    if kind == 'filings' and not filing_work:
+        due = False
+    freshness = age(value.get('observedAt'), now, limit, due=due)
+    if freshness['state'] == 'missing':
+        freshness['state'] = 'source_time_unknown'
+    return freshness
+
+
+def source_operational_status(source):
+    """Compose investigation signals without collapsing independent clocks."""
+    signals = []
+    outcome = source.get('collectionOutcome', 'unknown')
+    if outcome != 'successful':
+        signals.append('collection_' + outcome)
+    observation_state = source.get('sourceFreshness', {}).get('state')
+    observation_signals = {
+        'overdue': 'stale_source',
+        'source_time_unknown': 'source_observation_unknown',
+        'invalid': 'source_observation_invalid',
+        'future_timestamp': 'source_observation_future',
+    }
+    if observation_state in observation_signals:
+        signals.append(observation_signals[observation_state])
+    collection_state = source.get('attemptFreshness', {}).get('state')
+    collection_signals = {
+        'overdue': 'collection_overdue',
+        'conflicting_check_clocks': 'collection_clock_conflict',
+        'invalid': 'collection_clock_invalid',
+        'future_timestamp': 'collection_clock_future',
+    }
+    if collection_state in collection_signals:
+        signals.append(collection_signals[collection_state])
+    if collection_state == 'missing' and source.get('monitoring') != 'recorded_only':
+        signals.append('collection_time_unknown')
+    return {'state': 'recorded_signals_current' if not signals else signals[0] if len(signals) == 1 else 'multiple_signals',
+            'signals': signals,
+            'meaning': 'Independent source-observation, collection-attempt and outcome signals; not source accuracy or an alert.'}
+
+
 def workflow_delivery(publication, run, jobs, now):
     if run is None and jobs is None:
         return {'state': 'not_assessed', 'reason': 'No unpublished workflow evidence supplied; snapshot age alone cannot establish publication delay.'}
@@ -311,6 +355,23 @@ def proposal_health(pending_report, bundles, now):
             'entries': entries}
 
 
+def unresolved_proposal_age(proposals):
+    """Summarize exact unknown age separately from originating workflow bounds."""
+    retained = proposals.get('retainedProposals') if isinstance(proposals, dict) else None
+    entries = proposals.get('entries', []) if isinstance(proposals, dict) else []
+    ranges = [entry.get('originatingPublisherAgeRange') for entry in entries if isinstance(entry, dict)]
+    ranges = [item for item in ranges if isinstance(item, dict)
+              and isinstance(item.get('minimumMinutes'), (int, float))
+              and isinstance(item.get('maximumMinutes'), (int, float))]
+    return {'state': 'not_supplied' if retained is None else 'none' if retained == 0 else 'exact_age_unknown',
+            'retainedProposals': retained,
+            'exactAgeUnknown': proposals.get('exactAgeUnknown') if isinstance(proposals, dict) else None,
+            'originWindowAvailable': len(ranges),
+            'youngestOriginPublisherMinimumMinutes': min((item['minimumMinutes'] for item in ranges), default=None),
+            'oldestOriginPublisherMaximumMinutes': max((item['maximumMinutes'] for item in ranges), default=None),
+            'meaning': 'Proposal creation timestamps are not stored. Workflow bounds describe originating publisher execution only.'}
+
+
 def offer_receipt_health(record, holds, now):
     """Inspect every retained receipt, including invalid, held and expired ones.
 
@@ -417,10 +478,14 @@ def build_report(payload, phase, holds, *, as_of, run=None, jobs=None,
         source.update(authority=SOURCE_AUTHORITY.get(source['name'], 'not_assessed'),
             authorityMeaning='Source role only; field authority and issuer binding require separate source review.',
             lastSourceObservation=age(value.get('observedAt'), now),
+            sourceFreshness=source_freshness(value, source['monitoring'], now, bool(live), filing_work),
             observationMeaning='Explicit sourceHealth.observedAt only; no check, build or stage clock fallback.',
+            lastCollection=copy.deepcopy(source['attemptFreshness']),
+            collectionMeaning='Recorded source-health checkedAt/asOf attempt clock; never a source-observation fallback.',
             relatedStage=stage['name'] if stage else None,
             lastSuccessfulStageOutcome=copy.deepcopy(stage.get('lastSuccessfulRecordedOutcome')) if stage else None,
             stageHistoryMeaning='Only the latest retained stage outcome is available; a wrapper success is not success of every source.')
+        source['operationalStatus'] = source_operational_status(source)
     subscriptions = []
     for row in live:
         group = {k: row[k] for k in SUBSCRIPTION_FIELDS if k in row}
@@ -454,6 +519,7 @@ def build_report(payload, phase, holds, *, as_of, run=None, jobs=None,
         raise ValueError('Malformed accepted publication metadata')
     delivery = workflow_delivery(publication, run, jobs, now)
     proposals = proposal_health(pending_report, proposal_runs, now)
+    proposal_age = unresolved_proposal_age(proposals)
     queue_evidence = {'state': 'not_supplied'}
     if queue is not None:
         if not isinstance(queue, dict) or not isinstance(queue.get('queue'), list) or queue.get('queueCount') != len(queue['queue']):
@@ -466,7 +532,7 @@ def build_report(payload, phase, holds, *, as_of, run=None, jobs=None,
             'publisherWindow': copy.deepcopy(delivery.get('publisherWindow')),
             'scope': 'Dataset publisher evidence; per-source acceptance time is not recorded.'}
         source['publicationLag'] = copy.deepcopy(delivery.get('collectionToPublisherCompletion', {'state': 'unknown', 'minutes': None}))
-    return {'schemaVersion': 3, 'scope': 'read-only-recorded-operational-health-not-source-accuracy',
+    return {'schemaVersion': 4, 'scope': 'read-only-recorded-operational-health-not-source-accuracy',
         'asOf': now.isoformat(), 'mutationsApplied': 0,
         'policy': {'thresholdMinutes': LIMITS, 'subscriptionDeadlineActive': subscription_deadline(now),
                    'scheduleBasis': 'configured UTC weekdays, not an exchange holiday/session calendar',
@@ -479,7 +545,7 @@ def build_report(payload, phase, holds, *, as_of, run=None, jobs=None,
             'liveDeployment': 'not_assessed_by_this_offline_report'},
         'stages': stage_rows, 'sources': source_rows, 'subscriptions': subscriptions,
         'offerReceipts': offer_receipts,
-        'proposals': proposals, 'sourceReviewQueue': queue_evidence,
+        'proposals': proposals, 'unresolvedProposalAge': proposal_age, 'sourceReviewQueue': queue_evidence,
         'summary': {'canonicalRecords': len(rows), 'lifecycleScopes': dict(sorted(Counter(scopes).items())),
             'openSubscriptions': len(subscriptions),
             'retainedOfferReceipts': len(offer_receipts),
@@ -488,7 +554,10 @@ def build_report(payload, phase, holds, *, as_of, run=None, jobs=None,
             'observationStates': dict(sorted(Counter(r['observationFreshness']['state'] for r in subscriptions).items())),
             'collectionStates': dict(sorted(Counter(r['collectionFreshness']['state'] for r in subscriptions).items())),
             'sourceOutcomes': dict(sorted(Counter(r.get('collectionOutcome', 'unknown') for r in source_rows).items())),
+            'sourceObservationStates': dict(sorted(Counter(r['sourceFreshness']['state'] for r in source_rows).items())),
             'stageOutcomes': dict(sorted(Counter(r.get('collectionOutcome', 'unknown') for r in stage_rows).items())),
+            'staleSources': sum(r['sourceFreshness']['state'] == 'overdue' for r in source_rows),
+            'sourceObservationUnknown': sum(r['sourceFreshness']['state'] == 'source_time_unknown' for r in source_rows),
             'overdueSourceChecks': sum(r['attemptFreshness']['state'] == 'overdue' for r in source_rows),
             'overdueStages': sum(r['attemptFreshness']['state'] == 'overdue' for r in stage_rows),
             'observationsOlderThanTolerance': sum(r['observationOlderThanTolerance'] is True for r in subscriptions),
@@ -553,6 +622,17 @@ def markdown_report(report):
     def clock_cell(value):
         return f"{cell(value.get('stored'))} ({cell(value.get('state'))})"
 
+    def publication_cell(value):
+        value = value if isinstance(value, dict) else {}
+        window = value.get('publisherWindow') if isinstance(value.get('publisherWindow'), dict) else {}
+        return {'runId': value.get('runId'), 'acceptedAt': value.get('acceptedAt'),
+                'publisherWindow': {'state': window.get('state'), 'startedAt': window.get('startedAt'),
+                                    'completedAt': window.get('completedAt')}}
+
+    def lag_cell(value):
+        value = value if isinstance(value, dict) else {}
+        return {'state': value.get('state'), 'minutes': value.get('minutes')}
+
     def table(headers, rows):
         return ['| ' + ' | '.join(headers) + ' |', '| ' + ' | '.join('---' for _ in headers) + ' |',
                 *['| ' + ' | '.join(cell(v) for v in row) + ' |' for row in rows], '']
@@ -568,9 +648,14 @@ def markdown_report(report):
         f"Delivery evidence: {cell(publication['delivery'])}.", '',
         '## Sources', '',
         'Check clocks describe collection attempts. Source roles do not establish field-level authority. Retained older entries remain visible without an invented cadence.', '']
-    lines += table(['Source / authority', 'Observation', 'Last check / freshness', 'Outcome', 'Latest retained successful stage', 'Failure / deferral evidence', 'Next action'],
-        ([f"{r['name']} / {r['authority']}", clock_cell(r['lastSourceObservation']), clock_cell(r['attemptFreshness']),
-          r.get('collectionOutcome', 'unknown'), r['lastSuccessfulStageOutcome'], r.get('latestFailureOrDeferredReason', {}), r.get('nextAction', 'Inspect malformed metadata.')]
+    lines += table(['Source', 'Authority', 'Last source observation', 'Source freshness', 'Last collection', 'Outcome',
+                    'Latest retained successful stage', 'Last accepted publication', 'Publication lag', 'Stale / overdue',
+                    'Failure / deferral evidence', 'Next action'],
+        ([r['name'], r['authority'], clock_cell(r['lastSourceObservation']), clock_cell(r['sourceFreshness']),
+          clock_cell(r['lastCollection']), r.get('collectionOutcome', 'unknown'), r['lastSuccessfulStageOutcome'],
+          publication_cell(r.get('lastAcceptedPublication')), lag_cell(r.get('publicationLag')),
+          r.get('operationalStatus'), r.get('latestFailureOrDeferredReason', {}),
+          r.get('nextAction', 'Inspect malformed metadata.')]
          for r in report['sources']))
     lines += ['## Stage outcomes', '']
     lines += table(['Stage', 'Last check / freshness', 'Outcome', 'Failure / deferral evidence'],
@@ -590,8 +675,10 @@ def markdown_report(report):
           {'publicFields': r['publicFields'], 'unresolved': r['unresolved'], 'issues': r['issues']}, r['nextAction']]
          for r in report['offerReceipts']))
     proposals = report['proposals']
+    proposal_age = report.get('unresolvedProposalAge', {})
     lines += ['## Retained proposals and reviews', '',
         f"Unresolved envelopes: **{cell(proposals['retainedProposals'])}**. Exact creation age unknown: **{cell(proposals.get('exactAgeUnknown'))}**. Resolutions applied: **0**.", '',
+        f"Unresolved proposal age: {cell(proposal_age)}.", '',
         f"Comparison summary: {cell(proposals.get('summary'))}.", '',
         f"Source-review queue: {cell(report['sourceReviewQueue'])}.", '',
         'Each envelope, comparison, review decision and next action is retained in the JSON report. Originating publisher windows are supporting workflow evidence, not exact proposal creation times.', '']

@@ -33,12 +33,20 @@ data files remain unchanged. This adds two offline commands, not a scheduled mon
 source request, dependency, permission or artifact-upload job. Existing fourteen-day
 artifact retention applies. There is no addition to public page payloads or tracking.
 
-Schema version 2 also reads the existing pending-proposal reconciliation, review
+Schema version 4 reads the existing pending-proposal reconciliation, review
 decisions and source-review queue. It retains every envelope and review, including
 `not_assessed` proposals. `--pending` and `--queue` can select isolated snapshots;
 the canonical/pending/hold byte bindings must agree with reconciliation. No second
 state store is created. Use `--format markdown` for a human-readable view of the
 same report. The default JSON contains every retained proposal and input hash.
+
+Each source row now presents the requested operator fields directly: source name,
+authority, last explicit source observation, observation freshness, last collection
+attempt, last retained successful parent-stage outcome, dataset publisher evidence,
+publication lag, independent stale/overdue signals, latest failure/deferred reason
+and next action. The combined operational status is only a list of independent
+signals; it never replaces the individual clocks or outcome. Missing observation
+time is `source_time_unknown`, not fresh. A recent collection remains separate.
 
 The [18 September assessment](audits/operational-health/2026-09-18/REPORT.md)
 contains real source/stage outcomes and proposal/publication timing evidence.
@@ -174,9 +182,11 @@ overdue counts, unresolved proposal counts, or P4 review counts.
 Optional `--proposal-workflows` accepts an array of `{run, jobs}` GitHub snapshots
 for retained proposal `runId` values, with the same repository/workflow/attempt and
 complete-page checks. Exact proposal creation age stays unknown because current
-envelopes have no creation timestamp. The age range of the originating publisher
-execution is reported separately, with that limitation. Even a proposal matching
-current canonical data remains unresolved until the existing review process acts.
+envelopes have no creation timestamp. `unresolvedProposalAge` summarizes that
+unknown exact age and, when supplied, the youngest minimum / oldest maximum age
+bounds of the originating publisher executions. Those are workflow bounds, not
+proposal creation timestamps. Even a proposal matching current canonical data
+remains unresolved until the existing review process acts.
 
 No result authorizes a retry or publication. Keep the original collection bundle,
 check the existing source-manifest guard and source evidence, and use the serialized
