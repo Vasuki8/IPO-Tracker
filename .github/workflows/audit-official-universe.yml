@@ -6,7 +6,9 @@ on:
     paths:
       - 'data/ipos.json'
       - 'tools/review_bse_universe_cohort.py'
+      - 'tools/summarize_official_universe.py'
       - 'tests/test_universe_bse_cohort_review.py'
+      - 'tests/test_official_universe_summary.py'
       - '.github/workflows/audit-official-universe.yml'
       - 'docs/audits/official-universe/2026-09-19/next-cohort.json'
 
@@ -34,13 +36,23 @@ jobs:
           uv run --frozen python -m unittest \
             tests.test_official_universe \
             tests.test_universe_continuation \
-            tests.test_universe_bse_cohort_review -v
+            tests.test_universe_bse_cohort_review \
+            tests.test_official_universe_summary -v
       - name: Reconcile retained official universe against admitted records
         run: |
           uv run --frozen python tools/audit_ipo_universe.py reconcile \
             --snapshot docs/audits/official-universe/2026-09-19-bse-june \
             --aliases docs/audits/official-universe/2026-09-19-bse-june/aliases.json \
             --report-dir docs/audits/official-universe/2026-09-19-bse-june
+      - name: Write compact coverage checkpoint and next cohort
+        run: |
+          uv run --frozen python tools/summarize_official_universe.py \
+            --audit docs/audits/official-universe/2026-09-19-bse-june/audit.json \
+            --missing docs/audits/official-universe/2026-09-19-bse-june/missing.jsonl \
+            --current-review docs/audits/official-universe/2026-09-19-bse-june/admission-review.json \
+            --output docs/audits/official-universe/2026-09-19-bse-june/coverage-summary.json \
+            --report docs/audits/official-universe/2026-09-19-bse-june/COVERAGE_REPORT.md \
+            --next-cohort docs/audits/official-universe/2026-09-19-bse-june/next-cohort.json
       - name: Validate and rebuild public projections
         run: |
           uv run --frozen python scripts/validate_data.py --strict
