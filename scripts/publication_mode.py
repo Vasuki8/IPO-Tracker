@@ -50,7 +50,7 @@ SUBSCRIPTION_FILES = {'scripts/track_subscriptions.py'}
 CORE_FILES = {'scripts/update_data.py', 'scripts/run_update.py', 'scripts/run_update_v2.py',
               'scripts/run_update_final_policy.py', 'scripts/normalize_source_health.py'}
 # The shared transport may accompany a core release; alone it still selects repair.
-CORE_SUPPORT_FILES = {'scripts/publish_transaction.py'}
+CORE_SUPPORT_FILES = {'scripts/publish_transaction.py', '.github/workflows/source-review.yml'}
 REVIEWED_REQUEST = 'data/reviewed_publication_request.json'
 
 
@@ -92,6 +92,16 @@ def push_mode(paths):
                             path in REVIEW_GATE_FILES | REVIEW_OUTPUT_FILES | REVIEW_SUPPORT_FILES) for path in paths):
         return 'review'
     return 'presentation' if paths and all(presentation(path) for path in paths) else 'repair'
+
+
+def source_preview_mode(paths):
+    """Core collection is exercised at release; its PR needs retained-data checks.
+
+    Do not let a new narrow core route fall through the old non-review branches
+    into unrelated Final Prospectus and market-history collection.
+    """
+    mode = push_mode(paths)
+    return 'review' if mode == 'core' else mode
 
 
 def main():

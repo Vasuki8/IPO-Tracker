@@ -57,6 +57,10 @@ conflict policy retains the accepted entry; other sources merge independently.
 Narrow core collector/transport pushes select the existing `core` workflow, including
 its conditional bounded filing maintenance; mixed parser/policy/dependency changes
 retain the ordinary repair route. Inspect the resulting canonical/proposal diff.
+The source-preview workflow maps a core-only PR to its existing retained-data
+validation path. Core requests run at release; a metadata/identity change must not
+fall through the old non-review branch into unrelated financial or market-history
+collection. Mixed parser changes keep their full source preview.
 
 Collectors have read-only repository permissions. They retain a baseline, proposed dataset and tested source commit in a 14-day Actions artifact. Publication runs only from `main`, serializes in one queue, tests current main, and checks that the collector's scripts, locked dependencies and reviewed-correction registry are still current. A supplied collector manifest must contain a valid ancestor commit; missing, empty or malformed manifests fail before any data writes. See `PUBLICATION_SOURCE_GUARD.md` for recovery. A three-way merge preserves unrelated updates. Document values and their evidence, and subscription values and their source/timestamps, merge as atomic groups.
 
