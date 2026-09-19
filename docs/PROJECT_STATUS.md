@@ -23,6 +23,7 @@ merged in [PR #166](https://github.com/Vasuki8/IPO-Tracker/pull/166); research c
 `1e86840856525db2ee2b436ed64f2b6e60374ee0` (scheduled filings update incorporated
 from initial `4c5f1af5`), including completed operational #164–165 and universe
 #162–163. Documentation closeout branch: `docs-commercial-publication-scope-closeout`;
+[PR #167](https://github.com/Vasuki8/IPO-Tracker/pull/167) records the closeout;
 its commit is identified by Git history containing this checkpoint.
 Previous commercial #152–153 research was reused with original
 check dates. The exact next publication-mapping task is implemented in the
