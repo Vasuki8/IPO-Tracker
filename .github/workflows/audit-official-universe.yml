@@ -1,15 +1,10 @@
 name: Audit official IPO universe — BSE June cohort
 
 on:
-  pull_request:
-    paths:
-      - 'tools/review_bse_universe_cohort.py'
-      - 'tests/test_universe_bse_cohort_review.py'
-      - '.github/workflows/audit-official-universe.yml'
-      - 'docs/audits/official-universe/2026-09-19/next-cohort.json'
   push:
     branches: [audit-official-universe-bse-june-20260919]
     paths:
+      - 'data/ipos.json'
       - 'tools/review_bse_universe_cohort.py'
       - 'tests/test_universe_bse_cohort_review.py'
       - '.github/workflows/audit-official-universe.yml'
@@ -23,9 +18,10 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  capture-and-review:
+  reconcile-and-publish-artifacts:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -33,31 +29,60 @@ jobs:
       - uses: astral-sh/setup-uv@v10.1.0
       - run: uv python install 3.12
       - run: uv sync --frozen
-      - name: Run official-universe identity regressions
+      - name: Run official-universe regressions
         run: |
           uv run --frozen python -m unittest \
             tests.test_official_universe \
             tests.test_universe_continuation \
             tests.test_universe_bse_cohort_review -v
-      - name: Capture and review only the bounded June BSE cohort
+      - name: Reconcile retained official universe against admitted records
         run: |
-          uv run --frozen python tools/review_bse_universe_cohort.py \
-            --base-snapshot docs/audits/official-universe/2026-09-19 \
+          uv run --frozen python tools/audit_ipo_universe.py reconcile \
             --snapshot docs/audits/official-universe/2026-09-19-bse-june \
-            --cohort docs/audits/official-universe/2026-09-19/next-cohort.json \
-            --tracker data/ipos.json \
-            --baseline-commit 345e2c1e0c14b7d66475391b23c9e216362d614e \
-            --as-of 2026-09-19
-      - name: Prove collection did not mutate canonical data
-        run: git diff --exit-code -- data/ipos.json data/pending_updates.json
-      - name: Commit retained official-source evidence to this audit branch
+            --aliases docs/audits/official-universe/2026-09-19-bse-june/aliases.json \
+            --report-dir docs/audits/official-universe/2026-09-19-bse-june
+      - name: Validate and rebuild public projections
+        run: |
+          uv run --frozen python scripts/validate_data.py --strict
+          uv run --frozen python scripts/build_missing_queue.py
+          uv run --frozen python scripts/phase_status.py
+          uv run --frozen python scripts/audit_data_completeness.py
+          uv run --frozen python scripts/build_company_pages.py
+          node --test tests/public_quality.test.cjs tests/source_health.test.cjs
+      - name: Confirm admission safety
+        run: |
+          uv run --frozen python - <<'PY'
+          import json
+          from pathlib import Path
+          root = Path("docs/audits/official-universe/2026-09-19-bse-june")
+          review = json.loads((root / "admission-review.json").read_text())
+          payload = json.loads(Path("data/ipos.json").read_text())
+          accepted = {row["proposedId"]: row for row in review["records"] if row["decision"] == "accept_identity_only"}
+          by_id = {row["id"]: row for row in payload["ipos"]}
+          if len(accepted) != 18:
+              raise SystemExit(f"expected 18 accepted identities, got {len(accepted)}")
+          for record_id, evidence in accepted.items():
+              row = by_id[record_id]
+              if row["company"] != evidence["identity"]["issuerName"] or row["symbol"] != evidence["identity"]["symbol"]:
+                  raise SystemExit(f"identity mismatch for {record_id}")
+              if row["board"] != "SME" or row["status"] != "closed" or row["listingDate"] is not None:
+                  raise SystemExit(f"lifecycle/board mismatch for {record_id}")
+              for field in ("priceBand","lotSize","issueSizeCr","financials","subscription","listing"):
+                  if row.get(field) is not None:
+                      raise SystemExit(f"invented {field} for {record_id}")
+          print(f"verified {len(accepted)} identity-only admissions")
+          PY
+      - name: Commit reproducible reports and public projections
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/audits/official-universe/2026-09-19-bse-june
+          git add \
+            data/ipos.json data/ipos-summary.json data/missing_queue.json data/phase_status.json data/validation.json data/completeness.json \
+            docs/DATA_QUALITY.md docs/audits/official-universe/2026-09-19-bse-june \
+            ipo
           if git diff --cached --quiet; then
-            echo "No new audit evidence"
+            echo "No generated changes"
           else
-            git commit -m "Capture BSE June universe identity evidence"
+            git commit -m "Reconcile BSE June universe admissions"
             git push origin HEAD:${{ github.ref_name }}
           fi

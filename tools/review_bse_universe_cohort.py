@@ -13,7 +13,6 @@ import gzip
 import json
 from pathlib import Path
 import re
-import shutil
 import unicodedata
 from urllib.parse import urlparse
 
@@ -255,7 +254,10 @@ def main() -> None:
     })
 
     proposed = audit.prepare_admissions(args.snapshot, args.tracker, plan, aliases)
-    audit.dump(args.snapshot / "proposed-ipos.json", proposed)
+    if proposed["ipos"][:len(tracker)] != tracker:
+        raise SystemExit("Admission proposal altered pre-existing tracker records")
+    if len(proposed["ipos"]) != len(tracker) + len(admission_records):
+        raise SystemExit("Admission proposal count differs from reviewed acceptances")
 
     summary = {
         "candidateCount": len(candidates),
