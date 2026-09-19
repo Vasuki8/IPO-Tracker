@@ -26,8 +26,14 @@ merged as `4a8ff79a19df59faf49677931516312b366fa4ee`, implementation
 artifacts. The separate single-file [request PR #172](https://github.com/Vasuki8/IPO-Tracker/pull/172)
 merged as `90ce951c8d9a6e176f07d5d647e0e7057d4b9967` from
 `1cbb313b8d1ded2e82859eecefb5a18cec36073a`. Documentation closeout branch:
-`docs-qualified-offer-amount-closeout`; its PR/commit are identified by the
-Git history containing this checkpoint. See the [release receipt](releases/2026-09-19-qualified-offer-amounts.json).
+`docs-qualified-offer-amount-closeout`, [PR #174](https://github.com/Vasuki8/IPO-Tracker/pull/174);
+its final commit is identified by the containing Git history. See the
+[release receipt](releases/2026-09-19-qualified-offer-amounts.json).
+The overlapping recovery closeout [PR #173](https://github.com/Vasuki8/IPO-Tracker/pull/173)
+merged first as `4ff2945aa3d212f9a7108a2ae98179a177fc9a35`; its four
+[additional recovery receipts](releases/2026-09-19-qualified-offer-recovery.json)
+are preserved. This reconciled checkpoint adds the independently reproduced BSE
+receipt-loss evidence and prioritises its current/upcoming-term recovery.
 
 The selected three-issuer source family is exhausted: two source layouts support
 reviewed active amounts, and Pooja's recovered documents do not disclose one.
@@ -88,7 +94,7 @@ provisional amounts. Final Prospectus revalidation remains **321 records / 1,174
 fields**, plus **28 / 104** at higher priority. P5's **914** records remain
 `waiting_for_p4`. P4 is still incomplete; performance expansion remains gated.
 
-Validation: **1,392 Python tests** pass using uv/Python 3.12, including **16 amount
+Validation: **1,392 Python tests** pass using uv/Python 3.12, including **19 amount
 family tests** with both real source documents; **39 Node tests** pass. Strict
 validation has zero errors; all **1,406 directory/profile pairs** pass. Support
 checks passed: validation **35448476902**, source preview **35448476877**, source

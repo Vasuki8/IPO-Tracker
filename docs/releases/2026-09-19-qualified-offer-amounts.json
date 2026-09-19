@@ -129,7 +129,7 @@
   },
   "tests": {
     "pythonFull": 1392,
-    "amountFamily": 16,
+    "amountFamily": 19,
     "node": 39,
     "strictErrors": 0,
     "allDirectoryProfilePairs": 1406,
@@ -154,5 +154,12 @@
     "reason": "Collector code or reviewed-correction policy changed after collection; retained artifact must be recollected with current code and policy",
     "canonicalWritesPublished": false
   },
-  "nextTask": "Preserve and recover the four previously accepted BSE receipts/history removed by core commit20068a87; see the separate regression diagnosis."
+  "nextTask": "Preserve and recover the four previously accepted BSE receipts/history removed by core commit 20068a87; see the separate regression diagnosis.",
+  "documentation": {
+    "closeoutPr": 174,
+    "overlappingRecoveryPr": 173,
+    "overlappingRecoveryMerge": "4ff2945aa3d212f9a7108a2ae98179a177fc9a35",
+    "allFourRecoveryReceiptsPreserved": true,
+    "nextTaskBasis": "Current/upcoming BSE receipt loss is independently reproduced and takes priority over promoter-table review."
+  }
 }
