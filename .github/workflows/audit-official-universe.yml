@@ -1,111 +1,68 @@
-name: Reconcile official IPO universe — BSE April cohort
+name: Browser accept official IPO universe admissions
 
 on:
   push:
     branches: [audit-official-universe-bse-june-20260919]
     paths:
       - '.github/workflows/audit-official-universe.yml'
-      - 'tools/summarize_official_universe.py'
-      - 'tests/test_official_universe_summary.py'
-      - 'docs/audits/official-universe/2026-09-19-bse-april/admissions.json'
+      - 'docs/audits/official-universe/2026-09-19-bse-april/browser-check.cjs'
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
-  group: official-universe-bse-april-reconcile-${{ github.ref }}
-  cancel-in-progress: false
+  group: official-universe-browser-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  reconcile-april:
-    if: github.actor != 'github-actions[bot]'
+  browser:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 20
+    env:
+      BASE_URL: http://127.0.0.1:8006/
+      SMOKE_ARTIFACT_DIR: ${{ github.workspace }}/artifacts/official-universe
     steps:
       - uses: actions/checkout@v7.0.1
-        with:
-          fetch-depth: 0
       - uses: astral-sh/setup-uv@v10.1.0
       - run: uv python install 3.12
       - run: uv sync --frozen
-      - name: Run universe regressions
+      - name: Rebuild public pages and prove canonical data is untouched
         run: |
-          uv run --frozen python -m unittest \
-            tests.test_official_universe \
-            tests.test_universe_continuation \
-            tests.test_universe_bse_cohort_review \
-            tests.test_official_universe_summary -v
-      - name: Build reviewed April admission proposal separately
-        run: |
-          uv run --frozen python tools/audit_ipo_universe.py prepare-admissions \
-            --snapshot docs/audits/official-universe/2026-09-19-bse-april \
-            --tracker data/ipos.json \
-            --aliases docs/audits/official-universe/2026-09-19-bse-april/aliases.json \
-            --admissions docs/audits/official-universe/2026-09-19-bse-april/admissions.json \
-            --output /tmp/ipos-april-proposed.json
-          uv run --frozen python - <<'PY'
-          import json
-          from pathlib import Path
-          old=json.loads(Path("data/ipos.json").read_text())
-          new=json.loads(Path("/tmp/ipos-april-proposed.json").read_text())
-          review=json.loads(Path("docs/audits/official-universe/2026-09-19-bse-april/admission-review.json").read_text())
-          accepted=[r for r in review["records"] if r["decision"]=="accept_identity_only"]
-          if len(accepted)!=2 or len(new["ipos"])!=len(old["ipos"])+len(accepted):
-              raise SystemExit("April proposal count mismatch")
-          if new["ipos"][:len(old["ipos"])] != old["ipos"]:
-              raise SystemExit("April proposal changed pre-existing records")
-          Path("data/ipos.json").write_text(json.dumps(new,indent=2,ensure_ascii=False)+"\n")
-          PY
-      - name: Reconcile April snapshot and write continuation checkpoint
-        run: |
-          uv run --frozen python tools/audit_ipo_universe.py reconcile \
-            --snapshot docs/audits/official-universe/2026-09-19-bse-april \
-            --aliases docs/audits/official-universe/2026-09-19-bse-april/aliases.json \
-            --report-dir docs/audits/official-universe/2026-09-19-bse-april
-          uv run --frozen python tools/summarize_official_universe.py \
-            --audit docs/audits/official-universe/2026-09-19-bse-april/audit.json \
-            --missing docs/audits/official-universe/2026-09-19-bse-april/missing.jsonl \
-            --current-review docs/audits/official-universe/2026-09-19-bse-april/admission-review.json \
-            --output docs/audits/official-universe/2026-09-19-bse-april/coverage-summary.json \
-            --report docs/audits/official-universe/2026-09-19-bse-april/COVERAGE_REPORT.md \
-            --next-cohort docs/audits/official-universe/2026-09-19-bse-april/next-cohort.json
-      - name: Validate, rebuild and verify April identities
-        run: |
-          uv run --frozen python scripts/validate_data.py --strict
-          uv run --frozen python scripts/build_missing_queue.py
-          uv run --frozen python scripts/phase_status.py
-          uv run --frozen python scripts/audit_data_completeness.py
           uv run --frozen python scripts/build_company_pages.py
+          git diff --exit-code -- data/ipos.json
           node --test tests/public_quality.test.cjs tests/source_health.test.cjs
-          uv run --frozen python - <<'PY'
-          import json
-          from pathlib import Path
-          root=Path("docs/audits/official-universe/2026-09-19-bse-april")
-          review=json.loads((root/"admission-review.json").read_text())
-          data=json.loads(Path("data/ipos.json").read_text())
-          by_id={r["id"]:r for r in data["ipos"]}
-          accepted=[r for r in review["records"] if r["decision"]=="accept_identity_only"]
-          for evidence in accepted:
-              row=by_id[evidence["proposedId"]]
-              ident=evidence["identity"]
-              if row["company"]!=ident["issuerName"] or row["symbol"]!=ident["symbol"]:
-                  raise SystemExit("April identity mismatch: "+evidence["proposedId"])
-              if row["board"]!="SME" or row["status"]!="closed" or row["listingDate"] is not None:
-                  raise SystemExit("April lifecycle mismatch: "+evidence["proposedId"])
-              for field in ("priceBand","lotSize","issueSizeCr","financials","subscription","listing"):
-                  if row.get(field) is not None:
-                      raise SystemExit("Invented field "+field+" for "+evidence["proposedId"])
-          print(f"verified {len(accepted)} April identity-only admissions")
-          PY
-      - name: Commit April admissions, reports and public projections
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated browser runtime
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/ipos.json data/ipos-summary.json data/missing_queue.json data/phase_status.json data/validation.json data/completeness.json \
-            docs/DATA_QUALITY.md docs/audits/official-universe/2026-09-19-bse-april ipo
-          if git diff --cached --quiet; then
-            echo "No generated April changes"
-          else
-            git commit -m "Admit and reconcile BSE April universe identities"
-            git push origin HEAD:${{ github.ref_name }}
-          fi
+          mkdir -p "$RUNNER_TEMP/ipo-playwright" "$SMOKE_ARTIFACT_DIR"
+          cd "$RUNNER_TEMP/ipo-playwright"
+          npm install --no-save --package-lock=false playwright@1.62.1
+          npx --no-install playwright install --with-deps chromium
+      - name: Exercise all 32 newly admitted public profiles and directory searches
+        run: |
+          export NODE_PATH="$RUNNER_TEMP/ipo-playwright/node_modules"
+          python3 -m http.server 8006 --bind 127.0.0.1 > "$SMOKE_ARTIFACT_DIR/server.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          python3 - <<'PY'
+          import time, urllib.request
+          for _ in range(60):
+              try:
+                  with urllib.request.urlopen('http://127.0.0.1:8006/', timeout=1) as r:
+                      if r.status == 200: break
+              except OSError: pass
+              time.sleep(0.25)
+          else:
+              raise SystemExit('Local server did not start')
+          PY
+          node docs/audits/official-universe/2026-09-19-bse-april/browser-check.cjs
+      - name: Retain browser receipt
+        if: always()
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: official-universe-browser-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/official-universe/
+          if-no-files-found: error
+          retention-days: 14
