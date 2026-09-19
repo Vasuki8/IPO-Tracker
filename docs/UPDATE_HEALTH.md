@@ -33,6 +33,26 @@ data files remain unchanged. This adds two offline commands, not a scheduled mon
 source request, dependency, permission or artifact-upload job. Existing fourteen-day
 artifact retention applies. There is no addition to public page payloads or tracking.
 
+Schema version 2 also reads the existing pending-proposal reconciliation, review
+decisions and source-review queue. It retains every envelope and review, including
+`not_assessed` proposals. `--pending` and `--queue` can select isolated snapshots;
+the canonical/pending/hold byte bindings must agree with reconciliation. No second
+state store is created. Use `--format markdown` for a human-readable view of the
+same report. The default JSON contains every retained proposal and input hash.
+
+The [18 September assessment](audits/operational-health/2026-09-18/REPORT.md)
+contains real source/stage outcomes and proposal/publication timing evidence.
+Its [JSON](audits/operational-health/2026-09-18/report.json) is a frozen snapshot,
+not a declaration of current health. Reproduce at its original code/data checkout:
+
+```sh
+uv run --frozen python tools/report_update_health.py \
+  --workflow-run docs/audits/operational-health/2026-09-18/accepted-run.json \
+  --workflow-jobs docs/audits/operational-health/2026-09-18/accepted-jobs.json \
+  --proposal-workflows docs/audits/operational-health/2026-09-18/proposal-workflows.json \
+  --check-report docs/audits/operational-health/2026-09-18/report.json
+```
+
 ## Read each independent signal
 
 `stages` preserves the recorded status, exit code, counts and check clocks. Failed,
@@ -42,6 +62,17 @@ not treated as failure. A missing source check time remains unknown, even when i
 parent stage or accepted snapshot has a recent timestamp. Conflicting check clocks
 are not resolved by choosing whichever is newer. Historical/unmonitored entries
 remain present as `recorded_only`, not silently assigned a current live schedule.
+
+Each source row includes its explicit authority role, last source observation,
+collection/check clock, latest retained successful parent-stage outcome, failure
+or deferral reason, dataset publisher evidence and next action. Source roles are
+not field verification. A successful wrapper does not prove each child source
+succeeded. If the latest retained stage failed, its earlier success is unknown;
+the tool does not invent historical outcomes. Explicit `source_unavailable` is
+separate from a source/parser `source_blocked` diagnostic and from retryable failure.
+The Python/JavaScript outcome and check-clock contract uses the same golden cases
+in `tests/contracts/operational_health.json`. Clock contracts are kept outside the
+document-fixture trigger; operational tests do not request a source-repair crawl.
 
 `subscriptions` includes issues open according to stored offer dates and not marked
 listed, withdrawn, cancelled or postponed. Every other record remains counted in
@@ -102,6 +133,20 @@ may correctly create no new accepted run ID, so it is not labelled a failed rele
 All results describe the **supplied evidence at the assessment instant**, not a live
 poll of the run. Keep the original inputs with the report and retrieve fresh evidence
 before acting on old queued/running states. Reproduction never asserts current state.
+
+When workflow identity matches the recorded dataset publisher, successful job
+timestamps supply a **publisher execution window** and a separate interval from
+collection completion to publisher completion. They do not supply an exact accepted
+commit time, per-source acceptance time, or deployment time. Those remain unknown.
+Later bounded canonical changes can also leave the last collector-publication
+metadata unchanged. Do not describe its workflow window as the latest data edit.
+
+Optional `--proposal-workflows` accepts an array of `{run, jobs}` GitHub snapshots
+for retained proposal `runId` values, with the same repository/workflow/attempt and
+complete-page checks. Exact proposal creation age stays unknown because current
+envelopes have no creation timestamp. The age range of the originating publisher
+execution is reported separately, with that limitation. Even a proposal matching
+current canonical data remains unresolved until the existing review process acts.
 
 No result authorizes a retry or publication. Keep the original collection bundle,
 check the existing source-manifest guard and source evidence, and use the serialized

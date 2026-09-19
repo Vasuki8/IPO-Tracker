@@ -229,6 +229,97 @@ class UpdateHealthTests(unittest.TestCase):
         self.assertNotIn('schedule:', workflow)
         self.assertNotIn('report_update_health', (ROOT / '.github/workflows/refresh.yml').read_text())
 
+    def test_python_javascript_recorded_outcome_and_clock_contract(self):
+        cases = json.loads((ROOT / 'tests/contracts/operational_health.json').read_text())
+        for case in cases:
+            with self.subTest(case=case['name']):
+                self.assertEqual(health.recorded_outcome(case['health']), case['outcome'])
+                self.assertEqual(health.check_clock(case['health'])['state'], case['clock'])
+
+    def test_source_unavailability_and_deferral_do_not_borrow_previous_stage_success(self):
+        self.payload['meta']['sourceHealth']['NSE-live'] = {'status':'source_unavailable', 'available':False, 'checkedAt':RECENT, 'error':'Endpoint unavailable'}
+        row = next(r for r in self.build()['sources'] if r['name']=='NSE-live')
+        self.assertEqual(row['collectionOutcome'],'source_unavailable')
+        self.assertEqual(row['lastSourceObservation']['state'],'missing')
+        self.assertEqual(row['lastSuccessfulStageOutcome']['status'],'no_change')
+        self.assertTrue(row['failureEvidence'])
+        self.assertEqual(row['latestFailureOrDeferredReason']['error'],'Endpoint unavailable')
+        self.payload['meta']['pipelineStages']['run_update_final_policy.py'] = {'status':'deferred','checkedAt':RECENT,'diagnostics':'Budget exhausted'}
+        row = next(r for r in self.build()['sources'] if r['name']=='NSE-live')
+        self.assertIsNone(row['lastSuccessfulStageOutcome'])
+
+    def test_current_official_source_and_stale_secondary_source_are_independent(self):
+        self.row['subscriptionObservedAt']=RECENT
+        current=self.build()['subscriptions'][0]
+        self.assertEqual(current['source']['authority'],'official_exchange')
+        self.assertFalse(current['observationOlderThanTolerance'])
+        self.row.update(subscriptionSource='IPO Premium subscription (secondary)',subscriptionSourceUrl='https://ipopremium.in/example',subscriptionObservedAt=OLD,subscriptionDegraded=True)
+        stale=self.build()['subscriptions'][0]
+        self.assertEqual(stale['source']['authority'],'secondary')
+        self.assertTrue(stale['observationOlderThanTolerance'])
+        self.assertEqual(stale['collectionFreshness']['state'],'within_tolerance')
+
+    def test_active_provisional_issue_does_not_become_final_from_a_recent_collection(self):
+        self.row.update(lifecycle={'stage':'rhp'},documents=[{'type':'RHP','url':'https://www.sebi.gov.in/rhp.pdf'}])
+        before=copy.deepcopy(self.row)
+        row=self.build()['subscriptions'][0]
+        self.assertEqual(row['lifecycle'],'active_issue_by_recorded_dates')
+        self.assertEqual(row['finality'],'not_established_by_snapshot')
+        self.assertEqual(self.row,before)
+
+    def test_successful_publisher_window_is_not_an_exact_accepted_commit_clock(self):
+        self.payload['meta']['publication'].update(runId='11',collectorCommit='b'*40)
+        self.jobs['jobs'][1].update(status='completed',conclusion='success',started_at='2026-09-18T07:01:00Z',completed_at='2026-09-18T07:02:00Z')
+        report=self.build(workflow=True)
+        self.assertIsNone(report['acceptedPublication']['acceptedAt'])
+        delivery=report['acceptedPublication']['delivery']
+        self.assertEqual(delivery['publisherWindow']['completedAt'],'2026-09-18T07:02:00Z')
+        self.assertIsNone(delivery['publisherWindow']['acceptedAt'])
+        self.assertEqual(delivery['collectionToPublisherCompletion']['minutes'],2)
+        self.jobs['jobs'][1]['completed_at']='2026-09-18T06:00:00Z'
+        self.assertEqual(self.build(workflow=True)['acceptedPublication']['delivery']['publisherWindow']['state'],'publisher_time_not_verified')
+
+    def test_unresolved_proposal_age_remains_unknown_with_separate_origin_execution_bounds(self):
+        pending={'summary':{'retainedProposals':1},'entries':[{'inputIndex':0,'fingerprint':'f','runId':'11','comparisonState':'already_applied_exact','nextAction':'Review source before any disposition.'}]}
+        self.jobs['jobs'][1].update(status='completed',conclusion='success',started_at='2026-09-18T07:01:00Z',completed_at='2026-09-18T07:02:00Z')
+        bundles=[{'run':self.run,'jobs':self.jobs}]
+        original=copy.deepcopy((pending,bundles))
+        report=health.proposal_health(pending,bundles,health.instant(AT))
+        self.assertEqual(report['retainedProposals'],1)
+        self.assertEqual(report['resolutionsApplied'],0)
+        self.assertEqual(report['entries'][0]['proposalAge']['state'],'unknown')
+        bounds=report['entries'][0]['originatingPublisherAgeRange']
+        self.assertEqual((bounds['minimumMinutes'],bounds['maximumMinutes']),(58,59))
+        self.assertEqual(original,(pending,bundles))
+        self.assertIsNone(health.proposal_health(pending,[],health.instant(AT))['entries'][0]['originatingPublisherAgeRange'])
+        with self.assertRaises(ValueError): health.proposal_health(pending,bundles+bundles,health.instant(AT))
+
+    def test_source_review_queue_is_reused_without_resolving_items(self):
+        queue={'queueCount':1,'queue':[{'id':'example','sourceReviewCount':3}],'generatedAt':RECENT}
+        report=health.build_report(self.payload,self.phase,[],as_of=AT,queue=queue)
+        self.assertEqual(report['sourceReviewQueue']['sourceReviewItems'],3)
+        queue['queueCount']=2
+        with self.assertRaises(ValueError): health.build_report(self.payload,self.phase,[],as_of=AT,queue=queue)
+
+    def test_human_report_preserves_unknowns_and_escapes_diagnostics(self):
+        self.payload['meta']['sourceHealth']['NSE-live'] = {'ok':False, 'error':'failed | retry\nlater'}
+        report = self.build()
+        before = copy.deepcopy(report)
+        rendered = health.markdown_report(report)
+        self.assertIn('Exact accepted publication time: **unknown**', rendered)
+        self.assertIn('failed &#124; retry', rendered)
+        self.assertIn('NSE-live / official_exchange', rendered)
+        self.assertIn('unknown (missing)', rendered)
+        self.assertEqual(report, before)
+
+    def test_conflicting_acceptance_cannot_supply_accepted_publisher_window(self):
+        self.payload['meta']['publication'].update(runId='11', collectorCommit='c'*40)
+        self.jobs['jobs'][1].update(status='completed',conclusion='success',started_at='2026-09-18T07:01:00Z',completed_at='2026-09-18T07:02:00Z')
+        delivery = self.build(workflow=True)['acceptedPublication']['delivery']
+        self.assertEqual(delivery['state'], 'acceptance_binding_conflict')
+        self.assertEqual(delivery['publisherWindow']['state'], 'publisher_time_not_verified')
+        self.assertIsNone(delivery['collectionToPublisherCompletion']['minutes'])
+
 
 if __name__ == '__main__':
     unittest.main()

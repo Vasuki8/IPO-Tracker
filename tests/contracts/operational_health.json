@@ -1,0 +1,194 @@
+[
+  {
+    "name": "successful zero rows",
+    "health": {
+      "ok": true,
+      "records": 0,
+      "checkedAt": "2026-09-18T07:00:00Z"
+    },
+    "outcome": "successful",
+    "clock": "valid"
+  },
+  {
+    "name": "failed zero rows",
+    "health": {
+      "ok": false,
+      "records": 0,
+      "checkedAt": "2026-09-18T07:00:00Z"
+    },
+    "outcome": "failed",
+    "clock": "valid"
+  },
+  {
+    "name": "missing check",
+    "health": {
+      "ok": true
+    },
+    "outcome": "successful",
+    "clock": "missing"
+  },
+  {
+    "name": "deferred despite old ok",
+    "health": {
+      "ok": true,
+      "status": "deferred",
+      "checkedAt": "2026-09-18T07:00:00Z"
+    },
+    "outcome": "deferred",
+    "clock": "valid"
+  },
+  {
+    "name": "source unavailable",
+    "health": {
+      "status": "source_unavailable",
+      "available": false
+    },
+    "outcome": "source_unavailable",
+    "clock": "missing"
+  },
+  {
+    "name": "source blocked",
+    "health": {
+      "status": "source_blocked",
+      "exitCode": 0
+    },
+    "outcome": "source_blocked",
+    "clock": "missing"
+  },
+  {
+    "name": "partial failures",
+    "health": {
+      "ok": true,
+      "attempted": 5,
+      "failed": 2
+    },
+    "outcome": "partial_failure",
+    "clock": "missing"
+  },
+  {
+    "name": "secondary degradation",
+    "health": {
+      "ok": true,
+      "degraded": true
+    },
+    "outcome": "degraded",
+    "clock": "missing"
+  },
+  {
+    "name": "nonzero exit overrides success",
+    "health": {
+      "status": "updated",
+      "exitCode": 1
+    },
+    "outcome": "failed",
+    "clock": "missing"
+  },
+  {
+    "name": "error overrides success",
+    "health": {
+      "ok": true,
+      "error": "HTTP 503"
+    },
+    "outcome": "failed",
+    "clock": "missing"
+  },
+  {
+    "name": "invalid boolean",
+    "health": {
+      "ok": "true"
+    },
+    "outcome": "invalid",
+    "clock": "missing"
+  },
+  {
+    "name": "invalid count",
+    "health": {
+      "ok": true,
+      "failed": false
+    },
+    "outcome": "invalid",
+    "clock": "missing"
+  },
+  {
+    "name": "unknown status",
+    "health": {
+      "ok": true,
+      "status": "unexpected"
+    },
+    "outcome": "unknown",
+    "clock": "missing"
+  },
+  {
+    "name": "date only",
+    "health": {
+      "ok": true,
+      "asOf": "2026-09-18"
+    },
+    "outcome": "successful",
+    "clock": "invalid"
+  },
+  {
+    "name": "naive timestamp",
+    "health": {
+      "ok": true,
+      "asOf": "2026-09-18T07:00:00"
+    },
+    "outcome": "successful",
+    "clock": "invalid"
+  },
+  {
+    "name": "invalid calendar date",
+    "health": {
+      "ok": true,
+      "asOf": "2026-02-30T07:00:00Z"
+    },
+    "outcome": "successful",
+    "clock": "invalid"
+  },
+  {
+    "name": "same instant across midnight IST",
+    "health": {
+      "ok": true,
+      "checkedAt": "2026-09-19T00:00:00+05:30",
+      "asOf": "2026-09-18T18:30:00Z"
+    },
+    "outcome": "successful",
+    "clock": "valid"
+  },
+  {
+    "name": "conflicting timestamps",
+    "health": {
+      "ok": true,
+      "checkedAt": "2026-09-18T07:00:00Z",
+      "asOf": "2026-09-18T06:00:00Z"
+    },
+    "outcome": "successful",
+    "clock": "conflicting_check_clocks"
+  },
+  {
+    "name": "explicit missing clock stays missing conflict",
+    "health": {
+      "ok": true,
+      "checkedAt": null,
+      "asOf": "2026-09-18T07:00:00Z"
+    },
+    "outcome": "successful",
+    "clock": "conflicting_check_clocks"
+  },
+  {
+    "name": "microsecond conflict",
+    "health": {
+      "ok": true,
+      "checkedAt": "2026-09-18T07:00:00.123456Z",
+      "asOf": "2026-09-18T07:00:00.123457Z"
+    },
+    "outcome": "successful",
+    "clock": "conflicting_check_clocks"
+  },
+  {
+    "name": "missing source entry",
+    "health": null,
+    "outcome": "unknown",
+    "clock": "missing"
+  }
+]
