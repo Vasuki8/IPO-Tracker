@@ -278,7 +278,7 @@ def main() -> None:
         f"| {r['issuerName']} | {r['board'] or 'unknown'} | {r['identity']['symbol'] if r.get('identity') else '—'} | {r['decision']} |"
         for r in reviews
     )
-    report = f"""# BSE June 2026 official-universe source review
+    report = f"""# BSE official-universe bounded-cohort source review
 
 This is an identity/lifecycle review only. It continues the released official-universe snapshot without recrawling completed NSE/SEBI/BSE archive cohorts. Canonical `data/ipos.json` is not changed by this stage.
 
