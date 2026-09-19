@@ -84,12 +84,15 @@ def main():
     cli.add_argument('--root', type=Path, default=Path(__file__).resolve().parents[1])
     cli.add_argument('--base-url', required=True)
     cli.add_argument('--expected-commit', required=True)
+    cli.add_argument('--accepted-baseline', type=Path)
     args = cli.parse_args()
     receipt = {'expectedCommit': args.expected_commit, 'status': 'failed',
                'scope': 'public-artifact-and-review-delivery-not-source-accuracy'}
     try:
         public.require(bool(re.fullmatch(r'[a-f0-9]{40}', args.expected_commit)), 'Expected commit must be a full SHA')
         receipt.update(prepare(args.root))
+        if args.accepted_baseline:
+            receipt['acceptedPreservation'] = public.verify_accepted_preservation(args.root, receipt, args.accepted_baseline)
         receipt['baseUrl'] = public.validate_base(args.base_url)
         receipt['httpChecked'] = public.verify_http(args.root, args.base_url, receipt)
         receipt['status'] = 'passed'
