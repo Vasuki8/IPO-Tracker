@@ -390,6 +390,7 @@ def apply_final_prospectus_static_fields(
     if not is_final_prospectus(doc):
         raise ValueError("Canonical static fields require a Final Prospectus")
 
+    previous_record = copy.deepcopy(record)
     changes: list[dict[str, Any]] = []
     source_url = str(doc.get("url") or "")
     extracted = _static_values(record, parsed)
@@ -472,16 +473,17 @@ def apply_final_prospectus_static_fields(
         )
         if detail not in (None, {}, []) and key not in accepted_evidence:
             accepted_evidence[key] = copy.deepcopy(detail)
-    record["documentFieldProvenance"] = {
-        "sourceUrl": source_url,
-        "documentType": "PROSPECTUS",
-        "documentDate": doc.get("filedDate"),
-        "sha256": sha256,
-        "parserVersion": parser_version,
-        "checkedAt": checked_at,
-        "evidence": accepted_evidence,
-        "sourcePolicy": "final-prospectus-only",
-    }
+    if extracted or 'documentFieldProvenance' not in record:
+        record["documentFieldProvenance"] = {
+            "sourceUrl": source_url,
+            "documentType": "PROSPECTUS",
+            "documentDate": doc.get("filedDate"),
+            "sha256": sha256,
+            "parserVersion": parser_version,
+            "checkedAt": checked_at,
+            "evidence": accepted_evidence,
+            "sourcePolicy": "final-prospectus-only",
+        }
 
     if "lotSize" in extracted:
         record["lotSizeEvidence"] = _canonical_evidence(
@@ -525,4 +527,8 @@ def apply_final_prospectus_static_fields(
         "verifiedFields": sorted(provenance),
         "pendingRevalidationFields": sorted(pending),
     }
+    from accepted_data_guard import retain_provenance_changes
+    retain_provenance_changes(previous_record, record,
+        reason="Accepted Final Prospectus extraction replaced field provenance; prior evidence retained",
+        checked_at=checked_at)
     return changes

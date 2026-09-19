@@ -367,6 +367,7 @@ def apply_policy(payload: dict[str, Any]) -> dict[str, int]:
     for record in payload.get("ipos") or []:
         if not isinstance(record, dict):
             continue
+        previous_record = copy.deepcopy(record)
         counts["records"] += 1
         _quarantine_inconsistent_composition(record, checked_at)
         _quarantine_invalid_objects(record, checked_at)
@@ -437,6 +438,10 @@ def apply_policy(payload: dict[str, Any]) -> dict[str, int]:
             "pendingRevalidationFields": pending,
             "marketStaticTerms": "observation-only",
         }
+        from accepted_data_guard import retain_provenance_changes
+        retain_provenance_changes(previous_record, record,
+            reason="Final Prospectus field evidence revalidated under the existing source policy; prior evidence retained",
+            checked_at=checked_at)
 
     payload.setdefault("meta", {})["finalProspectusSourcePolicy"] = {
         **counts,
