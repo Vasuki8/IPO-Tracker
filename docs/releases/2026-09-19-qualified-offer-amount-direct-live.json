@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "expectedCommit": "40a24ca1cc2e5310825aad36769ee3cad75fe9ae",
+  "status": "passed",
+  "checks": [
+    {
+      "path": "data/ipos-summary.json",
+      "url": "https://vasuki8.github.io/IPO-Tracker/data/ipos-summary.json",
+      "checkedAt": "2026-09-19T14:35:20.516105+00:00",
+      "exitCode": 0,
+      "sha256": "2568c4096e8617a9c6a7b04aa564d6131d26beb3a5e8e28d44c95c05ff63b558",
+      "expectedSha256": "2568c4096e8617a9c6a7b04aa564d6131d26beb3a5e8e28d44c95c05ff63b558",
+      "matches": true
+    },
+    {
+      "path": "ipo/axiomgas/index.html",
+      "url": "https://vasuki8.github.io/IPO-Tracker/ipo/axiomgas/index.html",
+      "checkedAt": "2026-09-19T14:35:20.383832+00:00",
+      "exitCode": 0,
+      "sha256": "f0886828ad2ae15900c8d15932ee6b3815e7e6278b3339ed9ad93dc8e358459b",
+      "expectedSha256": "f0886828ad2ae15900c8d15932ee6b3815e7e6278b3339ed9ad93dc8e358459b",
+      "matches": true,
+      "id": "axiomgas",
+      "issueSizeCr": null,
+      "issueAmountScenarios": {
+        "floorPrice": 51.0,
+        "capPrice": 54.0,
+        "atFloorCr": 47.9298,
+        "atCapCr": 50.7492,
+        "qualifier": "subject_to_basis_of_allotment",
+        "qualification": "Based on up to 93,98,000 shares; subject to finalisation of the Basis of Allotment."
+      },
+      "decision": {
+        "state": "provisional",
+        "until": "2026-09-22",
+        "row": "Issue size would aggregate",
+        "table": "8. Monitoring Agency; revised paragraph and attached footnote",
+        "page": 1,
+        "unit": "INR crore",
+        "sourceUnit": "INR lakh",
+        "source": 1
+      },
+      "amountSource": {
+        "sourceUrl": "https://axiomgas.com/uploads/investors/PB_AP_RHP_MERGED.pdf",
+        "documentDate": "2026-09-16",
+        "sha256": "f171f2d945a297488025dd4041f84bd1dc886599dc0757e5fbe6bfc0fc91ee05",
+        "parserVersion": "reviewed-floor-cap-amounts-v1",
+        "checkedAt": "2026-09-19T13:58:44.750002+00:00",
+        "collectedAt": "2026-09-19T13:35:39.007023+00:00",
+        "collectionTimeBasis": "response-body-persisted",
+        "reviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/6e2df0a4d4c8b736d0c07d526b3b844eaecd0b49/docs/reviews/2026-09-19-qualified-offer-amount-source-review.md",
+        "authority": "issuer_disclosure"
+      }
+    },
+    {
+      "path": "ipo/varmora/index.html",
+      "url": "https://vasuki8.github.io/IPO-Tracker/ipo/varmora/index.html",
+      "checkedAt": "2026-09-19T14:35:20.423571+00:00",
+      "exitCode": 0,
+      "sha256": "b88fcb13cd4a27277e6d8059426ab4ff9d2cced93415d1ac018507a2d46c0b82",
+      "expectedSha256": "b88fcb13cd4a27277e6d8059426ab4ff9d2cced93415d1ac018507a2d46c0b82",
+      "matches": true,
+      "id": "varmora",
+      "issueSizeCr": null,
+      "issueAmountScenarios": {
+        "floorPrice": 140.0,
+        "capPrice": 148.0,
+        "atFloorCr": 687.047,
+        "atCapCr": 708.021,
+        "qualifier": "up_to",
+        "qualification": "Up to the disclosed amount at each price; final offer terms remain unknown."
+      },
+      "decision": {
+        "state": "provisional",
+        "until": "2026-09-24",
+        "row": "Total Offer Size",
+        "table": "Offer details at Floor Price and Cap Price; newspaper printed page 16",
+        "page": 1,
+        "unit": "INR crore",
+        "sourceUnit": "INR million",
+        "source": 1
+      },
+      "amountSource": {
+        "sourceUrl": "https://www.jmfl.com/Common/getFile/6031",
+        "documentDate": "2026-09-16",
+        "publicationDate": "2026-09-17",
+        "sha256": "2287c54ae752a60cf2ed733940fa3e723bcd3a6e245641cb00f0619410417ea4",
+        "parserVersion": "reviewed-floor-cap-amounts-v1",
+        "checkedAt": "2026-09-19T13:58:44.750002+00:00",
+        "collectedAt": "2026-09-19T13:36:54.256721+00:00",
+        "collectionTimeBasis": "response-body-persisted",
+        "reviewUrl": "https://github.com/Vasuki8/IPO-Tracker/blob/6e2df0a4d4c8b736d0c07d526b3b844eaecd0b49/docs/reviews/2026-09-19-qualified-offer-amount-source-review.md",
+        "authority": "issuer_disclosure"
+      }
+    },
+    {
+      "path": "ipo/poojalogis/index.html",
+      "url": "https://vasuki8.github.io/IPO-Tracker/ipo/poojalogis/index.html",
+      "checkedAt": "2026-09-19T14:35:20.391848+00:00",
+      "exitCode": 0,
+      "sha256": "4506b235487e952946b824d6d32f00b1d10d4b85afd448ec90330a5ce1c8a563",
+      "expectedSha256": "4506b235487e952946b824d6d32f00b1d10d4b85afd448ec90330a5ce1c8a563",
+      "matches": true,
+      "id": "poojalogis",
+      "issueSizeCr": null,
+      "issueAmountScenarios": null,
+      "decision": null,
+      "amountSource": null
+    },
+    {
+      "path": "data/phase_status.json",
+      "url": "https://vasuki8.github.io/IPO-Tracker/data/phase_status.json",
+      "checkedAt": "2026-09-19T14:35:30.199558+00:00",
+      "exitCode": 0,
+      "sha256": "723f5e0802c855b073d506c9888ae15ddb76a710398baec71331606d24cfa11b",
+      "expectedSha256": "723f5e0802c855b073d506c9888ae15ddb76a710398baec71331606d24cfa11b",
+      "matches": true
+    },
+    {
+      "path": "public-quality.js",
+      "url": "https://vasuki8.github.io/IPO-Tracker/public-quality.js",
+      "checkedAt": "2026-09-19T14:35:30.211212+00:00",
+      "exitCode": 0,
+      "sha256": "b1e8016e413f6efe50fa0f6a079fc82e2959a4f33cba823c83d16fba15d1a92d",
+      "expectedSha256": "b1e8016e413f6efe50fa0f6a079fc82e2959a4f33cba823c83d16fba15d1a92d",
+      "matches": true
+    },
+    {
+      "path": "public-quality.css",
+      "url": "https://vasuki8.github.io/IPO-Tracker/public-quality.css",
+      "checkedAt": "2026-09-19T14:35:30.164057+00:00",
+      "exitCode": 0,
+      "sha256": "a2bc5fb9103b6a2c7ff76436c90c3e6b2be4a82dc33e512bd4cdacefe01c4fc3",
+      "expectedSha256": "a2bc5fb9103b6a2c7ff76436c90c3e6b2be4a82dc33e512bd4cdacefe01c4fc3",
+      "matches": true
+    },
+    {
+      "path": "app.js",
+      "url": "https://vasuki8.github.io/IPO-Tracker/app.js",
+      "checkedAt": "2026-09-19T14:35:30.127855+00:00",
+      "exitCode": 0,
+      "sha256": "88aa2d4514ebf1b5a9404bd3f423b83e75225964d86a2fabd8464e9093a9add5",
+      "expectedSha256": "88aa2d4514ebf1b5a9404bd3f423b83e75225964d86a2fabd8464e9093a9add5",
+      "matches": true
+    },
+    {
+      "path": "company.js",
+      "url": "https://vasuki8.github.io/IPO-Tracker/company.js",
+      "checkedAt": "2026-09-19T14:35:37.312051+00:00",
+      "exitCode": 0,
+      "sha256": "e076274d35663dab8c6716a14711ec4544c450fc7683171b2d54fd75cf8465fe",
+      "expectedSha256": "e076274d35663dab8c6716a14711ec4544c450fc7683171b2d54fd75cf8465fe",
+      "matches": true
+    }
+  ]
+}

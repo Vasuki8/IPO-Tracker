@@ -15,110 +15,124 @@ Preserve source URLs, document identity, dates, units, nulls, separate source an
 collection clocks, quarantines and correction history. P5/performance expansion
 remain gated by P4. See [ROADMAP.md](ROADMAP.md) and [OPERATIONS.md](OPERATIONS.md).
 
-## Current checkpoint — qualified offer amounts published and verified, 19 September 2026
+## Current checkpoint — qualified whole-offer amounts released, 19 September 2026
 
-Accepted data release: **`40a24ca1cc2e5310825aad36769ee3cad75fe9ae`**.
-Support [PR #171](https://github.com/Vasuki8/IPO-Tracker/pull/171), head
-`6bdcb9b72fbd0249a19ac68d9ddf865edb96c29a`, merged as
-`4a8ff79a19df59faf49677931516312b366fa4ee`. Review-only publication was
-`ec31caea26de73fb0a7e373247b22b5535524022`. The separate single-file request
-[PR #172](https://github.com/Vasuki8/IPO-Tracker/pull/172), head
-`1cbb313b8d1ded2e82859eecefb5a18cec36073a`, merged as
-`90ce951c8d9a6e176f07d5d647e0e7057d4b9967`. Documentation closeout branch:
-`docs-qualified-amount-recovery-closeout`, [PR #173](https://github.com/Vasuki8/IPO-Tracker/pull/173),
-initial documentation commit `85405fb44b3c8f6acd68477e645194b3dc9675c0`.
-Its final commit and checks are identified by the linked PR and containing Git history.
+Verified data-release main: **`40a24ca1cc2e5310825aad36769ee3cad75fe9ae`**.
+Recovered/fetched main was `0a393cd40ec910958c9d685d586076d3b0e6f8f6`; its
+exact next task was unfinished. [Support PR #171](https://github.com/Vasuki8/IPO-Tracker/pull/171)
+merged as `4a8ff79a19df59faf49677931516312b366fa4ee`, implementation
+`6bdcb9b72fbd0249a19ac68d9ddf865edb96c29a`. Review-only publication
+`ec31caea26de73fb0a7e373247b22b5535524022` changed only validation/queue/gate
+artifacts. The separate single-file [request PR #172](https://github.com/Vasuki8/IPO-Tracker/pull/172)
+merged as `90ce951c8d9a6e176f07d5d647e0e7057d4b9967` from
+`1cbb313b8d1ded2e82859eecefb5a18cec36073a`. Documentation closeout branch:
+`docs-qualified-offer-amount-closeout`, [PR #174](https://github.com/Vasuki8/IPO-Tracker/pull/174);
+its final commit is identified by the containing Git history. See the
+[release receipt](releases/2026-09-19-qualified-offer-amounts.json).
+The overlapping recovery closeout [PR #173](https://github.com/Vasuki8/IPO-Tracker/pull/173)
+merged first as `4ff2945aa3d212f9a7108a2ae98179a177fc9a35`; its four
+[additional recovery receipts](releases/2026-09-19-qualified-offer-recovery.json)
+are preserved. This reconciled checkpoint adds the independently reproduced BSE
+receipt-loss evidence and prioritises its current/upcoming-term recovery.
 
-Recovery freshly verified main `0a393cd4`, completed BSE #168–170, subsequent
-scheduled core `20068a87`/filings `0a393cd4`, their successful deployment and
-18 direct live files. Source commits `70a47cb0` and `6e2df0a4` were already pushed;
-the amount implementation was initially uncommitted with no PR. It was preserved,
-reviewed and tested. A subsequent pre-PR fetch found #171/#172 already completed
-with exactly the same implementation, including the three recovered fixes below.
-No duplicate implementation PR or publication request was created. The frozen
-local checkpoint `4af01723` remains on `recover-qualified-offer-amounts`.
-Repository and deployment evidence superseded the stale awaiting-release status.
+The selected three-issuer source family is exhausted: two source layouts support
+reviewed active amounts, and Pooja's recovered documents do not disclose one.
 
-Problem/users: IPO researchers need the issuer's conditional whole-offer amounts
-without treating a price-band cap as a final price or proceeds. The three-issuer
-source family is complete at **two supported pairs and one unresolved amount**:
+| Issuer | At floor, INR crore | At cap, INR crore | Required qualification | Active through, IST |
+|---|---:|---:|---|---|
+| Axiom Gas | 47.9298 at INR 51/share | 50.7492 at INR 54/share | Based on up to 93,98,000 shares; subject to final Basis of Allotment | 22 September |
+| Varmora | Up to 687.047 at INR 140/share | Up to 708.021 at INR 148/share | Explicit conditional monetary columns; final offer terms remain unknown | 24 September |
+| Pooja Logistics | Unknown | Unknown | Inspected RHP/advertisement leave whole-offer amount as a placeholder | Unresolved |
 
-| Issuer | At floor price, INR crore | At cap price, INR crore | Required qualification / validity |
-| --- | --- | --- | --- |
-| Axiom Gas | 47.9298 at INR 51/share | 50.7492 at INR 54/share | Up to 9,398,000 shares; subject to finalisation of Basis of Allotment; through 22 September IST |
-| Varmora | Up to 687.047 at INR 140/share | Up to 708.021 at INR 148/share | Up to each disclosed monetary amount; final terms unknown; through 24 September IST |
-| Pooja Logistics | Unknown | Unknown | Current inspected RHP/advertisement retains placeholders; amount gap remains |
+The [source review](reviews/2026-09-19-qualified-offer-amount-source-review.md)
+is bound to immutable `6e2df0a4d4c8b736d0c07d526b3b844eaecd0b49`; its
+[receipts](reviews/2026-09-19-qualified-offer-amount-source-review.json) retain
+original URLs/PDF hashes, exact issuer/offer identities, dates, physical pages,
+row/table/column locators, units, parser/review versions and collection attempts.
+Axiom's explicit revised-band paragraph supersedes its older terms. Varmora's
+complete table distinguishes offer amounts from post-offer capitalisation, and
+its signed date (16 September) from newspaper publication (17 September).
+Source observations remain unknown; collection and review clocks are separate.
+Only the printed INR unit is converted to crore. No amount is calculated from
+shares and price, tranche counts or the retained unsupported scalar observation.
 
-The [immutable source review](reviews/2026-09-19-qualified-offer-amount-source-review.md)
-is bound to `6e2df0a4d4c8b736d0c07d526b3b844eaecd0b49`. Original document/member
-hashes were recomputed; the amount/qualification pages and Varmora signature/date
-were visually checked. Bounded visual transcriptions are identified as manual.
-Axiom's explicit price-band supersession and Varmora's separate signature
-16 September/publication 17 September dates survive. Pooja's recovered archives
-and earlier failures remain distinct. Only explicit issuer amounts and unit
-conversion are accepted; no multiplication-derived total is supplied.
+Pooja's RHP and ratios/advertisement ZIPs were recovered, including a successful
+retry after an incomplete ZIP; the relevant RHP and all advertisement pages were
+inspected. This outcome is disclosure absent in inspected current documents,
+not source unavailability or parser success treated as completion. Failed
+attempts remain in history. Pooja's entire canonical row remains unchanged.
 
-`issueAmountScenarios` remains separate from unknown canonical `issueSizeCr`.
-Issuer document URLs, identity/hash, dates, physical page/row, units and review
-are separate from original NSE evidence. Observation times remain unknown;
-collection/review clocks do not refresh a source observation. Directory, profile,
-quick view, comparison and CSV keep both amounts and qualifications. Holds,
-conflicts, invalidity and IST expiry withhold the pair and restore missing-field
-work. No minimum quantity, application amount, canonical symbol or composition
-expansion is included. Earlier BSE/Vivekanand gaps and all held evidence remain.
+The published transaction changed exactly **two records**, limited to
+`activeOfferTerms` and appended `dataCorrections`. Each original history event
+remains exact. All **1,404 unselected records**, issuer order/source lists, all
+**441 proposals**, every hold, all **1,557 validation and expanded queue reviews**,
+and all five unavailable-resolution records are identical to the actual release
+parent `90ce951c`. Only two profile route digests changed. Performance/listing
+values are unchanged; the performance summary changed only its generation time.
 
-The final recovery fixes also propagate ordinary canonical price/total review
-states to dependent amounts; keep health attribution accurate for surviving NSE
-terms when a supplement is invalid; and reject identical wrong scalar promotion
-on directory and profile. Each has a focused regression and independent code review.
+The two accepted fields are separate qualified pairs. Both canonical and public
+`issueSizeCr` scalars remain null. Directory, profiles, quick views, comparisons
+and CSV share the qualified values, correct PDF evidence and provisional state.
+Independent source-fixture bindings prevent a rehashed candidate from reusing an
+old review. Unknown units, ambiguous/incomplete columns, missing qualifications,
+contradictory identity/official evidence, actual registry holds and expiry fail
+closed. Receipt evidence remains retained; ineligible public amounts are withheld
+and their missing-field gaps return. This does not verify final static terms.
 
-The accepted diff changes exactly **Axiom/Varmora `activeOfferTerms` and appended
-`dataCorrections`**. Original receipts remain in correction history. All **1,404
-unselected records**, **441 proposals**, all holds and all **1,557 validation and
-expanded-queue source reviews** are preserved exactly. Source-health clocks and
-performance values are unchanged. No availability resolution was added or removed.
-See the [measured release receipt](releases/2026-09-19-qualified-offer-recovery.json).
-The cohort's active amount gaps fell **3 to 1**; higher-priority P4 records fell
-**69 to 67**, solely through provisional coverage, not final-amount verification.
+| P4 measure | Before | Published |
+|---|---:|---:|
+| Selected-family active amount gaps | 3 | 1 |
+| All `exchange.issueSizeCr` gaps | 996 | 994 |
+| Higher-priority records | 69 | 67 |
+| P4 actionable records | 408 | 408 |
+| Blocking / total source reviews | 1,553 / 1,557 | 1,553 / 1,557 |
+| Semantic errors / unmapped reviews | 0 / 0 | 0 / 0 |
 
-Current P4: **408 actionable + 67 higher priority; 1,553 blocking / 1,557 total
-reviews; zero errors / zero unmapped; 1,406 canonical records**. Final Prospectus
-revalidation is unchanged at **321 records / 1,174 fields**. P5 remains
-`waiting_for_p4` with **914 records**; performance expansion remains disabled.
+No source review was removed or converted into an exclusion. The remaining queue
+is exactly the old queue minus Axiom and Varmora, supported by the accepted
+provisional amounts. Final Prospectus revalidation remains **321 records / 1,174
+fields**, plus **28 / 104** at higher priority. P5's **914** records remain
+`waiting_for_p4`. P4 is still incomplete; performance expansion remains gated.
 
-Validation: **1,392 Python tests**, **43 standard-library release tests**,
-**39 Node tests**, including **19 amount and 8 receipt-health tests**, pass.
-Strict validation, bounded preparation/accepted scope checks and all **1,406
-profile contracts** pass. Support PR validation 35448476902, source preview
-35448476877, hold evidence 35448476880, release candidate 35448476898 and browser
-35448476884 passed all six jobs. Main validation 35448752007/browser 35448752008
-and request validation 35448832878 passed. CI browser acceptance covers 25 smoke
-checks, existing families and both amount issuers at 1440/375/320px, CSV,
-comparison and expiry. Desktop/320px screenshots were visually inspected;
-[the browser receipt](releases/2026-09-19-qualified-offer-recovery-browser.json)
-records actual CI evidence after local Chromium installation failed.
+Validation: **1,392 Python tests** pass using uv/Python 3.12, including **19 amount
+family tests** with both real source documents; **39 Node tests** pass. Strict
+validation has zero errors; all **1,406 directory/profile pairs** pass. Support
+checks passed: validation **35448476902**, source preview **35448476877**, source
+hold evidence **35448476880**, public candidate **35448476898**, browser
+**35448476884**; main validation/browser **35448752007 / 35448752008** also passed.
+Request validation **35448832878** passed. The [browser receipt](releases/2026-09-19-qualified-offer-amount-browser.json)
+records both issuers at 1440/375/320px, directory/profile/quick view, CSV,
+comparison, expiry and Pooja's unresolved amount. Desktop/320px screenshots were
+visually inspected. Local Chromium download failed; CI supplied actual browser
+acceptance. Small source-health and publication-routing adaptations were required
+for separate PDF provenance and actual amount holds; no new collector was added.
 
-Reviewed publisher **35448941571** succeeded, with collector **105912618954** and
-publisher **105912760095**. Accepted Pages **35449044417** and public verifier
-**35449087717** passed. [Twenty direct verifier files](releases/2026-09-19-qualified-offer-recovery-live.json)
-and [eleven additional exact-byte checks](releases/2026-09-19-qualified-offer-recovery-direct-live.json)
-match `40a24ca1`, including both amounts, proofs, P4 reports and preserved Pooja/BSE
-profiles. Scheduled run 35448787952 was correctly rejected by the stale-source
-policy guard after policy changed; no protection was bypassed or old artifact
-forced through. The separate reviewed publication completed successfully.
+Reviewed publisher **35448941571** passed (collector **105912618954**, publisher
+**105912760095**) in `reviewed` mode, skipping source collection and residual
+repair. Pages **35449044417** and deployed verifier **35449087717** passed.
+The [26-file live receipt](releases/2026-09-19-qualified-offer-amount-live.json)
+and [nine direct checks](releases/2026-09-19-qualified-offer-amount-direct-live.json)
+match `40a24ca1`, including both amount profiles, Pooja, summary, P4 gate and
+shared scripts/styles. An initial local urllib attempt timed out; CI verification
+and separate direct curl checks succeeded. The pre-existing scheduled run
+**35448787952** was rejected before publication by the stale collector/policy
+guard after the reviewed request changed; it published no canonical writes.
+No approval, spend, outreach, commercial-scope or unrelated feature changes occurred.
+Preserved open work: #94, #98, #99 and drafts #104/#105.
 
-No implementation, review or data-release acceptance remains for this bounded
-family. Commercial source/redistribution rights, permitted hosting, operator and
-jurisdictions, audience, pricing and revenue model remain unresolved. No spending,
-outreach, contracts, tracking, accounts, billing, access or infrastructure changes.
-Open #94/#98/#99 and drafts #104/#105 remain preserved.
-
-**Exact next task:** diagnose the promoter/subtotal/page-locator family against
-multiple matching Final Prospectuses, starting with held Vinod Texworld. Establish
-promoters versus promoter-group scope and actual source-row pages before proposing
-any parser or value replacement. Retain Vinod's 93.11 and its hold/history; do not
-automatically replace it with 93.10. Keep Pooja's amount and other unsupported
-fields unresolved. Do not start P5 or performance expansion.
+**Exact next task:** repair the existing BSE receipt-preservation regression, then
+recover the four previously accepted receipts/history/detail-source entries from
+`599798ff` after current identity/observation/hold/lifecycle replay. Scheduled core
+commit `20068a87` had already deleted FX Multitech, Robokidz, Himalaya and S. K.
+Offset's accepted evidence before this task recovered main. This overrides the
+historical live checkpoint below. The [verified diagnosis](reviews/2026-09-19-bse-receipt-preservation-regression.md)
+identifies `run_update.clean_existing_record()`, an offline reproduction, exact
+restoration boundaries and the required successful-refresh regression test.
+Expected eligible recovery is four price-band gaps and eight separately labelled
+quantities, not new source-review removal. Preserve invalid/held/expired evidence
+while withholding public values. Then reassess Elevate/Unitec detail sources;
+Vivekanand and SpectraA remain unresolved. Do not repeat this exhausted amount
+family without new source evidence, or start P5/performance expansion.
 
 ## Previous checkpoint — reviewed BSE active terms released, 19 September 2026
 
