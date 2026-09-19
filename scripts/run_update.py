@@ -84,6 +84,10 @@ def clean_existing_record(record):
     if not sources and rec.get("source"):
         sources = [rec["source"]]
 
+    # Reviewed universe identity is durable evidence, not a disposable current
+    # page comparison. Bind preservation to its admitted source URL.
+    admission = rec.get("universeAdmission") or {}
+    identity_url = (admission.get("identitySource") or {}).get("url")
     # Remove prior BSE validation/detail observations because those official pages
     # are re-fetched after every core run. Keep BSE cumulative-demand provenance,
     # which belongs to the independent live-subscription collector.
@@ -93,10 +97,12 @@ def clean_existing_record(record):
         if not (
             _source_root(s) == "BSE"
             and "cumulative demand" not in _source_name(s).lower()
+            and not (identity_url and s.get("url") == identity_url)
         )
     ]
     observations = dict(rec.get("observations") or {})
-    observations.pop("BSE", None)
+    if not (identity_url and (observations.get("BSE") or {}).get("sourceUrl") == identity_url):
+        observations.pop("BSE", None)
     rec["observations"] = observations
 
     # A validation-only BSE row is dropped and refetched. A subscription record is

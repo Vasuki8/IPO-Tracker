@@ -46,7 +46,10 @@ previous real outcome under `lastAttempt`; repeating a skip does not nest histor
 When no rows arrive, the existing collector retains new diagnostics alongside the
 unchanged accepted rows and metadata. It returns failure if attempted collection
 failed, and success for valid empty checks. Attachment failures discard that
-source's incomplete changes. Stage time-budget deferrals do not run the collector
+source's incomplete changes. Reviewed universe identity source/observation URLs
+bound to `universeAdmission.identitySource` survive core cleanup even when BSE's
+current-page request fails or the issuer no longer appears there. Stage time-budget
+deferrals do not run the collector
 and cannot mint source checks. Source clocks still cannot establish field accuracy.
 Each source-health or stage entry merges as a whole: concurrent attempts cannot combine
 one outcome with another attempt's clock or receipts. The existing metadata
