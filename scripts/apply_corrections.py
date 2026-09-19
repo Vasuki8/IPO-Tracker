@@ -29,9 +29,12 @@ def record_evidence(row, entry, before, after):
         'reason': entry.get('reason', 'Filled from a reviewed final offer or listing notice'),
         'sourceUrl': source['url'], 'evidence': copy.deepcopy(entry['evidence']),
         'correctedAt': entry['reviewedAt'],
+        **({'sourceReviewUrl': after['review']['url']} if entry['field'] == 'activeOfferTerms' else {}),
     })
     if not any(item.get('url') == source['url'] for item in row.get('sources', [])):
-        row.setdefault('sources', []).append({**copy.deepcopy(source), 'asOf': entry['reviewedAt']})
+        row.setdefault('sources', []).append({**copy.deepcopy(source),
+            **({'observedAt': None, 'collectedAt': after['source']['collectedAt']}
+               if entry['field'] == 'activeOfferTerms' else {'asOf': entry['reviewedAt']})})
 
 
 def _final_prospectus_source(entry):
@@ -101,6 +104,10 @@ def apply(payload, registry, *, evidence_groups=(), explicit_review=False):
         groups[correction['id']].append(correction)
     # Validate opt-in boundaries before even normalizing the input payload.
     for identifier, corrections in groups.items():
+        if any(entry['field'] == 'activeOfferTerms' for entry in corrections):
+            if (any(entry.get('publicationScope') != 'explicit-reviewed' for entry in corrections)
+                    or (evidence_by_id.get(identifier) or {}).get('kind') != 'active-offer-terms'):
+                raise ValueError('Active offer receipts require explicit reviewed source evidence')
         scopes = {entry.get('publicationScope') for entry in corrections}
         if scopes - {None, 'explicit-reviewed'}:
             raise ValueError('Unsupported correction publication scope')

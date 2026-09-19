@@ -240,6 +240,11 @@ function companyKpis(ipo) {
     )
     .join('');
 }
+function companyCompositionValue(issue, field, currency = false) {
+  if (issue[field] == null) return null;
+  const value = currency ? money(issue[field]) : `${companyShares(issue[field])} shares`;
+  return `${issue.qualifiers?.[field] === 'up_to' ? 'Up to ' : ''}${value}`;
+}
 function companyOverviewFacts(ipo) {
   const issue = ipo.issueComposition || {};
   const count = sourceCount(ipo);
@@ -254,17 +259,13 @@ function companyOverviewFacts(ipo) {
       'Fresh issue',
       ipo.freshIssueCr != null
         ? money(ipo.freshIssueCr)
-        : issue.freshShares != null
-          ? `${companyShares(issue.freshShares)} shares`
-          : null,
+        : companyCompositionValue(issue, 'freshValueCr', true) ?? companyCompositionValue(issue, 'freshShares'),
     ],
     [
       'Offer for sale',
       ipo.ofsCr != null
         ? money(ipo.ofsCr)
-        : issue.ofsShares != null
-          ? `${companyShares(issue.ofsShares)} shares`
-          : null,
+        : companyCompositionValue(issue, 'ofsValueCr', true) ?? companyCompositionValue(issue, 'ofsShares'),
     ],
     ['Filing stage', filingStage(ipo)],
     ['Sources attached', `${count} source${count === 1 ? '' : 's'}`],
@@ -275,7 +276,7 @@ function companyOverviewFacts(ipo) {
         : null,
     ],
   ];
-  return `<dl class="company-fact-grid">${facts.map(([label, value]) => `<div class="company-fact"><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(companyText(value))}</dd></div>`).join('')}</dl>`;
+  return `<dl class="company-fact-grid">${facts.map(([label, value]) => `<div class="company-fact"><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(companyText(value))}${['Fresh issue', 'Offer for sale'].includes(label) && IPOQuality.decision(ipo, 'issueComposition').state === 'provisional' ? IPOQuality.note(ipo, 'issueComposition') : ''}</dd></div>`).join('')}</dl>`;
 }
 function companySubscriptionSection(ipo, heading = 'h3') {
   if (!companyHasSubscription(ipo)) return '';
@@ -325,10 +326,10 @@ function companyOfferIntel(ipo, heading = 'h3') {
   const sourceUrl = companySafeUrl(extraction.documentUrl);
   const facts = [
     ['Registrar', ipo.registrar],
-    ['Fresh issue value', ipo.freshIssueCr != null ? money(ipo.freshIssueCr) : null],
-    ['Offer for sale value', ipo.ofsCr != null ? money(ipo.ofsCr) : null],
-    ['Fresh issue shares', issue.freshShares != null ? companyShares(issue.freshShares) : null],
-    ['OFS shares', issue.ofsShares != null ? companyShares(issue.ofsShares) : null],
+    ['Fresh issue value', ipo.freshIssueCr != null ? money(ipo.freshIssueCr) : companyCompositionValue(issue, 'freshValueCr', true)],
+    ['Offer for sale value', ipo.ofsCr != null ? money(ipo.ofsCr) : companyCompositionValue(issue, 'ofsValueCr', true)],
+    ['Fresh issue shares', companyCompositionValue(issue, 'freshShares')],
+    ['OFS shares', companyCompositionValue(issue, 'ofsShares')],
     [
       'Valuation price used',
       issue.valuationPriceUsed != null ? rupees(issue.valuationPriceUsed) : null,
@@ -339,7 +340,8 @@ function companyOfferIntel(ipo, heading = 'h3') {
       ? `<div class="company-offer-group"><h4>${escapeHtml(label)}</h4><div class="company-people-list">${names.map((name) => `<div class="company-person">${escapeHtml(name)}</div>`).join('')}</div>`
       : '';
   const objects = ipo.objectsOfIssue || [];
-  return `<section class="company-section" id="company-offer-intel"><div class="company-section-head"><div>${companyHeading('Offer structure', heading)}<p class="company-section-subtitle">Issue composition, intermediaries and use of proceeds from official offer documents.</p></div>${sourceUrl ? `<a class="company-section-action" href="${escapeAttr(sourceUrl)}" target="_blank" rel="noopener noreferrer">View offer document ↗</a>` : ''}</div>${facts.length ? `<dl class="company-fact-grid">${facts.map(([label, value]) => `<div class="company-fact"><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`).join('')}</dl>` : ''}${objects.length ? `<div class="company-offer-group" id="company-objects"><h4>Objects of the issue</h4><div class="company-object-list">${objects.map((item) => `<div class="company-object-row"><span>${escapeHtml(item.purpose || 'Purpose')}</span><strong>${money(item.amountCr)}</strong></div>`).join('')}</div></div>` : ''}${people('Lead managers', ipo.leadManagers || [])}${people('Promoters', ipo.promoters || [])}</section>`;
+  const compositionNote = IPOQuality.decision(ipo, 'issueComposition').state === 'provisional' ? IPOQuality.note(ipo, 'issueComposition') : '';
+  return `<section class="company-section" id="company-offer-intel"><div class="company-section-head"><div>${companyHeading('Offer structure', heading)}<p class="company-section-subtitle">Issue composition, intermediaries and use of proceeds from official disclosures.</p></div>${sourceUrl ? `<a class="company-section-action" href="${escapeAttr(sourceUrl)}" target="_blank" rel="noopener noreferrer">View offer document ↗</a>` : ''}</div>${compositionNote}${facts.length ? `<dl class="company-fact-grid">${facts.map(([label, value]) => `<div class="company-fact"><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`).join('')}</dl>` : ''}${objects.length ? `<div class="company-offer-group" id="company-objects"><h4>Objects of the issue</h4><div class="company-object-list">${objects.map((item) => `<div class="company-object-row"><span>${escapeHtml(item.purpose || 'Purpose')}</span><strong>${money(item.amountCr)}</strong></div>`).join('')}</div></div>` : ''}${people('Lead managers', ipo.leadManagers || [])}${people('Promoters', ipo.promoters || [])}</section>`;
 }
 function companyFinancials(ipo, heading = 'h3') {
   const periods = ipo.financials?.periods || [];

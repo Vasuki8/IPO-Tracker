@@ -19,6 +19,7 @@ from issue_composition_checks import COMPOSITION_FIELDS, quarantined_fields
 from objects_of_issue_checks import objects_quarantined
 from source_review_holds import display_holds, display_hold_matches as _display_hold_matches, value_digest
 from validate_data import validate_record
+from active_offer_terms import accepted_terms
 
 VERSION = 1
 ROOT = Path(__file__).resolve().parents[1]
@@ -51,8 +52,11 @@ def official_url(value):
 
 
 def _proof_source(proof):
-    return {key: proof[key] for key in ('sourceUrl', 'documentDate', 'sha256', 'parserVersion', 'checkedAt')
-            if proof.get(key) is not None}
+    keys = ('sourceUrl', 'documentDate', 'sha256', 'parserVersion', 'checkedAt')
+    if proof.get('activeOfferReceipt'):
+        keys += ('observedAt', 'collectedAt', 'reviewUrl')
+    return {key: proof[key] for key in keys
+            if proof.get(key) is not None or (key == 'observedAt' and key in proof)}
 
 
 def _final_proof(record, field, value):
@@ -178,6 +182,7 @@ def project_record(record, *, today=None, holds=None):
         reviews.update({f: 'composition_review' for f in COMPOSITION_FIELDS})
 
     quality = {}
+    active = accepted_terms(record, today)
     sources = []
     def attach_source(decision, proof):
         source = _proof_source(proof)
@@ -192,6 +197,17 @@ def project_record(record, *, today=None, holds=None):
         proof = None
         if field in reviews:
             decision = {'state': 'under_review', 'reason': reviews[field]}
+        elif not present(value) and field in active:
+            receipt = record['activeOfferTerms']
+            source = receipt['source']
+            decision = {'state': 'provisional', 'until': record['closeDate'],
+                        'row': active[field]['row'], 'table': active[field]['table']}
+            attach_source(decision, {'sourceUrl': source['url'], 'sha256': source['sha256'],
+                'activeOfferReceipt': True,
+                'observedAt': source['observedAt'], 'collectedAt': source['collectedAt'],
+                'checkedAt': receipt['review']['reviewedAt'], 'reviewUrl': receipt['review']['url'],
+                'parserVersion': receipt['parserVersion']})
+            _set(output, field, copy.deepcopy(active[field]['value']))
         elif not present(value):
             availability = next((v for k, v in (record.get('dataAvailability') or {}).items()
                                  if k.split('.')[-1] == field and isinstance(v, dict)), {})

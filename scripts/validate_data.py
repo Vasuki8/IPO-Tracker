@@ -30,6 +30,10 @@ def validate_record(record, *, holds=None):
     issues = []
     def add(field, reason, severity="error"):
         issues.append({"id": record.get("id"), "field": field, "severity": severity, "reason": reason})
+    from active_offer_terms import receipt_problems
+    for field, reason in receipt_problems(record).items():
+        add(field, reason, 'error' if reason.startswith('Invalid active offer receipt:') else 'review')
+        issues[-1]['reviewType'] = 'active_offer_terms_conflict'
     provenance = record.get("staticFieldProvenance") or {}
     for reason in objects_problems(record.get("objectsOfIssue")):
         add("objectsOfIssue", reason)

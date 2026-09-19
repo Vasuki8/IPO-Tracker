@@ -48,7 +48,18 @@ def validate_records(payload, registry, groups, ids):
         row = rows[identifier]
         if any(row.get(k) != value for k, value in group['identity'].items()):
             raise ValueError('Reviewed publication identity changed')
-        quality = project_record(row)['publicQuality']['fields']
+        projected = project_record(row)
+        quality = projected['publicQuality']['fields']
+        if group.get('kind') == 'active-offer-terms':
+            from active_offer_terms import accepted_terms
+            receipt = group['proofs']['activeOfferTerms']['value']
+            terms = accepted_terms(row)
+            if (row.get('activeOfferTerms') != receipt or not terms
+                    or set(terms) != set(receipt['fields'])
+                    or any(quality[field]['state'] != 'provisional' or projected.get(field) != proof['value']
+                           for field, proof in terms.items())):
+                raise ValueError('Reviewed active offer fields must be eligible and explicitly provisional')
+            continue
         for field, proof in group['proofs'].items():
             if (row.get(field) != proof['value']
                     or (row.get('staticFieldProvenance') or {}).get(field) != proof
@@ -83,6 +94,8 @@ def validate_scope(before, after, ids, *, allow_meta=False, groups=None):
             if not metric_paths(original.get('financials')) <= metric_paths(updated.get('financials')):
                 raise ValueError('Reviewed financial publication cannot discard retained periods or metrics')
         allowed = fields | {'staticFieldProvenance', 'staticSourcePolicy', 'dataCorrections', 'sources'}
+        if fields == {'activeOfferTerms'}:
+            allowed -= {'staticFieldProvenance', 'staticSourcePolicy'}
         if allow_meta:
             allowed.add('validation')
         for field in (set(original) | set(updated)) - allowed:
@@ -124,7 +137,8 @@ def prepare(payload, registry, groups, ids):
     _, conflicts = apply(subset, scoped_registry, evidence_groups=selected, explicit_review=True)
     if conflicts:
         raise ValueError('Reviewed correction preconditions failed: ' + json.dumps(conflicts))
-    apply_policy(subset)
+    active_ids = {group['identity']['id'] for group in selected if group.get('kind') == 'active-offer-terms'}
+    apply_policy({'ipos': [row for row in subset['ipos'] if row['id'] not in active_ids]})
     replacements = record_map(subset)
     output = copy.deepcopy(payload)
     output['ipos'] = [replacements.get(row['id'], row) for row in output['ipos']]

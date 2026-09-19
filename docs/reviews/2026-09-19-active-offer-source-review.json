@@ -1,0 +1,518 @@
+{
+  "reviewVersion": "active-offer-family-source-review-v1",
+  "reviewedAt": "2026-09-19T02:39:02.130350+00:00",
+  "scope": "Read-only current/upcoming provisional offer-term evidence. No final-prospectus verification, canonical acceptance or numerical backfill.",
+  "axiomgas": {
+    "issuer": "Axiom Gas Engineering Limited",
+    "cin": "U23201GJ2007PLC051590",
+    "sourcePage": "https://axiomgas.com/ipo",
+    "document": {
+      "url": "https://axiomgas.com/uploads/investors/PB_AP_RHP_MERGED.pdf",
+      "retrievedAt": "2026-09-19T02:30:52.028124+00:00",
+      "status": 200,
+      "sha256": "f171f2d945a297488025dd4041f84bd1dc886599dc0757e5fbe6bfc0fc91ee05",
+      "contentType": "application/pdf",
+      "bytes": 10529275,
+      "file": ".cache\\active-terms-sources\\axiom-merged.pdf",
+      "pages": 386
+    },
+    "authority": "Issuer-hosted public price-band revision and RHP bundle; issuer domain independently named by NSE-hosted DRHP",
+    "lifecycle": "active provisional",
+    "findings": [
+      {
+        "field": "priceBand",
+        "value": {
+          "min": 51,
+          "max": 54
+        },
+        "unit": "INR per equity share",
+        "pdfPage": 1,
+        "documentDate": "2026-09-16",
+        "section": "Price Band Revision cum Corrigendum, introductory paragraph and section 1",
+        "reviewMethod": "Rendered PDF visual inspection; image-only first page has no pypdf text",
+        "evidence": "Expressly revises the September 8 advertisement price band from INR50–53 to INR51–54. Supersession is explicit, not newest-wins inference."
+      },
+      {
+        "field": "issueAmountAtFloorLakh",
+        "value": 4792.98,
+        "unit": "INR lakh",
+        "pdfPage": 1,
+        "documentDate": "2026-09-16",
+        "section": "8. Monitoring Agency",
+        "qualifier": "Source says would aggregate at floor; calculated by issuer on up to9,398,000shares, subject finalisation of Basis of Allotment. Not a final issue amount."
+      },
+      {
+        "field": "issueAmountAtCapLakh",
+        "value": 5074.92,
+        "unit": "INR lakh",
+        "pdfPage": 1,
+        "documentDate": "2026-09-16",
+        "section": "8. Monitoring Agency",
+        "qualifier": "Source says would aggregate at cap; calculated by issuer on up to9,398,000shares, subject finalisation of Basis of Allotment. Not a final issue amount."
+      },
+      {
+        "field": "freshShares",
+        "value": 9398000,
+        "unit": "equity shares",
+        "pdfPage": 2,
+        "documentDate": "2026-09-08",
+        "section": "Offer paragraph and allocation table",
+        "qualifier": "Up to; subject finalisation of Basis of Allotment. Page1 revision repeats same share count."
+      },
+      {
+        "field": "offerForSale",
+        "value": false,
+        "pdfPage": 2,
+        "documentDate": "2026-09-08",
+        "section": "Details of Selling Shareholders / OFS",
+        "evidence": "Fresh issue only; does not include any offer for sale."
+      },
+      {
+        "field": "individualBidQuantity",
+        "value": 4000,
+        "unit": "shares",
+        "pdfPage": 2,
+        "documentDate": "2026-09-08",
+        "section": "Bidding statement below price-band/P-E banner",
+        "qualifier": "Individual investors two lots only. Do not call this the market lot."
+      },
+      {
+        "field": "niiQibMinimumBidQuantity",
+        "value": 6000,
+        "unit": "shares",
+        "pdfPage": 2,
+        "documentDate": "2026-09-08",
+        "section": "Bidding statement below price-band/P-E banner"
+      },
+      {
+        "field": "bidMultiple",
+        "value": 2000,
+        "unit": "shares",
+        "pdfPage": 2,
+        "documentDate": "2026-09-08",
+        "section": "Bidding statement below price-band/P-E banner",
+        "qualifier": "Two lots4000 implies lot2000 and statement expressly says multiples2000. Market/trading lot numeric is not independently established by this RHP, whose trading lot row remains placeholder."
+      },
+      {
+        "field": "openDate",
+        "value": "2026-09-18",
+        "pdfPage": 2,
+        "documentDate": "2026-09-08",
+        "section": "Bid/Issue Programme"
+      },
+      {
+        "field": "closeDate",
+        "value": "2026-09-22",
+        "pdfPage": 2,
+        "documentDate": "2026-09-08",
+        "section": "Bid/Issue Programme"
+      }
+    ],
+    "warning": "Bundled pdf page1 is scanned correction, pages2-4 older text advertisement; whole-document first-text/last-number extraction would preserve incorrect50–53. Standalone basis PDF still50–53 (hash9510d707b4432854f181827c61eb8b5d70c05eea1dea53162c60729b785f535b). Do not silently ignore chronology or page1.",
+    "unestablished": [
+      "Final issue price",
+      "Final issue proceeds",
+      "Independently stated market lot",
+      "Source observation clock for exchange data",
+      "Category-neutral minimum bid or application amount"
+    ],
+    "nseDetailReview": {
+      "receipt": {
+        "name": "axiomgas-detail",
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=AXIOMGAS&series=SME",
+        "startedAt": "2026-09-19T02:30:05.144692+00:00",
+        "observedAt": null,
+        "status": 200,
+        "finalUrl": "https://www.nseindia.com/api/ipo-detail?symbol=AXIOMGAS&series=SME",
+        "bytes": 11144,
+        "sha256": "9a2a3901052e7d9354c252820212ec5d9b39ad76fc79f3f5e102a5ea7088a8ce",
+        "contentType": "application/json; charset=utf-8",
+        "shape": [
+          "companyName",
+          "metaInfo",
+          "bidDetails",
+          "issueInfo",
+          "activeCat",
+          "demandGraph",
+          "demandDataNSE",
+          "demandDataBSE",
+          "demandGraphALL"
+        ],
+        "collectedAt": "2026-09-19T02:30:05.462927+00:00"
+      },
+      "rawFile": ".cache\\p4-active-terms-20260919\\axiomgas-detail.response",
+      "sha256Verified": true,
+      "rows": [
+        {
+          "jsonPath": "issueInfo.dataList[1]",
+          "title": "Symbol",
+          "value": "AXIOMGAS"
+        },
+        {
+          "jsonPath": "issueInfo.dataList[2]",
+          "title": "Issue Period",
+          "value": "18-Sep-2026 to 22-Sep-2026"
+        },
+        {
+          "jsonPath": "issueInfo.dataList[4]",
+          "title": "Issue Size",
+          "value": "\"Initial Public Offer comprising of Fresh Issue up to 93,98,000 Equity Shares (including Market Maker portion of 4,78,000 Equity Shares and Anchor allocation 10,70,000 Equity Shares)\""
+        },
+        {
+          "jsonPath": "issueInfo.dataList[5]",
+          "title": "Issue Type",
+          "value": "Book Building"
+        },
+        {
+          "jsonPath": "issueInfo.dataList[6]",
+          "title": "Price Range",
+          "value": "Rs.51 to Rs.54 per equity share"
+        },
+        {
+          "jsonPath": "issueInfo.dataList[7]",
+          "title": "Lot Size",
+          "value": "2000 Equity Shares"
+        },
+        {
+          "jsonPath": "issueInfo.dataList[8]",
+          "title": "Face Value",
+          "value": "Rs.5 per Equity Share"
+        }
+      ],
+      "reviewScope": "Only the exact labelled active offer rows. No market-lot inference, no multiplication-derived monetary issue size, no observedAt invented. RHP source-access failures remain separately recorded."
+    }
+  },
+  "varmora": {
+    "issuer": "Varmora Granito Limited",
+    "cin": "U26914GJ2003PLC043194",
+    "sourcePage": "https://varmora.com/corporate-information",
+    "document": {
+      "url": "https://cdn.varmora.com/payload-media/static/Varmora%20Granito%20Limited%20-%20Red%20Herring%20Prospectus.pdf",
+      "retrievedAt": "2026-09-19T02:32:56.032774+00:00",
+      "status": 200,
+      "sha256": "116ed0c761e9e61b09f84c76edd1fac472de6486884988b948f0722f422d05c2",
+      "contentType": "application/pdf",
+      "bytes": 10852982,
+      "file": ".cache\\active-terms-sources\\varmora-rhp.pdf",
+      "pages": 591
+    },
+    "abridgedDocument": {
+      "url": "https://cdn.varmora.com/payload-media/static/Varmora%20Granito%20Limited%20-%20Abridged%20Prospectus.pdf",
+      "retrievedAt": "2026-09-19T02:32:54.637985+00:00",
+      "status": 200,
+      "sha256": "a1fb1458ef8622482ed6b48b5e97ccd9b09577660504ca3e3ef35613bfd63629",
+      "contentType": "application/pdf",
+      "bytes": 509125,
+      "file": ".cache\\active-terms-sources\\varmora-ap.pdf",
+      "pages": 13
+    },
+    "authority": "Issuer-linked CDN RHP, datedSeptember16 2026",
+    "lifecycle": "upcoming provisional",
+    "findings": [
+      {
+        "field": "freshIssueCr",
+        "value": 320,
+        "sourceValue": 3200,
+        "unit": "INR million",
+        "pdfPage": 1,
+        "section": "Details of Offer to Public",
+        "qualifier": "Up to; 320crore is unit conversion, not price-times-shares."
+      },
+      {
+        "field": "ofsShares",
+        "value": 26217634,
+        "unit": "shares",
+        "pdfPage": 1,
+        "section": "Details of Offer for Sale",
+        "seller": "Katsura Investments",
+        "qualifier": "Up to; OFS amount in INRmillion is placeholder."
+      },
+      {
+        "field": "issueSizeCr",
+        "value": null,
+        "pdfPage": 1,
+        "section": "Total Offer Size",
+        "evidence": "Total equity shares and total amount are placeholders; do not derive amount from NSEupcoming rawissueSize timesupperband."
+      },
+      {
+        "field": "priceBand",
+        "value": null,
+        "pdfPage": 3,
+        "section": "Offer cover",
+        "evidence": "Price band and minimum bid lot will be decided separately; exactprice absent here."
+      },
+      {
+        "field": "bidLot",
+        "value": null,
+        "pdfPage": 8,
+        "section": "Definitions - Bid Lot",
+        "evidence": "Share count placeholders."
+      },
+      {
+        "field": "openDate",
+        "value": "2026-09-22",
+        "pdfPage": 2,
+        "section": "Bid/Offer Programme"
+      },
+      {
+        "field": "closeDate",
+        "value": "2026-09-24",
+        "pdfPage": 2,
+        "section": "Bid/Offer Programme"
+      }
+    ],
+    "reviewMethod": "Issuer RHP cover and JM Financial-hosted issuer price-band advertisement page1 visually reviewed; RHP/AP table text reviewed. Advertisement corroborates exact NSE price range and bid lot101/minimumorder101.",
+    "warning": "Prior draft fresh issue400crore and OFS52,435,268shares are not currentRHP terms. CurrentRHP fresh320crore/OFS26,217,634shares corroborate NSEdetail; totalissueamount is stillundisclosed in reviewedRHP.",
+    "nseDetailReview": {
+      "receipt": {
+        "name": "varmora-detail",
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=VARMORA&series=EQ",
+        "startedAt": "2026-09-19T02:30:05.462927+00:00",
+        "observedAt": null,
+        "status": 200,
+        "finalUrl": "https://www.nseindia.com/api/ipo-detail?symbol=VARMORA&series=EQ",
+        "bytes": 6525,
+        "sha256": "998c9afe8b5a6a7216dd675f85b4120efe4c24e703815f96e7a668c14a8263dd",
+        "contentType": "application/json; charset=utf-8",
+        "shape": [
+          "companyName",
+          "metaInfo",
+          "bidDetails",
+          "issueInfo",
+          "activeCat",
+          "demandGraph",
+          "demandDataNSE",
+          "demandDataBSE",
+          "demandGraphALL"
+        ],
+        "collectedAt": "2026-09-19T02:30:05.723182+00:00"
+      },
+      "rawFile": ".cache\\p4-active-terms-20260919\\varmora-detail.response",
+      "sha256Verified": true,
+      "rows": [
+        {
+          "jsonPath": "issueInfo.dataList[2]",
+          "title": "Symbol",
+          "value": "VARMORA"
+        },
+        {
+          "jsonPath": "issueInfo.dataList[3]",
+          "title": "Issue Period",
+          "value": "22-Sep-2026 to 24-Sep-2026"
+        },
+        {
+          "jsonPath": "issueInfo.dataList[5]",
+          "title": "Issue Size",
+          "value": "\"Initial Public offering comprising of fresh issue of aggregating up to Rs. 3,200.00 million and Offer for sale up to 26,217,634 Equity shares.\""
+        },
+        {
+          "jsonPath": "issueInfo.dataList[6]",
+          "title": "Issue Type",
+          "value": "Book Building"
+        },
+        {
+          "jsonPath": "issueInfo.dataList[7]",
+          "title": "Price Range",
+          "value": "Rs. 140 to Rs. 148 per Equity Share"
+        },
+        {
+          "jsonPath": "issueInfo.dataList[9]",
+          "title": "Face Value",
+          "value": "Rs. 2 per Equity Share"
+        },
+        {
+          "jsonPath": "issueInfo.dataList[11]",
+          "title": "Bid Lot",
+          "value": "101 Equity Shares and in multiples thereof"
+        },
+        {
+          "jsonPath": "issueInfo.dataList[12]",
+          "title": "Minimum Order Quantity",
+          "value": "101 Equity Shares"
+        }
+      ],
+      "reviewScope": "Only the exact labelled active offer rows. No market-lot inference, no multiplication-derived monetary issue size, no observedAt invented. RHP source-access failures remain separately recorded."
+    },
+    "priceBandAdvertisement": {
+      "document": {
+        "url": "https://www.jmfl.com/Common/getFile/6031",
+        "finalUrl": "https://www.jmfl.com/Common/getFile/6031",
+        "retrievedAt": "2026-09-19T02:37:15.315405+00:00",
+        "status": 200,
+        "sha256": "2287c54ae752a60cf2ed733940fa3e723bcd3a6e245641cb00f0619410417ea4",
+        "bytes": 17920536,
+        "pages": 15
+      },
+      "discoveryPage": {
+        "url": "https://www.jmfl.com/what-we-do/Investment-Bank/investment-banking/red-herring-prospectus",
+        "retrievedAt": "2026-09-19T02:34:55.976748+00:00",
+        "status": 200,
+        "sha256": "a2eee81c71b95e42c5d743972f65e6bbeba1af9d31f805b546dd20ecbc46e9c1",
+        "bytes": 432321
+      },
+      "discoverySection": "div#accordion-body-4484, aria-labelledby VARMORA GRANITO LIMITED, Price Band Advertisement link",
+      "authority": "Issuer advertisement published in Financial Express; copy linked by JM Financial, the book-running lead manager disclosed in the issuer RHP. Not secondary news commentary.",
+      "reviewMethod": "Rendered PDF page 1 visually reviewed; newspaper page 16 dated 2026-09-17. The first page is image-only in pypdf.",
+      "findings": [
+        {
+          "field": "priceBand",
+          "value": {
+            "min": 140,
+            "max": 148
+          },
+          "unit": "INR per equity share",
+          "pdfPage": 1,
+          "section": "Price Band banner",
+          "documentDate": "2026-09-17"
+        },
+        {
+          "field": "minimumBidQuantity",
+          "value": 101,
+          "unit": "shares",
+          "pdfPage": 1,
+          "section": "Bidding statement below price-band banner",
+          "documentDate": "2026-09-17"
+        },
+        {
+          "field": "bidMultiple",
+          "value": 101,
+          "unit": "shares",
+          "pdfPage": 1,
+          "section": "Bidding statement below price-band banner",
+          "documentDate": "2026-09-17"
+        },
+        {
+          "field": "totalOfferSharesAtFloor",
+          "value": 49074776,
+          "pdfPage": 1,
+          "unit": "shares",
+          "priceBasis": 140,
+          "section": "Offer details table, Total Offer Size row, At Floor Price column"
+        },
+        {
+          "field": "totalOfferSharesAtCap",
+          "value": 47839255,
+          "pdfPage": 1,
+          "unit": "shares",
+          "priceBasis": 148,
+          "section": "Offer details table, Total Offer Size row, At Cap Price column"
+        },
+        {
+          "field": "totalOfferAmountAtFloorMillion",
+          "value": 6870.47,
+          "pdfPage": 1,
+          "unit": "INR million",
+          "priceBasis": 140,
+          "section": "Offer details table, Total Offer Size row, At Floor Price column"
+        },
+        {
+          "field": "totalOfferAmountAtCapMillion",
+          "value": 7080.21,
+          "pdfPage": 1,
+          "unit": "INR million",
+          "priceBasis": 148,
+          "section": "Offer details table, Total Offer Size row, At Cap Price column"
+        }
+      ],
+      "amountAcceptance": "Not requested or recommended in current patch; floor/cap amounts require a separate explicitly provisional display contract. Table explains why NSE upcoming49,074,776shares cannot be multiplied bycap148."
+    }
+  },
+  "poojalogis": {
+    "issuer": "Pooja Logistics Limited",
+    "cin": "U60300DL2011PLC228491",
+    "sourcePage": "https://poojalogistics.in/investor/",
+    "domainAuthority": "NSE-hosted September26 2025DRHP namespoojalogistics.in. Currentissuer investorpage inspectedbut linksall point tosample-1.pdf, not an identifiableRHP.",
+    "documentAccess": [
+      {
+        "url": "https://nsearchives.nseindia.com/content/ipo/RHP_POOJALOGIS.zip",
+        "error": "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
+        "checkedAt": "2026-09-19T02:33:13.510896+00:00"
+      },
+      {
+        "url": "https://nsearchives.nseindia.com/content/ipo/RATIOS_POOJALOGIS.zip",
+        "error": "HTTPSConnectionPool(host='nsearchives.nseindia.com', port=443): Read timed out. (read timeout=45)",
+        "checkedAt": "2026-09-19T02:33:39.382354+00:00"
+      }
+    ],
+    "status": "Current RHP could not be source-verified: access failed and issuer investor links are placeholders. Current official NSE detail labelled rows are independently reviewed and sufficient only for their explicitly provisional values. No static final authority claimed.",
+    "nseDetailReview": {
+      "receipt": {
+        "name": "poojalogis-detail",
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=POOJALOGIS&series=SME",
+        "startedAt": "2026-09-19T02:30:05.723182+00:00",
+        "observedAt": null,
+        "status": 200,
+        "finalUrl": "https://www.nseindia.com/api/ipo-detail?symbol=POOJALOGIS&series=SME",
+        "bytes": 5834,
+        "sha256": "1662fe9ba50928c9715fcd0bb2c367270371bef54810ea6c456a05521289505e",
+        "contentType": "application/json; charset=utf-8",
+        "shape": [
+          "companyName",
+          "metaInfo",
+          "bidDetails",
+          "issueInfo",
+          "activeCat",
+          "demandGraph",
+          "demandDataNSE",
+          "demandDataBSE",
+          "demandGraphALL"
+        ],
+        "collectedAt": "2026-09-19T02:30:26.012131+00:00"
+      },
+      "rawFile": ".cache\\p4-active-terms-20260919\\poojalogis-detail.response",
+      "sha256Verified": true,
+      "rows": [
+        {
+          "jsonPath": "issueInfo.dataList[1]",
+          "title": "Symbol",
+          "value": "POOJALOGIS"
+        },
+        {
+          "jsonPath": "issueInfo.dataList[2]",
+          "title": "Issue Period",
+          "value": "23-Sep-2026 to 25-Sep-2026"
+        },
+        {
+          "jsonPath": "issueInfo.dataList[4]",
+          "title": "Issue Size",
+          "value": "\"Initial Public Offering comprising of Fresh offer 38,46,000 Equity Shares (including Market Maker Reservation portion of upto 1,98,000 Equity Shares and Employee Reservation of 72,000 Equity Shares)\""
+        },
+        {
+          "jsonPath": "issueInfo.dataList[5]",
+          "title": "Issue Type",
+          "value": "Book Building"
+        },
+        {
+          "jsonPath": "issueInfo.dataList[6]",
+          "title": "Price Range",
+          "value": "Rs.109 to Rs.115 per equity share"
+        },
+        {
+          "jsonPath": "issueInfo.dataList[7]",
+          "title": "Lot Size",
+          "value": "1200 Equity Shares"
+        },
+        {
+          "jsonPath": "issueInfo.dataList[8]",
+          "title": "Face Value",
+          "value": "Rs.10 per Equity Share"
+        }
+      ],
+      "reviewScope": "Only the exact labelled active offer rows. No market-lot inference, no multiplication-derived monetary issue size, no observedAt invented. RHP source-access failures remain separately recorded."
+    }
+  },
+  "accessGaps": [
+    {
+      "url": "https://beta.bseindia.com/markets/publicIssues/DisplayIPO.aspx?id=4837&type=IPO&idtype=1&status=F&IPONo=7986&startdt=22/09/2026",
+      "retrievedAt": "2026-09-19T02:30:18.032371+00:00",
+      "status": 403,
+      "sha256": "f3e71cf4cf60f16593b94786b646c262383fc74f7709331fac02839389b43d8c",
+      "contentType": "text/html",
+      "bytes": 424
+    }
+  ],
+  "files": {
+    "axiomRevisionRender": "axiom-revision-p1.png",
+    "varmoraCoverRender": "varmora-rhp-p1.png"
+  }
+}

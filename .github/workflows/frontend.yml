@@ -180,6 +180,21 @@ jobs:
           trap 'kill "$server_pid" 2>/dev/null || true' EXIT
           node tests/frontend_reviewed_financials.cjs
           git diff --exit-code -- data/ipos.json data/pending_updates.json
+      - name: Rehearse reviewed active offer terms at a frozen issue date
+        shell: bash
+        run: |
+          set -euo pipefail
+          candidate="$RUNNER_TEMP/reviewed-active-offer-site"
+          uv run --frozen python tests/prepare_active_offer_site.py --output "$candidate"
+          export NODE_PATH="$RUNNER_TEMP/ipo-playwright/node_modules"
+          export BASE_URL=http://127.0.0.1:8005/
+          export SMOKE_ARTIFACT_DIR="$SMOKE_ARTIFACT_DIR/active-offer"
+          mkdir -p "$SMOKE_ARTIFACT_DIR"
+          python3 -m http.server 8005 --bind 127.0.0.1 --directory "$candidate" > "$SMOKE_ARTIFACT_DIR/server.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          node tests/frontend_active_offer_terms.cjs
+          git diff --exit-code -- data/ipos.json data/pending_updates.json
       - name: Retain screenshots and failure diagnostics
         if: always()
         uses: actions/upload-artifact@v4.6.2

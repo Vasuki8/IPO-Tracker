@@ -1,0 +1,460 @@
+[
+  {
+    "id": "axiomgas",
+    "matchKey": "AXIOMGASENGINEERING",
+    "symbol": "AXIOMGAS",
+    "company": "Axiom Gas Engineering Limited",
+    "board": "SME",
+    "exchange": "NSE Emerge",
+    "status": "open",
+    "openDate": "2026-09-18",
+    "closeDate": "2026-09-22",
+    "sharesOffered": 8328000,
+    "lifecycle": {
+      "stage": "exchange",
+      "stageDate": "2026-09-18"
+    },
+    "sources": [
+      {
+        "name": "NSE upcoming",
+        "kind": "exchange",
+        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+        "asOf": "2026-09-17T13:13:27+05:30"
+      },
+      {
+        "name": "NSE current",
+        "kind": "exchange",
+        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+        "asOf": "2026-09-18T11:28:00+05:30"
+      },
+      {
+        "name": "IPO Premium subscription (secondary)",
+        "kind": "secondary-market-data",
+        "url": "https://www.ipopremium.in/view/subscription",
+        "asOf": "2026-09-18T14:27:38+05:30"
+      }
+    ],
+    "source": {
+      "name": "NSE upcoming",
+      "kind": "exchange",
+      "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+      "asOf": "2026-09-17T13:13:27+05:30"
+    },
+    "observations": {
+      "NSE": {
+        "openDate": "2026-09-18",
+        "closeDate": "2026-09-22",
+        "priceBand": null,
+        "lotSize": null,
+        "issueSizeCr": null,
+        "subscriptionSummary": {
+          "use": "observation-only",
+          "feedKind": "current",
+          "sourceName": "NSE current",
+          "sourceUrl": "https://www.nseindia.com/api/ipo-current-issue",
+          "sourcePageUrl": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+          "issuer": {
+            "company": "Axiom Gas Engineering Limited",
+            "symbol": "AXIOMGAS",
+            "openDate": "2026-09-18",
+            "closeDate": "2026-09-22"
+          },
+          "collectedAt": "2026-09-19T07:08:40+05:30",
+          "observedAt": null,
+          "timeBasis": "collection-only",
+          "values": {
+            "qib": null,
+            "nii": null,
+            "retail": null,
+            "total": 0.58
+          },
+          "valueUnit": "times",
+          "denominatorStatus": "unverified",
+          "rawFields": {
+            "noOfTime": "0.58",
+            "noOfsharesBid": "4808000",
+            "noOfSharesOffered": "8328000",
+            "series": "SME"
+          }
+        },
+        "staticOfferTerms": {}
+      }
+    },
+    "staticSourcePolicy": {
+      "policy": "final-prospectus-only",
+      "marketStaticTerms": "observation-only",
+      "status": "awaiting-final-prospectus",
+      "documentUrl": null,
+      "documentType": null,
+      "checkedAt": "2026-09-19T01:48:17.141934+00:00",
+      "verifiedFields": [],
+      "pendingRevalidationFields": []
+    },
+    "documents": [],
+    "staticFieldProvenance": {},
+    "sebiFinalProspectusSearch": {
+      "status": "no-final-prospectus",
+      "linksAdded": 0,
+      "lastAttemptAt": "2026-09-19T07:10:19+05:30",
+      "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+      "parserVersion": 4
+    },
+    "nseOfferFilings": {
+      "id": "axiomgas",
+      "status": "no_match",
+      "changedFields": [],
+      "documentsAdded": 0,
+      "lastAttemptAt": "2026-09-17T07:44:45+00:00",
+      "fingerprint": "606db2864a4a4537e56e8822f7c59a9682f9806e67949bb413f6cf90e5522ffe"
+    },
+    "nseFinalProspectusDiscovery": {
+      "id": "axiomgas",
+      "company": "Axiom Gas Engineering Limited",
+      "openDate": "2026-09-18",
+      "status": "no_final_prospectus",
+      "documentUrl": null,
+      "lastAttemptAt": "2026-09-17T07:44:47+00:00",
+      "fingerprint": "e67f363b03327a672daf2ac17b3ebe5f85d31fbbeaca005e7cde798517aa16f3"
+    },
+    "validation": {
+      "status": "single-source",
+      "checkedAt": "2026-09-19T07:18:14+05:30",
+      "checks": [],
+      "independentSources": [
+        "IPO",
+        "NSE"
+      ]
+    },
+    "profilePath": "ipo/axiomgas/",
+    "sharesBid": 4808000,
+    "subscription": {
+      "qib": 0.8,
+      "nii": 0.42,
+      "retail": 0.65,
+      "total": 0.56
+    },
+    "subscriptionAsOf": "2026-09-19T01:52:15+05:30",
+    "subscriptionCollectedAt": "2026-09-19T01:52:15+05:30",
+    "subscriptionObservedAt": "2026-09-18T20:41:14+05:30",
+    "subscriptionTimeBasis": "source-observation",
+    "subscriptionSource": "IPO Premium subscription (secondary)",
+    "subscriptionHistory": [
+      {
+        "capturedAt": "2026-09-18T14:27:38+05:30",
+        "observedAt": "2026-09-18T14:25:03+05:30",
+        "source": "IPO Premium subscription (secondary)",
+        "sourceUrl": "https://www.ipopremium.in/view/subscription",
+        "qib": 0.54,
+        "nii": 0.25,
+        "retail": 0.41,
+        "total": 0.35
+      },
+      {
+        "capturedAt": "2026-09-18T19:04:10+05:30",
+        "observedAt": "2026-09-18T18:53:17+05:30",
+        "source": "IPO Premium subscription (secondary)",
+        "sourceUrl": "https://www.ipopremium.in/view/subscription",
+        "qib": 0.8,
+        "nii": 0.42,
+        "retail": 0.64,
+        "total": 0.56
+      },
+      {
+        "capturedAt": "2026-09-18T21:29:07+05:30",
+        "observedAt": "2026-09-18T20:41:14+05:30",
+        "source": "IPO Premium subscription (secondary)",
+        "sourceUrl": "https://www.ipopremium.in/view/subscription",
+        "qib": 0.8,
+        "nii": 0.42,
+        "retail": 0.65,
+        "total": 0.56
+      }
+    ],
+    "subscriptionSourceUrl": "https://www.ipopremium.in/view/subscription"
+  },
+  {
+    "id": "varmora",
+    "matchKey": "VARMORAGRANITO",
+    "symbol": "VARMORA",
+    "company": "Varmora Granito Limited",
+    "board": "Mainboard",
+    "exchange": "NSE",
+    "status": "upcoming",
+    "openDate": "2026-09-22",
+    "closeDate": "2026-09-24",
+    "sharesOffered": 49074776,
+    "lifecycle": {
+      "stage": "exchange",
+      "stageDate": "2026-09-22"
+    },
+    "sources": [
+      {
+        "name": "NSE upcoming",
+        "kind": "exchange",
+        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+        "asOf": "2026-09-18T16:50:36+05:30"
+      },
+      {
+        "name": "BSE public issue",
+        "kind": "exchange",
+        "url": "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p",
+        "asOf": "2026-09-19T07:09:11+05:30"
+      }
+    ],
+    "source": {
+      "name": "NSE upcoming",
+      "kind": "exchange",
+      "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+      "asOf": "2026-09-18T16:50:36+05:30"
+    },
+    "observations": {
+      "NSE": {
+        "openDate": "2026-09-22",
+        "closeDate": "2026-09-24",
+        "priceBand": {
+          "min": 140.0,
+          "max": 148.0
+        },
+        "lotSize": null,
+        "issueSizeCr": 726.31,
+        "subscriptionSummary": {
+          "use": "observation-only",
+          "feedKind": "upcoming",
+          "sourceName": "NSE upcoming",
+          "sourceUrl": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "sourcePageUrl": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+          "issuer": {
+            "company": "Varmora Granito Limited",
+            "symbol": "VARMORA",
+            "openDate": "2026-09-22",
+            "closeDate": "2026-09-24"
+          },
+          "collectedAt": "2026-09-19T07:08:40+05:30",
+          "observedAt": null,
+          "timeBasis": "collection-only",
+          "values": null,
+          "valueUnit": "times",
+          "denominatorStatus": "unverified",
+          "rawFields": {
+            "issueSize": "49074776",
+            "series": "EQ"
+          }
+        },
+        "staticOfferTerms": {
+          "priceBand": {
+            "min": 140.0,
+            "max": 148.0
+          },
+          "issueSizeCr": 726.31
+        }
+      },
+      "BSE": {
+        "openDate": "2026-09-22",
+        "closeDate": "2026-09-24",
+        "priceBand": {
+          "min": 140.0,
+          "max": 148.0
+        },
+        "lotSize": null,
+        "issueSizeCr": null,
+        "issueType": "IPO",
+        "staticOfferTerms": {
+          "priceBand": {
+            "min": 140.0,
+            "max": 148.0
+          }
+        }
+      }
+    },
+    "staticSourcePolicy": {
+      "policy": "final-prospectus-only",
+      "marketStaticTerms": "observation-only",
+      "status": "awaiting-final-prospectus",
+      "documentUrl": null,
+      "documentType": null,
+      "checkedAt": "2026-09-19T01:48:17.141934+00:00",
+      "verifiedFields": [],
+      "pendingRevalidationFields": []
+    },
+    "documents": [],
+    "staticFieldProvenance": {},
+    "sebiFinalProspectusSearch": {
+      "status": "no-final-prospectus",
+      "linksAdded": 0,
+      "lastAttemptAt": "2026-09-19T01:11:25+05:30",
+      "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+      "parserVersion": 4
+    },
+    "nseOfferFilings": {
+      "id": "varmora",
+      "status": "no_match",
+      "changedFields": [],
+      "documentsAdded": 0,
+      "lastAttemptAt": "2026-09-18T16:29:21+00:00",
+      "fingerprint": "eadebae5d27e6ad01c922aa6b236090a760c49315d2c11d54455706cbaeaf233"
+    },
+    "nseFinalProspectusDiscovery": {
+      "id": "varmora",
+      "company": "Varmora Granito Limited",
+      "openDate": "2026-09-22",
+      "status": "no_final_prospectus",
+      "documentUrl": null,
+      "lastAttemptAt": "2026-09-18T11:22:34+00:00",
+      "fingerprint": "9cbcf18fb54885c1d1e00a7c4097c054b7cc0a2b3711dadd69aed4008a1aee7e"
+    },
+    "validation": {
+      "status": "verified",
+      "checkedAt": "2026-09-19T07:18:14+05:30",
+      "checks": [
+        {
+          "field": "openDate",
+          "nse": "2026-09-22",
+          "bse": "2026-09-22",
+          "match": true
+        },
+        {
+          "field": "closeDate",
+          "nse": "2026-09-24",
+          "bse": "2026-09-24",
+          "match": true
+        },
+        {
+          "field": "priceBand",
+          "nse": {
+            "min": 140.0,
+            "max": 148.0
+          },
+          "bse": {
+            "min": 140.0,
+            "max": 148.0
+          },
+          "match": true
+        }
+      ],
+      "independentSources": [
+        "BSE",
+        "NSE"
+      ]
+    },
+    "profilePath": "ipo/varmora/",
+    "issueType": "IPO"
+  },
+  {
+    "id": "poojalogis",
+    "matchKey": "POOJALOGISTICS",
+    "symbol": "POOJALOGIS",
+    "company": "Pooja Logistics Limited",
+    "board": "SME",
+    "exchange": "NSE Emerge",
+    "status": "upcoming",
+    "openDate": "2026-09-23",
+    "closeDate": "2026-09-25",
+    "sharesOffered": 3846000,
+    "lifecycle": {
+      "stage": "exchange",
+      "stageDate": "2026-09-23"
+    },
+    "sources": [
+      {
+        "name": "NSE upcoming",
+        "kind": "exchange",
+        "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+        "asOf": "2026-09-18T21:57:57+05:30"
+      }
+    ],
+    "source": {
+      "name": "NSE upcoming",
+      "kind": "exchange",
+      "url": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+      "asOf": "2026-09-18T21:57:57+05:30"
+    },
+    "observations": {
+      "NSE": {
+        "openDate": "2026-09-23",
+        "closeDate": "2026-09-25",
+        "priceBand": {
+          "min": 109.0,
+          "max": 115.0
+        },
+        "lotSize": 1200,
+        "issueSizeCr": 44.23,
+        "subscriptionSummary": {
+          "use": "observation-only",
+          "feedKind": "upcoming",
+          "sourceName": "NSE upcoming",
+          "sourceUrl": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "sourcePageUrl": "https://www.nseindia.com/market-data/all-upcoming-issues-ipo",
+          "issuer": {
+            "company": "Pooja Logistics Limited",
+            "symbol": "POOJALOGIS",
+            "openDate": "2026-09-23",
+            "closeDate": "2026-09-25"
+          },
+          "collectedAt": "2026-09-19T07:08:40+05:30",
+          "observedAt": null,
+          "timeBasis": "collection-only",
+          "values": null,
+          "valueUnit": "times",
+          "denominatorStatus": "unverified",
+          "rawFields": {
+            "issueSize": "3846000",
+            "series": "SME"
+          }
+        },
+        "staticOfferTerms": {
+          "priceBand": {
+            "min": 109.0,
+            "max": 115.0
+          },
+          "issueSizeCr": 44.23,
+          "lotSize": 1200
+        }
+      }
+    },
+    "staticSourcePolicy": {
+      "policy": "final-prospectus-only",
+      "marketStaticTerms": "observation-only",
+      "status": "awaiting-final-prospectus",
+      "documentUrl": null,
+      "documentType": null,
+      "checkedAt": "2026-09-19T01:48:17.141934+00:00",
+      "verifiedFields": [],
+      "pendingRevalidationFields": []
+    },
+    "documents": [],
+    "staticFieldProvenance": {},
+    "sebiFinalProspectusSearch": {
+      "status": "no-final-prospectus",
+      "linksAdded": 0,
+      "lastAttemptAt": "2026-09-19T01:11:26+05:30",
+      "sourceUrl": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do",
+      "parserVersion": 4
+    },
+    "nseOfferFilings": {
+      "id": "poojalogis",
+      "status": "no_match",
+      "changedFields": [],
+      "documentsAdded": 0,
+      "lastAttemptAt": "2026-09-18T16:29:20+00:00",
+      "fingerprint": "3625a8ae5c503afbfb81c5b14714f5c9dc7753c15907ec0b08a8b0cd091339e8"
+    },
+    "nseFinalProspectusDiscovery": {
+      "id": "poojalogis",
+      "company": "Pooja Logistics Limited",
+      "openDate": "2026-09-23",
+      "status": "no_final_prospectus",
+      "documentUrl": null,
+      "lastAttemptAt": "2026-09-18T16:29:23+00:00",
+      "fingerprint": "ed3cd19e8d57133b77565e7289ee34e618766a8c2e7776a26f07820678054636"
+    },
+    "validation": {
+      "status": "single-source",
+      "checkedAt": "2026-09-19T07:18:14+05:30",
+      "checks": [],
+      "independentSources": [
+        "NSE"
+      ]
+    },
+    "profilePath": "ipo/poojalogis/"
+  }
+]

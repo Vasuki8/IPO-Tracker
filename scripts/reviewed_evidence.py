@@ -30,6 +30,8 @@ def group_fields(group):
         return set(INTERMEDIARY_FIELDS)
     if kind == 'financials':
         return {'financials'}
+    if kind == 'active-offer-terms':
+        return {'activeOfferTerms'}
     raise ValueError('Unsupported reviewed field-evidence kind')
 
 
@@ -85,6 +87,22 @@ def index_groups(groups, registry):
         for item in corrections:
             field = item['field']
             proof = proofs[field]
+            if group.get('kind') == 'active-offer-terms':
+                from active_offer_terms import validate_receipt
+                receipt = item['after']
+                validate_receipt(receipt, identity)
+                if (item.get('publicationScope') != 'explicit-reviewed'
+                        or item.get('identity') != identity or proof.get('field') != field
+                        or proof.get('value') != receipt or proof.get('sourceUrl') != receipt['source']['url']
+                        or proof.get('sha256') != receipt['source']['sha256']
+                        or item.get('source', {}).get('url') != proof['sourceUrl']
+                        or item.get('evidence', {}).get('sha256') != proof['sha256']
+                        or item.get('reviewedAt') != group['reviewedAt']
+                        or receipt['review']['reviewedAt'] != group['reviewedAt']
+                        or receipt['review']['url'] != group['sourceReviewUrl']
+                        or not re.fullmatch('[a-f0-9]{64}', str(hashes[field]))):
+                    raise ValueError('Active offer receipt does not match its explicit reviewed correction')
+                continue
             detail = proof.get('evidence') or {}
             if (item.get('identity') != identity or proof.get('field') != field
                     or proof.get('value') != item['after']
@@ -137,6 +155,11 @@ def index_groups(groups, registry):
 def evidence_conflict(row, group):
     if any(row.get(k) != value for k, value in group['identity'].items()):
         return 'Reviewed field-evidence issuer or offer identity changed'
+    if group.get('kind') == 'active-offer-terms':
+        current = row.get('activeOfferTerms')
+        if current != group['proofs']['activeOfferTerms']['value'] and digest(current) != group['beforeProofHashes']['activeOfferTerms']:
+            return 'Active offer receipt changed since source review'
+        return None
     current = row.get('staticFieldProvenance') or {}
     for field, proof in group['proofs'].items():
         if known_non_final_document_url(row, proof['sourceUrl']):
@@ -147,6 +170,10 @@ def evidence_conflict(row, group):
 
 
 def attach_evidence(row, group):
+    if group.get('kind') == 'active-offer-terms':
+        # Source rows are inside the atomic receipt and its correction history.
+        # They must never become Final Prospectus static-field provenance.
+        return 0
     current = row.setdefault('staticFieldProvenance', {})
     proofs = group['proofs']
     if all(current.get(field) == proof for field, proof in proofs.items()):

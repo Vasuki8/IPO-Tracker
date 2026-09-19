@@ -1,0 +1,123 @@
+[
+  {
+    "name": "nse-home",
+    "url": "https://www.nseindia.com",
+    "startedAt": "2026-09-19T02:30:04.112974+00:00",
+    "observedAt": null,
+    "status": 200,
+    "finalUrl": "https://www.nseindia.com/",
+    "bytes": 169993,
+    "sha256": "982426fd99857500afddbdd371385f61d95e7b6f35321549fef02a7762046371",
+    "contentType": "text/html; charset=utf-8",
+    "shape": "non-json",
+    "collectedAt": "2026-09-19T02:30:04.611001+00:00"
+  },
+  {
+    "name": "nse-current",
+    "url": "https://www.nseindia.com/api/ipo-current-issue",
+    "startedAt": "2026-09-19T02:30:04.611001+00:00",
+    "observedAt": null,
+    "status": 200,
+    "finalUrl": "https://www.nseindia.com/api/ipo-current-issue",
+    "bytes": 1424,
+    "sha256": "d12649301240d663d0787848da162bc9e321d52b7b3a39072535f0d48935480e",
+    "contentType": "application/json; charset=utf-8",
+    "shape": "list:5",
+    "collectedAt": "2026-09-19T02:30:04.880170+00:00"
+  },
+  {
+    "name": "nse-upcoming",
+    "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+    "startedAt": "2026-09-19T02:30:04.880170+00:00",
+    "observedAt": null,
+    "status": 200,
+    "finalUrl": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+    "bytes": 1525,
+    "sha256": "786ce06af51e08d535de0ee2e681641f0ccce0faa819bd918d33e38dc64924a1",
+    "contentType": "application/json; charset=utf-8",
+    "shape": "list:7",
+    "collectedAt": "2026-09-19T02:30:05.144692+00:00"
+  },
+  {
+    "name": "axiomgas-detail",
+    "url": "https://www.nseindia.com/api/ipo-detail?symbol=AXIOMGAS&series=SME",
+    "startedAt": "2026-09-19T02:30:05.144692+00:00",
+    "observedAt": null,
+    "status": 200,
+    "finalUrl": "https://www.nseindia.com/api/ipo-detail?symbol=AXIOMGAS&series=SME",
+    "bytes": 11144,
+    "sha256": "9a2a3901052e7d9354c252820212ec5d9b39ad76fc79f3f5e102a5ea7088a8ce",
+    "contentType": "application/json; charset=utf-8",
+    "shape": [
+      "companyName",
+      "metaInfo",
+      "bidDetails",
+      "issueInfo",
+      "activeCat",
+      "demandGraph",
+      "demandDataNSE",
+      "demandDataBSE",
+      "demandGraphALL"
+    ],
+    "collectedAt": "2026-09-19T02:30:05.462927+00:00"
+  },
+  {
+    "name": "varmora-detail",
+    "url": "https://www.nseindia.com/api/ipo-detail?symbol=VARMORA&series=EQ",
+    "startedAt": "2026-09-19T02:30:05.462927+00:00",
+    "observedAt": null,
+    "status": 200,
+    "finalUrl": "https://www.nseindia.com/api/ipo-detail?symbol=VARMORA&series=EQ",
+    "bytes": 6525,
+    "sha256": "998c9afe8b5a6a7216dd675f85b4120efe4c24e703815f96e7a668c14a8263dd",
+    "contentType": "application/json; charset=utf-8",
+    "shape": [
+      "companyName",
+      "metaInfo",
+      "bidDetails",
+      "issueInfo",
+      "activeCat",
+      "demandGraph",
+      "demandDataNSE",
+      "demandDataBSE",
+      "demandGraphALL"
+    ],
+    "collectedAt": "2026-09-19T02:30:05.723182+00:00"
+  },
+  {
+    "name": "poojalogis-detail",
+    "url": "https://www.nseindia.com/api/ipo-detail?symbol=POOJALOGIS&series=SME",
+    "startedAt": "2026-09-19T02:30:05.723182+00:00",
+    "observedAt": null,
+    "status": 200,
+    "finalUrl": "https://www.nseindia.com/api/ipo-detail?symbol=POOJALOGIS&series=SME",
+    "bytes": 5834,
+    "sha256": "1662fe9ba50928c9715fcd0bb2c367270371bef54810ea6c456a05521289505e",
+    "contentType": "application/json; charset=utf-8",
+    "shape": [
+      "companyName",
+      "metaInfo",
+      "bidDetails",
+      "issueInfo",
+      "activeCat",
+      "demandGraph",
+      "demandDataNSE",
+      "demandDataBSE",
+      "demandGraphALL"
+    ],
+    "collectedAt": "2026-09-19T02:30:26.012131+00:00"
+  },
+  {
+    "name": "bse-beta-index",
+    "url": "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p",
+    "startedAt": "2026-09-19T02:30:26.012131+00:00",
+    "observedAt": null,
+    "status": 200,
+    "finalUrl": "https://beta.bseindia.com/markets/PublicIssues/IPOIssues_new.aspx?id=1&Type=p",
+    "bytes": 31366,
+    "sha256": "86bc358e1458bf5b52d1545ab8c75e0f88894fe5ac8579c1cb958ffbba9fdb58",
+    "contentType": "text/html; charset=utf-8",
+    "shape": "non-json",
+    "collectedAt": "2026-09-19T02:30:28.861411+00:00"
+  }
+]
