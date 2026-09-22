@@ -11,7 +11,6 @@ import {
   marketLotCandidatesFromIpoDetail,
   applyPriceBand,
   parseListingDateFromIpoDetail,
-  minimumApplicationCandidatesFromIpoDetail,
   parseMarketLotFromIpoDetail,
   parseMinimumBidFromIpoDetail,
   parsePriceBandFromIpoDetail,
@@ -289,30 +288,6 @@ assert.deepEqual(
 assert.deepEqual(
   marketLotCandidatesFromIpoDetail({
     issueInfo: { dataList: [{ title: "Bid Lot", value: "100 Equity Shares" }] }
-  }),
-  []
-);
-
-const applicationCandidates = minimumApplicationCandidatesFromIpoDetail({
-  issueInfo: {
-    dataList: [
-      { title: "Minimum Application Amount", value: "Rs. 14,850" },
-      { title: "Minimum Investment Amount", value: "₹ 15,120" },
-      { title: "Minimum Order Quantity", value: "45 Equity Shares" },
-      { title: "Maximum Application Amount", value: "₹ 2,00,000" }
-    ]
-  }
-});
-assert.deepEqual(applicationCandidates, [
-  { title: "Minimum Application Amount", value: "Rs. 14,850" },
-  { title: "Minimum Investment Amount", value: "₹ 15,120" }
-]);
-
-assert.deepEqual(
-  minimumApplicationCandidatesFromIpoDetail({
-    issueInfo: {
-      dataList: [{ title: "Minimum Order Quantity", value: "45 Equity Shares" }]
-    }
   }),
   []
 );
