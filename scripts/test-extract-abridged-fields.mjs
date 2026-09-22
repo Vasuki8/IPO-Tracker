@@ -3,6 +3,8 @@ import fs from "node:fs";
 import {
   applyIssueSizeExtraction,
   candidateAbridgedDocument,
+  candidateAbridgedMinimumBidDocument,
+  findMinimumBidMentions,
   parseExplicitTotalIssueSize
 } from "./extract-abridged-fields.mjs";
 
@@ -34,6 +36,13 @@ const record = {
 };
 
 assert.equal(candidateAbridgedDocument(record), doc);
+assert.equal(candidateAbridgedMinimumBidDocument(record), doc);
+
+const minBidMentions = findMinimumBidMentions(
+  "BIDS CAN BE MADE FOR A MINIMUM OF 100 EQUITY SHARES AND IN MULTIPLES OF 100 EQUITY SHARES THEREAFTER."
+);
+assert.equal(minBidMentions.length, 1);
+assert.match(minBidMentions[0], /MINIMUM OF 100 EQUITY SHARES/i);
 assert.equal(
   applyIssueSizeExtraction(
     record,
@@ -54,6 +63,17 @@ const existing = {
   documents: [doc]
 };
 assert.equal(candidateAbridgedDocument(existing), null);
+assert.equal(candidateAbridgedMinimumBidDocument({
+  ...existing,
+  issue_size_inr: undefined,
+  minimum_bid_quantity: { value: 50, source: { url: "https://example.com" } }
+}), null);
+assert.equal(candidateAbridgedMinimumBidDocument({
+  ...existing,
+  issue_size_inr: undefined,
+  minimum_bid_quantity: undefined,
+  terms: { minimum_bid_quantity: 75 }
+}), null);
 assert.equal(
   applyIssueSizeExtraction(
     existing,
