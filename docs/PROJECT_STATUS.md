@@ -171,3 +171,21 @@ The BSE dynamic listing-notice blocker remains documented.
 - PR #7: fourth official-source 2026 IPO batch
 - Prior production head: `9b3c296a9e6e842de0e7fbe40fa6e42dfa57b4be`
 - Validation and GitHub Pages deployment passed for the prior production head.
+
+## Latest publication
+
+- Pull request: #8 — `Add fifth official-source 2026 IPO batch`
+- Squash-merged to `main`: `4b85fd7b47b8c36a5894086f8d52ee38244d604a`
+- Post-merge data-contract validation: passed
+- Post-merge GitHub Pages deployment: passed
+- Pages artifact was generated from the merged revision.
+- Published issuer count: 14
+- New published issuers:
+  - Karamtara Engineering Limited
+  - Pranav Constructions Limited
+  - Qualiance International Limited
+- Qualiance publishes SME board classification with NSE SME-series provenance.
+- Qualiance minimum bid quantity remains null because the official NSE page states lot size but does not separately state minimum bid/order quantity.
+- Previous eleven issuer records and freshness timestamps remained unchanged.
+- Unsupported final issue price, aggregate issue size, listing/status, sector, and minimum-application fields remain null.
+- Direct retrieval of `https://vasuki8.github.io/IPO-Tracker/` remains unavailable from the web reader in this development session; workflow and artifact revision were verified instead.
