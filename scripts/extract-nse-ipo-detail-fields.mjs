@@ -296,6 +296,21 @@ export function issuePriceCandidatesFromIpoDetail(payload) {
   return candidates;
 }
 
+export function marketLotCandidatesFromIpoDetail(payload) {
+  const list = payload?.issueInfo?.dataList;
+  if (!Array.isArray(list)) return [];
+
+  return list
+    .filter((item) => {
+      const title = normalizeTitle(item?.title);
+      return title === "market lot" || title === "lot size";
+    })
+    .map((item) => ({
+      title: normalizeText(item?.title),
+      value: normalizeText(item?.value).replace(/^"|"$/g, "")
+    }));
+}
+
 export function parseMinimumBidFromIpoDetail(payload) {
   const list = payload?.issueInfo?.dataList;
   if (!Array.isArray(list)) {
@@ -832,6 +847,73 @@ async function diagnoseIssuePrice() {
   console.log(JSON.stringify({ nse_issue_price_diagnostic_stats: stats }, null, 2));
 }
 
+async function diagnoseMarketLot() {
+  const landing = await fetchWithRetry(NSE_HOME, {
+    headers: {
+      "user-agent": USER_AGENT,
+      "accept": "text/html,application/xhtml+xml",
+      "accept-language": "en-US,en;q=0.9"
+    }
+  });
+  const cookie = cookieHeader(landing.headers);
+
+  const stats = {
+    candidates: 0,
+    api_success: 0,
+    responses_with_market_lot_terms: 0,
+    fetch_errors: 0
+  };
+
+  for (const file of recoveryFiles()) {
+    const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
+    for (const record of recovery.records || []) {
+      if (record.terms?.market_lot !== null && record.terms?.market_lot !== undefined) continue;
+      if (record.market_lot?.value !== null && record.market_lot?.value !== undefined) continue;
+
+      const identity = resolveNseIdentity(record);
+      if (!identity) continue;
+      stats.candidates += 1;
+
+      const url = apiUrl(record);
+      try {
+        const response = await fetchWithRetry(url, {
+          headers: {
+            "user-agent": USER_AGENT,
+            "accept": "application/json,text/plain,*/*",
+            "accept-language": "en-US,en;q=0.9",
+            "referer": NSE_HOME,
+            "cookie": cookie,
+            "cache-control": "no-cache",
+            "pragma": "no-cache"
+          }
+        });
+        const payload = await response.json();
+        stats.api_success += 1;
+
+        const candidates = marketLotCandidatesFromIpoDetail(payload);
+        if (candidates.length > 0) stats.responses_with_market_lot_terms += 1;
+
+        console.log(JSON.stringify({
+          issuer_name: record.issuer_name,
+          symbol: identity.symbol,
+          series: identity.series,
+          url,
+          market_lot_candidates: candidates
+        }, null, 2));
+      } catch (error) {
+        stats.fetch_errors += 1;
+        console.warn(
+          "NSE market-lot diagnostic unavailable for " + record.issuer_name + ": " + error.message
+        );
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 650));
+    }
+  }
+
+  console.log(JSON.stringify({ nse_market_lot_diagnostic_stats: stats }, null, 2));
+}
+
 async function runIssueSize() {
   const now = new Date().toISOString();
   const landing = await fetchWithRetry(NSE_HOME, {
@@ -1249,8 +1331,10 @@ const isMain = process.argv[1] &&
   pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
 
 if (isMain) {
-  const action = process.argv.includes("--issue-size")
-    ? runIssueSize
+  const action = process.argv.includes("--diagnose-market-lot")
+    ? diagnoseMarketLot
+    : process.argv.includes("--issue-size")
+      ? runIssueSize
     : process.argv.includes("--diagnose-issue-size")
       ? diagnoseIssueSize
     : process.argv.includes("--diagnose-issue-price")
