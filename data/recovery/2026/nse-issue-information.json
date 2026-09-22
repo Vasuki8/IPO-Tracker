@@ -1,7 +1,7 @@
 {
   "source_family": "Official NSE / SEBI / issuer offer-document evidence",
   "collection_started_at": "2026-09-22T02:14:14Z",
-  "generated_at": "2026-09-22T21:27:09.159Z",
+  "generated_at": "2026-09-22T22:18:25.700Z",
   "records": [
     {
       "id": "adroit-industries-india-limited",
@@ -810,6 +810,13 @@
           "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789013295445.pdf",
           "publication_date": "2026-09-10",
           "collected_at": "2026-09-22T06:16:16.474Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — HEROMOTORS",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=HEROMOTORS&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-22T22:18:25.700Z"
         }
       ],
       "first_observed_at": "2026-09-22T02:14:14Z",
@@ -827,7 +834,22 @@
           "collected_at": "2026-09-22T02:30:01Z"
         }
       },
-      "last_collected_at": "2026-09-22T06:16:16.474Z"
+      "last_collected_at": "2026-09-22T22:18:25.700Z",
+      "nse_symbol": "HEROMOTORS",
+      "nse_series": "EQ",
+      "listing_date": {
+        "value": "2026-09-23",
+        "source_value": "2026-09-23",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=HEROMOTORS&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — HEROMOTORS",
+          "publication_date": null,
+          "collected_at": "2026-09-22T22:18:25.700Z"
+        }
+      }
     },
     {
       "id": "himalayan-solar-limited",
@@ -2279,10 +2301,17 @@
           "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788946092145.pdf",
           "publication_date": "2026-09-09",
           "collected_at": "2026-09-22T06:16:16.474Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — SSRETAIL",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SSRETAIL&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-22T22:18:25.700Z"
         }
       ],
       "first_observed_at": "2026-09-22T02:48:41Z",
-      "last_collected_at": "2026-09-22T06:16:16.474Z",
+      "last_collected_at": "2026-09-22T22:18:25.700Z",
       "board_evidence": [],
       "status_evidence": [],
       "issue_price": {
@@ -2307,6 +2336,21 @@
           "document_identity": "SS Retail Limited - Prospectus — PDF",
           "publication_date": "2026-09-21",
           "collected_at": "2026-09-22T05:40:37.847Z"
+        }
+      },
+      "nse_symbol": "SSRETAIL",
+      "nse_series": "EQ",
+      "listing_date": {
+        "value": "2026-09-23",
+        "source_value": "2026-09-23",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SSRETAIL&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SSRETAIL",
+          "publication_date": null,
+          "collected_at": "2026-09-22T22:18:25.700Z"
         }
       }
     },
