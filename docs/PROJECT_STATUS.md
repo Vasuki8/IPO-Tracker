@@ -1276,22 +1276,118 @@ Published dataset: **26 IPOs**.
 
 The 12 remaining issue-size nulls are source-blocked under the currently supported official patterns. Existing hourly NSE/final-Prospectus automation will re-evaluate them as authoritative source data changes.
 
+## Latest completed batch — NSE ipo-detail market-lot extraction
+
+### Read-only diagnostic
+
+PR #60 — `Diagnose explicit NSE market-lot terms`
+
+Squash-merged:
+
+`dffde0af935447556e7751c27930fb872798a1de`
+
+Production run `35757461876` evaluated all eight missing market-lot records:
+
+- candidates: 8;
+- API successes: 8;
+- explicit `Market Lot` / `Lot Size` responses: 1;
+- fetch errors: 0.
+
+Observed supported value:
+
+- Axiom Gas Engineering Limited — `Lot Size: 2000 Equity Shares`.
+
+No explicit Market Lot / Lot Size field was published by NSE for:
+
+1. Moneyview Limited
+2. Adroit Industries (India) Limited
+3. ArMee Infotech Limited
+4. Elevate Campuses Limited
+5. Swastika Infra Limited
+6. Varmora Granito Limited
+7. National Stock Exchange of India Limited
+
+Their existing Bid Lot / Minimum Order Quantity values were not reused as market lot.
+
+### Production extractor
+
+PR #61 — `Extract explicit market lot from NSE ipo-detail`
+
+Squash-merged:
+
+`9ed4044be6ae795bbf5373b0a7bb2530bba44960`
+
+Rules:
+
+- official NSE `/api/ipo-detail` only;
+- exact `Market Lot` / `Lot Size` terms only;
+- positive Equity Share quantity required;
+- Bid Lot / Minimum Order Quantity excluded;
+- placeholders rejected;
+- conflicting supported values retained as null;
+- fill missing `market_lot` only;
+- retain exact endpoint/source identity and collection timestamp;
+- retained market-lot evidence takes publication precedence over legacy feed terms when present.
+
+Production run `35758162829`:
+
+- candidates: 8;
+- API successes: 8;
+- extracted: 1;
+- missing/placeholders: 7;
+- conflicts: 0;
+- fetch errors: 0.
+
+Published:
+
+- **Axiom Gas Engineering Limited — 2,000 Equity Shares — verified**.
+
+Bot data commit:
+
+`fbe718e911d9649e9a6007a9c2922af23b397816`
+
+Bot diff review confirmed only:
+
+- `data/recovery/2026/nse-issue-information.json`;
+- generated `data/ipos.json`
+
+changed.
+
+### Current P1 coverage snapshot
+
+Published dataset: **26 IPOs**.
+
+- price band: **26/26**;
+- issue price: **14/26**;
+- issue size INR: **14/26**;
+- market lot: **19/26**;
+- minimum bid quantity: **20/26**;
+- minimum application amount: **0/26**;
+- open date: **26/26**;
+- close date: **26/26**;
+- listing date: **10/26**.
+
+The seven remaining market-lot nulls are source-null under the supported NSE pattern and will be rechecked automatically.
+
 ## Recommended next coherent batch
 
-Continue P1 with **explicit market-lot recovery** for the 8 missing records.
+Recover **explicit minimum application amount INR**.
 
-Start by inspecting exact `Market Lot` / `Lot Size` title-value pairs in official NSE `/api/ipo-detail` data.
+Current coverage is **0/26**.
+
+Start with a read-only survey of official NSE `/api/ipo-detail` static issue terms for exact labels such as `Minimum Application Amount` / `Minimum Investment Amount` or clearly equivalent official wording.
 
 Acceptance rules:
 
-- official NSE source only;
-- deterministic NSE symbol/series;
-- accept only explicit Market Lot / Lot Size wording;
-- keep `market_lot` distinct from `minimum_bid_quantity`;
-- never copy `Bid Lot` or `Minimum Order Quantity` into `market_lot`;
+- official NSE source only for the first source-family batch;
+- deterministic symbol/series identity;
+- accept only an explicit INR application amount;
+- keep market lot / minimum bid quantity / minimum application amount distinct;
+- no price × quantity calculation;
+- no price-band-cap inference;
 - fill missing values only;
-- retain exact endpoint/source identity and collection time;
-- preserve null for absent, placeholder or ambiguous values.
+- retain exact endpoint/source identity and collection timestamp;
+- preserve null for absent, placeholder, range-only or ambiguous values.
 
 ## Publication history
 
@@ -1345,3 +1441,6 @@ Acceptance rules:
 - PR #57: NSE ipo-detail aggregate issue-size diagnostic
 - PR #58: safe one-leg NSE ipo-detail issue-size extraction
 - NSE ipo-detail issue-size bot commit: `ccdf8f308f437257d64b2e9b3bd99eb9729eaa57`
+- PR #60: NSE ipo-detail market-lot diagnostic
+- PR #61: strict NSE ipo-detail market-lot extraction
+- NSE market-lot bot commit: `fbe718e911d9649e9a6007a9c2922af23b397816`
