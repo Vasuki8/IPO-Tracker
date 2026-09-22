@@ -339,4 +339,24 @@ Existing Hero Motors and Rentomojo issue-price evidence was not overwritten.
 
 The resulting source-backed data commit is `f9b7155c42d8b44d6985d9dafb9fd242e37dc64e`. GitHub Pages deployment for that revision passed in run `35688893344`.
 
-The next parser work should first inspect the three null final Prospectuses to determine whether their explicit final price uses unsupported layout/wording or falls outside the current bounded scan. Aggregate final-Prospectus issue-size extraction remains a separate future field family.
+### Cover-price wording repair
+
+A one-run read-only diagnostic (PR #20, production run `35689468724`) showed that the remaining three null values were not outside the 20-page boundary. Their official Prospectus covers used a reverse-labelled form where the amount comes first and the field label follows:
+
+`at a price of ₹X per Equity Share ... (Offer Price/Issue Price)`
+
+PR #21 added only this explicit form, including a bounded footnote marker after the amount, while requiring the nearby Offer/Issue Price label. An unlabeled generic `price of ₹X per Equity Share` remains rejected.
+
+Production run `35690054143` recovered all three remaining values with zero fetch errors:
+
+- Jindal Supreme (India) Limited — ₹93 — PDF page 3;
+- SS Retail Limited — ₹424 — PDF page 3;
+- Veegaland Developers Limited — ₹140 — PDF page 2.
+
+The source-backed bot commit is `51f806b16e4eba40efee304d07bb5753a8e0f9d9`.
+
+The temporary deep diagnostic step was removed from the hourly workflow. The production extractor remains bounded to pages 1–20 and fill-missing-only behavior.
+
+All 9 records currently carrying retained `SEBI Prospectus PDF` evidence now have final issue-price evidence.
+
+The next separate document-derived field family is **explicit aggregate issue size from retained final Prospectus PDFs**. Seven of the nine retained final-Prospectus records still have missing `issue_size_inr`; any future extractor must use an explicit stated aggregate only and must not reconstruct it arithmetically.
