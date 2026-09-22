@@ -35,6 +35,9 @@ assert.equal(rhp[0].publication_date, "2026-09-21");
 assert.equal(rhp[0].issuer_name, "Moneyview Limited");
 assert.ok(rhp[0].url.startsWith("https://www.sebi.gov.in/filings/public-issues/"));
 
+const allFilings = parseSebiListingHtml(listing, null, base);
+assert.equal(allFilings.length, 5);
+
 const finals = parseSebiListingHtml(listing, "final", base);
 assert.equal(finals.length, 2);
 assert.equal(finals[0].issuer_name, "Manipal Payment & Identity Solutions Limited");
