@@ -97,8 +97,8 @@ jobs:
       - name: Extract NSE public past-issues final price
         run: node scripts/extract-nse-past-issues-fields.mjs
 
-      - name: Diagnose NSE Issue Information market lot
-        run: node scripts/extract-nse-ipo-detail-fields.mjs --diagnose-market-lot
+      - name: Extract NSE Issue Information market lot
+        run: node scripts/extract-nse-ipo-detail-fields.mjs --market-lot
 
       - name: Extract NSE Issue Information issue size
         run: node scripts/extract-nse-ipo-detail-fields.mjs --issue-size
