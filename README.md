@@ -64,7 +64,7 @@ The final price and issue size come from the directly retrievable official NSE P
 
 The BSE listing notices `20260916-7` and `20260916-46` were investigated again. Their canonical BSE URL pattern is known, but the dynamic BSE pages remain inaccessible to the available tooling. Listing date and listed status therefore remain null.
 
-Recovery input remains in `data/recovery/2026/nse-issue-information.json` and is transformed deterministically into `data/ipos.json` by `scripts/build-published-data.mjs`.
+Recovery input remains in `data/recovery/2026/nse-issue-information.json` and is transformed deterministically into `data/ipos.json` by `scripts/build-published-data.mjs`. The publisher now also preserves `last_collected_at` per issuer, so regenerating one updated record does not falsely refresh unrelated IPOs.
 
 Validation now runs:
 
