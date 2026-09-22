@@ -550,3 +550,23 @@ Listing-date coverage is now **10/26**. Remaining records are automatically rech
 
 The earliest remaining P1 gap is now price band: **25/26** records have one, with Axiom Gas Engineering Limited as the sole missing record. The next source-family batch should inspect explicit `Price Range` / `Price Band` title/value pairs in the same NSE endpoint.
 
+## NSE ipo-detail price-band automation — production verified
+
+The official NSE `/api/ipo-detail` source now closes the only remaining price-band gap.
+
+PR #49 production diagnostic found for Axiom Gas Engineering Limited:
+
+- identity: `AXIOMGAS / SME`;
+- title: `Price Range`;
+- value: `Rs.51 to Rs.54 per equity share`.
+
+PR #50 added a strict extractor for exact `Price Range` / `Price Band` terms. It requires two rupee-denominated bounds per Equity Share, rejects fixed single prices/placeholders/conflicts, fills missing values only, and stores direct NSE API evidence.
+
+Production run `35738252937` extracted Axiom's verified ₹51–₹54 band with 1/1 API success and zero conflicts/errors.
+
+Bot data commit: `134e0e7a73e736ed3748906b198a8c883fd18892`.
+
+Published price-band coverage is now **26/26**.
+
+The next price-related P1 family is final issue price. Keep it distinct from price band and never use the band cap as the final price.
+
