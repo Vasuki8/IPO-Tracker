@@ -1,29 +1,56 @@
 # IPO Tracker
 
-A source-first Indian IPO research interface.
+A source-first Indian IPO research interface with automated official-source discovery and GitHub Pages publication.
 
 ## Current state
 
-The public UI now consumes a dedicated source-backed dataset at `data/ipos.json`.
+The public UI consumes the source-backed dataset at `data/ipos.json`.
 
-The source-backed 2026 recovery dataset now contains fourteen real IPO issuers. Prototype IPO rows and illustrative market values are not used as production fallback data.
+As of the first production live-sync run on 2026-09-22, the published 2026 dataset contains **23 real IPO issuers**. The tracker does not use prototype/demo market rows as production fallback data.
 
-### Data foundation now includes
+### Data foundation
 
 - Evidence-bearing IPO field contract
 - Null preservation
 - Verified / provisional / conflict / missing source states
 - Separate market lot, minimum bid quantity, and minimum application amount
-- Publication, observation, collection, and dataset-generation time concepts
-- Correction history
+- Publication, observation, collection, and dataset-generation timestamps
+- Correction/conflict history
+- Deterministic publication from retained recovery manifests
 - Machine-checkable validation
 - GitHub Actions validation
 
 See `docs/DATA_CONTRACT.md` and `data/ipo-schema.json`.
 
-## Local preview
+## Live automation
 
-Open `index.html` in a browser or serve the repository with any static HTTP server.
+The tracker now has an automated discovery/publishing loop.
+
+`.github/workflows/update-ipos.yml` runs **hourly** and:
+
+1. retrieves current/upcoming IPOs from official NSE website feeds;
+2. merges explicitly supported source values into the retained recovery manifest;
+3. leaves unsupported values null;
+4. rebuilds `data/ipos.json`;
+5. validates the data contract;
+6. commits only source-backed changes;
+7. lets GitHub Pages publish the new revision.
+
+The first real production run succeeded and automatically increased the dataset from 14 to 23 issuers.
+
+See `docs/AUTOMATION.md` for the exact source and field rules.
+
+### Automation is intentionally conservative
+
+The NSE discovery feed does **not** automatically cause the tracker to:
+
+- interpret NSE `issueSize` as an INR issue-size amount;
+- copy market lot into minimum bid quantity;
+- calculate minimum application amount;
+- infer sector or listing date;
+- treat the cap of a price band as the final issue price.
+
+Those values remain missing until supported by retained official evidence.
 
 ## Architecture
 
@@ -32,9 +59,31 @@ index.html
 assets/
   styles.css
   app.js
+data/
+  ipo-schema.json
+  ipos.json
+  recovery/
+    <year>/
+      nse-issue-information.json
+scripts/
+  sync-nse-live.mjs
+  build-published-data.mjs
+  validate-data.mjs
+.github/
+  workflows/
+    update-ipos.yml
+    validate-data.yml
+    deploy-pages.yml
+docs/
+  DEVELOPMENT_PROCESS.md
+  DATA_CONTRACT.md
+  AUTOMATION.md
+  PROJECT_STATUS.md
 ```
 
-The UI is static-hosting friendly and can be published via GitHub Pages.
+## Local preview
+
+Open `index.html` in a browser or serve the repository with any static HTTP server.
 
 ---
 
@@ -46,50 +95,89 @@ Use this section as the starting context when continuing work in a new chat.
 
 - Repository: `Vasuki8/IPO-Tracker`
 - Default branch: `main`
-- Hosting target: GitHub Pages
+- Website: `https://vasuki8.github.io/IPO-Tracker/`
+- Hosting: GitHub Pages
+- Live-data workflow: `.github/workflows/update-ipos.yml`
 - Deployment workflow: `.github/workflows/deploy-pages.yml`
 
-### What happened in the latest run
+### Latest completed batch
 
-The bounded final-document pass for ESDS Software Solution, ARCIL and Sonaselection did not produce safely extractable final prices. ESDS and ARCIL require an India-location confirmation on their issuer sites; this session did not bypass that representation. Sonaselection's final official document was not directly readable in the bounded pass.
+PR #9, **Automate live IPO discovery and publication**, was squash-merged to `main` at:
 
-The fallback then added three more official-source 2026 IPO records:
+`8a6895d34bd64c2600c6e82bec29418e399fa366`
 
-- Karamtara Engineering Limited
-- Pranav Constructions Limited
-- Qualiance International Limited
+The first real GitHub Actions live sync then:
 
-Karamtara and Pranav have NSE-verified price band, market lot, minimum bid quantity and offer dates.
+- successfully reached the official NSE feeds;
+- passed parser, deterministic-build, and data-contract validation;
+- created bot commit `87c52215fcdbaa079b937597fe902a13309e22d2`;
+- expanded the public dataset from **14 to 23 issuers**;
+- added 9 new source-backed NSE-discovered issuers;
+- enriched Sonaselection India Limited's board/lifecycle status;
+- preserved unsupported fields as null;
+- triggered a successful GitHub Pages publication for the bot-generated revision.
 
-Qualiance is explicitly an NSE SME issue with a 1,000-share market lot. Because NSE does not separately state a minimum bid quantity on that page, `minimum_bid_quantity` remains null rather than being copied from the lot size.
+Newly discovered records in that first live run:
 
-This brings the published 2026 dataset to **14 issuers**.
+- Adroit Industries (India) Limited
+- ArMee Infotech Limited
+- Axiom Gas Engineering Limited
+- Coreintegra Consulting Services Limited
+- Elevate Campuses Limited
+- National Stock Exchange of India Limited
+- Pooja Logistics Limited
+- Swastika Infra Limited
+- Varmora Granito Limited
 
-Recovery input remains in `data/recovery/2026/nse-issue-information.json` and is transformed deterministically into `data/ipos.json`.
+### Critical data rule
 
-### Critical data warning
+Do not edit `data/ipos.json` as a substitute for source recovery.
 
-Do not edit `data/ipos.json` as a substitute for source recovery. Update retained recovery evidence and regenerate the public dataset.
+Update retained recovery evidence and regenerate the public dataset.
 
-Do not fill nulls with guessed, estimated, unsupported, or aggregator-derived substitute values.
+Never fill nulls with guesses, estimates, unsupported arithmetic, or aggregator-derived substitutes.
 
-### Main limitation
+### What automation does now
 
-Recovery is deterministic but not yet an automated web collector, and the 2026 IPO universe remains incomplete. Some SEBI final-Prospectus attachments are also inaccessible to the current web tooling even when the official filing page itself is verified.
+Hourly NSE discovery can automatically publish:
 
-### Next priority
+- issuer name;
+- board when explicit from NSE series;
+- lifecycle status represented by the feed;
+- explicit price band;
+- explicit fixed issue price when present;
+- explicit market lot when present;
+- issue open date;
+- issue close date.
 
-Attempt one bounded final-document recovery pass for Karamtara Engineering, Pranav Constructions and Qualiance International. Add final issue price / aggregate issue size only from directly readable official final documents. If those sources remain blocked, immediately continue with the next small 2026 official-source issuer batch.
+### Main remaining limitation
 
-Preserve:
+The discovery/publish loop is live, but **deep offer-document enrichment is not fully automated yet**.
 
-1. nulls;
-2. source URL/document identity;
-3. publication date;
-4. page/evidence location when available;
-5. collection timestamps;
-6. conflicts and correction history;
-7. separate market lot, minimum bid quantity, and minimum application amount.
+Newly discovered IPOs can therefore appear quickly while still showing missing fields such as:
+
+- aggregate issue size in INR;
+- minimum bid quantity where not separately stated;
+- minimum application amount;
+- final issue price;
+- listing date;
+- sector;
+- richer DRHP/RHP/Prospectus evidence.
+
+The next source-automation layer should attach official SEBI / exchange / issuer offer-document evidence to newly discovered IPOs rather than relying on manual recovery prompts.
+
+### Recommended next coherent batch
+
+Automate official filing/document discovery and enrichment for newly detected IPOs, starting with SEBI RHP / Abridged Prospectus / Prospectus matching.
+
+Acceptance criteria should include:
+
+1. deterministic issuer matching;
+2. retained official document identity/URL/publication date;
+3. no guessing when a match is ambiguous;
+4. no weakening of null/conflict rules;
+5. source-level tests across several issuers;
+6. successful scheduled-run integration without breaking the current live discovery loop.
 
 ### Product direction
 
@@ -112,9 +200,8 @@ Do not add billing, accounts, ads, analytics, paid infrastructure, or other comm
 
 Future development runs must follow `docs/DEVELOPMENT_PROCESS.md`.
 
-For a fresh chat, the preferred continuation instruction is:
+For a fresh chat:
 
 > Continue IPO Tracker development. Read README.md, docs/PROJECT_STATUS.md, and docs/DEVELOPMENT_PROCESS.md first. Follow the repository development process, select the earliest unfinished priority, and complete one coherent batch end to end.
 
-After that, the user may simply say **"continue"** for subsequent batches. The development process and handoff files are the source of truth; the user should not need to resend a large master prompt.
-
+After that, the user may simply say **"continue"**. The repository process/handoff files are the source of truth; the user should not need to resend a large master prompt.
