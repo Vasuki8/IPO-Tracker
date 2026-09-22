@@ -66,6 +66,25 @@ Do not overwrite history silently. If a later authoritative source changes a val
 
 If official sources conflict and precedence does not resolve the disagreement, preserve both pieces of evidence and publish the field with `status: "conflict"`.
 
+## Recovery publication
+
+For the current 2026 source family, retained recovery input lives under:
+
+```
+data/recovery/2026/
+  nse-issue-information.json
+```
+
+Publication is deterministic:
+
+```
+node scripts/build-published-data.mjs
+```
+
+CI runs the publisher with `--check` and fails if `data/ipos.json` does not exactly match the retained recovery input.
+
+The recovery publisher currently accepts official NSE and SEBI URLs only. This is a deliberate first-batch restriction, not a statement that these are the only official sources the project may ever support.
+
 ## Current state
 
-The initial `data/ipos.json` intentionally contains zero records because the authoritative historical recovery pipeline is not present in this repository. This is safer than publishing prototype values as real IPO data.
+The first published recovery slice contains Hero Motors Limited and Rentomojo Limited. Only fields established by retained official evidence are populated. Unsupported fields remain null/missing.
