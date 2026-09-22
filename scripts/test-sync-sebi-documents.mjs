@@ -13,6 +13,8 @@ import {
   targetedSearchCandidates,
   searchTermForIssuer,
   parseAbridgedProspectusLinks,
+  parseProspectusPdfLinks,
+  directSebiProspectusPdf,
   parseSebiDate,
   parseSebiListingHtml,
   SEBI_PUBLIC_ISSUES_URL
@@ -20,6 +22,7 @@ import {
 
 const listing = fs.readFileSync(new URL("./fixtures/sebi-public-issues-sample.html", import.meta.url), "utf8");
 const detail = fs.readFileSync(new URL("./fixtures/sebi-rhp-detail-sample.html", import.meta.url), "utf8");
+const finalDetail = fs.readFileSync(new URL("./fixtures/sebi-prospectus-detail-sample.html", import.meta.url), "utf8");
 const base = "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=11&ssid=15";
 
 assert.equal(parseSebiDate("Sep 21, 2026"), "2026-09-21");
@@ -167,4 +170,26 @@ assert.equal(
 assert.equal(
   SEBI_PUBLIC_ISSUES_URL,
   "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&ssid=15"
+);
+
+const viewerUrl =
+  "https://www.sebi.gov.in/web/?file=https%3A%2F%2Fwww.sebi.gov.in%2Fsebi_data%2Fattachdocs%2Fsep-2026%2F1789991154046.pdf";
+assert.equal(
+  directSebiProspectusPdf(viewerUrl, "https://www.sebi.gov.in/"),
+  "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789991154046.pdf"
+);
+assert.equal(
+  directSebiProspectusPdf("https://example.com/file.pdf", "https://www.sebi.gov.in/"),
+  null
+);
+
+const prospectusPdfs = parseProspectusPdfLinks(
+  finalDetail,
+  "https://www.sebi.gov.in/filings/public-issues/sep-2026/example-limited-prospectus_1.html"
+);
+assert.equal(prospectusPdfs.length, 1);
+assert.equal(prospectusPdfs[0].type, "SEBI Prospectus PDF");
+assert.equal(
+  prospectusPdfs[0].url,
+  "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789991154046.pdf"
 );

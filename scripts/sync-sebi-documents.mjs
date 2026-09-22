@@ -207,6 +207,82 @@ export function parseSebiListingHtml(html, expectedKind, baseUrl) {
   return entries;
 }
 
+export function directSebiProspectusPdf(value, baseUrl) {
+  if (!value) return null;
+
+  const decoded = decodeHtml(String(value)).replace(/\\\//g, "/");
+  const candidates = [decoded];
+
+  try {
+    const outer = new URL(decoded, baseUrl);
+    const file = outer.searchParams.get("file");
+    if (file) candidates.push(file);
+    candidates.push(outer.href);
+  } catch {
+    // Keep trying encoded/raw candidates below.
+  }
+
+  for (const candidateValue of [...candidates]) {
+    try {
+      const once = decodeURIComponent(candidateValue);
+      if (once !== candidateValue) candidates.push(once);
+    } catch {
+      // Ignore malformed percent-encoding.
+    }
+  }
+
+  for (const candidate of candidates) {
+    let parsed;
+    try {
+      parsed = new URL(candidate, baseUrl);
+    } catch {
+      continue;
+    }
+
+    if (parsed.protocol !== "https:") continue;
+    if (!/^(?:www\.)?sebi\.gov\.in$/i.test(parsed.hostname)) continue;
+    if (!/^\/sebi_data\/attachdocs\//i.test(parsed.pathname)) continue;
+    if (!/\.pdf$/i.test(parsed.pathname)) continue;
+    return parsed.href;
+  }
+
+  return null;
+}
+
+export function parseProspectusPdfLinks(html, baseUrl) {
+  const docs = [];
+  const seen = new Set();
+
+  const add = (candidate) => {
+    const url = directSebiProspectusPdf(candidate, baseUrl);
+    if (!url || seen.has(url)) return;
+    seen.add(url);
+    docs.push({
+      type: "SEBI Prospectus PDF",
+      identity: "SEBI Prospectus PDF",
+      url
+    });
+  };
+
+  for (const match of html.matchAll(/\bhref\s*=\s*(["'])([^"']+)\1/gi)) {
+    add(match[2]);
+  }
+
+  for (const match of html.matchAll(
+    /(?:https?:\/\/www\.sebi\.gov\.in\/web\/\?file=)?https?%3A%2F%2Fwww\.sebi\.gov\.in%2Fsebi_data%2Fattachdocs%2F[^"'<>\s]+?\.pdf/gi
+  )) {
+    add(match[0]);
+  }
+
+  for (const match of html.matchAll(
+    /(?:https?:\/\/www\.sebi\.gov\.in)?\/sebi_data\/attachdocs\/[^"'<>\s]+?\.pdf/gi
+  )) {
+    add(match[0]);
+  }
+
+  return docs;
+}
+
 export function parseAbridgedProspectusLinks(html, baseUrl) {
   const docs = [];
   const seen = new Set();
@@ -368,8 +444,7 @@ async function discoverListing(url, kind) {
   return entries;
 }
 
-async function abridgedForEntry(entry, detailCache) {
-  if (entry.kind !== "rhp") return [];
+async function detailDocumentsForEntry(entry, detailCache) {
   let detailHtml = detailCache.get(entry.url);
   if (detailHtml === undefined) {
     try {
@@ -379,17 +454,31 @@ async function abridgedForEntry(entry, detailCache) {
     }
     detailCache.set(entry.url, detailHtml);
   }
-  return detailHtml ? parseAbridgedProspectusLinks(detailHtml, entry.url) : [];
+  if (!detailHtml) return [];
+
+  if (entry.kind === "rhp") {
+    return parseAbridgedProspectusLinks(detailHtml, entry.url);
+  }
+
+  if (entry.kind === "final") {
+    return parseProspectusPdfLinks(detailHtml, entry.url).map((doc) => ({
+      ...doc,
+      identity: `${entry.title} — PDF`
+    }));
+  }
+
+  return [];
 }
 
 async function applyEntry(match, entry, now, detailCache, stats, changedRecords) {
-  const abridged = await abridgedForEntry(entry, detailCache);
+  const attachedDocs = await detailDocumentsForEntry(entry, detailCache);
   const before = match.record.documents?.length || 0;
-  if (!applySebiEntry(match, entry, now, abridged)) return false;
+  if (!applySebiEntry(match, entry, now, attachedDocs)) return false;
 
   match.recovery.changed = true;
   changedRecords.add(match.record.id);
   stats.added_documents += (match.record.documents?.length || 0) - before;
+  stats.resolved_prospectus_pdfs += attachedDocs.filter((doc) => doc.type === "SEBI Prospectus PDF").length;
   return true;
 }
 
@@ -462,7 +551,8 @@ async function run() {
     targeted_searches: 0,
     targeted_matches: 0,
     targeted_parsed_entries: 0,
-    targeted_errors: 0
+    targeted_errors: 0,
+    resolved_prospectus_pdfs: 0
   };
   const changedRecords = new Set();
 
@@ -489,7 +579,8 @@ async function run() {
     `SEBI document sync: ${stats.matched} matched latest-list entries, ` +
     `${stats.unmatched} unmatched; targeted ${stats.targeted_searches}/${stats.targeted_candidates} ` +
     `sparse live record(s), ${stats.targeted_parsed_entries} targeted result filing(s), ` +
-    `${stats.targeted_matches} targeted filing match(es), ${stats.targeted_errors} targeted error(s); ${stats.changed_records} changed record(s), ` +
+    `${stats.targeted_matches} targeted filing match(es), ${stats.targeted_errors} targeted error(s); ` +
+    `${stats.resolved_prospectus_pdfs} Prospectus PDF(s) resolved; ${stats.changed_records} changed record(s), ` +
     `${stats.added_documents} document(s) added.`
   );
 }

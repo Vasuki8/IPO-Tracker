@@ -251,3 +251,25 @@ The resulting source-backed data commit is
 `92f0f024367b20a9f023218a0cb92ecbc2e38636`.
 
 This run confirms that PDF field extraction can operate conservatively in the hourly workflow without filling placeholder values or overwriting richer existing evidence.
+
+## Final Prospectus PDF resolution
+
+For a retained SEBI final Prospectus filing page, the document collector now also inspects the filing detail page for the official attached PDF.
+
+SEBI often exposes the attachment through its viewer form:
+
+```
+https://www.sebi.gov.in/web/?file=<encoded official PDF URL>
+```
+
+The resolver:
+
+- extracts the `file=` target;
+- accepts only HTTPS URLs on `sebi.gov.in` / `www.sebi.gov.in`;
+- requires the path to be under `/sebi_data/attachdocs/`;
+- requires a PDF extension;
+- stores the direct PDF as `SEBI Prospectus PDF`;
+- deduplicates viewer and direct-link forms of the same attachment;
+- rejects non-SEBI mirrors.
+
+This stage attaches evidence only. It does not yet parse final issue price, aggregate issue size, listing date, or any other field from the final Prospectus PDF.
