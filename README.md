@@ -156,19 +156,23 @@ IPOs can therefore still show missing fields such as:
 
 The next source-automation layer should parse a bounded set of fields from retained official offer documents, with explicit source precedence and page-level evidence, rather than inferring values from filenames or price-band caps.
 
-### Current field-extraction batch
+### Latest field-extraction result
 
-A bounded Abridged Prospectus extractor is ready for production verification.
+The Abridged Prospectus issue-size extractor is now production-verified.
 
-It parses page 1 of already-retained official SEBI Abridged Prospectus PDFs and can fill **missing aggregate issue size only when the TOTAL OFFER/ISSUE SIZE cell contains an explicit numeric amount**.
+PR #16 merged at `c7c59252bb9e59b3767d73205ad1d682326c48b8`.
 
-It does not sum components, derive values from shares/prices, overwrite existing evidence, or convert `[●]` placeholders into data.
+Real hourly run `35686786294` downloaded all 4 eligible retained SEBI Abridged Prospectus PDFs with zero fetch errors and:
 
-Fixture coverage includes Karamtara/ESDS positive cases and Pranav/ARCIL placeholder cases.
+- extracted Karamtara Engineering's explicit total offer size of ₹8,750.00 million;
+- preserved ARCIL, Pranav Constructions and Sonaselection as null because their first-page total-size cells were placeholders/non-explicit;
+- left ESDS unchanged because it already had verified issue-size evidence.
+
+The source-backed bot commit is `92f0f024367b20a9f023218a0cb92ecbc2e38636`.
 
 ### Recommended next coherent batch
 
-After verifying the Abridged Prospectus extractor on the real hourly workflow, choose the next single explicit field/document family. Keep inaccessible/ambiguous values null and retain page-level evidence.
+Resolve direct official PDF attachments from already-retained SEBI final Prospectus filing pages and then automate one bounded explicit final-document field family, preferably final issue price / aggregate issue size with page-level evidence.
 
 ### Product direction
 
