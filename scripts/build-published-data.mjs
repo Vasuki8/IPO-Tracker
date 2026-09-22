@@ -119,7 +119,9 @@ function normalizeRecord(record, collectedAt) {
     sector: record.sector ?? null,
     status: record.status ?? null,
     status_evidence: retainedEvidence(record.status_evidence, collectedAt),
-    price_band: verifiedField(record.terms?.price_band ?? null, nse),
+    price_band: record.price_band?.value !== null && record.price_band?.value !== undefined
+      ? retainedField(record.price_band, collectedAt)
+      : verifiedField(record.terms?.price_band ?? null, nse),
     issue_price: retainedField(record.issue_price, collectedAt),
     issue_size_inr: retainedField(record.issue_size_inr, collectedAt),
     market_lot: verifiedField(record.terms?.market_lot ?? null, nse),
