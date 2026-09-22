@@ -2,7 +2,6 @@ name: Validate IPO data contract
 
 on:
   push:
-    branches: ["main", "data-foundation-source-backed-ui"]
   pull_request:
     branches: ["main"]
 
