@@ -5,6 +5,7 @@ import {
   applyIssueSizeExtraction,
   candidateProspectusDocument,
   candidateProspectusIssueSizeDocument,
+  candidateRhpIssueSizeDocument,
   findAggregateIssueSizeMentions,
   findIssuePriceMentions,
   parseExplicitAggregateIssueSizeFromPages,
@@ -65,6 +66,18 @@ const record = {
 
 assert.equal(candidateProspectusDocument(record), doc);
 assert.equal(candidateProspectusIssueSizeDocument(record), doc);
+
+const rhpDoc = {
+  ...doc,
+  type: "SEBI RHP PDF",
+  identity: "Example Limited - RHP — PDF"
+};
+const rhpRecord = {
+  issuer_name: "RHP Example Limited",
+  issue_size_inr: undefined,
+  documents: [rhpDoc]
+};
+assert.equal(candidateRhpIssueSizeDocument(rhpRecord), rhpDoc);
 assert.equal(
   applyIssuePriceExtraction(
     record,
@@ -101,6 +114,10 @@ const existing = {
 };
 assert.equal(candidateProspectusDocument(existing), null);
 assert.equal(candidateProspectusIssueSizeDocument(existing), null);
+assert.equal(candidateRhpIssueSizeDocument({
+  ...existing,
+  documents: [{ ...doc, type: "SEBI RHP PDF" }]
+}), null);
 assert.equal(
   applyIssuePriceExtraction(
     existing,

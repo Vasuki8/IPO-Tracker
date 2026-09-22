@@ -22,6 +22,8 @@ on:
       - "scripts/fixtures/sebi-rhp-detail-sample.html"
       - "scripts/fixtures/sebi-prospectus-detail-sample.html"
       - "scripts/build-published-data.mjs"
+      - "scripts/publish-field-status.mjs"
+      - "scripts/test-publish-field-status.mjs"
       - ".github/workflows/update-ipos.yml"
 
 permissions:
@@ -61,11 +63,17 @@ jobs:
           sudo apt-get install --yes --no-install-recommends poppler-utils
           pdftotext -v
 
+      - name: Test retained field publication status
+        run: node scripts/test-publish-field-status.mjs
+
       - name: Test Abridged Prospectus field extraction
         run: node scripts/test-extract-abridged-fields.mjs
 
       - name: Test final Prospectus field extraction
         run: node scripts/test-extract-prospectus-fields.mjs
+
+      - name: Diagnose provisional RHP aggregate issue size
+        run: node scripts/extract-prospectus-fields.mjs --diagnose-rhp-size
 
       - name: Extract explicit Abridged Prospectus fields
         run: node scripts/extract-abridged-fields.mjs

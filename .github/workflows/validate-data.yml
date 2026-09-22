@@ -40,6 +40,9 @@ jobs:
           sudo apt-get install --yes --no-install-recommends poppler-utils
           pdftotext -v
 
+      - name: Test retained field publication status
+        run: node scripts/test-publish-field-status.mjs
+
       - name: Test Abridged Prospectus field extraction
         run: node scripts/test-extract-abridged-fields.mjs
 

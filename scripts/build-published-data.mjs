@@ -1,3 +1,4 @@
+import { retainedFieldStatus } from "./publish-field-status.mjs";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -75,11 +76,15 @@ function verifiedField(value, source, page = null) {
 
 function retainedField(field, collectedAt) {
   if (!field || field.value === null || field.value === undefined) return emptyField();
-  return verifiedField(
-    field.value,
-    { ...field.source, collected_at: field.source.collected_at ?? collectedAt },
-    field.page ?? null
-  );
+  return {
+    value: field.value,
+    status: retainedFieldStatus(field),
+    evidence: [evidence(
+      { ...field.source, collected_at: field.source.collected_at ?? collectedAt },
+      field.page ?? null
+    )],
+    corrections: Array.isArray(field.corrections) ? field.corrections : []
+  };
 }
 
 function retainedEvidence(items, collectedAt) {
