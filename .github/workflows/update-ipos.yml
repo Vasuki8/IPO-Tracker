@@ -77,9 +77,6 @@ jobs:
       - name: Test NSE Issue Information diagnostic parser
         run: node scripts/test-diagnose-nse-issue-information.mjs
 
-      - name: Diagnose NSE Issue Information minimum bid
-        run: node scripts/diagnose-nse-issue-information.mjs
-
       - name: Extract explicit Abridged Prospectus fields
         run: node scripts/extract-abridged-fields.mjs
 
@@ -88,6 +85,9 @@ jobs:
 
       - name: Extract explicit final Prospectus issue size
         run: node scripts/extract-prospectus-fields.mjs --issue-size
+
+      - name: Extract explicit final Prospectus minimum bid
+        run: node scripts/extract-prospectus-fields.mjs --minimum-bid
 
       - name: Rebuild published dataset
         run: node scripts/build-published-data.mjs
