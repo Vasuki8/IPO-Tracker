@@ -1702,3 +1702,115 @@ Acceptance rules:
 - no price × quantity calculation;
 - fill missing values only;
 - validate across multiple retained RHPs before enabling recurring production extraction.
+
+
+## Latest completed batch — production NII minimum application extraction
+
+PR #75 — `Extract explicit RHP NII minimum application amounts` — added recurring production extraction for:
+
+`application_requirements.non_institutional.minimum_application_amount_inr`
+
+from retained official SEBI RHP PDFs.
+
+Merged:
+
+`4290dc11d5fc04c4303e0259bff39f1aa1932527`
+
+### Production rules
+
+The extractor:
+
+- scans retained official SEBI RHP PDFs only;
+- is bounded to the first **140 PDF pages** per candidate for recurring cost control;
+- requires a direct labelled minimum-application amount;
+- requires nearby `Non-Institutional` / NII category context;
+- supports explicitly stated INR, million, lakh/lac and crore units;
+- rejects Anchor/QIB Mutual Fund minimums;
+- rejects unrelated business/regulatory minimum-investment text;
+- rejects conflicting amounts;
+- fills missing NII category values only;
+- retains exact PDF page and source identity;
+- never calculates shares × price;
+- never changes the legacy top-level `minimum_application_amount_inr`.
+
+### First production run
+
+Sync run `35793315717` completed successfully.
+
+Results:
+
+- candidates: **14**
+- PDFs downloaded: **14**
+- extracted: **1**
+- explicit NII amount missing under the first parser rule: **13**
+- conflicts: **0**
+- fetch errors: **0**
+
+Published:
+
+- **Swastika Infra Limited — ₹200,000 — verified — RHP page 77**
+
+Source-backed data commit:
+
+`3ca407639d5d11432816167c98f6add93892148e`
+
+### Sonaselection parser repair
+
+The earlier full-RHP survey had already observed:
+
+- **Sonaselection India Limited — ₹200,000 — RHP page 92**
+
+Its wording placed `Non-Institutional Portion` immediately **after** the labelled amount:
+
+`minimum application size viz. ₹ 0.20 million ... Non-Institutional Portion`
+
+The first production parser checked only backward context and therefore missed it.
+
+PR #76 — `Fix forward NII context detection` — expanded the strict category check to a tight two-sided context window while preserving the direct-label and explicit-INR requirements.
+
+Merged:
+
+`c77472f26d1f93f999c64773de3bea1c4d199dfc`
+
+Regression coverage includes the actual Sonaselection sentence shape.
+
+Because the post-merge hourly workflow was not advancing reliably enough to complete verification in this run, the already-observed official page-92 evidence from completed diagnostic run `35765946080` was published directly in PR #77.
+
+PR #77 — `Repair Sonaselection NII minimum application amount` — merged as:
+
+`758c120fb1542af42415c4dbe83a06cd8f220fd1`
+
+The repair passed:
+
+- recovery/publication synchronization;
+- schema 1.2.0 validation;
+- all existing parser/extractor tests.
+
+Current published NII minimum-application coverage:
+
+- present: **2/26**
+- missing: **24/26**
+
+Verified values:
+
+1. **Sonaselection India Limited — ₹200,000 — RHP page 92**
+2. **Swastika Infra Limited — ₹200,000 — RHP page 77**
+
+The generic top-level minimum-application field remains unchanged and source-null.
+
+### Recommended next coherent batch
+
+Continue the category-specific application contract with a **read-only source survey for explicit NII minimum bid quantity** from retained RHPs before enabling production extraction.
+
+Acceptance rules:
+
+- write only `application_requirements.non_institutional.minimum_bid_quantity`;
+- require explicit Non-Institutional/NII context;
+- require an explicit share quantity / bid requirement;
+- keep amount and quantity separate;
+- reject generic/retail bid-lot wording unless clearly NII-specific;
+- retain page-level official evidence;
+- do not infer quantity from the ₹200,000 threshold or issue price;
+- validate across multiple RHPs before enabling recurring writes.
+
+After NII quantity semantics are stable, survey explicit retail application requirements separately rather than deriving retail monetary amounts from price × lot.
