@@ -4,10 +4,12 @@
 
 The public tracker should discover newly announced/open IPOs without requiring a manual data-recovery prompt before they appear on the website.
 
-The automated source pipeline now has two layers:
+The automated source pipeline now has four bounded layers:
 
 1. official NSE public IPO feeds for discovery/basic offer terms;
-2. official SEBI public-issue listings for offer-document attachment.
+2. official SEBI public-issue listings for offer-document attachment;
+3. explicit aggregate issue-size extraction from retained SEBI Abridged Prospectus PDFs;
+4. explicit final issue-price extraction from retained SEBI Prospectus PDFs.
 
 ## Official discovery endpoints
 
@@ -67,10 +69,11 @@ The workflow:
 5. fetches the latest official SEBI RHP/final-offer-document lists;
 6. attaches deterministic RHP / Abridged Prospectus / Prospectus evidence from the latest lists;
 7. runs bounded issuer-specific SEBI search for sparse NSE-live records still missing SEBI evidence;
-8. rebuilds `data/ipos.json`;
-9. validates the data contract;
-10. commits only if source-backed data changed;
-11. the resulting push triggers the existing GitHub Pages deployment workflow.
+8. tests and runs bounded PDF field extractors against already-retained official documents;
+9. rebuilds `data/ipos.json`;
+10. validates the data contract;
+11. commits only if source-backed data changed;
+12. the resulting push triggers GitHub Pages publication.
 
 If NSE collection or validation fails, the workflow fails before committing. The previously published website remains intact.
 
@@ -126,19 +129,23 @@ The collector writes each issue to `data/recovery/<year>/nse-issue-information.j
 
 The publication builder reads all year manifests, so a new calendar year does not require hard-coding a new published-data path.
 
-## Fields changed by SEBI document sync
+## Fields changed by SEBI document sync and extractors
 
-The SEBI document layer currently changes **document evidence only**.
-
-It may attach:
+The SEBI **document attachment** step still changes document evidence only. It may attach:
 
 - `SEBI RHP filing`;
 - `SEBI Abridged Prospectus`;
-- `SEBI Prospectus filing`.
+- `SEBI Prospectus filing`;
+- `SEBI Prospectus PDF`.
 
-It does not yet parse those documents into final issue price, issue size, minimum application amount, listing date, sector, or other market fields.
+Field extraction remains a separate stage with separate tests and precedence rules.
 
-This separation is intentional: document discovery/matching is verified first, then field extraction can be added as a later bounded source-family batch with its own tests and precedence rules.
+Currently automated document-derived fields are limited to:
+
+- explicit aggregate `issue_size_inr` from supported Abridged Prospectus first-page total-size cells;
+- explicit final `issue_price` from supported wording in retained final Prospectus PDFs.
+
+Minimum application amount, listing date, sector and other unsupported document-derived fields remain null until a separately tested source family is added.
 
 ## Failure behavior
 
@@ -288,4 +295,48 @@ The run resolved 9 direct official `SEBI Prospectus PDF` attachments from alread
 
 The resolver itself changed no market fields. Review of the bot diff confirmed only document evidence, per-record collection freshness, and generation timestamps changed.
 
-This closes the attachment dependency needed for the next bounded extraction family. Final Prospectus field parsing must remain separate and independently tested before it is allowed to write final issue price or aggregate issue size.
+This closes the attachment dependency for bounded final-document field extraction.
+
+## Final Prospectus issue-price extraction — production verified
+
+PR #18 added a separate extractor for **explicit final issue price** from retained official SEBI Prospectus PDFs.
+
+Implementation:
+
+- script: `scripts/extract-prospectus-fields.mjs`;
+- PDF text engine: Poppler `pdftotext`;
+- scope: PDF pages 1–20;
+- source documents: retained `SEBI Prospectus PDF` URLs under `sebi.gov.in/sebi_data/attachdocs/`;
+- target field: `issue_price`;
+- precedence: fill missing values only; never overwrite retained issue-price evidence.
+
+The parser accepts only explicit `Offer Price` / `Issue Price` wording with a rupee amount per Equity Share. It does not inspect the price-band cap to choose a final price.
+
+Production workflow run `35688500637` completed successfully.
+
+Statistics:
+
+- candidates: 7;
+- PDFs downloaded: 7;
+- extracted: 4;
+- no supported explicit price found: 3;
+- fetch errors: 0.
+
+Extracted:
+
+- Kanohar Electricals Limited — ₹632 — PDF page 7;
+- LCC Projects Limited — ₹146 — PDF page 7;
+- Manipal Payment and Identity Solutions Limited — ₹339 — PDF page 3;
+- Pranav Constructions Limited — ₹124 — PDF page 5.
+
+Preserved as null:
+
+- Jindal Supreme (India) Limited;
+- SS Retail Limited;
+- Veegaland Developers Limited.
+
+Existing Hero Motors and Rentomojo issue-price evidence was not overwritten.
+
+The resulting source-backed data commit is `f9b7155c42d8b44d6985d9dafb9fd242e37dc64e`. GitHub Pages deployment for that revision passed in run `35688893344`.
+
+The next parser work should first inspect the three null final Prospectuses to determine whether their explicit final price uses unsupported layout/wording or falls outside the current bounded scan. Aggregate final-Prospectus issue-size extraction remains a separate future field family.

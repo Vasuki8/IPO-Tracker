@@ -102,7 +102,11 @@ Use this section as the starting context when continuing work in a new chat.
 
 ### Latest completed batch
 
-Official SEBI document discovery is now integrated into the hourly NSE sync.
+Explicit final issue-price extraction from retained official SEBI Prospectus PDFs is now production-verified.
+
+PR #18 added a conservative extractor that scans only retained official `SEBI Prospectus PDF` attachments, fills missing `issue_price` only, preserves page-level evidence, and does not infer the final price from a price band or cap.
+
+Earlier, official SEBI document discovery was integrated into the hourly NSE sync.
 
 PRs #10–#15 implemented and hardened:
 
@@ -142,14 +146,14 @@ Hourly NSE discovery can automatically publish:
 The discovery/publish loop and SEBI matcher are live, but two evidence-depth gaps remain:
 
 1. SEBI's raw pages do not currently expose attachable documents for every sparse NSE-live issuer in GitHub Actions;
-2. **field extraction from retained offer documents is not automated yet**.
+2. field extraction is currently bounded to explicit Abridged Prospectus aggregate size and explicit final-Prospectus issue price; most remaining fields are not automated yet.
 
 IPOs can therefore still show missing fields such as:
 
 - aggregate issue size in INR;
 - minimum bid quantity where not separately stated;
 - minimum application amount;
-- final issue price;
+- final issue price where the retained official Prospectus does not contain supported explicit wording in the bounded scan;
 - listing date;
 - sector;
 - richer DRHP/RHP/Prospectus evidence.
@@ -178,9 +182,37 @@ PR #17 merged at `cd39442c03450a9189d783d554e3feb48ee57239`.
 
 Real sync run `35687483282` resolved and attached **9 official SEBI Prospectus PDFs** to deterministic issuer records. Bot commit `0c3e1c199fdb12266589c7f65eead373c49065dd` changed document evidence/freshness only; no market field was inferred or overwritten.
 
+### Latest final-Prospectus price result
+
+PR #18 merged at `1b41f0c115c5df993486e3d3e5f52668d73ffcfc`.
+
+Production sync run `35688500637` evaluated 7 missing-price records with retained official SEBI Prospectus PDFs:
+
+- 7 PDFs downloaded successfully;
+- 4 explicit final issue prices extracted;
+- 3 remained null because no supported explicit final-price phrase was found in the bounded scan;
+- 0 PDF fetch errors.
+
+Verified prices published with PDF-page evidence:
+
+- Kanohar Electricals Limited — ₹632, PDF page 7;
+- LCC Projects Limited — ₹146, PDF page 7;
+- Manipal Payment and Identity Solutions Limited — ₹339, PDF page 3;
+- Pranav Constructions Limited — ₹124, PDF page 5.
+
+Preserved as null:
+
+- Jindal Supreme (India) Limited;
+- SS Retail Limited;
+- Veegaland Developers Limited.
+
+Source-backed bot commit: `f9b7155c42d8b44d6985d9dafb9fd242e37dc64e`.
+
+GitHub Pages deployment for that bot commit passed in run `35688893344`.
+
 ### Recommended next coherent batch
 
-Automate one bounded final-Prospectus field family from those newly retained direct PDFs—preferably explicit final issue price first, then explicit aggregate issue size—with page-level evidence and null preservation.
+Inspect the three retained final Prospectuses that still have null issue price to determine whether the missing value is due to wording/layout/page-scope coverage before broadening the parser. Keep strict explicit-value rules. After that, add a separately tested bounded extractor for explicit aggregate issue size from final Prospectus PDFs.
 
 ### Product direction
 
