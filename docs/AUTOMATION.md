@@ -479,3 +479,45 @@ The rendered NSE Issue Information page is a promising official source for the r
 
 Future automation should identify the official dynamic NSE backend endpoint used by that page rather than scrape rendered HTML.
 
+## NSE ipo-detail minimum-bid automation — production verified
+
+The rendered NSE Issue Information page is backed by the official JSON endpoint:
+
+`https://www.nseindia.com/api/ipo-detail?symbol=<SYMBOL>&series=<SERIES>`
+
+Production discovery run `35726755503` verified 10/10 live requests with zero fetch errors and established the response model:
+
+- `issueInfo.dataList` contains static issue terms as title/value pairs;
+- `bidDetails`, `activeCat`, `demandGraph` and related sections contain subscription/demand data and are not term evidence.
+
+The minimum-bid extractor reads only `issueInfo.dataList`. Supported titles:
+
+1. `Minimum Order Quantity` — preferred;
+2. `Bid Lot` — explicit fallback.
+
+A value is accepted only when it starts with a positive integer quantity followed by `Equity Shares`. Placeholder text is rejected. If both supported titles are present and parse to different quantities, no value is published.
+
+The extractor:
+
+- fills missing values only;
+- never equates market lot with minimum bid;
+- stores verified evidence against the exact official endpoint URL;
+- uses retained NSE symbol/series identity;
+- applies bounded request timeouts/retries.
+
+Production run `35727346835` extracted five verified values:
+
+- Adroit Industries (India) Limited — 111;
+- ArMee Infotech Limited — 40;
+- Elevate Campuses Limited — 41;
+- Swastika Infra Limited — 81;
+- Varmora Granito Limited — 101.
+
+Bot data commit: `9e787f2fbb41f4e55fa05ebd097fd98fc683f7b6`.
+
+Legacy records may also recover deterministic symbol/series parameters from an already-retained official NSE Issue Information URL. PR #44 enabled this path. Production run `35727815131` reached all six remaining gaps with 6/6 successful API calls and no conflicts or fetch errors, but NSE currently publishes no supported finalized minimum-bid value for those six. They remain null and will be retried automatically.
+
+Current minimum-bid coverage: **19/25**.
+
+The same `ipo-detail` payload exposes `metaInfo`, making explicit listing-date recovery the next high-value P1 field family. Listing dates must be sourced directly from the payload; do not infer them from close dates.
+
