@@ -6,7 +6,7 @@ A source-first Indian IPO research interface.
 
 The public UI now consumes a dedicated source-backed dataset at `data/ipos.json`.
 
-The first official-source 2026 recovery slice is now connected. Prototype IPO rows and illustrative market values are not used as production fallback data.
+The first official-source 2026 recovery slice is connected and now includes final-term enrichment. Prototype IPO rows and illustrative market values are not used as production fallback data.
 
 ### Data foundation now includes
 
@@ -51,14 +51,16 @@ Use this section as the starting context when continuing work in a new chat.
 
 ### What happened in the latest run
 
-The first real 2026 recovery slice was added for:
+The two-record 2026 pilot was deepened:
 
-- Hero Motors Limited
-- Rentomojo Limited
+- Hero Motors Limited now has final issue price ₹84 from the issuer-hosted final Prospectus.
+- Rentomojo Limited now has Mainboard classification from an NSE-hosted Public Announcement.
 
-Recovery input is retained in `data/recovery/2026/nse-issue-information.json` and is transformed deterministically into `data/ipos.json` by `scripts/build-published-data.mjs`.
+Schema version `1.1.0` adds retained provenance for board/status metadata and the recovery publisher now preserves each source's original collection timestamp across regeneration.
 
-The records use official NSE issue information plus SEBI offer-document trails. Unsupported fields remain null; the batch does not manufacture issue price, minimum application amount, listing date, board, sector, or lifecycle status where the retained evidence did not establish them.
+Recovery input remains in `data/recovery/2026/nse-issue-information.json` and is transformed deterministically into `data/ipos.json` by `scripts/build-published-data.mjs`.
+
+Unsupported fields remain null. In particular, Rentomojo's issue price/listing date were not populated from third-party mirrors when the official dynamic BSE source could not be directly retrieved.
 
 Validation now runs:
 
@@ -80,7 +82,7 @@ The first recovery adapter is deterministic but not yet an automated web collect
 
 ### Next priority
 
-Complete the remaining core P1 fields for Hero Motors Limited and Rentomojo Limited from official final prospectus / exchange listing evidence before expanding the universe further.
+Resolve the official BSE/NSE listing-notice source family for remaining final issue price, listing date and listed-status evidence. If direct official retrieval remains blocked, keep those fields null and proceed to the next official-source 2026 recovery family rather than using mirrors.
 
 Preserve:
 
