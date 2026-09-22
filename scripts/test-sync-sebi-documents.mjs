@@ -14,7 +14,8 @@ import {
   searchTermForIssuer,
   parseAbridgedProspectusLinks,
   parseSebiDate,
-  parseSebiListingHtml
+  parseSebiListingHtml,
+  SEBI_PUBLIC_ISSUES_URL
 } from "./sync-sebi-documents.mjs";
 
 const listing = fs.readFileSync(new URL("./fixtures/sebi-public-issues-sample.html", import.meta.url), "utf8");
@@ -161,4 +162,9 @@ assert.equal(searchTermForIssuer("National Stock Exchange of India Limited"), "n
 assert.equal(
   buildSebiSearchUrl("National Stock Exchange of India Limited"),
   "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&search=national"
+);
+
+assert.equal(
+  SEBI_PUBLIC_ISSUES_URL,
+  "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&ssid=15"
 );
