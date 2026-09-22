@@ -254,9 +254,22 @@ export function targetedSearchCandidates(records, maxSearches = MAX_TARGETED_SEA
     .slice(0, maxSearches);
 }
 
+export function searchTermForIssuer(issuerName) {
+  const words = canonicalIssuer(issuerName).split(" ").filter(Boolean);
+  const stopwords = new Set([
+    "limited", "ltd", "india", "and", "of", "the",
+    "industries", "industry", "international", "services", "solutions",
+    "engineering", "developers", "logistics", "consulting"
+  ]);
+  const candidates = words.filter((word) => !stopwords.has(word) && word.length >= 4);
+  if (candidates.length === 0) return words[0] || "";
+  return candidates.sort((a, b) => b.length - a.length || words.indexOf(a) - words.indexOf(b))[0];
+}
+
 export function buildSebiSearchUrl(issuerName) {
   const url = new URL(SEBI_SEARCH_URL);
-  url.searchParams.set("search", normalizeText(issuerName));
+  const searchTerm = searchTermForIssuer(issuerName);
+  url.searchParams.set("search", searchTerm || normalizeText(issuerName));
   return url.href;
 }
 
@@ -394,8 +407,9 @@ async function targetedSearch(records, now, detailCache, stats, changedRecords) 
       continue;
     }
 
-    const entries = parseSebiListingHtml(html, null, url)
-      .filter((entry) => matchIssuerRecord([match], entry.issuer_name));
+    const parsedEntries = parseSebiListingHtml(html, null, url);
+    stats.targeted_parsed_entries += parsedEntries.length;
+    const entries = parsedEntries.filter((entry) => matchIssuerRecord([match], entry.issuer_name));
 
     if (entries.length === 0) continue;
 
@@ -444,6 +458,7 @@ async function run() {
     targeted_candidates: 0,
     targeted_searches: 0,
     targeted_matches: 0,
+    targeted_parsed_entries: 0,
     targeted_errors: 0
   };
   const changedRecords = new Set();
@@ -470,8 +485,8 @@ async function run() {
   console.log(
     `SEBI document sync: ${stats.matched} matched latest-list entries, ` +
     `${stats.unmatched} unmatched; targeted ${stats.targeted_searches}/${stats.targeted_candidates} ` +
-    `sparse live record(s), ${stats.targeted_matches} targeted filing match(es), ` +
-    `${stats.targeted_errors} targeted error(s); ${stats.changed_records} changed record(s), ` +
+    `sparse live record(s), ${stats.targeted_parsed_entries} targeted result filing(s), ` +
+    `${stats.targeted_matches} targeted filing match(es), ${stats.targeted_errors} targeted error(s); ${stats.changed_records} changed record(s), ` +
     `${stats.added_documents} document(s) added.`
   );
 }
