@@ -146,3 +146,41 @@ This separation is intentional: document discovery/matching is verified first, t
 - If a SEBI listing page is fetched but contains zero parseable expected filings, the workflow fails rather than silently treating that as "no documents".
 - If a matched RHP detail page cannot be fetched, the RHP filing itself may still be retained; only the optional Abridged Prospectus attachment is skipped for that run.
 - Re-running the collector is idempotent: existing document URLs/identities are not duplicated.
+
+## Production verification — 2026-09-22
+
+The SEBI document pipeline has been exercised against the real network from GitHub Actions.
+
+Implementation/reliability sequence:
+
+- PR #10 introduced the SEBI layer.
+- The first network run exposed dynamic-link markup not covered by the fixture parser.
+- PR #11 repaired dynamic/raw filing URL parsing.
+- PRs #12–#15 added bounded sparse-record search and additional official current-listing coverage.
+
+Latest verified production run:
+
+- workflow: `Sync live IPO data`
+- run ID: `35685494607`
+- head: `86a828f2199abfc0c3f172ebf95af224f34e65fd`
+- conclusion: success
+
+Latest SEBI statistics:
+
+- 9 deterministic matches from current listing sources;
+- 37 unmatched listing entries;
+- 9 sparse NSE-live issuers searched;
+- 5 filing results parsed from targeted searches;
+- 0 exact targeted issuer matches;
+- 0 new documents added in that run.
+
+The 9 direct-list matches correspond to already-retained evidence. The sparse NSE-live records remain without SEBI documents.
+
+This is treated as a source-coverage limitation. The matcher must not be loosened to increase the attachment count.
+
+Future work should prefer either:
+
+- an independently reliable official source family for those sparse records; or
+- field extraction from official documents already retained.
+
+Repeated endpoint variants are not the current recommended priority.
