@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1.0",
-  "generated_at": "2026-09-22T02:30:01Z",
+  "generated_at": "2026-09-22T02:39:48Z",
   "collection_started_at": "2026-09-22T02:14:14Z",
   "records": [
     {
@@ -207,15 +207,33 @@
         "corrections": []
       },
       "issue_price": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 404,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://nsearchives.nseindia.com/corporate/FP_INE08T701025_15SEP2026.pdf",
+            "document_type": "NSE Archived Prospectus",
+            "document_identity": "Rentomojo Limited - Prospectus dated September 11, 2026",
+            "publication_date": "2026-09-11",
+            "page": "Prospectus cover (PDF page 4)",
+            "collected_at": "2026-09-22T02:39:48Z"
+          }
+        ],
         "corrections": []
       },
       "issue_size_inr": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 12555670000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://nsearchives.nseindia.com/corporate/FP_INE08T701025_15SEP2026.pdf",
+            "document_type": "NSE Archived Prospectus",
+            "document_identity": "Rentomojo Limited - Prospectus dated September 11, 2026",
+            "publication_date": "2026-09-11",
+            "page": "Prospectus cover (PDF page 4)",
+            "collected_at": "2026-09-22T02:39:48Z"
+          }
+        ],
         "corrections": []
       },
       "market_lot": {
@@ -332,10 +350,17 @@
           "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/rentomojo-limited-prospectus_104482.html",
           "publication_date": "2026-09-15",
           "collected_at": "2026-09-22T02:14:14Z"
+        },
+        {
+          "type": "NSE Archived Prospectus",
+          "identity": "Rentomojo Limited - Prospectus dated September 11, 2026",
+          "url": "https://nsearchives.nseindia.com/corporate/FP_INE08T701025_15SEP2026.pdf",
+          "publication_date": "2026-09-11",
+          "collected_at": "2026-09-22T02:39:48Z"
         }
       ],
       "first_observed_at": "2026-09-22T02:14:14Z",
-      "last_collected_at": "2026-09-22T02:30:01Z"
+      "last_collected_at": "2026-09-22T02:39:48Z"
     }
   ]
 }

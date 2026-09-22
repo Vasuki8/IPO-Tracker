@@ -6,7 +6,7 @@ A source-first Indian IPO research interface.
 
 The public UI now consumes a dedicated source-backed dataset at `data/ipos.json`.
 
-The first official-source 2026 recovery slice is connected and now includes final-term enrichment. Prototype IPO rows and illustrative market values are not used as production fallback data.
+The first official-source 2026 recovery slice is connected and now includes final-Prospectus enrichment for both pilot issuers. Prototype IPO rows and illustrative market values are not used as production fallback data.
 
 ### Data foundation now includes
 
@@ -51,16 +51,20 @@ Use this section as the starting context when continuing work in a new chat.
 
 ### What happened in the latest run
 
-The two-record 2026 pilot was deepened:
+The official NSE archive copy of Rentomojo Limited's final Prospectus was recovered and added to the retained source trail.
 
-- Hero Motors Limited now has final issue price ₹84 from the issuer-hosted final Prospectus.
-- Rentomojo Limited now has Mainboard classification from an NSE-hosted Public Announcement.
+Rentomojo now has:
 
-Schema version `1.1.0` adds retained provenance for board/status metadata and the recovery publisher now preserves each source's original collection timestamp across regeneration.
+- final issue price ₹404;
+- total offer size ₹12,555.67 million;
+- Mainboard classification;
+- its earlier source-backed offer terms.
 
-Recovery input remains in `data/recovery/2026/nse-issue-information.json` and is transformed deterministically into `data/ipos.json` by `scripts/build-published-data.mjs`.
+The final price and issue size come from the directly retrievable official NSE Prospectus, not a third-party mirror.
 
-Unsupported fields remain null. In particular, Rentomojo's issue price/listing date were not populated from third-party mirrors when the official dynamic BSE source could not be directly retrieved.
+The BSE listing notices `20260916-7` and `20260916-46` were investigated again. Their canonical BSE URL pattern is known, but the dynamic BSE pages remain inaccessible to the available tooling. Listing date and listed status therefore remain null.
+
+Recovery input remains in `data/recovery/2026/nse-issue-information.json` and is transformed deterministically into `data/ipos.json` by `scripts/build-published-data.mjs`. The publisher now also preserves `last_collected_at` per issuer, so regenerating one updated record does not falsely refresh unrelated IPOs.
 
 Validation now runs:
 
@@ -82,7 +86,7 @@ The first recovery adapter is deterministic but not yet an automated web collect
 
 ### Next priority
 
-Resolve the official BSE/NSE listing-notice source family for remaining final issue price, listing date and listed-status evidence. If direct official retrieval remains blocked, keep those fields null and proceed to the next official-source 2026 recovery family rather than using mirrors.
+Move to the next small 2026 official-source recovery batch using the now-proven NSE/SEBI issue-information and final-Prospectus pattern. Keep the BSE listing-notice blocker documented and revisit it when the official dynamic page or an official archive endpoint becomes directly retrievable.
 
 Preserve:
 
