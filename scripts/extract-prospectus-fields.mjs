@@ -257,8 +257,10 @@ export function findExplicitNiiMinimumApplicationAmounts(pageText, page = 1) {
   const pattern = /\bminimum\s+application(?:\s+(?:amount|size))?\s*(?:viz\.?|of|is|shall\s+be)?\s*[:\-–—]?\s*(?:₹|rs\.?|inr)\s*([0-9][0-9,]*(?:\.[0-9]+)?)\s*(million|lakhs?|lacs?|crores?)?\b/ig;
 
   for (const match of text.matchAll(pattern)) {
-    const prior = text.slice(Math.max(0, match.index - 320), match.index);
-    if (!/\bnon[\s-]*institutional(?:\s+(?:investor|bidder|portion|investors|bidders))?\b/i.test(prior)) {
+    const contextStart = Math.max(0, match.index - 320);
+    const contextEnd = Math.min(text.length, match.index + 420);
+    const categoryContext = text.slice(contextStart, contextEnd);
+    if (!/\bnon[\s-]*institutional(?:\s+(?:investor|bidder|portion|investors|bidders))?\b/i.test(categoryContext)) {
       continue;
     }
 
@@ -269,7 +271,7 @@ export function findExplicitNiiMinimumApplicationAmounts(pageText, page = 1) {
       value,
       source_value: match[0],
       page,
-      context: text.slice(Math.max(0, match.index - 320), Math.min(text.length, match.index + 360))
+      context: categoryContext
     });
   }
   return results;
