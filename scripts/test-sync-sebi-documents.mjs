@@ -51,6 +51,32 @@ assert.ok(rhp[0].url.startsWith("https://www.sebi.gov.in/filings/public-issues/"
 const allFilings = parseSebiListingHtml(listing, null, base);
 assert.equal(allFilings.length, 5);
 
+const malformedLiveRhp = `
+  <div>Sep 21, 2026</div>
+  <a href="https://www.sebi.gov.in/filings/public-issues/sep-2026/adroit-industries-limited-rhp_104607.html">
+    Adroit Industries Limited - Abridged Prospectus
+  </a>
+  <div>Sep 17, 2026</div>
+  <a href="https://www.sebi.gov.in/filings/public-issues/sep-2026/swastika-infra-ltd-rhp_104573.html">
+    Swastika Infra Ltd. - Abridged Prospectus
+  </a>
+  <div>Sep 11, 2026</div>
+  <a href="https://www.sebi.gov.in/filings/public-issues/sep-2026/national-stock-exchange-of-india-limited-rhp_104428.html">
+    NATIONAL STOCK EXCHANGE OF INDIA LIMITED - Abridged Prospectus
+  </a>
+`;
+const malformedParsed = parseSebiListingHtml(malformedLiveRhp, "rhp", base);
+assert.deepEqual(
+  malformedParsed.map((entry) => canonicalIssuer(entry.issuer_name)),
+  ["adroit industries", "swastika infra", "national stock exchange of india"]
+);
+assert.equal(matchIssuerRecord(records, malformedParsed[0].issuer_name).record.issuer_name, "Adroit Industries (India) Limited");
+assert.equal(matchIssuerRecord(records, malformedParsed[1].issuer_name).record.issuer_name, "Swastika Infra Limited");
+assert.equal(
+  matchIssuerRecord(records, malformedParsed[2].issuer_name).record.issuer_name,
+  "National Stock Exchange of India Limited"
+);
+
 const finals = parseSebiListingHtml(listing, "final", base);
 assert.equal(finals.length, 2);
 assert.equal(finals[0].issuer_name, "Manipal Payment & Identity Solutions Limited");
@@ -71,7 +97,8 @@ assert.ok(aps[0].url.includes("/sebi_data/commondocs/"));
 const records = [
   { record: { issuer_name: "Moneyview Limited" }, recovery: { changed: false } },
   { record: { issuer_name: "Swastika Infra Limited" }, recovery: { changed: false } },
-  { record: { issuer_name: "Adroit Industries (India) Limited" }, recovery: { changed: false } }
+  { record: { issuer_name: "Adroit Industries (India) Limited" }, recovery: { changed: false } },
+  { record: { issuer_name: "National Stock Exchange of India Limited" }, recovery: { changed: false } }
 ];
 
 assert.equal(matchIssuerRecord(records, "Moneyview Limited").record.issuer_name, "Moneyview Limited");
