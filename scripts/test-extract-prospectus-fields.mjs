@@ -2,19 +2,31 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import {
   applyIssuePriceExtraction,
+  applyIssueSizeExtraction,
   candidateProspectusDocument,
   candidateProspectusIssueSizeDocument,
   findAggregateIssueSizeMentions,
   findIssuePriceMentions,
+  parseExplicitAggregateIssueSizeFromPages,
   parseExplicitIssuePriceFromPages
 } from "./extract-prospectus-fields.mjs";
 
 const fixture = JSON.parse(
   fs.readFileSync(new URL("./fixtures/prospectus-issue-price-layout.json", import.meta.url), "utf8")
 );
+const sizeFixture = JSON.parse(
+  fs.readFileSync(new URL("./fixtures/prospectus-issue-size-layout.json", import.meta.url), "utf8")
+);
 
 for (const testCase of fixture.cases) {
   const extracted = parseExplicitIssuePriceFromPages(testCase.pages);
+  assert.equal(extracted?.value ?? null, testCase.expected?.value ?? null, testCase.name);
+  assert.equal(extracted?.page ?? null, testCase.expected?.page ?? null, testCase.name + " page");
+  if (testCase.expected) assert.match(extracted.source_value, /^₹/);
+}
+
+for (const testCase of sizeFixture.cases) {
+  const extracted = parseExplicitAggregateIssueSizeFromPages(testCase.pages);
   assert.equal(extracted?.value ?? null, testCase.expected?.value ?? null, testCase.name);
   assert.equal(extracted?.page ?? null, testCase.expected?.page ?? null, testCase.name + " page");
   if (testCase.expected) assert.match(extracted.source_value, /^₹/);
@@ -67,6 +79,20 @@ assert.equal(record.issue_price.page, 4);
 assert.equal(record.issue_price.source.url, doc.url);
 assert.equal(record.last_collected_at, "2026-09-22T05:00:00Z");
 
+assert.equal(
+  applyIssueSizeExtraction(
+    record,
+    doc,
+    { value: 5000000000, source_value: "₹5,000.00 million", page: 3 },
+    "2026-09-22T05:05:00Z"
+  ),
+  true
+);
+assert.equal(record.issue_size_inr.value, 5000000000);
+assert.equal(record.issue_size_inr.page, 3);
+assert.equal(record.issue_size_inr.source.url, doc.url);
+assert.equal(record.last_collected_at, "2026-09-22T05:05:00Z");
+
 const existing = {
   issuer_name: "Existing Limited",
   issue_price: { value: 88, source: { url: "https://example.com" } },
@@ -85,6 +111,16 @@ assert.equal(
   false
 );
 assert.equal(existing.issue_price.value, 88);
+assert.equal(
+  applyIssueSizeExtraction(
+    existing,
+    doc,
+    { value: 5000000000, source_value: "₹5,000.00 million", page: 3 },
+    "2026-09-22T05:05:00Z"
+  ),
+  false
+);
+assert.equal(existing.issue_size_inr.value, 1000);
 
 const mirrorRecord = {
   issuer_name: "Mirror Limited",
