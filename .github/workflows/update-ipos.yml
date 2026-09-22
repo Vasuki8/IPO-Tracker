@@ -72,8 +72,8 @@ jobs:
       - name: Test final Prospectus field extraction
         run: node scripts/test-extract-prospectus-fields.mjs
 
-      - name: Diagnose RHP minimum bid quantity
-        run: node scripts/extract-prospectus-fields.mjs --diagnose-rhp-min-bid
+      - name: Diagnose final Prospectus minimum bid quantity
+        run: node scripts/extract-prospectus-fields.mjs --diagnose-prospectus-min-bid
 
       - name: Extract explicit Abridged Prospectus fields
         run: node scripts/extract-abridged-fields.mjs
