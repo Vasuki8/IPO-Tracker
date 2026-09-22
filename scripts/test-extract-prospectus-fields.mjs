@@ -3,6 +3,7 @@ import fs from "node:fs";
 import {
   applyIssuePriceExtraction,
   candidateProspectusDocument,
+  findIssuePriceMentions,
   parseExplicitIssuePriceFromPages
 } from "./extract-prospectus-fields.mjs";
 
@@ -16,6 +17,15 @@ for (const testCase of fixture.cases) {
   assert.equal(extracted?.page ?? null, testCase.expected?.page ?? null, testCase.name + " page");
   if (testCase.expected) assert.match(extracted.source_value, /^₹/);
 }
+
+const diagnosticMentions = findIssuePriceMentions(
+  "The Offer Price shall be finalised after the Book Building Process. Later, the Issue Price is ₹424 per Equity Share.",
+  12
+);
+assert.equal(diagnosticMentions.length, 2);
+assert.equal(diagnosticMentions[0].page, 12);
+assert.match(diagnosticMentions[0].context, /Offer Price/);
+assert.match(diagnosticMentions[1].context, /Issue Price/);
 
 const doc = {
   type: "SEBI Prospectus PDF",
