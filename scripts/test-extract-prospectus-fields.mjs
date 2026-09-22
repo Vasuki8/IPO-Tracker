@@ -3,6 +3,7 @@ import fs from "node:fs";
 import {
   applyIssuePriceExtraction,
   applyIssueSizeExtraction,
+  applyMinimumBidExtraction,
   candidateProspectusDocument,
   candidateProspectusIssueSizeDocument,
   candidateProspectusMinimumBidDocument,
@@ -12,7 +13,8 @@ import {
   findAggregateIssueSizeMentions,
   findIssuePriceMentions,
   parseExplicitAggregateIssueSizeFromPages,
-  parseExplicitIssuePriceFromPages
+  parseExplicitIssuePriceFromPages,
+  parseExplicitMinimumBidQuantityFromPages
 } from "./extract-prospectus-fields.mjs";
 
 const fixture = JSON.parse(
@@ -35,6 +37,32 @@ for (const testCase of sizeFixture.cases) {
   assert.equal(extracted?.page ?? null, testCase.expected?.page ?? null, testCase.name + " page");
   if (testCase.expected) assert.match(extracted.source_value, /^₹/);
 }
+
+const explicitBidLot = parseExplicitMinimumBidQuantityFromPages([
+  "Offer overview.",
+  "Bid Lot 8 Equity Shares of face value of ₹1 each and in multiples of 8 Equity Shares thereafter."
+]);
+assert.equal(explicitBidLot.value, 8);
+assert.equal(explicitBidLot.page, 2);
+
+const explicitMinimumBid = parseExplicitMinimumBidQuantityFromPages([
+  "Minimum Bid 161 Equity Shares of face value of ₹10 each."
+]);
+assert.equal(explicitMinimumBid.value, 161);
+assert.equal(explicitMinimumBid.page, 1);
+
+assert.equal(
+  parseExplicitMinimumBidQuantityFromPages([
+    "Anchor Investors may submit a minimum Bid of ₹100.00 million."
+  ]),
+  null
+);
+assert.equal(
+  parseExplicitMinimumBidQuantityFromPages([
+    "Bid Lot [●] Equity Shares and in multiples of [●] Equity Shares thereafter."
+  ]),
+  null
+);
 
 const diagnosticMentions = findIssuePriceMentions(
   "The Offer Price shall be finalised after the Book Building Process. Later, the Issue Price is ₹424 per Equity Share.",
@@ -124,10 +152,26 @@ assert.equal(record.issue_size_inr.page, 3);
 assert.equal(record.issue_size_inr.source.url, doc.url);
 assert.equal(record.last_collected_at, "2026-09-22T05:05:00Z");
 
+assert.equal(
+  applyMinimumBidExtraction(
+    record,
+    doc,
+    { value: 8, source_value: "Bid Lot 8 Equity Shares", page: 10 },
+    "2026-09-22T05:10:00Z"
+  ),
+  true
+);
+assert.equal(record.minimum_bid_quantity.value, 8);
+assert.equal(record.minimum_bid_quantity.status, "verified");
+assert.equal(record.minimum_bid_quantity.page, 10);
+assert.equal(record.minimum_bid_quantity.source.url, doc.url);
+assert.equal(record.last_collected_at, "2026-09-22T05:10:00Z");
+
 const existing = {
   issuer_name: "Existing Limited",
   issue_price: { value: 88, source: { url: "https://example.com" } },
   issue_size_inr: { value: 1000, source: { url: "https://example.com" } },
+  minimum_bid_quantity: { value: 5, source: { url: "https://example.com" } },
   documents: [doc]
 };
 assert.equal(candidateProspectusDocument(existing), null);
@@ -178,6 +222,17 @@ assert.equal(
   false
 );
 assert.equal(existing.issue_size_inr.value, 1000);
+
+assert.equal(
+  applyMinimumBidExtraction(
+    existing,
+    doc,
+    { value: 8, source_value: "Bid Lot 8 Equity Shares", page: 10 },
+    "2026-09-22T05:10:00Z"
+  ),
+  false
+);
+assert.equal(existing.minimum_bid_quantity.value, 5);
 
 const mirrorRecord = {
   issuer_name: "Mirror Limited",
