@@ -389,3 +389,34 @@ The resulting source-backed data commit is `0110d864235eccb800efa5b206fa19bf9cdb
 All 9 retained final-Prospectus records now have both final issue price and aggregate issue-size evidence.
 
 Across the full 23-record dataset, `issue_size_inr` coverage is now 11 present / 12 missing. The next P1 work should continue issue-size recovery from a different reusable official source family for those remaining 12 records; the completed final-Prospectus extractor should not be broadened to infer missing values.
+
+## SEBI RHP freshness and direct-PDF recovery — production verified
+
+The current SEBI source layer now includes explicit freshness hardening for listing pages:
+
+- per-run cache-busting query token;
+- `Cache-Control: no-cache`;
+- `Pragma: no-cache`.
+
+This was required because GitHub Actions had continued receiving an older RHP listing while newer filings were already visible publicly.
+
+The live SEBI RHP markup also exposed a malformed-anchor case: an RHP filing URL could be paired with adjacent Abridged Prospectus text. The parser now trusts the official filing URL slug for issuer identity only when the visible title does not classify as the same document kind. Deterministic issuer matching itself is unchanged.
+
+Production verification:
+
+- PR #28: listing freshness repair;
+- PR #29: RHP issuer-identity repair;
+- run `35693813309`: 22 deterministic latest-list matches, 8 changed records, 11 documents added;
+- bot commit `ec684bc1fa558f2dafb7c7b90df6b750fc6f79ac`.
+
+For matched RHP filing pages, the collector now also resolves official direct attachments under `/sebi_data/attachdocs/` and stores them as `SEBI RHP PDF`.
+
+- PR #30: direct RHP PDF resolution;
+- run `35694073605`: 13 RHP PDFs resolved;
+- bot commit `3c2f3fb8a8737fe2067aab3e18e39ab86a68eeb6`;
+- no market value was extracted by the attachment step.
+
+After these repairs, five missing-size issuers have both retained RHP PDFs and Abridged Prospectuses. Their Abridged Prospectus total-size cells remain placeholders, so the existing extractor intentionally published no value.
+
+The next safe field-extraction layer should use the retained RHP PDFs only with **provisional field status**. The publication builder must first preserve a retained field's provisional status instead of automatically converting every non-null retained value to verified.
+
