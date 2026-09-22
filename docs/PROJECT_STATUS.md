@@ -4,115 +4,120 @@ Last updated: 2026-09-21
 
 ## Current state
 
-The repository now has a source-first public data contract **and the first real 2026 recovery slice**.
-
-Two IPO records are published from retained official-source evidence:
+The tracker publishes two real 2026 IPO records from retained official evidence:
 
 - Hero Motors Limited
 - Rentomojo Limited
 
-The batch is intentionally incomplete at the field level. Unsupported values remain null instead of being derived, estimated, or copied from aggregators.
+This batch deepened those records without filling unsupported gaps.
 
 ## Completed in latest batch
 
-- Added `data/recovery/2026/nse-issue-information.json` as the retained recovery manifest for the first source family.
-- Added `scripts/build-published-data.mjs` to deterministically transform retained recovery evidence into `data/ipos.json`.
-- Restricted the recovery publisher to official NSE and SEBI hosts.
-- Published Hero Motors Limited with source-backed:
-  - price band
-  - market lot
-  - minimum bid quantity
-  - offer open date
-  - offer close date
-  - total issue size
-- Published Rentomojo Limited with source-backed:
-  - price band
-  - market lot
-  - minimum bid quantity
-  - offer open date
-  - offer close date
-- Retained official NSE issue-information URLs and SEBI offer-document trails.
-- Preserved unsupported fields as null/missing, including issue price, minimum application amount, listing date, board, sector, and status where this batch did not establish them.
-- Added a CI synchronization check so `data/ipos.json` must exactly match the recovery manifest transformation.
-- Fixed validation workflow scope so every pushed recovery branch is tested rather than only the previous feature branch.
+### Hero Motors Limited
 
-## Source verification
+Added the final issue price:
 
-The batch was cross-checked against official sources before publication:
+- issue price: ₹84 per Equity Share
+- source: issuer-hosted final Prospectus dated September 18, 2026
+- evidence page: 10
+- source collection timestamp retained separately from earlier NSE/SEBI evidence
 
-- NSE issue information for Hero Motors Limited
-- NSE issue information for Rentomojo Limited
-- SEBI RHP / Abridged Prospectus / Prospectus trails for both issuers
-- Rentomojo RHP addendum retained in its document trail
-- Hero Motors total offer size is supported by its SEBI Abridged Prospectus
+The Prospectus explicitly defines the Offer Price as ₹84 per Equity Share.
 
-No aggregator value was used to fill a missing production field.
+### Rentomojo Limited
 
-## Tests
+Added the board classification:
 
-GitHub Actions passed on `recover-2026-nse-batch-1` with:
+- board: Mainboard
+- source: NSE-hosted Public Announcement dated March 28, 2026
+- evidence page: 1
+
+The announcement explicitly describes the proposed IPO as an initial public offering on the Main Board of BSE and NSE.
+
+### Data-contract improvements
+
+- Bumped published schema from `1.0.0` to `1.1.0`.
+- Added `board_evidence` and `status_evidence` arrays so scalar lifecycle metadata cannot lose provenance.
+- Validation now rejects a non-null board or status without retained evidence.
+- Added official issuer-host support for Hero Motors evidence.
+- Added official NSE archive host support.
+- Fixed recovery publication so regenerating the dataset no longer overwrites older evidence collection timestamps.
+- Preserved the original `first_observed_at` timestamp for both records.
+- New evidence receives the new collection time while existing evidence keeps its original collection time.
+
+## Fields intentionally still null
+
+### Hero Motors Limited
+
+- board
+- lifecycle status
+- listing date
+- minimum application amount
+
+### Rentomojo Limited
+
+- final issue price
+- lifecycle status
+- listing date
+- minimum application amount
+- issue size
+
+These values were not promoted because the retained official evidence available to this run did not meet the project's source-verification standard.
+
+## Source-recovery attempts that did not become production data
+
+- BSE notice `20260916-46` is discoverable through search/mirror indexing and describes Rentomojo's ₹404 issue price and September 17 listing, but the official dynamic BSE notice endpoint could not be independently retrieved in this development session. Mirror data was therefore not used as production evidence.
+- The SEBI Rentomojo final Prospectus filing was verified and exposes the official attached PDF URL, but direct retrieval of that PDF timed out in the available web tooling. No unverified values were extracted from secondary copies.
+- Hero Motors' official final Prospectus PDF was readable through the issuer site; the web screenshot renderer returned a cache-miss error, but the PDF text layer provided page-level evidence for the ₹84 Offer Price.
+- Rentomojo's NSE Public Announcement PDF is official and indexed with the explicit Main Board statement; the screenshot renderer could not render that search result, so the indexed official PDF text was used.
+
+## Tests required for this batch
+
+GitHub Actions must pass:
 
 - `node --check assets/app.js`
 - `node scripts/build-published-data.mjs --check`
 - `node scripts/validate-data.mjs`
 
-The diff review verified:
+Diff review must confirm:
 
-- the branch is based on current `main`;
-- exactly two IPO records are added;
-- null fields remain null;
-- verified values retain official evidence;
-- no correction history is deleted;
-- no unrelated UI or infrastructure files are changed;
-- the generated public dataset is synchronized with the retained recovery manifest.
-
-## Current limitation
-
-This is the first recovery adapter, not yet an automated web collector.
-
-The retained manifest was built from manually verified official NSE/SEBI evidence and is reproducibly published into the UI dataset. Automatic new-IPO discovery, document downloading, source-change detection, and scheduled refresh remain future P3 work.
-
-The historical 2026 universe is also far from complete.
+- exactly two existing records are enriched; no new issuer is introduced;
+- Hero issue price is ₹84 with official issuer evidence;
+- Rentomojo board is Mainboard with official NSE evidence;
+- previous evidence collection timestamps remain unchanged;
+- unsupported fields remain null;
+- no correction history is lost;
+- no unrelated product feature is changed.
 
 ## Earliest unfinished priority
 
 P1 — Data correctness.
 
-Before broad universe expansion, deepen the first recovered records so core terms are as complete as official sources permit, especially:
+The two-record pilot is now strong enough to demonstrate final-term enrichment. Remaining P1 work is split by source availability:
 
-- final issue price;
-- listing date;
-- board;
-- IPO lifecycle status;
-- minimum application amount only if directly supported or via a separately documented derivation rule.
+1. Resolve official listing/final-price evidence for Rentomojo from a directly retrievable BSE/NSE/SEBI source.
+2. Recover Hero Motors board/status/listing only when explicit official evidence is available.
+3. Then expand the same recovery pattern to the next small 2026 issuer batch.
 
 ## Recommended next coherent batch
 
-Recover the remaining core P1 fields for Hero Motors Limited and Rentomojo Limited from official final prospectus / exchange listing evidence.
+Resolve the official exchange listing-source family.
 
-Acceptance criteria:
+Target:
 
-1. official sources only;
-2. preserve nulls where evidence remains unavailable;
-3. do not silently calculate minimum application amount;
-4. retain source URL, identity, publication date, page/evidence location, and collection time;
-5. preserve any conflicts rather than overwriting them;
-6. pass recovery synchronization and data-contract validation;
-7. verify the enriched records render correctly after deployment.
+- official BSE/NSE listing notices;
+- final issue price;
+- listing date;
+- listed lifecycle status;
+- board classification where explicitly stated.
 
-## Prior publication
+Do not use third-party notice mirrors as production sources. If official dynamic exchange pages remain inaccessible, retain the gaps and move to another official source family rather than guessing.
 
-- Pull request: #1 — `Establish source-backed IPO data foundation`
+## Publication history
+
+- PR #1: source-backed data foundation
 - Foundation merge: `4ae4fb43b63fc9aebd5380bab33cd3cc838f48ec`
-- Deployment bookkeeping commit: `a3e1214e43e3ab19ea60a2c88baf975392775b5a`
-- Validation and GitHub Pages deployment passed.
-
-## Latest publication
-
-- Pull request: #2 — `Recover first source-backed 2026 IPO batch`
-- Squash-merged to `main`: `30d73b04677fda0f5d6c17a688f16fa50809840b`
-- Post-merge validation workflow: passed
-- Post-merge GitHub Pages deployment workflow: passed
-- Pages artifact `github-pages` was generated from the merged revision.
-- Direct retrieval of `https://vasuki8.github.io/IPO-Tracker/` was unavailable from the web tool in this development session, so visual live-page verification was not independently performed.
-- Repository/deployment verification confirms the published artifact contains the two-record source-backed dataset.
+- PR #2: first 2026 recovery batch
+- First recovery merge: `30d73b04677fda0f5d6c17a688f16fa50809840b`
+- First recovery deployment bookkeeping: `fc2c995b3e59e75eaacd3bdfec474a7cdf07aa6a`
+- Validation and GitHub Pages deployment passed for the prior production head.
