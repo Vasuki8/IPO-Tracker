@@ -6,7 +6,7 @@ A source-first Indian IPO research interface.
 
 The public UI now consumes a dedicated source-backed dataset at `data/ipos.json`.
 
-The source-backed 2026 recovery dataset now contains eleven real IPO issuers. Prototype IPO rows and illustrative market values are not used as production fallback data.
+The source-backed 2026 recovery dataset now contains fourteen real IPO issuers. Prototype IPO rows and illustrative market values are not used as production fallback data.
 
 ### Data foundation now includes
 
@@ -51,21 +51,19 @@ Use this section as the starting context when continuing work in a new chat.
 
 ### What happened in the latest run
 
-The bounded final-document pass for Kanohar Electricals, LCC Projects and Veegaland Developers remained blocked by inaccessible final-document delivery paths, so no final values were guessed.
+The bounded final-document pass for ESDS Software Solution, ARCIL and Sonaselection did not produce safely extractable final prices. ESDS and ARCIL require an India-location confirmation on their issuer sites; this session did not bypass that representation. Sonaselection's final official document was not directly readable in the bounded pass.
 
 The fallback then added three more official-source 2026 IPO records:
 
-- Asset Reconstruction Company (India) Limited
-- ESDS Software Solution Limited
-- Sonaselection India Limited
+- Karamtara Engineering Limited
+- Pranav Constructions Limited
+- Qualiance International Limited
 
-All three have NSE-verified price band, market lot, minimum bid quantity and offer dates plus retained SEBI RHP/Abridged Prospectus trails.
+Karamtara and Pranav have NSE-verified price band, market lot, minimum bid quantity and offer dates.
 
-ESDS additionally has a verified ₹7,200 million issue size because NSE explicitly states the entire issue is a fresh issue aggregating up to that amount.
+Qualiance is explicitly an NSE SME issue with a 1,000-share market lot. Because NSE does not separately state a minimum bid quantity on that page, `minimum_bid_quantity` remains null rather than being copied from the lot size.
 
-ARCIL and Sonaselection keep `issue_size_inr` null because their NSE issue-size disclosures are share counts rather than a single final INR aggregate.
-
-The published 2026 dataset now contains **11 issuers**.
+This brings the published 2026 dataset to **14 issuers**.
 
 Recovery input remains in `data/recovery/2026/nse-issue-information.json` and is transformed deterministically into `data/ipos.json`.
 
@@ -81,7 +79,7 @@ Recovery is deterministic but not yet an automated web collector, and the 2026 I
 
 ### Next priority
 
-Attempt one bounded final-document recovery pass for ESDS, ARCIL and Sonaselection from directly readable official final Prospectus copies. If those sources are blocked, immediately continue with the next small 2026 official-source issuer batch rather than repeatedly retrying inaccessible documents.
+Attempt one bounded final-document recovery pass for Karamtara Engineering, Pranav Constructions and Qualiance International. Add final issue price / aggregate issue size only from directly readable official final documents. If those sources remain blocked, immediately continue with the next small 2026 official-source issuer batch.
 
 Preserve:
 
