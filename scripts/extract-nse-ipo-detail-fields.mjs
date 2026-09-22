@@ -311,6 +311,47 @@ export function marketLotCandidatesFromIpoDetail(payload) {
     }));
 }
 
+export function parseMarketLotFromIpoDetail(payload) {
+  const candidates = marketLotCandidatesFromIpoDetail(payload);
+  const parsed = [];
+
+  for (const item of candidates) {
+    const quantity = parseEquityShareQuantity(item.value);
+    if (quantity !== null) {
+      parsed.push({ ...item, quantity });
+    }
+  }
+
+  if (parsed.length === 0) {
+    return {
+      value: null,
+      reason: candidates.length > 0 ? "placeholder_or_unparseable" : "term_absent",
+      evidence_items: candidates
+    };
+  }
+
+  const unique = [...new Set(parsed.map((item) => item.quantity))];
+  if (unique.length !== 1) {
+    return {
+      value: null,
+      reason: "official_term_conflict",
+      evidence_items: candidates
+    };
+  }
+
+  const preferred =
+    parsed.find((item) => normalizeTitle(item.title) === "market lot") ||
+    parsed.find((item) => normalizeTitle(item.title) === "lot size");
+
+  return {
+    value: unique[0],
+    reason: null,
+    source_value: preferred.value,
+    source_title: preferred.title,
+    evidence_items: candidates
+  };
+}
+
 export function parseMinimumBidFromIpoDetail(payload) {
   const list = payload?.issueInfo?.dataList;
   if (!Array.isArray(list)) {
@@ -427,6 +468,19 @@ function candidateRecords() {
   });
 }
 
+function marketLotCandidateRecords() {
+  return recoveryFiles().flatMap((file) => {
+    const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
+    return (recovery.records || [])
+      .filter((record) =>
+        resolveNseIdentity(record) &&
+        (record.terms?.market_lot === null || record.terms?.market_lot === undefined) &&
+        (record.market_lot?.value === null || record.market_lot?.value === undefined)
+      )
+      .map((record) => ({ file, recovery, record }));
+  });
+}
+
 function issueSizeCandidateRecords() {
   return recoveryFiles().flatMap((file) => {
     const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
@@ -506,6 +560,44 @@ function addDocumentOnce(record, document) {
     return false;
   }
   record.documents.push(document);
+  return true;
+}
+
+export function applyMarketLot(record, extraction, sourceUrl, collectedAt) {
+  if (!extraction?.value) return false;
+  if (record.terms?.market_lot !== null && record.terms?.market_lot !== undefined) return false;
+  if (record.market_lot?.value !== null && record.market_lot?.value !== undefined) return false;
+
+  const identity = resolveNseIdentity(record);
+  if (!identity) return false;
+  const symbol = identity.symbol;
+
+  if (!record.nse_symbol) record.nse_symbol = identity.symbol;
+  if (!record.nse_series) record.nse_series = identity.series;
+
+  record.market_lot = {
+    value: extraction.value,
+    source_value: extraction.source_value,
+    status: "verified",
+    page: null,
+    source: {
+      url: sourceUrl,
+      document_type: "NSE Issue Information API",
+      document_identity: "NSE Issue Information — " + symbol,
+      publication_date: null,
+      collected_at: collectedAt
+    }
+  };
+
+  addDocumentOnce(record, {
+    type: "NSE Issue Information API",
+    identity: "NSE Issue Information — " + symbol,
+    url: sourceUrl,
+    publication_date: null,
+    collected_at: collectedAt
+  });
+
+  record.last_collected_at = collectedAt;
   return true;
 }
 
@@ -912,6 +1004,93 @@ async function diagnoseMarketLot() {
   }
 
   console.log(JSON.stringify({ nse_market_lot_diagnostic_stats: stats }, null, 2));
+}
+
+async function runMarketLot() {
+  const now = new Date().toISOString();
+  const landing = await fetchWithRetry(NSE_HOME, {
+    headers: {
+      "user-agent": USER_AGENT,
+      "accept": "text/html,application/xhtml+xml",
+      "accept-language": "en-US,en;q=0.9"
+    }
+  });
+  const cookie = cookieHeader(landing.headers);
+
+  const groups = new Map();
+  for (const candidate of marketLotCandidateRecords()) {
+    if (!groups.has(candidate.file)) {
+      groups.set(candidate.file, { recovery: candidate.recovery, candidates: [] });
+    }
+    groups.get(candidate.file).candidates.push(candidate.record);
+  }
+
+  const stats = {
+    candidates: 0,
+    api_success: 0,
+    extracted: 0,
+    missing_or_placeholder: 0,
+    conflicts: 0,
+    fetch_errors: 0
+  };
+
+  for (const [file, group] of groups) {
+    let changed = false;
+
+    for (const record of group.candidates) {
+      stats.candidates += 1;
+      const url = apiUrl(record);
+
+      try {
+        const response = await fetchWithRetry(url, {
+          headers: {
+            "user-agent": USER_AGENT,
+            "accept": "application/json,text/plain,*/*",
+            "accept-language": "en-US,en;q=0.9",
+            "referer": NSE_HOME,
+            "cookie": cookie,
+            "cache-control": "no-cache",
+            "pragma": "no-cache"
+          }
+        });
+        const payload = await response.json();
+        stats.api_success += 1;
+
+        const extraction = parseMarketLotFromIpoDetail(payload);
+        if (extraction.reason === "official_term_conflict") {
+          stats.conflicts += 1;
+          console.warn(
+            "NSE market-lot conflict retained as null for " + record.issuer_name + ": " +
+            JSON.stringify(extraction.evidence_items)
+          );
+        } else if (extraction.value === null) {
+          stats.missing_or_placeholder += 1;
+        } else if (applyMarketLot(record, extraction, url, now)) {
+          stats.extracted += 1;
+          changed = true;
+          console.log(
+            "Extracted NSE market lot for " + record.issuer_name + ": " +
+            extraction.value + " Equity Shares (" + extraction.source_title + ")"
+          );
+        }
+      } catch (error) {
+        stats.fetch_errors += 1;
+        console.warn(
+          "NSE ipo-detail unavailable for market-lot extraction for " +
+          record.issuer_name + ": " + error.message
+        );
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 650));
+    }
+
+    if (changed) {
+      group.recovery.generated_at = now;
+      fs.writeFileSync(file, JSON.stringify(group.recovery, null, 2) + "\n");
+    }
+  }
+
+  console.log(JSON.stringify(stats, null, 2));
 }
 
 async function runIssueSize() {
@@ -1331,10 +1510,12 @@ const isMain = process.argv[1] &&
   pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
 
 if (isMain) {
-  const action = process.argv.includes("--diagnose-market-lot")
-    ? diagnoseMarketLot
-    : process.argv.includes("--issue-size")
-      ? runIssueSize
+  const action = process.argv.includes("--market-lot")
+    ? runMarketLot
+    : process.argv.includes("--diagnose-market-lot")
+      ? diagnoseMarketLot
+      : process.argv.includes("--issue-size")
+        ? runIssueSize
     : process.argv.includes("--diagnose-issue-size")
       ? diagnoseIssueSize
     : process.argv.includes("--diagnose-issue-price")

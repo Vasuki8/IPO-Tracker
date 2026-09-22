@@ -124,7 +124,9 @@ function normalizeRecord(record, collectedAt) {
       : verifiedField(record.terms?.price_band ?? null, nse),
     issue_price: retainedField(record.issue_price, collectedAt),
     issue_size_inr: retainedField(record.issue_size_inr, collectedAt),
-    market_lot: verifiedField(record.terms?.market_lot ?? null, nse),
+    market_lot: record.market_lot?.value !== null && record.market_lot?.value !== undefined
+      ? retainedField(record.market_lot, collectedAt)
+      : verifiedField(record.terms?.market_lot ?? null, nse),
     minimum_bid_quantity: record.minimum_bid_quantity?.value !== null && record.minimum_bid_quantity?.value !== undefined
       ? retainedField(record.minimum_bid_quantity, collectedAt)
       : verifiedField(record.terms?.minimum_bid_quantity ?? null, nse),

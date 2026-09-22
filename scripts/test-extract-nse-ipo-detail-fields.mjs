@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import {
   applyIssueSize,
   applyListingDate,
+  applyMarketLot,
   applyMinimumBid,
   issuePriceCandidatesFromIpoDetail,
   issueSizeCandidatesFromIpoDetail,
@@ -10,6 +11,7 @@ import {
   marketLotCandidatesFromIpoDetail,
   applyPriceBand,
   parseListingDateFromIpoDetail,
+  parseMarketLotFromIpoDetail,
   parseMinimumBidFromIpoDetail,
   parsePriceBandFromIpoDetail,
   priceBandCandidatesFromIpoDetail,
@@ -229,6 +231,40 @@ assert.deepEqual(
   []
 );
 
+const axiomMarketLot = parseMarketLotFromIpoDetail({
+  issueInfo: {
+    dataList: [{ title: "Lot Size", value: "2000 Equity Shares" }]
+  }
+});
+assert.equal(axiomMarketLot.value, 2000);
+assert.equal(axiomMarketLot.source_title, "Lot Size");
+
+assert.equal(
+  parseMarketLotFromIpoDetail({
+    issueInfo: { dataList: [{ title: "Market Lot", value: "[●] Equity Shares" }] }
+  }).value,
+  null
+);
+
+assert.equal(
+  parseMarketLotFromIpoDetail({
+    issueInfo: { dataList: [{ title: "Bid Lot", value: "40 Equity Shares" }] }
+  }).reason,
+  "term_absent"
+);
+
+assert.equal(
+  parseMarketLotFromIpoDetail({
+    issueInfo: {
+      dataList: [
+        { title: "Market Lot", value: "1000 Equity Shares" },
+        { title: "Lot Size", value: "2000 Equity Shares" }
+      ]
+    }
+  }).reason,
+  "official_term_conflict"
+);
+
 const marketLotCandidates = marketLotCandidatesFromIpoDetail({
   issueInfo: {
     dataList: [
@@ -358,6 +394,39 @@ assert.equal(record.minimum_bid_quantity.value, 70);
 assert.equal(record.minimum_bid_quantity.status, "verified");
 assert.equal(record.minimum_bid_quantity.source.document_type, "NSE Issue Information API");
 assert.equal(record.documents.length, 1);
+
+assert.equal(
+  applyMarketLot(
+    record,
+    {
+      value: 2000,
+      source_value: "2000 Equity Shares",
+      source_title: "Lot Size"
+    },
+    "https://www.nseindia.com/api/ipo-detail?symbol=EXAMPLE&series=EQ",
+    "2026-10-04T12:10:00Z"
+  ),
+  true
+);
+assert.equal(record.market_lot.value, 2000);
+assert.equal(record.market_lot.status, "verified");
+assert.equal(record.market_lot.source.document_type, "NSE Issue Information API");
+assert.equal(record.documents.length, 1);
+
+assert.equal(
+  applyMarketLot(
+    record,
+    {
+      value: 2500,
+      source_value: "2500 Equity Shares",
+      source_title: "Market Lot"
+    },
+    "https://www.nseindia.com/api/ipo-detail?symbol=EXAMPLE&series=EQ",
+    "2026-10-05T12:10:00Z"
+  ),
+  false
+);
+assert.equal(record.market_lot.value, 2000);
 
 assert.equal(
   applyIssueSize(
