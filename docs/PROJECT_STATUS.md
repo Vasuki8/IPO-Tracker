@@ -1444,3 +1444,43 @@ Acceptance rules:
 - PR #60: NSE ipo-detail market-lot diagnostic
 - PR #61: strict NSE ipo-detail market-lot extraction
 - NSE market-lot bot commit: `fbe718e911d9649e9a6007a9c2922af23b397816`
+
+
+## Latest completed batch — NSE minimum-application source survey
+
+The first official-source family for `minimum_application_amount_inr` has now been measured and closed without publishing inferred values.
+
+### Production diagnostic
+
+Commit `d2db8ae6f0454871f2f373efb6198cfc160c546d` added a read-only survey of explicit minimum-application / minimum-investment labels in official NSE `/api/ipo-detail` static issue terms.
+
+Production sync run `35759732510` completed the diagnostic step before a later concurrency cancellation:
+
+- deterministic 2026 candidates: **26**
+- successful NSE API responses: **26**
+- responses with explicit minimum application / minimum investment terms: **0**
+- fetch errors: **0**
+- data writes from the diagnostic: **0**
+
+A bounded confirmation run on commit `8ba821f8de6013dcdc56f19cbb5040e6a6e3055f` sampled six issuers across Mainboard and SME. Sync run `35760191175` again returned **6/6 successful API responses, 0 explicit application-amount terms, and 0 fetch errors**. The full workflow completed successfully.
+
+### Decision
+
+No `minimum_application_amount_inr` value is published from NSE `ipo-detail`.
+
+The field remains **0/26 present** because the official endpoint does not expose an explicit application-amount term for the current universe. The tracker deliberately does **not** compute price × quantity, use the upper price-band cap, or reinterpret Bid Lot / Minimum Order Quantity as an INR amount.
+
+The temporary diagnostic is removed from hourly execution after this measurement; the reusable production extractors remain unchanged.
+
+### Recommended next coherent batch
+
+Continue P1 minimum-application recovery with a **different official source family** that can state the INR amount explicitly, starting with retained official offer documents / price-band advertisements where available.
+
+Acceptance rules remain:
+
+- explicit INR application/investment amount only;
+- no arithmetic derivation from price and quantity;
+- no price-band-cap inference;
+- no reuse of market lot or minimum bid as an amount;
+- page-level evidence for PDF sources;
+- preserve null when the official document does not state the amount unambiguously.
