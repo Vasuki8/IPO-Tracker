@@ -9,6 +9,8 @@ export const SEBI_RHP_LIST_URL =
   "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=11&ssid=15";
 export const SEBI_FINAL_LIST_URL =
   "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=12&ssid=15";
+export const SEBI_ALL_FILINGS_URL =
+  "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&sid=3";
 export const SEBI_SEARCH_URL =
   "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes";
 export const MAX_TARGETED_SEARCHES = 12;
@@ -342,8 +344,9 @@ async function discoverListing(url, kind) {
   if (entries.length === 0) {
     const filingRefs = (html.match(/filings[\\/]+public-issues/gi) || []).length;
     const pageText = stripTags(html).slice(0, 500);
+    const label = kind || "general filings";
     fail(
-      `${kind} listing returned no parseable filing entries ` +
+      `${label} listing returned no parseable filing entries ` +
       `(bytes=${html.length}, filing_refs=${filingRefs}, page_head=${JSON.stringify(pageText)})`
     );
   }
@@ -416,14 +419,24 @@ async function run() {
     (recovery.data.records || []).map((record) => ({ recovery, record }))
   );
 
-  const [rhpEntries, finalEntries] = await Promise.all([
+  const [rhpEntries, finalEntries, allFilingsEntries] = await Promise.all([
     discoverListing(SEBI_RHP_LIST_URL, "rhp"),
-    discoverListing(SEBI_FINAL_LIST_URL, "final")
+    discoverListing(SEBI_FINAL_LIST_URL, "final"),
+    discoverListing(SEBI_ALL_FILINGS_URL, null)
   ]);
+
+  const primaryEntries = [];
+  const primarySeen = new Set();
+  for (const entry of [...rhpEntries, ...finalEntries, ...allFilingsEntries]) {
+    const key = `${entry.kind}|${entry.url}`;
+    if (primarySeen.has(key)) continue;
+    primarySeen.add(key);
+    primaryEntries.push(entry);
+  }
 
   const detailCache = new Map();
   const stats = {
-    listing_entries: rhpEntries.length + finalEntries.length,
+    listing_entries: primaryEntries.length,
     matched: 0,
     unmatched: 0,
     changed_records: 0,
@@ -435,7 +448,7 @@ async function run() {
   };
   const changedRecords = new Set();
 
-  for (const entry of [...rhpEntries, ...finalEntries]) {
+  for (const entry of primaryEntries) {
     const match = matchIssuerRecord(records, entry.issuer_name);
     if (!match) {
       stats.unmatched += 1;
