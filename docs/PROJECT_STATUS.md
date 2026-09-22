@@ -1176,22 +1176,122 @@ Published dataset: **26 IPOs**.
 
 All 12 remaining issue-price nulls are not yet listed or do not yet have a published listing date. They remain null intentionally; the hourly past-issues extractor will recover them after NSE publishes a completed-issue row.
 
+## Latest completed batch — safe NSE ipo-detail aggregate issue-size extraction
+
+### Read-only source diagnostic
+
+PR #57 — `Diagnose NSE ipo-detail aggregate issue size`
+
+Squash-merged:
+
+`c817e01ca52b2c2af58bf32a5e53c4aeb0bc0706`
+
+Production run `35748672356`:
+
+- candidates: 14;
+- API successes: 13;
+- responses with supported overall-size title: 13;
+- fetch errors: 1 temporary Moneyview timeout;
+- data writes: 0.
+
+Observed source classes:
+
+1. **Share-count only** — no INR aggregate, therefore remain null.
+2. **Mixed Fresh Issue + OFS** — component prose would require arithmetic or share-price conversion, therefore remain null.
+3. **Pure one-leg INR offer** — a sole Fresh Issue / OFS amount is the complete offer and can be accepted without arithmetic.
+
+Safe live examples:
+
+- ArMee Infotech Limited — pure Fresh Issue aggregating up to **Rs. 30,000 Lakhs**;
+- Elevate Campuses Limited — pure Fresh Issue aggregating up to **Rs. 21,000 million**.
+
+Rejected examples include:
+
+- Axiom — Fresh Issue stated only as 93,98,000 Equity Shares;
+- Swastika — INR Fresh Issue plus OFS share count;
+- Varmora — INR Fresh Issue plus OFS share count;
+- ARCIL — OFS share count only.
+
+### Production extractor
+
+PR #58 — `Extract safe aggregate issue size from NSE ipo-detail`
+
+Squash-merged:
+
+`09e1eb9166d73cc1d71e8994821238ce5468897c`
+
+Rules:
+
+- official NSE `/api/ipo-detail` only;
+- exact overall `Issue Size` / `Total Issue Size` / `Offer Size` title;
+- strip parenthetical carve-outs before evaluating the top-level offer;
+- accept only a sole Fresh Issue or sole OFS leg when it is explicitly INR-denominated;
+- support crore/million/lakh/lac unit conversion;
+- never sum multiple offer legs;
+- never convert share counts via issue price;
+- reject share-count-only and mixed-leg prose;
+- fill missing `issue_size_inr` only;
+- retain exact endpoint evidence and collection timestamp.
+
+Production run `35749978275`:
+
+- candidates: 14;
+- API successes: 14;
+- extracted: 2;
+- unsupported/share-count rows: 12;
+- conflicts: 0;
+- fetch errors: 0.
+
+Published verified values:
+
+1. ArMee Infotech Limited — ₹3,000,000,000
+2. Elevate Campuses Limited — ₹21,000,000,000
+
+Bot data commit:
+
+`ccdf8f308f437257d64b2e9b3bd99eb9729eaa57`
+
+Bot diff review confirmed only:
+
+- `data/recovery/2026/nse-issue-information.json`;
+- generated `data/ipos.json`
+
+changed.
+
+GitHub Pages deployment for the bot revision passed in run `35750326661`.
+
+### Current P1 coverage snapshot
+
+Published dataset: **26 IPOs**.
+
+- price band: **26/26**;
+- issue price: **14/26**;
+- issue size INR: **14/26**;
+- market lot: **18/26**;
+- minimum bid quantity: **20/26**;
+- minimum application amount: **0/26**;
+- open date: **26/26**;
+- close date: **26/26**;
+- listing date: **10/26**.
+
+The 12 remaining issue-size nulls are source-blocked under the currently supported official patterns. Existing hourly NSE/final-Prospectus automation will re-evaluate them as authoritative source data changes.
+
 ## Recommended next coherent batch
 
-Continue P1 with **aggregate issue-size INR recovery**.
+Continue P1 with **explicit market-lot recovery** for the 8 missing records.
 
-Current coverage is **12/26**. Start with missing-size records that already have deterministic NSE `/api/ipo-detail` access and inspect the exact `Issue Size` title/value text before enabling writes.
+Start by inspecting exact `Market Lot` / `Lot Size` title-value pairs in official NSE `/api/ipo-detail` data.
 
 Acceptance rules:
 
 - official NSE source only;
-- explicit overall INR aggregate only;
-- do not treat share counts as rupee issue size;
-- do not sum Fresh Issue + OFS components;
-- do not calculate shares × issue price;
-- fill missing `issue_size_inr` only;
-- retain exact source URL/identity/collection timestamp;
-- preserve null for placeholders, component-only amounts, or ambiguous prose.
+- deterministic NSE symbol/series;
+- accept only explicit Market Lot / Lot Size wording;
+- keep `market_lot` distinct from `minimum_bid_quantity`;
+- never copy `Bid Lot` or `Minimum Order Quantity` into `market_lot`;
+- fill missing values only;
+- retain exact endpoint/source identity and collection time;
+- preserve null for absent, placeholder or ambiguous values.
 
 ## Publication history
 
@@ -1242,3 +1342,6 @@ Acceptance rules:
 - PR #53–#54: NSE public past-issues final-price diagnostic/wiring
 - PR #55: strict NSE public past-issues final-price extraction
 - NSE final-price bot commit: `8746f22505f8d79920923670d3a9381699c82d17`
+- PR #57: NSE ipo-detail aggregate issue-size diagnostic
+- PR #58: safe one-leg NSE ipo-detail issue-size extraction
+- NSE ipo-detail issue-size bot commit: `ccdf8f308f437257d64b2e9b3bd99eb9729eaa57`
