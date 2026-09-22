@@ -113,7 +113,7 @@ Post-merge validation and GitHub Pages deployment for head
 
 ## Verified SEBI coverage limitation
 
-The SEBI network/parser path is operational, but the current raw responses available to GitHub Actions do **not yet enrich the nine sparse records created by the first NSE live run**.
+The SEBI network/parser path is operational. After the September 22 RHP freshness/identity repairs, three formerly sparse records—Adroit Industries (India), National Stock Exchange of India, and Swastika Infra—are now enriched from current official SEBI RHP/Abridged sources. Six live-discovered records remain without retained SEBI evidence.
 
 Latest measured result:
 
@@ -124,17 +124,14 @@ Latest measured result:
 - 0 deterministic targeted issuer matches;
 - 0 new documents added.
 
-The nine still-sparse live-discovered issuers are:
+The six still-sparse live-discovered issuers are:
 
-1. Adroit Industries (India) Limited
-2. ArMee Infotech Limited
-3. Axiom Gas Engineering Limited
-4. Coreintegra Consulting Services Limited
-5. Elevate Campuses Limited
-6. National Stock Exchange of India Limited
-7. Pooja Logistics Limited
-8. Swastika Infra Limited
-9. Varmora Granito Limited
+1. ArMee Infotech Limited
+2. Axiom Gas Engineering Limited
+3. Coreintegra Consulting Services Limited
+4. Elevate Campuses Limited
+5. Pooja Logistics Limited
+6. Varmora Granito Limited
 
 This is documented as a **source-delivery / coverage limitation**, not a reason to loosen matching.
 
@@ -558,19 +555,116 @@ Follow-up repair:
 - script URLs are versioned to bypass stale browser asset cache;
 - validation now asserts that the published dataset itself is already newest-first.
 
+## Latest completed batch — SEBI RHP freshness, matching and direct-PDF recovery
+
+### Listing freshness repair
+
+PR #28 — `Bypass stale SEBI listing cache`
+
+Squash-merged:
+
+`7c7c79855628a5ef77c3ff981f201e6a98a07b90`
+
+The collector now:
+
+- adds a per-run cache-busting token to SEBI listing requests;
+- sends `Cache-Control: no-cache` and `Pragma: no-cache`;
+- logs the parsed RHP-list head for production verification.
+
+Production run `35693581226` confirmed the GitHub Actions runner could see current entries including Adroit, Swastika Infra and National Stock Exchange of India. That run also exposed a second live markup issue.
+
+### Malformed RHP anchor identity repair
+
+PR #29 — `Repair issuer identity on malformed SEBI RHP anchors`
+
+Squash-merged:
+
+`d89ace7548358946a455b2039def30a1c9fa3f65`
+
+SEBI's live markup can pair an official RHP filing URL with adjacent Abridged Prospectus anchor text. When title-kind and filing-URL-kind disagree, issuer identity is now derived from the official filing URL slug rather than the unsafe anchor text. Exact deterministic record matching is still required.
+
+Production sync:
+
+- run ID: `35693813309`
+- latest-list matches: 22, up from 9 before the repair;
+- unmatched current-list entries: 24;
+- changed issuer records: 8;
+- official documents added: 11.
+
+The source-backed document commit was:
+
+`ec684bc1fa558f2dafb7c7b90df6b750fc6f79ac`
+
+Newly enriched formerly sparse issuers include:
+
+- Adroit Industries (India) Limited;
+- National Stock Exchange of India Limited;
+- Swastika Infra Limited.
+
+The same repair also attached previously missed Abridged Prospectuses to several already-enriched records.
+
+### Direct RHP PDF resolution
+
+PR #30 — `Resolve direct SEBI RHP PDF attachments`
+
+Squash-merged:
+
+`fa71baaf588930aa648e87dfade658729f44769a`
+
+The RHP detail-page layer now resolves official `sebi.gov.in/sebi_data/attachdocs/*.pdf` viewer targets and stores them distinctly as `SEBI RHP PDF`.
+
+Production sync:
+
+- run ID: `35694073605`
+- deterministic latest-list matches: 22;
+- direct RHP PDFs resolved: 13;
+- changed records: 13;
+- market fields changed by this attachment stage: 0.
+
+Bot document commit:
+
+`3c2f3fb8a8737fe2067aab3e18e39ab86a68eeb6`
+
+GitHub Pages deployment for that bot revision passed in run `35694143832`.
+
+### Remaining issue-size state
+
+Overall `issue_size_inr` coverage remains **11 present / 12 missing**.
+
+Five missing-size records now have retained official `SEBI RHP PDF` plus Abridged Prospectus evidence:
+
+1. Adroit Industries (India) Limited
+2. Asset Reconstruction Company (India) Limited
+3. National Stock Exchange of India Limited
+4. Sonaselection India Limited
+5. Swastika Infra Limited
+
+The existing Abridged Prospectus page-1 extractor evaluated all five after the source repairs:
+
+- candidates: 5;
+- downloaded: 5;
+- extracted: 0;
+- placeholders/missing: 5;
+- fetch errors: 0.
+
+Those nulls were preserved deliberately.
+
 ## Recommended next coherent batch
 
-Continue P1 **issue-size source coverage** for the remaining 12 of 23 published IPO records where `issue_size_inr` is still missing.
+Build a bounded **provisional RHP aggregate issue-size extractor** for the five RHP-backed missing-size records.
 
-Do not revisit the completed final-Prospectus family. Identify the next reusable official source family among already-retained RHP, Abridged Prospectus, NSE/BSE, issuer or registrar evidence and recover only explicit aggregate amounts.
+Before writing values, extend retained-field publication so recovery data can preserve `status: "provisional"`; the current builder converts every retained non-null field to `verified`, which is not appropriate for RHP-derived terms that may change before the final Prospectus.
 
-Acceptance rules remain:
+Acceptance rules:
 
-- retain official URL/document identity/publication date/page;
-- fill missing values only;
+- use only retained official `SEBI RHP PDF` sources;
+- accept only an explicit top-level Offer/Issue aggregate amount;
+- retain page-level evidence;
+- fill missing `issue_size_inr` only;
+- publish RHP-derived values as `provisional`;
 - never sum Fresh Issue + OFS components;
-- never calculate shares × price;
-- preserve null for placeholders, component-only disclosures or ambiguous amounts.
+- never calculate shares × issue price;
+- preserve null when the RHP itself contains placeholders or ambiguous totals.
 
 ## Publication history
 
@@ -595,3 +689,8 @@ Acceptance rules remain:
 - PR #23: read-only diagnostic for final Prospectus aggregate-size wording
 - PR #24: explicit aggregate issue-size extraction from final SEBI Prospectuses
 - Final Prospectus issue-size bot commit: `0110d864235eccb800efa5b206fa19bf9cdb0fb4`
+- PR #28: SEBI listing cache-freshness repair
+- PR #29: malformed live RHP-anchor issuer identity repair
+- RHP/Abridged source-recovery bot commit: `ec684bc1fa558f2dafb7c7b90df6b750fc6f79ac`
+- PR #30: direct SEBI RHP PDF resolution
+- RHP PDF attachment bot commit: `3c2f3fb8a8737fe2067aab3e18e39ab86a68eeb6`
