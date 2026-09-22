@@ -4,6 +4,8 @@ import {
   applyIssueSizeExtraction,
   candidateAbridgedDocument,
   candidateAbridgedMinimumBidDocument,
+  candidateAbridgedMinimumApplicationDocument,
+  findMinimumApplicationAmountMentions,
   findMinimumBidMentions,
   parseExplicitTotalIssueSize
 } from "./extract-abridged-fields.mjs";
@@ -37,6 +39,25 @@ const record = {
 
 assert.equal(candidateAbridgedDocument(record), doc);
 assert.equal(candidateAbridgedMinimumBidDocument(record), doc);
+assert.equal(candidateAbridgedMinimumApplicationDocument(record), doc);
+
+const minApplicationMentions = findMinimumApplicationAmountMentions(
+  "MINIMUM APPLICATION AMOUNT: Rs. 14,850 for retail individual bidders."
+);
+assert.equal(minApplicationMentions.length, 1);
+assert.match(minApplicationMentions[0], /Rs\. 14,850/i);
+assert.deepEqual(
+  findMinimumApplicationAmountMentions(
+    "MINIMUM APPLICATION SIZE: 100 Equity Shares. BID LOT: 100 Equity Shares."
+  ),
+  []
+);
+assert.deepEqual(
+  findMinimumApplicationAmountMentions(
+    "MAXIMUM APPLICATION AMOUNT: Rs. 2,00,000. Minimum bid is 100 Equity Shares."
+  ),
+  []
+);
 
 const minBidMentions = findMinimumBidMentions(
   "BIDS CAN BE MADE FOR A MINIMUM OF 100 EQUITY SHARES AND IN MULTIPLES OF 100 EQUITY SHARES THEREAFTER."
@@ -73,6 +94,11 @@ assert.equal(candidateAbridgedMinimumBidDocument({
   issue_size_inr: undefined,
   minimum_bid_quantity: undefined,
   terms: { minimum_bid_quantity: 75 }
+}), null);
+assert.equal(candidateAbridgedMinimumApplicationDocument({
+  ...existing,
+  issue_size_inr: undefined,
+  minimum_application_amount_inr: { value: 15000, source: { url: "https://example.com" } }
 }), null);
 assert.equal(
   applyIssueSizeExtraction(
