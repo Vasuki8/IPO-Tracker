@@ -672,3 +672,27 @@ Published market-lot coverage is now **19/26**.
 
 The next P1 field family is minimum application amount INR. Start with explicit official source text; do not compute it from price and quantity in the first extraction family.
 
+## NSE minimum-application amount survey — no explicit source term
+
+The first minimum-application source family was official NSE `/api/ipo-detail` `issueInfo.dataList`.
+
+PR #63 added a read-only diagnostic that looks only for static labels containing both:
+
+- minimum; and
+- application or investment.
+
+It explicitly ignores Minimum Order Quantity, Bid Lot, Market Lot and price fields.
+
+The initial all-universe diagnostic was too expensive for an hourly non-writing step and was cancelled. PR #65 bounded the survey to six representative deterministic issues covering both Mainboard/SME and upcoming/open/listed lifecycle states.
+
+Production run `35760191175` completed:
+
+- 6 candidates;
+- 6 successful official NSE API calls;
+- 0 responses with supported minimum-application/investment terms;
+- 0 fetch errors.
+
+Accordingly, no production extractor was added and `minimum_application_amount_inr` remains null for all 26 records.
+
+Do not derive this field from minimum bid quantity × issue price, market lot × price, or the price-band cap. The next safe source family is retained official SEBI offer documents with explicit labelled INR wording and page-level evidence.
+
