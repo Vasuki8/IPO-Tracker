@@ -84,6 +84,65 @@ export function priceBandCandidatesFromIpoDetail(payload) {
     }));
 }
 
+function parseRupeeBand(value) {
+  const text = normalizeText(value).replace(/^"|"$/g, "");
+  const currency = "(?:₹|Rs\\.?|INR)";
+  const amount = "([0-9][0-9,]*(?:\\.[0-9]{1,2})?)";
+  const pattern = new RegExp(
+    "^\\s*" + currency + "\\s*" + amount + "\\s*(?:\\/\\-)?\\s*" +
+    "(?:to|[-–—])\\s*" + currency + "\\s*" + amount + "\\s*(?:\\/\\-)?\\s*" +
+    "per\\s+(?:Equity\\s+)?Share\\b",
+    "i"
+  );
+  const match = text.match(pattern);
+  if (!match) return null;
+
+  const min = Number(match[1].replace(/,/g, ""));
+  const max = Number(match[2].replace(/,/g, ""));
+  if (!Number.isFinite(min) || !Number.isFinite(max) || min <= 0 || max <= 0 || min > max) {
+    return null;
+  }
+  return { min, max };
+}
+
+export function parsePriceBandFromIpoDetail(payload) {
+  const candidates = priceBandCandidatesFromIpoDetail(payload);
+  const parsed = [];
+
+  for (const item of candidates) {
+    const band = parseRupeeBand(item.value);
+    if (band) parsed.push({ ...item, ...band });
+  }
+
+  if (parsed.length === 0) {
+    return {
+      value: null,
+      reason: candidates.length > 0 ? "placeholder_or_unparseable" : "term_absent",
+      evidence_items: candidates
+    };
+  }
+
+  const unique = new Map(
+    parsed.map((item) => [item.min + "|" + item.max, item])
+  );
+  if (unique.size !== 1) {
+    return {
+      value: null,
+      reason: "official_term_conflict",
+      evidence_items: candidates
+    };
+  }
+
+  const item = [...unique.values()][0];
+  return {
+    value: { min: item.min, max: item.max },
+    reason: null,
+    source_value: item.value,
+    source_title: item.title,
+    evidence_items: candidates
+  };
+}
+
 export function parseMinimumBidFromIpoDetail(payload) {
   const list = payload?.issueInfo?.dataList;
   if (!Array.isArray(list)) {
@@ -200,6 +259,19 @@ function candidateRecords() {
   });
 }
 
+function priceBandCandidateRecords() {
+  return recoveryFiles().flatMap((file) => {
+    const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
+    return (recovery.records || [])
+      .filter((record) =>
+        resolveNseIdentity(record) &&
+        !record.terms?.price_band &&
+        (record.price_band?.value === null || record.price_band?.value === undefined)
+      )
+      .map((record) => ({ file, recovery, record }));
+  });
+}
+
 function listingDateCandidateRecords() {
   return recoveryFiles().flatMap((file) => {
     const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
@@ -254,6 +326,44 @@ function addDocumentOnce(record, document) {
     return false;
   }
   record.documents.push(document);
+  return true;
+}
+
+export function applyPriceBand(record, extraction, sourceUrl, collectedAt) {
+  if (!extraction?.value) return false;
+  if (record.terms?.price_band) return false;
+  if (record.price_band?.value !== null && record.price_band?.value !== undefined) return false;
+
+  const identity = resolveNseIdentity(record);
+  if (!identity) return false;
+  const symbol = identity.symbol;
+
+  if (!record.nse_symbol) record.nse_symbol = identity.symbol;
+  if (!record.nse_series) record.nse_series = identity.series;
+
+  record.price_band = {
+    value: extraction.value,
+    source_value: extraction.source_value,
+    status: "verified",
+    page: null,
+    source: {
+      url: sourceUrl,
+      document_type: "NSE Issue Information API",
+      document_identity: "NSE Issue Information — " + symbol,
+      publication_date: null,
+      collected_at: collectedAt
+    }
+  };
+
+  addDocumentOnce(record, {
+    type: "NSE Issue Information API",
+    identity: "NSE Issue Information — " + symbol,
+    url: sourceUrl,
+    publication_date: null,
+    collected_at: collectedAt
+  });
+
+  record.last_collected_at = collectedAt;
   return true;
 }
 
@@ -390,6 +500,91 @@ async function diagnosePriceBand() {
   }
 
   console.log(JSON.stringify({ nse_price_band_diagnostic_stats: stats }, null, 2));
+}
+
+async function runPriceBand() {
+  const now = new Date().toISOString();
+  const landing = await fetchWithRetry(NSE_HOME, {
+    headers: {
+      "user-agent": USER_AGENT,
+      "accept": "text/html,application/xhtml+xml",
+      "accept-language": "en-US,en;q=0.9"
+    }
+  });
+  const cookie = cookieHeader(landing.headers);
+
+  const groups = new Map();
+  for (const candidate of priceBandCandidateRecords()) {
+    if (!groups.has(candidate.file)) {
+      groups.set(candidate.file, { recovery: candidate.recovery, candidates: [] });
+    }
+    groups.get(candidate.file).candidates.push(candidate.record);
+  }
+
+  const stats = {
+    candidates: 0,
+    api_success: 0,
+    extracted: 0,
+    missing_or_placeholder: 0,
+    conflicts: 0,
+    fetch_errors: 0
+  };
+
+  for (const [file, group] of groups) {
+    let changed = false;
+
+    for (const record of group.candidates) {
+      stats.candidates += 1;
+      const url = apiUrl(record);
+
+      try {
+        const response = await fetchWithRetry(url, {
+          headers: {
+            "user-agent": USER_AGENT,
+            "accept": "application/json,text/plain,*/*",
+            "accept-language": "en-US,en;q=0.9",
+            "referer": NSE_HOME,
+            "cookie": cookie,
+            "cache-control": "no-cache",
+            "pragma": "no-cache"
+          }
+        });
+        const payload = await response.json();
+        stats.api_success += 1;
+
+        const extraction = parsePriceBandFromIpoDetail(payload);
+        if (extraction.reason === "official_term_conflict") {
+          stats.conflicts += 1;
+          console.warn(
+            "NSE price-band conflict retained as null for " + record.issuer_name + ": " +
+            JSON.stringify(extraction.evidence_items)
+          );
+        } else if (extraction.value === null) {
+          stats.missing_or_placeholder += 1;
+        } else if (applyPriceBand(record, extraction, url, now)) {
+          stats.extracted += 1;
+          changed = true;
+          console.log(
+            "Extracted NSE price band for " + record.issuer_name + ": " +
+            extraction.value.min + " to " + extraction.value.max
+          );
+        }
+      } catch (error) {
+        stats.fetch_errors += 1;
+        console.warn(
+          "NSE ipo-detail unavailable for price-band extraction for " +
+          record.issuer_name + ": " + error.message
+        );
+      }
+    }
+
+    if (changed) {
+      group.recovery.generated_at = now;
+      fs.writeFileSync(file, JSON.stringify(group.recovery, null, 2) + "\n");
+    }
+  }
+
+  console.log(JSON.stringify(stats, null, 2));
 }
 
 async function runListingDate() {
@@ -638,10 +833,12 @@ const isMain = process.argv[1] &&
   pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
 
 if (isMain) {
-  const action = process.argv.includes("--diagnose-price-band")
-    ? diagnosePriceBand
-    : process.argv.includes("--listing-date")
-      ? runListingDate
+  const action = process.argv.includes("--price-band")
+    ? runPriceBand
+    : process.argv.includes("--diagnose-price-band")
+      ? diagnosePriceBand
+      : process.argv.includes("--listing-date")
+        ? runListingDate
       : process.argv.includes("--diagnose-listing-date")
         ? diagnoseListingDate
         : run;
