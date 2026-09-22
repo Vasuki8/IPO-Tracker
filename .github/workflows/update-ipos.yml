@@ -30,6 +30,8 @@ on:
       - "scripts/test-diagnose-nse-ipo-detail.mjs"
       - "scripts/extract-nse-ipo-detail-fields.mjs"
       - "scripts/test-extract-nse-ipo-detail-fields.mjs"
+      - "scripts/diagnose-nse-past-issues.mjs"
+      - "scripts/test-diagnose-nse-past-issues.mjs"
       - ".github/workflows/update-ipos.yml"
 
 permissions:
