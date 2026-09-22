@@ -117,35 +117,92 @@ function nearestDateBefore(html, index) {
   return matches.length ? parseSebiDate(matches.at(-1)[0]) : null;
 }
 
+function filingUrlFromAnchorAttributes(attributes, baseUrl) {
+  const hrefMatch = attributes.match(/\bhref\s*=\s*(["'])([^"']+)\1/i);
+  if (hrefMatch) {
+    const href = absoluteUrl(hrefMatch[2], baseUrl);
+    if (href && /sebi\.gov\.in\/filings\/public-issues\//i.test(href)) return href;
+  }
+
+  const embedded = attributes.match(
+    /(?:https?:\\?\/\\?\/www\.sebi\.gov\.in)?\\?\/filings\\?\/public-issues\\?\/[^"'<>\s)]+\.html/i
+  );
+  if (!embedded) return null;
+  return absoluteUrl(embedded[0].replace(/\\\//g, "/"), baseUrl);
+}
+
+function kindFromFilingUrl(url) {
+  const path = decodeURIComponent(new URL(url).pathname).toLowerCase();
+  if (/\b(?:drhp|udrhp)\b|addendum|corrigendum/.test(path)) return null;
+  if (/-rhp_\d+\.html$/.test(path)) return "rhp";
+  if (/-prospectus_\d+\.html$/.test(path)) return "final";
+  return null;
+}
+
+export function issuerFromFilingUrl(url, kind) {
+  const pathname = decodeURIComponent(new URL(url).pathname);
+  const file = pathname.split("/").at(-1) || "";
+  let slug = file.replace(/_\d+\.html$/i, "");
+  if (kind === "rhp") slug = slug.replace(/-rhp$/i, "");
+  if (kind === "final") slug = slug.replace(/-prospectus$/i, "");
+  return slug.replace(/-/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function pushListingEntry(entries, seen, html, index, href, title, kind) {
+  if (!href || !kind) return;
+  const issuerName = title ? issuerFromListingTitle(title, kind) : issuerFromFilingUrl(href, kind);
+  if (!issuerName) return;
+  const key = `${kind}|${href}`;
+  if (seen.has(key)) return;
+  seen.add(key);
+  entries.push({
+    kind,
+    issuer_name: issuerName,
+    title: title || `SEBI ${kind === "rhp" ? "RHP filing" : "Prospectus filing"} — ${issuerName}`,
+    url: href,
+    publication_date: nearestDateBefore(html, index)
+  });
+}
+
 export function parseSebiListingHtml(html, expectedKind, baseUrl) {
   const entries = [];
   const seen = new Set();
-  const anchorPattern =
-    /<a\b[^>]*href\s*=\s*(["'])([^"']+)\1[^>]*>([\s\S]*?)<\/a>/gi;
+  const anchorPattern = /<a\b([^>]*)>([\s\S]*?)<\/a>/gi;
 
   for (const match of html.matchAll(anchorPattern)) {
-    const href = absoluteUrl(match[2], baseUrl);
-    if (!href || !/sebi\.gov\.in\/filings\/public-issues\//i.test(href)) continue;
+    const attributes = match[1] || "";
+    const href = filingUrlFromAnchorAttributes(attributes, baseUrl);
+    if (!href) continue;
 
-    const title = stripTags(match[3]);
-    const kind = classifyListingTitle(title);
+    const title = stripTags(match[2]);
+    const titleKind = classifyListingTitle(title);
+    const kind = titleKind || kindFromFilingUrl(href);
     if (!kind || (expectedKind && kind !== expectedKind)) continue;
 
-    const issuerName = issuerFromListingTitle(title, kind);
-    if (!issuerName) continue;
-
-    const key = `${kind}|${href}`;
-    if (seen.has(key)) continue;
-    seen.add(key);
-
-    entries.push({
-      kind,
-      issuer_name: issuerName,
-      title,
-      url: href,
-      publication_date: nearestDateBefore(html, match.index ?? 0)
-    });
+    pushListingEntry(entries, seen, html, match.index ?? 0, href, title, kind);
   }
+
+  const rawFilingPattern =
+    /(?:https?:\\?\/\\?\/www\.sebi\.gov\.in)?\\?\/filings\\?\/public-issues\\?\/[^"'<>\s)]+\.html/gi;
+
+  for (const match of html.matchAll(rawFilingPattern)) {
+    const href = absoluteUrl(match[0].replace(/\\\//g, "/"), baseUrl);
+    if (!href || !/sebi\.gov\.in\/filings\/public-issues\//i.test(href)) continue;
+    const kind = kindFromFilingUrl(href);
+    if (!kind || (expectedKind && kind !== expectedKind)) continue;
+
+    const context = stripTags(
+      html.slice(Math.max(0, (match.index ?? 0) - 500), Math.min(html.length, (match.index ?? 0) + 900))
+    );
+    const titleCandidate = context.match(
+      kind === "rhp"
+        ? /([A-Za-z0-9&().,'\- ]{3,120}\s*-\s*RHP\b)/i
+        : /([A-Za-z0-9&().,'\- ]{3,120}\s*-\s*(?:Final\s+)?Prospectus\b)/i
+    )?.[1];
+    const title = titleCandidate ? normalizeText(titleCandidate) : "";
+    pushListingEntry(entries, seen, html, match.index ?? 0, href, title, kind);
+  }
+
   return entries;
 }
 
@@ -260,7 +317,14 @@ async function fetchText(url, attempts = 3) {
 async function discoverListing(url, kind) {
   const html = await fetchText(url);
   const entries = parseSebiListingHtml(html, kind, url);
-  if (entries.length === 0) fail(`${kind} listing returned no parseable filing entries`);
+  if (entries.length === 0) {
+    const filingRefs = (html.match(/filings[\\/]+public-issues/gi) || []).length;
+    const pageText = stripTags(html).slice(0, 500);
+    fail(
+      `${kind} listing returned no parseable filing entries ` +
+      `(bytes=${html.length}, filing_refs=${filingRefs}, page_head=${JSON.stringify(pageText)})`
+    );
+  }
   return entries;
 }
 
