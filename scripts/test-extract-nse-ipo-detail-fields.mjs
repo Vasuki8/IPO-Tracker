@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import {
   applyListingDate,
   applyMinimumBid,
+  issuePriceCandidatesFromIpoDetail,
   listingDateCandidatesFromIpoDetail,
   applyPriceBand,
   parseListingDateFromIpoDetail,
@@ -10,6 +11,37 @@ import {
   priceBandCandidatesFromIpoDetail,
   resolveNseIdentity
 } from "./extract-nse-ipo-detail-fields.mjs";
+
+const issuePriceCandidates = issuePriceCandidatesFromIpoDetail({
+  issueInfo: {
+    dataList: [
+      { title: "Issue Price", value: "Rs.139 per Equity Share" },
+      { title: "Price Range", value: "Rs.132 to Rs.139 per Equity Share" }
+    ]
+  },
+  metaInfo: {
+    finalIssuePrice: "139"
+  }
+});
+assert.deepEqual(issuePriceCandidates, [
+  {
+    source: "issueInfo.dataList",
+    title: "Issue Price",
+    value: "Rs.139 per Equity Share"
+  },
+  {
+    source: "metaInfo",
+    title: "finalIssuePrice",
+    value: "139"
+  }
+]);
+
+assert.deepEqual(
+  issuePriceCandidatesFromIpoDetail({
+    issueInfo: { dataList: [{ title: "Price Range", value: "Rs.132 to Rs.139 per Equity Share" }] }
+  }),
+  []
+);
 
 const axiomBand = parsePriceBandFromIpoDetail({
   issueInfo: {
