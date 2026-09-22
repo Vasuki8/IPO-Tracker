@@ -67,14 +67,14 @@ function retainedField(field, collectedAt) {
   if (!field || field.value === null || field.value === undefined) return emptyField();
   return verifiedField(
     field.value,
-    { ...field.source, collected_at: collectedAt },
+    { ...field.source, collected_at: field.source.collected_at ?? collectedAt },
     field.page ?? null
   );
 }
 
 function retainedEvidence(items, collectedAt) {
   return (items || []).map((item) => evidence(
-    { ...item, collected_at: collectedAt },
+    { ...item, collected_at: item.collected_at ?? collectedAt },
     item.page ?? null
   ));
 }
@@ -85,7 +85,7 @@ function normalizeDocument(doc, collectedAt) {
     identity: doc.identity ?? null,
     url: officialUrl(doc.url, doc.identity || doc.type),
     publication_date: doc.publication_date ?? null,
-    collected_at: collectedAt
+    collected_at: doc.collected_at ?? collectedAt
   };
 }
 
@@ -93,7 +93,7 @@ function normalizeRecord(record, collectedAt) {
   const nse = {
     ...record.nse_source,
     document_type: "NSE Issue Information",
-    collected_at: collectedAt
+    collected_at: record.nse_source.collected_at ?? collectedAt
   };
 
   return {
