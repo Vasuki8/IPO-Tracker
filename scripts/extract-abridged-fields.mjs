@@ -54,7 +54,7 @@ export function parseExplicitTotalIssueSize(layoutText) {
     for (let row = i + 1; row < Math.min(lines.length, i + 24); row += 1) {
       const rowUpper = lines[row].toUpperCase();
       if (/RISKS?\s+IN\s+RELATION|GENERAL\s+RISK|ISSUER.?S?\s+ABSOLUTE/.test(rowUpper)) break;
-      slices.push(lines[row].slice(Math.max(0, start - 2), end + 2));
+      slices.push(lines[row].slice(Math.max(0, start - 2), end + 24));
     }
 
     const columnText = normalizeText(slices.join(" "));
