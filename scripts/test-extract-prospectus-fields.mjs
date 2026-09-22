@@ -4,14 +4,17 @@ import {
   applyIssuePriceExtraction,
   applyIssueSizeExtraction,
   applyMinimumBidExtraction,
+  applyNiiMinimumApplicationExtraction,
   candidateProspectusDocument,
   candidateProspectusIssueSizeDocument,
   candidateProspectusMinimumBidDocument,
   candidateRhpIssueSizeDocument,
   candidateRhpMinimumBidDocument,
   candidateRhpMinimumApplicationDocument,
+  candidateRhpNiiMinimumApplicationDocument,
   findMinimumBidMentionsInPages,
   findMinimumApplicationAmountMentionsInPages,
+  findExplicitNiiMinimumApplicationAmountsInPages,
   findAggregateIssueSizeMentions,
   findIssuePriceMentions,
   parseExplicitAggregateIssueSizeFromPages,
@@ -120,6 +123,7 @@ assert.equal(candidateRhpIssueSizeDocument(rhpRecord), rhpDoc);
 assert.equal(candidateRhpMinimumBidDocument(rhpRecord), rhpDoc);
 
 assert.equal(candidateRhpMinimumApplicationDocument(rhpRecord), rhpDoc);
+assert.equal(candidateRhpNiiMinimumApplicationDocument(rhpRecord), rhpDoc);
 
 const rhpMinApplicationMentions = findMinimumApplicationAmountMentionsInPages([
   "Offer summary only.",
@@ -137,6 +141,26 @@ assert.deepEqual(
     "Anchor Investors may submit a minimum Bid of ₹100.00 million.",
     "Minimum Order Quantity is 40 Equity Shares.",
     "Maximum Application Amount is ₹2,00,000."
+  ]),
+  []
+);
+
+const niiMinimumApplications = findExplicitNiiMinimumApplicationAmountsInPages([
+  "Offer summary.",
+  "The allocation to each Non-Institutional Investor shall not be less than the minimum application size viz. ₹ 0.20 million, subject to availability of Equity Shares.",
+  "The Allotment to each Non-Institutional Investor shall not be less than the minimum application size viz. ₹2.00 Lakhs."
+]);
+assert.equal(niiMinimumApplications.length, 2);
+assert.equal(niiMinimumApplications[0].value, 200000);
+assert.equal(niiMinimumApplications[0].page, 2);
+assert.equal(niiMinimumApplications[1].value, 200000);
+assert.equal(niiMinimumApplications[1].page, 3);
+
+assert.deepEqual(
+  findExplicitNiiMinimumApplicationAmountsInPages([
+    "In case of a Mutual Fund, separate Bids will be aggregated to determine the minimum application size of ₹100 million.",
+    "The PLI scheme requires minimum investment of Rs. 300 crore.",
+    "Retail Individual Bidders may bid for the minimum Bid Lot."
   ]),
   []
 );
@@ -191,6 +215,21 @@ assert.equal(record.minimum_bid_quantity.page, 10);
 assert.equal(record.minimum_bid_quantity.source.url, doc.url);
 assert.equal(record.last_collected_at, "2026-09-22T05:10:00Z");
 
+assert.equal(
+  applyNiiMinimumApplicationExtraction(
+    record,
+    rhpDoc,
+    { value: 200000, source_value: "minimum application size viz. ₹2.00 Lakhs", page: 77 },
+    "2026-09-22T05:15:00Z"
+  ),
+  true
+);
+assert.equal(record.application_requirements.non_institutional.minimum_application_amount_inr.value, 200000);
+assert.equal(record.application_requirements.non_institutional.minimum_application_amount_inr.page, 77);
+assert.equal(record.application_requirements.non_institutional.minimum_application_amount_inr.status, "verified");
+assert.equal(record.application_requirements.non_institutional.minimum_application_amount_inr.source.url, rhpDoc.url);
+assert.equal(record.last_collected_at, "2026-09-22T05:15:00Z");
+
 const existing = {
   issuer_name: "Existing Limited",
   issue_price: { value: 88, source: { url: "https://example.com" } },
@@ -231,6 +270,15 @@ assert.equal(candidateRhpMinimumApplicationDocument({
   minimum_application_amount_inr: { value: 14850, source: { url: "https://example.com" } },
   documents: [{ ...doc, type: "SEBI RHP PDF" }]
 }), null);
+assert.equal(candidateRhpNiiMinimumApplicationDocument({
+  ...existing,
+  application_requirements: {
+    non_institutional: {
+      minimum_application_amount_inr: { value: 200000, source: { url: "https://example.com" } }
+    }
+  },
+  documents: [{ ...doc, type: "SEBI RHP PDF" }]
+}), null);
 assert.equal(
   applyIssuePriceExtraction(
     existing,
@@ -262,6 +310,29 @@ assert.equal(
   false
 );
 assert.equal(existing.minimum_bid_quantity.value, 5);
+
+const existingNii = {
+  ...existing,
+  application_requirements: {
+    non_institutional: {
+      minimum_application_amount_inr: {
+        value: 250000,
+        status: "verified",
+        source: { url: "https://example.com" }
+      }
+    }
+  }
+};
+assert.equal(
+  applyNiiMinimumApplicationExtraction(
+    existingNii,
+    rhpDoc,
+    { value: 200000, source_value: "minimum application size viz. ₹2.00 Lakhs", page: 77 },
+    "2026-09-22T05:15:00Z"
+  ),
+  false
+);
+assert.equal(existingNii.application_requirements.non_institutional.minimum_application_amount_inr.value, 250000);
 
 const mirrorRecord = {
   issuer_name: "Mirror Limited",
