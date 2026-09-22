@@ -1369,25 +1369,76 @@ Published dataset: **26 IPOs**.
 
 The seven remaining market-lot nulls are source-null under the supported NSE pattern and will be rechecked automatically.
 
+## Latest completed batch — NSE minimum-application source survey
+
+### Read-only diagnostic
+
+PR #63 — `Diagnose explicit NSE minimum application amount terms`
+
+The diagnostic scans only static `issueInfo.dataList` titles whose normalized label contains:
+
+- `minimum`; and
+- `application` or `investment`.
+
+It does not inspect Minimum Order Quantity, Bid Lot, Market Lot, price band or arithmetic combinations.
+
+The first all-universe run (`35759732510`) was cancelled after the non-writing diagnostic became too costly for the hourly workflow.
+
+PR #65 — `Bound minimum-application diagnostic sample`
+
+Squash-merged:
+
+`8ba821f8de6013dcdc56f19cbb5040e6a6e3055f`
+
+The replacement diagnostic sampled six deterministic NSE identities covering Mainboard/SME and upcoming/open/listed states.
+
+Production run `35760191175`:
+
+- candidates: 6;
+- API successes: 6;
+- responses with explicit minimum-application/investment terms: 0;
+- fetch errors: 0.
+
+Checked:
+
+1. Adroit Industries (India) Limited — EQ
+2. Asset Reconstruction Company (India) Limited — EQ
+3. Axiom Gas Engineering Limited — SME
+4. Bench Mark Infotech Services Limited — SME
+5. Qualiance International Limited — SME
+6. Varmora Granito Limited — EQ
+
+Every result returned an empty supported-term list.
+
+### Decision
+
+No `minimum_application_amount_inr` value was written.
+
+Published coverage remains:
+
+- present: **0/26**;
+- missing: **26/26**.
+
+The field remains distinct from market lot and minimum bid quantity. We will not calculate price × quantity or use the upper price-band bound as a substitute because the current data contract requires source-supported values.
+
+The one-shot production diagnostic has been removed from hourly execution.
+
 ## Recommended next coherent batch
 
-Recover **explicit minimum application amount INR**.
-
-Current coverage is **0/26**.
-
-Start with a read-only survey of official NSE `/api/ipo-detail` static issue terms for exact labels such as `Minimum Application Amount` / `Minimum Investment Amount` or clearly equivalent official wording.
+Survey retained official **SEBI Abridged Prospectus / RHP / final Prospectus PDFs** for an explicitly stated minimum application amount in INR.
 
 Acceptance rules:
 
-- official NSE source only for the first source-family batch;
-- deterministic symbol/series identity;
-- accept only an explicit INR application amount;
+- official retained SEBI document only;
+- explicit labelled INR amount only;
+- page-level evidence required;
+- fill missing `minimum_application_amount_inr` only;
 - keep market lot / minimum bid quantity / minimum application amount distinct;
-- no price × quantity calculation;
+- no shares × price calculation;
 - no price-band-cap inference;
-- fill missing values only;
-- retain exact endpoint/source identity and collection timestamp;
-- preserve null for absent, placeholder, range-only or ambiguous values.
+- preserve null for share-count-only, placeholders or ambiguous/derived wording.
+
+If the retained offer documents also do not state this value explicitly, record the field as source-blocked rather than synthesizing it.
 
 ## Publication history
 
@@ -1444,3 +1495,5 @@ Acceptance rules:
 - PR #60: NSE ipo-detail market-lot diagnostic
 - PR #61: strict NSE ipo-detail market-lot extraction
 - NSE market-lot bot commit: `fbe718e911d9649e9a6007a9c2922af23b397816`
+- PR #63: NSE minimum-application source diagnostic
+- PR #65: bounded NSE minimum-application diagnostic sample
