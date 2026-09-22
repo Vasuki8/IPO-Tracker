@@ -521,3 +521,32 @@ Current minimum-bid coverage: **19/25**.
 
 The same `ipo-detail` payload exposes `metaInfo`, making explicit listing-date recovery the next high-value P1 field family. Listing dates must be sourced directly from the payload; do not infer them from close dates.
 
+## NSE ipo-detail listing-date automation — production verified
+
+The official NSE `/api/ipo-detail` payload exposes listing dates under `metaInfo.listingDate`.
+
+A read-only production diagnostic (PR #46, run `35731645033`) checked all 26 deterministic NSE identities:
+
+- 26 API successes;
+- 10 explicit listing dates;
+- 0 fetch errors.
+
+Every usable value followed the exact ISO `YYYY-MM-DD` shape. No listing date was inferred from issue timing.
+
+PR #47 added production extraction with strict rules:
+
+- source: official NSE `/api/ipo-detail`;
+- field: exact `metaInfo.listingDate`;
+- parser: valid ISO `YYYY-MM-DD` only;
+- target: missing `listing_date` only;
+- evidence: exact endpoint URL/identity and collection timestamp;
+- absent or invalid source values remain null.
+
+Production run `35732506571` extracted 10 verified listing dates from 26 successful API calls with zero unparseable values and zero fetch errors.
+
+Bot data commit: `a58cdac941a4a9116672951111e63b412ec2356e`.
+
+Listing-date coverage is now **10/26**. Remaining records are automatically rechecked on hourly sync as NSE populates `metaInfo.listingDate`.
+
+The earliest remaining P1 gap is now price band: **25/26** records have one, with Axiom Gas Engineering Limited as the sole missing record. The next source-family batch should inspect explicit `Price Range` / `Price Band` title/value pairs in the same NSE endpoint.
+
