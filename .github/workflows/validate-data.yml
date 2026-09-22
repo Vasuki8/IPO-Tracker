@@ -21,7 +21,12 @@ jobs:
           node-version: "20"
 
       - name: Check JavaScript syntax
-        run: node --check assets/app.js
+        run: |
+          node --check assets/app.js
+          node --check assets/ipo-order.js
+
+      - name: Test homepage IPO ordering
+        run: node scripts/test-homepage-order.mjs
 
       - name: Test NSE live sync parser
         run: node scripts/test-sync-nse-live.mjs
