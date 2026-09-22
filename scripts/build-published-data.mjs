@@ -87,6 +87,22 @@ function retainedField(field, collectedAt) {
   };
 }
 
+function applicationRequirement(category, collectedAt) {
+  return {
+    minimum_application_amount_inr: retainedField(category?.minimum_application_amount_inr, collectedAt),
+    minimum_bid_quantity: retainedField(category?.minimum_bid_quantity, collectedAt)
+  };
+}
+
+function applicationRequirements(record, collectedAt) {
+  const requirements = record.application_requirements ?? {};
+  return {
+    retail: applicationRequirement(requirements.retail, collectedAt),
+    non_institutional: applicationRequirement(requirements.non_institutional, collectedAt),
+    anchor_investor: applicationRequirement(requirements.anchor_investor, collectedAt)
+  };
+}
+
 function retainedEvidence(items, collectedAt) {
   return (items || []).map((item) => evidence(
     { ...item, collected_at: item.collected_at ?? collectedAt },
@@ -131,6 +147,7 @@ function normalizeRecord(record, collectedAt) {
       ? retainedField(record.minimum_bid_quantity, collectedAt)
       : verifiedField(record.terms?.minimum_bid_quantity ?? null, nse),
     minimum_application_amount_inr: emptyField(),
+    application_requirements: applicationRequirements(record, collectedAt),
     open_date: verifiedField(record.terms?.open_date ?? null, nse),
     close_date: verifiedField(record.terms?.close_date ?? null, nse),
     listing_date: retainedField(record.listing_date, collectedAt),
@@ -162,7 +179,7 @@ for (const { file, data } of recoveries) {
 }
 
 const published = {
-  schema_version: "1.1.0",
+  schema_version: "1.2.0",
   generated_at: recoveries.map(({ data }) => data.generated_at).sort().at(-1),
   collection_started_at: recoveries.map(({ data }) => data.collection_started_at).sort().at(0),
   records: normalizedRecords.sort((a, b) => {
