@@ -91,6 +91,16 @@ export function candidateAbridgedMinimumBidDocument(record) {
   ) || null;
 }
 
+export function candidateAbridgedMinimumApplicationDocument(record) {
+  if (
+    record.minimum_application_amount_inr?.value !== null &&
+    record.minimum_application_amount_inr?.value !== undefined
+  ) return null;
+  return (record.documents || []).find((doc) =>
+    doc.type === "SEBI Abridged Prospectus" && officialPdfUrl(doc.url)
+  ) || null;
+}
+
 export function findMinimumBidMentions(layoutText) {
   const text = normalizeText(layoutText);
   const mentions = [];
@@ -99,6 +109,23 @@ export function findMinimumBidMentions(layoutText) {
     const start = Math.max(0, match.index - 120);
     const end = Math.min(text.length, match.index + 320);
     mentions.push(text.slice(start, end));
+    if (mentions.length >= 8) break;
+  }
+  return mentions;
+}
+
+export function findMinimumApplicationAmountMentions(layoutText) {
+  const text = normalizeText(layoutText);
+  const mentions = [];
+  const labelPattern = /\b(?:minimum\s+(?:application|investment)(?:\s+(?:amount|size))?|minimum\s+amount)\b/ig;
+  const inrPattern = /(?:₹|Rs\.?|INR)\s*[0-9][0-9,]*(?:\.[0-9]+)?\b/i;
+
+  for (const match of text.matchAll(labelPattern)) {
+    const start = Math.max(0, match.index - 160);
+    const end = Math.min(text.length, match.index + 420);
+    const context = text.slice(start, end);
+    if (!inrPattern.test(context)) continue;
+    mentions.push(context);
     if (mentions.length >= 8) break;
   }
   return mentions;
@@ -185,6 +212,49 @@ function firstPageLayout(pdfBytes) {
   } finally {
     fs.rmSync(dir, { recursive: true, force: true });
   }
+}
+
+async function diagnoseMinimumApplication() {
+  ensurePdfTextTool();
+  const stats = {
+    candidates: 0,
+    downloaded: 0,
+    responses_with_explicit_inr_mentions: 0,
+    mentions: 0,
+    fetch_errors: 0
+  };
+
+  for (const file of recoveryFiles()) {
+    const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
+    for (const record of recovery.records || []) {
+      const document = candidateAbridgedMinimumApplicationDocument(record);
+      if (!document) continue;
+      stats.candidates += 1;
+
+      let layout;
+      try {
+        layout = firstPageLayout(await fetchPdf(document.url));
+        stats.downloaded += 1;
+      } catch (error) {
+        stats.fetch_errors += 1;
+        console.warn(`Abridged minimum-application diagnostic unavailable for ${record.issuer_name}: ${error.message}`);
+        continue;
+      }
+
+      const mentions = findMinimumApplicationAmountMentions(layout);
+      if (mentions.length > 0) stats.responses_with_explicit_inr_mentions += 1;
+      stats.mentions += mentions.length;
+      console.log(JSON.stringify({
+        issuer_name: record.issuer_name,
+        document: document.identity ?? document.type,
+        url: document.url,
+        page: 1,
+        minimum_application_mentions: mentions
+      }, null, 2));
+    }
+  }
+
+  console.log(JSON.stringify({ minimum_application_diagnostic_stats: stats }, null, 2));
 }
 
 async function diagnoseMinimumBid() {
@@ -285,7 +355,11 @@ const isMain = process.argv[1] &&
   pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
 
 if (isMain) {
-  const action = process.argv.includes("--diagnose-min-bid") ? diagnoseMinimumBid : run;
+  const action = process.argv.includes("--diagnose-min-application")
+    ? diagnoseMinimumApplication
+    : process.argv.includes("--diagnose-min-bid")
+      ? diagnoseMinimumBid
+      : run;
   action().catch((error) => {
     console.error(error);
     process.exit(1);
