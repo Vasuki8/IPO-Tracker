@@ -554,23 +554,76 @@ The bot diff changed only recovery data and generated `data/ipos.json`.
 
 Issue-price coverage improved from **10/26 to 14/26**. The remaining 12 nulls are not yet listed (or do not yet have a published NSE listing date), so the hourly past-issues extractor will fill them automatically when NSE publishes completed-issue rows.
 
+### Latest NSE issue-size recovery result
+
+PR #57 — `Diagnose NSE ipo-detail aggregate issue size` — inspected the exact official `Issue Size` text before any write.
+
+Production run `35748672356`:
+
+- candidates: 14;
+- API successes: 13;
+- responses with overall-size terms: 13;
+- fetch errors: 1 temporary Moneyview timeout;
+- values written: 0.
+
+The source text fell into three important classes:
+
+- share-count-only offers, such as Axiom, Qualiance, Pooja, Sonaselection, ARCIL and several SME issues;
+- mixed Fresh Issue + OFS disclosures where one or both legs are not a single overall INR total, such as Swastika and Varmora;
+- pure one-leg Fresh Issue disclosures with one explicit INR aggregate, observed for ArMee and Elevate.
+
+PR #58 merged at `09e1eb9166d73cc1d71e8994821238ce5468897c` and promoted only the safe third class into production extraction.
+
+The extractor:
+
+- reads only overall `Issue Size` / `Total Issue Size` / `Offer Size` rows;
+- strips parenthetical anchor / market-maker carve-outs before evaluating the top-level offer;
+- accepts only a sole Fresh Issue or sole OFS leg when that entire offer is explicitly INR-denominated;
+- supports crore, million, lakh and lac unit conversion;
+- rejects share-count-only rows;
+- rejects every mixed Fresh Issue + OFS row rather than summing or converting components;
+- never multiplies shares by issue/final price;
+- fills missing values only and retains exact NSE API evidence.
+
+Production run `35749978275` succeeded:
+
+- candidates: 14;
+- API successes: 14;
+- extracted: **2**;
+- unsupported/share-count rows: 12;
+- conflicts: 0;
+- fetch errors: 0.
+
+Published verified values:
+
+- **ArMee Infotech Limited — ₹3,000,000,000**;
+- **Elevate Campuses Limited — ₹21,000,000,000**.
+
+Source-backed bot commit:
+
+`ccdf8f308f437257d64b2e9b3bd99eb9729eaa57`
+
+The bot diff changed only recovery data and generated `data/ipos.json`. GitHub Pages deployment for the bot revision passed in run `35750326661`.
+
+Aggregate issue-size coverage improved from **12/26 to 14/26**. The remaining 12 records are deliberately source-null under this NSE rule and will continue to be checked by the existing final-Prospectus and NSE automation.
+
 ### Recommended next coherent batch
 
-Move to **aggregate issue-size INR coverage**.
+Continue P1 with **explicit market-lot recovery**.
 
-Current `issue_size_inr` coverage is **12/26**. The next bounded source-family batch should inspect the already-integrated official NSE `/api/ipo-detail` `issueInfo.dataList` `Issue Size` term for missing-size records.
+Current `market_lot` coverage is **18/26**. Eight records remain missing, including Moneyview, Adroit, ArMee, Elevate, Swastika, Varmora, Axiom, and National Stock Exchange of India.
+
+Inspect official NSE `/api/ipo-detail` `issueInfo.dataList` for exact **Market Lot** / **Lot Size** terms. Keep this separate from the already-populated `minimum_bid_quantity`.
 
 Acceptance rules:
 
 - official NSE source only;
-- retain exact symbol/series identity;
-- accept only an explicit overall INR Offer/Issue aggregate amount;
-- do not treat a share count as INR issue size;
-- do not sum Fresh Issue + OFS components;
-- do not multiply shares × issue/final price;
-- preserve null for component-only prose, placeholders, or ambiguous amounts;
+- deterministic symbol/series identity;
+- accept only an explicit Market Lot / Lot Size field;
+- do **not** copy `Bid Lot` or `Minimum Order Quantity` into `market_lot`;
 - retain exact endpoint/source identity and collection timestamp;
-- fill missing `issue_size_inr` only.
+- fill missing `market_lot` only;
+- preserve null for absent/placeholders/ambiguous values.
 
 ### Product direction
 
