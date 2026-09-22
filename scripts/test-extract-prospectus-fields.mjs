@@ -3,6 +3,8 @@ import fs from "node:fs";
 import {
   applyIssuePriceExtraction,
   candidateProspectusDocument,
+  candidateProspectusIssueSizeDocument,
+  findAggregateIssueSizeMentions,
   findIssuePriceMentions,
   parseExplicitIssuePriceFromPages
 } from "./extract-prospectus-fields.mjs";
@@ -27,6 +29,14 @@ assert.equal(diagnosticMentions[0].page, 12);
 assert.match(diagnosticMentions[0].context, /Offer Price/);
 assert.match(diagnosticMentions[1].context, /Issue Price/);
 
+const issueSizeMentions = findAggregateIssueSizeMentions(
+  "INITIAL PUBLIC OFFER AT A PRICE OF ₹93 PER EQUITY SHARE AGGREGATING UP TO ₹12,488.04 LAKHS (THE OFFER) COMPRISING A FRESH ISSUE AGGREGATING UP TO ₹9,989.27 LAKHS.",
+  3
+);
+assert.equal(issueSizeMentions.length, 2);
+assert.equal(issueSizeMentions[0].page, 3);
+assert.match(issueSizeMentions[0].context, /12,488\.04 LAKHS/);
+
 const doc = {
   type: "SEBI Prospectus PDF",
   identity: "Example Limited - Prospectus — PDF",
@@ -42,6 +52,7 @@ const record = {
 };
 
 assert.equal(candidateProspectusDocument(record), doc);
+assert.equal(candidateProspectusIssueSizeDocument(record), doc);
 assert.equal(
   applyIssuePriceExtraction(
     record,
@@ -59,9 +70,11 @@ assert.equal(record.last_collected_at, "2026-09-22T05:00:00Z");
 const existing = {
   issuer_name: "Existing Limited",
   issue_price: { value: 88, source: { url: "https://example.com" } },
+  issue_size_inr: { value: 1000, source: { url: "https://example.com" } },
   documents: [doc]
 };
 assert.equal(candidateProspectusDocument(existing), null);
+assert.equal(candidateProspectusIssueSizeDocument(existing), null);
 assert.equal(
   applyIssuePriceExtraction(
     existing,
