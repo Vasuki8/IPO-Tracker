@@ -177,3 +177,19 @@ The BSE dynamic listing-notice blocker remains documented and should not be bypa
 - Second batch merge: `8206b58574610103e18d86bd719b7169b145610f`
 - Prior production bookkeeping head: `0515407dc7d38ce7a08790f61fdb69ef01eefa26`
 - Validation and GitHub Pages deployment passed for the prior production head.
+
+## Latest publication
+
+- Pull request: #6 — `Add third official-source 2026 IPO batch`
+- Squash-merged to `main`: `ad7d82fc87b88f3c48c131965c27ee928331cefc`
+- Post-merge data-contract validation: passed
+- Post-merge GitHub Pages deployment: passed
+- Pages artifact was generated from the merged revision.
+- Published issuer count: 8
+- New published issuers:
+  - Kanohar Electricals Limited
+  - LCC Projects Limited
+  - Veegaland Developers Limited
+- Previous five issuer records and freshness timestamps remained unchanged.
+- Unsupported final issue price, aggregate issue size, listing/status, board, sector, and minimum-application fields remain null.
+- Direct retrieval of `https://vasuki8.github.io/IPO-Tracker/` remains unavailable from the web reader in this development session; workflow and artifact revision were verified instead.
