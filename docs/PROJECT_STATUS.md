@@ -176,7 +176,9 @@ The current validation workflow covers:
 - ambiguity rejection;
 - duplicate-document idempotency;
 - sparse live-record candidate selection;
-- bounded SEBI search token selection.
+- bounded SEBI search token selection;
+- explicit final Prospectus issue-price parsing;
+- labelled cover-price syntax with unlabeled-price rejection.
 
 ## Latest completed batch — Abridged Prospectus issue-size extraction
 
@@ -367,13 +369,101 @@ changed. The four new issue prices carry official SEBI Prospectus PDF/page evide
 
 GitHub Pages native deployment for the bot commit passed in run `35688893344`.
 
+## Latest completed batch — final Prospectus cover-price repair
+
+### Diagnostic
+
+PR #20 — `Diagnose unmatched final Prospectus price phrases`
+
+Squash-merged:
+
+`f141c4fef5f5ce9025a9e6e809b9cc0c80a68b2f`
+
+Production run `35689468724` used a temporary read-only 80-page diagnostic against only the three unresolved retained official Prospectuses.
+
+It established that the 20-page production boundary was **not** the blocker. All three explicit final prices were on early pages, but the documents placed the numeric amount before the `(Offer Price)` / `(Issue Price)` label:
+
+- Jindal Supreme (India) Limited — ₹93 — PDF page 3;
+- SS Retail Limited — ₹424 — PDF page 3;
+- Veegaland Developers Limited — ₹140 — PDF page 2.
+
+The diagnostic changed no recovery or published data. Its temporary hourly workflow step was removed after investigation.
+
+### Parser repair
+
+PR #21 — `Parse explicit final price from Prospectus cover wording`
+
+Squash-merged:
+
+`454ec51a640f2f4079577d41d84dec222fe48e63`
+
+The repair adds one strict supported syntax:
+
+`at a price of ₹X per Equity Share ... (Offer Price/Issue Price)`
+
+It also:
+
+- accepts a bounded footnote marker such as SS Retail's `₹424^`;
+- requires the nearby explicit `Offer Price` or `Issue Price` label;
+- rejects generic unlabeled `price of ₹X per Equity Share` text;
+- keeps the normal 20-page production scan;
+- preserves fill-missing-only precedence;
+- does not inspect or use the price-band cap to choose a value.
+
+### Production verification
+
+Workflow:
+
+- `Sync live IPO data`
+- run ID: `35690054143`
+- conclusion: success
+
+Measured final-Prospectus result:
+
+- candidates: 3;
+- official PDFs downloaded: 3;
+- extracted: 3;
+- explicit-price missing: 0;
+- PDF fetch errors: 0.
+
+Published with retained page-level official evidence:
+
+1. Jindal Supreme (India) Limited — ₹93 per Equity Share — PDF page 3
+2. SS Retail Limited — ₹424 per Equity Share — PDF page 3
+3. Veegaland Developers Limited — ₹140 per Equity Share — PDF page 2
+
+Bot data commit:
+
+`51f806b16e4eba40efee304d07bb5753a8e0f9d9`
+
+Bot diff review confirmed only:
+
+- `data/recovery/2026/nse-issue-information.json`;
+- generated `data/ipos.json`
+
+changed. No unrelated code or data was modified by the bot.
+
+Together with existing Hero Motors and Rentomojo evidence and the four values recovered by PR #18, **all 9 records currently carrying a retained official `SEBI Prospectus PDF` now have final issue-price evidence**.
+
 ## Recommended next coherent batch
 
-Inspect the three final Prospectus PDFs that still have null issue price—Jindal Supreme, SS Retail and Veegaland—to determine whether the gap is caused by unsupported wording/layout or the current 20-page scan boundary.
+Build a bounded **explicit aggregate issue-size extractor for retained final SEBI Prospectus PDFs**.
 
-Only broaden parsing when an explicit official phrase can be matched deterministically and tested across multiple documents. Do not infer the final price from the price-band cap.
+Current coverage:
 
-After that review, the next separate field family should be explicit aggregate issue size from retained final Prospectus PDFs, with page-level evidence and no arithmetic reconstruction.
+- retained `SEBI Prospectus PDF` records: 9;
+- already have `issue_size_inr`: 2;
+- still missing `issue_size_inr`: 7.
+
+Acceptance rules:
+
+- use only already-retained official SEBI Prospectus PDFs attached to deterministic issuer records;
+- accept only an explicit aggregate Offer/Issue amount stated in the document;
+- retain PDF-page evidence and source metadata;
+- fill missing `issue_size_inr` only;
+- never add Fresh Issue + OFS components;
+- never calculate shares × issue price;
+- preserve null when an aggregate amount is absent, provisional or ambiguous.
 
 ## Publication history
 
@@ -391,4 +481,7 @@ After that review, the next separate field family should be explicit aggregate i
 - PR #17: direct SEBI Prospectus PDF resolution
 - Prospectus attachment bot commit: `0c3e1c199fdb12266589c7f65eead373c49065dd`
 - PR #18: explicit final issue-price extraction from SEBI Prospectus PDFs
-- Final issue-price bot commit: `f9b7155c42d8b44d6985d9dafb9fd242e37dc64e`
+- Initial final issue-price bot commit: `f9b7155c42d8b44d6985d9dafb9fd242e37dc64e`
+- PR #20: read-only diagnostic for unresolved Prospectus price wording
+- PR #21: labelled final Prospectus cover-price repair
+- Completed final issue-price bot commit: `51f806b16e4eba40efee304d07bb5753a8e0f9d9`
