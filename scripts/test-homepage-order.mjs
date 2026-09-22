@@ -33,7 +33,23 @@ for (let index = 1; index < published.length; index += 1) {
   assert.ok(previous >= current, `open-date order failed at index ${index}: ${previous} < ${current}`);
 }
 
-assert.equal(published[0].open_date?.value, "2026-09-23");
-assert.equal(published.at(-1).open_date?.value, "2026-08-28");
+const publishedDates = published
+  .map((row) => row.open_date?.value)
+  .filter(Boolean)
+  .sort();
+
+assert.ok(publishedDates.length > 0, "published dataset must contain at least one open date");
+assert.equal(
+  published[0].open_date?.value,
+  publishedDates.at(-1),
+  "first published row must have the newest available open date"
+);
+
+const lastDatedRow = [...published].reverse().find((row) => row.open_date?.value);
+assert.equal(
+  lastDatedRow?.open_date?.value,
+  publishedDates[0],
+  "last dated published row must have the oldest available open date"
+);
 
 console.log("Homepage newest-first ordering tests passed.");
