@@ -178,7 +178,10 @@ The current validation workflow covers:
 - sparse live-record candidate selection;
 - bounded SEBI search token selection;
 - explicit final Prospectus issue-price parsing;
-- labelled cover-price syntax with unlabeled-price rejection.
+- labelled cover-price syntax with unlabeled-price rejection;
+- explicit final Prospectus aggregate issue-size parsing;
+- unit conversion for million/lakh/crore totals;
+- rejection of Fresh Issue/OFS component-only aggregate amounts.
 
 ## Latest completed batch — Abridged Prospectus issue-size extraction
 
@@ -445,25 +448,93 @@ changed. No unrelated code or data was modified by the bot.
 
 Together with existing Hero Motors and Rentomojo evidence and the four values recovered by PR #18, **all 9 records currently carrying a retained official `SEBI Prospectus PDF` now have final issue-price evidence**.
 
+## Latest completed batch — final Prospectus aggregate issue-size extraction
+
+### Diagnostic
+
+PR #23 — `Diagnose final Prospectus aggregate issue-size wording`
+
+Squash-merged:
+
+`5a0b7e225c53c737b43750db61b19309d29dabc0`
+
+The temporary read-only diagnostic scanned pages 1–20 of the seven retained official final Prospectuses with missing `issue_size_inr`. It confirmed each document contained an explicit top-level aggregate Offer/Issue amount on PDF pages 2–3, while also containing component amounts that must not be confused with the total.
+
+### Extractor
+
+PR #24 — `Extract explicit aggregate issue size from final SEBI Prospectuses`
+
+Squash-merged:
+
+`a7d2afc5f69fe97f17564e86b72e1ebe3cd296b6`
+
+The extractor:
+
+- uses only retained official `SEBI Prospectus PDF` attachments;
+- scans pages 1–20 with Poppler;
+- accepts explicit top-level Offer/Issue aggregate amounts tied to the cover statement, an overall `(Offer)` / `(Issue)` label, or explicit `TOTAL OFFER/ISSUE SIZE`;
+- supports million, lakh and crore units with direct unit conversion;
+- fills missing `issue_size_inr` only;
+- retains PDF page and source metadata;
+- rejects Fresh Issue-only and OFS-only component amounts;
+- never sums components;
+- never multiplies share counts by issue price;
+- removed the temporary diagnostic from the hourly workflow after the source patterns were understood.
+
+### Production verification
+
+Workflow:
+
+- `Sync live IPO data`
+- run ID: `35691580621`
+- conclusion: success
+
+Measured result:
+
+- candidates: 7;
+- official PDFs downloaded: 7;
+- extracted: 7;
+- explicit-size missing: 0;
+- PDF fetch errors: 0.
+
+Published:
+
+1. Jindal Supreme (India) Limited — ₹1,248,804,000 — PDF page 3
+2. Kanohar Electricals Limited — ₹10,557,400,000 — PDF page 3
+3. LCC Projects Limited — ₹4,271,410,000 — PDF page 3
+4. Manipal Payment and Identity Solutions Limited — ₹8,050,000,000 — PDF page 3
+5. Pranav Constructions Limited — ₹3,510,250,000 — PDF page 2
+6. SS Retail Limited — ₹5,000,000,000 — PDF page 3
+7. Veegaland Developers Limited — ₹2,100,000,000 — PDF page 2
+
+Bot data commit:
+
+`0110d864235eccb800efa5b206fa19bf9cdb0fb4`
+
+Bot diff review confirmed only:
+
+- `data/recovery/2026/nse-issue-information.json`;
+- generated `data/ipos.json`
+
+changed. Existing Hero Motors and Rentomojo issue-size evidence was preserved.
+
+GitHub Pages deployment for the bot revision passed in run `35692087146`.
+
+All 9 records currently carrying retained official final Prospectus PDF evidence now have both final issue price and aggregate issue-size evidence.
+
 ## Recommended next coherent batch
 
-Build a bounded **explicit aggregate issue-size extractor for retained final SEBI Prospectus PDFs**.
+Continue P1 **issue-size source coverage** for the remaining 12 of 23 published IPO records where `issue_size_inr` is still missing.
 
-Current coverage:
+Do not revisit the completed final-Prospectus family. Identify the next reusable official source family among already-retained RHP, Abridged Prospectus, NSE/BSE, issuer or registrar evidence and recover only explicit aggregate amounts.
 
-- retained `SEBI Prospectus PDF` records: 9;
-- already have `issue_size_inr`: 2;
-- still missing `issue_size_inr`: 7.
+Acceptance rules remain:
 
-Acceptance rules:
-
-- use only already-retained official SEBI Prospectus PDFs attached to deterministic issuer records;
-- accept only an explicit aggregate Offer/Issue amount stated in the document;
-- retain PDF-page evidence and source metadata;
-- fill missing `issue_size_inr` only;
-- never add Fresh Issue + OFS components;
-- never calculate shares × issue price;
-- preserve null when an aggregate amount is absent, provisional or ambiguous.
+- retain official URL/document identity/publication date/page;
+- fill missing values only;
+- never sum Fresh Issue + OFS components;
+- never calculate shares × price;
+- preserve null for placeholders, component-only disclosures or ambiguous amounts.
 
 ## Publication history
 
@@ -485,3 +556,6 @@ Acceptance rules:
 - PR #20: read-only diagnostic for unresolved Prospectus price wording
 - PR #21: labelled final Prospectus cover-price repair
 - Completed final issue-price bot commit: `51f806b16e4eba40efee304d07bb5753a8e0f9d9`
+- PR #23: read-only diagnostic for final Prospectus aggregate-size wording
+- PR #24: explicit aggregate issue-size extraction from final SEBI Prospectuses
+- Final Prospectus issue-size bot commit: `0110d864235eccb800efa5b206fa19bf9cdb0fb4`
