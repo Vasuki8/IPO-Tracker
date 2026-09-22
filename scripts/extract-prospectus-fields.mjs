@@ -12,13 +12,6 @@ const DIAGNOSTIC_MAX_PAGES = 80;
 const MINIMUM_BID_DIAGNOSTIC_MAX_PAGES = 650;
 const USER_AGENT =
   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
-const RHP_MINIMUM_APPLICATION_DIAGNOSTIC_ISSUERS = new Set([
-  "Adroit Industries (India) Limited",
-  "Asset Reconstruction Company (India) Limited",
-  "Hero Motors Limited",
-  "Moneyview Limited",
-  "National Stock Exchange of India Limited"
-]);
 
 function fail(message) {
   throw new Error("Prospectus field extraction failed: " + message);
@@ -655,7 +648,6 @@ async function diagnoseRhpMinimumApplication() {
   for (const file of recoveryFiles()) {
     const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
     for (const record of recovery.records || []) {
-      if (!RHP_MINIMUM_APPLICATION_DIAGNOSTIC_ISSUERS.has(record.issuer_name)) continue;
       const document = candidateRhpMinimumApplicationDocument(record);
       if (!document) continue;
       stats.candidates += 1;
