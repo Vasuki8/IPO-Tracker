@@ -72,6 +72,9 @@ jobs:
       - name: Test final Prospectus field extraction
         run: node scripts/test-extract-prospectus-fields.mjs
 
+      - name: Diagnose Abridged Prospectus minimum bid
+        run: node scripts/extract-abridged-fields.mjs --diagnose-min-bid
+
       - name: Extract explicit Abridged Prospectus fields
         run: node scripts/extract-abridged-fields.mjs
 
