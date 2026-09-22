@@ -4,72 +4,127 @@ Last updated: 2026-09-22
 
 ## Current state
 
-IPO Tracker now has a working **automated official-source discovery and publication loop**.
+IPO Tracker now has a working **automated official-source discovery and publication loop** plus a production-tested **SEBI document-discovery layer**.
 
-The published 2026 dataset contains **23 real IPO issuers** after the first production live-sync run.
+The published 2026 dataset contains **23 real IPO issuers**.
 
 The source-first rules remain enforced: unsupported values stay null rather than being inferred, estimated, reconstructed, or copied from aggregators.
 
-## Latest completed batch — live IPO automation
+## Automated NSE discovery — verified
 
-### Pull request
+PR #9 added hourly official NSE discovery and publication.
 
-PR #9 — `Automate live IPO discovery and publication`
+The production collector can automatically:
 
-Squash-merged to `main`:
+- discover current/upcoming IPOs;
+- create new recovery records;
+- retain issuer name, symbol/series and collection time;
+- publish explicit NSE board/status, price-band/fixed-price, market-lot and offer-date values;
+- preserve unsupported fields as null;
+- rebuild and validate `data/ipos.json`;
+- commit only source-backed changes;
+- trigger GitHub Pages publication.
 
-`8a6895d34bd64c2600c6e82bec29418e399fa366`
+The first production run expanded the dataset from 14 to 23 issuers.
 
-### Automation added
+## Latest completed batch — automated SEBI document discovery
 
-`.github/workflows/update-ipos.yml` now runs hourly at minute 17 and can also run manually.
+This development run implemented and production-tested automatic SEBI offer-document discovery.
 
-The workflow:
+### Pull requests
 
-1. tests the live-feed parser;
-2. collects official NSE current/upcoming IPO data;
-3. merges explicitly supported values into retained recovery manifests;
-4. rebuilds `data/ipos.json`;
-5. verifies deterministic publication;
-6. validates the IPO data contract;
-7. commits only when source-backed data changed.
+- PR #10 — `Automate SEBI offer-document discovery`
+  - merge: `dd6236d718b77c21f1962dc3b2e95caac8fa5d86`
+- PR #11 — `Repair live SEBI filing-page parsing`
+  - merge: `93ed02f01b918e3042b336b4501b7695d6a95149`
+- PR #12 — `Target sparse IPOs with SEBI document search`
+  - merge: `2c24f1f800bb483f2f0e66b0aedf39f90b5d80b2`
+- PR #13 — `Cover recent SEBI filings from general filings feed`
+  - merge: `65bdfe5bb7d9f025511963af31a34ab6561ce0f9`
+- PR #14 — `Use token searches for sparse SEBI enrichment`
+  - merge: `f5e7032eb560aecceaa2c67a3728a21a6a4d1251`
+- PR #15 — `Add SEBI mixed Public Issues coverage`
+  - merge: `86a828f2199abfc0c3f172ebf95af224f34e65fd`
 
-The resulting data commit is then published by GitHub Pages.
+### What the SEBI layer does
 
-### First production run
+The hourly workflow now checks official SEBI sources for:
 
-The first live run succeeded from GitHub Actions.
+- RHP filing pages;
+- Abridged Prospectus links;
+- final Prospectus / final-offer-document filing pages.
 
-Collector run:
+Current official inputs include:
 
-- workflow: `Sync live IPO data`
-- run ID: `35683653409`
-- conclusion: success
+- dedicated RHP list;
+- dedicated final-offer-document list;
+- general SEBI Filings list;
+- mixed Public Issues list;
+- bounded issuer-specific SEBI search for sparse NSE-live records.
 
-The run successfully completed:
+Issuer matching is conservative:
 
-- live-feed parser tests;
+- normalize punctuation / whitespace / Ltd vs Limited;
+- allow a controlled `(India)` alternate;
+- require exactly one matching recovery record;
+- skip ambiguous/unmatched entries;
+- ignore DRHP/UDRHP, addendum and corrigendum entries in this initial matcher.
+
+The SEBI layer currently attaches **document evidence only**. It does not infer market values from filenames or price-band caps.
+
+## Production verification
+
+### Initial live failure and repair
+
+The first production run after PR #10:
+
+- workflow run: `35684352679`
+- NSE collection: passed
+- SEBI step: failed
+
+Reason:
+
+- the live SEBI raw HTML used dynamic filing-link markup that differed from the original plain-`href` fixture.
+
+PR #11 repaired the parser to support dynamic anchor attributes and raw official filing URL fallbacks.
+
+### Verified successful network runs
+
+After repair, production runs completed end to end:
+
+- `35684600007`
+- `35684873959`
+- `35685039080`
+- `35685302655`
+- `35685494607`
+
+The latest run `35685494607` passed:
+
+- NSE parser tests;
+- SEBI matcher tests;
 - real NSE collection;
-- published-data rebuild;
-- deterministic publication check;
+- real SEBI collection;
+- deterministic publication;
 - data-contract validation;
-- source-backed data commit.
+- publication step.
 
-Bot-generated commit:
+Post-merge validation and GitHub Pages deployment for head
+`86a828f2199abfc0c3f172ebf95af224f34e65fd` also passed.
 
-`87c52215fcdbaa079b937597fe902a13309e22d2`
+## Verified SEBI coverage limitation
 
-Commit message:
+The SEBI network/parser path is operational, but the current raw responses available to GitHub Actions do **not yet enrich the nine sparse records created by the first NSE live run**.
 
-`chore(data): sync live NSE IPO feed`
+Latest measured result:
 
-### Dataset result
+- 9 matched latest-list filing entries;
+- 37 unmatched listing entries;
+- 9/9 sparse NSE-live records searched by the bounded targeted fallback;
+- 5 filing results parsed from targeted searches;
+- 0 deterministic targeted issuer matches;
+- 0 new documents added.
 
-Before live sync: **14 issuers**
-
-After live sync: **23 issuers**
-
-Newly added:
+The nine still-sparse live-discovered issuers are:
 
 1. Adroit Industries (India) Limited
 2. ArMee Infotech Limited
@@ -81,46 +136,14 @@ Newly added:
 8. Swastika Infra Limited
 9. Varmora Granito Limited
 
-Existing-record enrichment:
+This is documented as a **source-delivery / coverage limitation**, not a reason to loosen matching.
 
-- Sonaselection India Limited received official NSE board/status evidence and lifecycle status was updated to closed.
+The tracker will not:
 
-### Data-safety audit
-
-The bot-generated diff was reviewed after the real collection.
-
-For newly discovered records:
-
-- `issue_size_inr` remained null;
-- `minimum_bid_quantity` remained null unless retained elsewhere;
-- `minimum_application_amount_inr` remained null;
-- final issue price remained null unless explicitly supplied as a fixed price;
-- no sector/listing date was guessed;
-- explicit NSE price bands and dates were retained with source evidence;
-- explicit SME market lots were retained where the feed supplied them.
-
-The collector does not treat NSE's `issueSize` field as an INR issue-size value.
-
-### Publication verification
-
-GitHub Pages successfully published the bot-generated data revision:
-
-- Pages run ID: `35683671138`
-- deployed head: `87c52215fcdbaa079b937597fe902a13309e22d2`
-- conclusion: success
-
-Direct retrieval of the Pages URL remains unavailable from the development web reader, so workflow revision/deployment evidence is used for verification.
-
-## Automation source
-
-Current automated discovery source family:
-
-- official NSE upcoming IPO website feed;
-- official NSE current IPO website feed.
-
-See `docs/AUTOMATION.md`.
-
-This source is the **discovery / basic-terms layer**, not the final document-research layer.
+- fuzzy-match a filing to an issuer;
+- copy a third-party document mirror;
+- invent a SEBI URL or filing ID;
+- silently treat a search result for another issuer as evidence.
 
 ## Data integrity rules currently enforced
 
@@ -131,62 +154,62 @@ This source is the **discovery / basic-terms layer**, not the final document-res
 - Non-null board/status values require companion provenance.
 - Existing evidence collection timestamps are preserved.
 - `last_collected_at` is tracked per record.
-- Unsupported source hosts are rejected by the publisher.
-- Market lot, minimum bid quantity, and minimum application amount remain separate concepts.
-- Live-feed enrichment may not relabel older manual term evidence as live-feed evidence.
+- Market lot, minimum bid quantity, and minimum application amount remain separate.
+- Live-feed enrichment does not relabel richer manual evidence.
 - Price-band conflicts are not silently overwritten.
+- SEBI document attachment is idempotent.
+- Ambiguous SEBI issuer matches are skipped.
 
 ## Tests
 
-The automation batch added tests for:
+The current validation workflow covers:
 
-- NSE date parsing;
-- price-band parsing;
-- fixed-price parsing;
-- Mainboard/SME mapping;
-- lifecycle status mapping;
-- merging upcoming/current feed data;
-- new-record construction;
-- preservation of unsupported null fields;
+- NSE date / price / board / status parsing;
+- NSE new-record and safe-enrichment behavior;
 - manual-source provenance protection;
-- safe enrichment of records originally discovered by the live feed;
-- deterministic multi-year publication.
-
-PR/branch validation passed before merge, and the real production network run passed after merge.
+- deterministic multi-year publication;
+- SEBI filing URL parsing;
+- dynamic SEBI link markup;
+- RHP/final classification;
+- Abridged Prospectus extraction;
+- issuer normalization;
+- ambiguity rejection;
+- duplicate-document idempotency;
+- sparse live-record candidate selection;
+- bounded SEBI search token selection.
 
 ## Earliest unfinished priority
 
-P1/P2 — data correctness and source evidence depth.
+P1/P2 — **data correctness and source evidence depth**.
 
-New IPO discovery is now automated, but newly discovered IPOs may have sparse detail until richer official documents are attached.
+Live IPO discovery is automated and SEBI document matching is operational, but SEBI raw-source coverage for newly discovered sparse issuers is not sufficient to justify further endpoint-variant retries in the same workstream.
 
 ## Recommended next coherent batch
 
-Automate official offer-document discovery/enrichment for newly discovered IPOs.
+Move to a source family where evidence is already retained and make it produce additional trusted fields.
 
-Start with a bounded SEBI source family capable of matching new NSE-discovered issuers to:
+Recommended first target:
 
-- RHP;
-- Abridged Prospectus;
-- Prospectus / other relevant final filing.
+**automate one bounded field-extraction family from retained official Abridged Prospectus / final Prospectus documents.**
 
-Requirements:
+Acceptance criteria:
 
-- deterministic or explicitly reviewed matching;
-- retain document identity, URL and publication date;
-- preserve ambiguous matches rather than guessing;
-- extract only fields supported by directly retained official evidence;
-- test across multiple issuers;
-- integrate safely with the hourly collector.
+1. start only with documents whose official URL is already retained;
+2. extract a very small field set, e.g. explicit aggregate issue size and/or final issue price;
+3. retain page/evidence location and source document identity;
+4. never substitute price-band cap for final issue price;
+5. preserve null when a PDF is inaccessible or the value is not explicit;
+6. add source-family fixtures/tests before production use;
+7. keep SEBI sparse-discovery coverage as a documented blocker rather than loosening issuer matching.
 
 ## Publication history
 
 - PR #1: source-backed data foundation
-- PR #2: first 2026 recovery batch
-- PR #3: deepen Hero Motors and Rentomojo evidence
-- PR #4: recover Rentomojo final Prospectus terms
-- PR #5: second official-source 2026 IPO batch
-- PR #6: third official-source 2026 IPO batch
-- PR #7: fourth official-source 2026 IPO batch
-- PR #8: fifth official-source 2026 IPO batch
-- PR #9: automated live IPO discovery and publication
+- PR #2–#8: bounded 2026 recovery/enrichment batches
+- PR #9: automated NSE live discovery/publication
+- PR #10: automated SEBI document discovery
+- PR #11: live SEBI parser repair
+- PR #12: bounded targeted SEBI fallback
+- PR #13: SEBI general-filings coverage
+- PR #14: token-oriented targeted search
+- PR #15: mixed Public Issues coverage
