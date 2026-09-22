@@ -639,3 +639,36 @@ Published issue-size coverage is now **14/26**.
 
 The next P1 source family is explicit market lot. Do not reuse Bid Lot / Minimum Order Quantity as market lot merely because values may coincide; inspect explicit Market Lot / Lot Size source terms separately.
 
+## NSE ipo-detail market-lot automation — production verified
+
+Market lot remains a separate application term from minimum bid quantity.
+
+Read-only production diagnostic PR #60 / run `35757461876` checked the eight missing market-lot records using official NSE `/api/ipo-detail`:
+
+- 8 API successes;
+- 1 response with explicit Market Lot / Lot Size;
+- 0 fetch errors.
+
+The sole supported source term was:
+
+- Axiom Gas Engineering Limited — `Lot Size: 2000 Equity Shares`.
+
+The other seven records expose no explicit Market Lot / Lot Size field. Bid Lot and Minimum Order Quantity are intentionally ignored for market-lot purposes.
+
+PR #61 added the production extractor:
+
+- accepted titles: exact Market Lot / Lot Size;
+- positive Equity Share quantity required;
+- placeholders/conflicts rejected;
+- missing fields only;
+- exact NSE endpoint evidence retained;
+- retained market-lot evidence supported by deterministic publication.
+
+Production run `35758162829` extracted Axiom's verified 2,000-share market lot from 8/8 successful API calls, with 7 source-null records and zero conflicts/fetch errors.
+
+Bot data commit: `fbe718e911d9649e9a6007a9c2922af23b397816`.
+
+Published market-lot coverage is now **19/26**.
+
+The next P1 field family is minimum application amount INR. Start with explicit official source text; do not compute it from price and quantity in the first extraction family.
+
