@@ -8,6 +8,14 @@ const NSE_HOME = "https://www.nseindia.com/market-data/all-upcoming-issues-ipo";
 const API_BASE = "https://www.nseindia.com/api/ipo-detail";
 const USER_AGENT =
   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
+const MINIMUM_APPLICATION_DIAGNOSTIC_ISSUERS = new Set([
+  "Adroit Industries (India) Limited",
+  "Asset Reconstruction Company (India) Limited",
+  "Axiom Gas Engineering Limited",
+  "Bench Mark Infotech Services Limited",
+  "Qualiance International Limited",
+  "Varmora Granito Limited"
+]);
 
 function normalizeText(value) {
   return String(value ?? "").replace(/\s+/g, " ").trim();
@@ -979,6 +987,7 @@ async function diagnoseMinimumApplicationAmount() {
   for (const file of recoveryFiles()) {
     const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
     for (const record of recovery.records || []) {
+      if (!MINIMUM_APPLICATION_DIAGNOSTIC_ISSUERS.has(record.issuer_name)) continue;
       const identity = resolveNseIdentity(record);
       if (!identity) continue;
       const key = identity.symbol + "|" + identity.series;
