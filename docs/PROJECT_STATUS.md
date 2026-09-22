@@ -1542,3 +1542,77 @@ Acceptance rules:
 - do not reinterpret bid lot, minimum order quantity or share-count wording as an amount;
 - fill missing values only;
 - preserve null when wording is absent, derived, placeholder or ambiguous.
+
+
+## Latest completed batch — full-document RHP minimum-application classification
+
+PR #70 — `Survey RHP minimum application amounts` — introduced a strict read-only full-document survey over retained official SEBI RHP PDFs.
+
+Squash-merged:
+
+`d237b5f8f418ba5d4cd5de2e0d60cdd6f29f0a4d`
+
+Production sync run `35765946080` completed successfully and scanned the complete retained RHP set before a later bounding change was added for subsequent runs.
+
+Full-run results:
+
+- retained RHP candidates: **14**
+- PDFs downloaded: **14/14**
+- pages scanned: **7,593**
+- documents with at least one labelled INR minimum-application/investment mention: **14/14**
+- captured labelled mentions: **28**
+- fetch errors: **0**
+- data writes from the diagnostic: **0**
+
+### Classification of the matches
+
+The RHP evidence proves that `minimum application` is not a single issuer-wide concept.
+
+Observed source classes:
+
+1. **Anchor / QIB Mutual Fund minimum application size**
+   - commonly `₹100 million`, `₹100,000,000`, or `₹1,000 lakhs`;
+   - this belongs to Anchor/QIB bidding rules and is not the ordinary retail minimum.
+
+2. **Non-Institutional Investor (NII) minimum application size**
+   - Sonaselection India Limited — **₹0.20 million = ₹200,000**, PDF page 92;
+   - Swastika Infra Limited — **₹2.00 lakh = ₹200,000**, PDF pages 77 and 411.
+
+3. **Unrelated “minimum investment” prose**
+   - examples include industry-policy investment thresholds or ARC regulatory investment requirements;
+   - these are not IPO application amounts.
+
+4. **Category-specific application wording without one generic investor-independent amount**
+   - several RHPs describe NII or Anchor rules but do not state one universal application amount applicable across investor classes.
+
+### Decision
+
+Do **not** publish an RHP-derived value into the current generic `minimum_application_amount_inr` field.
+
+Selecting a category-specific Anchor/QIB or NII amount would collapse different investor rules into one misleading number. The existing generic field therefore remains **0/26**.
+
+The one-shot RHP diagnostic is removed from hourly execution after this measurement. The manual diagnostic remains available and is no longer artificially bounded, so it can re-scan the full retained set when intentionally invoked.
+
+### Recommended next coherent batch
+
+Refine the data contract before any further application-amount extraction.
+
+Design and test an investor-category-specific representation, for example:
+
+- retail minimum application amount;
+- NII minimum application amount;
+- Anchor/QIB minimum application amount;
+- related minimum bid quantity / bid-lot rule;
+- source page, source status and source identity per category.
+
+Acceptance criteria:
+
+- preserve backward compatibility for existing published records;
+- do not reinterpret the existing generic field silently;
+- document category semantics explicitly;
+- keep monetary amount and share quantity separate;
+- retain page-level official evidence;
+- no price × quantity derivation unless a future field is explicitly defined as derived and clearly labelled as such;
+- only add categories that can be sourced consistently from official documents.
+
+Until this contract exists, further minimum-application extraction should remain diagnostic-only.
