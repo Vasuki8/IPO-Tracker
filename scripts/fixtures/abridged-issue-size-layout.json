@@ -2,22 +2,22 @@
   "cases": [
     {
       "name": "karamtara explicit total",
-      "layout": "TYPE                 FRESH ISSUE SIZE       SIZE OF THE OFFER FOR SALE      TOTAL OFFER SIZE              ELIGIBILITY\\nFresh Issue          aggregating up to      aggregating up to                Up to [●] equity shares\\nand Offer for Sale   ₹6,750.00 million      ₹2,000.00 million                aggregating up to ₹8,750.00 million\\nRISKS IN RELATION TO THE FIRST OFFER",
+      "layout": "TYPE                 FRESH ISSUE SIZE       SIZE OF THE OFFER FOR SALE      TOTAL OFFER SIZE              ELIGIBILITY\nFresh Issue          aggregating up to      aggregating up to                Up to [●] equity shares\nand Offer for Sale   ₹6,750.00 million      ₹2,000.00 million                aggregating up to ₹8,750.00 million\nRISKS IN RELATION TO THE FIRST OFFER",
       "expected": 8750000000
     },
     {
       "name": "esds explicit total",
-      "layout": "TYPE          FRESH ISSUE SIZE           OFFER FOR SALE SIZE        TOTAL ISSUE SIZE             ELIGIBILITY\\nFresh Issue   aggregating up to           Not applicable             aggregating up to\\n              ₹7,200.00 million                                      ₹7,200.00 million\\nRISKS IN RELATION TO THE FIRST ISSUE",
+      "layout": "TYPE          FRESH ISSUE SIZE           OFFER FOR SALE SIZE        TOTAL ISSUE SIZE             ELIGIBILITY\nFresh Issue   aggregating up to           Not applicable             aggregating up to\n              ₹7,200.00 million                                      ₹7,200.00 million\nRISKS IN RELATION TO THE FIRST ISSUE",
       "expected": 7200000000
     },
     {
       "name": "pranav total placeholder",
-      "layout": "TYPE                 FRESH ISSUE SIZE       OFFER FOR SALE SIZE          TOTAL OFFER SIZE             ELIGIBILITY\\nFresh Issue          aggregating up to      aggregating up to            aggregating up to\\nand Offer for Sale   ₹3,156.00 million      ₹[●] million                 ₹[●] million\\nRISKS IN RELATION TO THE FIRST OFFER",
+      "layout": "TYPE                 FRESH ISSUE SIZE       OFFER FOR SALE SIZE          TOTAL OFFER SIZE             ELIGIBILITY\nFresh Issue          aggregating up to      aggregating up to            aggregating up to\nand Offer for Sale   ₹3,156.00 million      ₹[●] million                 ₹[●] million\nRISKS IN RELATION TO THE FIRST OFFER",
       "expected": null
     },
     {
       "name": "arcil total placeholder",
-      "layout": "TYPE              FRESH ISSUE SIZE        OFFER FOR SALE SIZE           TOTAL OFFER SIZE             ELIGIBILITY\\nOffer for Sale    Not applicable          aggregating up to             aggregating up to\\n                                        ₹[●] million                  ₹[●] million\\nRISKS IN RELATION TO THE FIRST OFFER",
+      "layout": "TYPE              FRESH ISSUE SIZE        OFFER FOR SALE SIZE           TOTAL OFFER SIZE             ELIGIBILITY\nOffer for Sale    Not applicable          aggregating up to             aggregating up to\n                                        ₹[●] million                  ₹[●] million\nRISKS IN RELATION TO THE FIRST OFFER",
       "expected": null
     }
   ]
