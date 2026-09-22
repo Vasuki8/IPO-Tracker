@@ -9,67 +9,116 @@ The tracker publishes two real 2026 IPO records from retained official evidence:
 - Hero Motors Limited
 - Rentomojo Limited
 
-This batch deepened those records without filling unsupported gaps.
+The two-record pilot now demonstrates both pre-offer term recovery and final-Prospectus enrichment while preserving unsupported fields as null.
 
 ## Completed in latest batch
 
+### Rentomojo Limited — official final Prospectus recovery
+
+A directly retrievable official NSE archive copy of Rentomojo Limited's Prospectus was recovered:
+
+- document: `Rentomojo Limited - Prospectus dated September 11, 2026`
+- official source: `https://nsearchives.nseindia.com/corporate/FP_INE08T701025_15SEP2026.pdf`
+
+The Prospectus explicitly establishes:
+
+- final issue price: ₹404 per Equity Share
+- total offer size: ₹12,555.67 million
+- equivalent stored INR value: ₹12,555,670,000
+
+Both fields are now published as verified and retain the Prospectus URL, identity, document date, evidence location, and collection timestamp.
+
+The original NSE issue-information evidence and earlier collection timestamps were preserved.
+
+### What remains intentionally null for Rentomojo
+
+- listing date
+- lifecycle status
+- minimum application amount
+- sector
+
+The listing date and listed status were not promoted from third-party mirrors.
+
+The minimum application amount was not silently derived from `37 × ₹404`; the project still requires either direct official evidence or a separately documented derivation rule before publishing that field.
+
+## Official exchange listing-source investigation
+
+The listing-source family was investigated again.
+
+### BSE
+
+Two BSE listing notices are discoverable for Rentomojo:
+
+- `20260916-7` — preliminary listing notice
+- `20260916-46` — effective listing notice reported as September 17, 2026
+
+The canonical BSE notice URL pattern is known:
+
+`https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=<NOTICE_NO>`
+
+Older BSE notices at this pattern are directly retrievable by the available tooling, confirming that the URL structure is legitimate. However, the 2026 Rentomojo dynamic notice pages still return an inaccessible/internal-error response in this development session.
+
+Search indexes and third-party mirrors expose the notice contents, but those mirrors were not accepted as production evidence.
+
+### NSE
+
+A directly retrievable NSE final Prospectus was found and used for final issue price and total offer size.
+
+A directly retrievable NSE listing circular establishing the actual listing date/status was not found in this run.
+
+## PDF verification note
+
+The Rentomojo NSE Prospectus was opened as a PDF and its text layer was available. The required screenshot renderer was also invoked for the relevant pages, but returned a cache-miss error. Page-level evidence therefore uses the official PDF text location while documenting that visual screenshot rendering was unavailable.
+
+## Current published data
+
 ### Hero Motors Limited
 
-Added the final issue price:
+Verified:
 
-- issue price: ₹84 per Equity Share
-- source: issuer-hosted final Prospectus dated September 18, 2026
-- evidence page: 10
-- source collection timestamp retained separately from earlier NSE/SEBI evidence
+- price band: ₹79–₹84
+- final issue price: ₹84
+- issue size: ₹10,000 million
+- market lot: 178 shares
+- minimum bid quantity: 178 shares
+- offer period: September 16–18, 2026
 
-The Prospectus explicitly defines the Offer Price as ₹84 per Equity Share.
-
-### Rentomojo Limited
-
-Added the board classification:
-
-- board: Mainboard
-- source: NSE-hosted Public Announcement dated March 28, 2026
-- evidence page: 1
-
-The announcement explicitly describes the proposed IPO as an initial public offering on the Main Board of BSE and NSE.
-
-### Data-contract improvements
-
-- Bumped published schema from `1.0.0` to `1.1.0`.
-- Added `board_evidence` and `status_evidence` arrays so scalar lifecycle metadata cannot lose provenance.
-- Validation now rejects a non-null board or status without retained evidence.
-- Added official issuer-host support for Hero Motors evidence.
-- Added official NSE archive host support.
-- Fixed recovery publication so regenerating the dataset no longer overwrites older evidence collection timestamps.
-- Preserved the original `first_observed_at` timestamp for both records.
-- New evidence receives the new collection time while existing evidence keeps its original collection time.
-
-## Fields intentionally still null
-
-### Hero Motors Limited
+Still null:
 
 - board
 - lifecycle status
 - listing date
 - minimum application amount
+- sector
 
 ### Rentomojo Limited
 
-- final issue price
+Verified:
+
+- board: Mainboard
+- price band: ₹384–₹404
+- final issue price: ₹404
+- issue size: ₹12,555.67 million
+- market lot: 37 shares
+- minimum bid quantity: 37 shares
+- offer period: September 9–11, 2026
+
+Still null:
+
 - lifecycle status
 - listing date
 - minimum application amount
-- issue size
+- sector
 
-These values were not promoted because the retained official evidence available to this run did not meet the project's source-verification standard.
+## Data integrity rules currently enforced
 
-## Source-recovery attempts that did not become production data
-
-- BSE notice `20260916-46` is discoverable through search/mirror indexing and describes Rentomojo's ₹404 issue price and September 17 listing, but the official dynamic BSE notice endpoint could not be independently retrieved in this development session. Mirror data was therefore not used as production evidence.
-- The SEBI Rentomojo final Prospectus filing was verified and exposes the official attached PDF URL, but direct retrieval of that PDF timed out in the available web tooling. No unverified values were extracted from secondary copies.
-- Hero Motors' official final Prospectus PDF was readable through the issuer site; the web screenshot renderer returned a cache-miss error, but the PDF text layer provided page-level evidence for the ₹84 Offer Price.
-- Rentomojo's NSE Public Announcement PDF is official and indexed with the explicit Main Board statement; the screenshot renderer could not render that search result, so the indexed official PDF text was used.
+- Published schema version: `1.1.0`.
+- `data/ipos.json` must be exactly synchronized with the retained recovery manifest.
+- Verified values require retained evidence.
+- Missing fields must keep `value: null`.
+- Non-null board/status values require companion provenance.
+- Existing evidence collection timestamps must not be rewritten when a record is re-collected.
+- Unsupported source hosts are rejected by the recovery publisher.
 
 ## Tests required for this batch
 
@@ -81,37 +130,33 @@ GitHub Actions must pass:
 
 Diff review must confirm:
 
-- exactly two existing records are enriched; no new issuer is introduced;
-- Hero issue price is ₹84 with official issuer evidence;
-- Rentomojo board is Mainboard with official NSE evidence;
-- previous evidence collection timestamps remain unchanged;
-- unsupported fields remain null;
-- no correction history is lost;
-- no unrelated product feature is changed.
+- no new issuer is introduced;
+- Rentomojo issue price is ₹404 from the official NSE Prospectus;
+- Rentomojo issue size is ₹12,555,670,000 from the same Prospectus;
+- listing date/status remain null;
+- minimum application amount remains null;
+- prior evidence timestamps remain unchanged;
+- no unrelated UI/product feature is changed.
 
 ## Earliest unfinished priority
 
 P1 — Data correctness.
 
-The two-record pilot is now strong enough to demonstrate final-term enrichment. Remaining P1 work is split by source availability:
-
-1. Resolve official listing/final-price evidence for Rentomojo from a directly retrievable BSE/NSE/SEBI source.
-2. Recover Hero Motors board/status/listing only when explicit official evidence is available.
-3. Then expand the same recovery pattern to the next small 2026 issuer batch.
+The direct BSE listing-notice endpoint remains blocked in this environment, while the official NSE final-Prospectus family is now proven usable.
 
 ## Recommended next coherent batch
 
-Resolve the official exchange listing-source family.
+Do not spend another full batch retrying the same inaccessible BSE notice endpoint.
 
-Target:
+Proceed to the next small 2026 official-source recovery batch using the proven pattern:
 
-- official BSE/NSE listing notices;
-- final issue price;
-- listing date;
-- listed lifecycle status;
-- board classification where explicitly stated.
+1. discover 2–5 additional 2026 IPO issuers from official NSE/SEBI sources;
+2. retain issuer identity and offer-document trail;
+3. recover core P1 terms from official issue-information / Prospectus sources;
+4. preserve unavailable listing fields as null;
+5. return to the BSE listing-notice family when a directly retrievable official endpoint or archive path is available.
 
-Do not use third-party notice mirrors as production sources. If official dynamic exchange pages remain inaccessible, retain the gaps and move to another official source family rather than guessing.
+The exchange-listing blocker should remain documented, not bypassed with mirrors.
 
 ## Publication history
 
@@ -119,17 +164,7 @@ Do not use third-party notice mirrors as production sources. If official dynamic
 - Foundation merge: `4ae4fb43b63fc9aebd5380bab33cd3cc838f48ec`
 - PR #2: first 2026 recovery batch
 - First recovery merge: `30d73b04677fda0f5d6c17a688f16fa50809840b`
-- First recovery deployment bookkeeping: `fc2c995b3e59e75eaacd3bdfec474a7cdf07aa6a`
+- PR #3: deepen Hero Motors and Rentomojo evidence
+- Final-term enrichment merge: `5ecbcc4615c523d4bdafc56632b17ee6d4762722`
+- Prior production bookkeeping head: `880c53a5f2f8c6ffb6f5561a761b6f0037aec598`
 - Validation and GitHub Pages deployment passed for the prior production head.
-
-## Latest publication
-
-- Pull request: #3 — `Deepen Hero Motors and Rentomojo source evidence`
-- Squash-merged to `main`: `5ecbcc4615c523d4bdafc56632b17ee6d4762722`
-- Post-merge data-contract validation: passed
-- Post-merge GitHub Pages deployment: passed
-- Published dataset schema: `1.1.0`
-- Hero Motors final issue price ₹84 is published with issuer-Prospectus evidence.
-- Rentomojo Mainboard classification is published with NSE Public Announcement evidence.
-- Unsupported final/listing fields remain null.
-- Direct visual retrieval of the public GitHub Pages URL remains unavailable from this development session; deployment workflow and repository artifact state were verified instead.
