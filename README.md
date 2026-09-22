@@ -303,11 +303,53 @@ The result is source-driven rather than a parser failure:
 
 Therefore **no RHP-derived `issue_size_inr` value was published**, provisional or otherwise. The temporary diagnostic was removed from hourly execution after this measurement.
 
+### Latest minimum-bid recovery result
+
+The minimum-bid source family has now been tested across the available document stages rather than equating it with market lot.
+
+- PR #34 — Abridged Prospectus diagnostic: Adroit, NSE, and Swastika all downloaded successfully, but page 1 contained **0 explicit minimum-bid mentions**.
+- PR #35 — RHP diagnostic: all three RHPs explicitly deferred the Bid Lot / Minimum Bid Lot to the later price-band advertisement and retained `[●]` placeholders.
+- PR #36 — final-Prospectus diagnostic: one eligible final Prospectus existed, for National Stock Exchange of India Limited. It explicitly states **Bid Lot 8 Equity Shares** on PDF page 10 and repeats **Minimum Bid 8 Equity Shares** later in the offer-procedure tables.
+- PR #38 — NSE Issue Information HTML probe: all 9 Active/Forthcoming/Past page requests succeeded, but GitHub Actions received only the client-side shell; the rendered Bid Lot / Minimum Order Quantity values are supplied dynamically rather than in raw HTML.
+- PR #39 — strict final-Prospectus extractor, merged at `0c0b0668690b2f50ebe57627b74abae7a3aec4ad`.
+
+Production sync run `35697515918` succeeded:
+
+- candidates: 1;
+- official final Prospectus PDFs downloaded: 1;
+- extracted: 1;
+- explicit minimum-bid missing: 0;
+- fetch errors: 0.
+
+Published:
+
+- **National Stock Exchange of India Limited — minimum bid quantity 8 Equity Shares — final Prospectus PDF page 10**.
+
+Source-backed bot commit:
+
+`2f6428c2138173a4ca02dc271100ed22412da31e`
+
+Only the recovery manifest and generated `data/ipos.json` changed. The published field is `verified` and retains the direct official SEBI Prospectus PDF/page evidence.
+
+Minimum-bid coverage improved from **13/23 to 14/23**; 9 records remain missing.
+
+GitHub Pages deployment for the bot revision passed in run `35697665129`.
+
 ### Recommended next coherent batch
 
-Treat aggregate issue size for these five as **blocked pending final-price/final-Prospectus evidence**; the existing final-Prospectus automation can fill it automatically when authoritative final documents arrive.
+Discover and integrate the **official dynamic NSE Issue Information data endpoint** that supplies rendered `Bid Lot` / `Minimum Order Quantity` values.
 
-Move the next bounded P1 batch to **explicit minimum bid quantity recovery**. Start with records that now have retained RHP/Abridged evidence—Adroit Industries, National Stock Exchange of India, and Swastika Infra—and accept only an explicitly stated minimum bid quantity/lot from the official document. Do not copy `market_lot` into `minimum_bid_quantity` merely because the values may coincide.
+The public NSE Issue Information page is already the correct official source family, but raw HTML is only the application shell. The next batch should identify the same NSE backend call used by the page, then test it against multiple retained symbols before any write path is enabled.
+
+Acceptance rules:
+
+- official NSE endpoint only;
+- match by retained NSE symbol/series;
+- keep `market_lot` and `minimum_bid_quantity` distinct;
+- require explicit numeric minimum order / bid-lot data from the endpoint;
+- retain endpoint URL/identity and collection time as evidence;
+- fill missing values only;
+- preserve null when the endpoint has no value or the issuer cannot be matched deterministically.
 
 ### Product direction
 
