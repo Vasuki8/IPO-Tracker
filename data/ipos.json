@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1.0",
-  "generated_at": "2026-09-22T15:51:11.595Z",
+  "generated_at": "2026-09-22T17:04:00.518Z",
   "collection_started_at": "2026-09-22T02:14:14Z",
   "records": [
     {
@@ -1493,9 +1493,18 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 2000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=AXIOMGAS&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — AXIOMGAS",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-22T17:04:00.518Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
@@ -1563,7 +1572,7 @@
         }
       ],
       "first_observed_at": "2026-09-22T03:34:37.086Z",
-      "last_collected_at": "2026-09-22T14:09:20.202Z"
+      "last_collected_at": "2026-09-22T17:04:00.518Z"
     },
     {
       "id": "national-stock-exchange-of-india-limited",
