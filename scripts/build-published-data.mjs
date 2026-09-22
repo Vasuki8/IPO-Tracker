@@ -133,7 +133,7 @@ for (const record of recovery.records) {
 }
 
 const published = {
-  schema_version: "1.0.0",
+  schema_version: "1.1.0",
   generated_at: recovery.generated_at,
   collection_started_at: recovery.collection_started_at,
   records: recovery.records
