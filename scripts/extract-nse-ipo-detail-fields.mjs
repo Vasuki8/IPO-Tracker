@@ -352,6 +352,24 @@ export function parseMarketLotFromIpoDetail(payload) {
   };
 }
 
+export function minimumApplicationCandidatesFromIpoDetail(payload) {
+  const list = payload?.issueInfo?.dataList;
+  if (!Array.isArray(list)) return [];
+
+  return list
+    .filter((item) => {
+      const title = normalizeTitle(item?.title);
+      const hasMinimum = title.includes("minimum");
+      const hasApplication = title.includes("application");
+      const hasInvestment = title.includes("investment");
+      return hasMinimum && (hasApplication || hasInvestment);
+    })
+    .map((item) => ({
+      title: normalizeText(item?.title),
+      value: normalizeText(item?.value).replace(/^"|"$/g, "")
+    }));
+}
+
 export function parseMinimumBidFromIpoDetail(payload) {
   const list = payload?.issueInfo?.dataList;
   if (!Array.isArray(list)) {
@@ -939,6 +957,75 @@ async function diagnoseIssuePrice() {
   console.log(JSON.stringify({ nse_issue_price_diagnostic_stats: stats }, null, 2));
 }
 
+async function diagnoseMinimumApplicationAmount() {
+  const landing = await fetchWithRetry(NSE_HOME, {
+    headers: {
+      "user-agent": USER_AGENT,
+      "accept": "text/html,application/xhtml+xml",
+      "accept-language": "en-US,en;q=0.9"
+    }
+  });
+  const cookie = cookieHeader(landing.headers);
+
+  const stats = {
+    candidates: 0,
+    api_success: 0,
+    responses_with_application_terms: 0,
+    fetch_errors: 0
+  };
+
+  const seen = new Set();
+
+  for (const file of recoveryFiles()) {
+    const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
+    for (const record of recovery.records || []) {
+      const identity = resolveNseIdentity(record);
+      if (!identity) continue;
+      const key = identity.symbol + "|" + identity.series;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      stats.candidates += 1;
+
+      const url = apiUrl(record);
+      try {
+        const response = await fetchWithRetry(url, {
+          headers: {
+            "user-agent": USER_AGENT,
+            "accept": "application/json,text/plain,*/*",
+            "accept-language": "en-US,en;q=0.9",
+            "referer": NSE_HOME,
+            "cookie": cookie,
+            "cache-control": "no-cache",
+            "pragma": "no-cache"
+          }
+        });
+        const payload = await response.json();
+        stats.api_success += 1;
+        const candidates = minimumApplicationCandidatesFromIpoDetail(payload);
+        if (candidates.length > 0) stats.responses_with_application_terms += 1;
+
+        console.log(JSON.stringify({
+          issuer_name: record.issuer_name,
+          symbol: identity.symbol,
+          series: identity.series,
+          url,
+          minimum_application_candidates: candidates
+        }, null, 2));
+      } catch (error) {
+        stats.fetch_errors += 1;
+        console.warn(
+          "NSE minimum-application diagnostic unavailable for " +
+          record.issuer_name + ": " + error.message
+        );
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 650));
+    }
+  }
+
+  console.log(JSON.stringify({ nse_minimum_application_diagnostic_stats: stats }, null, 2));
+}
+
 async function diagnoseMarketLot() {
   const landing = await fetchWithRetry(NSE_HOME, {
     headers: {
@@ -1510,8 +1597,10 @@ const isMain = process.argv[1] &&
   pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
 
 if (isMain) {
-  const action = process.argv.includes("--market-lot")
-    ? runMarketLot
+  const action = process.argv.includes("--diagnose-minimum-application")
+    ? diagnoseMinimumApplicationAmount
+    : process.argv.includes("--market-lot")
+      ? runMarketLot
     : process.argv.includes("--diagnose-market-lot")
       ? diagnoseMarketLot
       : process.argv.includes("--issue-size")
