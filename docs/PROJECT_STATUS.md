@@ -1,164 +1,183 @@
 # PROJECT STATUS
 
-Last updated: 2026-09-21
+Last updated: 2026-09-22
 
 ## Current state
 
-The tracker now publishes **fourteen real 2026 IPO records** from retained official evidence.
+IPO Tracker now has a working **automated official-source discovery and publication loop**.
 
-The recovery pipeline remains source-first. Unsupported values stay null rather than being inferred, estimated, arithmetically reconstructed, or copied from aggregators.
+The published 2026 dataset contains **23 real IPO issuers** after the first production live-sync run.
 
-## Completed in latest batch
+The source-first rules remain enforced: unsupported values stay null rather than being inferred, estimated, reconstructed, or copied from aggregators.
 
-The run first attempted the documented priority: directly readable official final-Prospectus recovery for ESDS Software Solution, Asset Reconstruction Company (India), and Sonaselection India.
+## Latest completed batch — live IPO automation
 
-That bounded deepening pass did not produce safe final issue prices:
+### Pull request
 
-- ESDS: the issuer investor page exposes a Prospectus dated September 1, 2026, but access requires an India-location confirmation that this development session cannot truthfully make.
-- ARCIL: the issuer corporate-governance page exposes an "ARCIL Prospectus", but access similarly requires an India-location confirmation.
-- Sonaselection: official NSE/SEBI pre-offer documents are available, but no directly readable official final Prospectus was recovered in the bounded pass.
+PR #9 — `Automate live IPO discovery and publication`
 
-No geographic representation was bypassed, no cap-price substitution was used, and no mirror data was promoted.
+Squash-merged to `main`:
 
-Per the development-process fallback rule, the run then completed the next small official-source batch.
+`8a6895d34bd64c2600c6e82bec29418e399fa366`
 
-### Karamtara Engineering Limited
+### Automation added
 
-Verified from NSE Issue Information:
+`.github/workflows/update-ipos.yml` now runs hourly at minute 17 and can also run manually.
 
-- price band: ₹241–₹254
-- market lot: 59 shares
-- minimum bid quantity: 59 shares
-- offer period: September 9–11, 2026
+The workflow:
 
-Retained official documents:
+1. tests the live-feed parser;
+2. collects official NSE current/upcoming IPO data;
+3. merges explicitly supported values into retained recovery manifests;
+4. rebuilds `data/ipos.json`;
+5. verifies deterministic publication;
+6. validates the IPO data contract;
+7. commits only when source-backed data changed.
 
-- NSE Issue Information — KARAMTARA
-- SEBI RHP filing dated September 3, 2026
-- SEBI Abridged Prospectus dated September 3, 2026
+The resulting data commit is then published by GitHub Pages.
 
-Intentionally null:
+### First production run
 
-- board
-- lifecycle status
-- final issue price
-- aggregate issue size in INR
-- listing date
-- minimum application amount
-- sector
+The first live run succeeded from GitHub Actions.
 
-NSE describes a fresh-issue INR amount and a separate OFS INR amount. The tracker does not sum those components into the aggregate issue-size field without an explicit retained final-source statement.
+Collector run:
 
-### Pranav Constructions Limited
+- workflow: `Sync live IPO data`
+- run ID: `35683653409`
+- conclusion: success
 
-Verified from NSE Issue Information:
+The run successfully completed:
 
-- price band: ₹118–₹124
-- market lot: 120 shares
-- minimum bid quantity: 120 shares
-- offer period: September 7–9, 2026
+- live-feed parser tests;
+- real NSE collection;
+- published-data rebuild;
+- deterministic publication check;
+- data-contract validation;
+- source-backed data commit.
 
-Retained official documents:
+Bot-generated commit:
 
-- NSE Issue Information — PRANAV
-- SEBI RHP filing dated September 1, 2026
-- SEBI Abridged Prospectus dated September 1, 2026
-- SEBI final Prospectus filing dated September 10, 2026
+`87c52215fcdbaa079b937597fe902a13309e22d2`
 
-Intentionally null:
+Commit message:
 
-- board
-- lifecycle status
-- final issue price
-- aggregate issue size in INR
-- listing date
-- minimum application amount
-- sector
+`chore(data): sync live NSE IPO feed`
 
-The final filing page is retained, but the final Prospectus contents were not directly extractable in this run.
+### Dataset result
 
-### Qualiance International Limited
+Before live sync: **14 issuers**
 
-Verified from NSE Issue Information:
+After live sync: **23 issuers**
 
-- board: SME
-- price band: ₹120–₹127
-- market lot: 1,000 shares
-- offer period: September 4–8, 2026
+Newly added:
 
-Retained official documents:
+1. Adroit Industries (India) Limited
+2. ArMee Infotech Limited
+3. Axiom Gas Engineering Limited
+4. Coreintegra Consulting Services Limited
+5. Elevate Campuses Limited
+6. National Stock Exchange of India Limited
+7. Pooja Logistics Limited
+8. Swastika Infra Limited
+9. Varmora Granito Limited
 
-- NSE Issue Information — QUALIANCE, SME series
-- SEBI public-issue document page dated September 10, 2026
+Existing-record enrichment:
 
-Intentionally null:
+- Sonaselection India Limited received official NSE board/status evidence and lifecycle status was updated to closed.
 
-- lifecycle status
-- final issue price
-- aggregate issue size in INR
-- minimum bid quantity
-- listing date
-- minimum application amount
-- sector
+### Data-safety audit
 
-Important distinction: NSE explicitly states a 1,000-share lot size, but the page does not separately state a minimum bid/order quantity. The tracker therefore does **not** copy the lot size into `minimum_bid_quantity`.
+The bot-generated diff was reviewed after the real collection.
 
-## Existing eleven records
+For newly discovered records:
 
-The previously published eleven issuers and their existing evidence/freshness timestamps are unchanged by this batch.
+- `issue_size_inr` remained null;
+- `minimum_bid_quantity` remained null unless retained elsewhere;
+- `minimum_application_amount_inr` remained null;
+- final issue price remained null unless explicitly supplied as a fixed price;
+- no sector/listing date was guessed;
+- explicit NSE price bands and dates were retained with source evidence;
+- explicit SME market lots were retained where the feed supplied them.
+
+The collector does not treat NSE's `issueSize` field as an INR issue-size value.
+
+### Publication verification
+
+GitHub Pages successfully published the bot-generated data revision:
+
+- Pages run ID: `35683671138`
+- deployed head: `87c52215fcdbaa079b937597fe902a13309e22d2`
+- conclusion: success
+
+Direct retrieval of the Pages URL remains unavailable from the development web reader, so workflow revision/deployment evidence is used for verification.
+
+## Automation source
+
+Current automated discovery source family:
+
+- official NSE upcoming IPO website feed;
+- official NSE current IPO website feed.
+
+See `docs/AUTOMATION.md`.
+
+This source is the **discovery / basic-terms layer**, not the final document-research layer.
 
 ## Data integrity rules currently enforced
 
 - Published schema version: `1.1.0`.
-- `data/ipos.json` must exactly match the retained recovery manifest.
+- `data/ipos.json` must exactly match retained recovery manifests.
 - Verified values require retained evidence.
-- Missing fields must keep `value: null`.
+- Missing fields keep `value: null`.
 - Non-null board/status values require companion provenance.
 - Existing evidence collection timestamps are preserved.
 - `last_collected_at` is tracked per record.
-- Unsupported source hosts are rejected.
+- Unsupported source hosts are rejected by the publisher.
 - Market lot, minimum bid quantity, and minimum application amount remain separate concepts.
+- Live-feed enrichment may not relabel older manual term evidence as live-feed evidence.
+- Price-band conflicts are not silently overwritten.
 
-## Tests for latest batch
+## Tests
 
-GitHub Actions passed on `recover-2026-batch-5` with:
+The automation batch added tests for:
 
-- `node --check assets/app.js`
-- `node scripts/build-published-data.mjs --check`
-- `node scripts/validate-data.mjs`
+- NSE date parsing;
+- price-band parsing;
+- fixed-price parsing;
+- Mainboard/SME mapping;
+- lifecycle status mapping;
+- merging upcoming/current feed data;
+- new-record construction;
+- preservation of unsupported null fields;
+- manual-source provenance protection;
+- safe enrichment of records originally discovered by the live feed;
+- deterministic multi-year publication.
 
-Release diff review must confirm:
-
-- published issuer count becomes 14;
-- exactly 3 issuer records are added;
-- the prior 11 records remain unchanged;
-- Karamtara and Pranav issue-size INR fields remain null;
-- Qualiance board is SME with retained NSE SME-series evidence;
-- Qualiance minimum bid quantity remains null;
-- all unsupported final/listing/application fields remain null;
-- no unrelated product/UI feature changes.
+PR/branch validation passed before merge, and the real production network run passed after merge.
 
 ## Earliest unfinished priority
 
-P1 — Data correctness.
+P1/P2 — data correctness and source evidence depth.
 
-The 2026 universe remains incomplete, but the official NSE/SEBI discovery pattern now covers fourteen issuers.
+New IPO discovery is now automated, but newly discovered IPOs may have sparse detail until richer official documents are attached.
 
 ## Recommended next coherent batch
 
-Attempt one bounded final-document recovery pass for:
+Automate official offer-document discovery/enrichment for newly discovered IPOs.
 
-1. Karamtara Engineering Limited;
-2. Pranav Constructions Limited;
-3. Qualiance International Limited.
+Start with a bounded SEBI source family capable of matching new NSE-discovered issuers to:
 
-Recover final issue price / aggregate issue size only from directly readable official final documents.
+- RHP;
+- Abridged Prospectus;
+- Prospectus / other relevant final filing.
 
-If those paths remain inaccessible, immediately continue with the next 2–5 official-source 2026 issuers rather than repeatedly retrying the same blocked documents.
+Requirements:
 
-Do not bypass issuer geographic/legal disclaimers and do not use third-party mirrors to fill production fields.
-
-The BSE dynamic listing-notice blocker remains documented.
+- deterministic or explicitly reviewed matching;
+- retain document identity, URL and publication date;
+- preserve ambiguous matches rather than guessing;
+- extract only fields supported by directly retained official evidence;
+- test across multiple issuers;
+- integrate safely with the hourly collector.
 
 ## Publication history
 
@@ -169,23 +188,5 @@ The BSE dynamic listing-notice blocker remains documented.
 - PR #5: second official-source 2026 IPO batch
 - PR #6: third official-source 2026 IPO batch
 - PR #7: fourth official-source 2026 IPO batch
-- Prior production head: `9b3c296a9e6e842de0e7fbe40fa6e42dfa57b4be`
-- Validation and GitHub Pages deployment passed for the prior production head.
-
-## Latest publication
-
-- Pull request: #8 — `Add fifth official-source 2026 IPO batch`
-- Squash-merged to `main`: `4b85fd7b47b8c36a5894086f8d52ee38244d604a`
-- Post-merge data-contract validation: passed
-- Post-merge GitHub Pages deployment: passed
-- Pages artifact was generated from the merged revision.
-- Published issuer count: 14
-- New published issuers:
-  - Karamtara Engineering Limited
-  - Pranav Constructions Limited
-  - Qualiance International Limited
-- Qualiance publishes SME board classification with NSE SME-series provenance.
-- Qualiance minimum bid quantity remains null because the official NSE page states lot size but does not separately state minimum bid/order quantity.
-- Previous eleven issuer records and freshness timestamps remained unchanged.
-- Unsupported final issue price, aggregate issue size, listing/status, sector, and minimum-application fields remain null.
-- Direct retrieval of `https://vasuki8.github.io/IPO-Tracker/` remains unavailable from the web reader in this development session; workflow and artifact revision were verified instead.
+- PR #8: fifth official-source 2026 IPO batch
+- PR #9: automated live IPO discovery and publication
