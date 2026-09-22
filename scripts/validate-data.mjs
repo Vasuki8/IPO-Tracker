@@ -15,7 +15,7 @@ function fail(message) {
   process.exitCode = 1;
 }
 
-if (data.schema_version !== "1.0.0") fail("schema_version must be 1.0.0");
+if (data.schema_version !== "1.1.0") fail("schema_version must be 1.1.0");
 if (!Array.isArray(data.records)) fail("records must be an array");
 
 const ids = new Set();
