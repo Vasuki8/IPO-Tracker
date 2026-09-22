@@ -6,7 +6,7 @@ A source-first Indian IPO research interface with automated official-source disc
 
 The public UI consumes the source-backed dataset at `data/ipos.json`.
 
-As of the first production live-sync run on 2026-09-22, the published 2026 dataset contains **23 real IPO issuers**. The tracker does not use prototype/demo market rows as production fallback data.
+As of the latest production sync on 2026-09-22, the published 2026 dataset contains **25 real IPO issuers**. The tracker does not use prototype/demo market rows as production fallback data.
 
 ### Data foundation
 
@@ -335,21 +335,81 @@ Minimum-bid coverage improved from **13/23 to 14/23**; 9 records remain missing.
 
 GitHub Pages deployment for the bot revision passed in run `35697665129`.
 
+### Latest NSE ipo-detail result
+
+The official dynamic source behind NSE Issue Information is now integrated:
+
+`https://www.nseindia.com/api/ipo-detail?symbol=<SYMBOL>&series=<SERIES>`
+
+PR #41 verified the endpoint against the live missing-bid set. Production run `35726755503` returned HTTP-successful JSON for **10/10** tested symbols with zero fetch errors and confirmed the response structure:
+
+- `issueInfo.dataList` contains static issue terms as `{title, value}` pairs;
+- `bidDetails` / `activeCat` are subscription-demand data and are not used as minimum-bid terms.
+
+PR #43 merged at `1b4e267de543bc909616392373099a38e257281a` and added a strict production extractor. It:
+
+- reads only `issueInfo.dataList`;
+- prefers explicit `Minimum Order Quantity`;
+- accepts explicit `Bid Lot` as the official fallback;
+- parses only numeric Equity Share quantities;
+- rejects placeholders;
+- refuses publication if the two official values disagree;
+- keeps `market_lot` separate;
+- fills missing values only;
+- retains the exact NSE endpoint/identity and collection timestamp.
+
+Production run `35727346835`:
+
+- candidates: 10;
+- API successes: 10;
+- extracted: **5**;
+- missing/placeholders: 5;
+- conflicts: 0;
+- fetch errors: 0.
+
+Published:
+
+- Adroit Industries (India) Limited — **111** Equity Shares;
+- ArMee Infotech Limited — **40** Equity Shares;
+- Elevate Campuses Limited — **41** Equity Shares;
+- Swastika Infra Limited — **81** Equity Shares;
+- Varmora Granito Limited — **101** Equity Shares.
+
+Source-backed bot commit:
+
+`9e787f2fbb41f4e55fa05ebd097fd98fc683f7b6`
+
+The bot diff changed only the recovery manifest and generated `data/ipos.json`. GitHub Pages deployment for that data revision passed in run `35727496988`.
+
+PR #44 then added deterministic legacy identity recovery from already-retained official NSE Issue Information URLs. Production run `35727815131` successfully queried **all 6 remaining gaps**, including Qualiance:
+
+- candidates: 6;
+- API successes: 6;
+- extracted: 0;
+- missing/placeholders: 6;
+- conflicts: 0;
+- fetch errors: 0.
+
+This confirms the remaining nulls are currently **source-null**, not collection failures. The hourly extractor will keep checking them automatically as NSE publishes finalized terms.
+
+Minimum-bid coverage is now **19/25 present, 6/25 missing**.
+
 ### Recommended next coherent batch
 
-Discover and integrate the **official dynamic NSE Issue Information data endpoint** that supplies rendered `Bid Lot` / `Minimum Order Quantity` values.
+Use the already-integrated official NSE `/api/ipo-detail` source for **listing-date recovery**.
 
-The public NSE Issue Information page is already the correct official source family, but raw HTML is only the application shell. The next batch should identify the same NSE backend call used by the page, then test it against multiple retained symbols before any write path is enabled.
+Current published `listing_date` coverage is **0/25**. The same official payload has a `metaInfo` section and should be inspected across multiple issuers for explicit listing-date fields before enabling writes.
 
 Acceptance rules:
 
 - official NSE endpoint only;
-- match by retained NSE symbol/series;
-- keep `market_lot` and `minimum_bid_quantity` distinct;
-- require explicit numeric minimum order / bid-lot data from the endpoint;
-- retain endpoint URL/identity and collection time as evidence;
-- fill missing values only;
-- preserve null when the endpoint has no value or the issuer cannot be matched deterministically.
+- use retained deterministic symbol/series identity;
+- accept only an explicit listing date from the payload;
+- retain endpoint URL/identity and collection time;
+- fill missing `listing_date` only;
+- test multiple mainboard/SME records;
+- preserve null for absent/unparseable dates;
+- do not infer listing date from close date or settlement conventions.
 
 ### Product direction
 
