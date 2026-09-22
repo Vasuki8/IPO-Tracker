@@ -3,140 +3,55 @@
   "$id": "https://vasuki8.github.io/IPO-Tracker/data/ipo-schema.json",
   "title": "IPO Tracker published dataset",
   "type": "object",
-  "required": [
-    "schema_version",
-    "generated_at",
-    "records"
-  ],
+  "required": ["schema_version", "generated_at", "records"],
   "properties": {
-    "schema_version": {
-      "type": "string",
-      "const": "1.1.0"
-    },
-    "generated_at": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "format": "date-time"
-    },
-    "collection_started_at": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "format": "date-time"
-    },
+    "schema_version": { "type": "string", "const": "1.1.0" },
+    "generated_at": { "type": ["string", "null"], "format": "date-time" },
+    "collection_started_at": { "type": ["string", "null"], "format": "date-time" },
     "records": {
       "type": "array",
-      "items": {
-        "$ref": "#/$defs/ipoRecord"
-      }
+      "items": { "$ref": "#/$defs/ipoRecord" }
     }
   },
   "additionalProperties": false,
   "$defs": {
     "sourceStatus": {
       "type": "string",
-      "enum": [
-        "verified",
-        "provisional",
-        "conflict",
-        "missing"
-      ]
+      "enum": ["verified", "provisional", "conflict", "missing"]
     },
     "evidence": {
       "type": "object",
-      "required": [
-        "url",
-        "document_type",
-        "document_identity",
-        "publication_date",
-        "page",
-        "collected_at"
-      ],
+      "required": ["url", "document_type", "document_identity", "publication_date", "page", "collected_at"],
       "properties": {
-        "url": {
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "document_type": {
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "document_identity": {
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "publication_date": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "format": "date"
-        },
-        "page": {
-          "type": [
-            "string",
-            "integer",
-            "null"
-          ]
-        },
-        "collected_at": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "format": "date-time"
-        }
+        "url": { "type": ["string", "null"] },
+        "document_type": { "type": ["string", "null"] },
+        "document_identity": { "type": ["string", "null"] },
+        "publication_date": { "type": ["string", "null"], "format": "date" },
+        "page": { "type": ["string", "integer", "null"] },
+        "collected_at": { "type": ["string", "null"], "format": "date-time" }
       },
       "additionalProperties": false
     },
     "field": {
       "type": "object",
-      "required": [
-        "value",
-        "status",
-        "evidence",
-        "corrections"
-      ],
+      "required": ["value", "status", "evidence", "corrections"],
       "properties": {
         "value": {},
-        "status": {
-          "$ref": "#/$defs/sourceStatus"
-        },
+        "status": { "$ref": "#/$defs/sourceStatus" },
         "evidence": {
           "type": "array",
-          "items": {
-            "$ref": "#/$defs/evidence"
-          }
+          "items": { "$ref": "#/$defs/evidence" }
         },
         "corrections": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": [
-              "recorded_at",
-              "previous_value",
-              "new_value",
-              "reason"
-            ],
+            "required": ["recorded_at", "previous_value", "new_value", "reason"],
             "properties": {
-              "recorded_at": {
-                "type": "string",
-                "format": "date-time"
-              },
+              "recorded_at": { "type": "string", "format": "date-time" },
               "previous_value": {},
               "new_value": {},
-              "reason": {
-                "type": "string"
-              }
+              "reason": { "type": "string" }
             },
             "additionalProperties": false
           }
@@ -147,164 +62,52 @@
     "ipoRecord": {
       "type": "object",
       "required": [
-        "id",
-        "issuer_name",
-        "board",
-        "board_evidence",
-        "sector",
-        "status",
-        "status_evidence",
-        "price_band",
-        "issue_price",
-        "issue_size_inr",
-        "market_lot",
-        "minimum_bid_quantity",
-        "minimum_application_amount_inr",
-        "open_date",
-        "close_date",
-        "listing_date",
-        "documents",
-        "first_observed_at",
-        "last_collected_at"
+        "id", "issuer_name", "board", "board_evidence", "sector", "status", "status_evidence",
+        "price_band", "issue_price", "issue_size_inr",
+        "market_lot", "minimum_bid_quantity", "minimum_application_amount_inr",
+        "open_date", "close_date", "listing_date", "documents",
+        "first_observed_at", "last_collected_at"
       ],
       "properties": {
-        "id": {
-          "type": "string",
-          "minLength": 1
+        "id": { "type": "string", "minLength": 1 },
+        "issuer_name": { "type": "string", "minLength": 1 },
+        "board": { "type": ["string", "null"], "enum": ["Mainboard", "SME", null] },
+        "board_evidence": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/evidence" }
         },
-        "issuer_name": {
-          "type": "string",
-          "minLength": 1
+        "sector": { "type": ["string", "null"] },
+        "status": { "type": ["string", "null"], "enum": ["open", "upcoming", "closed", "listed", "withdrawn", null] },
+        "status_evidence": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/evidence" }
         },
-        "board": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "enum": [
-            "Mainboard",
-            "SME",
-            null
-          ]
-        },
-        "sector": {
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "status": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "enum": [
-            "open",
-            "upcoming",
-            "closed",
-            "listed",
-            "withdrawn",
-            null
-          ]
-        },
-        "price_band": {
-          "$ref": "#/$defs/field"
-        },
-        "issue_price": {
-          "$ref": "#/$defs/field"
-        },
-        "issue_size_inr": {
-          "$ref": "#/$defs/field"
-        },
-        "market_lot": {
-          "$ref": "#/$defs/field"
-        },
-        "minimum_bid_quantity": {
-          "$ref": "#/$defs/field"
-        },
-        "minimum_application_amount_inr": {
-          "$ref": "#/$defs/field"
-        },
-        "open_date": {
-          "$ref": "#/$defs/field"
-        },
-        "close_date": {
-          "$ref": "#/$defs/field"
-        },
-        "listing_date": {
-          "$ref": "#/$defs/field"
-        },
+        "price_band": { "$ref": "#/$defs/field" },
+        "issue_price": { "$ref": "#/$defs/field" },
+        "issue_size_inr": { "$ref": "#/$defs/field" },
+        "market_lot": { "$ref": "#/$defs/field" },
+        "minimum_bid_quantity": { "$ref": "#/$defs/field" },
+        "minimum_application_amount_inr": { "$ref": "#/$defs/field" },
+        "open_date": { "$ref": "#/$defs/field" },
+        "close_date": { "$ref": "#/$defs/field" },
+        "listing_date": { "$ref": "#/$defs/field" },
         "documents": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": [
-              "type",
-              "identity",
-              "url",
-              "publication_date",
-              "collected_at"
-            ],
+            "required": ["type", "identity", "url", "publication_date", "collected_at"],
             "properties": {
-              "type": {
-                "type": "string"
-              },
-              "identity": {
-                "type": [
-                  "string",
-                  "null"
-                ]
-              },
-              "url": {
-                "type": [
-                  "string",
-                  "null"
-                ]
-              },
-              "publication_date": {
-                "type": [
-                  "string",
-                  "null"
-                ],
-                "format": "date"
-              },
-              "collected_at": {
-                "type": [
-                  "string",
-                  "null"
-                ],
-                "format": "date-time"
-              }
+              "type": { "type": "string" },
+              "identity": { "type": ["string", "null"] },
+              "url": { "type": ["string", "null"] },
+              "publication_date": { "type": ["string", "null"], "format": "date" },
+              "collected_at": { "type": ["string", "null"], "format": "date-time" }
             },
             "additionalProperties": false
           }
         },
-        "first_observed_at": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "format": "date-time"
-        },
-        "last_collected_at": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "format": "date-time"
-        },
-        "board_evidence": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/evidence"
-          }
-        },
-        "status_evidence": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/evidence"
-          }
-        }
+        "first_observed_at": { "type": ["string", "null"], "format": "date-time" },
+        "last_collected_at": { "type": ["string", "null"], "format": "date-time" }
       },
       "additionalProperties": false
     }
