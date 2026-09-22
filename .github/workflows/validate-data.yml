@@ -2,7 +2,6 @@ name: Validate IPO data contract
 
 on:
   push:
-    branches: ["main", "data-foundation-source-backed-ui"]
   pull_request:
     branches: ["main"]
 
@@ -18,6 +17,9 @@ jobs:
 
       - name: Check JavaScript syntax
         run: node --check assets/app.js
+
+      - name: Check recovery publication is synchronized
+        run: node scripts/build-published-data.mjs --check
 
       - name: Validate published IPO data
         run: node scripts/validate-data.mjs

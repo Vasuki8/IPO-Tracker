@@ -6,7 +6,7 @@ A source-first Indian IPO research interface.
 
 The public UI now consumes a dedicated source-backed dataset at `data/ipos.json`.
 
-The dataset is intentionally empty until authoritative IPO recovery is reconnected. Prototype IPO rows and illustrative market values are no longer used as production fallback data.
+The first official-source 2026 recovery slice is now connected. Prototype IPO rows and illustrative market values are not used as production fallback data.
 
 ### Data foundation now includes
 
@@ -51,50 +51,36 @@ Use this section as the starting context when continuing work in a new chat.
 
 ### What happened in the latest run
 
-The source-backed production data boundary was established.
+The first real 2026 recovery slice was added for:
 
-The UI no longer embeds demo IPO records. It loads `data/ipos.json`, which currently contains zero records because the historical authoritative recovery pipeline is not present in this repository.
+- Hero Motors Limited
+- Rentomojo Limited
 
-New files:
+Recovery input is retained in `data/recovery/2026/nse-issue-information.json` and is transformed deterministically into `data/ipos.json` by `scripts/build-published-data.mjs`.
 
-```
-data/
-  ipos.json
-  ipo-schema.json
-docs/
-  DATA_CONTRACT.md
-scripts/
-  validate-data.mjs
-.github/workflows/
-  validate-data.yml
-```
-
-Updated:
-
-- `assets/app.js` — loads published source-backed records and renders null/source states safely.
-- `index.html` — removes hard-coded sample IPO, financial, timeline, and document values.
-- `docs/PROJECT_STATUS.md` — records the new data foundation and next blocker.
+The records use official NSE issue information plus SEBI offer-document trails. Unsupported fields remain null; the batch does not manufacture issue price, minimum application amount, listing date, board, sector, or lifecycle status where the retained evidence did not establish them.
 
 Validation now runs:
 
 ```
 node --check assets/app.js
+node scripts/build-published-data.mjs --check
 node scripts/validate-data.mjs
 ```
 
 ### Critical data warning
 
-Do not populate `data/ipos.json` with guessed, estimated, unsupported, or aggregator-derived substitute values.
+Do not edit `data/ipos.json` as a substitute for source recovery. Update retained recovery evidence and regenerate the public dataset.
 
-The next batch should reconnect official-source IPO discovery/recovery for a bounded 2026 batch and publish only records that satisfy the contract.
+Do not fill nulls with guessed, estimated, unsupported, or aggregator-derived substitute values.
 
-### Main blocker
+### Main limitation
 
-The authoritative historical IPO discovery/recovery pipeline is still absent from this repository.
+The first recovery adapter is deterministic but not yet an automated web collector, and the 2026 IPO universe remains incomplete.
 
 ### Next priority
 
-Rebuild/reconnect official-source IPO recovery and publish the first real 2026 IPO records into `data/ipos.json`.
+Complete the remaining core P1 fields for Hero Motors Limited and Rentomojo Limited from official final prospectus / exchange listing evidence before expanding the universe further.
 
 Preserve:
 
