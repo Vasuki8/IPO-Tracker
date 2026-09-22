@@ -116,7 +116,7 @@ function normalizeRecord(record, collectedAt) {
     listing_date: retainedField(record.listing_date, collectedAt),
     documents: (record.documents || []).map((doc) => normalizeDocument(doc, collectedAt)),
     first_observed_at: record.first_observed_at ?? collectedAt,
-    last_collected_at: collectedAt
+    last_collected_at: record.last_collected_at ?? collectedAt
   };
 }
 
