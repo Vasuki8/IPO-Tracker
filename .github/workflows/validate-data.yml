@@ -31,6 +31,9 @@ jobs:
       - name: Test NSE live sync parser
         run: node scripts/test-sync-nse-live.mjs
 
+      - name: Test NSE Issue Information diagnostic parser
+        run: node scripts/test-diagnose-nse-issue-information.mjs
+
       - name: Test SEBI document matching
         run: node scripts/test-sync-sebi-documents.mjs
 
