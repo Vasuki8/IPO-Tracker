@@ -170,9 +170,13 @@ Real hourly run `35686786294` downloaded all 4 eligible retained SEBI Abridged P
 
 The source-backed bot commit is `92f0f024367b20a9f023218a0cb92ecbc2e38636`.
 
+### Current development direction
+
+The next dependency is direct official final-Prospectus PDF resolution from already-retained SEBI filing pages. The resolver keeps attachment discovery separate from value extraction: it will attach only official `sebi_data/attachdocs/*.pdf` documents and will not infer final terms.
+
 ### Recommended next coherent batch
 
-Resolve direct official PDF attachments from already-retained SEBI final Prospectus filing pages and then automate one bounded explicit final-document field family, preferably final issue price / aggregate issue size with page-level evidence.
+After that resolver is production-verified, automate one bounded explicit final-document field family—preferably final issue price and/or aggregate issue size with page-level evidence.
 
 ### Product direction
 
