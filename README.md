@@ -454,26 +454,74 @@ The bot diff changed only recovery data and generated `data/ipos.json`. GitHub P
 
 Current listing-date coverage is **10/26 present, 16/26 missing**. The remaining nulls are automatically rechecked as NSE publishes `metaInfo.listingDate`.
 
+### Latest price-band completion result
+
+PR #49 — `Diagnose explicit NSE price-band terms` — verified Axiom's official NSE `ipo-detail` source before any write.
+
+Production run `35737565780` found exactly one missing-band candidate and returned:
+
+- issuer: Axiom Gas Engineering Limited;
+- symbol / series: `AXIOMGAS / SME`;
+- official term: `Price Range`;
+- source value: `Rs.51 to Rs.54 per equity share`;
+- API successes: 1;
+- responses with supported price-band terms: 1;
+- fetch errors: 0.
+
+PR #50 merged at `5acd0a5fab5920b999501120755753a57bc1ba68` and added strict production extraction.
+
+Rules:
+
+- accept only exact `Price Range` / `Price Band` title-value pairs;
+- require two explicit rupee-denominated bounds per Equity Share;
+- reject single fixed prices, placeholders, reversed/invalid ranges and unrelated fields;
+- refuse publication if multiple supported official terms disagree;
+- fill missing price bands only;
+- retain exact NSE endpoint evidence and collection timestamp.
+
+Production run `35738252937`:
+
+- candidates: 1;
+- API successes: 1;
+- extracted: 1;
+- missing/placeholders: 0;
+- conflicts: 0;
+- fetch errors: 0.
+
+Published:
+
+- **Axiom Gas Engineering Limited — ₹51 to ₹54 per Equity Share — verified**.
+
+Source-backed bot commit:
+
+`134e0e7a73e736ed3748906b198a8c883fd18892`
+
+Only recovery data and generated `data/ipos.json` changed.
+
+Price-band coverage is now **26/26**.
+
 ### Recommended next coherent batch
 
-Close the final **price-band** gap before moving deeper into lower-priority fields.
+Move to the remaining **issue-price** gap.
 
-Current price-band coverage is **25/26**. The only missing record is:
+Current issue-price coverage is **10/26**. Sixteen records remain null; many are current/upcoming and should stay null until a final price exists, but four already-listed records still lack an issue price:
 
-- **Axiom Gas Engineering Limited**
+- Asset Reconstruction Company (India) Limited;
+- Karamtara Engineering Limited;
+- Qualiance International Limited;
+- ESDS Software Solution Limited.
 
-Axiom already has deterministic NSE identity `AXIOMGAS / SME`. Inspect its official NSE `/api/ipo-detail` `issueInfo.dataList` for an explicit `Price Range` / `Price Band` value and add a bounded extractor only if the official payload states it directly.
+Inspect official NSE `/api/ipo-detail` `issueInfo.dataList` and `metaInfo` for explicit `Issue Price` / `Final Issue Price` terms on listed records before enabling writes.
 
 Acceptance rules:
 
-- official NSE endpoint only;
-- exact retained symbol/series identity;
-- explicit source text only;
-- preserve lower/upper bounds separately;
-- do not infer from issue price, market lot, subscription rows or third-party sources;
+- official NSE source only;
+- explicit finalized price only;
+- do not use the cap of the price band as final issue price;
+- do not write values for current/upcoming issues merely because their price bands are known;
 - retain exact endpoint evidence and collection time;
-- fill the missing price band only;
-- preserve null if NSE does not publish an explicit supported range.
+- fill missing `issue_price` only;
+- preserve null when NSE does not publish a distinct final price.
 
 ### Product direction
 
