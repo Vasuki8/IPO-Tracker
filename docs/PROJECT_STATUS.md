@@ -246,9 +246,20 @@ P1/P2 — **data correctness and source evidence depth**.
 
 Live IPO discovery is automated and SEBI document matching is operational, but SEBI raw-source coverage for newly discovered sparse issuers is not sufficient to justify further endpoint-variant retries in the same workstream.
 
+## Current development batch
+
+The next dependency is being implemented as a separate attachment-resolution layer:
+
+- fetch already-retained SEBI final Prospectus filing pages;
+- resolve the official direct `/sebi_data/attachdocs/*.pdf` target from SEBI's viewer URL;
+- retain it as `SEBI Prospectus PDF`;
+- do not extract final terms in the same parser step.
+
+Fixture coverage includes viewer-URL decoding, direct-link deduplication and rejection of non-SEBI mirrors.
+
 ## Recommended next coherent batch
 
-Resolve **direct official Prospectus PDF attachments from already-retained SEBI Prospectus filing pages**, then add one bounded final-document extraction family.
+After production verification of Prospectus PDF attachment resolution, add one bounded final-document extraction family.
 
 Priority fields:
 
