@@ -1542,3 +1542,69 @@ Acceptance rules:
 - do not reinterpret bid lot, minimum order quantity or share-count wording as an amount;
 - fill missing values only;
 - preserve null when wording is absent, derived, placeholder or ambiguous.
+
+
+## Latest completed batch — full RHP minimum-application survey
+
+PR #70 — `Survey RHP minimum application amounts` — added a read-only full-document scan across every retained official SEBI RHP PDF with missing `minimum_application_amount_inr`.
+
+Squash-merged:
+
+`d237b5f8f418ba5d4cd5de2e0d60cdd6f29f0a4d`
+
+Production sync run `35765946080` completed successfully.
+
+Results:
+
+- retained RHP candidates: **14**
+- PDFs downloaded successfully: **14/14**
+- pages scanned: **7,593**
+- documents containing at least one supported labelled INR mention: **14/14**
+- labelled mentions captured: **28**
+- fetch errors: **0**
+- data writes from the diagnostic: **0**
+
+### What the RHP evidence actually means
+
+The matches are not one interchangeable field.
+
+Observed classes include:
+
+1. **Anchor / QIB Mutual Fund minimum application size** — commonly `₹100 million`, `₹100,000,000`, or `₹1,000 lakhs`. These are specific to Anchor/QIB bidding and are not the general retail application amount.
+2. **Non-Institutional Investor minimum application size** — explicit examples include:
+   - Sonaselection India Limited — **₹0.20 million (₹200,000)** on PDF page 92;
+   - Swastika Infra Limited — **₹2.00 lakh (₹200,000)** on PDF pages 77 and 411.
+3. **Unrelated business/regulatory “minimum investment” text** — for example industry-policy or ARC-regulation investment requirements, which are not IPO application amounts.
+4. **Category-specific minimum-application wording without an explicit generic issuer-wide amount**.
+
+### Decision
+
+No RHP-derived value is written to the current generic `minimum_application_amount_inr` field.
+
+Publishing one of these category-specific values as a single generic amount would collapse materially different concepts and could mislead users. The tracker therefore preserves **0/26** for the existing generic field rather than selecting an Anchor/QIB or NII amount.
+
+The one-shot RHP diagnostic has been removed from hourly execution after measurement. The pure diagnostic helpers remain available for future category-specific work.
+
+### Recommended next coherent batch
+
+Before extracting more application amounts, **refine the data contract for investor-category-specific application requirements**.
+
+The next design batch should determine whether to represent fields such as:
+
+- retail minimum application amount;
+- non-institutional / NII minimum application amount;
+- anchor / QIB minimum application amount;
+- associated minimum bid quantity / lot rule;
+- source page and source status per category.
+
+Acceptance criteria:
+
+- do not overwrite or reinterpret the existing generic field;
+- preserve existing data compatibility;
+- document category semantics explicitly;
+- only add fields that can be sourced consistently;
+- keep amount and share quantity separate;
+- no price × quantity derivation unless a future contract explicitly allows a derived field and marks it as derived;
+- update schema, validator, publisher and UI only after the category model is agreed and tested.
+
+Until that contract exists, additional RHP/final-Prospectus application-amount extraction should remain diagnostic-only.
