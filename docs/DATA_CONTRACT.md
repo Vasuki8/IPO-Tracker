@@ -6,7 +6,7 @@ This is the boundary between source recovery and the public UI.
 
 The public site reads `data/ipos.json`. That file must contain only source-supported IPO records. The UI must not fall back to demo market values when production data is unavailable.
 
-The machine-readable contract is `data/ipo-schema.json`.
+The machine-readable contract is `data/ipo-schema.json`. The current published schema version is `1.1.0`.
 
 ## Field rules
 
@@ -49,6 +49,19 @@ Keep these concepts distinct:
 - `first_observed_at`: when this IPO was first observed by the tracker;
 - `last_collected_at`: when the tracker most recently collected or checked the record;
 - `generated_at`: when the published dataset was generated.
+
+## Scalar metadata provenance
+
+`board` and `status` remain scalar values for UI compatibility, but schema version 1.1.0 requires companion arrays:
+
+- `board_evidence`
+- `status_evidence`
+
+If either scalar is non-null, its companion evidence array must contain retained official evidence. This prevents provenance from being lost while avoiding a breaking UI migration.
+
+## Collection-time preservation
+
+Regeneration must not rewrite the collection timestamp of older evidence. Recovery manifests retain source/document collection timestamps individually. `last_collected_at` may advance when a record is checked again while the timestamps on previously retained evidence remain unchanged.
 
 ## Application terms
 

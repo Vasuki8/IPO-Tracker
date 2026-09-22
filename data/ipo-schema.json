@@ -5,7 +5,7 @@
   "type": "object",
   "required": ["schema_version", "generated_at", "records"],
   "properties": {
-    "schema_version": { "type": "string", "const": "1.0.0" },
+    "schema_version": { "type": "string", "const": "1.1.0" },
     "generated_at": { "type": ["string", "null"], "format": "date-time" },
     "collection_started_at": { "type": ["string", "null"], "format": "date-time" },
     "records": {
@@ -62,7 +62,7 @@
     "ipoRecord": {
       "type": "object",
       "required": [
-        "id", "issuer_name", "board", "sector", "status",
+        "id", "issuer_name", "board", "board_evidence", "sector", "status", "status_evidence",
         "price_band", "issue_price", "issue_size_inr",
         "market_lot", "minimum_bid_quantity", "minimum_application_amount_inr",
         "open_date", "close_date", "listing_date", "documents",
@@ -72,8 +72,16 @@
         "id": { "type": "string", "minLength": 1 },
         "issuer_name": { "type": "string", "minLength": 1 },
         "board": { "type": ["string", "null"], "enum": ["Mainboard", "SME", null] },
+        "board_evidence": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/evidence" }
+        },
         "sector": { "type": ["string", "null"] },
         "status": { "type": ["string", "null"], "enum": ["open", "upcoming", "closed", "listed", "withdrawn", null] },
+        "status_evidence": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/evidence" }
+        },
         "price_band": { "$ref": "#/$defs/field" },
         "issue_price": { "$ref": "#/$defs/field" },
         "issue_size_inr": { "$ref": "#/$defs/field" },

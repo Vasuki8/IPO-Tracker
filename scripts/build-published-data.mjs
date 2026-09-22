@@ -11,7 +11,10 @@ const OFFICIAL_HOSTS = new Set([
   "www.nseindia.com",
   "nseindia.com",
   "www.sebi.gov.in",
-  "sebi.gov.in"
+  "sebi.gov.in",
+  "www.heromotors.com",
+  "heromotors.com",
+  "nsearchives.nseindia.com"
 ]);
 
 function fail(message) {
@@ -61,13 +64,29 @@ function verifiedField(value, source, page = null) {
   };
 }
 
+function retainedField(field, collectedAt) {
+  if (!field || field.value === null || field.value === undefined) return emptyField();
+  return verifiedField(
+    field.value,
+    { ...field.source, collected_at: field.source.collected_at ?? collectedAt },
+    field.page ?? null
+  );
+}
+
+function retainedEvidence(items, collectedAt) {
+  return (items || []).map((item) => evidence(
+    { ...item, collected_at: item.collected_at ?? collectedAt },
+    item.page ?? null
+  ));
+}
+
 function normalizeDocument(doc, collectedAt) {
   return {
     type: doc.type,
     identity: doc.identity ?? null,
     url: officialUrl(doc.url, doc.identity || doc.type),
     publication_date: doc.publication_date ?? null,
-    collected_at: collectedAt
+    collected_at: doc.collected_at ?? collectedAt
   };
 }
 
@@ -75,31 +94,26 @@ function normalizeRecord(record, collectedAt) {
   const nse = {
     ...record.nse_source,
     document_type: "NSE Issue Information",
-    collected_at: collectedAt
+    collected_at: record.nse_source.collected_at ?? collectedAt
   };
-
-  const issueSize = record.issue_size_inr
-    ? verifiedField(record.issue_size_inr.value, {
-        ...record.issue_size_inr.source,
-        collected_at: collectedAt
-      }, record.issue_size_inr.page ?? null)
-    : emptyField();
 
   return {
     id: record.id,
     issuer_name: record.issuer_name,
     board: record.board ?? null,
+    board_evidence: retainedEvidence(record.board_evidence, collectedAt),
     sector: record.sector ?? null,
     status: record.status ?? null,
+    status_evidence: retainedEvidence(record.status_evidence, collectedAt),
     price_band: verifiedField(record.terms.price_band, nse),
-    issue_price: emptyField(),
-    issue_size_inr: issueSize,
+    issue_price: retainedField(record.issue_price, collectedAt),
+    issue_size_inr: retainedField(record.issue_size_inr, collectedAt),
     market_lot: verifiedField(record.terms.market_lot, nse),
     minimum_bid_quantity: verifiedField(record.terms.minimum_bid_quantity, nse),
     minimum_application_amount_inr: emptyField(),
     open_date: verifiedField(record.terms.open_date, nse),
     close_date: verifiedField(record.terms.close_date, nse),
-    listing_date: emptyField(),
+    listing_date: retainedField(record.listing_date, collectedAt),
     documents: (record.documents || []).map((doc) => normalizeDocument(doc, collectedAt)),
     first_observed_at: record.first_observed_at ?? collectedAt,
     last_collected_at: collectedAt
@@ -119,7 +133,7 @@ for (const record of recovery.records) {
 }
 
 const published = {
-  schema_version: "1.0.0",
+  schema_version: "1.1.0",
   generated_at: recovery.generated_at,
   collection_started_at: recovery.collection_started_at,
   records: recovery.records

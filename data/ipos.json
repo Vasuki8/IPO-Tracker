@@ -1,14 +1,16 @@
 {
-  "schema_version": "1.0.0",
-  "generated_at": "2026-09-22T02:14:14Z",
+  "schema_version": "1.1.0",
+  "generated_at": "2026-09-22T02:30:01Z",
   "collection_started_at": "2026-09-22T02:14:14Z",
   "records": [
     {
       "id": "hero-motors-limited",
       "issuer_name": "Hero Motors Limited",
       "board": null,
+      "board_evidence": [],
       "sector": null,
       "status": null,
+      "status_evidence": [],
       "price_band": {
         "value": {
           "min": 79,
@@ -28,9 +30,18 @@
         "corrections": []
       },
       "issue_price": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 84,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.heromotors.com/Uploads/image/191imguf_HeroMotorsLimited-Prospectus-FinalFilingversion(Signed).pdf",
+            "document_type": "Issuer Prospectus",
+            "document_identity": "Hero Motors Limited - Prospectus dated September 18, 2026",
+            "publication_date": "2026-09-18",
+            "page": 10,
+            "collected_at": "2026-09-22T02:30:01Z"
+          }
+        ],
         "corrections": []
       },
       "issue_size_inr": {
@@ -148,17 +159,35 @@
           "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/hero-motors-limited-prospectus_104589.html",
           "publication_date": "2026-09-21",
           "collected_at": "2026-09-22T02:14:14Z"
+        },
+        {
+          "type": "Issuer Prospectus",
+          "identity": "Hero Motors Limited - Prospectus dated September 18, 2026",
+          "url": "https://www.heromotors.com/Uploads/image/191imguf_HeroMotorsLimited-Prospectus-FinalFilingversion(Signed).pdf",
+          "publication_date": "2026-09-18",
+          "collected_at": "2026-09-22T02:30:01Z"
         }
       ],
       "first_observed_at": "2026-09-22T02:14:14Z",
-      "last_collected_at": "2026-09-22T02:14:14Z"
+      "last_collected_at": "2026-09-22T02:30:01Z"
     },
     {
       "id": "rentomojo-limited",
       "issuer_name": "Rentomojo Limited",
-      "board": null,
+      "board": "Mainboard",
+      "board_evidence": [
+        {
+          "url": "https://nsearchives.nseindia.com/corporate/IPO_22042026153433_Public_Announcement.pdf",
+          "document_type": "NSE Public Announcement",
+          "document_identity": "Rentomojo Limited - Public Announcement dated March 28, 2026",
+          "publication_date": "2026-03-28",
+          "page": 1,
+          "collected_at": "2026-09-22T02:30:01Z"
+        }
+      ],
       "sector": null,
       "status": null,
+      "status_evidence": [],
       "price_band": {
         "value": {
           "min": 384,
@@ -263,6 +292,13 @@
       },
       "documents": [
         {
+          "type": "NSE Public Announcement",
+          "identity": "Rentomojo Limited - Public Announcement dated March 28, 2026",
+          "url": "https://nsearchives.nseindia.com/corporate/IPO_22042026153433_Public_Announcement.pdf",
+          "publication_date": "2026-03-28",
+          "collected_at": "2026-09-22T02:30:01Z"
+        },
+        {
           "type": "NSE Issue Information",
           "identity": "NSE Issue Information — RENTOMOJO",
           "url": "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=RENTOMOJO&type=Past",
@@ -299,7 +335,7 @@
         }
       ],
       "first_observed_at": "2026-09-22T02:14:14Z",
-      "last_collected_at": "2026-09-22T02:14:14Z"
+      "last_collected_at": "2026-09-22T02:30:01Z"
     }
   ]
 }

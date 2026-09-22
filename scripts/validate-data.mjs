@@ -15,7 +15,7 @@ function fail(message) {
   process.exitCode = 1;
 }
 
-if (data.schema_version !== "1.0.0") fail("schema_version must be 1.0.0");
+if (data.schema_version !== "1.1.0") fail("schema_version must be 1.1.0");
 if (!Array.isArray(data.records)) fail("records must be an array");
 
 const ids = new Set();
@@ -25,6 +25,14 @@ for (const [index, record] of (data.records || []).entries()) {
   if (ids.has(record.id)) fail(`${prefix}.id duplicates ${record.id}`);
   ids.add(record.id);
   if (!record.issuer_name || typeof record.issuer_name !== "string") fail(`${prefix}.issuer_name is required`);
+  if (!Array.isArray(record.board_evidence)) fail(`${prefix}.board_evidence must be an array`);
+  if (!Array.isArray(record.status_evidence)) fail(`${prefix}.status_evidence must be an array`);
+  if (record.board !== null && record.board_evidence.length === 0) {
+    fail(`${prefix}.board requires retained evidence`);
+  }
+  if (record.status !== null && record.status_evidence.length === 0) {
+    fail(`${prefix}.status requires retained evidence`);
+  }
 
   for (const fieldName of fieldNames) {
     const field = record[fieldName];
