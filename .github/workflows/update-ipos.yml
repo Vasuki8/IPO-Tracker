@@ -26,6 +26,8 @@ on:
       - "scripts/test-publish-field-status.mjs"
       - "scripts/diagnose-nse-issue-information.mjs"
       - "scripts/test-diagnose-nse-issue-information.mjs"
+      - "scripts/diagnose-nse-ipo-detail.mjs"
+      - "scripts/test-diagnose-nse-ipo-detail.mjs"
       - ".github/workflows/update-ipos.yml"
 
 permissions:
@@ -76,6 +78,12 @@ jobs:
 
       - name: Test NSE Issue Information diagnostic parser
         run: node scripts/test-diagnose-nse-issue-information.mjs
+
+      - name: Test NSE ipo-detail diagnostic
+        run: node scripts/test-diagnose-nse-ipo-detail.mjs
+
+      - name: Diagnose NSE ipo-detail minimum bid fields
+        run: node scripts/diagnose-nse-ipo-detail.mjs
 
       - name: Extract explicit Abridged Prospectus fields
         run: node scripts/extract-abridged-fields.mjs
