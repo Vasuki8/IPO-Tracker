@@ -83,6 +83,27 @@ export function candidateAbridgedDocument(record) {
   ) || null;
 }
 
+export function candidateAbridgedMinimumBidDocument(record) {
+  if (record.minimum_bid_quantity?.value !== null && record.minimum_bid_quantity?.value !== undefined) return null;
+  if (record.terms?.minimum_bid_quantity !== null && record.terms?.minimum_bid_quantity !== undefined) return null;
+  return (record.documents || []).find((doc) =>
+    doc.type === "SEBI Abridged Prospectus" && officialPdfUrl(doc.url)
+  ) || null;
+}
+
+export function findMinimumBidMentions(layoutText) {
+  const text = normalizeText(layoutText);
+  const mentions = [];
+  const pattern = /\b(?:minimum\s+bid(?:ding)?(?:\s+(?:lot|quantity))?|bid\s+lot|minimum\s+of\s+\d[\d,]*\s+equity\s+shares)\b/ig;
+  for (const match of text.matchAll(pattern)) {
+    const start = Math.max(0, match.index - 120);
+    const end = Math.min(text.length, match.index + 320);
+    mentions.push(text.slice(start, end));
+    if (mentions.length >= 8) break;
+  }
+  return mentions;
+}
+
 export function applyIssueSizeExtraction(record, document, extraction, collectedAt) {
   if (!document || !extraction) return false;
   if (record.issue_size_inr?.value !== null && record.issue_size_inr?.value !== undefined) return false;
@@ -166,6 +187,46 @@ function firstPageLayout(pdfBytes) {
   }
 }
 
+async function diagnoseMinimumBid() {
+  ensurePdfTextTool();
+  const stats = {
+    candidates: 0,
+    downloaded: 0,
+    mentions: 0,
+    fetch_errors: 0
+  };
+
+  for (const file of recoveryFiles()) {
+    const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
+    for (const record of recovery.records || []) {
+      const document = candidateAbridgedMinimumBidDocument(record);
+      if (!document) continue;
+      stats.candidates += 1;
+
+      let layout;
+      try {
+        layout = firstPageLayout(await fetchPdf(document.url));
+        stats.downloaded += 1;
+      } catch (error) {
+        stats.fetch_errors += 1;
+        console.warn(`Abridged minimum-bid diagnostic unavailable for ${record.issuer_name}: ${error.message}`);
+        continue;
+      }
+
+      const mentions = findMinimumBidMentions(layout);
+      stats.mentions += mentions.length;
+      console.log(JSON.stringify({
+        issuer_name: record.issuer_name,
+        document: document.identity ?? document.type,
+        page: 1,
+        mentions
+      }, null, 2));
+    }
+  }
+
+  console.log(JSON.stringify({ minimum_bid_diagnostic_stats: stats }, null, 2));
+}
+
 async function run() {
   ensurePdfTextTool();
   const now = new Date().toISOString();
@@ -224,7 +285,8 @@ const isMain = process.argv[1] &&
   pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
 
 if (isMain) {
-  run().catch((error) => {
+  const action = process.argv.includes("--diagnose-min-bid") ? diagnoseMinimumBid : run;
+  action().catch((error) => {
     console.error(error);
     process.exit(1);
   });
