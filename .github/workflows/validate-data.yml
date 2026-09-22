@@ -40,6 +40,9 @@ jobs:
       - name: Test NSE ipo-detail field extraction
         run: node scripts/test-extract-nse-ipo-detail-fields.mjs
 
+      - name: Test NSE public past-issues parser
+        run: node scripts/test-diagnose-nse-past-issues.mjs
+
       - name: Test SEBI document matching
         run: node scripts/test-sync-sebi-documents.mjs
 
