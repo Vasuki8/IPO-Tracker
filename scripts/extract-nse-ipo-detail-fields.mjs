@@ -42,6 +42,34 @@ export function listingDateCandidatesFromIpoDetail(payload) {
   return candidates;
 }
 
+function parseStrictIsoDate(value) {
+  const raw = normalizeText(value).replace(/^"|"$/g, "");
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(raw)) return null;
+  const parsed = new Date(raw + "T00:00:00Z");
+  if (Number.isNaN(parsed.getTime())) return null;
+  return parsed.toISOString().slice(0, 10) === raw ? raw : null;
+}
+
+export function parseListingDateFromIpoDetail(payload) {
+  const rawValue = payload?.metaInfo?.listingDate;
+  if (rawValue === null || rawValue === undefined || normalizeText(rawValue) === "") {
+    return { value: null, reason: "term_absent", source_value: null };
+  }
+
+  const sourceValue = normalizeText(rawValue).replace(/^"|"$/g, "");
+  const value = parseStrictIsoDate(sourceValue);
+  if (!value) {
+    return { value: null, reason: "unparseable_listing_date", source_value: sourceValue };
+  }
+
+  return {
+    value,
+    reason: null,
+    source_value: sourceValue,
+    source_key: "listingDate"
+  };
+}
+
 export function parseMinimumBidFromIpoDetail(payload) {
   const list = payload?.issueInfo?.dataList;
   if (!Array.isArray(list)) {
@@ -158,6 +186,18 @@ function candidateRecords() {
   });
 }
 
+function listingDateCandidateRecords() {
+  return recoveryFiles().flatMap((file) => {
+    const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
+    return (recovery.records || [])
+      .filter((record) =>
+        resolveNseIdentity(record) &&
+        (record.listing_date?.value === null || record.listing_date?.value === undefined)
+      )
+      .map((record) => ({ file, recovery, record }));
+  });
+}
+
 function cookieHeader(headers) {
   const values = typeof headers.getSetCookie === "function"
     ? headers.getSetCookie()
@@ -203,6 +243,43 @@ function addDocumentOnce(record, document) {
   return true;
 }
 
+export function applyListingDate(record, extraction, sourceUrl, collectedAt) {
+  if (!extraction?.value) return false;
+  if (record.listing_date?.value !== null && record.listing_date?.value !== undefined) return false;
+
+  const identity = resolveNseIdentity(record);
+  if (!identity) return false;
+  const symbol = identity.symbol;
+
+  if (!record.nse_symbol) record.nse_symbol = identity.symbol;
+  if (!record.nse_series) record.nse_series = identity.series;
+
+  record.listing_date = {
+    value: extraction.value,
+    source_value: extraction.source_value,
+    status: "verified",
+    page: null,
+    source: {
+      url: sourceUrl,
+      document_type: "NSE Issue Information API",
+      document_identity: "NSE Issue Information — " + symbol,
+      publication_date: null,
+      collected_at: collectedAt
+    }
+  };
+
+  addDocumentOnce(record, {
+    type: "NSE Issue Information API",
+    identity: "NSE Issue Information — " + symbol,
+    url: sourceUrl,
+    publication_date: null,
+    collected_at: collectedAt
+  });
+
+  record.last_collected_at = collectedAt;
+  return true;
+}
+
 export function applyMinimumBid(record, extraction, sourceUrl, collectedAt) {
   if (!extraction?.value) return false;
   if (record.minimum_bid_quantity?.value !== null && record.minimum_bid_quantity?.value !== undefined) return false;
@@ -239,6 +316,91 @@ export function applyMinimumBid(record, extraction, sourceUrl, collectedAt) {
 
   record.last_collected_at = collectedAt;
   return true;
+}
+
+async function runListingDate() {
+  const now = new Date().toISOString();
+  const landing = await fetchWithRetry(NSE_HOME, {
+    headers: {
+      "user-agent": USER_AGENT,
+      "accept": "text/html,application/xhtml+xml",
+      "accept-language": "en-US,en;q=0.9"
+    }
+  });
+  const cookie = cookieHeader(landing.headers);
+
+  const groups = new Map();
+  for (const candidate of listingDateCandidateRecords()) {
+    if (!groups.has(candidate.file)) {
+      groups.set(candidate.file, { recovery: candidate.recovery, candidates: [] });
+    }
+    groups.get(candidate.file).candidates.push(candidate.record);
+  }
+
+  const stats = {
+    candidates: 0,
+    api_success: 0,
+    extracted: 0,
+    missing: 0,
+    unparseable: 0,
+    fetch_errors: 0
+  };
+
+  for (const [file, group] of groups) {
+    let changed = false;
+
+    for (const record of group.candidates) {
+      stats.candidates += 1;
+      const url = apiUrl(record);
+
+      try {
+        const response = await fetchWithRetry(url, {
+          headers: {
+            "user-agent": USER_AGENT,
+            "accept": "application/json,text/plain,*/*",
+            "accept-language": "en-US,en;q=0.9",
+            "referer": NSE_HOME,
+            "cookie": cookie,
+            "cache-control": "no-cache",
+            "pragma": "no-cache"
+          }
+        });
+        const payload = await response.json();
+        stats.api_success += 1;
+
+        const extraction = parseListingDateFromIpoDetail(payload);
+        if (extraction.reason === "unparseable_listing_date") {
+          stats.unparseable += 1;
+          console.warn(
+            "NSE listing date unparseable for " + record.issuer_name + ": " + extraction.source_value
+          );
+        } else if (extraction.value === null) {
+          stats.missing += 1;
+        } else if (applyListingDate(record, extraction, url, now)) {
+          stats.extracted += 1;
+          changed = true;
+          console.log(
+            "Extracted NSE listing date for " + record.issuer_name + ": " + extraction.value
+          );
+        }
+      } catch (error) {
+        stats.fetch_errors += 1;
+        console.warn(
+          "NSE ipo-detail unavailable for listing-date extraction for " +
+          record.issuer_name + ": " + error.message
+        );
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 650));
+    }
+
+    if (changed) {
+      group.recovery.generated_at = now;
+      fs.writeFileSync(file, JSON.stringify(group.recovery, null, 2) + "\n");
+    }
+  }
+
+  console.log(JSON.stringify(stats, null, 2));
 }
 
 async function diagnoseListingDate() {
@@ -402,7 +564,11 @@ const isMain = process.argv[1] &&
   pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
 
 if (isMain) {
-  const action = process.argv.includes("--diagnose-listing-date") ? diagnoseListingDate : run;
+  const action = process.argv.includes("--listing-date")
+    ? runListingDate
+    : process.argv.includes("--diagnose-listing-date")
+      ? diagnoseListingDate
+      : run;
   action().catch((error) => {
     console.error(error);
     process.exit(1);
