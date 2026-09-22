@@ -780,3 +780,21 @@ The legacy top-level application/bid fields remain unchanged, and the homepage i
 This resolves the ambiguity discovered in the full RHP survey without losing backward compatibility.
 
 Next: add a strict source-backed NII minimum-application extractor, beginning with the explicit ₹200,000 RHP disclosures already observed for Sonaselection and Swastika.
+
+
+### Production NII minimum application extraction
+
+The category-specific application contract is now populated from official RHP evidence for the first supported category.
+
+PR #75 added recurring strict extraction for `application_requirements.non_institutional.minimum_application_amount_inr`. Production run `35793315717` published **Swastika Infra Limited — ₹200,000 — RHP page 77**.
+
+PR #76 repaired forward category-context detection for RHP wording where the Non-Institutional cue follows the amount. PR #77 then published the already-observed official evidence for **Sonaselection India Limited — ₹200,000 — RHP page 92**.
+
+Current verified NII minimum-application coverage is **2/26**:
+
+- Sonaselection India Limited — ₹200,000 — page 92;
+- Swastika Infra Limited — ₹200,000 — page 77.
+
+The legacy generic minimum-application amount remains null and no price × quantity derivation is used.
+
+Next: survey retained RHPs for explicit **NII minimum bid quantity** wording before enabling the next category-specific production extractor.
