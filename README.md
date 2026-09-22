@@ -159,3 +159,13 @@ Current priority order remains:
 
 Do not add billing, accounts, ads, analytics, paid infrastructure, or other commercial systems without explicit approval.
 
+## Development operating model
+
+Future development runs must follow `docs/DEVELOPMENT_PROCESS.md`.
+
+For a fresh chat, the preferred continuation instruction is:
+
+> Continue IPO Tracker development. Read README.md, docs/PROJECT_STATUS.md, and docs/DEVELOPMENT_PROCESS.md first. Follow the repository development process, select the earliest unfinished priority, and complete one coherent batch end to end.
+
+After that, the user may simply say **"continue"** for subsequent batches. The development process and handoff files are the source of truth; the user should not need to resend a large master prompt.
+
