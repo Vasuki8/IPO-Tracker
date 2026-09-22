@@ -6,7 +6,7 @@ A source-first Indian IPO research interface.
 
 The public UI now consumes a dedicated source-backed dataset at `data/ipos.json`.
 
-The first official-source 2026 recovery slice is connected and now includes final-Prospectus enrichment for both pilot issuers. Prototype IPO rows and illustrative market values are not used as production fallback data.
+The source-backed 2026 recovery dataset now contains five real IPO issuers. Prototype IPO rows and illustrative market values are not used as production fallback data.
 
 ### Data foundation now includes
 
@@ -51,20 +51,21 @@ Use this section as the starting context when continuing work in a new chat.
 
 ### What happened in the latest run
 
-The official NSE archive copy of Rentomojo Limited's final Prospectus was recovered and added to the retained source trail.
+The second 2026 recovery batch added three official-source IPO records:
 
-Rentomojo now has:
+- Jindal Supreme (India) Limited
+- Manipal Payment and Identity Solutions Limited
+- SS Retail Limited
 
-- final issue price ₹404;
-- total offer size ₹12,555.67 million;
-- Mainboard classification;
-- its earlier source-backed offer terms.
+For all three, NSE Issue Information now supplies verified price band, market lot, minimum bid quantity and offer dates.
 
-The final price and issue size come from the directly retrievable official NSE Prospectus, not a third-party mirror.
+Manipal is additionally marked Mainboard using an NSE-hosted Public Announcement that explicitly describes the proposed IPO as a Main Board offering.
 
-The BSE listing notices `20260916-7` and `20260916-46` were investigated again. Their canonical BSE URL pattern is known, but the dynamic BSE pages remain inaccessible to the available tooling. Listing date and listed status therefore remain null.
+Each issuer retains its SEBI RHP and final Prospectus filing trail.
 
-Recovery input remains in `data/recovery/2026/nse-issue-information.json` and is transformed deterministically into `data/ipos.json` by `scripts/build-published-data.mjs`. The publisher now also preserves `last_collected_at` per issuer, so regenerating one updated record does not falsely refresh unrelated IPOs.
+Final issue price and aggregate issue size remain null for the three new records because the attached SEBI final-Prospectus PDFs were not reliably retrievable in this run. The tracker does not substitute the cap price or derive aggregate values from separate components.
+
+Recovery input remains in `data/recovery/2026/nse-issue-information.json` and is transformed deterministically into `data/ipos.json` by `scripts/build-published-data.mjs`.
 
 Validation now runs:
 
@@ -82,11 +83,11 @@ Do not fill nulls with guessed, estimated, unsupported, or aggregator-derived su
 
 ### Main limitation
 
-The first recovery adapter is deterministic but not yet an automated web collector, and the 2026 IPO universe remains incomplete.
+Recovery is deterministic but not yet an automated web collector, and the 2026 IPO universe remains incomplete. Some SEBI final-Prospectus attachments are also inaccessible to the current web tooling even when the official filing page itself is verified.
 
 ### Next priority
 
-Move to the next small 2026 official-source recovery batch using the now-proven NSE/SEBI issue-information and final-Prospectus pattern. Keep the BSE listing-notice blocker documented and revisit it when the official dynamic page or an official archive endpoint becomes directly retrievable.
+Try to deepen Jindal Supreme, Manipal Payment and SS Retail from directly retrievable official NSE-archive or issuer-hosted final Prospectus copies. Add final issue price / issue size only when explicitly supported. If those documents remain inaccessible, continue expanding the 2026 universe with the same small-batch official-source pattern instead of guessing.
 
 Preserve:
 
