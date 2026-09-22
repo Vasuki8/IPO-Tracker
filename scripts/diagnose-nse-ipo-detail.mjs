@@ -73,11 +73,14 @@ function cookieHeader(headers) {
   return values.map((value) => value.split(";")[0]).filter(Boolean).join("; ");
 }
 
-async function fetchWithRetry(url, options, attempts = 3) {
+async function fetchWithRetry(url, options, attempts = 3, timeoutMs = 15000) {
   let lastError;
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
     try {
-      const response = await fetch(url, options);
+      const response = await fetch(url, {
+        ...options,
+        signal: AbortSignal.timeout(timeoutMs)
+      });
       if (response.ok) return response;
       lastError = new Error("HTTP " + response.status + " for " + url);
     } catch (error) {
