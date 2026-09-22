@@ -50,8 +50,11 @@ jobs:
       - name: Attach SEBI offer documents
         run: node scripts/sync-sebi-documents.mjs
 
-      - name: Check PDF text extraction dependency
-        run: pdftotext -v
+      - name: Install PDF text extraction dependency
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends poppler-utils
+          pdftotext -v
 
       - name: Test Abridged Prospectus field extraction
         run: node scripts/test-extract-abridged-fields.mjs
