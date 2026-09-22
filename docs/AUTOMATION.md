@@ -9,7 +9,8 @@ The automated source pipeline now has four bounded layers:
 1. official NSE public IPO feeds for discovery/basic offer terms;
 2. official SEBI public-issue listings for offer-document attachment;
 3. explicit aggregate issue-size extraction from retained SEBI Abridged Prospectus PDFs;
-4. explicit final issue-price extraction from retained SEBI Prospectus PDFs.
+4. explicit final issue-price extraction from retained SEBI Prospectus PDFs;
+5. explicit aggregate issue-size extraction from retained SEBI Prospectus PDFs.
 
 ## Official discovery endpoints
 
@@ -143,7 +144,8 @@ Field extraction remains a separate stage with separate tests and precedence rul
 Currently automated document-derived fields are limited to:
 
 - explicit aggregate `issue_size_inr` from supported Abridged Prospectus first-page total-size cells;
-- explicit final `issue_price` from supported wording in retained final Prospectus PDFs.
+- explicit final `issue_price` from supported wording in retained final Prospectus PDFs;
+- explicit aggregate `issue_size_inr` from supported top-level Offer/Issue wording in retained final Prospectus PDFs.
 
 Minimum application amount, listing date, sector and other unsupported document-derived fields remain null until a separately tested source family is added.
 
@@ -359,4 +361,31 @@ The temporary deep diagnostic step was removed from the hourly workflow. The pro
 
 All 9 records currently carrying retained `SEBI Prospectus PDF` evidence now have final issue-price evidence.
 
-The next separate document-derived field family is **explicit aggregate issue size from retained final Prospectus PDFs**. Seven of the nine retained final-Prospectus records still have missing `issue_size_inr`; any future extractor must use an explicit stated aggregate only and must not reconstruct it arithmetically.
+## Final Prospectus aggregate issue-size extraction — production verified
+
+PR #23 used a temporary read-only diagnostic to inspect the seven retained final Prospectuses with missing `issue_size_inr`. The source documents showed explicit top-level totals on pages 2–3 alongside smaller Fresh Issue/OFS component amounts.
+
+PR #24 added a separate aggregate-size extractor with these rules:
+
+- source: retained official `SEBI Prospectus PDF` only;
+- scope: PDF pages 1–20;
+- accept only explicit overall Offer/Issue totals;
+- support million, lakh and crore units;
+- fill missing `issue_size_inr` only;
+- reject Fresh Issue-only and OFS-only amounts;
+- never add components;
+- never derive amount from shares × price.
+
+Production run `35691580621` succeeded:
+
+- candidates: 7;
+- downloaded: 7;
+- extracted: 7;
+- explicit-size missing: 0;
+- fetch errors: 0.
+
+The resulting source-backed data commit is `0110d864235eccb800efa5b206fa19bf9cdb0fb4`, and GitHub Pages deployment run `35692087146` passed.
+
+All 9 retained final-Prospectus records now have both final issue price and aggregate issue-size evidence.
+
+Across the full 23-record dataset, `issue_size_inr` coverage is now 11 present / 12 missing. The next P1 work should continue issue-size recovery from a different reusable official source family for those remaining 12 records; the completed final-Prospectus extractor should not be broadened to infer missing values.
