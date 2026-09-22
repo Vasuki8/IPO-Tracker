@@ -11,6 +11,7 @@ import {
   buildSebiSearchUrl,
   hasSebiDocument,
   targetedSearchCandidates,
+  searchTermForIssuer,
   parseAbridgedProspectusLinks,
   parseSebiDate,
   parseSebiListingHtml
@@ -154,7 +155,10 @@ assert.deepEqual(
   targetedSearchCandidates(sparseRecords, 10).map(({ record }) => record.issuer_name),
   ["New Live Limited"]
 );
+assert.equal(searchTermForIssuer("Adroit Industries (India) Limited"), "adroit");
+assert.equal(searchTermForIssuer("Swastika Infra Limited"), "swastika");
+assert.equal(searchTermForIssuer("National Stock Exchange of India Limited"), "national");
 assert.equal(
   buildSebiSearchUrl("National Stock Exchange of India Limited"),
-  "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&search=National+Stock+Exchange+of+India+Limited"
+  "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&search=national"
 );
