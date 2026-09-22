@@ -5,6 +5,7 @@ import {
   applyIssueSizeExtraction,
   candidateProspectusDocument,
   candidateProspectusIssueSizeDocument,
+  candidateProspectusMinimumBidDocument,
   candidateRhpIssueSizeDocument,
   candidateRhpMinimumBidDocument,
   findMinimumBidMentionsInPages,
@@ -68,6 +69,12 @@ const record = {
 
 assert.equal(candidateProspectusDocument(record), doc);
 assert.equal(candidateProspectusIssueSizeDocument(record), doc);
+assert.equal(candidateProspectusMinimumBidDocument({
+  ...record,
+  issue_size_inr: undefined,
+  minimum_bid_quantity: undefined,
+  terms: { minimum_bid_quantity: null }
+}), doc);
 
 const rhpDoc = {
   ...doc,
@@ -125,6 +132,17 @@ const existing = {
 };
 assert.equal(candidateProspectusDocument(existing), null);
 assert.equal(candidateProspectusIssueSizeDocument(existing), null);
+assert.equal(candidateProspectusMinimumBidDocument({
+  ...existing,
+  minimum_bid_quantity: { value: 8, source: { url: "https://example.com" } },
+  documents: [doc]
+}), null);
+assert.equal(candidateProspectusMinimumBidDocument({
+  ...existing,
+  minimum_bid_quantity: undefined,
+  terms: { minimum_bid_quantity: 8 },
+  documents: [doc]
+}), null);
 assert.equal(candidateRhpIssueSizeDocument({
   ...existing,
   documents: [{ ...doc, type: "SEBI RHP PDF" }]
