@@ -3,6 +3,7 @@ import {
   applyListingDate,
   applyMinimumBid,
   issuePriceCandidatesFromIpoDetail,
+  issueSizeCandidatesFromIpoDetail,
   listingDateCandidatesFromIpoDetail,
   applyPriceBand,
   parseListingDateFromIpoDetail,
@@ -11,6 +12,41 @@ import {
   priceBandCandidatesFromIpoDetail,
   resolveNseIdentity
 } from "./extract-nse-ipo-detail-fields.mjs";
+
+const issueSizeCandidates = issueSizeCandidatesFromIpoDetail({
+  issueInfo: {
+    dataList: [
+      { title: "Issue Size", value: "Rs. 500 million" },
+      { title: "Fresh Issue Size", value: "Rs. 300 million" },
+      { title: "Market Lot", value: "1,000 Equity Shares" }
+    ]
+  }
+});
+assert.deepEqual(issueSizeCandidates, [
+  { title: "Issue Size", value: "Rs. 500 million" }
+]);
+
+assert.deepEqual(
+  issueSizeCandidatesFromIpoDetail({
+    issueInfo: {
+      dataList: [
+        { title: "Total Issue Size", value: "10,00,000 Equity Shares" },
+        { title: "Offer Size", value: "Rs. 250 crore" }
+      ]
+    }
+  }),
+  [
+    { title: "Total Issue Size", value: "10,00,000 Equity Shares" },
+    { title: "Offer Size", value: "Rs. 250 crore" }
+  ]
+);
+
+assert.deepEqual(
+  issueSizeCandidatesFromIpoDetail({
+    issueInfo: { dataList: [{ title: "Fresh Issue Size", value: "Rs. 100 crore" }] }
+  }),
+  []
+);
 
 const issuePriceCandidates = issuePriceCandidatesFromIpoDetail({
   issueInfo: {
