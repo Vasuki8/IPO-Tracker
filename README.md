@@ -704,3 +704,14 @@ For a fresh chat:
 > Continue IPO Tracker development. Read README.md, docs/PROJECT_STATUS.md, and docs/DEVELOPMENT_PROCESS.md first. Follow the repository development process, select the earliest unfinished priority, and complete one coherent batch end to end.
 
 After that, the user may simply say **"continue"**. The repository process/handoff files are the source of truth; the user should not need to resend a large master prompt.
+
+
+### Latest minimum-application source survey
+
+Official NSE `/api/ipo-detail` has now been tested as the first source family for `minimum_application_amount_inr`.
+
+Production diagnostic run `35759732510` queried all **26/26** deterministic 2026 issuer identities successfully and found **0 explicit minimum-application / minimum-investment terms**, with **0 fetch errors**. A bounded six-issuer confirmation in run `35760191175` produced the same result.
+
+Therefore minimum application amount remains **0/26** by design. The tracker does not derive it as price × quantity, does not use the price-band cap, and does not collapse it into Bid Lot / Minimum Order Quantity.
+
+The temporary NSE diagnostic has been removed from hourly execution. The next source-recovery batch should inspect another official source family—preferably retained offer documents or price-band advertisements—for an explicitly stated INR application amount with page-level evidence.
