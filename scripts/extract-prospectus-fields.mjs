@@ -8,6 +8,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const RECOVERY_ROOT = path.join(ROOT, "data", "recovery");
 const ALLOWED_HOSTS = new Set(["www.sebi.gov.in", "sebi.gov.in"]);
 const MAX_PAGES = 20;
+const DIAGNOSTIC_MAX_PAGES = 80;
 const USER_AGENT =
   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
 
@@ -65,6 +66,22 @@ export function parseExplicitIssuePriceFromPages(pages) {
     if (extraction) return extraction;
   }
   return null;
+}
+
+export function findIssuePriceMentions(pageText, page = 1) {
+  const text = normalizeText(pageText);
+  const mentions = [];
+  const pattern = /\b(?:offer|issue)\s+price\b/ig;
+  for (const match of text.matchAll(pattern)) {
+    const start = Math.max(0, match.index - 90);
+    const end = Math.min(text.length, match.index + 220);
+    mentions.push({
+      page,
+      context: text.slice(start, end)
+    });
+    if (mentions.length >= 6) break;
+  }
+  return mentions;
 }
 
 export function candidateProspectusDocument(record) {
@@ -142,20 +159,63 @@ async function fetchPdf(url, attempts = 3) {
   throw lastError;
 }
 
-function firstPagesLayout(pdfBytes) {
+function pagesLayout(pdfBytes, maxPages = MAX_PAGES) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "ipo-prospectus-"));
   const file = path.join(dir, "document.pdf");
   try {
     fs.writeFileSync(file, pdfBytes);
     const text = execFileSync(
       "pdftotext",
-      ["-f", "1", "-l", String(MAX_PAGES), "-layout", "-enc", "UTF-8", file, "-"],
+      ["-f", "1", "-l", String(maxPages), "-layout", "-enc", "UTF-8", file, "-"],
       { encoding: "utf8", maxBuffer: 16 * 1024 * 1024 }
     );
-    return text.split("\f").slice(0, MAX_PAGES);
+    return text.split("\f").slice(0, maxPages);
   } finally {
     fs.rmSync(dir, { recursive: true, force: true });
   }
+}
+
+async function diagnose() {
+  ensurePdfTextTool();
+  const stats = {
+    candidates: 0,
+    downloaded: 0,
+    mentions: 0,
+    fetch_errors: 0
+  };
+
+  for (const file of recoveryFiles()) {
+    const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
+    for (const record of recovery.records || []) {
+      const document = candidateProspectusDocument(record);
+      if (!document) continue;
+      stats.candidates += 1;
+
+      let pages;
+      try {
+        pages = pagesLayout(await fetchPdf(document.url), DIAGNOSTIC_MAX_PAGES);
+        stats.downloaded += 1;
+      } catch (error) {
+        stats.fetch_errors += 1;
+        console.warn("Prospectus diagnostic unavailable for " + record.issuer_name + ": " + error.message);
+        continue;
+      }
+
+      const mentions = pages.flatMap((pageText, index) =>
+        findIssuePriceMentions(pageText, index + 1)
+      ).slice(0, 12);
+      stats.mentions += mentions.length;
+
+      console.log(JSON.stringify({
+        issuer_name: record.issuer_name,
+        document: document.identity ?? document.type,
+        pages_scanned: pages.length,
+        mentions
+      }, null, 2));
+    }
+  }
+
+  console.log(JSON.stringify({ diagnostic_stats: stats }, null, 2));
 }
 
 async function run() {
@@ -180,7 +240,7 @@ async function run() {
 
       let pages;
       try {
-        pages = firstPagesLayout(await fetchPdf(document.url));
+        pages = pagesLayout(await fetchPdf(document.url), MAX_PAGES);
         stats.downloaded += 1;
       } catch (error) {
         stats.fetch_errors += 1;
@@ -217,7 +277,8 @@ const isMain = process.argv[1] &&
   pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
 
 if (isMain) {
-  run().catch((error) => {
+  const action = process.argv.includes("--diagnose") ? diagnose : run;
+  action().catch((error) => {
     console.error(error);
     process.exit(1);
   });
