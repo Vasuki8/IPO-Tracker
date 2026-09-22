@@ -649,22 +649,74 @@ The existing Abridged Prospectus page-1 extractor evaluated all five after the s
 
 Those nulls were preserved deliberately.
 
+## Latest completed batch — provisional publication semantics and RHP issue-size diagnostic
+
+PR #32 — `Preserve provisional status and diagnose RHP issue size`
+
+Squash-merged:
+
+`ce0d10a00e830a7606e909abe047bb2ee2e983ee`
+
+### Publication semantics
+
+Deterministic publication now preserves a retained field's explicit status when it is:
+
+- `verified`;
+- `provisional`;
+- `conflict`.
+
+Legacy retained non-null fields without a status continue to publish as `verified`, preserving backward compatibility. Retained corrections arrays are also preserved.
+
+This closes the semantic blocker for future official-but-not-final RHP-derived values without misrepresenting them as final evidence.
+
+### Read-only RHP issue-size diagnostic
+
+Production workflow:
+
+- `Sync live IPO data`
+- run ID: `35694934742`
+- conclusion: success
+
+Measured result:
+
+- candidates: 5;
+- official RHP PDFs downloaded: 5;
+- parseable explicit overall INR totals: 0;
+- aggregate mentions inspected: 10;
+- PDF fetch errors: 0.
+
+Per issuer:
+
+1. **Adroit Industries (India) Limited** — no supported explicit overall INR total.
+2. **Asset Reconstruction Company (India) Limited** — the RHP's `Total Offer size` is a number of Equity Shares, not an INR amount.
+3. **National Stock Exchange of India Limited** — overall `Total Offer Size` is a share count; ₹700 million is explicitly only the Employee Reservation Portion.
+4. **Sonaselection India Limited** — no supported explicit overall INR total.
+5. **Swastika Infra Limited** — overall Offer amount remains `₹[●]`; the explicit ₹12,900 lakh amount is the Fresh Issue component only.
+
+No `issue_size_inr` field was written. This is the intended result under the no-arithmetic/no-component-substitution rule.
+
+The temporary production diagnostic has been removed from the hourly workflow.
+
 ## Recommended next coherent batch
 
-Build a bounded **provisional RHP aggregate issue-size extractor** for the five RHP-backed missing-size records.
+Aggregate issue size for these five is blocked until authoritative final-price/final-Prospectus evidence arrives. The existing SEBI final-document resolver and final-Prospectus issue-size extractor should fill these values automatically when those documents become available.
 
-Before writing values, extend retained-field publication so recovery data can preserve `status: "provisional"`; the current builder converts every retained non-null field to `verified`, which is not appropriate for RHP-derived terms that may change before the final Prospectus.
+Move the next bounded P1 batch to **explicit minimum bid quantity recovery**.
+
+Start with missing-bid records that have retained official RHP/Abridged evidence:
+
+1. Adroit Industries (India) Limited
+2. National Stock Exchange of India Limited
+3. Swastika Infra Limited
 
 Acceptance rules:
 
-- use only retained official `SEBI RHP PDF` sources;
-- accept only an explicit top-level Offer/Issue aggregate amount;
+- use retained official RHP/Abridged documents only;
+- require explicit minimum bid quantity / minimum bid lot wording;
 - retain page-level evidence;
-- fill missing `issue_size_inr` only;
-- publish RHP-derived values as `provisional`;
-- never sum Fresh Issue + OFS components;
-- never calculate shares × issue price;
-- preserve null when the RHP itself contains placeholders or ambiguous totals.
+- fill missing `minimum_bid_quantity` only;
+- do not copy `market_lot` into the field without explicit supporting text;
+- preserve null when the document still contains a placeholder.
 
 ## Publication history
 
@@ -694,3 +746,4 @@ Acceptance rules:
 - RHP/Abridged source-recovery bot commit: `ec684bc1fa558f2dafb7c7b90df6b750fc6f79ac`
 - PR #30: direct SEBI RHP PDF resolution
 - RHP PDF attachment bot commit: `3c2f3fb8a8737fe2067aab3e18e39ab86a68eeb6`
+- PR #32: retained provisional-status publication + read-only RHP issue-size diagnostic
