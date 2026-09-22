@@ -59,3 +59,12 @@ Acceptance criteria for that batch:
 5. publish no more than a small coherent batch;
 6. pass `scripts/validate-data.mjs`;
 7. verify the records render correctly on desktop/mobile.
+
+## Publication
+
+- Pull request: #1 — `Establish source-backed IPO data foundation`
+- Merged to `main`: `4ae4fb43b63fc9aebd5380bab33cd3cc838f48ec`
+- Post-merge validation workflow: passed
+- GitHub Pages deployment workflow: passed
+- Pages artifact was generated from the merged `main` revision.
+- Direct browser retrieval of the public Pages URL was unavailable from the development session, so visual live-page verification was not independently performed; deployment health and artifact revision were verified through GitHub Actions.
