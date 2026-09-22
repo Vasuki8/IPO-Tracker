@@ -24,6 +24,8 @@ on:
       - "scripts/build-published-data.mjs"
       - "scripts/publish-field-status.mjs"
       - "scripts/test-publish-field-status.mjs"
+      - "scripts/diagnose-nse-issue-information.mjs"
+      - "scripts/test-diagnose-nse-issue-information.mjs"
       - ".github/workflows/update-ipos.yml"
 
 permissions:
@@ -72,8 +74,11 @@ jobs:
       - name: Test final Prospectus field extraction
         run: node scripts/test-extract-prospectus-fields.mjs
 
-      - name: Diagnose final Prospectus minimum bid quantity
-        run: node scripts/extract-prospectus-fields.mjs --diagnose-prospectus-min-bid
+      - name: Test NSE Issue Information diagnostic parser
+        run: node scripts/test-diagnose-nse-issue-information.mjs
+
+      - name: Diagnose NSE Issue Information minimum bid
+        run: node scripts/diagnose-nse-issue-information.mjs
 
       - name: Extract explicit Abridged Prospectus fields
         run: node scripts/extract-abridged-fields.mjs
