@@ -3,7 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const inputPath = path.join(ROOT, "data", "recovery", "2026", "nse-issue-information.json");
+const recoveryRoot = path.join(ROOT, "data", "recovery");
 const outputPath = path.join(ROOT, "data", "ipos.json");
 const CHECK = process.argv.includes("--check");
 
@@ -23,6 +23,15 @@ function fail(message) {
 
 function readJson(file) {
   return JSON.parse(fs.readFileSync(file, "utf8"));
+}
+
+function recoveryFiles() {
+  if (!fs.existsSync(recoveryRoot)) return [];
+  return fs.readdirSync(recoveryRoot, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && /^\d{4}$/.test(entry.name))
+    .map((entry) => path.join(recoveryRoot, entry.name, "nse-issue-information.json"))
+    .filter((file) => fs.existsSync(file))
+    .sort();
 }
 
 function officialUrl(url, context) {
@@ -93,8 +102,8 @@ function normalizeDocument(doc, collectedAt) {
 function normalizeRecord(record, collectedAt) {
   const nse = {
     ...record.nse_source,
-    document_type: "NSE Issue Information",
-    collected_at: record.nse_source.collected_at ?? collectedAt
+    document_type: record.nse_source?.document_type ?? "NSE Issue Information",
+    collected_at: record.nse_source?.collected_at ?? collectedAt
   };
 
   return {
@@ -105,14 +114,14 @@ function normalizeRecord(record, collectedAt) {
     sector: record.sector ?? null,
     status: record.status ?? null,
     status_evidence: retainedEvidence(record.status_evidence, collectedAt),
-    price_band: verifiedField(record.terms.price_band, nse),
+    price_band: verifiedField(record.terms?.price_band ?? null, nse),
     issue_price: retainedField(record.issue_price, collectedAt),
     issue_size_inr: retainedField(record.issue_size_inr, collectedAt),
-    market_lot: verifiedField(record.terms.market_lot, nse),
-    minimum_bid_quantity: verifiedField(record.terms.minimum_bid_quantity, nse),
+    market_lot: verifiedField(record.terms?.market_lot ?? null, nse),
+    minimum_bid_quantity: verifiedField(record.terms?.minimum_bid_quantity ?? null, nse),
     minimum_application_amount_inr: emptyField(),
-    open_date: verifiedField(record.terms.open_date, nse),
-    close_date: verifiedField(record.terms.close_date, nse),
+    open_date: verifiedField(record.terms?.open_date ?? null, nse),
+    close_date: verifiedField(record.terms?.close_date ?? null, nse),
     listing_date: retainedField(record.listing_date, collectedAt),
     documents: (record.documents || []).map((doc) => normalizeDocument(doc, collectedAt)),
     first_observed_at: record.first_observed_at ?? collectedAt,
@@ -120,25 +129,32 @@ function normalizeRecord(record, collectedAt) {
   };
 }
 
-const recovery = readJson(inputPath);
-if (!recovery.collection_started_at) fail("collection_started_at is required");
-if (!recovery.generated_at) fail("generated_at is required");
-if (!Array.isArray(recovery.records)) fail("records must be an array");
+const files = recoveryFiles();
+if (files.length === 0) fail("no recovery manifests found");
+
+const recoveries = files.map((file) => ({ file, data: readJson(file) }));
+for (const { file, data } of recoveries) {
+  if (!data.collection_started_at) fail(`${file}: collection_started_at is required`);
+  if (!data.generated_at) fail(`${file}: generated_at is required`);
+  if (!Array.isArray(data.records)) fail(`${file}: records must be an array`);
+}
 
 const ids = new Set();
-for (const record of recovery.records) {
-  if (!record.id || !record.issuer_name) fail("every recovery record needs id and issuer_name");
-  if (ids.has(record.id)) fail(`duplicate recovery id: ${record.id}`);
-  ids.add(record.id);
+const normalizedRecords = [];
+for (const { file, data } of recoveries) {
+  for (const record of data.records) {
+    if (!record.id || !record.issuer_name) fail(`${file}: every recovery record needs id and issuer_name`);
+    if (ids.has(record.id)) fail(`duplicate recovery id across manifests: ${record.id}`);
+    ids.add(record.id);
+    normalizedRecords.push(normalizeRecord(record, data.generated_at));
+  }
 }
 
 const published = {
   schema_version: "1.1.0",
-  generated_at: recovery.generated_at,
-  collection_started_at: recovery.collection_started_at,
-  records: recovery.records
-    .map((record) => normalizeRecord(record, recovery.generated_at))
-    .sort((a, b) => a.issuer_name.localeCompare(b.issuer_name))
+  generated_at: recoveries.map(({ data }) => data.generated_at).sort().at(-1),
+  collection_started_at: recoveries.map(({ data }) => data.collection_started_at).sort().at(0),
+  records: normalizedRecords.sort((a, b) => a.issuer_name.localeCompare(b.issuer_name))
 };
 
 const serialized = `${JSON.stringify(published, null, 2)}\n`;
@@ -146,12 +162,12 @@ const serialized = `${JSON.stringify(published, null, 2)}\n`;
 if (CHECK) {
   const current = fs.readFileSync(outputPath, "utf8");
   if (current !== serialized) {
-    console.error("data/ipos.json is not synchronized with the recovery source.");
+    console.error("data/ipos.json is not synchronized with the recovery sources.");
     process.exit(1);
   }
-  console.log(`Recovery build is synchronized for ${published.records.length} record(s).`);
+  console.log(`Recovery build is synchronized for ${published.records.length} record(s) across ${files.length} year manifest(s).`);
 } else {
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, serialized);
-  console.log(`Published ${published.records.length} recovered IPO record(s).`);
+  console.log(`Published ${published.records.length} recovered IPO record(s) across ${files.length} year manifest(s).`);
 }
