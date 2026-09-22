@@ -1,0 +1,54 @@
+{
+  "cases": [
+    {
+      "name": "explicit offer price with colon",
+      "pages": [
+        "HERO MOTORS LIMITED OFFER PRICE: ₹ 84 PER EQUITY SHARE OF FACE VALUE OF ₹10 EACH"
+      ],
+      "expected": { "value": 84, "page": 1 }
+    },
+    {
+      "name": "explicit issue price with is phrase on later page",
+      "pages": [
+        "Important notices only",
+        "THE ISSUE PRICE IS ₹632 PER EQUITY SHARE."
+      ],
+      "expected": { "value": 632, "page": 2 }
+    },
+    {
+      "name": "wrapped explicit offer price",
+      "pages": [
+        "OFFER PRICE ₹ 146/- per Equity Share"
+      ],
+      "expected": { "value": 146, "page": 1 }
+    },
+    {
+      "name": "explicit offer price of phrase",
+      "pages": [
+        "The Offer Price of INR 124 per Equity Share has been determined by our Company."
+      ],
+      "expected": { "value": 124, "page": 1 }
+    },
+    {
+      "name": "price band cap is not final price",
+      "pages": [
+        "PRICE BAND: ₹322 TO ₹339 PER EQUITY SHARE. THE CAP PRICE IS ₹339 PER EQUITY SHARE."
+      ],
+      "expected": null
+    },
+    {
+      "name": "future offer-price language is not explicit",
+      "pages": [
+        "The Offer Price will be determined following completion of the Book Building Process."
+      ],
+      "expected": null
+    },
+    {
+      "name": "unrelated rupee per share value is not accepted",
+      "pages": [
+        "Net asset value was ₹93 per Equity Share as of March 31, 2026."
+      ],
+      "expected": null
+    }
+  ]
+}
