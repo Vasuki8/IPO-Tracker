@@ -1,9 +1,11 @@
 import assert from "node:assert/strict";
 import {
+  applyIssueSize,
   applyListingDate,
   applyMinimumBid,
   issuePriceCandidatesFromIpoDetail,
   issueSizeCandidatesFromIpoDetail,
+  parseIssueSizeInrFromIpoDetail,
   listingDateCandidatesFromIpoDetail,
   applyPriceBand,
   parseListingDateFromIpoDetail,
@@ -12,6 +14,47 @@ import {
   priceBandCandidatesFromIpoDetail,
   resolveNseIdentity
 } from "./extract-nse-ipo-detail-fields.mjs";
+
+const pureFreshLakhs = parseIssueSizeInrFromIpoDetail({
+  issueInfo: {
+    dataList: [{
+      title: "Issue Size",
+      value: "Initial Public offering comprising of fresh issue aggregating up to Rs. 30,000 Lakhs (including Anchor portion of 10,65,000 Equity Shares)"
+    }]
+  }
+});
+assert.equal(pureFreshLakhs.value, 3_000_000_000);
+
+const pureFreshMillion = parseIssueSizeInrFromIpoDetail({
+  issueInfo: {
+    dataList: [{
+      title: "Issue Size",
+      value: "Initial Public offer comprising of Fresh issue aggregating up to Rs. 21,000 million (Including Anchor reservation portion of 2,61,04,972 equity shares)"
+    }]
+  }
+});
+assert.equal(pureFreshMillion.value, 21_000_000_000);
+
+const mixedUnitsRejected = parseIssueSizeInrFromIpoDetail({
+  issueInfo: {
+    dataList: [{
+      title: "Issue Size",
+      value: "Initial Public offer comprising of Fresh issue aggregating up to Rs. 12,850 Lakhs and Offer for Sale of upto 17,50,000 Equity Shares"
+    }]
+  }
+});
+assert.equal(mixedUnitsRejected.value, null);
+assert.equal(mixedUnitsRejected.reason, "no_safe_overall_inr_total");
+
+const shareCountRejected = parseIssueSizeInrFromIpoDetail({
+  issueInfo: {
+    dataList: [{
+      title: "Issue Size",
+      value: "Initial Public Offer comprising of Fresh Issue up to 93,98,000 Equity Shares"
+    }]
+  }
+});
+assert.equal(shareCountRejected.value, null);
 
 const issueSizeCandidates = issueSizeCandidatesFromIpoDetail({
   issueInfo: {
@@ -287,6 +330,39 @@ assert.equal(record.minimum_bid_quantity.value, 70);
 assert.equal(record.minimum_bid_quantity.status, "verified");
 assert.equal(record.minimum_bid_quantity.source.document_type, "NSE Issue Information API");
 assert.equal(record.documents.length, 1);
+
+assert.equal(
+  applyIssueSize(
+    record,
+    {
+      value: 3_000_000_000,
+      source_value: "Initial Public offering comprising of fresh issue aggregating up to Rs. 30,000 Lakhs",
+      source_title: "Issue Size"
+    },
+    "https://www.nseindia.com/api/ipo-detail?symbol=EXAMPLE&series=EQ",
+    "2026-10-04T12:20:00Z"
+  ),
+  true
+);
+assert.equal(record.issue_size_inr.value, 3_000_000_000);
+assert.equal(record.issue_size_inr.status, "verified");
+assert.equal(record.issue_size_inr.source.document_type, "NSE Issue Information API");
+assert.equal(record.documents.length, 1);
+
+assert.equal(
+  applyIssueSize(
+    record,
+    {
+      value: 3_100_000_000,
+      source_value: "Rs. 31,000 Lakhs",
+      source_title: "Issue Size"
+    },
+    "https://www.nseindia.com/api/ipo-detail?symbol=EXAMPLE&series=EQ",
+    "2026-10-05T12:20:00Z"
+  ),
+  false
+);
+assert.equal(record.issue_size_inr.value, 3_000_000_000);
 
 assert.equal(
   applyPriceBand(
