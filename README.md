@@ -737,3 +737,14 @@ For a fresh chat:
 > Continue IPO Tracker development. Read README.md, docs/PROJECT_STATUS.md, and docs/DEVELOPMENT_PROCESS.md first. Follow the repository development process, select the earliest unfinished priority, and complete one coherent batch end to end.
 
 After that, the user may simply say **"continue"**. The repository process/handoff files are the source of truth; the user should not need to resend a large master prompt.
+
+
+### Abridged Prospectus minimum-application survey
+
+PR #68 tested the next official source family after NSE `ipo-detail`: retained SEBI Abridged Prospectuses.
+
+Production run `35761261256` downloaded **16/16** retained Abridged Prospectus PDFs and found **0 explicit supported INR minimum-application/minimum-investment mentions on page 1**, with **0 fetch errors**. No values were written and coverage remains **0/26**.
+
+The tracker continues to reject derived `price × quantity` values and does not reinterpret bid lot / minimum order quantity as an INR application amount.
+
+Next: survey retained official SEBI RHP PDFs (and then final Prospectus PDFs if needed) across full document text, retaining page-level evidence for any explicit INR amount.
