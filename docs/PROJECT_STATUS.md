@@ -2,37 +2,60 @@
 
 Last updated: 2026-09-21
 
-## Repository recovery
+## Current state
 
-The connected GitHub repository `Vasuki8/IPO-Tracker` was verified as:
-- public
-- writable
-- default branch: `main`
-- empty at the start of this run
-- zero branches / zero commits before initialization
+The repository now has a source-first production data boundary between IPO recovery and the public UI.
 
-Because no historical code or dataset was present in the accessible repository, this run did **not** attempt to invent or reconstruct an unseen backend.
+The earlier UI V1 used clearly labeled demo IPO rows because the historical recovery pipeline was not present in the repository. This batch removed those demo market values from the production rendering path rather than allowing prototype values to become accidental production data.
 
-## Completed in this run
+## Completed in latest batch
 
-- Initialized `main`
-- Added responsive light-theme UI/UX V1
-- Added desktop IPO master table
-- Added mobile IPO cards
-- Added search + Mainboard/SME + status filters
-- Added IPO detail screen
-- Added source verification states
-- Added document trail, timeline and financial presentation components
-- Kept lot size, minimum bid quantity and minimum application amount separate
-- Labeled all prototype IPO rows as demo data
-- Added README and project handoff documentation
+- Added `data/ipos.json` as the only published IPO dataset consumed by the UI.
+- Added `data/ipo-schema.json` with evidence-bearing field definitions.
+- Added `docs/DATA_CONTRACT.md` documenting null, provenance, timestamp, conflict, and correction rules.
+- Added `scripts/validate-data.mjs` to enforce core invariants.
+- Added GitHub Actions validation for JavaScript syntax and IPO data invariants.
+- Reworked `assets/app.js` to load the published dataset instead of embedded demo IPOs.
+- Preserved separate market lot, minimum bid quantity, and minimum application amount fields.
+- Added null-safe rendering and source states: verified, provisional, conflict, missing.
+- Removed hard-coded sample IPO, financial, timeline, and document values from the production UI path.
+- Added a clear empty state when no source-backed records are published.
+
+## Tests
+
+GitHub Actions validation passed on the feature branch after the final cleanup:
+
+- `node --check assets/app.js`
+- `node scripts/validate-data.mjs`
+
+Diff review also verified:
+
+- branch is based on current `main`;
+- no production IPO records were invented;
+- `data/ipos.json` intentionally contains zero records;
+- evidence, corrections, publication date, first-observed time, last-collected time, and generated time remain represented in the contract;
+- known demo issuer names and illustrative market values were removed from the production rendering path.
 
 ## Current blocker
 
-The historical IPO Tracker code/data pipeline referenced in earlier work is not present in this GitHub repository. Production data integration therefore requires either:
-1. the historical code/data to be restored into this repository, or
-2. the current authoritative dataset/pipeline to be reconnected explicitly.
+The authoritative historical IPO discovery/recovery pipeline is still not present in this repository.
 
-## Next task
+Therefore the published dataset currently contains zero IPO records by design. Re-populating the tracker must be done from official source evidence rather than copying the former demo values or guessing missing fields.
 
-Connect UI V1 to the real IPO dataset and replace demo rows without weakening source provenance, freshness labels, null handling, or document evidence.
+## Earliest unfinished priority
+
+P1 — Data correctness: rebuild/reconnect authoritative IPO universe recovery and begin publishing real source-supported IPO records into `data/ipos.json`.
+
+## Recommended next coherent batch
+
+Implement the first official-source discovery/recovery adapter for a bounded 2026 IPO batch, producing records that satisfy the published-data contract.
+
+Acceptance criteria for that batch:
+
+1. use official sources only for published values;
+2. preserve nulls rather than estimating;
+3. retain document URL/identity/publication date/page when available;
+4. retain collection timestamps;
+5. publish no more than a small coherent batch;
+6. pass `scripts/validate-data.mjs`;
+7. verify the records render correctly on desktop/mobile.
