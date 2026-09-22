@@ -87,8 +87,8 @@ jobs:
       - name: Test NSE ipo-detail field extraction
         run: node scripts/test-extract-nse-ipo-detail-fields.mjs
 
-      - name: Diagnose NSE Issue Information price band
-        run: node scripts/extract-nse-ipo-detail-fields.mjs --diagnose-price-band
+      - name: Extract NSE Issue Information price band
+        run: node scripts/extract-nse-ipo-detail-fields.mjs --price-band
 
       - name: Extract NSE Issue Information minimum bid
         run: node scripts/extract-nse-ipo-detail-fields.mjs
