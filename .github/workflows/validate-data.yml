@@ -1,0 +1,23 @@
+name: Validate IPO data contract
+
+on:
+  push:
+    branches: ["main", "data-foundation-source-backed-ui"]
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check JavaScript syntax
+        run: node --check assets/app.js
+
+      - name: Validate published IPO data
+        run: node scripts/validate-data.mjs
