@@ -15,7 +15,7 @@
           <svg viewBox="0 0 24 24"><path d="M4 18V9M10 18V5M16 18v-7M22 18V3"/></svg>
         </span>
         <span>IPO Tracker</span>
-        <span class="prototype-tag">UI V1</span>
+        <span class="prototype-tag">SOURCE-FIRST</span>
       </button>
 
       <nav class="desktop-nav" aria-label="Primary">
@@ -58,14 +58,14 @@
             <h2>Trust is a product feature.</h2>
             <p>Offer documents, exchange notices and issuer disclosures stay attached to the values they support.</p>
           </div>
-          <div class="demo-note"><span></span> UI prototype — current rows use demo data</div>
+          <div class="demo-note"><span></span> Production view — only published source-backed records appear</div>
         </aside>
       </div>
 
       <section class="metric-grid" aria-label="IPO overview">
         <article class="card metric"><span>Open now</span><strong id="metricOpen">0</strong><small>Currently accepting bids</small></article>
         <article class="card metric"><span>Upcoming</span><strong id="metricUpcoming">0</strong><small>Opening next</small></article>
-        <article class="card metric"><span>Closing soon</span><strong>1</strong><small>Demo lifecycle signal</small></article>
+        <article class="card metric"><span>Open with close date</span><strong id="metricClosing">0</strong><small>Source-backed lifecycle records</small></article>
         <article class="card metric"><span>Recently listed</span><strong id="metricListed">0</strong><small>Completed issues</small></article>
       </section>
 
@@ -73,7 +73,7 @@
         <div class="market-card__head">
           <div>
             <h2>IPO market</h2>
-            <p>Homepage master table · demo data</p>
+            <p>Homepage master table · <span id="datasetCount">0 source-backed records</span></p>
           </div>
           <div class="filters">
             <div class="segment" id="boardFilter" aria-label="Board filter">
@@ -111,15 +111,15 @@
       <section class="card detail-hero">
         <div class="detail-hero__top">
           <div class="company-identity">
-            <div id="detailLogo" class="company-logo company-logo--large">AM</div>
+            <div id="detailLogo" class="company-logo company-logo--large">—</div>
             <div>
               <div class="detail-meta-line">
-                <span id="detailStatus" class="status status--open">OPEN</span>
-                <span id="detailBoard">Mainboard</span>
+                <span id="detailStatus" class="status">UNKNOWN</span>
+                <span id="detailBoard">—</span>
                 <span>·</span>
-                <span id="detailSector">Auto Components</span>
+                <span id="detailSector">—</span>
               </div>
-              <h1 id="detailName">Aarav Mobility Limited</h1>
+              <h1 id="detailName">IPO</h1>
             </div>
           </div>
           <div class="detail-actions">
@@ -129,18 +129,18 @@
         </div>
 
         <div class="detail-kpis">
-          <div class="price-kpi"><strong id="detailPrice">₹520 – ₹548</strong><span>Price band</span></div>
-          <div><strong id="detailIssue">₹900 Cr</strong><span>Issue size</span></div>
-          <div><strong id="detailLot">27 shares</strong><span>Market lot</span></div>
-          <div><strong id="detailMinimum">₹14,796</strong><span>Minimum application</span></div>
+          <div class="price-kpi"><strong id="detailPrice">—</strong><span>Price</span></div>
+          <div><strong id="detailIssue">—</strong><span>Issue size</span></div>
+          <div><strong id="detailLot">—</strong><span>Market lot</span></div>
+          <div><strong id="detailMinimum">—</strong><span>Minimum application</span></div>
         </div>
 
         <div class="verification-strip">
-          <span id="detailSourceBadge" class="source source--verified">✓ VERIFIED</span>
+          <span id="detailSourceBadge" class="source source--missing">SOURCE MISSING</span>
           <span>Price source:</span>
-          <strong id="detailSource">Price Band Advertisement</strong>
+          <strong id="detailSource">No retained price source</strong>
           <span>·</span>
-          <span id="detailSourceDate">18 Sep 2026</span>
+          <span id="detailSourceDate">Publication date unavailable</span>
         </div>
       </section>
 
@@ -158,18 +158,18 @@
           <section class="card section-card">
             <div class="section-heading">
               <div><h2>IPO details</h2><p>Application terms remain distinct rather than being collapsed into one field.</p></div>
-              <span class="source source--verified">✓ VERIFIED</span>
+              <span class="source source--missing">SOURCE-DEPENDENT</span>
             </div>
             <dl class="detail-list">
-              <div><dt>Issue type</dt><dd>Book Built Issue</dd></div>
-              <div><dt>Face value</dt><dd>₹10</dd></div>
-              <div><dt>Price band</dt><dd id="detailPrice2">₹520 – ₹548</dd></div>
-              <div><dt>Market lot</dt><dd id="detailLot2">27 shares</dd></div>
-              <div><dt>Minimum bid quantity</dt><dd id="detailBid">27 shares</dd></div>
-              <div><dt>Minimum application amount</dt><dd id="detailMinimum2">₹14,796</dd></div>
-              <div><dt>Issue size</dt><dd id="detailIssue2">₹900 Cr</dd></div>
-              <div><dt>Fresh issue</dt><dd>₹600 Cr</dd></div>
-              <div><dt>Offer for sale</dt><dd>₹300 Cr</dd></div>
+              <div><dt>Issue type</dt><dd>—</dd></div>
+              <div><dt>Face value</dt><dd>—</dd></div>
+              <div><dt>Price / band</dt><dd id="detailPrice2">—</dd></div>
+              <div><dt>Market lot</dt><dd id="detailLot2">—</dd></div>
+              <div><dt>Minimum bid quantity</dt><dd id="detailBid">—</dd></div>
+              <div><dt>Minimum application amount</dt><dd id="detailMinimum2">—</dd></div>
+              <div><dt>Issue size</dt><dd id="detailIssue2">—</dd></div>
+              <div><dt>Fresh issue</dt><dd>—</dd></div>
+              <div><dt>Offer for sale</dt><dd>—</dd></div>
             </dl>
           </section>
 
@@ -209,10 +209,10 @@
         <aside class="detail-side">
           <section class="source-focus">
             <div class="source-focus__top">
-              <div class="source-focus__icon">✓</div>
-              <div><h3>Source-verified field</h3><p>Important values should reveal their evidence without making users hunt for it.</p></div>
+              <div class="source-focus__icon">i</div>
+              <div><h3>Field evidence</h3><p>Important values reveal retained evidence when it exists and stay visibly missing when it does not.</p></div>
             </div>
-            <div class="source-focus__value"><span>PRICE BAND</span><strong id="sidePrice">₹520 – ₹548</strong><small>Price Band Advertisement · Page 3</small><button class="text-button" data-placeholder="Official source document">Open source document ↗</button></div>
+            <div class="source-focus__value"><span>PRICE / BAND</span><strong id="sidePrice">—</strong><small>Evidence is loaded from the published record.</small></div>
           </section>
 
           <section class="card section-card" id="documents">
