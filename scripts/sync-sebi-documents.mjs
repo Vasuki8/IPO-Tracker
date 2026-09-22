@@ -11,6 +11,8 @@ export const SEBI_FINAL_LIST_URL =
   "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=12&ssid=15";
 export const SEBI_ALL_FILINGS_URL =
   "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&sid=3";
+export const SEBI_PUBLIC_ISSUES_URL =
+  "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&ssid=15";
 export const SEBI_SEARCH_URL =
   "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes";
 export const MAX_TARGETED_SEARCHES = 12;
@@ -433,15 +435,16 @@ async function run() {
     (recovery.data.records || []).map((record) => ({ recovery, record }))
   );
 
-  const [rhpEntries, finalEntries, allFilingsEntries] = await Promise.all([
+  const [rhpEntries, finalEntries, allFilingsEntries, publicIssuesEntries] = await Promise.all([
     discoverListing(SEBI_RHP_LIST_URL, "rhp"),
     discoverListing(SEBI_FINAL_LIST_URL, "final"),
-    discoverListing(SEBI_ALL_FILINGS_URL, null)
+    discoverListing(SEBI_ALL_FILINGS_URL, null),
+    discoverListing(SEBI_PUBLIC_ISSUES_URL, null)
   ]);
 
   const primaryEntries = [];
   const primarySeen = new Set();
-  for (const entry of [...rhpEntries, ...finalEntries, ...allFilingsEntries]) {
+  for (const entry of [...rhpEntries, ...finalEntries, ...allFilingsEntries, ...publicIssuesEntries]) {
     const key = `${entry.kind}|${entry.url}`;
     if (primarySeen.has(key)) continue;
     primarySeen.add(key);
