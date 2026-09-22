@@ -246,25 +246,75 @@ P1/P2 — **data correctness and source evidence depth**.
 
 Live IPO discovery is automated and SEBI document matching is operational, but SEBI raw-source coverage for newly discovered sparse issuers is not sufficient to justify further endpoint-variant retries in the same workstream.
 
-## Current development batch
+## Latest completed batch — direct SEBI Prospectus PDF resolution
 
-The next dependency is being implemented as a separate attachment-resolution layer:
+PR #17 — `Resolve direct SEBI Prospectus PDF attachments`
 
-- fetch already-retained SEBI final Prospectus filing pages;
-- resolve the official direct `/sebi_data/attachdocs/*.pdf` target from SEBI's viewer URL;
-- retain it as `SEBI Prospectus PDF`;
-- do not extract final terms in the same parser step.
+Squash-merged:
 
-Fixture coverage includes viewer-URL decoding, direct-link deduplication and rejection of non-SEBI mirrors.
+`cd39442c03450a9189d783d554e3feb48ee57239`
+
+The resolver:
+
+- fetches already-retained SEBI final Prospectus filing pages;
+- decodes SEBI viewer URLs carrying the direct PDF in `file=`;
+- accepts only HTTPS `sebi.gov.in/sebi_data/attachdocs/*.pdf` targets;
+- retains the attachment as `SEBI Prospectus PDF`;
+- deduplicates viewer/direct-link forms;
+- rejects non-SEBI mirrors;
+- does not extract final terms in the attachment step.
+
+### Production verification
+
+Workflow:
+
+- `Sync live IPO data`
+- run ID: `35687483282`
+- conclusion: success
+
+Measured SEBI result:
+
+- 9 Prospectus PDFs resolved;
+- 9 records changed;
+- 9 documents added;
+- no market-field extraction by the resolver.
+
+Resolved issuers:
+
+1. Hero Motors Limited
+2. Jindal Supreme (India) Limited
+3. Kanohar Electricals Limited
+4. LCC Projects Limited
+5. Manipal Payment and Identity Solutions Limited
+6. Pranav Constructions Limited
+7. Rentomojo Limited
+8. SS Retail Limited
+9. Veegaland Developers Limited
+
+Bot data commit:
+
+`0c3e1c199fdb12266589c7f65eead373c49065dd`
+
+Bot diff review confirmed the data change was limited to:
+
+- adding `SEBI Prospectus PDF` document evidence;
+- advancing `last_collected_at` for the nine enriched records;
+- advancing manifest/dataset generation timestamps.
+
+No `issue_price`, `issue_size_inr`, listing date, sector, minimum application amount, or other market field changed.
+
+The existing Abridged Prospectus issue-size extractor subsequently saw 3 eligible candidates, downloaded all 3, extracted 0 new totals, and preserved all three as null/placeholders with zero fetch errors.
 
 ## Recommended next coherent batch
 
-After production verification of Prospectus PDF attachment resolution, add one bounded final-document extraction family.
+Add one bounded final-Prospectus field-extraction family using the newly retained direct official PDFs.
 
 Priority fields:
 
 1. explicit final issue price;
 2. explicit aggregate issue size.
+
+Start with a parser/test batch against multiple newly retained `SEBI Prospectus PDF` documents before enabling production writes.
 
 Acceptance rules:
 
@@ -288,3 +338,5 @@ Acceptance rules:
 - PR #15: mixed Public Issues coverage
 - PR #16: Abridged Prospectus issue-size extraction
 - Production issue-size bot commit: `92f0f024367b20a9f023218a0cb92ecbc2e38636`
+- PR #17: direct SEBI Prospectus PDF resolution
+- Prospectus attachment bot commit: `0c3e1c199fdb12266589c7f65eead373c49065dd`
