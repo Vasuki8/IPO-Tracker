@@ -1075,29 +1075,123 @@ changed.
 
 Price-band coverage is now **26/26**.
 
+## Latest completed batch — final issue price from NSE public past issues
+
+### Detailed-endpoint diagnostic
+
+PR #52 — `Diagnose explicit NSE issue-price terms`
+
+Production run `35741820135` checked all four already-listed records whose final issue price was missing:
+
+- candidates / API successes: 4 / 4;
+- responses containing explicit `Issue Price`, `Final Issue Price`, or `Offer Price`: 0;
+- fetch errors: 0.
+
+This closed the `/api/ipo-detail` path for final price without using price-band caps.
+
+### Public past-issues diagnostic
+
+PR #53 — `Diagnose final prices from NSE public past issues`
+
+PR #54 — `Run NSE past-issues final-price diagnostic`
+
+Production run `35742801879` used:
+
+`https://www.nseindia.com/api/public-past-issues`
+
+Result:
+
+- total past rows: 1,450;
+- candidates: 4;
+- exact symbol matches: 4;
+- rows with parseable fixed `issuePrice`: 4;
+- ambiguous symbol matches: 0.
+
+Observed official values:
+
+1. ARCIL — ₹139 — listing date 17-SEP-2026 — EQ
+2. ESDS — ₹429 — listing date 04-SEP-2026 — EQ
+3. KARAMTARA — ₹254 — listing date 17-SEP-2026 — EQ
+4. QUALIANCE — ₹127 — listing date 11-SEP-2026 — SME
+
+### Production extractor
+
+PR #55 — `Extract final issue prices from NSE public past issues`
+
+Squash-merged:
+
+`0dcc101be97088ec565287fa4a5a63185ec8ea6c`
+
+The extractor:
+
+- targets only already-listed records with missing final issue price;
+- requires one unique exact symbol match;
+- cross-checks NSE security type / series when present;
+- cross-checks the official past-row listing date against retained listing-date evidence;
+- accepts only one fixed numeric issue price;
+- rejects price ranges and placeholders;
+- fills missing values only;
+- retains `NSE Public Past Issues` URL/identity and collection timestamp;
+- never treats the price-band cap as final price.
+
+Production run `35743854058`:
+
+- candidates: 4;
+- exact matches: 4;
+- extracted: 4;
+- missing/unparseable: 0;
+- rejected matches: 0.
+
+Published verified values:
+
+1. Asset Reconstruction Company (India) Limited — ₹139
+2. ESDS Software Solution Limited — ₹429
+3. Karamtara Engineering Limited — ₹254
+4. Qualiance International Limited — ₹127
+
+Bot data commit:
+
+`8746f22505f8d79920923670d3a9381699c82d17`
+
+Bot diff review confirmed only:
+
+- `data/recovery/2026/nse-issue-information.json`;
+- generated `data/ipos.json`
+
+changed.
+
+### Current P1 coverage snapshot
+
+Published dataset: **26 IPOs**.
+
+- price band: **26/26**;
+- issue price: **14/26**;
+- issue size INR: **12/26**;
+- market lot: **18/26**;
+- minimum bid quantity: **20/26**;
+- minimum application amount: **0/26**;
+- open date: **26/26**;
+- close date: **26/26**;
+- listing date: **10/26**.
+
+All 12 remaining issue-price nulls are not yet listed or do not yet have a published listing date. They remain null intentionally; the hourly past-issues extractor will recover them after NSE publishes a completed-issue row.
+
 ## Recommended next coherent batch
 
-Investigate the remaining **issue-price** gap using official NSE `/api/ipo-detail`.
+Continue P1 with **aggregate issue-size INR recovery**.
 
-Current issue-price coverage is **10/26**. Do not treat the price-band cap as final issue price.
-
-Start with already-listed missing-price issuers:
-
-1. Asset Reconstruction Company (India) Limited
-2. Karamtara Engineering Limited
-3. Qualiance International Limited
-4. ESDS Software Solution Limited
-
-Inspect `issueInfo.dataList` / `metaInfo` for explicit `Issue Price` or `Final Issue Price` values before enabling writes.
+Current coverage is **12/26**. Start with missing-size records that already have deterministic NSE `/api/ipo-detail` access and inspect the exact `Issue Size` title/value text before enabling writes.
 
 Acceptance rules:
 
 - official NSE source only;
-- explicit final price only;
-- fill missing `issue_price` only;
-- keep current/upcoming records null until an explicit final price is published;
-- retain exact endpoint/source identity and collection timestamp;
-- never substitute the upper price-band bound.
+- explicit overall INR aggregate only;
+- do not treat share counts as rupee issue size;
+- do not sum Fresh Issue + OFS components;
+- do not calculate shares × issue price;
+- fill missing `issue_size_inr` only;
+- retain exact source URL/identity/collection timestamp;
+- preserve null for placeholders, component-only amounts, or ambiguous prose.
 
 ## Publication history
 
@@ -1144,3 +1238,7 @@ Acceptance rules:
 - PR #49: Axiom NSE price-band diagnostic
 - PR #50: strict NSE ipo-detail price-band extraction
 - Price-band completion bot commit: `134e0e7a73e736ed3748906b198a8c883fd18892`
+- PR #52: listed NSE ipo-detail issue-price diagnostic
+- PR #53–#54: NSE public past-issues final-price diagnostic/wiring
+- PR #55: strict NSE public past-issues final-price extraction
+- NSE final-price bot commit: `8746f22505f8d79920923670d3a9381699c82d17`

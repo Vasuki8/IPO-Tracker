@@ -570,3 +570,37 @@ Published price-band coverage is now **26/26**.
 
 The next price-related P1 family is final issue price. Keep it distinct from price band and never use the band cap as the final price.
 
+## NSE public past-issues final-price automation — production verified
+
+NSE `/api/ipo-detail` was tested first for already-listed missing-price records and returned no explicit final-price term. Production run `35741820135` completed 4/4 requests with zero fetch errors and zero supported issue-price candidates.
+
+The authoritative completed-issue source is:
+
+`https://www.nseindia.com/api/public-past-issues`
+
+Read-only production diagnostic `35742801879` found four exact symbol matches and four fixed issue prices with no ambiguity:
+
+- ARCIL — ₹139;
+- ESDS — ₹429;
+- KARAMTARA — ₹254;
+- QUALIANCE — ₹127.
+
+The production extractor (PR #55) requires:
+
+- retained deterministic NSE identity;
+- already-published listing date;
+- one unique exact symbol row;
+- matching series/security type when provided;
+- matching official listing date when provided;
+- a fixed numeric `issuePrice`.
+
+It explicitly rejects range strings and placeholders, fills missing values only, and never substitutes a price-band cap.
+
+Production run `35743854058` extracted all four candidates with zero rejects or parse failures.
+
+Bot data commit: `8746f22505f8d79920923670d3a9381699c82d17`.
+
+Issue-price coverage is now **14/26**. The remaining 12 records are not yet completed/listed; they stay null until NSE publishes a past-issues row and will then be retried automatically.
+
+The next P1 field family is aggregate issue-size INR. NSE `ipo-detail` `Issue Size` text may contain share counts, total INR amounts, or component prose, so any extractor must accept only an explicit overall rupee aggregate and must not reconstruct it arithmetically.
+
