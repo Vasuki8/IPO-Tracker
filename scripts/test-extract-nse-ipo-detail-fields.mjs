@@ -5,8 +5,35 @@ import {
   listingDateCandidatesFromIpoDetail,
   parseListingDateFromIpoDetail,
   parseMinimumBidFromIpoDetail,
+  priceBandCandidatesFromIpoDetail,
   resolveNseIdentity
 } from "./extract-nse-ipo-detail-fields.mjs";
+
+const priceBandCandidates = priceBandCandidatesFromIpoDetail({
+  issueInfo: {
+    dataList: [
+      { title: "Price Range", value: "₹ 120 to ₹ 127 per Equity Share" },
+      { title: "Market Lot", value: "1,000 Equity Shares" }
+    ]
+  }
+});
+assert.deepEqual(priceBandCandidates, [
+  { title: "Price Range", value: "₹ 120 to ₹ 127 per Equity Share" }
+]);
+
+assert.deepEqual(
+  priceBandCandidatesFromIpoDetail({
+    issueInfo: { dataList: [{ title: "Price Band", value: "₹100 - ₹105" }] }
+  }),
+  [{ title: "Price Band", value: "₹100 - ₹105" }]
+);
+
+assert.deepEqual(
+  priceBandCandidatesFromIpoDetail({
+    issueInfo: { dataList: [{ title: "Issue Price", value: "₹127" }] }
+  }),
+  []
+);
 
 const listingDate = parseListingDateFromIpoDetail({
   metaInfo: { listingDate: "2026-09-17" }
