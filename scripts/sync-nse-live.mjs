@@ -280,9 +280,14 @@ function addEvidenceOnce(array, evidence) {
   const exists = array.some((item) =>
     item.url === evidence.url &&
     item.document_identity === evidence.document_identity &&
-    item.document_type === evidence.document_type
+    item.document_type === evidence.document_type &&
+    item.collected_at === evidence.collected_at
   );
   return exists ? array : [...array, evidence];
+}
+
+function usesLiveFeedAsTermSource(record) {
+  return record.nse_source?.document_type === "NSE IPO Live Feed";
 }
 
 function addDocumentOnce(array, document) {
@@ -324,31 +329,24 @@ function enrichExistingRecord(record, issue, now) {
   }
 
   record.terms ||= {};
-  if (!record.terms.price_band && parsedPrice.kind === "band") {
+  const canFillLiveTerms = usesLiveFeedAsTermSource(record);
+
+  if (canFillLiveTerms && !record.terms.price_band && parsedPrice.kind === "band") {
     record.terms.price_band = parsedPrice.value;
-    if (!record.nse_source) {
-      record.nse_source = {
-        url: evidence.url,
-        document_type: evidence.document_type,
-        document_identity: evidence.document_identity,
-        publication_date: null,
-        collected_at: now
-      };
-    }
     changed = true;
   } else if (record.terms.price_band && parsedPrice.kind === "band" && !samePriceBand(record.terms.price_band, parsedPrice.value)) {
     console.warn(`Price-band mismatch retained without overwrite for ${record.issuer_name}: recovery=${JSON.stringify(record.terms.price_band)} live=${JSON.stringify(parsedPrice.value)}`);
   }
 
-  if ((record.terms.market_lot === null || record.terms.market_lot === undefined) && liveLot !== null) {
+  if (canFillLiveTerms && (record.terms.market_lot === null || record.terms.market_lot === undefined) && liveLot !== null) {
     record.terms.market_lot = liveLot;
     changed = true;
   }
-  if (!record.terms.open_date && openDate) {
+  if (canFillLiveTerms && !record.terms.open_date && openDate) {
     record.terms.open_date = openDate;
     changed = true;
   }
-  if (!record.terms.close_date && closeDate) {
+  if (canFillLiveTerms && !record.terms.close_date && closeDate) {
     record.terms.close_date = closeDate;
     changed = true;
   }
