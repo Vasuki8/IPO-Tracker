@@ -1382,7 +1382,7 @@ The diagnostic scans only static `issueInfo.dataList` titles whose normalized la
 
 It does not inspect Minimum Order Quantity, Bid Lot, Market Lot, price band or arithmetic combinations.
 
-The first all-universe run (`35759732510`) was cancelled after the non-writing diagnostic became too costly for the hourly workflow.
+The first all-universe run (`35759732510`) was later cancelled by workflow concurrency, but its minimum-application diagnostic step had already completed successfully: 26 candidates, 26 official NSE API successes, 0 responses with explicit minimum-application/investment terms, and 0 fetch errors.
 
 PR #65 — `Bound minimum-application diagnostic sample`
 
@@ -1497,3 +1497,48 @@ If the retained offer documents also do not state this value explicitly, record 
 - NSE market-lot bot commit: `fbe718e911d9649e9a6007a9c2922af23b397816`
 - PR #63: NSE minimum-application source diagnostic
 - PR #65: bounded NSE minimum-application diagnostic sample
+
+
+## Latest completed batch — SEBI Abridged Prospectus minimum-application survey
+
+PR #68 — `Survey Abridged Prospectus minimum application amounts` — added a read-only page-1 diagnostic over retained official SEBI Abridged Prospectuses.
+
+Squash-merged:
+
+`07417895888f2fc11b68e4532104cedff39577bb`
+
+Production sync run `35761261256` completed successfully.
+
+Results:
+
+- retained Abridged Prospectus candidates: **16**
+- PDFs downloaded successfully: **16/16**
+- responses with an explicit supported INR minimum-application / minimum-investment mention on page 1: **0**
+- supported mentions: **0**
+- fetch errors: **0**
+- data writes from the diagnostic: **0**
+
+The survey required both a supported minimum-application / minimum-investment label and a nearby explicit INR / Rs / ₹ amount. Share-count-only wording, bid lot, minimum order quantity and maximum-application wording were not accepted.
+
+### Decision
+
+No `minimum_application_amount_inr` value is published from the Abridged Prospectus page-1 source family.
+
+Coverage remains **0/26**. This is intentionally source-null rather than derived.
+
+The one-shot diagnostic has been removed from hourly execution after measurement. Its pure parser helper remains available for future manual checks.
+
+### Recommended next coherent batch
+
+Survey retained official **SEBI RHP PDFs**, followed by final Prospectus PDFs where necessary, for explicit labelled INR application amounts across the full document text.
+
+Acceptance rules:
+
+- official retained SEBI PDF only;
+- explicit labelled INR application / investment amount only;
+- page-level evidence required;
+- no shares × price calculation;
+- no price-band-cap inference;
+- do not reinterpret bid lot, minimum order quantity or share-count wording as an amount;
+- fill missing values only;
+- preserve null when wording is absent, derived, placeholder or ambiguous.
