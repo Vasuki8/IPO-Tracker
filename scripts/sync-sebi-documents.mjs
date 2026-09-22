@@ -81,6 +81,12 @@ export function parseSebiDate(value) {
   return `${match[3]}-${months[match[1].toLowerCase()]}-${String(match[2]).padStart(2, "0")}`;
 }
 
+export function cacheBustedListingUrl(url, token) {
+  const parsed = new URL(url);
+  parsed.searchParams.set("_fresh", String(token));
+  return parsed.href;
+}
+
 function absoluteUrl(href, baseUrl) {
   try {
     return new URL(decodeHtml(href), baseUrl).href;
@@ -416,6 +422,8 @@ async function fetchText(url, attempts = 3) {
           "user-agent": USER_AGENT,
           "accept": "text/html,application/xhtml+xml",
           "accept-language": "en-US,en;q=0.9",
+          "cache-control": "no-cache",
+          "pragma": "no-cache",
           "referer": "https://www.sebi.gov.in/"
         }
       });
@@ -429,8 +437,9 @@ async function fetchText(url, attempts = 3) {
   throw lastError;
 }
 
-async function discoverListing(url, kind) {
-  const html = await fetchText(url);
+async function discoverListing(url, kind, cacheToken) {
+  const requestUrl = cacheBustedListingUrl(url, cacheToken);
+  const html = await fetchText(requestUrl);
   const entries = parseSebiListingHtml(html, kind, url);
   if (entries.length === 0) {
     const filingRefs = (html.match(/filings[\\/]+public-issues/gi) || []).length;
@@ -524,12 +533,18 @@ async function run() {
     (recovery.data.records || []).map((record) => ({ recovery, record }))
   );
 
+  const cacheToken = now.replace(/\D/g, "");
   const [rhpEntries, finalEntries, allFilingsEntries, publicIssuesEntries] = await Promise.all([
-    discoverListing(SEBI_RHP_LIST_URL, "rhp"),
-    discoverListing(SEBI_FINAL_LIST_URL, "final"),
-    discoverListing(SEBI_ALL_FILINGS_URL, null),
-    discoverListing(SEBI_PUBLIC_ISSUES_URL, null)
+    discoverListing(SEBI_RHP_LIST_URL, "rhp", cacheToken),
+    discoverListing(SEBI_FINAL_LIST_URL, "final", cacheToken),
+    discoverListing(SEBI_ALL_FILINGS_URL, null, cacheToken),
+    discoverListing(SEBI_PUBLIC_ISSUES_URL, null, cacheToken)
   ]);
+
+  console.log(
+    "SEBI RHP listing head: " +
+    rhpEntries.slice(0, 8).map((entry) => `${entry.publication_date || "undated"}|${entry.issuer_name}`).join(" ; ")
+  );
 
   const primaryEntries = [];
   const primarySeen = new Set();
