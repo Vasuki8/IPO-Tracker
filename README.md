@@ -607,23 +607,76 @@ The bot diff changed only recovery data and generated `data/ipos.json`. GitHub P
 
 Aggregate issue-size coverage improved from **12/26 to 14/26**. The remaining 12 records are deliberately source-null under this NSE rule and will continue to be checked by the existing final-Prospectus and NSE automation.
 
+### Latest market-lot recovery result
+
+PR #60 — `Diagnose explicit NSE market-lot terms` — inspected the eight missing records read-only.
+
+Production run `35757461876`:
+
+- candidates: 8;
+- API successes: 8;
+- responses with explicit `Market Lot` / `Lot Size`: **1**;
+- fetch errors: 0.
+
+The sole supported term was:
+
+- **Axiom Gas Engineering Limited — `Lot Size: 2000 Equity Shares`**.
+
+Adroit, ArMee, Elevate, Moneyview, NSE, Swastika, and Varmora returned no explicit `Market Lot` / `Lot Size` field. Their `Bid Lot` / `Minimum Order Quantity` values were deliberately ignored.
+
+PR #61 merged at `9ed4044be6ae795bbf5373b0a7bb2530bba44960` and promoted only explicit market-lot terms into production extraction.
+
+Rules:
+
+- official NSE `/api/ipo-detail` only;
+- exact `Market Lot` / `Lot Size` title-value pairs only;
+- positive Equity Share quantity required;
+- `Bid Lot` and `Minimum Order Quantity` are not accepted as market lot;
+- placeholders and conflicting official values are rejected;
+- fill missing `market_lot` only;
+- retain exact endpoint/source identity and collection timestamp;
+- deterministic publication preserves retained market-lot evidence.
+
+Production run `35758162829`:
+
+- candidates: 8;
+- API successes: 8;
+- extracted: **1**;
+- missing/placeholders: 7;
+- conflicts: 0;
+- fetch errors: 0.
+
+Published:
+
+- **Axiom Gas Engineering Limited — market lot 2,000 Equity Shares — verified**.
+
+Source-backed bot commit:
+
+`fbe718e911d9649e9a6007a9c2922af23b397816`
+
+The bot diff changed only recovery data and generated `data/ipos.json`.
+
+Market-lot coverage improved from **18/26 to 19/26**. The remaining seven records are source-null for explicit market lot and will continue to be checked automatically.
+
 ### Recommended next coherent batch
 
-Continue P1 with **explicit market-lot recovery**.
+Continue P1 with **explicit minimum application amount recovery**.
 
-Current `market_lot` coverage is **18/26**. Eight records remain missing, including Moneyview, Adroit, ArMee, Elevate, Swastika, Varmora, Axiom, and National Stock Exchange of India.
+Current `minimum_application_amount_inr` coverage is **0/26**.
 
-Inspect official NSE `/api/ipo-detail` `issueInfo.dataList` for exact **Market Lot** / **Lot Size** terms. Keep this separate from the already-populated `minimum_bid_quantity`.
+Start by inspecting official NSE `/api/ipo-detail` `issueInfo.dataList` for exact terms such as `Minimum Application Amount`, `Minimum Investment Amount`, or another clearly equivalent official label.
 
 Acceptance rules:
 
-- official NSE source only;
+- official source only;
 - deterministic symbol/series identity;
-- accept only an explicit Market Lot / Lot Size field;
-- do **not** copy `Bid Lot` or `Minimum Order Quantity` into `market_lot`;
+- accept only an explicitly stated INR application amount;
+- keep it separate from market lot and minimum bid quantity;
+- do **not** calculate price × quantity in this batch;
+- do **not** infer from the price-band cap;
+- fill missing values only;
 - retain exact endpoint/source identity and collection timestamp;
-- fill missing `market_lot` only;
-- preserve null for absent/placeholders/ambiguous values.
+- preserve null for absent, placeholder, range-only or ambiguous values.
 
 ### Product direction
 
