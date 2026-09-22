@@ -25,10 +25,11 @@ The document-enrichment step reads SEBI's public lists for:
 - RHP filings: `https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=11&ssid=15`
 - Final offer documents / Prospectus: `https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=12&ssid=15`
 - General filings view for current public-issue coverage: `https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&sid=3`
+- Mixed Public Issues listing: `https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&ssid=15`
 
 For a matched RHP filing page, the collector also looks for an official SEBI Abridged Prospectus link under `/sebi_data/commondocs/`.
 
-The collector reads the dedicated RHP/final lists and also SEBI's current general Filings page. The general page closes a coverage gap where very recent public-issue entries can appear there before the dedicated subtype page exposes them consistently to the raw HTML fetcher. Duplicate filing URLs are deduplicated before matching.
+The collector reads the dedicated RHP/final lists, SEBI's current general Filings page, and the mixed Public Issues listing. The general page closes a coverage gap where very recent public-issue entries can appear there before the dedicated subtype page exposes them consistently to the raw HTML fetcher. Duplicate filing URLs are deduplicated before matching.
 
 After that pass, it runs a bounded targeted SEBI search for the newest sparse records that:
 
