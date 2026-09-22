@@ -9,6 +9,9 @@ export const SEBI_RHP_LIST_URL =
   "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=11&ssid=15";
 export const SEBI_FINAL_LIST_URL =
   "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=12&ssid=15";
+export const SEBI_SEARCH_URL =
+  "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes";
+export const MAX_TARGETED_SEARCHES = 12;
 
 const USER_AGENT =
   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
@@ -230,6 +233,31 @@ export function matchIssuerRecord(records, issuerName) {
   return matches.length === 1 ? matches[0] : null;
 }
 
+export function hasSebiDocument(record) {
+  return (record.documents || []).some((doc) =>
+    /^SEBI\s/i.test(normalizeText(doc.type)) ||
+    /sebi\.gov\.in/i.test(String(doc.url || ""))
+  );
+}
+
+export function isLiveFeedRecord(record) {
+  return record?.nse_source?.document_type === "NSE IPO Live Feed" ||
+    /\/api\/(?:all-upcoming-issues|ipo-current-issue)/i.test(String(record?.nse_source?.url || ""));
+}
+
+export function targetedSearchCandidates(records, maxSearches = MAX_TARGETED_SEARCHES) {
+  return records
+    .filter(({ record }) => isLiveFeedRecord(record) && !hasSebiDocument(record))
+    .sort((a, b) => String(b.record.first_observed_at || "").localeCompare(String(a.record.first_observed_at || "")))
+    .slice(0, maxSearches);
+}
+
+export function buildSebiSearchUrl(issuerName) {
+  const url = new URL(SEBI_SEARCH_URL);
+  url.searchParams.set("search", normalizeText(issuerName));
+  return url.href;
+}
+
 function sameDocument(a, b) {
   return a.url === b.url || (
     normalizeText(a.identity).toLowerCase() === normalizeText(b.identity).toLowerCase() &&
@@ -322,6 +350,63 @@ async function discoverListing(url, kind) {
   return entries;
 }
 
+async function abridgedForEntry(entry, detailCache) {
+  if (entry.kind !== "rhp") return [];
+  let detailHtml = detailCache.get(entry.url);
+  if (detailHtml === undefined) {
+    try {
+      detailHtml = await fetchText(entry.url);
+    } catch {
+      detailHtml = null;
+    }
+    detailCache.set(entry.url, detailHtml);
+  }
+  return detailHtml ? parseAbridgedProspectusLinks(detailHtml, entry.url) : [];
+}
+
+async function applyEntry(match, entry, now, detailCache, stats, changedRecords) {
+  const abridged = await abridgedForEntry(entry, detailCache);
+  const before = match.record.documents?.length || 0;
+  if (!applySebiEntry(match, entry, now, abridged)) return false;
+
+  match.recovery.changed = true;
+  changedRecords.add(match.record.id);
+  stats.added_documents += (match.record.documents?.length || 0) - before;
+  return true;
+}
+
+async function targetedSearch(records, now, detailCache, stats, changedRecords) {
+  const candidates = targetedSearchCandidates(records);
+  stats.targeted_candidates = candidates.length;
+
+  for (const match of candidates) {
+    stats.targeted_searches += 1;
+    const url = buildSebiSearchUrl(match.record.issuer_name);
+    let html;
+    try {
+      html = await fetchText(url);
+    } catch (error) {
+      stats.targeted_errors += 1;
+      console.warn(`SEBI targeted search failed for ${match.record.issuer_name}: ${error.message}`);
+      continue;
+    }
+
+    const entries = parseSebiListingHtml(html, null, url)
+      .filter((entry) => matchIssuerRecord([match], entry.issuer_name));
+
+    if (entries.length === 0) continue;
+
+    const uniqueKinds = new Set();
+    for (const entry of entries) {
+      const uniqueKey = `${entry.kind}|${entry.url}`;
+      if (uniqueKinds.has(uniqueKey)) continue;
+      uniqueKinds.add(uniqueKey);
+      stats.targeted_matches += 1;
+      await applyEntry(match, entry, now, detailCache, stats, changedRecords);
+    }
+  }
+}
+
 async function run() {
   const now = new Date().toISOString();
   const recoveries = loadRecoveries();
@@ -342,7 +427,11 @@ async function run() {
     matched: 0,
     unmatched: 0,
     changed_records: 0,
-    added_documents: 0
+    added_documents: 0,
+    targeted_candidates: 0,
+    targeted_searches: 0,
+    targeted_matches: 0,
+    targeted_errors: 0
   };
   const changedRecords = new Set();
 
@@ -353,31 +442,10 @@ async function run() {
       continue;
     }
     stats.matched += 1;
-
-    let abridged = [];
-    if (entry.kind === "rhp") {
-      let detailHtml = detailCache.get(entry.url);
-      if (detailHtml === undefined) {
-        try {
-          detailHtml = await fetchText(entry.url);
-        } catch {
-          detailHtml = null;
-        }
-        detailCache.set(entry.url, detailHtml);
-      }
-      if (detailHtml) {
-        abridged = parseAbridgedProspectusLinks(detailHtml, entry.url);
-      }
-    }
-
-    const before = match.record.documents?.length || 0;
-    if (applySebiEntry(match, entry, now, abridged)) {
-      match.recovery.changed = true;
-      changedRecords.add(match.record.id);
-      stats.added_documents += (match.record.documents?.length || 0) - before;
-    }
+    await applyEntry(match, entry, now, detailCache, stats, changedRecords);
   }
 
+  await targetedSearch(records, now, detailCache, stats, changedRecords);
   stats.changed_records = changedRecords.size;
 
   for (const recovery of recoveries) {
@@ -387,8 +455,10 @@ async function run() {
   }
 
   console.log(
-    `SEBI document sync: ${stats.matched} matched listing entries, ` +
-    `${stats.unmatched} unmatched, ${stats.changed_records} changed record(s), ` +
+    `SEBI document sync: ${stats.matched} matched latest-list entries, ` +
+    `${stats.unmatched} unmatched; targeted ${stats.targeted_searches}/${stats.targeted_candidates} ` +
+    `sparse live record(s), ${stats.targeted_matches} targeted filing match(es), ` +
+    `${stats.targeted_errors} targeted error(s); ${stats.changed_records} changed record(s), ` +
     `${stats.added_documents} document(s) added.`
   );
 }
