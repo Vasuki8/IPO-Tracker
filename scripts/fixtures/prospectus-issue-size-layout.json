@@ -1,0 +1,105 @@
+{
+  "cases": [
+    {
+      "name": "Jindal offer total in lakhs",
+      "pages": [
+        "FOR CASH AT A PRICE OF ₹ 93 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹ 83 PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING UP TO ₹ 12,488.04 LAKHS (THE “OFFER”) COMPRISING A FRESH ISSUE AGGREGATING UP TO ₹ 9,989.27 LAKHS (THE “FRESH ISSUE”)"
+      ],
+      "expected": {
+        "value": 1248804000,
+        "page": 1
+      }
+    },
+    {
+      "name": "Kanohar offer total in million with footnote",
+      "pages": [
+        "AT A PRICE OF ₹632 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹630 PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹ 10,557.40 MILLION^ (THE “OFFER”). THE OFFER COMPRISED OF A FRESH ISSUE AGGREGATING TO ₹ 3,000 MILLION^ (“FRESH ISSUE”)"
+      ],
+      "expected": {
+        "value": 10557400000,
+        "page": 1
+      }
+    },
+    {
+      "name": "LCC offer total in million",
+      "pages": [
+        "AT A PRICE OF ₹146.00 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹141.00 PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING TO ₹ 4,271.41 MILLION* (THE “OFFER”) COMPRISING OF A FRESH ISSUE AGGREGATING TO ₹ 2,580.00 MILLION* (“FRESH ISSUE”)"
+      ],
+      "expected": {
+        "value": 4271410000,
+        "page": 1
+      }
+    },
+    {
+      "name": "Manipal total before component labels",
+      "pages": [
+        "AT A PRICE OF ₹ 339.00 PER EQUITY SHARE (INCLUDING A PREMIUM OF ₹ 337.00 PER EQUITY SHARE) (THE “OFFER PRICE”) AGGREGATING TO ₹ 8,050.00* MILLION COMPRISING A FRESH ISSUE AGGREGATING TO ₹ 3,200.00* MILLION (THE “FRESH ISSUE”) AND AN OFFER FOR SALE AGGREGATING TO ₹ 4,850.00* MILLION (THE “OFFER FOR SALE”, AND TOGETHER WITH THE FRESH ISSUE, THE “OFFER”)"
+      ],
+      "expected": {
+        "value": 8050000000,
+        "page": 1
+      }
+    },
+    {
+      "name": "Pranav offer total",
+      "pages": [
+        "AT A PRICE OF ₹124 PER EQUITY SHARE (INCLUDING A PREMIUM OF ₹114 PER EQUITY SHARE) (THE “OFFER PRICE”) AGGREGATING TO ₹ 3,510.25 MILLION* (THE “OFFER”) COMPRISING A FRESH ISSUE AGGREGATING TO ₹3,156.00 MILLION* (THE “FRESH ISSUE”)"
+      ],
+      "expected": {
+        "value": 3510250000,
+        "page": 1
+      }
+    },
+    {
+      "name": "SS Retail total with marker after unit",
+      "pages": [
+        "AT A PRICE OF ₹ 424^ PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹ 414^ PER EQUITY SHARE) (OFFER PRICE) AGGREGATING TO ₹ 5,000.00 MILLION^ (OFFER) COMPRISING A FRESH ISSUE AGGREGATING TO ₹ 3,600.00 MILLION^ (FRESH ISSUE)"
+      ],
+      "expected": {
+        "value": 5000000000,
+        "page": 1
+      }
+    },
+    {
+      "name": "Veegaland issue total in lakhs with double marker",
+      "pages": [
+        "AT A PRICE OF ₹140 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹ 130 PER EQUITY SHARE) (“ISSUE PRICE”) AGGREGATING TO ₹ 21,000.00** LAKHS (“THE ISSUE”)."
+      ],
+      "expected": {
+        "value": 2100000000,
+        "page": 1
+      }
+    },
+    {
+      "name": "explicit total offer size phrase",
+      "pages": [
+        "TOTAL OFFER SIZE: ₹5,000.00 MILLION"
+      ],
+      "expected": {
+        "value": 5000000000,
+        "page": 1
+      }
+    },
+    {
+      "name": "fresh issue component alone is rejected",
+      "pages": [
+        "A FRESH ISSUE OF EQUITY SHARES AGGREGATING TO ₹ 3,200.00 MILLION (THE FRESH ISSUE)"
+      ],
+      "expected": null
+    },
+    {
+      "name": "offer for sale component alone is rejected",
+      "pages": [
+        "AN OFFER FOR SALE OF EQUITY SHARES AGGREGATING TO ₹ 4,850.00 MILLION (THE OFFER FOR SALE)"
+      ],
+      "expected": null
+    },
+    {
+      "name": "unlabelled aggregate amount is rejected",
+      "pages": [
+        "The Equity Shares aggregate to ₹5,000.00 million for accounting purposes."
+      ],
+      "expected": null
+    }
+  ]
+}
