@@ -273,3 +273,19 @@ The resolver:
 - rejects non-SEBI mirrors.
 
 This stage attaches evidence only. It does not yet parse final issue price, aggregate issue size, listing date, or any other field from the final Prospectus PDF.
+
+## Prospectus PDF production verification — 2026-09-22
+
+Direct final-Prospectus attachment resolution is production-verified.
+
+- PR: #17
+- merge: `cd39442c03450a9189d783d554e3feb48ee57239`
+- live sync run: `35687483282`
+- result: success
+- bot data commit: `0c3e1c199fdb12266589c7f65eead373c49065dd`
+
+The run resolved 9 direct official `SEBI Prospectus PDF` attachments from already-retained final filing pages.
+
+The resolver itself changed no market fields. Review of the bot diff confirmed only document evidence, per-record collection freshness, and generation timestamps changed.
+
+This closes the attachment dependency needed for the next bounded extraction family. Final Prospectus field parsing must remain separate and independently tested before it is allowed to write final issue price or aggregate issue size.
