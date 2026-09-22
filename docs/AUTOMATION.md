@@ -4,7 +4,10 @@
 
 The public tracker should discover newly announced/open IPOs without requiring a manual data-recovery prompt before they appear on the website.
 
-The first automated source family is the official NSE public IPO feed.
+The automated source pipeline now has two layers:
+
+1. official NSE public IPO feeds for discovery/basic offer terms;
+2. official SEBI public-issue listings for offer-document attachment.
 
 ## Official discovery endpoints
 
@@ -14,6 +17,31 @@ The collector reads:
 - `https://www.nseindia.com/api/ipo-current-issue`
 
 These are public NSE website endpoints used by NSE's IPO market-data pages. They are not treated as a substitute for later offer-document recovery.
+
+## Official SEBI document endpoints
+
+The document-enrichment step reads SEBI's public lists for:
+
+- RHP filings: `https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=11&ssid=15`
+- Final offer documents / Prospectus: `https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=12&ssid=15`
+
+For a matched RHP filing page, the collector also looks for an official SEBI Abridged Prospectus link under `/sebi_data/commondocs/`.
+
+This first SEBI automation batch intentionally reads the latest listing page for each source family. That is sufficient for newly detected current/upcoming IPOs, while historical backfill remains a separate recovery task.
+
+## SEBI issuer matching
+
+SEBI filings are attached only when issuer matching is deterministic.
+
+Matching rules:
+
+- normalize punctuation, whitespace and `Ltd.` / `Limited`;
+- preserve meaningful issuer words;
+- allow a controlled alternate for a parenthetical `(India)` suffix, e.g. `Adroit Industries (India) Limited` ↔ `Adroit Industries Limited`;
+- require exactly one recovery record to match;
+- skip ambiguous or unmatched entries rather than guessing.
+
+Addenda, corrigenda, DRHP/UDRHP records are not included in this initial matcher.
 
 ## Schedule
 
@@ -25,10 +53,12 @@ The workflow:
 2. tests the feed parser;
 3. fetches the NSE live feeds;
 4. merges new source-backed records into the recovery manifest;
-5. rebuilds `data/ipos.json`;
-6. validates the data contract;
-7. commits only if source-backed data changed;
-8. the resulting push triggers the existing GitHub Pages deployment workflow.
+5. fetches the latest official SEBI RHP/final-offer-document lists;
+6. attaches deterministic RHP / Abridged Prospectus / Prospectus evidence;
+7. rebuilds `data/ipos.json`;
+8. validates the data contract;
+9. commits only if source-backed data changed;
+10. the resulting push triggers the existing GitHub Pages deployment workflow.
 
 If NSE collection or validation fails, the workflow fails before committing. The previously published website remains intact.
 
@@ -83,3 +113,24 @@ Existing richer evidence is preserved. The live collector fills missing values a
 The collector writes each issue to `data/recovery/<year>/nse-issue-information.json` based on the official issue start date.
 
 The publication builder reads all year manifests, so a new calendar year does not require hard-coding a new published-data path.
+
+## Fields changed by SEBI document sync
+
+The SEBI document layer currently changes **document evidence only**.
+
+It may attach:
+
+- `SEBI RHP filing`;
+- `SEBI Abridged Prospectus`;
+- `SEBI Prospectus filing`.
+
+It does not yet parse those documents into final issue price, issue size, minimum application amount, listing date, sector, or other market fields.
+
+This separation is intentional: document discovery/matching is verified first, then field extraction can be added as a later bounded source-family batch with its own tests and precedence rules.
+
+## Failure behavior
+
+- If the SEBI listing page cannot be fetched after retries, the scheduled workflow fails before committing.
+- If a SEBI listing page is fetched but contains zero parseable expected filings, the workflow fails rather than silently treating that as "no documents".
+- If a matched RHP detail page cannot be fetched, the RHP filing itself may still be retained; only the optional Abridged Prospectus attachment is skipped for that run.
+- Re-running the collector is idempotent: existing document URLs/identities are not duplicated.
