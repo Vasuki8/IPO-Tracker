@@ -4,73 +4,114 @@ Last updated: 2026-09-21
 
 ## Current state
 
-The tracker publishes two real 2026 IPO records from retained official evidence:
+The tracker now publishes **five real 2026 IPO records** from retained official evidence:
 
 - Hero Motors Limited
 - Rentomojo Limited
+- Jindal Supreme (India) Limited
+- Manipal Payment and Identity Solutions Limited
+- SS Retail Limited
 
-The two-record pilot now demonstrates both pre-offer term recovery and final-Prospectus enrichment while preserving unsupported fields as null.
+The recovery pipeline remains deliberately source-first: unsupported fields stay null rather than being estimated, inferred, or copied from aggregators.
 
 ## Completed in latest batch
 
-### Rentomojo Limited — official final Prospectus recovery
+Added three additional 2026 IPO issuers using the proven official NSE/SEBI source pattern.
 
-A directly retrievable official NSE archive copy of Rentomojo Limited's Prospectus was recovered:
+### Jindal Supreme (India) Limited
 
-- document: `Rentomojo Limited - Prospectus dated September 11, 2026`
-- official source: `https://nsearchives.nseindia.com/corporate/FP_INE08T701025_15SEP2026.pdf`
+Verified from NSE Issue Information:
 
-The Prospectus explicitly establishes:
+- price band: ₹88–₹93
+- market lot: 161 shares
+- minimum bid quantity: 161 shares
+- offer period: September 16–18, 2026
 
-- final issue price: ₹404 per Equity Share
-- total offer size: ₹12,555.67 million
-- equivalent stored INR value: ₹12,555,670,000
+Retained documents:
 
-Both fields are now published as verified and retain the Prospectus URL, identity, document date, evidence location, and collection timestamp.
+- NSE Issue Information — JSIPL
+- SEBI RHP filing dated September 8, 2026
+- SEBI Prospectus filing dated September 21, 2026
 
-The original NSE issue-information evidence and earlier collection timestamps were preserved.
+Intentionally null:
 
-### What remains intentionally null for Rentomojo
-
-- listing date
+- board
 - lifecycle status
+- final issue price
+- issue size in INR
+- listing date
 - minimum application amount
 - sector
 
-The listing date and listed status were not promoted from third-party mirrors.
+### Manipal Payment and Identity Solutions Limited
 
-The minimum application amount was not silently derived from `37 × ₹404`; the project still requires either direct official evidence or a separately documented derivation rule before publishing that field.
+Verified from NSE Issue Information:
 
-## Official exchange listing-source investigation
+- price band: ₹322–₹339
+- market lot: 44 shares
+- minimum bid quantity: 44 shares
+- offer period: September 9–11, 2026
 
-The listing-source family was investigated again.
+Verified from an NSE-hosted Public Announcement:
 
-### BSE
+- board: Mainboard
 
-Two BSE listing notices are discoverable for Rentomojo:
+Retained documents:
 
-- `20260916-7` — preliminary listing notice
-- `20260916-46` — effective listing notice reported as September 17, 2026
+- NSE Public Announcement dated June 28, 2025
+- NSE Issue Information — MPIMANIPAL
+- SEBI RHP filing dated September 4, 2026
+- SEBI Prospectus filing dated September 21, 2026
 
-The canonical BSE notice URL pattern is known:
+Intentionally null:
 
-`https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=<NOTICE_NO>`
+- lifecycle status
+- final issue price
+- issue size in INR
+- listing date
+- minimum application amount
+- sector
 
-Older BSE notices at this pattern are directly retrievable by the available tooling, confirming that the URL structure is legitimate. However, the 2026 Rentomojo dynamic notice pages still return an inaccessible/internal-error response in this development session.
+### SS Retail Limited
 
-Search indexes and third-party mirrors expose the notice contents, but those mirrors were not accepted as production evidence.
+Verified from NSE Issue Information:
 
-### NSE
+- price band: ₹403–₹424
+- market lot: 35 shares
+- minimum bid quantity: 35 shares
+- offer period: September 16–18, 2026
 
-A directly retrievable NSE final Prospectus was found and used for final issue price and total offer size.
+Retained documents:
 
-A directly retrievable NSE listing circular establishing the actual listing date/status was not found in this run.
+- NSE Issue Information — SSRETAIL
+- SEBI RHP filing dated September 9, 2026
+- SEBI Prospectus filing dated September 21, 2026
 
-## PDF verification note
+Intentionally null:
 
-The Rentomojo NSE Prospectus was opened as a PDF and its text layer was available. The required screenshot renderer was also invoked for the relevant pages, but returned a cache-miss error. Page-level evidence therefore uses the official PDF text location while documenting that visual screenshot rendering was unavailable.
+- board
+- lifecycle status
+- final issue price
+- issue size in INR
+- listing date
+- minimum application amount
+- sector
 
-## Current published data
+## Why final issue price / issue size were not added
+
+The SEBI final Prospectus filing pages were directly verified for all three new issuers.
+
+However, the attached final Prospectus PDFs were not reliably readable by the available web tooling in this run:
+
+- Jindal Supreme's SEBI attachment opened only through the SEBI PDF viewer shell; the direct PDF URL was not retrievable.
+- Manipal Payment's SEBI attachment returned a cache-miss error.
+- SS Retail's SEBI attachment opened only through the SEBI PDF viewer shell; the direct PDF URL was not retrievable.
+
+No final issue price was inferred from the upper end of the price band.
+
+No issue size was arithmetically reconstructed from separate fresh-issue and OFS components.
+
+## Existing pilot records
 
 ### Hero Motors Limited
 
@@ -82,14 +123,6 @@ Verified:
 - market lot: 178 shares
 - minimum bid quantity: 178 shares
 - offer period: September 16–18, 2026
-
-Still null:
-
-- board
-- lifecycle status
-- listing date
-- minimum application amount
-- sector
 
 ### Rentomojo Limited
 
@@ -103,13 +136,6 @@ Verified:
 - minimum bid quantity: 37 shares
 - offer period: September 9–11, 2026
 
-Still null:
-
-- lifecycle status
-- listing date
-- minimum application amount
-- sector
-
 ## Data integrity rules currently enforced
 
 - Published schema version: `1.1.0`.
@@ -117,49 +143,49 @@ Still null:
 - Verified values require retained evidence.
 - Missing fields must keep `value: null`.
 - Non-null board/status values require companion provenance.
-- Existing evidence collection timestamps must not be rewritten when a record is re-collected.
-- `last_collected_at` is tracked per record rather than copied from the dataset-generation timestamp; untouched issuers do not become falsely "fresh".
+- Existing evidence collection timestamps are preserved.
+- `last_collected_at` is tracked per record.
 - Unsupported source hosts are rejected by the recovery publisher.
+- Market lot, minimum bid quantity, and minimum application amount remain separate concepts.
 
-## Tests required for this batch
+## Tests for latest batch
 
-GitHub Actions must pass:
+GitHub Actions passed on `recover-2026-batch-2` with:
 
 - `node --check assets/app.js`
 - `node scripts/build-published-data.mjs --check`
 - `node scripts/validate-data.mjs`
 
-Diff review must confirm:
+Diff review must confirm before publication:
 
-- no new issuer is introduced;
-- Rentomojo issue price is ₹404 from the official NSE Prospectus;
-- Rentomojo issue size is ₹12,555,670,000 from the same Prospectus;
-- listing date/status remain null;
-- minimum application amount remains null;
-- prior evidence timestamps remain unchanged;
-- Hero Motors keeps its prior `last_collected_at` because it was not re-collected in this batch;
-- Rentomojo advances to the new collection timestamp;
-- no unrelated UI/product feature is changed.
+- exactly three new issuer records are added;
+- existing Hero/Rentomojo values are unchanged;
+- new final issue prices remain null;
+- new issue-size fields remain null;
+- Manipal board is Mainboard with retained NSE evidence;
+- no listing date/status is guessed;
+- no minimum application amount is derived;
+- no unrelated UI or product feature is changed.
 
 ## Earliest unfinished priority
 
 P1 — Data correctness.
 
-The direct BSE listing-notice endpoint remains blocked in this environment, while the official NSE final-Prospectus family is now proven usable.
+The 2026 universe remains incomplete, but the source family now works across five issuers.
 
 ## Recommended next coherent batch
 
-Do not spend another full batch retrying the same inaccessible BSE notice endpoint.
+Deepen the three newly added issuers **only where directly retrievable official final documents permit it**.
 
-Proceed to the next small 2026 official-source recovery batch using the proven pattern:
+Priority:
 
-1. discover 2–5 additional 2026 IPO issuers from official NSE/SEBI sources;
-2. retain issuer identity and offer-document trail;
-3. recover core P1 terms from official issue-information / Prospectus sources;
-4. preserve unavailable listing fields as null;
-5. return to the BSE listing-notice family when a directly retrievable official endpoint or archive path is available.
+1. locate official NSE archive or issuer-hosted final Prospectus copies for Jindal Supreme, Manipal Payment, and SS Retail;
+2. recover final issue price and aggregate issue size only when explicitly stated;
+3. retain page/evidence location and collection time;
+4. preserve listing/status fields as null unless official listing evidence is directly accessible;
+5. if final-document extraction remains blocked, add the next small 2026 issuer batch rather than using mirrors or guesses.
 
-The exchange-listing blocker should remain documented, not bypassed with mirrors.
+The BSE dynamic listing-notice blocker remains documented and should not be bypassed with third-party mirrors.
 
 ## Publication history
 
@@ -169,17 +195,7 @@ The exchange-listing blocker should remain documented, not bypassed with mirrors
 - First recovery merge: `30d73b04677fda0f5d6c17a688f16fa50809840b`
 - PR #3: deepen Hero Motors and Rentomojo evidence
 - Final-term enrichment merge: `5ecbcc4615c523d4bdafc56632b17ee6d4762722`
-- Prior production bookkeeping head: `880c53a5f2f8c6ffb6f5561a761b6f0037aec598`
+- PR #4: recover Rentomojo final Prospectus terms
+- Rentomojo final-terms merge: `9895698d87513a2e037f95cf5cf4f2886590df9a`
+- Prior production bookkeeping head: `b17f9586ae3131bd1fda312f598d4b79d9a404a2`
 - Validation and GitHub Pages deployment passed for the prior production head.
-
-## Latest publication
-
-- Pull request: #4 — `Recover Rentomojo final Prospectus terms`
-- Squash-merged to `main`: `9895698d87513a2e037f95cf5cf4f2886590df9a`
-- Post-merge data-contract validation: passed
-- Post-merge GitHub Pages deployment: passed
-- Pages artifact was generated from the merged revision.
-- Rentomojo final issue price ₹404 and total offer size ₹12,555.67 million are published from the official NSE archived Prospectus.
-- Hero Motors' `last_collected_at` remained unchanged because Hero was not re-collected in this batch.
-- Rentomojo listing date/status and minimum application amount remain null.
-- Direct retrieval of `https://vasuki8.github.io/IPO-Tracker/` remains unavailable from the web reader in this development session; deployment workflow and artifact revision were verified instead.
