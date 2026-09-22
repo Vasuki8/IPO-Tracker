@@ -170,13 +170,17 @@ Real hourly run `35686786294` downloaded all 4 eligible retained SEBI Abridged P
 
 The source-backed bot commit is `92f0f024367b20a9f023218a0cb92ecbc2e38636`.
 
-### Current development direction
+### Latest final-document result
 
-The next dependency is direct official final-Prospectus PDF resolution from already-retained SEBI filing pages. The resolver keeps attachment discovery separate from value extraction: it will attach only official `sebi_data/attachdocs/*.pdf` documents and will not infer final terms.
+Direct official final-Prospectus PDF resolution is now production-verified.
+
+PR #17 merged at `cd39442c03450a9189d783d554e3feb48ee57239`.
+
+Real sync run `35687483282` resolved and attached **9 official SEBI Prospectus PDFs** to deterministic issuer records. Bot commit `0c3e1c199fdb12266589c7f65eead373c49065dd` changed document evidence/freshness only; no market field was inferred or overwritten.
 
 ### Recommended next coherent batch
 
-After that resolver is production-verified, automate one bounded explicit final-document field family—preferably final issue price and/or aggregate issue size with page-level evidence.
+Automate one bounded final-Prospectus field family from those newly retained direct PDFs—preferably explicit final issue price first, then explicit aggregate issue size—with page-level evidence and null preservation.
 
 ### Product direction
 
