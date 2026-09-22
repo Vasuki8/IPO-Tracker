@@ -156,6 +156,13 @@ assert.equal(niiMinimumApplications[0].page, 2);
 assert.equal(niiMinimumApplications[1].value, 200000);
 assert.equal(niiMinimumApplications[1].page, 3);
 
+const niiForwardContext = findExplicitNiiMinimumApplicationAmountsInPages([
+  "shall not be less than the minimum application size viz. ₹ 0.20 million, subject to availability of Equity Shares in the Non-Institutional Portion and the remaining Equity Shares, if any, shall be allocated on a proportionate basis."
+]);
+assert.equal(niiForwardContext.length, 1);
+assert.equal(niiForwardContext[0].value, 200000);
+assert.equal(niiForwardContext[0].page, 1);
+
 assert.deepEqual(
   findExplicitNiiMinimumApplicationAmountsInPages([
     "In case of a Mutual Fund, separate Bids will be aggregated to determine the minimum application size of ₹100 million.",
