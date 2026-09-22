@@ -199,3 +199,19 @@ The BSE dynamic listing-notice blocker remains documented and should not be bypa
 - Rentomojo final-terms merge: `9895698d87513a2e037f95cf5cf4f2886590df9a`
 - Prior production bookkeeping head: `b17f9586ae3131bd1fda312f598d4b79d9a404a2`
 - Validation and GitHub Pages deployment passed for the prior production head.
+
+## Latest publication
+
+- Pull request: #5 — `Add second official-source 2026 IPO batch`
+- Squash-merged to `main`: `8206b58574610103e18d86bd719b7169b145610f`
+- Post-merge data-contract validation: passed
+- Post-merge GitHub Pages deployment: passed
+- Pages artifact was generated from the merged revision.
+- Published issuer count: 5
+- New published issuers:
+  - Jindal Supreme (India) Limited
+  - Manipal Payment and Identity Solutions Limited
+  - SS Retail Limited
+- Hero Motors and Rentomojo published values/freshness remained unchanged.
+- Final issue price, issue size, listing date/status, and minimum application fields that lacked direct official evidence remain null.
+- Direct retrieval of `https://vasuki8.github.io/IPO-Tracker/` remains unavailable from the web reader in this development session; workflow and artifact revision were verified instead.
