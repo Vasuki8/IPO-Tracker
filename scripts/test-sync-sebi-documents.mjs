@@ -8,6 +8,9 @@ import {
   issuerVariants,
   issuerFromFilingUrl,
   matchIssuerRecord,
+  buildSebiSearchUrl,
+  hasSebiDocument,
+  targetedSearchCandidates,
   parseAbridgedProspectusLinks,
   parseSebiDate,
   parseSebiListingHtml
@@ -99,3 +102,56 @@ assert.equal(
 );
 
 console.log("SEBI document discovery and matching tests passed.");
+
+const sparseRecords = [
+  {
+    record: {
+      issuer_name: "New Live Limited",
+      first_observed_at: "2026-09-22T04:00:00Z",
+      nse_source: {
+        document_type: "NSE IPO Live Feed",
+        url: "https://www.nseindia.com/api/all-upcoming-issues?category=ipo"
+      },
+      documents: [{ type: "NSE IPO Live Feed", url: "https://www.nseindia.com/api/all-upcoming-issues?category=ipo" }]
+    },
+    recovery: {}
+  },
+  {
+    record: {
+      issuer_name: "Already Enriched Limited",
+      first_observed_at: "2026-09-22T03:00:00Z",
+      nse_source: {
+        document_type: "NSE IPO Live Feed",
+        url: "https://www.nseindia.com/api/all-upcoming-issues?category=ipo"
+      },
+      documents: [
+        { type: "NSE IPO Live Feed", url: "https://www.nseindia.com/api/all-upcoming-issues?category=ipo" },
+        { type: "SEBI RHP filing", url: "https://www.sebi.gov.in/filings/public-issues/sep-2026/already-enriched-limited-rhp_1.html" }
+      ]
+    },
+    recovery: {}
+  },
+  {
+    record: {
+      issuer_name: "Manual Limited",
+      first_observed_at: "2026-09-22T05:00:00Z",
+      nse_source: {
+        document_type: "NSE Issue Information",
+        url: "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MANUAL&type=Active"
+      },
+      documents: []
+    },
+    recovery: {}
+  }
+];
+
+assert.equal(hasSebiDocument(sparseRecords[0].record), false);
+assert.equal(hasSebiDocument(sparseRecords[1].record), true);
+assert.deepEqual(
+  targetedSearchCandidates(sparseRecords, 10).map(({ record }) => record.issuer_name),
+  ["New Live Limited"]
+);
+assert.equal(
+  buildSebiSearchUrl("National Stock Exchange of India Limited"),
+  "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&search=National+Stock+Exchange+of+India+Limited"
+);
