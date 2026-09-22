@@ -6,7 +6,7 @@ A source-first Indian IPO research interface.
 
 The public UI now consumes a dedicated source-backed dataset at `data/ipos.json`.
 
-The source-backed 2026 recovery dataset now contains eight real IPO issuers. Prototype IPO rows and illustrative market values are not used as production fallback data.
+The source-backed 2026 recovery dataset now contains eleven real IPO issuers. Prototype IPO rows and illustrative market values are not used as production fallback data.
 
 ### Data foundation now includes
 
@@ -51,21 +51,23 @@ Use this section as the starting context when continuing work in a new chat.
 
 ### What happened in the latest run
 
-The run first retried official final-document recovery for Jindal Supreme, Manipal Payment and SS Retail. Their final filing trails are verified, but the usable final-document contents remain inaccessible to the current web tooling, so no unsupported final values were added.
+The bounded final-document pass for Kanohar Electricals, LCC Projects and Veegaland Developers remained blocked by inaccessible final-document delivery paths, so no final values were guessed.
 
-The fallback batch then added three more source-backed 2026 IPO records:
+The fallback then added three more official-source 2026 IPO records:
 
-- Kanohar Electricals Limited
-- LCC Projects Limited
-- Veegaland Developers Limited
+- Asset Reconstruction Company (India) Limited
+- ESDS Software Solution Limited
+- Sonaselection India Limited
 
-For all three, NSE Issue Information supplies verified price band, market lot, minimum bid quantity and offer dates. Each record retains exact SEBI RHP and final Prospectus filing pages.
+All three have NSE-verified price band, market lot, minimum bid quantity and offer dates plus retained SEBI RHP/Abridged Prospectus trails.
 
-Final issue price, aggregate issue size, listing date/status, minimum application amount, board and sector remain null unless directly supported by the retained official evidence.
+ESDS additionally has a verified ₹7,200 million issue size because NSE explicitly states the entire issue is a fresh issue aggregating up to that amount.
 
-This brings the published 2026 dataset to **8 issuers**.
+ARCIL and Sonaselection keep `issue_size_inr` null because their NSE issue-size disclosures are share counts rather than a single final INR aggregate.
 
-Recovery input remains in `data/recovery/2026/nse-issue-information.json` and is transformed deterministically into `data/ipos.json` by `scripts/build-published-data.mjs`.
+The published 2026 dataset now contains **11 issuers**.
+
+Recovery input remains in `data/recovery/2026/nse-issue-information.json` and is transformed deterministically into `data/ipos.json`.
 
 ### Critical data warning
 
@@ -79,7 +81,7 @@ Recovery is deterministic but not yet an automated web collector, and the 2026 I
 
 ### Next priority
 
-Attempt one bounded final-document recovery pass for Kanohar Electricals, LCC Projects and Veegaland Developers using directly retrievable official NSE archive or issuer-hosted Prospectus copies. If those remain inaccessible, move to the next small 2026 issuer batch rather than retrying blocked document paths or guessing.
+Attempt one bounded final-document recovery pass for ESDS, ARCIL and Sonaselection from directly readable official final Prospectus copies. If those sources are blocked, immediately continue with the next small 2026 official-source issuer batch rather than repeatedly retrying inaccessible documents.
 
 Preserve:
 
