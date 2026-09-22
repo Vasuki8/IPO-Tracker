@@ -85,6 +85,41 @@ export function parseMinimumBidFromIpoDetail(payload) {
   };
 }
 
+export function resolveNseIdentity(record) {
+  const directSymbol = normalizeText(record?.nse_symbol).toUpperCase();
+  const directSeries = normalizeText(record?.nse_series).toUpperCase();
+  if (directSymbol && directSeries) {
+    return { symbol: directSymbol, series: directSeries, source: "retained_fields" };
+  }
+
+  const candidates = [
+    record?.nse_source?.url,
+    ...(record?.documents || [])
+      .filter((doc) =>
+        doc.type === "NSE Issue Information" ||
+        doc.type === "NSE Issue Information API"
+      )
+      .map((doc) => doc.url)
+  ].filter(Boolean);
+
+  for (const rawUrl of candidates) {
+    try {
+      const url = new URL(rawUrl);
+      if (url.protocol !== "https:" || !["www.nseindia.com", "nseindia.com"].includes(url.hostname)) {
+        continue;
+      }
+      const symbol = normalizeText(url.searchParams.get("symbol")).toUpperCase();
+      const series = normalizeText(url.searchParams.get("series")).toUpperCase();
+      if (!symbol || !["EQ", "SME"].includes(series)) continue;
+      return { symbol, series, source: "retained_official_url" };
+    } catch {
+      // Ignore malformed legacy URLs; keep the record unresolved.
+    }
+  }
+
+  return null;
+}
+
 function recoveryFiles() {
   if (!fs.existsSync(RECOVERY_ROOT)) return [];
   return fs.readdirSync(RECOVERY_ROOT, { withFileTypes: true })
@@ -101,8 +136,7 @@ function candidateRecords() {
     const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
     return (recovery.records || [])
       .filter((record) =>
-        record.nse_symbol &&
-        record.nse_series &&
+        resolveNseIdentity(record) &&
         (record.terms?.minimum_bid_quantity === null || record.terms?.minimum_bid_quantity === undefined) &&
         (record.minimum_bid_quantity?.value === null || record.minimum_bid_quantity?.value === undefined)
       )
@@ -138,9 +172,11 @@ async function fetchWithRetry(url, options, attempts = 3, timeoutMs = 15000) {
 }
 
 function apiUrl(record) {
+  const identity = resolveNseIdentity(record);
+  if (!identity) return null;
   const url = new URL(API_BASE);
-  url.searchParams.set("symbol", normalizeText(record.nse_symbol).toUpperCase());
-  url.searchParams.set("series", normalizeText(record.nse_series).toUpperCase());
+  url.searchParams.set("symbol", identity.symbol);
+  url.searchParams.set("series", identity.series);
   return url.href;
 }
 
@@ -158,7 +194,13 @@ export function applyMinimumBid(record, extraction, sourceUrl, collectedAt) {
   if (record.minimum_bid_quantity?.value !== null && record.minimum_bid_quantity?.value !== undefined) return false;
   if (record.terms?.minimum_bid_quantity !== null && record.terms?.minimum_bid_quantity !== undefined) return false;
 
-  const symbol = normalizeText(record.nse_symbol).toUpperCase();
+  const identity = resolveNseIdentity(record);
+  if (!identity) return false;
+  const symbol = identity.symbol;
+
+  if (!record.nse_symbol) record.nse_symbol = identity.symbol;
+  if (!record.nse_series) record.nse_series = identity.series;
+
   record.minimum_bid_quantity = {
     value: extraction.value,
     source_value: extraction.source_value,
