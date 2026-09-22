@@ -51,6 +51,30 @@ assert.ok(rhp[0].url.startsWith("https://www.sebi.gov.in/filings/public-issues/"
 const allFilings = parseSebiListingHtml(listing, null, base);
 assert.equal(allFilings.length, 5);
 
+const finals = parseSebiListingHtml(listing, "final", base);
+assert.equal(finals.length, 2);
+assert.equal(finals[0].issuer_name, "Manipal Payment & Identity Solutions Limited");
+assert.equal(canonicalIssuer(finals[1].issuer_name), "kanohar electricals");
+assert.equal(
+  canonicalIssuer(issuerFromFilingUrl(
+    "https://www.sebi.gov.in/filings/public-issues/sep-2026/kanohar-electricals-limited-prospectus_104483.html",
+    "final"
+  )),
+  "kanohar electricals"
+);
+
+const aps = parseAbridgedProspectusLinks(detail, rhp[0].url);
+assert.equal(aps.length, 1);
+assert.equal(aps[0].type, "SEBI Abridged Prospectus");
+assert.ok(aps[0].url.includes("/sebi_data/commondocs/"));
+
+const records = [
+  { record: { issuer_name: "Moneyview Limited" }, recovery: { changed: false } },
+  { record: { issuer_name: "Swastika Infra Limited" }, recovery: { changed: false } },
+  { record: { issuer_name: "Adroit Industries (India) Limited" }, recovery: { changed: false } },
+  { record: { issuer_name: "National Stock Exchange of India Limited" }, recovery: { changed: false } }
+];
+
 const malformedLiveRhp = `
   <div>Sep 21, 2026</div>
   <a href="https://www.sebi.gov.in/filings/public-issues/sep-2026/adroit-industries-limited-rhp_104607.html">
@@ -77,29 +101,6 @@ assert.equal(
   "National Stock Exchange of India Limited"
 );
 
-const finals = parseSebiListingHtml(listing, "final", base);
-assert.equal(finals.length, 2);
-assert.equal(finals[0].issuer_name, "Manipal Payment & Identity Solutions Limited");
-assert.equal(canonicalIssuer(finals[1].issuer_name), "kanohar electricals");
-assert.equal(
-  canonicalIssuer(issuerFromFilingUrl(
-    "https://www.sebi.gov.in/filings/public-issues/sep-2026/kanohar-electricals-limited-prospectus_104483.html",
-    "final"
-  )),
-  "kanohar electricals"
-);
-
-const aps = parseAbridgedProspectusLinks(detail, rhp[0].url);
-assert.equal(aps.length, 1);
-assert.equal(aps[0].type, "SEBI Abridged Prospectus");
-assert.ok(aps[0].url.includes("/sebi_data/commondocs/"));
-
-const records = [
-  { record: { issuer_name: "Moneyview Limited" }, recovery: { changed: false } },
-  { record: { issuer_name: "Swastika Infra Limited" }, recovery: { changed: false } },
-  { record: { issuer_name: "Adroit Industries (India) Limited" }, recovery: { changed: false } },
-  { record: { issuer_name: "National Stock Exchange of India Limited" }, recovery: { changed: false } }
-];
 
 assert.equal(matchIssuerRecord(records, "Moneyview Limited").record.issuer_name, "Moneyview Limited");
 assert.equal(matchIssuerRecord(records, "Swastika Infra Ltd.").record.issuer_name, "Swastika Infra Limited");
