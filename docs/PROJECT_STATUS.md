@@ -549,7 +549,14 @@ Validation includes a dedicated behavioral test against the published dataset. A
 - oldest published open date: 2026-08-28;
 - every adjacent row is non-increasing by `open_date`.
 
-No recovery manifest or `data/ipos.json` value changes are part of this UI batch.
+The initial UI-only implementation left `data/ipos.json` alphabetically ordered, which meant a browser with cached pre-sort JavaScript could still display alphabetical rows.
+
+Follow-up repair:
+
+- deterministic publication now emits `data/ipos.json` newest-first using the same open-date/close-date/name order;
+- only record order changes; field values/evidence are unchanged;
+- script URLs are versioned to bypass stale browser asset cache;
+- validation now asserts that the published dataset itself is already newest-first.
 
 ## Recommended next coherent batch
 

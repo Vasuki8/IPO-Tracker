@@ -240,7 +240,9 @@ All 9 records currently carrying retained `SEBI Prospectus PDF` evidence now hav
 
 ### Latest homepage ordering result
 
-The homepage IPO market list is now explicitly ordered **newest to oldest** by source-backed IPO open date.
+The homepage IPO market list is explicitly ordered **newest to oldest** by source-backed IPO open date.
+
+A follow-up repair also changed deterministic publication order in `data/ipos.json` from issuer-name alphabetical to newest-first and versioned the ordering scripts. This makes the visible order resilient even when a browser has cached the previous UI JavaScript.
 
 Implementation rules:
 

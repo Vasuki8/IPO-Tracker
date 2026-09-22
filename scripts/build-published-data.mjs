@@ -154,7 +154,17 @@ const published = {
   schema_version: "1.1.0",
   generated_at: recoveries.map(({ data }) => data.generated_at).sort().at(-1),
   collection_started_at: recoveries.map(({ data }) => data.collection_started_at).sort().at(0),
-  records: normalizedRecords.sort((a, b) => a.issuer_name.localeCompare(b.issuer_name))
+  records: normalizedRecords.sort((a, b) => {
+    const openA = a.open_date?.value ?? "";
+    const openB = b.open_date?.value ?? "";
+    if (openA !== openB) return openB.localeCompare(openA);
+
+    const closeA = a.close_date?.value ?? "";
+    const closeB = b.close_date?.value ?? "";
+    if (closeA !== closeB) return closeB.localeCompare(closeA);
+
+    return a.issuer_name.localeCompare(b.issuer_name);
+  })
 };
 
 const serialized = `${JSON.stringify(published, null, 2)}\n`;

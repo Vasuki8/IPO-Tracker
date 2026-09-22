@@ -19,7 +19,13 @@ assert.deepEqual(
 );
 
 const payload = JSON.parse(fs.readFileSync(new URL("../data/ipos.json", import.meta.url), "utf8"));
-const published = [...payload.records].sort(compareNewestFirst);
+const published = payload.records;
+const independentlySorted = [...payload.records].sort(compareNewestFirst);
+assert.deepEqual(
+  published.map((row) => row.id),
+  independentlySorted.map((row) => row.id),
+  "published dataset must already be newest-first"
+);
 
 for (let index = 1; index < published.length; index += 1) {
   const previous = published[index - 1].open_date?.value ?? "";
