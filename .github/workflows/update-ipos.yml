@@ -112,6 +112,9 @@ jobs:
       - name: Extract NSE Issue Information listing date
         run: node scripts/extract-nse-ipo-detail-fields.mjs --listing-date
 
+      - name: Diagnose Abridged Prospectus minimum application amount
+        run: node scripts/extract-abridged-fields.mjs --diagnose-min-application
+
       - name: Extract explicit Abridged Prospectus fields
         run: node scripts/extract-abridged-fields.mjs
 
