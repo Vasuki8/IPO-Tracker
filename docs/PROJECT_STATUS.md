@@ -697,26 +697,123 @@ No `issue_size_inr` field was written. This is the intended result under the no-
 
 The temporary production diagnostic has been removed from the hourly workflow.
 
+## Latest completed batch — minimum bid quantity source recovery
+
+### Abridged Prospectus diagnostic
+
+PR #34 — `Diagnose explicit minimum bid wording in Abridged Prospectuses`
+
+Production run `35695985070`:
+
+- candidates: 3;
+- downloads: 3;
+- explicit bid-lot/minimum-bid mentions on page 1: 0;
+- fetch errors: 0.
+
+No value was written.
+
+### RHP diagnostic
+
+PR #35 — `Diagnose minimum bid quantity from retained RHPs`
+
+Production run `35696444839` scanned the retained RHPs deeply:
+
+- Adroit Industries: Bid Lot / minimum Bid Lot remains `[●]` and is explicitly deferred to the later advertisement;
+- National Stock Exchange of India: RHP Bid Lot remains `[●]`;
+- Swastika Infra: RHP Bid Lot remains `[●]` and is deferred to the later advertisement.
+
+No value was written.
+
+### Final Prospectus diagnostic
+
+PR #36 — `Diagnose minimum bid quantity from final Prospectus`
+
+Production run `35696964894` found one missing-bid record with a retained final Prospectus:
+
+- National Stock Exchange of India Limited;
+- final Prospectus PDF page 10: `Bid Lot 8 Equity Shares ... in multiples of 8 Equity Shares`;
+- later offer-procedure tables also state `Minimum Bid 8 Equity Shares`;
+- candidates: 1;
+- downloads: 1;
+- fetch errors: 0.
+
+### NSE Issue Information HTML probe
+
+PR #38 — `Probe NSE Issue Information for finalized minimum bid quantity`
+
+Production run `35697162672` fetched Active, Forthcoming and Past page variants for Adroit, NSE and Swastika:
+
+- candidates: 3;
+- pages fetched: 9;
+- pages with raw-HTML Bid Lot / Minimum Order Quantity terms: 0;
+- fetch errors: 0.
+
+The responses were approximately 297 KB application shells. The official page renders finalized bid data dynamically, so raw HTML scraping is not a viable production source. PR #37 was an earlier stale version of this probe and was closed without merge.
+
+### Final Prospectus extractor
+
+PR #39 — `Extract explicit minimum bid from final Prospectus`
+
+Squash-merged:
+
+`0c0b0668690b2f50ebe57627b74abae7a3aec4ad`
+
+Rules:
+
+- scans only the normal first 20 PDF pages;
+- accepts explicit numeric `Bid Lot X Equity Shares` or `Minimum Bid X Equity Shares`;
+- rejects rupee-denominated anchor-investor minimums;
+- rejects `[●]` placeholders;
+- fills missing values only;
+- does not copy `market_lot`;
+- retains direct final-Prospectus PDF/page evidence;
+- document-derived minimum-bid evidence takes publication precedence over generic NSE term fields when present.
+
+Production run `35697515918`:
+
+- candidates: 1;
+- downloaded: 1;
+- extracted: 1;
+- explicit minimum-bid missing: 0;
+- fetch errors: 0.
+
+Published:
+
+- **National Stock Exchange of India Limited — 8 Equity Shares — verified — final Prospectus PDF page 10**.
+
+Bot data commit:
+
+`2f6428c2138173a4ca02dc271100ed22412da31e`
+
+Bot diff review confirmed only:
+
+- `data/recovery/2026/nse-issue-information.json`;
+- generated `data/ipos.json`
+
+changed.
+
+Minimum-bid coverage is now **14 present / 9 missing**.
+
+GitHub Pages deployment for the bot revision passed in run `35697665129`.
+
+Adroit Industries and Swastika Infra remain null because their available RHPs still use placeholders and no final Prospectus is retained yet.
+
 ## Recommended next coherent batch
 
-Aggregate issue size for these five is blocked until authoritative final-price/final-Prospectus evidence arrives. The existing SEBI final-document resolver and final-Prospectus issue-size extractor should fill these values automatically when those documents become available.
+Discover the official **dynamic NSE Issue Information endpoint** used by the rendered page for finalized Bid Lot / Minimum Order Quantity data.
 
-Move the next bounded P1 batch to **explicit minimum bid quantity recovery**.
-
-Start with missing-bid records that have retained official RHP/Abridged evidence:
-
-1. Adroit Industries (India) Limited
-2. National Stock Exchange of India Limited
-3. Swastika Infra Limited
+This is the highest-leverage remaining minimum-bid source family because several records already have retained NSE symbol/series identifiers while their public Issue Information pages render finalized values dynamically.
 
 Acceptance rules:
 
-- use retained official RHP/Abridged documents only;
-- require explicit minimum bid quantity / minimum bid lot wording;
-- retain page-level evidence;
-- fill missing `minimum_bid_quantity` only;
-- do not copy `market_lot` into the field without explicit supporting text;
-- preserve null when the document still contains a placeholder.
+- use an official NSE endpoint only;
+- identify issuers by retained symbol/series;
+- test across multiple issuers before enabling writes;
+- preserve `market_lot` and `minimum_bid_quantity` as separate fields;
+- retain exact endpoint/source identity and collection timestamp;
+- fill missing values only;
+- do not infer a minimum bid from market lot;
+- preserve null for missing, ambiguous or unmatched responses.
 
 ## Publication history
 
@@ -747,3 +844,9 @@ Acceptance rules:
 - PR #30: direct SEBI RHP PDF resolution
 - RHP PDF attachment bot commit: `3c2f3fb8a8737fe2067aab3e18e39ab86a68eeb6`
 - PR #32: retained provisional-status publication + read-only RHP issue-size diagnostic
+- PR #34: Abridged Prospectus minimum-bid diagnostic
+- PR #35: RHP minimum-bid diagnostic
+- PR #36: final Prospectus minimum-bid diagnostic
+- PR #38: NSE Issue Information dynamic-page probe
+- PR #39: explicit final-Prospectus minimum-bid extraction
+- Minimum-bid bot commit: `2f6428c2138173a4ca02dc271100ed22412da31e`
