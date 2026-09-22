@@ -171,3 +171,15 @@ The exchange-listing blocker should remain documented, not bypassed with mirrors
 - Final-term enrichment merge: `5ecbcc4615c523d4bdafc56632b17ee6d4762722`
 - Prior production bookkeeping head: `880c53a5f2f8c6ffb6f5561a761b6f0037aec598`
 - Validation and GitHub Pages deployment passed for the prior production head.
+
+## Latest publication
+
+- Pull request: #4 — `Recover Rentomojo final Prospectus terms`
+- Squash-merged to `main`: `9895698d87513a2e037f95cf5cf4f2886590df9a`
+- Post-merge data-contract validation: passed
+- Post-merge GitHub Pages deployment: passed
+- Pages artifact was generated from the merged revision.
+- Rentomojo final issue price ₹404 and total offer size ₹12,555.67 million are published from the official NSE archived Prospectus.
+- Hero Motors' `last_collected_at` remained unchanged because Hero was not re-collected in this batch.
+- Rentomojo listing date/status and minimum application amount remain null.
+- Direct retrieval of `https://vasuki8.github.io/IPO-Tracker/` remains unavailable from the web reader in this development session; deployment workflow and artifact revision were verified instead.
