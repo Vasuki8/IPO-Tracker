@@ -185,7 +185,7 @@ Future work should prefer either:
 
 Repeated endpoint variants are not the current recommended priority.
 
-## Abridged Prospectus field extraction
+## Abridged Prospectus field extraction — production verified
 
 The next enrichment layer parses **only explicit aggregate issue/offer size** from already-retained official SEBI Abridged Prospectus PDFs.
 
@@ -226,3 +226,28 @@ When a value is extracted, the recovery manifest retains:
 If a PDF is inaccessible or the value is not explicit, the field remains null and the hourly workflow continues.
 
 GitHub Actions installs `poppler-utils` explicitly before running this extractor so the PDF-text dependency is visible and reproducible.
+
+### Production result — issue-size extraction
+
+Production workflow run `35686786294` verified the first field-extraction family end to end.
+
+Statistics:
+
+- 4 missing-size records had retained SEBI Abridged Prospectus PDFs;
+- all 4 PDFs downloaded successfully;
+- 1 explicit total-size value was extracted;
+- 3 remained null because the total-size value was a placeholder or otherwise not explicit;
+- 0 PDF fetch errors.
+
+Karamtara Engineering was enriched from page 1:
+
+- source text: `₹8,750.00 million`;
+- stored value: `8750000000`;
+- source type: `SEBI Abridged Prospectus`;
+- publication date: 2026-09-03;
+- page: 1.
+
+The resulting source-backed data commit is
+`92f0f024367b20a9f023218a0cb92ecbc2e38636`.
+
+This run confirms that PDF field extraction can operate conservatively in the hourly workflow without filling placeholder values or overwriting richer existing evidence.
