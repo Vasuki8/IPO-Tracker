@@ -1,9 +1,33 @@
 import assert from "node:assert/strict";
 import {
   applyMinimumBid,
+  listingDateCandidatesFromIpoDetail,
   parseMinimumBidFromIpoDetail,
   resolveNseIdentity
 } from "./extract-nse-ipo-detail-fields.mjs";
+
+const listingDateCandidates = listingDateCandidatesFromIpoDetail({
+  metaInfo: {
+    symbol: "EXAMPLE",
+    listingDate: "2026-09-30",
+    industry: "Example"
+  }
+});
+assert.deepEqual(listingDateCandidates, [
+  { key: "listingDate", value: "2026-09-30" }
+]);
+
+assert.deepEqual(
+  listingDateCandidatesFromIpoDetail({
+    metaInfo: { dateOfListing: "30-Sep-2026" }
+  }),
+  [{ key: "dateOfListing", value: "30-Sep-2026" }]
+);
+
+assert.deepEqual(
+  listingDateCandidatesFromIpoDetail({ metaInfo: { issueEndDate: "2026-09-25" } }),
+  []
+);
 
 const both = parseMinimumBidFromIpoDetail({
   issueInfo: {
