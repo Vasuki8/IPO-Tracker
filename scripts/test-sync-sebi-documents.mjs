@@ -68,6 +68,17 @@ assert.equal(aps.length, 1);
 assert.equal(aps[0].type, "SEBI Abridged Prospectus");
 assert.ok(aps[0].url.includes("/sebi_data/commondocs/"));
 
+const rhpPdfs = parseProspectusPdfLinks(detail, rhp[0].url).map((doc) => ({
+  ...doc,
+  type: "SEBI RHP PDF"
+}));
+assert.equal(rhpPdfs.length, 1);
+assert.equal(rhpPdfs[0].type, "SEBI RHP PDF");
+assert.equal(
+  rhpPdfs[0].url,
+  "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789986760331.pdf"
+);
+
 const records = [
   { record: { issuer_name: "Moneyview Limited" }, recovery: { changed: false } },
   { record: { issuer_name: "Swastika Infra Limited" }, recovery: { changed: false } },
