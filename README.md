@@ -102,7 +102,13 @@ Use this section as the starting context when continuing work in a new chat.
 
 ### Latest completed batch
 
-Explicit aggregate issue-size extraction from retained official SEBI final Prospectus PDFs is now production-verified.
+SEBI RHP source recovery is now production-repaired and significantly deeper.
+
+PR #28 bypassed stale SEBI listing cache responses. PR #29 repaired a live malformed-anchor pattern where an RHP filing URL was paired with adjacent Abridged Prospectus text. Production sync `35693813309` then increased deterministic SEBI latest-list matches from 9 to 22, changed 8 issuer records, and attached 11 official documents.
+
+PR #30 added direct official RHP PDF resolution from retained SEBI RHP filing pages. Production sync `35694073605` resolved **13 `SEBI RHP PDF` attachments** and retained them without publishing any RHP-derived market term.
+
+Explicit aggregate issue-size extraction from retained official SEBI final Prospectus PDFs is also production-verified.
 
 PR #23 used a temporary read-only diagnostic to inspect the seven retained final Prospectuses that still lacked `issue_size_inr`. PR #24 then added a bounded extractor for explicit top-level Offer/Issue aggregate amounts and removed the temporary diagnostic from the hourly workflow.
 
@@ -124,7 +130,7 @@ PRs #10–#15 implemented and hardened:
 
 The production network path is verified end to end. The latest real run passed NSE collection, SEBI collection, rebuild, deterministic publication and data-contract validation.
 
-**Important current limitation:** the raw SEBI responses available to GitHub Actions still did not add documents to the 9 sparse issuers created by the first NSE live run. The latest measurement searched all 9 sparse records, parsed 5 targeted filing results, but produced 0 exact issuer matches. Matching will remain strict rather than attaching uncertain evidence.
+**Important current limitation:** current SEBI recovery now covers 17 of the 23 published issuer records. Six live-discovered issuers still have no retained SEBI document: ArMee Infotech, Axiom Gas Engineering, Coreintegra Consulting Services, Elevate Campuses, Pooja Logistics, and Varmora Granito. Matching remains strict rather than attaching uncertain evidence.
 
 ### Critical data rule
 
@@ -255,11 +261,32 @@ Implementation rules:
 
 PR #26 adds the shared ordering helper plus a behavioral test against the current published dataset.
 
+### Latest RHP recovery result
+
+The repaired RHP source family now retains direct official RHP PDFs. Five records still missing `issue_size_inr` now have both an Abridged Prospectus and an RHP PDF:
+
+- Adroit Industries (India) Limited;
+- Asset Reconstruction Company (India) Limited;
+- National Stock Exchange of India Limited;
+- Sonaselection India Limited;
+- Swastika Infra Limited.
+
+The existing page-1 Abridged Prospectus extractor checked all five and extracted **0** because the aggregate-size cells remain placeholders. That null preservation is intentional.
+
+Source-backed document bot commits:
+
+- `ec684bc1fa558f2dafb7c7b90df6b750fc6f79ac` — repaired current-list RHP/Abridged attachments;
+- `3c2f3fb8a8737fe2067aab3e18e39ab86a68eeb6` — 13 direct RHP PDF attachments.
+
+GitHub Pages deployment for `3c2f3fb...` passed in run `35694143832`.
+
 ### Recommended next coherent batch
 
-Continue **P1 issue-size source coverage** for the remaining 12 of 23 published records where `issue_size_inr` is still missing.
+Add a bounded **RHP aggregate issue-size extraction family for the five RHP-backed missing-size records**, but publish any RHP-derived value as **provisional**, not verified/final.
 
-Do not repeat the now-complete final-Prospectus family. Batch the remaining issuers by the next reusable official source family—prefer explicit aggregate amounts from already-retained RHP/Abridged Prospectus/NSE/BSE/issuer documents. Preserve null when the official source states only components or placeholders, and never reconstruct the aggregate arithmetically.
+First extend retained-field publication so a recovery field can preserve `status: "provisional"`. Then inspect only explicit top-level Offer/Issue aggregate amounts from retained `SEBI RHP PDF` files, retain page-level evidence, fill missing values only, and never sum Fresh Issue + OFS components or calculate shares × price.
+
+The other remaining missing-size records should stay null until an authoritative official source family becomes available.
 
 ### Product direction
 
