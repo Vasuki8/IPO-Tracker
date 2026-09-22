@@ -1,6 +1,6 @@
 {
   "schema_version": "1.2.0",
-  "generated_at": "2026-09-22T22:18:25.700Z",
+  "generated_at": "2026-09-22T22:40:07.522Z",
   "collection_started_at": "2026-09-22T02:14:14Z",
   "records": [
     {
@@ -1653,9 +1653,18 @@
         },
         "non_institutional": {
           "minimum_application_amount_inr": {
-            "value": null,
-            "status": "missing",
-            "evidence": [],
+            "value": 200000,
+            "status": "verified",
+            "evidence": [
+              {
+                "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789707439481.pdf",
+                "document_type": "SEBI RHP PDF",
+                "document_identity": "SEBI RHP filing — swastika infra ltd — PDF",
+                "publication_date": "2026-09-17",
+                "page": 77,
+                "collected_at": "2026-09-22T22:40:07.522Z"
+              }
+            ],
             "corrections": []
           },
           "minimum_bid_quantity": {
@@ -1754,7 +1763,7 @@
         }
       ],
       "first_observed_at": "2026-09-22T03:34:37.086Z",
-      "last_collected_at": "2026-09-22T18:30:15.933Z"
+      "last_collected_at": "2026-09-22T22:40:07.522Z"
     },
     {
       "id": "varmora-granito-limited",
