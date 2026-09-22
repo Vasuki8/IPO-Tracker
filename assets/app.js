@@ -85,13 +85,15 @@ function recordSourceStatus(ipo) {
 }
 
 function filteredRows() {
-  return IPO_DATA.filter((ipo) => {
-    const boardMatch = state.board === "all" || String(ipo.board || "").toLowerCase() === state.board;
-    const statusMatch = state.status === "all" || ipo.status === state.status;
-    const haystack = [ipo.issuer_name, ipo.sector, ipo.board].filter(Boolean).join(" ").toLowerCase();
-    const queryMatch = !state.query || haystack.includes(state.query);
-    return boardMatch && statusMatch && queryMatch;
-  });
+  return IPO_DATA
+    .filter((ipo) => {
+      const boardMatch = state.board === "all" || String(ipo.board || "").toLowerCase() === state.board;
+      const statusMatch = state.status === "all" || ipo.status === state.status;
+      const haystack = [ipo.issuer_name, ipo.sector, ipo.board].filter(Boolean).join(" ").toLowerCase();
+      const queryMatch = !state.query || haystack.includes(state.query);
+      return boardMatch && statusMatch && queryMatch;
+    })
+    .sort(IPOOrder.compareNewestFirst);
 }
 
 function initials(name) {

@@ -238,6 +238,21 @@ GitHub Pages deployment for that data revision passed in run `35692087146`.
 
 All 9 records currently carrying retained `SEBI Prospectus PDF` evidence now have both final issue price and aggregate issue-size evidence.
 
+### Latest homepage ordering result
+
+The homepage IPO market list is now explicitly ordered **newest to oldest** by source-backed IPO open date.
+
+Implementation rules:
+
+- primary sort: `open_date` descending;
+- tie-breaker: `close_date` descending;
+- final deterministic tie-breaker: issuer name;
+- missing/invalid dates sort last;
+- sorting is applied after search/board/status filters, so filtered desktop and mobile views remain newest-first;
+- the underlying `data/ipos.json` order and all source evidence remain unchanged.
+
+PR #26 adds the shared ordering helper plus a behavioral test against the current published dataset.
+
 ### Recommended next coherent batch
 
 Continue **P1 issue-size source coverage** for the remaining 12 of 23 published records where `issue_size_inr` is still missing.

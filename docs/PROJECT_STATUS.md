@@ -522,6 +522,35 @@ GitHub Pages deployment for the bot revision passed in run `35692087146`.
 
 All 9 records currently carrying retained official final Prospectus PDF evidence now have both final issue price and aggregate issue-size evidence.
 
+## Latest completed batch — homepage newest-first ordering
+
+PR #26 — `Show newest IPOs first on the homepage`
+
+The homepage previously displayed records in dataset order. It now sorts presentation rows by source-backed IPO lifecycle dates without mutating the published dataset.
+
+Ordering:
+
+1. `open_date` descending;
+2. `close_date` descending for equal open dates;
+3. issuer name for deterministic ties;
+4. missing or invalid dates last.
+
+The same ordered rows drive:
+
+- desktop IPO table;
+- mobile IPO cards;
+- search results;
+- board-filtered results;
+- status-filtered results.
+
+Validation includes a dedicated behavioral test against the published dataset. At implementation time the test confirms:
+
+- newest published open date: 2026-09-23;
+- oldest published open date: 2026-08-28;
+- every adjacent row is non-increasing by `open_date`.
+
+No recovery manifest or `data/ipos.json` value changes are part of this UI batch.
+
 ## Recommended next coherent batch
 
 Continue P1 **issue-size source coverage** for the remaining 12 of 23 published IPO records where `issue_size_inr` is still missing.
