@@ -658,25 +658,58 @@ The bot diff changed only recovery data and generated `data/ipos.json`.
 
 Market-lot coverage improved from **18/26 to 19/26**. The remaining seven records are source-null for explicit market lot and will continue to be checked automatically.
 
+### Latest minimum-application source result
+
+PR #63 — `Diagnose explicit NSE minimum application amount terms` — added a read-only NSE `/api/ipo-detail` survey.
+
+The initial all-universe run was intentionally cancelled after the diagnostic proved too expensive for an hourly non-writing step. PR #65 bounded the survey to six representative deterministic issues spanning:
+
+- Mainboard and SME;
+- upcoming, open and already-listed issues.
+
+Production run `35760191175` completed successfully:
+
+- candidates: 6;
+- official NSE API successes: 6;
+- responses with explicit minimum-application/investment terms: **0**;
+- fetch errors: 0.
+
+Checked issuers:
+
+- Adroit Industries (India) Limited;
+- Asset Reconstruction Company (India) Limited;
+- Axiom Gas Engineering Limited;
+- Bench Mark Infotech Services Limited;
+- Qualiance International Limited;
+- Varmora Granito Limited.
+
+For all six, `issueInfo.dataList` contained **no explicit `Minimum Application Amount` / `Minimum Investment Amount` term**. Therefore no extractor was enabled and coverage remains **0/26**.
+
+This is a source limitation, not a calculation gap. The tracker will not manufacture the field from minimum bid quantity × issue price or the price-band cap.
+
+The one-shot diagnostic has been removed from hourly execution after this measurement. Its parser helper remains available for future manual source checks.
+
 ### Recommended next coherent batch
 
-Continue P1 with **explicit minimum application amount recovery**.
+Continue minimum-application recovery with the next official source family: **retained SEBI offer documents**.
 
-Current `minimum_application_amount_inr` coverage is **0/26**.
+Start with a read-only survey of retained Abridged Prospectus / RHP / final Prospectus PDFs for explicit INR wording such as:
 
-Start by inspecting official NSE `/api/ipo-detail` `issueInfo.dataList` for exact terms such as `Minimum Application Amount`, `Minimum Investment Amount`, or another clearly equivalent official label.
+- `Minimum Application Amount`;
+- `Minimum Amount`;
+- `Minimum Investment`;
+- another clearly equivalent labelled INR amount.
 
 Acceptance rules:
 
-- official source only;
-- deterministic symbol/series identity;
-- accept only an explicitly stated INR application amount;
-- keep it separate from market lot and minimum bid quantity;
-- do **not** calculate price × quantity in this batch;
-- do **not** infer from the price-band cap;
+- official retained SEBI document only;
+- require an explicitly stated INR amount;
+- retain PDF page evidence;
+- keep minimum application amount distinct from market lot and minimum bid quantity;
+- no price × quantity calculation;
+- no price-band-cap inference;
 - fill missing values only;
-- retain exact endpoint/source identity and collection timestamp;
-- preserve null for absent, placeholder, range-only or ambiguous values.
+- preserve null for share-count-only, placeholder, derived or ambiguous wording.
 
 ### Product direction
 
