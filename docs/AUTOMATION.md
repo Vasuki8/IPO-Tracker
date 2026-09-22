@@ -27,7 +27,16 @@ The document-enrichment step reads SEBI's public lists for:
 
 For a matched RHP filing page, the collector also looks for an official SEBI Abridged Prospectus link under `/sebi_data/commondocs/`.
 
-This first SEBI automation batch intentionally reads the latest listing page for each source family. That is sufficient for newly detected current/upcoming IPOs, while historical backfill remains a separate recovery task.
+The collector first reads the latest listing page for each source family.
+
+After that pass, it runs a bounded targeted SEBI search for the newest sparse records that:
+
+- were originally discovered by the NSE live feed; and
+- still have no retained SEBI document.
+
+The targeted fallback uses SEBI's server-side search endpoint and is capped at 12 issuers per run. Search failures are logged and skipped; deterministic matching is still required before any document is attached.
+
+Historical backfill remains a separate recovery task.
 
 ## SEBI issuer matching
 
@@ -54,11 +63,12 @@ The workflow:
 3. fetches the NSE live feeds;
 4. merges new source-backed records into the recovery manifest;
 5. fetches the latest official SEBI RHP/final-offer-document lists;
-6. attaches deterministic RHP / Abridged Prospectus / Prospectus evidence;
-7. rebuilds `data/ipos.json`;
-8. validates the data contract;
-9. commits only if source-backed data changed;
-10. the resulting push triggers the existing GitHub Pages deployment workflow.
+6. attaches deterministic RHP / Abridged Prospectus / Prospectus evidence from the latest lists;
+7. runs bounded issuer-specific SEBI search for sparse NSE-live records still missing SEBI evidence;
+8. rebuilds `data/ipos.json`;
+9. validates the data contract;
+10. commits only if source-backed data changed;
+11. the resulting push triggers the existing GitHub Pages deployment workflow.
 
 If NSE collection or validation fails, the workflow fails before committing. The previously published website remains intact.
 
