@@ -500,28 +500,77 @@ Only recovery data and generated `data/ipos.json` changed.
 
 Price-band coverage is now **26/26**.
 
+### Latest final issue-price recovery result
+
+The listed missing-price gap is now covered by an official NSE completed-issue source.
+
+PR #52 first tested `/api/ipo-detail` on the four already-listed records whose final issue price was still null. Production run `35741820135` returned **4/4 successful responses but 0 explicit `Issue Price` / `Final Issue Price` / `Offer Price` terms**, confirming that the detailed endpoint was not the correct final-price source. No band cap was used.
+
+PRs #53–#54 then moved the diagnostic to official NSE:
+
+`https://www.nseindia.com/api/public-past-issues`
+
+Production run `35742801879` returned:
+
+- past rows: 1,450;
+- candidates: 4;
+- exact symbol matches: 4;
+- parseable fixed issue prices: 4;
+- ambiguous symbol matches: 0.
+
+Verified official values:
+
+- Asset Reconstruction Company (India) Limited — **₹139**;
+- ESDS Software Solution Limited — **₹429**;
+- Karamtara Engineering Limited — **₹254**;
+- Qualiance International Limited — **₹127**.
+
+PR #55 merged at `0dcc101be97088ec565287fa4a5a63185ec8ea6c` and promoted that source into production extraction.
+
+Safety rules:
+
+- only already-listed records with missing issue price are candidates;
+- exact NSE symbol match is required;
+- security type / series must agree when supplied;
+- retained official listing date is cross-checked against the past-issues row;
+- only a fixed numeric `issuePrice` is accepted;
+- ranges and placeholders are rejected;
+- existing issue-price evidence is never overwritten;
+- price-band caps are never substituted.
+
+Production run `35743854058` succeeded:
+
+- candidates: 4;
+- exact matches: 4;
+- extracted: **4**;
+- missing/unparseable: 0;
+- rejected matches: 0.
+
+Source-backed bot commit:
+
+`8746f22505f8d79920923670d3a9381699c82d17`
+
+The bot diff changed only recovery data and generated `data/ipos.json`.
+
+Issue-price coverage improved from **10/26 to 14/26**. The remaining 12 nulls are not yet listed (or do not yet have a published NSE listing date), so the hourly past-issues extractor will fill them automatically when NSE publishes completed-issue rows.
+
 ### Recommended next coherent batch
 
-Move to the remaining **issue-price** gap.
+Move to **aggregate issue-size INR coverage**.
 
-Current issue-price coverage is **10/26**. Sixteen records remain null; many are current/upcoming and should stay null until a final price exists, but four already-listed records still lack an issue price:
-
-- Asset Reconstruction Company (India) Limited;
-- Karamtara Engineering Limited;
-- Qualiance International Limited;
-- ESDS Software Solution Limited.
-
-Inspect official NSE `/api/ipo-detail` `issueInfo.dataList` and `metaInfo` for explicit `Issue Price` / `Final Issue Price` terms on listed records before enabling writes.
+Current `issue_size_inr` coverage is **12/26**. The next bounded source-family batch should inspect the already-integrated official NSE `/api/ipo-detail` `issueInfo.dataList` `Issue Size` term for missing-size records.
 
 Acceptance rules:
 
 - official NSE source only;
-- explicit finalized price only;
-- do not use the cap of the price band as final issue price;
-- do not write values for current/upcoming issues merely because their price bands are known;
-- retain exact endpoint evidence and collection time;
-- fill missing `issue_price` only;
-- preserve null when NSE does not publish a distinct final price.
+- retain exact symbol/series identity;
+- accept only an explicit overall INR Offer/Issue aggregate amount;
+- do not treat a share count as INR issue size;
+- do not sum Fresh Issue + OFS components;
+- do not multiply shares × issue/final price;
+- preserve null for component-only prose, placeholders, or ambiguous amounts;
+- retain exact endpoint/source identity and collection timestamp;
+- fill missing `issue_size_inr` only.
 
 ### Product direction
 
