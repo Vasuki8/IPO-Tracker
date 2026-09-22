@@ -35,7 +35,7 @@ After that pass, it runs a bounded targeted SEBI search for the newest sparse re
 - were originally discovered by the NSE live feed; and
 - still have no retained SEBI document.
 
-The targeted fallback uses SEBI's server-side search endpoint and is capped at 12 issuers per run. Search failures are logged and skipped; deterministic matching is still required before any document is attached.
+The targeted fallback uses SEBI's server-side search endpoint and is capped at 12 issuers per run. It searches with one stable issuer token rather than the full company phrase because SEBI's search endpoint is token-oriented. Generic corporate words such as `Limited`, `India`, `Industries`, `Services`, and `Engineering` are excluded when choosing the token. Search failures are logged and skipped; deterministic full-issuer matching is still required before any document is attached.
 
 Historical backfill remains a separate recovery task.
 
