@@ -473,7 +473,13 @@ async function detailDocumentsForEntry(entry, detailCache) {
   if (!detailHtml) return [];
 
   if (entry.kind === "rhp") {
-    return parseAbridgedProspectusLinks(detailHtml, entry.url);
+    const abridged = parseAbridgedProspectusLinks(detailHtml, entry.url);
+    const rhpPdfs = parseProspectusPdfLinks(detailHtml, entry.url).map((doc) => ({
+      ...doc,
+      type: "SEBI RHP PDF",
+      identity: `${entry.title} — PDF`
+    }));
+    return [...abridged, ...rhpPdfs];
   }
 
   if (entry.kind === "final") {
@@ -494,6 +500,7 @@ async function applyEntry(match, entry, now, detailCache, stats, changedRecords)
   match.recovery.changed = true;
   changedRecords.add(match.record.id);
   stats.added_documents += (match.record.documents?.length || 0) - before;
+  stats.resolved_rhp_pdfs += attachedDocs.filter((doc) => doc.type === "SEBI RHP PDF").length;
   stats.resolved_prospectus_pdfs += attachedDocs.filter((doc) => doc.type === "SEBI Prospectus PDF").length;
   return true;
 }
@@ -574,6 +581,7 @@ async function run() {
     targeted_matches: 0,
     targeted_parsed_entries: 0,
     targeted_errors: 0,
+    resolved_rhp_pdfs: 0,
     resolved_prospectus_pdfs: 0
   };
   const changedRecords = new Set();
@@ -602,7 +610,8 @@ async function run() {
     `${stats.unmatched} unmatched; targeted ${stats.targeted_searches}/${stats.targeted_candidates} ` +
     `sparse live record(s), ${stats.targeted_parsed_entries} targeted result filing(s), ` +
     `${stats.targeted_matches} targeted filing match(es), ${stats.targeted_errors} targeted error(s); ` +
-    `${stats.resolved_prospectus_pdfs} Prospectus PDF(s) resolved; ${stats.changed_records} changed record(s), ` +
+    `${stats.resolved_rhp_pdfs} RHP PDF(s), ${stats.resolved_prospectus_pdfs} Prospectus PDF(s) resolved; ` +
+    `${stats.changed_records} changed record(s), ` +
     `${stats.added_documents} document(s) added.`
   );
 }
