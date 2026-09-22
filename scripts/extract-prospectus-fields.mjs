@@ -115,6 +115,14 @@ export function candidateRhpMinimumBidDocument(record) {
   ) || null;
 }
 
+export function candidateProspectusMinimumBidDocument(record) {
+  if (record.minimum_bid_quantity?.value !== null && record.minimum_bid_quantity?.value !== undefined) return null;
+  if (record.terms?.minimum_bid_quantity !== null && record.terms?.minimum_bid_quantity !== undefined) return null;
+  return (record.documents || []).find((doc) =>
+    doc.type === "SEBI Prospectus PDF" && officialProspectusPdfUrl(doc.url)
+  ) || null;
+}
+
 export function findMinimumBidMentionsInPages(pages) {
   const mentions = [];
   const patterns = [
@@ -473,6 +481,47 @@ async function diagnoseRhpIssueSize() {
   console.log(JSON.stringify({ rhp_issue_size_diagnostic_stats: stats }, null, 2));
 }
 
+async function diagnoseProspectusMinimumBid() {
+  ensurePdfTextTool();
+  const stats = {
+    candidates: 0,
+    downloaded: 0,
+    mentions: 0,
+    fetch_errors: 0
+  };
+
+  for (const file of recoveryFiles()) {
+    const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
+    for (const record of recovery.records || []) {
+      const document = candidateProspectusMinimumBidDocument(record);
+      if (!document) continue;
+      stats.candidates += 1;
+
+      let pages;
+      try {
+        pages = pagesLayout(await fetchPdf(document.url), MINIMUM_BID_DIAGNOSTIC_MAX_PAGES);
+        stats.downloaded += 1;
+      } catch (error) {
+        stats.fetch_errors += 1;
+        console.warn("Prospectus minimum-bid diagnostic unavailable for " + record.issuer_name + ": " + error.message);
+        continue;
+      }
+
+      const mentions = findMinimumBidMentionsInPages(pages);
+      stats.mentions += mentions.length;
+
+      console.log(JSON.stringify({
+        issuer_name: record.issuer_name,
+        document: document.identity ?? document.type,
+        pages_scanned: pages.length,
+        mentions
+      }, null, 2));
+    }
+  }
+
+  console.log(JSON.stringify({ prospectus_minimum_bid_diagnostic_stats: stats }, null, 2));
+}
+
 async function diagnoseRhpMinimumBid() {
   ensurePdfTextTool();
   const stats = {
@@ -628,9 +677,11 @@ const isMain = process.argv[1] &&
   pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
 
 if (isMain) {
-  const action = process.argv.includes("--diagnose-rhp-min-bid")
-    ? diagnoseRhpMinimumBid
-    : process.argv.includes("--diagnose-rhp-size")
+  const action = process.argv.includes("--diagnose-prospectus-min-bid")
+    ? diagnoseProspectusMinimumBid
+    : process.argv.includes("--diagnose-rhp-min-bid")
+      ? diagnoseRhpMinimumBid
+      : process.argv.includes("--diagnose-rhp-size")
       ? diagnoseRhpIssueSize
       : process.argv.includes("--issue-size")
       ? runIssueSize
