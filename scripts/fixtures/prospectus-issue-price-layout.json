@@ -5,7 +5,10 @@
       "pages": [
         "HERO MOTORS LIMITED OFFER PRICE: ₹ 84 PER EQUITY SHARE OF FACE VALUE OF ₹10 EACH"
       ],
-      "expected": { "value": 84, "page": 1 }
+      "expected": {
+        "value": 84,
+        "page": 1
+      }
     },
     {
       "name": "explicit issue price with is phrase on later page",
@@ -13,21 +16,30 @@
         "Important notices only",
         "THE ISSUE PRICE IS ₹632 PER EQUITY SHARE."
       ],
-      "expected": { "value": 632, "page": 2 }
+      "expected": {
+        "value": 632,
+        "page": 2
+      }
     },
     {
       "name": "wrapped explicit offer price",
       "pages": [
         "OFFER PRICE ₹ 146/- per Equity Share"
       ],
-      "expected": { "value": 146, "page": 1 }
+      "expected": {
+        "value": 146,
+        "page": 1
+      }
     },
     {
       "name": "explicit offer price of phrase",
       "pages": [
         "The Offer Price of INR 124 per Equity Share has been determined by our Company."
       ],
-      "expected": { "value": 124, "page": 1 }
+      "expected": {
+        "value": 124,
+        "page": 1
+      }
     },
     {
       "name": "price band cap is not final price",
@@ -47,6 +59,43 @@
       "name": "unrelated rupee per share value is not accepted",
       "pages": [
         "Net asset value was ₹93 per Equity Share as of March 31, 2026."
+      ],
+      "expected": null
+    },
+    {
+      "name": "Jindal-style cover labels price after amount",
+      "pages": [
+        "INITIAL PUBLIC OFFER AT A PRICE OF ₹ 93 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹ 83 PER EQUITY SHARE) (“OFFER PRICE”) AGGREGATING UP TO ₹ 12,488.04 LAKHS"
+      ],
+      "expected": {
+        "value": 93,
+        "page": 1
+      }
+    },
+    {
+      "name": "SS Retail cover supports footnote marker after amount",
+      "pages": [
+        "INITIAL PUBLIC OFFER AT A PRICE OF ₹ 424^ PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹ 414^ PER EQUITY SHARE) (OFFER PRICE) AGGREGATING TO ₹ 5,000.00 MILLION"
+      ],
+      "expected": {
+        "value": 424,
+        "page": 1
+      }
+    },
+    {
+      "name": "Veegaland-style issue price label after amount",
+      "pages": [
+        "INITIAL PUBLIC ISSUE AT A PRICE OF ₹140 PER EQUITY SHARE (INCLUDING A SHARE PREMIUM OF ₹ 130 PER EQUITY SHARE) (“ISSUE PRICE”) AGGREGATING TO ₹ 21,000.00 LAKHS"
+      ],
+      "expected": {
+        "value": 140,
+        "page": 1
+      }
+    },
+    {
+      "name": "generic price of without offer or issue label is rejected",
+      "pages": [
+        "The shares were acquired at a price of ₹424 per Equity Share in a secondary transaction."
       ],
       "expected": null
     }

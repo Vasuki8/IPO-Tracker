@@ -42,7 +42,8 @@ export function parseExplicitIssuePrice(pageText, page = 1) {
 
   const patterns = [
     /\b(?:the\s+)?(?:offer|issue)\s+price\s*(?:(?:is|of)|has\s+been\s+determined\s+at)?\s*[:\-–—]?\s*(?:₹|rs\.?|inr)\s*([0-9][0-9,]*(?:\.[0-9]{1,2})?)(?:\s*\/\-)?\s*[*#^†‡]?\s*(?:per\s+(?:equity\s+)?share|\/\s*(?:equity\s+)?share)\b/i,
-    /\b(?:offer|issue)\s+price\s+(?:has\s+been\s+fixed|has\s+been\s+determined)\s+(?:at\s+)?(?:₹|rs\.?|inr)\s*([0-9][0-9,]*(?:\.[0-9]{1,2})?)(?:\s*\/\-)?\s*[*#^†‡]?\s*(?:per\s+(?:equity\s+)?share|\/\s*(?:equity\s+)?share)\b/i
+    /\b(?:offer|issue)\s+price\s+(?:has\s+been\s+fixed|has\s+been\s+determined)\s+(?:at\s+)?(?:₹|rs\.?|inr)\s*([0-9][0-9,]*(?:\.[0-9]{1,2})?)(?:\s*\/\-)?\s*[*#^†‡]?\s*(?:per\s+(?:equity\s+)?share|\/\s*(?:equity\s+)?share)\b/i,
+    /\b(?:at\s+)?a\s+price\s+of\s*(?:₹|rs\.?|inr)\s*([0-9][0-9,]*(?:\.[0-9]{1,2})?)\s*[*#^†‡]?\s*(?:\/\-)?\s*per\s+(?:equity\s+)?share\b.{0,180}?\(\s*[“"'‘’]?\s*(?:offer|issue)\s+price\s*[”"'‘’]?\s*\)/i
   ];
 
   for (const pattern of patterns) {
