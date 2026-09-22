@@ -185,3 +185,20 @@ The BSE dynamic listing-notice blocker remains documented.
 - PR #6: third official-source 2026 IPO batch
 - Prior production head: `b7fef58ea9ad7d164512e57366818b054a1ab06d`
 - Validation and GitHub Pages deployment passed for the prior production head.
+
+## Latest publication
+
+- Pull request: #7 — `Add fourth official-source 2026 IPO batch`
+- Squash-merged to `main`: `90f7b4389e14f5847d95090f023a11a9d7317022`
+- Post-merge data-contract validation: passed
+- Post-merge GitHub Pages deployment: passed
+- Pages artifact was generated from the merged revision.
+- Published issuer count: 11
+- New published issuers:
+  - Asset Reconstruction Company (India) Limited
+  - ESDS Software Solution Limited
+  - Sonaselection India Limited
+- ESDS publishes a verified ₹7,200 million issue size from NSE issue information.
+- Previous eight issuer records and freshness timestamps remained unchanged.
+- Unsupported final issue price, listing/status, board, sector, and minimum-application fields remain null.
+- Direct retrieval of `https://vasuki8.github.io/IPO-Tracker/` remains unavailable from the web reader in this development session; workflow and artifact revision were verified instead.
