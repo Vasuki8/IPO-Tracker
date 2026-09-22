@@ -296,7 +296,7 @@ function addDocumentOnce(array, document) {
   return exists ? array : [...array, document];
 }
 
-function enrichExistingRecord(record, issue, now) {
+export function enrichExistingRecord(record, issue, now) {
   let changed = false;
   const evidence = sourceEvidence(issue, now);
   const document = sourceDocument(issue, now);
