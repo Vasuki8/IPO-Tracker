@@ -1,7 +1,7 @@
 {
   "source_family": "Official NSE / SEBI / issuer offer-document evidence",
   "collection_started_at": "2026-09-22T02:14:14Z",
-  "generated_at": "2026-09-22T13:18:35.380Z",
+  "generated_at": "2026-09-22T14:09:20.202Z",
   "records": [
     {
       "id": "adroit-industries-india-limited",
@@ -286,10 +286,17 @@
           "url": "https://www.nseindia.com/api/ipo-current-issue",
           "publication_date": null,
           "collected_at": "2026-09-22T03:34:37.086Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — AXIOMGAS",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=AXIOMGAS&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-22T14:09:20.202Z"
         }
       ],
       "first_observed_at": "2026-09-22T03:34:37.086Z",
-      "last_collected_at": "2026-09-22T03:34:37.086Z",
+      "last_collected_at": "2026-09-22T14:09:20.202Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/ipo-current-issue",
@@ -309,7 +316,23 @@
           "page": null,
           "collected_at": "2026-09-22T03:34:37.086Z"
         }
-      ]
+      ],
+      "price_band": {
+        "value": {
+          "min": 51,
+          "max": 54
+        },
+        "source_value": "Rs.51 to Rs.54 per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=AXIOMGAS&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — AXIOMGAS",
+          "publication_date": null,
+          "collected_at": "2026-09-22T14:09:20.202Z"
+        }
+      }
     },
     {
       "id": "bench-mark-infotech-services-limited",
