@@ -19,5 +19,8 @@ jobs:
       - name: Check JavaScript syntax
         run: node --check assets/app.js
 
+      - name: Check recovery publication is synchronized
+        run: node scripts/build-published-data.mjs --check
+
       - name: Validate published IPO data
         run: node scripts/validate-data.mjs
