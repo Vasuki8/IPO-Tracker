@@ -761,3 +761,22 @@ The result exposed a schema problem rather than a missing parser: the values are
 Therefore the generic `minimum_application_amount_inr` remains **0/26** rather than publishing a misleading category-specific value.
 
 Next recommended batch: refine the data contract to model investor-category-specific application requirements before adding production extraction.
+
+
+### Investor-category application requirements contract
+
+Schema **1.2.0** adds a backward-compatible `application_requirements` object to every published IPO record.
+
+Supported categories are:
+
+- `retail`
+- `non_institutional`
+- `anchor_investor`
+
+Each category separately tracks an evidence-bearing `minimum_application_amount_inr` and `minimum_bid_quantity`.
+
+The legacy top-level application/bid fields remain unchanged, and the homepage is unchanged. All new category fields initially publish as `missing`; no RHP amount is imported automatically by the contract migration.
+
+This resolves the ambiguity discovered in the full RHP survey without losing backward compatibility.
+
+Next: add a strict source-backed NII minimum-application extractor, beginning with the explicit ₹200,000 RHP disclosures already observed for Sonaselection and Swastika.

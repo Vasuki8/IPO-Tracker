@@ -9,13 +9,34 @@ const fieldNames = [
   "minimum_bid_quantity", "minimum_application_amount_inr",
   "open_date", "close_date", "listing_date"
 ];
+const applicationCategories = ["retail", "non_institutional", "anchor_investor"];
+const applicationRequirementFields = ["minimum_application_amount_inr", "minimum_bid_quantity"];
 
 function fail(message) {
   console.error(`DATA CONTRACT ERROR: ${message}`);
   process.exitCode = 1;
 }
 
-if (data.schema_version !== "1.1.0") fail("schema_version must be 1.1.0");
+function validateField(field, prefix) {
+  if (!field || typeof field !== "object" || Array.isArray(field)) {
+    fail(`${prefix} must be an evidence-bearing field object`);
+    return;
+  }
+  if (!allowedStatuses.has(field.status)) fail(`${prefix}.status is invalid`);
+  if (!Array.isArray(field.evidence)) fail(`${prefix}.evidence must be an array`);
+  if (!Array.isArray(field.corrections)) fail(`${prefix}.corrections must be an array`);
+  if (field.value === null && field.status === "verified") {
+    fail(`${prefix} cannot be verified with a null value`);
+  }
+  if (field.status === "missing" && field.value !== null) {
+    fail(`${prefix} must keep missing values as null`);
+  }
+  if (field.status === "verified" && field.evidence.length === 0) {
+    fail(`${prefix} verified values require retained evidence`);
+  }
+}
+
+if (data.schema_version !== "1.2.0") fail("schema_version must be 1.2.0");
 if (!Array.isArray(data.records)) fail("records must be an array");
 
 const ids = new Set();
@@ -35,26 +56,41 @@ for (const [index, record] of (data.records || []).entries()) {
   }
 
   for (const fieldName of fieldNames) {
-    const field = record[fieldName];
-    if (!field || typeof field !== "object") {
-      fail(`${prefix}.${fieldName} must be an evidence-bearing field object`);
+    validateField(record[fieldName], `${prefix}.${fieldName}`);
+  }
+
+  const requirements = record.application_requirements;
+  if (!requirements || typeof requirements !== "object" || Array.isArray(requirements)) {
+    fail(`${prefix}.application_requirements must be an object`);
+    continue;
+  }
+
+  const categoryKeys = Object.keys(requirements).sort();
+  const expectedCategoryKeys = [...applicationCategories].sort();
+  if (JSON.stringify(categoryKeys) !== JSON.stringify(expectedCategoryKeys)) {
+    fail(`${prefix}.application_requirements must contain exactly ${applicationCategories.join(", ")}`);
+  }
+
+  for (const category of applicationCategories) {
+    const requirement = requirements[category];
+    const categoryPrefix = `${prefix}.application_requirements.${category}`;
+    if (!requirement || typeof requirement !== "object" || Array.isArray(requirement)) {
+      fail(`${categoryPrefix} must be an object`);
       continue;
     }
-    if (!allowedStatuses.has(field.status)) fail(`${prefix}.${fieldName}.status is invalid`);
-    if (!Array.isArray(field.evidence)) fail(`${prefix}.${fieldName}.evidence must be an array`);
-    if (!Array.isArray(field.corrections)) fail(`${prefix}.${fieldName}.corrections must be an array`);
-    if (field.value === null && field.status === "verified") {
-      fail(`${prefix}.${fieldName} cannot be verified with a null value`);
+
+    const requirementKeys = Object.keys(requirement).sort();
+    const expectedRequirementKeys = [...applicationRequirementFields].sort();
+    if (JSON.stringify(requirementKeys) !== JSON.stringify(expectedRequirementKeys)) {
+      fail(`${categoryPrefix} must contain exactly ${applicationRequirementFields.join(", ")}`);
     }
-    if (field.status === "missing" && field.value !== null) {
-      fail(`${prefix}.${fieldName} must keep missing values as null`);
-    }
-    if (field.status === "verified" && field.evidence.length === 0) {
-      fail(`${prefix}.${fieldName} verified values require retained evidence`);
+
+    for (const fieldName of applicationRequirementFields) {
+      validateField(requirement[fieldName], `${categoryPrefix}.${fieldName}`);
     }
   }
 }
 
 if (!process.exitCode) {
-  console.log(`Validated ${data.records.length} IPO record(s) against core contract invariants.`);
+  console.log(`Validated ${data.records.length} IPO record(s) against schema 1.2.0 core contract invariants.`);
 }
