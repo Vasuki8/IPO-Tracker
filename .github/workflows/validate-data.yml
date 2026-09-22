@@ -26,6 +26,9 @@ jobs:
       - name: Test NSE live sync parser
         run: node scripts/test-sync-nse-live.mjs
 
+      - name: Test SEBI document matching
+        run: node scripts/test-sync-sebi-documents.mjs
+
       - name: Check recovery publication is synchronized
         run: node scripts/build-published-data.mjs --check
 
