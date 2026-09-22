@@ -38,6 +38,9 @@ for (const [index, record] of (data.records || []).entries()) {
     if (field.value === null && field.status === "verified") {
       fail(`${prefix}.${fieldName} cannot be verified with a null value`);
     }
+    if (field.status === "missing" && field.value !== null) {
+      fail(`${prefix}.${fieldName} must keep missing values as null`);
+    }
     if (field.status === "verified" && field.evidence.length === 0) {
       fail(`${prefix}.${fieldName} verified values require retained evidence`);
     }
