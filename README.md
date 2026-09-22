@@ -102,32 +102,19 @@ Use this section as the starting context when continuing work in a new chat.
 
 ### Latest completed batch
 
-PR #9, **Automate live IPO discovery and publication**, was squash-merged to `main` at:
+Official SEBI document discovery is now integrated into the hourly NSE sync.
 
-`8a6895d34bd64c2600c6e82bec29418e399fa366`
+PRs #10–#15 implemented and hardened:
 
-The first real GitHub Actions live sync then:
+- deterministic RHP / Abridged Prospectus / Prospectus matching;
+- dynamic SEBI filing-link parsing;
+- general Filings and mixed Public Issues coverage;
+- bounded issuer-specific searches for sparse NSE-live records;
+- strict ambiguity rejection and idempotent document attachment.
 
-- successfully reached the official NSE feeds;
-- passed parser, deterministic-build, and data-contract validation;
-- created bot commit `87c52215fcdbaa079b937597fe902a13309e22d2`;
-- expanded the public dataset from **14 to 23 issuers**;
-- added 9 new source-backed NSE-discovered issuers;
-- enriched Sonaselection India Limited's board/lifecycle status;
-- preserved unsupported fields as null;
-- triggered a successful GitHub Pages publication for the bot-generated revision.
+The production network path is verified end to end. The latest real run passed NSE collection, SEBI collection, rebuild, deterministic publication and data-contract validation.
 
-Newly discovered records in that first live run:
-
-- Adroit Industries (India) Limited
-- ArMee Infotech Limited
-- Axiom Gas Engineering Limited
-- Coreintegra Consulting Services Limited
-- Elevate Campuses Limited
-- National Stock Exchange of India Limited
-- Pooja Logistics Limited
-- Swastika Infra Limited
-- Varmora Granito Limited
+**Important current limitation:** the raw SEBI responses available to GitHub Actions still did not add documents to the 9 sparse issuers created by the first NSE live run. The latest measurement searched all 9 sparse records, parsed 5 targeted filing results, but produced 0 exact issuer matches. Matching will remain strict rather than attaching uncertain evidence.
 
 ### Critical data rule
 
@@ -152,9 +139,12 @@ Hourly NSE discovery can automatically publish:
 
 ### Main remaining limitation
 
-The discovery/publish loop is live and official SEBI document attachment is now automated, but **field extraction from those offer documents is not automated yet**.
+The discovery/publish loop and SEBI matcher are live, but two evidence-depth gaps remain:
 
-Newly discovered IPOs can therefore gain RHP/Abridged/Prospectus links automatically while still showing missing fields such as:
+1. SEBI's raw pages do not currently expose attachable documents for every sparse NSE-live issuer in GitHub Actions;
+2. **field extraction from retained offer documents is not automated yet**.
+
+IPOs can therefore still show missing fields such as:
 
 - aggregate issue size in INR;
 - minimum bid quantity where not separately stated;
@@ -168,9 +158,11 @@ The next source-automation layer should parse a bounded set of fields from retai
 
 ### Recommended next coherent batch
 
-After verifying the SEBI document matcher in a real scheduled/network run, automate **one bounded field-extraction family** from already retained official documents.
+Automate **one bounded field-extraction family** from documents already retained in the repository.
 
-A strong next candidate is extracting explicit issue-size / final-price values from readable Abridged Prospectus or final Prospectus documents while retaining page-level evidence and leaving inaccessible documents untouched.
+Start with readable official Abridged Prospectus / final Prospectus documents and extract only explicit fields such as aggregate issue size and/or final issue price, with page-level evidence. Leave inaccessible or ambiguous values null.
+
+Do not spend the next batch adding more SEBI endpoint variants; the current sparse-record coverage limitation is documented.
 
 ### Product direction
 
