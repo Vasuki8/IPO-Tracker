@@ -10,6 +10,7 @@ const ALLOWED_HOSTS = new Set(["www.sebi.gov.in", "sebi.gov.in"]);
 const MAX_PAGES = 20;
 const DIAGNOSTIC_MAX_PAGES = 80;
 const MINIMUM_BID_DIAGNOSTIC_MAX_PAGES = 650;
+const NII_MINIMUM_APPLICATION_MAX_PAGES = 140;
 const USER_AGENT =
   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
 
@@ -125,6 +126,14 @@ export function candidateRhpMinimumApplicationDocument(record) {
   ) || null;
 }
 
+export function candidateRhpNiiMinimumApplicationDocument(record) {
+  const existing = record.application_requirements?.non_institutional?.minimum_application_amount_inr?.value;
+  if (existing !== null && existing !== undefined) return null;
+  return (record.documents || []).find((doc) =>
+    doc.type === "SEBI RHP PDF" && officialProspectusPdfUrl(doc.url)
+  ) || null;
+}
+
 export function candidateProspectusMinimumBidDocument(record) {
   if (record.minimum_bid_quantity?.value !== null && record.minimum_bid_quantity?.value !== undefined) return null;
   if (record.terms?.minimum_bid_quantity !== null && record.terms?.minimum_bid_quantity !== undefined) return null;
@@ -220,6 +229,56 @@ export function findMinimumApplicationAmountMentionsInPages(pages) {
     }
   }
   return mentions;
+}
+
+function applicationAmountToInr(rawAmount, rawUnit) {
+  const amount = Number(String(rawAmount).replace(/,/g, ""));
+  if (!Number.isFinite(amount) || amount <= 0) return null;
+
+  const unit = String(rawUnit ?? "").toLowerCase();
+  const multiplier = !unit
+    ? 1
+    : unit.startsWith("million")
+      ? 1_000_000
+      : unit.startsWith("lakh") || unit.startsWith("lac")
+        ? 100_000
+        : unit.startsWith("crore")
+          ? 10_000_000
+          : null;
+  if (!multiplier) return null;
+  return Math.round(amount * multiplier);
+}
+
+export function findExplicitNiiMinimumApplicationAmounts(pageText, page = 1) {
+  const text = normalizeText(pageText);
+  if (!text) return [];
+
+  const results = [];
+  const pattern = /\bminimum\s+application(?:\s+(?:amount|size))?\s*(?:viz\.?|of|is|shall\s+be)?\s*[:\-–—]?\s*(?:₹|rs\.?|inr)\s*([0-9][0-9,]*(?:\.[0-9]+)?)\s*(million|lakhs?|lacs?|crores?)?\b/ig;
+
+  for (const match of text.matchAll(pattern)) {
+    const prior = text.slice(Math.max(0, match.index - 320), match.index);
+    if (!/\bnon[\s-]*institutional(?:\s+(?:investor|bidder|portion|investors|bidders))?\b/i.test(prior)) {
+      continue;
+    }
+
+    const value = applicationAmountToInr(match[1], match[2]);
+    if (!value) continue;
+
+    results.push({
+      value,
+      source_value: match[0],
+      page,
+      context: text.slice(Math.max(0, match.index - 320), Math.min(text.length, match.index + 360))
+    });
+  }
+  return results;
+}
+
+export function findExplicitNiiMinimumApplicationAmountsInPages(pages) {
+  return (pages || []).flatMap((pageText, index) =>
+    findExplicitNiiMinimumApplicationAmounts(pageText, index + 1)
+  );
 }
 
 export function findAggregateIssueSizeMentions(pageText, page = 1) {
@@ -342,6 +401,31 @@ export function applyMinimumBidExtraction(record, document, extraction, collecte
   if (record.terms?.minimum_bid_quantity !== null && record.terms?.minimum_bid_quantity !== undefined) return false;
 
   record.minimum_bid_quantity = {
+    value: extraction.value,
+    source_value: extraction.source_value,
+    page: extraction.page,
+    status: "verified",
+    source: {
+      url: document.url,
+      document_type: document.type,
+      document_identity: document.identity ?? null,
+      publication_date: document.publication_date ?? null,
+      collected_at: collectedAt
+    }
+  };
+  record.last_collected_at = collectedAt;
+  return true;
+}
+
+export function applyNiiMinimumApplicationExtraction(record, document, extraction, collectedAt) {
+  if (!document || !extraction) return false;
+
+  const existing = record.application_requirements?.non_institutional?.minimum_application_amount_inr?.value;
+  if (existing !== null && existing !== undefined) return false;
+
+  record.application_requirements ??= {};
+  record.application_requirements.non_institutional ??= {};
+  record.application_requirements.non_institutional.minimum_application_amount_inr = {
     value: extraction.value,
     source_value: extraction.source_value,
     page: extraction.page,
@@ -724,6 +808,75 @@ async function diagnoseRhpMinimumBid() {
   console.log(JSON.stringify({ rhp_minimum_bid_diagnostic_stats: stats }, null, 2));
 }
 
+async function runNiiMinimumApplication() {
+  ensurePdfTextTool();
+  const now = new Date().toISOString();
+  const stats = {
+    candidates: 0,
+    downloaded: 0,
+    extracted: 0,
+    explicit_nii_amount_missing: 0,
+    conflicts: 0,
+    fetch_errors: 0
+  };
+
+  for (const file of recoveryFiles()) {
+    const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
+    let changed = false;
+
+    for (const record of recovery.records || []) {
+      const document = candidateRhpNiiMinimumApplicationDocument(record);
+      if (!document) continue;
+      stats.candidates += 1;
+
+      let pages;
+      try {
+        pages = pagesLayout(await fetchPdf(document.url), NII_MINIMUM_APPLICATION_MAX_PAGES);
+        stats.downloaded += 1;
+      } catch (error) {
+        stats.fetch_errors += 1;
+        console.warn(
+          "RHP unavailable for NII minimum-application extraction for " +
+          record.issuer_name + ": " + error.message
+        );
+        continue;
+      }
+
+      const matches = findExplicitNiiMinimumApplicationAmountsInPages(pages);
+      const uniqueValues = [...new Set(matches.map((match) => match.value))];
+      if (uniqueValues.length === 0) {
+        stats.explicit_nii_amount_missing += 1;
+        continue;
+      }
+      if (uniqueValues.length > 1) {
+        stats.conflicts += 1;
+        console.warn(
+          "Conflicting NII minimum-application amounts for " + record.issuer_name +
+          ": " + uniqueValues.join(", ")
+        );
+        continue;
+      }
+
+      const extraction = matches.find((match) => match.value === uniqueValues[0]);
+      if (applyNiiMinimumApplicationExtraction(record, document, extraction, now)) {
+        stats.extracted += 1;
+        changed = true;
+        console.log(
+          "Extracted NII minimum application amount for " + record.issuer_name + ": ₹" +
+          extraction.value + " (PDF page " + extraction.page + ")"
+        );
+      }
+    }
+
+    if (changed) {
+      recovery.generated_at = now;
+      fs.writeFileSync(file, JSON.stringify(recovery, null, 2) + "\n");
+    }
+  }
+
+  console.log(JSON.stringify(stats, null, 2));
+}
+
 async function runMinimumBid() {
   ensurePdfTextTool();
   const now = new Date().toISOString();
@@ -893,8 +1046,10 @@ const isMain = process.argv[1] &&
   pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
 
 if (isMain) {
-  const action = process.argv.includes("--diagnose-rhp-min-application")
-    ? diagnoseRhpMinimumApplication
+  const action = process.argv.includes("--nii-minimum-application")
+    ? runNiiMinimumApplication
+    : process.argv.includes("--diagnose-rhp-min-application")
+      ? diagnoseRhpMinimumApplication
     : process.argv.includes("--minimum-bid")
       ? runMinimumBid
     : process.argv.includes("--diagnose-prospectus-min-bid")
