@@ -339,4 +339,4 @@ Existing Hero Motors and Rentomojo issue-price evidence was not overwritten.
 
 The resulting source-backed data commit is `f9b7155c42d8b44d6985d9dafb9fd242e37dc64e`. GitHub Pages deployment for that revision passed in run `35688893344`.
 
-The next parser work should first inspect the three null final Prospectuses to determine whether their explicit final price uses unsupported layout/wording or falls outside the current bounded scan. Aggregate final-Propectus issue-size extraction remains a separate future field family.
+The next parser work should first inspect the three null final Prospectuses to determine whether their explicit final price uses unsupported layout/wording or falls outside the current bounded scan. Aggregate final-Prospectus issue-size extraction remains a separate future field family.
