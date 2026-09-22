@@ -1616,3 +1616,89 @@ Acceptance criteria:
 - only add categories that can be sourced consistently from official documents.
 
 Until this contract exists, further minimum-application extraction should remain diagnostic-only.
+
+
+## Latest completed batch — investor-category application requirements contract
+
+PR #73 — `Add investor-category application requirements contract` — introduces an additive data model for application requirements without redefining the existing generic fields.
+
+### Contract change
+
+Published schema version advances from **1.1.0 to 1.2.0**.
+
+Every IPO record now includes:
+
+`application_requirements`
+
+with exactly three investor categories:
+
+- `retail`
+- `non_institutional`
+- `anchor_investor`
+
+Each category contains two separate evidence-bearing fields:
+
+- `minimum_application_amount_inr`
+- `minimum_bid_quantity`
+
+These nested fields use the same `value / status / evidence / corrections` contract as existing source-backed fields.
+
+### Backward compatibility
+
+The legacy top-level fields remain unchanged:
+
+- `minimum_application_amount_inr`
+- `minimum_bid_quantity`
+
+The generic minimum-application field is **not** populated from category-specific RHP evidence and remains source-null.
+
+The homepage/UI is intentionally unchanged in this batch. Consumers that only use existing fields continue to work, while new consumers can opt into the category-specific structure.
+
+### Initial publication state
+
+All new category-specific fields publish as:
+
+- value: `null`
+- status: `missing`
+- evidence: `[]`
+- corrections: `[]`
+
+This creates the contract first without silently importing ambiguous values.
+
+### Validation
+
+The validator now requires:
+
+- exactly the three supported investor categories;
+- exactly amount + bid-quantity fields within each category;
+- normal evidence-bearing field invariants for every nested field;
+- verified values to retain evidence;
+- missing fields to remain null.
+
+The deterministic publisher now supports retaining future source-backed category values from recovery manifests.
+
+Validation passed, including:
+
+- recovery publication synchronization;
+- schema 1.2.0 core invariants;
+- existing NSE / SEBI parser and extraction tests.
+
+### Recommended next coherent batch
+
+Implement the **first strict category-specific extractor**, starting with Non-Institutional Investor minimum application amounts from retained RHP evidence.
+
+Initial known source-backed examples from the completed RHP survey:
+
+- Sonaselection India Limited — NII minimum application amount **₹200,000** — RHP PDF page 92;
+- Swastika Infra Limited — NII minimum application amount **₹200,000** — RHP PDF pages 77 and 411.
+
+Acceptance rules:
+
+- write only `application_requirements.non_institutional.minimum_application_amount_inr`;
+- require explicit NII / Non-Institutional context plus explicit labelled INR amount;
+- retain exact PDF page and source identity;
+- reject Anchor/QIB Mutual Fund minimums;
+- reject unrelated investment thresholds;
+- no price × quantity calculation;
+- fill missing values only;
+- validate across multiple retained RHPs before enabling recurring production extraction.
