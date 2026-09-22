@@ -2466,9 +2466,18 @@
         },
         "non_institutional": {
           "minimum_application_amount_inr": {
-            "value": null,
-            "status": "missing",
-            "evidence": [],
+            "value": 200000,
+            "status": "verified",
+            "evidence": [
+              {
+                "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789012955772.pdf",
+                "document_type": "SEBI RHP PDF",
+                "document_identity": "SEBI RHP filing — sonaselection india limited — PDF",
+                "publication_date": "2026-09-09",
+                "page": 92,
+                "collected_at": "2026-09-22T18:28:00.676Z"
+              }
+            ],
             "corrections": []
           },
           "minimum_bid_quantity": {
