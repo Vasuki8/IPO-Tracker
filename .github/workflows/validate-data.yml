@@ -38,6 +38,9 @@ jobs:
       - name: Test Abridged Prospectus field extraction
         run: node scripts/test-extract-abridged-fields.mjs
 
+      - name: Test final Prospectus field extraction
+        run: node scripts/test-extract-prospectus-fields.mjs
+
       - name: Check recovery publication is synchronized
         run: node scripts/build-published-data.mjs --check
 
