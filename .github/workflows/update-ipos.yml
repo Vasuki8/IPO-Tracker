@@ -72,9 +72,6 @@ jobs:
       - name: Test final Prospectus field extraction
         run: node scripts/test-extract-prospectus-fields.mjs
 
-      - name: Diagnose provisional RHP aggregate issue size
-        run: node scripts/extract-prospectus-fields.mjs --diagnose-rhp-size
-
       - name: Extract explicit Abridged Prospectus fields
         run: node scripts/extract-abridged-fields.mjs
 

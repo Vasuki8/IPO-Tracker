@@ -280,13 +280,34 @@ Source-backed document bot commits:
 
 GitHub Pages deployment for `3c2f3fb...` passed in run `35694143832`.
 
+### Latest RHP issue-size diagnostic result
+
+PR #32 merged at `ce0d10a00e830a7606e909abe047bb2ee2e983ee`.
+
+The deterministic publisher now preserves retained `verified`, `provisional`, and `conflict` status instead of automatically upgrading every retained non-null field to verified.
+
+Production sync run `35694934742` then evaluated the five missing-size records with retained official `SEBI RHP PDF` evidence:
+
+- candidates: 5;
+- PDFs downloaded: 5;
+- parseable explicit overall totals: **0**;
+- PDF fetch errors: 0.
+
+The result is source-driven rather than a parser failure:
+
+- Adroit Industries — no explicit INR overall total in the bounded scan;
+- ARCIL — `Total Offer size` is stated as an equity-share count, not an INR total;
+- NSE — `Total Offer Size` is a share count; ₹700 million refers only to the Employee Reservation Portion;
+- Sonaselection — no explicit INR overall total in the bounded scan;
+- Swastika Infra — overall Offer amount remains `₹[●]`; ₹12,900 lakh is explicitly the Fresh Issue component, not the total Offer.
+
+Therefore **no RHP-derived `issue_size_inr` value was published**, provisional or otherwise. The temporary diagnostic was removed from hourly execution after this measurement.
+
 ### Recommended next coherent batch
 
-Add a bounded **RHP aggregate issue-size extraction family for the five RHP-backed missing-size records**, but publish any RHP-derived value as **provisional**, not verified/final.
+Treat aggregate issue size for these five as **blocked pending final-price/final-Prospectus evidence**; the existing final-Prospectus automation can fill it automatically when authoritative final documents arrive.
 
-First extend retained-field publication so a recovery field can preserve `status: "provisional"`. Then inspect only explicit top-level Offer/Issue aggregate amounts from retained `SEBI RHP PDF` files, retain page-level evidence, fill missing values only, and never sum Fresh Issue + OFS components or calculate shares × price.
-
-The other remaining missing-size records should stay null until an authoritative official source family becomes available.
+Move the next bounded P1 batch to **explicit minimum bid quantity recovery**. Start with records that now have retained RHP/Abridged evidence—Adroit Industries, National Stock Exchange of India, and Swastika Infra—and accept only an explicitly stated minimum bid quantity/lot from the official document. Do not copy `market_lot` into `minimum_bid_quantity` merely because the values may coincide.
 
 ### Product direction
 

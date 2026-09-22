@@ -420,3 +420,25 @@ After these repairs, five missing-size issuers have both retained RHP PDFs and A
 
 The next safe field-extraction layer should use the retained RHP PDFs only with **provisional field status**. The publication builder must first preserve a retained field's provisional status instead of automatically converting every non-null retained value to verified.
 
+## RHP aggregate issue-size diagnostic — no safe total available
+
+PR #32 added two safety capabilities:
+
+1. retained recovery fields may preserve `provisional` or `conflict` status through deterministic publication;
+2. a read-only diagnostic can inspect retained `SEBI RHP PDF` files for explicit top-level aggregate Offer/Issue amounts.
+
+Production run `35694934742` evaluated five missing-size RHP-backed records:
+
+- candidates: 5;
+- downloads: 5;
+- parseable overall INR totals: 0;
+- fetch errors: 0.
+
+The RHPs do not provide a safe overall INR issue-size value at this stage. Some disclose share-count totals or explicit component amounts, but the overall amount remains price-dependent or placeholder-based. Examples include NSE's ₹700 million Employee Reservation Portion and Swastika Infra's ₹12,900 lakh Fresh Issue; neither is the overall Offer size.
+
+Accordingly, no provisional `issue_size_inr` was written. The temporary diagnostic step was removed from hourly execution.
+
+The final-document automation remains the correct upgrade path: once an official final Prospectus is retained, the existing final-Prospectus extractor can publish an explicit final aggregate amount.
+
+The next source-depth family should focus on explicit minimum bid quantity from retained RHP/Abridged documents, without equating it to market lot absent source text.
+
