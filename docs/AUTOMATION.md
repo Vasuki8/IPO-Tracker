@@ -604,3 +604,38 @@ Issue-price coverage is now **14/26**. The remaining 12 records are not yet comp
 
 The next P1 field family is aggregate issue-size INR. NSE `ipo-detail` `Issue Size` text may contain share counts, total INR amounts, or component prose, so any extractor must accept only an explicit overall rupee aggregate and must not reconstruct it arithmetically.
 
+## NSE ipo-detail aggregate issue-size automation — production verified
+
+The official NSE `/api/ipo-detail` `Issue Size` row is free-form prose and cannot be treated as an INR amount generically.
+
+Production diagnostic PR #57 / run `35748672356` established three source shapes:
+
+- share-count-only offers;
+- mixed Fresh Issue + OFS disclosures;
+- pure one-leg Fresh Issue/OFS disclosures with one explicit INR aggregate.
+
+Only the third shape is safe for direct publication without arithmetic.
+
+PR #58 added the production extractor with these rules:
+
+- read only overall Issue Size / Total Issue Size / Offer Size terms;
+- strip parenthetical carve-outs;
+- accept only a sole Fresh Issue or sole OFS leg with an explicit INR amount;
+- convert crore/million/lakh/lac units directly;
+- reject share-count-only rows;
+- reject mixed Fresh+OFS rows even when one component is INR-denominated;
+- never sum components;
+- never calculate shares × issue price;
+- fill missing issue size only.
+
+Production run `35749978275` completed 14/14 official API requests and extracted:
+
+- ArMee Infotech Limited — ₹3,000,000,000;
+- Elevate Campuses Limited — ₹21,000,000,000.
+
+Twelve rows remained null by design. Bot data commit: `ccdf8f308f437257d64b2e9b3bd99eb9729eaa57`.
+
+Published issue-size coverage is now **14/26**.
+
+The next P1 source family is explicit market lot. Do not reuse Bid Lot / Minimum Order Quantity as market lot merely because values may coincide; inspect explicit Market Lot / Lot Size source terms separately.
+
