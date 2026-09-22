@@ -123,6 +123,38 @@ export function candidateProspectusMinimumBidDocument(record) {
   ) || null;
 }
 
+export function parseExplicitMinimumBidQuantity(pageText, page = 1) {
+  const text = normalizeText(pageText);
+  if (!text) return null;
+
+  const patterns = [
+    /\bbid\s+lot\s*[:\-–—]?\s*([0-9][0-9,]*)\s+equity\s+shares\b/i,
+    /\bminimum\s+bid\s*[:\-–—]?\s*([0-9][0-9,]*)\s+equity\s+shares\b/i
+  ];
+
+  for (const pattern of patterns) {
+    const match = text.match(pattern);
+    if (!match) continue;
+    const value = Number(match[1].replace(/,/g, ""));
+    if (!Number.isInteger(value) || value <= 0) continue;
+    return {
+      value,
+      source_value: match[0],
+      page
+    };
+  }
+
+  return null;
+}
+
+export function parseExplicitMinimumBidQuantityFromPages(pages) {
+  for (let index = 0; index < (pages || []).length; index += 1) {
+    const extraction = parseExplicitMinimumBidQuantity(pages[index], index + 1);
+    if (extraction) return extraction;
+  }
+  return null;
+}
+
 export function findMinimumBidMentionsInPages(pages) {
   const mentions = [];
   const patterns = [
@@ -252,6 +284,28 @@ export function applyIssuePriceExtraction(record, document, extraction, collecte
     value: extraction.value,
     source_value: extraction.source_value,
     page: extraction.page,
+    source: {
+      url: document.url,
+      document_type: document.type,
+      document_identity: document.identity ?? null,
+      publication_date: document.publication_date ?? null,
+      collected_at: collectedAt
+    }
+  };
+  record.last_collected_at = collectedAt;
+  return true;
+}
+
+export function applyMinimumBidExtraction(record, document, extraction, collectedAt) {
+  if (!document || !extraction) return false;
+  if (record.minimum_bid_quantity?.value !== null && record.minimum_bid_quantity?.value !== undefined) return false;
+  if (record.terms?.minimum_bid_quantity !== null && record.terms?.minimum_bid_quantity !== undefined) return false;
+
+  record.minimum_bid_quantity = {
+    value: extraction.value,
+    source_value: extraction.source_value,
+    page: extraction.page,
+    status: "verified",
     source: {
       url: document.url,
       document_type: document.type,
@@ -563,6 +617,61 @@ async function diagnoseRhpMinimumBid() {
   console.log(JSON.stringify({ rhp_minimum_bid_diagnostic_stats: stats }, null, 2));
 }
 
+async function runMinimumBid() {
+  ensurePdfTextTool();
+  const now = new Date().toISOString();
+  const stats = {
+    candidates: 0,
+    downloaded: 0,
+    extracted: 0,
+    explicit_minimum_bid_missing: 0,
+    fetch_errors: 0
+  };
+
+  for (const file of recoveryFiles()) {
+    const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
+    let changed = false;
+
+    for (const record of recovery.records || []) {
+      const document = candidateProspectusMinimumBidDocument(record);
+      if (!document) continue;
+      stats.candidates += 1;
+
+      let pages;
+      try {
+        pages = pagesLayout(await fetchPdf(document.url), MAX_PAGES);
+        stats.downloaded += 1;
+      } catch (error) {
+        stats.fetch_errors += 1;
+        console.warn("Prospectus unavailable for minimum-bid extraction for " + record.issuer_name + ": " + error.message);
+        continue;
+      }
+
+      const extraction = parseExplicitMinimumBidQuantityFromPages(pages);
+      if (!extraction) {
+        stats.explicit_minimum_bid_missing += 1;
+        continue;
+      }
+
+      if (applyMinimumBidExtraction(record, document, extraction, now)) {
+        stats.extracted += 1;
+        changed = true;
+        console.log(
+          "Extracted minimum bid quantity for " + record.issuer_name + ": " +
+          extraction.value + " Equity Shares (PDF page " + extraction.page + ")"
+        );
+      }
+    }
+
+    if (changed) {
+      recovery.generated_at = now;
+      fs.writeFileSync(file, JSON.stringify(recovery, null, 2) + "\n");
+    }
+  }
+
+  console.log(JSON.stringify(stats, null, 2));
+}
+
 async function runIssueSize() {
   ensurePdfTextTool();
   const now = new Date().toISOString();
@@ -677,8 +786,10 @@ const isMain = process.argv[1] &&
   pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
 
 if (isMain) {
-  const action = process.argv.includes("--diagnose-prospectus-min-bid")
-    ? diagnoseProspectusMinimumBid
+  const action = process.argv.includes("--minimum-bid")
+    ? runMinimumBid
+    : process.argv.includes("--diagnose-prospectus-min-bid")
+      ? diagnoseProspectusMinimumBid
     : process.argv.includes("--diagnose-rhp-min-bid")
       ? diagnoseRhpMinimumBid
       : process.argv.includes("--diagnose-rhp-size")
