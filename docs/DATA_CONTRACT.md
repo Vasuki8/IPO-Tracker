@@ -81,11 +81,15 @@ If official sources conflict and precedence does not resolve the disagreement, p
 
 ## Recovery publication
 
-For the current 2026 source family, retained recovery input lives under:
+Retained recovery input is organized by issue year:
 
 ```
-data/recovery/2026/
-  nse-issue-information.json
+data/recovery/
+  2026/
+    nse-issue-information.json
+  2027/
+    nse-issue-information.json
+  ...
 ```
 
 Publication is deterministic:
@@ -94,10 +98,18 @@ Publication is deterministic:
 node scripts/build-published-data.mjs
 ```
 
-CI runs the publisher with `--check` and fails if `data/ipos.json` does not exactly match the retained recovery input.
+The publisher reads every year manifest and builds the single public dataset at `data/ipos.json`.
 
-The recovery publisher currently accepts official NSE and SEBI URLs only. This is a deliberate first-batch restriction, not a statement that these are the only official sources the project may ever support.
+CI runs the publisher with `--check` and fails if `data/ipos.json` does not exactly match the retained recovery inputs.
 
-## Current state
+## Automated discovery
 
-The first published recovery slice contains Hero Motors Limited and Rentomojo Limited. Only fields established by retained official evidence are populated. Unsupported fields remain null/missing.
+`scripts/sync-nse-live.mjs` is the first automated discovery layer. It reads official NSE public IPO feeds and adds or enriches only explicitly supported values.
+
+It intentionally does not convert NSE's `issueSize` field into `issue_size_inr`, derive minimum bid quantity from market lot, compute minimum application amounts, or infer other unsupported values.
+
+See `docs/AUTOMATION.md` for the source and scheduling rules.
+
+## Source hosts
+
+The recovery publisher currently accepts a restricted set of official source hosts. This is deliberate validation, not a claim that only those organizations can ever provide authoritative evidence. New official source families must be added explicitly and tested.
