@@ -11,6 +11,9 @@ on:
       - "scripts/test-sync-nse-live.mjs"
       - "scripts/sync-sebi-documents.mjs"
       - "scripts/test-sync-sebi-documents.mjs"
+      - "scripts/extract-abridged-fields.mjs"
+      - "scripts/test-extract-abridged-fields.mjs"
+      - "scripts/fixtures/abridged-issue-size-layout.json"
       - "scripts/fixtures/sebi-public-issues-sample.html"
       - "scripts/fixtures/sebi-rhp-detail-sample.html"
       - "scripts/build-published-data.mjs"
@@ -46,6 +49,18 @@ jobs:
 
       - name: Attach SEBI offer documents
         run: node scripts/sync-sebi-documents.mjs
+
+      - name: Install PDF text extraction dependency
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends poppler-utils
+          pdftotext -v
+
+      - name: Test Abridged Prospectus field extraction
+        run: node scripts/test-extract-abridged-fields.mjs
+
+      - name: Extract explicit Abridged Prospectus fields
+        run: node scripts/extract-abridged-fields.mjs
 
       - name: Rebuild published dataset
         run: node scripts/build-published-data.mjs

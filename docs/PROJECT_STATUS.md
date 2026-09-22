@@ -178,6 +178,41 @@ The current validation workflow covers:
 - sparse live-record candidate selection;
 - bounded SEBI search token selection.
 
+## Current development batch — Abridged Prospectus issue-size extraction
+
+A bounded field-extraction layer has been implemented on branch `extract-abridged-issue-size`.
+
+Scope:
+
+- official SEBI Abridged Prospectus PDFs already retained;
+- page 1 only;
+- explicit `TOTAL OFFER SIZE` / `TOTAL ISSUE SIZE` amounts;
+- populate missing `issue_size_inr` only.
+
+Safety rules:
+
+- no arithmetic reconstruction;
+- no overwrite of existing issue-size evidence;
+- placeholders such as `[●]` remain null;
+- inaccessible PDFs remain null;
+- evidence retains document identity, URL, publication date, page and collection time.
+
+Fixtures cover:
+
+- Karamtara Engineering — positive ₹8,750 million case;
+- ESDS Software Solution — positive ₹7,200 million parser case;
+- Pranav Constructions — placeholder/null case;
+- ARCIL — placeholder/null case.
+
+Branch validation confirms:
+
+- Poppler can be installed on the GitHub runner;
+- PDF-layout parser tests pass;
+- deterministic publication remains synchronized;
+- the existing 23-record dataset is unchanged before the production extraction run.
+
+Production network verification is still required after merge.
+
 ## Earliest unfinished priority
 
 P1/P2 — **data correctness and source evidence depth**.
@@ -186,21 +221,15 @@ Live IPO discovery is automated and SEBI document matching is operational, but S
 
 ## Recommended next coherent batch
 
-Move to a source family where evidence is already retained and make it produce additional trusted fields.
+First verify the Abridged Prospectus issue-size extractor in a real scheduled/network run.
 
-Recommended first target:
+Expected safe production behavior:
 
-**automate one bounded field-extraction family from retained official Abridged Prospectus / final Prospectus documents.**
+- Karamtara Engineering should receive ₹8,750,000,000 only if the retained official PDF is downloadable and the first-page layout matches the tested explicit-total pattern;
+- ESDS should remain unchanged because it already has issue-size evidence;
+- ARCIL, Pranav and Sonaselection should remain null where their retained Abridged Prospectus does not state an explicit numeric aggregate total.
 
-Acceptance criteria:
-
-1. start only with documents whose official URL is already retained;
-2. extract a very small field set, e.g. explicit aggregate issue size and/or final issue price;
-3. retain page/evidence location and source document identity;
-4. never substitute price-band cap for final issue price;
-5. preserve null when a PDF is inaccessible or the value is not explicit;
-6. add source-family fixtures/tests before production use;
-7. keep SEBI sparse-discovery coverage as a documented blocker rather than loosening issuer matching.
+After production verification, the next bounded extraction family can target another explicit field/document family, with separate fixtures and precedence rules.
 
 ## Publication history
 

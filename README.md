@@ -156,13 +156,19 @@ IPOs can therefore still show missing fields such as:
 
 The next source-automation layer should parse a bounded set of fields from retained official offer documents, with explicit source precedence and page-level evidence, rather than inferring values from filenames or price-band caps.
 
+### Current field-extraction batch
+
+A bounded Abridged Prospectus extractor is ready for production verification.
+
+It parses page 1 of already-retained official SEBI Abridged Prospectus PDFs and can fill **missing aggregate issue size only when the TOTAL OFFER/ISSUE SIZE cell contains an explicit numeric amount**.
+
+It does not sum components, derive values from shares/prices, overwrite existing evidence, or convert `[●]` placeholders into data.
+
+Fixture coverage includes Karamtara/ESDS positive cases and Pranav/ARCIL placeholder cases.
+
 ### Recommended next coherent batch
 
-Automate **one bounded field-extraction family** from documents already retained in the repository.
-
-Start with readable official Abridged Prospectus / final Prospectus documents and extract only explicit fields such as aggregate issue size and/or final issue price, with page-level evidence. Leave inaccessible or ambiguous values null.
-
-Do not spend the next batch adding more SEBI endpoint variants; the current sparse-record coverage limitation is documented.
+After verifying the Abridged Prospectus extractor on the real hourly workflow, choose the next single explicit field/document family. Keep inaccessible/ambiguous values null and retain page-level evidence.
 
 ### Product direction
 

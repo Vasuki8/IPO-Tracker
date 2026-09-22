@@ -184,3 +184,45 @@ Future work should prefer either:
 - field extraction from official documents already retained.
 
 Repeated endpoint variants are not the current recommended priority.
+
+## Abridged Prospectus field extraction
+
+The next enrichment layer parses **only explicit aggregate issue/offer size** from already-retained official SEBI Abridged Prospectus PDFs.
+
+Implementation:
+
+- script: `scripts/extract-abridged-fields.mjs`;
+- PDF text engine: Poppler `pdftotext`;
+- scope: page 1 only;
+- source documents: retained `SEBI Abridged Prospectus` PDF URLs on `sebi.gov.in`;
+- target field: `issue_size_inr`;
+- precedence: fill missing values only; never overwrite an existing issue-size value.
+
+The parser looks for the visual table column headed `TOTAL OFFER SIZE` or `TOTAL ISSUE SIZE` and accepts only an explicit numeric amount expressed in millions.
+
+Examples covered by fixtures:
+
+- Karamtara Engineering: explicit total offer size ₹8,750.00 million → extract;
+- ESDS Software Solution: explicit total issue size ₹7,200.00 million → positive parser case;
+- Pranav Constructions: total offer size contains `[●]` → preserve null;
+- ARCIL: total offer size contains `[●]` → preserve null.
+
+The extractor does **not**:
+
+- add Fresh Issue + OFS components;
+- infer total value from number of shares × price;
+- use the price-band cap as final price;
+- overwrite an existing retained issue size;
+- treat placeholders as zero.
+
+When a value is extracted, the recovery manifest retains:
+
+- the INR integer value;
+- the exact source amount text;
+- page 1 as evidence location;
+- official document URL/type/identity/publication date;
+- the extraction collection timestamp.
+
+If a PDF is inaccessible or the value is not explicit, the field remains null and the hourly workflow continues.
+
+GitHub Actions installs `poppler-utils` explicitly before running this extractor so the PDF-text dependency is visible and reproducible.
