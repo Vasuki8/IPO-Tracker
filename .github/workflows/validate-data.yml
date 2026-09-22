@@ -43,6 +43,9 @@ jobs:
       - name: Test NSE public past-issues parser
         run: node scripts/test-diagnose-nse-past-issues.mjs
 
+      - name: Test NSE public past-issues final-price extraction
+        run: node scripts/test-extract-nse-past-issues-fields.mjs
+
       - name: Test SEBI document matching
         run: node scripts/test-sync-sebi-documents.mjs
 
