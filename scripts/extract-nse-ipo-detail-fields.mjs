@@ -143,6 +143,110 @@ export function parsePriceBandFromIpoDetail(payload) {
   };
 }
 
+function stripParentheticalText(value) {
+  const text = String(value ?? "");
+  let depth = 0;
+  let out = "";
+  for (const ch of text) {
+    if (ch === "(") {
+      depth += 1;
+      continue;
+    }
+    if (ch === ")") {
+      if (depth > 0) depth -= 1;
+      continue;
+    }
+    if (depth === 0) out += ch;
+  }
+  return normalizeText(out);
+}
+
+function parseInrAmountWithUnit(value) {
+  const text = normalizeText(value);
+  const match = text.match(
+    /(?:₹|Rs\.?|INR)\s*([0-9][0-9,]*(?:\.[0-9]{1,2})?)\s*(crores?|millions?|lakhs?|lacs?)\b/i
+  );
+  if (!match) return null;
+
+  const number = Number(match[1].replace(/,/g, ""));
+  if (!Number.isFinite(number) || number <= 0) return null;
+
+  const unit = match[2].toLowerCase().replace(/s$/, "");
+  const multiplier = unit === "crore"
+    ? 1e7
+    : unit === "million"
+      ? 1e6
+      : 1e5;
+
+  return {
+    value: number * multiplier,
+    source_amount: match[0]
+  };
+}
+
+export function parseIssueSizeInrFromIpoDetail(payload) {
+  const candidates = issueSizeCandidatesFromIpoDetail(payload);
+  if (candidates.length === 0) {
+    return { value: null, reason: "term_absent", evidence_items: [] };
+  }
+
+  const parsed = [];
+  for (const candidate of candidates) {
+    const text = stripParentheticalText(candidate.value);
+    const hasFresh = /\bfresh\s+(?:issue|offer)\b/i.test(text);
+    const hasOfs = /\boffer\s+for\s+sale\b|\bOFS\b/i.test(text);
+
+    // Never combine multiple offer legs here. Mixed offers require arithmetic
+    // or a separately stated overall total, neither of which this parser does.
+    if (hasFresh && hasOfs) continue;
+
+    // A sole explicitly stated Fresh Issue or OFS leg is the entire offer;
+    // accepting its INR aggregate requires no arithmetic.
+    if (hasFresh || hasOfs) {
+      const amount = parseInrAmountWithUnit(text);
+      if (!amount) continue;
+      parsed.push({
+        ...candidate,
+        value_inr: amount.value,
+        source_amount: amount.source_amount
+      });
+      continue;
+    }
+
+    // Without a single-leg statement, do not reinterpret share counts or
+    // generic prose as an INR total.
+  }
+
+  if (parsed.length === 0) {
+    return {
+      value: null,
+      reason: "no_safe_overall_inr_total",
+      evidence_items: candidates
+    };
+  }
+
+  const unique = new Map(
+    parsed.map((item) => [String(item.value_inr), item])
+  );
+  if (unique.size !== 1) {
+    return {
+      value: null,
+      reason: "official_term_conflict",
+      evidence_items: candidates
+    };
+  }
+
+  const item = [...unique.values()][0];
+  return {
+    value: item.value_inr,
+    reason: null,
+    source_value: item.value,
+    source_title: item.title,
+    source_amount: item.source_amount,
+    evidence_items: candidates
+  };
+}
+
 export function issueSizeCandidatesFromIpoDetail(payload) {
   const list = payload?.issueInfo?.dataList;
   if (!Array.isArray(list)) return [];
@@ -308,6 +412,18 @@ function candidateRecords() {
   });
 }
 
+function issueSizeCandidateRecords() {
+  return recoveryFiles().flatMap((file) => {
+    const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
+    return (recovery.records || [])
+      .filter((record) =>
+        resolveNseIdentity(record) &&
+        (record.issue_size_inr?.value === null || record.issue_size_inr?.value === undefined)
+      )
+      .map((record) => ({ file, recovery, record }));
+  });
+}
+
 function priceBandCandidateRecords() {
   return recoveryFiles().flatMap((file) => {
     const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
@@ -375,6 +491,43 @@ function addDocumentOnce(record, document) {
     return false;
   }
   record.documents.push(document);
+  return true;
+}
+
+export function applyIssueSize(record, extraction, sourceUrl, collectedAt) {
+  if (!extraction?.value) return false;
+  if (record.issue_size_inr?.value !== null && record.issue_size_inr?.value !== undefined) return false;
+
+  const identity = resolveNseIdentity(record);
+  if (!identity) return false;
+  const symbol = identity.symbol;
+
+  if (!record.nse_symbol) record.nse_symbol = identity.symbol;
+  if (!record.nse_series) record.nse_series = identity.series;
+
+  record.issue_size_inr = {
+    value: extraction.value,
+    source_value: extraction.source_value,
+    status: "verified",
+    page: null,
+    source: {
+      url: sourceUrl,
+      document_type: "NSE Issue Information API",
+      document_identity: "NSE Issue Information — " + symbol,
+      publication_date: null,
+      collected_at: collectedAt
+    }
+  };
+
+  addDocumentOnce(record, {
+    type: "NSE Issue Information API",
+    identity: "NSE Issue Information — " + symbol,
+    url: sourceUrl,
+    publication_date: null,
+    collected_at: collectedAt
+  });
+
+  record.last_collected_at = collectedAt;
   return true;
 }
 
@@ -677,6 +830,92 @@ async function diagnoseIssuePrice() {
   }
 
   console.log(JSON.stringify({ nse_issue_price_diagnostic_stats: stats }, null, 2));
+}
+
+async function runIssueSize() {
+  const now = new Date().toISOString();
+  const landing = await fetchWithRetry(NSE_HOME, {
+    headers: {
+      "user-agent": USER_AGENT,
+      "accept": "text/html,application/xhtml+xml",
+      "accept-language": "en-US,en;q=0.9"
+    }
+  });
+  const cookie = cookieHeader(landing.headers);
+
+  const groups = new Map();
+  for (const candidate of issueSizeCandidateRecords()) {
+    if (!groups.has(candidate.file)) {
+      groups.set(candidate.file, { recovery: candidate.recovery, candidates: [] });
+    }
+    groups.get(candidate.file).candidates.push(candidate.record);
+  }
+
+  const stats = {
+    candidates: 0,
+    api_success: 0,
+    extracted: 0,
+    unsupported_or_share_count: 0,
+    conflicts: 0,
+    fetch_errors: 0
+  };
+
+  for (const [file, group] of groups) {
+    let changed = false;
+
+    for (const record of group.candidates) {
+      stats.candidates += 1;
+      const url = apiUrl(record);
+
+      try {
+        const response = await fetchWithRetry(url, {
+          headers: {
+            "user-agent": USER_AGENT,
+            "accept": "application/json,text/plain,*/*",
+            "accept-language": "en-US,en;q=0.9",
+            "referer": NSE_HOME,
+            "cookie": cookie,
+            "cache-control": "no-cache",
+            "pragma": "no-cache"
+          }
+        });
+        const payload = await response.json();
+        stats.api_success += 1;
+
+        const extraction = parseIssueSizeInrFromIpoDetail(payload);
+        if (extraction.reason === "official_term_conflict") {
+          stats.conflicts += 1;
+          console.warn(
+            "NSE issue-size conflict retained as null for " + record.issuer_name + ": " +
+            JSON.stringify(extraction.evidence_items)
+          );
+        } else if (extraction.value === null) {
+          stats.unsupported_or_share_count += 1;
+        } else if (applyIssueSize(record, extraction, url, now)) {
+          stats.extracted += 1;
+          changed = true;
+          console.log(
+            "Extracted NSE issue size for " + record.issuer_name + ": INR " + extraction.value
+          );
+        }
+      } catch (error) {
+        stats.fetch_errors += 1;
+        console.warn(
+          "NSE ipo-detail unavailable for issue-size extraction for " +
+          record.issuer_name + ": " + error.message
+        );
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 650));
+    }
+
+    if (changed) {
+      group.recovery.generated_at = now;
+      fs.writeFileSync(file, JSON.stringify(group.recovery, null, 2) + "\n");
+    }
+  }
+
+  console.log(JSON.stringify(stats, null, 2));
 }
 
 async function runPriceBand() {
@@ -1010,8 +1249,10 @@ const isMain = process.argv[1] &&
   pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
 
 if (isMain) {
-  const action = process.argv.includes("--diagnose-issue-size")
-    ? diagnoseIssueSize
+  const action = process.argv.includes("--issue-size")
+    ? runIssueSize
+    : process.argv.includes("--diagnose-issue-size")
+      ? diagnoseIssueSize
     : process.argv.includes("--diagnose-issue-price")
       ? diagnoseIssuePrice
     : process.argv.includes("--price-band")
