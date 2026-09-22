@@ -13,7 +13,8 @@ const OFFICIAL_HOSTS = new Set([
   "www.sebi.gov.in",
   "sebi.gov.in",
   "www.heromotors.com",
-  "heromotors.com"
+  "heromotors.com",
+  "nsearchives.nseindia.com"
 ]);
 
 function fail(message) {
