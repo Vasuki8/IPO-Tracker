@@ -4,27 +4,22 @@ A source-first Indian IPO research interface.
 
 ## Current state
 
-This repository was initialized on 2026-09-21 as a fresh UI/UX foundation. The repository was empty when work began, so the current implementation intentionally focuses on presentation architecture rather than recreating an unverified historical backend.
+The public UI now consumes a dedicated source-backed dataset at `data/ipos.json`.
 
-### UI V1 includes
+The dataset is intentionally empty until authoritative IPO recovery is reconnected. Prototype IPO rows and illustrative market values are no longer used as production fallback data.
 
-- Responsive light-theme homepage
-- IPO master table on desktop
-- IPO cards on mobile
-- Search and board/status filters
-- IPO detail view
-- Source status: verified, provisional, missing
-- Separate lot size, minimum bid quantity, and minimum application amount
-- Offer-document trail
-- IPO timeline
-- Financial summary layout
-- Mobile bottom navigation
+### Data foundation now includes
 
-## Important
+- Evidence-bearing IPO field contract
+- Null preservation
+- Verified / provisional / conflict / missing source states
+- Separate market lot, minimum bid quantity, and minimum application amount
+- Publication, observation, collection, and dataset-generation time concepts
+- Correction history
+- Machine-checkable validation
+- GitHub Actions validation
 
-The IPO rows currently shown in the UI are **demo data only**. They are intentionally labeled as such and must not be treated as production market data.
-
-The next engineering step is to connect the interface to the authoritative IPO dataset / recovery pipeline while preserving source provenance and null/conflict handling.
+See `docs/DATA_CONTRACT.md` and `data/ipo-schema.json`.
 
 ## Local preview
 
@@ -56,91 +51,60 @@ Use this section as the starting context when continuing work in a new chat.
 
 ### What happened in the latest run
 
-When GitHub access was restored on 2026-09-21, the accessible `IPO-Tracker` repository was confirmed to be a fresh/empty repository with no historical commits or branches.
+The source-backed production data boundary was established.
 
-The repository was therefore initialized with **UI/UX V1** rather than attempting to recreate an unseen backend or invent production data.
+The UI no longer embeds demo IPO records. It loads `data/ipos.json`, which currently contains zero records because the historical authoritative recovery pipeline is not present in this repository.
 
-### Files added
+New files:
 
 ```
-index.html
-assets/
-  styles.css
-  app.js
+data/
+  ipos.json
+  ipo-schema.json
 docs/
-  PROJECT_STATUS.md
-.github/
-  workflows/
-    deploy-pages.yml
-README.md
+  DATA_CONTRACT.md
+scripts/
+  validate-data.mjs
+.github/workflows/
+  validate-data.yml
 ```
 
-### UI/UX V1 completed
+Updated:
 
-- Responsive light theme
-- Desktop IPO master table
-- Mobile IPO cards
-- Search
-- Mainboard / SME filter
-- Open / Upcoming / Closed / Listed filters
-- IPO detail view
-- Source status badges:
-  - Verified
-  - Provisional
-  - Source Missing
-- Separate fields for:
-  - market lot
-  - minimum bid quantity
-  - minimum application amount
-- IPO timeline
-- Offer-document trail
-- Financial-summary layout
-- Mobile bottom navigation
-- GitHub Pages deployment workflow
+- `assets/app.js` — loads published source-backed records and renders null/source states safely.
+- `index.html` — removes hard-coded sample IPO, financial, timeline, and document values.
+- `docs/PROJECT_STATUS.md` — records the new data foundation and next blocker.
+
+Validation now runs:
+
+```
+node --check assets/app.js
+node scripts/validate-data.mjs
+```
 
 ### Critical data warning
 
-The IPO rows currently inside `assets/app.js` are **demo data only**.
+Do not populate `data/ipos.json` with guessed, estimated, unsupported, or aggregator-derived substitute values.
 
-Do not treat them as real IPO records and do not build additional production logic around those values.
-
-The demo rows should be removed or replaced once the real dataset is connected.
+The next batch should reconnect official-source IPO discovery/recovery for a bounded 2026 batch and publish only records that satisfy the contract.
 
 ### Main blocker
 
-The historical IPO data pipeline / recovered IPO dataset referenced in earlier work is **not present in this repository**.
-
-Do not silently rebuild historical data from guesses.
-
-The next run should first determine where the authoritative current IPO dataset or recovery pipeline exists, or rebuild it explicitly from official sources if it genuinely needs to be recreated.
+The authoritative historical IPO discovery/recovery pipeline is still absent from this repository.
 
 ### Next priority
 
-Connect the UI V1 to the **real source-supported IPO dataset**.
+Rebuild/reconnect official-source IPO recovery and publish the first real 2026 IPO records into `data/ipos.json`.
 
-Preserve the following rules while doing so:
+Preserve:
 
-1. Never invent or estimate missing values.
-2. Preserve nulls and source conflicts.
-3. Retain source URL / document identity where available.
-4. Keep observation date, collection date, and publication date distinct.
-5. Keep market lot, minimum bid quantity, and minimum application amount as separate concepts.
-6. Do not require a Final Prospectus before an IPO can appear in the tracker.
-7. Use the best available official document for each field, including DRHP, RHP, price-band advertisements, exchange notices, prospectus/final prospectus, registrar or issuer disclosures as appropriate.
-8. Clearly label provisional values.
-9. Keep the current light-theme UI direction unless a later product decision explicitly changes it.
-10. Update `docs/PROJECT_STATUS.md` and this handoff after each substantial run.
-
-### Suggested first actions in the next prompt
-
-1. Fetch latest `main`.
-2. Read `README.md` and `docs/PROJECT_STATUS.md`.
-3. Inspect the repository before changing anything.
-4. Verify GitHub Pages deployment health.
-5. Locate or define the authoritative IPO data source/pipeline.
-6. Replace demo data incrementally with real source-backed IPO records.
-7. Test desktop and mobile rendering after data integration.
-8. Commit the coherent change set and update the handoff.
+1. nulls;
+2. source URL/document identity;
+3. publication date;
+4. page/evidence location when available;
+5. collection timestamps;
+6. conflicts and correction history;
+7. separate market lot, minimum bid quantity, and minimum application amount.
 
 ### Product direction
 
