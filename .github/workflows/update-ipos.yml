@@ -16,6 +16,7 @@ on:
       - "scripts/extract-prospectus-fields.mjs"
       - "scripts/test-extract-prospectus-fields.mjs"
       - "scripts/fixtures/prospectus-issue-price-layout.json"
+      - "scripts/fixtures/prospectus-issue-size-layout.json"
       - "scripts/fixtures/abridged-issue-size-layout.json"
       - "scripts/fixtures/sebi-public-issues-sample.html"
       - "scripts/fixtures/sebi-rhp-detail-sample.html"
@@ -66,14 +67,14 @@ jobs:
       - name: Test final Prospectus field extraction
         run: node scripts/test-extract-prospectus-fields.mjs
 
-      - name: Diagnose final Prospectus aggregate issue-size phrases
-        run: node scripts/extract-prospectus-fields.mjs --diagnose-size
-
       - name: Extract explicit Abridged Prospectus fields
         run: node scripts/extract-abridged-fields.mjs
 
       - name: Extract explicit final Prospectus fields
         run: node scripts/extract-prospectus-fields.mjs
+
+      - name: Extract explicit final Prospectus issue size
+        run: node scripts/extract-prospectus-fields.mjs --issue-size
 
       - name: Rebuild published dataset
         run: node scripts/build-published-data.mjs

@@ -118,11 +118,106 @@ export function findAggregateIssueSizeMentions(pageText, page = 1) {
   return mentions;
 }
 
+function aggregateAmountToInr(rawAmount, rawUnit) {
+  const amount = Number(String(rawAmount).replace(/,/g, ""));
+  if (!Number.isFinite(amount) || amount <= 0) return null;
+
+  const unit = String(rawUnit).toLowerCase();
+  const multiplier = unit.startsWith("million")
+    ? 1_000_000
+    : unit.startsWith("lakh")
+      ? 100_000
+      : unit.startsWith("crore")
+        ? 10_000_000
+        : null;
+
+  if (!multiplier) return null;
+  return Math.round(amount * multiplier);
+}
+
+export function parseExplicitAggregateIssueSize(pageText, page = 1) {
+  const text = normalizeText(pageText);
+  if (!text) return null;
+
+  const amount = "([0-9][0-9,]*(?:\\.[0-9]+)?)";
+  const marker = "[*#^†‡]{0,4}";
+  const unit = "(million|lakhs?|crores?)";
+  const currency = "(?:₹|rs\\.?|inr)";
+  const aggregate = "aggregating\\s+(?:to|up\\s+to)";
+  const overallLabel = "\\(\\s*[“\\\"'‘’]?\\s*(?:the\\s+)?(?:offer|issue)\\s*[”\\\"'‘’]?\\s*\\)";
+  const priceLabel = "\\(\\s*(?:the\\s+)?[“\\\"'‘’]?\\s*(?:offer|issue)\\s+price\\s*[”\\\"'‘’]?\\s*\\)";
+
+  const patterns = [
+    new RegExp(
+      priceLabel + "\\s*" + aggregate + "\\s*" + currency + "\\s*" +
+      amount + "\\s*" + marker + "\\s*" + unit + "\\s*" + marker,
+      "i"
+    ),
+    new RegExp(
+      "\\b" + aggregate + "\\s*" + currency + "\\s*" +
+      amount + "\\s*" + marker + "\\s*" + unit + "\\s*" + marker +
+      "\\s*" + overallLabel,
+      "i"
+    ),
+    new RegExp(
+      "\\btotal\\s+(?:offer|issue)\\s+size\\s*[:\\-–—]?\\s*" +
+      currency + "\\s*" + amount + "\\s*" + marker + "\\s*" + unit + "\\s*" + marker,
+      "i"
+    )
+  ];
+
+  for (const pattern of patterns) {
+    const match = text.match(pattern);
+    if (!match) continue;
+
+    const rawAmount = match[1];
+    const rawUnit = match[2];
+    const value = aggregateAmountToInr(rawAmount, rawUnit);
+    if (!value) continue;
+
+    return {
+      value,
+      source_value: "₹" + rawAmount + " " + rawUnit,
+      page
+    };
+  }
+
+  return null;
+}
+
+export function parseExplicitAggregateIssueSizeFromPages(pages) {
+  for (let index = 0; index < (pages || []).length; index += 1) {
+    const extraction = parseExplicitAggregateIssueSize(pages[index], index + 1);
+    if (extraction) return extraction;
+  }
+  return null;
+}
+
 export function applyIssuePriceExtraction(record, document, extraction, collectedAt) {
   if (!document || !extraction) return false;
   if (record.issue_price?.value !== null && record.issue_price?.value !== undefined) return false;
 
   record.issue_price = {
+    value: extraction.value,
+    source_value: extraction.source_value,
+    page: extraction.page,
+    source: {
+      url: document.url,
+      document_type: document.type,
+      document_identity: document.identity ?? null,
+      publication_date: document.publication_date ?? null,
+      collected_at: collectedAt
+    }
+  };
+  record.last_collected_at = collectedAt;
+  return true;
+}
+
+export function applyIssueSizeExtraction(record, document, extraction, collectedAt) {
+  if (!document || !extraction) return false;
+  if (record.issue_size_inr?.value !== null && record.issue_size_inr?.value !== undefined) return false;
+
+  record.issue_size_inr = {
     value: extraction.value,
     source_value: extraction.source_value,
     page: extraction.page,
@@ -288,6 +383,61 @@ async function diagnoseIssueSize() {
   console.log(JSON.stringify({ issue_size_diagnostic_stats: stats }, null, 2));
 }
 
+async function runIssueSize() {
+  ensurePdfTextTool();
+  const now = new Date().toISOString();
+  const stats = {
+    candidates: 0,
+    downloaded: 0,
+    extracted: 0,
+    explicit_size_missing: 0,
+    fetch_errors: 0
+  };
+
+  for (const file of recoveryFiles()) {
+    const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
+    let changed = false;
+
+    for (const record of recovery.records || []) {
+      const document = candidateProspectusIssueSizeDocument(record);
+      if (!document) continue;
+      stats.candidates += 1;
+
+      let pages;
+      try {
+        pages = pagesLayout(await fetchPdf(document.url), MAX_PAGES);
+        stats.downloaded += 1;
+      } catch (error) {
+        stats.fetch_errors += 1;
+        console.warn("Prospectus unavailable for issue-size extraction for " + record.issuer_name + ": " + error.message);
+        continue;
+      }
+
+      const extraction = parseExplicitAggregateIssueSizeFromPages(pages);
+      if (!extraction) {
+        stats.explicit_size_missing += 1;
+        continue;
+      }
+
+      if (applyIssueSizeExtraction(record, document, extraction, now)) {
+        stats.extracted += 1;
+        changed = true;
+        console.log(
+          "Extracted issue size for " + record.issuer_name + ": " +
+          extraction.source_value + " (PDF page " + extraction.page + ")"
+        );
+      }
+    }
+
+    if (changed) {
+      recovery.generated_at = now;
+      fs.writeFileSync(file, JSON.stringify(recovery, null, 2) + "\n");
+    }
+  }
+
+  console.log(JSON.stringify(stats, null, 2));
+}
+
 async function run() {
   ensurePdfTextTool();
   const now = new Date().toISOString();
@@ -347,11 +497,13 @@ const isMain = process.argv[1] &&
   pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
 
 if (isMain) {
-  const action = process.argv.includes("--diagnose-size")
-    ? diagnoseIssueSize
-    : process.argv.includes("--diagnose")
-      ? diagnose
-      : run;
+  const action = process.argv.includes("--issue-size")
+    ? runIssueSize
+    : process.argv.includes("--diagnose-size")
+      ? diagnoseIssueSize
+      : process.argv.includes("--diagnose")
+        ? diagnose
+        : run;
   action().catch((error) => {
     console.error(error);
     process.exit(1);
