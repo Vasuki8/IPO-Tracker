@@ -1,10 +1,31 @@
 import assert from "node:assert/strict";
 import {
+  applyListingDate,
   applyMinimumBid,
   listingDateCandidatesFromIpoDetail,
+  parseListingDateFromIpoDetail,
   parseMinimumBidFromIpoDetail,
   resolveNseIdentity
 } from "./extract-nse-ipo-detail-fields.mjs";
+
+const listingDate = parseListingDateFromIpoDetail({
+  metaInfo: { listingDate: "2026-09-17" }
+});
+assert.equal(listingDate.value, "2026-09-17");
+assert.equal(listingDate.source_key, "listingDate");
+
+assert.equal(
+  parseListingDateFromIpoDetail({ metaInfo: { listingDate: "17-Sep-2026" } }).value,
+  null
+);
+assert.equal(
+  parseListingDateFromIpoDetail({ metaInfo: { listingDate: "2026-02-30" } }).value,
+  null
+);
+assert.equal(
+  parseListingDateFromIpoDetail({ metaInfo: { issueEndDate: "2026-09-17" } }).value,
+  null
+);
 
 const listingDateCandidates = listingDateCandidatesFromIpoDetail({
   metaInfo: {
@@ -131,6 +152,31 @@ assert.equal(record.minimum_bid_quantity.value, 70);
 assert.equal(record.minimum_bid_quantity.status, "verified");
 assert.equal(record.minimum_bid_quantity.source.document_type, "NSE Issue Information API");
 assert.equal(record.documents.length, 1);
+
+assert.equal(
+  applyListingDate(
+    record,
+    { value: "2026-10-01", source_value: "2026-10-01", source_key: "listingDate" },
+    "https://www.nseindia.com/api/ipo-detail?symbol=EXAMPLE&series=EQ",
+    "2026-10-02T12:30:00Z"
+  ),
+  true
+);
+assert.equal(record.listing_date.value, "2026-10-01");
+assert.equal(record.listing_date.status, "verified");
+assert.equal(record.listing_date.source.document_type, "NSE Issue Information API");
+assert.equal(record.documents.length, 1);
+
+assert.equal(
+  applyListingDate(
+    record,
+    { value: "2026-10-02", source_value: "2026-10-02", source_key: "listingDate" },
+    "https://www.nseindia.com/api/ipo-detail?symbol=EXAMPLE&series=EQ",
+    "2026-10-03T12:30:00Z"
+  ),
+  false
+);
+assert.equal(record.listing_date.value, "2026-10-01");
 
 const legacyRecord = {
   issuer_name: "Legacy Limited",
