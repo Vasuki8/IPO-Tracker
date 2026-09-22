@@ -6,7 +6,7 @@ A source-first Indian IPO research interface with automated official-source disc
 
 The public UI consumes the source-backed dataset at `data/ipos.json`.
 
-As of the latest production sync on 2026-09-22, the published 2026 dataset contains **25 real IPO issuers**. The tracker does not use prototype/demo market rows as production fallback data.
+As of the latest production sync on 2026-09-22, the published 2026 dataset contains **26 real IPO issuers**. The tracker does not use prototype/demo market rows as production fallback data.
 
 ### Data foundation
 
@@ -394,22 +394,86 @@ This confirms the remaining nulls are currently **source-null**, not collection 
 
 Minimum-bid coverage is now **19/25 present, 6/25 missing**.
 
+### Latest listing-date recovery result
+
+PR #46 — `Diagnose explicit NSE ipo-detail listing dates` — production-verified the field shape before writes.
+
+Production run `35731645033` queried **26/26** deterministic NSE identities successfully:
+
+- API successes: 26;
+- responses with explicit listing date: 10;
+- fetch errors: 0.
+
+The live source shape was consistent:
+
+- field: `metaInfo.listingDate`;
+- format: strict ISO `YYYY-MM-DD`;
+- current/upcoming issues without a published listing date returned no usable field.
+
+Observed explicit dates included ARCIL `2026-09-17`, ESDS `2026-09-04`, Qualiance `2026-09-11`, Pranav `2026-09-15`, and Veegaland `2026-09-18`.
+
+PR #47 merged at `c6134bbea181c46e97ade256c288289c915fff16` and promoted only that observed shape into production extraction.
+
+Extractor rules:
+
+- official NSE `/api/ipo-detail` only;
+- exact `metaInfo.listingDate` only;
+- strict valid ISO `YYYY-MM-DD` parsing;
+- no inference from close date, T+ schedules, status or settlement conventions;
+- fill missing `listing_date` only;
+- retain exact endpoint identity and collection timestamp;
+- preserve null for absent or unparseable values.
+
+Production run `35732506571`:
+
+- candidates: 26;
+- API successes: 26;
+- extracted: **10**;
+- missing: 16;
+- unparseable: 0;
+- fetch errors: 0.
+
+Published verified listing dates:
+
+- Asset Reconstruction Company (India) Limited — **2026-09-17**;
+- ESDS Software Solution Limited — **2026-09-04**;
+- Kanohar Electricals Limited — **2026-09-16**;
+- Karamtara Engineering Limited — **2026-09-17**;
+- LCC Projects Limited — **2026-09-17**;
+- Manipal Payment and Identity Solutions Limited — **2026-09-17**;
+- Pranav Constructions Limited — **2026-09-15**;
+- Qualiance International Limited — **2026-09-11**;
+- Rentomojo Limited — **2026-09-17**;
+- Veegaland Developers Limited — **2026-09-18**.
+
+Source-backed bot commit:
+
+`a58cdac941a4a9116672951111e63b412ec2356e`
+
+The bot diff changed only recovery data and generated `data/ipos.json`. GitHub Pages deployment for the data revision passed in run `35732898054`.
+
+Current listing-date coverage is **10/26 present, 16/26 missing**. The remaining nulls are automatically rechecked as NSE publishes `metaInfo.listingDate`.
+
 ### Recommended next coherent batch
 
-Use the already-integrated official NSE `/api/ipo-detail` source for **listing-date recovery**.
+Close the final **price-band** gap before moving deeper into lower-priority fields.
 
-Current published `listing_date` coverage is **0/25**. The same official payload has a `metaInfo` section and should be inspected across multiple issuers for explicit listing-date fields before enabling writes.
+Current price-band coverage is **25/26**. The only missing record is:
+
+- **Axiom Gas Engineering Limited**
+
+Axiom already has deterministic NSE identity `AXIOMGAS / SME`. Inspect its official NSE `/api/ipo-detail` `issueInfo.dataList` for an explicit `Price Range` / `Price Band` value and add a bounded extractor only if the official payload states it directly.
 
 Acceptance rules:
 
 - official NSE endpoint only;
-- use retained deterministic symbol/series identity;
-- accept only an explicit listing date from the payload;
-- retain endpoint URL/identity and collection time;
-- fill missing `listing_date` only;
-- test multiple mainboard/SME records;
-- preserve null for absent/unparseable dates;
-- do not infer listing date from close date or settlement conventions.
+- exact retained symbol/series identity;
+- explicit source text only;
+- preserve lower/upper bounds separately;
+- do not infer from issue price, market lot, subscription rows or third-party sources;
+- retain exact endpoint evidence and collection time;
+- fill the missing price band only;
+- preserve null if NSE does not publish an explicit supported range.
 
 ### Product direction
 
