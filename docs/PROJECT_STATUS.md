@@ -121,3 +121,15 @@ Do not use third-party notice mirrors as production sources. If official dynamic
 - First recovery merge: `30d73b04677fda0f5d6c17a688f16fa50809840b`
 - First recovery deployment bookkeeping: `fc2c995b3e59e75eaacd3bdfec474a7cdf07aa6a`
 - Validation and GitHub Pages deployment passed for the prior production head.
+
+## Latest publication
+
+- Pull request: #3 — `Deepen Hero Motors and Rentomojo source evidence`
+- Squash-merged to `main`: `5ecbcc4615c523d4bdafc56632b17ee6d4762722`
+- Post-merge data-contract validation: passed
+- Post-merge GitHub Pages deployment: passed
+- Published dataset schema: `1.1.0`
+- Hero Motors final issue price ₹84 is published with issuer-Prospectus evidence.
+- Rentomojo Mainboard classification is published with NSE Public Announcement evidence.
+- Unsupported final/listing fields remain null.
+- Direct visual retrieval of the public GitHub Pages URL remains unavailable from this development session; deployment workflow and repository artifact state were verified instead.
