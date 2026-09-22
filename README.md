@@ -24,7 +24,7 @@ See `docs/DATA_CONTRACT.md` and `data/ipo-schema.json`.
 
 ## Live automation
 
-The tracker now has an automated discovery/publishing loop.
+The tracker now has an automated discovery, official-document enrichment, and publishing loop.
 
 `.github/workflows/update-ipos.yml` runs **hourly** and:
 
@@ -152,9 +152,9 @@ Hourly NSE discovery can automatically publish:
 
 ### Main remaining limitation
 
-The discovery/publish loop is live, but **deep offer-document enrichment is not fully automated yet**.
+The discovery/publish loop is live and official SEBI document attachment is now automated, but **field extraction from those offer documents is not automated yet**.
 
-Newly discovered IPOs can therefore appear quickly while still showing missing fields such as:
+Newly discovered IPOs can therefore gain RHP/Abridged/Prospectus links automatically while still showing missing fields such as:
 
 - aggregate issue size in INR;
 - minimum bid quantity where not separately stated;
@@ -164,20 +164,13 @@ Newly discovered IPOs can therefore appear quickly while still showing missing f
 - sector;
 - richer DRHP/RHP/Prospectus evidence.
 
-The next source-automation layer should attach official SEBI / exchange / issuer offer-document evidence to newly discovered IPOs rather than relying on manual recovery prompts.
+The next source-automation layer should parse a bounded set of fields from retained official offer documents, with explicit source precedence and page-level evidence, rather than inferring values from filenames or price-band caps.
 
 ### Recommended next coherent batch
 
-Automate official filing/document discovery and enrichment for newly detected IPOs, starting with SEBI RHP / Abridged Prospectus / Prospectus matching.
+After verifying the SEBI document matcher in a real scheduled/network run, automate **one bounded field-extraction family** from already retained official documents.
 
-Acceptance criteria should include:
-
-1. deterministic issuer matching;
-2. retained official document identity/URL/publication date;
-3. no guessing when a match is ambiguous;
-4. no weakening of null/conflict rules;
-5. source-level tests across several issuers;
-6. successful scheduled-run integration without breaking the current live discovery loop.
+A strong next candidate is extracting explicit issue-size / final-price values from readable Abridged Prospectus or final Prospectus documents while retaining page-level evidence and leaving inaccessible documents untouched.
 
 ### Product direction
 
