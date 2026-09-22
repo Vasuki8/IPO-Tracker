@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import {
   buildNewRecoveryRecord,
+  enrichExistingRecord,
   mapBoard,
   mapNseStatus,
   mergeFeeds,
@@ -74,4 +75,75 @@ assert.equal(record.issue_size_inr, undefined);
 assert.equal(record.board_evidence.length, 1);
 assert.equal(record.status_evidence.length, 1);
 
-console.log("NSE live sync parser tests passed.");
+const liveIssue = {
+  companyName: "Manual Recovery Limited",
+  issueStartDate: "23-Sep-2026",
+  issueEndDate: "25-Sep-2026",
+  issuePrice: "Rs.200 to Rs.220",
+  lotSize: "50",
+  series: "EQ",
+  status: "Active",
+  symbol: "MANUAL",
+  __source_url: "https://www.nseindia.com/api/all-upcoming-issues?category=ipo"
+};
+
+const manualRecord = {
+  id: "manual-recovery-limited",
+  issuer_name: "Manual Recovery Limited",
+  board: null,
+  status: null,
+  nse_source: {
+    url: "https://www.nseindia.com/market-data/issue-information?series=EQ&symbol=MANUAL&type=Active",
+    document_type: "NSE Issue Information",
+    document_identity: "NSE Issue Information — MANUAL",
+    publication_date: null,
+    collected_at: "2026-09-21T00:00:00Z"
+  },
+  terms: {
+    price_band: null,
+    market_lot: null,
+    minimum_bid_quantity: null,
+    open_date: null,
+    close_date: null
+  },
+  documents: [],
+  board_evidence: [],
+  status_evidence: []
+};
+
+assert.equal(enrichExistingRecord(manualRecord, liveIssue, "2026-09-22T04:00:00Z"), true);
+assert.equal(manualRecord.board, "Mainboard");
+assert.equal(manualRecord.status, "open");
+assert.equal(manualRecord.terms.price_band, null);
+assert.equal(manualRecord.terms.market_lot, null);
+assert.equal(manualRecord.terms.open_date, null);
+assert.equal(manualRecord.terms.close_date, null);
+
+const liveRecord = buildNewRecoveryRecord({
+  companyName: "Live Recovery Limited",
+  issueStartDate: "",
+  issueEndDate: "",
+  issuePrice: "",
+  series: "EQ",
+  status: "Forthcoming",
+  symbol: "LIVE",
+  __source_url: "https://www.nseindia.com/api/all-upcoming-issues?category=ipo"
+}, "2026-09-22T03:30:00Z");
+
+assert.equal(enrichExistingRecord(liveRecord, {
+  companyName: "Live Recovery Limited",
+  issueStartDate: "24-Sep-2026",
+  issueEndDate: "28-Sep-2026",
+  issuePrice: "Rs.300 to Rs.320",
+  lotSize: "45",
+  series: "EQ",
+  status: "Active",
+  symbol: "LIVE",
+  __source_url: "https://www.nseindia.com/api/all-upcoming-issues?category=ipo"
+}, "2026-09-22T04:00:00Z"), true);
+assert.deepEqual(liveRecord.terms.price_band, { min: 300, max: 320 });
+assert.equal(liveRecord.terms.market_lot, 45);
+assert.equal(liveRecord.terms.open_date, "2026-09-24");
+assert.equal(liveRecord.terms.close_date, "2026-09-28");
+
+console.log("NSE live sync parser and provenance tests passed.");
