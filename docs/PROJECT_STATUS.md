@@ -4,186 +4,162 @@ Last updated: 2026-09-21
 
 ## Current state
 
-The tracker now publishes **five real 2026 IPO records** from retained official evidence:
+The tracker now publishes **eight real 2026 IPO records** from retained official evidence:
 
 - Hero Motors Limited
 - Rentomojo Limited
 - Jindal Supreme (India) Limited
 - Manipal Payment and Identity Solutions Limited
 - SS Retail Limited
+- Kanohar Electricals Limited
+- LCC Projects Limited
+- Veegaland Developers Limited
 
-The recovery pipeline remains deliberately source-first: unsupported fields stay null rather than being estimated, inferred, or copied from aggregators.
+The recovery pipeline remains source-first. Unsupported values stay null instead of being inferred, estimated, arithmetically reconstructed, or copied from aggregators.
 
 ## Completed in latest batch
 
-Added three additional 2026 IPO issuers using the proven official NSE/SEBI source pattern.
+The run first attempted the documented priority: deepen Jindal Supreme, Manipal Payment, and SS Retail from directly retrievable official final Prospectus copies.
 
-### Jindal Supreme (India) Limited
+That path remained blocked:
+
+- Jindal Supreme: SEBI final Prospectus filing is verified, but the attached final PDF is not directly readable through the available tooling and the issuer site does not currently expose a usable final Prospectus copy.
+- Manipal Payment: an official NSE archive final-Prospectus URL can be identified, but the available web reader cannot retrieve its contents reliably enough to extract production values.
+- SS Retail: SEBI final Prospectus filing is verified, but the final document remains behind an inaccessible/dynamic document path.
+
+No cap-price substitution or mirror data was used.
+
+Per the development-process fallback rule, the run then completed the next small official-source discovery batch.
+
+### Kanohar Electricals Limited
 
 Verified from NSE Issue Information:
 
-- price band: ₹88–₹93
-- market lot: 161 shares
-- minimum bid quantity: 161 shares
-- offer period: September 16–18, 2026
+- price band: ₹601–₹632
+- market lot: 23 shares
+- minimum bid quantity: 23 shares
+- offer period: September 8–10, 2026
 
 Retained documents:
 
-- NSE Issue Information — JSIPL
-- SEBI RHP filing dated September 8, 2026
-- SEBI Prospectus filing dated September 21, 2026
+- NSE Issue Information — KANOHAR
+- SEBI RHP filing dated September 3, 2026
+- SEBI final Prospectus filing dated September 15, 2026
 
 Intentionally null:
 
 - board
 - lifecycle status
 - final issue price
-- issue size in INR
+- aggregate issue size in INR
 - listing date
 - minimum application amount
 - sector
 
-### Manipal Payment and Identity Solutions Limited
+### LCC Projects Limited
 
 Verified from NSE Issue Information:
 
-- price band: ₹322–₹339
-- market lot: 44 shares
-- minimum bid quantity: 44 shares
+- price band: ₹139–₹146
+- market lot: 102 shares
+- minimum bid quantity: 102 shares
 - offer period: September 9–11, 2026
-
-Verified from an NSE-hosted Public Announcement:
-
-- board: Mainboard
 
 Retained documents:
 
-- NSE Public Announcement dated June 28, 2025
-- NSE Issue Information — MPIMANIPAL
+- NSE Issue Information — LCCPROJECT
 - SEBI RHP filing dated September 4, 2026
-- SEBI Prospectus filing dated September 21, 2026
-
-Intentionally null:
-
-- lifecycle status
-- final issue price
-- issue size in INR
-- listing date
-- minimum application amount
-- sector
-
-### SS Retail Limited
-
-Verified from NSE Issue Information:
-
-- price band: ₹403–₹424
-- market lot: 35 shares
-- minimum bid quantity: 35 shares
-- offer period: September 16–18, 2026
-
-Retained documents:
-
-- NSE Issue Information — SSRETAIL
-- SEBI RHP filing dated September 9, 2026
-- SEBI Prospectus filing dated September 21, 2026
+- SEBI final Prospectus filing dated September 17, 2026
 
 Intentionally null:
 
 - board
 - lifecycle status
 - final issue price
-- issue size in INR
+- aggregate issue size in INR
 - listing date
 - minimum application amount
 - sector
 
-## Why final issue price / issue size were not added
+The NSE issue description contains a fresh-issue amount plus an OFS share count. The tracker did **not** manufacture a single INR issue-size value from those heterogeneous components.
 
-The SEBI final Prospectus filing pages were directly verified for all three new issuers.
+### Veegaland Developers Limited
 
-However, the attached final Prospectus PDFs were not reliably readable by the available web tooling in this run:
+Verified from NSE Issue Information:
 
-- Jindal Supreme's SEBI attachment opened only through the SEBI PDF viewer shell; the direct PDF URL was not retrievable.
-- Manipal Payment's SEBI attachment returned a cache-miss error.
-- SS Retail's SEBI attachment opened only through the SEBI PDF viewer shell; the direct PDF URL was not retrievable.
+- price band: ₹130–₹140
+- market lot: 107 shares
+- minimum bid quantity: 107 shares
+- offer period: September 10–15, 2026
 
-No final issue price was inferred from the upper end of the price band.
+Retained documents:
 
-No issue size was arithmetically reconstructed from separate fresh-issue and OFS components.
+- NSE Issue Information — VEEGALAND
+- SEBI RHP filing dated August 31, 2026
+- SEBI final Prospectus filing dated September 16, 2026
 
-## Existing pilot records
+Intentionally null:
 
-### Hero Motors Limited
+- board
+- lifecycle status
+- final issue price
+- aggregate issue size in INR
+- listing date
+- minimum application amount
+- sector
 
-Verified:
+Although NSE describes the fresh issue as aggregating up to ₹21,000 lakhs, the production aggregate issue-size field remains null until final-document evidence establishes the value under the project's final-term rules.
 
-- price band: ₹79–₹84
-- final issue price: ₹84
-- issue size: ₹10,000 million
-- market lot: 178 shares
-- minimum bid quantity: 178 shares
-- offer period: September 16–18, 2026
+## Existing five records
 
-### Rentomojo Limited
-
-Verified:
-
-- board: Mainboard
-- price band: ₹384–₹404
-- final issue price: ₹404
-- issue size: ₹12,555.67 million
-- market lot: 37 shares
-- minimum bid quantity: 37 shares
-- offer period: September 9–11, 2026
+Existing Hero Motors, Rentomojo, Jindal Supreme, Manipal Payment, and SS Retail values and freshness timestamps were not modified by this batch.
 
 ## Data integrity rules currently enforced
 
 - Published schema version: `1.1.0`.
-- `data/ipos.json` must be exactly synchronized with the retained recovery manifest.
+- `data/ipos.json` must exactly match the retained recovery manifest.
 - Verified values require retained evidence.
 - Missing fields must keep `value: null`.
 - Non-null board/status values require companion provenance.
 - Existing evidence collection timestamps are preserved.
 - `last_collected_at` is tracked per record.
-- Unsupported source hosts are rejected by the recovery publisher.
-- Market lot, minimum bid quantity, and minimum application amount remain separate concepts.
+- Unsupported source hosts are rejected.
+- Market lot, minimum bid quantity, and minimum application amount remain separate.
 
 ## Tests for latest batch
 
-GitHub Actions passed on `recover-2026-batch-2` with:
+GitHub Actions passed on `recover-2026-batch-3`:
 
 - `node --check assets/app.js`
 - `node scripts/build-published-data.mjs --check`
 - `node scripts/validate-data.mjs`
 
-Diff review must confirm before publication:
+Release diff review must confirm:
 
-- exactly three new issuer records are added;
-- existing Hero/Rentomojo values are unchanged;
-- new final issue prices remain null;
-- new issue-size fields remain null;
-- Manipal board is Mainboard with retained NSE evidence;
-- no listing date/status is guessed;
-- no minimum application amount is derived;
-- no unrelated UI or product feature is changed.
+- published issuer count becomes 8;
+- exactly 3 issuer records are added;
+- the previous 5 records are unchanged;
+- all unsupported final/listing/application fields remain null;
+- no issue-size arithmetic is introduced;
+- no unrelated UI/product feature is changed.
 
 ## Earliest unfinished priority
 
 P1 — Data correctness.
 
-The 2026 universe remains incomplete, but the source family now works across five issuers.
+The 2026 universe is still incomplete. The NSE/SEBI discovery path is now proven across eight issuers, while final-document retrieval remains uneven across issuer/source families.
 
 ## Recommended next coherent batch
 
-Deepen the three newly added issuers **only where directly retrievable official final documents permit it**.
+Try one bounded final-document recovery pass for:
 
-Priority:
+- Kanohar Electricals Limited
+- LCC Projects Limited
+- Veegaland Developers Limited
 
-1. locate official NSE archive or issuer-hosted final Prospectus copies for Jindal Supreme, Manipal Payment, and SS Retail;
-2. recover final issue price and aggregate issue size only when explicitly stated;
-3. retain page/evidence location and collection time;
-4. preserve listing/status fields as null unless official listing evidence is directly accessible;
-5. if final-document extraction remains blocked, add the next small 2026 issuer batch rather than using mirrors or guesses.
+Look specifically for directly retrievable official NSE archive or issuer-hosted final Prospectus copies and recover final issue price / aggregate issue size only when explicitly stated.
+
+If those final documents remain inaccessible, do not keep retrying the same blocked paths. Continue with another 2–5 issuer 2026 official-source batch and leave final fields null.
 
 The BSE dynamic listing-notice blocker remains documented and should not be bypassed with third-party mirrors.
 
@@ -197,21 +173,7 @@ The BSE dynamic listing-notice blocker remains documented and should not be bypa
 - Final-term enrichment merge: `5ecbcc4615c523d4bdafc56632b17ee6d4762722`
 - PR #4: recover Rentomojo final Prospectus terms
 - Rentomojo final-terms merge: `9895698d87513a2e037f95cf5cf4f2886590df9a`
-- Prior production bookkeeping head: `b17f9586ae3131bd1fda312f598d4b79d9a404a2`
+- PR #5: second official-source 2026 IPO batch
+- Second batch merge: `8206b58574610103e18d86bd719b7169b145610f`
+- Prior production bookkeeping head: `0515407dc7d38ce7a08790f61fdb69ef01eefa26`
 - Validation and GitHub Pages deployment passed for the prior production head.
-
-## Latest publication
-
-- Pull request: #5 — `Add second official-source 2026 IPO batch`
-- Squash-merged to `main`: `8206b58574610103e18d86bd719b7169b145610f`
-- Post-merge data-contract validation: passed
-- Post-merge GitHub Pages deployment: passed
-- Pages artifact was generated from the merged revision.
-- Published issuer count: 5
-- New published issuers:
-  - Jindal Supreme (India) Limited
-  - Manipal Payment and Identity Solutions Limited
-  - SS Retail Limited
-- Hero Motors and Rentomojo published values/freshness remained unchanged.
-- Final issue price, issue size, listing date/status, and minimum application fields that lacked direct official evidence remain null.
-- Direct retrieval of `https://vasuki8.github.io/IPO-Tracker/` remains unavailable from the web reader in this development session; workflow and artifact revision were verified instead.
