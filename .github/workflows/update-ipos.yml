@@ -32,6 +32,8 @@ on:
       - "scripts/test-extract-nse-ipo-detail-fields.mjs"
       - "scripts/diagnose-nse-past-issues.mjs"
       - "scripts/test-diagnose-nse-past-issues.mjs"
+      - "scripts/extract-nse-past-issues-fields.mjs"
+      - "scripts/test-extract-nse-past-issues-fields.mjs"
       - ".github/workflows/update-ipos.yml"
 
 permissions:
@@ -89,11 +91,11 @@ jobs:
       - name: Test NSE ipo-detail field extraction
         run: node scripts/test-extract-nse-ipo-detail-fields.mjs
 
-      - name: Test NSE public past-issues parser
-        run: node scripts/test-diagnose-nse-past-issues.mjs
+      - name: Test NSE public past-issues final-price extraction
+        run: node scripts/test-extract-nse-past-issues-fields.mjs
 
-      - name: Diagnose NSE public past-issues final price
-        run: node scripts/diagnose-nse-past-issues.mjs
+      - name: Extract NSE public past-issues final price
+        run: node scripts/extract-nse-past-issues-fields.mjs
 
       - name: Extract NSE Issue Information price band
         run: node scripts/extract-nse-ipo-detail-fields.mjs --price-band
