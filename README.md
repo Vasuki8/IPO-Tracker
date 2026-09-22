@@ -6,7 +6,7 @@ A source-first Indian IPO research interface.
 
 The public UI now consumes a dedicated source-backed dataset at `data/ipos.json`.
 
-The source-backed 2026 recovery dataset now contains five real IPO issuers. Prototype IPO rows and illustrative market values are not used as production fallback data.
+The source-backed 2026 recovery dataset now contains eight real IPO issuers. Prototype IPO rows and illustrative market values are not used as production fallback data.
 
 ### Data foundation now includes
 
@@ -51,29 +51,21 @@ Use this section as the starting context when continuing work in a new chat.
 
 ### What happened in the latest run
 
-The second 2026 recovery batch added three official-source IPO records:
+The run first retried official final-document recovery for Jindal Supreme, Manipal Payment and SS Retail. Their final filing trails are verified, but the usable final-document contents remain inaccessible to the current web tooling, so no unsupported final values were added.
 
-- Jindal Supreme (India) Limited
-- Manipal Payment and Identity Solutions Limited
-- SS Retail Limited
+The fallback batch then added three more source-backed 2026 IPO records:
 
-For all three, NSE Issue Information now supplies verified price band, market lot, minimum bid quantity and offer dates.
+- Kanohar Electricals Limited
+- LCC Projects Limited
+- Veegaland Developers Limited
 
-Manipal is additionally marked Mainboard using an NSE-hosted Public Announcement that explicitly describes the proposed IPO as a Main Board offering.
+For all three, NSE Issue Information supplies verified price band, market lot, minimum bid quantity and offer dates. Each record retains exact SEBI RHP and final Prospectus filing pages.
 
-Each issuer retains its SEBI RHP and final Prospectus filing trail.
+Final issue price, aggregate issue size, listing date/status, minimum application amount, board and sector remain null unless directly supported by the retained official evidence.
 
-Final issue price and aggregate issue size remain null for the three new records because the attached SEBI final-Prospectus PDFs were not reliably retrievable in this run. The tracker does not substitute the cap price or derive aggregate values from separate components.
+This brings the published 2026 dataset to **8 issuers**.
 
 Recovery input remains in `data/recovery/2026/nse-issue-information.json` and is transformed deterministically into `data/ipos.json` by `scripts/build-published-data.mjs`.
-
-Validation now runs:
-
-```
-node --check assets/app.js
-node scripts/build-published-data.mjs --check
-node scripts/validate-data.mjs
-```
 
 ### Critical data warning
 
@@ -87,7 +79,7 @@ Recovery is deterministic but not yet an automated web collector, and the 2026 I
 
 ### Next priority
 
-Try to deepen Jindal Supreme, Manipal Payment and SS Retail from directly retrievable official NSE-archive or issuer-hosted final Prospectus copies. Add final issue price / issue size only when explicitly supported. If those documents remain inaccessible, continue expanding the 2026 universe with the same small-batch official-source pattern instead of guessing.
+Attempt one bounded final-document recovery pass for Kanohar Electricals, LCC Projects and Veegaland Developers using directly retrievable official NSE archive or issuer-hosted Prospectus copies. If those remain inaccessible, move to the next small 2026 issuer batch rather than retrying blocked document paths or guessing.
 
 Preserve:
 
