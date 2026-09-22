@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="IPO Tracker UI/UX V1 — source-first Indian IPO research interface.">
+  <title>IPO Tracker</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <button class="brand" data-home aria-label="IPO Tracker home">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 18V9M10 18V5M16 18v-7M22 18V3"/></svg>
+        </span>
+        <span>IPO Tracker</span>
+        <span class="prototype-tag">UI V1</span>
+      </button>
+
+      <nav class="desktop-nav" aria-label="Primary">
+        <button class="nav-link active" data-home>IPOs</button>
+        <button class="nav-link" data-placeholder="Calendar">Calendar</button>
+        <button class="nav-link" data-placeholder="Compare">Compare</button>
+        <button class="nav-link" data-placeholder="Data & Sources">Data & Sources</button>
+      </nav>
+
+      <div class="top-actions">
+        <label class="mini-search">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="topSearch" type="search" placeholder="Search IPOs…" autocomplete="off">
+        </label>
+        <button class="icon-button" data-placeholder="Watchlist" aria-label="Watchlist">
+          <svg viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section id="homeView">
+      <div class="hero-grid">
+        <section class="card hero">
+          <div class="eyebrow">Indian IPO intelligence</div>
+          <h1>Explore IPOs with evidence behind the numbers.</h1>
+          <p class="hero__copy">A source-first interface for discovering IPOs, understanding application terms, and seeing whether important fields are verified, provisional, or still missing.</p>
+          <label class="hero-search">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input id="heroSearch" type="search" placeholder="Search company, sector or IPO…" autocomplete="off">
+          </label>
+        </section>
+
+        <aside class="card trust-card">
+          <div class="trust-card__icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <div>
+            <h2>Trust is a product feature.</h2>
+            <p>Offer documents, exchange notices and issuer disclosures stay attached to the values they support.</p>
+          </div>
+          <div class="demo-note"><span></span> UI prototype — current rows use demo data</div>
+        </aside>
+      </div>
+
+      <section class="metric-grid" aria-label="IPO overview">
+        <article class="card metric"><span>Open now</span><strong id="metricOpen">0</strong><small>Currently accepting bids</small></article>
+        <article class="card metric"><span>Upcoming</span><strong id="metricUpcoming">0</strong><small>Opening next</small></article>
+        <article class="card metric"><span>Closing soon</span><strong>1</strong><small>Demo lifecycle signal</small></article>
+        <article class="card metric"><span>Recently listed</span><strong id="metricListed">0</strong><small>Completed issues</small></article>
+      </section>
+
+      <section class="card market-card">
+        <div class="market-card__head">
+          <div>
+            <h2>IPO market</h2>
+            <p>Homepage master table · demo data</p>
+          </div>
+          <div class="filters">
+            <div class="segment" id="boardFilter" aria-label="Board filter">
+              <button class="active" data-board="all">All</button>
+              <button data-board="mainboard">Mainboard</button>
+              <button data-board="sme">SME</button>
+            </div>
+            <div class="segment" id="statusFilter" aria-label="Status filter">
+              <button class="active" data-status="all">All</button>
+              <button data-status="open">Open</button>
+              <button data-status="upcoming">Upcoming</button>
+              <button data-status="closed">Closed</button>
+              <button data-status="listed">Listed</button>
+            </div>
+            <button class="filter-button" data-placeholder="Advanced filters">Filters <span>⚙</span></button>
+          </div>
+        </div>
+
+        <div class="desktop-table">
+          <table>
+            <thead>
+              <tr><th>Company</th><th>Status</th><th>Price</th><th>Lot / Minimum</th><th>Dates</th><th>Issue size</th><th>Source status</th><th></th></tr>
+            </thead>
+            <tbody id="ipoRows"></tbody>
+          </table>
+        </div>
+        <div id="mobileCards" class="mobile-cards"></div>
+        <div id="emptyState" class="empty-state" hidden>No IPOs match these filters.</div>
+      </section>
+    </section>
+
+    <section id="detailView" class="detail-view" hidden>
+      <button class="back-link" data-home>← Back to IPOs</button>
+
+      <section class="card detail-hero">
+        <div class="detail-hero__top">
+          <div class="company-identity">
+            <div id="detailLogo" class="company-logo company-logo--large">AM</div>
+            <div>
+              <div class="detail-meta-line">
+                <span id="detailStatus" class="status status--open">OPEN</span>
+                <span id="detailBoard">Mainboard</span>
+                <span>·</span>
+                <span id="detailSector">Auto Components</span>
+              </div>
+              <h1 id="detailName">Aarav Mobility Limited</h1>
+            </div>
+          </div>
+          <div class="detail-actions">
+            <button class="button button--secondary" data-placeholder="Watchlist">☆ Watch</button>
+            <button class="button button--primary" id="jumpSources">View sources</button>
+          </div>
+        </div>
+
+        <div class="detail-kpis">
+          <div class="price-kpi"><strong id="detailPrice">₹520 – ₹548</strong><span>Price band</span></div>
+          <div><strong id="detailIssue">₹900 Cr</strong><span>Issue size</span></div>
+          <div><strong id="detailLot">27 shares</strong><span>Market lot</span></div>
+          <div><strong id="detailMinimum">₹14,796</strong><span>Minimum application</span></div>
+        </div>
+
+        <div class="verification-strip">
+          <span id="detailSourceBadge" class="source source--verified">✓ VERIFIED</span>
+          <span>Price source:</span>
+          <strong id="detailSource">Price Band Advertisement</strong>
+          <span>·</span>
+          <span id="detailSourceDate">18 Sep 2026</span>
+        </div>
+      </section>
+
+      <nav class="detail-tabs" aria-label="IPO sections">
+        <button class="active">Overview</button>
+        <button data-placeholder="Subscription">Subscription</button>
+        <button id="jumpFinancials">Financials</button>
+        <button data-placeholder="Valuation">Valuation</button>
+        <button id="jumpTimeline">Timeline</button>
+        <button id="jumpDocuments">Documents</button>
+      </nav>
+
+      <div class="detail-grid">
+        <div class="detail-main">
+          <section class="card section-card">
+            <div class="section-heading">
+              <div><h2>IPO details</h2><p>Application terms remain distinct rather than being collapsed into one field.</p></div>
+              <span class="source source--verified">✓ VERIFIED</span>
+            </div>
+            <dl class="detail-list">
+              <div><dt>Issue type</dt><dd>Book Built Issue</dd></div>
+              <div><dt>Face value</dt><dd>₹10</dd></div>
+              <div><dt>Price band</dt><dd id="detailPrice2">₹520 – ₹548</dd></div>
+              <div><dt>Market lot</dt><dd id="detailLot2">27 shares</dd></div>
+              <div><dt>Minimum bid quantity</dt><dd id="detailBid">27 shares</dd></div>
+              <div><dt>Minimum application amount</dt><dd id="detailMinimum2">₹14,796</dd></div>
+              <div><dt>Issue size</dt><dd id="detailIssue2">₹900 Cr</dd></div>
+              <div><dt>Fresh issue</dt><dd>₹600 Cr</dd></div>
+              <div><dt>Offer for sale</dt><dd>₹300 Cr</dd></div>
+            </dl>
+          </section>
+
+          <section class="card section-card" id="financials">
+            <div class="section-heading">
+              <div><h2>Financial performance</h2><p>Visual hierarchy for source-backed historical financials.</p></div>
+              <button class="text-button" data-placeholder="Full financial statements">Full statements →</button>
+            </div>
+            <div class="financial-grid">
+              <article><span>Revenue</span><strong>₹1,220 Cr</strong><small>↑ 18.4%</small></article>
+              <article><span>PAT</span><strong>₹126 Cr</strong><small>↑ 11.7%</small></article>
+              <article><span>EBITDA</span><strong>₹210 Cr</strong><small>↑ 15.2%</small></article>
+              <article><span>ROE</span><strong>18.2%</strong><small>FY26</small></article>
+            </div>
+            <div class="chart-shell" aria-label="Illustrative financial trend">
+              <svg viewBox="0 0 800 190" preserveAspectRatio="none">
+                <polyline class="chart-line chart-line--revenue" points="24,150 270,116 516,84 776,40"/>
+                <polyline class="chart-line chart-line--pat" points="24,166 270,151 516,136 776,116"/>
+              </svg>
+            </div>
+            <div class="chart-legend"><span class="legend-revenue">● Revenue</span><span class="legend-pat">● PAT</span><span>FY23 → FY26</span></div>
+          </section>
+
+          <section class="card section-card" id="timeline">
+            <div class="section-heading"><div><h2>IPO timeline</h2><p>One lifecycle from offer document to listing.</p></div></div>
+            <div class="timeline">
+              <div class="timeline__item done"><span>✓</span><div><strong>RHP filed</strong><small>Offer document available</small></div><time>12 Sep</time></div>
+              <div class="timeline__item done"><span>✓</span><div><strong>Price band announced</strong><small>Price source attached</small></div><time>18 Sep</time></div>
+              <div class="timeline__item current"><span></span><div><strong>IPO opens</strong><small>Bidding period</small></div><time>20 Sep</time></div>
+              <div class="timeline__item"><span></span><div><strong>IPO closes</strong></div><time>23 Sep</time></div>
+              <div class="timeline__item"><span></span><div><strong>Allotment</strong></div><time>24 Sep</time></div>
+              <div class="timeline__item"><span></span><div><strong>Listing</strong></div><time>26 Sep</time></div>
+            </div>
+          </section>
+        </div>
+
+        <aside class="detail-side">
+          <section class="source-focus">
+            <div class="source-focus__top">
+              <div class="source-focus__icon">✓</div>
+              <div><h3>Source-verified field</h3><p>Important values should reveal their evidence without making users hunt for it.</p></div>
+            </div>
+            <div class="source-focus__value"><span>PRICE BAND</span><strong id="sidePrice">₹520 – ₹548</strong><small>Price Band Advertisement · Page 3</small><button class="text-button" data-placeholder="Official source document">Open source document ↗</button></div>
+          </section>
+
+          <section class="card section-card" id="documents">
+            <div class="section-heading"><div><h2>Offer documents</h2><p>Document trail</p></div></div>
+            <div class="document-list">
+              <article><div><strong>DRHP</strong><small>14 May 2026 · official source</small></div><span class="source source--verified">FOUND</span></article>
+              <article><div><strong>RHP</strong><small>12 Sep 2026 · official source</small></div><span class="source source--verified">FOUND</span></article>
+              <article><div><strong>Price Band Advertisement</strong><small>18 Sep 2026 · official source</small></div><span class="source source--verified">FOUND</span></article>
+              <article><div><strong>Final Prospectus</strong><small>Not required for the IPO to appear</small></div><span class="source source--provisional">PENDING</span></article>
+            </div>
+          </section>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    <button class="active" data-home><span>⌂</span>Home</button>
+    <button data-home><span>▤</span>IPOs</button>
+    <button data-placeholder="Calendar"><span>□</span>Calendar</button>
+    <button data-placeholder="Watchlist"><span>☆</span>Watchlist</button>
+    <button data-placeholder="More"><span>•••</span>More</button>
+  </nav>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="assets/app.js"></script>
+</body>
+</html>
