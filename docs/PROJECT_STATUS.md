@@ -27,7 +27,7 @@ The production collector can automatically:
 
 The first production run expanded the dataset from 14 to 23 issuers.
 
-## Latest completed batch — automated SEBI document discovery
+## Earlier completed batch — automated SEBI document discovery
 
 This development run implemented and production-tested automatic SEBI offer-document discovery.
 
@@ -305,25 +305,75 @@ No `issue_price`, `issue_size_inr`, listing date, sector, minimum application am
 
 The existing Abridged Prospectus issue-size extractor subsequently saw 3 eligible candidates, downloaded all 3, extracted 0 new totals, and preserved all three as null/placeholders with zero fetch errors.
 
+## Latest completed batch — final Prospectus issue-price extraction
+
+PR #18 — `Extract explicit final issue price from SEBI Prospectus PDFs`
+
+Squash-merged:
+
+`1b41f0c115c5df993486e3d3e5f52668d73ffcfc`
+
+The extractor:
+
+- reads only already-retained official `SEBI Prospectus PDF` attachments under `sebi.gov.in/sebi_data/attachdocs/`;
+- scans PDF pages 1–20 with Poppler `pdftotext -layout`;
+- accepts only explicit `Offer Price` / `Issue Price` wording tied to a rupee amount per Equity Share;
+- fills missing `issue_price` only;
+- keeps existing issue-price evidence unchanged;
+- retains source URL, document identity/type, publication date, PDF page and collection timestamp;
+- does not consult the record's price band when extracting.
+
+### Production verification
+
+Workflow:
+
+- `Sync live IPO data`
+- run ID: `35688500637`
+- conclusion: success
+
+Measured extraction result:
+
+- candidates: 7;
+- official PDFs downloaded: 7;
+- extracted: 4;
+- explicit supported price missing: 3;
+- PDF fetch errors: 0.
+
+Extracted and published:
+
+1. Kanohar Electricals Limited — ₹632 per Equity Share — PDF page 7
+2. LCC Projects Limited — ₹146.00 per Equity Share — PDF page 7
+3. Manipal Payment and Identity Solutions Limited — ₹339.00 per Equity Share — PDF page 3
+4. Pranav Constructions Limited — ₹124 per Equity Share — PDF page 5
+
+Preserved as null:
+
+1. Jindal Supreme (India) Limited
+2. SS Retail Limited
+3. Veegaland Developers Limited
+
+Hero Motors and Rentomojo were not candidates because they already had retained final issue-price evidence; the extractor did not overwrite them.
+
+Bot data commit:
+
+`f9b7155c42d8b44d6985d9dafb9fd242e37dc64e`
+
+Bot diff review confirmed only:
+
+- `data/recovery/2026/nse-issue-information.json`;
+- generated `data/ipos.json`
+
+changed. The four new issue prices carry official SEBI Prospectus PDF/page evidence. The three unsupported cases remain `value: null`.
+
+GitHub Pages native deployment for the bot commit passed in run `35688893344`.
+
 ## Recommended next coherent batch
 
-Add one bounded final-Prospectus field-extraction family using the newly retained direct official PDFs.
+Inspect the three final Prospectus PDFs that still have null issue price—Jindal Supreme, SS Retail and Veegaland—to determine whether the gap is caused by unsupported wording/layout or the current 20-page scan boundary.
 
-Priority fields:
+Only broaden parsing when an explicit official phrase can be matched deterministically and tested across multiple documents. Do not infer the final price from the price-band cap.
 
-1. explicit final issue price;
-2. explicit aggregate issue size.
-
-Start with a parser/test batch against multiple newly retained `SEBI Prospectus PDF` documents before enabling production writes.
-
-Acceptance rules:
-
-- use only official filing-page / attached-document URLs already connected to a deterministic issuer;
-- retain page-level evidence;
-- never use the price-band cap as final issue price;
-- never reconstruct aggregate issue size arithmetically;
-- leave inaccessible or non-explicit values null;
-- test attachment resolution and field parsing separately before production use.
+After that review, the next separate field family should be explicit aggregate issue size from retained final Prospectus PDFs, with page-level evidence and no arithmetic reconstruction.
 
 ## Publication history
 
@@ -340,3 +390,5 @@ Acceptance rules:
 - Production issue-size bot commit: `92f0f024367b20a9f023218a0cb92ecbc2e38636`
 - PR #17: direct SEBI Prospectus PDF resolution
 - Prospectus attachment bot commit: `0c3e1c199fdb12266589c7f65eead373c49065dd`
+- PR #18: explicit final issue-price extraction from SEBI Prospectus PDFs
+- Final issue-price bot commit: `f9b7155c42d8b44d6985d9dafb9fd242e37dc64e`
