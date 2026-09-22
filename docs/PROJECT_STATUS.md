@@ -118,6 +118,7 @@ Still null:
 - Missing fields must keep `value: null`.
 - Non-null board/status values require companion provenance.
 - Existing evidence collection timestamps must not be rewritten when a record is re-collected.
+- `last_collected_at` is tracked per record rather than copied from the dataset-generation timestamp; untouched issuers do not become falsely "fresh".
 - Unsupported source hosts are rejected by the recovery publisher.
 
 ## Tests required for this batch
@@ -136,6 +137,8 @@ Diff review must confirm:
 - listing date/status remain null;
 - minimum application amount remains null;
 - prior evidence timestamps remain unchanged;
+- Hero Motors keeps its prior `last_collected_at` because it was not re-collected in this batch;
+- Rentomojo advances to the new collection timestamp;
 - no unrelated UI/product feature is changed.
 
 ## Earliest unfinished priority
