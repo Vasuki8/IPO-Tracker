@@ -9,7 +9,9 @@ import {
   candidateProspectusMinimumBidDocument,
   candidateRhpIssueSizeDocument,
   candidateRhpMinimumBidDocument,
+  candidateRhpMinimumApplicationDocument,
   findMinimumBidMentionsInPages,
+  findMinimumApplicationAmountMentionsInPages,
   findAggregateIssueSizeMentions,
   findIssuePriceMentions,
   parseExplicitAggregateIssueSizeFromPages,
@@ -117,6 +119,28 @@ const rhpRecord = {
 assert.equal(candidateRhpIssueSizeDocument(rhpRecord), rhpDoc);
 assert.equal(candidateRhpMinimumBidDocument(rhpRecord), rhpDoc);
 
+assert.equal(candidateRhpMinimumApplicationDocument(rhpRecord), rhpDoc);
+
+const rhpMinApplicationMentions = findMinimumApplicationAmountMentionsInPages([
+  "Offer summary only.",
+  "For Retail Individual Bidders, the Minimum Application Amount is ₹14,850.",
+  "Minimum amount of application: INR 15,120 for Eligible Employees."
+]);
+assert.equal(rhpMinApplicationMentions.length, 2);
+assert.equal(rhpMinApplicationMentions[0].page, 2);
+assert.match(rhpMinApplicationMentions[0].context, /₹14,850/);
+assert.equal(rhpMinApplicationMentions[1].page, 3);
+assert.match(rhpMinApplicationMentions[1].context, /INR 15,120/i);
+
+assert.deepEqual(
+  findMinimumApplicationAmountMentionsInPages([
+    "Anchor Investors may submit a minimum Bid of ₹100.00 million.",
+    "Minimum Order Quantity is 40 Equity Shares.",
+    "Maximum Application Amount is ₹2,00,000."
+  ]),
+  []
+);
+
 const rhpMinBidMentions = findMinimumBidMentionsInPages([
   "Offer summary only.",
   "Bids can be made for a minimum of 8 Equity Shares and in multiples of 8 Equity Shares thereafter."
@@ -200,6 +224,11 @@ assert.equal(candidateRhpMinimumBidDocument({
   ...existing,
   minimum_bid_quantity: undefined,
   terms: { minimum_bid_quantity: 8 },
+  documents: [{ ...doc, type: "SEBI RHP PDF" }]
+}), null);
+assert.equal(candidateRhpMinimumApplicationDocument({
+  ...existing,
+  minimum_application_amount_inr: { value: 14850, source: { url: "https://example.com" } },
   documents: [{ ...doc, type: "SEBI RHP PDF" }]
 }), null);
 assert.equal(
