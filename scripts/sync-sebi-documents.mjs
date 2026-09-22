@@ -191,16 +191,10 @@ export function parseSebiListingHtml(html, expectedKind, baseUrl) {
     const kind = kindFromFilingUrl(href);
     if (!kind || (expectedKind && kind !== expectedKind)) continue;
 
-    const context = stripTags(
-      html.slice(Math.max(0, (match.index ?? 0) - 500), Math.min(html.length, (match.index ?? 0) + 900))
-    );
-    const titleCandidate = context.match(
-      kind === "rhp"
-        ? /([A-Za-z0-9&().,'\- ]{3,120}\s*-\s*RHP\b)/i
-        : /([A-Za-z0-9&().,'\- ]{3,120}\s*-\s*(?:Final\s+)?Prospectus\b)/i
-    )?.[1];
-    const title = titleCandidate ? normalizeText(titleCandidate) : "";
-    pushListingEntry(entries, seen, html, match.index ?? 0, href, title, kind);
+    // Raw-URL fallback intentionally derives issuer identity from the official
+    // filing URL slug. Nearby table text can include titles from adjacent rows
+    // and is therefore not safe for identity reconstruction.
+    pushListingEntry(entries, seen, html, match.index ?? 0, href, "", kind);
   }
 
   return entries;
