@@ -748,3 +748,16 @@ Production run `35761261256` downloaded **16/16** retained Abridged Prospectus P
 The tracker continues to reject derived `price × quantity` values and does not reinterpret bid lot / minimum order quantity as an INR application amount.
 
 Next: survey retained official SEBI RHP PDFs (and then final Prospectus PDFs if needed) across full document text, retaining page-level evidence for any explicit INR amount.
+
+
+### Full RHP minimum-application survey
+
+The retained official RHP source family has now been fully measured.
+
+PR #70 / production run `35765946080` scanned **14/14** retained SEBI RHP PDFs across **7,593 pages** and captured **28 labelled INR minimum-application/investment mentions** with **0 fetch errors**.
+
+The important result is semantic rather than numeric: the RHPs contain different investor-category concepts, including Anchor/QIB Mutual Fund minimum application sizes (commonly ₹100 million) and NII minimum application sizes (for example ₹200,000 for Sonaselection and Swastika). These are not interchangeable with a generic retail/application amount.
+
+Accordingly, the current generic `minimum_application_amount_inr` remains **0/26** instead of publishing a misleading category-specific value.
+
+Next recommended batch: refine the data contract to represent investor-category-specific application requirements before adding further extraction.
