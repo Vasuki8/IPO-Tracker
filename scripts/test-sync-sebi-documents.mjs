@@ -3,6 +3,7 @@ import fs from "node:fs";
 import {
   appendDocument,
   applySebiEntry,
+  cacheBustedListingUrl,
   canonicalIssuer,
   issuerFromListingTitle,
   issuerVariants,
@@ -27,6 +28,13 @@ const base = "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&s
 
 assert.equal(parseSebiDate("Sep 21, 2026"), "2026-09-21");
 assert.equal(parseSebiDate("bad date"), null);
+assert.equal(
+  cacheBustedListingUrl(
+    "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=11&ssid=15",
+    "20260922070000"
+  ),
+  "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=11&ssid=15&_fresh=20260922070000"
+);
 assert.equal(canonicalIssuer("Swastika Infra Ltd."), "swastika infra");
 assert.equal(issuerFromListingTitle("Moneyview Limited - RHP", "rhp"), "Moneyview Limited");
 assert.equal(
