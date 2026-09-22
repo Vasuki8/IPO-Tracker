@@ -9,6 +9,7 @@ const RECOVERY_ROOT = path.join(ROOT, "data", "recovery");
 const ALLOWED_HOSTS = new Set(["www.sebi.gov.in", "sebi.gov.in"]);
 const MAX_PAGES = 20;
 const DIAGNOSTIC_MAX_PAGES = 80;
+const MINIMUM_BID_DIAGNOSTIC_MAX_PAGES = 650;
 const USER_AGENT =
   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
 
@@ -104,6 +105,41 @@ export function candidateRhpIssueSizeDocument(record) {
   return (record.documents || []).find((doc) =>
     doc.type === "SEBI RHP PDF" && officialProspectusPdfUrl(doc.url)
   ) || null;
+}
+
+export function candidateRhpMinimumBidDocument(record) {
+  if (record.minimum_bid_quantity?.value !== null && record.minimum_bid_quantity?.value !== undefined) return null;
+  if (record.terms?.minimum_bid_quantity !== null && record.terms?.minimum_bid_quantity !== undefined) return null;
+  return (record.documents || []).find((doc) =>
+    doc.type === "SEBI RHP PDF" && officialProspectusPdfUrl(doc.url)
+  ) || null;
+}
+
+export function findMinimumBidMentionsInPages(pages) {
+  const mentions = [];
+  const patterns = [
+    /\bminimum\s+bid(?:ding)?(?:\s+(?:lot|quantity))?\b/ig,
+    /\bbid\s+lot\b/ig,
+    /\bminimum\s+of\s+[0-9][0-9,]*\s+equity\s+shares\b/ig,
+    /\bin\s+multiples\s+of\s+[0-9][0-9,]*\s+equity\s+shares\b/ig
+  ];
+
+  for (let pageIndex = 0; pageIndex < (pages || []).length; pageIndex += 1) {
+    const text = normalizeText(pages[pageIndex]);
+    for (const pattern of patterns) {
+      pattern.lastIndex = 0;
+      for (const match of text.matchAll(pattern)) {
+        const start = Math.max(0, match.index - 160);
+        const end = Math.min(text.length, match.index + 420);
+        mentions.push({
+          page: pageIndex + 1,
+          context: text.slice(start, end)
+        });
+        if (mentions.length >= 18) return mentions;
+      }
+    }
+  }
+  return mentions;
 }
 
 export function findAggregateIssueSizeMentions(pageText, page = 1) {
@@ -437,6 +473,47 @@ async function diagnoseRhpIssueSize() {
   console.log(JSON.stringify({ rhp_issue_size_diagnostic_stats: stats }, null, 2));
 }
 
+async function diagnoseRhpMinimumBid() {
+  ensurePdfTextTool();
+  const stats = {
+    candidates: 0,
+    downloaded: 0,
+    mentions: 0,
+    fetch_errors: 0
+  };
+
+  for (const file of recoveryFiles()) {
+    const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
+    for (const record of recovery.records || []) {
+      const document = candidateRhpMinimumBidDocument(record);
+      if (!document) continue;
+      stats.candidates += 1;
+
+      let pages;
+      try {
+        pages = pagesLayout(await fetchPdf(document.url), MINIMUM_BID_DIAGNOSTIC_MAX_PAGES);
+        stats.downloaded += 1;
+      } catch (error) {
+        stats.fetch_errors += 1;
+        console.warn("RHP minimum-bid diagnostic unavailable for " + record.issuer_name + ": " + error.message);
+        continue;
+      }
+
+      const mentions = findMinimumBidMentionsInPages(pages);
+      stats.mentions += mentions.length;
+
+      console.log(JSON.stringify({
+        issuer_name: record.issuer_name,
+        document: document.identity ?? document.type,
+        pages_scanned: pages.length,
+        mentions
+      }, null, 2));
+    }
+  }
+
+  console.log(JSON.stringify({ rhp_minimum_bid_diagnostic_stats: stats }, null, 2));
+}
+
 async function runIssueSize() {
   ensurePdfTextTool();
   const now = new Date().toISOString();
@@ -551,9 +628,11 @@ const isMain = process.argv[1] &&
   pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
 
 if (isMain) {
-  const action = process.argv.includes("--diagnose-rhp-size")
-    ? diagnoseRhpIssueSize
-    : process.argv.includes("--issue-size")
+  const action = process.argv.includes("--diagnose-rhp-min-bid")
+    ? diagnoseRhpMinimumBid
+    : process.argv.includes("--diagnose-rhp-size")
+      ? diagnoseRhpIssueSize
+      : process.argv.includes("--issue-size")
       ? runIssueSize
     : process.argv.includes("--diagnose-size")
       ? diagnoseIssueSize
