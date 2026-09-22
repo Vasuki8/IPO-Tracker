@@ -178,40 +178,67 @@ The current validation workflow covers:
 - sparse live-record candidate selection;
 - bounded SEBI search token selection.
 
-## Current development batch — Abridged Prospectus issue-size extraction
+## Latest completed batch — Abridged Prospectus issue-size extraction
 
-A bounded field-extraction layer has been implemented on branch `extract-abridged-issue-size`.
+PR #16 — `Extract explicit issue size from retained Abridged Prospectuses`
 
-Scope:
+Squash-merged:
 
-- official SEBI Abridged Prospectus PDFs already retained;
-- page 1 only;
-- explicit `TOTAL OFFER SIZE` / `TOTAL ISSUE SIZE` amounts;
-- populate missing `issue_size_inr` only.
+`c7c59252bb9e59b3767d73205ad1d682326c48b8`
 
-Safety rules:
+The extractor:
 
-- no arithmetic reconstruction;
-- no overwrite of existing issue-size evidence;
-- placeholders such as `[●]` remain null;
-- inaccessible PDFs remain null;
-- evidence retains document identity, URL, publication date, page and collection time.
+- reads only already-retained official SEBI Abridged Prospectus PDFs;
+- parses page 1 with Poppler `pdftotext -layout`;
+- accepts only an explicit numeric `TOTAL OFFER SIZE` / `TOTAL ISSUE SIZE`;
+- fills missing `issue_size_inr` only;
+- retains source URL, document identity/type, publication date, page and collection timestamp;
+- never sums Fresh Issue + OFS or derives values from shares/prices.
 
-Fixtures cover:
+### Production verification
 
-- Karamtara Engineering — positive ₹8,750 million case;
-- ESDS Software Solution — positive ₹7,200 million parser case;
-- Pranav Constructions — placeholder/null case;
-- ARCIL — placeholder/null case.
+Workflow:
 
-Branch validation confirms:
+- `Sync live IPO data`
+- run ID: `35686786294`
+- conclusion: success
 
-- Poppler can be installed on the GitHub runner;
-- PDF-layout parser tests pass;
-- deterministic publication remains synchronized;
-- the existing 23-record dataset is unchanged before the production extraction run.
+Measured extraction result:
 
-Production network verification is still required after merge.
+- candidates: 4;
+- official PDFs downloaded: 4;
+- extracted: 1;
+- explicit-total missing / placeholder: 3;
+- PDF fetch errors: 0.
+
+Extracted:
+
+- Karamtara Engineering Limited
+- explicit total offer size: ₹8,750.00 million
+- stored INR value: ₹8,750,000,000
+- evidence page: 1
+- source: retained SEBI Abridged Prospectus dated September 3, 2026.
+
+Bot data commit:
+
+`92f0f024367b20a9f023218a0cb92ecbc2e38636`
+
+The bot diff was reviewed and changed only:
+
+- Karamtara `issue_size_inr`;
+- Karamtara `last_collected_at`;
+- manifest/dataset generation timestamps.
+
+Unchanged as intended:
+
+- ESDS retained its existing ₹7,200,000,000 NSE issue-size evidence;
+- ARCIL remained null;
+- Pranav Constructions remained null;
+- Sonaselection remained null.
+
+The three null cases did not contain an explicit numeric aggregate total in the retained Abridged Prospectus first-page table.
+
+GitHub Pages native build/deployment for bot commit `92f0f024...` passed in run `35686851497`.
 
 ## Earliest unfinished priority
 
@@ -221,15 +248,21 @@ Live IPO discovery is automated and SEBI document matching is operational, but S
 
 ## Recommended next coherent batch
 
-First verify the Abridged Prospectus issue-size extractor in a real scheduled/network run.
+Resolve **direct official Prospectus PDF attachments from already-retained SEBI Prospectus filing pages**, then add one bounded final-document extraction family.
 
-Expected safe production behavior:
+Priority fields:
 
-- Karamtara Engineering should receive ₹8,750,000,000 only if the retained official PDF is downloadable and the first-page layout matches the tested explicit-total pattern;
-- ESDS should remain unchanged because it already has issue-size evidence;
-- ARCIL, Pranav and Sonaselection should remain null where their retained Abridged Prospectus does not state an explicit numeric aggregate total.
+1. explicit final issue price;
+2. explicit aggregate issue size.
 
-After production verification, the next bounded extraction family can target another explicit field/document family, with separate fixtures and precedence rules.
+Acceptance rules:
+
+- use only official filing-page / attached-document URLs already connected to a deterministic issuer;
+- retain page-level evidence;
+- never use the price-band cap as final issue price;
+- never reconstruct aggregate issue size arithmetically;
+- leave inaccessible or non-explicit values null;
+- test attachment resolution and field parsing separately before production use.
 
 ## Publication history
 
@@ -242,3 +275,5 @@ After production verification, the next bounded extraction family can target ano
 - PR #13: SEBI general-filings coverage
 - PR #14: token-oriented targeted search
 - PR #15: mixed Public Issues coverage
+- PR #16: Abridged Prospectus issue-size extraction
+- Production issue-size bot commit: `92f0f024367b20a9f023218a0cb92ecbc2e38636`
