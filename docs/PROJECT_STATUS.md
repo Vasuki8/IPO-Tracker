@@ -4,99 +4,50 @@ Last updated: 2026-09-21
 
 ## Current state
 
-The tracker now publishes **eight real 2026 IPO records** from retained official evidence:
+The tracker now publishes **eleven real 2026 IPO records** from retained official evidence:
 
+- Asset Reconstruction Company (India) Limited
+- ESDS Software Solution Limited
 - Hero Motors Limited
-- Rentomojo Limited
 - Jindal Supreme (India) Limited
-- Manipal Payment and Identity Solutions Limited
-- SS Retail Limited
 - Kanohar Electricals Limited
 - LCC Projects Limited
+- Manipal Payment and Identity Solutions Limited
+- Rentomojo Limited
+- Sonaselection India Limited
+- SS Retail Limited
 - Veegaland Developers Limited
 
-The recovery pipeline remains source-first. Unsupported values stay null instead of being inferred, estimated, arithmetically reconstructed, or copied from aggregators.
+The recovery pipeline remains source-first. Unsupported values stay null rather than being inferred, estimated, arithmetically reconstructed, or copied from aggregators.
 
 ## Completed in latest batch
 
-The run first attempted the documented priority: deepen Jindal Supreme, Manipal Payment, and SS Retail from directly retrievable official final Prospectus copies.
+The run first attempted the documented priority: recover directly readable final Prospectus copies for Kanohar Electricals, LCC Projects and Veegaland Developers.
 
-That path remained blocked:
+That bounded deepening pass did not produce safe new final-term values:
 
-- Jindal Supreme: SEBI final Prospectus filing is verified, but the attached final PDF is not directly readable through the available tooling and the issuer site does not currently expose a usable final Prospectus copy.
-- Manipal Payment: an official NSE archive final-Prospectus URL can be identified, but the available web reader cannot retrieve its contents reliably enough to extract production values.
-- SS Retail: SEBI final Prospectus filing is verified, but the final document remains behind an inaccessible/dynamic document path.
+- Kanohar: no directly readable official final Prospectus copy was located through the available NSE/issuer source paths.
+- LCC Projects: the issuer investor page exposes a Prospectus entry, but the underlying final PDF URL/content is not directly exposed by the available web parser.
+- Veegaland Developers: the issuer IPO page exposes a Prospectus dated September 15, 2026, but the downloadable document is behind a disclaimer/JavaScript flow and could not be directly extracted.
+- No final issue price was inferred from the cap price.
+- No aggregate issue size was reconstructed from partial issue components.
 
-No cap-price substitution or mirror data was used.
+Per the fallback rule in `docs/DEVELOPMENT_PROCESS.md`, the run then added the next small official-source batch.
 
-Per the development-process fallback rule, the run then completed the next small official-source discovery batch.
-
-### Kanohar Electricals Limited
-
-Verified from NSE Issue Information:
-
-- price band: ₹601–₹632
-- market lot: 23 shares
-- minimum bid quantity: 23 shares
-- offer period: September 8–10, 2026
-
-Retained documents:
-
-- NSE Issue Information — KANOHAR
-- SEBI RHP filing dated September 3, 2026
-- SEBI final Prospectus filing dated September 15, 2026
-
-Intentionally null:
-
-- board
-- lifecycle status
-- final issue price
-- aggregate issue size in INR
-- listing date
-- minimum application amount
-- sector
-
-### LCC Projects Limited
+### Asset Reconstruction Company (India) Limited
 
 Verified from NSE Issue Information:
 
-- price band: ₹139–₹146
-- market lot: 102 shares
-- minimum bid quantity: 102 shares
-- offer period: September 9–11, 2026
-
-Retained documents:
-
-- NSE Issue Information — LCCPROJECT
-- SEBI RHP filing dated September 4, 2026
-- SEBI final Prospectus filing dated September 17, 2026
-
-Intentionally null:
-
-- board
-- lifecycle status
-- final issue price
-- aggregate issue size in INR
-- listing date
-- minimum application amount
-- sector
-
-The NSE issue description contains a fresh-issue amount plus an OFS share count. The tracker did **not** manufacture a single INR issue-size value from those heterogeneous components.
-
-### Veegaland Developers Limited
-
-Verified from NSE Issue Information:
-
-- price band: ₹130–₹140
+- price band: ₹132–₹139
 - market lot: 107 shares
 - minimum bid quantity: 107 shares
-- offer period: September 10–15, 2026
+- offer period: September 9–11, 2026
 
-Retained documents:
+Retained official documents:
 
-- NSE Issue Information — VEEGALAND
-- SEBI RHP filing dated August 31, 2026
-- SEBI final Prospectus filing dated September 16, 2026
+- NSE Issue Information — ARCIL
+- SEBI RHP filing dated September 2, 2026
+- SEBI Abridged Prospectus dated September 2, 2026
 
 Intentionally null:
 
@@ -108,11 +59,69 @@ Intentionally null:
 - minimum application amount
 - sector
 
-Although NSE describes the fresh issue as aggregating up to ₹21,000 lakhs, the production aggregate issue-size field remains null until final-document evidence establishes the value under the project's final-term rules.
+NSE describes the offer size in shares rather than a single INR value, so `issue_size_inr` remains null.
 
-## Existing five records
+### ESDS Software Solution Limited
 
-Existing Hero Motors, Rentomojo, Jindal Supreme, Manipal Payment, and SS Retail values and freshness timestamps were not modified by this batch.
+Verified from NSE Issue Information:
+
+- price band: ₹408–₹429
+- market lot: 34 shares
+- minimum bid quantity: 34 shares
+- offer period: August 28–September 1, 2026
+- issue size: ₹7,200 million
+
+Stored INR issue size:
+
+- ₹7,200,000,000
+
+The NSE source explicitly describes the IPO as a fresh issue aggregating up to ₹7,200 million, so this is retained as a verified INR issue-size field without arithmetic reconstruction.
+
+Retained official documents:
+
+- NSE Issue Information — ESDS
+- SEBI RHP filing dated August 25, 2026
+- SEBI Abridged Prospectus dated August 25, 2026
+
+Intentionally null:
+
+- board
+- lifecycle status
+- final issue price
+- listing date
+- minimum application amount
+- sector
+
+### Sonaselection India Limited
+
+Verified from NSE Issue Information:
+
+- price band: ₹94–₹99
+- market lot: 150 shares
+- minimum bid quantity: 150 shares
+- offer period: September 17–21, 2026
+
+Retained official documents:
+
+- NSE Issue Information — SONA
+- SEBI RHP filing dated September 9, 2026
+- SEBI Abridged Prospectus dated September 9, 2026
+
+Intentionally null:
+
+- board
+- lifecycle status
+- final issue price
+- aggregate issue size in INR
+- listing date
+- minimum application amount
+- sector
+
+NSE states the fresh issue size in equity-share count, not a final INR aggregate, so `issue_size_inr` remains null.
+
+## Existing eight records
+
+The previously published eight issuers and their existing evidence/freshness timestamps are unchanged by this batch.
 
 ## Data integrity rules currently enforced
 
@@ -124,11 +133,11 @@ Existing Hero Motors, Rentomojo, Jindal Supreme, Manipal Payment, and SS Retail 
 - Existing evidence collection timestamps are preserved.
 - `last_collected_at` is tracked per record.
 - Unsupported source hosts are rejected.
-- Market lot, minimum bid quantity, and minimum application amount remain separate.
+- Market lot, minimum bid quantity and minimum application amount remain separate concepts.
 
 ## Tests for latest batch
 
-GitHub Actions passed on `recover-2026-batch-3`:
+Required GitHub Actions checks:
 
 - `node --check assets/app.js`
 - `node scripts/build-published-data.mjs --check`
@@ -136,60 +145,43 @@ GitHub Actions passed on `recover-2026-batch-3`:
 
 Release diff review must confirm:
 
-- published issuer count becomes 8;
+- published issuer count becomes 11;
 - exactly 3 issuer records are added;
-- the previous 5 records are unchanged;
-- all unsupported final/listing/application fields remain null;
-- no issue-size arithmetic is introduced;
-- no unrelated UI/product feature is changed.
+- the prior 8 records remain unchanged;
+- ARCIL/Sonaselection issue-size INR fields remain null;
+- ESDS issue size is ₹7,200,000,000 with retained NSE evidence;
+- final issue prices, listing/status and minimum application fields remain null where unsupported;
+- no unrelated product/UI feature changes.
 
 ## Earliest unfinished priority
 
 P1 — Data correctness.
 
-The 2026 universe is still incomplete. The NSE/SEBI discovery path is now proven across eight issuers, while final-document retrieval remains uneven across issuer/source families.
+The 2026 universe remains incomplete, but the official NSE/SEBI discovery pattern now covers eleven issuers.
 
 ## Recommended next coherent batch
 
-Try one bounded final-document recovery pass for:
+Attempt one bounded final-document recovery pass for the newest three issuers only where a directly readable official final Prospectus exists.
 
-- Kanohar Electricals Limited
-- LCC Projects Limited
-- Veegaland Developers Limited
+Priority:
 
-Look specifically for directly retrievable official NSE archive or issuer-hosted final Prospectus copies and recover final issue price / aggregate issue size only when explicitly stated.
+1. ESDS final Prospectus / final issue price;
+2. ARCIL final Prospectus / final issue price;
+3. Sonaselection final Prospectus / final issue price.
 
-If those final documents remain inaccessible, do not keep retrying the same blocked paths. Continue with another 2–5 issuer 2026 official-source batch and leave final fields null.
+If those final documents are not directly readable, move immediately to the next 2–5 issuer 2026 official-source batch.
 
-The BSE dynamic listing-notice blocker remains documented and should not be bypassed with third-party mirrors.
+Do not repeatedly retry inaccessible issuer/SEBI document paths, and do not use third-party mirrors to fill production fields.
+
+The BSE dynamic listing-notice blocker remains documented.
 
 ## Publication history
 
 - PR #1: source-backed data foundation
-- Foundation merge: `4ae4fb43b63fc9aebd5380bab33cd3cc838f48ec`
 - PR #2: first 2026 recovery batch
-- First recovery merge: `30d73b04677fda0f5d6c17a688f16fa50809840b`
 - PR #3: deepen Hero Motors and Rentomojo evidence
-- Final-term enrichment merge: `5ecbcc4615c523d4bdafc56632b17ee6d4762722`
 - PR #4: recover Rentomojo final Prospectus terms
-- Rentomojo final-terms merge: `9895698d87513a2e037f95cf5cf4f2886590df9a`
 - PR #5: second official-source 2026 IPO batch
-- Second batch merge: `8206b58574610103e18d86bd719b7169b145610f`
-- Prior production bookkeeping head: `0515407dc7d38ce7a08790f61fdb69ef01eefa26`
+- PR #6: third official-source 2026 IPO batch
+- Prior production head: `b7fef58ea9ad7d164512e57366818b054a1ab06d`
 - Validation and GitHub Pages deployment passed for the prior production head.
-
-## Latest publication
-
-- Pull request: #6 — `Add third official-source 2026 IPO batch`
-- Squash-merged to `main`: `ad7d82fc87b88f3c48c131965c27ee928331cefc`
-- Post-merge data-contract validation: passed
-- Post-merge GitHub Pages deployment: passed
-- Pages artifact was generated from the merged revision.
-- Published issuer count: 8
-- New published issuers:
-  - Kanohar Electricals Limited
-  - LCC Projects Limited
-  - Veegaland Developers Limited
-- Previous five issuer records and freshness timestamps remained unchanged.
-- Unsupported final issue price, aggregate issue size, listing/status, board, sector, and minimum-application fields remain null.
-- Direct retrieval of `https://vasuki8.github.io/IPO-Tracker/` remains unavailable from the web reader in this development session; workflow and artifact revision were verified instead.
