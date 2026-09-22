@@ -6,7 +6,7 @@ Last updated: 2026-09-22
 
 IPO Tracker now has a working **automated official-source discovery and publication loop** plus a production-tested **SEBI document-discovery layer**.
 
-The published 2026 dataset contains **23 real IPO issuers**.
+The published 2026 dataset contains **25 real IPO issuers**.
 
 The source-first rules remain enforced: unsupported values stay null rather than being inferred, estimated, reconstructed, or copied from aggregators.
 
@@ -798,22 +798,142 @@ GitHub Pages deployment for the bot revision passed in run `35697665129`.
 
 Adroit Industries and Swastika Infra remain null because their available RHPs still use placeholders and no final Prospectus is retained yet.
 
+## Latest completed batch — dynamic NSE ipo-detail minimum-bid automation
+
+### Endpoint discovery
+
+PR #41 — `Probe official NSE ipo-detail bid fields`
+
+Squash-merged:
+
+`b5d7d063b092ae511d0ad44b0c27ccb9a0dff2a7`
+
+The production probe identified and verified the official backend used by NSE Issue Information:
+
+`/api/ipo-detail?symbol=<SYMBOL>&series=<SERIES>`
+
+Production run `35726755503`:
+
+- candidates: 10;
+- API successes: 10;
+- responses with bid-related data: 10;
+- fetch errors: 0.
+
+The probe established that static terms are not typed top-level keys. They are `issueInfo.dataList` title/value pairs. Live-demand fields under `bidDetails`, `activeCat` and demand graphs are separate and are not used for minimum-bid extraction.
+
+The same run exposed a stale homepage-order test: it hardcoded 2026-09-23 as the latest open date, but live discovery had added IPOs opening 2026-09-25. The test was repaired to derive newest/oldest dates from the current dataset, preserving the actual ordering invariant.
+
+PR #42, which separately added diagnostic timeouts, was closed as superseded because the production extractor includes bounded request timeouts directly.
+
+### Production extractor
+
+PR #43 — `Extract minimum bid from official NSE ipo-detail`
+
+Squash-merged:
+
+`1b4e267de543bc909616392373099a38e257281a`
+
+Rules:
+
+- official NSE `/api/ipo-detail` only;
+- deterministic retained symbol/series;
+- parse only `issueInfo.dataList`;
+- prefer `Minimum Order Quantity`;
+- fall back to explicit `Bid Lot`;
+- require a numeric quantity followed by `Equity Shares`;
+- reject placeholders/unparseable text;
+- if both official values parse but disagree, publish nothing and log a conflict;
+- never substitute `market_lot`;
+- fill missing `minimum_bid_quantity` only;
+- retain exact endpoint/source identity and collection timestamp;
+- 15-second bounded request timeout with retries.
+
+Production run `35727346835`:
+
+- candidates: 10;
+- API successes: 10;
+- extracted: 5;
+- missing/placeholders: 5;
+- conflicts: 0;
+- fetch errors: 0.
+
+Published verified values:
+
+1. Adroit Industries (India) Limited — 111 Equity Shares
+2. ArMee Infotech Limited — 40 Equity Shares
+3. Elevate Campuses Limited — 41 Equity Shares
+4. Swastika Infra Limited — 81 Equity Shares
+5. Varmora Granito Limited — 101 Equity Shares
+
+Bot data commit:
+
+`9e787f2fbb41f4e55fa05ebd097fd98fc683f7b6`
+
+Bot diff review confirmed only:
+
+- `data/recovery/2026/nse-issue-information.json`;
+- generated `data/ipos.json`
+
+changed.
+
+GitHub Pages deployment for the data revision passed in run `35727496988`.
+
+### Legacy NSE identity recovery
+
+PR #44 — `Recover legacy NSE identity from retained official URL`
+
+Squash-merged:
+
+`a1829632831d453337965e671ea34d4e1a279959`
+
+Legacy records without normalized `nse_symbol`/`nse_series` may now use deterministic parameters already retained in an official NSE Issue Information URL. Only HTTPS `nseindia.com` URLs and EQ/SME series are accepted; no fuzzy name matching is used.
+
+Production run `35727815131` then evaluated all remaining minimum-bid gaps, including Qualiance:
+
+- candidates: 6;
+- API successes: 6;
+- extracted: 0;
+- missing/placeholders: 6;
+- conflicts: 0;
+- fetch errors: 0.
+
+Qualiance's retained official URL deterministically resolves to `QUALIANCE / SME`, but its current endpoint payload still has no finalized supported term, so the field remains null and its normalized identity is not rewritten merely for convenience.
+
+### Current coverage
+
+Published dataset: **25 IPOs**.
+
+Minimum bid quantity:
+
+- present: **19**;
+- missing: **6**.
+
+Remaining missing:
+
+1. Bench Mark Infotech Services Limited
+2. Himalayan Solar Limited
+3. Coreintegra Consulting Services Limited
+4. Pooja Logistics Limited
+5. Axiom Gas Engineering Limited
+6. Qualiance International Limited
+
+All six are now actively checked by the official-source pipeline where a deterministic NSE identity is available. The latest run had zero network errors.
+
 ## Recommended next coherent batch
 
-Discover the official **dynamic NSE Issue Information endpoint** used by the rendered page for finalized Bid Lot / Minimum Order Quantity data.
+Recover **listing date** from the same official NSE `/api/ipo-detail` source family.
 
-This is the highest-leverage remaining minimum-bid source family because several records already have retained NSE symbol/series identifiers while their public Issue Information pages render finalized values dynamically.
+Current `listing_date` coverage is **0/25**. Inspect `metaInfo` across multiple current, upcoming and completed issues, define the exact explicit date field(s), add strict date parsing, then enable fill-missing-only publication.
 
 Acceptance rules:
 
-- use an official NSE endpoint only;
-- identify issuers by retained symbol/series;
-- test across multiple issuers before enabling writes;
-- preserve `market_lot` and `minimum_bid_quantity` as separate fields;
+- official NSE endpoint only;
+- deterministic symbol/series identity;
+- explicit listing date only;
+- no inference from close date, T+ schedules or market conventions;
 - retain exact endpoint/source identity and collection timestamp;
-- fill missing values only;
-- do not infer a minimum bid from market lot;
-- preserve null for missing, ambiguous or unmatched responses.
+- test multiple mainboard and SME payload shapes;
+- preserve null for absent/unparseable values.
 
 ## Publication history
 
@@ -850,3 +970,7 @@ Acceptance rules:
 - PR #38: NSE Issue Information dynamic-page probe
 - PR #39: explicit final-Prospectus minimum-bid extraction
 - Minimum-bid bot commit: `2f6428c2138173a4ca02dc271100ed22412da31e`
+- PR #41: official NSE ipo-detail endpoint discovery
+- PR #43: NSE ipo-detail minimum-bid production extraction
+- NSE ipo-detail minimum-bid bot commit: `9e787f2fbb41f4e55fa05ebd097fd98fc683f7b6`
+- PR #44: deterministic legacy NSE identity recovery
