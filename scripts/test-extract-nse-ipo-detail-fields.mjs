@@ -3,11 +3,51 @@ import {
   applyListingDate,
   applyMinimumBid,
   listingDateCandidatesFromIpoDetail,
+  applyPriceBand,
   parseListingDateFromIpoDetail,
   parseMinimumBidFromIpoDetail,
+  parsePriceBandFromIpoDetail,
   priceBandCandidatesFromIpoDetail,
   resolveNseIdentity
 } from "./extract-nse-ipo-detail-fields.mjs";
+
+const axiomBand = parsePriceBandFromIpoDetail({
+  issueInfo: {
+    dataList: [
+      { title: "Price Range", value: "Rs.51 to Rs.54 per equity share" }
+    ]
+  }
+});
+assert.deepEqual(axiomBand.value, { min: 51, max: 54 });
+assert.equal(axiomBand.source_title, "Price Range");
+
+assert.deepEqual(
+  parsePriceBandFromIpoDetail({
+    issueInfo: {
+      dataList: [{ title: "Price Range", value: "Rs. 601/- to Rs. 632/- per Equity Share" }]
+    }
+  }).value,
+  { min: 601, max: 632 }
+);
+
+assert.equal(
+  parsePriceBandFromIpoDetail({
+    issueInfo: { dataList: [{ title: "Price Range", value: "Rs.94 per equity share" }] }
+  }).value,
+  null
+);
+
+assert.equal(
+  parsePriceBandFromIpoDetail({
+    issueInfo: {
+      dataList: [
+        { title: "Price Range", value: "Rs.51 to Rs.54 per equity share" },
+        { title: "Price Band", value: "Rs.52 to Rs.54 per equity share" }
+      ]
+    }
+  }).reason,
+  "official_term_conflict"
+);
 
 const priceBandCandidates = priceBandCandidatesFromIpoDetail({
   issueInfo: {
@@ -179,6 +219,39 @@ assert.equal(record.minimum_bid_quantity.value, 70);
 assert.equal(record.minimum_bid_quantity.status, "verified");
 assert.equal(record.minimum_bid_quantity.source.document_type, "NSE Issue Information API");
 assert.equal(record.documents.length, 1);
+
+assert.equal(
+  applyPriceBand(
+    record,
+    {
+      value: { min: 51, max: 54 },
+      source_value: "Rs.51 to Rs.54 per equity share",
+      source_title: "Price Range"
+    },
+    "https://www.nseindia.com/api/ipo-detail?symbol=EXAMPLE&series=EQ",
+    "2026-10-04T12:30:00Z"
+  ),
+  true
+);
+assert.deepEqual(record.price_band.value, { min: 51, max: 54 });
+assert.equal(record.price_band.status, "verified");
+assert.equal(record.price_band.source.document_type, "NSE Issue Information API");
+assert.equal(record.documents.length, 1);
+
+assert.equal(
+  applyPriceBand(
+    record,
+    {
+      value: { min: 52, max: 54 },
+      source_value: "Rs.52 to Rs.54 per equity share",
+      source_title: "Price Range"
+    },
+    "https://www.nseindia.com/api/ipo-detail?symbol=EXAMPLE&series=EQ",
+    "2026-10-05T12:30:00Z"
+  ),
+  false
+);
+assert.deepEqual(record.price_band.value, { min: 51, max: 54 });
 
 assert.equal(
   applyListingDate(
