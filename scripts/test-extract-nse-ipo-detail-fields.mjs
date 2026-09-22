@@ -7,6 +7,7 @@ import {
   issueSizeCandidatesFromIpoDetail,
   parseIssueSizeInrFromIpoDetail,
   listingDateCandidatesFromIpoDetail,
+  marketLotCandidatesFromIpoDetail,
   applyPriceBand,
   parseListingDateFromIpoDetail,
   parseMinimumBidFromIpoDetail,
@@ -225,6 +226,33 @@ assert.deepEqual(
 
 assert.deepEqual(
   listingDateCandidatesFromIpoDetail({ metaInfo: { issueEndDate: "2026-09-25" } }),
+  []
+);
+
+const marketLotCandidates = marketLotCandidatesFromIpoDetail({
+  issueInfo: {
+    dataList: [
+      { title: "Market Lot", value: "1,000 Equity Shares" },
+      { title: "Bid Lot", value: "40 Equity Shares" },
+      { title: "Minimum Order Quantity", value: "40 Equity Shares" }
+    ]
+  }
+});
+assert.deepEqual(marketLotCandidates, [
+  { title: "Market Lot", value: "1,000 Equity Shares" }
+]);
+
+assert.deepEqual(
+  marketLotCandidatesFromIpoDetail({
+    issueInfo: { dataList: [{ title: "Lot Size", value: "2,000 Equity Shares" }] }
+  }),
+  [{ title: "Lot Size", value: "2,000 Equity Shares" }]
+);
+
+assert.deepEqual(
+  marketLotCandidatesFromIpoDetail({
+    issueInfo: { dataList: [{ title: "Bid Lot", value: "100 Equity Shares" }] }
+  }),
   []
 );
 
