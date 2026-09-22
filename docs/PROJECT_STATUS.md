@@ -106,3 +106,13 @@ Acceptance criteria:
 - Foundation merge: `4ae4fb43b63fc9aebd5380bab33cd3cc838f48ec`
 - Deployment bookkeeping commit: `a3e1214e43e3ab19ea60a2c88baf975392775b5a`
 - Validation and GitHub Pages deployment passed.
+
+## Latest publication
+
+- Pull request: #2 — `Recover first source-backed 2026 IPO batch`
+- Squash-merged to `main`: `30d73b04677fda0f5d6c17a688f16fa50809840b`
+- Post-merge validation workflow: passed
+- Post-merge GitHub Pages deployment workflow: passed
+- Pages artifact `github-pages` was generated from the merged revision.
+- Direct retrieval of `https://vasuki8.github.io/IPO-Tracker/` was unavailable from the web tool in this development session, so visual live-page verification was not independently performed.
+- Repository/deployment verification confirms the published artifact contains the two-record source-backed dataset.
