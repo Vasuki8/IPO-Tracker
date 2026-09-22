@@ -6,6 +6,8 @@ import {
   candidateProspectusDocument,
   candidateProspectusIssueSizeDocument,
   candidateRhpIssueSizeDocument,
+  candidateRhpMinimumBidDocument,
+  findMinimumBidMentionsInPages,
   findAggregateIssueSizeMentions,
   findIssuePriceMentions,
   parseExplicitAggregateIssueSizeFromPages,
@@ -78,6 +80,15 @@ const rhpRecord = {
   documents: [rhpDoc]
 };
 assert.equal(candidateRhpIssueSizeDocument(rhpRecord), rhpDoc);
+assert.equal(candidateRhpMinimumBidDocument(rhpRecord), rhpDoc);
+
+const rhpMinBidMentions = findMinimumBidMentionsInPages([
+  "Offer summary only.",
+  "Bids can be made for a minimum of 8 Equity Shares and in multiples of 8 Equity Shares thereafter."
+]);
+assert.equal(rhpMinBidMentions.length, 2);
+assert.equal(rhpMinBidMentions[0].page, 2);
+assert.match(rhpMinBidMentions[0].context, /minimum of 8 Equity Shares/i);
 assert.equal(
   applyIssuePriceExtraction(
     record,
@@ -116,6 +127,17 @@ assert.equal(candidateProspectusDocument(existing), null);
 assert.equal(candidateProspectusIssueSizeDocument(existing), null);
 assert.equal(candidateRhpIssueSizeDocument({
   ...existing,
+  documents: [{ ...doc, type: "SEBI RHP PDF" }]
+}), null);
+assert.equal(candidateRhpMinimumBidDocument({
+  ...existing,
+  minimum_bid_quantity: { value: 8, source: { url: "https://example.com" } },
+  documents: [{ ...doc, type: "SEBI RHP PDF" }]
+}), null);
+assert.equal(candidateRhpMinimumBidDocument({
+  ...existing,
+  minimum_bid_quantity: undefined,
+  terms: { minimum_bid_quantity: 8 },
   documents: [{ ...doc, type: "SEBI RHP PDF" }]
 }), null);
 assert.equal(
