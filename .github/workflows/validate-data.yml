@@ -34,6 +34,9 @@ jobs:
       - name: Test NSE Issue Information diagnostic parser
         run: node scripts/test-diagnose-nse-issue-information.mjs
 
+      - name: Test NSE ipo-detail diagnostic
+        run: node scripts/test-diagnose-nse-ipo-detail.mjs
+
       - name: Test SEBI document matching
         run: node scripts/test-sync-sebi-documents.mjs
 
