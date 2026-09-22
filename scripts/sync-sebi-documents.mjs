@@ -189,10 +189,17 @@ export function parseSebiListingHtml(html, expectedKind, baseUrl) {
 
     const title = stripTags(match[2]);
     const titleKind = classifyListingTitle(title);
-    const kind = titleKind || kindFromFilingUrl(href);
+    const urlKind = kindFromFilingUrl(href);
+    const kind = titleKind || urlKind;
     if (!kind || (expectedKind && kind !== expectedKind)) continue;
 
-    pushListingEntry(entries, seen, html, match.index ?? 0, href, title, kind);
+    // SEBI's live RHP list can emit malformed/nested markup where an RHP
+    // filing URL is paired with the adjacent Abridged Prospectus anchor text.
+    // In that case the visible title is not safe for issuer identity. Trust
+    // the filing URL slug instead; deterministic record matching remains
+    // unchanged.
+    const identityTitle = titleKind === kind ? title : "";
+    pushListingEntry(entries, seen, html, match.index ?? 0, href, identityTitle, kind);
   }
 
   const rawFilingPattern =
