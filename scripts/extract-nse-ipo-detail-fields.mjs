@@ -28,6 +28,20 @@ function parseEquityShareQuantity(value) {
   return Number.isInteger(quantity) && quantity > 0 ? quantity : null;
 }
 
+export function listingDateCandidatesFromIpoDetail(payload) {
+  const meta = payload?.metaInfo;
+  if (!meta || typeof meta !== "object" || Array.isArray(meta)) return [];
+
+  const candidates = [];
+  for (const [key, value] of Object.entries(meta)) {
+    const normalized = key.replace(/[^a-z0-9]/gi, "").toLowerCase();
+    if (normalized === "listingdate" || normalized === "dateoflisting") {
+      candidates.push({ key, value });
+    }
+  }
+  return candidates;
+}
+
 export function parseMinimumBidFromIpoDetail(payload) {
   const list = payload?.issueInfo?.dataList;
   if (!Array.isArray(list)) {
@@ -227,6 +241,77 @@ export function applyMinimumBid(record, extraction, sourceUrl, collectedAt) {
   return true;
 }
 
+async function diagnoseListingDate() {
+  const landing = await fetchWithRetry(NSE_HOME, {
+    headers: {
+      "user-agent": USER_AGENT,
+      "accept": "text/html,application/xhtml+xml",
+      "accept-language": "en-US,en;q=0.9"
+    }
+  });
+  const cookie = cookieHeader(landing.headers);
+
+  const stats = {
+    candidates: 0,
+    api_success: 0,
+    responses_with_listing_date: 0,
+    fetch_errors: 0
+  };
+
+  const seen = new Set();
+  for (const file of recoveryFiles()) {
+    const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
+    for (const record of recovery.records || []) {
+      if (record.listing_date?.value !== null && record.listing_date?.value !== undefined) continue;
+      const identity = resolveNseIdentity(record);
+      if (!identity) continue;
+      const key = identity.symbol + "|" + identity.series;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      stats.candidates += 1;
+
+      const url = apiUrl(record);
+      try {
+        const response = await fetchWithRetry(url, {
+          headers: {
+            "user-agent": USER_AGENT,
+            "accept": "application/json,text/plain,*/*",
+            "accept-language": "en-US,en;q=0.9",
+            "referer": NSE_HOME,
+            "cookie": cookie,
+            "cache-control": "no-cache",
+            "pragma": "no-cache"
+          }
+        });
+        const payload = await response.json();
+        stats.api_success += 1;
+        const candidates = listingDateCandidatesFromIpoDetail(payload);
+        if (candidates.length > 0) stats.responses_with_listing_date += 1;
+
+        console.log(JSON.stringify({
+          issuer_name: record.issuer_name,
+          symbol: identity.symbol,
+          series: identity.series,
+          url,
+          meta_info_keys: payload?.metaInfo && typeof payload.metaInfo === "object"
+            ? Object.keys(payload.metaInfo)
+            : [],
+          listing_date_candidates: candidates
+        }, null, 2));
+      } catch (error) {
+        stats.fetch_errors += 1;
+        console.warn(
+          "NSE listing-date diagnostic unavailable for " + record.issuer_name + ": " + error.message
+        );
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 650));
+    }
+  }
+
+  console.log(JSON.stringify({ nse_listing_date_diagnostic_stats: stats }, null, 2));
+}
+
 async function run() {
   const now = new Date().toISOString();
   const landing = await fetchWithRetry(NSE_HOME, {
@@ -317,7 +402,8 @@ const isMain = process.argv[1] &&
   pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
 
 if (isMain) {
-  run().catch((error) => {
+  const action = process.argv.includes("--diagnose-listing-date") ? diagnoseListingDate : run;
+  action().catch((error) => {
     console.error(error);
     process.exit(1);
   });
