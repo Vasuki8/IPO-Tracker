@@ -442,3 +442,40 @@ The final-document automation remains the correct upgrade path: once an official
 
 The next source-depth family should focus on explicit minimum bid quantity from retained RHP/Abridged documents, without equating it to market lot absent source text.
 
+## Minimum bid quantity recovery — production verified
+
+Minimum bid quantity remains distinct from market lot.
+
+Three official source stages were tested:
+
+1. **Abridged Prospectus** — page-1 diagnostic found no explicit bid-lot wording for Adroit, NSE or Swastika.
+2. **RHP** — the three documents contain `[●]` placeholders and explicitly defer the Bid Lot / minimum Bid Lot to a later price-band disclosure.
+3. **Final Prospectus** — NSE's final document contains a finalized numeric Bid Lot.
+
+The final-Prospectus extractor accepts only:
+
+- `Bid Lot <integer> Equity Shares`;
+- `Minimum Bid <integer> Equity Shares`.
+
+It rejects:
+
+- anchor-investor rupee minimums;
+- placeholder values;
+- inferred equality with market lot.
+
+Production run `35697515918` extracted:
+
+- National Stock Exchange of India Limited — 8 Equity Shares — PDF page 10.
+
+The recovery record stores `minimum_bid_quantity` independently with verified SEBI final-Prospectus evidence. Deterministic publication prefers this retained document-derived field when present and otherwise keeps using explicit NSE term evidence.
+
+Bot data commit: `2f6428c2138173a4ca02dc271100ed22412da31e`.
+
+Published minimum-bid coverage is now 14/23.
+
+### NSE Issue Information limitation
+
+The rendered NSE Issue Information page is a promising official source for the remaining bid quantities, but a direct HTML fetch returns only the client application shell. Production probe `35697162672` fetched 9 page variants across Adroit, NSE and Swastika with zero network errors and zero raw-HTML bid terms.
+
+Future automation should identify the official dynamic NSE backend endpoint used by that page rather than scrape rendered HTML.
+
