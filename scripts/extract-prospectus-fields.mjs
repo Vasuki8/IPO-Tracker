@@ -115,6 +115,16 @@ export function candidateRhpMinimumBidDocument(record) {
   ) || null;
 }
 
+export function candidateRhpMinimumApplicationDocument(record) {
+  if (
+    record.minimum_application_amount_inr?.value !== null &&
+    record.minimum_application_amount_inr?.value !== undefined
+  ) return null;
+  return (record.documents || []).find((doc) =>
+    doc.type === "SEBI RHP PDF" && officialProspectusPdfUrl(doc.url)
+  ) || null;
+}
+
 export function candidateProspectusMinimumBidDocument(record) {
   if (record.minimum_bid_quantity?.value !== null && record.minimum_bid_quantity?.value !== undefined) return null;
   if (record.terms?.minimum_bid_quantity !== null && record.terms?.minimum_bid_quantity !== undefined) return null;
@@ -176,6 +186,36 @@ export function findMinimumBidMentionsInPages(pages) {
           context: text.slice(start, end)
         });
         if (mentions.length >= 18) return mentions;
+      }
+    }
+  }
+  return mentions;
+}
+
+export function findMinimumApplicationAmountMentionsInPages(pages) {
+  const mentions = [];
+  const labelPatterns = [
+    /\bminimum\s+(?:application|investment)(?:\s+(?:amount|size))?\b/ig,
+    /\bminimum\s+amount\s+(?:of|for)\s+(?:the\s+|an?\s+)?application\b/ig,
+    /\bapplication\s+(?:amount|size)\s*[:\-–—]?\s*minimum\b/ig
+  ];
+  const explicitInr = /(?:₹|rs\.?|inr)\s*[0-9][0-9,]*(?:\.[0-9]+)?\b/i;
+
+  for (let pageIndex = 0; pageIndex < (pages || []).length; pageIndex += 1) {
+    const text = normalizeText(pages[pageIndex]);
+    for (const pattern of labelPatterns) {
+      pattern.lastIndex = 0;
+      for (const match of text.matchAll(pattern)) {
+        const start = Math.max(0, match.index - 220);
+        const end = Math.min(text.length, match.index + 520);
+        const context = text.slice(start, end);
+        if (!explicitInr.test(context)) continue;
+        mentions.push({
+          page: pageIndex + 1,
+          label: match[0],
+          context
+        });
+        if (mentions.length >= 24) return mentions;
       }
     }
   }
@@ -402,6 +442,24 @@ function pagesLayout(pdfBytes, maxPages = MAX_PAGES) {
   }
 }
 
+function fullPagesLayout(pdfBytes) {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "ipo-prospectus-full-"));
+  const file = path.join(dir, "document.pdf");
+  try {
+    fs.writeFileSync(file, pdfBytes);
+    const text = execFileSync(
+      "pdftotext",
+      ["-layout", "-enc", "UTF-8", file, "-"],
+      { encoding: "utf8", maxBuffer: 32 * 1024 * 1024 }
+    );
+    const pages = text.split("\f");
+    if (pages.length > 0 && pages[pages.length - 1].trim() === "") pages.pop();
+    return pages;
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+}
+
 async function diagnose() {
   ensurePdfTextTool();
   const stats = {
@@ -574,6 +632,55 @@ async function diagnoseProspectusMinimumBid() {
   }
 
   console.log(JSON.stringify({ prospectus_minimum_bid_diagnostic_stats: stats }, null, 2));
+}
+
+async function diagnoseRhpMinimumApplication() {
+  ensurePdfTextTool();
+  const stats = {
+    candidates: 0,
+    downloaded: 0,
+    documents_with_explicit_inr_mentions: 0,
+    mentions: 0,
+    pages_scanned: 0,
+    fetch_errors: 0
+  };
+
+  for (const file of recoveryFiles()) {
+    const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
+    for (const record of recovery.records || []) {
+      const document = candidateRhpMinimumApplicationDocument(record);
+      if (!document) continue;
+      stats.candidates += 1;
+
+      let pages;
+      try {
+        pages = fullPagesLayout(await fetchPdf(document.url));
+        stats.downloaded += 1;
+        stats.pages_scanned += pages.length;
+      } catch (error) {
+        stats.fetch_errors += 1;
+        console.warn(
+          "RHP minimum-application diagnostic unavailable for " +
+          record.issuer_name + ": " + error.message
+        );
+        continue;
+      }
+
+      const mentions = findMinimumApplicationAmountMentionsInPages(pages);
+      if (mentions.length > 0) stats.documents_with_explicit_inr_mentions += 1;
+      stats.mentions += mentions.length;
+
+      console.log(JSON.stringify({
+        issuer_name: record.issuer_name,
+        document: document.identity ?? document.type,
+        url: document.url,
+        pages_scanned: pages.length,
+        minimum_application_mentions: mentions
+      }, null, 2));
+    }
+  }
+
+  console.log(JSON.stringify({ rhp_minimum_application_diagnostic_stats: stats }, null, 2));
 }
 
 async function diagnoseRhpMinimumBid() {
@@ -786,8 +893,10 @@ const isMain = process.argv[1] &&
   pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
 
 if (isMain) {
-  const action = process.argv.includes("--minimum-bid")
-    ? runMinimumBid
+  const action = process.argv.includes("--diagnose-rhp-min-application")
+    ? diagnoseRhpMinimumApplication
+    : process.argv.includes("--minimum-bid")
+      ? runMinimumBid
     : process.argv.includes("--diagnose-prospectus-min-bid")
       ? diagnoseProspectusMinimumBid
     : process.argv.includes("--diagnose-rhp-min-bid")
