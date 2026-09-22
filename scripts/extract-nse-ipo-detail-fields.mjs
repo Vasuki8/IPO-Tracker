@@ -143,6 +143,40 @@ export function parsePriceBandFromIpoDetail(payload) {
   };
 }
 
+export function issuePriceCandidatesFromIpoDetail(payload) {
+  const list = payload?.issueInfo?.dataList;
+  const candidates = [];
+
+  if (Array.isArray(list)) {
+    for (const item of list) {
+      const title = normalizeTitle(item?.title);
+      if (title === "issue price" || title === "final issue price" || title === "offer price") {
+        candidates.push({
+          source: "issueInfo.dataList",
+          title: normalizeText(item?.title),
+          value: normalizeText(item?.value).replace(/^"|"$/g, "")
+        });
+      }
+    }
+  }
+
+  const meta = payload?.metaInfo;
+  if (meta && typeof meta === "object" && !Array.isArray(meta)) {
+    for (const [key, value] of Object.entries(meta)) {
+      const normalized = key.replace(/[^a-z0-9]/gi, "").toLowerCase();
+      if (normalized === "issueprice" || normalized === "finalissueprice" || normalized === "offerprice") {
+        candidates.push({
+          source: "metaInfo",
+          title: key,
+          value: normalizeText(value).replace(/^"|"$/g, "")
+        });
+      }
+    }
+  }
+
+  return candidates;
+}
+
 export function parseMinimumBidFromIpoDetail(payload) {
   const list = payload?.issueInfo?.dataList;
   if (!Array.isArray(list)) {
@@ -502,6 +536,71 @@ async function diagnosePriceBand() {
   console.log(JSON.stringify({ nse_price_band_diagnostic_stats: stats }, null, 2));
 }
 
+async function diagnoseIssuePrice() {
+  const landing = await fetchWithRetry(NSE_HOME, {
+    headers: {
+      "user-agent": USER_AGENT,
+      "accept": "text/html,application/xhtml+xml",
+      "accept-language": "en-US,en;q=0.9"
+    }
+  });
+  const cookie = cookieHeader(landing.headers);
+
+  const stats = {
+    candidates: 0,
+    api_success: 0,
+    responses_with_issue_price_terms: 0,
+    fetch_errors: 0
+  };
+
+  for (const file of recoveryFiles()) {
+    const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
+    for (const record of recovery.records || []) {
+      if (record.issue_price?.value !== null && record.issue_price?.value !== undefined) continue;
+      if (record.listing_date?.value === null || record.listing_date?.value === undefined) continue;
+      const identity = resolveNseIdentity(record);
+      if (!identity) continue;
+
+      stats.candidates += 1;
+      const url = apiUrl(record);
+
+      try {
+        const response = await fetchWithRetry(url, {
+          headers: {
+            "user-agent": USER_AGENT,
+            "accept": "application/json,text/plain,*/*",
+            "accept-language": "en-US,en;q=0.9",
+            "referer": NSE_HOME,
+            "cookie": cookie,
+            "cache-control": "no-cache",
+            "pragma": "no-cache"
+          }
+        });
+        const payload = await response.json();
+        stats.api_success += 1;
+        const candidates = issuePriceCandidatesFromIpoDetail(payload);
+        if (candidates.length > 0) stats.responses_with_issue_price_terms += 1;
+
+        console.log(JSON.stringify({
+          issuer_name: record.issuer_name,
+          symbol: identity.symbol,
+          series: identity.series,
+          listing_date: record.listing_date.value,
+          url,
+          issue_price_candidates: candidates
+        }, null, 2));
+      } catch (error) {
+        stats.fetch_errors += 1;
+        console.warn("NSE issue-price diagnostic unavailable for " + record.issuer_name + ": " + error.message);
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 650));
+    }
+  }
+
+  console.log(JSON.stringify({ nse_issue_price_diagnostic_stats: stats }, null, 2));
+}
+
 async function runPriceBand() {
   const now = new Date().toISOString();
   const landing = await fetchWithRetry(NSE_HOME, {
@@ -833,8 +932,10 @@ const isMain = process.argv[1] &&
   pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
 
 if (isMain) {
-  const action = process.argv.includes("--price-band")
-    ? runPriceBand
+  const action = process.argv.includes("--diagnose-issue-price")
+    ? diagnoseIssuePrice
+    : process.argv.includes("--price-band")
+      ? runPriceBand
     : process.argv.includes("--diagnose-price-band")
       ? diagnosePriceBand
       : process.argv.includes("--listing-date")
