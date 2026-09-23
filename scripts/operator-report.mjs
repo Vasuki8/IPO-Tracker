@@ -160,6 +160,24 @@ function normalizedOutcome(value) {
   return allowed.has(value) ? value : "unknown";
 }
 
+export function classifyStageMeasurement(stages, collectionHealth) {
+  const upstreamFailed = (name) => ["failure", "cancelled"].includes(stages[name]);
+  const expectedSkip = {
+    rebuild: collectionHealth === "collection_failure",
+    validation: collectionHealth === "collection_failure" || upstreamFailed("rebuild"),
+    repository_publish: collectionHealth === "collection_failure" || upstreamFailed("rebuild") || upstreamFailed("validation")
+  };
+  const measurement = {};
+  for (const name of ["rebuild", "validation", "repository_publish"]) {
+    const outcome = stages[name];
+    if (outcome === "unknown") measurement[name] = "unexpectedly_unmeasured";
+    else if (outcome === "skipped" && expectedSkip[name]) measurement[name] = "expected_skip";
+    else if (outcome === "skipped") measurement[name] = "unexpected_skip";
+    else measurement[name] = "measured";
+  }
+  return measurement;
+}
+
 export function summarizePipeline(env = process.env) {
   const stages = {
     nse_collection: normalizedOutcome(env.NSE_COLLECTION_OUTCOME),
@@ -175,6 +193,8 @@ export function summarizePipeline(env = process.env) {
       ? "collection_success"
       : "not_measured";
 
+  const stageMeasurement = classifyStageMeasurement(stages, collectionHealth);
+
   return {
     run_id: env.GITHUB_RUN_ID ?? null,
     run_attempt: env.GITHUB_RUN_ATTEMPT ?? null,
@@ -183,6 +203,7 @@ export function summarizePipeline(env = process.env) {
     report_generated_at: env.OPERATOR_REPORT_AT ?? new Date().toISOString(),
     collection_health: collectionHealth,
     stages,
+    stage_measurement: stageMeasurement,
     pages_publication: "not_recorded_in_sync_workflow"
   };
 }
@@ -216,6 +237,12 @@ export function classifyOperatorHealth(dataset, pipeline, pages, options = {}) {
   if (["failure", "cancelled"].includes(pipeline.stages?.repository_publish)) reasons.push("repository_publication_failure");
   if (pages.latest_attempt_status === "failure" || pages.latest_attempt_status === "cancelled") reasons.push("pages_deployment_failure");
 
+  const measurement = pipeline.stage_measurement || {};
+  const unexpectedMeasurement = Object.entries(measurement)
+    .filter(([, state]) => state === "unexpectedly_unmeasured" || state === "unexpected_skip")
+    .map(([stage]) => `${stage}_unmeasured`);
+  reasons.push(...unexpectedMeasurement);
+
   const staleChecks = [
     ["dataset_generated", "stale_dataset"],
     ["record_collection", "stale_record_collection"],
@@ -234,7 +261,7 @@ export function classifyOperatorHealth(dataset, pipeline, pages, options = {}) {
   let overall = "healthy";
   if (reasons.some((reason) => reason.endsWith("_failure"))) overall = "failure";
   else if (reasons.some((reason) => reason.startsWith("stale_"))) overall = "stale";
-  else if (missingSignals.length || pipeline.collection_health === "not_measured") overall = "unknown";
+  else if (missingSignals.length || pipeline.collection_health === "not_measured" || reasons.some((reason) => reason.endsWith("_unmeasured"))) overall = "unknown";
 
   return {
     overall,
@@ -336,6 +363,7 @@ export function renderMarkdown(report) {
     `- Dataset rebuild: **${pipeline.stages.rebuild}**`,
     `- Data validation: **${pipeline.stages.validation}**`,
     `- Repository publication step: **${pipeline.stages.repository_publish}**`,
+    `- Stage measurement: rebuild **${pipeline.stage_measurement?.rebuild ?? "unknown"}**, validation **${pipeline.stage_measurement?.validation ?? "unknown"}**, repository publication **${pipeline.stage_measurement?.repository_publish ?? "unknown"}**`,
     `- GitHub Pages latest attempt: **${pages.latest_attempt_status}**${pages.latest_attempt_at ? ` at ${pages.latest_attempt_at}` : ""}`,
     `- GitHub Pages last successful publication: ${pages.last_successful_at || "not recorded"}${pages.last_successful_commit_sha ? ` (commit ${pages.last_successful_commit_sha})` : ""}`,
     "",
