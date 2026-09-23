@@ -487,6 +487,109 @@ export function parseExplicitAggregateIssueSizeFromPages(pages) {
   return null;
 }
 
+export function findExplicitPriceBands(pageText, page = 1) {
+  const text = normalizeText(pageText);
+  if (!text) return [];
+
+  const results = [];
+  const pattern = /\bprice\s+band\b(?:\s+(?:is|of))?\s*[:\-–—]?\s*(?:₹|rs\.?|inr)\s*([0-9][0-9,]*(?:\.[0-9]{1,2})?)\s*(?:\/\-)?\s*(?:to|[-–—])\s*(?:(?:₹|rs\.?|inr)\s*)?([0-9][0-9,]*(?:\.[0-9]{1,2})?)\s*(?:\/\-)?(?:\s+per\s+(?:equity\s+)?share\b)?/ig;
+
+  for (const match of text.matchAll(pattern)) {
+    const min = Number(match[1].replace(/,/g, ""));
+    const max = Number(match[2].replace(/,/g, ""));
+    if (!Number.isFinite(min) || !Number.isFinite(max) || min <= 0 || max <= 0 || min > max) continue;
+    results.push({
+      value: { min, max },
+      source_value: match[0],
+      page
+    });
+  }
+  return results;
+}
+
+export function parseExplicitPriceBandFromPages(pages) {
+  const matches = [];
+  for (let index = 0; index < (pages || []).length; index += 1) {
+    matches.push(...findExplicitPriceBands(pages[index], index + 1));
+  }
+  const unique = new Map(matches.map((item) => [item.value.min + "|" + item.value.max, item]));
+  if (unique.size !== 1) return null;
+  return [...unique.values()][0];
+}
+
+export function findExplicitMarketLots(pageText, page = 1) {
+  const text = normalizeText(pageText);
+  if (!text) return [];
+
+  const results = [];
+  const pattern = /\b(?:market\s+lot|lot\s+size)\b(?:\s+(?:is|of))?\s*[:\-–—]?\s*([0-9][0-9,]*)\s+(?:equity\s+)?shares?\b/ig;
+
+  for (const match of text.matchAll(pattern)) {
+    const value = Number(match[1].replace(/,/g, ""));
+    if (!Number.isInteger(value) || value <= 0) continue;
+    results.push({
+      value,
+      source_value: match[0],
+      page
+    });
+  }
+  return results;
+}
+
+export function parseExplicitMarketLotFromPages(pages) {
+  const matches = [];
+  for (let index = 0; index < (pages || []).length; index += 1) {
+    matches.push(...findExplicitMarketLots(pages[index], index + 1));
+  }
+  const unique = new Map(matches.map((item) => [String(item.value), item]));
+  if (unique.size !== 1) return null;
+  return [...unique.values()][0];
+}
+
+export function applyPriceBandExtraction(record, document, extraction, collectedAt) {
+  if (!document || !extraction?.value) return false;
+  if (record.price_band?.value !== null && record.price_band?.value !== undefined) return false;
+  if (record.terms?.price_band !== null && record.terms?.price_band !== undefined) return false;
+
+  record.price_band = {
+    value: extraction.value,
+    source_value: extraction.source_value,
+    page: extraction.page,
+    status: "verified",
+    source: {
+      url: document.url,
+      document_type: document.type,
+      document_identity: document.identity ?? null,
+      publication_date: document.publication_date ?? null,
+      collected_at: collectedAt
+    }
+  };
+  record.last_collected_at = collectedAt;
+  return true;
+}
+
+export function applyMarketLotExtraction(record, document, extraction, collectedAt) {
+  if (!document || extraction?.value === null || extraction?.value === undefined) return false;
+  if (record.market_lot?.value !== null && record.market_lot?.value !== undefined) return false;
+  if (record.terms?.market_lot !== null && record.terms?.market_lot !== undefined) return false;
+
+  record.market_lot = {
+    value: extraction.value,
+    source_value: extraction.source_value,
+    page: extraction.page,
+    status: "verified",
+    source: {
+      url: document.url,
+      document_type: document.type,
+      document_identity: document.identity ?? null,
+      publication_date: document.publication_date ?? null,
+      collected_at: collectedAt
+    }
+  };
+  record.last_collected_at = collectedAt;
+  return true;
+}
+
 export function applyIssuePriceExtraction(record, document, extraction, collectedAt) {
   if (!document || !extraction) return false;
   if (record.issue_price?.value !== null && record.issue_price?.value !== undefined) return false;

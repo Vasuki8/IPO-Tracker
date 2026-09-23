@@ -7,10 +7,14 @@ import { selectBalancedByListingYear } from "./historical-batch-selection.mjs";
 import {
   applyIssuePriceExtraction,
   applyIssueSizeExtraction,
+  applyMarketLotExtraction,
   applyMinimumBidExtraction,
+  applyPriceBandExtraction,
   parseExplicitAggregateIssueSizeFromPages,
   parseExplicitIssuePriceFromPages,
-  parseExplicitMinimumBidQuantityFromPages
+  parseExplicitMarketLotFromPages,
+  parseExplicitMinimumBidQuantityFromPages,
+  parseExplicitPriceBandFromPages
 } from "./extract-prospectus-fields.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -18,7 +22,7 @@ const RECOVERY_ROOT = path.join(ROOT, "data", "recovery");
 const STATE_PATH = path.join(ROOT, "ops", "sebi-historical-pdf-fields.json");
 const USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36";
 export const HISTORICAL_PDF_FIELD_BATCH_SIZE = 8;
-export const HISTORICAL_PDF_FIELD_PARSER_VERSION = "1.0.0";
+export const HISTORICAL_PDF_FIELD_PARSER_VERSION = "1.1.0";
 const MAX_PAGES = 35;
 
 function normalizeText(value) {
@@ -45,7 +49,9 @@ export function historicalPdfKey(record) {
 export function missingHistoricalPdfFields(record) {
   const fields = [];
   if (record.issue_price?.value == null) fields.push("issue_price");
+  if ((record.price_band?.value ?? record.terms?.price_band) == null) fields.push("price_band");
   if (record.issue_size_inr?.value == null) fields.push("issue_size_inr");
+  if ((record.market_lot?.value ?? record.terms?.market_lot) == null) fields.push("market_lot");
   if (record.minimum_bid_quantity?.value == null && record.terms?.minimum_bid_quantity == null) fields.push("minimum_bid_quantity");
   return fields;
 }
@@ -83,7 +89,9 @@ export function applyHistoricalPdfFields(record, document, pages, collectedAt) {
   const changed = [];
   const extractions = {
     issue_price: null,
+    price_band: null,
     issue_size_inr: null,
+    market_lot: null,
     minimum_bid_quantity: null
   };
 
@@ -92,10 +100,20 @@ export function applyHistoricalPdfFields(record, document, pages, collectedAt) {
     extractions.issue_price = extraction ?? null;
     if (extraction && applyIssuePriceExtraction(record, document, extraction, collectedAt)) changed.push("issue_price");
   }
+  if (before.includes("price_band")) {
+    const extraction = parseExplicitPriceBandFromPages(pages);
+    extractions.price_band = extraction ?? null;
+    if (extraction && applyPriceBandExtraction(record, document, extraction, collectedAt)) changed.push("price_band");
+  }
   if (before.includes("issue_size_inr")) {
     const extraction = parseExplicitAggregateIssueSizeFromPages(pages);
     extractions.issue_size_inr = extraction ?? null;
     if (extraction && applyIssueSizeExtraction(record, document, extraction, collectedAt)) changed.push("issue_size_inr");
+  }
+  if (before.includes("market_lot")) {
+    const extraction = parseExplicitMarketLotFromPages(pages);
+    extractions.market_lot = extraction ?? null;
+    if (extraction && applyMarketLotExtraction(record, document, extraction, collectedAt)) changed.push("market_lot");
   }
   if (before.includes("minimum_bid_quantity")) {
     const extraction = parseExplicitMinimumBidQuantityFromPages(pages);

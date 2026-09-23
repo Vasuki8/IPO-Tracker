@@ -4,7 +4,9 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import {
   applyIssuePriceExtraction,
   applyIssueSizeExtraction,
-  applyMinimumBidExtraction
+  applyMarketLotExtraction,
+  applyMinimumBidExtraction,
+  applyPriceBandExtraction
 } from "./extract-prospectus-fields.mjs";
 import { historicalPdfKey } from "./backfill-historical-pdf-fields.mjs";
 
@@ -85,9 +87,17 @@ export function mergeHistoricalPdfFieldProposal(groups, currentState, proposalSt
         applyIssuePriceExtraction(record, document, extractions.issue_price, incoming.last_attempted_at)) {
       changed.push("issue_price");
     }
+    if (extractions.price_band &&
+        applyPriceBandExtraction(record, document, extractions.price_band, incoming.last_attempted_at)) {
+      changed.push("price_band");
+    }
     if (extractions.issue_size_inr &&
         applyIssueSizeExtraction(record, document, extractions.issue_size_inr, incoming.last_attempted_at)) {
       changed.push("issue_size_inr");
+    }
+    if (extractions.market_lot &&
+        applyMarketLotExtraction(record, document, extractions.market_lot, incoming.last_attempted_at)) {
+      changed.push("market_lot");
     }
     if (extractions.minimum_bid_quantity &&
         applyMinimumBidExtraction(record, document, extractions.minimum_bid_quantity, incoming.last_attempted_at)) {

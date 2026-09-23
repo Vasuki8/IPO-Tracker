@@ -3,6 +3,8 @@ import fs from "node:fs";
 import {
   applyIssuePriceExtraction,
   applyIssueSizeExtraction,
+  applyMarketLotExtraction,
+  applyPriceBandExtraction,
   applyMinimumBidExtraction,
   applyNiiMinimumApplicationExtraction,
   candidateProspectusDocument,
@@ -23,7 +25,9 @@ import {
   findIssuePriceMentions,
   parseExplicitAggregateIssueSizeFromPages,
   parseExplicitIssuePriceFromPages,
+  parseExplicitMarketLotFromPages,
   parseExplicitMinimumBidQuantityFromPages,
+  parseExplicitPriceBandFromPages,
   shouldDeferHeavyHistoricalPdf
 } from "./extract-prospectus-fields.mjs";
 
@@ -74,6 +78,47 @@ assert.equal(
   null
 );
 
+const explicitBand = parseExplicitPriceBandFromPages([
+  "Price Band: ₹120 to ₹125 per Equity Share."
+]);
+assert.deepEqual(explicitBand.value, { min: 120, max: 125 });
+assert.equal(explicitBand.page, 1);
+
+assert.equal(
+  parseExplicitPriceBandFromPages([
+    "Price Band: ₹120 to ₹125 per Equity Share.",
+    "Price Band: ₹121 to ₹125 per Equity Share."
+  ]),
+  null
+);
+
+assert.equal(
+  parseExplicitPriceBandFromPages([
+    "Issue Price ₹125 per Equity Share."
+  ]),
+  null
+);
+
+const explicitMarketLot = parseExplicitMarketLotFromPages([
+  "Market Lot: 1,200 Equity Shares."
+]);
+assert.equal(explicitMarketLot.value, 1200);
+
+assert.equal(
+  parseExplicitMarketLotFromPages([
+    "Bid Lot 1,200 Equity Shares."
+  ]),
+  null
+);
+
+assert.equal(
+  parseExplicitMarketLotFromPages([
+    "Market Lot: 1,200 Equity Shares.",
+    "Lot Size: 1,000 Equity Shares."
+  ]),
+  null
+);
+
 const diagnosticMentions = findIssuePriceMentions(
   "The Offer Price shall be finalised after the Book Building Process. Later, the Issue Price is ₹424 per Equity Share.",
   12
@@ -101,6 +146,9 @@ const doc = {
 const record = {
   issuer_name: "Example Limited",
   issue_price: undefined,
+  price_band: undefined,
+  market_lot: undefined,
+  terms: { price_band: null, market_lot: null },
   documents: [doc],
   last_collected_at: "2026-09-20T00:00:00Z"
 };
@@ -437,3 +485,33 @@ assert.equal(
   ),
   false
 );
+
+const bandRecord = {
+  issuer_name: "Band Example Limited",
+  price_band: { value: null },
+  terms: { price_band: null },
+  documents: [doc]
+};
+assert.equal(applyPriceBandExtraction(
+  bandRecord,
+  doc,
+  explicitBand,
+  "2026-09-23T22:00:00Z"
+), true);
+assert.deepEqual(bandRecord.price_band.value, { min: 120, max: 125 });
+assert.equal(bandRecord.price_band.status, "verified");
+
+const lotRecord = {
+  issuer_name: "Lot Example Limited",
+  market_lot: { value: null },
+  terms: { market_lot: null },
+  documents: [doc]
+};
+assert.equal(applyMarketLotExtraction(
+  lotRecord,
+  doc,
+  explicitMarketLot,
+  "2026-09-23T22:00:00Z"
+), true);
+assert.equal(lotRecord.market_lot.value, 1200);
+assert.equal(lotRecord.market_lot.status, "verified");

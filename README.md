@@ -1029,3 +1029,8 @@ Historical offer-date extraction now uses a strict label-to-date grammar and rej
 ### Historical issue-size retry
 
 NSE historical detail parser v1.1 now accepts a single explicit overall monetary amount from official `Issue Size`, `Total Issue Size` or `Offer Size` fields while still rejecting mixed offer legs, multiple competing amounts, and share-count arithmetic. Previous v1.0 no-field records are automatically eligible for one bounded retry.
+
+
+### Historical SEBI PDF parser v1.1
+
+The independent historical PDF backfill now also recovers explicit **price bands** and **market lot/lot size** terms. Conflicting values are rejected, and `Bid Lot` remains mapped only to minimum bid quantity.

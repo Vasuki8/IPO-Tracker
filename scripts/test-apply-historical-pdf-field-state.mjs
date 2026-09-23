@@ -6,9 +6,11 @@ const record = {
   issuer_name: "Alpha Limited",
   listing_date: { value: "2025-12-10" },
   issue_price: { value: null },
+  price_band: { value: null },
   issue_size_inr: { value: null },
+  market_lot: { value: null },
   minimum_bid_quantity: { value: null },
-  terms: { minimum_bid_quantity: null },
+  terms: { price_band: null, market_lot: null, minimum_bid_quantity: null },
   documents: []
 };
 const groups = [{ recovery: { records: [record] }, changed: false }];
@@ -22,7 +24,9 @@ const proposal = {
       status: "extracted",
       extractions: {
         issue_price: { value: 125, source_value: "Issue Price ₹125 per Equity Share", page: 1 },
+        price_band: { value: { min: 120, max: 125 }, source_value: "Price Band: ₹120 to ₹125 per Equity Share", page: 1 },
         issue_size_inr: { value: 5000000000, source_value: "₹500 crore", page: 2 },
+        market_lot: { value: 120, source_value: "Market Lot: 120 Equity Shares", page: 2 },
         minimum_bid_quantity: { value: 120, source_value: "Bid Lot 120 Equity Shares", page: 3 }
       },
       document: {
@@ -37,9 +41,11 @@ const proposal = {
 const current = { issuers: {} };
 const stats = mergeHistoricalPdfFieldProposal(groups, current, proposal);
 assert.equal(stats.extracted_records, 1);
-assert.equal(stats.extracted_fields, 3);
+assert.equal(stats.extracted_fields, 5);
 assert.equal(record.issue_price.value, 125);
+assert.deepEqual(record.price_band.value, { min: 120, max: 125 });
 assert.equal(record.issue_size_inr.value, 5000000000);
+assert.equal(record.market_lot.value, 120);
 assert.equal(record.minimum_bid_quantity.value, 120);
 assert.equal(record.issue_size_inr.source.document_type, "SEBI Prospectus PDF");
 assert.equal(groups[0].changed, true);
@@ -49,9 +55,11 @@ const concurrentRecord = {
   issuer_name: "Beta Limited",
   listing_date: { value: "2024-11-10" },
   issue_price: { value: 99 },
+  price_band: { value: { min: 95, max: 99 } },
   issue_size_inr: { value: 1000000000 },
+  market_lot: { value: 50 },
   minimum_bid_quantity: { value: 50 },
-  terms: { minimum_bid_quantity: null },
+  terms: { price_band: null, market_lot: null, minimum_bid_quantity: null },
   documents: []
 };
 const concurrentGroups = [{ recovery: { records: [concurrentRecord] }, changed: false }];
@@ -65,7 +73,9 @@ const concurrentProposal = {
       status: "extracted",
       extractions: {
         issue_price: { value: 98, source_value: "Issue Price ₹98", page: 1 },
+        price_band: { value: { min: 94, max: 98 }, source_value: "Price Band ₹94 to ₹98", page: 1 },
         issue_size_inr: { value: 900000000, source_value: "₹90 crore", page: 2 },
+        market_lot: { value: 40, source_value: "Market Lot 40 Equity Shares", page: 2 },
         minimum_bid_quantity: { value: 40, source_value: "Bid Lot 40 Equity Shares", page: 3 }
       },
       document: {
@@ -81,7 +91,9 @@ const concurrentStats = mergeHistoricalPdfFieldProposal(concurrentGroups, { issu
 assert.equal(concurrentStats.extracted_records, 0);
 assert.equal(concurrentStats.already_present, 1);
 assert.equal(concurrentRecord.issue_price.value, 99);
+assert.deepEqual(concurrentRecord.price_band.value, { min: 95, max: 99 });
 assert.equal(concurrentRecord.issue_size_inr.value, 1000000000);
+assert.equal(concurrentRecord.market_lot.value, 50);
 assert.equal(concurrentRecord.minimum_bid_quantity.value, 50);
 
 console.log("Historical PDF field semantic merge tests passed.");
