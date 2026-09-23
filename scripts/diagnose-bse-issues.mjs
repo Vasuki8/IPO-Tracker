@@ -29,7 +29,15 @@ export function parseBseIssueSummaryLinks(html) {
   for (const match of String(html ?? "").matchAll(pattern)) {
     const href = normalizeText(match[1]).replace(/&amp;/g, "&");
     const anchor = stripTags(match[2]);
-    const context = stripTags(String(html).slice(Math.max(0, match.index - 900), Math.min(String(html).length, match.index + match[0].length + 250)));
+    const before = String(html).slice(0, match.index);
+    const rowStart = before.lastIndexOf("<tr");
+    const after = String(html).slice(match.index + match[0].length);
+    const rowEndOffset = after.search(/<\/tr\s*>/i);
+    const contextStart = rowStart >= 0 ? rowStart : Math.max(0, match.index - 500);
+    const contextEnd = rowEndOffset >= 0
+      ? match.index + match[0].length + rowEndOffset + 5
+      : Math.min(String(html).length, match.index + match[0].length + 250);
+    const context = stripTags(String(html).slice(contextStart, contextEnd));
     results.push({
       url: new URL(href, BSE_ISSUE_SUMMARY_URL).href,
       anchor,
