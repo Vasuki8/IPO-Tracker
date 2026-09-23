@@ -2986,3 +2986,27 @@ Two production backfill runs established that the bounded historical NSE detail 
 - second run: 24/24 API calls succeeded, 22 records enriched, 45 fields recovered, 0 fetch errors.
 
 The bounded batch is therefore increased from **24 to 48 issuers per sync**. Cursor/version gating, request timeouts, no-overwrite semantics and error retries remain unchanged.
+
+
+## Historical offer-date backfill — explicit SEBI RHP/Prospectus dates
+
+Historical 2020-2025 open/close date coverage remained at zero after NSE historical universe materialization. The existing NSE historical source does not expose a verified offer-period field, so this batch recovers dates only from explicit official SEBI document text.
+
+### Behavior
+
+- process at most **12 historical IPOs per sync**;
+- candidate records must be pre-current-year, still missing open/close dates, and already retain an official SEBI Prospectus PDF or RHP PDF;
+- Prospectus PDF is preferred over RHP PDF when both are available;
+- only explicit labels such as `Bid/Issue Opening Date`, `Issue Opening Date`, `Bid/Issue Closing Date`, and equivalent `opens on` / `closes on` wording are accepted;
+- month-name dates are parsed with strict calendar validation;
+- conflicting official dates are rejected;
+- opening date after closing date is rejected;
+- closing date after a retained listing date is rejected;
+- existing non-null dates are never overwritten;
+- each recovered date retains source PDF URL, document identity/type, publication date, PDF page and collection timestamp.
+
+### Bounded cursor
+
+`ops/sebi-historical-offer-dates.json` records parser version, last attempt, extraction result and source URL. Successful/no-field/conflict results are not repeatedly scanned with the same parser version; transient PDF failures retry after 24 hours.
+
+This queue is separate from the heavy general historical PDF passes so offer-date recovery can progress without blocking live publication.
