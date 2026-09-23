@@ -916,3 +916,12 @@ The record distinguishes the **latest deployment attempt** from the **last succe
 The Pages workflow ignores status-only commits, preventing recursive deployments. IPO values and `data/ipos.json.generated_at` are not used as deployment timestamps.
 
 **Handoff:** the next backend operations batch should add read-only **staleness thresholds / actionable health classification** on top of the separated collection, dataset-generation, and Pages-publication timestamps.
+
+
+### Operator staleness and health classification
+
+The backend operator report now classifies freshness as `healthy`, `stale`, `failure`, or `unknown` using explicit thresholds. Dataset generation, record collection, retained evidence collection and Pages publication remain separate signals.
+
+No IPO value or field status is changed by this classification, and source-null is never inferred from age.
+
+**Handoff:** next add read-only **recovery guidance** that maps each unhealthy reason to a safe diagnostic/action, without automatically rerunning workflows or modifying data.
