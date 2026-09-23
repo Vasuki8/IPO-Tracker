@@ -9,8 +9,6 @@ on:
     paths:
       - "scripts/audit-bse-sme-ipo-index.mjs"
       - "scripts/test-audit-bse-sme-ipo-index.mjs"
-      - "scripts/diagnose-bse-index-announcements.mjs"
-      - "scripts/test-diagnose-bse-index-announcements.mjs"
       - ".github/workflows/audit-bse-sme-universe.yml"
 
 permissions:
@@ -30,12 +28,6 @@ jobs:
 
       - name: Test BSE SME universe audit
         run: node scripts/test-audit-bse-sme-ipo-index.mjs
-
-      - name: Test BSE Index announcement diagnostic
-        run: node scripts/test-diagnose-bse-index-announcements.mjs
-
-      - name: Diagnose BSE Index announcement API
-        run: node scripts/diagnose-bse-index-announcements.mjs
 
       - name: Audit official BSE SME universe
         run: node scripts/audit-bse-sme-ipo-index.mjs
