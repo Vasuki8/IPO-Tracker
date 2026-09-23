@@ -953,3 +953,10 @@ The backend now retains up to **48 health transitions** in `ops/operator-health-
 The operator report now shows the current retained state, consecutive observation count, and up to five recent health transitions from the bounded history. It explicitly handles the period before history is first recorded.
 
 **Handoff:** next make rebuild, validation, and repository-publication failures first-class operator health reasons with reason-specific recovery guidance.
+
+
+### First-class pipeline failure classification
+
+The operator layer now distinguishes source collection, dataset rebuild, data validation, repository publication, and Pages deployment failures. Each has targeted diagnostic/recovery guidance; downstream failures are not mislabeled as source failures.
+
+**Handoff:** next refine skipped/unmeasured stage semantics so expected downstream skips after an upstream failure are distinguished from unexpectedly unmeasured stages.

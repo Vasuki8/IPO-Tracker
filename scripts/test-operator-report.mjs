@@ -182,3 +182,54 @@ const recurrenceMarkdown = renderMarkdown(reportWithHistory);
 assert.match(recurrenceMarkdown, /Recurrence context/);
 assert.match(recurrenceMarkdown, /Current retained state: \*\*failure\*\* across \*\*3\*\* consecutive observation/);
 assert.match(recurrenceMarkdown, /collection_failure/);
+
+const pipelineFailureDataset = {
+  dataset_generated_at: "2026-09-23T10:30:00Z",
+  latest_record_collected_at: "2026-09-23T10:30:00Z",
+  latest_evidence_collected_at: "2026-09-23T10:30:00Z"
+};
+const pipelineFailurePages = { latest_attempt_status: "success", last_successful_at: "2026-09-23T10:30:00Z" };
+
+const rebuildFailure = classifyOperatorHealth(
+  pipelineFailureDataset,
+  {
+    report_generated_at: "2026-09-23T11:00:00Z",
+    collection_health: "collection_success",
+    stages: { rebuild: "failure", validation: "skipped", repository_publish: "skipped" }
+  },
+  pipelineFailurePages
+);
+assert.equal(rebuildFailure.overall, "failure");
+assert.deepEqual(rebuildFailure.reasons, ["rebuild_failure"]);
+
+const validationFailure = classifyOperatorHealth(
+  pipelineFailureDataset,
+  {
+    report_generated_at: "2026-09-23T11:00:00Z",
+    collection_health: "collection_success",
+    stages: { rebuild: "success", validation: "failure", repository_publish: "skipped" }
+  },
+  pipelineFailurePages
+);
+assert.equal(validationFailure.overall, "failure");
+assert.deepEqual(validationFailure.reasons, ["validation_failure"]);
+
+const publicationFailure = classifyOperatorHealth(
+  pipelineFailureDataset,
+  {
+    report_generated_at: "2026-09-23T11:00:00Z",
+    collection_health: "collection_success",
+    stages: { rebuild: "success", validation: "success", repository_publish: "failure" }
+  },
+  pipelineFailurePages
+);
+assert.equal(publicationFailure.overall, "failure");
+assert.deepEqual(publicationFailure.reasons, ["repository_publication_failure"]);
+
+const stageGuidance = buildRecoveryGuidance({
+  reasons: ["rebuild_failure", "validation_failure", "repository_publication_failure"]
+});
+assert.deepEqual(stageGuidance.map((item) => item.priority), ["high", "high", "high"]);
+assert.match(stageGuidance[0].diagnostic, /dataset rebuild step/);
+assert.match(stageGuidance[1].recovery, /validation to pass/);
+assert.match(stageGuidance[2].recovery, /without recollecting sources unless needed/);
