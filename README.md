@@ -1043,4 +1043,8 @@ For missing price band, market lot, or minimum bid, the historical SEBI PDF back
 
 ### BSE-only SME universe audit
 
-The backend now compares the official BSE SME IPO Index with the 2020-2026 recovery universe and reports unmatched constituents as candidates. No BSE-only issuer is added until issuer-specific official evidence verifies it.
+The BSE-only SME universe audit is now **independent of the live IPO sync**. Production verification showed that BSE's current Index Services and legacy index pages return HTTP-200 Angular shells to GitHub Actions without server-rendered constituent rows, so a zero-row response is treated as a source failure rather than an empty universe.
+
+The independent `Audit BSE SME IPO universe` workflow keeps this source gap visible, records bounded page/bundle diagnostics, and cannot block live NSE/SEBI collection. It remains read-only: no candidate becomes an IPO record without issuer-specific official BSE listing evidence.
+
+**Handoff:** next build the BSE-only SME discovery path from official BSE Index Services addition/reconstitution notices or another stable official non-SPA source. Retain notice identity, effective/listing date and scrip code, reconcile candidates against the 2020-2026 recovery universe, and preserve the existing listing-evidence gate before materialization.
