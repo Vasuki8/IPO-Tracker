@@ -1004,3 +1004,8 @@ Verified BSE source-manifest entries can now materialize BSE-only IPO records wh
 ### BSE-only inclusion safety
 
 BSE-only issuer creation now requires an official BSE **listing notice** with matching issuer identity and listing date. BSE issue-detail pages remain useful for enriching known issuers but cannot create unmatched universe records by themselves.
+
+
+### Historical offer-date recovery
+
+Historical IPOs with retained official SEBI RHP/Prospectus PDFs are now processed in a bounded queue for explicit offer opening/closing dates. The parser accepts only labeled official dates, rejects conflicts/invalid chronology, and keeps PDF-page provenance.
