@@ -3,6 +3,7 @@ import {
   applyOfferDates,
   candidateOfferDateDocument,
   offerDateCandidates,
+  offerDateExtractionPassesCurrentRules,
   parseExplicitOfferDate,
   parseExplicitOfferDatesFromPages
 } from "./backfill-historical-offer-dates.mjs";
@@ -93,3 +94,20 @@ assert.equal(record.open_date.source.document_type, "SEBI Prospectus PDF");
 assert.equal(candidateOfferDateDocument(record, 2026), null);
 
 console.log("Historical SEBI offer-date backfill tests passed.");
+
+assert.equal(
+  offerDateExtractionPassesCurrentRules(
+    { value: "2025-12-10", source_value: "Offer Opening Date i.e December 10, 2025", page: 1 },
+    "open",
+    "2025-12-17"
+  ),
+  true
+);
+assert.equal(
+  offerDateExtractionPassesCurrentRules(
+    { value: "2025-12-05", source_value: "Offer Closing Date. F&S has, through its letter dated December 5, 2024", page: 29 },
+    "close",
+    "2024-12-31"
+  ),
+  false
+);
