@@ -11,6 +11,7 @@ on:
       - "scripts/test-audit-bse-sme-ipo-index.mjs"
       - "scripts/audit-bse-sme-addition-notices.mjs"
       - "scripts/test-audit-bse-sme-addition-notices.mjs"
+      - "scripts/diagnose-bse-notice-detail-shape.mjs"
       - "scripts/diagnose-bse-notice-api-context.mjs"
       - "scripts/test-diagnose-bse-notice-api-context.mjs"
       - ".github/workflows/audit-bse-sme-universe.yml"
@@ -44,6 +45,9 @@ jobs:
 
       - name: Test BSE SME addition notice audit
         run: node scripts/test-audit-bse-sme-addition-notices.mjs
+
+      - name: Diagnose BSE notice detail shape
+        run: node scripts/diagnose-bse-notice-detail-shape.mjs
 
       - name: Audit latest BSE SME addition notices
         run: node scripts/audit-bse-sme-addition-notices.mjs --batch=20
