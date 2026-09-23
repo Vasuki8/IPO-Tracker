@@ -41,6 +41,12 @@ jobs:
       - name: Test operator snapshot contract
         run: node scripts/test-record-operator-snapshot.mjs
 
+      - name: Test operator state validation
+        run: node scripts/test-validate-operator-state.mjs
+
+      - name: Validate committed operator state
+        run: node scripts/validate-operator-state.mjs
+
       - name: Check sync publication race guards
         shell: bash
         run: |
