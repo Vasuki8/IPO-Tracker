@@ -2894,7 +2894,7 @@ Added a dedicated historical NSE `ipo-detail` backfill that is separate from the
 
 ### Behavior
 
-- processes at most **24 historical IPOs per sync**;
+- processes at most **48 historical IPOs per sync**;
 - only considers pre-current-year records with retained NSE symbol/series and one of the target fields still missing;
 - fetches each historical `ipo-detail` payload once;
 - reuses the existing conservative parsers for:
@@ -2917,7 +2917,7 @@ Open/close date recovery is intentionally not included in this batch because the
 
 ### Expected effect
 
-At 24 records per hourly sync, the 883-record historical backlog can be sampled progressively without blocking current IPO publication. The detailed historical coverage audit runs after this backfill step, making field gains measurable on every run.
+At 48 records per hourly sync, the 883-record historical backlog can be sampled progressively without blocking current IPO publication. The detailed historical coverage audit runs after this backfill step, making field gains measurable on every run.
 
 
 ## BSE retrieval repair — session handshake + BSE-only materialization
@@ -2958,3 +2958,10 @@ The three currently verified 2025 BSE sources are opted in.
 Retained `open_date` / `close_date` fields are now preferred by the publisher before NSE term fallbacks, so BSE-derived offer dates retain their own evidence instead of being dropped.
 
 This provides a controlled path for BSE-only historical IPOs while keeping universe expansion evidence-driven rather than inferred from search-engine results.
+
+
+## Historical NSE detail throughput increase
+
+The first production batch processed **24/24 historical IPOs successfully** with zero fetch errors and recovered **48 verified fields**. Based on that production evidence, the bounded historical NSE detail batch is increased from **24 to 48 issuers per sync**.
+
+This remains bounded and cursor-driven; current/live IPO publication still uses its own separate single-pass path. The goal is to clear the 2020-2025 historical field backlog faster without restoring the previous unbounded historical sweep.
