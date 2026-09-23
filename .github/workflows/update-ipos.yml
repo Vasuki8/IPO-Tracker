@@ -177,7 +177,7 @@ jobs:
         id: publish_data
         shell: bash
         run: |
-          if [ -z "$(git status --porcelain -- data/recovery data/ipos.json ops/sebi-historical-search.json ops/nse-historical-detail.json ops/sebi-historical-offer-dates.json)" ]; then
+          if [ -z "$(git status --porcelain -- data/recovery data/ipos.json ops/sebi-historical-search.json ops/nse-historical-detail.json ops/sebi-historical-offer-dates.json ops/sebi-historical-pdf-fields.json)" ]; then
             echo "No source-backed IPO data or historical search-state changes detected."
             exit 0
           fi
