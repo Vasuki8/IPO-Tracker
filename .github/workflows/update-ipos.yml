@@ -89,7 +89,21 @@ jobs:
         run: node scripts/test-extract-bse-ipo-fields.mjs
 
       - name: Audit official BSE SME IPO index coverage
+        id: audit_bse_sme
+        continue-on-error: true
         run: node scripts/audit-bse-sme-ipo-index.mjs
+
+      - name: Report BSE SME audit degradation
+        if: steps.audit_bse_sme.outcome != 'success'
+        shell: bash
+        run: |
+          {
+            echo "### BSE SME universe audit degraded"
+            echo
+            echo "The read-only BSE SME candidate audit could not parse current constituents."
+            echo "Live NSE/SEBI collection continues; no BSE-only issuer is materialized from this audit."
+            echo "Inspect the preceding audit step for bounded page fingerprints and source diagnostics."
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Test live-feed parsing
         run: node scripts/test-sync-nse-live.mjs
