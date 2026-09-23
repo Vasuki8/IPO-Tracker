@@ -3166,3 +3166,45 @@ Examples after the change:
 No additional request is added per candidate.
 
 The historical SEBI search strategy is now versioned (`2.0.0`). Previous `no_match` cursor entries from the older query strategy become immediately eligible for one retry under the improved selector, while records that already have matched SEBI documents remain excluded from search.
+
+
+## Historical offer-date parser v2 — false-positive correction
+
+A production audit found that parser v1 could accept an unrelated date occurring up to 150 characters after an offer-date label.
+
+Three retained historical values were affected:
+
+- **Unimech Aerospace and Manufacturing Limited** — a false close date of 2024-12-05 was taken from an F&S consent sentence after the words “Offer Closing Date”. Official NSE monitoring evidence states the issue period was **2024-12-23 → 2024-12-26**.
+- **CORONA Remedies Limited** — a false opening date of 2025-12-05 captured the Anchor Investor date. Official NSE annual-report evidence states the public issue period was **2025-12-08 → 2025-12-10**.
+- **Nephrocare Health Services Limited** — a false opening date of 2025-12-09 captured the Anchor Investor date. Official NSE monitoring evidence states the public issue period was **2025-12-10 → 2025-12-12**.
+
+### Parser v2
+
+The historical SEBI offer-date parser is now version **2.0.0**.
+
+It no longer scans arbitrary prose after a label. A date is accepted only when:
+
+- it follows the offer/bid/issue opening or closing label through a constrained bridge;
+- the bridge contains only allowed punctuation / weekday / “being” / “i.e.” / the standard “Except in relation to … Anchor Investors” qualifier;
+- the label is not itself preceded by Anchor Investor context;
+- text after the date does not identify the date as an Anchor Investor bid/allocation date;
+- chronology and listing-date guards continue to pass.
+
+Regression fixtures cover the real Unimech, CORONA, Nephrocare false-positive shapes and retain valid Burger King, Arihant Academy, Park Medi World and Ventive Hospitality shapes.
+
+### Race-safe correction
+
+Corrections are proposed semantically through the existing independent historical offer-date workflow.
+
+The proposal:
+
+- recognizes only the exact legacy parser-v1 bad values;
+- replaces them with explicit official NSE issue-period values;
+- preserves the old value, source text, page and evidence in the field-level `corrections` array;
+- attaches the official NSE correction document;
+- never overwrites a different concurrent value;
+- records corrected operational cursor state under parser v2.
+
+Semantic publication now rejects all proposal entries produced by an older parser version and independently re-validates extracted source text under the current parser before applying it.
+
+This prevents an already-running parser-v1 workflow from reintroducing the false positives after the repair merges.
