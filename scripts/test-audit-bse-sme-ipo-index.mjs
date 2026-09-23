@@ -3,6 +3,7 @@ import {
   matchIndexCompany,
   mergeIndexRows,
   normalizeIssuerName,
+  pageFingerprint,
   parseBseSmeIpoIndex
 } from "./audit-bse-sme-ipo-index.mjs";
 
@@ -21,6 +22,16 @@ assert.equal(legacyRows[0].scrip_code, "544412");
 assert.equal(legacyRows[1].isin, "INE0QMV01017");
 assert.equal(legacyRows[0].row_format, "legacy_index_watch");
 assert.equal(normalizeIssuerName("3B Films Limited"), "3b films");
+
+const fingerprint = pageFingerprint(`
+<html>
+<head><title>BSE SME IPO - Index Details</title><script src="/assets/app.js"></script></head>
+<body><div id="root"></div></body>
+</html>`);
+assert.equal(fingerprint.title, "BSE SME IPO - Index Details");
+assert.equal(fingerprint.table_count, 0);
+assert.equal(fingerprint.row_count, 0);
+assert.deepEqual(fingerprint.script_sources, ["/assets/app.js"]);
 
 const indexServicesHtml = `
 <table>
