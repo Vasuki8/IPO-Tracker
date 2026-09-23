@@ -2121,3 +2121,152 @@ The next data-quality batch should move to the remaining homepage data gaps rath
 Most missing issue prices/listing dates belong to open or upcoming IPOs and should remain null until the official source publishes them.
 
 Recommended next coherent batch: **re-audit the 12 missing issue-size records against the latest retained official SEBI/NSE documents**, but do not repeat already-proven source families unless new documents or source observations have appeared. If no new authoritative evidence exists, record the remaining issue-size nulls as current source-blockers and move to freshness/operations work.
+
+
+## Latest completed batch — 12-record issue-size re-audit
+
+The post-Lot-Size P1 issue-size re-audit is complete. The published 2026 universe still has **14/26 verified issue sizes** and **12/26 source-null issue sizes**.
+
+This batch intentionally did **not** repeat source families that had already been exhaustively measured unless the official evidence set had changed.
+
+### Baseline recheck
+
+The latest successful hourly source run re-tested all 12 missing issue-size records against the currently supported NSE and Abridged Prospectus paths:
+
+- NSE `/api/ipo-detail` issue-size candidates: **12**
+- NSE API successes: **12/12**
+- new supported INR totals: **0**
+- unsupported/share-count responses: **12**
+- conflicts: **0**
+- fetch errors: **0**
+
+Abridged Prospectus recheck:
+
+- candidates: **5**
+- PDFs downloaded: **5/5**
+- new numeric total Offer/Issue sizes: **0**
+- placeholders / missing supported totals: **5**
+- fetch errors: **0**
+
+There were no missing issue-size records with a newly retained final Prospectus eligible for the existing production extractor.
+
+### New official evidence identified
+
+Only two missing records had genuinely new official evidence relative to the earlier issue-size surveys:
+
+1. **Moneyview Limited** — newly retained official SEBI RHP PDF.
+2. **Qualiance International Limited** — retained SEBI filing classified as `Other Documents`, whose attached official PDF had not previously been resolved.
+
+PR #88 — `Audit newly available issue-size evidence` — merged as:
+
+`8955cc5985ec342eec43902baa2c286b4ca64f35`
+
+It added a reusable SEBI source repair:
+
+- existing `SEBI Other Document` filing pages can now resolve attached official `/sebi_data/attachdocs/...pdf` files;
+- the PDF remains typed **SEBI Other Document PDF**;
+- it is **not** relabelled as a final Prospectus;
+- source identity, publication date and collection time are retained.
+
+Production run `35816379147` resolved:
+
+- Other Document PDF candidates: **1**
+- resolved PDFs: **1**
+- resolution errors: **0**
+
+Resolved:
+
+- **Qualiance International Limited**
+- official SEBI PDF: `1789025406710_1349.pdf`
+
+The source-evidence attachment was published by bot commit:
+
+`0afface6b29a2e5d60d7cc575b2e0f358bdb44ac`
+
+No issue-size value was written.
+
+### Qualiance result
+
+The resolved official PDF was scanned through the same strict aggregate issue-size parser.
+
+Page 1 explicitly showed a `Total Issue Size` column, but the amount remained **`[●]`**. The Fresh Issue aggregate was also **`₹ [●] lakhs`**.
+
+Result:
+
+- pages scanned: **20**
+- supported overall INR total: **none**
+- issue size remains null.
+
+### Moneyview transfer repair and result
+
+The first Moneyview RHP attempt reached the official source but the Node PDF body transfer terminated before parsing.
+
+PR #89 — `Retry terminated SEBI PDF transfers` — merged as:
+
+`702292315dc3ba510d46235c010d798f6e95d66f`
+
+The PDF loader now:
+
+- keeps the normal bounded Node fetch/retry path first;
+- falls back to bounded `curl` only after those attempts fail;
+- uses the same validated official SEBI URL;
+- requires a `%PDF-` file signature;
+- uses bounded connect/overall timeouts and retries;
+- does not change extraction semantics.
+
+Production run `35816892862` then completed the diagnostic successfully:
+
+- candidates: **2**
+- downloaded: **2/2**
+- fetch errors: **0**
+- parseable overall totals: **0**
+
+Moneyview RHP evidence:
+
+- page 3: overall Offer aggregate remains **`₹ [●] million`**;
+- Fresh Issue is explicitly stated as **up to ₹7,500 million**;
+- the Offer also contains an OFS whose INR aggregate remains `[●]`.
+
+The tracker does **not** publish ₹7,500 million as the total issue size because it is only one component of the overall Offer. It also does not derive the missing OFS/overall amount from shares or price.
+
+### Decision
+
+No new `issue_size_inr` values are published from this re-audit.
+
+Current issue-size coverage remains:
+
+- verified: **14/26**
+- missing/source-null: **12/26**
+
+The remaining nulls are now blocked by current official-source content rather than an untested source family:
+
+- current NSE issue-size terms are share-count/unsupported for all 12;
+- current eligible Abridged Prospectuses do not expose numeric aggregate totals;
+- previously retained RHP/final-Prospectus families have already been measured;
+- Moneyview overall Offer remains a placeholder despite an explicit Fresh Issue component;
+- Qualiance total issue size remains a placeholder in its newly resolved official PDF;
+- several live SME records still have no deterministic SEBI offer-document match.
+
+The one-shot Moneyview/Qualiance diagnostic and its hard-coded candidate list are removed from recurring execution after this measurement.
+
+Reusable improvements retained:
+
+- neutral SEBI Other Document PDF resolution;
+- robust bounded SEBI PDF transfer fallback.
+
+### Handoff / next coherent batch
+
+**Do not repeat issue-size source recovery until new authoritative source evidence appears.**
+
+Lot Size remains **26/26 verified** and minimum-investment/application-amount work remains out of scope.
+
+The next coherent priority is **operational freshness / source-health visibility**. Start by auditing the current operator-facing freshness state and make it easy to distinguish, per source/field where practical:
+
+- source observation time;
+- collection-attempt time;
+- successful collection time;
+- publication time;
+- current source-null vs collection failure;
+- last successful GitHub Pages publication.
+
+Prefer a read-only/operator report first. Do not change data values or invent freshness timestamps.
