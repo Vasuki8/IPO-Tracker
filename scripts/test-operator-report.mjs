@@ -43,7 +43,7 @@ const pagesStatus = {\n  schema_version: "1.0.0",\n  latest_attempt: { status: "
   NSE_COLLECTION_OUTCOME: "success", SEBI_COLLECTION_OUTCOME: "success",
   REBUILD_OUTCOME: "success", VALIDATION_OUTCOME: "success", REPOSITORY_PUBLISH_OUTCOME: "success",
   GITHUB_RUN_ID: "123", GITHUB_SHA: "abc", OPERATOR_REPORT_AT: "2026-09-23T03:30:00Z"
-});
+}, pagesStatus);
 assert.equal(report.pipeline.collection_health, "collection_success");
 assert.equal(report.dataset.records, 2);
 assert.equal(report.dataset.lot_size.verified, 2);
