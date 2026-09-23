@@ -34,6 +34,11 @@ const payload = {
 const result = applyHistoricalDetailPayload(record, payload, "https://www.nseindia.com/api/ipo-detail?symbol=ALPHA&series=EQ", "2026-09-23T20:00:00Z");
 assert.deepEqual(result.changed.sort(), ["issue_price","issue_size_inr","market_lot","minimum_bid_quantity","price_band"]);
 assert.deepEqual(result.remaining, []);
+assert.equal(result.reasons.issue_price, null);
+assert.equal(result.reasons.price_band, null);
+assert.equal(result.reasons.market_lot, null);
+assert.equal(result.reasons.minimum_bid_quantity, null);
+assert.equal(result.reasons.issue_size_inr, null);
 assert.equal(record.issue_price.value,125);
 assert.deepEqual(record.price_band.value, {min:120,max:125});
 assert.equal(record.market_lot.value,120);
@@ -43,3 +48,23 @@ assert.equal(record.issue_size_inr.value,5_000_000_000);
 const state={issuers:{[historicalDetailKey(record)]:{parser_version:"1.0.0",status:"extracted",last_attempted_at:"2026-09-23T20:00:00Z"}}};
 assert.equal(historicalDetailCandidates([{record}],state,2026,10).length,0);
 console.log("Historical NSE detail backfill tests passed.");
+
+const missingRecord = {
+  id: "missing-limited",
+  issuer_name: "Missing Limited",
+  nse_symbol: "MISSING",
+  nse_series: "EQ",
+  listing_date: { value: "2024-01-01" },
+  terms: { price_band: null, market_lot: null, minimum_bid_quantity: null },
+  documents: []
+};
+const missingResult = applyHistoricalDetailPayload(
+  missingRecord,
+  { issueInfo: { dataList: [] }, metaInfo: {} },
+  "https://www.nseindia.com/api/ipo-detail?symbol=MISSING&series=EQ",
+  "2026-09-23T20:00:00Z"
+);
+assert.equal(missingResult.reasons.issue_price, "term_absent");
+assert.equal(missingResult.reasons.price_band, "term_absent");
+assert.equal(missingResult.reasons.market_lot, "term_absent");
+assert.equal(missingResult.reasons.issue_size_inr, "term_absent");
