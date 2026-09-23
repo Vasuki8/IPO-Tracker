@@ -974,3 +974,10 @@ The operator layer now distinguishes expected downstream skips after an upstream
 Operational snapshot/history/Pages JSON now has independent schema validation, newly generated operator state is validated before persistence, committed operational state is checked in CI, and Pages-health bot commits use the same race-safe rebase-before-push strategy as data/snapshot publication.
 
 **Handoff:** operator plumbing is now consolidated. Choose the next backend work from remaining verified P1/P2/P3 data/source/freshness gaps rather than repeating completed operational-state work.
+
+
+### Incremental historical SEBI backfill
+
+Historical IPO records without SEBI evidence are now eligible for bounded issuer-targeted SEBI searches. A durable search cursor advances through up to 24 historical issuers per sync and prevents hourly repetition of the same misses.
+
+Only matched official SEBI filings become source evidence; search attempts themselves do not change IPO field values.
