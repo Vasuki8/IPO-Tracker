@@ -73,6 +73,45 @@ export function pageFingerprint(html) {
   };
 }
 
+export function extractBundleHints(source) {
+  const hints = [];
+  const seen = new Set();
+  for (const match of String(source ?? "").matchAll(/["'`](.{1,240}?)["'`]/g)) {
+    const value = normalizeText(match[1]);
+    if (!/(api|constituent|indice|index)/i.test(value)) continue;
+    if (!/[a-z]/i.test(value)) continue;
+    if (seen.has(value)) continue;
+    seen.add(value);
+    hints.push(value);
+    if (hints.length >= 30) break;
+  }
+  return hints;
+}
+
+async function fetchMainBundleHints(pageUrl, fingerprint) {
+  const mainScript = (fingerprint?.script_sources || [])
+    .find((value) => /(^|\/)main-[A-Z0-9_-]+\.js(?:\?|$)/i.test(value));
+  if (!mainScript) return [];
+
+  try {
+    const scriptUrl = new URL(mainScript, pageUrl);
+    const pageOrigin = new URL(pageUrl).origin;
+    if (scriptUrl.origin !== pageOrigin) return [];
+
+    const response = await fetch(scriptUrl, {
+      headers: {
+        "user-agent": USER_AGENT,
+        "accept": "application/javascript,text/javascript,*/*;q=0.1"
+      },
+      signal: AbortSignal.timeout(20000)
+    });
+    if (!response.ok) return ["bundle_http_" + response.status];
+    return extractBundleHints(await response.text());
+  } catch (error) {
+    return ["bundle_error:" + String(error?.message || error)];
+  }
+}
+
 export function parseBseSmeIpoIndex(html) {
   const rows = [];
 
@@ -229,13 +268,18 @@ async function fetchOfficialSource(source) {
     }
 
     const html = await response.text();
+    const rows = parseBseSmeIpoIndex(html);
+    const fingerprint = pageFingerprint(html);
     return {
       ...source,
       ok: true,
       status: response.status,
       response_bytes: html.length,
-      rows: parseBseSmeIpoIndex(html),
-      fingerprint: pageFingerprint(html),
+      rows,
+      fingerprint,
+      bundle_hints: rows.length === 0
+        ? await fetchMainBundleHints(source.url, fingerprint)
+        : [],
       error: null
     };
   } catch (error) {
@@ -246,6 +290,7 @@ async function fetchOfficialSource(source) {
       response_bytes: 0,
       rows: [],
       fingerprint: null,
+      bundle_hints: [],
       error: String(error?.message || error)
     };
   }
@@ -263,7 +308,8 @@ export async function collectBseSmeIpoIndexRows() {
           "HTTP " + attempt.status +
           ", " + attempt.response_bytes + " bytes" +
           ", parsed 0 rows" +
-          ", fingerprint=" + JSON.stringify(attempt.fingerprint)
+          ", fingerprint=" + JSON.stringify(attempt.fingerprint) +
+          ", bundle_hints=" + JSON.stringify(attempt.bundle_hints)
         ))
       )
       .join("; ");
@@ -292,6 +338,7 @@ async function run() {
       response_bytes: attempt.response_bytes,
       parsed_rows: attempt.rows.length,
       fingerprint: attempt.fingerprint,
+      bundle_hints: attempt.bundle_hints,
       error: attempt.error
     })),
     index_rows: indexRows.length,
