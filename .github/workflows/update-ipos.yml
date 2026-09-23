@@ -14,6 +14,8 @@ on:
       - "scripts/test-extract-bse-ipo-fields.mjs"
       - "scripts/diagnose-bse-issues.mjs"
       - "scripts/test-diagnose-bse-issues.mjs"
+      - "scripts/sync-nse-historical.mjs"
+      - "scripts/test-sync-nse-historical.mjs"
       - "scripts/sync-nse-live.mjs"
       - "scripts/test-sync-nse-live.mjs"
       - "scripts/sync-sebi-documents.mjs"
@@ -92,6 +94,9 @@ jobs:
       - name: Collect NSE live IPO feed
         id: collect_nse
         run: node scripts/sync-nse-live.mjs
+
+      - name: Materialize 2025 NSE historical IPO universe
+        run: node scripts/sync-nse-historical.mjs --year=2025
 
       - name: Attach SEBI offer documents
         id: collect_sebi
