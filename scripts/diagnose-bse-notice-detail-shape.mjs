@@ -43,7 +43,26 @@ async function run() {
   });
   if (!response.ok) throw new Error("HTTP " + response.status);
   const payload = await response.json();
-  console.log(JSON.stringify({ bse_notice_detail_shape: summarize(payload) }, null, 2));
+  const data = String(payload?.Data ?? "");
+  const plain = data
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;|&apos;/gi, "'")
+    .replace(/&rsquo;|&lsquo;/gi, "'")
+    .replace(/&ndash;|&mdash;/gi, "-")
+    .replace(/&#10;|&#13;/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  const marker = plain.toLowerCase().indexOf("with reference");
+  const wording = marker >= 0 ? plain.slice(marker, marker + 650) : plain.slice(0, 650);
+  console.log(JSON.stringify({
+    bse_notice_detail_shape: summarize(payload),
+    bse_notice_detail_wording: wording
+  }, null, 2));
 }
 
 const isMain = process.argv[1] &&
