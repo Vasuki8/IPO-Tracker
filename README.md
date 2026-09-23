@@ -1009,3 +1009,8 @@ BSE-only issuer creation now requires an official BSE **listing notice** with ma
 ### Historical offer-date recovery
 
 Historical IPOs with retained official SEBI RHP/Prospectus PDFs are now processed in a bounded queue for explicit offer opening/closing dates. The parser accepts only labeled official dates, rejects conflicts/invalid chronology, and keeps PDF-page provenance.
+
+
+### Historical SEBI PDF field recovery
+
+A separate bounded queue now processes up to **8 historical SEBI PDFs per sync** for missing final issue price, explicit monetary issue size, and minimum bid quantity. It reuses one PDF download per issuer and never derives monetary issue size from share counts.
