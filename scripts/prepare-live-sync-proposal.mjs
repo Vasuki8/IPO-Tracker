@@ -133,10 +133,14 @@ export function prepareLiveSyncProposal(ref = "HEAD") {
     if (proposal) cursors[relative] = proposal;
   }
 
+  const publishedBefore = gitJson(ref, "data/ipos.json");
+  const publishedAfter = readJson(path.join(ROOT, "data/ipos.json"));
+
   return {
     schema_version: "1.0.0",
     base_ref: ref,
     prepared_at: new Date().toISOString(),
+    published_data_changed: !equal(publishedBefore, publishedAfter),
     recovery,
     cursors
   };
@@ -158,7 +162,8 @@ async function run() {
       .reduce((sum, item) => sum + (item.changed_records?.length || 0), 0),
     added_records: Object.values(proposal.recovery)
       .reduce((sum, item) => sum + (item.added_records?.length || 0), 0),
-    cursor_files: Object.keys(proposal.cursors).length
+    cursor_files: Object.keys(proposal.cursors).length,
+    published_data_changed: proposal.published_data_changed
   };
   console.log(JSON.stringify({ live_sync_proposal: stats }, null, 2));
 }
