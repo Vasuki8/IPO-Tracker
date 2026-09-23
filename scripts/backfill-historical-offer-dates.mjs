@@ -116,8 +116,10 @@ function allowedLabelDateBridge(rawBridge) {
 }
 
 function anchorSpecificDateContext(text, labelIndex, labelLength, afterLabel, dateMatch) {
-  const before = text.slice(Math.max(0, labelIndex - 55), labelIndex);
-  if (/anchor\s+investor/i.test(before)) return true;
+  const before = text.slice(Math.max(0, labelIndex - 70), labelIndex);
+  if (/\banchor\s+investor(?:s)?(?:\s+(?:bid(?:ding)?|offer))?\s*\/?\s*$/i.test(before)) {
+    return true;
+  }
 
   const tailStart = dateMatch.index + dateMatch.raw.length;
   const tail = afterLabel.slice(tailStart, tailStart + 150);
