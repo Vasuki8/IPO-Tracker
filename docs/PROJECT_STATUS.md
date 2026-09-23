@@ -1814,3 +1814,87 @@ Acceptance rules:
 - validate across multiple RHPs before enabling recurring writes.
 
 After NII quantity semantics are stable, survey explicit retail application requirements separately rather than deriving retail monetary amounts from price × lot.
+
+
+## Latest completed batch — NII minimum bid quantity source survey
+
+PR #79 — `Survey RHP NII minimum bid quantities` — added a strict read-only survey for:
+
+`application_requirements.non_institutional.minimum_bid_quantity`
+
+across retained official SEBI RHP PDFs.
+
+Merged:
+
+`df130bfdc4dc0940e4f9a47c61cd156615bbcdd4`
+
+The survey required:
+
+- an explicit share count;
+- nearby `Non-Institutional` / NII category context;
+- direct minimum-bid / minimum-application-size share wording;
+- no amount-to-quantity calculation;
+- no generic bid-lot reinterpretation.
+
+### Production measurement
+
+Sync run `35801899974` completed the NII quantity diagnostic successfully before the later one-shot cleanup cancelled the unrelated downstream NII-amount step.
+
+Results:
+
+- retained RHP candidates: **14**
+- PDFs downloaded: **14/14**
+- pages scanned: **7,588**
+- documents with an explicit NII share quantity: **0**
+- explicit NII share-quantity mentions: **0**
+- fetch errors: **0**
+- data writes from the diagnostic: **0**
+
+Every retained RHP in the current 2026 universe therefore failed the strict explicit-share-quantity test.
+
+### Decision
+
+Do **not** populate `application_requirements.non_institutional.minimum_bid_quantity` from the current RHP source family.
+
+NII rules in these documents are expressed through monetary thresholds / category rules rather than a direct category-specific minimum share count.
+
+The tracker will not derive the quantity from:
+
+- the ₹200,000 NII application threshold;
+- issue price or price-band cap;
+- generic Bid Lot;
+- top-level minimum bid quantity;
+- arithmetic rounding to lot multiples.
+
+Current NII minimum-bid-quantity coverage remains:
+
+- present: **0/26**
+- missing: **26/26**
+
+This is a deliberate source-null result, not a parser failure.
+
+PR #80 — `Remove completed NII bid-quantity survey` — removed the one-shot diagnostic from hourly execution while retaining the manual diagnostic helpers.
+
+Merged:
+
+`a1c2cc1798ccec2058dde274cf557997d16521ef`
+
+### Recommended next coherent batch
+
+Survey official retained offer documents for **explicit retail application requirements**, beginning with:
+
+`application_requirements.retail.minimum_application_amount_inr`
+
+Acceptance rules:
+
+- require explicit Retail Individual Bidder / Retail Individual Investor context;
+- require an explicit INR minimum application amount;
+- retain exact PDF page and source identity;
+- do not derive amount from price × lot;
+- keep amount and share quantity separate;
+- reject generic application amounts without clear retail context;
+- reject maximum application limits;
+- fill missing values only;
+- survey first, then enable production extraction only if wording is consistent across multiple documents.
+
+If retail monetary amounts are also source-null, separately survey explicit retail minimum bid quantities rather than deriving them.
