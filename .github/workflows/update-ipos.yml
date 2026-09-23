@@ -95,8 +95,8 @@ jobs:
         id: collect_nse
         run: node scripts/sync-nse-live.mjs
 
-      - name: Materialize 2025 NSE historical IPO universe
-        run: node scripts/sync-nse-historical.mjs --year=2025
+      - name: Materialize 2020-2025 NSE historical IPO universes
+        run: node scripts/sync-nse-historical.mjs --year=2020-2025
 
       - name: Attach SEBI offer documents
         id: collect_sebi
