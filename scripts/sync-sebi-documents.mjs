@@ -17,7 +17,7 @@ export const SEBI_PUBLIC_ISSUES_URL =
 export const SEBI_SEARCH_URL =
   "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes";
 export const MAX_TARGETED_SEARCHES = 12;
-export const MAX_HISTORICAL_TARGETED_SEARCHES = 24;
+export const MAX_HISTORICAL_TARGETED_SEARCHES = 12;
 
 const USER_AGENT =
   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
@@ -481,7 +481,7 @@ function loadRecoveries() {
   }));
 }
 
-async function fetchText(url, attempts = 3) {
+async function fetchText(url, attempts = 3, timeoutMs = 15000) {
   let lastError;
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
     try {
@@ -493,7 +493,8 @@ async function fetchText(url, attempts = 3) {
           "cache-control": "no-cache",
           "pragma": "no-cache",
           "referer": "https://www.sebi.gov.in/"
-        }
+        },
+        signal: AbortSignal.timeout(timeoutMs)
       });
       if (response.ok) return await response.text();
       lastError = new Error(`HTTP ${response.status} for ${url}`);
@@ -628,7 +629,7 @@ async function targetedSearch(records, now, detailCache, stats, changedRecords, 
     const url = buildSebiSearchUrl(match.record.issuer_name);
     let html;
     try {
-      html = await fetchText(url);
+      html = await fetchText(url, 2, 10000);
     } catch (error) {
       stats.targeted_errors += 1;
       console.warn(`SEBI targeted search failed for ${match.record.issuer_name}: ${error.message}`);
