@@ -57,6 +57,10 @@ jobs:
           grep -q 'apply-historical-offer-date-state.mjs' .github/workflows/backfill-historical-offer-dates.yml
           grep -q 'Semantic publication attempt' .github/workflows/backfill-historical-offer-dates.yml
           grep -q 'node scripts/build-published-data.mjs --check' .github/workflows/backfill-historical-offer-dates.yml
+          grep -q 'git reset --hard origin/main' .github/workflows/backfill-historical-pdf-fields.yml
+          grep -q 'apply-historical-pdf-field-state.mjs' .github/workflows/backfill-historical-pdf-fields.yml
+          grep -q 'Semantic PDF-field publication attempt' .github/workflows/backfill-historical-pdf-fields.yml
+          grep -q 'node scripts/build-published-data.mjs --check' .github/workflows/backfill-historical-pdf-fields.yml
           if grep -q 'Backfill historical SEBI offer dates' .github/workflows/update-ipos.yml; then
             echo "Historical offer-date PDF work must stay out of live sync." >&2
             exit 1
@@ -109,6 +113,12 @@ jobs:
 
       - name: Test historical SEBI offer-date backfill
         run: node scripts/test-backfill-historical-offer-dates.mjs
+
+      - name: Test historical SEBI PDF field backfill
+        run: node scripts/test-backfill-historical-pdf-fields.mjs
+
+      - name: Test semantic historical PDF field merge
+        run: node scripts/test-apply-historical-pdf-field-state.mjs
 
       - name: Test semantic historical offer-date merge
         run: node scripts/test-apply-historical-offer-date-state.mjs
