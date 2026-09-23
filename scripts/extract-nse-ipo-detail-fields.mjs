@@ -1602,6 +1602,15 @@ async function run() {
   console.log(JSON.stringify(stats, null, 2));
 }
 
+export function shouldUseIpoDetailForRecord(record, currentYear = new Date().getUTCFullYear()) {
+  const sourceType = normalizeText(record?.nse_source?.document_type);
+  const listingYear = Number(String(record?.listing_date?.value || "").slice(0, 4));
+  if (sourceType === "NSE Public Past Issues" && Number.isInteger(listingYear) && listingYear < currentYear) {
+    return false;
+  }
+  return true;
+}
+
 async function runAllFields() {
   const now = new Date().toISOString();
   const landing = await fetchWithRetry(NSE_HOME, {
@@ -1610,8 +1619,13 @@ async function runAllFields() {
   const cookie = cookieHeader(landing.headers);
   const groups = recoveryFiles().map((file) => ({ file, recovery: JSON.parse(fs.readFileSync(file, "utf8")), changed: false }));
   const candidates = [];
+  let historicalDeferred = 0;
   for (const group of groups) for (const record of group.recovery.records || []) {
     if (!resolveNseIdentity(record)) continue;
+    if (!shouldUseIpoDetailForRecord(record)) {
+      historicalDeferred += 1;
+      continue;
+    }
     const needs = {
       market_lot: record.terms?.market_lot == null && record.market_lot?.value == null,
       issue_size: record.issue_size_inr?.value == null,
@@ -1621,7 +1635,7 @@ async function runAllFields() {
     };
     if (Object.values(needs).some(Boolean)) candidates.push({ group, record, needs });
   }
-  const stats = { candidates:candidates.length, api_success:0, fetch_errors:0, extracted:{market_lot:0,issue_size:0,price_band:0,minimum_bid:0,listing_date:0} };
+  const stats = { candidates:candidates.length, historical_deferred:historicalDeferred, api_success:0, fetch_errors:0, extracted:{market_lot:0,issue_size:0,price_band:0,minimum_bid:0,listing_date:0} };
   for (const { group, record, needs } of candidates) {
     const url = apiUrl(record);
     try {
