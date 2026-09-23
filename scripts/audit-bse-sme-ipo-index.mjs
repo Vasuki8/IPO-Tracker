@@ -5,6 +5,8 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const RECOVERY_ROOT = path.join(ROOT, "data", "recovery");
 
+export const BSE_INDEX_SERVICES_SME_JSON_URL =
+  "https://www.bseindices.com/AsiaIndexAPI/api/Codewise_Indices/w?code=76";
 export const BSE_INDEX_SERVICES_SME_CONSTITUENTS_URL =
   "https://www.bseindices.com/constituents/code/76";
 export const BSE_LEGACY_SME_IPO_URL =
@@ -12,12 +14,20 @@ export const BSE_LEGACY_SME_IPO_URL =
 
 const OFFICIAL_SOURCES = [
   {
-    name: "bse_index_services",
+    name: "bse_index_services_json",
+    format: "json",
+    url: BSE_INDEX_SERVICES_SME_JSON_URL,
+    referer: "https://www.bseindices.com/"
+  },
+  {
+    name: "bse_index_services_html",
+    format: "html",
     url: BSE_INDEX_SERVICES_SME_CONSTITUENTS_URL,
     referer: "https://www.bseindices.com/"
   },
   {
     name: "bse_legacy_index_watch",
+    format: "html",
     url: BSE_LEGACY_SME_IPO_URL,
     referer: "https://www.bseindia.com/"
   }
@@ -31,13 +41,19 @@ function normalizeText(value) {
     .replace(/&nbsp;/gi, " ")
     .replace(/&amp;/gi, "&")
     .replace(/&#39;/g, "'")
-    .replace(/&quot;/gi, "\"")
+    .replace(/&quot;/gi, """)
     .replace(/\s+/g, " ")
     .trim();
 }
 
 function stripTags(value) {
   return normalizeText(String(value ?? "").replace(/<[^>]*>/g, " "));
+}
+
+function normalizeAsOfDate(value) {
+  const raw = normalizeText(value);
+  const iso = raw.match(/^(\d{4}-\d{2}-\d{2})/);
+  return iso?.[1] ?? null;
 }
 
 export function normalizeIssuerName(value) {
@@ -112,6 +128,30 @@ async function fetchMainBundleHints(pageUrl, fingerprint) {
   }
 }
 
+export function parseBseSmeIpoJson(payload) {
+  const data = typeof payload === "string" ? JSON.parse(payload) : payload;
+  const table = Array.isArray(data?.Table) ? data.Table : [];
+  const rows = [];
+
+  for (const item of table) {
+    const scripCode = String(item?.SCRIP_CODE ?? "").replace(/\D/g, "");
+    const company = normalizeText(item?.SCRIPNAME);
+    if (!/^\d{6}$/.test(scripCode) || !company) continue;
+
+    rows.push({
+      scrip_code: scripCode,
+      company,
+      isin: null,
+      close_price: null,
+      macro_sector: normalizeText(item?.Industry_name) || null,
+      as_of_date: normalizeAsOfDate(item?.TransDate),
+      row_format: "index_services_json"
+    });
+  }
+
+  return [...new Map(rows.map((row) => [row.scrip_code, row])).values()];
+}
+
 export function parseBseSmeIpoIndex(html) {
   const rows = [];
 
@@ -130,6 +170,7 @@ export function parseBseSmeIpoIndex(html) {
         isin: legacyIsin,
         close_price: cells[3] || null,
         macro_sector: null,
+        as_of_date: null,
         row_format: "legacy_index_watch"
       });
       continue;
@@ -143,32 +184,13 @@ export function parseBseSmeIpoIndex(html) {
         isin: null,
         close_price: null,
         macro_sector: cells[2] || null,
-        row_format: "index_services"
+        as_of_date: null,
+        row_format: "index_services_html"
       });
     }
   }
 
-  const byScripCode = new Map();
-  for (const row of rows) {
-    const current = byScripCode.get(row.scrip_code);
-    if (!current) {
-      byScripCode.set(row.scrip_code, row);
-      continue;
-    }
-
-    byScripCode.set(row.scrip_code, {
-      ...current,
-      company: chooseLongerCompany(current.company, row.company),
-      isin: current.isin || row.isin || null,
-      close_price: current.close_price || row.close_price || null,
-      macro_sector: current.macro_sector || row.macro_sector || null,
-      row_format: current.row_format === row.row_format
-        ? current.row_format
-        : "merged_official_formats"
-    });
-  }
-
-  return [...byScripCode.values()];
+  return [...new Map(rows.map((row) => [row.scrip_code, row])).values()];
 }
 
 export function mergeIndexRows(rowsBySource) {
@@ -176,10 +198,7 @@ export function mergeIndexRows(rowsBySource) {
 
   for (const item of rowsBySource) {
     for (const row of item.rows || []) {
-      const source = {
-        name: item.name,
-        url: item.url
-      };
+      const source = { name: item.name, url: item.url };
       const current = byScripCode.get(row.scrip_code);
 
       if (!current) {
@@ -201,6 +220,7 @@ export function mergeIndexRows(rowsBySource) {
         isin: current.isin || row.isin || null,
         close_price: current.close_price || row.close_price || null,
         macro_sector: current.macro_sector || row.macro_sector || null,
+        as_of_date: current.as_of_date || row.as_of_date || null,
         row_format: current.row_format === row.row_format
           ? current.row_format
           : "merged_official_formats",
@@ -249,7 +269,9 @@ async function fetchOfficialSource(source) {
     const response = await fetch(source.url, {
       headers: {
         "user-agent": USER_AGENT,
-        "accept": "text/html,application/xhtml+xml",
+        "accept": source.format === "json"
+          ? "application/json,*/*"
+          : "text/html,application/xhtml+xml",
         "accept-language": "en-US,en;q=0.9",
         "referer": source.referer
       },
@@ -263,18 +285,53 @@ async function fetchOfficialSource(source) {
         status: response.status,
         response_bytes: 0,
         rows: [],
+        fingerprint: null,
+        bundle_hints: [],
         error: "HTTP " + response.status
       };
     }
 
-    const html = await response.text();
-    const rows = parseBseSmeIpoIndex(html);
-    const fingerprint = pageFingerprint(html);
+    const body = await response.text();
+
+    if (source.format === "json") {
+      let payload;
+      try {
+        payload = JSON.parse(body);
+      } catch {
+        return {
+          ...source,
+          ok: false,
+          status: response.status,
+          response_bytes: body.length,
+          rows: [],
+          fingerprint: null,
+          bundle_hints: [],
+          error: "invalid_json"
+        };
+      }
+
+      return {
+        ...source,
+        ok: true,
+        status: response.status,
+        response_bytes: body.length,
+        rows: parseBseSmeIpoJson(payload),
+        fingerprint: {
+          json_keys: Object.keys(payload || {}).slice(0, 12),
+          table_rows: Array.isArray(payload?.Table) ? payload.Table.length : 0
+        },
+        bundle_hints: [],
+        error: null
+      };
+    }
+
+    const rows = parseBseSmeIpoIndex(body);
+    const fingerprint = pageFingerprint(body);
     return {
       ...source,
       ok: true,
       status: response.status,
-      response_bytes: html.length,
+      response_bytes: body.length,
       rows,
       fingerprint,
       bundle_hints: rows.length === 0
@@ -332,13 +389,13 @@ async function run() {
   const stats = {
     source_attempts: attempts.map((attempt) => ({
       name: attempt.name,
+      format: attempt.format,
       url: attempt.url,
       ok: attempt.ok,
       status: attempt.status,
       response_bytes: attempt.response_bytes,
       parsed_rows: attempt.rows.length,
       fingerprint: attempt.fingerprint,
-      bundle_hints: attempt.bundle_hints,
       error: attempt.error
     })),
     index_rows: indexRows.length,
