@@ -63,6 +63,9 @@ jobs:
       - name: Test BSE detail and listing parsers
         run: node scripts/test-extract-bse-ipo-fields.mjs
 
+      - name: Test historical IPO coverage audit
+        run: node scripts/test-audit-historical-coverage.mjs
+
       - name: Test NSE live sync parser
         run: node scripts/test-sync-nse-live.mjs
 
