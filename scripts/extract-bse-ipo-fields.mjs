@@ -110,7 +110,7 @@ export function buildBseOnlyRecoveryRecord(source, parsed, collectedAt) {
     issuer_name: source.issuer_name,
     board: source.board ?? null,
     sector: null,
-    status: null,
+    status: source.kind === "listing_notice" ? "listed" : null,
     nse_symbol: null,
     nse_series: null,
     nse_source: null,
@@ -133,7 +133,9 @@ export function buildBseOnlyRecoveryRecord(source, parsed, collectedAt) {
     first_observed_at: collectedAt,
     last_collected_at: collectedAt,
     board_evidence: [],
-    status_evidence: []
+    status_evidence: source.kind === "listing_notice"
+      ? [{ ...evidence, page: null }]
+      : []
   };
   applyBseParsedFields(record, source, parsed, collectedAt);
   return record;
