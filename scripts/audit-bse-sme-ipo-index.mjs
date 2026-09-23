@@ -41,7 +41,7 @@ function normalizeText(value) {
     .replace(/&nbsp;/gi, " ")
     .replace(/&amp;/gi, "&")
     .replace(/&#39;/g, "'")
-    .replace(/&quot;/gi, """)
+    .replace(/&quot;/gi, "\\\"")
     .replace(/\s+/g, " ")
     .trim();
 }
