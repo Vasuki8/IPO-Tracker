@@ -191,6 +191,28 @@ function parseInrAmountWithUnit(value) {
     source_amount: match[0]
   };
 }
+function allInrAmountsWithUnit(value) {
+  const text = normalizeText(value);
+  const pattern = /(?:₹|Rs\.?|INR)\s*([0-9][0-9,]*(?:\.[0-9]{1,2})?)\s*(crores?|millions?|lakhs?|lacs?)\b/ig;
+  const amounts = [];
+  for (const match of text.matchAll(pattern)) {
+    const number = Number(match[1].replace(/,/g, ""));
+    if (!Number.isFinite(number) || number <= 0) continue;
+    const unit = match[2].toLowerCase().replace(/s$/, "");
+    const multiplier = unit === "crore"
+      ? 1e7
+      : unit === "million"
+        ? 1e6
+        : 1e5;
+    amounts.push({
+      value: number * multiplier,
+      source_amount: match[0],
+      index: match.index ?? 0
+    });
+  }
+  return amounts;
+}
+
 
 export function parseIssueSizeInrFromIpoDetail(payload) {
   const candidates = issueSizeCandidatesFromIpoDetail(payload);
@@ -221,8 +243,19 @@ export function parseIssueSizeInrFromIpoDetail(payload) {
       continue;
     }
 
-    // Without a single-leg statement, do not reinterpret share counts or
-    // generic prose as an INR total.
+    // When NSE labels the field itself as Issue Size / Total Issue Size /
+    // Offer Size and the value contains exactly one explicit INR amount with a
+    // magnitude unit, that amount is already the overall monetary term. This
+    // requires no shares × price arithmetic. Multiple INR amounts remain
+    // ambiguous and are rejected.
+    const amounts = allInrAmountsWithUnit(candidate.value);
+    if (amounts.length === 1) {
+      parsed.push({
+        ...candidate,
+        value_inr: amounts[0].value,
+        source_amount: amounts[0].source_amount
+      });
+    }
   }
 
   if (parsed.length === 0) {
