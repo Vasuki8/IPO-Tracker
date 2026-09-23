@@ -17,6 +17,9 @@
     const closeDifference = dateKey(b?.close_date) - dateKey(a?.close_date);
     if (closeDifference !== 0) return closeDifference;
 
+    const listingDifference = dateKey(b?.listing_date) - dateKey(a?.listing_date);
+    if (listingDifference !== 0) return listingDifference;
+
     return String(a?.issuer_name || "").localeCompare(
       String(b?.issuer_name || ""),
       "en",
