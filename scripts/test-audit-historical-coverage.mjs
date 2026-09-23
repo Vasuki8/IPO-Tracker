@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { buildHistoricalCoverageAudit, summarizeHistoricalYear } from "./audit-historical-coverage.mjs";
+import { buildHistoricalCoverageAudit, summarizeHistoricalDetailCursor, summarizeHistoricalYear } from "./audit-historical-coverage.mjs";
 
 const manifest = {
   records: [
@@ -64,3 +64,38 @@ assert.equal(rows[1].bse_verified_sources, 2);
 assert.equal(rows[2].status, "universe_not_materialized");
 
 console.log("Historical coverage audit tests passed.");
+
+const cursorSummary = summarizeHistoricalDetailCursor({
+  issuers: {
+    "2025|alpha": {
+      listing_date: "2025-12-01",
+      status: "extracted",
+      remaining_fields: ["issue_size_inr"],
+      field_reasons: {
+        issue_price: null,
+        price_band: null,
+        market_lot: null,
+        minimum_bid_quantity: null,
+        issue_size_inr: "no_safe_overall_inr_total"
+      }
+    },
+    "2024|beta": {
+      listing_date: "2024-11-01",
+      status: "no_fields",
+      remaining_fields: ["price_band", "market_lot"],
+      field_reasons: {
+        price_band: "term_absent",
+        market_lot: "term_absent"
+      }
+    }
+  }
+});
+assert.equal(cursorSummary.attempted_records, 2);
+assert.equal(cursorSummary.by_year["2025"].extracted, 1);
+assert.equal(cursorSummary.by_year["2025"].remaining_fields.issue_size_inr, 1);
+assert.equal(
+  cursorSummary.by_year["2025"].field_reasons.issue_size_inr.no_safe_overall_inr_total,
+  1
+);
+assert.equal(cursorSummary.by_year["2024"].no_fields, 1);
+assert.equal(cursorSummary.by_year["2024"].field_reasons.price_band.term_absent, 1);
