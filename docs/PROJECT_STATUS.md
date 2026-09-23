@@ -2597,3 +2597,24 @@ Recurrence remains informational only: repeated failures/staleness do not automa
 The operator layer now provides current health, recovery guidance, durable snapshot, bounded transition history and recurrence context.
 
 Next backend operations batch: improve **pipeline-stage failure classification** beyond collection only. Distinguish rebuild, validation and repository-publication failures as first-class health reasons with safe recovery guidance, while preserving collection/source-null semantics.
+
+
+## Latest completed batch — first-class downstream pipeline failures
+
+Operator health now distinguishes downstream failures from source collection failures.
+
+New first-class reasons:
+
+- `rebuild_failure`;
+- `validation_failure`;
+- `repository_publication_failure`.
+
+All are classified as operator `failure` and have reason-specific high-priority diagnostic/recovery guidance.
+
+This preserves source semantics: successful NSE/SEBI collection followed by a rebuild, validation or Git publication failure is not reported as `collection_failure`, and no IPO field/source-null status is changed.
+
+### Handoff / next coherent batch
+
+The operator model now covers collection, rebuild, validation, repository publication and Pages deployment failures separately.
+
+Next backend operations batch: improve **unmeasured/skipped stage semantics** so an expected skip after an upstream failure is distinguished from a stage that was never measured unexpectedly. Keep failure causality clear and avoid multiplying redundant failure reasons.
