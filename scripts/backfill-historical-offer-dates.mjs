@@ -10,7 +10,7 @@ const RECOVERY_ROOT = path.join(ROOT, "data", "recovery");
 const STATE_PATH = path.join(ROOT, "ops", "sebi-historical-offer-dates.json");
 const USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36";
 export const HISTORICAL_OFFER_DATE_BATCH_SIZE = 12;
-export const HISTORICAL_OFFER_DATE_PARSER_VERSION = "1.0.0";
+export const HISTORICAL_OFFER_DATE_PARSER_VERSION = "2.0.0";
 const MAX_PAGES = 35;
 
 function normalizeText(value) {
@@ -62,27 +62,106 @@ export function parseExplicitOfferDate(value) {
   return null;
 }
 
+function firstExplicitDateMatch(value) {
+  const text = String(value ?? "");
+  const patterns = [
+    /\b(January|February|March|April|May|June|July|August|September|Sept|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{1,2})(?:st|nd|rd|th)?\s*,?\s+(20\d{2})\b/i,
+    /\b(\d{1,2})(?:st|nd|rd|th)?\s+(January|February|March|April|May|June|July|August|September|Sept|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s*,?\s+(20\d{2})\b/i
+  ];
+  let best = null;
+  for (const pattern of patterns) {
+    const match = pattern.exec(text);
+    if (!match) continue;
+    const parsed = parseExplicitOfferDate(match[0]);
+    if (!parsed) continue;
+    if (!best || match.index < best.index) {
+      best = { value: parsed, raw: match[0], index: match.index };
+    }
+  }
+  return best;
+}
+
+function stripAllowedBridgeToken(value, pattern) {
+  const match = value.match(pattern);
+  return match ? value.slice(match[0].length) : value;
+}
+
+function allowedLabelDateBridge(rawBridge) {
+  let bridge = String(rawBridge ?? "").trim();
+
+  // Ordinary punctuation can separate a label from its value. A full stop is
+  // intentionally excluded so prose like "Offer Closing Date. F&S has..."
+  // cannot donate an unrelated later date.
+  bridge = bridge.replace(/^[,:;\-–—\s]+/, "");
+
+  bridge = stripAllowedBridgeToken(
+    bridge,
+    /^except\s+in\s+relation\s+to\s+any\s+bids?\s+received\s+from\s+the\s+anchor\s+investors?,?/i
+  );
+  bridge = bridge.replace(/^[,:;\-–—\s]+/, "");
+
+  bridge = stripAllowedBridgeToken(bridge, /^i\.?\s*e\.?/i);
+  bridge = bridge.replace(/^[,:;\-–—\s]+/, "");
+
+  bridge = stripAllowedBridgeToken(bridge, /^being\b/i);
+  bridge = bridge.replace(/^[,:;\-–—\s]+/, "");
+
+  bridge = stripAllowedBridgeToken(
+    bridge,
+    /^(?:monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b/i
+  );
+  bridge = bridge.replace(/^[,:;\-–—\s]+/, "");
+
+  return bridge.trim() === "";
+}
+
+function anchorSpecificDateContext(text, labelIndex, labelLength, afterLabel, dateMatch) {
+  const before = text.slice(Math.max(0, labelIndex - 70), labelIndex);
+  if (/\banchor\s+investor(?:s)?(?:\s+(?:bid(?:ding)?|offer))?\s*\/?\s*$/i.test(before)) {
+    return true;
+  }
+
+  const tailStart = dateMatch.index + dateMatch.raw.length;
+  const tail = afterLabel.slice(tailStart, tailStart + 150);
+  return (
+    /\bbids?\s+by\s+anchor\s+investors?\s+were\s+submitted\b/i.test(tail) ||
+    /\ballocation\s+to\s+anchor\s+investors?\b/i.test(tail) ||
+    /\banchor\s+investor\s+allocation\b/i.test(tail)
+  );
+}
+
 function dateMentions(pageText, page, kind) {
   const text = normalizeText(pageText);
   if (!text) return [];
   const labels = kind === "open"
     ? [
         /\b(?:bid\s*\/\s*issue|bid|issue|offer)\s+opening\s+date\b/ig,
-        /\b(?:bid\s*\/\s*issue|bid|issue|offer)\s+opens?\s+on\b/ig
+        /\b(?:bid\s*\/\s*issue|bid|issue|offer)\s+(?:opens?|opened)\s+on\b/ig
       ]
     : [
         /\b(?:bid\s*\/\s*issue|bid|issue|offer)\s+closing\s+date\b/ig,
-        /\b(?:bid\s*\/\s*issue|bid|issue|offer)\s+closes?\s+on\b/ig
+        /\b(?:bid\s*\/\s*issue|bid|issue|offer)\s+(?:closes?|closed)\s+on\b/ig
       ];
   const mentions = [];
   for (const pattern of labels) {
     pattern.lastIndex = 0;
     for (const match of text.matchAll(pattern)) {
-      const end = Math.min(text.length, (match.index ?? 0) + match[0].length + 150);
-      const context = text.slice(match.index ?? 0, end);
-      const value = parseExplicitOfferDate(context);
-      if (!value) continue;
-      mentions.push({ value, source_value: context, page });
+      const labelIndex = match.index ?? 0;
+      const labelEnd = labelIndex + match[0].length;
+      const afterLabel = text.slice(labelEnd, Math.min(text.length, labelEnd + 180));
+      const dateMatch = firstExplicitDateMatch(afterLabel);
+      if (!dateMatch) continue;
+
+      const bridge = afterLabel.slice(0, dateMatch.index);
+      if (!allowedLabelDateBridge(bridge)) continue;
+      if (anchorSpecificDateContext(text, labelIndex, match[0].length, afterLabel, dateMatch)) continue;
+
+      const sourceEnd = labelEnd + dateMatch.index + dateMatch.raw.length;
+      mentions.push({
+        value: dateMatch.value,
+        source_value: text.slice(labelIndex, sourceEnd),
+        page
+      });
     }
   }
   return mentions;
@@ -123,6 +202,13 @@ export function parseExplicitOfferDatesFromPages(pages, listingDate = null) {
     open_mentions: openMentions,
     close_mentions: closeMentions
   };
+}
+
+export function offerDateExtractionPassesCurrentRules(extraction, kind, listingDate = null) {
+  if (!extraction?.value || !extraction?.source_value) return false;
+  const parsed = parseExplicitOfferDatesFromPages([extraction.source_value], listingDate);
+  const candidate = kind === "open" ? parsed.open_date : parsed.close_date;
+  return candidate?.value === extraction.value;
 }
 
 export function candidateOfferDateDocument(record, currentYear = new Date().getUTCFullYear()) {

@@ -114,6 +114,12 @@ jobs:
       - name: Test historical SEBI offer-date backfill
         run: node scripts/test-backfill-historical-offer-dates.mjs
 
+      - name: Test parser-v1 historical date correction proposal
+        run: node scripts/test-prepare-historical-offer-date-corrections.mjs
+
+      - name: Test semantic historical offer-date merge
+        run: node scripts/test-apply-historical-offer-date-state.mjs
+
       - name: Test historical SEBI PDF field backfill
         run: node scripts/test-backfill-historical-pdf-fields.mjs
 

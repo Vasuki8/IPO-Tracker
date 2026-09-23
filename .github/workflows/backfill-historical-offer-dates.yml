@@ -10,6 +10,8 @@ on:
       - "scripts/backfill-historical-offer-dates.mjs"
       - "scripts/test-backfill-historical-offer-dates.mjs"
       - "scripts/apply-historical-offer-date-state.mjs"
+      - "scripts/prepare-historical-offer-date-corrections.mjs"
+      - "scripts/test-prepare-historical-offer-date-corrections.mjs"
       - "scripts/test-apply-historical-offer-date-state.mjs"
       - "scripts/historical-batch-selection.mjs"
       - "scripts/test-historical-batch-selection.mjs"
@@ -42,6 +44,12 @@ jobs:
 
       - name: Test historical SEBI offer-date parser
         run: node scripts/test-backfill-historical-offer-dates.mjs
+
+      - name: Test parser-v1 historical date correction proposal
+        run: node scripts/test-prepare-historical-offer-date-corrections.mjs
+
+      - name: Prepare parser-v1 historical date corrections
+        run: node scripts/prepare-historical-offer-date-corrections.mjs
 
       - name: Backfill historical SEBI offer dates
         run: node scripts/backfill-historical-offer-dates.mjs
