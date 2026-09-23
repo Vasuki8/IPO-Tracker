@@ -16,7 +16,8 @@ import {
   parseMinimumBidFromIpoDetail,
   parsePriceBandFromIpoDetail,
   priceBandCandidatesFromIpoDetail,
-  resolveNseIdentity
+  resolveNseIdentity,
+  shouldUseIpoDetailForRecord
 } from "./extract-nse-ipo-detail-fields.mjs";
 
 const pureFreshLakhs = parseIssueSizeInrFromIpoDetail({
@@ -569,3 +570,25 @@ assert.equal(legacyRecord.nse_series, "SME");
 assert.equal(legacyRecord.minimum_bid_quantity.value, 500);
 
 console.log("NSE ipo-detail minimum-bid extraction tests passed.");
+
+assert.equal(
+  shouldUseIpoDetailForRecord({
+    nse_source: { document_type: "NSE Public Past Issues" },
+    listing_date: { value: "2025-08-01" }
+  }, 2026),
+  false
+);
+assert.equal(
+  shouldUseIpoDetailForRecord({
+    nse_source: { document_type: "NSE Public Past Issues" },
+    listing_date: { value: "2026-08-01" }
+  }, 2026),
+  true
+);
+assert.equal(
+  shouldUseIpoDetailForRecord({
+    nse_source: { document_type: "NSE IPO Live Feed" },
+    listing_date: { value: null }
+  }, 2026),
+  true
+);
