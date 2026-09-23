@@ -2918,3 +2918,43 @@ Open/close date recovery is intentionally not included in this batch because the
 ### Expected effect
 
 At 24 records per hourly sync, the 883-record historical backlog can be sampled progressively without blocking current IPO publication. The detailed historical coverage audit runs after this backfill step, making field gains measurable on every run.
+
+
+## BSE retrieval repair — session handshake + BSE-only materialization
+
+Production logs showed why the retained BSE sources had produced zero attached records:
+
+- official BSE issue-detail URLs returned HTML to GitHub Actions, but the body did not parse as an equity issue page;
+- BSE listing notices parsed correctly, but BSE-only issuers such as 3B Films had no NSE historical recovery record to attach to;
+- official BSE search results confirm that the retained issue-detail URLs contain the expected equity issue terms when served normally.
+
+This batch addresses both failure modes.
+
+### BSE session handling
+
+The BSE collector now primes a session against `https://www.bseindia.com/`, retains returned cookies, and sends them with issue/listing page requests. When a page still does not parse, diagnostics now retain response byte count and a short page-head sample so anti-bot/challenge responses can be distinguished from parser defects.
+
+### Fixed-price BSE issue support
+
+The BSE issue-detail parser now also accepts explicit fixed `Issue Price` values in addition to price bands. This is required for fixed-price SME issues such as Kenrik Industries.
+
+### BSE-only issuer materialization
+
+A retained BSE manifest source may now explicitly set `materialize_if_missing: true`.
+
+When a verified BSE source has no matching recovery record:
+
+- the source must contain an explicit year;
+- a BSE listing notice must name the same normalized issuer before materialization;
+- a new recovery record is created with BSE provenance;
+- no NSE identity is invented;
+- fields are populated only from the parsed official BSE page/notice;
+- `listed` status is retained only when an actual BSE listing notice is the source.
+
+The three currently verified 2025 BSE sources are opted in.
+
+### Publication repair
+
+Retained `open_date` / `close_date` fields are now preferred by the publisher before NSE term fallbacks, so BSE-derived offer dates retain their own evidence instead of being dropped.
+
+This provides a controlled path for BSE-only historical IPOs while keeping universe expansion evidence-driven rather than inferred from search-engine results.
