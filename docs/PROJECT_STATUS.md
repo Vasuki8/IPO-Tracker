@@ -3307,3 +3307,22 @@ Historical PDF document selection is now field-aware:
 No additional PDF is downloaded per record; the selected document is still downloaded once and reused for all parsers.
 
 Parser version is bumped to **1.2.0**, making previously scanned records eligible for one bounded, year-balanced retry under the improved document-selection strategy.
+
+
+## Official BSE SME IPO index universe audit
+
+The historical universe remains primarily NSE-derived. To surface BSE-only SME candidates without using BSE's licensed market-data API, the backend now audits BSE's official **SME IPO Index** constituent page.
+
+The audit:
+
+- fetches the official BSE SME IPO Index page;
+- parses BSE scrip code, company name and ISIN;
+- compares constituents against every 2020-2026 recovery record;
+- uses exact normalized issuer matching first;
+- allows conservative prefix matching only for visibly truncated BSE display names;
+- reports ambiguous and unmatched constituents separately;
+- never creates or modifies an IPO record.
+
+Unmatched constituents are discovery candidates only. A BSE-only issuer still requires an issuer-specific official listing notice or equivalent official evidence before materialization.
+
+This audit runs during live source-health collection and is not treated as a complete historical BSE universe by itself because index membership can change over time.
