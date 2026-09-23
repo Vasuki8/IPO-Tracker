@@ -1019,3 +1019,8 @@ Historical SEBI PDF date extraction now runs in its own hourly workflow at minut
 ### Independent historical SEBI PDF field recovery
 
 A separate hourly workflow at minute 57 scans a bounded, year-balanced set of official historical SEBI PDFs for explicit final issue price, monetary issue size, and minimum bid quantity. Results are published semantically onto the newest `main`, so concurrent live-sync data is preserved.
+
+
+### Historical offer-date parser v2
+
+Historical offer-date extraction now uses a strict label-to-date grammar and rejects Anchor Investor dates/unrelated nearby prose. Three parser-v1 false positives (Unimech Aerospace, CORONA Remedies and Nephrocare Health Services) are corrected through the race-safe semantic publication workflow with prior evidence retained in field correction history.
