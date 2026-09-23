@@ -44,7 +44,8 @@ export function matchBseSummaryLink(issuerName, links) {
   if (!target) return { match: null, reason: "missing_issuer_name" };
   const matches = (links || []).filter((item) => {
     const haystack = normalizeName(item.context);
-    return haystack.includes(target) || target.includes(haystack);
+    if (!haystack || !target) return false;
+    return haystack.includes(target);
   });
   const unique = [...new Map(matches.map((item) => [item.url, item])).values()];
   if (unique.length !== 1) {
