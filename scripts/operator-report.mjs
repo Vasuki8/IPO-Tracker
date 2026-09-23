@@ -85,6 +85,11 @@ export const RECOVERY_GUIDANCE = {
     diagnostic: "Inspect workflow control flow: validation was skipped without a rebuild/collection failure, or its outcome was not recorded.",
     recovery: "Restore explicit validation execution/outcome reporting; do not assume validation passed."
   },
+  operator_state_invalid: {
+    priority: "high",
+    diagnostic: "Run the independent operator-state validator against the committed snapshot/history files and inspect the exact contract error.",
+    recovery: "Repair operational metadata generation/retention only; do not alter IPO data to satisfy an operator-state contract."
+  },
   repository_publish_unmeasured: {
     priority: "medium",
     diagnostic: "Inspect workflow control flow: repository publication was skipped without a known upstream failure, or its outcome was not recorded.",
