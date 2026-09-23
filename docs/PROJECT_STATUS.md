@@ -3055,3 +3055,10 @@ When 2025→2020 all have eligible work:
 Empty years automatically yield their slots to years that still have candidates.
 
 This changes queue scheduling only; evidence acceptance, conflict handling, parser/version cursors, retry cooldowns, null preservation and source provenance remain unchanged.
+
+
+## Independent historical SEBI PDF-field backfill
+
+Added a dedicated hourly workflow for historical SEBI PDF recovery of residual final issue price, explicit monetary issue size and explicit minimum bid quantity.
+
+The workflow is separate from live sync and historical offer-date recovery, processes at most **8 PDFs per run**, uses bounded curl and `pdftotext` timeouts, and rebuilds/checks/validates the unified dataset before publishing any recovery change.
