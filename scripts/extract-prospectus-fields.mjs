@@ -11,10 +11,6 @@ const MAX_PAGES = 20;
 const DIAGNOSTIC_MAX_PAGES = 80;
 const MINIMUM_BID_DIAGNOSTIC_MAX_PAGES = 650;
 const NII_MINIMUM_APPLICATION_MAX_PAGES = 140;
-const NEW_ISSUE_SIZE_EVIDENCE = new Map([
-  ["Moneyview Limited", "SEBI RHP PDF"],
-  ["Qualiance International Limited", "SEBI Other Document PDF"]
-]);
 const USER_AGENT =
   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
 
@@ -102,15 +98,6 @@ export function candidateProspectusIssueSizeDocument(record) {
   if (record.issue_size_inr?.value !== null && record.issue_size_inr?.value !== undefined) return null;
   return (record.documents || []).find((doc) =>
     doc.type === "SEBI Prospectus PDF" && officialProspectusPdfUrl(doc.url)
-  ) || null;
-}
-
-export function candidateNewIssueSizeEvidenceDocument(record) {
-  if (record.issue_size_inr?.value !== null && record.issue_size_inr?.value !== undefined) return null;
-  const expectedType = NEW_ISSUE_SIZE_EVIDENCE.get(record.issuer_name);
-  if (!expectedType) return null;
-  return (record.documents || []).find((doc) =>
-    doc.type === expectedType && officialProspectusPdfUrl(doc.url)
   ) || null;
 }
 
@@ -782,58 +769,6 @@ async function diagnoseIssueSize() {
   console.log(JSON.stringify({ issue_size_diagnostic_stats: stats }, null, 2));
 }
 
-async function diagnoseNewIssueSizeEvidence() {
-  ensurePdfTextTool();
-  const stats = {
-    candidates: 0,
-    downloaded: 0,
-    parseable_overall_totals: 0,
-    mentions: 0,
-    fetch_errors: 0
-  };
-
-  for (const file of recoveryFiles()) {
-    const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
-    for (const record of recovery.records || []) {
-      const document = candidateNewIssueSizeEvidenceDocument(record);
-      if (!document) continue;
-      stats.candidates += 1;
-
-      let pages;
-      try {
-        pages = pagesLayout(await fetchPdf(document.url), MAX_PAGES);
-        stats.downloaded += 1;
-      } catch (error) {
-        stats.fetch_errors += 1;
-        console.warn(
-          "New issue-size evidence unavailable for " +
-          record.issuer_name + ": " + error.message
-        );
-        continue;
-      }
-
-      const extraction = parseExplicitAggregateIssueSizeFromPages(pages);
-      if (extraction) stats.parseable_overall_totals += 1;
-      const mentions = pages.flatMap((pageText, index) =>
-        findAggregateIssueSizeMentions(pageText, index + 1)
-      ).slice(0, 18);
-      stats.mentions += mentions.length;
-
-      console.log(JSON.stringify({
-        issuer_name: record.issuer_name,
-        document_type: document.type,
-        document: document.identity ?? document.type,
-        url: document.url,
-        pages_scanned: pages.length,
-        parsed_overall_total: extraction,
-        mentions
-      }, null, 2));
-    }
-  }
-
-  console.log(JSON.stringify({ new_issue_size_evidence_stats: stats }, null, 2));
-}
-
 async function diagnoseRhpIssueSize() {
   ensurePdfTextTool();
   const stats = {
@@ -1348,10 +1283,8 @@ const isMain = process.argv[1] &&
   pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
 
 if (isMain) {
-  const action = process.argv.includes("--diagnose-new-size-evidence")
-    ? diagnoseNewIssueSizeEvidence
-    : process.argv.includes("--diagnose-prospectus-retail-min-application")
-      ? diagnoseProspectusRetailMinimumApplication
+  const action = process.argv.includes("--diagnose-prospectus-retail-min-application")
+    ? diagnoseProspectusRetailMinimumApplication
     : process.argv.includes("--diagnose-rhp-nii-min-bid")
       ? diagnoseRhpNiiMinimumBid
     : process.argv.includes("--nii-minimum-application")
