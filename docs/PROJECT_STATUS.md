@@ -2808,7 +2808,7 @@ Audit after historical universe materialization showed SEBI's targeted issuer se
 
 This batch adds a bounded historical search path:
 
-- up to **24 historical issuers per sync** are searched through the official SEBI filings search;
+- up to **12 historical issuers per sync** are searched through the official SEBI filings search;
 - live current-IPO targeted searches remain capped separately at 12;
 - historical candidates must have a verified listing date and no retained SEBI document;
 - search state is persisted in `ops/sebi-historical-search.json`, so each hourly run advances to previously unsearched issuers rather than repeating the same misses;
@@ -2822,3 +2822,15 @@ This turns SEBI historical enrichment into an incremental automatic backfill ins
 ### Safety
 
 A search attempt never creates IPO field evidence by itself. Only an actual matched official SEBI filing/document is attached to the recovery record. Unmatched searches remain operational cursor state only.
+
+
+## SEBI historical search latency guard
+
+Historical SEBI targeted searches now use explicit request timeouts and a smaller bounded batch:
+
+- historical targeted searches are capped at **12 issuers per sync**;
+- targeted search requests use two attempts with a 10-second timeout per attempt;
+- general SEBI listing/detail requests also have a 15-second timeout;
+- a slow/unresponsive SEBI request is recorded as an error and retried by the existing 24-hour cooldown rather than blocking publication indefinitely.
+
+This prioritizes steady hourly progress over attempting too many historical issuers in one run.
