@@ -5,6 +5,7 @@ on:
     branches: ["main"]
     paths-ignore:
       - "ops/pages-publication.json"
+      - "ops/sebi-historical-search.json"
   workflow_dispatch:
 
 permissions:
