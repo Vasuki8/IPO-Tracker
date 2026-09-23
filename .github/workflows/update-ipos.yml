@@ -20,6 +20,8 @@ on:
       - "scripts/test-sync-nse-historical.mjs"
       - "scripts/sync-nse-live.mjs"
       - "scripts/test-sync-nse-live.mjs"
+      - "scripts/backfill-historical-offer-dates.mjs"
+      - "scripts/test-backfill-historical-offer-dates.mjs"
       - "scripts/sync-sebi-documents.mjs"
       - "scripts/test-sync-sebi-documents.mjs"
       - "scripts/extract-abridged-fields.mjs"
@@ -113,6 +115,9 @@ jobs:
           sudo apt-get install --yes --no-install-recommends poppler-utils
           pdftotext -v
 
+      - name: Backfill historical SEBI offer dates
+        run: node scripts/backfill-historical-offer-dates.mjs
+
       - name: Test retained field publication status
         run: node scripts/test-publish-field-status.mjs
 
@@ -167,7 +172,7 @@ jobs:
         id: publish_data
         shell: bash
         run: |
-          if [ -z "$(git status --porcelain -- data/recovery data/ipos.json ops/sebi-historical-search.json ops/nse-historical-detail.json)" ]; then
+          if [ -z "$(git status --porcelain -- data/recovery data/ipos.json ops/sebi-historical-search.json ops/nse-historical-detail.json ops/sebi-historical-offer-dates.json)" ]; then
             echo "No source-backed IPO data or historical search-state changes detected."
             exit 0
           fi
@@ -177,6 +182,7 @@ jobs:
           git add data/recovery data/ipos.json
           if [ -f ops/sebi-historical-search.json ]; then git add ops/sebi-historical-search.json; fi
           if [ -f ops/nse-historical-detail.json ]; then git add ops/nse-historical-detail.json; fi
+          if [ -f ops/sebi-historical-offer-dates.json ]; then git add ops/sebi-historical-offer-dates.json; fi
           git commit -m "chore(data): sync official IPO sources"
 
           # Other operational workflows can advance main while this long-running
