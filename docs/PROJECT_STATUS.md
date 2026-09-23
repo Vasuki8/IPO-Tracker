@@ -3292,3 +3292,18 @@ The independent historical PDF-field workflow is not on the live IPO critical pa
 - parser-versioned cursor/retry behavior.
 
 This improves the chance of completing large official PDFs without reintroducing live-sync latency.
+
+
+## Historical SEBI PDF parser v1.2 — RHP preference for bid-era terms
+
+Production parser v1.1 showed that final Prospectuses are strong for explicit monetary issue size but often do not retain bid-era terms such as price band or market lot.
+
+Historical PDF document selection is now field-aware:
+
+- if **price band**, **market lot**, or **minimum bid quantity** is still missing and an official SEBI RHP PDF is attached, the backfill prefers the RHP;
+- if only final terms such as **issue price** or **issue size** remain missing, the final Prospectus remains preferred;
+- if only one official PDF type exists, it remains the fallback.
+
+No additional PDF is downloaded per record; the selected document is still downloaded once and reused for all parsers.
+
+Parser version is bumped to **1.2.0**, making previously scanned records eligible for one bounded, year-balanced retry under the improved document-selection strategy.

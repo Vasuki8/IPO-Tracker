@@ -25,8 +25,38 @@ const record = {
   }]
 };
 assert.deepEqual(missingHistoricalPdfFields(record), ["issue_price","price_band","issue_size_inr","market_lot","minimum_bid_quantity"]);
-assert.ok(candidateHistoricalPdf(record, 2026));
+const rhp = {
+  type: "SEBI RHP PDF",
+  identity: "Example Limited - RHP — PDF",
+  url: "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/example-rhp.pdf",
+  publication_date: "2025-11-28"
+};
+record.documents.push(rhp);
+
+assert.equal(candidateHistoricalPdf(record, 2026), rhp);
 assert.equal(historicalPdfCandidates([{record}], {issuers:{}}, 2026, 10).length, 1);
+
+const finalOnlyRecord = {
+  id: "final-only-limited",
+  issuer_name: "Final Only Limited",
+  listing_date: { value: "2025-12-10" },
+  issue_price: { value: null },
+  price_band: { value: { min: 120, max: 125 } },
+  issue_size_inr: { value: null },
+  market_lot: { value: 120 },
+  minimum_bid_quantity: { value: 120 },
+  terms: { price_band: null, market_lot: null, minimum_bid_quantity: null },
+  documents: [record.documents[0], rhp]
+};
+assert.equal(candidateHistoricalPdf(finalOnlyRecord, 2026), record.documents[0]);
+
+const rhpOnlyRecord = {
+  ...finalOnlyRecord,
+  id: "rhp-only-limited",
+  issuer_name: "RHP Only Limited",
+  documents: [rhp]
+};
+assert.equal(candidateHistoricalPdf(rhpOnlyRecord, 2026), rhp);
 
 const pages = [
   "Issue Price ₹125 per Equity Share. Price Band: ₹120 to ₹125 per Equity Share. Total Issue Size ₹500 crore. Market Lot: 120 Equity Shares. Bid Lot 120 Equity Shares."
