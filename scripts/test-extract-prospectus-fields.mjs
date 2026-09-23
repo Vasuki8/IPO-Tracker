@@ -12,9 +12,11 @@ import {
   candidateRhpMinimumBidDocument,
   candidateRhpMinimumApplicationDocument,
   candidateRhpNiiMinimumApplicationDocument,
+  candidateRhpNiiMinimumBidDocument,
   findMinimumBidMentionsInPages,
   findMinimumApplicationAmountMentionsInPages,
   findExplicitNiiMinimumApplicationAmountsInPages,
+  findExplicitNiiMinimumBidQuantitiesInPages,
   findAggregateIssueSizeMentions,
   findIssuePriceMentions,
   parseExplicitAggregateIssueSizeFromPages,
@@ -124,6 +126,7 @@ assert.equal(candidateRhpMinimumBidDocument(rhpRecord), rhpDoc);
 
 assert.equal(candidateRhpMinimumApplicationDocument(rhpRecord), rhpDoc);
 assert.equal(candidateRhpNiiMinimumApplicationDocument(rhpRecord), rhpDoc);
+assert.equal(candidateRhpNiiMinimumBidDocument(rhpRecord), rhpDoc);
 
 const rhpMinApplicationMentions = findMinimumApplicationAmountMentionsInPages([
   "Offer summary only.",
@@ -168,6 +171,26 @@ assert.deepEqual(
     "In case of a Mutual Fund, separate Bids will be aggregated to determine the minimum application size of ₹100 million.",
     "The PLI scheme requires minimum investment of Rs. 300 crore.",
     "Retail Individual Bidders may bid for the minimum Bid Lot."
+  ]),
+  []
+);
+
+const niiMinimumBidQuantities = findExplicitNiiMinimumBidQuantitiesInPages([
+  "Offer summary.",
+  "Non-Institutional Bidders shall submit a Minimum Bid of 1,200 Equity Shares and in multiples thereafter.",
+  "The minimum application size is 2,400 Equity Shares for Non-Institutional Investors."
+]);
+assert.equal(niiMinimumBidQuantities.length, 2);
+assert.equal(niiMinimumBidQuantities[0].value, 1200);
+assert.equal(niiMinimumBidQuantities[0].page, 2);
+assert.equal(niiMinimumBidQuantities[1].value, 2400);
+assert.equal(niiMinimumBidQuantities[1].page, 3);
+
+assert.deepEqual(
+  findExplicitNiiMinimumBidQuantitiesInPages([
+    "Bid Lot 40 Equity Shares and in multiples of 40 Equity Shares thereafter.",
+    "Retail Individual Bidders may submit a Minimum Bid of 40 Equity Shares.",
+    "Non-Institutional Bidders shall have an application amount above ₹200,000."
   ]),
   []
 );
@@ -282,6 +305,15 @@ assert.equal(candidateRhpNiiMinimumApplicationDocument({
   application_requirements: {
     non_institutional: {
       minimum_application_amount_inr: { value: 200000, source: { url: "https://example.com" } }
+    }
+  },
+  documents: [{ ...doc, type: "SEBI RHP PDF" }]
+}), null);
+assert.equal(candidateRhpNiiMinimumBidDocument({
+  ...existing,
+  application_requirements: {
+    non_institutional: {
+      minimum_bid_quantity: { value: 1200, source: { url: "https://example.com" } }
     }
   },
   documents: [{ ...doc, type: "SEBI RHP PDF" }]
