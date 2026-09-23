@@ -146,3 +146,17 @@ Operator health now treats these sync stages as first-class failure reasons in a
 These are deliberately separate from `collection_failure`. A downstream failure does not imply NSE/SEBI failed and does not change a null field into a source failure.
 
 Each reason has targeted read-only recovery guidance. In particular, a repository-publication failure recommends repairing the publication path and republishing already validated changes rather than automatically recollecting sources.
+
+
+## Skipped vs unmeasured stage semantics
+
+Downstream stage outcomes now retain causality:
+
+- `expected_skip` — a downstream stage was skipped because a known upstream collection/rebuild/validation failure prevented it from running;
+- `unexpected_skip` — the stage was skipped even though no known upstream failure explains the skip;
+- `unexpectedly_unmeasured` — no recognized outcome was recorded;
+- `measured` — the stage has an explicit success/failure/cancelled outcome.
+
+Expected skips do not create additional health reasons. This keeps one upstream failure from multiplying into several redundant failures.
+
+Unexpected skips/unmeasured stages produce an `*_unmeasured` reason and operator state `unknown`, with recovery guidance to restore explicit execution/outcome reporting rather than assuming the stage passed.
