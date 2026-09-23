@@ -1650,7 +1650,9 @@ const isMain = process.argv[1] &&
   pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
 
 if (isMain) {
-  const action = process.argv.includes("--all-fields")\n    ? runAllFields\n    : process.argv.includes("--diagnose-minimum-application")
+  const action = process.argv.includes("--all-fields")
+    ? runAllFields
+    : process.argv.includes("--diagnose-minimum-application")
     ? diagnoseMinimumApplicationAmount
     : process.argv.includes("--market-lot")
       ? runMarketLot
