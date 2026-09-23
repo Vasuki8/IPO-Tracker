@@ -21,7 +21,8 @@ import {
   directSebiProspectusPdf,
   parseSebiDate,
   parseSebiListingHtml,
-  SEBI_PUBLIC_ISSUES_URL
+  SEBI_PUBLIC_ISSUES_URL,
+  SEBI_TARGETED_SEARCH_VERSION
 } from "./sync-sebi-documents.mjs";
 
 const listing = fs.readFileSync(new URL("./fixtures/sebi-public-issues-sample.html", import.meta.url), "utf8");
@@ -246,7 +247,8 @@ const historicalState = {
   issuers: {
     [historicalSearchKey(historicalRecords[1].record)]: {
       last_attempted_at: "2026-09-20T00:00:00Z",
-      status: "no_match"
+      status: "no_match",
+      search_version: SEBI_TARGETED_SEARCH_VERSION
     }
   }
 };
@@ -268,9 +270,30 @@ assert.deepEqual(
   ).map(({ record }) => record.issuer_name),
   ["Historical New Limited", "Historical Tried Limited"]
 );
+
+const legacySearchState = {
+  issuers: {
+    [historicalSearchKey(historicalRecords[1].record)]: {
+      last_attempted_at: "2026-09-20T00:00:00Z",
+      status: "no_match"
+    }
+  }
+};
+assert.deepEqual(
+  historicalSearchCandidates(
+    historicalRecords,
+    legacySearchState,
+    "2026-09-23T18:00:00Z",
+    10
+  ).map(({ record }) => record.issuer_name),
+  ["Historical New Limited", "Historical Tried Limited"]
+);
 assert.equal(searchTermForIssuer("Adroit Industries (India) Limited"), "adroit");
 assert.equal(searchTermForIssuer("Swastika Infra Limited"), "swastika");
 assert.equal(searchTermForIssuer("National Stock Exchange of India Limited"), "national");
+assert.equal(searchTermForIssuer("WeWork India Management Limited"), "wework");
+assert.equal(searchTermForIssuer("Solex Energy Limited"), "solex");
+assert.equal(searchTermForIssuer("Suba Hotels Limited"), "suba");
 assert.equal(
   buildSebiSearchUrl("National Stock Exchange of India Limited"),
   "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&search=national"
