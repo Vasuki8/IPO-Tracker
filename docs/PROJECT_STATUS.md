@@ -2788,3 +2788,15 @@ This prevents a few discovered historical issuers from being mistaken for comple
 ### Next substantial retrieval task
 
 Materialize the historical IPO universe year-by-year from official exchange/SEBI evidence, beginning with 2025, and then apply the now-reusable NSE/BSE/SEBI field recovery stack. Do not infer completeness from search-engine discovery alone.
+
+
+## Historical publication compatibility — BSE evidence + listing-date ordering
+
+Audit of the published-data builder confirmed that it already merges every `data/recovery/YYYY/nse-issue-information.json` manifest, so newly materialized 2020-2025 records will flow into `data/ipos.json` automatically.
+
+Two historical-publication fixes were required:
+
+- add official BSE hosts to the publisher's source allowlist so verified BSE evidence can be retained without validation failure;
+- when historical records lack offer open/close dates, sort them by verified listing date before issuer name, preserving newest-to-oldest behavior for completed IPOs.
+
+This does not invent historical offer dates. Listing date is used only as the ordering fallback when open/close dates are absent.
