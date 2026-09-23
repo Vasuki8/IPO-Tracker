@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { applyOfferDates, offerDateKey } from "./backfill-historical-offer-dates.mjs";
+import { applyOfferDates, HISTORICAL_OFFER_DATE_PARSER_VERSION, offerDateExtractionPassesCurrentRules, offerDateKey } from "./backfill-historical-offer-dates.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const RECOVERY_ROOT = path.join(ROOT, "data", "recovery");
@@ -46,11 +46,19 @@ export function mergeOfferDateProposal(groups, currentState, proposalState) {
     open_dates: 0,
     close_dates: 0,
     already_present: 0,
-    missing_records: 0
+    missing_records: 0,
+    stale_parser_entries: 0,
+    invalid_extractions: 0
   };
 
   for (const [key, incoming] of Object.entries(proposalState?.issuers || {})) {
     stats.proposal_entries += 1;
+
+    if (incoming?.parser_version !== HISTORICAL_OFFER_DATE_PARSER_VERSION) {
+      stats.stale_parser_entries += 1;
+      continue;
+    }
+
     const current = currentState.issuers[key];
     if (newerOrEqual(incoming, current)) {
       currentState.issuers[key] = incoming;
@@ -74,10 +82,22 @@ export function mergeOfferDateProposal(groups, currentState, proposalState) {
       url: incoming.source_url,
       publication_date: null
     };
+    const openValid = incoming.open_extraction
+      ? offerDateExtractionPassesCurrentRules(incoming.open_extraction, "open", incoming.listing_date ?? null)
+      : true;
+    const closeValid = incoming.close_extraction
+      ? offerDateExtractionPassesCurrentRules(incoming.close_extraction, "close", incoming.listing_date ?? null)
+      : true;
+
+    if (!openValid) stats.invalid_extractions += 1;
+    if (!closeValid) stats.invalid_extractions += 1;
+
     const parsed = {
-      open_date: incoming.open_extraction ?? null,
-      close_date: incoming.close_extraction ?? null
+      open_date: openValid ? (incoming.open_extraction ?? null) : null,
+      close_date: closeValid ? (incoming.close_extraction ?? null) : null
     };
+
+    if (!parsed.open_date && !parsed.close_date) continue;
 
     const changed = applyOfferDates(
       record,
