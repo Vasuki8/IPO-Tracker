@@ -124,6 +124,9 @@ jobs:
       - name: Extract explicit final Prospectus minimum bid
         run: node scripts/extract-prospectus-fields.mjs --minimum-bid
 
+      - name: Diagnose final Prospectus retail minimum application amount
+        run: node scripts/extract-prospectus-fields.mjs --diagnose-prospectus-retail-min-application
+
       - name: Extract explicit RHP NII minimum application amount
         run: node scripts/extract-prospectus-fields.mjs --nii-minimum-application
 

@@ -8,6 +8,7 @@ import {
   candidateProspectusDocument,
   candidateProspectusIssueSizeDocument,
   candidateProspectusMinimumBidDocument,
+  candidateProspectusRetailMinimumApplicationDocument,
   candidateRhpIssueSizeDocument,
   candidateRhpMinimumBidDocument,
   candidateRhpMinimumApplicationDocument,
@@ -16,6 +17,7 @@ import {
   findMinimumBidMentionsInPages,
   findMinimumApplicationAmountMentionsInPages,
   findExplicitNiiMinimumApplicationAmountsInPages,
+  findExplicitRetailMinimumApplicationAmountsInPages,
   findExplicitNiiMinimumBidQuantitiesInPages,
   findAggregateIssueSizeMentions,
   findIssuePriceMentions,
@@ -110,6 +112,7 @@ assert.equal(candidateProspectusMinimumBidDocument({
   minimum_bid_quantity: undefined,
   terms: { minimum_bid_quantity: null }
 }), doc);
+assert.equal(candidateProspectusRetailMinimumApplicationDocument(record), doc);
 
 const rhpDoc = {
   ...doc,
@@ -144,6 +147,25 @@ assert.deepEqual(
     "Anchor Investors may submit a minimum Bid of ₹100.00 million.",
     "Minimum Order Quantity is 40 Equity Shares.",
     "Maximum Application Amount is ₹2,00,000."
+  ]),
+  []
+);
+
+const retailMinimumApplications = findExplicitRetailMinimumApplicationAmountsInPages([
+  "For Retail Individual Bidders, the Minimum Application Amount is ₹14,850.",
+  "The Minimum Amount of Application: INR 15,120 for Retail Individual Investors."
+]);
+assert.equal(retailMinimumApplications.length, 2);
+assert.equal(retailMinimumApplications[0].value, 14850);
+assert.equal(retailMinimumApplications[0].page, 1);
+assert.equal(retailMinimumApplications[1].value, 15120);
+assert.equal(retailMinimumApplications[1].page, 2);
+
+assert.deepEqual(
+  findExplicitRetailMinimumApplicationAmountsInPages([
+    "Retail Individual Bidders shall not submit applications above ₹200,000.",
+    "The maximum application amount for Retail Individual Bidders is ₹200,000.",
+    "Non-Institutional Investors shall have a minimum application size viz. ₹2.00 Lakhs."
   ]),
   []
 );
@@ -278,6 +300,15 @@ assert.equal(candidateProspectusMinimumBidDocument({
   ...existing,
   minimum_bid_quantity: undefined,
   terms: { minimum_bid_quantity: 8 },
+  documents: [doc]
+}), null);
+assert.equal(candidateProspectusRetailMinimumApplicationDocument({
+  ...existing,
+  application_requirements: {
+    retail: {
+      minimum_application_amount_inr: { value: 14850, source: { url: "https://example.com" } }
+    }
+  },
   documents: [doc]
 }), null);
 assert.equal(candidateRhpIssueSizeDocument({
