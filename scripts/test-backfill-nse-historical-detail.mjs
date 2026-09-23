@@ -40,6 +40,21 @@ assert.equal(record.market_lot.value,120);
 assert.equal(record.minimum_bid_quantity.value,120);
 assert.equal(record.issue_size_inr.value,5_000_000_000);
 
-const state={issuers:{[historicalDetailKey(record)]:{parser_version:"1.0.0",status:"extracted",last_attempted_at:"2026-09-23T20:00:00Z"}}};
-assert.equal(historicalDetailCandidates([{record}],state,2026,10).length,0);
+const currentState={issuers:{[historicalDetailKey(record)]:{parser_version:"1.1.0",status:"extracted",last_attempted_at:"2026-09-23T20:00:00Z"}}};
+assert.equal(historicalDetailCandidates([{record}],currentState,2026,10).length,0);
+
+const retryRecord = {
+  id: "retry-limited",
+  issuer_name: "Retry Limited",
+  nse_symbol: "RETRY",
+  nse_series: "EQ",
+  nse_source: { document_type: "NSE Public Past Issues" },
+  listing_date: { value: "2025-04-01" },
+  issue_price: { value: 100 },
+  terms: { price_band: { min: 90, max: 100 }, market_lot: 100, minimum_bid_quantity: 100 },
+  issue_size_inr: { value: null },
+  documents: []
+};
+const oldParserState={issuers:{[historicalDetailKey(retryRecord)]:{parser_version:"1.0.0",status:"no_fields",last_attempted_at:"2026-09-23T20:00:00Z"}}};
+assert.equal(historicalDetailCandidates([{record:retryRecord}],oldParserState,2026,10).length,1);
 console.log("Historical NSE detail backfill tests passed.");
