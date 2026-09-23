@@ -1,8 +1,94 @@
 {
   "source_family": "Official NSE / SEBI / BSE offer-document and exchange evidence",
   "collection_started_at": "2026-09-23T19:29:29.146Z",
-  "generated_at": "2026-09-23T19:46:18.800Z",
+  "generated_at": "2026-09-23T19:52:38.813Z",
   "records": [
+    {
+      "id": "3b-films-limited",
+      "issuer_name": "3B Films Limited",
+      "board": null,
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250605-49",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice — 3B Films Limited",
+        "publication_date": "2025-06-05",
+        "collected_at": "2026-09-23T19:50:37.913Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice — 3B Films Limited",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250605-49",
+          "publication_date": "2025-06-05",
+          "collected_at": "2026-09-23T19:50:37.913Z"
+        }
+      ],
+      "first_observed_at": "2026-09-23T19:50:37.913Z",
+      "last_collected_at": "2026-09-23T19:50:37.913Z",
+      "board_evidence": [],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250605-49",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice — 3B Films Limited",
+          "publication_date": "2025-06-05",
+          "collected_at": "2026-09-23T19:50:37.913Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2025-06-06",
+        "source_value": "June 6, 2025",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250605-49",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice — 3B Films Limited",
+          "publication_date": "2025-06-05",
+          "collected_at": "2026-09-23T19:50:37.913Z"
+        }
+      },
+      "issue_price": {
+        "value": 50,
+        "source_value": "₹50 per share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250605-49",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice — 3B Films Limited",
+          "publication_date": "2025-06-05",
+          "collected_at": "2026-09-23T19:50:37.913Z"
+        }
+      },
+      "market_lot": {
+        "value": 3000,
+        "source_value": "3000",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250605-49",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice — 3B Films Limited",
+          "publication_date": "2025-06-05",
+          "collected_at": "2026-09-23T19:50:37.913Z"
+        }
+      }
+    },
     {
       "id": "aakaar-medical-technologies-limited",
       "issuer_name": "Aakaar Medical Technologies Limited",
@@ -2182,10 +2268,31 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — GROWW",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=GROWW&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "Billionbrains Garage Ventures Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/nov-2025/billionbrains-garage-ventures-limited-prospectus_97706.html",
+          "publication_date": "2025-11-08",
+          "collected_at": "2026-09-23T19:52:38.813Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "Billionbrains Garage Ventures Limited - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1762854394500.pdf",
+          "publication_date": "2025-11-08",
+          "collected_at": "2026-09-23T19:52:38.813Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T19:52:38.813Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -2232,6 +2339,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 95,
+          "max": 100
+        },
+        "source_value": "Rs. 95 to Rs. 100 per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=GROWW&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — GROWW",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 150,
+        "source_value": "150 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=GROWW&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — GROWW",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       }
     },
@@ -2510,10 +2646,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — CRAMC",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=CRAMC&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T19:50:40.057Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -2561,6 +2704,35 @@
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
         }
+      },
+      "price_band": {
+        "value": {
+          "min": 253,
+          "max": 266
+        },
+        "source_value": "Rs. 253 to Rs. 266 per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=CRAMC&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — CRAMC",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 56,
+        "source_value": "56 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=CRAMC&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — CRAMC",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        }
       }
     },
     {
@@ -2592,10 +2764,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — CAPILLARY",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=CAPILLARY&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T19:50:40.057Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -2642,6 +2821,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 549,
+          "max": 577
+        },
+        "source_value": "Rs. 549 to Rs. 577 per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=CAPILLARY&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — CAPILLARY",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 25,
+        "source_value": "25 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=CAPILLARY&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — CAPILLARY",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       }
     },
@@ -3084,10 +3292,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — CSSL",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=CSSL&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T19:50:40.057Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -3134,6 +3349,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 125,
+          "max": 132
+        },
+        "source_value": "Rs.125 to Rs.132 per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=CSSL&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — CSSL",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        }
+      },
+      "market_lot": {
+        "value": 1000,
+        "source_value": "1000 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=CSSL&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — CSSL",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       }
     },
@@ -3489,10 +3733,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — CURIS",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=CURIS&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T19:50:40.057Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -3539,6 +3790,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 120,
+          "max": 128
+        },
+        "source_value": "Rs. 120/- to Rs. 128/- per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=CURIS&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — CURIS",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        }
+      },
+      "market_lot": {
+        "value": 1000,
+        "source_value": "1000 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=CURIS&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — CURIS",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       }
     },
@@ -4373,10 +4653,17 @@
           "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1762843611096.pdf",
           "publication_date": "2025-11-05",
           "collected_at": "2026-09-23T19:46:18.800Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — EMMVEE",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=EMMVEE&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:46:18.800Z",
+      "last_collected_at": "2026-09-23T19:50:40.057Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -4423,6 +4710,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 206,
+          "max": 217
+        },
+        "source_value": "Rs. 206 to Rs. 217 per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=EMMVEE&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — EMMVEE",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 69,
+        "source_value": "69 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=EMMVEE&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — EMMVEE",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       }
     },
@@ -5019,10 +5335,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — EXCELSOFT",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=EXCELSOFT&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T19:50:40.057Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -5069,6 +5392,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 114,
+          "max": 120
+        },
+        "source_value": "Rs. 114 to Rs. 120 per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=EXCELSOFT&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — EXCELSOFT",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 125,
+        "source_value": "125 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=EXCELSOFT&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — EXCELSOFT",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       }
     },
@@ -5219,10 +5571,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — FINBUD",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=FINBUD&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T19:50:40.057Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -5269,6 +5628,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 140,
+          "max": 142
+        },
+        "source_value": "Rs.140 to Rs.142 per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=FINBUD&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — FINBUD",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        }
+      },
+      "market_lot": {
+        "value": 1000,
+        "source_value": "1000 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=FINBUD&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — FINBUD",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       }
     },
@@ -5515,10 +5903,17 @@
           "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1764670953288.pdf",
           "publication_date": "2025-11-08",
           "collected_at": "2026-09-23T19:46:18.800Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — UTLSOLAR",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=UTLSOLAR&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:46:18.800Z",
+      "last_collected_at": "2026-09-23T19:50:40.057Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -5565,6 +5960,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 216,
+          "max": 228
+        },
+        "source_value": "Rs. 216 to Rs. 228 per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=UTLSOLAR&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — UTLSOLAR",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 65,
+        "source_value": "65 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=UTLSOLAR&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — UTLSOLAR",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       }
     },
@@ -7337,10 +7761,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — INVICTA",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=INVICTA&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T19:50:40.057Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -7387,6 +7818,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 80,
+          "max": 85
+        },
+        "source_value": "Rs.80 to Rs.85 per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=INVICTA&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — INVICTA",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        }
+      },
+      "market_lot": {
+        "value": 1600,
+        "source_value": "1600 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=INVICTA&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — INVICTA",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       }
     },
@@ -7829,10 +8289,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — JAYESH",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=JAYESH&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T19:50:40.057Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -7879,6 +8346,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 116,
+          "max": 122
+        },
+        "source_value": "Rs.116 to Rs.122 per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=JAYESH&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — JAYESH",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        }
+      },
+      "market_lot": {
+        "value": 1000,
+        "source_value": "1000 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=JAYESH&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — JAYESH",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       }
     },
@@ -9112,10 +9608,45 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — LENSKART",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=LENSKART&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "Lenskart Solutions Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/dec-2025/lenskart-solutions-limited-prospectus_98090.html",
+          "publication_date": "2025-12-01",
+          "collected_at": "2026-09-23T19:52:38.813Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "Lenskart Solutions Limited - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1764586985473.pdf",
+          "publication_date": "2025-12-01",
+          "collected_at": "2026-09-23T19:52:38.813Z"
+        },
+        {
+          "type": "SEBI RHP filing",
+          "identity": "Lenskart Solutions Limited - RHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/oct-2025/lenskart-solutions-limited-rhp_97530.html",
+          "publication_date": "2025-10-30",
+          "collected_at": "2026-09-23T19:52:38.813Z"
+        },
+        {
+          "type": "SEBI RHP PDF",
+          "identity": "Lenskart Solutions Limited - RHP — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1761802414095.pdf",
+          "publication_date": "2025-10-30",
+          "collected_at": "2026-09-23T19:52:38.813Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T19:52:38.813Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -9162,6 +9693,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 382,
+          "max": 402
+        },
+        "source_value": "Rs. 382 to Rs. 402 per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=LENSKART&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — LENSKART",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 37,
+        "source_value": "37 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=LENSKART&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — LENSKART",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       }
     },
@@ -10278,10 +10838,31 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — MIDWESTLTD",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=MIDWESTLTD&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "Midwest Limited - prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/dec-2025/midwest-limited-prospectus_98311.html",
+          "publication_date": "2025-12-11",
+          "collected_at": "2026-09-23T19:52:38.813Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "Midwest Limited - prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765444608922.pdf",
+          "publication_date": "2025-12-11",
+          "collected_at": "2026-09-23T19:52:38.813Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T19:52:38.813Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -10328,6 +10909,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 1014,
+          "max": 1065
+        },
+        "source_value": "Rs. 1014 to Rs. 1065 per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=MIDWESTLTD&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — MIDWESTLTD",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 14,
+        "source_value": "14 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=MIDWESTLTD&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — MIDWESTLTD",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       }
     },
@@ -11280,10 +11890,45 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — ORKLAINDIA",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ORKLAINDIA&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "Orkla India Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/oct-2025/orkla-india-limited-prospectus_97588.html",
+          "publication_date": "2025-10-31",
+          "collected_at": "2026-09-23T19:52:38.813Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "Orkla India Limited - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1762153611434.pdf",
+          "publication_date": "2025-10-31",
+          "collected_at": "2026-09-23T19:52:38.813Z"
+        },
+        {
+          "type": "SEBI RHP filing",
+          "identity": "Orkla India Limited - RHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/oct-2025/orkla-india-limited-rhp_97836.html",
+          "publication_date": "2025-10-23",
+          "collected_at": "2026-09-23T19:52:38.813Z"
+        },
+        {
+          "type": "SEBI RHP PDF",
+          "identity": "Orkla India Limited - RHP — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1763620246979.pdf",
+          "publication_date": "2025-10-23",
+          "collected_at": "2026-09-23T19:52:38.813Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T19:52:38.813Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -11330,6 +11975,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 695,
+          "max": 730
+        },
+        "source_value": "Rs. 695 to Rs. 730 per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ORKLAINDIA&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — ORKLAINDIA",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 20,
+        "source_value": "20 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ORKLAINDIA&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — ORKLAINDIA",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       }
     },
@@ -12014,10 +12688,17 @@
           "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1762496128413.pdf",
           "publication_date": "2025-11-07",
           "collected_at": "2026-09-23T19:46:18.800Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — PWL",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PWL&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:46:18.800Z",
+      "last_collected_at": "2026-09-23T19:50:40.057Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -12065,6 +12746,35 @@
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
         }
+      },
+      "price_band": {
+        "value": {
+          "min": 103,
+          "max": 109
+        },
+        "source_value": "Rs. 103 to Rs. 109 per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PWL&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — PWL",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 137,
+        "source_value": "137 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PWL&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — PWL",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        }
       }
     },
     {
@@ -12096,10 +12806,45 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — PINELABS",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PINELABS&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "Pine Labs Limited-Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/nov-2025/pine-labs-limited-prospectus_97725.html",
+          "publication_date": "2025-11-12",
+          "collected_at": "2026-09-23T19:52:38.813Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "Pine Labs Limited-Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1762920307269.pdf",
+          "publication_date": "2025-11-12",
+          "collected_at": "2026-09-23T19:52:38.813Z"
+        },
+        {
+          "type": "SEBI RHP filing",
+          "identity": "Pine Labs Ltd - RHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/nov-2025/pine-labs-ltd-rhp_97584.html",
+          "publication_date": "2025-11-03",
+          "collected_at": "2026-09-23T19:52:38.813Z"
+        },
+        {
+          "type": "SEBI RHP PDF",
+          "identity": "Pine Labs Ltd - RHP — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1762145921051.pdf",
+          "publication_date": "2025-11-03",
+          "collected_at": "2026-09-23T19:52:38.813Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T19:52:38.813Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -12146,6 +12891,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 210,
+          "max": 221
+        },
+        "source_value": "Rs. 210 to Rs. 221 per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PINELABS&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — PINELABS",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 67,
+        "source_value": "67 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PINELABS&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — PINELABS",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       }
     },
@@ -13408,10 +14182,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — RUBICON",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=RUBICON&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T19:50:40.057Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -13458,6 +14239,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 461,
+          "max": 485
+        },
+        "source_value": "Rs 461 to Rs 485 per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=RUBICON&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — RUBICON",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 30,
+        "source_value": "30 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=RUBICON&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — RUBICON",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       }
     },
@@ -14802,10 +15612,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — SHETHJI",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHETHJI&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T19:50:40.057Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -14852,6 +15669,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 120,
+          "max": 125
+        },
+        "source_value": "Rs.120 to Rs.125 per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHETHJI&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SHETHJI",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        }
+      },
+      "market_lot": {
+        "value": 1000,
+        "source_value": "1000 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHETHJI&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SHETHJI",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       }
     },
@@ -16006,10 +16852,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — SPEB",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SPEB&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T19:50:40.057Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -16056,6 +16909,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 52,
+          "max": 56
+        },
+        "source_value": "Rs.52 to Rs.56 per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SPEB&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SPEB",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        }
+      },
+      "market_lot": {
+        "value": 2000,
+        "source_value": "2000 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SPEB&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SPEB",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       }
     },
@@ -16416,10 +17298,31 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — STUDDS",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=STUDDS&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "Studds Accessories Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/nov-2025/studds-accessories-limited-prospectus_97728.html",
+          "publication_date": "2025-11-12",
+          "collected_at": "2026-09-23T19:52:38.813Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "Studds Accessories Limited - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1762922983653.pdf",
+          "publication_date": "2025-11-12",
+          "collected_at": "2026-09-23T19:52:38.813Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T19:52:38.813Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -16466,6 +17369,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 557,
+          "max": 585
+        },
+        "source_value": "Rs. 557 to Rs. 585 per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=STUDDS&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — STUDDS",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 25,
+        "source_value": "25 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=STUDDS&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — STUDDS",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       }
     },
@@ -16690,10 +17622,17 @@
           "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1763445573741.pdf",
           "publication_date": "2025-11-18",
           "collected_at": "2026-09-23T19:46:18.800Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — SUDEEPPHRM",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SUDEEPPHRM&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:46:18.800Z",
+      "last_collected_at": "2026-09-23T19:50:40.057Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -16740,6 +17679,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 563,
+          "max": 593
+        },
+        "source_value": "Rs. 563 to Rs. 593 per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SUDEEPPHRM&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SUDEEPPHRM",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 25,
+        "source_value": "25 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SUDEEPPHRM&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SUDEEPPHRM",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       }
     },
@@ -17300,10 +18268,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — TENNIND",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=TENNIND&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T19:50:40.057Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -17350,6 +18325,48 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 378,
+          "max": 397
+        },
+        "source_value": "Rs. 378 to Rs. 397 per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=TENNIND&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — TENNIND",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 37,
+        "source_value": "37 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=TENNIND&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — TENNIND",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
+        }
+      },
+      "issue_size_inr": {
+        "value": 36000000000,
+        "source_value": "Initial Public Offer of Offer for Sale up to Rs. 36000 million. (including Anchor investors portion of 2,72,04,030 Equity Shares)",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=TENNIND&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — TENNIND",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:50:40.057Z"
         }
       }
     },
