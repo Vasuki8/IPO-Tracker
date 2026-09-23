@@ -75,7 +75,7 @@ jobs:
       - name: Test BSE detail and listing parsers
         run: node scripts/test-extract-bse-ipo-fields.mjs
 
-      - name: Inspect retained official BSE IPO sources
+      - name: Apply retained official BSE IPO sources
         run: node scripts/extract-bse-ipo-fields.mjs
 
       - name: Test live-feed parsing
