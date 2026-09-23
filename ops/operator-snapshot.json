@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-23T14:36:06.531Z",
+  "run": {
+    "id": "35874760161",
+    "attempt": "1",
+    "workflow": "Sync live IPO data",
+    "commit_sha": "d81a307fc1ca597a12d847c0fd30f592540a07dc"
+  },
+  "health": {
+    "overall": "healthy",
+    "reasons": [],
+    "thresholds_hours": {
+      "dataset_generated": 3,
+      "record_collection": 3,
+      "evidence_collection": 24,
+      "pages_publication": 3
+    },
+    "ages_hours": {
+      "dataset_generated": 0.01,
+      "record_collection": 0.01,
+      "evidence_collection": 0.01,
+      "pages_publication": 0.07
+    }
+  },
+  "recovery_guidance": [],
+  "pipeline": {
+    "collection_health": "collection_success",
+    "stages": {
+      "nse_collection": "success",
+      "sebi_collection": "success",
+      "rebuild": "success",
+      "validation": "success",
+      "repository_publish": "success"
+    }
+  },
+  "freshness": {
+    "dataset_generated_at": "2026-09-23T14:35:44.989Z",
+    "collection_started_at": "2026-09-22T02:14:14Z",
+    "latest_record_collected_at": "2026-09-23T14:35:44.989Z",
+    "latest_evidence_collected_at": "2026-09-23T14:35:44.989Z"
+  },
+  "pages_publication": {
+    "latest_attempt_status": "success",
+    "latest_attempt_at": "2026-09-23T14:31:43Z",
+    "latest_attempt_commit_sha": "d81a307fc1ca597a12d847c0fd30f592540a07dc",
+    "latest_attempt_run_id": "35874760057",
+    "last_successful_at": "2026-09-23T14:31:43Z",
+    "last_successful_commit_sha": "d81a307fc1ca597a12d847c0fd30f592540a07dc",
+    "last_successful_run_id": "35874760057",
+    "page_url": "https://vasuki8.github.io/IPO-Tracker/"
+  }
+}
