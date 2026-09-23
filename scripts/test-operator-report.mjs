@@ -39,7 +39,13 @@ const fixture = {
   ]
 };
 
-const pagesStatus = {\n  schema_version: "1.0.0",\n  latest_attempt: { status: "failure", completed_at: "2026-09-23T03:20:00Z", commit_sha: "bad", workflow_run_id: "122", page_url: null },\n  last_successful: { status: "success", completed_at: "2026-09-23T03:10:00Z", commit_sha: "good", workflow_run_id: "121", page_url: "https://vasuki8.github.io/IPO-Tracker/" }\n};\n\nconst report = buildOperatorReport(fixture, {
+const pagesStatus = {
+  schema_version: "1.0.0",
+  latest_attempt: { status: "failure", completed_at: "2026-09-23T03:20:00Z", commit_sha: "bad", workflow_run_id: "122", page_url: null },
+  last_successful: { status: "success", completed_at: "2026-09-23T03:10:00Z", commit_sha: "good", workflow_run_id: "121", page_url: "https://vasuki8.github.io/IPO-Tracker/" }
+};
+
+const report = buildOperatorReport(fixture, {
   NSE_COLLECTION_OUTCOME: "success", SEBI_COLLECTION_OUTCOME: "success",
   REBUILD_OUTCOME: "success", VALIDATION_OUTCOME: "success", REPOSITORY_PUBLISH_OUTCOME: "success",
   GITHUB_RUN_ID: "123", GITHUB_SHA: "abc", OPERATOR_REPORT_AT: "2026-09-23T03:30:00Z"
@@ -51,7 +57,10 @@ assert.equal(report.dataset.lot_size.direct_market_lot, 1);
 assert.equal(report.dataset.lot_size.verified_minimum_bid_fallback, 1);
 assert.equal(report.dataset.field_coverage.issue_size_inr.non_verified, 1);
 assert.equal(report.dataset.latest_record_collected_at, "2026-09-23T02:45:00Z");
-assert.equal(report.dataset.latest_evidence_collected_at, "2026-09-23T02:40:00Z");\nassert.equal(report.pages_publication.latest_attempt_status, "failure");\nassert.equal(report.pages_publication.last_successful_at, "2026-09-23T03:10:00Z");\nassert.equal(report.pages_publication.last_successful_commit_sha, "good");
+assert.equal(report.dataset.latest_evidence_collected_at, "2026-09-23T02:40:00Z");
+assert.equal(report.pages_publication.latest_attempt_status, "failure");
+assert.equal(report.pages_publication.last_successful_at, "2026-09-23T03:10:00Z");
+assert.equal(report.pages_publication.last_successful_commit_sha, "good");
 
 const failed = buildOperatorReport(fixture, { NSE_COLLECTION_OUTCOME: "failure", SEBI_COLLECTION_OUTCOME: "skipped", OPERATOR_REPORT_AT: "2026-09-23T03:30:00Z" });
 assert.equal(failed.pipeline.collection_health, "collection_failure");
