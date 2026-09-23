@@ -1,0 +1,33 @@
+name: Audit BSE SME IPO universe
+
+on:
+  schedule:
+    - cron: "41 3 * * *"
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "scripts/audit-bse-sme-ipo-index.mjs"
+      - "scripts/test-audit-bse-sme-ipo-index.mjs"
+      - ".github/workflows/audit-bse-sme-universe.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Test BSE SME universe audit
+        run: node scripts/test-audit-bse-sme-ipo-index.mjs
+
+      - name: Audit official BSE SME universe
+        run: node scripts/audit-bse-sme-ipo-index.mjs
