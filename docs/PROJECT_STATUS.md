@@ -2069,3 +2069,55 @@ Historical application-amount fields and manual parsers remain in the data contr
 Continue improving trustworthy IPO data while treating **Lot Size as complete at the user-facing layer (26/26)**.
 
 Do not start further minimum-investment/application-amount recovery.
+
+
+## Latest completed batch — verified-only Lot Size display
+
+The lot-size-only UI introduced in PR #86 has been hardened so the canonical displayed Lot Size accepts **verified source-backed fields only**.
+
+### Rule
+
+User-facing Lot Size now resolves as:
+
+1. verified `market_lot`;
+2. otherwise verified `minimum_bid_quantity`;
+3. otherwise null.
+
+A non-null value with status `provisional`, `conflict`, or any non-verified state is no longer eligible for display.
+
+This prevents a future live-source change from surfacing an unverified Lot Size merely because the raw numeric value is non-null.
+
+### Current production state
+
+The current 26-record 2026 dataset remains unchanged:
+
+- user-facing Lot Size: **26/26**
+- all 26 selected values are verified;
+- 19 use verified `market_lot`;
+- 7 use verified `minimum_bid_quantity` fallback;
+- no data values were rewritten.
+
+### Tests
+
+Dedicated lot-size tests now cover:
+
+- verified market-lot precedence;
+- verified minimum-bid fallback;
+- provisional market-lot rejection with verified fallback;
+- conflict rejection;
+- provisional fallback rejection;
+- fully missing case.
+
+### Handoff / next task
+
+Application amount / minimum-investment work remains explicitly out of scope.
+
+The next data-quality batch should move to the remaining homepage data gaps rather than application terms. Current major gaps are:
+
+- issue price: **14/26 present**;
+- issue size: **14/26 present**;
+- listing date: **13/26 present**.
+
+Most missing issue prices/listing dates belong to open or upcoming IPOs and should remain null until the official source publishes them.
+
+Recommended next coherent batch: **re-audit the 12 missing issue-size records against the latest retained official SEBI/NSE documents**, but do not repeat already-proven source families unless new documents or source observations have appeared. If no new authoritative evidence exists, record the remaining issue-size nulls as current source-blockers and move to freshness/operations work.
