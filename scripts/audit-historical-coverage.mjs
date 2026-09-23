@@ -5,6 +5,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const RECOVERY = path.join(ROOT, "data", "recovery");
 const MANIFEST = path.join(ROOT, "data", "bse-ipo-sources.json");
+const NSE_DETAIL_STATE = path.join(ROOT, "ops", "nse-historical-detail.json");
 
 function fieldPresent(record, key) {
   if (key === "price_band") return record.price_band?.value != null || record.terms?.price_band != null;
@@ -80,6 +81,42 @@ export function buildHistoricalCoverageAudit(years, recoveryByYear, sources) {
   );
 }
 
+export function summarizeHistoricalDetailCursor(state = { issuers: {} }) {
+  const entries = Object.values(state?.issuers || {});
+  const byYear = {};
+
+  for (const entry of entries) {
+    const year = String(entry?.listing_date || "").slice(0, 4) || "unknown";
+    byYear[year] ||= {
+      attempted: 0,
+      extracted: 0,
+      no_fields: 0,
+      error: 0,
+      remaining_fields: {},
+      field_reasons: {}
+    };
+    const row = byYear[year];
+    row.attempted += 1;
+    if (entry.status === "extracted") row.extracted += 1;
+    else if (entry.status === "no_fields") row.no_fields += 1;
+    else if (entry.status === "error") row.error += 1;
+
+    for (const field of entry.remaining_fields || []) {
+      row.remaining_fields[field] = (row.remaining_fields[field] || 0) + 1;
+    }
+    for (const [field, reason] of Object.entries(entry.field_reasons || {})) {
+      if (!reason) continue;
+      row.field_reasons[field] ||= {};
+      row.field_reasons[field][reason] = (row.field_reasons[field][reason] || 0) + 1;
+    }
+  }
+
+  return {
+    attempted_records: entries.length,
+    by_year: byYear
+  };
+}
+
 function loadRecoveryByYear() {
   const result = new Map();
   if (!fs.existsSync(RECOVERY)) return result;
@@ -104,9 +141,14 @@ function run() {
     recoveryByYear,
     sources
   );
+  const detailState = fs.existsSync(NSE_DETAIL_STATE)
+    ? JSON.parse(fs.readFileSync(NSE_DETAIL_STATE, "utf8"))
+    : { issuers: {} };
+
   console.log(JSON.stringify({
     total_records: historicalCoverage.reduce((sum, row) => sum + row.records, 0),
-    historical_coverage: historicalCoverage
+    historical_coverage: historicalCoverage,
+    historical_nse_detail_cursor: summarizeHistoricalDetailCursor(detailState)
   }, null, 2));
 }
 
