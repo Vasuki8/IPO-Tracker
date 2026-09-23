@@ -9,6 +9,7 @@ import {
   issuerVariants,
   issuerFromFilingUrl,
   matchIssuerRecord,
+  MAX_HISTORICAL_TARGETED_SEARCHES,
   buildSebiSearchUrl,
   hasSebiDocument,
   historicalSearchCandidates,
