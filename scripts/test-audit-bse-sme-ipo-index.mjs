@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import {
+  extractBundleHints,
   matchIndexCompany,
   mergeIndexRows,
   normalizeIssuerName,
@@ -32,6 +33,11 @@ assert.equal(fingerprint.title, "BSE SME IPO - Index Details");
 assert.equal(fingerprint.table_count, 0);
 assert.equal(fingerprint.row_count, 0);
 assert.deepEqual(fingerprint.script_sources, ["/assets/app.js"]);
+
+assert.deepEqual(
+  extractBundleHints('const a="/api/index/constituents";const b="plain";const c="https://x/api/indices";'),
+  ["/api/index/constituents", "https://x/api/indices"]
+);
 
 const indexServicesHtml = `
 <table>
