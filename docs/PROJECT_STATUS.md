@@ -3276,3 +3276,19 @@ The historical PDF semantic proposal/apply path now carries and applies:
 with the same no-overwrite guarantees as existing PDF fields. If current `main` already contains a value, the historical proposal cannot replace it.
 
 The parser-version bump makes previously scanned historical PDFs eligible for one bounded, year-balanced retry under the richer field set.
+
+
+## Historical SEBI PDF large-download tolerance
+
+Two official SEBI Prospectus PDFs previously timed out at the 45-second curl ceiling after downloading roughly 10–11 MB of 12–15 MB documents.
+
+The independent historical PDF-field workflow is not on the live IPO critical path, so its per-download maximum is raised conservatively from **45 seconds to 75 seconds** while retaining:
+
+- 10-second connect timeout;
+- one retry;
+- bounded batch size;
+- independent concurrency;
+- semantic race-safe publication;
+- parser-versioned cursor/retry behavior.
+
+This improves the chance of completing large official PDFs without reintroducing live-sync latency.

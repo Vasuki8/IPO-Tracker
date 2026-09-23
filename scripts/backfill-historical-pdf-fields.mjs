@@ -23,6 +23,7 @@ const STATE_PATH = path.join(ROOT, "ops", "sebi-historical-pdf-fields.json");
 const USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36";
 export const HISTORICAL_PDF_FIELD_BATCH_SIZE = 8;
 export const HISTORICAL_PDF_FIELD_PARSER_VERSION = "1.1.0";
+export const HISTORICAL_PDF_DOWNLOAD_MAX_SECONDS = 75;
 const MAX_PAGES = 35;
 
 function normalizeText(value) {
@@ -152,7 +153,7 @@ function fetchPdf(url) {
     execFileSync("curl", [
       "--fail", "--location", "--silent", "--show-error",
       "--retry", "1", "--retry-all-errors",
-      "--connect-timeout", "10", "--max-time", "45",
+      "--connect-timeout", "10", "--max-time", String(HISTORICAL_PDF_DOWNLOAD_MAX_SECONDS),
       "--user-agent", USER_AGENT,
       "--referer", "https://www.sebi.gov.in/",
       "--output", file, url
