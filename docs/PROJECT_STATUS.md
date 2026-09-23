@@ -3032,3 +3032,21 @@ Historical offer-date PDF recovery is therefore moved to a dedicated workflow:
 The live `Sync live IPO data` workflow no longer runs historical offer-date PDF extraction.
 
 This keeps current IPO freshness independent from slower historical PDF downloads while still allowing historical open/close-date coverage to progress automatically.
+
+
+## Independent historical SEBI PDF-field backfill
+
+Historical issue-size/minimum-bid PDF recovery is now decoupled from the live IPO sync, following the same architecture used for historical offer-date PDFs.
+
+### Workflow
+
+`.github/workflows/backfill-historical-pdf-fields.yml`:
+
+- runs hourly at minute 57 and supports manual dispatch;
+- uses its own `historical-pdf-field-backfill` concurrency group;
+- processes at most **8 historical IPO PDFs per run**;
+- recovers missing final issue price, explicit monetary issue size, and explicit minimum bid quantity using the existing conservative parsers;
+- has bounded curl and `pdftotext` execution time;
+- commits recovery/cursor changes first, rebases onto current `main`, rebuilds `data/ipos.json`, checks recovery publication and validates the full data contract before push.
+
+This keeps historical PDF enrichment entirely off the live publication critical path while still publishing every verified field through the same rebuild/validation contract.
