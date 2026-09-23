@@ -150,8 +150,12 @@ function normalizeRecord(record, collectedAt) {
       : verifiedField(record.terms?.minimum_bid_quantity ?? null, nse),
     minimum_application_amount_inr: emptyField(),
     application_requirements: applicationRequirements(record, collectedAt),
-    open_date: verifiedField(record.terms?.open_date ?? null, nse),
-    close_date: verifiedField(record.terms?.close_date ?? null, nse),
+    open_date: record.open_date?.value !== null && record.open_date?.value !== undefined
+      ? retainedField(record.open_date, collectedAt)
+      : verifiedField(record.terms?.open_date ?? null, nse),
+    close_date: record.close_date?.value !== null && record.close_date?.value !== undefined
+      ? retainedField(record.close_date, collectedAt)
+      : verifiedField(record.terms?.close_date ?? null, nse),
     listing_date: retainedField(record.listing_date, collectedAt),
     documents: (record.documents || []).map((doc) => normalizeDocument(doc, collectedAt)),
     first_observed_at: record.first_observed_at ?? collectedAt,
