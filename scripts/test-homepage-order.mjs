@@ -6,16 +6,18 @@ await import("../assets/ipo-order.js");
 const { compareNewestFirst } = globalThis.IPOOrder;
 
 const rows = [
-  { issuer_name: "Older", open_date: { value: "2026-09-18" }, close_date: { value: "2026-09-22" } },
-  { issuer_name: "Newest B", open_date: { value: "2026-09-23" }, close_date: { value: "2026-09-25" } },
-  { issuer_name: "Newest A", open_date: { value: "2026-09-23" }, close_date: { value: "2026-09-25" } },
-  { issuer_name: "Missing date", open_date: { value: null }, close_date: { value: null } }
+  { issuer_name: "Older", open_date: { value: "2026-09-18" }, close_date: { value: "2026-09-22" }, listing_date: { value: "2026-09-28" } },
+  { issuer_name: "Newest B", open_date: { value: "2026-09-23" }, close_date: { value: "2026-09-25" }, listing_date: { value: "2026-10-01" } },
+  { issuer_name: "Newest A", open_date: { value: "2026-09-23" }, close_date: { value: "2026-09-25" }, listing_date: { value: "2026-10-01" } },
+  { issuer_name: "Historical Newer", open_date: { value: null }, close_date: { value: null }, listing_date: { value: "2025-12-20" } },
+  { issuer_name: "Historical Older", open_date: { value: null }, close_date: { value: null }, listing_date: { value: "2025-11-20" } },
+  { issuer_name: "Missing date", open_date: { value: null }, close_date: { value: null }, listing_date: { value: null } }
 ];
 
 const sorted = [...rows].sort(compareNewestFirst);
 assert.deepEqual(
   sorted.map((row) => row.issuer_name),
-  ["Newest A", "Newest B", "Older", "Missing date"]
+  ["Newest A", "Newest B", "Older", "Historical Newer", "Historical Older", "Missing date"]
 );
 
 const payload = JSON.parse(fs.readFileSync(new URL("../data/ipos.json", import.meta.url), "utf8"));
