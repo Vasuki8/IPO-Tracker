@@ -75,6 +75,9 @@ jobs:
       - name: Test BSE detail and listing parsers
         run: node scripts/test-extract-bse-ipo-fields.mjs
 
+      - name: Test BSE SME IPO index audit
+        run: node scripts/test-audit-bse-sme-ipo-index.mjs
+
       - name: Test historical IPO coverage audit
         run: node scripts/test-audit-historical-coverage.mjs
 
