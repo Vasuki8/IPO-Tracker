@@ -52,7 +52,7 @@ assert.equal(indexRows[0].row_format, "index_services");
 const merged = mergeIndexRows([
   {
     name: "bse_index_services",
-    url: "https://www.bseindices.com/indices-details/code/76/",
+    url: "https://www.bseindices.com/constituents/code/76",
     rows: [
       {
         scrip_code: "544546",
