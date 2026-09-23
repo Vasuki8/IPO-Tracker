@@ -2618,3 +2618,25 @@ This preserves source semantics: successful NSE/SEBI collection followed by a re
 The operator model now covers collection, rebuild, validation, repository publication and Pages deployment failures separately.
 
 Next backend operations batch: improve **unmeasured/skipped stage semantics** so an expected skip after an upstream failure is distinguished from a stage that was never measured unexpectedly. Keep failure causality clear and avoid multiplying redundant failure reasons.
+
+
+## Latest completed batch — skipped/unmeasured stage causality
+
+Pipeline measurement now distinguishes expected downstream skips from unexplained missing execution.
+
+### Semantics
+
+- expected skip after a known upstream failure → no extra health reason;
+- unexplained skip → `<stage>_unmeasured`;
+- unknown/unrecorded outcome → `<stage>_unmeasured`;
+- explicit failure/cancelled → existing first-class `<stage>_failure`.
+
+Unexpectedly unmeasured rebuild/validation/repository-publication stages produce overall `unknown`, not `failure`, because the system lacks a measured outcome.
+
+This prevents a single collection/rebuild failure from producing redundant downstream failure reasons while also preventing a skipped stage from being silently treated as successful.
+
+### Handoff / next coherent batch
+
+Pipeline causality is now explicit across collection, rebuild, validation and repository publication.
+
+Next backend operations batch: add **snapshot/history schema validation** so malformed operational JSON is detected explicitly rather than silently consumed. Keep validation independent from IPO data validation and do not make operational metadata failures mutate IPO data.
