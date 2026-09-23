@@ -2360,3 +2360,47 @@ Prefer one of:
 2. a safe GitHub API lookup in an operator-only report.
 
 Do not rewrite IPO data values or overload `generated_at` with deployment semantics.
+
+
+## Latest completed batch — durable GitHub Pages publication health
+
+The operations/freshness layer now persists GitHub Pages deployment health separately from IPO data.
+
+### Operational state
+
+Added `ops/pages-publication.json` with two explicit concepts:
+
+- `latest_attempt` — the most recent Pages deployment attempt, including success/failure/cancelled status, completion time, commit SHA and workflow run;
+- `last_successful` — the last known successful Pages publication, preserved when a later attempt fails.
+
+The initial record is seeded from verified successful Pages workflow run `35818066215`, which completed at `2026-09-23T04:22:42Z` for commit `d50c266e2f9ba4018b18364d1b5f4a4b6ca2d160`.
+
+### Workflow behavior
+
+`.github/workflows/deploy-pages.yml` now records deployment health in an `if: always()` step after the Pages deployment attempt.
+
+The health-record commit is operational metadata only. The Pages workflow ignores pushes that change only `ops/pages-publication.json`, preventing a recursive deploy/status-commit loop.
+
+The operator report reads this record and now shows both:
+
+- latest Pages attempt status/time;
+- last successful Pages publication time/commit.
+
+Dataset `generated_at` remains unchanged in meaning and is not reused as deployment time.
+
+### Tests / safety
+
+Added focused tests for:
+
+- successful publication recording;
+- failed publication preserving the prior last-successful record;
+- unknown outcome normalization;
+- operator-report rendering of latest attempt vs last successful publication.
+
+No IPO data value or source evidence is changed by this batch.
+
+### Handoff / next coherent batch
+
+Operational collection health and Pages publication health are now visible separately.
+
+Next operations batch: add **staleness thresholds / actionable operator health classification** using the now-separated timestamps. Keep the first version read-only and explicit: classify stale dataset/source observations only from documented thresholds, and do not mutate IPO values or infer source-null from age alone.

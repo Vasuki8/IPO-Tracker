@@ -3,10 +3,12 @@ name: Deploy IPO Tracker to GitHub Pages
 on:
   push:
     branches: ["main"]
+    paths-ignore:
+      - "ops/pages-publication.json"
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -35,3 +37,24 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Record Pages publication health
+        if: always()
+        env:
+          PAGES_DEPLOY_OUTCOME: ${{ steps.deployment.outcome }}
+          PAGES_URL: ${{ steps.deployment.outputs.page_url }}
+        shell: bash
+        run: |
+          export PAGES_DEPLOY_COMPLETED_AT="$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          node scripts/record-pages-publication.mjs
+
+          if git diff --quiet -- ops/pages-publication.json; then
+            echo "Pages publication health is unchanged."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ops/pages-publication.json
+          git commit -m "chore(ops): record Pages publication health"
+          git push

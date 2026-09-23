@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const DATA_PATH = path.join(ROOT, "data", "ipos.json");
+const PAGES_STATUS_PATH = path.join(ROOT, "ops", "pages-publication.json");
 
 export const MONITORED_FIELDS = [
   "price_band",
@@ -111,7 +112,7 @@ export function summarizePipeline(env = process.env) {
 }
 
 export function renderMarkdown(report) {
-  const { dataset, pipeline } = report;
+  const { dataset, pipeline, pages_publication: pages } = report;
   const lines = [
     "# IPO Tracker operator report",
     "",
@@ -123,7 +124,8 @@ export function renderMarkdown(report) {
     `- Dataset rebuild: **${pipeline.stages.rebuild}**`,
     `- Data validation: **${pipeline.stages.validation}**`,
     `- Repository publication step: **${pipeline.stages.repository_publish}**`,
-    "- GitHub Pages publication: **not persisted by this sync workflow**",
+    `- GitHub Pages latest attempt: **${pages.latest_attempt_status}**${pages.latest_attempt_at ? ` at ${pages.latest_attempt_at}` : ""}`,
+    `- GitHub Pages last successful publication: ${pages.last_successful_at || "not recorded"}${pages.last_successful_commit_sha ? ` (commit ${pages.last_successful_commit_sha})` : ""}`,
     "",
     "## Freshness timestamps",
     "",
@@ -149,19 +151,41 @@ export function renderMarkdown(report) {
     "- A successful collector with a missing field means the current run completed; it does **not** mean the source necessarily contains that value.",
     "- A failed/cancelled NSE or SEBI stage is reported as **collection_failure** and should not be confused with a source-null field.",
     "- Field-specific source-null decisions remain documented in `docs/PROJECT_STATUS.md`; this report intentionally does not infer source-null from a null value alone.",
-    "- Website publication time is not stored in the dataset. Check the GitHub Pages deployment workflow until a publication timestamp is persisted explicitly.",
+    "- GitHub Pages publication time is operational metadata stored separately from IPO data and dataset generation time.",
     ""
   );
   return lines.join("\n");
 }
 
-export function buildOperatorReport(data, env = process.env) {
-  return { dataset: summarizeDataset(data), pipeline: summarizePipeline(env) };
+export function summarizePagesPublication(status) {
+  const latest = status?.latest_attempt ?? null;
+  const successful = status?.last_successful ?? null;
+  return {
+    latest_attempt_status: latest?.status ?? "not_recorded",
+    latest_attempt_at: latest?.completed_at ?? null,
+    latest_attempt_commit_sha: latest?.commit_sha ?? null,
+    latest_attempt_run_id: latest?.workflow_run_id ?? null,
+    last_successful_at: successful?.completed_at ?? null,
+    last_successful_commit_sha: successful?.commit_sha ?? null,
+    last_successful_run_id: successful?.workflow_run_id ?? null,
+    page_url: successful?.page_url ?? latest?.page_url ?? null
+  };
+}
+
+export function buildOperatorReport(data, env = process.env, pagesStatus = null) {
+  return {
+    dataset: summarizeDataset(data),
+    pipeline: summarizePipeline(env),
+    pages_publication: summarizePagesPublication(pagesStatus)
+  };
 }
 
 function main() {
   const data = JSON.parse(fs.readFileSync(DATA_PATH, "utf8"));
-  const report = buildOperatorReport(data);
+  const pagesStatus = fs.existsSync(PAGES_STATUS_PATH)
+    ? JSON.parse(fs.readFileSync(PAGES_STATUS_PATH, "utf8"))
+    : null;
+  const report = buildOperatorReport(data, process.env, pagesStatus);
   const markdown = renderMarkdown(report);
   if (process.argv.includes("--json")) process.stdout.write(JSON.stringify(report, null, 2) + "\n");
   else process.stdout.write(markdown + "\n");
