@@ -38,6 +38,14 @@ function monthNumber(name) {
   return months[String(name || "").toLowerCase()] ?? null;
 }
 
+function validIsoDate(year, month, day) {
+  const y = Number(year), m = Number(month), d = Number(day);
+  if (!Number.isInteger(y) || !Number.isInteger(m) || !Number.isInteger(d)) return null;
+  const date = new Date(Date.UTC(y, m - 1, d));
+  if (date.getUTCFullYear() !== y || date.getUTCMonth() !== m - 1 || date.getUTCDate() !== d) return null;
+  return `${y}-${String(m).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+}
+
 export function parseExplicitOfferDate(value) {
   const text = normalizeText(value).replace(/[.]/g, "");
   let match = text.match(/\b(January|February|March|April|May|June|July|August|September|Sept|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{1,2})(?:st|nd|rd|th)?\s*,?\s+(20\d{2})\b/i);
