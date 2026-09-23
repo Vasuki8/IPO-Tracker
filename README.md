@@ -925,3 +925,10 @@ The backend operator report now classifies freshness as `healthy`, `stale`, `fai
 No IPO value or field status is changed by this classification, and source-null is never inferred from age.
 
 **Handoff:** next add read-only **recovery guidance** that maps each unhealthy reason to a safe diagnostic/action, without automatically rerunning workflows or modifying data.
+
+
+### Read-only operator recovery guidance
+
+The operator report now maps each unhealthy/unknown health reason to a priority, diagnostic step, and safe recovery recommendation. Guidance is informational only: it does not rerun workflows, rewrite data, or send notifications.
+
+**Handoff:** next persist a machine-readable **latest operator snapshot** containing sync health, reasons, guidance, and run identity, separate from IPO data and without creating workflow loops.

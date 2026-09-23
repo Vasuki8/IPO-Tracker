@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { buildOperatorReport, classifyOperatorHealth, latestTimestamp, renderMarkdown, verifiedLotSize } from "./operator-report.mjs";
+import { buildOperatorReport, buildRecoveryGuidance, classifyOperatorHealth, latestTimestamp, renderMarkdown, verifiedLotSize } from "./operator-report.mjs";
 
 assert.equal(latestTimestamp([null, "2026-09-22T01:00:00Z", "2026-09-23T01:00:00Z"]), "2026-09-23T01:00:00Z");
 assert.equal(verifiedLotSize({ market_lot: { value: 120, status: "verified" }, minimum_bid_quantity: { value: 60, status: "verified" } }), 120);
@@ -65,6 +65,9 @@ assert.equal(report.health.overall, "failure");
 assert.deepEqual(report.health.reasons, ["pages_deployment_failure"]);
 assert.equal(report.health.ages_hours.dataset_generated, 0.5);
 assert.equal(report.health.ages_hours.pages_publication, 0.33);
+assert.equal(report.recovery_guidance.length, 1);
+assert.equal(report.recovery_guidance[0].reason, "pages_deployment_failure");
+assert.equal(report.recovery_guidance[0].priority, "high");
 
 const failed = buildOperatorReport(fixture, { NSE_COLLECTION_OUTCOME: "failure", SEBI_COLLECTION_OUTCOME: "skipped", OPERATOR_REPORT_AT: "2026-09-23T03:30:00Z" });
 assert.equal(failed.pipeline.collection_health, "collection_failure");
@@ -108,3 +111,27 @@ const unknown = classifyOperatorHealth(
 );
 assert.equal(unknown.overall, "unknown");
 assert.deepEqual(unknown.reasons, ["dataset_generated_time_missing", "record_collection_time_missing", "pages_publication_time_missing"]);
+
+const staleGuidance = buildRecoveryGuidance(stale);
+assert.deepEqual(staleGuidance.map((item) => item.reason), [
+  "stale_dataset",
+  "stale_record_collection",
+  "stale_evidence_collection",
+  "stale_pages_publication"
+]);
+assert.match(staleGuidance.find((item) => item.reason === "stale_evidence_collection").recovery, /Do not rerun solely because evidence is old/);
+
+const failureGuidance = buildRecoveryGuidance({
+  reasons: ["collection_failure", "pages_deployment_failure"]
+});
+assert.deepEqual(failureGuidance.map((item) => item.priority), ["high", "high"]);
+assert.match(failureGuidance[0].diagnostic, /failed NSE\/SEBI collection step/);
+
+const healthyGuidance = buildRecoveryGuidance({ reasons: [] });
+assert.deepEqual(healthyGuidance, []);
+
+const unknownGuidance = buildRecoveryGuidance({
+  reasons: ["dataset_generated_time_missing", "record_collection_time_missing", "pages_publication_time_missing"]
+});
+assert.equal(unknownGuidance.length, 3);
+assert.match(unknownGuidance[0].recovery, /rather than inventing a timestamp/);

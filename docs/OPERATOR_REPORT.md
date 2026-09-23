@@ -65,3 +65,22 @@ Overall states:
 Failure takes precedence over stale, and stale takes precedence over unknown.
 
 These classifications are operator signals only. They do **not** mark individual IPO fields as stale, missing, source-null, verified, or conflicting, and they never mutate `data/ipos.json`.
+
+
+## Recovery guidance
+
+Every unhealthy/unknown health reason now maps to a read-only operator recommendation with:
+
+- priority;
+- diagnostic step;
+- recovery step.
+
+Guidance is intentionally conservative. Examples:
+
+- collection failure → inspect the failed NSE/SEBI workflow step before changing a parser;
+- Pages deployment failure → inspect the deployment workflow, then rerun only after the cause is understood;
+- stale dataset → distinguish collection health from rebuild/validation/publication health;
+- stale evidence → first determine whether newer official evidence actually exists; do **not** rerun solely because evidence is old;
+- missing timestamps → repair retention of real operational timestamps; never synthesize historical times.
+
+The operator report does not execute these actions. It does not rerun workflows, modify recovery manifests, change IPO values, or send notifications.

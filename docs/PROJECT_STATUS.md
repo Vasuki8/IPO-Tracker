@@ -2444,3 +2444,46 @@ This classification is operational only:
 The operator surface can now distinguish current failures, stale operational state and unknown/unmeasured state.
 
 Next backend operations batch: make **recovery actions explicit for unhealthy states**. Start read-only: map each health reason to the safest diagnostic/recovery step and surface it in the operator report. Do not automatically rerun workflows, rewrite data, or notify external systems yet.
+
+
+## Latest completed batch — read-only operator recovery guidance
+
+The operator report now maps every current unhealthy/unknown health reason to a specific diagnostic and recovery recommendation.
+
+### Guidance model
+
+Each recommendation contains:
+
+- the health reason;
+- priority (`high`, `medium`, or `low`);
+- a diagnostic step;
+- a recovery step.
+
+Current mappings cover:
+
+- collection failure;
+- Pages deployment failure;
+- stale dataset generation;
+- stale retained-record collection;
+- stale retained evidence;
+- stale Pages publication;
+- missing dataset/record/Pages timestamps;
+- invalid report time.
+
+A healthy report returns no recovery action.
+
+### Guardrails
+
+The guidance layer is read-only:
+
+- it does not rerun GitHub Actions;
+- it does not mutate IPO data or recovery manifests;
+- it does not send alerts/notifications;
+- it does not recommend parser changes before inspecting a collection failure;
+- stale evidence explicitly does not justify a rerun by itself because the official source may simply have no newer evidence.
+
+### Handoff / next coherent batch
+
+The operations surface now has measurement, health classification and reason-specific recovery guidance.
+
+Next backend operations batch: add a **machine-readable operator snapshot artifact** for the latest sync result (health + guidance + relevant run identity) so operational state survives beyond an individual GitHub Actions Job Summary. Keep it separate from IPO data and avoid recursive workflow triggers.
