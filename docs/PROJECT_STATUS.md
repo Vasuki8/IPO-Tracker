@@ -2551,3 +2551,29 @@ CI includes workflow-semantic guards for the rebase and untracked-snapshot check
 Do not add operator transition history until a production sync confirms both source-backed data publication and first snapshot persistence under the repaired workflow.
 
 After that verification, resume the planned bounded operator health-transition history batch.
+
+
+## Latest completed batch — bounded operator health-transition history
+
+Production sync `35874760161` verified the repaired publication path before this batch: collection, rebuild, validation and repository publication succeeded, and the first durable operator snapshot was committed to `main`.
+
+The operator persistence layer now additionally maintains `ops/operator-health-history.json`.
+
+### Retention semantics
+
+- retain at most **48 health transitions**;
+- consecutive runs with identical overall health + reasons are compressed;
+- compressed entries retain first/last observation, first/last run and an observation count;
+- a changed health state or reason set creates a new transition.
+
+This avoids unbounded hourly history while still showing whether a failure/stale condition is recurring or a one-off transition.
+
+### Safety
+
+History is operational-only. It does not contain IPO records/field values and does not change source evidence or verification status.
+
+### Handoff / next coherent batch
+
+Operational freshness now has current state, recovery guidance, durable snapshot and bounded transition history.
+
+Next backend batch: expose **recurrence context in the operator report** (for example, current state observation count and recent transitions) from the bounded history. Keep this read-only; do not add alerts or automatic recovery yet.

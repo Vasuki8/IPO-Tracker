@@ -102,3 +102,20 @@ The snapshot contains only operational metadata:
 It deliberately excludes IPO records and field coverage. `data/ipos.json` remains the only published IPO dataset.
 
 The snapshot is written in an `if: always()` workflow step so a failed collector can still leave durable diagnostic state. Its bot commit changes only `ops/operator-snapshot.json`, which is outside the sync workflow's push-path trigger, preventing a recursive sync loop.
+
+
+## Bounded health-transition history
+
+The sync also maintains `ops/operator-health-history.json` for recent operator-state transitions.
+
+Retention is bounded to the latest **48 transitions**. Consecutive runs with the same overall health and reason set are compressed into one entry with:
+
+- first observation time/run;
+- last observation time/run;
+- observation count;
+- overall health;
+- health reasons.
+
+This makes recurring conditions visible without storing one record per hourly workflow forever. A change from healthy → stale → healthy creates transitions; repeated healthy runs only increment the existing healthy transition.
+
+The history contains operational metadata only and does not copy IPO records or field values.

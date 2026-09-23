@@ -183,17 +183,23 @@ jobs:
         run: |
           node scripts/record-operator-snapshot.mjs
 
-          if git ls-files --error-unmatch ops/operator-snapshot.json >/dev/null 2>&1; then
-            if git diff --quiet -- ops/operator-snapshot.json; then
-              echo "Operator snapshot is unchanged."
-              exit 0
-            fi
+          snapshot_changed=1
+          history_changed=1
+          if git ls-files --error-unmatch ops/operator-snapshot.json >/dev/null 2>&1 && git diff --quiet -- ops/operator-snapshot.json; then
+            snapshot_changed=0
+          fi
+          if git ls-files --error-unmatch ops/operator-health-history.json >/dev/null 2>&1 && git diff --quiet -- ops/operator-health-history.json; then
+            history_changed=0
+          fi
+          if [ "$snapshot_changed" -eq 0 ] && [ "$history_changed" -eq 0 ]; then
+            echo "Operator snapshot and health history are unchanged."
+            exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add ops/operator-snapshot.json
-          git commit -m "chore(ops): record operator snapshot"
+          git add ops/operator-snapshot.json ops/operator-health-history.json
+          git commit -m "chore(ops): record operator state"
 
           # Preserve data/Pages bot commits that may have advanced main since
           # checkout before publishing the latest operational snapshot.
