@@ -5,3 +5,7 @@ const rec=buildHistoricalRecord(rows[0],"2026-09-23T16:30:00Z");assert.equal(rec
 const manifest={records:[]};const result=materializeYear(rows,2025,manifest,"2026-09-23T16:30:00Z");assert.deepEqual(result,{official_rows:2,added:2,enriched:0,total_records:2});assert.equal(manifest.records[1].board,"SME");
 const rerun=materializeYear(rows,2025,manifest,"2026-09-23T17:30:00Z");assert.equal(rerun.added,0);assert.equal(rerun.total_records,2);
 console.log("NSE historical universe tests passed.");
+// Multi-year invocation is covered by the same year-specific materializer; ensure
+// adjacent historical years remain isolated.
+const y2024={records:[]};const y2024Result=materializeYear(rows,2024,y2024,"2026-09-23T16:30:00Z");
+assert.equal(y2024Result.official_rows,1);assert.equal(y2024.records[0].nse_symbol,"OLD");
