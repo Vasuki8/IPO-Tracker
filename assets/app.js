@@ -74,8 +74,7 @@ function sourceBadge(status) {
 
 function recordSourceStatus(ipo) {
   const statuses = [
-    ipo.price_band, ipo.issue_price, ipo.issue_size_inr, ipo.market_lot,
-    ipo.minimum_bid_quantity, ipo.minimum_application_amount_inr,
+    ipo.price_band, ipo.issue_price, ipo.issue_size_inr, IPOLotSize.lotSizeField(ipo),
     ipo.open_date, ipo.close_date, ipo.listing_date
   ].map(sourceStatus);
   if (statuses.includes("conflict")) return "conflict";
@@ -109,7 +108,7 @@ function render() {
         <td class="company-cell"><div class="company-row"><div class="company-logo">${escapeHtml(initials(ipo.issuer_name))}</div><div><div class="company-name">${escapeHtml(ipo.issuer_name)}</div><div class="company-meta">${escapeHtml(ipo.board || "Board unavailable")}${ipo.sector ? ` · ${escapeHtml(ipo.sector)}` : ""}</div></div></div></td>
         <td>${statusBadge(ipo.status)}</td>
         <td><div class="number">${escapeHtml(formatPriceBand(ipo.price_band, ipo.issue_price))}</div><div class="secondary">Price</div></td>
-        <td><div class="number">${escapeHtml(formatShares(fieldValue(ipo.market_lot)))}</div><div class="secondary">${escapeHtml(formatMoney(fieldValue(ipo.minimum_application_amount_inr)))} minimum</div></td>
+        <td><div class="number">${escapeHtml(formatShares(IPOLotSize.lotSizeValue(ipo)))}</div><div class="secondary">Lot size</div></td>
         <td><div class="number">${escapeHtml(dateRange(ipo))}</div></td>
         <td><div class="number">${escapeHtml(formatCrores(fieldValue(ipo.issue_size_inr)))}</div></td>
         <td>${sourceBadge(source)}</td>
@@ -124,8 +123,7 @@ function render() {
         <div class="mobile-card__head"><div><div class="company-name">${escapeHtml(ipo.issuer_name)}</div><div class="company-meta">${escapeHtml(ipo.board || "Board unavailable")}${ipo.sector ? ` · ${escapeHtml(ipo.sector)}` : ""}</div></div>${statusBadge(ipo.status)}</div>
         <div class="mobile-price">${escapeHtml(formatPriceBand(ipo.price_band, ipo.issue_price))}</div>
         <div class="mobile-grid">
-          <div><div class="kv-label">MARKET LOT</div><div class="kv-value">${escapeHtml(formatShares(fieldValue(ipo.market_lot)))}</div></div>
-          <div><div class="kv-label">MINIMUM</div><div class="kv-value">${escapeHtml(formatMoney(fieldValue(ipo.minimum_application_amount_inr)))}</div></div>
+          <div><div class="kv-label">LOT SIZE</div><div class="kv-value">${escapeHtml(formatShares(IPOLotSize.lotSizeValue(ipo)))}</div></div>
           <div><div class="kv-label">DATES</div><div class="kv-value">${escapeHtml(dateRange(ipo))}</div></div>
           <div><div class="kv-label">ISSUE SIZE</div><div class="kv-value">${escapeHtml(formatCrores(fieldValue(ipo.issue_size_inr)))}</div></div>
         </div>
@@ -181,9 +179,7 @@ function showDetail(id) {
 
   const priceText = formatPriceBand(ipo.price_band, ipo.issue_price);
   const issueText = formatCrores(fieldValue(ipo.issue_size_inr));
-  const lotText = formatShares(fieldValue(ipo.market_lot));
-  const bidText = formatShares(fieldValue(ipo.minimum_bid_quantity));
-  const minimumText = formatMoney(fieldValue(ipo.minimum_application_amount_inr));
+  const lotText = formatShares(IPOLotSize.lotSizeValue(ipo));
   const priceField = fieldValue(ipo.price_band) !== null ? ipo.price_band : ipo.issue_price;
   const evidence = bestEvidence(priceField);
   const source = sourceStatus(priceField);
@@ -197,8 +193,6 @@ function showDetail(id) {
   ["#detailPrice", "#detailPrice2", "#sidePrice"].forEach((selector) => $(selector).textContent = priceText);
   ["#detailIssue", "#detailIssue2"].forEach((selector) => $(selector).textContent = issueText);
   ["#detailLot", "#detailLot2"].forEach((selector) => $(selector).textContent = lotText);
-  $("#detailBid").textContent = bidText;
-  ["#detailMinimum", "#detailMinimum2"].forEach((selector) => $(selector).textContent = minimumText);
   $("#detailSource").textContent = evidence?.document_type || "No retained price source";
   $("#detailSourceDate").textContent = evidence?.publication_date ? formatDate(evidence.publication_date) : "Publication date unavailable";
   $("#detailSourceBadge").className = `source source--${source}`;

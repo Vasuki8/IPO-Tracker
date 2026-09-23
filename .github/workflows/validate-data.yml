@@ -24,9 +24,13 @@ jobs:
         run: |
           node --check assets/app.js
           node --check assets/ipo-order.js
+          node --check assets/lot-size.js
 
       - name: Test homepage IPO ordering
         run: node scripts/test-homepage-order.mjs
+
+      - name: Test lot-size display fallback
+        run: node scripts/test-lot-size.mjs
 
       - name: Test NSE live sync parser
         run: node scripts/test-sync-nse-live.mjs

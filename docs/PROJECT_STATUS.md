@@ -2001,3 +2001,71 @@ Acceptance rules:
 - survey first, then enable recurring extraction only if wording is consistent across multiple documents.
 
 If retail minimum bid quantity proves consistently source-backed, it can become the primary retail application requirement shown to users while retail monetary amount remains null.
+
+
+## Latest scope decision — lot size only
+
+The user has explicitly narrowed the application-term scope:
+
+> Find just **Lot Size**. Minimum investment / minimum application amount is not needed.
+
+This instruction overrides the earlier application-amount recovery roadmap.
+
+### Product behavior
+
+The website now exposes a single user-facing **Lot Size** value.
+
+Display rule:
+
+1. use verified `market_lot` when present;
+2. otherwise use verified `minimum_bid_quantity` as the official share-quantity fallback;
+3. never calculate a monetary minimum;
+4. never calculate shares from price;
+5. preserve the underlying raw evidence fields internally for provenance/backward compatibility.
+
+This is a display rule only. It does **not** overwrite a null `market_lot` with a different raw field.
+
+### Current 2026 lot-size coverage
+
+Published IPOs: **26**
+
+User-facing Lot Size present: **26/26**
+
+- direct `market_lot`: **19/26**
+- verified `minimum_bid_quantity` fallback: **7/26**
+- missing user-facing Lot Size: **0/26**
+
+The seven fallback records are:
+
+1. Moneyview Limited — 441 shares
+2. Adroit Industries (India) Limited — 111 shares
+3. ArMee Infotech Limited — 40 shares
+4. Elevate Campuses Limited — 41 shares
+5. Swastika Infra Limited — 81 shares
+6. Varmora Granito Limited — 101 shares
+7. National Stock Exchange of India Limited — 8 shares
+
+Every fallback value is already retained as verified official-source share-quantity evidence.
+
+### UI cleanup
+
+Minimum investment / minimum application amount is removed from:
+
+- homepage desktop IPO table;
+- mobile IPO cards;
+- detail-page KPI strip;
+- IPO details list.
+
+The desktop column is now simply **Lot size**.
+
+### Automation cleanup
+
+The recurring RHP NII minimum-application extractor is removed from the hourly live-data workflow.
+
+Historical application-amount fields and manual parsers remain in the data contract/codebase for backward compatibility, but future development must not spend time recovering minimum-investment/application amounts unless the user explicitly re-enables that scope.
+
+### Next priority
+
+Continue improving trustworthy IPO data while treating **Lot Size as complete at the user-facing layer (26/26)**.
+
+Do not start further minimum-investment/application-amount recovery.

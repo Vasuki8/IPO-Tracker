@@ -830,3 +830,18 @@ Accordingly, retail minimum application amount remains **0/26** by design. The t
 PR #84 removed the completed one-shot survey from hourly execution.
 
 Next: survey retained official documents for explicit **retail minimum bid quantity / minimum Bid Lot** wording before enabling retail category production extraction.
+
+
+### Current application-term scope: Lot Size only
+
+The active product requirement is now **Lot Size only**. Minimum investment / minimum application amount is out of scope unless explicitly re-enabled later.
+
+The website displays one Lot Size value using verified source evidence:
+
+- prefer `market_lot`;
+- if that raw field is missing, fall back to verified `minimum_bid_quantity`;
+- never calculate price × quantity.
+
+Current 2026 user-facing Lot Size coverage is **26/26**: 19 direct market-lot values plus 7 verified official minimum-bid-quantity fallbacks.
+
+Minimum-investment/application-amount values are no longer displayed on the homepage or IPO detail page, and the recurring minimum-application extraction step has been removed from the hourly workflow.
