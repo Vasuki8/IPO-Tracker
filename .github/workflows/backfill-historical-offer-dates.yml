@@ -9,6 +9,8 @@ on:
     paths:
       - "scripts/backfill-historical-offer-dates.mjs"
       - "scripts/test-backfill-historical-offer-dates.mjs"
+      - "scripts/apply-historical-offer-date-state.mjs"
+      - "scripts/test-apply-historical-offer-date-state.mjs"
       - "scripts/historical-batch-selection.mjs"
       - "scripts/test-historical-batch-selection.mjs"
       - ".github/workflows/backfill-historical-offer-dates.yml"
@@ -44,52 +46,61 @@ jobs:
       - name: Backfill historical SEBI offer dates
         run: node scripts/backfill-historical-offer-dates.mjs
 
-      - name: Check for historical date changes
-        id: changes
-        shell: bash
-        run: |
-          if [ -z "$(git status --porcelain -- data/recovery ops/sebi-historical-offer-dates.json)" ]; then
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-            echo "No historical offer-date changes detected."
-          else
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-          fi
+      - name: Test semantic historical offer-date merge
+        run: node scripts/test-apply-historical-offer-date-state.mjs
 
-      - name: Commit recovery changes before rebase
-        if: steps.changes.outputs.changed == 'true'
+      - name: Save semantic offer-date proposal
+        id: proposal
         shell: bash
         run: |
+          if [ ! -f ops/sebi-historical-offer-dates.json ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No historical offer-date proposal was produced."
+            exit 0
+          fi
+          cp ops/sebi-historical-offer-dates.json /tmp/sebi-historical-offer-dates-proposal.json
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Publish semantic offer-date results
+        if: steps.proposal.outputs.changed == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/recovery
-          if [ -f ops/sebi-historical-offer-dates.json ]; then
-            git add ops/sebi-historical-offer-dates.json
-          fi
-          git commit -m "chore(data): backfill historical offer dates"
 
-      - name: Rebase onto current main
-        if: steps.changes.outputs.changed == 'true'
-        shell: bash
-        run: |
-          git fetch origin main
-          git rebase origin/main
+          for attempt in 1 2 3; do
+            echo "Semantic publication attempt $attempt/3"
+            git fetch origin main
+            git reset --hard origin/main
 
-      - name: Rebuild published dataset after rebase
-        if: steps.changes.outputs.changed == 'true'
-        run: node scripts/build-published-data.mjs
+            if ! git ls-files --error-unmatch ops/sebi-historical-offer-dates.json >/dev/null 2>&1; then
+              rm -f ops/sebi-historical-offer-dates.json
+            fi
 
-      - name: Check recovery publication
-        if: steps.changes.outputs.changed == 'true'
-        run: node scripts/build-published-data.mjs --check
+            node scripts/apply-historical-offer-date-state.mjs --input=/tmp/sebi-historical-offer-dates-proposal.json
+            node scripts/build-published-data.mjs
+            node scripts/build-published-data.mjs --check
+            node scripts/validate-data.mjs
 
-      - name: Validate published IPO data
-        if: steps.changes.outputs.changed == 'true'
-        run: node scripts/validate-data.mjs
+            if [ -z "$(git status --porcelain -- data/recovery data/ipos.json ops/sebi-historical-offer-dates.json)" ]; then
+              echo "Latest main already contains all semantic offer-date results."
+              exit 0
+            fi
 
-      - name: Amend published dataset
-        if: steps.changes.outputs.changed == 'true'
-        shell: bash
-        run: |
-          git add data/ipos.json
-          git commit --amend --no-edit
-          git push origin HEAD:main
+            git add data/recovery data/ipos.json
+            if [ -f ops/sebi-historical-offer-dates.json ]; then
+              git add ops/sebi-historical-offer-dates.json
+            fi
+            git commit -m "chore(data): backfill historical offer dates"
+
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+
+            echo "Main advanced during publication; retrying semantic apply."
+          done
+
+          echo "Failed to publish semantic offer-date results after 3 attempts." >&2
+          exit 1
