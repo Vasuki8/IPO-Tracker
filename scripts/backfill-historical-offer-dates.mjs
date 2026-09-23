@@ -303,6 +303,14 @@ async function run() {
         status: changed ? "extracted" : (parsed.reason || "no_fields"),
         open_date: afterOpen,
         close_date: afterClose,
+        open_extraction: parsed.open_date ?? null,
+        close_extraction: parsed.close_date ?? null,
+        document: {
+          type: document.type,
+          identity: document.identity ?? null,
+          url: document.url,
+          publication_date: document.publication_date ?? null
+        },
         source_url: document.url
       };
     } catch (error) {
