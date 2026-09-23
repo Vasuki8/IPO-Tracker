@@ -11,8 +11,6 @@ const MAX_PAGES = 20;
 const DIAGNOSTIC_MAX_PAGES = 80;
 const MINIMUM_BID_DIAGNOSTIC_MAX_PAGES = 650;
 const NII_MINIMUM_APPLICATION_MAX_PAGES = 140;
-const RETAIL_MINIMUM_APPLICATION_RETRY_MAX_PAGES = 650;
-const RETAIL_MINIMUM_APPLICATION_RETRY_ISSUERS = new Set(["Kanohar Electricals Limited"]);
 const USER_AGENT =
   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
 
@@ -834,14 +832,13 @@ async function diagnoseProspectusRetailMinimumApplication() {
   for (const file of recoveryFiles()) {
     const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
     for (const record of recovery.records || []) {
-      if (!RETAIL_MINIMUM_APPLICATION_RETRY_ISSUERS.has(record.issuer_name)) continue;
       const document = candidateProspectusRetailMinimumApplicationDocument(record);
       if (!document) continue;
       stats.candidates += 1;
 
       let pages;
       try {
-        pages = pagesLayout(await fetchPdf(document.url), RETAIL_MINIMUM_APPLICATION_RETRY_MAX_PAGES);
+        pages = fullPagesLayout(await fetchPdf(document.url));
         stats.downloaded += 1;
         stats.pages_scanned += pages.length;
       } catch (error) {
