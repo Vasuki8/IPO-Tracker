@@ -993,7 +993,7 @@ The historical coverage audit now reports per-year field coverage and BSE/SEBI e
 
 ### Bounded historical NSE detail recovery
 
-The backend now rotates through up to **24 historical IPOs per sync** and probes official NSE `ipo-detail` once per issuer for missing price band, market lot, minimum bid, and explicit monetary issue size. A durable cursor prevents repeatedly probing the same historical issuer with the same parser version.
+The backend now rotates through up to **48 historical IPOs per sync** and probes official NSE `ipo-detail` once per issuer for missing price band, market lot, minimum bid, and explicit monetary issue size. A durable cursor prevents repeatedly probing the same historical issuer with the same parser version.
 
 
 ### BSE-only historical recovery
