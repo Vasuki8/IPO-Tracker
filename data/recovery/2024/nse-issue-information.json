@@ -1,7 +1,7 @@
 {
   "source_family": "Official NSE / SEBI / BSE offer-document and exchange evidence",
   "collection_started_at": "2026-09-23T19:29:29.146Z",
-  "generated_at": "2026-09-23T21:22:35.598Z",
+  "generated_at": "2026-09-23T21:35:00Z",
   "records": [
     {
       "id": "aadhar-housing-finance-limited",
@@ -19540,10 +19540,17 @@
           "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1734436010013.PDF",
           "publication_date": "2024-12-17",
           "collected_at": "2026-09-23T20:33:31.587Z"
+        },
+        {
+          "type": "NSE Monitoring Agency Report",
+          "identity": "Unimech Aerospace and Manufacturing Limited — Monitoring Agency Report",
+          "url": "https://nsearchives.nseindia.com/corporate/UNIMECH_12022026181434_Monitoring_Agency_Report_covering_Signed.pdf",
+          "publication_date": "2026-02-12",
+          "collected_at": "2026-09-23T21:35:00Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T21:10:51.292Z",
+      "last_collected_at": "2026-09-23T21:35:00Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -19622,17 +19629,36 @@
         }
       },
       "close_date": {
-        "value": "2024-12-05",
-        "source_value": "Offer Closing Date. F&S has, through its letter dated December 5, 2024 accorded its consent to use the F&S Report in this Prospectus. This study has been undertaken thr",
-        "page": 29,
+        "value": "2024-12-26",
+        "source_value": "Issue Period: December 23, 2024, to December 26, 2024",
+        "page": 4,
         "status": "verified",
         "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1735534463367.pdf",
-          "document_type": "SEBI Prospectus PDF",
-          "document_identity": "Unimech Aerospace and Manufacturing Limited - Prospectus — PDF",
-          "publication_date": "2024-12-30",
-          "collected_at": "2026-09-23T21:05:23.397Z"
-        }
+          "url": "https://nsearchives.nseindia.com/corporate/UNIMECH_12022026181434_Monitoring_Agency_Report_covering_Signed.pdf",
+          "document_type": "NSE Monitoring Agency Report",
+          "document_identity": "Unimech Aerospace and Manufacturing Limited — Monitoring Agency Report",
+          "publication_date": "2026-02-12",
+          "collected_at": "2026-09-23T21:35:00Z"
+        },
+        "corrections": [
+          {
+            "corrected_at": "2026-09-23T21:35:00Z",
+            "reason": "Parser v1 historical offer-date false positive; replaced after cross-check against explicit official NSE issue-period disclosure.",
+            "previous_value": "2024-12-05",
+            "previous_status": "verified",
+            "previous_source_value": "Offer Closing Date. F&S has, through its letter dated December 5, 2024 accorded its consent to use the F&S Report in this Prospectus. This study has been undertaken thr",
+            "previous_evidence": [
+              {
+                "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1735534463367.pdf",
+                "document_type": "SEBI Prospectus PDF",
+                "document_identity": "Unimech Aerospace and Manufacturing Limited - Prospectus — PDF",
+                "publication_date": "2024-12-30",
+                "page": 29,
+                "collected_at": "2026-09-23T21:05:23.397Z"
+              }
+            ]
+          }
+        ]
       },
       "issue_size_inr": {
         "value": 5000000000,
@@ -19645,6 +19671,20 @@
           "publication_date": "2024-12-30",
           "collected_at": "2026-09-23T21:10:51.292Z"
         }
+      },
+      "open_date": {
+        "value": "2024-12-23",
+        "source_value": "Issue Period: December 23, 2024, to December 26, 2024",
+        "page": 4,
+        "status": "verified",
+        "source": {
+          "url": "https://nsearchives.nseindia.com/corporate/UNIMECH_12022026181434_Monitoring_Agency_Report_covering_Signed.pdf",
+          "document_type": "NSE Monitoring Agency Report",
+          "document_identity": "Unimech Aerospace and Manufacturing Limited — Monitoring Agency Report",
+          "publication_date": "2026-02-12",
+          "collected_at": "2026-09-23T21:35:00Z"
+        },
+        "corrections": []
       }
     },
     {
