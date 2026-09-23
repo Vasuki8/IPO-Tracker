@@ -2976,3 +2976,13 @@ Universe materialization is therefore tightened:
 The current manifest keeps BSE-only materialization enabled for the 3B Films listing notice and disables it for the Kenrik/Groww issue-detail seeds.
 
 This makes exchange-universe inclusion depend on direct listing evidence rather than an offer/detail page that may represent an issue before listing or may be inconsistently served.
+
+
+## Historical NSE detail batch acceleration
+
+Two production backfill runs established that the bounded historical NSE detail path is stable:
+
+- first run: 24/24 API calls succeeded, 24 records enriched, 48 fields recovered;
+- second run: 24/24 API calls succeeded, 22 records enriched, 45 fields recovered, 0 fetch errors.
+
+The bounded batch is therefore increased from **24 to 48 issuers per sync**. Cursor/version gating, request timeouts, no-overwrite semantics and error retries remain unchanged.
