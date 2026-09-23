@@ -3072,3 +3072,22 @@ The single-pass NSE detail extractor now:
 - reuses the already-fetched `ipo-detail` payload, so this adds no network request.
 
 This directly targets current 2026 final-price gaps and is also wired into the bounded historical detail writer for the two residual historical final-price gaps (Marco Cables and Conductors Limited in 2023 and Vodafone Idea Limited - FPO in 2024).
+
+
+## Historical recovery diagnostics + SEBI search throughput
+
+Production evidence from year-balanced historical recovery shows a clear source pattern:
+
+- NSE historical detail is productive for some fields, especially minimum bid;
+- for many older records, price band / market lot / monetary issue size are absent from the trusted NSE terms rather than merely delayed;
+- SEBI issuer-targeted searches are therefore the more important route for document-backed recovery of those fields.
+
+This batch improves both observability and throughput:
+
+- the NSE historical-detail cursor now stores per-field parser reasons (for example `term_absent`, `placeholder_or_unparseable`, `official_term_conflict`, `no_safe_overall_inr_total`);
+- the historical coverage audit aggregates those reasons by year and field;
+- the year-balanced historical SEBI targeted-search batch increases from **12 to 24 issuers per sync**;
+- live/current SEBI search limits remain separate;
+- existing request timeouts, durable cursor, retry cooldowns and exact issuer matching remain unchanged.
+
+This lets subsequent parser/source work target real failure modes instead of treating every null as the same problem.
