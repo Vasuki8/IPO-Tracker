@@ -9,6 +9,8 @@ on:
     paths:
       - "scripts/audit-bse-sme-ipo-index.mjs"
       - "scripts/test-audit-bse-sme-ipo-index.mjs"
+      - "scripts/audit-bse-sme-addition-notices.mjs"
+      - "scripts/test-audit-bse-sme-addition-notices.mjs"
       - ".github/workflows/audit-bse-sme-universe.yml"
 
 permissions:
@@ -31,3 +33,9 @@ jobs:
 
       - name: Audit official BSE SME universe
         run: node scripts/audit-bse-sme-ipo-index.mjs
+
+      - name: Test BSE SME addition notice audit
+        run: node scripts/test-audit-bse-sme-addition-notices.mjs
+
+      - name: Audit latest BSE SME addition notices
+        run: node scripts/audit-bse-sme-addition-notices.mjs --batch=20
