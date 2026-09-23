@@ -3276,3 +3276,27 @@ The historical PDF semantic proposal/apply path now carries and applies:
 with the same no-overwrite guarantees as existing PDF fields. If current `main` already contains a value, the historical proposal cannot replace it.
 
 The parser-version bump makes previously scanned historical PDFs eligible for one bounded, year-balanced retry under the richer field set.
+
+
+## Official BSE SME IPO index universe audit
+
+The published historical universe is still primarily NSE-derived, with only explicitly retained BSE listing notices able to add BSE-only issuers. That leaves a structural risk of missing IPOs listed only on BSE SME.
+
+Added a read-only audit against BSE's official **SME IPO Index** constituent page:
+
+`https://www.bseindia.com/sensex/IndicesWatch_Weight.aspx?iname=SMEIPO&index_Code=76`
+
+The audit:
+
+- fetches the official BSE index page directly;
+- parses six-digit BSE scrip code, company name, ISIN and displayed close price;
+- compares constituents against every 2020-2026 recovery record;
+- uses exact normalized issuer matching first;
+- allows a conservative prefix match for visibly truncated BSE display names;
+- reports ambiguous matches separately;
+- reports unmatched BSE constituents as **candidates only**;
+- never creates or modifies an IPO record.
+
+This source is useful for discovering BSE-only SME issuers, but it is **not treated as a complete historical universe by itself** because index membership can change over time.
+
+The audit now runs during live source-health collection, giving a repeatable official BSE candidate set that can be followed by listing-notice verification before any issuer is materialized.
