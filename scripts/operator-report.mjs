@@ -3,7 +3,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const DATA_PATH = path.join(ROOT, "data", "ipos.json");\nconst PAGES_STATUS_PATH = path.join(ROOT, "ops", "pages-publication.json");
+const DATA_PATH = path.join(ROOT, "data", "ipos.json");
+const PAGES_STATUS_PATH = path.join(ROOT, "ops", "pages-publication.json");
 
 export const MONITORED_FIELDS = [
   "price_band",
@@ -123,7 +124,8 @@ export function renderMarkdown(report) {
     `- Dataset rebuild: **${pipeline.stages.rebuild}**`,
     `- Data validation: **${pipeline.stages.validation}**`,
     `- Repository publication step: **${pipeline.stages.repository_publish}**`,
-    `- GitHub Pages latest attempt: **${pages.latest_attempt_status}**${pages.latest_attempt_at ? ` at ${pages.latest_attempt_at}` : ""}`,\n    `- GitHub Pages last successful publication: ${pages.last_successful_at || "not recorded"}${pages.last_successful_commit_sha ? ` (commit ${pages.last_successful_commit_sha})` : ""}`,
+    `- GitHub Pages latest attempt: **${pages.latest_attempt_status}**${pages.latest_attempt_at ? ` at ${pages.latest_attempt_at}` : ""}`,
+    `- GitHub Pages last successful publication: ${pages.last_successful_at || "not recorded"}${pages.last_successful_commit_sha ? ` (commit ${pages.last_successful_commit_sha})` : ""}`,
     "",
     "## Freshness timestamps",
     "",
@@ -152,7 +154,8 @@ export function renderMarkdown(report) {
     "- GitHub Pages publication time is operational metadata stored separately from IPO data and dataset generation time.",
     ""
   );
-  return lines.join("\n");
+  return lines.join("
+");
 }
 
 export function summarizePagesPublication(status) {
@@ -185,12 +188,15 @@ function main() {
     : null;
   const report = buildOperatorReport(data, process.env, pagesStatus);
   const markdown = renderMarkdown(report);
-  if (process.argv.includes("--json")) process.stdout.write(JSON.stringify(report, null, 2) + "\n");
-  else process.stdout.write(markdown + "\n");
+  if (process.argv.includes("--json")) process.stdout.write(JSON.stringify(report, null, 2) + "
+");
+  else process.stdout.write(markdown + "
+");
   if (process.argv.includes("--github-summary")) {
     const summaryPath = process.env.GITHUB_STEP_SUMMARY;
     if (!summaryPath) throw new Error("GITHUB_STEP_SUMMARY is required for --github-summary");
-    fs.appendFileSync(summaryPath, markdown + "\n");
+    fs.appendFileSync(summaryPath, markdown + "
+");
   }
 }
 
