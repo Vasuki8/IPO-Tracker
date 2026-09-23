@@ -1,0 +1,27 @@
+name: Diagnose BSE notice list API
+
+on:
+  push:
+    branches:
+      - "diag/bse-notice-list-api-20260923"
+    paths:
+      - "scripts/diagnose-bse-notice-list-api.mjs"
+      - ".github/workflows/diagnose-bse-notice-list-api.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Diagnose official notice endpoints
+        run: node scripts/diagnose-bse-notice-list-api.mjs
