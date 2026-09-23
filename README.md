@@ -881,3 +881,27 @@ Reusable source improvements remain enabled:
 The one-shot Moneyview/Qualiance diagnostic has been removed from hourly execution.
 
 **Handoff:** do not repeat issue-size recovery until new official evidence appears. Lot Size remains **26/26 verified**, and minimum investment remains out of scope. The next development batch should move to **operational freshness/source-health visibility**, starting with a read-only operator report that distinguishes source observation, collection success/failure and publication freshness.
+
+
+### Operator freshness/source-health report
+
+A read-only operator report is now available through:
+
+```bash
+node scripts/operator-report.mjs
+node scripts/operator-report.mjs --json
+```
+
+The hourly sync also writes the report to the GitHub Actions **Job Summary**, including on failed runs.
+
+It separates:
+
+- source/record observation and collection timestamps;
+- dataset generation time;
+- NSE/SEBI collection success vs failure;
+- build/validation/repository-publication outcomes;
+- field coverage and verified Lot Size coverage.
+
+It deliberately does not infer source-null from a null value and does not invent a GitHub Pages publication timestamp.
+
+**Handoff:** Lot Size remains **26/26 verified** and minimum-investment work remains out of scope. The next batch should add durable **GitHub Pages publication-health visibility** while keeping deployment time separate from dataset generation time.
