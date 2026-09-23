@@ -1039,3 +1039,8 @@ The independent historical PDF backfill now also recovers explicit **price bands
 ### Historical PDF document selection v1.2
 
 For missing price band, market lot, or minimum bid, the historical SEBI PDF backfill now prefers an attached RHP; final-only issue price/issue size recovery still prefers the final Prospectus.
+
+
+### BSE-only SME universe audit
+
+The backend now compares the official BSE SME IPO Index with the 2020-2026 recovery universe and reports unmatched constituents as candidates. No BSE-only issuer is added until issuer-specific official evidence verifies it.
