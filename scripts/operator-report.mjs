@@ -154,8 +154,7 @@ export function renderMarkdown(report) {
     "- GitHub Pages publication time is operational metadata stored separately from IPO data and dataset generation time.",
     ""
   );
-  return lines.join("
-");
+  return lines.join("\n");
 }
 
 export function summarizePagesPublication(status) {
@@ -188,15 +187,12 @@ function main() {
     : null;
   const report = buildOperatorReport(data, process.env, pagesStatus);
   const markdown = renderMarkdown(report);
-  if (process.argv.includes("--json")) process.stdout.write(JSON.stringify(report, null, 2) + "
-");
-  else process.stdout.write(markdown + "
-");
+  if (process.argv.includes("--json")) process.stdout.write(JSON.stringify(report, null, 2) + "\n");
+  else process.stdout.write(markdown + "\n");
   if (process.argv.includes("--github-summary")) {
     const summaryPath = process.env.GITHUB_STEP_SUMMARY;
     if (!summaryPath) throw new Error("GITHUB_STEP_SUMMARY is required for --github-summary");
-    fs.appendFileSync(summaryPath, markdown + "
-");
+    fs.appendFileSync(summaryPath, markdown + "\n");
   }
 }
 
