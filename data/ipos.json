@@ -1,6 +1,6 @@
 {
   "schema_version": "1.2.0",
-  "generated_at": "2026-09-23T19:52:38.813Z",
+  "generated_at": "2026-09-23T20:03:10.597Z",
   "collection_started_at": "2026-09-22T02:14:14Z",
   "records": [
     {
@@ -15947,9 +15947,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 1080,
+          "max": 1140
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=LGEINDIA&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — LGEINDIA",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -15980,9 +15992,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 13,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=LGEINDIA&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — LGEINDIA",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -16069,10 +16090,45 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — LGEINDIA",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=LGEINDIA&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "LG Electronics India Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/oct-2025/lg-electronics-india-limited-prospectus_97337.html",
+          "publication_date": "2025-10-15",
+          "collected_at": "2026-09-23T20:03:10.597Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "LG Electronics India Limited - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1760525038212.pdf",
+          "publication_date": "2025-10-15",
+          "collected_at": "2026-09-23T20:03:10.597Z"
+        },
+        {
+          "type": "SEBI RHP filing",
+          "identity": "LG Electronics India Limited - RHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2025/lg-electronics-india-limited-rhp_97030.html",
+          "publication_date": "2025-09-30",
+          "collected_at": "2026-09-23T20:03:10.597Z"
+        },
+        {
+          "type": "SEBI RHP PDF",
+          "identity": "LG Electronics India Limited - RHP — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1759464583235.pdf",
+          "publication_date": "2025-09-30",
+          "collected_at": "2026-09-23T20:03:10.597Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T20:03:10.597Z"
     },
     {
       "id": "wework-india-management-limited",
@@ -16101,9 +16157,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 615,
+          "max": 648
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=WEWORK&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — WEWORK",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -16134,9 +16202,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 23,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=WEWORK&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — WEWORK",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -16223,10 +16300,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — WEWORK",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=WEWORK&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "greenleaf-envirotech-limited",
@@ -16282,9 +16366,18 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 1000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=GREENLEAF&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — GREENLEAF",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
@@ -16377,10 +16470,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — GREENLEAF",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=GREENLEAF&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "b-a-g-convergence-limited",
@@ -16409,9 +16509,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 82,
+          "max": 87
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=BAGDIGITAL&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — BAGDIGITAL",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -16436,9 +16548,18 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 1600,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=BAGDIGITAL&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — BAGDIGITAL",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
@@ -16531,10 +16652,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — BAGDIGITAL",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=BAGDIGITAL&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "munish-forge-limited",
@@ -16563,9 +16691,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 91,
+          "max": 96
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=MUNISH&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — MUNISH",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -16590,9 +16730,18 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 1200,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=MUNISH&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — MUNISH",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
@@ -16685,10 +16834,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — MUNISH",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=MUNISH&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "sheel-biotech-limited",
@@ -16717,9 +16873,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 59,
+          "max": 63
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHEEL&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — SHEEL",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -16744,9 +16912,18 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 2000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHEEL&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — SHEEL",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
@@ -16839,10 +17016,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — SHEEL",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHEEL&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "solex-energy-limited",
@@ -17025,9 +17209,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 120,
+          "max": 129
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=GLOTTIS&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — GLOTTIS",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -17058,9 +17254,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 114,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=GLOTTIS&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — GLOTTIS",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -17147,10 +17352,45 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — GLOTTIS",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=GLOTTIS&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "Glottis Limited-Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/oct-2025/glottis-limited-prospectus_97371.html",
+          "publication_date": "2025-10-03",
+          "collected_at": "2026-09-23T20:03:10.597Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "Glottis Limited-Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1760692135022.pdf",
+          "publication_date": "2025-10-03",
+          "collected_at": "2026-09-23T20:03:10.597Z"
+        },
+        {
+          "type": "SEBI RHP filing",
+          "identity": "Glottis Limited - RHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2025/glottis-limited-rhp_96944.html",
+          "publication_date": "2025-09-24",
+          "collected_at": "2026-09-23T20:03:10.597Z"
+        },
+        {
+          "type": "SEBI RHP PDF",
+          "identity": "Glottis Limited - RHP — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1759211081569.pdf",
+          "publication_date": "2025-09-24",
+          "collected_at": "2026-09-23T20:03:10.597Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T20:03:10.597Z"
     },
     {
       "id": "suba-hotels-limited",
@@ -17179,9 +17419,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 105,
+          "max": 111
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=SUBAHOTELS&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — SUBAHOTELS",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -17206,9 +17458,18 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 1200,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=SUBAHOTELS&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — SUBAHOTELS",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
@@ -17301,10 +17562,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — SUBAHOTELS",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SUBAHOTELS&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "vijaypd-ceutical-limited",
@@ -17360,9 +17628,18 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 4000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=VIJAYPD&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — VIJAYPD",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
@@ -17455,10 +17732,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — VIJAYPD",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=VIJAYPD&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "manas-polymers-and-energies-limited",
@@ -17487,9 +17771,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 76,
+          "max": 81
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=MPEL&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — MPEL",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -17514,9 +17810,18 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 1600,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=MPEL&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — MPEL",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
@@ -17609,10 +17914,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — MPEL",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=MPEL&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "pace-digitek-limited",
@@ -17641,9 +17953,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 208,
+          "max": 219
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=PACEDIGITK&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — PACEDIGITK",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -17662,9 +17986,18 @@
         "corrections": []
       },
       "issue_size_inr": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 8191480000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=PACEDIGITK&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — PACEDIGITK",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "market_lot": {
@@ -17674,9 +18007,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 68,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=PACEDIGITK&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — PACEDIGITK",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -17763,10 +18105,31 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — PACEDIGITK",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PACEDIGITK&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
+        },
+        {
+          "type": "SEBI RHP filing",
+          "identity": "Pace Digitek Limited - RHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2025/pace-digitek-limited-rhp_96742.html",
+          "publication_date": "2025-09-22",
+          "collected_at": "2026-09-23T20:03:10.597Z"
+        },
+        {
+          "type": "SEBI RHP PDF",
+          "identity": "Pace Digitek Limited - RHP — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758518940679.pdf",
+          "publication_date": "2025-09-22",
+          "collected_at": "2026-09-23T20:03:10.597Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T20:03:10.597Z"
     },
     {
       "id": "trualt-bioenergy-limited",
@@ -17795,9 +18158,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 472,
+          "max": 496
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=TRUALT&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — TRUALT",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -17828,9 +18203,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 30,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=TRUALT&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — TRUALT",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -17917,10 +18301,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — TRUALT",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=TRUALT&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "epack-prefab-technologies-limited",
@@ -17949,9 +18340,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 194,
+          "max": 204
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=EPACKPEB&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — EPACKPEB",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -17982,9 +18385,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 73,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=EPACKPEB&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — EPACKPEB",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -18071,10 +18483,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — EPACKPEB",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=EPACKPEB&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "gurunanak-agriculture-india-limited",
@@ -18130,9 +18549,18 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 1600,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=GURUNANAK&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — GURUNANAK",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
@@ -18225,10 +18653,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — GURUNANAK",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=GURUNANAK&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "jain-resource-recycling-limited",
@@ -18257,9 +18692,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 220,
+          "max": 232
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=JAINREC&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — JAINREC",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -18290,9 +18737,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 64,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=JAINREC&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — JAINREC",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -18379,10 +18835,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — JAINREC",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=JAINREC&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "anand-rathi-share-and-stock-brokers-limited",
@@ -18411,9 +18874,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 393,
+          "max": 414
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=ARSSBL&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — ARSSBL",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -18444,9 +18919,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 36,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=ARSSBL&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — ARSSBL",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -18533,10 +19017,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — ARSSBL",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ARSSBL&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "ecoline-exim-limited",
@@ -18565,9 +19056,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 134,
+          "max": 141
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=ECOLINE&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — ECOLINE",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -18592,9 +19095,18 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 1000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=ECOLINE&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — ECOLINE",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
@@ -18687,10 +19199,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — ECOLINE",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ECOLINE&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "jaro-institute-of-technology-management-and-research-limited",
@@ -18719,9 +19238,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 846,
+          "max": 890
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=JARO&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — JARO",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -18752,9 +19283,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 16,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=JARO&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — JARO",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -18841,10 +19381,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — JARO",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=JARO&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "matrix-geo-solutions-limited",
@@ -18900,9 +19447,18 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 1200,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=MGSL&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — MGSL",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
@@ -18995,10 +19551,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — MGSL",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=MGSL&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "seshaasai-technologies-limited",
@@ -19027,9 +19590,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 402,
+          "max": 423
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=STYL&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — STYL",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -19060,9 +19635,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 35,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=STYL&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — STYL",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -19149,10 +19733,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — STYL",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=STYL&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "solarworld-energy-solutions-limited",
@@ -19181,9 +19772,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 333,
+          "max": 351
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=SOLARWORLD&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — SOLARWORLD",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -19214,9 +19817,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 42,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=SOLARWORLD&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — SOLARWORLD",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -19303,10 +19915,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — SOLARWORLD",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SOLARWORLD&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "atlanta-electricals-limited",
@@ -19335,9 +19954,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 718,
+          "max": 754
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=ATLANTAELE&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — ATLANTAELE",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -19368,9 +19999,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 19,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=ATLANTAELE&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — ATLANTAELE",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -19457,10 +20097,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — ATLANTAELE",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ATLANTAELE&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "ganesh-consumer-products-limited",
@@ -19489,9 +20136,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 306,
+          "max": 322
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=GANESHCP&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — GANESHCP",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -19522,9 +20181,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 46,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=GANESHCP&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — GANESHCP",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -19611,10 +20279,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — GANESHCP",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=GANESHCP&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "prime-cable-industries-limited",
@@ -19643,9 +20318,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 78,
+          "max": 83
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=PRIMECAB&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — PRIMECAB",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -19670,9 +20357,18 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 1600,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=PRIMECAB&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — PRIMECAB",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
@@ -19765,10 +20461,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — PRIMECAB",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PRIMECAB&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "gk-energy-limited",
@@ -19797,9 +20500,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 145,
+          "max": 153
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=GKENERGY&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — GKENERGY",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -19830,9 +20545,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 98,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=GKENERGY&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — GKENERGY",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -19919,10 +20643,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — GKENERGY",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=GKENERGY&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "saatvik-green-energy-limited",
@@ -19951,9 +20682,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 442,
+          "max": 465
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=SAATVIK&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — SAATVIK",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -19984,9 +20727,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 32,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=SAATVIK&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — SAATVIK",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -20073,10 +20825,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — SAATVIK",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SAATVIK&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "siddhi-cotspin-limited",
@@ -20105,9 +20864,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 102,
+          "max": 108
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=SIDDHICOTS&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — SIDDHICOTS",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -20132,9 +20903,18 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 1200,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=SIDDHICOTS&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — SIDDHICOTS",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
@@ -20227,10 +21007,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — SIDDHICOTS",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SIDDHICOTS&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "ivalue-infosolutions-limited",
@@ -20259,9 +21046,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 284,
+          "max": 299
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=IVALUE&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — IVALUE",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -20292,9 +21091,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 50,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=IVALUE&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — IVALUE",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -20381,10 +21189,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — IVALUE",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=IVALUE&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "euro-pratik-sales-limited",
@@ -20413,9 +21228,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 235,
+          "max": 247
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=EUROPRATIK&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — EUROPRATIK",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -20434,9 +21261,18 @@
         "corrections": []
       },
       "issue_size_inr": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 4513150000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=EUROPRATIK&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — EUROPRATIK",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "market_lot": {
@@ -20446,9 +21282,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 60,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=EUROPRATIK&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — EUROPRATIK",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -20535,10 +21380,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — EUROPRATIK",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=EUROPRATIK&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "techd-cybersecurity-limited",
@@ -20567,9 +21419,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 183,
+          "max": 193
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=TECHD&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — TECHD",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -20594,9 +21458,18 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 600,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=TECHD&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — TECHD",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
@@ -20689,10 +21562,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — TECHD",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=TECHD&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "galaxy-medicare-limited",
@@ -20721,9 +21601,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 51,
+          "max": 54
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=GML&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — GML",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -20748,9 +21640,18 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 2000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=GML&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — GML",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
@@ -20843,10 +21744,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — GML",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=GML&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "shringar-house-of-mangalsutra-limited",
@@ -20875,9 +21783,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 155,
+          "max": 165
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHRINGARMS&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — SHRINGARMS",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -20908,9 +21828,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 90,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHRINGARMS&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — SHRINGARMS",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -20997,10 +21926,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — SHRINGARMS",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHRINGARMS&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "urban-company-limited",
@@ -21029,9 +21965,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 98,
+          "max": 103
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=URBANCO&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — URBANCO",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -21062,9 +22010,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 145,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=URBANCO&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — URBANCO",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -21151,10 +22108,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — URBANCO",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=URBANCO&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "taurian-mps-limited",
@@ -21183,9 +22147,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 162,
+          "max": 171
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=TAURIAN&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — TAURIAN",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -21210,9 +22186,18 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 800,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=TAURIAN&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — TAURIAN",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
@@ -21305,10 +22290,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — TAURIAN",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=TAURIAN&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "vigor-plast-india-limited",
@@ -21337,9 +22329,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 77,
+          "max": 81
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=VIGOR&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — VIGOR",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -21364,9 +22368,18 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 1600,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=VIGOR&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — VIGOR",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
@@ -21459,10 +22472,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — VIGOR",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=VIGOR&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "optivalue-tek-consulting-limited",
@@ -21491,9 +22511,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 80,
+          "max": 84
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=OPTIVALUE&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — OPTIVALUE",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -21518,9 +22550,18 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 1600,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=OPTIVALUE&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — OPTIVALUE",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
@@ -21613,10 +22654,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — OPTIVALUE",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=OPTIVALUE&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "snehaa-organics-limited",
@@ -21645,9 +22693,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 115,
+          "max": 122
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=SNEHAA&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — SNEHAA",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -21672,9 +22732,18 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 1000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=SNEHAA&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — SNEHAA",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
@@ -21767,10 +22836,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — SNEHAA",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SNEHAA&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "current-infraprojects-limited",
@@ -21799,9 +22875,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 76,
+          "max": 80
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=CURRENT&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — CURRENT",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -21826,9 +22914,18 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 1600,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=CURRENT&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — CURRENT",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
@@ -21921,10 +23018,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — CURRENT",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=CURRENT&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "sattva-engineering-construction-limited",
@@ -21953,9 +23057,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 70,
+          "max": 75
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=SATTVAENGG&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — SATTVAENGG",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -21980,9 +23096,18 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 1600,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=SATTVAENGG&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — SATTVAENGG",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
@@ -22075,10 +23200,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — SATTVAENGG",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SATTVAENGG&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "vikran-engineering-limited",
@@ -22107,9 +23239,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 92,
+          "max": 97
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=VIKRAN&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — VIKRAN",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -22140,9 +23284,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 148,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=VIKRAN&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — VIKRAN",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -22229,10 +23382,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — VIKRAN",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=VIKRAN&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "anondita-medicare-limited",
@@ -22261,9 +23421,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 137,
+          "max": 145
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=ANONDITA&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — ANONDITA",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -22288,9 +23460,18 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 1000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=ANONDITA&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — ANONDITA",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
@@ -22383,10 +23564,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — ANONDITA",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ANONDITA&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "classic-electrodes-india-limited",
@@ -22415,9 +23603,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 82,
+          "max": 87
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=CLASSICEIL&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — CLASSICEIL",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -22442,9 +23642,18 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 1600,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=CLASSICEIL&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — CLASSICEIL",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
@@ -22537,10 +23746,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — CLASSICEIL",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=CLASSICEIL&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "shivashrit-foods-limited",
@@ -22569,9 +23785,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 135,
+          "max": 142
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHIVASHRIT&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — SHIVASHRIT",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -22596,9 +23824,18 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 1000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHIVASHRIT&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — SHIVASHRIT",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
@@ -22691,10 +23928,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — SHIVASHRIT",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHIVASHRIT&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "arc-insulation-and-insulators-limited",
@@ -22723,9 +23967,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 119,
+          "max": 125
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=ARCIIL&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — ARCIIL",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -22750,9 +24006,18 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 1000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=ARCIIL&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — ARCIIL",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
@@ -22845,10 +24110,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — ARCIIL",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ARCIIL&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "mangal-electrical-industries-limited",
@@ -22877,9 +24149,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 533,
+          "max": 561
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=MEIL&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — MEIL",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -22898,9 +24182,18 @@
         "corrections": []
       },
       "issue_size_inr": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 4000000000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=MEIL&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — MEIL",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "market_lot": {
@@ -22910,9 +24203,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 26,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=MEIL&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — MEIL",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -22999,10 +24301,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — MEIL",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=MEIL&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "gem-aromatics-limited",
@@ -23031,9 +24340,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 309,
+          "max": 325
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=GEMAROMA&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — GEMAROMA",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -23064,9 +24385,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 46,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=GEMAROMA&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — GEMAROMA",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -23153,10 +24483,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — GEMAROMA",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=GEMAROMA&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "shreeji-shipping-global-limited",
@@ -23185,9 +24522,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 240,
+          "max": 252
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHREEJISPG&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — SHREEJISPG",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -23218,9 +24567,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 58,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHREEJISPG&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — SHREEJISPG",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T19:59:10.607Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -23307,10 +24665,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — SHREEJISPG",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHREEJISPG&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T19:59:10.607Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z"
+      "last_collected_at": "2026-09-23T19:59:10.607Z"
     },
     {
       "id": "vikram-solar-limited",
