@@ -1,7 +1,7 @@
 {
   "source_family": "Official NSE / SEBI / BSE offer-document and exchange evidence",
   "collection_started_at": "2026-09-23T19:29:29.146Z",
-  "generated_at": "2026-09-23T21:13:35.745Z",
+  "generated_at": "2026-09-23T21:18:31.049Z",
   "records": [
     {
       "id": "aakash-exploration-services-limited",
@@ -606,10 +606,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — BTML",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=BTML&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T21:18:31.049Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T21:18:31.049Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -656,6 +663,32 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "market_lot": {
+        "value": 1200,
+        "source_value": "1200 Equity Shares and in multiples thereof",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=BTML&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — BTML",
+          "publication_date": null,
+          "collected_at": "2026-09-23T21:18:31.049Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 1200,
+        "source_value": "1200 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=BTML&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — BTML",
+          "publication_date": null,
+          "collected_at": "2026-09-23T21:18:31.049Z"
         }
       }
     },
@@ -2359,10 +2392,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — MAZDOCK",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=MAZDOCK&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T21:18:31.049Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T21:18:31.049Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -2409,6 +2449,19 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 103,
+        "source_value": "103 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=MAZDOCK&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — MAZDOCK",
+          "publication_date": null,
+          "collected_at": "2026-09-23T21:18:31.049Z"
         }
       }
     },
@@ -3937,10 +3990,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — UTIAMC",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=UTIAMC&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T21:18:31.049Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T21:18:31.049Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -3987,6 +4047,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 552,
+          "max": 554
+        },
+        "source_value": "Rs.552/- to Rs. 554/- per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=UTIAMC&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — UTIAMC",
+          "publication_date": null,
+          "collected_at": "2026-09-23T21:18:31.049Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 27,
+        "source_value": "27 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=UTIAMC&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — UTIAMC",
+          "publication_date": null,
+          "collected_at": "2026-09-23T21:18:31.049Z"
         }
       }
     },
