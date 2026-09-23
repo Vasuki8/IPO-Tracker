@@ -1034,3 +1034,8 @@ NSE historical detail parser v1.1 now accepts a single explicit overall monetary
 ### Historical SEBI PDF parser v1.1
 
 The independent historical PDF backfill now also recovers explicit **price bands** and **market lot/lot size** terms. Conflicting values are rejected, and `Bid Lot` remains mapped only to minimum bid quantity.
+
+
+### Historical PDF document selection v1.2
+
+For missing price band, market lot, or minimum bid, the historical SEBI PDF backfill now prefers an attached RHP; final-only issue price/issue size recovery still prefers the final Prospectus.
