@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import {
   applyHistoricalPdfFields,
   candidateHistoricalPdf,
+  HISTORICAL_PDF_DOWNLOAD_MAX_SECONDS,
   historicalPdfCandidates,
   missingHistoricalPdfFields
 } from "./backfill-historical-pdf-fields.mjs";
@@ -41,3 +42,5 @@ assert.equal(record.issue_size_inr.source.document_type,"SEBI Prospectus PDF");
 assert.deepEqual(result.remaining,[]);
 
 console.log("Historical SEBI PDF field backfill tests passed.");
+
+assert.equal(HISTORICAL_PDF_DOWNLOAD_MAX_SECONDS, 75);
