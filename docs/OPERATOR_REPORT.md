@@ -133,3 +133,16 @@ The operator report reads the bounded health-transition history when available a
 If the history artifact has not been created yet, the report explicitly says `not recorded yet`.
 
 Recurrence is descriptive only. Observation count does not automatically change priority/severity, trigger a workflow, or send a notification.
+
+
+## Downstream pipeline failures
+
+Operator health now treats these sync stages as first-class failure reasons in addition to source collection:
+
+- `rebuild_failure` — recovery/source collection may have succeeded, but published dataset generation failed/cancelled;
+- `validation_failure` — generated data failed/cancelled contract validation;
+- `repository_publication_failure` — validated source-backed changes could not be committed/pushed to the repository.
+
+These are deliberately separate from `collection_failure`. A downstream failure does not imply NSE/SEBI failed and does not change a null field into a source failure.
+
+Each reason has targeted read-only recovery guidance. In particular, a repository-publication failure recommends repairing the publication path and republishing already validated changes rather than automatically recollecting sources.
