@@ -3309,20 +3309,25 @@ No additional PDF is downloaded per record; the selected document is still downl
 Parser version is bumped to **1.2.0**, making previously scanned records eligible for one bounded, year-balanced retry under the improved document-selection strategy.
 
 
-## Official BSE SME IPO index universe audit
+## Official BSE SME IPO universe audit — isolated source blocker
 
-The historical universe remains primarily NSE-derived. To surface BSE-only SME candidates without using BSE's licensed market-data API, the backend now audits BSE's official **SME IPO Index** constituent page.
+The historical universe remains primarily NSE-derived. The BSE-only SME discovery path is deliberately read-only and still requires issuer-specific official listing evidence before any record can be materialized.
 
-The audit:
+Production verification on 2026-09-23 found that both official BSE SME index surfaces return **HTTP 200 Angular application shells** to GitHub Actions with zero server-rendered table rows:
 
-- fetches the official BSE SME IPO Index page;
-- parses BSE scrip code, company name and ISIN;
-- compares constituents against every 2020-2026 recovery record;
-- uses exact normalized issuer matching first;
-- allows conservative prefix matching only for visibly truncated BSE display names;
-- reports ambiguous and unmatched constituents separately;
-- never creates or modifies an IPO record.
+- BSE Index Services dedicated constituent route: `/constituents/code/76`;
+- legacy BSE Index Watch SME IPO route.
 
-Unmatched constituents are discovery candidates only. A BSE-only issuer still requires an issuer-specific official listing notice or equivalent official evidence before materialization.
+The audit therefore remains strict: zero parseable constituents is a source failure, never a successful empty universe.
 
-This audit runs during live source-health collection and is not treated as a complete historical BSE universe by itself because index membership can change over time.
+To protect the critical live pipeline, this audit no longer runs inside the hourly NSE/SEBI sync. It now has an independent workflow:
+
+- `.github/workflows/audit-bse-sme-universe.yml`;
+- daily schedule plus relevant main-branch changes;
+- read-only repository permission;
+- parser regression test before the live source audit;
+- bounded page fingerprints and first-party bundle hints when the SPA returns no table.
+
+The independent production audit confirms the current blocker is source delivery rather than issuer matching or table parsing. Bundle inspection did not expose a stable public BSE Index Services constituent API in the first bounded pass.
+
+**Next source task:** recover BSE-only SME candidates from official BSE Index Services **addition/reconstitution notices** (or another stable official non-SPA endpoint), retaining notice identity, effective/listing date and scrip code. Do not reintroduce this discovery audit into the live IPO critical path, and do not auto-materialize candidates without issuer-specific official listing evidence.
