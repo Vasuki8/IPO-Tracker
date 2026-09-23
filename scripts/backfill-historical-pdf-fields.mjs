@@ -3,6 +3,7 @@ import path from "node:path";
 import os from "node:os";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { selectBalancedByListingYear } from "./historical-batch-selection.mjs";
 import {
   applyIssuePriceExtraction,
   applyIssueSizeExtraction,
@@ -65,41 +66,44 @@ export function historicalPdfCandidates(
   currentYear = new Date().getUTCFullYear(),
   max = HISTORICAL_PDF_FIELD_BATCH_SIZE
 ) {
-  return records
-    .filter(({ record }) => {
-      if (!candidateHistoricalPdf(record, currentYear)) return false;
-      const item = state?.issuers?.[historicalPdfKey(record)];
-      if (!item) return true;
-      if (item.parser_version !== HISTORICAL_PDF_FIELD_PARSER_VERSION) return true;
-      if (item.status !== "error") return false;
-      const attempted = Date.parse(item.last_attempted_at || "");
-      return !Number.isFinite(attempted) || Date.now() - attempted >= 24 * 60 * 60 * 1000;
-    })
-    .sort((a, b) => {
-      const dateOrder = String(b.record.listing_date?.value || "").localeCompare(String(a.record.listing_date?.value || ""));
-      return dateOrder || a.record.issuer_name.localeCompare(b.record.issuer_name);
-    })
-    .slice(0, max);
+  const eligible = records.filter(({ record }) => {
+    if (!candidateHistoricalPdf(record, currentYear)) return false;
+    const item = state?.issuers?.[historicalPdfKey(record)];
+    if (!item) return true;
+    if (item.parser_version !== HISTORICAL_PDF_FIELD_PARSER_VERSION) return true;
+    if (item.status !== "error") return false;
+    const attempted = Date.parse(item.last_attempted_at || "");
+    return !Number.isFinite(attempted) || Date.now() - attempted >= 24 * 60 * 60 * 1000;
+  });
+  return selectBalancedByListingYear(eligible, max);
 }
 
 export function applyHistoricalPdfFields(record, document, pages, collectedAt) {
   const before = missingHistoricalPdfFields(record);
   const changed = [];
+  const extractions = {
+    issue_price: null,
+    issue_size_inr: null,
+    minimum_bid_quantity: null
+  };
 
   if (before.includes("issue_price")) {
     const extraction = parseExplicitIssuePriceFromPages(pages);
+    extractions.issue_price = extraction ?? null;
     if (extraction && applyIssuePriceExtraction(record, document, extraction, collectedAt)) changed.push("issue_price");
   }
   if (before.includes("issue_size_inr")) {
     const extraction = parseExplicitAggregateIssueSizeFromPages(pages);
+    extractions.issue_size_inr = extraction ?? null;
     if (extraction && applyIssueSizeExtraction(record, document, extraction, collectedAt)) changed.push("issue_size_inr");
   }
   if (before.includes("minimum_bid_quantity")) {
     const extraction = parseExplicitMinimumBidQuantityFromPages(pages);
+    extractions.minimum_bid_quantity = extraction ?? null;
     if (extraction && applyMinimumBidExtraction(record, document, extraction, collectedAt)) changed.push("minimum_bid_quantity");
   }
 
-  return { before, changed, remaining: missingHistoricalPdfFields(record) };
+  return { before, changed, remaining: missingHistoricalPdfFields(record), extractions };
 }
 
 function recoveryFiles() {
@@ -200,6 +204,13 @@ async function run() {
         status: result.changed.length ? "extracted" : "no_fields",
         extracted_fields: result.changed,
         remaining_fields: result.remaining,
+        extractions: result.extractions,
+        document: {
+          type: document.type,
+          identity: document.identity ?? null,
+          url: document.url,
+          publication_date: document.publication_date ?? null
+        },
         source_url: document.url
       };
     } catch (error) {
