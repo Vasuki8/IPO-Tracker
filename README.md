@@ -946,3 +946,10 @@ The hourly backend sync now persists its latest machine-readable operational sta
 The backend now retains up to **48 health transitions** in `ops/operator-health-history.json`. Consecutive identical states are compressed with an observation count, so repeated hourly healthy runs do not create unlimited history.
 
 **Handoff:** next surface recurrence context from this bounded history in the read-only operator report; keep alerts and automatic recovery out of scope.
+
+
+### Operator recurrence context
+
+The operator report now shows the current retained state, consecutive observation count, and up to five recent health transitions from the bounded history. It explicitly handles the period before history is first recorded.
+
+**Handoff:** next make rebuild, validation, and repository-publication failures first-class operator health reasons with reason-specific recovery guidance.

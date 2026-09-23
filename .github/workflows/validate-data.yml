@@ -32,6 +32,9 @@ jobs:
       - name: Test lot-size display fallback
         run: node scripts/test-lot-size.mjs
 
+      - name: Check operator report syntax
+        run: node --check scripts/operator-report.mjs
+
       - name: Test operator freshness report
         run: node scripts/test-operator-report.mjs
 

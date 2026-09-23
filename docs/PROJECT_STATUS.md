@@ -2577,3 +2577,23 @@ History is operational-only. It does not contain IPO records/field values and do
 Operational freshness now has current state, recovery guidance, durable snapshot and bounded transition history.
 
 Next backend batch: expose **recurrence context in the operator report** (for example, current state observation count and recent transitions) from the bounded history. Keep this read-only; do not add alerts or automatic recovery yet.
+
+
+## Latest completed batch — operator recurrence context
+
+The read-only operator report now consumes the bounded health-transition history when available.
+
+It surfaces:
+
+- current retained state and consecutive observation count;
+- retained transition count;
+- up to five recent transitions with reasons and first/last observation timestamps;
+- an explicit `not recorded yet` state before the first history artifact exists.
+
+Recurrence remains informational only: repeated failures/staleness do not automatically alter severity, rerun workflows, mutate data or send notifications.
+
+### Handoff / next coherent batch
+
+The operator layer now provides current health, recovery guidance, durable snapshot, bounded transition history and recurrence context.
+
+Next backend operations batch: improve **pipeline-stage failure classification** beyond collection only. Distinguish rebuild, validation and repository-publication failures as first-class health reasons with safe recovery guidance, while preserving collection/source-null semantics.

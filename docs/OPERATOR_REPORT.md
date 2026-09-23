@@ -119,3 +119,17 @@ Retention is bounded to the latest **48 transitions**. Consecutive runs with the
 This makes recurring conditions visible without storing one record per hourly workflow forever. A change from healthy → stale → healthy creates transitions; repeated healthy runs only increment the existing healthy transition.
 
 The history contains operational metadata only and does not copy IPO records or field values.
+
+
+## Recurrence context
+
+The operator report reads the bounded health-transition history when available and shows:
+
+- the current retained health state;
+- how many consecutive observations share that state/reason set;
+- the number of retained transitions;
+- up to the five most recent transitions with reasons and first/last observation times.
+
+If the history artifact has not been created yet, the report explicitly says `not recorded yet`.
+
+Recurrence is descriptive only. Observation count does not automatically change priority/severity, trigger a workflow, or send a notification.
