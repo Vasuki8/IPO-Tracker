@@ -2404,3 +2404,43 @@ No IPO data value or source evidence is changed by this batch.
 Operational collection health and Pages publication health are now visible separately.
 
 Next operations batch: add **staleness thresholds / actionable operator health classification** using the now-separated timestamps. Keep the first version read-only and explicit: classify stale dataset/source observations only from documented thresholds, and do not mutate IPO values or infer source-null from age alone.
+
+
+## Latest completed batch — operator staleness / actionable health classification
+
+The read-only operator surface now converts the separated operational timestamps into explicit health states without changing IPO data.
+
+### Default thresholds
+
+- dataset generation: **3 hours**;
+- latest retained record collection: **3 hours**;
+- latest retained evidence collection: **24 hours**;
+- last successful GitHub Pages publication: **3 hours**.
+
+The evidence threshold is intentionally longer because a successful hourly collection does not imply that a new offer document or field observation must appear every hour.
+
+### Health states
+
+- `healthy` — measured signals are inside their thresholds and collection is successful;
+- `stale` — one or more measured freshness signals exceed the documented threshold;
+- `failure` — NSE/SEBI collection failed/cancelled or the latest Pages deployment failed/cancelled;
+- `unknown` — required operational timestamps are unavailable or collection health is not measured.
+
+Precedence is failure > stale > unknown > healthy.
+
+The report includes the measured ages, thresholds and machine-readable reasons such as `stale_dataset`, `stale_record_collection`, `stale_evidence_collection`, `stale_pages_publication`, `collection_failure` and `pages_deployment_failure`.
+
+### Safety
+
+This classification is operational only:
+
+- it does not mutate `data/ipos.json`;
+- it does not change field verification/source status;
+- it does not infer source-null from age;
+- it does not treat a lack of new evidence as a collection failure.
+
+### Handoff / next coherent batch
+
+The operator surface can now distinguish current failures, stale operational state and unknown/unmeasured state.
+
+Next backend operations batch: make **recovery actions explicit for unhealthy states**. Start read-only: map each health reason to the safest diagnostic/recovery step and surface it in the operator report. Do not automatically rerun workflows, rewrite data, or notify external systems yet.
