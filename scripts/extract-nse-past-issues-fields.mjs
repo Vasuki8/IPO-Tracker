@@ -75,8 +75,8 @@ function candidateRecords() {
     return (recovery.records || [])
       .filter((record) =>
         resolveNseIdentity(record) &&
-        (record.issue_price?.value === null || record.issue_price?.value === undefined) &&
-        (record.listing_date?.value !== null && record.listing_date?.value !== undefined)
+        ((record.issue_price?.value === null || record.issue_price?.value === undefined) ||
+         (record.listing_date?.value === null || record.listing_date?.value === undefined))
       )
       .map((record) => ({ file, recovery, record }));
   });
@@ -115,6 +115,42 @@ function addDocumentOnce(record, document) {
     return false;
   }
   record.documents.push(document);
+  return true;
+}
+
+export function applyPastIssueListingDate(record, row, collectedAt) {
+  if (record.listing_date?.value !== null && record.listing_date?.value !== undefined) return false;
+
+  const selection = selectPastIssueRow(record, [row]);
+  if (!selection.row) return false;
+
+  const listingDate = parseNseDate(row.listingDate);
+  if (!listingDate) return false;
+
+  const identity = resolveNseIdentity(record);
+  if (!identity) return false;
+
+  record.listing_date = {
+    value: listingDate,
+    source_value: normalizeText(row.listingDate),
+    status: "verified",
+    page: null,
+    source: {
+      url: PAST_URL,
+      document_type: "NSE Public Past Issues",
+      document_identity: "NSE Public Past Issues — " + identity.symbol,
+      publication_date: null,
+      collected_at: collectedAt
+    }
+  };
+  addDocumentOnce(record, {
+    type: "NSE Public Past Issues",
+    identity: "NSE Public Past Issues — " + identity.symbol,
+    url: PAST_URL,
+    publication_date: null,
+    collected_at: collectedAt
+  });
+  record.last_collected_at = collectedAt;
   return true;
 }
 
@@ -197,7 +233,8 @@ async function run() {
     past_rows: rows.length,
     candidates: 0,
     exact_matches: 0,
-    extracted: 0,
+    issue_price_extracted: 0,
+    listing_date_extracted: 0,
     missing_or_unparseable: 0,
     rejected_matches: 0
   };
@@ -218,14 +255,19 @@ async function run() {
       }
 
       stats.exact_matches += 1;
+      if (applyPastIssueListingDate(record, selection.row, now)) {
+        stats.listing_date_extracted += 1;
+        changed = true;
+        console.log(
+          "Extracted NSE listing date for " + record.issuer_name + ": " + record.listing_date.value
+        );
+      }
+
       const price = parsePastIssuePrice(selection.row.issuePrice);
       if (price === null) {
         stats.missing_or_unparseable += 1;
-        continue;
-      }
-
-      if (applyPastIssuePrice(record, selection.row, now)) {
-        stats.extracted += 1;
+      } else if (applyPastIssuePrice(record, selection.row, now)) {
+        stats.issue_price_extracted += 1;
         changed = true;
         console.log(
           "Extracted NSE final issue price for " + record.issuer_name + ": ₹" + price
