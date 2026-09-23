@@ -1,0 +1,178 @@
+{
+  "schema_version": "1.0.0",
+  "issuers": {
+    "2025|icici-prudential-asset-management-company-limited": {
+      "issuer_name": "ICICI Prudential Asset Management Company Limited",
+      "listing_date": "2025-12-19",
+      "last_attempted_at": "2026-09-23T21:10:51.292Z",
+      "parser_version": "1.0.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [],
+      "extractions": {
+        "issue_price": null,
+        "issue_size_inr": {
+          "value": 106026500000,
+          "source_value": "₹106,026.5 MILLION",
+          "page": 3
+        },
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "ICICI Prudential Asset Management Company Limited - prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765973231553.pdf",
+        "publication_date": "2025-12-17"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765973231553.pdf"
+    },
+    "2024|unimech-aerospace-and-manufacturing-limited": {
+      "issuer_name": "Unimech Aerospace and Manufacturing Limited",
+      "listing_date": "2024-12-31",
+      "last_attempted_at": "2026-09-23T21:10:51.292Z",
+      "parser_version": "1.0.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [],
+      "extractions": {
+        "issue_price": null,
+        "issue_size_inr": {
+          "value": 5000000000,
+          "source_value": "₹5,000.00 MILLION",
+          "page": 2
+        },
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Unimech Aerospace and Manufacturing Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1735534463367.pdf",
+        "publication_date": "2024-12-30"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1735534463367.pdf"
+    },
+    "2022|elin-electronics-limited": {
+      "issuer_name": "Elin Electronics Limited",
+      "listing_date": "2022-12-30",
+      "last_attempted_at": "2026-09-23T21:10:51.292Z",
+      "parser_version": "1.0.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-8XfY7k/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1682057466538.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 10752863 out of 15064686 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 10970031 out of 15064686 bytes received\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1682057466538.pdf"
+    },
+    "2020|burger-king-india-limited": {
+      "issuer_name": "Burger King India Limited",
+      "listing_date": "2020-12-14",
+      "last_attempted_at": "2026-09-23T21:10:51.292Z",
+      "parser_version": "1.0.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "issue_size_inr": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Burger King India Ltd - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2020/1607693486542.pdf",
+        "publication_date": "2020-12-11"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2020/1607693486542.pdf"
+    },
+    "2025|nephrocare-health-services-limited": {
+      "issuer_name": "Nephrocare Health Services Limited",
+      "listing_date": "2025-12-17",
+      "last_attempted_at": "2026-09-23T21:10:51.292Z",
+      "parser_version": "1.0.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-IcFLcL/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765775775793.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 10923615 out of 12403400 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 11051711 out of 12403400 bytes received\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765775775793.pdf"
+    },
+    "2024|carraro-india-limited": {
+      "issuer_name": "Carraro India Limited",
+      "listing_date": "2024-12-30",
+      "last_attempted_at": "2026-09-23T21:10:51.292Z",
+      "parser_version": "1.0.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [],
+      "extractions": {
+        "issue_price": null,
+        "issue_size_inr": {
+          "value": 12500000000,
+          "source_value": "₹12,500.00 MILLION",
+          "page": 2
+        },
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Carraro India Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2025/1739254276941.pdf",
+        "publication_date": "2024-12-26"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2025/1739254276941.pdf"
+    },
+    "2022|arihant-academy-limited": {
+      "issuer_name": "Arihant Academy Limited",
+      "listing_date": "2022-12-29",
+      "last_attempted_at": "2026-09-23T21:10:51.292Z",
+      "parser_version": "1.0.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "issue_size_inr": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Arihant Academy Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671769917508.pdf",
+        "publication_date": "2022-12-09"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671769917508.pdf"
+    },
+    "2025|park-medi-world-limited": {
+      "issuer_name": "Park Medi World Limited",
+      "listing_date": "2025-12-17",
+      "last_attempted_at": "2026-09-23T21:10:51.292Z",
+      "parser_version": "1.0.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [],
+      "extractions": {
+        "issue_price": null,
+        "issue_size_inr": {
+          "value": 9200000000,
+          "source_value": "₹9,200.00 MILLION",
+          "page": 3
+        },
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "PARK MEDI WORLD LIMITED - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765775863248.pdf",
+        "publication_date": "2025-12-15"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765775863248.pdf"
+    }
+  }
+}
