@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SNAPSHOT_PATH = path.join(ROOT, "ops", "operator-snapshot.json");
 const HISTORY_PATH = path.join(ROOT, "ops", "operator-health-history.json");
+const PAGES_PATH = path.join(ROOT, "ops", "pages-publication.json");
 const HEALTH = new Set(["healthy", "stale", "failure", "unknown"]);
 
 function requireObject(value, label, errors) {
@@ -73,10 +74,29 @@ export function validateOperatorHistory(history) {
   return errors;
 }
 
-export function validateOperatorFiles(snapshot, history) {
+export function validatePagesPublication(status) {
+  const errors = [];
+  if (!requireObject(status, "pages", errors)) return errors;
+  if (status.schema_version !== "1.0.0") errors.push("pages.schema_version must be 1.0.0");
+  for (const key of ["latest_attempt", "last_successful"]) {
+    const attempt = status[key];
+    if (attempt === null && key === "last_successful") continue;
+    if (!requireObject(attempt, `pages.${key}`, errors)) continue;
+    if (!["success", "failure", "cancelled", "skipped", "unknown"].includes(attempt.status)) {
+      errors.push(`pages.${key}.status is invalid`);
+    }
+    requireString(attempt.completed_at, `pages.${key}.completed_at`, errors);
+    requireString(attempt.workflow_run_id, `pages.${key}.workflow_run_id`, errors, true);
+    requireString(attempt.commit_sha, `pages.${key}.commit_sha`, errors, true);
+  }
+  return errors;
+}
+
+export function validateOperatorFiles(snapshot, history, pages = null) {
   return [
     ...validateOperatorSnapshot(snapshot),
-    ...validateOperatorHistory(history)
+    ...validateOperatorHistory(history),
+    ...(pages ? validatePagesPublication(pages) : [])
   ];
 }
 
@@ -85,7 +105,7 @@ function readJson(filePath) {
 }
 
 function main() {
-  const errors = validateOperatorFiles(readJson(SNAPSHOT_PATH), readJson(HISTORY_PATH));
+  const errors = validateOperatorFiles(readJson(SNAPSHOT_PATH), readJson(HISTORY_PATH), readJson(PAGES_PATH));
   if (errors.length) {
     for (const error of errors) process.stderr.write(`- ${error}\n`);
     process.exitCode = 1;
