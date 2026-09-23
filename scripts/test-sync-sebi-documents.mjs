@@ -13,6 +13,7 @@ import {
   hasSebiDocument,
   historicalSearchCandidates,
   historicalSearchKey,
+  HISTORICAL_SEARCH_VERSION,
   targetedSearchCandidates,
   searchTermForIssuer,
   parseAbridgedProspectusLinks,
@@ -246,6 +247,7 @@ const historicalState = {
   issuers: {
     [historicalSearchKey(historicalRecords[1].record)]: {
       last_attempted_at: "2026-09-20T00:00:00Z",
+      search_version: HISTORICAL_SEARCH_VERSION,
       status: "no_match"
     }
   }
@@ -258,6 +260,25 @@ assert.deepEqual(
     10
   ).map(({ record }) => record.issuer_name),
   ["Historical New Limited"]
+);
+
+const staleStrategyState = {
+  issuers: {
+    [historicalSearchKey(historicalRecords[1].record)]: {
+      last_attempted_at: "2026-09-20T00:00:00Z",
+      search_version: "1.0.0",
+      status: "no_match"
+    }
+  }
+};
+assert.deepEqual(
+  historicalSearchCandidates(
+    historicalRecords,
+    staleStrategyState,
+    "2026-09-23T18:00:00Z",
+    10
+  ).map(({ record }) => record.issuer_name),
+  ["Historical New Limited", "Historical Tried Limited"]
 );
 assert.deepEqual(
   historicalSearchCandidates(
