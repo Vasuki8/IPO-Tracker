@@ -134,6 +134,14 @@ export function candidateRhpNiiMinimumApplicationDocument(record) {
   ) || null;
 }
 
+export function candidateRhpNiiMinimumBidDocument(record) {
+  const existing = record.application_requirements?.non_institutional?.minimum_bid_quantity?.value;
+  if (existing !== null && existing !== undefined) return null;
+  return (record.documents || []).find((doc) =>
+    doc.type === "SEBI RHP PDF" && officialProspectusPdfUrl(doc.url)
+  ) || null;
+}
+
 export function candidateProspectusMinimumBidDocument(record) {
   if (record.minimum_bid_quantity?.value !== null && record.minimum_bid_quantity?.value !== undefined) return null;
   if (record.terms?.minimum_bid_quantity !== null && record.terms?.minimum_bid_quantity !== undefined) return null;
@@ -280,6 +288,47 @@ export function findExplicitNiiMinimumApplicationAmounts(pageText, page = 1) {
 export function findExplicitNiiMinimumApplicationAmountsInPages(pages) {
   return (pages || []).flatMap((pageText, index) =>
     findExplicitNiiMinimumApplicationAmounts(pageText, index + 1)
+  );
+}
+
+export function findExplicitNiiMinimumBidQuantities(pageText, page = 1) {
+  const text = normalizeText(pageText);
+  if (!text) return [];
+
+  const results = [];
+  const patterns = [
+    /\bminimum\s+bid(?:ding)?(?:\s+(?:lot|quantity|size))?\s*(?:of|is|shall\s+be)?\s*[:\-–—]?\s*([0-9][0-9,]*)\s+(?:equity\s+)?shares\b/ig,
+    /\bminimum\s+(?:application|bid)\s+size\s*(?:of|is|shall\s+be)?\s*[:\-–—]?\s*([0-9][0-9,]*)\s+(?:equity\s+)?shares\b/ig,
+    /\bminimum\s+of\s+([0-9][0-9,]*)\s+(?:equity\s+)?shares\b/ig
+  ];
+  const niiPattern = /\bnon[\s-]*institutional(?:\s+(?:investor|bidder|portion|investors|bidders))?\b/i;
+
+  for (const pattern of patterns) {
+    pattern.lastIndex = 0;
+    for (const match of text.matchAll(pattern)) {
+      const contextStart = Math.max(0, match.index - 260);
+      const contextEnd = Math.min(text.length, match.index + 360);
+      const context = text.slice(contextStart, contextEnd);
+      if (!niiPattern.test(context)) continue;
+
+      const value = Number(match[1].replace(/,/g, ""));
+      if (!Number.isInteger(value) || value <= 0) continue;
+
+      results.push({
+        value,
+        source_value: match[0],
+        page,
+        context
+      });
+      if (results.length >= 12) return results;
+    }
+  }
+  return results;
+}
+
+export function findExplicitNiiMinimumBidQuantitiesInPages(pages) {
+  return (pages || []).flatMap((pageText, index) =>
+    findExplicitNiiMinimumBidQuantities(pageText, index + 1)
   );
 }
 
@@ -810,6 +859,55 @@ async function diagnoseRhpMinimumBid() {
   console.log(JSON.stringify({ rhp_minimum_bid_diagnostic_stats: stats }, null, 2));
 }
 
+async function diagnoseRhpNiiMinimumBid() {
+  ensurePdfTextTool();
+  const stats = {
+    candidates: 0,
+    downloaded: 0,
+    documents_with_explicit_nii_share_quantity: 0,
+    mentions: 0,
+    pages_scanned: 0,
+    fetch_errors: 0
+  };
+
+  for (const file of recoveryFiles()) {
+    const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
+    for (const record of recovery.records || []) {
+      const document = candidateRhpNiiMinimumBidDocument(record);
+      if (!document) continue;
+      stats.candidates += 1;
+
+      let pages;
+      try {
+        pages = pagesLayout(await fetchPdf(document.url), MINIMUM_BID_DIAGNOSTIC_MAX_PAGES);
+        stats.downloaded += 1;
+        stats.pages_scanned += pages.length;
+      } catch (error) {
+        stats.fetch_errors += 1;
+        console.warn(
+          "RHP NII minimum-bid diagnostic unavailable for " +
+          record.issuer_name + ": " + error.message
+        );
+        continue;
+      }
+
+      const mentions = findExplicitNiiMinimumBidQuantitiesInPages(pages);
+      if (mentions.length > 0) stats.documents_with_explicit_nii_share_quantity += 1;
+      stats.mentions += mentions.length;
+
+      console.log(JSON.stringify({
+        issuer_name: record.issuer_name,
+        document: document.identity ?? document.type,
+        url: document.url,
+        pages_scanned: pages.length,
+        nii_minimum_bid_quantity_mentions: mentions
+      }, null, 2));
+    }
+  }
+
+  console.log(JSON.stringify({ rhp_nii_minimum_bid_diagnostic_stats: stats }, null, 2));
+}
+
 async function runNiiMinimumApplication() {
   ensurePdfTextTool();
   const now = new Date().toISOString();
@@ -1048,8 +1146,10 @@ const isMain = process.argv[1] &&
   pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
 
 if (isMain) {
-  const action = process.argv.includes("--nii-minimum-application")
-    ? runNiiMinimumApplication
+  const action = process.argv.includes("--diagnose-rhp-nii-min-bid")
+    ? diagnoseRhpNiiMinimumBid
+    : process.argv.includes("--nii-minimum-application")
+      ? runNiiMinimumApplication
     : process.argv.includes("--diagnose-rhp-min-application")
       ? diagnoseRhpMinimumApplication
     : process.argv.includes("--minimum-bid")
