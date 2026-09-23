@@ -87,6 +87,9 @@ jobs:
       - name: Test NSE historical universe collector
         run: node scripts/test-sync-nse-historical.mjs
 
+      - name: Test historical batch year balancing
+        run: node scripts/test-historical-batch-selection.mjs
+
       - name: Test historical NSE detail backfill
         run: node scripts/test-backfill-nse-historical-detail.mjs
 
