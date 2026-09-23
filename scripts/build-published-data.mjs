@@ -15,7 +15,9 @@ const OFFICIAL_HOSTS = new Set([
   "sebi.gov.in",
   "www.heromotors.com",
   "heromotors.com",
-  "nsearchives.nseindia.com"
+  "nsearchives.nseindia.com",
+  "www.bseindia.com",
+  "bseindia.com"
 ]);
 
 function fail(message) {
@@ -190,6 +192,10 @@ const published = {
     const closeA = a.close_date?.value ?? "";
     const closeB = b.close_date?.value ?? "";
     if (closeA !== closeB) return closeB.localeCompare(closeA);
+
+    const listingA = a.listing_date?.value ?? "";
+    const listingB = b.listing_date?.value ?? "";
+    if (listingA !== listingB) return listingB.localeCompare(listingA);
 
     return a.issuer_name.localeCompare(b.issuer_name);
   })
