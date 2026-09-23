@@ -6,6 +6,7 @@ on:
       - "diag/bse-notice-list-api-20260923"
     paths:
       - "scripts/diagnose-bse-notice-list-api.mjs"
+      - "scripts/diagnose-aritas-listing-notice.mjs"
       - ".github/workflows/diagnose-bse-notice-list-api.yml"
 
 permissions:
@@ -25,3 +26,6 @@ jobs:
 
       - name: Diagnose official notice endpoints
         run: node scripts/diagnose-bse-notice-list-api.mjs
+
+      - name: Diagnose Aritas listing notice wording
+        run: node scripts/diagnose-aritas-listing-notice.mjs
