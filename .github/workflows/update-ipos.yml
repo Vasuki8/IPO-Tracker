@@ -24,6 +24,8 @@ on:
       - "scripts/build-published-data.mjs"
       - "scripts/publish-field-status.mjs"
       - "scripts/test-publish-field-status.mjs"
+      - "scripts/operator-report.mjs"
+      - "scripts/test-operator-report.mjs"
       - "scripts/diagnose-nse-issue-information.mjs"
       - "scripts/test-diagnose-nse-issue-information.mjs"
       - "scripts/diagnose-nse-ipo-detail.mjs"
@@ -62,9 +64,11 @@ jobs:
         run: node scripts/test-sync-sebi-documents.mjs
 
       - name: Collect NSE live IPO feed
+        id: collect_nse
         run: node scripts/sync-nse-live.mjs
 
       - name: Attach SEBI offer documents
+        id: collect_sebi
         run: node scripts/sync-sebi-documents.mjs
 
       - name: Install PDF text extraction dependency
@@ -125,15 +129,18 @@ jobs:
         run: node scripts/extract-prospectus-fields.mjs --minimum-bid
 
       - name: Rebuild published dataset
+        id: rebuild
         run: node scripts/build-published-data.mjs
 
       - name: Check recovery publication
         run: node scripts/build-published-data.mjs --check
 
       - name: Validate published IPO data
+        id: validate_data
         run: node scripts/validate-data.mjs
 
       - name: Publish source-backed data changes
+        id: publish_data
         shell: bash
         run: |
           if git diff --quiet -- data/recovery data/ipos.json; then
@@ -146,3 +153,12 @@ jobs:
           git add data/recovery data/ipos.json
           git commit -m "chore(data): sync official IPO sources"
           git push
+      - name: Operator freshness and source-health summary
+        if: always()
+        env:
+          NSE_COLLECTION_OUTCOME: ${{ steps.collect_nse.outcome }}
+          SEBI_COLLECTION_OUTCOME: ${{ steps.collect_sebi.outcome }}
+          REBUILD_OUTCOME: ${{ steps.rebuild.outcome }}
+          VALIDATION_OUTCOME: ${{ steps.validate_data.outcome }}
+          REPOSITORY_PUBLISH_OUTCOME: ${{ steps.publish_data.outcome }}
+        run: node scripts/operator-report.mjs --github-summary
