@@ -2746,3 +2746,45 @@ BSE's server-rendered issue summary cannot currently enumerate issues for us, an
 ### Next data task
 
 Populate BSE source-manifest entries for verified 2026 residual gaps and historical years from official BSE pages/notices, then add conflict-safe recovery writes from the tested parsers.
+
+
+## Substantial BSE + historical retrieval batch — recovery writer and year audit
+
+This batch moves BSE from read-only parsing to conflict-safe recovery application.
+
+### BSE recovery writes
+
+For a retained, verified BSE source URL with exactly one matching recovery record:
+
+- BSE equity issue detail can fill missing price band, market lot, minimum bid quantity, open date and close date;
+- BSE listing notice can fill missing listing date, final issue price and market lot;
+- existing non-null values are never overwritten;
+- disagreements are reported as conflicts rather than silently resolved;
+- every applied value retains BSE URL, document type/identity, publication date and collection time;
+- source documents are attached once to the recovery record.
+
+BSE issue share count is parsed and retained in diagnostics but is **not multiplied by price to manufacture INR issue size**. Issue size remains null unless an official source explicitly states the monetary total.
+
+### Verified historical BSE source seeds
+
+The BSE source manifest now contains real official 2025 examples for:
+
+- Kenrik Industries Limited — BSE public issue detail;
+- 3B Films Limited — BSE listing notice;
+- Billionbrains Garage Ventures Limited (Groww) — BSE public issue detail.
+
+These are source evidence, not a claim that the 2025 universe is complete.
+
+### Historical universe audit
+
+Added a machine-readable runtime audit for 2026 → 2020. Current repository truth is explicit:
+
+- 2026 recovery universe is materialized;
+- 2025 → 2020 recovery universes are not yet materialized;
+- verified BSE source counts are reported independently by year.
+
+This prevents a few discovered historical issuers from being mistaken for complete year coverage.
+
+### Next substantial retrieval task
+
+Materialize the historical IPO universe year-by-year from official exchange/SEBI evidence, beginning with 2025, and then apply the now-reusable NSE/BSE/SEBI field recovery stack. Do not infer completeness from search-engine discovery alone.
