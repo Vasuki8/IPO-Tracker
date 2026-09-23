@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import {
+  applyPastIssueListingDate,
   applyPastIssuePrice,
   parsePastIssuePrice,
   selectPastIssueRow
@@ -65,3 +66,49 @@ assert.equal(
 assert.equal(record.issue_price.value, 139);
 
 console.log("NSE public-past-issues final-price extraction tests passed.");
+
+const missingListing = {
+  issuer_name: "Another Limited",
+  nse_symbol: "ANOTHER",
+  nse_series: "EQ",
+  listing_date: { value: null },
+  issue_price: { value: null },
+  documents: []
+};
+const missingListingRow = {
+  symbol: "ANOTHER",
+  company: "Another Limited",
+  securityType: "EQ",
+  listingDate: "23-SEP-2026",
+  issuePrice: "210"
+};
+assert.equal(
+  applyPastIssueListingDate(missingListing, missingListingRow, "2026-09-23T15:30:00Z"),
+  true
+);
+assert.equal(missingListing.listing_date.value, "2026-09-23");
+assert.equal(missingListing.listing_date.status, "verified");
+assert.equal(missingListing.listing_date.source.document_type, "NSE Public Past Issues");
+assert.equal(
+  applyPastIssuePrice(missingListing, missingListingRow, "2026-09-23T15:30:00Z"),
+  true
+);
+assert.equal(missingListing.issue_price.value, 210);
+assert.equal(missingListing.documents.length, 1);
+
+const badListing = {
+  issuer_name: "Bad Date Limited",
+  nse_symbol: "BADDATE",
+  nse_series: "EQ",
+  listing_date: { value: null },
+  documents: []
+};
+assert.equal(
+  applyPastIssueListingDate(
+    badListing,
+    { symbol: "BADDATE", securityType: "EQ", listingDate: "not-a-date", issuePrice: "100" },
+    "2026-09-23T15:30:00Z"
+  ),
+  false
+);
+assert.equal(badListing.listing_date.value, null);
