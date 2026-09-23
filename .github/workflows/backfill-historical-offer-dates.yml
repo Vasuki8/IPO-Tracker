@@ -1,0 +1,95 @@
+name: Backfill historical IPO offer dates
+
+on:
+  schedule:
+    - cron: "47 * * * *"
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "scripts/backfill-historical-offer-dates.mjs"
+      - "scripts/test-backfill-historical-offer-dates.mjs"
+      - "scripts/historical-batch-selection.mjs"
+      - "scripts/test-historical-batch-selection.mjs"
+      - ".github/workflows/backfill-historical-offer-dates.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: historical-offer-date-backfill
+  cancel-in-progress: true
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install PDF text extraction dependency
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends poppler-utils
+          pdftotext -v
+
+      - name: Test historical SEBI offer-date parser
+        run: node scripts/test-backfill-historical-offer-dates.mjs
+
+      - name: Backfill historical SEBI offer dates
+        run: node scripts/backfill-historical-offer-dates.mjs
+
+      - name: Check for historical date changes
+        id: changes
+        shell: bash
+        run: |
+          if [ -z "$(git status --porcelain -- data/recovery ops/sebi-historical-offer-dates.json)" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No historical offer-date changes detected."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit recovery changes before rebase
+        if: steps.changes.outputs.changed == 'true'
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/recovery
+          if [ -f ops/sebi-historical-offer-dates.json ]; then
+            git add ops/sebi-historical-offer-dates.json
+          fi
+          git commit -m "chore(data): backfill historical offer dates"
+
+      - name: Rebase onto current main
+        if: steps.changes.outputs.changed == 'true'
+        shell: bash
+        run: |
+          git fetch origin main
+          git rebase origin/main
+
+      - name: Rebuild published dataset after rebase
+        if: steps.changes.outputs.changed == 'true'
+        run: node scripts/build-published-data.mjs
+
+      - name: Check recovery publication
+        if: steps.changes.outputs.changed == 'true'
+        run: node scripts/build-published-data.mjs --check
+
+      - name: Validate published IPO data
+        if: steps.changes.outputs.changed == 'true'
+        run: node scripts/validate-data.mjs
+
+      - name: Amend published dataset
+        if: steps.changes.outputs.changed == 'true'
+        shell: bash
+        run: |
+          git add data/ipos.json
+          git commit --amend --no-edit
+          git push origin HEAD:main
