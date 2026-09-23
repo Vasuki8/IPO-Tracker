@@ -3,7 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const DATA_PATH = path.join(ROOT, "data", "ipos.json");
+const DATA_PATH = path.join(ROOT, "data", "ipos.json");\nconst PAGES_STATUS_PATH = path.join(ROOT, "ops", "pages-publication.json");
 
 export const MONITORED_FIELDS = [
   "price_band",
@@ -111,7 +111,7 @@ export function summarizePipeline(env = process.env) {
 }
 
 export function renderMarkdown(report) {
-  const { dataset, pipeline } = report;
+  const { dataset, pipeline, pages_publication: pages } = report;
   const lines = [
     "# IPO Tracker operator report",
     "",
@@ -123,7 +123,7 @@ export function renderMarkdown(report) {
     `- Dataset rebuild: **${pipeline.stages.rebuild}**`,
     `- Data validation: **${pipeline.stages.validation}**`,
     `- Repository publication step: **${pipeline.stages.repository_publish}**`,
-    "- GitHub Pages publication: **not persisted by this sync workflow**",
+    `- GitHub Pages latest attempt: **${pages.latest_attempt_status}**${pages.latest_attempt_at ? ` at ${pages.latest_attempt_at}` : ""}`,\n    `- GitHub Pages last successful publication: ${pages.last_successful_at || "not recorded"}${pages.last_successful_commit_sha ? ` (commit ${pages.last_successful_commit_sha})` : ""}`,
     "",
     "## Freshness timestamps",
     "",
@@ -149,7 +149,7 @@ export function renderMarkdown(report) {
     "- A successful collector with a missing field means the current run completed; it does **not** mean the source necessarily contains that value.",
     "- A failed/cancelled NSE or SEBI stage is reported as **collection_failure** and should not be confused with a source-null field.",
     "- Field-specific source-null decisions remain documented in `docs/PROJECT_STATUS.md`; this report intentionally does not infer source-null from a null value alone.",
-    "- Website publication time is not stored in the dataset. Check the GitHub Pages deployment workflow until a publication timestamp is persisted explicitly.",
+    "- GitHub Pages publication time is operational metadata stored separately from IPO data and dataset generation time.",
     ""
   );
   return lines.join("\n");
