@@ -142,6 +142,14 @@ export function candidateRhpNiiMinimumBidDocument(record) {
   ) || null;
 }
 
+export function candidateProspectusRetailMinimumApplicationDocument(record) {
+  const existing = record.application_requirements?.retail?.minimum_application_amount_inr?.value;
+  if (existing !== null && existing !== undefined) return null;
+  return (record.documents || []).find((doc) =>
+    doc.type === "SEBI Prospectus PDF" && officialProspectusPdfUrl(doc.url)
+  ) || null;
+}
+
 export function candidateProspectusMinimumBidDocument(record) {
   if (record.minimum_bid_quantity?.value !== null && record.minimum_bid_quantity?.value !== undefined) return null;
   if (record.terms?.minimum_bid_quantity !== null && record.terms?.minimum_bid_quantity !== undefined) return null;
@@ -288,6 +296,47 @@ export function findExplicitNiiMinimumApplicationAmounts(pageText, page = 1) {
 export function findExplicitNiiMinimumApplicationAmountsInPages(pages) {
   return (pages || []).flatMap((pageText, index) =>
     findExplicitNiiMinimumApplicationAmounts(pageText, index + 1)
+  );
+}
+
+export function findExplicitRetailMinimumApplicationAmounts(pageText, page = 1) {
+  const text = normalizeText(pageText);
+  if (!text) return [];
+
+  const results = [];
+  const patterns = [
+    /\bminimum\s+application(?:\s+(?:amount|size))?\s*(?:viz\.?|of|is|shall\s+be)?\s*[:\-–—]?\s*(?:₹|rs\.?|inr)\s*([0-9][0-9,]*(?:\.[0-9]+)?)\s*(million|lakhs?|lacs?|crores?)?\b/ig,
+    /\bminimum\s+amount\s+(?:of|for)\s+(?:the\s+|an?\s+)?application\s*[:\-–—]?\s*(?:₹|rs\.?|inr)\s*([0-9][0-9,]*(?:\.[0-9]+)?)\s*(million|lakhs?|lacs?|crores?)?\b/ig
+  ];
+  const retailPattern = /\bretail\s+individual\s+(?:bidder|bidders|investor|investors)\b/i;
+
+  for (const pattern of patterns) {
+    pattern.lastIndex = 0;
+    for (const match of text.matchAll(pattern)) {
+      const contextStart = Math.max(0, match.index - 360);
+      const contextEnd = Math.min(text.length, match.index + 460);
+      const context = text.slice(contextStart, contextEnd);
+      if (!retailPattern.test(context)) continue;
+
+      const value = applicationAmountToInr(match[1], match[2]);
+      if (!value) continue;
+
+      results.push({
+        value,
+        source_value: match[0],
+        page,
+        context
+      });
+      if (results.length >= 12) return results;
+    }
+  }
+
+  return results;
+}
+
+export function findExplicitRetailMinimumApplicationAmountsInPages(pages) {
+  return (pages || []).flatMap((pageText, index) =>
+    findExplicitRetailMinimumApplicationAmounts(pageText, index + 1)
   );
 }
 
@@ -769,6 +818,55 @@ async function diagnoseProspectusMinimumBid() {
   console.log(JSON.stringify({ prospectus_minimum_bid_diagnostic_stats: stats }, null, 2));
 }
 
+async function diagnoseProspectusRetailMinimumApplication() {
+  ensurePdfTextTool();
+  const stats = {
+    candidates: 0,
+    downloaded: 0,
+    documents_with_explicit_retail_inr_amount: 0,
+    mentions: 0,
+    pages_scanned: 0,
+    fetch_errors: 0
+  };
+
+  for (const file of recoveryFiles()) {
+    const recovery = JSON.parse(fs.readFileSync(file, "utf8"));
+    for (const record of recovery.records || []) {
+      const document = candidateProspectusRetailMinimumApplicationDocument(record);
+      if (!document) continue;
+      stats.candidates += 1;
+
+      let pages;
+      try {
+        pages = fullPagesLayout(await fetchPdf(document.url));
+        stats.downloaded += 1;
+        stats.pages_scanned += pages.length;
+      } catch (error) {
+        stats.fetch_errors += 1;
+        console.warn(
+          "Prospectus retail minimum-application diagnostic unavailable for " +
+          record.issuer_name + ": " + error.message
+        );
+        continue;
+      }
+
+      const mentions = findExplicitRetailMinimumApplicationAmountsInPages(pages);
+      if (mentions.length > 0) stats.documents_with_explicit_retail_inr_amount += 1;
+      stats.mentions += mentions.length;
+
+      console.log(JSON.stringify({
+        issuer_name: record.issuer_name,
+        document: document.identity ?? document.type,
+        url: document.url,
+        pages_scanned: pages.length,
+        retail_minimum_application_mentions: mentions
+      }, null, 2));
+    }
+  }
+
+  console.log(JSON.stringify({ prospectus_retail_minimum_application_diagnostic_stats: stats }, null, 2));
+}
+
 async function diagnoseRhpMinimumApplication() {
   ensurePdfTextTool();
   const stats = {
@@ -1146,8 +1244,10 @@ const isMain = process.argv[1] &&
   pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
 
 if (isMain) {
-  const action = process.argv.includes("--diagnose-rhp-nii-min-bid")
-    ? diagnoseRhpNiiMinimumBid
+  const action = process.argv.includes("--diagnose-prospectus-retail-min-application")
+    ? diagnoseProspectusRetailMinimumApplication
+    : process.argv.includes("--diagnose-rhp-nii-min-bid")
+      ? diagnoseRhpNiiMinimumBid
     : process.argv.includes("--nii-minimum-application")
       ? runNiiMinimumApplication
     : process.argv.includes("--diagnose-rhp-min-application")
