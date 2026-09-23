@@ -162,14 +162,15 @@ jobs:
         id: publish_data
         shell: bash
         run: |
-          if git diff --quiet -- data/recovery data/ipos.json; then
-            echo "No source-backed IPO data changes detected."
+          if [ -z "$(git status --porcelain -- data/recovery data/ipos.json ops/sebi-historical-search.json)" ]; then
+            echo "No source-backed IPO data or historical search-state changes detected."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/recovery data/ipos.json
+          if [ -f ops/sebi-historical-search.json ]; then git add ops/sebi-historical-search.json; fi
           git commit -m "chore(data): sync official IPO sources"
 
           # Other operational workflows can advance main while this long-running

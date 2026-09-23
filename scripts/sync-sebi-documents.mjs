@@ -4,6 +4,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const RECOVERY_ROOT = path.join(ROOT, "data", "recovery");
+const HISTORICAL_SEARCH_STATE_PATH = path.join(ROOT, "ops", "sebi-historical-search.json");
 
 export const SEBI_RHP_LIST_URL =
   "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=11&ssid=15";
@@ -16,6 +17,7 @@ export const SEBI_PUBLIC_ISSUES_URL =
 export const SEBI_SEARCH_URL =
   "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes";
 export const MAX_TARGETED_SEARCHES = 12;
+export const MAX_HISTORICAL_TARGETED_SEARCHES = 24;
 
 const USER_AGENT =
   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
@@ -353,6 +355,57 @@ export function targetedSearchCandidates(records, maxSearches = MAX_TARGETED_SEA
     .slice(0, maxSearches);
 }
 
+export function historicalSearchKey(record) {
+  const year = String(record?.listing_date?.value || "").slice(0, 4);
+  return `${year || "unknown"}|${record?.id || canonicalIssuer(record?.issuer_name)}`;
+}
+
+function retryDelayMs(status) {
+  return status === "error" ? 24 * 60 * 60 * 1000 : 30 * 24 * 60 * 60 * 1000;
+}
+
+export function historicalSearchCandidates(
+  records,
+  state = { issuers: {} },
+  now = new Date().toISOString(),
+  maxSearches = MAX_HISTORICAL_TARGETED_SEARCHES
+) {
+  const nowMs = Date.parse(now);
+  return records
+    .filter(({ record }) => {
+      if (isLiveFeedRecord(record) || hasSebiDocument(record)) return false;
+      if (!/^20\d{2}-\d{2}-\d{2}$/.test(String(record?.listing_date?.value || ""))) return false;
+      const item = state?.issuers?.[historicalSearchKey(record)];
+      if (!item?.last_attempted_at) return true;
+      if (item.status === "matched") return false;
+      const attemptedMs = Date.parse(item.last_attempted_at);
+      if (!Number.isFinite(nowMs) || !Number.isFinite(attemptedMs)) return true;
+      return nowMs - attemptedMs >= retryDelayMs(item.status);
+    })
+    .sort((a, b) => {
+      const dateOrder = String(b.record.listing_date?.value || "").localeCompare(String(a.record.listing_date?.value || ""));
+      return dateOrder || a.record.issuer_name.localeCompare(b.record.issuer_name);
+    })
+    .slice(0, maxSearches);
+}
+
+function readHistoricalSearchState() {
+  if (!fs.existsSync(HISTORICAL_SEARCH_STATE_PATH)) {
+    return { schema_version: "1.0.0", issuers: {}, changed: false };
+  }
+  const state = JSON.parse(fs.readFileSync(HISTORICAL_SEARCH_STATE_PATH, "utf8"));
+  state.issuers ||= {};
+  state.changed = false;
+  return state;
+}
+
+function writeHistoricalSearchState(state) {
+  if (!state.changed) return;
+  const output = { schema_version: "1.0.0", issuers: state.issuers };
+  fs.mkdirSync(path.dirname(HISTORICAL_SEARCH_STATE_PATH), { recursive: true });
+  fs.writeFileSync(HISTORICAL_SEARCH_STATE_PATH, JSON.stringify(output, null, 2) + "\n");
+}
+
 export function searchTermForIssuer(issuerName) {
   const words = canonicalIssuer(issuerName).split(" ").filter(Boolean);
   const stopwords = new Set([
@@ -559,9 +612,16 @@ async function resolveOtherDocumentPdfs(records, now, detailCache, stats, change
   }
 }
 
-async function targetedSearch(records, now, detailCache, stats, changedRecords) {
-  const candidates = targetedSearchCandidates(records);
+async function targetedSearch(records, now, detailCache, stats, changedRecords, historicalState) {
+  const liveCandidates = targetedSearchCandidates(records)
+    .map((match) => ({ ...match, search_scope: "live" }));
+  const historicalCandidates = historicalSearchCandidates(records, historicalState, now)
+    .map((match) => ({ ...match, search_scope: "historical" }));
+  const candidates = [...liveCandidates, ...historicalCandidates];
+
   stats.targeted_candidates = candidates.length;
+  stats.targeted_live_candidates = liveCandidates.length;
+  stats.targeted_historical_candidates = historicalCandidates.length;
 
   for (const match of candidates) {
     stats.targeted_searches += 1;
@@ -572,12 +632,37 @@ async function targetedSearch(records, now, detailCache, stats, changedRecords) 
     } catch (error) {
       stats.targeted_errors += 1;
       console.warn(`SEBI targeted search failed for ${match.record.issuer_name}: ${error.message}`);
+      if (match.search_scope === "historical") {
+        historicalState.issuers[historicalSearchKey(match.record)] = {
+          issuer_name: match.record.issuer_name,
+          listing_date: match.record.listing_date?.value ?? null,
+          last_attempted_at: now,
+          status: "error",
+          search_url: url,
+          parsed_entries: 0,
+          matched_entries: 0
+        };
+        historicalState.changed = true;
+      }
       continue;
     }
 
     const parsedEntries = parseSebiListingHtml(html, null, url);
     stats.targeted_parsed_entries += parsedEntries.length;
     const entries = parsedEntries.filter((entry) => matchIssuerRecord([match], entry.issuer_name));
+
+    if (match.search_scope === "historical") {
+      historicalState.issuers[historicalSearchKey(match.record)] = {
+        issuer_name: match.record.issuer_name,
+        listing_date: match.record.listing_date?.value ?? null,
+        last_attempted_at: now,
+        status: entries.length > 0 ? "matched" : "no_match",
+        search_url: url,
+        parsed_entries: parsedEntries.length,
+        matched_entries: entries.length
+      };
+      historicalState.changed = true;
+    }
 
     if (entries.length === 0) continue;
 
@@ -596,6 +681,7 @@ async function run() {
   const now = new Date().toISOString();
   const recoveries = loadRecoveries();
   if (recoveries.length === 0) fail("no recovery manifests found");
+  const historicalSearchState = readHistoricalSearchState();
 
   const records = recoveries.flatMap((recovery) =>
     (recovery.data.records || []).map((record) => ({ recovery, record }))
@@ -631,6 +717,8 @@ async function run() {
     changed_records: 0,
     added_documents: 0,
     targeted_candidates: 0,
+    targeted_live_candidates: 0,
+    targeted_historical_candidates: 0,
     targeted_searches: 0,
     targeted_matches: 0,
     targeted_parsed_entries: 0,
@@ -653,9 +741,10 @@ async function run() {
     await applyEntry(match, entry, now, detailCache, stats, changedRecords);
   }
 
-  await targetedSearch(records, now, detailCache, stats, changedRecords);
+  await targetedSearch(records, now, detailCache, stats, changedRecords, historicalSearchState);
   await resolveOtherDocumentPdfs(records, now, detailCache, stats, changedRecords);
   stats.changed_records = changedRecords.size;
+  writeHistoricalSearchState(historicalSearchState);
 
   for (const recovery of recoveries) {
     if (!recovery.changed) continue;
@@ -666,7 +755,7 @@ async function run() {
   console.log(
     `SEBI document sync: ${stats.matched} matched latest-list entries, ` +
     `${stats.unmatched} unmatched; targeted ${stats.targeted_searches}/${stats.targeted_candidates} ` +
-    `sparse live record(s), ${stats.targeted_parsed_entries} targeted result filing(s), ` +
+    `record(s) (live=${stats.targeted_live_candidates}, historical=${stats.targeted_historical_candidates}), ${stats.targeted_parsed_entries} targeted result filing(s), ` +
     `${stats.targeted_matches} targeted filing match(es), ${stats.targeted_errors} targeted error(s); ` +
     `${stats.resolved_rhp_pdfs} RHP PDF(s), ${stats.resolved_prospectus_pdfs} Prospectus PDF(s), ` +
     `${stats.resolved_other_document_pdfs} Other Document PDF(s) resolved ` +
