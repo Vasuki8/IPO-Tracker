@@ -1024,3 +1024,8 @@ A separate hourly workflow at minute 57 scans a bounded, year-balanced set of of
 ### Historical offer-date parser v2
 
 Historical offer-date extraction now uses a strict label-to-date grammar and rejects Anchor Investor dates/unrelated nearby prose. Three parser-v1 false positives (Unimech Aerospace, CORONA Remedies and Nephrocare Health Services) are corrected through the race-safe semantic publication workflow with prior evidence retained in field correction history.
+
+
+### Historical issue-size retry
+
+NSE historical detail parser v1.1 now accepts a single explicit overall monetary amount from official `Issue Size`, `Total Issue Size` or `Offer Size` fields while still rejecting mixed offer legs, multiple competing amounts, and share-count arithmetic. Previous v1.0 no-field records are automatically eligible for one bounded retry.
