@@ -3232,3 +3232,27 @@ Parser behavior is now:
 - never derive monetary issue size from offered shares × issue price.
 
 Historical NSE detail parser version is bumped from `1.0.0` to `1.1.0`, so previously attempted records with remaining fields become eligible for one bounded, year-balanced reprocessing pass. Existing non-null fields are not overwritten.
+
+
+## BSE listing-notice archive diagnostic
+
+BSE's Public Issues summary remains unsuitable for automated universe discovery on GitHub Actions because it renders the issue table client-side. Individual BSE issue-detail pages also resolve to a generic BSE shell on the Actions runner.
+
+A separate official BSE source family is now being evaluated: **Notices & Circulars → Listing Operations**.
+
+BSE listing notices are server-rendered and have already proved useful for BSE-only IPO evidence. For example, the retained 3B Films notice supplied listing date, issue price and market lot and safely materialized the BSE-only record.
+
+The new read-only diagnostic:
+
+- queries the BSE `NoticesCirculars.aspx` server-rendered table using the documented URL-style parameters `id`, `txtscripcd`, `pagecont` and `subject`;
+- uses the strict subject query `Listing of Equity Shares of`;
+- parses only notice links whose subject itself begins `Listing of Equity Shares of ...`;
+- therefore excludes ordinary `Listing of New Securities of ...` preferential / warrant / ESOP actions;
+- retains notice number, issuer subject/name, SME/Equity segment and official BSE notice URL;
+- reports earliest/latest notice dates visible in the response;
+- reports discovered `pagecont` navigation values, query links and hidden form fields so pagination/date filtering can be implemented from observed BSE behavior rather than guessed;
+- writes no IPO data.
+
+### Next decision
+
+If production shows that the filtered archive exposes historical pagination or a usable server-side result set, promote it into a BSE historical-universe collector and cross-check the discovered issuers against the NSE 2020-2025 universe before materializing only unambiguous BSE-only IPO listings.
