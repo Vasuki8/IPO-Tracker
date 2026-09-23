@@ -20,6 +20,8 @@ on:
       - "scripts/test-sync-nse-historical.mjs"
       - "scripts/sync-nse-live.mjs"
       - "scripts/test-sync-nse-live.mjs"
+      - "scripts/backfill-historical-pdf-fields.mjs"
+      - "scripts/test-backfill-historical-pdf-fields.mjs"
       - "scripts/backfill-historical-offer-dates.mjs"
       - "scripts/test-backfill-historical-offer-dates.mjs"
       - "scripts/sync-sebi-documents.mjs"
@@ -118,6 +120,9 @@ jobs:
       - name: Backfill historical SEBI offer dates
         run: node scripts/backfill-historical-offer-dates.mjs
 
+      - name: Backfill historical SEBI PDF fields
+        run: node scripts/backfill-historical-pdf-fields.mjs
+
       - name: Test retained field publication status
         run: node scripts/test-publish-field-status.mjs
 
@@ -183,6 +188,7 @@ jobs:
           if [ -f ops/sebi-historical-search.json ]; then git add ops/sebi-historical-search.json; fi
           if [ -f ops/nse-historical-detail.json ]; then git add ops/nse-historical-detail.json; fi
           if [ -f ops/sebi-historical-offer-dates.json ]; then git add ops/sebi-historical-offer-dates.json; fi
+          if [ -f ops/sebi-historical-pdf-fields.json ]; then git add ops/sebi-historical-pdf-fields.json; fi
           git commit -m "chore(data): sync official IPO sources"
 
           # Other operational workflows can advance main while this long-running
