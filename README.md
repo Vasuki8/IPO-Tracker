@@ -999,3 +999,8 @@ The backend now rotates through up to **24 historical IPOs per sync** and probes
 ### BSE-only historical recovery
 
 Verified BSE source-manifest entries can now materialize BSE-only IPO records when no NSE historical record exists. The BSE fetcher primes a BSE session/cookies first, supports fixed-price issue pages, and retains BSE-specific evidence for issue terms and offer dates.
+
+
+### BSE-only inclusion safety
+
+BSE-only issuer creation now requires an official BSE **listing notice** with matching issuer identity and listing date. BSE issue-detail pages remain useful for enriching known issuers but cannot create unmatched universe records by themselves.
