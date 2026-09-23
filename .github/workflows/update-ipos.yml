@@ -26,6 +26,8 @@ on:
       - "scripts/test-publish-field-status.mjs"
       - "scripts/operator-report.mjs"
       - "scripts/test-operator-report.mjs"
+      - "scripts/record-operator-snapshot.mjs"
+      - "scripts/test-record-operator-snapshot.mjs"
       - "scripts/diagnose-nse-issue-information.mjs"
       - "scripts/test-diagnose-nse-issue-information.mjs"
       - "scripts/diagnose-nse-ipo-detail.mjs"
@@ -162,3 +164,26 @@ jobs:
           VALIDATION_OUTCOME: ${{ steps.validate_data.outcome }}
           REPOSITORY_PUBLISH_OUTCOME: ${{ steps.publish_data.outcome }}
         run: node scripts/operator-report.mjs --github-summary
+
+      - name: Persist latest operator snapshot
+        if: always()
+        env:
+          NSE_COLLECTION_OUTCOME: ${{ steps.collect_nse.outcome }}
+          SEBI_COLLECTION_OUTCOME: ${{ steps.collect_sebi.outcome }}
+          REBUILD_OUTCOME: ${{ steps.rebuild.outcome }}
+          VALIDATION_OUTCOME: ${{ steps.validate_data.outcome }}
+          REPOSITORY_PUBLISH_OUTCOME: ${{ steps.publish_data.outcome }}
+        shell: bash
+        run: |
+          node scripts/record-operator-snapshot.mjs
+
+          if git diff --quiet -- ops/operator-snapshot.json; then
+            echo "Operator snapshot is unchanged."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ops/operator-snapshot.json
+          git commit -m "chore(ops): record operator snapshot"
+          git push

@@ -932,3 +932,10 @@ No IPO value or field status is changed by this classification, and source-null 
 The operator report now maps each unhealthy/unknown health reason to a priority, diagnostic step, and safe recovery recommendation. Guidance is informational only: it does not rerun workflows, rewrite data, or send notifications.
 
 **Handoff:** next persist a machine-readable **latest operator snapshot** containing sync health, reasons, guidance, and run identity, separate from IPO data and without creating workflow loops.
+
+
+### Durable latest operator snapshot
+
+The hourly backend sync now persists its latest machine-readable operational state to `ops/operator-snapshot.json`: run identity, health/reasons, recovery guidance, stage outcomes, freshness timestamps, and Pages publication state. IPO records are deliberately excluded.
+
+**Handoff:** next add bounded **operator health-transition history** so repeated failures/staleness can be distinguished from one-off events without accumulating unlimited workflow history.

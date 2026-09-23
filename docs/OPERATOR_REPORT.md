@@ -84,3 +84,21 @@ Guidance is intentionally conservative. Examples:
 - missing timestamps → repair retention of real operational timestamps; never synthesize historical times.
 
 The operator report does not execute these actions. It does not rerun workflows, modify recovery manifests, change IPO values, or send notifications.
+
+
+## Durable operator snapshot
+
+The hourly sync persists its latest operational state to `ops/operator-snapshot.json` after producing the Job Summary.
+
+The snapshot contains only operational metadata:
+
+- sync workflow run ID / attempt / commit;
+- overall health, reasons, thresholds and measured ages;
+- recovery guidance;
+- collection/build/validation/publication step outcomes;
+- dataset/collection/evidence freshness timestamps;
+- latest retained GitHub Pages publication state.
+
+It deliberately excludes IPO records and field coverage. `data/ipos.json` remains the only published IPO dataset.
+
+The snapshot is written in an `if: always()` workflow step so a failed collector can still leave durable diagnostic state. Its bot commit changes only `ops/operator-snapshot.json`, which is outside the sync workflow's push-path trigger, preventing a recursive sync loop.

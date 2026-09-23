@@ -35,6 +35,9 @@ jobs:
       - name: Test operator freshness report
         run: node scripts/test-operator-report.mjs
 
+      - name: Test operator snapshot contract
+        run: node scripts/test-record-operator-snapshot.mjs
+
       - name: Test GitHub Pages publication status
         run: node scripts/test-record-pages-publication.mjs
 
