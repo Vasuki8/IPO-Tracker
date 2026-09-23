@@ -3,6 +3,7 @@ import path from "node:path";
 import os from "node:os";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { selectBalancedByListingYear } from "./historical-batch-selection.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const RECOVERY_ROOT = path.join(ROOT, "data", "recovery");
@@ -147,21 +148,16 @@ export function offerDateCandidates(
   currentYear = new Date().getUTCFullYear(),
   max = HISTORICAL_OFFER_DATE_BATCH_SIZE
 ) {
-  return records
-    .filter(({ record }) => {
-      if (!candidateOfferDateDocument(record, currentYear)) return false;
-      const item = state?.issuers?.[offerDateKey(record)];
-      if (!item) return true;
-      if (item.parser_version !== HISTORICAL_OFFER_DATE_PARSER_VERSION) return true;
-      if (item.status !== "error") return false;
-      const attempted = Date.parse(item.last_attempted_at || "");
-      return !Number.isFinite(attempted) || Date.now() - attempted >= 24 * 60 * 60 * 1000;
-    })
-    .sort((a, b) => {
-      const dateOrder = String(b.record.listing_date?.value || "").localeCompare(String(a.record.listing_date?.value || ""));
-      return dateOrder || a.record.issuer_name.localeCompare(b.record.issuer_name);
-    })
-    .slice(0, max);
+  const eligible = records.filter(({ record }) => {
+    if (!candidateOfferDateDocument(record, currentYear)) return false;
+    const item = state?.issuers?.[offerDateKey(record)];
+    if (!item) return true;
+    if (item.parser_version !== HISTORICAL_OFFER_DATE_PARSER_VERSION) return true;
+    if (item.status !== "error") return false;
+    const attempted = Date.parse(item.last_attempted_at || "");
+    return !Number.isFinite(attempted) || Date.now() - attempted >= 24 * 60 * 60 * 1000;
+  });
+  return selectBalancedByListingYear(eligible, max);
 }
 
 function fieldSource(document, collectedAt) {
