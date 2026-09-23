@@ -6,6 +6,13 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const DATA_PATH = path.join(ROOT, "data", "ipos.json");
 const PAGES_STATUS_PATH = path.join(ROOT, "ops", "pages-publication.json");
 
+export const DEFAULT_STALENESS_THRESHOLDS_HOURS = {
+  dataset_generated: 3,
+  record_collection: 3,
+  evidence_collection: 24,
+  pages_publication: 3
+};
+
 export const MONITORED_FIELDS = [
   "price_band",
   "issue_price",
@@ -111,10 +118,76 @@ export function summarizePipeline(env = process.env) {
   };
 }
 
+function ageHours(timestamp, nowMs) {
+  if (!timestamp) return null;
+  const value = Date.parse(timestamp);
+  if (!Number.isFinite(value)) return null;
+  return Math.max(0, (nowMs - value) / 3_600_000);
+}
+
+export function classifyOperatorHealth(dataset, pipeline, pages, options = {}) {
+  const now = options.now ?? pipeline.report_generated_at ?? new Date().toISOString();
+  const nowMs = Date.parse(now);
+  const thresholds = { ...DEFAULT_STALENESS_THRESHOLDS_HOURS, ...(options.thresholds_hours || {}) };
+  if (!Number.isFinite(nowMs)) {
+    return { overall: "unknown", reasons: ["invalid_report_time"], thresholds_hours: thresholds, ages_hours: {} };
+  }
+
+  const ages = {
+    dataset_generated: ageHours(dataset.dataset_generated_at, nowMs),
+    record_collection: ageHours(dataset.latest_record_collected_at, nowMs),
+    evidence_collection: ageHours(dataset.latest_evidence_collected_at, nowMs),
+    pages_publication: ageHours(pages.last_successful_at, nowMs)
+  };
+
+  const reasons = [];
+  if (pipeline.collection_health === "collection_failure") reasons.push("collection_failure");
+  if (pages.latest_attempt_status === "failure" || pages.latest_attempt_status === "cancelled") reasons.push("pages_deployment_failure");
+
+  const staleChecks = [
+    ["dataset_generated", "stale_dataset"],
+    ["record_collection", "stale_record_collection"],
+    ["evidence_collection", "stale_evidence_collection"],
+    ["pages_publication", "stale_pages_publication"]
+  ];
+  for (const [key, reason] of staleChecks) {
+    if (ages[key] !== null && ages[key] > thresholds[key]) reasons.push(reason);
+  }
+
+  const missingSignals = [];
+  if (ages.dataset_generated === null) missingSignals.push("dataset_generated_time_missing");
+  if (ages.record_collection === null) missingSignals.push("record_collection_time_missing");
+  if (ages.pages_publication === null) missingSignals.push("pages_publication_time_missing");
+
+  let overall = "healthy";
+  if (reasons.includes("collection_failure") || reasons.includes("pages_deployment_failure")) overall = "failure";
+  else if (reasons.some((reason) => reason.startsWith("stale_"))) overall = "stale";
+  else if (missingSignals.length || pipeline.collection_health === "not_measured") overall = "unknown";
+
+  return {
+    overall,
+    reasons: [...reasons, ...missingSignals],
+    thresholds_hours: thresholds,
+    ages_hours: Object.fromEntries(Object.entries(ages).map(([key, value]) => [
+      key,
+      value === null ? null : Math.round(value * 100) / 100
+    ]))
+  };
+}
+
 export function renderMarkdown(report) {
-  const { dataset, pipeline, pages_publication: pages } = report;
+  const { dataset, pipeline, pages_publication: pages, health } = report;
   const lines = [
     "# IPO Tracker operator report",
+    "",
+    "## Operator health",
+    "",
+    `- Overall: **${health.overall}**`,
+    `- Reasons: ${health.reasons.length ? health.reasons.join(", ") : "none"}`,
+    `- Dataset age: ${health.ages_hours.dataset_generated ?? "unknown"}h (stale after ${health.thresholds_hours.dataset_generated}h)`,
+    `- Record collection age: ${health.ages_hours.record_collection ?? "unknown"}h (stale after ${health.thresholds_hours.record_collection}h)`,
+    `- Evidence collection age: ${health.ages_hours.evidence_collection ?? "unknown"}h (stale after ${health.thresholds_hours.evidence_collection}h)`,
+    `- Last successful Pages publication age: ${health.ages_hours.pages_publication ?? "unknown"}h (stale after ${health.thresholds_hours.pages_publication}h)`,
     "",
     "## Pipeline health",
     "",
@@ -172,11 +245,15 @@ export function summarizePagesPublication(status) {
   };
 }
 
-export function buildOperatorReport(data, env = process.env, pagesStatus = null) {
+export function buildOperatorReport(data, env = process.env, pagesStatus = null, options = {}) {
+  const dataset = summarizeDataset(data);
+  const pipeline = summarizePipeline(env);
+  const pagesPublication = summarizePagesPublication(pagesStatus);
   return {
-    dataset: summarizeDataset(data),
-    pipeline: summarizePipeline(env),
-    pages_publication: summarizePagesPublication(pagesStatus)
+    dataset,
+    pipeline,
+    pages_publication: pagesPublication,
+    health: classifyOperatorHealth(dataset, pipeline, pagesPublication, options)
   };
 }
 
