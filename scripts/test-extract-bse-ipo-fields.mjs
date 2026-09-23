@@ -3,8 +3,8 @@ import { applyBseParsedFields, buildBseOnlyRecoveryRecord, parseBseEquityIssuePa
 const issue=`<div>Book Building - Live Security Type Equity Symbol GROWW Issue Period 04 Nov 2025 to 07 Nov 2025 Issue Size – No. of Shares 36,47,76,528 Price Band 95.00-100.00 Face Value 2.00 Market Lot 150 Minimum Bid Quantity 150 Book Running Lead Manager X</div>`;
 assert.deepEqual(parseBseEquityIssuePage(issue),{symbol:"GROWW",issue_size_shares:364776528,price_band:{min:95,max:100},issue_price:null,market_lot:150,minimum_bid_quantity:150,open_date_raw:"04 Nov 2025",close_date_raw:"07 Nov 2025"});
 assert.equal(parseBseEquityIssuePage("<div>Security Type Secured Redeemable non-convertible Debentures</div>"),null);
-const notice=`<div>Subject Listing of Equity Shares of 3B Films Limited Attachments Annexure I.pdf Content Trading Members are informed that effective from Friday, June 6, 2025, the Equity Shares shall be listed. Market Lot 3000 Issue Price for the current Public issue Rs. 50/- per share</div>`;
-const n=parseBseListingNotice(notice); assert.equal(n.company,"3B Films Limited");assert.equal(n.listing_date_raw,"June 6, 2025");assert.equal(n.market_lot,3000);assert.equal(n.issue_price,50);
+const notice=`<div>Category Company related Segment SME Subject Listing of Equity Shares of 3B Films Limited Attachments Annexure I.pdf Content Trading Members are informed that effective from Friday, June 6, 2025, the Equity Shares shall be listed. Market Lot 3000 Issue Price for the current Public issue Rs. 50/- per share</div>`;
+const n=parseBseListingNotice(notice); assert.equal(n.company,"3B Films Limited");assert.equal(n.listing_date_raw,"June 6, 2025");assert.equal(n.market_lot,3000);assert.equal(n.issue_price,50);assert.equal(n.board,"SME");
 console.log("BSE detail/listing parser tests passed.");
 
 const record={issuer_name:"3B Films Limited",listing_date:{value:null},issue_price:{value:null},market_lot:{value:null},documents:[]};
@@ -20,26 +20,35 @@ const fixedIssue = parseBseEquityIssuePage(`<div>Fixed Price - Historical Securi
 assert.equal(fixedIssue.issue_price,25);
 assert.equal(fixedIssue.issue_size_shares,3498000);
 
-const bseOnly = buildBseOnlyRecoveryRecord(
-  {year:2025,issuer_name:"Kenrik Industries Limited",kind:"issue_detail",url:"https://www.bseindia.com/markets/publicIssues/DisplayIPO.aspx?IPONo=7058",publication_date:null},
+const bseOnlyFromIssueDetail = buildBseOnlyRecoveryRecord(
+  {year:2025,issuer_name:"Kenrik Industries Limited",kind:"issue_detail",materialize_if_missing:true,url:"https://www.bseindia.com/markets/publicIssues/DisplayIPO.aspx?IPONo=7058",publication_date:null},
   fixedIssue,
   "2026-09-23T20:30:00Z"
 );
-assert.equal(bseOnly.issuer_name,"Kenrik Industries Limited");
-assert.equal(bseOnly.nse_symbol,null);
-assert.equal(bseOnly.bse_symbol,"KENRIK");
-assert.equal(bseOnly.issue_price.value,25);
-assert.equal(bseOnly.market_lot.value,6000);
-assert.equal(bseOnly.minimum_bid_quantity.value,6000);
-assert.equal(bseOnly.open_date.value,"2025-04-29");
-assert.equal(bseOnly.close_date.value,"2025-05-06");
-assert.equal(bseOnly.documents[0].type,"BSE Public Issue Detail");
+assert.equal(bseOnlyFromIssueDetail,null);
 
 const bseOnlyListing = buildBseOnlyRecoveryRecord(
-  {year:2025,issuer_name:"3B Films Limited",kind:"listing_notice",url:"https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250605-49",publication_date:"2025-06-05"},
+  {year:2025,issuer_name:"3B Films Limited",kind:"listing_notice",materialize_if_missing:true,url:"https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250605-49",publication_date:"2025-06-05"},
   n,
   "2026-09-23T20:30:00Z"
 );
-assert.equal(bseOnlyListing.status,"listed");
+assert.equal(bseOnlyListing.status,"listed");assert.equal(bseOnlyListing.board,"SME");
 assert.equal(bseOnlyListing.status_evidence.length,1);
 assert.equal(bseOnlyListing.listing_date.value,"2025-06-06");
+
+assert.equal(
+  buildBseOnlyRecoveryRecord(
+    {year:2025,issuer_name:"Wrong Limited",kind:"listing_notice",materialize_if_missing:true,url:"https://www.bseindia.com/x"},
+    n,
+    "2026-09-23T20:30:00Z"
+  ),
+  null
+);
+assert.equal(
+  buildBseOnlyRecoveryRecord(
+    {year:2025,issuer_name:"3B Films Limited",kind:"listing_notice",materialize_if_missing:false,url:"https://www.bseindia.com/x"},
+    n,
+    "2026-09-23T20:30:00Z"
+  ),
+  null
+);
