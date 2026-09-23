@@ -1,7 +1,7 @@
 {
   "source_family": "Official NSE / SEBI / BSE offer-document and exchange evidence",
   "collection_started_at": "2026-09-23T19:29:29.146Z",
-  "generated_at": "2026-09-23T21:18:31.049Z",
+  "generated_at": "2026-09-23T21:51:10.408Z",
   "records": [
     {
       "id": "3b-films-limited",
@@ -4031,10 +4031,17 @@
           "url": "https://www.nseindia.com/api/ipo-detail?symbol=CORONA&series=EQ",
           "publication_date": null,
           "collected_at": "2026-09-23T19:44:18.443Z"
+        },
+        {
+          "type": "NSE Annual Report PDF",
+          "identity": "CORONA Remedies Limited — Annual Report 2025-26",
+          "url": "https://nsearchives.nseindia.com/annual_reports/AR_29392_CORONA_2025_2026_A_10308084_15062026212248.pdf",
+          "publication_date": "2026-06-15",
+          "collected_at": "2026-09-23T21:40:59.525Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T21:05:23.397Z",
+      "last_collected_at": "2026-09-23T21:40:59.525Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -4126,17 +4133,50 @@
         }
       },
       "open_date": {
-        "value": "2025-12-05",
-        "source_value": "Offer Opening Date, on which Bids by Anchor Investors were submitted, and allocation to Anchor Investors was completed, i.e., Friday, December 5, 2025 Anchor Investor O",
-        "page": 8,
+        "value": "2025-12-08",
+        "source_value": "Issue Period: December 08, 2025 to December 10, 2025",
+        "page": 84,
         "status": "verified",
         "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765451767149.pdf",
-          "document_type": "SEBI Prospectus PDF",
-          "document_identity": "CORONA Remedies Limited - Prospectus — PDF",
-          "publication_date": "2025-12-11",
-          "collected_at": "2026-09-23T21:05:23.397Z"
-        }
+          "url": "https://nsearchives.nseindia.com/annual_reports/AR_29392_CORONA_2025_2026_A_10308084_15062026212248.pdf",
+          "document_type": "NSE Annual Report PDF",
+          "document_identity": "CORONA Remedies Limited — Annual Report 2025-26",
+          "publication_date": "2026-06-15",
+          "collected_at": "2026-09-23T21:40:59.525Z"
+        },
+        "corrections": [
+          {
+            "corrected_at": "2026-09-23T21:40:59.525Z",
+            "reason": "Parser v1 false-positive date capture; replaced from explicit official NSE issue-period disclosure.",
+            "previous_value": "2025-12-05",
+            "previous_status": "verified",
+            "previous_source_value": "Offer Opening Date, on which Bids by Anchor Investors were submitted, and allocation to Anchor Investors was completed, i.e., Friday, December 5, 2025 Anchor Investor O",
+            "previous_evidence": [
+              {
+                "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765451767149.pdf",
+                "document_type": "SEBI Prospectus PDF",
+                "document_identity": "CORONA Remedies Limited - Prospectus — PDF",
+                "publication_date": "2025-12-11",
+                "page": 8,
+                "collected_at": "2026-09-23T21:05:23.397Z"
+              }
+            ]
+          }
+        ]
+      },
+      "close_date": {
+        "value": "2025-12-10",
+        "source_value": "Issue Period: December 08, 2025 to December 10, 2025",
+        "page": 84,
+        "status": "verified",
+        "source": {
+          "url": "https://nsearchives.nseindia.com/annual_reports/AR_29392_CORONA_2025_2026_A_10308084_15062026212248.pdf",
+          "document_type": "NSE Annual Report PDF",
+          "document_identity": "CORONA Remedies Limited — Annual Report 2025-26",
+          "publication_date": "2026-06-15",
+          "collected_at": "2026-09-23T21:40:59.525Z"
+        },
+        "corrections": []
       }
     },
     {
@@ -8297,7 +8337,7 @@
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T21:10:51.292Z",
+      "last_collected_at": "2026-09-23T21:40:59.610Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -8385,6 +8425,32 @@
           "document_identity": "ICICI Prudential Asset Management Company Limited - prospectus — PDF",
           "publication_date": "2025-12-17",
           "collected_at": "2026-09-23T21:10:51.292Z"
+        }
+      },
+      "open_date": {
+        "value": "2025-12-12",
+        "source_value": "OFFER OPENED ON FRIDAY, DECEMBER 12, 2025",
+        "page": 4,
+        "status": "verified",
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765973231553.pdf",
+          "document_type": "SEBI Prospectus PDF",
+          "document_identity": "ICICI Prudential Asset Management Company Limited - prospectus — PDF",
+          "publication_date": "2025-12-17",
+          "collected_at": "2026-09-23T21:40:59.610Z"
+        }
+      },
+      "close_date": {
+        "value": "2025-12-16",
+        "source_value": "OFFER CLOSED ON TUESDAY, DECEMBER 16, 2025",
+        "page": 4,
+        "status": "verified",
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765973231553.pdf",
+          "document_type": "SEBI Prospectus PDF",
+          "document_identity": "ICICI Prudential Asset Management Company Limited - prospectus — PDF",
+          "publication_date": "2025-12-17",
+          "collected_at": "2026-09-23T21:40:59.610Z"
         }
       }
     },
@@ -12998,10 +13064,17 @@
           "url": "https://www.nseindia.com/api/ipo-detail?symbol=NEPHROPLUS&series=EQ",
           "publication_date": null,
           "collected_at": "2026-09-23T19:44:18.443Z"
+        },
+        {
+          "type": "NSE Monitoring Agency Report",
+          "identity": "Nephrocare Health Services Limited — Monitoring Agency Report",
+          "url": "https://nsearchives.nseindia.com/corporate/NEPHROCARE1_12022026130442_DisclosureofMonitoringAgencyReportdt1202026.pdf",
+          "publication_date": "2026-02-12",
+          "collected_at": "2026-09-23T21:40:59.525Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T21:05:23.397Z",
+      "last_collected_at": "2026-09-23T21:40:59.525Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -13080,17 +13153,50 @@
         }
       },
       "open_date": {
-        "value": "2025-12-09",
-        "source_value": "Offer Opening Date, being Tuesday, December 9, 2025 on which Bids by Anchor Investors were submitted, prior to and after which BRLMs did not accept any Bids from Anchor",
-        "page": 9,
+        "value": "2025-12-10",
+        "source_value": "Issue Period: December 10, 2025, to December 12, 2025",
+        "page": 5,
         "status": "verified",
         "source": {
-          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765775775793.pdf",
-          "document_type": "SEBI Prospectus PDF",
-          "document_identity": "Nephrocare Health Services Limited - Prospectus — PDF",
-          "publication_date": "2025-12-15",
-          "collected_at": "2026-09-23T21:05:23.397Z"
-        }
+          "url": "https://nsearchives.nseindia.com/corporate/NEPHROCARE1_12022026130442_DisclosureofMonitoringAgencyReportdt1202026.pdf",
+          "document_type": "NSE Monitoring Agency Report",
+          "document_identity": "Nephrocare Health Services Limited — Monitoring Agency Report",
+          "publication_date": "2026-02-12",
+          "collected_at": "2026-09-23T21:40:59.525Z"
+        },
+        "corrections": [
+          {
+            "corrected_at": "2026-09-23T21:40:59.525Z",
+            "reason": "Parser v1 false-positive date capture; replaced from explicit official NSE issue-period disclosure.",
+            "previous_value": "2025-12-09",
+            "previous_status": "verified",
+            "previous_source_value": "Offer Opening Date, being Tuesday, December 9, 2025 on which Bids by Anchor Investors were submitted, prior to and after which BRLMs did not accept any Bids from Anchor",
+            "previous_evidence": [
+              {
+                "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765775775793.pdf",
+                "document_type": "SEBI Prospectus PDF",
+                "document_identity": "Nephrocare Health Services Limited - Prospectus — PDF",
+                "publication_date": "2025-12-15",
+                "page": 9,
+                "collected_at": "2026-09-23T21:05:23.397Z"
+              }
+            ]
+          }
+        ]
+      },
+      "close_date": {
+        "value": "2025-12-12",
+        "source_value": "Issue Period: December 10, 2025, to December 12, 2025",
+        "page": 5,
+        "status": "verified",
+        "source": {
+          "url": "https://nsearchives.nseindia.com/corporate/NEPHROCARE1_12022026130442_DisclosureofMonitoringAgencyReportdt1202026.pdf",
+          "document_type": "NSE Monitoring Agency Report",
+          "document_identity": "Nephrocare Health Services Limited — Monitoring Agency Report",
+          "publication_date": "2026-02-12",
+          "collected_at": "2026-09-23T21:40:59.525Z"
+        },
+        "corrections": []
       }
     },
     {
@@ -13965,7 +14071,7 @@
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T21:10:51.292Z",
+      "last_collected_at": "2026-09-23T21:40:59.610Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -14066,6 +14172,19 @@
           "document_identity": "PARK MEDI WORLD LIMITED - Prospectus — PDF",
           "publication_date": "2025-12-15",
           "collected_at": "2026-09-23T21:10:51.292Z"
+        }
+      },
+      "close_date": {
+        "value": "2025-12-12",
+        "source_value": "OFFER CLOSED ON FRIDAY, DECEMBER 12, 2025",
+        "page": 3,
+        "status": "verified",
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765775863248.pdf",
+          "document_type": "SEBI Prospectus PDF",
+          "document_identity": "PARK MEDI WORLD LIMITED - Prospectus — PDF",
+          "publication_date": "2025-12-15",
+          "collected_at": "2026-09-23T21:40:59.610Z"
         }
       }
     },
@@ -19977,7 +20096,7 @@
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:50:40.057Z",
+      "last_collected_at": "2026-09-23T21:40:59.610Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -20053,6 +20172,32 @@
           "document_identity": "NSE Issue Information — SUDEEPPHRM",
           "publication_date": null,
           "collected_at": "2026-09-23T19:50:40.057Z"
+        }
+      },
+      "open_date": {
+        "value": "2025-11-21",
+        "source_value": "OFFER OPENED ON Friday, November 21, 2025",
+        "page": 3,
+        "status": "verified",
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1764154698763.pdf",
+          "document_type": "SEBI Prospectus PDF",
+          "document_identity": "Sudeep Pharma Limited - Prospectus — PDF",
+          "publication_date": "2025-11-26",
+          "collected_at": "2026-09-23T21:40:59.610Z"
+        }
+      },
+      "close_date": {
+        "value": "2025-11-25",
+        "source_value": "OFFER CLOSED ON Tuesday, November 25, 2025",
+        "page": 3,
+        "status": "verified",
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1764154698763.pdf",
+          "document_type": "SEBI Prospectus PDF",
+          "document_identity": "Sudeep Pharma Limited - Prospectus — PDF",
+          "publication_date": "2025-11-26",
+          "collected_at": "2026-09-23T21:40:59.610Z"
         }
       }
     },
@@ -22034,7 +22179,7 @@
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:44:18.443Z",
+      "last_collected_at": "2026-09-23T21:40:59.610Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -22110,6 +22255,32 @@
           "document_identity": "NSE Issue Information — WAKEFIT",
           "publication_date": null,
           "collected_at": "2026-09-23T19:44:18.443Z"
+        }
+      },
+      "open_date": {
+        "value": "2025-12-08",
+        "source_value": "OFFER OPENED ON Monday, December 8, 2025",
+        "page": 2,
+        "status": "verified",
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765516619623.pdf",
+          "document_type": "SEBI Prospectus PDF",
+          "document_identity": "Wakefit Innovations Limited - Prospectus — PDF",
+          "publication_date": "2025-12-12",
+          "collected_at": "2026-09-23T21:40:59.610Z"
+        }
+      },
+      "close_date": {
+        "value": "2025-12-10",
+        "source_value": "OFFER CLOSED ON Wednesday, December 10, 2025",
+        "page": 2,
+        "status": "verified",
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765516619623.pdf",
+          "document_type": "SEBI Prospectus PDF",
+          "document_identity": "Wakefit Innovations Limited - Prospectus — PDF",
+          "publication_date": "2025-12-12",
+          "collected_at": "2026-09-23T21:40:59.610Z"
         }
       }
     },

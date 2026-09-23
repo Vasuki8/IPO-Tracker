@@ -4,13 +4,21 @@
     "2025|icici-prudential-asset-management-company-limited": {
       "issuer_name": "ICICI Prudential Asset Management Company Limited",
       "listing_date": "2025-12-19",
-      "last_attempted_at": "2026-09-23T21:05:23.397Z",
-      "parser_version": "1.0.0",
-      "status": "explicit_dates_absent",
-      "open_date": null,
-      "close_date": null,
-      "open_extraction": null,
-      "close_extraction": null,
+      "last_attempted_at": "2026-09-23T21:40:59.610Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": "2025-12-12",
+      "close_date": "2025-12-16",
+      "open_extraction": {
+        "value": "2025-12-12",
+        "source_value": "OFFER OPENED ON FRIDAY, DECEMBER 12, 2025",
+        "page": 4
+      },
+      "close_extraction": {
+        "value": "2025-12-16",
+        "source_value": "OFFER CLOSED ON TUESDAY, DECEMBER 16, 2025",
+        "page": 4
+      },
       "document": {
         "type": "SEBI Prospectus PDF",
         "identity": "ICICI Prudential Asset Management Company Limited - prospectus — PDF",
@@ -22,32 +30,63 @@
     "2024|unimech-aerospace-and-manufacturing-limited": {
       "issuer_name": "Unimech Aerospace and Manufacturing Limited",
       "listing_date": "2024-12-31",
-      "last_attempted_at": "2026-09-23T21:05:23.397Z",
-      "parser_version": "1.0.0",
-      "status": "extracted",
-      "open_date": null,
-      "close_date": "2024-12-05",
+      "last_attempted_at": "2026-09-23T21:40:59.525Z",
+      "parser_version": "2.0.0",
+      "status": "corrected_official_nse",
+      "open_date": "2024-12-23",
+      "close_date": "2024-12-26",
       "open_extraction": null,
-      "close_extraction": {
-        "value": "2024-12-05",
-        "source_value": "Offer Closing Date. F&S has, through its letter dated December 5, 2024 accorded its consent to use the F&S Report in this Prospectus. This study has been undertaken thr",
-        "page": 29
-      },
+      "close_extraction": null,
       "document": {
         "type": "SEBI Prospectus PDF",
         "identity": "Unimech Aerospace and Manufacturing Limited - Prospectus — PDF",
         "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1735534463367.pdf",
         "publication_date": "2024-12-30"
       },
-      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1735534463367.pdf"
+      "source_url": "https://nsearchives.nseindia.com/corporate/UNIMECH_12022026181434_Monitoring_Agency_Report_covering_Signed.pdf",
+      "legacy_parser_version": "1.0.0",
+      "legacy_status": "extracted",
+      "legacy_open_extraction": null,
+      "legacy_close_extraction": {
+        "value": "2024-12-05",
+        "source_value": "Offer Closing Date. F&S has, through its letter dated December 5, 2024 accorded its consent to use the F&S Report in this Prospectus. This study has been undertaken thr",
+        "page": 29
+      },
+      "corrected_at": "2026-09-23T21:40:59.525Z",
+      "correction_reason": "Parser v1 false-positive date capture; replaced from explicit official NSE issue-period disclosure.",
+      "correction": {
+        "open_date": {
+          "previous_value": null,
+          "replacement_value": "2024-12-23"
+        },
+        "close_date": {
+          "previous_value": "2024-12-05",
+          "replacement_value": "2024-12-26"
+        },
+        "source_value": "Issue Period: December 23, 2024, to December 26, 2024",
+        "source": {
+          "url": "https://nsearchives.nseindia.com/corporate/UNIMECH_12022026181434_Monitoring_Agency_Report_covering_Signed.pdf",
+          "document_type": "NSE Monitoring Agency Report",
+          "document_identity": "Unimech Aerospace and Manufacturing Limited — Monitoring Agency Report",
+          "publication_date": "2026-02-12",
+          "page": 4
+        }
+      },
+      "correction_source": {
+        "url": "https://nsearchives.nseindia.com/corporate/UNIMECH_12022026181434_Monitoring_Agency_Report_covering_Signed.pdf",
+        "document_type": "NSE Monitoring Agency Report",
+        "document_identity": "Unimech Aerospace and Manufacturing Limited — Monitoring Agency Report",
+        "publication_date": "2026-02-12",
+        "page": 4
+      }
     },
     "2022|elin-electronics-limited": {
       "issuer_name": "Elin Electronics Limited",
       "listing_date": "2022-12-30",
-      "last_attempted_at": "2026-09-23T21:05:23.397Z",
-      "parser_version": "1.0.0",
+      "last_attempted_at": "2026-09-23T21:40:59.610Z",
+      "parser_version": "2.0.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-bEwvKj/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1682057466538.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 11024927 out of 15064686 bytes received\ncurl: (18) transfer closed with 10174991 bytes remaining to read\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-v7NWai/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1682057466538.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 12863255 out of 15064686 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 12839655 out of 15064686 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1682057466538.pdf"
     },
     "2020|burger-king-india-limited": {
@@ -79,16 +118,12 @@
     "2025|nephrocare-health-services-limited": {
       "issuer_name": "Nephrocare Health Services Limited",
       "listing_date": "2025-12-17",
-      "last_attempted_at": "2026-09-23T21:05:23.397Z",
-      "parser_version": "1.0.0",
-      "status": "extracted",
-      "open_date": "2025-12-09",
-      "close_date": null,
-      "open_extraction": {
-        "value": "2025-12-09",
-        "source_value": "Offer Opening Date, being Tuesday, December 9, 2025 on which Bids by Anchor Investors were submitted, prior to and after which BRLMs did not accept any Bids from Anchor",
-        "page": 9
-      },
+      "last_attempted_at": "2026-09-23T21:40:59.525Z",
+      "parser_version": "2.0.0",
+      "status": "corrected_official_nse",
+      "open_date": "2025-12-10",
+      "close_date": "2025-12-12",
+      "open_extraction": null,
       "close_extraction": null,
       "document": {
         "type": "SEBI Prospectus PDF",
@@ -96,14 +131,49 @@
         "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765775775793.pdf",
         "publication_date": "2025-12-15"
       },
-      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765775775793.pdf"
+      "source_url": "https://nsearchives.nseindia.com/corporate/NEPHROCARE1_12022026130442_DisclosureofMonitoringAgencyReportdt1202026.pdf",
+      "legacy_parser_version": "1.0.0",
+      "legacy_status": "extracted",
+      "legacy_open_extraction": {
+        "value": "2025-12-09",
+        "source_value": "Offer Opening Date, being Tuesday, December 9, 2025 on which Bids by Anchor Investors were submitted, prior to and after which BRLMs did not accept any Bids from Anchor",
+        "page": 9
+      },
+      "legacy_close_extraction": null,
+      "corrected_at": "2026-09-23T21:40:59.525Z",
+      "correction_reason": "Parser v1 false-positive date capture; replaced from explicit official NSE issue-period disclosure.",
+      "correction": {
+        "open_date": {
+          "previous_value": "2025-12-09",
+          "replacement_value": "2025-12-10"
+        },
+        "close_date": {
+          "previous_value": null,
+          "replacement_value": "2025-12-12"
+        },
+        "source_value": "Issue Period: December 10, 2025, to December 12, 2025",
+        "source": {
+          "url": "https://nsearchives.nseindia.com/corporate/NEPHROCARE1_12022026130442_DisclosureofMonitoringAgencyReportdt1202026.pdf",
+          "document_type": "NSE Monitoring Agency Report",
+          "document_identity": "Nephrocare Health Services Limited — Monitoring Agency Report",
+          "publication_date": "2026-02-12",
+          "page": 5
+        }
+      },
+      "correction_source": {
+        "url": "https://nsearchives.nseindia.com/corporate/NEPHROCARE1_12022026130442_DisclosureofMonitoringAgencyReportdt1202026.pdf",
+        "document_type": "NSE Monitoring Agency Report",
+        "document_identity": "Nephrocare Health Services Limited — Monitoring Agency Report",
+        "publication_date": "2026-02-12",
+        "page": 5
+      }
     },
     "2024|carraro-india-limited": {
       "issuer_name": "Carraro India Limited",
       "listing_date": "2024-12-30",
-      "last_attempted_at": "2026-09-23T21:05:23.397Z",
-      "parser_version": "1.0.0",
-      "status": "explicit_dates_absent",
+      "last_attempted_at": "2026-09-23T21:40:59.610Z",
+      "parser_version": "2.0.0",
+      "status": "official_date_conflict",
       "open_date": null,
       "close_date": null,
       "open_extraction": null,
@@ -145,17 +215,21 @@
     "2025|park-medi-world-limited": {
       "issuer_name": "Park Medi World Limited",
       "listing_date": "2025-12-17",
-      "last_attempted_at": "2026-09-23T21:05:23.397Z",
-      "parser_version": "1.0.0",
+      "last_attempted_at": "2026-09-23T21:40:59.610Z",
+      "parser_version": "2.0.0",
       "status": "extracted",
       "open_date": "2025-12-10",
-      "close_date": null,
+      "close_date": "2025-12-12",
       "open_extraction": {
         "value": "2025-12-10",
-        "source_value": "Offer Opening Date i.e December 10, 2025, all editions of Financial Express, an English national daily newspaper and all editions of Jansatta, a Hindi national daily ne",
-        "page": 13
+        "source_value": "OFFER OPENED ON WEDNESDAY, DECEMBER 10, 2025",
+        "page": 3
       },
-      "close_extraction": null,
+      "close_extraction": {
+        "value": "2025-12-12",
+        "source_value": "OFFER CLOSED ON FRIDAY, DECEMBER 12, 2025",
+        "page": 3
+      },
       "document": {
         "type": "SEBI Prospectus PDF",
         "identity": "PARK MEDI WORLD LIMITED - Prospectus — PDF",
@@ -167,13 +241,21 @@
     "2024|senores-pharmaceuticals-limited": {
       "issuer_name": "Senores Pharmaceuticals Limited",
       "listing_date": "2024-12-30",
-      "last_attempted_at": "2026-09-23T21:05:23.397Z",
-      "parser_version": "1.0.0",
-      "status": "explicit_dates_absent",
-      "open_date": null,
-      "close_date": null,
-      "open_extraction": null,
-      "close_extraction": null,
+      "last_attempted_at": "2026-09-23T21:40:59.610Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": "2024-12-20",
+      "close_date": "2024-12-24",
+      "open_extraction": {
+        "value": "2024-12-20",
+        "source_value": "OFFER OPENED ON Friday, December 20, 2024",
+        "page": 3
+      },
+      "close_extraction": {
+        "value": "2024-12-24",
+        "source_value": "OFFER CLOSED ON Tuesday, December 24, 2024",
+        "page": 3
+      },
       "document": {
         "type": "SEBI Prospectus PDF",
         "identity": "Senores Pharmaceuticals Limited - Prospectus — PDF",
@@ -185,16 +267,12 @@
     "2025|corona-remedies-limited": {
       "issuer_name": "Corona Remedies Limited",
       "listing_date": "2025-12-15",
-      "last_attempted_at": "2026-09-23T21:05:23.397Z",
-      "parser_version": "1.0.0",
-      "status": "extracted",
-      "open_date": "2025-12-05",
-      "close_date": null,
-      "open_extraction": {
-        "value": "2025-12-05",
-        "source_value": "Offer Opening Date, on which Bids by Anchor Investors were submitted, and allocation to Anchor Investors was completed, i.e., Friday, December 5, 2025 Anchor Investor O",
-        "page": 8
-      },
+      "last_attempted_at": "2026-09-23T21:40:59.525Z",
+      "parser_version": "2.0.0",
+      "status": "corrected_official_nse",
+      "open_date": "2025-12-08",
+      "close_date": "2025-12-10",
+      "open_extraction": null,
       "close_extraction": null,
       "document": {
         "type": "SEBI Prospectus PDF",
@@ -202,7 +280,42 @@
         "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765451767149.pdf",
         "publication_date": "2025-12-11"
       },
-      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765451767149.pdf"
+      "source_url": "https://nsearchives.nseindia.com/annual_reports/AR_29392_CORONA_2025_2026_A_10308084_15062026212248.pdf",
+      "legacy_parser_version": "1.0.0",
+      "legacy_status": "extracted",
+      "legacy_open_extraction": {
+        "value": "2025-12-05",
+        "source_value": "Offer Opening Date, on which Bids by Anchor Investors were submitted, and allocation to Anchor Investors was completed, i.e., Friday, December 5, 2025 Anchor Investor O",
+        "page": 8
+      },
+      "legacy_close_extraction": null,
+      "corrected_at": "2026-09-23T21:40:59.525Z",
+      "correction_reason": "Parser v1 false-positive date capture; replaced from explicit official NSE issue-period disclosure.",
+      "correction": {
+        "open_date": {
+          "previous_value": "2025-12-05",
+          "replacement_value": "2025-12-08"
+        },
+        "close_date": {
+          "previous_value": null,
+          "replacement_value": "2025-12-10"
+        },
+        "source_value": "Issue Period: December 08, 2025 to December 10, 2025",
+        "source": {
+          "url": "https://nsearchives.nseindia.com/annual_reports/AR_29392_CORONA_2025_2026_A_10308084_15062026212248.pdf",
+          "document_type": "NSE Annual Report PDF",
+          "document_identity": "CORONA Remedies Limited — Annual Report 2025-26",
+          "publication_date": "2026-06-15",
+          "page": 84
+        }
+      },
+      "correction_source": {
+        "url": "https://nsearchives.nseindia.com/annual_reports/AR_29392_CORONA_2025_2026_A_10308084_15062026212248.pdf",
+        "document_type": "NSE Annual Report PDF",
+        "document_identity": "CORONA Remedies Limited — Annual Report 2025-26",
+        "publication_date": "2026-06-15",
+        "page": 84
+      }
     },
     "2024|ventive-hospitality-limited": {
       "issuer_name": "Ventive Hospitality Limited",
@@ -233,13 +346,21 @@
     "2025|wakefit-innovations-limited": {
       "issuer_name": "Wakefit Innovations Limited",
       "listing_date": "2025-12-15",
-      "last_attempted_at": "2026-09-23T21:05:23.397Z",
-      "parser_version": "1.0.0",
-      "status": "explicit_dates_absent",
-      "open_date": null,
-      "close_date": null,
-      "open_extraction": null,
-      "close_extraction": null,
+      "last_attempted_at": "2026-09-23T21:40:59.610Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": "2025-12-08",
+      "close_date": "2025-12-10",
+      "open_extraction": {
+        "value": "2025-12-08",
+        "source_value": "OFFER OPENED ON Monday, December 8, 2025",
+        "page": 2
+      },
+      "close_extraction": {
+        "value": "2025-12-10",
+        "source_value": "OFFER CLOSED ON Wednesday, December 10, 2025",
+        "page": 2
+      },
       "document": {
         "type": "SEBI Prospectus PDF",
         "identity": "Wakefit Innovations Limited - Prospectus — PDF",
@@ -247,6 +368,86 @@
         "publication_date": "2025-12-12"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765516619623.pdf"
+    },
+    "2022|kfin-technologies-limited": {
+      "issuer_name": "KFin Technologies Limited",
+      "listing_date": "2022-12-29",
+      "last_attempted_at": "2026-09-23T21:40:59.610Z",
+      "parser_version": "2.0.0",
+      "status": "official_date_conflict",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Kfin Technologies Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1672038465141.pdf",
+        "publication_date": "2022-12-26"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1672038465141.pdf"
+    },
+    "2024|concord-enviro-systems-limited": {
+      "issuer_name": "Concord Enviro Systems Limited",
+      "listing_date": "2024-12-27",
+      "last_attempted_at": "2026-09-23T21:40:59.610Z",
+      "parser_version": "2.0.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-OVXA8C/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/jan-2025/1735818485116.pdf\ncurl: (18) transfer closed with 6438715 bytes remaining to read\ncurl: (28) Operation timed out after 45000 milliseconds with 11015927 out of 15800154 bytes received\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jan-2025/1735818485116.pdf"
+    },
+    "2025|aequs-limited": {
+      "issuer_name": "Aequs Limited",
+      "listing_date": "2025-12-10",
+      "last_attempted_at": "2026-09-23T21:40:59.610Z",
+      "parser_version": "2.0.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-Suj1P1/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765174487747.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 12931647 out of 13146434 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 12989247 out of 13146434 bytes received\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765174487747.pdf"
+    },
+    "2025|meesho-limited": {
+      "issuer_name": "Meesho Limited",
+      "listing_date": "2025-12-10",
+      "last_attempted_at": "2026-09-23T21:40:59.610Z",
+      "parser_version": "2.0.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-9v9Xyx/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765186673646.pdf\ncurl: (28) Operation timed out after 45001 milliseconds with 12558623 out of 17102785 bytes received\ncurl: (18) transfer closed with 15528650 bytes remaining to read\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765186673646.pdf"
+    },
+    "2025|vidya-wires-limited": {
+      "issuer_name": "Vidya Wires Limited",
+      "listing_date": "2025-12-10",
+      "last_attempted_at": "2026-09-23T21:40:59.610Z",
+      "parser_version": "2.0.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-KasJp4/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1764671022304.pdf\ncurl: (28) Operation timed out after 45002 milliseconds with 11051911 out of 14575527 bytes received\ncurl: (18) transfer closed with 4542256 bytes remaining to read\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1764671022304.pdf"
+    },
+    "2025|sudeep-pharma-limited": {
+      "issuer_name": "Sudeep Pharma Limited",
+      "listing_date": "2025-11-28",
+      "last_attempted_at": "2026-09-23T21:40:59.610Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": "2025-11-21",
+      "close_date": "2025-11-25",
+      "open_extraction": {
+        "value": "2025-11-21",
+        "source_value": "OFFER OPENED ON Friday, November 21, 2025",
+        "page": 3
+      },
+      "close_extraction": {
+        "value": "2025-11-25",
+        "source_value": "OFFER CLOSED ON Tuesday, November 25, 2025",
+        "page": 3
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Sudeep Pharma Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1764154698763.pdf",
+        "publication_date": "2025-11-26"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1764154698763.pdf"
     }
   }
 }
