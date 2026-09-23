@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const DATA_PATH = path.join(ROOT, "data", "ipos.json");
 const PAGES_STATUS_PATH = path.join(ROOT, "ops", "pages-publication.json");
+const OPERATOR_HISTORY_PATH = path.join(ROOT, "ops", "operator-health-history.json");
 
 export const DEFAULT_STALENESS_THRESHOLDS_HOURS = {
   dataset_generated: 3,
@@ -239,8 +240,33 @@ export function buildRecoveryGuidance(health) {
   }));
 }
 
+export function summarizeHealthHistory(history, limit = 5) {
+  const entries = Array.isArray(history?.entries) ? history.entries : [];
+  const current = entries.at(-1) ?? null;
+  return {
+    recorded: entries.length > 0,
+    transition_count: entries.length,
+    current: current ? {
+      overall: current.overall,
+      reasons: current.reasons || [],
+      observations: current.observations || 1,
+      observed_at: current.observed_at ?? null,
+      last_observed_at: current.last_observed_at ?? current.observed_at ?? null,
+      run_id: current.run_id ?? null,
+      last_run_id: current.last_run_id ?? current.run_id ?? null
+    } : null,
+    recent_transitions: entries.slice(-limit).map((entry) => ({
+      overall: entry.overall,
+      reasons: entry.reasons || [],
+      observations: entry.observations || 1,
+      observed_at: entry.observed_at ?? null,
+      last_observed_at: entry.last_observed_at ?? entry.observed_at ?? null
+    }))
+  };
+}
+
 export function renderMarkdown(report) {
-  const { dataset, pipeline, pages_publication: pages, health, recovery_guidance: guidance } = report;
+  const { dataset, pipeline, pages_publication: pages, health, recovery_guidance: guidance, recurrence } = report;
   const lines = [
     "# IPO Tracker operator report",
     "",
@@ -252,6 +278,25 @@ export function renderMarkdown(report) {
     `- Record collection age: ${health.ages_hours.record_collection ?? "unknown"}h (stale after ${health.thresholds_hours.record_collection}h)`,
     `- Evidence collection age: ${health.ages_hours.evidence_collection ?? "unknown"}h (stale after ${health.thresholds_hours.evidence_collection}h)`,
     `- Last successful Pages publication age: ${health.ages_hours.pages_publication ?? "unknown"}h (stale after ${health.thresholds_hours.pages_publication}h)`,
+    "",
+    "## Recurrence context",
+    "",
+    recurrence.recorded
+      ? `- Current retained state: **${recurrence.current.overall}** across **${recurrence.current.observations}** consecutive observation(s)`
+      : "- Health-transition history: **not recorded yet**",
+    recurrence.recorded
+      ? `- Retained transitions: **${recurrence.transition_count}**`
+      : "- Retained transitions: **0**",
+    ""
+  ];
+  if (recurrence.recorded) {
+    lines.push("- Recent transitions:");
+    for (const item of recurrence.recent_transitions) {
+      const reasons = item.reasons.length ? item.reasons.join(", ") : "none";
+      lines.push(`  - ${item.overall} ×${item.observations} — reasons: ${reasons} — ${item.observed_at || "unknown"} → ${item.last_observed_at || "unknown"}`);
+    }
+  }
+  lines.push(
     "",
     "## Recovery guidance",
     ""
@@ -321,7 +366,7 @@ export function summarizePagesPublication(status) {
   };
 }
 
-export function buildOperatorReport(data, env = process.env, pagesStatus = null, options = {}) {
+export function buildOperatorReport(data, env = process.env, pagesStatus = null, options = {}, history = null) {
   const dataset = summarizeDataset(data);
   const pipeline = summarizePipeline(env);
   const pagesPublication = summarizePagesPublication(pagesStatus);
@@ -329,7 +374,8 @@ export function buildOperatorReport(data, env = process.env, pagesStatus = null,
     dataset,
     pipeline,
     pages_publication: pagesPublication,
-    health: classifyOperatorHealth(dataset, pipeline, pagesPublication, options)
+    health: classifyOperatorHealth(dataset, pipeline, pagesPublication, options),
+    recurrence: summarizeHealthHistory(history)
   };
   report.recovery_guidance = buildRecoveryGuidance(report.health);
   return report;
@@ -340,7 +386,10 @@ function main() {
   const pagesStatus = fs.existsSync(PAGES_STATUS_PATH)
     ? JSON.parse(fs.readFileSync(PAGES_STATUS_PATH, "utf8"))
     : null;
-  const report = buildOperatorReport(data, process.env, pagesStatus);
+  const history = fs.existsSync(OPERATOR_HISTORY_PATH)
+    ? JSON.parse(fs.readFileSync(OPERATOR_HISTORY_PATH, "utf8"))
+    : null;
+  const report = buildOperatorReport(data, process.env, pagesStatus, {}, history);
   const markdown = renderMarkdown(report);
   if (process.argv.includes("--json")) process.stdout.write(JSON.stringify(report, null, 2) + "\n");
   else process.stdout.write(markdown + "\n");
