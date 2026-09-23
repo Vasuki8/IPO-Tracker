@@ -3208,3 +3208,27 @@ The proposal:
 Semantic publication now rejects all proposal entries produced by an older parser version and independently re-validates extracted source text under the current parser before applying it.
 
 This prevents an already-running parser-v1 workflow from reintroducing the false positives after the repair merges.
+
+
+## NSE historical issue-size parser v1.1 — explicit overall totals
+
+Historical NSE `ipo-detail` recovery has been productive for price band, lot size and minimum bid, but monetary issue size remained sparse: only a small fraction of attempted historical records were filled.
+
+The parser previously accepted issue size only when the value explicitly described a sole Fresh Issue or sole OFS leg. It rejected even an official field such as:
+
+- `Total Issue Size: Rs. 250 crore`;
+- `Offer Size: Rs. 500 million`;
+- `Issue Size: 10,00,000 Equity Shares (Rs. 500 million)`.
+
+These values already state the overall monetary issue term and require no shares × price arithmetic.
+
+Parser behavior is now:
+
+- retain existing safe sole-Fresh / sole-OFS parsing;
+- for NSE fields titled `Issue Size`, `Total Issue Size` or `Offer Size`, accept exactly **one** explicit INR amount with a supported magnitude unit;
+- reject multiple INR amounts in the same overall field as ambiguous;
+- continue rejecting mixed Fresh Issue + OFS descriptions;
+- continue rejecting share-count-only values;
+- never derive monetary issue size from offered shares × issue price.
+
+Historical NSE detail parser version is bumped from `1.0.0` to `1.1.0`, so previously attempted records with remaining fields become eligible for one bounded, year-balanced reprocessing pass. Existing non-null fields are not overwritten.
