@@ -815,3 +815,18 @@ Accordingly, `application_requirements.non_institutional.minimum_bid_quantity` r
 PR #80 removed the completed one-shot survey from hourly execution.
 
 Next: survey retained official offer documents for explicit **retail minimum application amounts** before enabling any retail category extraction.
+
+
+### Retail minimum application amount source survey
+
+The tracker has now completed a strict official-source survey for `application_requirements.retail.minimum_application_amount_inr`.
+
+Existing full-RHP evidence showed retail rules expressed as **minimum Bid Lot**, not a direct retail INR minimum application amount.
+
+PR #82 then surveyed retained final Prospectus PDFs. Production run `35804488536` scanned 9/10 successfully across **4,786 pages** with **0 explicit retail minimum-INR mentions**. The one unresolved Kanohar Prospectus was retried separately in PR #83 with a bounded 650-page scan; it scanned **511 pages** and again found **0 qualifying retail INR mentions**.
+
+Accordingly, retail minimum application amount remains **0/26** by design. The tracker does not calculate price × lot or reuse NII/generic amounts.
+
+PR #84 removed the completed one-shot survey from hourly execution.
+
+Next: survey retained official documents for explicit **retail minimum bid quantity / minimum Bid Lot** wording before enabling retail category production extraction.
