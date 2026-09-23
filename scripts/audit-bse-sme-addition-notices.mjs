@@ -10,7 +10,7 @@ const SOURCE_MANIFEST = path.join(ROOT, "data", "bse-ipo-sources.json");
 export const BSE_INDEX_NOTICE_LIST_URL =
   "https://www.bseindices.com/AsiaIndexAPI/api/GetNoticesadvancesearch_newcomb/w";
 export const BSE_INDEX_NOTICE_DETAIL_URL =
-  "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=";
+  "https://www.bseindices.com/AsiaIndexAPI/api/NoticesAsiaDownload/w?NoticeId=";
 export const NOTICE_BATCH_SIZE = 20;
 
 const USER_AGENT =
@@ -117,6 +117,20 @@ async function fetchJson(url) {
   return response.json();
 }
 
+async function fetchText(url) {
+  const response = await fetch(url, {
+    headers: {
+      "user-agent": USER_AGENT,
+      "accept": "text/html,text/plain,application/pdf,*/*;q=0.5",
+      "accept-language": "en-US,en;q=0.9",
+      "referer": "https://www.bseindices.com/notices"
+    },
+    signal: AbortSignal.timeout(20000)
+  });
+  if (!response.ok) throw new Error("HTTP " + response.status + " " + url);
+  return response.text();
+}
+
 function noticeSortValue(row) {
   const value = Date.parse(row?.Notice_Date ?? row?.dt_tm ?? "");
   return Number.isFinite(value) ? value : 0;
@@ -162,9 +176,9 @@ export async function auditLatestBseSmeAdditionNotices(batchSize = NOTICE_BATCH_
     }
 
     try {
-      const detail = await fetchJson(BSE_INDEX_NOTICE_DETAIL_URL + encodeURIComponent(noticeNo));
+      const detail = await fetchText(BSE_INDEX_NOTICE_DETAIL_URL + encodeURIComponent(noticeNo));
       stats.fetched_notices += 1;
-      const parsed = parseBseSmeAdditionNoticeHtml(detail?.Data);
+      const parsed = parseBseSmeAdditionNoticeHtml(detail);
       if (parsed.length === 0) {
         stats.parse_failures += 1;
         failures.push({ notice_no: noticeNo, reason: "no_parseable_listing_reference" });
