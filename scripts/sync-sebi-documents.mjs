@@ -18,7 +18,7 @@ export const SEBI_PUBLIC_ISSUES_URL =
 export const SEBI_SEARCH_URL =
   "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes";
 export const MAX_TARGETED_SEARCHES = 12;
-export const MAX_HISTORICAL_TARGETED_SEARCHES = 12;
+export const MAX_HISTORICAL_TARGETED_SEARCHES = 24;
 
 const USER_AGENT =
   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
