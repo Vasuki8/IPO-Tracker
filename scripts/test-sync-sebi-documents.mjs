@@ -11,6 +11,8 @@ import {
   matchIssuerRecord,
   buildSebiSearchUrl,
   hasSebiDocument,
+  historicalSearchCandidates,
+  historicalSearchKey,
   targetedSearchCandidates,
   searchTermForIssuer,
   parseAbridgedProspectusLinks,
@@ -206,6 +208,65 @@ assert.equal(hasSebiDocument(sparseRecords[1].record), true);
 assert.deepEqual(
   targetedSearchCandidates(sparseRecords, 10).map(({ record }) => record.issuer_name),
   ["New Live Limited"]
+);
+
+const historicalRecords = [
+  {
+    record: {
+      id: "historical-new",
+      issuer_name: "Historical New Limited",
+      listing_date: { value: "2025-08-10" },
+      nse_source: { document_type: "NSE Public Past Issues" },
+      documents: []
+    },
+    recovery: {}
+  },
+  {
+    record: {
+      id: "historical-recently-tried",
+      issuer_name: "Historical Tried Limited",
+      listing_date: { value: "2025-07-01" },
+      nse_source: { document_type: "NSE Public Past Issues" },
+      documents: []
+    },
+    recovery: {}
+  },
+  {
+    record: {
+      id: "historical-enriched",
+      issuer_name: "Historical Enriched Limited",
+      listing_date: { value: "2025-06-01" },
+      nse_source: { document_type: "NSE Public Past Issues" },
+      documents: [{ type: "SEBI RHP filing", url: "https://www.sebi.gov.in/filings/public-issues/x.html" }]
+    },
+    recovery: {}
+  }
+];
+const historicalState = {
+  issuers: {
+    [historicalSearchKey(historicalRecords[1].record)]: {
+      last_attempted_at: "2026-09-20T00:00:00Z",
+      status: "no_match"
+    }
+  }
+};
+assert.deepEqual(
+  historicalSearchCandidates(
+    historicalRecords,
+    historicalState,
+    "2026-09-23T18:00:00Z",
+    10
+  ).map(({ record }) => record.issuer_name),
+  ["Historical New Limited"]
+);
+assert.deepEqual(
+  historicalSearchCandidates(
+    historicalRecords,
+    historicalState,
+    "2026-10-25T18:00:00Z",
+    10
+  ).map(({ record }) => record.issuer_name),
+  ["Historical New Limited", "Historical Tried Limited"]
 );
 assert.equal(searchTermForIssuer("Adroit Industries (India) Limited"), "adroit");
 assert.equal(searchTermForIssuer("Swastika Infra Limited"), "swastika");
