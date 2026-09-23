@@ -3232,3 +3232,47 @@ Parser behavior is now:
 - never derive monetary issue size from offered shares × issue price.
 
 Historical NSE detail parser version is bumped from `1.0.0` to `1.1.0`, so previously attempted records with remaining fields become eligible for one bounded, year-balanced reprocessing pass. Existing non-null fields are not overwritten.
+
+
+## Historical SEBI PDF parser v1.1 — price band + market lot
+
+The independent historical SEBI PDF workflow previously recovered only:
+
+- final issue price;
+- explicit monetary issue size;
+- minimum bid quantity.
+
+Historical coverage remains especially weak for **price band** and **market lot** outside 2025.
+
+Parser version is now **1.1.0** and adds two conservative fields:
+
+### Price band
+
+Accepted only from an explicit labeled `Price Band` term followed by a rupee/INR range, for example:
+
+- `Price Band: ₹120 to ₹125 per Equity Share`;
+- `Price Band of Rs. 95-100 per Equity Share`.
+
+Across scanned pages, all parseable labeled price-band mentions must resolve to one identical range. Conflicting ranges result in no extraction.
+
+### Market lot
+
+Accepted only from an explicit labeled:
+
+- `Market Lot`; or
+- `Lot Size`
+
+followed by an equity-share quantity.
+
+`Bid Lot` is **not** treated as market lot here; it remains reserved for minimum bid quantity under the existing parser.
+
+### Race-safe publication
+
+The historical PDF semantic proposal/apply path now carries and applies:
+
+- `price_band`;
+- `market_lot`;
+
+with the same no-overwrite guarantees as existing PDF fields. If current `main` already contains a value, the historical proposal cannot replace it.
+
+The parser-version bump makes previously scanned historical PDFs eligible for one bounded, year-balanced retry under the richer field set.
