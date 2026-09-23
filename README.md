@@ -939,3 +939,10 @@ The operator report now maps each unhealthy/unknown health reason to a priority,
 The hourly backend sync now persists its latest machine-readable operational state to `ops/operator-snapshot.json`: run identity, health/reasons, recovery guidance, stage outcomes, freshness timestamps, and Pages publication state. IPO records are deliberately excluded.
 
 **Handoff:** next add bounded **operator health-transition history** so repeated failures/staleness can be distinguished from one-off events without accumulating unlimited workflow history.
+
+
+### Bounded operator health history
+
+The backend now retains up to **48 health transitions** in `ops/operator-health-history.json`. Consecutive identical states are compressed with an observation count, so repeated hourly healthy runs do not create unlimited history.
+
+**Handoff:** next surface recurrence context from this bounded history in the read-only operator report; keep alerts and automatic recovery out of scope.
