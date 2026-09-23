@@ -2640,3 +2640,41 @@ This prevents a single collection/rebuild failure from producing redundant downs
 Pipeline causality is now explicit across collection, rebuild, validation and repository publication.
 
 Next backend operations batch: add **snapshot/history schema validation** so malformed operational JSON is detected explicitly rather than silently consumed. Keep validation independent from IPO data validation and do not make operational metadata failures mutate IPO data.
+
+
+## Consolidated backend repair pass — operational state integrity and publication reliability
+
+Per owner request, this run consolidates the remaining coherent P3 operational repairs instead of stopping after one small handoff item.
+
+### Repairs completed
+
+1. **Independent operational-state validation**
+   - Added `scripts/validate-operator-state.mjs`.
+   - Validates `ops/operator-snapshot.json`, `ops/operator-health-history.json`, and `ops/pages-publication.json` independently from IPO data validation.
+   - Enforces schema version, required object/array shapes, health-state values, bounded history retention, positive observation counts, and core run/timestamp fields.
+
+2. **Validate before persistence**
+   - Snapshot/history generation validates newly built state before history is written.
+   - Malformed operational state causes the operator persistence step to fail explicitly rather than committing corrupt JSON.
+   - This failure path does not mutate IPO data.
+
+3. **Committed-state CI validation**
+   - CI tests valid/invalid operational-state fixtures.
+   - CI validates the currently committed snapshot/history/Pages state on every normal validation run.
+
+4. **Pages-health publication race repair**
+   - The Pages workflow now fetches/rebases onto current `origin/main` before pushing its operational health commit.
+   - This matches the previously repaired data/snapshot publication path and prevents a concurrent data/operator-state commit from causing a non-fast-forward Pages-health failure.
+   - No force push is used.
+
+5. **Workflow trigger coverage**
+   - Changes to the new validator/tests trigger the live-sync validation path.
+   - CI guards the race-safe rebase semantics for both sync and Pages operational publication.
+
+### Safety
+
+Operational validation remains separate from `data/ipos.json` validation. A malformed operator artifact is an operations problem; it never causes IPO values, source evidence, null semantics or correction history to be rewritten.
+
+### Handoff
+
+After this consolidated repair pass is verified in CI and production, resume backend development from repository evidence rather than the older one-batch handoffs above. The next task should be chosen from any remaining real P1/P2/P3 correctness gaps, not from already-completed operator plumbing.

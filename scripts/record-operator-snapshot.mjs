@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildOperatorReport } from "./operator-report.mjs";
+import { validateOperatorHistory, validateOperatorSnapshot } from "./validate-operator-state.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const DATA_PATH = path.join(ROOT, "data", "ipos.json");
@@ -95,6 +96,13 @@ function main() {
     ? JSON.parse(fs.readFileSync(OPERATOR_HISTORY_PATH, "utf8"))
     : null;
   const history = updateOperatorHealthHistory(previousHistory, snapshot);
+  const validationErrors = [
+    ...validateOperatorSnapshot(snapshot),
+    ...validateOperatorHistory(history)
+  ];
+  if (validationErrors.length) {
+    throw new Error(`Refusing to persist invalid operator state:\n${validationErrors.join("\n")}`);
+  }
   writeOperatorHealthHistory(history);
   process.stdout.write(
     `Recorded operator snapshot: ${snapshot.health.overall} for run ${snapshot.run.id ?? "unknown"}\n`

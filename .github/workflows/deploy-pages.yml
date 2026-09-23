@@ -57,4 +57,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add ops/pages-publication.json
           git commit -m "chore(ops): record Pages publication health"
-          git push
+
+          # Preserve concurrent data/operator-state bot commits that may have
+          # advanced main while Pages was deploying.
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main

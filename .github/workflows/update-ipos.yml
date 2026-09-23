@@ -28,6 +28,8 @@ on:
       - "scripts/test-operator-report.mjs"
       - "scripts/record-operator-snapshot.mjs"
       - "scripts/test-record-operator-snapshot.mjs"
+      - "scripts/validate-operator-state.mjs"
+      - "scripts/test-validate-operator-state.mjs"
       - "scripts/diagnose-nse-issue-information.mjs"
       - "scripts/test-diagnose-nse-issue-information.mjs"
       - "scripts/diagnose-nse-ipo-detail.mjs"
@@ -182,6 +184,7 @@ jobs:
         shell: bash
         run: |
           node scripts/record-operator-snapshot.mjs
+          node scripts/validate-operator-state.mjs
 
           snapshot_changed=1
           history_changed=1

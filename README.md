@@ -967,3 +967,10 @@ The operator layer now distinguishes source collection, dataset rebuild, data va
 The operator layer now distinguishes expected downstream skips after an upstream failure from unexplained skipped/unmeasured stages. Expected skips do not create redundant failures; unexplained stages become explicit `*_unmeasured` reasons with overall `unknown`.
 
 **Handoff:** next add independent schema validation for operator snapshot/history JSON so malformed operational state is detected explicitly without affecting IPO data.
+
+
+### Consolidated backend reliability repairs
+
+Operational snapshot/history/Pages JSON now has independent schema validation, newly generated operator state is validated before persistence, committed operational state is checked in CI, and Pages-health bot commits use the same race-safe rebase-before-push strategy as data/snapshot publication.
+
+**Handoff:** operator plumbing is now consolidated. Choose the next backend work from remaining verified P1/P2/P3 data/source/freshness gaps rather than repeating completed operational-state work.
