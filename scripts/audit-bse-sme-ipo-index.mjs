@@ -58,6 +58,21 @@ function chooseLongerCompany(left, right) {
   return b.length > a.length ? b : a;
 }
 
+export function pageFingerprint(html) {
+  const source = String(html ?? "");
+  const title = stripTags(source.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1] ?? "");
+  const scripts = [...source.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["'][^>]*>/ig)]
+    .map((match) => normalizeText(match[1]))
+    .filter(Boolean)
+    .slice(0, 12);
+  return {
+    title: title || null,
+    table_count: (source.match(/<table\b/ig) || []).length,
+    row_count: (source.match(/<tr\b/ig) || []).length,
+    script_sources: scripts
+  };
+}
+
 export function parseBseSmeIpoIndex(html) {
   const rows = [];
 
@@ -220,6 +235,7 @@ async function fetchOfficialSource(source) {
       status: response.status,
       response_bytes: html.length,
       rows: parseBseSmeIpoIndex(html),
+      fingerprint: pageFingerprint(html),
       error: null
     };
   } catch (error) {
@@ -229,6 +245,7 @@ async function fetchOfficialSource(source) {
       status: null,
       response_bytes: 0,
       rows: [],
+      fingerprint: null,
       error: String(error?.message || error)
     };
   }
@@ -242,7 +259,12 @@ export async function collectBseSmeIpoIndexRows() {
     const detail = attempts
       .map((attempt) =>
         attempt.name + ": " +
-        (attempt.error || ("HTTP " + attempt.status + ", parsed 0 rows"))
+        (attempt.error || (
+          "HTTP " + attempt.status +
+          ", " + attempt.response_bytes + " bytes" +
+          ", parsed 0 rows" +
+          ", fingerprint=" + JSON.stringify(attempt.fingerprint)
+        ))
       )
       .join("; ");
     throw new Error(
@@ -269,6 +291,7 @@ async function run() {
       status: attempt.status,
       response_bytes: attempt.response_bytes,
       parsed_rows: attempt.rows.length,
+      fingerprint: attempt.fingerprint,
       error: attempt.error
     })),
     index_rows: indexRows.length,
