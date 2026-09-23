@@ -3032,3 +3032,18 @@ Historical offer-date PDF recovery is therefore moved to a dedicated workflow:
 The live `Sync live IPO data` workflow no longer runs historical offer-date PDF extraction.
 
 This keeps current IPO freshness independent from slower historical PDF downloads while still allowing historical open/close-date coverage to progress automatically.
+
+
+## SEBI targeted-search query quality repair
+
+Historical SEBI search-state evidence showed **60 issuers searched: 21 matched, 39 no-match**. Several no-match queries were clearly too generic because the selector preferred the longest issuer word:
+
+- WeWork India Management Limited → `management`;
+- Solex Energy Limited → `energy`;
+- Suba Hotels Limited → `hotels`.
+
+The targeted search selector now prefers the first distinctive non-stopword token, producing `wework`, `solex`, and `suba` respectively.
+
+A `SEBI_TARGETED_SEARCH_VERSION` is now retained with historical search-state entries. Prior `no_match` / error entries from an older search version become eligible for one immediate retry under the improved query strategy; successful matched entries are never needlessly repeated.
+
+This improves document discovery quality without changing issuer matching rules: a search result still must deterministically match the retained issuer before it becomes evidence.
