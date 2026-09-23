@@ -132,20 +132,8 @@ jobs:
       - name: Extract NSE public past-issues listing date and final price
         run: node scripts/extract-nse-past-issues-fields.mjs
 
-      - name: Extract NSE Issue Information market lot
-        run: node scripts/extract-nse-ipo-detail-fields.mjs --market-lot
-
-      - name: Extract NSE Issue Information issue size
-        run: node scripts/extract-nse-ipo-detail-fields.mjs --issue-size
-
-      - name: Extract NSE Issue Information price band
-        run: node scripts/extract-nse-ipo-detail-fields.mjs --price-band
-
-      - name: Extract NSE Issue Information minimum bid
-        run: node scripts/extract-nse-ipo-detail-fields.mjs
-
-      - name: Extract NSE Issue Information listing date
-        run: node scripts/extract-nse-ipo-detail-fields.mjs --listing-date
+      - name: Extract NSE Issue Information fields in one pass
+        run: node scripts/extract-nse-ipo-detail-fields.mjs --all-fields
 
       - name: Extract explicit Abridged Prospectus fields
         run: node scripts/extract-abridged-fields.mjs
