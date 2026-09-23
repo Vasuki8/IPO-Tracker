@@ -5,15 +5,15 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const RECOVERY_ROOT = path.join(ROOT, "data", "recovery");
 
-export const BSE_INDEX_SERVICES_SME_IPO_URL =
-  "https://www.bseindices.com/indices-details/code/76/";
+export const BSE_INDEX_SERVICES_SME_CONSTITUENTS_URL =
+  "https://www.bseindices.com/constituents/code/76";
 export const BSE_LEGACY_SME_IPO_URL =
   "https://www.bseindia.com/sensex/IndicesWatch_Weight.aspx?iname=SMEIPO&index_Code=76";
 
 const OFFICIAL_SOURCES = [
   {
     name: "bse_index_services",
-    url: BSE_INDEX_SERVICES_SME_IPO_URL,
+    url: BSE_INDEX_SERVICES_SME_CONSTITUENTS_URL,
     referer: "https://www.bseindices.com/"
   },
   {
