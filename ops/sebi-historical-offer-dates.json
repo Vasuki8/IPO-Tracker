@@ -1,0 +1,252 @@
+{
+  "schema_version": "1.0.0",
+  "issuers": {
+    "2025|icici-prudential-asset-management-company-limited": {
+      "issuer_name": "ICICI Prudential Asset Management Company Limited",
+      "listing_date": "2025-12-19",
+      "last_attempted_at": "2026-09-23T21:05:23.397Z",
+      "parser_version": "1.0.0",
+      "status": "explicit_dates_absent",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "ICICI Prudential Asset Management Company Limited - prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765973231553.pdf",
+        "publication_date": "2025-12-17"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765973231553.pdf"
+    },
+    "2024|unimech-aerospace-and-manufacturing-limited": {
+      "issuer_name": "Unimech Aerospace and Manufacturing Limited",
+      "listing_date": "2024-12-31",
+      "last_attempted_at": "2026-09-23T21:05:23.397Z",
+      "parser_version": "1.0.0",
+      "status": "extracted",
+      "open_date": null,
+      "close_date": "2024-12-05",
+      "open_extraction": null,
+      "close_extraction": {
+        "value": "2024-12-05",
+        "source_value": "Offer Closing Date. F&S has, through its letter dated December 5, 2024 accorded its consent to use the F&S Report in this Prospectus. This study has been undertaken thr",
+        "page": 29
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Unimech Aerospace and Manufacturing Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1735534463367.pdf",
+        "publication_date": "2024-12-30"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1735534463367.pdf"
+    },
+    "2022|elin-electronics-limited": {
+      "issuer_name": "Elin Electronics Limited",
+      "listing_date": "2022-12-30",
+      "last_attempted_at": "2026-09-23T21:05:23.397Z",
+      "parser_version": "1.0.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-bEwvKj/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1682057466538.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 11024927 out of 15064686 bytes received\ncurl: (18) transfer closed with 10174991 bytes remaining to read\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1682057466538.pdf"
+    },
+    "2020|burger-king-india-limited": {
+      "issuer_name": "Burger King India Limited",
+      "listing_date": "2020-12-14",
+      "last_attempted_at": "2026-09-23T21:05:23.397Z",
+      "parser_version": "1.0.0",
+      "status": "extracted",
+      "open_date": "2020-12-02",
+      "close_date": "2020-12-04",
+      "open_extraction": {
+        "value": "2020-12-02",
+        "source_value": "Offer Opening Date Except in relation to any Bids received from the Anchor Investors, December 2, 2020 Bid/Offer Period Except in relation to Anchor Investors, the peri",
+        "page": 7
+      },
+      "close_extraction": {
+        "value": "2020-12-04",
+        "source_value": "Offer Closing Date Except in relation to any Bids received from the Anchor Investors, December 4, 2020 Bid/Offer Opening Date Except in relation to any Bids received fr",
+        "page": 7
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Burger King India Ltd - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2020/1607693486542.pdf",
+        "publication_date": "2020-12-11"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2020/1607693486542.pdf"
+    },
+    "2025|nephrocare-health-services-limited": {
+      "issuer_name": "Nephrocare Health Services Limited",
+      "listing_date": "2025-12-17",
+      "last_attempted_at": "2026-09-23T21:05:23.397Z",
+      "parser_version": "1.0.0",
+      "status": "extracted",
+      "open_date": "2025-12-09",
+      "close_date": null,
+      "open_extraction": {
+        "value": "2025-12-09",
+        "source_value": "Offer Opening Date, being Tuesday, December 9, 2025 on which Bids by Anchor Investors were submitted, prior to and after which BRLMs did not accept any Bids from Anchor",
+        "page": 9
+      },
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Nephrocare Health Services Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765775775793.pdf",
+        "publication_date": "2025-12-15"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765775775793.pdf"
+    },
+    "2024|carraro-india-limited": {
+      "issuer_name": "Carraro India Limited",
+      "listing_date": "2024-12-30",
+      "last_attempted_at": "2026-09-23T21:05:23.397Z",
+      "parser_version": "1.0.0",
+      "status": "explicit_dates_absent",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Carraro India Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2025/1739254276941.pdf",
+        "publication_date": "2024-12-26"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2025/1739254276941.pdf"
+    },
+    "2022|arihant-academy-limited": {
+      "issuer_name": "Arihant Academy Limited",
+      "listing_date": "2022-12-29",
+      "last_attempted_at": "2026-09-23T21:05:23.397Z",
+      "parser_version": "1.0.0",
+      "status": "extracted",
+      "open_date": "2022-12-16",
+      "close_date": "2022-12-21",
+      "open_extraction": {
+        "value": "2022-12-16",
+        "source_value": "ISSUE OPENS ON: DECEMBER 16, 2022 ISSUE CLOSES ON: DECEMBER 21, 2022",
+        "page": 1
+      },
+      "close_extraction": {
+        "value": "2022-12-21",
+        "source_value": "ISSUE CLOSES ON: DECEMBER 21, 2022",
+        "page": 1
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Arihant Academy Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671769917508.pdf",
+        "publication_date": "2022-12-09"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671769917508.pdf"
+    },
+    "2025|park-medi-world-limited": {
+      "issuer_name": "Park Medi World Limited",
+      "listing_date": "2025-12-17",
+      "last_attempted_at": "2026-09-23T21:05:23.397Z",
+      "parser_version": "1.0.0",
+      "status": "extracted",
+      "open_date": "2025-12-10",
+      "close_date": null,
+      "open_extraction": {
+        "value": "2025-12-10",
+        "source_value": "Offer Opening Date i.e December 10, 2025, all editions of Financial Express, an English national daily newspaper and all editions of Jansatta, a Hindi national daily ne",
+        "page": 13
+      },
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "PARK MEDI WORLD LIMITED - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765775863248.pdf",
+        "publication_date": "2025-12-15"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765775863248.pdf"
+    },
+    "2024|senores-pharmaceuticals-limited": {
+      "issuer_name": "Senores Pharmaceuticals Limited",
+      "listing_date": "2024-12-30",
+      "last_attempted_at": "2026-09-23T21:05:23.397Z",
+      "parser_version": "1.0.0",
+      "status": "explicit_dates_absent",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Senores Pharmaceuticals Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1735194141531.pdf",
+        "publication_date": "2024-12-26"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1735194141531.pdf"
+    },
+    "2025|corona-remedies-limited": {
+      "issuer_name": "Corona Remedies Limited",
+      "listing_date": "2025-12-15",
+      "last_attempted_at": "2026-09-23T21:05:23.397Z",
+      "parser_version": "1.0.0",
+      "status": "extracted",
+      "open_date": "2025-12-05",
+      "close_date": null,
+      "open_extraction": {
+        "value": "2025-12-05",
+        "source_value": "Offer Opening Date, on which Bids by Anchor Investors were submitted, and allocation to Anchor Investors was completed, i.e., Friday, December 5, 2025 Anchor Investor O",
+        "page": 8
+      },
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "CORONA Remedies Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765451767149.pdf",
+        "publication_date": "2025-12-11"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765451767149.pdf"
+    },
+    "2024|ventive-hospitality-limited": {
+      "issuer_name": "Ventive Hospitality Limited",
+      "listing_date": "2024-12-30",
+      "last_attempted_at": "2026-09-23T21:05:23.397Z",
+      "parser_version": "1.0.0",
+      "status": "extracted",
+      "open_date": "2024-12-20",
+      "close_date": "2024-12-24",
+      "open_extraction": {
+        "value": "2024-12-20",
+        "source_value": "Bid/Issue Opening Date Except in relation to any Bids received from the Anchor Investors, Friday, December 20, 2024 Bid/Issue Period Except in relation to Anchor Investors,",
+        "page": 11
+      },
+      "close_extraction": {
+        "value": "2024-12-24",
+        "source_value": "Bid/Issue Closing Date Except in relation to any Bids received from the Anchor Investors, Tuesday, December 24, 2024 Bid/Issue Opening Date Except in relation to any Bids r",
+        "page": 11
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Ventive Hospitality Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1735282198239.pdf",
+        "publication_date": "2024-12-24"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1735282198239.pdf"
+    },
+    "2025|wakefit-innovations-limited": {
+      "issuer_name": "Wakefit Innovations Limited",
+      "listing_date": "2025-12-15",
+      "last_attempted_at": "2026-09-23T21:05:23.397Z",
+      "parser_version": "1.0.0",
+      "status": "explicit_dates_absent",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Wakefit Innovations Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765516619623.pdf",
+        "publication_date": "2025-12-12"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765516619623.pdf"
+    }
+  }
+}
