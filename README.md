@@ -1034,3 +1034,8 @@ NSE historical detail parser v1.1 now accepts a single explicit overall monetary
 ### Historical SEBI PDF parser v1.1
 
 The independent historical PDF backfill now also recovers explicit **price bands** and **market lot/lot size** terms. Conflicting values are rejected, and `Bid Lot` remains mapped only to minimum bid quantity.
+
+
+### BSE-only SME universe audit
+
+The backend now audits the official BSE SME IPO Index against the 2020-2026 recovery universe and reports unmatched constituents as candidates. No BSE-only issuer is added until an official listing notice or equivalent issuer-specific evidence verifies it.
