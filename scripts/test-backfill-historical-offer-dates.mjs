@@ -10,6 +10,7 @@ import {
 assert.equal(parseExplicitOfferDate("Bid/Issue Opening Date December 3, 2025"), "2025-12-03");
 assert.equal(parseExplicitOfferDate("Issue Closing Date 5 December 2025"), "2025-12-05");
 assert.equal(parseExplicitOfferDate("No date here"), null);
+assert.equal(parseExplicitOfferDate("Bid Opening Date February 31, 2025"), null);
 
 const pages = [
   "Key dates Bid/Issue Opening Date December 3, 2025 Bid/Issue Closing Date December 5, 2025",
