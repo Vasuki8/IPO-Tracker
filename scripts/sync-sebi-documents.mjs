@@ -405,13 +405,17 @@ function writeHistoricalSearchState(state) {
 export function searchTermForIssuer(issuerName) {
   const words = canonicalIssuer(issuerName).split(" ").filter(Boolean);
   const stopwords = new Set([
-    "limited", "ltd", "india", "and", "of", "the",
+    "limited", "ltd", "private", "pvt", "company", "corporation",
+    "india", "gujarat", "global", "united", "and", "of", "the",
     "industries", "industry", "international", "services", "solutions",
-    "engineering", "developers", "logistics", "consulting"
+    "systems", "system", "info", "information", "technology", "technologies",
+    "engineering", "developers", "logistics", "consulting", "projects",
+    "project", "infra", "infrastructure", "equipment", "power",
+    "enterprises", "enterprise", "ventures", "collaboration"
   ]);
-  const candidates = words.filter((word) => !stopwords.has(word) && word.length >= 4);
-  if (candidates.length === 0) return words[0] || "";
-  return candidates.sort((a, b) => b.length - a.length || words.indexOf(a) - words.indexOf(b))[0];
+  const candidates = words.filter((word) => !stopwords.has(word) && word.length >= 3);
+  if (candidates.length > 0) return candidates[0];
+  return words.find((word) => word.length >= 3) || words[0] || "";
 }
 
 export function buildSebiSearchUrl(issuerName) {
