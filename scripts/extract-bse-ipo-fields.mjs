@@ -4,11 +4,21 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const MANIFEST_PATH = path.join(ROOT, "data", "bse-ipo-sources.json");
+const RECOVERY_ROOT = path.join(ROOT, "data", "recovery");
 const USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36";
 
 function text(html) {
   return String(html ?? "").replace(/<script[\s\S]*?<\/script>/gi," ").replace(/<style[\s\S]*?<\/style>/gi," ")
     .replace(/<[^>]+>/g," ").replace(/&nbsp;/gi," ").replace(/&amp;/gi,"&").replace(/\s+/g," ").trim();
+}
+function isoDate(raw) {
+  if (!raw) return null;
+  const parsed = Date.parse(raw);
+  if (!Number.isFinite(parsed)) return null;
+  return new Date(parsed).toISOString().slice(0, 10);
+}
+function slug(value) {
+  return String(value ?? "").toLowerCase().replace(/&/g," and ").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 }
 function number(raw) {
   const value=Number(String(raw??"").replace(/,/g,"").trim());
@@ -38,21 +48,102 @@ export function parseBseListingNotice(html) {
   const price=number(body.match(/Issue Price for the current Public issue\s+Rs\.?\s*([0-9,.]+)/i)?.[1]);
   return { company, listing_date_raw:effective, market_lot:lot, issue_price:price };
 }
+function sourceEvidence(source, collectedAt) {
+  return {
+    url: source.url,
+    document_type: source.kind === "listing_notice" ? "BSE Listing Notice" : "BSE Public Issue Detail",
+    document_identity: (source.kind === "listing_notice" ? "BSE Listing Notice — " : "BSE Public Issue Detail — ") + source.issuer_name,
+    publication_date: source.publication_date ?? null,
+    collected_at: collectedAt
+  };
+}
+function addDocument(record, evidence) {
+  record.documents ??= [];
+  if (!record.documents.some((doc) => doc.url === evidence.url)) {
+    record.documents.push({
+      type: evidence.document_type,
+      identity: evidence.document_identity,
+      url: evidence.url,
+      publication_date: evidence.publication_date,
+      collected_at: evidence.collected_at
+    });
+  }
+}
+function fill(record, key, value, sourceValue, evidence, conflicts) {
+  if (value === null || value === undefined) return false;
+  const existing = record[key]?.value;
+  if (existing !== null && existing !== undefined) {
+    if (JSON.stringify(existing) !== JSON.stringify(value)) conflicts.push({ field:key, existing, bse:value });
+    return false;
+  }
+  record[key] = { value, source_value:sourceValue, status:"verified", page:null, source:evidence };
+  return true;
+}
+export function applyBseParsedFields(record, source, parsed, collectedAt) {
+  const conflicts=[]; let changed=false;
+  const evidence=sourceEvidence(source,collectedAt);
+  if (source.kind === "listing_notice") {
+    changed = fill(record,"listing_date",isoDate(parsed.listing_date_raw),parsed.listing_date_raw,evidence,conflicts) || changed;
+    changed = fill(record,"issue_price",parsed.issue_price,parsed.issue_price == null ? null : "₹"+parsed.issue_price+" per share",evidence,conflicts) || changed;
+    changed = fill(record,"market_lot",parsed.market_lot,parsed.market_lot == null ? null : String(parsed.market_lot),evidence,conflicts) || changed;
+  } else {
+    const min=parsed.price_band?.min, max=parsed.price_band?.max;
+    if (min != null && max != null) changed = fill(record,"price_band",{min,max},min+"-"+max,evidence,conflicts) || changed;
+    changed = fill(record,"market_lot",parsed.market_lot,parsed.market_lot == null ? null : String(parsed.market_lot),evidence,conflicts) || changed;
+    changed = fill(record,"minimum_bid_quantity",parsed.minimum_bid_quantity,parsed.minimum_bid_quantity == null ? null : String(parsed.minimum_bid_quantity),evidence,conflicts) || changed;
+    changed = fill(record,"open_date",isoDate(parsed.open_date_raw),parsed.open_date_raw,evidence,conflicts) || changed;
+    changed = fill(record,"close_date",isoDate(parsed.close_date_raw),parsed.close_date_raw,evidence,conflicts) || changed;
+  }
+  if (changed) {
+    addDocument(record,evidence);
+    record.last_collected_at=collectedAt;
+  }
+  return {changed,conflicts};
+}
+function recoveryFiles() {
+  if (!fs.existsSync(RECOVERY_ROOT)) return [];
+  return fs.readdirSync(RECOVERY_ROOT,{withFileTypes:true}).filter(x=>x.isDirectory()).flatMap(dir=>{
+    const p=path.join(RECOVERY_ROOT,dir.name);
+    return fs.readdirSync(p).filter(name=>name.endsWith(".json")).map(name=>path.join(p,name));
+  });
+}
 async function fetchPage(url){
   const r=await fetch(url,{headers:{"user-agent":USER_AGENT,"accept":"text/html,*/*","referer":"https://www.bseindia.com/"},signal:AbortSignal.timeout(20000)});
   if(!r.ok) throw new Error("HTTP "+r.status+" "+url); return r.text();
 }
 async function run(){
-  if(!fs.existsSync(MANIFEST_PATH)){console.log(JSON.stringify({bse_detail_stats:{sources:0,parsed:0,errors:0}}));return;}
+  if(!fs.existsSync(MANIFEST_PATH)){console.log(JSON.stringify({bse_detail_stats:{sources:0,parsed:0,applied:0,conflicts:0,errors:0}}));return;}
   const manifest=JSON.parse(fs.readFileSync(MANIFEST_PATH,"utf8"));
-  const stats={sources:(manifest.sources||[]).length,parsed:0,errors:0};
+  const files=recoveryFiles();
+  const loaded=files.map(file=>({file,data:JSON.parse(fs.readFileSync(file,"utf8")),changed:false}));
+  const stats={sources:(manifest.sources||[]).length,parsed:0,matched_records:0,applied:0,conflicts:0,errors:0,unmatched_sources:0};
+  const now=new Date().toISOString();
   for(const source of manifest.sources||[]){
     try{
       const html=await fetchPage(source.url);
       const parsed=source.kind==="listing_notice"?parseBseListingNotice(html):parseBseEquityIssuePage(html);
-      if(parsed){stats.parsed++; console.log(JSON.stringify({issuer_name:source.issuer_name,kind:source.kind,url:source.url,parsed}));}
-      else console.log(JSON.stringify({issuer_name:source.issuer_name,kind:source.kind,url:source.url,parsed:null}));
+      if(!parsed){console.log(JSON.stringify({issuer_name:source.issuer_name,kind:source.kind,url:source.url,parsed:null}));continue;}
+      stats.parsed++;
+      const candidates=[];
+      for(const item of loaded) for(const record of item.data.records||[]) {
+        if(slug(record.issuer_name)===slug(source.issuer_name)) candidates.push({item,record});
+      }
+      if(candidates.length!==1){
+        stats.unmatched_sources++;
+        console.log(JSON.stringify({issuer_name:source.issuer_name,kind:source.kind,url:source.url,parsed,record_match_count:candidates.length}));
+        continue;
+      }
+      stats.matched_records++;
+      const {item,record}=candidates[0];
+      const result=applyBseParsedFields(record,source,parsed,now);
+      stats.conflicts+=result.conflicts.length;
+      if(result.changed){item.changed=true;stats.applied++;}
+      console.log(JSON.stringify({issuer_name:source.issuer_name,kind:source.kind,url:source.url,parsed,applied:result.changed,conflicts:result.conflicts}));
     }catch(e){stats.errors++;console.warn("BSE source unavailable for "+source.issuer_name+": "+e.message);}
+  }
+  for(const item of loaded) if(item.changed){
+    item.data.generated_at=now;
+    fs.writeFileSync(item.file,JSON.stringify(item.data,null,2)+"\n");
   }
   console.log(JSON.stringify({bse_detail_stats:stats},null,2));
 }
