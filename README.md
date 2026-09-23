@@ -978,6 +978,7 @@ Operational snapshot/history/Pages JSON now has independent schema validation, n
 
 ### Incremental historical SEBI backfill
 
-Historical IPO records without SEBI evidence are now eligible for bounded issuer-targeted SEBI searches. A durable search cursor advances through up to 24 historical issuers per sync and prevents hourly repetition of the same misses.
+Historical IPO records without SEBI evidence are now eligible for bounded issuer-targeted SEBI searches. A durable search cursor advances through up to 12 historical issuers per sync and prevents hourly repetition of the same misses.
 
 Only matched official SEBI filings become source evidence; search attempts themselves do not change IPO field values.
+
