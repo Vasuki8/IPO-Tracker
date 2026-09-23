@@ -94,7 +94,18 @@ export function candidateProspectusDocument(record) {
   ) || null;
 }
 
+export function shouldDeferHeavyHistoricalPdf(
+  record,
+  currentYear = new Date().getUTCFullYear(),
+  includeHistorical = process.argv.includes("--include-historical-heavy")
+) {
+  if (includeHistorical) return false;
+  const listingYear = Number(String(record?.listing_date?.value || "").slice(0, 4));
+  return Number.isInteger(listingYear) && listingYear > 0 && listingYear < currentYear;
+}
+
 export function candidateProspectusIssueSizeDocument(record) {
+  if (shouldDeferHeavyHistoricalPdf(record)) return null;
   if (record.issue_size_inr?.value !== null && record.issue_size_inr?.value !== undefined) return null;
   return (record.documents || []).find((doc) =>
     doc.type === "SEBI Prospectus PDF" && officialProspectusPdfUrl(doc.url)
@@ -151,6 +162,7 @@ export function candidateProspectusRetailMinimumApplicationDocument(record) {
 }
 
 export function candidateProspectusMinimumBidDocument(record) {
+  if (shouldDeferHeavyHistoricalPdf(record)) return null;
   if (record.minimum_bid_quantity?.value !== null && record.minimum_bid_quantity?.value !== undefined) return null;
   if (record.terms?.minimum_bid_quantity !== null && record.terms?.minimum_bid_quantity !== undefined) return null;
   return (record.documents || []).find((doc) =>
