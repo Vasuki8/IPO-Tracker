@@ -19,8 +19,8 @@ permissions:
   contents: write
 
 concurrency:
-  group: ipo-data-publication
-  cancel-in-progress: false
+  group: historical-pdf-field-backfill
+  cancel-in-progress: true
 
 jobs:
   backfill:
