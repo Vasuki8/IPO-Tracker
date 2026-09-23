@@ -3032,3 +3032,20 @@ Historical offer-date PDF recovery is therefore moved to a dedicated workflow:
 The live `Sync live IPO data` workflow no longer runs historical offer-date PDF extraction.
 
 This keeps current IPO freshness independent from slower historical PDF downloads while still allowing historical open/close-date coverage to progress automatically.
+
+
+## NSE ipo-detail final issue-price recovery
+
+The official NSE `ipo-detail` payload already exposed explicit `Issue Price`, `Final Issue Price` and `finalIssuePrice` terms, but the backend previously used them only for diagnostics.
+
+The single-pass NSE detail extractor now:
+
+- parses only scalar issue-price values such as `Rs.139 per Equity Share` or a numeric `finalIssuePrice`;
+- rejects price ranges/placeholders;
+- requires all parseable official issue-price terms in the payload to agree;
+- reports disagreement as `official_term_conflict`;
+- fills only a missing `issue_price`;
+- retains NSE API URL, document identity and collection timestamp;
+- reuses the already-fetched `ipo-detail` payload, so this adds no network request.
+
+This can improve both current 2026 final-price coverage and the small residual historical final-price gaps when historical detail backfill is extended to the field.
