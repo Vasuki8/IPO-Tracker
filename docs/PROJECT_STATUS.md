@@ -2958,3 +2958,21 @@ The three currently verified 2025 BSE sources are opted in.
 Retained `open_date` / `close_date` fields are now preferred by the publisher before NSE term fallbacks, so BSE-derived offer dates retain their own evidence instead of being dropped.
 
 This provides a controlled path for BSE-only historical IPOs while keeping universe expansion evidence-driven rather than inferred from search-engine results.
+
+
+## BSE universe safety tightening — listing notices only
+
+Production evidence from the retained BSE sources established that official BSE listing notices are reliably parseable on the Actions runner, while desktop `DisplayIPO.aspx` issue-detail pages may return non-parseable/challenge HTML even after session priming.
+
+Universe materialization is therefore tightened:
+
+- **only an official BSE listing notice may create an unmatched BSE-only IPO record**;
+- the manifest must explicitly set `materialize_if_missing: true`;
+- the notice issuer must match the retained issuer identity;
+- the notice must contain a parseable effective listing date;
+- board is retained only when the notice explicitly states `Segment SME` or `Segment Equity`;
+- issue-detail pages may enrich an already-known issuer when they parse, but can no longer create a new issuer on their own.
+
+The current manifest keeps BSE-only materialization enabled for the 3B Films listing notice and disables it for the Kenrik/Groww issue-detail seeds.
+
+This makes exchange-universe inclusion depend on direct listing evidence rather than an offer/detail page that may represent an issue before listing or may be inconsistently served.
