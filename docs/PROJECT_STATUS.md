@@ -3072,3 +3072,47 @@ The single-pass NSE detail extractor now:
 - reuses the already-fetched `ipo-detail` payload, so this adds no network request.
 
 This directly targets current 2026 final-price gaps and is also wired into the bounded historical detail writer for the two residual historical final-price gaps (Marco Cables and Conductors Limited in 2023 and Vodafone Idea Limited - FPO in 2024).
+
+
+## Historical offer-date publication race repair
+
+The first dedicated historical offer-date run successfully completed extraction but failed during publication because the live sync advanced the same yearly recovery manifest while the date workflow was running.
+
+Observed first-run extraction result:
+
+- candidates: **12**;
+- downloaded PDFs: **5**;
+- extracted records: **2**;
+- opening dates recovered: **2**;
+- closing dates recovered: **0**;
+- fetch errors: **7**;
+- parser conflicts: **0**.
+
+The data was not published because a file-level `git rebase` conflicted on `data/recovery/2025/nse-issue-information.json`.
+
+### Semantic publication repair
+
+Historical offer-date publication no longer rebases modified recovery JSON.
+
+The workflow now:
+
+1. runs the bounded PDF extraction;
+2. stores each attempted issuer in the cursor with full semantic extraction details:
+   - issuer/listing identity;
+   - open/close extracted values;
+   - source text;
+   - PDF page;
+   - document type/identity/URL/publication date;
+3. copies that semantic proposal outside the checkout;
+4. fetches and hard-resets to the newest `origin/main`;
+5. reapplies the proposal by historical record key;
+6. fills only dates that are **still missing** on the newest record;
+7. merges cursor state by attempt timestamp;
+8. rebuilds and checks `data/ipos.json`;
+9. validates the full data contract;
+10. attempts the push;
+11. if `main` advanced again, repeats semantic application against the newer `main` up to three times.
+
+Concurrent live-sync enrichments are therefore preserved instead of becoming JSON merge conflicts.
+
+This fixes the publication race without using merge strategies that could silently choose one whole recovery file over another.
