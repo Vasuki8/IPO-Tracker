@@ -102,7 +102,7 @@ jobs:
       - name: Test NSE public past-issues final-price extraction
         run: node scripts/test-extract-nse-past-issues-fields.mjs
 
-      - name: Extract NSE public past-issues final price
+      - name: Extract NSE public past-issues listing date and final price
         run: node scripts/extract-nse-past-issues-fields.mjs
 
       - name: Extract NSE Issue Information market lot
