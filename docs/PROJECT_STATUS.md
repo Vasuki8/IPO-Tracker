@@ -2884,3 +2884,37 @@ This allows retained BSE evidence to apply during the same run that creates hist
 - coverage counts for price band, final issue price, issue size, market lot, minimum bid, offer dates and listing date.
 
 This makes subsequent historical retrieval improvements measurable instead of relying on directory presence alone.
+
+
+## Historical NSE detail backfill — bounded field recovery
+
+The first historical publication contains **883 records from 2020-2025**. NSE Public Past Issues provides excellent listing-date/final-price coverage, but historical price band, market lot, minimum bid and monetary issue-size coverage is still effectively zero.
+
+Added a dedicated historical NSE `ipo-detail` backfill that is separate from the live/current IPO detail sweep.
+
+### Behavior
+
+- processes at most **24 historical IPOs per sync**;
+- only considers pre-current-year records with retained NSE symbol/series and one of the target fields still missing;
+- fetches each historical `ipo-detail` payload once;
+- reuses the existing conservative parsers for:
+  - price band;
+  - market lot;
+  - minimum bid quantity;
+  - explicit monetary issue size;
+- never overwrites an existing non-null value;
+- does not infer issue size from shares × price;
+- records a durable per-issuer cursor in `ops/nse-historical-detail.json`;
+- successful/no-field responses are not repeatedly probed with the same parser version;
+- transient fetch errors retry after 24 hours;
+- changing the parser version makes records eligible for reprocessing after future parser improvements.
+
+The cursor is operational metadata and cursor-only commits are ignored by GitHub Pages.
+
+### Scope note
+
+Open/close date recovery is intentionally not included in this batch because the existing `ipo-detail` contract has not yet been verified for a stable historical offer-date field. Historical offer dates remain null until an explicit official field/source is validated.
+
+### Expected effect
+
+At 24 records per hourly sync, the 883-record historical backlog can be sampled progressively without blocking current IPO publication. The detailed historical coverage audit runs after this backfill step, making field gains measurable on every run.

@@ -989,3 +989,8 @@ Only matched official SEBI filings become source evidence; search attempts thems
 The tracker now publishes **915 IPO records across 2020–2026** from the recovery pipeline. The first historical materialization contains 883 records for 2020–2025, with listing dates complete and final issue prices present for 881 historical records.
 
 The historical coverage audit now reports per-year field coverage and BSE/SEBI evidence counts. BSE retained sources are applied after historical universe creation so they can enrich newly materialized records in the same sync.
+
+
+### Bounded historical NSE detail recovery
+
+The backend now rotates through up to **24 historical IPOs per sync** and probes official NSE `ipo-detail` once per issuer for missing price band, market lot, minimum bid, and explicit monetary issue size. A durable cursor prevents repeatedly probing the same historical issuer with the same parser version.

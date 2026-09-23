@@ -14,6 +14,8 @@ on:
       - "scripts/test-extract-bse-ipo-fields.mjs"
       - "scripts/diagnose-bse-issues.mjs"
       - "scripts/test-diagnose-bse-issues.mjs"
+      - "scripts/backfill-nse-historical-detail.mjs"
+      - "scripts/test-backfill-nse-historical-detail.mjs"
       - "scripts/sync-nse-historical.mjs"
       - "scripts/test-sync-nse-historical.mjs"
       - "scripts/sync-nse-live.mjs"
@@ -95,6 +97,9 @@ jobs:
       - name: Apply retained official BSE IPO sources
         run: node scripts/extract-bse-ipo-fields.mjs
 
+      - name: Backfill historical NSE issue details
+        run: node scripts/backfill-nse-historical-detail.mjs
+
       - name: Audit historical IPO coverage
         run: node scripts/audit-historical-coverage.mjs
 
@@ -162,7 +167,7 @@ jobs:
         id: publish_data
         shell: bash
         run: |
-          if [ -z "$(git status --porcelain -- data/recovery data/ipos.json ops/sebi-historical-search.json)" ]; then
+          if [ -z "$(git status --porcelain -- data/recovery data/ipos.json ops/sebi-historical-search.json ops/nse-historical-detail.json)" ]; then
             echo "No source-backed IPO data or historical search-state changes detected."
             exit 0
           fi
@@ -171,6 +176,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/recovery data/ipos.json
           if [ -f ops/sebi-historical-search.json ]; then git add ops/sebi-historical-search.json; fi
+          if [ -f ops/nse-historical-detail.json ]; then git add ops/nse-historical-detail.json; fi
           git commit -m "chore(data): sync official IPO sources"
 
           # Other operational workflows can advance main while this long-running
