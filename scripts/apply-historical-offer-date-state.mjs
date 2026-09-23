@@ -28,6 +28,88 @@ function newerOrEqual(incoming, current) {
   return a >= b;
 }
 
+function addDocumentOnce(record, source, collectedAt) {
+  record.documents ||= [];
+  if (record.documents.some((doc) => doc.url === source.url)) return;
+  record.documents.push({
+    type: source.document_type,
+    identity: source.document_identity ?? null,
+    url: source.url,
+    publication_date: source.publication_date ?? null,
+    collected_at: collectedAt
+  });
+}
+
+function correctionHistoryEntry(field, incoming) {
+  if (!field?.value) return null;
+  return {
+    corrected_at: incoming.corrected_at ?? incoming.last_attempted_at ?? null,
+    reason: incoming.correction_reason ?? "Historical offer-date correction",
+    previous_value: field.value,
+    previous_status: field.status ?? null,
+    previous_source_value: field.source_value ?? null,
+    previous_evidence: field.source ? [{
+      url: field.source.url,
+      document_type: field.source.document_type,
+      document_identity: field.source.document_identity ?? null,
+      publication_date: field.source.publication_date ?? null,
+      page: field.page ?? null,
+      collected_at: field.source.collected_at ?? null
+    }] : []
+  };
+}
+
+function applyCorrectedDateField(record, fieldName, correctionSpec, incoming) {
+  if (!correctionSpec?.replacement_value) return { changed: false, conflict: false };
+
+  const directField = record[fieldName];
+  const directValue = directField?.value ?? null;
+  const termValue = record.terms?.[fieldName] ?? null;
+  const currentValue = directValue ?? termValue;
+  const replacement = correctionSpec.replacement_value;
+  const previous = correctionSpec.previous_value ?? null;
+
+  if (currentValue === replacement) return { changed: false, conflict: false, already: true };
+
+  // Never overwrite a different value that appeared concurrently from another
+  // source. Known parser-v1 corrections may replace only their exact legacy
+  // value, or fill a field that is still missing.
+  if (currentValue !== null && currentValue !== previous) {
+    return { changed: false, conflict: true };
+  }
+
+  const source = incoming.correction?.source;
+  if (!source?.url || !source?.document_type) return { changed: false, conflict: true };
+
+  const priorCorrections = Array.isArray(directField?.corrections) ? directField.corrections : [];
+  const history = directValue === previous && previous !== null
+    ? correctionHistoryEntry(directField, incoming)
+    : null;
+
+  record[fieldName] = {
+    value: replacement,
+    source_value: incoming.correction?.source_value ?? null,
+    page: source.page ?? null,
+    status: "verified",
+    source: {
+      url: source.url,
+      document_type: source.document_type,
+      document_identity: source.document_identity ?? null,
+      publication_date: source.publication_date ?? null,
+      collected_at: incoming.corrected_at ?? incoming.last_attempted_at ?? new Date().toISOString()
+    },
+    corrections: history ? [...priorCorrections, history] : priorCorrections
+  };
+
+  addDocumentOnce(
+    record,
+    source,
+    incoming.corrected_at ?? incoming.last_attempted_at ?? new Date().toISOString()
+  );
+  record.last_collected_at = incoming.corrected_at ?? incoming.last_attempted_at ?? record.last_collected_at;
+  return { changed: true, conflict: false };
+}
+
 export function mergeOfferDateProposal(groups, currentState, proposalState) {
   const index = new Map();
   for (const group of groups) {
@@ -48,7 +130,11 @@ export function mergeOfferDateProposal(groups, currentState, proposalState) {
     already_present: 0,
     missing_records: 0,
     stale_parser_entries: 0,
-    invalid_extractions: 0
+    invalid_extractions: 0,
+    corrected_records: 0,
+    corrected_open_dates: 0,
+    corrected_close_dates: 0,
+    correction_conflicts: 0
   };
 
   for (const [key, incoming] of Object.entries(proposalState?.issuers || {})) {
@@ -63,6 +149,30 @@ export function mergeOfferDateProposal(groups, currentState, proposalState) {
     if (newerOrEqual(incoming, current)) {
       currentState.issuers[key] = incoming;
       stats.cursor_updates += 1;
+    }
+
+    if (incoming?.status === "corrected_official_nse") {
+      const match = index.get(key);
+      if (!match) {
+        stats.missing_records += 1;
+        continue;
+      }
+      stats.matched_records += 1;
+
+      const { group, record } = match;
+      const openResult = applyCorrectedDateField(record, "open_date", incoming.correction?.open_date, incoming);
+      const closeResult = applyCorrectedDateField(record, "close_date", incoming.correction?.close_date, incoming);
+
+      if (openResult.conflict) stats.correction_conflicts += 1;
+      if (closeResult.conflict) stats.correction_conflicts += 1;
+
+      if (openResult.changed || closeResult.changed) {
+        group.changed = true;
+        stats.corrected_records += 1;
+        if (openResult.changed) stats.corrected_open_dates += 1;
+        if (closeResult.changed) stats.corrected_close_dates += 1;
+      }
+      continue;
     }
 
     if (incoming?.status !== "extracted") continue;
