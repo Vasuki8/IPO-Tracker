@@ -271,6 +271,12 @@ assert.deepEqual(
 assert.equal(searchTermForIssuer("Adroit Industries (India) Limited"), "adroit");
 assert.equal(searchTermForIssuer("Swastika Infra Limited"), "swastika");
 assert.equal(searchTermForIssuer("National Stock Exchange of India Limited"), "national");
+assert.equal(searchTermForIssuer("CMS Info Systems Limited"), "cms");
+assert.equal(searchTermForIssuer("HEC Infra Projects Limited"), "hec");
+assert.equal(searchTermForIssuer("Supreme Power Equipment Limited"), "supreme");
+assert.equal(searchTermForIssuer("Vivo Collaboration Solutions Limited"), "vivo");
+assert.equal(searchTermForIssuer("United Polyfab Gujarat Limited"), "polyfab");
+assert.equal(searchTermForIssuer("Trident Techlabs Limited"), "trident");
 assert.equal(
   buildSebiSearchUrl("National Stock Exchange of India Limited"),
   "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&search=national"
