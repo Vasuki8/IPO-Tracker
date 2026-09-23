@@ -48,7 +48,9 @@ export function parseBseListingNotice(html) {
   const effective=body.match(/effective from\s+(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),?\s+([A-Za-z]+\s+\d{1,2},\s+\d{4})/i)?.[1]??null;
   const lot=number(body.match(/Market Lot\s+([0-9,]+)/i)?.[1]);
   const price=number(body.match(/Issue Price for the current Public issue\s+Rs\.?\s*([0-9,.]+)/i)?.[1]);
-  return { company, listing_date_raw:effective, market_lot:lot, issue_price:price };
+  const segment=body.match(/\bSegment\s+(SME|Equity)\b/i)?.[1]??null;
+  const board=segment?.toLowerCase()==="sme" ? "SME" : segment ? "Mainboard" : null;
+  return { company, listing_date_raw:effective, market_lot:lot, issue_price:price, board };
 }
 function sourceEvidence(source, collectedAt) {
   return {
@@ -104,11 +106,16 @@ export function applyBseParsedFields(record, source, parsed, collectedAt) {
   return {changed,conflicts};
 }
 export function buildBseOnlyRecoveryRecord(source, parsed, collectedAt) {
+  if (source?.kind !== "listing_notice" || source?.materialize_if_missing !== true) return null;
+  if (!Number.isInteger(Number(source.year))) return null;
+  if (!parsed?.company || slug(parsed.company) !== slug(source.issuer_name)) return null;
+  if (!isoDate(parsed.listing_date_raw)) return null;
+
   const evidence = sourceEvidence(source, collectedAt);
   const record = {
     id: slug(source.issuer_name),
     issuer_name: source.issuer_name,
-    board: source.board ?? null,
+    board: parsed.board ?? source.board ?? null,
     sector: null,
     status: source.kind === "listing_notice" ? "listed" : null,
     nse_symbol: null,
@@ -132,10 +139,8 @@ export function buildBseOnlyRecoveryRecord(source, parsed, collectedAt) {
     documents: [],
     first_observed_at: collectedAt,
     last_collected_at: collectedAt,
-    board_evidence: [],
-    status_evidence: source.kind === "listing_notice"
-      ? [{ ...evidence, page: null }]
-      : []
+    board_evidence: (parsed.board ?? source.board) ? [{ ...evidence, page: null }] : [],
+    status_evidence: [{ ...evidence, page: null }]
   };
   applyBseParsedFields(record, source, parsed, collectedAt);
   return record;
@@ -235,14 +240,10 @@ async function run(){
         if(slug(record.issuer_name)===slug(source.issuer_name)) candidates.push({item,record});
       }
       if(candidates.length===0 && source.materialize_if_missing === true && Number.isInteger(source.year)){
-        if (source.kind === "listing_notice" && parsed.company && slug(parsed.company) !== slug(source.issuer_name)) {
-          stats.unmatched_sources++;
-          console.warn("BSE listing notice issuer mismatch for "+source.issuer_name+": "+parsed.company);
-          continue;
-        }
-        const item = ensureYearItem(source.year);
         const record = buildBseOnlyRecoveryRecord(source, parsed, now);
-        if (!item.data.records.some((existing) => existing.id === record.id)) {
+        if (record) {
+          const item = ensureYearItem(source.year);
+          if (!item.data.records.some((existing) => existing.id === record.id)) {
           item.data.records.push(record);
           item.data.records.sort((a,b)=>a.issuer_name.localeCompare(b.issuer_name));
           item.data.generated_at = now;
@@ -250,8 +251,9 @@ async function run(){
           stats.materialized_records++;
           stats.matched_records++;
           stats.applied++;
-          console.log(JSON.stringify({issuer_name:source.issuer_name,kind:source.kind,url:source.url,parsed,materialized:true,applied:true,conflicts:[]}));
-          continue;
+            console.log(JSON.stringify({issuer_name:source.issuer_name,kind:source.kind,url:source.url,parsed,materialized:true,applied:true,conflicts:[]}));
+            continue;
+          }
         }
       }
       if(candidates.length!==1){
