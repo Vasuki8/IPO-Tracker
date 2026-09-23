@@ -2834,3 +2834,53 @@ Historical SEBI targeted searches now use explicit request timeouts and a smalle
 - a slow/unresponsive SEBI request is recorded as an error and retried by the existing 24-hour cooldown rather than blocking publication indefinitely.
 
 This prioritizes steady hourly progress over attempting too many historical issuers in one run.
+
+
+## First successful 2020–2026 historical publication
+
+Production sync `35909605857` successfully rebuilt, validated and published **915 IPO records across 7 year manifests**.
+
+### Published universe counts
+
+- 2020: **51**
+- 2021: **100**
+- 2022: **94**
+- 2023: **174**
+- 2024: **252**
+- 2025: **212**
+- 2026: **32**
+- total: **915**
+
+Historical 2020–2025 records currently have very strong NSE historical coverage for:
+
+- listing date: **883/883**;
+- final issue price: **881/883**.
+
+The major remaining historical field gaps are price band, offer open/close dates, issue size, market lot and minimum bid quantity.
+
+### BSE ordering repair
+
+The live workflow previously ran the retained BSE writer before historical NSE materialization. On a first-year materialization run, verified historical BSE sources therefore had no recovery record to attach to.
+
+The workflow now:
+
+1. collects current NSE data;
+2. materializes 2020–2025 historical NSE records;
+3. applies retained BSE sources;
+4. runs the detailed historical coverage audit;
+5. continues with SEBI enrichment.
+
+This allows retained BSE evidence to apply during the same run that creates historical recovery records.
+
+### Detailed coverage audit
+
+`scripts/audit-historical-coverage.mjs` now reports, per year:
+
+- total records;
+- Mainboard / SME / unknown-board counts;
+- retained verified BSE source count;
+- records with BSE evidence;
+- records with SEBI evidence;
+- coverage counts for price band, final issue price, issue size, market lot, minimum bid, offer dates and listing date.
+
+This makes subsequent historical retrieval improvements measurable instead of relying on directory presence alone.

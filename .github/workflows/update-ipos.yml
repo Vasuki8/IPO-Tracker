@@ -79,12 +79,6 @@ jobs:
       - name: Test BSE detail and listing parsers
         run: node scripts/test-extract-bse-ipo-fields.mjs
 
-      - name: Audit historical IPO coverage
-        run: node scripts/audit-historical-coverage.mjs
-
-      - name: Apply retained official BSE IPO sources
-        run: node scripts/extract-bse-ipo-fields.mjs
-
       - name: Test live-feed parsing
         run: node scripts/test-sync-nse-live.mjs
 
@@ -97,6 +91,12 @@ jobs:
 
       - name: Materialize 2020-2025 NSE historical IPO universes
         run: node scripts/sync-nse-historical.mjs --year=2020-2025
+
+      - name: Apply retained official BSE IPO sources
+        run: node scripts/extract-bse-ipo-fields.mjs
+
+      - name: Audit historical IPO coverage
+        run: node scripts/audit-historical-coverage.mjs
 
       - name: Attach SEBI offer documents
         id: collect_sebi
