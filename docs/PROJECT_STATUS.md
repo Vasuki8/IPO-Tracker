@@ -2678,3 +2678,25 @@ Operational validation remains separate from `data/ipos.json` validation. A malf
 ### Handoff
 
 After this consolidated repair pass is verified in CI and production, resume backend development from repository evidence rather than the older one-batch handoffs above. The next task should be chosen from any remaining real P1/P2/P3 correctness gaps, not from already-completed operator plumbing.
+
+
+## Latest data-recovery batch — NSE past-issues listing date + final price
+
+Coverage audit after the consolidated operational repairs showed the largest homepage gaps were listing date (19/32 missing) and issue price (18/32 missing).
+
+The existing official NSE `public-past-issues` extractor had a circular constraint: it only considered records that already had a listing date, even though the official past-issues row itself contains the listing date.
+
+This batch removes that dependency:
+
+- exact NSE symbol/series matching remains required;
+- if a retained listing date already exists, a conflicting NSE row is still rejected;
+- when listing date is missing, the exact official row can now verify and retain it;
+- after listing-date recovery, the same official row can verify final issue price;
+- unparseable dates remain null;
+- evidence/document identity and collection timestamps are retained.
+
+This is a reusable source-family repair, not a manual issuer patch.
+
+### Handoff
+
+Measure production coverage improvement from the next sync. Then continue with the highest remaining verified P1/P2 gap, likely issue size or residual listing-date/issue-price records not present in NSE past issues.
