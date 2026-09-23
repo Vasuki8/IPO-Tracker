@@ -23,7 +23,8 @@ import {
   findIssuePriceMentions,
   parseExplicitAggregateIssueSizeFromPages,
   parseExplicitIssuePriceFromPages,
-  parseExplicitMinimumBidQuantityFromPages
+  parseExplicitMinimumBidQuantityFromPages,
+  shouldDeferHeavyHistoricalPdf
 } from "./extract-prospectus-fields.mjs";
 
 const fixture = JSON.parse(
@@ -412,3 +413,27 @@ const mirrorRecord = {
 assert.equal(candidateProspectusDocument(mirrorRecord), null);
 
 console.log("Prospectus issue-price extraction tests passed.");
+assert.equal(
+  shouldDeferHeavyHistoricalPdf(
+    { listing_date: { value: "2025-08-01" } },
+    2026,
+    false
+  ),
+  true
+);
+assert.equal(
+  shouldDeferHeavyHistoricalPdf(
+    { listing_date: { value: "2026-08-01" } },
+    2026,
+    false
+  ),
+  false
+);
+assert.equal(
+  shouldDeferHeavyHistoricalPdf(
+    { listing_date: { value: "2025-08-01" } },
+    2026,
+    true
+  ),
+  false
+);
