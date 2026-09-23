@@ -7,7 +7,6 @@ import {
   applyNiiMinimumApplicationExtraction,
   candidateProspectusDocument,
   candidateProspectusIssueSizeDocument,
-  candidateNewIssueSizeEvidenceDocument,
   candidateProspectusMinimumBidDocument,
   candidateProspectusRetailMinimumApplicationDocument,
   candidateRhpIssueSizeDocument,
@@ -127,38 +126,6 @@ const rhpRecord = {
 };
 assert.equal(candidateRhpIssueSizeDocument(rhpRecord), rhpDoc);
 
-const moneyviewRhp = {
-  ...rhpDoc,
-  identity: "Moneyview Limited - RHP — PDF"
-};
-assert.equal(candidateNewIssueSizeEvidenceDocument({
-  issuer_name: "Moneyview Limited",
-  issue_size_inr: undefined,
-  documents: [moneyviewRhp]
-}), moneyviewRhp);
-
-const qualianceOtherPdf = {
-  ...doc,
-  type: "SEBI Other Document PDF",
-  identity: "QUALIANCE INTERNATIONAL LIMITED — PDF"
-};
-assert.equal(candidateNewIssueSizeEvidenceDocument({
-  issuer_name: "Qualiance International Limited",
-  issue_size_inr: undefined,
-  documents: [qualianceOtherPdf]
-}), qualianceOtherPdf);
-
-assert.equal(candidateNewIssueSizeEvidenceDocument({
-  issuer_name: "Adroit Industries (India) Limited",
-  issue_size_inr: undefined,
-  documents: [rhpDoc]
-}), null);
-
-assert.equal(candidateNewIssueSizeEvidenceDocument({
-  issuer_name: "Moneyview Limited",
-  issue_size_inr: { value: 123, status: "verified" },
-  documents: [moneyviewRhp]
-}), null);
 assert.equal(candidateRhpMinimumBidDocument(rhpRecord), rhpDoc);
 
 assert.equal(candidateRhpMinimumApplicationDocument(rhpRecord), rhpDoc);

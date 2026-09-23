@@ -115,9 +115,6 @@ jobs:
       - name: Extract explicit Abridged Prospectus fields
         run: node scripts/extract-abridged-fields.mjs
 
-      - name: Diagnose newly available issue-size evidence
-        run: node scripts/extract-prospectus-fields.mjs --diagnose-new-size-evidence
-
       - name: Extract explicit final Prospectus fields
         run: node scripts/extract-prospectus-fields.mjs
 

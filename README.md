@@ -860,3 +860,24 @@ Resolution order is:
 Provisional/conflict numeric values are never surfaced as Lot Size. Current 2026 coverage remains **26/26 verified Lot Size** with no data rewrite.
 
 **Handoff:** minimum investment/application amount remains out of scope. The next development batch should re-audit the **12 missing issue-size records** against newly available official evidence before moving to freshness/operations work.
+
+
+### Issue-size re-audit handoff
+
+The 12 missing 2026 issue sizes have now been re-audited against current official evidence.
+
+Latest supported-source checks found **no new publishable aggregate INR totals**, so issue-size coverage remains **14/26 verified**.
+
+New evidence handled in this batch:
+
+- **Qualiance International Limited** — the collector now resolves the attached PDF from its official SEBI `Other Documents` filing while preserving the neutral document type. Its Total Issue Size remains `[●]`.
+- **Moneyview Limited** — a robust bounded PDF-transfer fallback allowed its official SEBI RHP to be inspected. The overall Offer remains `₹ [●] million`; only the Fresh Issue component is explicit at ₹7,500 million, so no total issue size is published.
+
+Reusable source improvements remain enabled:
+
+- SEBI Other Document PDF resolution;
+- bounded `curl` fallback when normal official-PDF transfer terminates.
+
+The one-shot Moneyview/Qualiance diagnostic has been removed from hourly execution.
+
+**Handoff:** do not repeat issue-size recovery until new official evidence appears. Lot Size remains **26/26 verified**, and minimum investment remains out of scope. The next development batch should move to **operational freshness/source-health visibility**, starting with a read-only operator report that distinguishes source observation, collection success/failure and publication freshness.
