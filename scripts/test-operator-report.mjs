@@ -69,5 +69,6 @@ const markdown = renderMarkdown(report);
 assert.match(markdown, /Collection health: \*\*collection_success\*\*/);
 assert.match(markdown, /Verified Lot Size: \*\*2\/2\*\*/);
 assert.match(markdown, /does \*\*not\*\* mean the source necessarily contains that value/);
-assert.match(markdown, /GitHub Pages publication: \*\*not persisted by this sync workflow\*\*/);
+assert.match(markdown, /GitHub Pages latest attempt: \*\*failure\*\*/);
+assert.match(markdown, /GitHub Pages last successful publication: 2026-09-23T03:10:00Z \(commit good\)/);
 console.log("Operator freshness report tests passed.");
