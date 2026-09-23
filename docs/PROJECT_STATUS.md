@@ -3010,3 +3010,31 @@ Historical 2020-2025 open/close date coverage remained at zero after NSE histori
 `ops/sebi-historical-offer-dates.json` records parser version, last attempt, extraction result and source URL. Successful/no-field/conflict results are not repeatedly scanned with the same parser version; transient PDF failures retry after 24 hours.
 
 This queue is separate from the heavy general historical PDF passes so offer-date recovery can progress without blocking live publication.
+
+
+## Historical SEBI PDF field backfill — bounded issue-size/minimum-bid recovery
+
+Historical issue-size coverage remains the weakest field family, while many 2025 records now have official SEBI Prospectus/RHP PDFs attached through the incremental document backfill.
+
+Added a separate bounded historical PDF queue that reuses one official PDF download per issuer for:
+
+- final issue price when still missing;
+- explicit aggregate monetary issue size;
+- explicit minimum bid quantity.
+
+### Safety
+
+- processes at most **8 historical IPOs per sync**;
+- candidate records must be pre-current-year and retain an official SEBI Prospectus PDF or RHP PDF;
+- Prospectus is preferred over RHP when both exist;
+- existing non-null values are never overwritten;
+- issue size is accepted only from the existing explicit aggregate INR parser;
+- no share-count × price arithmetic is introduced;
+- existing conflict-safe minimum-bid and issue-price parsers are reused;
+- each applied field retains PDF URL, document identity/type, publication date, page number and collection timestamp.
+
+### Durable cursor
+
+`ops/sebi-historical-pdf-fields.json` records parser version, extraction result, remaining fields and source URL. Successful/no-field records are not repeatedly downloaded with the same parser version; transient PDF failures retry after 24 hours.
+
+The batch is intentionally small so historical PDF enrichment cannot become part of the live publication critical path again.
