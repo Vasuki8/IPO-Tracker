@@ -3071,4 +3071,4 @@ The single-pass NSE detail extractor now:
 - retains NSE API URL, document identity and collection timestamp;
 - reuses the already-fetched `ipo-detail` payload, so this adds no network request.
 
-This directly targets current 2026 final-price gaps and can also support the two residual historical final-price gaps once wired into the historical detail writer.
+This directly targets current 2026 final-price gaps and is also wired into the bounded historical detail writer for the two residual historical final-price gaps (Marco Cables and Conductors Limited in 2023 and Vodafone Idea Limited - FPO in 2024).
