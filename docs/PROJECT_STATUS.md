@@ -1898,3 +1898,106 @@ Acceptance rules:
 - survey first, then enable production extraction only if wording is consistent across multiple documents.
 
 If retail monetary amounts are also source-null, separately survey explicit retail minimum bid quantities rather than deriving them.
+
+
+## Latest completed batch — retail minimum application amount source survey
+
+The retail application-amount source family has now been measured across retained official offer documents without using any derived arithmetic.
+
+### Existing RHP evidence reuse
+
+The earlier full-RHP minimum-application diagnostic had already scanned **14/14 retained official SEBI RHP PDFs across 7,593 pages**.
+
+Reviewing its captured minimum-application contexts for explicit Retail Individual Bidder / Retail Individual Investor wording found no source-backed retail INR minimum amount.
+
+Where retail wording was present, the RHPs stated a **minimum Bid Lot** rule. Explicit monetary minimums such as **₹200,000** belonged to the Non-Institutional category.
+
+### Final Prospectus survey
+
+PR #82 — `Survey final Prospectus retail minimum application amounts` — added a strict read-only full-document survey for:
+
+`application_requirements.retail.minimum_application_amount_inr`
+
+Merged:
+
+`cbbe247e0107ec7f95649204c4c0b57ddfb30335`
+
+Production sync run `35804488536` scanned 9/10 retained final Prospectus PDFs successfully:
+
+- downloaded: **9/10**
+- pages scanned: **4,786**
+- documents with an explicit Retail Individual minimum INR amount: **0**
+- qualifying mentions: **0**
+- one unresolved PDF: Kanohar Electricals Limited, where unbounded text extraction was terminated
+
+The survey required:
+
+- explicit Retail Individual Bidder / Retail Individual Investor context;
+- an explicitly labelled minimum application amount;
+- an explicit INR / Rs / ₹ amount;
+- no maximum-application wording;
+- no NII amount reuse;
+- no generic amount without retail context;
+- no price × lot derivation.
+
+### Kanohar targeted retry
+
+PR #83 — `Retry Kanohar retail minimum application survey` — retried only Kanohar with a bounded **650-page** scan.
+
+Merged:
+
+`be115a1f4bba4f5f4efe818ed626f12c8b6769db`
+
+Production retry result:
+
+- candidates: **1**
+- downloaded: **1**
+- pages scanned: **511**
+- explicit retail minimum-INR mentions: **0**
+- fetch errors: **0**
+
+This closes the one unresolved final Prospectus.
+
+### Decision
+
+Do **not** populate `application_requirements.retail.minimum_application_amount_inr` from the current retained RHP/final-Prospectus source family.
+
+Current retail minimum-application coverage remains:
+
+- present: **0/26**
+- missing: **26/26**
+
+This is a deliberate **source-null** result.
+
+The tracker will not derive retail minimum application amount from:
+
+- issue price × bid lot;
+- price-band cap × bid lot;
+- top-level market lot;
+- generic minimum bid quantity;
+- any assumed retail lot multiple.
+
+PR #84 — `Remove completed retail minimum application survey` — removed the one-shot retail diagnostic from hourly execution and restored the full-universe/full-document diagnostic as a manual tool.
+
+Merged:
+
+`f8382dca5fff476424976527142693fafa428cd4`
+
+### Recommended next coherent batch
+
+Survey retained official offer documents for explicit:
+
+`application_requirements.retail.minimum_bid_quantity`
+
+Acceptance rules:
+
+- require explicit Retail Individual Bidder / Retail Individual Investor context;
+- require an explicit share quantity / minimum Bid Lot rule;
+- retain exact PDF page and source identity;
+- keep quantity separate from monetary application amount;
+- reject NII/Anchor quantity rules;
+- reject generic Bid Lot wording unless the retail applicability is explicit;
+- do not infer quantity from ₹ thresholds or issue price;
+- survey first, then enable recurring extraction only if wording is consistent across multiple documents.
+
+If retail minimum bid quantity proves consistently source-backed, it can become the primary retail application requirement shown to users while retail monetary amount remains null.
