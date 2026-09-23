@@ -1,7 +1,12 @@
 import assert from "node:assert/strict";
-import { matchIndexCompany, normalizeIssuerName, parseBseSmeIpoIndex } from "./audit-bse-sme-ipo-index.mjs";
+import {
+  matchIndexCompany,
+  mergeIndexRows,
+  normalizeIssuerName,
+  parseBseSmeIpoIndex
+} from "./audit-bse-sme-ipo-index.mjs";
 
-const html = `
+const legacyHtml = `
 <table>
 <tr><th>Scrip Code</th><th>Company</th><th>ISIN No.</th><th>Close Price</th></tr>
 <tr><td>544412</td><td>3B FILMS LIMITED</td><td>INE0TE101010</td><td>30</td></tr>
@@ -10,11 +15,66 @@ const html = `
 <tr><td>noise</td><td>Not a constituent</td><td>NA</td><td>0</td></tr>
 </table>`;
 
-const rows = parseBseSmeIpoIndex(html);
-assert.equal(rows.length, 3);
-assert.equal(rows[0].scrip_code, "544412");
-assert.equal(rows[1].isin, "INE0QMV01017");
+const legacyRows = parseBseSmeIpoIndex(legacyHtml);
+assert.equal(legacyRows.length, 3);
+assert.equal(legacyRows[0].scrip_code, "544412");
+assert.equal(legacyRows[1].isin, "INE0QMV01017");
+assert.equal(legacyRows[0].row_format, "legacy_index_watch");
 assert.equal(normalizeIssuerName("3B Films Limited"), "3b films");
+
+const indexServicesHtml = `
+<table>
+<tr><th>Constituent</th><th>Scrip Code</th><th>Macro-Economic Sector</th></tr>
+<tr><td>ABRIL PAPER TECH LIMITED</td><td>544500</td><td>Industrials</td></tr>
+<tr><td>ACCORD TRANSFORMER &amp; SWITCHGEAR LIMITED</td><td>544710</td><td>Industrials</td></tr>
+<tr><td>ADVANCE TECHNOFORGE LIMITED</td><td>544843</td><td>Industrials</td></tr>
+</table>`;
+
+const indexRows = parseBseSmeIpoIndex(indexServicesHtml);
+assert.equal(indexRows.length, 3);
+assert.equal(indexRows[0].company, "ABRIL PAPER TECH LIMITED");
+assert.equal(indexRows[1].scrip_code, "544710");
+assert.equal(indexRows[1].macro_sector, "Industrials");
+assert.equal(indexRows[0].isin, null);
+assert.equal(indexRows[0].row_format, "index_services");
+
+const merged = mergeIndexRows([
+  {
+    name: "bse_index_services",
+    url: "https://www.bseindices.com/indices-details/code/76/",
+    rows: [
+      {
+        scrip_code: "544546",
+        company: "Chatterbox Technologies Limited",
+        isin: null,
+        close_price: null,
+        macro_sector: "Consumer Discretionary",
+        row_format: "index_services"
+      }
+    ]
+  },
+  {
+    name: "bse_legacy_index_watch",
+    url: "https://www.bseindia.com/example",
+    rows: [
+      {
+        scrip_code: "544546",
+        company: "Chatterbox Technologies Limite",
+        isin: "INE1B4801017",
+        close_price: "142.2",
+        macro_sector: null,
+        row_format: "legacy_index_watch"
+      }
+    ]
+  }
+]);
+
+assert.equal(merged.length, 1);
+assert.equal(merged[0].company, "Chatterbox Technologies Limited");
+assert.equal(merged[0].isin, "INE1B4801017");
+assert.equal(merged[0].macro_sector, "Consumer Discretionary");
+assert.equal(merged[0].official_sources.length, 2);
+assert.equal(merged[0].row_format, "merged_official_formats");
 
 const records = [
   { year: 2025, record: { issuer_name: "3B Films Limited" } },
