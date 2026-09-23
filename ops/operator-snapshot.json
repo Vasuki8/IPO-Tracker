@@ -1,15 +1,19 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-09-23T23:25:40.511Z",
+  "generated_at": "2026-09-23T23:36:05.173Z",
   "run": {
-    "id": "35932891080",
+    "id": "35934080256",
     "attempt": "1",
     "workflow": "Sync live IPO data",
-    "commit_sha": "31bd303123bc749e16ff3a9805372821cc3506d6"
+    "commit_sha": "4ee59e38fce5c917c115d19b70cee25a0aefd1c5"
   },
   "health": {
-    "overall": "healthy",
-    "reasons": [],
+    "overall": "unknown",
+    "reasons": [
+      "rebuild_unmeasured",
+      "validation_unmeasured",
+      "repository_publish_unmeasured"
+    ],
     "thresholds_hours": {
       "dataset_generated": 3,
       "record_collection": 3,
@@ -17,21 +21,40 @@
       "pages_publication": 3
     },
     "ages_hours": {
-      "dataset_generated": 0.05,
-      "record_collection": 0.05,
-      "evidence_collection": 0.05,
-      "pages_publication": 0.1
+      "dataset_generated": 0.22,
+      "record_collection": 0.22,
+      "evidence_collection": 0.22,
+      "pages_publication": 0.13
     }
   },
-  "recovery_guidance": [],
+  "recovery_guidance": [
+    {
+      "reason": "rebuild_unmeasured",
+      "priority": "medium",
+      "diagnostic": "Inspect workflow control flow: rebuild was skipped without a known upstream failure, or its outcome was not recorded.",
+      "recovery": "Restore explicit rebuild execution/outcome reporting before interpreting downstream freshness."
+    },
+    {
+      "reason": "validation_unmeasured",
+      "priority": "medium",
+      "diagnostic": "Inspect workflow control flow: validation was skipped without a rebuild/collection failure, or its outcome was not recorded.",
+      "recovery": "Restore explicit validation execution/outcome reporting; do not assume validation passed."
+    },
+    {
+      "reason": "repository_publish_unmeasured",
+      "priority": "medium",
+      "diagnostic": "Inspect workflow control flow: repository publication was skipped without a known upstream failure, or its outcome was not recorded.",
+      "recovery": "Restore explicit publication outcome reporting; do not infer that validated changes reached main."
+    }
+  ],
   "pipeline": {
-    "collection_health": "collection_success",
+    "collection_health": "not_measured",
     "stages": {
       "nse_collection": "success",
-      "sebi_collection": "success",
-      "rebuild": "success",
-      "validation": "success",
-      "repository_publish": "success"
+      "sebi_collection": "skipped",
+      "rebuild": "skipped",
+      "validation": "skipped",
+      "repository_publish": "skipped"
     }
   },
   "freshness": {
@@ -42,12 +65,12 @@
   },
   "pages_publication": {
     "latest_attempt_status": "success",
-    "latest_attempt_at": "2026-09-23T23:19:50Z",
-    "latest_attempt_commit_sha": "6f6c1b6e65044f81962ef06a04d295e5ef16bc6e",
-    "latest_attempt_run_id": "35933021405",
-    "last_successful_at": "2026-09-23T23:19:50Z",
-    "last_successful_commit_sha": "6f6c1b6e65044f81962ef06a04d295e5ef16bc6e",
-    "last_successful_run_id": "35933021405",
+    "latest_attempt_at": "2026-09-23T23:28:20Z",
+    "latest_attempt_commit_sha": "fc09eeae8334cbd56560b975345ebbacf8d04b50",
+    "latest_attempt_run_id": "35933741691",
+    "last_successful_at": "2026-09-23T23:28:20Z",
+    "last_successful_commit_sha": "fc09eeae8334cbd56560b975345ebbacf8d04b50",
+    "last_successful_run_id": "35933741691",
     "page_url": "https://vasuki8.github.io/IPO-Tracker/"
   }
 }
