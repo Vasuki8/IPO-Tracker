@@ -99,6 +99,9 @@ jobs:
       - name: Test historical SEBI offer-date backfill
         run: node scripts/test-backfill-historical-offer-dates.mjs
 
+      - name: Test historical SEBI PDF field backfill
+        run: node scripts/test-backfill-historical-pdf-fields.mjs
+
       - name: Install PDF text extraction dependency
         run: |
           sudo apt-get update
