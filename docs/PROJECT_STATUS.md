@@ -2800,3 +2800,25 @@ Two historical-publication fixes were required:
 - when historical records lack offer open/close dates, sort them by verified listing date before issuer name, preserving newest-to-oldest behavior for completed IPOs.
 
 This does not invent historical offer dates. Listing date is used only as the ordering fallback when open/close dates are absent.
+
+
+## Historical SEBI enrichment — bounded targeted search with durable cursor
+
+Audit after historical universe materialization showed SEBI's targeted issuer search was restricted to live-feed records. Historical NSE records therefore received SEBI documents only when they happened to appear on SEBI's current listing pages.
+
+This batch adds a bounded historical search path:
+
+- up to **24 historical issuers per sync** are searched through the official SEBI filings search;
+- live current-IPO targeted searches remain capped separately at 12;
+- historical candidates must have a verified listing date and no retained SEBI document;
+- search state is persisted in `ops/sebi-historical-search.json`, so each hourly run advances to previously unsearched issuers rather than repeating the same misses;
+- successful matches are not searched again;
+- no-match results retry after 30 days;
+- transient search errors retry after 24 hours;
+- search state is operational metadata and is ignored by GitHub Pages when it is the only changed file.
+
+This turns SEBI historical enrichment into an incremental automatic backfill instead of a current-IPO-only process.
+
+### Safety
+
+A search attempt never creates IPO field evidence by itself. Only an actual matched official SEBI filing/document is attached to the recovery record. Unmatched searches remain operational cursor state only.
