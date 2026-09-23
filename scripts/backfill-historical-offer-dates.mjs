@@ -43,14 +43,12 @@ export function parseExplicitOfferDate(value) {
   let match = text.match(/\b(January|February|March|April|May|June|July|August|September|Sept|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{1,2})(?:st|nd|rd|th)?\s*,?\s+(20\d{2})\b/i);
   if (match) {
     const month = monthNumber(match[1]);
-    const day = String(Number(match[2])).padStart(2, "0");
-    if (month && Number(day) >= 1 && Number(day) <= 31) return `${match[3]}-${month}-${day}`;
+    if (month) return validIsoDate(match[3], month, match[2]);
   }
   match = text.match(/\b(\d{1,2})(?:st|nd|rd|th)?\s+(January|February|March|April|May|June|July|August|September|Sept|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s*,?\s+(20\d{2})\b/i);
   if (match) {
     const month = monthNumber(match[2]);
-    const day = String(Number(match[1])).padStart(2, "0");
-    if (month && Number(day) >= 1 && Number(day) <= 31) return `${match[3]}-${month}-${day}`;
+    if (month) return validIsoDate(match[3], month, match[1]);
   }
   return null;
 }
