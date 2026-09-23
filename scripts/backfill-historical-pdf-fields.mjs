@@ -22,7 +22,7 @@ const RECOVERY_ROOT = path.join(ROOT, "data", "recovery");
 const STATE_PATH = path.join(ROOT, "ops", "sebi-historical-pdf-fields.json");
 const USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36";
 export const HISTORICAL_PDF_FIELD_BATCH_SIZE = 8;
-export const HISTORICAL_PDF_FIELD_PARSER_VERSION = "1.1.0";
+export const HISTORICAL_PDF_FIELD_PARSER_VERSION = "1.2.0";
 export const HISTORICAL_PDF_DOWNLOAD_MAX_SECONDS = 75;
 const MAX_PAGES = 35;
 
@@ -60,11 +60,21 @@ export function missingHistoricalPdfFields(record) {
 export function candidateHistoricalPdf(record, currentYear = new Date().getUTCFullYear()) {
   const listingYear = Number(String(record?.listing_date?.value || "").slice(0, 4));
   if (!Number.isInteger(listingYear) || listingYear >= currentYear) return null;
-  if (missingHistoricalPdfFields(record).length === 0) return null;
+
+  const missing = missingHistoricalPdfFields(record);
+  if (missing.length === 0) return null;
+
   const docs = record.documents || [];
-  return docs.find((doc) => doc.type === "SEBI Prospectus PDF" && officialSebiPdf(doc.url)) ||
-    docs.find((doc) => doc.type === "SEBI RHP PDF" && officialSebiPdf(doc.url)) ||
-    null;
+  const prospectus = docs.find((doc) => doc.type === "SEBI Prospectus PDF" && officialSebiPdf(doc.url)) || null;
+  const rhp = docs.find((doc) => doc.type === "SEBI RHP PDF" && officialSebiPdf(doc.url)) || null;
+
+  const needsBidEraTerms =
+    missing.includes("price_band") ||
+    missing.includes("market_lot") ||
+    missing.includes("minimum_bid_quantity");
+
+  if (needsBidEraTerms && rhp) return rhp;
+  return prospectus || rhp;
 }
 
 export function historicalPdfCandidates(
