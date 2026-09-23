@@ -248,7 +248,7 @@ function firstPages(pdfBytes) {
     fs.writeFileSync(file, pdfBytes);
     const output = execFileSync("pdftotext", [
       "-f", "1", "-l", String(MAX_PAGES), "-layout", "-enc", "UTF-8", file, "-"
-    ], { encoding: "utf8", maxBuffer: 16 * 1024 * 1024 });
+    ], { encoding: "utf8", maxBuffer: 16 * 1024 * 1024, timeout: 30000 });
     return output.split("\f").slice(0, MAX_PAGES);
   } finally {
     fs.rmSync(dir, { recursive: true, force: true });
