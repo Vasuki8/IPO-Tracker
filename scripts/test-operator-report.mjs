@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { buildOperatorReport, buildRecoveryGuidance, classifyOperatorHealth, latestTimestamp, renderMarkdown, verifiedLotSize } from "./operator-report.mjs";
+import { buildOperatorReport, buildRecoveryGuidance, classifyOperatorHealth, latestTimestamp, renderMarkdown, summarizeHealthHistory, verifiedLotSize } from "./operator-report.mjs";
 
 assert.equal(latestTimestamp([null, "2026-09-22T01:00:00Z", "2026-09-23T01:00:00Z"]), "2026-09-23T01:00:00Z");
 assert.equal(verifiedLotSize({ market_lot: { value: 120, status: "verified" }, minimum_bid_quantity: { value: 60, status: "verified" } }), 120);
@@ -135,3 +135,50 @@ const unknownGuidance = buildRecoveryGuidance({
 });
 assert.equal(unknownGuidance.length, 3);
 assert.match(unknownGuidance[0].recovery, /rather than inventing a timestamp/);
+
+const history = {
+  schema_version: "1.0.0",
+  max_entries: 48,
+  entries: [
+    {
+      observed_at: "2026-09-23T08:00:00Z",
+      last_observed_at: "2026-09-23T09:00:00Z",
+      overall: "healthy",
+      reasons: [],
+      observations: 2,
+      run_id: "1",
+      last_run_id: "2"
+    },
+    {
+      observed_at: "2026-09-23T10:00:00Z",
+      last_observed_at: "2026-09-23T12:00:00Z",
+      overall: "failure",
+      reasons: ["collection_failure"],
+      observations: 3,
+      run_id: "3",
+      last_run_id: "5"
+    }
+  ]
+};
+const recurrence = summarizeHealthHistory(history);
+assert.equal(recurrence.recorded, true);
+assert.equal(recurrence.transition_count, 2);
+assert.equal(recurrence.current.overall, "failure");
+assert.equal(recurrence.current.observations, 3);
+assert.equal(recurrence.current.last_run_id, "5");
+assert.equal(recurrence.recent_transitions.length, 2);
+
+const noHistory = summarizeHealthHistory(null);
+assert.equal(noHistory.recorded, false);
+assert.equal(noHistory.transition_count, 0);
+assert.equal(noHistory.current, null);
+
+const reportWithHistory = buildOperatorReport(fixture, {
+  NSE_COLLECTION_OUTCOME: "success", SEBI_COLLECTION_OUTCOME: "success",
+  REBUILD_OUTCOME: "success", VALIDATION_OUTCOME: "success", REPOSITORY_PUBLISH_OUTCOME: "success",
+  OPERATOR_REPORT_AT: "2026-09-23T12:00:00Z"
+}, pagesStatus, { now: "2026-09-23T12:00:00Z" }, history);
+const recurrenceMarkdown = renderMarkdown(reportWithHistory);
+assert.match(recurrenceMarkdown, /Recurrence context/);
+assert.match(recurrenceMarkdown, /Current retained state: \*\*failure\*\* across \*\*3\*\* consecutive observation/);
+assert.match(recurrenceMarkdown, /collection_failure/);
