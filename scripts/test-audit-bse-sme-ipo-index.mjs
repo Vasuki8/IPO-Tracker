@@ -5,7 +5,8 @@ import {
   mergeIndexRows,
   normalizeIssuerName,
   pageFingerprint,
-  parseBseSmeIpoIndex
+  parseBseSmeIpoIndex,
+  parseBseSmeIpoJson
 } from "./audit-bse-sme-ipo-index.mjs";
 
 const legacyHtml = `
@@ -39,6 +40,30 @@ assert.deepEqual(
   ["/api/index/constituents", "https://x/api/indices"]
 );
 
+const jsonRows = parseBseSmeIpoJson({
+  Table: [
+    {
+      SCRIP_CODE: 544675,
+      SCRIPNAME: "GABION TECHNOLOGIES INDIA LIMITED",
+      Industry_name: "Industrials",
+      TransDate: "2026-09-23T00:00:00"
+    },
+    {
+      SCRIP_CODE: "544708",
+      SCRIPNAME: "YASHHTEJ INDUSTRIES (INDIA) LIMITED",
+      Industry_name: "Industrials",
+      TransDate: "2026-09-23T00:00:00"
+    },
+    { SCRIP_CODE: "bad", SCRIPNAME: "Noise" }
+  ]
+});
+assert.equal(jsonRows.length, 2);
+assert.equal(jsonRows[0].scrip_code, "544675");
+assert.equal(jsonRows[0].company, "GABION TECHNOLOGIES INDIA LIMITED");
+assert.equal(jsonRows[0].macro_sector, "Industrials");
+assert.equal(jsonRows[0].as_of_date, "2026-09-23");
+assert.equal(jsonRows[0].row_format, "index_services_json");
+
 const indexServicesHtml = `
 <table>
 <tr><th>Constituent</th><th>Scrip Code</th><th>Macro-Economic Sector</th></tr>
@@ -53,12 +78,12 @@ assert.equal(indexRows[0].company, "ABRIL PAPER TECH LIMITED");
 assert.equal(indexRows[1].scrip_code, "544710");
 assert.equal(indexRows[1].macro_sector, "Industrials");
 assert.equal(indexRows[0].isin, null);
-assert.equal(indexRows[0].row_format, "index_services");
+assert.equal(indexRows[0].row_format, "index_services_html");
 
 const merged = mergeIndexRows([
   {
-    name: "bse_index_services",
-    url: "https://www.bseindices.com/constituents/code/76",
+    name: "bse_index_services_json",
+    url: "https://www.bseindices.com/AsiaIndexAPI/api/Codewise_Indices/w?code=76",
     rows: [
       {
         scrip_code: "544546",
@@ -66,7 +91,8 @@ const merged = mergeIndexRows([
         isin: null,
         close_price: null,
         macro_sector: "Consumer Discretionary",
-        row_format: "index_services"
+        as_of_date: "2026-09-23",
+        row_format: "index_services_json"
       }
     ]
   },
@@ -80,6 +106,7 @@ const merged = mergeIndexRows([
         isin: "INE1B4801017",
         close_price: "142.2",
         macro_sector: null,
+        as_of_date: null,
         row_format: "legacy_index_watch"
       }
     ]
@@ -91,6 +118,7 @@ assert.equal(merged[0].company, "Chatterbox Technologies Limited");
 assert.equal(merged[0].isin, "INE1B4801017");
 assert.equal(merged[0].macro_sector, "Consumer Discretionary");
 assert.equal(merged[0].official_sources.length, 2);
+assert.equal(merged[0].as_of_date, "2026-09-23");
 assert.equal(merged[0].row_format, "merged_official_formats");
 
 const records = [
