@@ -2700,3 +2700,25 @@ This is a reusable source-family repair, not a manual issuer patch.
 ### Handoff
 
 Measure production coverage improvement from the next sync. Then continue with the highest remaining verified P1/P2 gap, likely issue size or residual listing-date/issue-price records not present in NSE past issues.
+
+
+## Latest data-source expansion — official BSE IPO diagnostic
+
+The tracker previously had no BSE source integration. This is a material coverage gap for BSE/SME-only issues and historical recovery.
+
+Added a read-only official BSE issue-summary diagnostic that:
+
+- fetches BSE's official Public Issues summary;
+- discovers official `DisplayIPO.aspx` detail links;
+- normalizes issuer names conservatively;
+- requires a unique issuer match before considering a BSE issue page;
+- reports matched / missing / ambiguous coverage for IPO records that still have homepage field gaps;
+- does not write IPO values yet.
+
+This diagnostic-first step is intentional. BSE page/identifier behavior must be measured against multiple real issuers before a writer is allowed to retain issue price, listing date, issue size, market lot or minimum bid values.
+
+The same BSE issue-summary/detail family is intended to support both current 2026 gaps and historical IPO recovery (2025 → 2020).
+
+### Handoff
+
+Run the BSE diagnostic in production, inspect matched official detail pages and field layouts, then implement field-specific BSE extraction only for terms that are explicit and consistently identifiable. Preserve NSE/SEBI evidence and conflicts rather than overwriting them.
