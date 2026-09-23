@@ -38,6 +38,12 @@ jobs:
       - name: Test operator snapshot contract
         run: node scripts/test-record-operator-snapshot.mjs
 
+      - name: Check sync publication race guards
+        shell: bash
+        run: |
+          grep -q 'git rebase origin/main' .github/workflows/update-ipos.yml
+          grep -q 'git ls-files --error-unmatch ops/operator-snapshot.json' .github/workflows/update-ipos.yml
+
       - name: Test GitHub Pages publication status
         run: node scripts/test-record-pages-publication.mjs
 
