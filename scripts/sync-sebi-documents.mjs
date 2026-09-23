@@ -296,6 +296,14 @@ export function parseProspectusPdfLinks(html, baseUrl) {
   return docs;
 }
 
+export function parseOtherDocumentPdfLinks(html, baseUrl, identity = "SEBI Other Document") {
+  return parseProspectusPdfLinks(html, baseUrl).map((doc) => ({
+    ...doc,
+    type: "SEBI Other Document PDF",
+    identity: `${identity} — PDF`
+  }));
+}
+
 export function parseAbridgedProspectusLinks(html, baseUrl) {
   const docs = [];
   const seen = new Set();
@@ -505,6 +513,52 @@ async function applyEntry(match, entry, now, detailCache, stats, changedRecords)
   return true;
 }
 
+async function resolveOtherDocumentPdfs(records, now, detailCache, stats, changedRecords) {
+  for (const match of records) {
+    const filings = (match.record.documents || []).filter((doc) => doc.type === "SEBI Other Document");
+    for (const filing of filings) {
+      stats.other_document_pdf_candidates += 1;
+
+      let html = detailCache.get(filing.url);
+      if (html === undefined) {
+        try {
+          html = await fetchText(filing.url);
+        } catch (error) {
+          stats.other_document_pdf_errors += 1;
+          console.warn(
+            "SEBI Other Document PDF resolution failed for " +
+            match.record.issuer_name + ": " + error.message
+          );
+          detailCache.set(filing.url, null);
+          continue;
+        }
+        detailCache.set(filing.url, html);
+      }
+      if (!html) continue;
+
+      const docs = parseOtherDocumentPdfLinks(html, filing.url, filing.identity);
+      let added = 0;
+      for (const doc of docs) {
+        if (appendDocument(match.record, {
+          ...doc,
+          publication_date: filing.publication_date ?? null,
+          collected_at: now
+        })) {
+          added += 1;
+        }
+      }
+
+      if (added > 0) {
+        match.record.last_collected_at = now;
+        match.recovery.changed = true;
+        changedRecords.add(match.record.id);
+        stats.resolved_other_document_pdfs += added;
+        stats.added_documents += added;
+      }
+    }
+  }
+}
+
 async function targetedSearch(records, now, detailCache, stats, changedRecords) {
   const candidates = targetedSearchCandidates(records);
   stats.targeted_candidates = candidates.length;
@@ -582,7 +636,10 @@ async function run() {
     targeted_parsed_entries: 0,
     targeted_errors: 0,
     resolved_rhp_pdfs: 0,
-    resolved_prospectus_pdfs: 0
+    resolved_prospectus_pdfs: 0,
+    other_document_pdf_candidates: 0,
+    resolved_other_document_pdfs: 0,
+    other_document_pdf_errors: 0
   };
   const changedRecords = new Set();
 
@@ -597,6 +654,7 @@ async function run() {
   }
 
   await targetedSearch(records, now, detailCache, stats, changedRecords);
+  await resolveOtherDocumentPdfs(records, now, detailCache, stats, changedRecords);
   stats.changed_records = changedRecords.size;
 
   for (const recovery of recoveries) {
@@ -610,7 +668,10 @@ async function run() {
     `${stats.unmatched} unmatched; targeted ${stats.targeted_searches}/${stats.targeted_candidates} ` +
     `sparse live record(s), ${stats.targeted_parsed_entries} targeted result filing(s), ` +
     `${stats.targeted_matches} targeted filing match(es), ${stats.targeted_errors} targeted error(s); ` +
-    `${stats.resolved_rhp_pdfs} RHP PDF(s), ${stats.resolved_prospectus_pdfs} Prospectus PDF(s) resolved; ` +
+    `${stats.resolved_rhp_pdfs} RHP PDF(s), ${stats.resolved_prospectus_pdfs} Prospectus PDF(s), ` +
+    `${stats.resolved_other_document_pdfs} Other Document PDF(s) resolved ` +
+    `from ${stats.other_document_pdf_candidates} candidate filing(s) ` +
+    `(${stats.other_document_pdf_errors} error(s)); ` +
     `${stats.changed_records} changed record(s), ` +
     `${stats.added_documents} document(s) added.`
   );
