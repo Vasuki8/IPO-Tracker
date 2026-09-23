@@ -289,7 +289,7 @@ export function renderMarkdown(report) {
     "",
     `- Published records: **${dataset.records}**`,
     `- Verified Lot Size: **${dataset.lot_size.verified}/${dataset.lot_size.total}** (direct market lot ${dataset.lot_size.direct_market_lot}, verified bid-quantity fallback ${dataset.lot_size.verified_minimum_bid_fallback})`
-  ];
+  );
   for (const [field, coverage] of Object.entries(dataset.field_coverage)) {
     lines.push(`- ${field}: verified **${coverage.verified}/${coverage.total}**, missing **${coverage.missing}**, non-verified **${coverage.non_verified}**`);
   }
