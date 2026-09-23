@@ -3010,3 +3010,26 @@ Historical 2020-2025 open/close date coverage remained at zero after NSE histori
 `ops/sebi-historical-offer-dates.json` records parser version, last attempt, extraction result and source URL. Successful/no-field/conflict results are not repeatedly scanned with the same parser version; transient PDF failures retry after 24 hours.
 
 This queue is separate from the heavy general historical PDF passes so offer-date recovery can progress without blocking live publication.
+
+
+## Historical backfill year balancing
+
+Historical recovery queues previously sorted all eligible records newest-first. That meant 2025 could consume many cycles before 2024-2020 received any detailed field/document work.
+
+A shared year-balanced selector now distributes each bounded batch across available historical listing years in round-robin order.
+
+Applied to:
+
+- historical NSE `ipo-detail` field backfill;
+- historical SEBI issuer-targeted document search;
+- historical SEBI offer-date PDF backfill.
+
+Within each year, the newest listing date is still processed first. When all six years have eligible records:
+
+- the 48-record NSE batch targets roughly 8 records per year;
+- the 12-record SEBI search batch targets roughly 2 records per year;
+- the 12-record offer-date batch targets roughly 2 records per year where attached SEBI PDFs exist.
+
+If some years have no eligible candidates, their capacity naturally flows to the remaining years.
+
+This changes scheduling only; source matching, parsing, provenance, null preservation, retry/cursor behavior and field acceptance rules remain unchanged.
