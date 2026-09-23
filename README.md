@@ -798,3 +798,20 @@ Current verified NII minimum-application coverage is **2/26**:
 The legacy generic minimum-application amount remains null and no price × quantity derivation is used.
 
 Next: survey retained RHPs for explicit **NII minimum bid quantity** wording before enabling the next category-specific production extractor.
+
+
+### NII minimum bid quantity source survey
+
+The retained RHP source family has now been measured for explicit Non-Institutional minimum share quantities.
+
+PR #79 / sync run `35801899974` scanned **14/14 official SEBI RHP PDFs across 7,588 pages** and found:
+
+- **0 documents** with an explicit NII minimum share quantity;
+- **0 qualifying mentions**;
+- **0 fetch errors**.
+
+Accordingly, `application_requirements.non_institutional.minimum_bid_quantity` remains **0/26**. The tracker does not derive a share quantity from the ₹200,000 NII threshold, issue price, generic bid lot, or lot rounding.
+
+PR #80 removed the completed one-shot survey from hourly execution.
+
+Next: survey retained official offer documents for explicit **retail minimum application amounts** before enabling any retail category extraction.
