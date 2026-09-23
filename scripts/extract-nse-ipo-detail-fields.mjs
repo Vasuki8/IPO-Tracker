@@ -1602,11 +1602,55 @@ async function run() {
   console.log(JSON.stringify(stats, null, 2));
 }
 
+async function runAllFields() {
+  const now = new Date().toISOString();
+  const landing = await fetchWithRetry(NSE_HOME, {
+    headers: { "user-agent": USER_AGENT, "accept": "text/html,application/xhtml+xml", "accept-language": "en-US,en;q=0.9" }
+  });
+  const cookie = cookieHeader(landing.headers);
+  const groups = recoveryFiles().map((file) => ({ file, recovery: JSON.parse(fs.readFileSync(file, "utf8")), changed: false }));
+  const candidates = [];
+  for (const group of groups) for (const record of group.recovery.records || []) {
+    if (!resolveNseIdentity(record)) continue;
+    const needs = {
+      market_lot: record.terms?.market_lot == null && record.market_lot?.value == null,
+      issue_size: record.issue_size_inr?.value == null,
+      price_band: !record.terms?.price_band && record.price_band?.value == null,
+      minimum_bid: record.terms?.minimum_bid_quantity == null && record.minimum_bid_quantity?.value == null,
+      listing_date: record.listing_date?.value == null
+    };
+    if (Object.values(needs).some(Boolean)) candidates.push({ group, record, needs });
+  }
+  const stats = { candidates:candidates.length, api_success:0, fetch_errors:0, extracted:{market_lot:0,issue_size:0,price_band:0,minimum_bid:0,listing_date:0} };
+  for (const { group, record, needs } of candidates) {
+    const url = apiUrl(record);
+    try {
+      const response = await fetchWithRetry(url, { headers: { "user-agent":USER_AGENT, "accept":"application/json,text/plain,*/*", "accept-language":"en-US,en;q=0.9", "referer":NSE_HOME, "cookie":cookie, "cache-control":"no-cache", "pragma":"no-cache" } });
+      const payload = await response.json(); stats.api_success += 1;
+      const actions = [
+        ["market_lot",needs.market_lot,parseMarketLotFromIpoDetail,applyMarketLot],
+        ["issue_size",needs.issue_size,parseIssueSizeInrFromIpoDetail,applyIssueSize],
+        ["price_band",needs.price_band,parsePriceBandFromIpoDetail,applyPriceBand],
+        ["minimum_bid",needs.minimum_bid,parseMinimumBidFromIpoDetail,applyMinimumBid],
+        ["listing_date",needs.listing_date,parseListingDateFromIpoDetail,applyListingDate]
+      ];
+      for (const [name,needed,parse,apply] of actions) {
+        if (!needed) continue;
+        const extraction=parse(payload);
+        if (extraction?.value != null && apply(record,extraction,url,now)) { stats.extracted[name]+=1; group.changed=true; }
+      }
+    } catch (error) { stats.fetch_errors+=1; console.warn("NSE ipo-detail unavailable for "+record.issuer_name+": "+error.message); }
+    await new Promise((resolve)=>setTimeout(resolve,300));
+  }
+  for (const group of groups) if (group.changed) { group.recovery.generated_at=now; fs.writeFileSync(group.file,JSON.stringify(group.recovery,null,2)+"\n"); }
+  console.log(JSON.stringify(stats,null,2));
+}
+
 const isMain = process.argv[1] &&
   pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
 
 if (isMain) {
-  const action = process.argv.includes("--diagnose-minimum-application")
+  const action = process.argv.includes("--all-fields")\n    ? runAllFields\n    : process.argv.includes("--diagnose-minimum-application")
     ? diagnoseMinimumApplicationAmount
     : process.argv.includes("--market-lot")
       ? runMarketLot
