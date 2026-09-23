@@ -1,7 +1,7 @@
 {
   "source_family": "Official NSE / SEBI / BSE offer-document and exchange evidence",
   "collection_started_at": "2026-09-23T19:29:29.146Z",
-  "generated_at": "2026-09-23T21:18:31.049Z",
+  "generated_at": "2026-09-23T23:50:37.185Z",
   "records": [
     {
       "id": "abhishek-integrations-limited",
@@ -2667,10 +2667,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — NYKAA",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=NYKAA&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T23:46:32.325Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T23:46:32.325Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -2717,6 +2724,32 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 12,
+        "source_value": "12 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=NYKAA&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — NYKAA",
+          "publication_date": null,
+          "collected_at": "2026-09-23T23:46:32.325Z"
+        }
+      },
+      "issue_size_inr": {
+        "value": 6300000000,
+        "source_value": "Equity shares aggregating up to Rs. 6,300 million and an Offer for Sale of up to 41,972,660 equity shares (including Anchor portion of 21,296,397 equity shares)",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=NYKAA&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — NYKAA",
+          "publication_date": null,
+          "collected_at": "2026-09-23T23:46:32.325Z"
         }
       }
     },
@@ -4600,10 +4633,24 @@
           "url": "https://www.nseindia.com/api/ipo-detail?symbol=MEDPLUS&series=EQ",
           "publication_date": null,
           "collected_at": "2026-09-23T20:29:27.308Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "MedPlus Health Services Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/dec-2021/medplus-health-services-limited-prospectus_54853.html",
+          "publication_date": "2021-12-21",
+          "collected_at": "2026-09-23T23:50:37.185Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "MedPlus Health Services Limited - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681883318116.pdf",
+          "publication_date": "2021-12-21",
+          "collected_at": "2026-09-23T23:50:37.185Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T20:29:27.308Z",
+      "last_collected_at": "2026-09-23T23:50:37.185Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -5125,10 +5172,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — NIDAN",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=NIDAN&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-23T23:46:32.325Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T23:46:32.325Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -5175,6 +5229,32 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "market_lot": {
+        "value": 1000,
+        "source_value": "1000 Equity Shares and in multiples thereof",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=NIDAN&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — NIDAN",
+          "publication_date": null,
+          "collected_at": "2026-09-23T23:46:32.325Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 1000,
+        "source_value": "1000 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=NIDAN&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — NIDAN",
+          "publication_date": null,
+          "collected_at": "2026-09-23T23:46:32.325Z"
         }
       }
     },
@@ -5834,10 +5914,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — POLICYBZR",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=POLICYBZR&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T23:46:32.325Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T23:46:32.325Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -5884,6 +5971,19 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 15,
+        "source_value": "15 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=POLICYBZR&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — POLICYBZR",
+          "publication_date": null,
+          "collected_at": "2026-09-23T23:46:32.325Z"
         }
       }
     },
@@ -6428,10 +6528,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — SJS",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SJS&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T23:46:32.325Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T23:46:32.325Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -6478,6 +6585,32 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 27,
+        "source_value": "27 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SJS&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SJS",
+          "publication_date": null,
+          "collected_at": "2026-09-23T23:46:32.325Z"
+        }
+      },
+      "issue_size_inr": {
+        "value": 8000000000,
+        "source_value": "Initial Public offer of up to [.] Equity Shares aggregating upto Rs. 8,000 Million (including Anchor portion of 44,28,043 Equity Shares)",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SJS&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SJS",
+          "publication_date": null,
+          "collected_at": "2026-09-23T23:46:32.325Z"
         }
       }
     },
@@ -6592,10 +6725,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — SAPPHIRE",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SAPPHIRE&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T23:46:32.325Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-23T23:46:32.325Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -6642,6 +6782,19 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 12,
+        "source_value": "12 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SAPPHIRE&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SAPPHIRE",
+          "publication_date": null,
+          "collected_at": "2026-09-23T23:46:32.325Z"
         }
       }
     },
