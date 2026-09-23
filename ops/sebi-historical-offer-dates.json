@@ -586,6 +586,115 @@
       "status": "error",
       "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-Kp7ESd/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758518940679.pdf\ncurl: (18) transfer closed with 4694472 bytes remaining to read\ncurl: (28) Operation timed out after 45000 milliseconds with 7385592 out of 9658712 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758518940679.pdf"
+    },
+    "2025|trualt-bioenergy-limited": {
+      "issuer_name": "TruAlt Bioenergy Limited",
+      "listing_date": "2025-10-03",
+      "last_attempted_at": "2026-09-23T23:09:56.979Z",
+      "parser_version": "2.0.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-APqhkQ/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1760692316356.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 10451935 out of 20255279 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 9661015 out of 20255279 bytes received\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1760692316356.pdf"
+    },
+    "2024|sanathan-textiles-limited": {
+      "issuer_name": "Sanathan Textiles Limited",
+      "listing_date": "2024-12-27",
+      "last_attempted_at": "2026-09-23T23:09:56.979Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": null,
+      "close_date": "2024-12-23",
+      "open_extraction": null,
+      "close_extraction": {
+        "value": "2024-12-23",
+        "source_value": "Offer Closing Date Except in relation to any Bids received from the Anchor Investors, being Monday, December 23, 2024",
+        "page": 10
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Sanathan Textiles Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1735038864171.pdf",
+        "publication_date": "2024-12-24"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1735038864171.pdf"
+    },
+    "2022|abans-holdings-limited": {
+      "issuer_name": "Abans Holdings Limited",
+      "listing_date": "2022-12-23",
+      "last_attempted_at": "2026-09-23T23:09:56.979Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": "2022-12-12",
+      "close_date": "2022-12-15",
+      "open_extraction": {
+        "value": "2022-12-12",
+        "source_value": "OFFER OPENS ON December 12, 2022",
+        "page": 1
+      },
+      "close_extraction": {
+        "value": "2022-12-15",
+        "source_value": "OFFER CLOSES ON December 15, 2022",
+        "page": 1
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Abans Holdings Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2023/1675847323928.pdf",
+        "publication_date": "2022-12-17"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/feb-2023/1675847323928.pdf"
+    },
+    "2025|gurunanak-agriculture-india-limited": {
+      "issuer_name": "Gurunanak Agriculture India Limited",
+      "listing_date": "2025-10-01",
+      "last_attempted_at": "2026-09-23T23:09:56.979Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": "2025-09-24",
+      "close_date": "2025-09-26",
+      "open_extraction": {
+        "value": "2025-09-24",
+        "source_value": "ISSUE OPENS ON: SEPTEMBER 24, 2025",
+        "page": 1
+      },
+      "close_extraction": {
+        "value": "2025-09-26",
+        "source_value": "ISSUE CLOSES ON: SEPTEMBER 26, 2025",
+        "page": 1
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Gurunanak Agriculture India Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758515829977.pdf",
+        "publication_date": "2025-09-19"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758515829977.pdf"
+    },
+    "2025|jain-resource-recycling-limited": {
+      "issuer_name": "Jain Resource Recycling Limited",
+      "listing_date": "2025-10-01",
+      "last_attempted_at": "2026-09-23T23:09:56.979Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": "2025-09-24",
+      "close_date": "2025-09-26",
+      "open_extraction": {
+        "value": "2025-09-24",
+        "source_value": "OFFER OPENS ON Wednesday, September 24, 2025",
+        "page": 2
+      },
+      "close_extraction": {
+        "value": "2025-09-26",
+        "source_value": "OFFER CLOSES ON Friday, September 26, 2025",
+        "page": 2
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Jain Resource Recycling Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758262501785.pdf",
+        "publication_date": "2025-09-18"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758262501785.pdf"
     }
   }
 }
