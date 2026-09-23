@@ -300,7 +300,7 @@ export function renderMarkdown(report) {
     "",
     "## Recovery guidance",
     ""
-  ];
+  );
   if (guidance.length === 0) {
     lines.push("- No recovery action indicated.");
   } else {
