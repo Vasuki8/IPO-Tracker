@@ -1014,3 +1014,8 @@ Historical IPOs with retained official SEBI RHP/Prospectus PDFs are now processe
 ### Independent historical offer-date backfill
 
 Historical SEBI PDF date extraction now runs in its own hourly workflow at minute 47. It no longer delays the live IPO sync; any recovered dates are rebased, rebuilt, validated, and published independently.
+
+
+### Historical recovery diagnostics
+
+Historical NSE detail cursor entries now retain per-field parser reasons, and the coverage audit aggregates those reasons by year. Historical SEBI targeted searches are also increased to 24 issuers per sync while preserving timeouts and retry/cursor safeguards.
