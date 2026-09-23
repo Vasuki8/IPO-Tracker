@@ -15,6 +15,7 @@ import {
   searchTermForIssuer,
   parseAbridgedProspectusLinks,
   parseProspectusPdfLinks,
+  parseOtherDocumentPdfLinks,
   directSebiProspectusPdf,
   parseSebiDate,
   parseSebiListingHtml,
@@ -238,5 +239,18 @@ assert.equal(prospectusPdfs.length, 1);
 assert.equal(prospectusPdfs[0].type, "SEBI Prospectus PDF");
 assert.equal(
   prospectusPdfs[0].url,
+  "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789991154046.pdf"
+);
+
+const otherDocumentPdfs = parseOtherDocumentPdfLinks(
+  finalDetail,
+  "https://www.sebi.gov.in/filings/public-issues/sep-2026/qualiance-international-limited_104401.html",
+  "QUALIANCE INTERNATIONAL LIMITED"
+);
+assert.equal(otherDocumentPdfs.length, 1);
+assert.equal(otherDocumentPdfs[0].type, "SEBI Other Document PDF");
+assert.equal(otherDocumentPdfs[0].identity, "QUALIANCE INTERNATIONAL LIMITED — PDF");
+assert.equal(
+  otherDocumentPdfs[0].url,
   "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789991154046.pdf"
 );
