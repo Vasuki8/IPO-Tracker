@@ -2,7 +2,9 @@ const USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/12
 const BASE = "https://www.bseindices.com/AsiaIndexAPI";
 const URLS = [
   BASE + "/api/GetLatestNotices/w",
-  BASE + "/api/GetNoticesadvancesearch_newcomb/w"
+  BASE + "/api/GetNoticesadvancesearch_newcomb/w",
+  BASE + "/api/NoticesAsiaDownload/w?NoticeId=20260113-26",
+  BASE + "/api/DisplayNoticecircular/w?NoticeId=20260113-26"
 ];
 
 function summarizeJson(value) {
