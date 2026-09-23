@@ -7,6 +7,9 @@ on:
   push:
     branches: ["main"]
     paths:
+      - "data/bse-ipo-sources.json"
+      - "scripts/extract-bse-ipo-fields.mjs"
+      - "scripts/test-extract-bse-ipo-fields.mjs"
       - "scripts/diagnose-bse-issues.mjs"
       - "scripts/test-diagnose-bse-issues.mjs"
       - "scripts/sync-nse-live.mjs"
@@ -68,6 +71,12 @@ jobs:
 
       - name: Diagnose official BSE IPO coverage
         run: node scripts/diagnose-bse-issues.mjs
+
+      - name: Test BSE detail and listing parsers
+        run: node scripts/test-extract-bse-ipo-fields.mjs
+
+      - name: Inspect retained official BSE IPO sources
+        run: node scripts/extract-bse-ipo-fields.mjs
 
       - name: Test live-feed parsing
         run: node scripts/test-sync-nse-live.mjs

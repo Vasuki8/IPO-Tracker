@@ -2722,3 +2722,27 @@ The same BSE issue-summary/detail family is intended to support both current 202
 ### Handoff
 
 Run the BSE diagnostic in production, inspect matched official detail pages and field layouts, then implement field-specific BSE extraction only for terms that are explicit and consistently identifiable. Preserve NSE/SEBI evidence and conflicts rather than overwriting them.
+
+
+## BSE expansion — verified page parsers and historical source manifest
+
+Production BSE diagnostic run `35884250076` proved that `Issuesummary.aspx` is a JavaScript shell on the Actions runner: HTTP retrieval succeeded but returned zero server-rendered `DisplayIPO` links. Therefore the summary HTML is not a valid discovery feed.
+
+The free official BSE pages themselves remain useful once their URLs are known. Added tested parsers for:
+
+- BSE equity `DisplayIPO.aspx` pages: symbol, issue period, number of shares, price band, market lot, minimum bid quantity;
+- BSE listing notices: company, effective listing/trading date, market lot, final public issue price.
+
+Non-equity issue pages are explicitly rejected by the equity parser.
+
+Added `data/bse-ipo-sources.json` as a retained official-source manifest. This separates **discovery** from **extraction**: once an official BSE issue/listing URL is discovered and matched, it can be retained and re-parsed automatically without rediscovering identifiers on every run.
+
+This manifest is intentionally empty initially; no BSE URL is guessed. It is suitable for current 2026 recovery and year-by-year historical backfill through 2020.
+
+### Important constraint
+
+BSE's server-rendered issue summary cannot currently enumerate issues for us, and BSE's formal structured market-data API is a registered/licensed product. Do not invent undocumented endpoints or scrape around access controls. Populate the manifest only from explicit official BSE URLs/evidence.
+
+### Next data task
+
+Populate BSE source-manifest entries for verified 2026 residual gaps and historical years from official BSE pages/notices, then add conflict-safe recovery writes from the tested parsers.
