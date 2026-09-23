@@ -1009,3 +1009,8 @@ BSE-only issuer creation now requires an official BSE **listing notice** with ma
 ### Historical offer-date recovery
 
 Historical IPOs with retained official SEBI RHP/Prospectus PDFs are now processed in a bounded queue for explicit offer opening/closing dates. The parser accepts only labeled official dates, rejects conflicts/invalid chronology, and keeps PDF-page provenance.
+
+
+### Year-balanced historical backfills
+
+Historical NSE detail, SEBI document search, and SEBI offer-date queues now distribute bounded work across 2025→2020 instead of exhausting the newest year first. Within each year, newest listings remain first.
