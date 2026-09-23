@@ -3010,3 +3010,25 @@ Historical 2020-2025 open/close date coverage remained at zero after NSE histori
 `ops/sebi-historical-offer-dates.json` records parser version, last attempt, extraction result and source URL. Successful/no-field/conflict results are not repeatedly scanned with the same parser version; transient PDF failures retry after 24 hours.
 
 This queue is separate from the heavy general historical PDF passes so offer-date recovery can progress without blocking live publication.
+
+
+## Historical offer-date workflow decoupling
+
+The first production historical offer-date batch demonstrated that sequential SEBI PDF downloads can take long enough to delay the hourly live IPO publication path.
+
+Historical offer-date PDF recovery is therefore moved to a dedicated workflow:
+
+- schedule: hourly at minute **47**, separate from live sync at minute 17;
+- own concurrency group, so old PDF work no longer blocks/cancels current IPO collection;
+- tests the offer-date parser before retrieval;
+- processes the existing bounded historical date queue;
+- commits recovery/cursor changes locally;
+- fetches/rebases onto current `main`;
+- rebuilds `data/ipos.json` **after** rebase;
+- checks recovery publication synchronization;
+- validates the full published data contract;
+- amends the rebuilt dataset into the same source-backed commit and pushes safely.
+
+The live `Sync live IPO data` workflow no longer runs historical offer-date PDF extraction.
+
+This keeps current IPO freshness independent from slower historical PDF downloads while still allowing historical open/close-date coverage to progress automatically.

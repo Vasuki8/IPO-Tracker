@@ -53,6 +53,12 @@ jobs:
           grep -q 'git rebase origin/main' .github/workflows/update-ipos.yml
           grep -q 'git ls-files --error-unmatch ops/operator-snapshot.json' .github/workflows/update-ipos.yml
           grep -q 'git rebase origin/main' .github/workflows/deploy-pages.yml
+          grep -q 'git rebase origin/main' .github/workflows/backfill-historical-offer-dates.yml
+          grep -q 'node scripts/build-published-data.mjs --check' .github/workflows/backfill-historical-offer-dates.yml
+          if grep -q 'Backfill historical SEBI offer dates' .github/workflows/update-ipos.yml; then
+            echo "Historical offer-date PDF work must stay out of live sync." >&2
+            exit 1
+          fi
 
       - name: Test GitHub Pages publication status
         run: node scripts/test-record-pages-publication.mjs
