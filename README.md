@@ -905,3 +905,14 @@ It separates:
 It deliberately does not infer source-null from a null value and does not invent a GitHub Pages publication timestamp.
 
 **Handoff:** Lot Size remains **26/26 verified** and minimum-investment work remains out of scope. The next batch should add durable **GitHub Pages publication-health visibility** while keeping deployment time separate from dataset generation time.
+
+
+### Durable GitHub Pages publication health
+
+GitHub Pages deployment health is now retained separately from IPO data in `ops/pages-publication.json`.
+
+The record distinguishes the **latest deployment attempt** from the **last successful publication**, so a failed deployment remains visible without losing the last known-good publication time/commit. The operator freshness report reads this state directly.
+
+The Pages workflow ignores status-only commits, preventing recursive deployments. IPO values and `data/ipos.json.generated_at` are not used as deployment timestamps.
+
+**Handoff:** the next backend operations batch should add read-only **staleness thresholds / actionable health classification** on top of the separated collection, dataset-generation, and Pages-publication timestamps.
