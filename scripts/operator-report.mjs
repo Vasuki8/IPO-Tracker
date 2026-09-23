@@ -288,7 +288,7 @@ export function renderMarkdown(report) {
       ? `- Retained transitions: **${recurrence.transition_count}**`
       : "- Retained transitions: **0**",
     ""
-  ];
+  );
   if (recurrence.recorded) {
     lines.push("- Recent transitions:");
     for (const item of recurrence.recent_transitions) {
