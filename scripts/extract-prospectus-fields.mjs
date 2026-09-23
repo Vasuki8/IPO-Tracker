@@ -594,6 +594,40 @@ function ensurePdfTextTool() {
   }
 }
 
+function fetchPdfViaCurl(url) {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "ipo-pdf-curl-"));
+  const file = path.join(dir, "document.pdf");
+
+  try {
+    execFileSync(
+      "curl",
+      [
+        "--fail",
+        "--location",
+        "--silent",
+        "--show-error",
+        "--retry", "2",
+        "--retry-all-errors",
+        "--connect-timeout", "15",
+        "--max-time", "120",
+        "--user-agent", USER_AGENT,
+        "--referer", "https://www.sebi.gov.in/",
+        "--output", file,
+        url
+      ],
+      { stdio: ["ignore", "ignore", "pipe"], maxBuffer: 1024 * 1024 }
+    );
+
+    const bytes = fs.readFileSync(file);
+    if (bytes.length < 5 || bytes.subarray(0, 5).toString("ascii") !== "%PDF-") {
+      throw new Error("curl response was not a PDF");
+    }
+    return bytes;
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+}
+
 async function fetchPdf(url, attempts = 3) {
   let lastError;
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
@@ -620,7 +654,12 @@ async function fetchPdf(url, attempts = 3) {
       await new Promise((resolve) => setTimeout(resolve, attempt * 1000));
     }
   }
-  throw lastError;
+  try {
+    return fetchPdfViaCurl(url);
+  } catch (curlError) {
+    const fetchMessage = lastError?.message || "unknown fetch error";
+    throw new Error(fetchMessage + "; curl fallback failed: " + curlError.message);
+  }
 }
 
 function pagesLayout(pdfBytes, maxPages = MAX_PAGES) {
