@@ -63,6 +63,46 @@ const shareCountRejected = parseIssueSizeInrFromIpoDetail({
 });
 assert.equal(shareCountRejected.value, null);
 
+const explicitOverallCrore = parseIssueSizeInrFromIpoDetail({
+  issueInfo: {
+    dataList: [{ title: "Total Issue Size", value: "Rs. 250 crore" }]
+  }
+});
+assert.equal(explicitOverallCrore.value, 2_500_000_000);
+assert.equal(explicitOverallCrore.reason, null);
+
+const explicitOverallMillionWithShares = parseIssueSizeInrFromIpoDetail({
+  issueInfo: {
+    dataList: [{
+      title: "Issue Size",
+      value: "10,00,000 Equity Shares (Rs. 500 million)"
+    }]
+  }
+});
+assert.equal(explicitOverallMillionWithShares.value, 500_000_000);
+
+const ambiguousOverallAmountsRejected = parseIssueSizeInrFromIpoDetail({
+  issueInfo: {
+    dataList: [{
+      title: "Offer Size",
+      value: "Rs. 500 crore including a reservation aggregating Rs. 25 crore"
+    }]
+  }
+});
+assert.equal(ambiguousOverallAmountsRejected.value, null);
+assert.equal(ambiguousOverallAmountsRejected.reason, "no_safe_overall_inr_total");
+
+const mixedLegWithTotalStillRejected = parseIssueSizeInrFromIpoDetail({
+  issueInfo: {
+    dataList: [{
+      title: "Issue Size",
+      value: "Fresh Issue aggregating Rs. 300 crore and Offer for Sale aggregating Rs. 200 crore"
+    }]
+  }
+});
+assert.equal(mixedLegWithTotalStillRejected.value, null);
+
+
 const issueSizeCandidates = issueSizeCandidatesFromIpoDetail({
   issueInfo: {
     dataList: [
