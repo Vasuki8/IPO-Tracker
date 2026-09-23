@@ -211,9 +211,9 @@ export function classifyOperatorHealth(dataset, pipeline, pages, options = {}) {
 
   const reasons = [];
   if (pipeline.collection_health === "collection_failure") reasons.push("collection_failure");
-  if (["failure", "cancelled"].includes(pipeline.stages.rebuild)) reasons.push("rebuild_failure");
-  if (["failure", "cancelled"].includes(pipeline.stages.validation)) reasons.push("validation_failure");
-  if (["failure", "cancelled"].includes(pipeline.stages.repository_publish)) reasons.push("repository_publication_failure");
+  if (["failure", "cancelled"].includes(pipeline.stages?.rebuild)) reasons.push("rebuild_failure");
+  if (["failure", "cancelled"].includes(pipeline.stages?.validation)) reasons.push("validation_failure");
+  if (["failure", "cancelled"].includes(pipeline.stages?.repository_publish)) reasons.push("repository_publication_failure");
   if (pages.latest_attempt_status === "failure" || pages.latest_attempt_status === "cancelled") reasons.push("pages_deployment_failure");
 
   const staleChecks = [
