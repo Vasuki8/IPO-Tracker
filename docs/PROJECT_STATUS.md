@@ -3032,3 +3032,26 @@ Historical offer-date PDF recovery is therefore moved to a dedicated workflow:
 The live `Sync live IPO data` workflow no longer runs historical offer-date PDF extraction.
 
 This keeps current IPO freshness independent from slower historical PDF downloads while still allowing historical open/close-date coverage to progress automatically.
+
+
+## Historical backfill scheduling — year balanced
+
+Historical recovery queues no longer exhaust the newest year before moving backward.
+
+A shared round-robin selector now balances eligible work across historical listing years while preserving newest-first order within each year.
+
+Applied to:
+
+- bounded NSE `ipo-detail` historical field recovery;
+- bounded SEBI issuer-targeted document discovery;
+- dedicated SEBI offer-date PDF recovery.
+
+When 2025→2020 all have eligible work:
+
+- 48-record NSE batch distributes roughly 8 records per year;
+- 12-record SEBI search batch distributes roughly 2 records per year;
+- 12-record offer-date batch distributes roughly 2 records per year when PDFs exist.
+
+Empty years automatically yield their slots to years that still have candidates.
+
+This changes queue scheduling only; evidence acceptance, conflict handling, parser/version cursors, retry cooldowns, null preservation and source provenance remain unchanged.
