@@ -13,6 +13,7 @@ import {
   hasSebiDocument,
   historicalSearchCandidates,
   historicalSearchKey,
+  HISTORICAL_SEARCH_VERSION,
   targetedSearchCandidates,
   searchTermForIssuer,
   parseAbridgedProspectusLinks,
@@ -246,6 +247,7 @@ const historicalState = {
   issuers: {
     [historicalSearchKey(historicalRecords[1].record)]: {
       last_attempted_at: "2026-09-20T00:00:00Z",
+      search_version: HISTORICAL_SEARCH_VERSION,
       status: "no_match"
     }
   }
@@ -259,6 +261,25 @@ assert.deepEqual(
   ).map(({ record }) => record.issuer_name),
   ["Historical New Limited"]
 );
+
+const staleStrategyState = {
+  issuers: {
+    [historicalSearchKey(historicalRecords[1].record)]: {
+      last_attempted_at: "2026-09-20T00:00:00Z",
+      search_version: "1.0.0",
+      status: "no_match"
+    }
+  }
+};
+assert.deepEqual(
+  historicalSearchCandidates(
+    historicalRecords,
+    staleStrategyState,
+    "2026-09-23T18:00:00Z",
+    10
+  ).map(({ record }) => record.issuer_name),
+  ["Historical New Limited", "Historical Tried Limited"]
+);
 assert.deepEqual(
   historicalSearchCandidates(
     historicalRecords,
@@ -271,6 +292,12 @@ assert.deepEqual(
 assert.equal(searchTermForIssuer("Adroit Industries (India) Limited"), "adroit");
 assert.equal(searchTermForIssuer("Swastika Infra Limited"), "swastika");
 assert.equal(searchTermForIssuer("National Stock Exchange of India Limited"), "national");
+assert.equal(searchTermForIssuer("CMS Info Systems Limited"), "cms");
+assert.equal(searchTermForIssuer("HEC Infra Projects Limited"), "hec");
+assert.equal(searchTermForIssuer("Supreme Power Equipment Limited"), "supreme");
+assert.equal(searchTermForIssuer("Vivo Collaboration Solutions Limited"), "vivo");
+assert.equal(searchTermForIssuer("United Polyfab Gujarat Limited"), "polyfab");
+assert.equal(searchTermForIssuer("Trident Techlabs Limited"), "trident");
 assert.equal(
   buildSebiSearchUrl("National Stock Exchange of India Limited"),
   "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes&search=national"

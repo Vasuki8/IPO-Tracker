@@ -19,6 +19,7 @@ export const SEBI_SEARCH_URL =
   "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListingAll=yes";
 export const MAX_TARGETED_SEARCHES = 12;
 export const MAX_HISTORICAL_TARGETED_SEARCHES = 12;
+export const HISTORICAL_SEARCH_VERSION = "2.0.0";
 
 const USER_AGENT =
   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
@@ -378,6 +379,7 @@ export function historicalSearchCandidates(
     const item = state?.issuers?.[historicalSearchKey(record)];
     if (!item?.last_attempted_at) return true;
     if (item.status === "matched") return false;
+    if (item.search_version !== HISTORICAL_SEARCH_VERSION) return true;
     const attemptedMs = Date.parse(item.last_attempted_at);
     if (!Number.isFinite(nowMs) || !Number.isFinite(attemptedMs)) return true;
     return nowMs - attemptedMs >= retryDelayMs(item.status);
@@ -405,13 +407,17 @@ function writeHistoricalSearchState(state) {
 export function searchTermForIssuer(issuerName) {
   const words = canonicalIssuer(issuerName).split(" ").filter(Boolean);
   const stopwords = new Set([
-    "limited", "ltd", "india", "and", "of", "the",
+    "limited", "ltd", "private", "pvt", "company", "corporation",
+    "india", "gujarat", "global", "united", "and", "of", "the",
     "industries", "industry", "international", "services", "solutions",
-    "engineering", "developers", "logistics", "consulting"
+    "systems", "system", "info", "information", "technology", "technologies",
+    "engineering", "developers", "logistics", "consulting", "projects",
+    "project", "infra", "infrastructure", "equipment", "power",
+    "enterprises", "enterprise", "ventures", "collaboration"
   ]);
-  const candidates = words.filter((word) => !stopwords.has(word) && word.length >= 4);
-  if (candidates.length === 0) return words[0] || "";
-  return candidates.sort((a, b) => b.length - a.length || words.indexOf(a) - words.indexOf(b))[0];
+  const candidates = words.filter((word) => !stopwords.has(word) && word.length >= 3);
+  if (candidates.length > 0) return candidates[0];
+  return words.find((word) => word.length >= 3) || words[0] || "";
 }
 
 export function buildSebiSearchUrl(issuerName) {
@@ -634,6 +640,7 @@ async function targetedSearch(records, now, detailCache, stats, changedRecords, 
           issuer_name: match.record.issuer_name,
           listing_date: match.record.listing_date?.value ?? null,
           last_attempted_at: now,
+          search_version: HISTORICAL_SEARCH_VERSION,
           status: "error",
           search_url: url,
           parsed_entries: 0,
@@ -653,6 +660,7 @@ async function targetedSearch(records, now, detailCache, stats, changedRecords, 
         issuer_name: match.record.issuer_name,
         listing_date: match.record.listing_date?.value ?? null,
         last_attempted_at: now,
+        search_version: HISTORICAL_SEARCH_VERSION,
         status: entries.length > 0 ? "matched" : "no_match",
         search_url: url,
         parsed_entries: parsedEntries.length,

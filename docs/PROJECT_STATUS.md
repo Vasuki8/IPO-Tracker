@@ -3141,3 +3141,28 @@ Instead:
 8. push is retried semantically up to three times if main advances again.
 
 This gives historical issue-size/minimum-bid/final-price recovery an independent path without slowing or racing the live IPO sync.
+
+
+## Historical SEBI search-term quality improvement
+
+Historical issuer-targeted SEBI searches were sometimes using generic tokens chosen only because they were longest, producing avoidable misses. Examples observed in the durable cursor included:
+
+- CMS Info Systems Limited → `systems`;
+- HEC Infra Projects Limited → `projects`;
+- Supreme Power Equipment Limited → `equipment`;
+- Vivo Collaboration Solutions Limited → `collaboration`.
+
+The selector now prefers the **first distinctive issuer token**, allows meaningful three-letter acronyms, and filters a broader set of generic business/location words.
+
+Examples after the change:
+
+- CMS Info Systems Limited → `cms`;
+- HEC Infra Projects Limited → `hec`;
+- Supreme Power Equipment Limited → `supreme`;
+- Vivo Collaboration Solutions Limited → `vivo`;
+- United Polyfab Gujarat Limited → `polyfab`;
+- Trident Techlabs Limited → `trident`.
+
+No additional request is added per candidate.
+
+The historical SEBI search strategy is now versioned (`2.0.0`). Previous `no_match` cursor entries from the older query strategy become immediately eligible for one retry under the improved selector, while records that already have matched SEBI documents remain excluded from search.
