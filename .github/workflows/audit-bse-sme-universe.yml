@@ -9,6 +9,8 @@ on:
     paths:
       - "scripts/audit-bse-sme-ipo-index.mjs"
       - "scripts/test-audit-bse-sme-ipo-index.mjs"
+      - "scripts/diagnose-bse-notice-api-context.mjs"
+      - "scripts/test-diagnose-bse-notice-api-context.mjs"
       - ".github/workflows/audit-bse-sme-universe.yml"
 
 permissions:
@@ -28,6 +30,12 @@ jobs:
 
       - name: Test BSE SME universe audit
         run: node scripts/test-audit-bse-sme-ipo-index.mjs
+
+      - name: Test BSE notice API context diagnostic
+        run: node scripts/test-diagnose-bse-notice-api-context.mjs
+
+      - name: Diagnose BSE notice API call context
+        run: node scripts/diagnose-bse-notice-api-context.mjs
 
       - name: Audit official BSE SME universe
         run: node scripts/audit-bse-sme-ipo-index.mjs
