@@ -1,0 +1,93 @@
+name: Backfill historical IPO PDF fields
+
+on:
+  schedule:
+    - cron: "57 * * * *"
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "scripts/backfill-historical-pdf-fields.mjs"
+      - "scripts/test-backfill-historical-pdf-fields.mjs"
+      - ".github/workflows/backfill-historical-pdf-fields.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: historical-pdf-field-backfill
+  cancel-in-progress: true
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install PDF text extraction dependency
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends poppler-utils
+          pdftotext -v
+
+      - name: Test historical SEBI PDF field parser
+        run: node scripts/test-backfill-historical-pdf-fields.mjs
+
+      - name: Backfill historical SEBI PDF fields
+        run: node scripts/backfill-historical-pdf-fields.mjs
+
+      - name: Check for historical PDF field changes
+        id: changes
+        shell: bash
+        run: |
+          if [ -z "$(git status --porcelain -- data/recovery ops/sebi-historical-pdf-fields.json)" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No historical PDF field changes detected."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit recovery changes before rebase
+        if: steps.changes.outputs.changed == 'true'
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/recovery
+          if [ -f ops/sebi-historical-pdf-fields.json ]; then
+            git add ops/sebi-historical-pdf-fields.json
+          fi
+          git commit -m "chore(data): backfill historical PDF fields"
+
+      - name: Rebase onto current main
+        if: steps.changes.outputs.changed == 'true'
+        shell: bash
+        run: |
+          git fetch origin main
+          git rebase origin/main
+
+      - name: Rebuild published dataset after rebase
+        if: steps.changes.outputs.changed == 'true'
+        run: node scripts/build-published-data.mjs
+
+      - name: Check recovery publication
+        if: steps.changes.outputs.changed == 'true'
+        run: node scripts/build-published-data.mjs --check
+
+      - name: Validate published IPO data
+        if: steps.changes.outputs.changed == 'true'
+        run: node scripts/validate-data.mjs
+
+      - name: Amend published dataset
+        if: steps.changes.outputs.changed == 'true'
+        shell: bash
+        run: |
+          git add data/ipos.json
+          git commit --amend --no-edit
+          git push origin HEAD:main
