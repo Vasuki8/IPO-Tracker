@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { selectBalancedByListingYear } from "./historical-batch-selection.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const RECOVERY_ROOT = path.join(ROOT, "data", "recovery");
@@ -371,22 +372,17 @@ export function historicalSearchCandidates(
   maxSearches = MAX_HISTORICAL_TARGETED_SEARCHES
 ) {
   const nowMs = Date.parse(now);
-  return records
-    .filter(({ record }) => {
-      if (isLiveFeedRecord(record) || hasSebiDocument(record)) return false;
-      if (!/^20\d{2}-\d{2}-\d{2}$/.test(String(record?.listing_date?.value || ""))) return false;
-      const item = state?.issuers?.[historicalSearchKey(record)];
-      if (!item?.last_attempted_at) return true;
-      if (item.status === "matched") return false;
-      const attemptedMs = Date.parse(item.last_attempted_at);
-      if (!Number.isFinite(nowMs) || !Number.isFinite(attemptedMs)) return true;
-      return nowMs - attemptedMs >= retryDelayMs(item.status);
-    })
-    .sort((a, b) => {
-      const dateOrder = String(b.record.listing_date?.value || "").localeCompare(String(a.record.listing_date?.value || ""));
-      return dateOrder || a.record.issuer_name.localeCompare(b.record.issuer_name);
-    })
-    .slice(0, maxSearches);
+  const eligible = records.filter(({ record }) => {
+    if (isLiveFeedRecord(record) || hasSebiDocument(record)) return false;
+    if (!/^20\d{2}-\d{2}-\d{2}$/.test(String(record?.listing_date?.value || ""))) return false;
+    const item = state?.issuers?.[historicalSearchKey(record)];
+    if (!item?.last_attempted_at) return true;
+    if (item.status === "matched") return false;
+    const attemptedMs = Date.parse(item.last_attempted_at);
+    if (!Number.isFinite(nowMs) || !Number.isFinite(attemptedMs)) return true;
+    return nowMs - attemptedMs >= retryDelayMs(item.status);
+  });
+  return selectBalancedByListingYear(eligible, maxSearches);
 }
 
 function readHistoricalSearchState() {

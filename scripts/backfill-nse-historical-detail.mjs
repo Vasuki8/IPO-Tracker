@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { selectBalancedByListingYear } from "./historical-batch-selection.mjs";
 import {
   applyIssueSize,
   applyMarketLot,
@@ -55,27 +56,22 @@ export function historicalDetailCandidates(
   currentYear = new Date().getUTCFullYear(),
   max = HISTORICAL_DETAIL_BATCH_SIZE
 ) {
-  return records
-    .filter(({ record }) => {
-      const identity = resolveNseIdentity(record);
-      if (!identity) return false;
-      const listingYear = Number(String(record?.listing_date?.value || "").slice(0, 4));
-      if (!Number.isInteger(listingYear) || listingYear >= currentYear) return false;
-      if (missingHistoricalDetailFields(record).length === 0) return false;
-      const item = state?.issuers?.[historicalDetailKey(record)];
-      if (!item) return true;
-      if (item.parser_version !== HISTORICAL_DETAIL_PARSER_VERSION) return true;
-      if (item.status === "error") {
-        const attempted = Date.parse(item.last_attempted_at || "");
-        return !Number.isFinite(attempted) || Date.now() - attempted >= 24 * 60 * 60 * 1000;
-      }
-      return false;
-    })
-    .sort((a, b) => {
-      const dateOrder = String(b.record.listing_date?.value || "").localeCompare(String(a.record.listing_date?.value || ""));
-      return dateOrder || a.record.issuer_name.localeCompare(b.record.issuer_name);
-    })
-    .slice(0, max);
+  const eligible = records.filter(({ record }) => {
+    const identity = resolveNseIdentity(record);
+    if (!identity) return false;
+    const listingYear = Number(String(record?.listing_date?.value || "").slice(0, 4));
+    if (!Number.isInteger(listingYear) || listingYear >= currentYear) return false;
+    if (missingHistoricalDetailFields(record).length === 0) return false;
+    const item = state?.issuers?.[historicalDetailKey(record)];
+    if (!item) return true;
+    if (item.parser_version !== HISTORICAL_DETAIL_PARSER_VERSION) return true;
+    if (item.status === "error") {
+      const attempted = Date.parse(item.last_attempted_at || "");
+      return !Number.isFinite(attempted) || Date.now() - attempted >= 24 * 60 * 60 * 1000;
+    }
+    return false;
+  });
+  return selectBalancedByListingYear(eligible, max);
 }
 
 export function applyHistoricalDetailPayload(record, payload, sourceUrl, collectedAt) {
