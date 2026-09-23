@@ -1,0 +1,106 @@
+name: Backfill historical IPO PDF fields
+
+on:
+  schedule:
+    - cron: "57 * * * *"
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "scripts/backfill-historical-pdf-fields.mjs"
+      - "scripts/test-backfill-historical-pdf-fields.mjs"
+      - "scripts/apply-historical-pdf-field-state.mjs"
+      - "scripts/test-apply-historical-pdf-field-state.mjs"
+      - "scripts/historical-batch-selection.mjs"
+      - "scripts/test-historical-batch-selection.mjs"
+      - ".github/workflows/backfill-historical-pdf-fields.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: historical-pdf-field-backfill
+  cancel-in-progress: true
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install PDF text extraction dependency
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends poppler-utils
+          pdftotext -v
+
+      - name: Test historical SEBI PDF field parser
+        run: node scripts/test-backfill-historical-pdf-fields.mjs
+
+      - name: Test semantic historical PDF field merge
+        run: node scripts/test-apply-historical-pdf-field-state.mjs
+
+      - name: Backfill historical SEBI PDF fields
+        run: node scripts/backfill-historical-pdf-fields.mjs
+
+      - name: Save semantic historical PDF field proposal
+        id: proposal
+        shell: bash
+        run: |
+          if [ ! -f ops/sebi-historical-pdf-fields.json ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No historical PDF field proposal was produced."
+            exit 0
+          fi
+          cp ops/sebi-historical-pdf-fields.json /tmp/sebi-historical-pdf-fields-proposal.json
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Publish semantic historical PDF field results
+        if: steps.proposal.outputs.changed == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for attempt in 1 2 3; do
+            echo "Semantic PDF-field publication attempt $attempt/3"
+            git fetch origin main
+            git reset --hard origin/main
+
+            if ! git ls-files --error-unmatch ops/sebi-historical-pdf-fields.json >/dev/null 2>&1; then
+              rm -f ops/sebi-historical-pdf-fields.json
+            fi
+
+            node scripts/apply-historical-pdf-field-state.mjs --input=/tmp/sebi-historical-pdf-fields-proposal.json
+            node scripts/build-published-data.mjs
+            node scripts/build-published-data.mjs --check
+            node scripts/validate-data.mjs
+
+            if [ -z "$(git status --porcelain -- data/recovery data/ipos.json ops/sebi-historical-pdf-fields.json)" ]; then
+              echo "Latest main already contains all semantic historical PDF field results."
+              exit 0
+            fi
+
+            git add data/recovery data/ipos.json
+            if [ -f ops/sebi-historical-pdf-fields.json ]; then
+              git add ops/sebi-historical-pdf-fields.json
+            fi
+            git commit -m "chore(data): backfill historical PDF fields"
+
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+
+            echo "Main advanced during PDF-field publication; retrying semantic apply."
+          done
+
+          echo "Failed to publish historical PDF field results after 3 attempts." >&2
+          exit 1

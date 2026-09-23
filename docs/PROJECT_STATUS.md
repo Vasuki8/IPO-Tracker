@@ -3098,3 +3098,46 @@ Publication now uses a semantic proposal rather than rebasing modified recovery 
 9. if `main` moved again, semantic application is repeated against the newer main, up to three attempts.
 
 This preserves concurrent NSE/SEBI enrichments and avoids choosing an entire recovery file from either side of a conflict.
+
+
+## Independent historical SEBI PDF field backfill
+
+A dedicated historical PDF field pipeline now targets fields that are poorly covered by exchange history but can appear explicitly in official SEBI RHP/Prospectus PDFs.
+
+### Fields
+
+For pre-current-year IPOs with an attached official SEBI Prospectus/RHP PDF, the backfill attempts only explicit:
+
+- final issue price;
+- aggregate monetary issue size;
+- minimum bid quantity.
+
+It does **not** calculate monetary issue size from offered shares × price.
+
+### Bounded and year balanced
+
+- schedule: hourly at minute **57**;
+- batch size: **8 historical PDFs per run**;
+- candidates are balanced across listing years using the shared historical round-robin selector;
+- within each year, newest listings are processed first;
+- one downloaded PDF is reused for all three field parsers;
+- curl and pdftotext work is time-bounded;
+- a parser-versioned cursor prevents repeatedly scanning the same no-field documents;
+- transient fetch errors retry after the existing cooldown.
+
+### Race-safe publication
+
+The workflow does not rebase modified recovery JSON.
+
+Instead:
+
+1. extraction results retain exact field values, source text, page numbers and document metadata in a semantic cursor/proposal;
+2. the workflow resets to the latest `origin/main`;
+3. the proposal is reapplied by historical record key;
+4. only fields that remain missing on current main are filled;
+5. concurrent live-sync values are never overwritten;
+6. cursor state is merged by latest attempt timestamp;
+7. the unified dataset is rebuilt, checked and validated;
+8. push is retried semantically up to three times if main advances again.
+
+This gives historical issue-size/minimum-bid/final-price recovery an independent path without slowing or racing the live IPO sync.
