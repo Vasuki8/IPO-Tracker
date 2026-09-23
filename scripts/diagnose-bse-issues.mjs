@@ -42,10 +42,12 @@ export function parseBseIssueSummaryLinks(html) {
 export function matchBseSummaryLink(issuerName, links) {
   const target = normalizeName(issuerName);
   if (!target) return { match: null, reason: "missing_issuer_name" };
+  const targetTokens = target.split(" ").filter((token) => token.length > 1);
   const matches = (links || []).filter((item) => {
     const haystack = normalizeName(item.context);
-    if (!haystack || !target) return false;
-    return haystack.includes(target);
+    if (!haystack || targetTokens.length === 0) return false;
+    const haystackTokens = new Set(haystack.split(" "));
+    return targetTokens.every((token) => haystackTokens.has(token));
   });
   const unique = [...new Map(matches.map((item) => [item.url, item])).values()];
   if (unique.length !== 1) {
