@@ -8,6 +8,8 @@ on:
     branches: ["main"]
     paths:
       - "data/bse-ipo-sources.json"
+      - "scripts/audit-historical-coverage.mjs"
+      - "scripts/test-audit-historical-coverage.mjs"
       - "scripts/extract-bse-ipo-fields.mjs"
       - "scripts/test-extract-bse-ipo-fields.mjs"
       - "scripts/diagnose-bse-issues.mjs"
@@ -75,7 +77,10 @@ jobs:
       - name: Test BSE detail and listing parsers
         run: node scripts/test-extract-bse-ipo-fields.mjs
 
-      - name: Inspect retained official BSE IPO sources
+      - name: Audit historical IPO coverage
+        run: node scripts/audit-historical-coverage.mjs
+
+      - name: Apply retained official BSE IPO sources
         run: node scripts/extract-bse-ipo-fields.mjs
 
       - name: Test live-feed parsing
