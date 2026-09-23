@@ -46,7 +46,9 @@ export function parseBseListingNotice(html) {
   const effective=body.match(/effective from\s+(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),?\s+([A-Za-z]+\s+\d{1,2},\s+\d{4})/i)?.[1]??null;
   const lot=number(body.match(/Market Lot\s+([0-9,]+)/i)?.[1]);
   const price=number(body.match(/Issue Price for the current Public issue\s+Rs\.?\s*([0-9,.]+)/i)?.[1]);
-  return { company, listing_date_raw:effective, market_lot:lot, issue_price:price };
+  const segment=body.match(/\bSegment\s+(SME|Equity)\b/i)?.[1]??null;
+  const board=segment?.toLowerCase()==="sme" ? "SME" : segment ? "Mainboard" : null;
+  return { company, listing_date_raw:effective, market_lot:lot, issue_price:price, board };
 }
 function sourceEvidence(source, collectedAt) {
   return {
@@ -100,6 +102,49 @@ export function applyBseParsedFields(record, source, parsed, collectedAt) {
   }
   return {changed,conflicts};
 }
+export function buildBseOnlyRecoveryRecord(source, parsed, collectedAt) {
+  if (source?.kind !== "listing_notice" || source?.inclusion !== "ipo") return null;
+  if (!Number.isInteger(Number(source.year))) return null;
+  if (!parsed?.company || slug(parsed.company) !== slug(source.issuer_name)) return null;
+  if (!isoDate(parsed.listing_date_raw)) return null;
+
+  const evidence=sourceEvidence(source,collectedAt);
+  const record={
+    id:slug(source.issuer_name),
+    issuer_name:source.issuer_name,
+    board:parsed.board??null,
+    sector:null,
+    status:"listed",
+    nse_symbol:null,
+    nse_series:null,
+    bse_source:{
+      url:evidence.url,
+      document_type:evidence.document_type,
+      document_identity:evidence.document_identity,
+      publication_date:evidence.publication_date,
+      collected_at:collectedAt
+    },
+    terms:{
+      price_band:null,
+      market_lot:null,
+      minimum_bid_quantity:null,
+      open_date:null,
+      close_date:null
+    },
+    documents:[],
+    first_observed_at:collectedAt,
+    last_collected_at:collectedAt,
+    board_evidence:parsed.board ? [{...evidence,page:null}] : [],
+    status_evidence:[{...evidence,page:null}]
+  };
+  applyBseParsedFields(record,source,parsed,collectedAt);
+  return record;
+}
+
+function recoveryFileForYear(year) {
+  return path.join(RECOVERY_ROOT,String(year),"nse-issue-information.json");
+}
+
 function recoveryFiles() {
   if (!fs.existsSync(RECOVERY_ROOT)) return [];
   return fs.readdirSync(RECOVERY_ROOT,{withFileTypes:true}).filter(x=>x.isDirectory()).flatMap(dir=>{
@@ -116,7 +161,7 @@ async function run(){
   const manifest=JSON.parse(fs.readFileSync(MANIFEST_PATH,"utf8"));
   const files=recoveryFiles();
   const loaded=files.map(file=>({file,data:JSON.parse(fs.readFileSync(file,"utf8")),changed:false}));
-  const stats={sources:(manifest.sources||[]).length,parsed:0,matched_records:0,applied:0,conflicts:0,errors:0,unmatched_sources:0};
+  const stats={sources:(manifest.sources||[]).length,parsed:0,matched_records:0,created_records:0,applied:0,conflicts:0,errors:0,unmatched_sources:0};
   const now=new Date().toISOString();
   for(const source of manifest.sources||[]){
     try{
@@ -127,6 +172,41 @@ async function run(){
       const candidates=[];
       for(const item of loaded) for(const record of item.data.records||[]) {
         if(slug(record.issuer_name)===slug(source.issuer_name)) candidates.push({item,record});
+      }
+      if(candidates.length===0){
+        const newRecord=buildBseOnlyRecoveryRecord(source,parsed,now);
+        if(newRecord){
+          const year=Number(source.year);
+          let item=loaded.find((entry)=>Number(path.basename(path.dirname(entry.file)))===year);
+          if(!item){
+            const file=recoveryFileForYear(year);
+            item={
+              file,
+              data:{
+                source_family:"Official NSE / SEBI / BSE offer-document and exchange evidence",
+                collection_started_at:now,
+                generated_at:now,
+                records:[]
+              },
+              changed:false
+            };
+            loaded.push(item);
+          }
+          const duplicate=loaded.some((entry)=>entry.data.records?.some((record)=>record.id===newRecord.id));
+          if(!duplicate){
+            item.data.records??=[];
+            item.data.records.push(newRecord);
+            item.data.records.sort((a,b)=>a.issuer_name.localeCompare(b.issuer_name));
+            item.changed=true;
+            stats.created_records++;
+            stats.applied++;
+            console.log(JSON.stringify({issuer_name:source.issuer_name,kind:source.kind,url:source.url,parsed,created:true,conflicts:[]}));
+            continue;
+          }
+        }
+        stats.unmatched_sources++;
+        console.log(JSON.stringify({issuer_name:source.issuer_name,kind:source.kind,url:source.url,parsed,record_match_count:0}));
+        continue;
       }
       if(candidates.length!==1){
         stats.unmatched_sources++;
@@ -143,6 +223,7 @@ async function run(){
   }
   for(const item of loaded) if(item.changed){
     item.data.generated_at=now;
+    fs.mkdirSync(path.dirname(item.file),{recursive:true});
     fs.writeFileSync(item.file,JSON.stringify(item.data,null,2)+"\n");
   }
   console.log(JSON.stringify({bse_detail_stats:stats},null,2));
