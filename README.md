@@ -960,3 +960,10 @@ The operator report now shows the current retained state, consecutive observatio
 The operator layer now distinguishes source collection, dataset rebuild, data validation, repository publication, and Pages deployment failures. Each has targeted diagnostic/recovery guidance; downstream failures are not mislabeled as source failures.
 
 **Handoff:** next refine skipped/unmeasured stage semantics so expected downstream skips after an upstream failure are distinguished from unexpectedly unmeasured stages.
+
+
+### Pipeline stage measurement semantics
+
+The operator layer now distinguishes expected downstream skips after an upstream failure from unexplained skipped/unmeasured stages. Expected skips do not create redundant failures; unexplained stages become explicit `*_unmeasured` reasons with overall `unknown`.
+
+**Handoff:** next add independent schema validation for operator snapshot/history JSON so malformed operational state is detected explicitly without affecting IPO data.
