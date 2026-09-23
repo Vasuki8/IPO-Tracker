@@ -277,6 +277,7 @@ assert.equal(
 );
 
 assert.equal(
+  MAX_HISTORICAL_TARGETED_SEARCHES,
   SEBI_PUBLIC_ISSUES_URL,
   "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&ssid=15"
 );
@@ -315,3 +316,5 @@ assert.equal(
   otherDocumentPdfs[0].url,
   "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789991154046.pdf"
 );
+
+assert.equal(MAX_HISTORICAL_TARGETED_SEARCHES, 24);
