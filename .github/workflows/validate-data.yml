@@ -60,6 +60,9 @@ jobs:
       - name: Test BSE issue-summary diagnostic parser
         run: node scripts/test-diagnose-bse-issues.mjs
 
+      - name: Test BSE detail and listing parsers
+        run: node scripts/test-extract-bse-ipo-fields.mjs
+
       - name: Test NSE live sync parser
         run: node scripts/test-sync-nse-live.mjs
 
