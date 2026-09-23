@@ -3072,3 +3072,29 @@ The single-pass NSE detail extractor now:
 - reuses the already-fetched `ipo-detail` payload, so this adds no network request.
 
 This directly targets current 2026 final-price gaps and is also wired into the bounded historical detail writer for the two residual historical final-price gaps (Marco Cables and Conductors Limited in 2023 and Vodafone Idea Limited - FPO in 2024).
+
+
+## Historical offer-date semantic publication repair
+
+The first dedicated historical offer-date run extracted usable data but failed to publish because a concurrent live sync changed the same yearly recovery JSON and file-level rebase conflicted.
+
+Observed extraction:
+- 12 candidates;
+- 5 PDFs downloaded;
+- 2 records with recovered opening dates;
+- 0 parser conflicts;
+- 7 PDF fetch/time-out errors.
+
+Publication now uses a semantic proposal rather than rebasing modified recovery files:
+
+1. the PDF extractor records full date facts and source/page evidence in the offer-date cursor;
+2. the proposal is copied outside the checkout;
+3. the workflow resets to the latest `origin/main`;
+4. a semantic merge script reapplies only still-missing dates by historical record key;
+5. cursor entries are merged by latest attempt timestamp;
+6. `data/ipos.json` is rebuilt and checked;
+7. the full data contract is validated;
+8. push is attempted;
+9. if `main` moved again, semantic application is repeated against the newer main, up to three attempts.
+
+This preserves concurrent NSE/SEBI enrichments and avoids choosing an entire recovery file from either side of a conflict.
