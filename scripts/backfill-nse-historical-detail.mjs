@@ -19,7 +19,7 @@ const STATE_PATH = path.join(ROOT, "ops", "nse-historical-detail.json");
 const NSE_HOME = "https://www.nseindia.com/market-data/all-upcoming-issues-ipo";
 const API_BASE = "https://www.nseindia.com/api/ipo-detail";
 const USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36";
-export const HISTORICAL_DETAIL_BATCH_SIZE = 24;
+export const HISTORICAL_DETAIL_BATCH_SIZE = 48;
 export const HISTORICAL_DETAIL_PARSER_VERSION = "1.0.0";
 
 function normalizeText(value) {
