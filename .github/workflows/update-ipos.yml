@@ -22,6 +22,9 @@ on:
       - "scripts/test-backfill-nse-historical-detail.mjs"
       - "scripts/sync-nse-historical.mjs"
       - "scripts/test-sync-nse-historical.mjs"
+      - "scripts/prepare-live-sync-proposal.mjs"
+      - "scripts/apply-live-sync-proposal.mjs"
+      - "scripts/test-live-sync-semantic-publication.mjs"
       - "scripts/sync-nse-live.mjs"
       - "scripts/test-sync-nse-live.mjs"
       - "scripts/sync-sebi-documents.mjs"
@@ -61,8 +64,8 @@ permissions:
   contents: write
 
 concurrency:
-  group: ipo-data-publication
-  cancel-in-progress: false
+  group: live-ipo-sync
+  cancel-in-progress: true
 
 jobs:
   sync:
@@ -170,42 +173,61 @@ jobs:
         id: validate_data
         run: node scripts/validate-data.mjs
 
+      - name: Test semantic live-sync publication
+        run: node scripts/test-live-sync-semantic-publication.mjs
+
+      - name: Prepare semantic live-sync proposal
+        id: live_proposal
+        shell: bash
+        run: |
+          node scripts/prepare-live-sync-proposal.mjs --output=/tmp/live-sync-proposal.json
+          changed="$(node -e "const fs=require('fs');const p=JSON.parse(fs.readFileSync('/tmp/live-sync-proposal.json','utf8'));const yes=Object.keys(p.recovery||{}).length>0||Object.keys(p.cursors||{}).length>0||p.published_data_changed===true;process.stdout.write(yes?'true':'false')")"
+          echo "changed=$changed" >> "$GITHUB_OUTPUT"
+
       - name: Publish source-backed data changes
         id: publish_data
         shell: bash
         run: |
-          if [ -z "$(git status --porcelain -- data/recovery data/ipos.json ops/sebi-historical-search.json ops/nse-historical-detail.json ops/sebi-historical-offer-dates.json)" ]; then
-            echo "No source-backed IPO data or historical search-state changes detected."
+          set -euo pipefail
+
+          if [ "${{ steps.live_proposal.outputs.changed }}" != "true" ]; then
+            echo "No source-backed IPO data, cursor, or rebuild changes detected."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/recovery data/ipos.json
-          if [ -f ops/sebi-historical-search.json ]; then git add ops/sebi-historical-search.json; fi
-          if [ -f ops/nse-historical-detail.json ]; then git add ops/nse-historical-detail.json; fi
-          if [ -f ops/sebi-historical-offer-dates.json ]; then git add ops/sebi-historical-offer-dates.json; fi
-          git commit -m "chore(data): sync official IPO sources"
 
-          # Other operational workflows can advance main while this long-running
-          # source collection is active. Rebase the data commit onto current main
-          # so unrelated bot commits are preserved instead of causing push failure.
           for attempt in 1 2 3; do
-            echo "Live data publication attempt $attempt/3"
+            echo "Semantic live publication attempt $attempt/3"
             git fetch origin main
-            if ! git rebase origin/main; then
-              echo "Data publication rebase conflicted; aborting cleanly." >&2
-              git rebase --abort || true
-              exit 1
+            git reset --hard origin/main
+
+            node scripts/apply-live-sync-proposal.mjs --input=/tmp/live-sync-proposal.json
+            node scripts/build-published-data.mjs
+            node scripts/build-published-data.mjs --check
+            node scripts/validate-data.mjs
+
+            if [ -z "$(git status --porcelain -- data/recovery data/ipos.json ops/sebi-historical-search.json ops/nse-historical-detail.json)" ]; then
+              echo "Latest main already contains all semantic live-sync results."
+              exit 0
             fi
+
+            git add data/recovery data/ipos.json
+            if [ -f ops/sebi-historical-search.json ]; then git add ops/sebi-historical-search.json; fi
+            if [ -f ops/nse-historical-detail.json ]; then git add ops/nse-historical-detail.json; fi
+            git commit -m "chore(data): sync official IPO sources"
+
             if git push origin HEAD:main; then
               exit 0
             fi
-            echo "Main advanced during live data publication; retrying."
+
+            echo "Main advanced during live publication; retrying semantic apply."
           done
 
-          echo "Failed to publish live source-backed data after 3 attempts." >&2
+          echo "Failed to publish semantic live-sync results after 3 attempts." >&2
           exit 1
+
       - name: Operator freshness and source-health summary
         if: always()
         env:
