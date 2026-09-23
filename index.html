@@ -95,7 +95,7 @@
         <div class="desktop-table">
           <table>
             <thead>
-              <tr><th>Company</th><th>Status</th><th>Price</th><th>Lot / Minimum</th><th>Dates</th><th>Issue size</th><th>Source status</th><th></th></tr>
+              <tr><th>Company</th><th>Status</th><th>Price</th><th>Lot size</th><th>Dates</th><th>Issue size</th><th>Source status</th><th></th></tr>
             </thead>
             <tbody id="ipoRows"></tbody>
           </table>
@@ -131,8 +131,7 @@
         <div class="detail-kpis">
           <div class="price-kpi"><strong id="detailPrice">—</strong><span>Price</span></div>
           <div><strong id="detailIssue">—</strong><span>Issue size</span></div>
-          <div><strong id="detailLot">—</strong><span>Market lot</span></div>
-          <div><strong id="detailMinimum">—</strong><span>Minimum application</span></div>
+          <div><strong id="detailLot">—</strong><span>Lot size</span></div>
         </div>
 
         <div class="verification-strip">
@@ -157,16 +156,14 @@
         <div class="detail-main">
           <section class="card section-card">
             <div class="section-heading">
-              <div><h2>IPO details</h2><p>Application terms remain distinct rather than being collapsed into one field.</p></div>
+              <div><h2>IPO details</h2><p>Lot size uses verified share-quantity evidence from official sources.</p></div>
               <span class="source source--missing">SOURCE-DEPENDENT</span>
             </div>
             <dl class="detail-list">
               <div><dt>Issue type</dt><dd>—</dd></div>
               <div><dt>Face value</dt><dd>—</dd></div>
               <div><dt>Price / band</dt><dd id="detailPrice2">—</dd></div>
-              <div><dt>Market lot</dt><dd id="detailLot2">—</dd></div>
-              <div><dt>Minimum bid quantity</dt><dd id="detailBid">—</dd></div>
-              <div><dt>Minimum application amount</dt><dd id="detailMinimum2">—</dd></div>
+              <div><dt>Lot size</dt><dd id="detailLot2">—</dd></div>
               <div><dt>Issue size</dt><dd id="detailIssue2">—</dd></div>
               <div><dt>Fresh issue</dt><dd>—</dd></div>
               <div><dt>Offer for sale</dt><dd>—</dd></div>
@@ -220,6 +217,7 @@
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="assets/ipo-order.js?v=20260922-newest2"></script>
-  <script src="assets/app.js?v=20260922-newest2"></script>
+  <script src="assets/lot-size.js?v=20260922-lot1"></script>
+  <script src="assets/app.js?v=20260922-lot1"></script>
 </body>
 </html>
