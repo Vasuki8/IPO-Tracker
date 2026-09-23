@@ -2487,3 +2487,39 @@ The guidance layer is read-only:
 The operations surface now has measurement, health classification and reason-specific recovery guidance.
 
 Next backend operations batch: add a **machine-readable operator snapshot artifact** for the latest sync result (health + guidance + relevant run identity) so operational state survives beyond an individual GitHub Actions Job Summary. Keep it separate from IPO data and avoid recursive workflow triggers.
+
+
+## Latest completed batch — durable machine-readable operator snapshot
+
+The hourly sync now persists its latest operator state to `ops/operator-snapshot.json` in addition to the GitHub Actions Job Summary.
+
+### Snapshot contract
+
+Schema `1.0.0` contains operational metadata only:
+
+- sync run ID, attempt, workflow name and commit SHA;
+- overall health, reasons, thresholds and measured ages;
+- reason-specific recovery guidance;
+- collection/build/validation/repository-publication stage outcomes;
+- dataset generation, collection-start, latest record-collection and latest evidence-collection timestamps;
+- retained GitHub Pages publication health.
+
+It deliberately excludes IPO records and field coverage so the snapshot cannot become a competing IPO dataset.
+
+### Workflow behavior
+
+The snapshot step uses `if: always()`, allowing failed collection/build runs to leave durable diagnostic state.
+
+The bot commit stages only `ops/operator-snapshot.json`. That path is outside the sync workflow's push-path trigger, so the snapshot commit does not recursively start another sync.
+
+### Tests / safety
+
+The snapshot contract test verifies run identity, health, pipeline/freshness state and confirms IPO records/field coverage are absent.
+
+No IPO data values, evidence or field statuses are changed.
+
+### Handoff / next coherent batch
+
+The operations layer now has durable Pages state plus a durable latest sync snapshot.
+
+Next backend operations batch: add a **small history/retention strategy for operator health transitions** so recurring failures/staleness can be distinguished from a one-off event without storing unbounded workflow history. Keep it operational-only and bounded; do not add external monitoring services or notifications yet.
