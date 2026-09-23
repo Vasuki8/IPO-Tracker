@@ -13,6 +13,59 @@ export const DEFAULT_STALENESS_THRESHOLDS_HOURS = {
   pages_publication: 3
 };
 
+export const RECOVERY_GUIDANCE = {
+  collection_failure: {
+    priority: "high",
+    diagnostic: "Inspect the failed NSE/SEBI collection step and its workflow logs before changing source parsers.",
+    recovery: "After identifying a transient source/network failure or a confirmed parser repair, rerun the live IPO sync and verify collection succeeds."
+  },
+  pages_deployment_failure: {
+    priority: "high",
+    diagnostic: "Inspect the latest GitHub Pages deployment run and the Deploy to GitHub Pages / publication-health steps.",
+    recovery: "Fix the deployment-specific failure, then rerun the Pages workflow and confirm a new successful publication is recorded."
+  },
+  stale_dataset: {
+    priority: "medium",
+    diagnostic: "Check whether the hourly sync has completed since the dataset generated_at timestamp and whether rebuild/validation were successful.",
+    recovery: "If collection is healthy but generation is stale, inspect rebuild/validation/publication before considering a sync rerun."
+  },
+  stale_record_collection: {
+    priority: "medium",
+    diagnostic: "Check the latest hourly sync and NSE/SEBI collection outcomes; confirm retained records are receiving current collection timestamps.",
+    recovery: "Investigate collection or merge logic if successful runs are not advancing retained record collection time."
+  },
+  stale_evidence_collection: {
+    priority: "low",
+    diagnostic: "Confirm collectors are succeeding, then check whether current official sources actually contain new document or field evidence.",
+    recovery: "Do not rerun solely because evidence is old; repair a source path only when newer official evidence exists but is not being retained."
+  },
+  stale_pages_publication: {
+    priority: "medium",
+    diagnostic: "Compare the latest main commit/dataset generation with the last successful Pages publication and inspect recent Pages runs.",
+    recovery: "Rerun or repair Pages only when repository content is newer than the last successful publication or the deployment pipeline is unhealthy."
+  },
+  dataset_generated_time_missing: {
+    priority: "medium",
+    diagnostic: "Validate the published dataset contract and inspect the rebuild step for a missing generated_at timestamp.",
+    recovery: "Repair dataset generation metadata rather than inventing a timestamp."
+  },
+  record_collection_time_missing: {
+    priority: "medium",
+    diagnostic: "Inspect retained recovery records and collector merge logic for missing last_collected_at values.",
+    recovery: "Restore collection timestamp retention from real collection events; do not synthesize historical times."
+  },
+  pages_publication_time_missing: {
+    priority: "medium",
+    diagnostic: "Inspect ops/pages-publication.json and the latest Pages workflow publication-health step.",
+    recovery: "Restore publication-health recording from an actual Pages run; do not substitute dataset generated_at."
+  },
+  invalid_report_time: {
+    priority: "medium",
+    diagnostic: "Inspect the operator report clock input and ensure it is a valid ISO timestamp.",
+    recovery: "Correct the report-time input before using staleness classifications."
+  }
+};
+
 export const MONITORED_FIELDS = [
   "price_band",
   "issue_price",
@@ -175,8 +228,19 @@ export function classifyOperatorHealth(dataset, pipeline, pages, options = {}) {
   };
 }
 
+export function buildRecoveryGuidance(health) {
+  return (health?.reasons || []).map((reason) => ({
+    reason,
+    ...(RECOVERY_GUIDANCE[reason] || {
+      priority: "medium",
+      diagnostic: "Inspect the operator report inputs and relevant workflow logs for this unrecognized health reason.",
+      recovery: "Do not mutate IPO data until the operational cause is understood."
+    })
+  }));
+}
+
 export function renderMarkdown(report) {
-  const { dataset, pipeline, pages_publication: pages, health } = report;
+  const { dataset, pipeline, pages_publication: pages, health, recovery_guidance: guidance } = report;
   const lines = [
     "# IPO Tracker operator report",
     "",
@@ -188,6 +252,18 @@ export function renderMarkdown(report) {
     `- Record collection age: ${health.ages_hours.record_collection ?? "unknown"}h (stale after ${health.thresholds_hours.record_collection}h)`,
     `- Evidence collection age: ${health.ages_hours.evidence_collection ?? "unknown"}h (stale after ${health.thresholds_hours.evidence_collection}h)`,
     `- Last successful Pages publication age: ${health.ages_hours.pages_publication ?? "unknown"}h (stale after ${health.thresholds_hours.pages_publication}h)`,
+    "",
+    "## Recovery guidance",
+    ""
+  ];
+  if (guidance.length === 0) {
+    lines.push("- No recovery action indicated.");
+  } else {
+    for (const item of guidance) {
+      lines.push(`- **${item.reason}** [${item.priority}] — Diagnose: ${item.diagnostic} Recovery: ${item.recovery}`);
+    }
+  }
+  lines.push(
     "",
     "## Pipeline health",
     "",
@@ -249,12 +325,14 @@ export function buildOperatorReport(data, env = process.env, pagesStatus = null,
   const dataset = summarizeDataset(data);
   const pipeline = summarizePipeline(env);
   const pagesPublication = summarizePagesPublication(pagesStatus);
-  return {
+  const report = {
     dataset,
     pipeline,
     pages_publication: pagesPublication,
     health: classifyOperatorHealth(dataset, pipeline, pagesPublication, options)
   };
+  report.recovery_guidance = buildRecoveryGuidance(report.health);
+  return report;
 }
 
 function main() {
