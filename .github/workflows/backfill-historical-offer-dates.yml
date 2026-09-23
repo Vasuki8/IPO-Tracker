@@ -21,8 +21,8 @@ permissions:
   contents: write
 
 concurrency:
-  group: historical-offer-date-backfill
-  cancel-in-progress: true
+  group: ipo-data-publication
+  cancel-in-progress: false
 
 jobs:
   backfill:
