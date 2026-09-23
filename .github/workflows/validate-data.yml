@@ -50,17 +50,14 @@ jobs:
       - name: Check sync publication race guards
         shell: bash
         run: |
-          grep -q 'git rebase origin/main' .github/workflows/update-ipos.yml
-          grep -q 'git rebase --abort' .github/workflows/update-ipos.yml
+          grep -q 'prepare-live-sync-proposal.mjs' .github/workflows/update-ipos.yml
+          grep -q 'apply-live-sync-proposal.mjs' .github/workflows/update-ipos.yml
+          grep -q 'git reset --hard origin/main' .github/workflows/update-ipos.yml
+          grep -q 'group: live-ipo-sync' .github/workflows/update-ipos.yml
+          grep -q 'group: historical-offer-date-backfill' .github/workflows/backfill-historical-offer-dates.yml
+          grep -q 'group: historical-pdf-field-backfill' .github/workflows/backfill-historical-pdf-fields.yml
           grep -q 'git ls-files --error-unmatch ops/operator-snapshot.json' .github/workflows/update-ipos.yml
           grep -q 'git rebase origin/main' .github/workflows/deploy-pages.yml
-          for workflow in \
-            .github/workflows/update-ipos.yml \
-            .github/workflows/backfill-historical-offer-dates.yml \
-            .github/workflows/backfill-historical-pdf-fields.yml; do
-            grep -q 'group: ipo-data-publication' "$workflow"
-            grep -q 'cancel-in-progress: false' "$workflow"
-          done
           grep -q 'git reset --hard origin/main' .github/workflows/backfill-historical-offer-dates.yml
           grep -q 'apply-historical-offer-date-state.mjs' .github/workflows/backfill-historical-offer-dates.yml
           grep -q 'Semantic publication attempt' .github/workflows/backfill-historical-offer-dates.yml
@@ -88,6 +85,9 @@ jobs:
 
       - name: Test historical IPO coverage audit
         run: node scripts/test-audit-historical-coverage.mjs
+
+      - name: Test semantic live-sync publication
+        run: node scripts/test-live-sync-semantic-publication.mjs
 
       - name: Test NSE live sync parser
         run: node scripts/test-sync-nse-live.mjs
