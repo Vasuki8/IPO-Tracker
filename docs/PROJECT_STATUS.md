@@ -2884,3 +2884,36 @@ This allows retained BSE evidence to apply during the same run that creates hist
 - coverage counts for price band, final issue price, issue size, market lot, minimum bid, offer dates and listing date.
 
 This makes subsequent historical retrieval improvements measurable instead of relying on directory presence alone.
+
+
+## BSE-only IPO universe support
+
+Production evidence confirmed that the NSE historical universe is not sufficient for complete Indian IPO coverage:
+
+- the retained official BSE listing notice for **3B Films Limited** parsed successfully;
+- no NSE historical recovery record exists for that issuer;
+- retained BSE desktop `DisplayIPO.aspx` pages remain unreliable on the Actions runner and are therefore not used to create unmatched universe records.
+
+The BSE writer can now create a new recovery record only when all of the following are true:
+
+1. the retained source is explicitly marked `inclusion: "ipo"`;
+2. the source is an official **BSE Listing Notice**;
+3. the company identity in the notice exactly matches the retained issuer identity after normalization;
+4. the notice provides a parseable effective listing date.
+
+A BSE-only record retains:
+
+- BSE listing-date evidence;
+- final public issue price when explicit;
+- market lot when explicit;
+- Mainboard/SME board when the notice explicitly states the segment;
+- listed status with BSE evidence;
+- no invented NSE symbol/source.
+
+Desktop BSE issue-detail pages may still enrich an existing record when their parser succeeds, but cannot create a new issuer by themselves.
+
+The published-data builder now also prefers retained source-backed `open_date` / `close_date` fields before legacy NSE term fallbacks, allowing future BSE/SEBI offer-date evidence to publish with its correct provenance.
+
+### Historical universe implication
+
+The tracker is now capable of adding BSE-only IPOs alongside the NSE historical universe. Coverage is still incomplete until more official BSE listing notices are discovered and retained, but BSE-only issuers no longer require an NSE record to enter the tracker.
