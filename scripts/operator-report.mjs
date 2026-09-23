@@ -20,6 +20,21 @@ export const RECOVERY_GUIDANCE = {
     diagnostic: "Inspect the failed NSE/SEBI collection step and its workflow logs before changing source parsers.",
     recovery: "After identifying a transient source/network failure or a confirmed parser repair, rerun the live IPO sync and verify collection succeeds."
   },
+  rebuild_failure: {
+    priority: "high",
+    diagnostic: "Inspect the dataset rebuild step and recovery-to-published transformation logs; collection success does not guarantee a valid rebuild.",
+    recovery: "Repair the rebuild/transform defect, then rerun validation before publishing any regenerated dataset."
+  },
+  validation_failure: {
+    priority: "high",
+    diagnostic: "Inspect the published-data validation failure and identify the exact contract invariant before changing source or recovery data.",
+    recovery: "Correct the contract/data-generation defect and require validation to pass before repository publication."
+  },
+  repository_publication_failure: {
+    priority: "high",
+    diagnostic: "Inspect the repository publication step for push/rebase/permission failures after successful collection, rebuild and validation.",
+    recovery: "Resolve the publication-path failure and republish the already validated source-backed changes without recollecting sources unless needed."
+  },
   pages_deployment_failure: {
     priority: "high",
     diagnostic: "Inspect the latest GitHub Pages deployment run and the Deploy to GitHub Pages / publication-health steps.",
@@ -196,6 +211,9 @@ export function classifyOperatorHealth(dataset, pipeline, pages, options = {}) {
 
   const reasons = [];
   if (pipeline.collection_health === "collection_failure") reasons.push("collection_failure");
+  if (["failure", "cancelled"].includes(pipeline.stages.rebuild)) reasons.push("rebuild_failure");
+  if (["failure", "cancelled"].includes(pipeline.stages.validation)) reasons.push("validation_failure");
+  if (["failure", "cancelled"].includes(pipeline.stages.repository_publish)) reasons.push("repository_publication_failure");
   if (pages.latest_attempt_status === "failure" || pages.latest_attempt_status === "cancelled") reasons.push("pages_deployment_failure");
 
   const staleChecks = [
@@ -214,7 +232,7 @@ export function classifyOperatorHealth(dataset, pipeline, pages, options = {}) {
   if (ages.pages_publication === null) missingSignals.push("pages_publication_time_missing");
 
   let overall = "healthy";
-  if (reasons.includes("collection_failure") || reasons.includes("pages_deployment_failure")) overall = "failure";
+  if (reasons.some((reason) => reason.endsWith("_failure"))) overall = "failure";
   else if (reasons.some((reason) => reason.startsWith("stale_"))) overall = "stale";
   else if (missingSignals.length || pipeline.collection_health === "not_measured") overall = "unknown";
 
