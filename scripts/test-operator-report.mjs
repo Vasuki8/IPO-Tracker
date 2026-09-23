@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { buildOperatorReport, latestTimestamp, renderMarkdown, verifiedLotSize } from "./operator-report.mjs";
+import { buildOperatorReport, classifyOperatorHealth, latestTimestamp, renderMarkdown, verifiedLotSize } from "./operator-report.mjs";
 
 assert.equal(latestTimestamp([null, "2026-09-22T01:00:00Z", "2026-09-23T01:00:00Z"]), "2026-09-23T01:00:00Z");
 assert.equal(verifiedLotSize({ market_lot: { value: 120, status: "verified" }, minimum_bid_quantity: { value: 60, status: "verified" } }), 120);
@@ -49,7 +49,7 @@ const report = buildOperatorReport(fixture, {
   NSE_COLLECTION_OUTCOME: "success", SEBI_COLLECTION_OUTCOME: "success",
   REBUILD_OUTCOME: "success", VALIDATION_OUTCOME: "success", REPOSITORY_PUBLISH_OUTCOME: "success",
   GITHUB_RUN_ID: "123", GITHUB_SHA: "abc", OPERATOR_REPORT_AT: "2026-09-23T03:30:00Z"
-}, pagesStatus);
+}, pagesStatus, { now: "2026-09-23T03:30:00Z" });
 assert.equal(report.pipeline.collection_health, "collection_success");
 assert.equal(report.dataset.records, 2);
 assert.equal(report.dataset.lot_size.verified, 2);
@@ -61,6 +61,10 @@ assert.equal(report.dataset.latest_evidence_collected_at, "2026-09-23T02:40:00Z"
 assert.equal(report.pages_publication.latest_attempt_status, "failure");
 assert.equal(report.pages_publication.last_successful_at, "2026-09-23T03:10:00Z");
 assert.equal(report.pages_publication.last_successful_commit_sha, "good");
+assert.equal(report.health.overall, "failure");
+assert.deepEqual(report.health.reasons, ["pages_deployment_failure"]);
+assert.equal(report.health.ages_hours.dataset_generated, 0.5);
+assert.equal(report.health.ages_hours.pages_publication, 0.33);
 
 const failed = buildOperatorReport(fixture, { NSE_COLLECTION_OUTCOME: "failure", SEBI_COLLECTION_OUTCOME: "skipped", OPERATOR_REPORT_AT: "2026-09-23T03:30:00Z" });
 assert.equal(failed.pipeline.collection_health, "collection_failure");
@@ -72,3 +76,35 @@ assert.match(markdown, /does \*\*not\*\* mean the source necessarily contains th
 assert.match(markdown, /GitHub Pages latest attempt: \*\*failure\*\*/);
 assert.match(markdown, /GitHub Pages last successful publication: 2026-09-23T03:10:00Z \(commit good\)/);
 console.log("Operator freshness report tests passed.");
+
+const healthy = classifyOperatorHealth(
+  {
+    dataset_generated_at: "2026-09-23T10:00:00Z",
+    latest_record_collected_at: "2026-09-23T10:15:00Z",
+    latest_evidence_collected_at: "2026-09-23T09:00:00Z"
+  },
+  { report_generated_at: "2026-09-23T11:00:00Z", collection_health: "collection_success" },
+  { latest_attempt_status: "success", last_successful_at: "2026-09-23T10:30:00Z" }
+);
+assert.equal(healthy.overall, "healthy");
+assert.deepEqual(healthy.reasons, []);
+
+const stale = classifyOperatorHealth(
+  {
+    dataset_generated_at: "2026-09-23T06:00:00Z",
+    latest_record_collected_at: "2026-09-23T06:00:00Z",
+    latest_evidence_collected_at: "2026-09-22T09:00:00Z"
+  },
+  { report_generated_at: "2026-09-23T11:00:00Z", collection_health: "collection_success" },
+  { latest_attempt_status: "success", last_successful_at: "2026-09-23T06:00:00Z" }
+);
+assert.equal(stale.overall, "stale");
+assert.deepEqual(stale.reasons, ["stale_dataset", "stale_record_collection", "stale_evidence_collection", "stale_pages_publication"]);
+
+const unknown = classifyOperatorHealth(
+  { dataset_generated_at: null, latest_record_collected_at: null, latest_evidence_collected_at: null },
+  { report_generated_at: "2026-09-23T11:00:00Z", collection_health: "not_measured" },
+  { latest_attempt_status: "not_recorded", last_successful_at: null }
+);
+assert.equal(unknown.overall, "unknown");
+assert.deepEqual(unknown.reasons, ["dataset_generated_time_missing", "record_collection_time_missing", "pages_publication_time_missing"]);
