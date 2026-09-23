@@ -78,7 +78,7 @@ assert.equal(indexRows[0].company, "ABRIL PAPER TECH LIMITED");
 assert.equal(indexRows[1].scrip_code, "544710");
 assert.equal(indexRows[1].macro_sector, "Industrials");
 assert.equal(indexRows[0].isin, null);
-assert.equal(indexRows[0].row_format, "index_services");
+assert.equal(indexRows[0].row_format, "index_services_html");
 
 const merged = mergeIndexRows([
   {
