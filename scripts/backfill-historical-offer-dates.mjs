@@ -202,6 +202,13 @@ export function parseExplicitOfferDatesFromPages(pages, listingDate = null) {
   };
 }
 
+export function offerDateExtractionPassesCurrentRules(extraction, kind, listingDate = null) {
+  if (!extraction?.value || !extraction?.source_value) return false;
+  const parsed = parseExplicitOfferDatesFromPages([extraction.source_value], listingDate);
+  const candidate = kind === "open" ? parsed.open_date : parsed.close_date;
+  return candidate?.value === extraction.value;
+}
+
 export function candidateOfferDateDocument(record, currentYear = new Date().getUTCFullYear()) {
   const listingYear = Number(String(record?.listing_date?.value || "").slice(0, 4));
   if (!Number.isInteger(listingYear) || listingYear >= currentYear) return null;
