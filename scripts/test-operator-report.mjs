@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { buildOperatorReport, buildRecoveryGuidance, classifyOperatorHealth, latestTimestamp, renderMarkdown, summarizeHealthHistory, verifiedLotSize } from "./operator-report.mjs";
+import { buildOperatorReport, buildRecoveryGuidance, classifyOperatorHealth, classifyStageMeasurement, latestTimestamp, renderMarkdown, summarizeHealthHistory, verifiedLotSize } from "./operator-report.mjs";
 
 assert.equal(latestTimestamp([null, "2026-09-22T01:00:00Z", "2026-09-23T01:00:00Z"]), "2026-09-23T01:00:00Z");
 assert.equal(verifiedLotSize({ market_lot: { value: 120, status: "verified" }, minimum_bid_quantity: { value: 60, status: "verified" } }), 120);
@@ -233,3 +233,59 @@ assert.deepEqual(stageGuidance.map((item) => item.priority), ["high", "high", "h
 assert.match(stageGuidance[0].diagnostic, /dataset rebuild step/);
 assert.match(stageGuidance[1].recovery, /validation to pass/);
 assert.match(stageGuidance[2].recovery, /without recollecting sources unless needed/);
+
+assert.deepEqual(
+  classifyStageMeasurement(
+    { rebuild: "skipped", validation: "skipped", repository_publish: "skipped" },
+    "collection_failure"
+  ),
+  { rebuild: "expected_skip", validation: "expected_skip", repository_publish: "expected_skip" }
+);
+
+assert.deepEqual(
+  classifyStageMeasurement(
+    { rebuild: "failure", validation: "skipped", repository_publish: "skipped" },
+    "collection_success"
+  ),
+  { rebuild: "measured", validation: "expected_skip", repository_publish: "expected_skip" }
+);
+
+assert.deepEqual(
+  classifyStageMeasurement(
+    { rebuild: "success", validation: "skipped", repository_publish: "skipped" },
+    "collection_success"
+  ),
+  { rebuild: "measured", validation: "unexpected_skip", repository_publish: "unexpected_skip" }
+);
+
+const unexpectedMeasurementHealth = classifyOperatorHealth(
+  pipelineFailureDataset,
+  {
+    report_generated_at: "2026-09-23T11:00:00Z",
+    collection_health: "collection_success",
+    stages: { rebuild: "success", validation: "skipped", repository_publish: "unknown" },
+    stage_measurement: { rebuild: "measured", validation: "unexpected_skip", repository_publish: "unexpectedly_unmeasured" }
+  },
+  pipelineFailurePages
+);
+assert.equal(unexpectedMeasurementHealth.overall, "unknown");
+assert.deepEqual(unexpectedMeasurementHealth.reasons, ["validation_unmeasured", "repository_publish_unmeasured"]);
+
+const expectedSkipHealth = classifyOperatorHealth(
+  pipelineFailureDataset,
+  {
+    report_generated_at: "2026-09-23T11:00:00Z",
+    collection_health: "collection_failure",
+    stages: { rebuild: "skipped", validation: "skipped", repository_publish: "skipped" },
+    stage_measurement: { rebuild: "expected_skip", validation: "expected_skip", repository_publish: "expected_skip" }
+  },
+  pipelineFailurePages
+);
+assert.equal(expectedSkipHealth.overall, "failure");
+assert.deepEqual(expectedSkipHealth.reasons, ["collection_failure"]);
+
+const measurementGuidance = buildRecoveryGuidance({
+  reasons: ["validation_unmeasured", "repository_publish_unmeasured"]
+});
+assert.equal(measurementGuidance.length, 2);
+assert.match(measurementGuidance[0].recovery, /do not assume validation passed/i);
