@@ -3055,3 +3055,20 @@ When 2025→2020 all have eligible work:
 Empty years automatically yield their slots to years that still have candidates.
 
 This changes queue scheduling only; evidence acceptance, conflict handling, parser/version cursors, retry cooldowns, null preservation and source provenance remain unchanged.
+
+
+## NSE ipo-detail final issue-price recovery
+
+The official NSE `ipo-detail` payload already exposes explicit `Issue Price`, `Final Issue Price` and `finalIssuePrice` terms, but the backend previously used them only for diagnostics.
+
+The single-pass NSE detail extractor now:
+
+- parses only scalar issue-price values such as `Rs.139 per Equity Share` or a numeric `finalIssuePrice`;
+- rejects price ranges/placeholders;
+- requires all parseable official issue-price terms in the payload to agree;
+- reports disagreement as `official_term_conflict`;
+- fills only a missing `issue_price`;
+- retains NSE API URL, document identity and collection timestamp;
+- reuses the already-fetched `ipo-detail` payload, so this adds no network request.
+
+This directly targets current 2026 final-price gaps and is also wired into the bounded historical detail writer for the two residual historical final-price gaps (Marco Cables and Conductors Limited in 2023 and Vodafone Idea Limited - FPO in 2024).

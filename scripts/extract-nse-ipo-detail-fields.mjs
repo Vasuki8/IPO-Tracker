@@ -304,6 +304,56 @@ export function issuePriceCandidatesFromIpoDetail(payload) {
   return candidates;
 }
 
+function parseIssuePriceScalar(value) {
+  const text = normalizeText(value).replace(/^"|"$/g, "");
+  const match = text.match(
+    /^\s*(?:(?:₹|Rs\.?|INR)\s*)?([0-9][0-9,]*(?:\.[0-9]{1,2})?)\s*(?:\/-)?\s*(?:per\s+(?:Equity\s+)?Share)?\s*$/i
+  );
+  if (!match) return null;
+  const price = Number(match[1].replace(/,/g, ""));
+  return Number.isFinite(price) && price > 0 ? price : null;
+}
+
+export function parseIssuePriceFromIpoDetail(payload) {
+  const candidates = issuePriceCandidatesFromIpoDetail(payload);
+  const parsed = [];
+
+  for (const item of candidates) {
+    const value = parseIssuePriceScalar(item.value);
+    if (value !== null) parsed.push({ ...item, price: value });
+  }
+
+  if (parsed.length === 0) {
+    return {
+      value: null,
+      reason: candidates.length > 0 ? "placeholder_or_unparseable" : "term_absent",
+      evidence_items: candidates
+    };
+  }
+
+  const unique = new Map(parsed.map((item) => [String(item.price), item]));
+  if (unique.size !== 1) {
+    return {
+      value: null,
+      reason: "official_term_conflict",
+      evidence_items: candidates
+    };
+  }
+
+  const value = [...unique.keys()][0];
+  const preferred =
+    parsed.find((item) => item.source === "issueInfo.dataList") ||
+    parsed[0];
+
+  return {
+    value: Number(value),
+    reason: null,
+    source_value: preferred.value,
+    source_title: preferred.title,
+    evidence_items: candidates
+  };
+}
+
 export function marketLotCandidatesFromIpoDetail(payload) {
   const list = payload?.issueInfo?.dataList;
   if (!Array.isArray(list)) return [];
@@ -639,6 +689,43 @@ export function applyIssueSize(record, extraction, sourceUrl, collectedAt) {
   if (!record.nse_series) record.nse_series = identity.series;
 
   record.issue_size_inr = {
+    value: extraction.value,
+    source_value: extraction.source_value,
+    status: "verified",
+    page: null,
+    source: {
+      url: sourceUrl,
+      document_type: "NSE Issue Information API",
+      document_identity: "NSE Issue Information — " + symbol,
+      publication_date: null,
+      collected_at: collectedAt
+    }
+  };
+
+  addDocumentOnce(record, {
+    type: "NSE Issue Information API",
+    identity: "NSE Issue Information — " + symbol,
+    url: sourceUrl,
+    publication_date: null,
+    collected_at: collectedAt
+  });
+
+  record.last_collected_at = collectedAt;
+  return true;
+}
+
+export function applyIssuePrice(record, extraction, sourceUrl, collectedAt) {
+  if (extraction?.value === null || extraction?.value === undefined) return false;
+  if (record.issue_price?.value !== null && record.issue_price?.value !== undefined) return false;
+
+  const identity = resolveNseIdentity(record);
+  if (!identity) return false;
+  const symbol = identity.symbol;
+
+  if (!record.nse_symbol) record.nse_symbol = identity.symbol;
+  if (!record.nse_series) record.nse_series = identity.series;
+
+  record.issue_price = {
     value: extraction.value,
     source_value: extraction.source_value,
     status: "verified",
@@ -1627,6 +1714,7 @@ async function runAllFields() {
       continue;
     }
     const needs = {
+      issue_price: record.issue_price?.value == null,
       market_lot: record.terms?.market_lot == null && record.market_lot?.value == null,
       issue_size: record.issue_size_inr?.value == null,
       price_band: !record.terms?.price_band && record.price_band?.value == null,
@@ -1635,13 +1723,14 @@ async function runAllFields() {
     };
     if (Object.values(needs).some(Boolean)) candidates.push({ group, record, needs });
   }
-  const stats = { candidates:candidates.length, historical_deferred:historicalDeferred, api_success:0, fetch_errors:0, extracted:{market_lot:0,issue_size:0,price_band:0,minimum_bid:0,listing_date:0} };
+  const stats = { candidates:candidates.length, historical_deferred:historicalDeferred, api_success:0, fetch_errors:0, extracted:{issue_price:0,market_lot:0,issue_size:0,price_band:0,minimum_bid:0,listing_date:0} };
   for (const { group, record, needs } of candidates) {
     const url = apiUrl(record);
     try {
       const response = await fetchWithRetry(url, { headers: { "user-agent":USER_AGENT, "accept":"application/json,text/plain,*/*", "accept-language":"en-US,en;q=0.9", "referer":NSE_HOME, "cookie":cookie, "cache-control":"no-cache", "pragma":"no-cache" } });
       const payload = await response.json(); stats.api_success += 1;
       const actions = [
+        ["issue_price",needs.issue_price,parseIssuePriceFromIpoDetail,applyIssuePrice],
         ["market_lot",needs.market_lot,parseMarketLotFromIpoDetail,applyMarketLot],
         ["issue_size",needs.issue_size,parseIssueSizeInrFromIpoDetail,applyIssueSize],
         ["price_band",needs.price_band,parsePriceBandFromIpoDetail,applyPriceBand],

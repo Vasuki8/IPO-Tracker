@@ -1,11 +1,13 @@
 import assert from "node:assert/strict";
 import {
+  applyIssuePrice,
   applyIssueSize,
   applyListingDate,
   applyMarketLot,
   applyMinimumBid,
   issuePriceCandidatesFromIpoDetail,
   issueSizeCandidatesFromIpoDetail,
+  parseIssuePriceFromIpoDetail,
   parseIssueSizeInrFromIpoDetail,
   listingDateCandidatesFromIpoDetail,
   marketLotCandidatesFromIpoDetail,
@@ -126,6 +128,61 @@ assert.deepEqual(
   }),
   []
 );
+
+const explicitIssuePrice = parseIssuePriceFromIpoDetail({
+  issueInfo: {
+    dataList: [{ title: "Issue Price", value: "Rs.139 per Equity Share" }]
+  },
+  metaInfo: { finalIssuePrice: "139" }
+});
+assert.equal(explicitIssuePrice.value, 139);
+assert.equal(explicitIssuePrice.reason, null);
+assert.equal(explicitIssuePrice.source_title, "Issue Price");
+
+assert.equal(
+  parseIssuePriceFromIpoDetail({
+    issueInfo: { dataList: [{ title: "Issue Price", value: "Rs.132 to Rs.139 per Equity Share" }] }
+  }).value,
+  null
+);
+
+assert.equal(
+  parseIssuePriceFromIpoDetail({
+    issueInfo: { dataList: [{ title: "Issue Price", value: "Rs.139 per Equity Share" }] },
+    metaInfo: { finalIssuePrice: "140" }
+  }).reason,
+  "official_term_conflict"
+);
+
+const issuePriceRecord = {
+  issuer_name: "Issue Price Limited",
+  nse_symbol: "IPRICE",
+  nse_series: "EQ",
+  issue_price: { value: null },
+  documents: []
+};
+assert.equal(
+  applyIssuePrice(
+    issuePriceRecord,
+    explicitIssuePrice,
+    "https://www.nseindia.com/api/ipo-detail?symbol=IPRICE&series=EQ",
+    "2026-09-23T20:30:00Z"
+  ),
+  true
+);
+assert.equal(issuePriceRecord.issue_price.value, 139);
+assert.equal(issuePriceRecord.issue_price.status, "verified");
+assert.equal(issuePriceRecord.issue_price.source.document_type, "NSE Issue Information API");
+assert.equal(
+  applyIssuePrice(
+    issuePriceRecord,
+    { value: 140, source_value: "140" },
+    "https://www.nseindia.com/api/ipo-detail?symbol=IPRICE&series=EQ",
+    "2026-09-23T20:31:00Z"
+  ),
+  false
+);
+
 
 const axiomBand = parsePriceBandFromIpoDetail({
   issueInfo: {

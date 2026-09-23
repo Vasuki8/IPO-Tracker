@@ -3,10 +3,12 @@ import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { selectBalancedByListingYear } from "./historical-batch-selection.mjs";
 import {
+  applyIssuePrice,
   applyIssueSize,
   applyMarketLot,
   applyMinimumBid,
   applyPriceBand,
+  parseIssuePriceFromIpoDetail,
   parseIssueSizeInrFromIpoDetail,
   parseMarketLotFromIpoDetail,
   parseMinimumBidFromIpoDetail,
@@ -43,6 +45,7 @@ export function historicalDetailKey(record) {
 
 export function missingHistoricalDetailFields(record) {
   const fields = [];
+  if (record.issue_price?.value == null) fields.push("issue_price");
   if (!record.terms?.price_band && record.price_band?.value == null) fields.push("price_band");
   if (record.terms?.market_lot == null && record.market_lot?.value == null) fields.push("market_lot");
   if (record.terms?.minimum_bid_quantity == null && record.minimum_bid_quantity?.value == null) fields.push("minimum_bid_quantity");
@@ -77,12 +80,14 @@ export function historicalDetailCandidates(
 export function applyHistoricalDetailPayload(record, payload, sourceUrl, collectedAt) {
   const before = missingHistoricalDetailFields(record);
   const extractions = {
+    issue_price: parseIssuePriceFromIpoDetail(payload),
     price_band: parsePriceBandFromIpoDetail(payload),
     market_lot: parseMarketLotFromIpoDetail(payload),
     minimum_bid_quantity: parseMinimumBidFromIpoDetail(payload),
     issue_size_inr: parseIssueSizeInrFromIpoDetail(payload)
   };
   const changed = [];
+  if (extractions.issue_price?.value != null && applyIssuePrice(record, extractions.issue_price, sourceUrl, collectedAt)) changed.push("issue_price");
   if (extractions.price_band?.value != null && applyPriceBand(record, extractions.price_band, sourceUrl, collectedAt)) changed.push("price_band");
   if (extractions.market_lot?.value != null && applyMarketLot(record, extractions.market_lot, sourceUrl, collectedAt)) changed.push("market_lot");
   if (extractions.minimum_bid_quantity?.value != null && applyMinimumBid(record, extractions.minimum_bid_quantity, sourceUrl, collectedAt)) changed.push("minimum_bid_quantity");
