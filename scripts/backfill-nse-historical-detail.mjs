@@ -193,6 +193,7 @@ async function run() {
         status: result.changed.length ? "extracted" : "no_fields",
         extracted_fields: result.changed,
         remaining_fields: result.remaining,
+        field_reasons: result.reasons,
         source_url: url
       };
     } catch (error) {
