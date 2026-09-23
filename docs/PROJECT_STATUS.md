@@ -2523,3 +2523,31 @@ No IPO data values, evidence or field statuses are changed.
 The operations layer now has durable Pages state plus a durable latest sync snapshot.
 
 Next backend operations batch: add a **small history/retention strategy for operator health transitions** so recurring failures/staleness can be distinguished from a one-off event without storing unbounded workflow history. Keep it operational-only and bounded; do not add external monitoring services or notifications yet.
+
+
+## Latest repair batch — sync publication race and first snapshot persistence
+
+Production verification after the operator-snapshot batch exposed two coupled workflow defects.
+
+### Observed failure
+
+Sync run `35872142330` successfully collected NSE/SEBI sources, rebuilt the dataset and passed validation, including a newly recovered official NSE issue size. Its data publication push then failed with a non-fast-forward rejection because another operational bot commit had advanced `main` during the long-running sync.
+
+The snapshot step ran afterward, but the first `ops/operator-snapshot.json` was an untracked file. `git diff --quiet -- <path>` does not report untracked files, so the workflow incorrectly printed `Operator snapshot is unchanged` and did not persist it.
+
+### Repair
+
+The sync workflow now:
+
+- commits source-backed data locally, fetches current `origin/main`, rebases the data commit, then pushes without force;
+- explicitly checks whether `ops/operator-snapshot.json` is already tracked before using `git diff --quiet`;
+- treats an untracked first snapshot as publishable;
+- rebases the snapshot commit onto current `origin/main` before pushing, preserving concurrent data/Pages operational commits.
+
+CI includes workflow-semantic guards for the rebase and untracked-snapshot checks.
+
+### Handoff
+
+Do not add operator transition history until a production sync confirms both source-backed data publication and first snapshot persistence under the repaired workflow.
+
+After that verification, resume the planned bounded operator health-transition history batch.
