@@ -4,20 +4,18 @@
     "2025|icici-prudential-asset-management-company-limited": {
       "issuer_name": "ICICI Prudential Asset Management Company Limited",
       "listing_date": "2025-12-19",
-      "last_attempted_at": "2026-09-23T21:10:51.292Z",
-      "parser_version": "1.0.0",
-      "status": "extracted",
-      "extracted_fields": [
-        "issue_size_inr"
+      "last_attempted_at": "2026-09-23T22:07:02.001Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "market_lot"
       ],
-      "remaining_fields": [],
       "extractions": {
         "issue_price": null,
-        "issue_size_inr": {
-          "value": 106026500000,
-          "source_value": "₹106,026.5 MILLION",
-          "page": 3
-        },
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
         "minimum_bid_quantity": null
       },
       "document": {
@@ -31,20 +29,18 @@
     "2024|unimech-aerospace-and-manufacturing-limited": {
       "issuer_name": "Unimech Aerospace and Manufacturing Limited",
       "listing_date": "2024-12-31",
-      "last_attempted_at": "2026-09-23T21:10:51.292Z",
-      "parser_version": "1.0.0",
-      "status": "extracted",
-      "extracted_fields": [
-        "issue_size_inr"
+      "last_attempted_at": "2026-09-23T22:07:02.001Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "market_lot"
       ],
-      "remaining_fields": [],
       "extractions": {
         "issue_price": null,
-        "issue_size_inr": {
-          "value": 5000000000,
-          "source_value": "₹5,000.00 MILLION",
-          "page": 2
-        },
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
         "minimum_bid_quantity": null
       },
       "document": {
@@ -58,25 +54,29 @@
     "2022|elin-electronics-limited": {
       "issuer_name": "Elin Electronics Limited",
       "listing_date": "2022-12-30",
-      "last_attempted_at": "2026-09-23T21:10:51.292Z",
-      "parser_version": "1.0.0",
+      "last_attempted_at": "2026-09-23T22:07:02.001Z",
+      "parser_version": "1.1.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-8XfY7k/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1682057466538.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 10752863 out of 15064686 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 10970031 out of 15064686 bytes received\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-lVYGiL/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1682057466538.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 12589151 out of 15064686 bytes received\ncurl: (18) transfer closed with 10504615 bytes remaining to read\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1682057466538.pdf"
     },
     "2020|burger-king-india-limited": {
       "issuer_name": "Burger King India Limited",
       "listing_date": "2020-12-14",
-      "last_attempted_at": "2026-09-23T21:10:51.292Z",
-      "parser_version": "1.0.0",
+      "last_attempted_at": "2026-09-23T22:07:02.001Z",
+      "parser_version": "1.1.0",
       "status": "no_fields",
       "extracted_fields": [],
       "remaining_fields": [
-        "issue_size_inr"
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
       ],
       "extractions": {
         "issue_price": null,
+        "price_band": null,
         "issue_size_inr": null,
+        "market_lot": null,
         "minimum_bid_quantity": null
       },
       "document": {
@@ -90,29 +90,49 @@
     "2025|nephrocare-health-services-limited": {
       "issuer_name": "Nephrocare Health Services Limited",
       "listing_date": "2025-12-17",
-      "last_attempted_at": "2026-09-23T21:10:51.292Z",
-      "parser_version": "1.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-IcFLcL/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765775775793.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 10923615 out of 12403400 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 11051711 out of 12403400 bytes received\n",
+      "last_attempted_at": "2026-09-23T22:07:02.001Z",
+      "parser_version": "1.1.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 8710480000,
+          "source_value": "₹8,710.48 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Nephrocare Health Services Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765775775793.pdf",
+        "publication_date": "2025-12-15"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765775775793.pdf"
     },
     "2024|carraro-india-limited": {
       "issuer_name": "Carraro India Limited",
       "listing_date": "2024-12-30",
-      "last_attempted_at": "2026-09-23T21:10:51.292Z",
-      "parser_version": "1.0.0",
-      "status": "extracted",
-      "extracted_fields": [
-        "issue_size_inr"
+      "last_attempted_at": "2026-09-23T22:07:02.001Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "market_lot"
       ],
-      "remaining_fields": [],
       "extractions": {
         "issue_price": null,
-        "issue_size_inr": {
-          "value": 12500000000,
-          "source_value": "₹12,500.00 MILLION",
-          "page": 2
-        },
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
         "minimum_bid_quantity": null
       },
       "document": {
@@ -126,17 +146,21 @@
     "2022|arihant-academy-limited": {
       "issuer_name": "Arihant Academy Limited",
       "listing_date": "2022-12-29",
-      "last_attempted_at": "2026-09-23T21:10:51.292Z",
-      "parser_version": "1.0.0",
+      "last_attempted_at": "2026-09-23T22:07:02.001Z",
+      "parser_version": "1.1.0",
       "status": "no_fields",
       "extracted_fields": [],
       "remaining_fields": [
+        "price_band",
         "issue_size_inr",
+        "market_lot",
         "minimum_bid_quantity"
       ],
       "extractions": {
         "issue_price": null,
+        "price_band": null,
         "issue_size_inr": null,
+        "market_lot": null,
         "minimum_bid_quantity": null
       },
       "document": {
@@ -150,20 +174,18 @@
     "2025|park-medi-world-limited": {
       "issuer_name": "Park Medi World Limited",
       "listing_date": "2025-12-17",
-      "last_attempted_at": "2026-09-23T21:10:51.292Z",
-      "parser_version": "1.0.0",
-      "status": "extracted",
-      "extracted_fields": [
-        "issue_size_inr"
+      "last_attempted_at": "2026-09-23T22:07:02.001Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "market_lot"
       ],
-      "remaining_fields": [],
       "extractions": {
         "issue_price": null,
-        "issue_size_inr": {
-          "value": 9200000000,
-          "source_value": "₹9,200.00 MILLION",
-          "page": 3
-        },
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
         "minimum_bid_quantity": null
       },
       "document": {
