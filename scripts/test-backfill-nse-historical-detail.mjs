@@ -16,13 +16,14 @@ const record = {
   terms: { price_band: null, market_lot: null, minimum_bid_quantity: null },
   documents: []
 };
-assert.deepEqual(missingHistoricalDetailFields(record), ["price_band","market_lot","minimum_bid_quantity","issue_size_inr"]);
+assert.deepEqual(missingHistoricalDetailFields(record), ["issue_price","price_band","market_lot","minimum_bid_quantity","issue_size_inr"]);
 assert.equal(historicalDetailKey(record), "2025|alpha-limited");
 assert.equal(historicalDetailCandidates([{record}], {issuers:{}}, 2026, 10).length, 1);
 
 const payload = {
   issueInfo: {
     dataList: [
+      { title: "Issue Price", value: "Rs.125 per Equity Share" },
       { title: "Price Range", value: "Rs.120 to Rs.125 per Equity Share" },
       { title: "Market Lot", value: "120 Equity Shares" },
       { title: "Minimum Order Quantity", value: "120 Equity Shares" },
@@ -31,8 +32,9 @@ const payload = {
   }
 };
 const result = applyHistoricalDetailPayload(record, payload, "https://www.nseindia.com/api/ipo-detail?symbol=ALPHA&series=EQ", "2026-09-23T20:00:00Z");
-assert.deepEqual(result.changed.sort(), ["issue_size_inr","market_lot","minimum_bid_quantity","price_band"]);
+assert.deepEqual(result.changed.sort(), ["issue_price","issue_size_inr","market_lot","minimum_bid_quantity","price_band"]);
 assert.deepEqual(result.remaining, []);
+assert.equal(record.issue_price.value,125);
 assert.deepEqual(record.price_band.value, {min:120,max:125});
 assert.equal(record.market_lot.value,120);
 assert.equal(record.minimum_bid_quantity.value,120);
