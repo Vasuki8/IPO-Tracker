@@ -845,3 +845,18 @@ The website displays one Lot Size value using verified source evidence:
 Current 2026 user-facing Lot Size coverage is **26/26**: 19 direct market-lot values plus 7 verified official minimum-bid-quantity fallbacks.
 
 Minimum-investment/application-amount values are no longer displayed on the homepage or IPO detail page, and the recurring minimum-application extraction step has been removed from the hourly workflow.
+
+
+### Lot Size verification guardrail
+
+The Lot Size display now accepts **verified fields only**.
+
+Resolution order is:
+
+1. verified `market_lot`;
+2. verified `minimum_bid_quantity`;
+3. otherwise show missing.
+
+Provisional/conflict numeric values are never surfaced as Lot Size. Current 2026 coverage remains **26/26 verified Lot Size** with no data rewrite.
+
+**Handoff:** minimum investment/application amount remains out of scope. The next development batch should re-audit the **12 missing issue-size records** against newly available official evidence before moving to freshness/operations work.
