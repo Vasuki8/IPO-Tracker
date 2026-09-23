@@ -20,8 +20,6 @@ on:
       - "scripts/test-sync-nse-historical.mjs"
       - "scripts/sync-nse-live.mjs"
       - "scripts/test-sync-nse-live.mjs"
-      - "scripts/backfill-historical-offer-dates.mjs"
-      - "scripts/test-backfill-historical-offer-dates.mjs"
       - "scripts/sync-sebi-documents.mjs"
       - "scripts/test-sync-sebi-documents.mjs"
       - "scripts/extract-abridged-fields.mjs"
@@ -114,9 +112,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install --yes --no-install-recommends poppler-utils
           pdftotext -v
-
-      - name: Backfill historical SEBI offer dates
-        run: node scripts/backfill-historical-offer-dates.mjs
 
       - name: Test retained field publication status
         run: node scripts/test-publish-field-status.mjs
