@@ -67,11 +67,21 @@ export function materializeYear(rows,year,manifest,now){
  return {official_rows:selected.length,added,enriched,total_records:manifest.records.length};
 }
 async function run(){
- const year=Number(process.argv.find(a=>a.startsWith("--year="))?.split("=")[1]??2025); if(!Number.isInteger(year)||year<2000)throw new Error("invalid year");
- const rows=await fetchRows(); const now=new Date().toISOString(); const file=path.join(RECOVERY_ROOT,String(year),"nse-issue-information.json");
- const manifest=fs.existsSync(file)?JSON.parse(fs.readFileSync(file,"utf8")):{source_family:"Official NSE / SEBI / BSE offer-document and exchange evidence",collection_started_at:now,generated_at:now,records:[]};
- const result=materializeYear(rows,year,manifest,now);
- fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,JSON.stringify(manifest,null,2)+"\n");
- console.log(JSON.stringify({year,past_rows:rows.length,...result},null,2));
+ const yearArg=process.argv.find(a=>a.startsWith("--year="))?.split("=")[1]??"2025";
+ const years=yearArg.includes("-")
+   ? (()=>{const [start,end]=yearArg.split("-").map(Number);if(!Number.isInteger(start)||!Number.isInteger(end)||start>end)return [];return Array.from({length:end-start+1},(_,i)=>start+i);})()
+   : yearArg.split(",").map(Number);
+ if(!years.length||years.some(year=>!Number.isInteger(year)||year<2000))throw new Error("invalid year/year range");
+ const rows=await fetchRows(); const now=new Date().toISOString(); const summaries=[];
+ for(const year of years){
+   const file=path.join(RECOVERY_ROOT,String(year),"nse-issue-information.json");
+   const manifest=fs.existsSync(file)?JSON.parse(fs.readFileSync(file,"utf8")):{source_family:"Official NSE / SEBI / BSE offer-document and exchange evidence",collection_started_at:now,generated_at:now,records:[]};
+   const result=materializeYear(rows,year,manifest,now);
+   if(result.official_rows>0||fs.existsSync(file)){
+     fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,JSON.stringify(manifest,null,2)+"\n");
+   }
+   summaries.push({year,...result});
+ }
+ console.log(JSON.stringify({years,summaries,past_rows:rows.length},null,2));
 }
 const isMain=process.argv[1]&&pathToFileURL(path.resolve(process.argv[1])).href===import.meta.url;if(isMain)run().catch(e=>{console.error(e);process.exit(1);});
