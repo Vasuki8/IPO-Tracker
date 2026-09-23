@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { buildOperatorSnapshot } from "./record-operator-snapshot.mjs";
+import { buildOperatorSnapshot, updateOperatorHealthHistory } from "./record-operator-snapshot.mjs";
 
 const report = {
   dataset: {
@@ -56,3 +56,42 @@ assert.equal("records" in snapshot, false);
 assert.equal("field_coverage" in snapshot, false);
 
 console.log("Operator snapshot tests passed.");
+
+const firstHistory = updateOperatorHealthHistory(null, snapshot, 3);
+assert.equal(firstHistory.entries.length, 1);
+assert.equal(firstHistory.entries[0].overall, "healthy");
+assert.equal(firstHistory.entries[0].observations, 1);
+
+const repeatedSnapshot = {
+  ...snapshot,
+  generated_at: "2026-09-23T15:02:00Z",
+  run: { ...snapshot.run, id: "1000" }
+};
+const repeatedHistory = updateOperatorHealthHistory(firstHistory, repeatedSnapshot, 3);
+assert.equal(repeatedHistory.entries.length, 1);
+assert.equal(repeatedHistory.entries[0].observations, 2);
+assert.equal(repeatedHistory.entries[0].last_run_id, "1000");
+assert.equal(repeatedHistory.entries[0].last_observed_at, "2026-09-23T15:02:00Z");
+
+const failedSnapshot = {
+  ...snapshot,
+  generated_at: "2026-09-23T16:02:00Z",
+  run: { ...snapshot.run, id: "1001" },
+  health: { ...snapshot.health, overall: "failure", reasons: ["collection_failure"] }
+};
+const failedHistory = updateOperatorHealthHistory(repeatedHistory, failedSnapshot, 3);
+assert.equal(failedHistory.entries.length, 2);
+assert.equal(failedHistory.entries[1].overall, "failure");
+assert.deepEqual(failedHistory.entries[1].reasons, ["collection_failure"]);
+
+let bounded = failedHistory;
+for (let i = 0; i < 4; i += 1) {
+  bounded = updateOperatorHealthHistory(bounded, {
+    ...snapshot,
+    generated_at: `2026-09-23T${17 + i}:02:00Z`,
+    run: { ...snapshot.run, id: String(1100 + i) },
+    health: { ...snapshot.health, overall: i % 2 ? "stale" : "unknown", reasons: [`reason_${i}`] }
+  }, 3);
+}
+assert.equal(bounded.entries.length, 3);
+assert.deepEqual(bounded.entries.map((entry) => entry.run_id), ["1101", "1102", "1103"]);
