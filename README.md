@@ -1014,3 +1014,8 @@ Historical IPOs with retained official SEBI RHP/Prospectus PDFs are now processe
 ### Independent historical offer-date backfill
 
 Historical SEBI PDF date extraction now runs in its own hourly workflow at minute 47. It no longer delays the live IPO sync; any recovered dates are rebased, rebuilt, validated, and published independently.
+
+
+### Independent historical PDF field backfill
+
+Historical SEBI PDF extraction for issue size, minimum bid, and residual final issue price now runs in its own bounded hourly workflow rather than the live IPO sync.
