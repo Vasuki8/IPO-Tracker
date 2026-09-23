@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { validateOperatorHistory, validateOperatorSnapshot } from "./validate-operator-state.mjs";
+import { validateOperatorHistory, validateOperatorSnapshot, validatePagesPublication } from "./validate-operator-state.mjs";
 
 const snapshot = {
   schema_version: "1.0.0",
@@ -31,3 +31,17 @@ assert.ok(validateOperatorHistory({ ...history, max_entries: 0 }).some((e) => e.
 assert.ok(validateOperatorHistory({ ...history, entries: [{ ...history.entries[0], observations: 0 }] }).some((e) => e.includes("observations")));
 
 console.log("Operator state validation tests passed.");
+
+const pages = {
+  schema_version: "1.0.0",
+  latest_attempt: {
+    status: "success", workflow_run_id: "10", commit_sha: "abc",
+    completed_at: "2026-09-23T15:00:00Z"
+  },
+  last_successful: {
+    status: "success", workflow_run_id: "10", commit_sha: "abc",
+    completed_at: "2026-09-23T15:00:00Z"
+  }
+};
+assert.deepEqual(validatePagesPublication(pages), []);
+assert.ok(validatePagesPublication({ ...pages, latest_attempt: { ...pages.latest_attempt, status: "banana" } }).some((e) => e.includes("status")));
