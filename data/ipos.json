@@ -1,6 +1,6 @@
 {
   "schema_version": "1.2.0",
-  "generated_at": "2026-09-23T03:57:43.209Z",
+  "generated_at": "2026-09-23T11:49:30.062Z",
   "collection_started_at": "2026-09-22T02:14:14Z",
   "records": [
     {
@@ -352,6 +352,363 @@
       ],
       "first_observed_at": "2026-09-22T12:22:20.241Z",
       "last_collected_at": "2026-09-22T12:22:20.241Z"
+    },
+    {
+      "id": "a-one-steels-india-limited",
+      "issuer_name": "A-One Steels India Limited",
+      "board": "Mainboard",
+      "board_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "document_type": "NSE IPO Live Feed",
+          "document_identity": "NSE IPO Live Feed — AONESTEELS",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-23T11:47:20.236Z"
+        }
+      ],
+      "sector": null,
+      "status": "upcoming",
+      "status_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "document_type": "NSE IPO Live Feed",
+          "document_identity": "NSE IPO Live Feed — AONESTEELS",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-23T11:47:20.236Z"
+        }
+      ],
+      "price_band": {
+        "value": {
+          "min": 385,
+          "max": 405
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+            "document_type": "NSE IPO Live Feed",
+            "document_identity": "NSE IPO Live Feed — AONESTEELS",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T11:47:20.236Z"
+          }
+        ],
+        "corrections": []
+      },
+      "issue_price": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "issue_size_inr": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "market_lot": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": 37,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=AONESTEELS&series=EQ",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — AONESTEELS",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T11:49:30.062Z"
+          }
+        ],
+        "corrections": []
+      },
+      "minimum_application_amount_inr": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "application_requirements": {
+        "retail": {
+          "minimum_application_amount_inr": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          },
+          "minimum_bid_quantity": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          }
+        },
+        "non_institutional": {
+          "minimum_application_amount_inr": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          },
+          "minimum_bid_quantity": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          }
+        },
+        "anchor_investor": {
+          "minimum_application_amount_inr": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          },
+          "minimum_bid_quantity": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          }
+        }
+      },
+      "open_date": {
+        "value": "2026-09-24",
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+            "document_type": "NSE IPO Live Feed",
+            "document_identity": "NSE IPO Live Feed — AONESTEELS",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T11:47:20.236Z"
+          }
+        ],
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2026-09-28",
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+            "document_type": "NSE IPO Live Feed",
+            "document_identity": "NSE IPO Live Feed — AONESTEELS",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T11:47:20.236Z"
+          }
+        ],
+        "corrections": []
+      },
+      "listing_date": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "documents": [
+        {
+          "type": "NSE IPO Live Feed",
+          "identity": "NSE IPO Live Feed — AONESTEELS",
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "publication_date": null,
+          "collected_at": "2026-09-23T11:47:20.236Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — AONESTEELS",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=AONESTEELS&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-23T11:49:30.062Z"
+        }
+      ],
+      "first_observed_at": "2026-09-23T11:47:20.236Z",
+      "last_collected_at": "2026-09-23T11:49:30.062Z"
+    },
+    {
+      "id": "green-asia-impex-limited",
+      "issuer_name": "Green Asia Impex Limited",
+      "board": "SME",
+      "board_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "document_type": "NSE IPO Live Feed",
+          "document_identity": "NSE IPO Live Feed — GREENASIA",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-23T11:47:20.236Z"
+        }
+      ],
+      "sector": null,
+      "status": "upcoming",
+      "status_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "document_type": "NSE IPO Live Feed",
+          "document_identity": "NSE IPO Live Feed — GREENASIA",
+          "publication_date": null,
+          "page": null,
+          "collected_at": "2026-09-23T11:47:20.236Z"
+        }
+      ],
+      "price_band": {
+        "value": {
+          "min": 85,
+          "max": 90
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+            "document_type": "NSE IPO Live Feed",
+            "document_identity": "NSE IPO Live Feed — GREENASIA",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T11:47:20.236Z"
+          }
+        ],
+        "corrections": []
+      },
+      "issue_price": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "issue_size_inr": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 1600,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+            "document_type": "NSE IPO Live Feed",
+            "document_identity": "NSE IPO Live Feed — GREENASIA",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T11:47:20.236Z"
+          }
+        ],
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "minimum_application_amount_inr": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "application_requirements": {
+        "retail": {
+          "minimum_application_amount_inr": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          },
+          "minimum_bid_quantity": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          }
+        },
+        "non_institutional": {
+          "minimum_application_amount_inr": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          },
+          "minimum_bid_quantity": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          }
+        },
+        "anchor_investor": {
+          "minimum_application_amount_inr": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          },
+          "minimum_bid_quantity": {
+            "value": null,
+            "status": "missing",
+            "evidence": [],
+            "corrections": []
+          }
+        }
+      },
+      "open_date": {
+        "value": "2026-09-24",
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+            "document_type": "NSE IPO Live Feed",
+            "document_identity": "NSE IPO Live Feed — GREENASIA",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T11:47:20.236Z"
+          }
+        ],
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2026-09-28",
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+            "document_type": "NSE IPO Live Feed",
+            "document_identity": "NSE IPO Live Feed — GREENASIA",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-23T11:47:20.236Z"
+          }
+        ],
+        "corrections": []
+      },
+      "listing_date": {
+        "value": null,
+        "status": "missing",
+        "evidence": [],
+        "corrections": []
+      },
+      "documents": [
+        {
+          "type": "NSE IPO Live Feed",
+          "identity": "NSE IPO Live Feed — GREENASIA",
+          "url": "https://www.nseindia.com/api/all-upcoming-issues?category=ipo",
+          "publication_date": null,
+          "collected_at": "2026-09-23T11:47:20.236Z"
+        }
+      ],
+      "first_observed_at": "2026-09-23T11:47:20.236Z",
+      "last_collected_at": "2026-09-23T11:47:20.236Z"
     },
     {
       "id": "moneyview-limited",
@@ -961,10 +1318,31 @@
           "url": "https://www.nseindia.com/api/ipo-detail?symbol=ARMEE&series=EQ",
           "publication_date": null,
           "collected_at": "2026-09-22T12:28:47.047Z"
+        },
+        {
+          "type": "SEBI RHP filing",
+          "identity": "SEBI RHP filing — armee infotech limited",
+          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/armee-infotech-limited-rhp_104661.html",
+          "publication_date": "2026-09-16",
+          "collected_at": "2026-09-23T11:47:20.984Z"
+        },
+        {
+          "type": "SEBI Abridged Prospectus",
+          "identity": "ArMee Infotech Limited - Abridged Prospectus",
+          "url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/ArMee%20Infotech%20Limited%20-%20Abridged%20Prospectus_p.pdf",
+          "publication_date": "2026-09-16",
+          "collected_at": "2026-09-23T11:47:20.984Z"
+        },
+        {
+          "type": "SEBI RHP PDF",
+          "identity": "SEBI RHP filing — armee infotech limited — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1790144363465.pdf",
+          "publication_date": "2026-09-16",
+          "collected_at": "2026-09-23T11:47:20.984Z"
         }
       ],
       "first_observed_at": "2026-09-22T03:34:37.086Z",
-      "last_collected_at": "2026-09-22T18:30:15.933Z"
+      "last_collected_at": "2026-09-23T11:47:20.984Z"
     },
     {
       "id": "coreintegra-consulting-services-limited",
