@@ -155,13 +155,35 @@ export function renderMarkdown(report) {
   return lines.join("\n");
 }
 
-export function buildOperatorReport(data, env = process.env) {
-  return { dataset: summarizeDataset(data), pipeline: summarizePipeline(env) };
+export function summarizePagesPublication(status) {
+  const latest = status?.latest_attempt ?? null;
+  const successful = status?.last_successful ?? null;
+  return {
+    latest_attempt_status: latest?.status ?? "not_recorded",
+    latest_attempt_at: latest?.completed_at ?? null,
+    latest_attempt_commit_sha: latest?.commit_sha ?? null,
+    latest_attempt_run_id: latest?.workflow_run_id ?? null,
+    last_successful_at: successful?.completed_at ?? null,
+    last_successful_commit_sha: successful?.commit_sha ?? null,
+    last_successful_run_id: successful?.workflow_run_id ?? null,
+    page_url: successful?.page_url ?? latest?.page_url ?? null
+  };
+}
+
+export function buildOperatorReport(data, env = process.env, pagesStatus = null) {
+  return {
+    dataset: summarizeDataset(data),
+    pipeline: summarizePipeline(env),
+    pages_publication: summarizePagesPublication(pagesStatus)
+  };
 }
 
 function main() {
   const data = JSON.parse(fs.readFileSync(DATA_PATH, "utf8"));
-  const report = buildOperatorReport(data);
+  const pagesStatus = fs.existsSync(PAGES_STATUS_PATH)
+    ? JSON.parse(fs.readFileSync(PAGES_STATUS_PATH, "utf8"))
+    : null;
+  const report = buildOperatorReport(data, process.env, pagesStatus);
   const markdown = renderMarkdown(report);
   if (process.argv.includes("--json")) process.stdout.write(JSON.stringify(report, null, 2) + "\n");
   else process.stdout.write(markdown + "\n");
