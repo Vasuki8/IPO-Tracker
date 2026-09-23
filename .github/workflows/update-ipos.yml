@@ -61,8 +61,8 @@ permissions:
   contents: write
 
 concurrency:
-  group: live-ipo-sync
-  cancel-in-progress: true
+  group: ipo-data-publication
+  cancel-in-progress: false
 
 jobs:
   sync:
@@ -190,9 +190,22 @@ jobs:
           # Other operational workflows can advance main while this long-running
           # source collection is active. Rebase the data commit onto current main
           # so unrelated bot commits are preserved instead of causing push failure.
-          git fetch origin main
-          git rebase origin/main
-          git push origin HEAD:main
+          for attempt in 1 2 3; do
+            echo "Live data publication attempt $attempt/3"
+            git fetch origin main
+            if ! git rebase origin/main; then
+              echo "Data publication rebase conflicted; aborting cleanly." >&2
+              git rebase --abort || true
+              exit 1
+            fi
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Main advanced during live data publication; retrying."
+          done
+
+          echo "Failed to publish live source-backed data after 3 attempts." >&2
+          exit 1
       - name: Operator freshness and source-health summary
         if: always()
         env:
