@@ -32,6 +32,9 @@ jobs:
       - name: Test lot-size display fallback
         run: node scripts/test-lot-size.mjs
 
+      - name: Test operator freshness report
+        run: node scripts/test-operator-report.mjs
+
       - name: Test NSE live sync parser
         run: node scripts/test-sync-nse-live.mjs
 

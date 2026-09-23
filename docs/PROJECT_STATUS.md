@@ -2270,3 +2270,93 @@ The next coherent priority is **operational freshness / source-health visibility
 - last successful GitHub Pages publication.
 
 Prefer a read-only/operator report first. Do not change data values or invent freshness timestamps.
+
+
+## Latest completed batch — read-only operator freshness/source-health report
+
+The first operations/freshness visibility layer is implemented without changing IPO data values.
+
+### New operator report
+
+Added:
+
+- `scripts/operator-report.mjs`
+- `scripts/test-operator-report.mjs`
+- `docs/OPERATOR_REPORT.md`
+
+The report can run locally:
+
+```bash
+node scripts/operator-report.mjs
+node scripts/operator-report.mjs --json
+```
+
+It summarizes:
+
+- current published record count;
+- verified/missing/non-verified coverage for key fields;
+- verified Lot Size coverage;
+- dataset `generated_at`;
+- recovery `collection_started_at`;
+- latest retained record collection time;
+- latest retained evidence collection time;
+- latest first-observed IPO time.
+
+### Collection failure vs source gap
+
+The hourly sync now gives stable IDs to the key operational stages and passes their **actual GitHub Actions outcomes** into an always-run operator summary:
+
+- NSE collection;
+- SEBI collection;
+- dataset rebuild;
+- data validation;
+- repository publication step.
+
+The report classifies the run as:
+
+- `collection_success` when both NSE and SEBI collection succeeded;
+- `collection_failure` when either collection stage failed/cancelled;
+- `not_measured` when the outcomes are unavailable.
+
+This avoids treating a null field as proof of a collection failure.
+
+A missing field after a successful collection is reported only as a missing data value. Field-specific source-null decisions continue to come from the source-recovery evidence documented in this status file.
+
+### Timestamp semantics
+
+The report deliberately distinguishes:
+
+- first observation;
+- retained record collection;
+- retained evidence collection;
+- published JSON generation;
+- operator report generation.
+
+It does **not** relabel one timestamp as another.
+
+### Known limitation
+
+GitHub Pages deployment runs in a separate workflow. The sync job does not currently persist its success time/status, so the operator report explicitly says:
+
+`GitHub Pages publication: not persisted by this sync workflow`
+
+rather than inventing a publication timestamp.
+
+### Workflow behavior
+
+The operator summary step uses `if: always()`, so it still appears in the GitHub Actions Job Summary when an earlier collection/build/validation step fails.
+
+The report is read-only and does not commit operational state.
+
+### Handoff / next coherent batch
+
+Keep Lot Size at **26/26 verified** and minimum-investment/application-amount work out of scope.
+
+Next operations batch: add **durable publication-health visibility** so the operator surface can include the latest successful GitHub Pages publication timestamp/status without confusing it with dataset generation time.
+
+Prefer one of:
+
+1. a small explicitly generated deployment-status artifact updated by the Pages workflow; or
+2. a safe GitHub API lookup in an operator-only report.
+
+Do not rewrite IPO data values or overload `generated_at` with deployment semantics.
