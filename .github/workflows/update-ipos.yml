@@ -12,6 +12,8 @@ on:
       - "scripts/test-audit-historical-coverage.mjs"
       - "scripts/extract-bse-ipo-fields.mjs"
       - "scripts/test-extract-bse-ipo-fields.mjs"
+      - "scripts/diagnose-bse-listing-notices.mjs"
+      - "scripts/test-diagnose-bse-listing-notices.mjs"
       - "scripts/diagnose-bse-issues.mjs"
       - "scripts/test-diagnose-bse-issues.mjs"
       - "scripts/historical-batch-selection.mjs"
@@ -79,6 +81,9 @@ jobs:
 
       - name: Diagnose official BSE IPO coverage
         run: node scripts/diagnose-bse-issues.mjs
+
+      - name: Diagnose BSE IPO listing-notice archive
+        run: node scripts/diagnose-bse-listing-notices.mjs
 
       - name: Test BSE detail and listing parsers
         run: node scripts/test-extract-bse-ipo-fields.mjs
