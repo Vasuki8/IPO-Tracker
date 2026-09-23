@@ -34,3 +34,12 @@ assert.equal(bseOnly.minimum_bid_quantity.value,6000);
 assert.equal(bseOnly.open_date.value,"2025-04-29");
 assert.equal(bseOnly.close_date.value,"2025-05-06");
 assert.equal(bseOnly.documents[0].type,"BSE Public Issue Detail");
+
+const bseOnlyListing = buildBseOnlyRecoveryRecord(
+  {year:2025,issuer_name:"3B Films Limited",kind:"listing_notice",url:"https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250605-49",publication_date:"2025-06-05"},
+  n,
+  "2026-09-23T20:30:00Z"
+);
+assert.equal(bseOnlyListing.status,"listed");
+assert.equal(bseOnlyListing.status_evidence.length,1);
+assert.equal(bseOnlyListing.listing_date.value,"2025-06-06");
