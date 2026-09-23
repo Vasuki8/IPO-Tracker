@@ -452,77 +452,34 @@
     "2025|fujiyama-power-systems-limited": {
       "issuer_name": "Fujiyama Power Systems Limited",
       "listing_date": "2025-11-20",
-      "last_attempted_at": "2026-09-23T22:46:11.419Z",
+      "last_attempted_at": "2026-09-23T22:47:58.325Z",
       "parser_version": "2.0.0",
-      "status": "extracted",
-      "open_date": "2025-11-13",
-      "close_date": "2025-11-17",
-      "open_extraction": {
-        "value": "2025-11-13",
-        "source_value": "OFFER OPENS ON Thursday, November 13, 2025",
-        "page": 3
-      },
-      "close_extraction": {
-        "value": "2025-11-17",
-        "source_value": "OFFER CLOSES ON Monday, November 17, 2025",
-        "page": 3
-      },
-      "document": {
-        "type": "SEBI RHP PDF",
-        "identity": "Fujiyama Power Systems Limited - RHP — PDF",
-        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1764670953288.pdf",
-        "publication_date": "2025-11-08"
-      },
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-oyAhLz/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1764670953288.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 9750576 out of 9912754 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 6829264 out of 9912754 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1764670953288.pdf"
     },
     "2025|emmvee-photovoltaic-power-limited": {
       "issuer_name": "Emmvee Photovoltaic Power Limited",
       "listing_date": "2025-11-18",
-      "last_attempted_at": "2026-09-23T22:46:11.419Z",
+      "last_attempted_at": "2026-09-23T22:47:58.325Z",
       "parser_version": "2.0.0",
-      "status": "extracted",
-      "open_date": "2025-11-11",
-      "close_date": "2025-11-13",
-      "open_extraction": {
-        "value": "2025-11-11",
-        "source_value": "OFFER OPENED ON Tuesday, November 11, 2025",
-        "page": 2
-      },
-      "close_extraction": {
-        "value": "2025-11-13",
-        "source_value": "OFFER CLOSED ON Thursday, November 13, 2025",
-        "page": 2
-      },
-      "document": {
-        "type": "SEBI Prospectus PDF",
-        "identity": "Emmvee Photovoltaic Power Limited - Prospectus — PDF",
-        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1763619783641.pdf",
-        "publication_date": "2025-11-15"
-      },
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-Ea1hS1/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1763619783641.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 8644279 out of 11360516 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 8217303 out of 11360516 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1763619783641.pdf"
     },
     "2025|physicswallah-limited": {
       "issuer_name": "Physicswallah Limited",
       "listing_date": "2025-11-18",
-      "last_attempted_at": "2026-09-23T22:46:11.419Z",
+      "last_attempted_at": "2026-09-23T22:47:58.325Z",
       "parser_version": "2.0.0",
-      "status": "explicit_dates_absent",
-      "open_date": null,
-      "close_date": null,
-      "open_extraction": null,
-      "close_extraction": null,
-      "document": {
-        "type": "SEBI Prospectus PDF",
-        "identity": "Physicswallah Limited - Prospectus — PDF",
-        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1763548950658.pdf",
-        "publication_date": "2025-11-14"
-      },
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-Ew4rTH/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1763548950658.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 9679799 out of 10087137 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 8228903 out of 10087137 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1763548950658.pdf"
     },
     "2025|pine-labs-limited": {
       "issuer_name": "Pine Labs Limited",
       "listing_date": "2025-11-14",
-      "last_attempted_at": "2026-09-23T22:46:11.419Z",
+      "last_attempted_at": "2026-09-23T22:47:58.325Z",
       "parser_version": "2.0.0",
       "status": "extracted",
       "open_date": "2025-11-07",
@@ -548,103 +505,52 @@
     "2025|billionbrains-garage-ventures-limited": {
       "issuer_name": "Billionbrains Garage Ventures Limited",
       "listing_date": "2025-11-12",
-      "last_attempted_at": "2026-09-23T22:46:11.419Z",
+      "last_attempted_at": "2026-09-23T22:47:58.325Z",
       "parser_version": "2.0.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-w6WI3t/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1762854394500.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 12111367 out of 13041112 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 12149071 out of 13041112 bytes received\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-WoG6Y6/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1762854394500.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 11964823 out of 13041112 bytes received\ncurl: (28) Operation timed out after 45001 milliseconds with 11289679 out of 13041112 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1762854394500.pdf"
     },
     "2025|lenskart-solutions-limited": {
       "issuer_name": "Lenskart Solutions Limited",
       "listing_date": "2025-11-10",
-      "last_attempted_at": "2026-09-23T22:46:11.419Z",
+      "last_attempted_at": "2026-09-23T22:47:58.325Z",
       "parser_version": "2.0.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-T3jXWp/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1764586985473.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 11805335 out of 17410868 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 12077487 out of 17410868 bytes received\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-IO5MC4/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1764586985473.pdf\ncurl: (28) Operation timed out after 45001 milliseconds with 11931335 out of 17410868 bytes received\ncurl: (18) transfer closed with 8084317 bytes remaining to read\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1764586985473.pdf"
     },
     "2025|studds-accessories-limited": {
       "issuer_name": "Studds Accessories Limited",
       "listing_date": "2025-11-07",
-      "last_attempted_at": "2026-09-23T22:46:11.419Z",
+      "last_attempted_at": "2026-09-23T22:47:58.325Z",
       "parser_version": "2.0.0",
-      "status": "extracted",
-      "open_date": "2025-10-30",
-      "close_date": "2025-11-03",
-      "open_extraction": {
-        "value": "2025-10-30",
-        "source_value": "OFFER OPENED ON Thursday, October 30, 2025",
-        "page": 2
-      },
-      "close_extraction": {
-        "value": "2025-11-03",
-        "source_value": "OFFER CLOSED ON Monday, November 3, 2025",
-        "page": 2
-      },
-      "document": {
-        "type": "SEBI Prospectus PDF",
-        "identity": "Studds Accessories Limited - Prospectus — PDF",
-        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1762922983653.pdf",
-        "publication_date": "2025-11-12"
-      },
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-SK5NAA/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1762922983653.pdf\ncurl: (18) transfer closed with 10858082 bytes remaining to read\ncurl: (18) transfer closed with 10607938 bytes remaining to read\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1762922983653.pdf"
     },
     "2025|orkla-india-limited": {
       "issuer_name": "Orkla India Limited",
       "listing_date": "2025-11-06",
-      "last_attempted_at": "2026-09-23T22:46:11.419Z",
+      "last_attempted_at": "2026-09-23T22:47:58.325Z",
       "parser_version": "2.0.0",
-      "status": "extracted",
-      "open_date": "2025-10-29",
-      "close_date": "2025-10-31",
-      "open_extraction": {
-        "value": "2025-10-29",
-        "source_value": "Offer opened on Wednesday, October 29, 2025",
-        "page": 3
-      },
-      "close_extraction": {
-        "value": "2025-10-31",
-        "source_value": "Offer closed on Friday, October 31, 2025",
-        "page": 3
-      },
-      "document": {
-        "type": "SEBI Prospectus PDF",
-        "identity": "Orkla India Limited - Prospectus — PDF",
-        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1762153611434.pdf",
-        "publication_date": "2025-10-31"
-      },
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-eSjdWP/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1762153611434.pdf\ncurl: (18) transfer closed with 7982327 bytes remaining to read\ncurl: (18) transfer closed with 8661199 bytes remaining to read\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1762153611434.pdf"
     },
     "2025|midwest-limited": {
       "issuer_name": "Midwest Limited",
       "listing_date": "2025-10-24",
-      "last_attempted_at": "2026-09-23T22:46:11.419Z",
+      "last_attempted_at": "2026-09-23T22:47:58.325Z",
       "parser_version": "2.0.0",
-      "status": "extracted",
-      "open_date": "2025-10-15",
-      "close_date": "2025-10-17",
-      "open_extraction": {
-        "value": "2025-10-15",
-        "source_value": "OFFER OPENED ON Wednesday, October 15, 2025",
-        "page": 2
-      },
-      "close_extraction": {
-        "value": "2025-10-17",
-        "source_value": "OFFER CLOSED ON Friday, October 17, 2025",
-        "page": 2
-      },
-      "document": {
-        "type": "SEBI Prospectus PDF",
-        "identity": "Midwest Limited - prospectus — PDF",
-        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765444608922.pdf",
-        "publication_date": "2025-12-11"
-      },
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-Uv3xUN/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765444608922.pdf\ncurl: (18) transfer closed with 8387402 bytes remaining to read\ncurl: (18) transfer closed with 8816426 bytes remaining to read\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765444608922.pdf"
     },
     "2025|lg-electronics-india-limited": {
       "issuer_name": "LG Electronics India Limited",
       "listing_date": "2025-10-14",
-      "last_attempted_at": "2026-09-23T22:46:11.419Z",
+      "last_attempted_at": "2026-09-23T22:47:58.325Z",
       "parser_version": "2.0.0",
       "status": "extracted",
       "open_date": "2025-10-07",
@@ -666,36 +572,19 @@
     "2025|glottis-limited": {
       "issuer_name": "Glottis Limited",
       "listing_date": "2025-10-07",
-      "last_attempted_at": "2026-09-23T22:46:11.419Z",
+      "last_attempted_at": "2026-09-23T22:47:58.325Z",
       "parser_version": "2.0.0",
-      "status": "extracted",
-      "open_date": "2025-09-29",
-      "close_date": "2025-10-01",
-      "open_extraction": {
-        "value": "2025-09-29",
-        "source_value": "OFFER OPENED ON Monday, September 29, 2025",
-        "page": 3
-      },
-      "close_extraction": {
-        "value": "2025-10-01",
-        "source_value": "OFFER CLOSED ON Wednesday, October 1, 2025",
-        "page": 3
-      },
-      "document": {
-        "type": "SEBI Prospectus PDF",
-        "identity": "Glottis Limited-Prospectus — PDF",
-        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1760692135022.pdf",
-        "publication_date": "2025-10-03"
-      },
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-r9Z8zh/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1760692135022.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 10473879 out of 10944018 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 9406567 out of 10944018 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1760692135022.pdf"
     },
     "2025|pace-digitek-limited": {
       "issuer_name": "Pace Digitek Limited",
       "listing_date": "2025-10-06",
-      "last_attempted_at": "2026-09-23T22:46:11.419Z",
+      "last_attempted_at": "2026-09-23T22:47:58.325Z",
       "parser_version": "2.0.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-WAHKXF/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758518940679.pdf\ncurl: (18) transfer closed with 6042952 bytes remaining to read\ncurl: (18) transfer closed with 9070624 bytes remaining to read\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-Kp7ESd/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758518940679.pdf\ncurl: (18) transfer closed with 4694472 bytes remaining to read\ncurl: (28) Operation timed out after 45000 milliseconds with 7385592 out of 9658712 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758518940679.pdf"
     }
   }
