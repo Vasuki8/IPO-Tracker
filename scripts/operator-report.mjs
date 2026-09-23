@@ -75,6 +75,21 @@ export const RECOVERY_GUIDANCE = {
     diagnostic: "Inspect ops/pages-publication.json and the latest Pages workflow publication-health step.",
     recovery: "Restore publication-health recording from an actual Pages run; do not substitute dataset generated_at."
   },
+  rebuild_unmeasured: {
+    priority: "medium",
+    diagnostic: "Inspect workflow control flow: rebuild was skipped without a known upstream failure, or its outcome was not recorded.",
+    recovery: "Restore explicit rebuild execution/outcome reporting before interpreting downstream freshness."
+  },
+  validation_unmeasured: {
+    priority: "medium",
+    diagnostic: "Inspect workflow control flow: validation was skipped without a rebuild/collection failure, or its outcome was not recorded.",
+    recovery: "Restore explicit validation execution/outcome reporting; do not assume validation passed."
+  },
+  repository_publish_unmeasured: {
+    priority: "medium",
+    diagnostic: "Inspect workflow control flow: repository publication was skipped without a known upstream failure, or its outcome was not recorded.",
+    recovery: "Restore explicit publication outcome reporting; do not infer that validated changes reached main."
+  },
   invalid_report_time: {
     priority: "medium",
     diagnostic: "Inspect the operator report clock input and ensure it is a valid ISO timestamp.",
