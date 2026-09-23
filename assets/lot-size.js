@@ -3,12 +3,16 @@
     return field && field.value !== null && field.value !== undefined ? field.value : null;
   }
 
-  function lotSizeField(ipo) {
-    const marketLot = ipo?.market_lot;
-    if (fieldValue(marketLot) !== null) return marketLot;
+  function verifiedField(field) {
+    return field?.status === "verified" && fieldValue(field) !== null ? field : null;
+  }
 
-    const minimumBid = ipo?.minimum_bid_quantity;
-    if (fieldValue(minimumBid) !== null) return minimumBid;
+  function lotSizeField(ipo) {
+    const marketLot = verifiedField(ipo?.market_lot);
+    if (marketLot) return marketLot;
+
+    const minimumBid = verifiedField(ipo?.minimum_bid_quantity);
+    if (minimumBid) return minimumBid;
 
     return null;
   }
