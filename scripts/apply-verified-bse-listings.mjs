@@ -3,7 +3,7 @@ import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { buildBseOnlyRecoveryRecord } from "./extract-bse-ipo-fields.mjs";
 import { issuerKey, strictDate, validateBatch, VERIFIER_VERSION } from "./verify-bse-listing-candidates.mjs";
-import { archiveProbeUrl, verifyListingPdfText } from "./retry-bse-listing-pdf.mjs";
+import { isOfficialListingPdfUrl, verifyListingPdfText } from "./retry-bse-listing-pdf.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const VERIFIED_ROOT = "data/verified-bse-listings";
@@ -26,7 +26,7 @@ export function validateEvidenceBatch(manifest, discovery) {
     const candidate = candidates.find((c) => c.listing_notice_no === entry.listing_notice_no);
     if (!candidate || seen.has(entry.listing_notice_no)) throw new Error("unrecognized_or_duplicate_listing_notice");
     seen.add(entry.listing_notice_no);
-    if (entry.source_url !== archiveProbeUrl(entry.listing_notice_no) || !hashValid(entry.document_sha256) ||
+    if (!isOfficialListingPdfUrl(entry.source_url, entry.listing_notice_no) || !hashValid(entry.document_sha256) ||
         !stampValid(entry.collected_at) || strictDate(entry.publication_date) !== entry.publication_date ||
         entry.document_identity !== "BSE Listing Notice " + entry.listing_notice_no ||
         issuerKey(entry.issuer_name) !== issuerKey(candidate.issuer_name) ||
