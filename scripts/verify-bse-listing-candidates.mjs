@@ -32,7 +32,7 @@ export function strictDate(value) {
   const months = ["january","february","march","april","may","june","july","august","september","october","november","december"];
   let y, m, d;
   const iso = raw.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-  const words = raw.match(/^([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})$/);
+  const words = raw.match(/^([A-Za-z]+)\s+(\d{1,2})\s*,\s*(\d{4})$/);
   if (iso) [, y, m, d] = iso.map(Number);
   else if (words) { y = Number(words[3]); m = months.indexOf(words[1].toLowerCase()) + 1; d = Number(words[2]); }
   else return null;
@@ -88,7 +88,7 @@ export function verifyListingHtml(html, candidate, asOf = new Date().toISOString
     publicationDate = strictDate(`${year}-${String(m).padStart(2,"0")}-${day.padStart(2,"0")}`);
   }
   const codes = unique([...body.matchAll(/\b(?:Scrip|Security)\s+Code\s*[:\-]?\s*(\d{6})\b/gi)].map((m) => m[1]));
-  const dateMatches = [...body.matchAll(/\be(?:ff|\s+)ective\s+from\s+(?:(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s*,?\s*)?([A-Za-z]+\s+\d{1,2},\s*\d{4})/gi)];
+  const dateMatches = [...body.matchAll(/\be(?:ff|\s+)ective\s+from\s+(?:(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s*,?\s*)?([A-Za-z]+\s+\d{1,2}\s*,\s*\d{4})/gi)];
   const dates = unique(dateMatches.map((m) => strictDate(m[1])));
   if (!issuerName && !noticeNos.length && !codes.length && !dates.length && !parsed.board) {
     return { status: "unavailable", reasons: ["notice_content_missing"],
