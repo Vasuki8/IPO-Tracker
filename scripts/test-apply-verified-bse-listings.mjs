@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
-import { applyVerifiedListings, validateEvidenceBatch } from "./apply-verified-bse-listings.mjs";
+import { applyReviewedListingBatches, applyVerifiedListings, reviewedManifestPaths, validateEvidenceBatch } from "./apply-verified-bse-listings.mjs";
 const read = (url) => JSON.parse(fs.readFileSync(fileURLToPath(new URL(url, import.meta.url)), "utf8"));
 const manifest = read("../data/verified-bse-listings/2026-09-24.json");
 const discovery = read("../data/discovery/bse-listing-candidates-2026-09-24.json");
@@ -55,3 +55,27 @@ for (const mutate of [
   assert.equal(JSON.stringify(original), snapshot);
 }
 console.log("Reviewed BSE listing import, null preservation, conflict and idempotency tests passed.");
+
+assert.ok(
+  reviewedManifestPaths().includes("data/verified-bse-listings/2026-09-24.json"),
+  "reviewed manifest discovery must include the first approved batch"
+);
+
+const batchA = { ...structuredClone(manifest), entries: [structuredClone(manifest.entries[0])] };
+const batchB = { ...structuredClone(manifest), entries: [structuredClone(manifest.entries[1])] };
+const multi = applyReviewedListingBatches(
+  { 2026: { generated_at: "2026-09-24T02:00:00Z", records: [] } },
+  [
+    { manifest_path: "data/verified-bse-listings/test-batch-a.json", manifest: batchA, discovery },
+    { manifest_path: "data/verified-bse-listings/test-batch-b.json", manifest: batchB, discovery }
+  ]
+);
+assert.equal(multi.stats.added, 2);
+assert.equal(multi.recovery[2026].records.length, 2);
+assert.deepEqual(
+  new Set(multi.recovery[2026].records.map((record) => record.bse_verified_listing_batch.manifest)),
+  new Set([
+    "data/verified-bse-listings/test-batch-a.json",
+    "data/verified-bse-listings/test-batch-b.json"
+  ])
+);
