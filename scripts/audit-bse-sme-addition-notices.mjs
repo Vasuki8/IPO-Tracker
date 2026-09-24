@@ -53,7 +53,54 @@ export function isBseSmeAdditionNotice(row) {
   return /^Additions?\s+to\s+the\s+BSE\s+SME\s+IPO\s+INDEX$/i.test(subject);
 }
 
-export function summarizeBseNoticeParseFailure(html, limit = 700) {
+export function summarizeBseNoticeDataShape(value, depth = 0) {
+  if (depth > 2) return typeof value;
+  if (value === null) return null;
+  if (Array.isArray(value)) {
+    return {
+      type: "array",
+      length: value.length,
+      sample: value.slice(0, 2).map((item) => summarizeBseNoticeDataShape(item, depth + 1))
+    };
+  }
+  if (typeof value === "object") {
+    return {
+      type: "object",
+      keys: Object.keys(value).slice(0, 20),
+      fields: Object.fromEntries(
+        Object.entries(value).slice(0, 12).map(([key, item]) => [
+          key,
+          typeof item === "string"
+            ? { type: "string", length: item.length, prefix: item.slice(0, 180).replace(/\s+/g, " ") }
+            : summarizeBseNoticeDataShape(item, depth + 1)
+        ])
+      )
+    };
+  }
+  return { type: typeof value, value: String(value).slice(0, 180) };
+}
+
+function firstStringValue(value, depth = 0) {
+  if (depth > 3 || value == null) return "";
+  if (typeof value === "string") return value;
+  if (Array.isArray(value)) {
+    for (const item of value) {
+      const found = firstStringValue(item, depth + 1);
+      if (found) return found;
+    }
+    return "";
+  }
+  if (typeof value === "object") {
+    for (const item of Object.values(value)) {
+      const found = firstStringValue(item, depth + 1);
+      if (found) return found;
+    }
+  }
+  return "";
+}
+
+export function summarizeBseNoticeParseFailure(value, limit = 700) {
+  const html = firstStringValue(value);
   const body = stripTags(html);
   const normalizedLimit = Math.max(120, Math.min(1000, Number(limit) || 700));
   const markers = ["With reference", "BSE SME IPO", "Exchange ticker", "Exchange Ticker"];
@@ -199,7 +246,10 @@ export async function auditLatestBseSmeAdditionNotices(batchSize = NOTICE_BATCH_
           notice_no: noticeNo,
           reason: "no_parseable_listing_reference",
           ...(failures.length < 3
-            ? { excerpt: summarizeBseNoticeParseFailure(detail) }
+            ? {
+                data_shape: summarizeBseNoticeDataShape(detail?.Data),
+                excerpt: summarizeBseNoticeParseFailure(detail?.Data)
+              }
             : {})
         });
         continue;
