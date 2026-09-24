@@ -26,30 +26,69 @@ Collection time, dataset generation and Pages publication are distinct signals. 
 
 ## Handoff for the next prompt
 
-**Latest completed unit: cursor4 publication verified live; canonical verifier and handoff completed in PR #189.**
+**Latest completed unit: cursor5 reconciled, verified, published and checked live — PR #191 + PR #192.**
 
-PR #187 had already merged 23 reviewed cursor4 issuers through discovery batches 13/14 and evidence batches 18/19. PR #188 repaired the large-recovery-baseline buffer failure in semantic publication. Neither import nor repair should be repeated.
+PR #191 merged as `3e415a4f88d4582d7d0d905d0ec72b89eb5ee20e`. It closed the parsed portion of the 20-notice historical cursor segment first attempted at `2026-09-24T15:09:03.207Z`:
 
-Live verification run **36020477749** checked the actual site at **2026-09-24T15:28:55.890Z**:
+- **17 parsed notices / 18 listing references**;
+- multi-year reconciliation against current 2020–2026 recovery + public data: **18 exact-missing identities / 0 already present / 0 ambiguous or code/source collisions**;
+- discovery batches: `batch15` (15) + `batch16` (3);
+- three index notices remain unparseable and are isolated: `20241211-15`, `20241202-11`, `20240722-21`.
 
-- **1,050 live records**; retained recovery counts: **2025 = 292**, **2026 = 87**.
-- **23/23 issuers** occur exactly once and **69/69 listing-date, market-lot and issue-price fields** match reviewed evidence.
-- All six unsupported fields remain null for each of these 23 issuers.
-- Original document hashes and batch provenance are verified in retained recovery. The current public projection does **not** serialize document hashes; do not describe them as live hash verification.
-- Data-contract, reviewed-evidence and fresh live-publication workflows passed on code head `3f2e29e1aa3be1e101c0bbe65f1339eb19302c25`.
+Initial verification found one bounded source-format issue: BSE appends `(Formerly Known as Neopolitan Pizza Limited)` to the **current** issuer name for Neopolitan Pizza and Foods Ltd. The verifier now strips only that trailing parenthetical for listing-identity comparison. A candidate using only the former name still rejects; notice number, BSE code, listing date, SME status, market lot and issue price remain strict.
 
-Receipt: [docs/verification/cursor4-live-publication-2026-09-24.json](docs/verification/cursor4-live-publication-2026-09-24.json). Artifact **10817060050** retains the full receipt, actual served JSON and source snapshot. Duplicate alternative PR #190 was closed unmerged; do not resurrect its parallel auditor.
+Fresh source verification:
 
-### Next task
+- run `36025166795`: **15/15 + 3/3 verified**, 0 rejected/unavailable;
+- artifact `10819732464`, ZIP SHA-256 `c0a2c88937c66dce95869335642fb6254d234828d7f4c220cd8e0a9379916b89`;
+- reviewed manifests: `data/verified-bse-listings/2026-09-24-batch20.json` and `batch21.json`;
+- final PR-head source re-verification `36026096850`: again **18/18**, artifact `10819618949`, SHA-256 `b05dbbd501a557dc4c2c13581e88bbbf2123a2d242323a23048a3c99cdead901`.
 
-Re-read `main`, this handoff, the development process and `ops/bse-sme-addition-notices.json` first.
+The source-verification workflow timeout was raised from 10 to 20 minutes only because its retained historical regression suite now exceeds ten minutes. Candidate bounds, source rules, permissions and publication behavior did not change.
 
-The independent cursor has advanced to **120/236 tracked: 117 parsed, 3 unparseable, 116 not yet tracked**. The newly completed 20-notice segment first attempted at **2026-09-24T15:09:03.207Z** contains **18 parsed listing references** across 17 notices, from `20250103-24` through `20240627-14`.
+Real importer rehearsal proved **1,050 → 1,068**, exactly **18 additions**, all 1,050 existing records unchanged, **0 holds/conflicts**, and an idempotent rerun.
 
-**Reconcile those 18 references against the current multi-year recovery/public universe**, then independently verify only genuinely missing, unambiguous issuers in batches of at most 15. These references have not yet been established as missing IPOs. Keep the three failed index notices (`20241211-15`, `20241202-11`, `20240722-21`) on a separate parser/source-family repair track. Do not infer their issuers. Do not skip this unprocessed segment if a newer cursor segment appears.
+Production sync `36026575507` succeeded:
 
-No UI redesign, minimum-investment work, billing, accounts, ads, spending or permission changes are included.
+- reviewed BSE import: **18 added / 126 already present / 0 holds / 0 identity conflicts**;
+- semantic publication: **18 added / 19 changed / 0 removed / 0 conflicts**;
+- source-backed data commit: `eb023d3e60c1d66ed3a1e38f4f78d66cc6de6839`;
+- operator-state commit: `138115a9a0544dcff175c967c1419d8ee26c38ed`;
+- schema 1.2.0: **1,068 records passed**;
+- operator health: **healthy**;
+- retained recovery: **2024 = 269**, **2025 = 293**.
 
+The 19 changed records are normal concurrent official-source enrichment and are separate from the 18 additions.
+
+Pages build `36027207308` succeeded on the final operator revision. The first live-verifier attempt ran before Pages caught up and correctly failed against the old **1,050-record** snapshot; it was not treated as success. After deployment completed, attempt 2 of run `36027489827` verified the actual site:
+
+- snapshot fetched `2026-09-24T16:30:56.256Z`;
+- checked `2026-09-24T16:30:56.295Z`;
+- dataset generated `2026-09-24T16:21:47.053Z`;
+- **1,068 served records**;
+- **18/18 unique reviewed issuers**;
+- **54/54 listing-date / market-lot / issue-price checks**;
+- **0 failed issuers**;
+- all six unsupported fields remain null for all 18;
+- retained recovery verifies **54 original document-hash field sources**; the public projection still serializes **0** document hashes and is not described as live hash verification;
+- live snapshot SHA-256: `3c26f8dbea5e18dbfb498b2a609d3f9be6e431b359734b881a77539b9d603dab`;
+- successful artifact: `10821006183`, ZIP SHA-256 `b8dcb40ed94b09daf16501b2b2fd8f97769174d10ed20d963129786e4f1f5cfa`.
+
+Durable receipt: [docs/verification/cursor5-live-publication-2026-09-24.json](docs/verification/cursor5-live-publication-2026-09-24.json).
+
+### Current historical cursor
+
+Re-read immediately before this handoff:
+
+- parser **1.2.0**;
+- **120 tracked / 236 eligible**;
+- **117 parsed / 3 unparseable**;
+- **116 not yet tracked**;
+- cursor has **not advanced** since `2026-09-24T15:09:03.207Z`.
+
+**Next:** re-read `main` and the cursor first. If no newer cursor segment has advanced, the earliest unfinished work is a **bounded parser/source-family repair for the three retained unparseable notices**: `20241211-15`, `20241202-11`, and `20240722-21`. Diagnose only demonstrated official-source shapes; do not infer issuers from failed index notices. If the independent cursor has advanced and created an unprocessed segment, reconcile that segment before skipping ahead. Do not replay discovery batches15/16, reviewed batches20/21, or the completed Neopolitan repair.
+
+No UI redesign, minimum-investment work, billing, accounts, ads, spending or permission changes are part of this handoff.
 ## Local checks
 
 ```bash

@@ -1,0 +1,108 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_kind": "summary_of_workflow_artifact",
+  "status": "verified",
+  "source_url": "https://vasuki8.github.io/IPO-Tracker/data/ipos.json",
+  "started_at": "2026-09-24T16:30:55.995Z",
+  "checked_at": "2026-09-24T16:30:56.295Z",
+  "code_commit_sha": "c717910149351141cc8f9258cb70a674f1a528d5",
+  "run_id": "36027489827",
+  "run_attempt": 2,
+  "read_only": true,
+  "manifests": [
+    {
+      "path": "data/verified-bse-listings/2026-09-24-batch20.json",
+      "sha256": "1dd544343be745bea711371688ec92996229f2e158c0219fef2c961c05cb2332"
+    },
+    {
+      "path": "data/verified-bse-listings/2026-09-24-batch21.json",
+      "sha256": "19b29a2d81ee6e167087af7c5e5e93ed9c47c1887da695bbf1460229400ba2e8"
+    }
+  ],
+  "snapshot_fetched_at": "2026-09-24T16:30:56.256Z",
+  "snapshot_sha256": "3c26f8dbea5e18dbfb498b2a609d3f9be6e431b359734b881a77539b9d603dab",
+  "snapshot_bytes": 5698196,
+  "snapshot_file_in_artifact": "deployed-data.json",
+  "full_report_file_in_artifact": "publication-report.json",
+  "dataset_generated_at": "2026-09-24T16:21:47.053Z",
+  "published_records": 1068,
+  "checked_issuers": 18,
+  "checked_fields": 54,
+  "failed_issuers": 0,
+  "document_hash_scope": {
+    "retained_fields": 54,
+    "serialized_live_fields": 0,
+    "note": "Original document hashes are verified in retained recovery. Missing public hashes are not reported as live hash verification."
+  },
+  "artifact": {
+    "run_id": "36027489827",
+    "run_attempt": 2,
+    "id": 10821006183,
+    "sha256": "b8dcb40ed94b09daf16501b2b2fd8f97769174d10ed20d963129786e4f1f5cfa",
+    "expires_at": "2026-10-08T16:30:56Z"
+  },
+  "checks": {
+    "unique_issuers": 18,
+    "matching_fields": 54,
+    "all_six_unsupported_fields_null_for_each_issuer": true,
+    "original_hashes_verified_in_recovery": 54,
+    "document_hashes_serialized_in_live_fields": 0
+  },
+  "initial_live_attempt": {
+    "run_id": "36027489827",
+    "run_attempt": 1,
+    "artifact_id": 10820675683,
+    "artifact_sha256": "c6ff1f830ee5620c2bced1e33ac8feca5c4bf0e5470c0278832653e812f991f7",
+    "status": "failed",
+    "reason": "Pages still served the preceding 1050-record dataset generated at 2026-09-24T15:41:54.375Z; all 18 new identities were therefore absent. No source/recovery mismatch was found.",
+    "observed_records": 1050,
+    "snapshot_sha256": "4590241c5a47723f869dd29db351eada7795750a52b05eabf74a42b1ca7bb2f6"
+  },
+  "production": {
+    "source_sync_run_id": "36026575507",
+    "source_backed_data_commit": "eb023d3e60c1d66ed3a1e38f4f78d66cc6de6839",
+    "operator_state_commit": "138115a9a0544dcff175c967c1419d8ee26c38ed",
+    "reviewed_bse_import": {
+      "added": 18,
+      "already_present": 126,
+      "held_existing": 0,
+      "held_identity_conflict": 0
+    },
+    "semantic_publication": {
+      "added_records": 18,
+      "changed_records": 19,
+      "removed_records": 0,
+      "conflicts": 0
+    },
+    "pages_build_run_id": "36027207308",
+    "pages_build_status": "success",
+    "recovery_counts": {
+      "2024": 269,
+      "2025": 293
+    }
+  },
+  "cursor": {
+    "parser_version": "1.2.0",
+    "updated_at": "2026-09-24T15:09:03.207Z",
+    "eligible": 236,
+    "tracked": 120,
+    "statuses": {
+      "parsed": 117,
+      "unparseable": 3
+    },
+    "failed_notice_nos": [
+      "20241211-15",
+      "20241202-11",
+      "20240722-21"
+    ]
+  },
+  "next_task": {
+    "primary": "Bounded parser/source-family repair for the three retained unparseable BSE SME addition notices, unless a newer cursor segment has advanced and contains unprocessed references that must be reconciled first.",
+    "rules": [
+      "Re-read main and the cursor before work.",
+      "Do not infer issuers from failed index notices.",
+      "Group failures only by demonstrated source shape.",
+      "Do not replay cursor5 batches15/16 or reviewed batches20/21."
+    ]
+  }
+}
