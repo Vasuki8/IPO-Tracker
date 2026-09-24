@@ -1,10 +1,86 @@
 # Project status and handoff
 
-Updated: 2026-09-24. Live observation: 16:30:56 UTC / 12:30:56 America/Toronto.
+Updated: 2026-09-24. Latest source verification completed 21:00 UTC / 17:00 America/Toronto.
 
 ## Current priority
 
 Continue P1/P2/P3 data correctness, official-source coverage and dependable publication under `DEVELOPMENT_PROCESS.md`. The application-term requirement remains **Lot Size only**. Keep market lot, minimum bid quantity, application amount, listing date and index-admission date distinct. UI redesign and downstream research/commercial infrastructure are out of scope.
+
+## Completed: cursor7 reconciliation and source verification — PR #207
+
+PR #207 merged as `17fe924e81fdf735ffd7addd1ed9982dfe49a3d8`. The independent historical BSE SME cursor had advanced beyond the prior handoff, so this unit preserved sequencing and reconciled the new 20-notice segment rather than replaying cursor6 parser work.
+
+### Cursor7 discovery and reconciliation
+
+The segment first attempted at `2026-09-24T20:00:39.470Z` contains:
+
+- **20 notices**;
+- **18 parsed listing references**;
+- **2 new unparseable notices**: `20231206-8` and `20230719-15`.
+
+All 18 parsed references were checked against the current 2020-2026 retained recovery universe (**1,091 records**) using normalized issuer identity, BSE scrip code and listing-source identity. Result: **18 exact-missing / 0 already-present / 0 code or source collisions**. No fuzzy identity equivalence was accepted.
+
+Retained discovery inputs:
+
+- `data/discovery/bse-listing-reconciliation-2026-09-24-cursor7.json`;
+- `data/discovery/bse-listing-candidates-2026-09-24-batch20.json` — 15 issuers;
+- `data/discovery/bse-listing-candidates-2026-09-24-batch21.json` — 3 issuers.
+
+Index-addition evidence remains discovery-only and was not used as listing-term authority.
+
+### Evidence-backed verifier repairs
+
+The first source-verification run exposed two identity-only rejects:
+
+- Arrowhead: the BSE Index Services discovery text used **“Arrowhead Separation Engineering Limited”**, while issuer-specific BSE listing notice `20231124-50` uses the legal-name spelling **“Arrowhead Seperation Engineering Limited”**. The candidate now preserves both spellings and uses the issuer-specific listing notice as listing authority.
+- City Crops: the listing verifier incorrectly captured `Registered & Corporate Office` as part of the issuer name. The parser boundary now accepts that demonstrated BSE office heading, with a regression fixture. No broader fuzzy matching was added.
+
+The final PR-head source verification run `36058133127` completed:
+
+- batch20: **15 / 15 verified**;
+- batch21: **3 / 3 verified**;
+- **0 rejected**;
+- **0 unavailable**.
+
+Evidence artifact:
+
+- artifact: `10833780727`;
+- digest: `sha256:553d9350d77756c3f61bac19f563aae15d3c0c7d97b6eebe47da48e7c4e2137c`;
+- expiry: `2026-10-08T21:00:14Z`.
+
+Other final PR-head checks also passed:
+
+- reviewed BSE listing evidence: `36058133257`;
+- BSE 544770 identity-conflict guard: `36058133386`;
+- full IPO data contract: `36058133413`.
+
+This PR is discovery/source verification only. It does **not** materialize the 18 issuers into retained recovery or the public dataset.
+
+### Current cursor and exact next task
+
+Re-read after merge:
+
+- parser **1.3.0**;
+- **160 / 236 tracked**;
+- **153 parsed**;
+- **7 unparseable**;
+- **76 untracked**;
+- cursor state blob: `6ada9ade533cd1dc535799814b7a61bece067d35`;
+- updated at `2026-09-24T20:00:39.470Z`.
+
+The seven retained failures remain separate and must not be used to infer issuers:
+
+- `20240624-11`
+- `20240612-20`
+- `20240606-11`
+- `20240205-12`
+- `20240103-22`
+- `20231206-8`
+- `20230719-15`
+
+**Next task:** freeze the 18 source-verified cursor7 results from artifact `10833780727` into reviewed BSE evidence manifests, at most 15 issuers per manifest (the next available reviewed manifest numbers are currently batch26/batch27). Preserve exact official BSE source URL, response hash, collection/publication date, page/evidence metadata and only explicit listing date, market lot and final issue price; unsupported terms remain null. Rehearse the real importer/publication against latest main, require existing records to remain unchanged and a second run to be idempotent, then publish through the existing source-backed workflow and verify the actually served Pages dataset. Re-read main immediately before materialization because automation may change coverage. Only after this cursor7 parsed segment is closed should the seven unparseable notices be handled as a separate bounded parser/source-family repair.
+
+Do not replay cursor7 discovery batches20/21, cursor6 batches18/19, or reviewed batches24/25.
 
 ## Completed: cursor6 reviewed publication and live verification — PR #204 / #205
 
