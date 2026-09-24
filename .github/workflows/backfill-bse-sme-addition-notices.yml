@@ -58,27 +58,49 @@ jobs:
           node scripts/test-audit-bse-sme-addition-notices.mjs
           node scripts/apply-bse-sme-addition-notice-state.mjs --check
 
+      - name: Retain reproducible cursor baseline
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          audit="${{ runner.temp }}/bse-notice-audit"
+          mkdir -p "$audit"
+          git rev-parse HEAD > "$audit/source-commit.txt"
+          git archive --format=zip HEAD > "$audit/source-snapshot.zip"
+          cp ops/bse-sme-addition-notices.json "$audit/cursor-before.json"
+
       - name: Advance historical BSE notice cursor
         if: github.event_name != 'pull_request'
         id: backfill
         shell: bash
         run: |
           set -euo pipefail
-          report="${{ runner.temp }}/bse-sme-addition-notice-backfill.json"
+          report="${{ runner.temp }}/bse-notice-audit/bse-sme-addition-notice-backfill.json"
           node scripts/backfill-bse-sme-addition-notices.mjs --batch=20 --output="$report"
 
           selected="$(node -e "const fs=require('fs');const r=JSON.parse(fs.readFileSync(process.argv[1],'utf8'));process.stdout.write(String(r.stats.selected||0))" "$report")"
           echo "selected=$selected" >> "$GITHUB_OUTPUT"
           if [ "$selected" -gt 0 ]; then
-            cp ops/bse-sme-addition-notices.json "${{ runner.temp }}/bse-sme-addition-notices-proposal.json"
+            cp ops/bse-sme-addition-notices.json "${{ runner.temp }}/bse-notice-audit/cursor-proposal.json"
           fi
 
-      - name: Retain historical BSE notice report
+      - name: Hash retained cursor evidence
+        if: github.event_name != 'pull_request' && always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          audit="${{ runner.temp }}/bse-notice-audit"
+          if [ -d "$audit" ]; then
+            cd "$audit"
+            find . -maxdepth 1 -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 -r sha256sum > SHA256SUMS
+          fi
+
+      - name: Retain historical BSE notice report and source state
         if: github.event_name != 'pull_request' && always()
         uses: actions/upload-artifact@v4
         with:
           name: bse-sme-addition-notice-backfill-${{ github.run_id }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/bse-sme-addition-notice-backfill.json
+          path: ${{ runner.temp }}/bse-notice-audit
           retention-days: 14
           if-no-files-found: warn
 
@@ -97,7 +119,7 @@ jobs:
             git reset --hard origin/main
 
             node scripts/apply-bse-sme-addition-notice-state.mjs \
-              --input="${{ runner.temp }}/bse-sme-addition-notices-proposal.json"
+              --input="${{ runner.temp }}/bse-notice-audit/cursor-proposal.json"
             node scripts/apply-bse-sme-addition-notice-state.mjs --check
 
             if git diff --quiet -- ops/bse-sme-addition-notices.json; then
