@@ -57,7 +57,6 @@ jobs:
           node scripts/test-apply-bse-sme-addition-notice-state.mjs
           node scripts/test-audit-bse-sme-addition-notices.mjs
           node scripts/apply-bse-sme-addition-notice-state.mjs --check
-          node scripts/diagnose-current-bse-sme-addition-failures.mjs
 
       - name: Advance historical BSE notice cursor
         if: github.event_name != 'pull_request'
