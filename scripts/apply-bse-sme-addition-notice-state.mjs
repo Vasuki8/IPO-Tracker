@@ -25,7 +25,7 @@ export function mergeBseNoticeStates(current, proposal) {
   for (const [noticeNo, incoming] of Object.entries(proposal.notices || {})) {
     const existing = merged.notices[noticeNo];
     if (!existing ||
-        existing.parser_version !== proposal.parser_version ||
+        existing.parser_version !== incoming.parser_version ||
         timestamp(incoming.last_attempted_at) > timestamp(existing.last_attempted_at) ||
         (timestamp(incoming.last_attempted_at) === timestamp(existing.last_attempted_at) &&
           incoming.attempts > existing.attempts)) {
