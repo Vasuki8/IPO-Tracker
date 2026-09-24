@@ -18,17 +18,45 @@ try {
   const byId = new Map(after.records.map((r) => [r.id, r]));
   for (const record of before.records) assert.deepEqual(byId.get(record.id), record, 'existing record changed: ' + record.id);
   const added = after.records.length - before.records.length;
-  assert.ok(added >= 0 && added <= 27, 'only approved reviewed records may be created');
+  const beforeIds = new Set(before.records.map((record) => record.id));
+  const addedRecords = after.records.filter((record) => !beforeIds.has(record.id));
+  assert.equal(addedRecords.length, added);
+
+  const verifiedRoot = path.join(temp, 'data/verified-bse-listings');
+  const manifestNames = fs.readdirSync(verifiedRoot)
+    .filter((name) => /^\d{4}-\d{2}-\d{2}(?:-batch\d+)?\.json$/.test(name));
+  const approvedManifests = new Set(manifestNames.map((name) => 'data/verified-bse-listings/' + name));
+  const approvedYears = new Set();
+  let approvedEntries = 0;
+  for (const name of manifestNames) {
+    const manifest = JSON.parse(fs.readFileSync(path.join(verifiedRoot, name), 'utf8'));
+    approvedEntries += manifest.entries.length;
+    for (const entry of manifest.entries) approvedYears.add(entry.facts.listing_date.value.slice(0, 4));
+  }
+  assert.ok(added >= 0 && added <= approvedEntries, 'only approved reviewed records may be created');
+  for (const record of addedRecords) {
+    assert.ok(
+      approvedManifests.has(record.bse_verified_listing_batch?.manifest),
+      'added record lacks approved reviewed-BSE provenance: ' + record.id
+    );
+  }
+
   const recoveryPaths = fs.readdirSync(path.join(temp, 'data/recovery')).filter((y) => /^20\d{2}$/.test(y));
-  for (const y of recoveryPaths.filter((y) => y !== '2026')) {
+  for (const y of recoveryPaths.filter((y) => !approvedYears.has(y))) {
     const rel = 'data/recovery/' + y + '/nse-issue-information.json';
     assert.deepEqual(fs.readFileSync(path.join(temp, rel)), fs.readFileSync(path.join(root, rel)), 'unrelated historical manifest changed');
   }
+
   const firstBytes = fs.readFileSync(file);
-  const recoveryFile = path.join(temp, 'data/recovery/2026/nse-issue-information.json');
-  const recoveryBytes = fs.readFileSync(recoveryFile);
+  const recoveryBytes = new Map();
+  for (const y of recoveryPaths) {
+    const recoveryFile = path.join(temp, 'data/recovery', y, 'nse-issue-information.json');
+    if (fs.existsSync(recoveryFile)) recoveryBytes.set(recoveryFile, fs.readFileSync(recoveryFile));
+  }
   run('scripts/apply-verified-bse-listings.mjs'); run('scripts/build-published-data.mjs');
   assert.deepEqual(fs.readFileSync(file), firstBytes, 'repeat import freshened the public dataset');
-  assert.deepEqual(fs.readFileSync(recoveryFile), recoveryBytes, 'repeat import changed retained evidence');
+  for (const [recoveryFile, bytes] of recoveryBytes) {
+    assert.deepEqual(fs.readFileSync(recoveryFile), bytes, 'repeat import changed retained evidence: ' + recoveryFile);
+  }
   console.log(JSON.stringify({ bse_publication_rehearsal: { before: before.records.length, after: after.records.length, added, existing_unchanged: before.records.length, idempotent: true }, import: JSON.parse(importOutput) }));
 } finally { fs.rmSync(temp, { recursive: true, force: true }); }
