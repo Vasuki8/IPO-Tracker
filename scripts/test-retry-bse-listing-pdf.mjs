@@ -2,10 +2,18 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { applyPdfVerificationResult, archiveProbeUrl, retryPdf } from "./retry-bse-listing-pdf.mjs";
+import { applyPdfVerificationResult, archiveProbeUrl, attachmentProbeUrlsFromHtml, isOfficialListingPdfUrl, retryPdf } from "./retry-bse-listing-pdf.mjs";
 import { listingUrl } from "./verify-bse-listing-candidates.mjs";
 assert.equal(archiveProbeUrl("20260820-37"), "https://www.bseindia.com/downloads/UploadDocs/Notices/20260820-37/20260820-37.pdf");
 assert.throws(() => archiveProbeUrl("../../unsafe"));
+const attachment = "https://www.bseindia.com/markets/MarketInfo/DownloadAttach.aspx?id=20260820-37&attachedId=9a1df38b-4dcf-4e58-b182-f378e4c2a8b3";
+assert.equal(isOfficialListingPdfUrl(attachment, "20260820-37"), true);
+assert.equal(isOfficialListingPdfUrl(attachment.replace("20260820-37", "20260820-38"), "20260820-37"), false);
+assert.equal(isOfficialListingPdfUrl("https://evil.example/markets/MarketInfo/DownloadAttach.aspx?id=20260820-37&attachedId=9a1df38b-4dcf-4e58-b182-f378e4c2a8b3", "20260820-37"), false);
+assert.deepEqual(
+  attachmentProbeUrlsFromHtml(`<a href=${attachment}>Annexure-I.pdf</a><a href="${attachment}">duplicate</a>`, "20260820-37"),
+  [attachment]
+);
 const candidate = { issuer_name: "Example Limited", bse_scrip_code: "544876", listing_notice_no: "20260820-37", listing_date: "2026-08-21", listing_notice_url: listingUrl("20260820-37") };
 const report = { schema_version: "1.0.0", results: [{ candidate, status: "rejected", facts: null }] };
 const dir = fs.mkdtempSync(path.join(os.tmpdir(), "bse-pdf-retry-test-"));
