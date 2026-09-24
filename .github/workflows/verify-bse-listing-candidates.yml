@@ -13,6 +13,7 @@ on:
       - "data/discovery/bse-listing-candidates-2026-09-24-batch4.json"
       - "data/discovery/bse-listing-candidates-2026-09-24-batch5.json"
       - "data/discovery/bse-listing-candidates-2026-09-24-batch7.json"
+      - "data/discovery/bse-listing-candidates-2026-09-24-batch9.json"
       - ".github/workflows/verify-bse-listing-candidates.yml"
   push:
     branches: ["main"]
@@ -25,6 +26,7 @@ on:
       - "data/discovery/bse-listing-candidates-2026-09-24-batch4.json"
       - "data/discovery/bse-listing-candidates-2026-09-24-batch5.json"
       - "data/discovery/bse-listing-candidates-2026-09-24-batch7.json"
+      - "data/discovery/bse-listing-candidates-2026-09-24-batch9.json"
       - ".github/workflows/verify-bse-listing-candidates.yml"
 
 permissions:
@@ -81,6 +83,12 @@ jobs:
         run: node scripts/verify-bse-listing-candidates.mjs --input=data/discovery/bse-listing-candidates-2026-09-24-batch7.json --output="${{ runner.temp }}/bse-listing-verification/batch7-report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/batch7-notices"
       - name: Require corrected Recode official PDF
         run: node scripts/retry-bse-listing-pdf.mjs --report="${{ runner.temp }}/bse-listing-verification/batch7-report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/batch7-notices" --upgrade-verified-html=true
+      - name: Verify second historical batch 9 listing notices
+        continue-on-error: true
+        run: node scripts/verify-bse-listing-candidates.mjs --input=data/discovery/bse-listing-candidates-2026-09-24-batch9.json --output="${{ runner.temp }}/bse-listing-verification/batch9-report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/batch9-notices"
+      - name: Check official PDF archive for unresolved batch 9 notices
+        continue-on-error: true
+        run: node scripts/retry-bse-listing-pdf.mjs --report="${{ runner.temp }}/bse-listing-verification/batch9-report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/batch9-notices" --upgrade-verified-html=true
       - name: Report evidence formats for verified candidates
         shell: bash
         run: |
