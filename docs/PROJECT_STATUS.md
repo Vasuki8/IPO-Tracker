@@ -8,7 +8,168 @@ Continue P1/P2/P3 backend correctness, official-source coverage and dependable p
 
 Never infer missing IPO values. Keep listing date, index admission date, market lot, minimum bid quantity and application amount distinct.
 
-## Latest completed batch: legacy 2025 BSE SME notice parser repair — PR #182
+## Latest completed batch: repaired cursor3 BSE references published — PR #184
+
+PR #184 merged as:
+
+`d08479a3c12cd5975902dfa5f689a22adc90b008`
+
+This batch closed the 12 listing references recovered by the parser-v1.2.0 repair. It reconciled current identity coverage, independently verified the genuinely missing issuers from issuer-specific official BSE listing notices, retained reviewed evidence, published the missing records through the existing importer, verified production and left the next historical cursor segment cleanly isolated.
+
+### Reconciliation
+
+Source cursor state at reconciliation:
+
+- parser: **1.2.0**
+- cursor state blob: `4ab17cca3944d2d907c0961ccdc2648bcff38a00`
+- tracked: **80 / 236 eligible**
+- parsed: **80**
+- failed: **0**
+- next unseen: **`20250403-16`**
+
+Reconciliation snapshots:
+
+- 2025 recovery: **258 records**, blob `ee6464ea4388cf99ea278c04a495b917df112730`
+- public dataset: **1,014 records**, blob `a524ef19c2f8a0c0c58375b6bc6cb21d4bded3dc`
+
+Result:
+
+- recovered references: **12**
+- already present exact identity: **1**
+- missing exact identities: **11**
+- identity review required: **0**
+- fuzzy matches accepted: **0**
+
+The one already-present issuer was **3B Films Limited**. Its existing record already used BSE listing notice `20250605-49`, listing date 2025-06-06, market lot 3,000 and issue price INR 50, so it was excluded from the new verification/publication batch rather than overwritten.
+
+Retained reconciliation:
+
+- `data/discovery/bse-listing-reconciliation-2026-09-24-cursor3-repaired.json`
+- `data/discovery/bse-listing-candidates-2026-09-24-batch12.json`
+
+Index-addition notices remained discovery-only.
+
+### Issuer-specific verification
+
+Initial pinned verification:
+
+- run: **`35968091282`**
+- attempted: **11**
+- verified: **11**
+- rejected: **0**
+- unavailable: **0**
+- artifact: **`10795017902`**
+- artifact ZIP SHA-256: **`98e381697404285d1b521926bc6f81ba8cad4d5b42f43022b4952a1011521036`**
+
+The PDF archive upgrade check completed without finding canonical listing-PDF archive paths for these 11 notices. Ancillary attachments were not accepted as listing authority. The already established strict official-BSE-HTML evidence contract was retained.
+
+Reviewed manifest:
+
+`data/verified-bse-listings/2026-09-24-batch17.json`
+
+Final PR-head re-verification:
+
+- run: **`35968733466`**
+- attempted: **11**
+- verified: **11**
+- rejected: **0**
+- unavailable: **0**
+- artifact: **`10795735136`**
+- artifact ZIP SHA-256: **`81d0ee8859e2dfee5998a98e30ec68067e95799f0a8db640ae375800b72c21ff`**
+
+Final PR checks also passed:
+
+- data-contract CI: **`35968733491`**
+- reviewed-evidence/importer CI: **`35968733500`**
+
+### Eleven published issuers
+
+| Issuer | BSE code | Listing notice | Listing date | Market lot | Issue price |
+| --- | ---: | --- | --- | ---: | ---: |
+| ASSTON PHARMACEUTICALS LIMITED | 544445 | `20250715-53` | 2025-07-16 | 1,000 | INR 123 |
+| GLEN INDUSTRIES LIMITED | 544444 | `20250714-41` | 2025-07-15 | 1,200 | INR 97 |
+| META INFOTECH LIMITED | 544441 | `20250710-60` | 2025-07-11 | 800 | INR 161 |
+| CRYOGENIC OGS LIMITED | 544440 | `20250709-45` | 2025-07-10 | 3,000 | INR 47 |
+| UNIFIED DATA TECH SOLUTIONS LIMITED | 544406 | `20250528-43` | 2025-05-29 | 400 | INR 273 |
+| SRIGEE DLM LIMITED | 544399 | `20250509-44` | 2025-05-12 | 1,200 | INR 99 |
+| MANOJ JEWELLERS LIMITED | 544400 | `20250509-45` | 2025-05-12 | 2,000 | INR 54 |
+| KENRIK INDUSTRIES LIMITED | 544398 | `20250508-51` | 2025-05-09 | 6,000 | INR 25 |
+| SPINAROO COMMERCIAL LIMITED | 544392 | `20250407-51` | 2025-04-08 | 2,000 | INR 51 |
+| INFONATIVE SOLUTIONS LIMITED | 544393 | `20250407-67` | 2025-04-08 | 1,600 | INR 79 |
+| RETAGGIO INDUSTRIES LIMITED | 544391 | `20250404-53` | 2025-04-07 | 6,000 | INR 25 |
+
+Only the explicitly verified listing date, market lot and final issue price were populated. Unsupported price band, offer dates, issue size, minimum bid quantity and minimum application amount remain null.
+
+### Publication rehearsal
+
+The real importer/publication rehearsal measured:
+
+- **1,014 -> 1,025 records**
+- exactly **11 additions**
+- **92 already-present** reviewed BSE records
+- **0 held existing**
+- **0 identity conflicts**
+- all **1,014 existing records unchanged**
+- second import/rebuild: **no-op / idempotent**
+
+### Production publication
+
+Merge-triggered live sync:
+
+- run: **`35969070759`**
+- conclusion: **success**
+- reviewed BSE import: **11 added / 92 already present / 0 held / 0 identity conflicts**
+- semantic publication: **11 added / 45 changed / 0 removed / 0 conflicts**
+- source-backed data commit: **`53589374e3078540394866180b467bf7fb1442ad`**
+- operator-state commit: **`8cd16c9a2ca45bc38ef239d81b455de7276d225d`**
+- schema 1.2.0 validation: **1,025 records passed**
+- operator health: **healthy**
+
+Production after publication:
+
+- **1,025 total IPO records**
+- **2025: 269 records**
+- **2026: 85 records**
+
+The 45 changed records were normal concurrent NSE/SEBI source enrichment from the same source-first sync; the semantic publisher separately identified the 11 batch17 additions and zero removals/conflicts.
+
+Current production blobs after publication:
+
+- `data/ipos.json`: `253277e892c01be613aeb54284a7b56f8c6b8e3f`
+- `data/recovery/2025/nse-issue-information.json`: `7a7aa351750df012bfe4eb3c85d0b9d2c457199c`
+
+Independent post-publication record audit confirmed all 11 issuers:
+
+- occur exactly once in recovery and public data;
+- have the exact reviewed listing date, market lot and issue price;
+- retain the exact issuer-specific BSE notice URL;
+- retain the exact verified response/document SHA-256;
+- carry `data/verified-bse-listings/2026-09-24-batch17.json` provenance.
+
+All 11 audit checks passed.
+
+### Deployment
+
+Native GitHub Pages build **`35969750035`** completed successfully on final operator revision:
+
+`8cd16c9a2ca45bc38ef239d81b455de7276d225d`
+
+That revision descends from source-backed data commit `53589374e3078540394866180b467bf7fb1442ad`, so the deployed Pages revision contains the 1,025-record release.
+
+### Current historical cursor and next task
+
+The cursor did not advance during this publication batch:
+
+- parser: **1.2.0**
+- **80 tracked / 236 eligible**
+- **80 parsed**
+- **0 failed / unparseable**
+- **156 unseen**
+- next unseen notice: **`20250403-16`**
+
+**Next task:** always re-read `ops/bse-sme-addition-notices.json` first. If it has advanced beyond 80 tracked notices, reconcile the newest completed cursor segment against the current **1,025-record** universe. If it is unchanged, the next bounded discovery segment starts at `20250403-16`; advance it through the existing independent BSE notice backfill, retain the resulting source hashes/references, then reconcile only the newly parsed references before issuer-specific verification. Do not repeat batch12/batch17, 3B Films handling, or the parser-v1.2.0 repair.
+
+## Prior completed batch: legacy 2025 BSE SME notice parser repair — PR #182
 
 PR #182 merged as:
 
