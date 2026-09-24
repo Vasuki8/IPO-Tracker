@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0.0",
+  "verifier_version": "1.1.0",
+  "source_run_id": "35962409176",
+  "source_artifact_id": 10793305545,
+  "source_artifact_sha256": "a6e9c232aeb36430e83023607ddfee87ea9e72cb69fb2027d41f9558269d99bc",
+  "scope_note": "Two issuer-specific official BSE listing notices recovered from repaired index notice 20250912-85. Reviewed from exact official notice HTML because canonical listing-PDF archive paths return 404; ancillary attachments are not used as listing authority. Unsupported fields remain null.",
+  "entries": [
+    {
+      "issuer_name": "AUSTERE SYSTEMS LIMITED",
+      "board": "SME",
+      "bse_scrip_code": "544505",
+      "evidence_kind": "official_notice_html",
+      "source_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250911-76",
+      "document_identity": "BSE Listing Notice 20250911-76",
+      "document_sha256": "ed1639c8a68d80f92f74f3162767d8397ce38445d80e242741cef014af99e61b",
+      "normalized_text_sha256": "1b7bf6c1a2d6c9a56c781d681a98f498b7001385485520eb18e9de9254a59497",
+      "collected_at": "2026-09-24T06:01:34.589Z",
+      "publication_date": "2025-09-11",
+      "facts": {
+        "listing_date": {
+          "value": "2025-09-12",
+          "source_value": "effective from Friday, September 12, 2025"
+        },
+        "market_lot": {
+          "value": 2000,
+          "source_value": "Market Lot 2000"
+        },
+        "issue_price": {
+          "value": 55,
+          "source_value": "Issue Price for the current Public issue Rs. 55"
+        }
+      },
+      "evidence_text": "Notice Number NOTICES Notice No. 20250911-76 Notice Date 11 Sep 2025 Category Company related Segment SME Subject Listing of Equity Shares of AUSTERE SYSTEMS LIMITED Content Trading Members of the Exchange are hereby informed that effective from Friday, September 12, 2025, the Equity Shares of AUSTERE SYSTEMS LIMITED shall be listed and admitted to dealings on the Exchange in the list of 'MT' Group of Securities. Name of the company AUSTERE SYSTEMS LIMITED Registered Office: Pune, Maharashtra. Scrip Code 544505 Market Lot 2000 Issue Price for the current Public issue Rs. 55",
+      "listing_notice_no": "20250911-76"
+    },
+    {
+      "issuer_name": "SHARVAYA METALS LIMITED",
+      "board": "SME",
+      "bse_scrip_code": "544506",
+      "evidence_kind": "official_notice_html",
+      "source_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250911-79",
+      "document_identity": "BSE Listing Notice 20250911-79",
+      "document_sha256": "ee951100a3b27fa15663fe76de811c0ebe8475a3bf64b1de0742b27ac0244358",
+      "normalized_text_sha256": "41b1e51ea499d013cf00199efe246f999e803b0adbb70d9d6940b41014529805",
+      "collected_at": "2026-09-24T06:01:35.253Z",
+      "publication_date": "2025-09-11",
+      "facts": {
+        "listing_date": {
+          "value": "2025-09-12",
+          "source_value": "effective from Friday, September 12, 2025"
+        },
+        "market_lot": {
+          "value": 600,
+          "source_value": "Market Lot 600"
+        },
+        "issue_price": {
+          "value": 196,
+          "source_value": "Issue Price for the current Public issue Rs. 196"
+        }
+      },
+      "evidence_text": "Notice Number NOTICES Notice No. 20250911-79 Notice Date 11 Sep 2025 Category Company related Segment SME Subject Listing of Equity Shares of SHARVAYA METALS LIMITED Content Trading Members of the Exchange are hereby informed that effective from Friday, September 12, 2025, the Equity Shares of SHARVAYA METALS LIMITED shall be listed and admitted to dealings on the Exchange in the list of 'MT' Group of Securities. Name of the company SHARVAYA METALS LIMITED Registered Office: Maharashtra, India. Scrip Code 544506 Market Lot 600 Issue Price for the current Public issue Rs. 196",
+      "listing_notice_no": "20250911-79"
+    }
+  ],
+  "discovery_batch": "data/discovery/bse-listing-candidates-2026-09-24-batch10.json"
+}
