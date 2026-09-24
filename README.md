@@ -26,67 +26,71 @@ Collection time, dataset generation and Pages publication are distinct signals. 
 
 ## Handoff for the next prompt
 
-**Latest completed unit: cursor5 BSE parser failures repaired and reconciled — PR #193.**
+**Latest completed unit: cursor6 reconciled and independently source-verified — PR #201.**
 
-PR #193 merged as `61453efd680289a57ecc889a0070aa894624df77`.
+PR #201 merged as `9cc541d3b9e1bc317ed3e9bb3545ea51ce47f327`.
 
-The prior cursor5 publication work is already complete in PR #191 / #192 and must not be repeated: discovery batches15/16 became reviewed batches20/21, production sync `36026575507` published **18 additions** into the **1,068-record** dataset, and live verification passed.
+Do not repeat repaired cursor5 batch17. Concurrent automation already reviewed and published those four issuers through **batch22**, then PR #199 verified the actually served release:
 
-This batch repaired the three cursor5 notices that remained unparseable:
+- production sync `36036317281`: **4 added / 144 already present / 0 holds / 0 identity conflicts**;
+- semantic publication: **4 added / 1 changed / 0 removed / 0 conflicts**;
+- production total: **1,072 records**;
+- live verifier `36037026089`: **4/4 unique issuers, 12/12 listing-date/lot/price fields, 0 failures**;
+- live artifact `10824857948`, ZIP SHA-256 `52e5c015a0cc5eb7b71b20667fcce85215009abfe2e88e42c62dbfa1cc5e019f`.
 
-- `20241211-15`
-- `20241202-11`
-- `20240722-21`
+A duplicate attempt in PR #202 was closed unmerged after the importer correctly reported `0 added / held_existing=4`. Do not resurrect batch23.
 
-A bounded read-only diagnostic re-fetched only those three official BSE Index Services payloads. Every fresh response SHA-256 exactly matched the text hash already retained in cursor state, so the failures were parser-shape issues rather than changed upstream content.
+### Cursor6 completed work
 
-Demonstrated older BSE formats:
-
-- whitespace inside the ticker parenthesis: `( Exchange ticker - 544296)`;
-- a shared header containing multiple listing-notice IDs once — `Notice No:20240719-44 and 20240719-38` — followed by the same number of issuer/ticker pairs in order.
-
-Parser **v1.3.0** now accepts only those demonstrated variants. Shared-ID clauses require a complete one-to-one ID/issuer/ticker mapping; malformed or partial clauses fail closed. Parsed v1.1/v1.2 cursor entries remain compatible, so the parser migration did not replay the 117 already-successful entries.
-
-Final PR-head checks all passed:
-
-- full data contract: `36028430818`;
-- reviewed BSE evidence: `36028430692`;
-- dedicated BSE cursor/parser suite: `36028431156`.
-
-Merge-triggered production backfill `36028598993` succeeded:
-
-- selected: **3**, all reason `parser_changed_failure`;
-- parsed: **3/3**;
-- fetch errors: **0**;
-- unparseable: **0**;
-- recovered listing references: **4**;
-- report artifact: **10820393192**;
-- artifact ZIP SHA-256: `01f9895ba1fcc97abda170c5f4a1690e227fc6401f3e2dde314ee4cd99b95f3c`;
-- cursor-state commit: `fd06045ac437636bc5d0c8dba087397ad4897c28`.
-
-Current cursor:
+The independent historical cursor advanced to:
 
 - parser **1.3.0**;
-- **120 tracked / 236 eligible**;
-- **120 parsed / 0 failed**;
-- **116 not yet tracked**;
-- next unseen notice: **`20240624-11`**.
+- **140 tracked / 236 eligible**;
+- **135 parsed / 5 unparseable**;
+- **96 not yet tracked**.
 
-The four repaired discovery references were reconciled against the current 2024 recovery set (**269 records**) and public dataset (**1,068 records**). All four are **exact-missing, unambiguous identities**; none is already present and no BSE-code/source collision exists:
+The newest 20-notice segment first attempted at `2026-09-24T18:12:33.727Z` contains:
 
-| Issuer | BSE code | Listing notice | Listing date |
-| --- | ---: | --- | --- |
-| NISUS FINANCE SERVICES CO LIMITED | 544296 | `20241210-61` | 2024-12-11 |
-| Rajesh Power Services Limited. | 544291 | `20241129-72` | 2024-12-02 |
-| Aelea Commodities Limited | 544213 | `20240719-44` | 2024-07-22 |
-| Three M Paper Boards Ltd | 544214 | `20240719-38` | 2024-07-22 |
+- **15 parsed notices**;
+- **19 listing references**;
+- **5 unparseable notices**.
 
-Retained machine-readable handoff:
+PR #201 reconciled all 19 parsed references against the current **1,072-record public dataset** and current 2024 recovery (**273 records**):
 
-- `data/discovery/bse-listing-reconciliation-2026-09-24-cursor5-repaired.json`
-- `data/discovery/bse-listing-candidates-2026-09-24-batch17.json`
+- **19 exact-missing identities**;
+- **0 already present**;
+- **0 ambiguous / BSE-code collisions**.
 
-**Next:** re-read `main` and the cursor first, but do not skip this repaired candidate batch if automation advances. Independently verify batch17's four issuer-specific official BSE listing notices before materialization. Retain listing date, market lot and final issue price only from issuer-specific official evidence; keep unsupported fields null. If all four verify, publish through the existing reviewed-evidence importer, verify the live site, then continue historical discovery from `20240624-11`.
+Retained files:
+
+- `data/discovery/bse-listing-reconciliation-2026-09-24-cursor6.json`;
+- `data/discovery/bse-listing-candidates-2026-09-24-batch18.json` — 15;
+- `data/discovery/bse-listing-candidates-2026-09-24-batch19.json` — 4.
+
+Independent issuer-specific verification run `36041395122` succeeded:
+
+- batch18: **15/15 verified**;
+- batch19: **4/4 verified**;
+- rejected: **0**;
+- unavailable: **0**;
+- artifact: **10826304295**;
+- artifact ZIP SHA-256: `1a54f73efd2784202fb64f1ddadb5cbd825b448aea4056a3d2d2ff2ebe35f441`.
+
+The verifier needed one bounded source-family extension: **PIOTEX INDUSTRIES LIMITED** states its lot only in the official notice's `minimum market lot (i.e.1200 equity shares)` clause. The repair accepts that demonstrated clause without weakening issuer, notice number, BSE code, SME statement, listing date or issue-price checks. Regression coverage is merged.
+
+All PR-head gates passed, including data contract, reviewed-evidence/importer tests, protected BSE identity regression and source verification.
+
+### Five cursor6 parser failures
+
+Keep these separate from the 19 verified candidates and do not infer issuers:
+
+- `20240624-11`
+- `20240612-20`
+- `20240606-11`
+- `20240205-12`
+- `20240103-22`
+
+**Next:** re-read current `main` and cursor first, but do not skip cursor6 batches18/19 if automation advances. Freeze the 19 already-verified source results from artifact `10826304295` into reviewed evidence manifests (maximum 15 entries each), retaining exact official BSE HTML evidence, source hashes, dates, listing date, market lot and final issue price. Rehearse the real importer against latest main, publish only if identities are still missing/unambiguous, verify the served site, then handle the five parser failures as a separate bounded source-family repair before moving to older unseen notices.
 
 No UI redesign, minimum-investment work, billing, accounts, ads, spending or permission changes are part of this handoff.
 ## Local checks
