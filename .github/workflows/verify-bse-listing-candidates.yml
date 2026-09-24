@@ -7,6 +7,8 @@ on:
     paths:
       - "scripts/verify-bse-listing-candidates.mjs"
       - "scripts/test-verify-bse-listing-candidates.mjs"
+      - "scripts/retry-bse-listing-pdf.mjs"
+      - "scripts/test-retry-bse-listing-pdf.mjs"
       - "data/discovery/bse-listing-candidates-2026-09-24.json"
       - ".github/workflows/verify-bse-listing-candidates.yml"
   push:
@@ -14,6 +16,8 @@ on:
     paths:
       - "scripts/verify-bse-listing-candidates.mjs"
       - "scripts/test-verify-bse-listing-candidates.mjs"
+      - "scripts/retry-bse-listing-pdf.mjs"
+      - "scripts/test-retry-bse-listing-pdf.mjs"
       - "data/discovery/bse-listing-candidates-2026-09-24.json"
       - ".github/workflows/verify-bse-listing-candidates.yml"
 
@@ -29,10 +33,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
+      - name: Install notice PDF reader
+        run: sudo apt-get update && sudo apt-get install --yes --no-install-recommends poppler-utils
+      - name: Test PDF archive safety
+        run: node scripts/test-retry-bse-listing-pdf.mjs
       - name: Test listing verification and guards
         run: node scripts/test-verify-bse-listing-candidates.mjs
       - name: Verify 15 pinned issuer-specific listing notices
+        continue-on-error: true
         run: node scripts/verify-bse-listing-candidates.mjs --input=data/discovery/bse-listing-candidates-2026-09-24.json --output="${{ runner.temp }}/bse-listing-verification/report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/notices"
+      - name: Check official PDF archive for unresolved notices
+        run: node scripts/retry-bse-listing-pdf.mjs --report="${{ runner.temp }}/bse-listing-verification/report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/notices"
       - name: Retain verified and rejected evidence
         if: always()
         uses: actions/upload-artifact@v4
