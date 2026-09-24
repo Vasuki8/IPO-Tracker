@@ -6,7 +6,104 @@ Updated: 2026-09-24. Live observation: 16:30:56 UTC / 12:30:56 America/Toronto.
 
 Continue P1/P2/P3 data correctness, official-source coverage and dependable publication under `DEVELOPMENT_PROCESS.md`. The application-term requirement remains **Lot Size only**. Keep market lot, minimum bid quantity, application amount, listing date and index-admission date distinct. UI redesign and downstream research/commercial infrastructure are out of scope.
 
-## Completed: cursor6 reconciliation and source verification — PR #201
+## Completed: cursor6 reviewed publication and live verification — PR #204 / #205
+
+PR #204 merged as `30127408c952dd98da6524ff13ee2d6d5537503f`. It converted the 19 already source-verified cursor6 candidates into reviewed evidence without changing parser/cursor behavior:
+
+- `data/verified-bse-listings/2026-09-24-batch24.json` — 15;
+- `data/verified-bse-listings/2026-09-24-batch25.json` — 4.
+
+Both manifests retain source verification run `36041395122`, artifact `10826304295`, artifact ZIP SHA-256 `1a54f73efd2784202fb64f1ddadb5cbd825b448aea4056a3d2d2ff2ebe35f441`, exact issuer-specific official BSE notice URLs/response hashes/collection and publication dates, and only explicit listing date, market lot and final issue price. Canonical listing-PDF archive probes were unavailable; unsupported terms remain null.
+
+### Publication safety and production
+
+Immediately before review, all 19 identities were still absent from the current 1,072-record public dataset and 273-record 2024 recovery set.
+
+The real offline importer/publication rehearsal measured:
+
+- **1,072 -> 1,091** records;
+- exactly **19 additions**;
+- **148 already-present** reviewed BSE entries;
+- **0 held existing**;
+- **0 identity conflicts**;
+- all **1,072 existing records unchanged**;
+- second import/rebuild: no-op / idempotent.
+
+PR #204's reviewed-evidence/importer CI and full data-contract CI both passed before merge.
+
+Merge-triggered production sync `36044490807` completed successfully:
+
+- reviewed BSE import: **19 added / 148 already present / 0 held / 0 identity conflicts**;
+- semantic publication: **19 added / 7 changed / 0 removed / 0 conflicts**;
+- source-backed data commit: `3e6b106e0daa50bb381159e9f5578b205ee54611`;
+- operator-state commit: `d189a486120e2ee31c83a834770af22adf298f84`;
+- published/validated: **1,091 records**;
+- current 2024 recovery: **292 records**;
+- operator health: **healthy**.
+
+The seven changed records are normal concurrent official-source enrichment from the same source-first run and are distinct from the 19 reviewed additions.
+
+### Actually served data verification
+
+PR #205 merged as `e920fb28cd4647c2ecbd17529b23a13607851910`. It changes only the existing read-only BSE publication verifier default to batch24 + batch25 and retains a durable verification summary; it does not import or mutate IPO values.
+
+Canonical post-merge live verifier run `36045625232` completed successfully:
+
+| Check | Result |
+| --- | ---: |
+| Live records | **1,091** |
+| Reviewed issuer identities | **19 / 19 unique** |
+| Listing date / lot / issue-price fields | **57 / 57 matching** |
+| Failed issuers | **0** |
+| Unsupported fields | **6 null fields for every issuer** |
+| Original document-hash field sources checked in recovery | **57** |
+| Document hashes serialized in public field evidence | **0** |
+
+The public projection intentionally omits document SHA-256 values; raw hashes remain mandatory and verified in retained recovery. Do not describe this release as public-hash verification.
+
+Post-merge observation:
+
+- snapshot fetched: `2026-09-24T19:04:35.469Z`;
+- checked: `2026-09-24T19:04:35.534Z`;
+- dataset generated: `2026-09-24T18:54:41.274Z`;
+- snapshot SHA-256: `b707398c57676e6758f113ef31d6c1a717cc012a27f266b7a6f6f9b439f7fa5f`;
+- artifact: `10828372193`;
+- artifact ZIP SHA-256: `f6bceadb52852e54ad1ee21bb7b2131a9c7461f53e677dc48fa4e4065dfe5f1b`;
+- artifact expiry: `2026-10-08T19:04:35Z`.
+
+Durable receipt:
+
+`docs/verification/cursor6-live-publication-2026-09-24.json`
+
+Post-merge workflows all passed:
+
+- read-only live publication verifier: `36045625232`;
+- full data contract: `36045625276`;
+- reviewed BSE evidence/importer: `36045625287`;
+- deploy workflow: `36045625354`;
+- native Pages build: `36045671486` — success on final Pages-health revision `187493575f425ecf694f307b9567ddd05cecd16b`.
+
+### Cursor and next task
+
+Cursor6 publication is fully closed. At handoff the independent cursor remains:
+
+- parser **1.3.0**;
+- **140 / 236 tracked**;
+- **135 parsed**;
+- **5 unparseable**;
+- **96 untracked**.
+
+The five unfinished notices are:
+
+- `20240624-11`
+- `20240612-20`
+- `20240606-11`
+- `20240205-12`
+- `20240103-22`
+
+**Next task:** perform a bounded parser/source-family diagnosis of only those failures. Re-fetch official BSE Index Services details, compare response hashes with retained cursor hashes, group by demonstrated source syntax, and make only evidence-backed additive grammar changes with fail-closed regression fixtures. Do not infer issuer identities from failed index notices. Re-read the cursor first in case independent automation has advanced; do not replay cursor6 discovery batches18/19 or reviewed batches24/25.
+
+## Prior completed: cursor6 reconciliation and source verification — PR #201
 
 PR #201 merged as `9cc541d3b9e1bc317ed3e9bb3545ea51ce47f327`.
 
