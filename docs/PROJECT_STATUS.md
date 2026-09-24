@@ -8,6 +8,233 @@ Continue P1/P2/P3 backend correctness, official-source coverage and dependable p
 
 Never infer missing IPO values. Keep listing date, index admission date, market lot, minimum bid quantity and application amount distinct.
 
+## Latest completed batch: repaired BSE notice 20250912-85 and published two issuers — PR #180
+
+PR #180 merged as:
+
+`1e19389f78ddafef7ae2a61596d7e8443dbfb4e9`
+
+This batch repaired the single unparseable BSE SME index notice left by the prior cursor segment, verified the recovered issuer identities independently, and published both missing IPOs.
+
+### Root cause
+
+Cursor entry `20250912-85` had been retained as:
+
+- status: `unparseable`
+- error: `no_parseable_listing_reference`
+- source kind: `bse_index_notice_detail_api`
+- source URL: `https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250912-85`
+- extracted-text SHA-256: `c2504ec9ca86dcfc0aa36ff50afa5c70803d3802353d955aff602b5eae88a8d8`
+
+The official notice contains two explicit issuer references joined by an ampersand:
+
+- BSE listing notice `20250911-76` — **AUSTERE SYSTEMS LIMITED** — ticker **544505**
+- BSE listing notice `20250911-79` — **SHARVAYA METALS LIMITED** — ticker **544506**
+
+The shared listing statement says the two issuers **are being listed on SME platform of BSE effective Friday, September 12, 2025**.
+
+The same index notice later says the stocks will be added to the BSE SME IPO index effective **September 15, 2025**. That later date is an index-admission date and is not used as the listing date.
+
+### Bounded parser repair
+
+The prior parser recognized phrases such as `listed on BSE effective ...` but not the demonstrated wording `listed on SME platform of BSE effective ...`.
+
+PR #180 makes only the source-proven extension:
+
+- accept `listed on SME platform of BSE` as an equivalent BSE listing statement;
+- allow `&` as a separator only when both sides still contain a complete Notice No / issuer / six-digit Exchange ticker reference;
+- preserve the shared listing date for each complete reference;
+- keep the later index-admission date excluded.
+
+Regression guards prove that the repair does **not**:
+
+- accept another exchange such as NSE;
+- accept a missing issuer ticker;
+- borrow a ticker from the next issuer;
+- use the later index-admission date as listing date.
+
+The retained cursor entry for `20250912-85` was deterministically reparsed from the same source/hash into exactly two references. No issuer identity, code or date was guessed.
+
+### Repaired discovery
+
+Retained reconciliation:
+
+`data/discovery/bse-listing-reconciliation-2026-09-24-notice-20250912-85.json`
+
+Pinned issuer-specific candidates:
+
+`data/discovery/bse-listing-candidates-2026-09-24-batch10.json`
+
+Both issuers were absent from the 2025 recovery universe before publication.
+
+### Issuer-specific verification
+
+Initial independent source run:
+
+- workflow: **`35962409176`**
+- repaired candidates attempted: **2**
+- verified: **2**
+- rejected: **0**
+- unavailable: **0**
+- artifact: **`10793305545`**
+- artifact ZIP SHA-256: **`a6e9c232aeb36430e83023607ddfee87ea9e72cb69fb2027d41f9558269d99bc`**
+
+Both records verified from exact issuer-specific official BSE notice HTML. The canonical listing-PDF archive path was unavailable, so the existing reviewed official-notice HTML evidence contract was used.
+
+Reviewed manifest:
+
+`data/verified-bse-listings/2026-09-24-batch15.json`
+
+Exact reviewed facts:
+
+| Issuer | BSE code | Listing notice | Listing date | Market lot | Issue price |
+| --- | --- | --- | --- | ---: | ---: |
+| AUSTERE SYSTEMS LIMITED | 544505 | `20250911-76` | 2025-09-12 | 2,000 | INR 55 |
+| SHARVAYA METALS LIMITED | 544506 | `20250911-79` | 2025-09-12 | 600 | INR 196 |
+
+Final `main` source verification repeated the repaired candidates successfully:
+
+- workflow: **`35962927921`**
+- repaired candidates: **2 / 2 verified**
+- rejected: **0**
+- unavailable: **0**
+- artifact: **`10793346309`**
+- artifact ZIP SHA-256: **`675edf2f8701535c0d6cd3b5756af3713fbabae41d884a70f7ca74c0448f9cb4`**
+
+### Pre-merge validation
+
+Final PR-head checks:
+
+- reviewed BSE evidence/importer validation: **`35962725162`** — success
+- durable BSE cursor/parser validation: **`35962725126`** — success
+- full data-contract validation: **`35962725175`** — success
+- earlier issuer-specific source verification proving the two candidates: **`35962409176`** — success
+
+The isolated real-import publication rehearsal measured:
+
+- **998 -> 1000 records**
+- exactly **2 additions**
+- **76 already-present** reviewed BSE records
+- **0 held existing records**
+- **0 identity conflicts**
+- all **998 existing records unchanged**
+- second import/rebuild: **no-op / idempotent**
+- total retained reviewed BSE entries after this batch: **78**
+
+### Production publication
+
+Merge-triggered live sync:
+
+- run: **`35962927876`**
+- conclusion: **success**
+- reviewed BSE import: **2 added / 76 already present / 0 holds**
+- semantic publication: **2 added / 30 changed / 0 removed / 0 conflicts**
+- schema 1.2.0 validation: **1000 records passed**
+- operator health: **healthy**
+
+Source-backed data commit:
+
+`33d311903621c110e0db608c913fb071ccd99eb3`
+
+Operator-state commit:
+
+`a275eaa5fcb6fdb665b702a8d47e5555500d0ea3`
+
+Production after publication:
+
+- **1000 total IPO records**
+- **2025: 244 records** — 83 Mainboard / 160 SME / 1 unknown
+- **2026: 85 records** — 15 Mainboard / 60 SME / 10 unknown
+- Austere Systems occurs exactly once
+- Sharvaya Metals occurs exactly once
+- listing date, BSE code, market lot and issue price agree with reviewed evidence
+- exact BSE notice URL and document SHA-256 are retained
+- HTML-backed facts use `page: null`
+- unsupported price band, offer dates, issue size, minimum bid quantity and minimum application amount remain null
+- deterministic recovery build and schema validation passed
+- operator health: **healthy**
+
+### Deployment
+
+Native GitHub Pages build **`35963513850`** completed successfully on:
+
+`a275eaa5fcb6fdb665b702a8d47e5555500d0ea3`
+
+That operator-state revision descends directly from the 1000-record source-backed data commit, so the deployed Pages revision contains both repaired issuers.
+
+### Independent cursor advance after merge
+
+PR #180 also triggered the independent historical BSE notice cursor.
+
+Cursor run:
+
+- workflow: **`35962928144`**
+- artifact: **`10793157274`**
+- artifact ZIP SHA-256: **`caf6f8d747992eb25a447b8600b4f73eaf433d13d92ebde5e6a38aeeab649722`**
+- state commit: **`1704357838871f9e5dd677da4a7bfabba7b50760`**
+
+It selected the next 20 older notices.
+
+Result:
+
+- **10 parsed**
+- **10 unparseable**
+- **14 discovered listing references**
+- **0 fetch errors**
+
+Durable cursor now:
+
+- **80 tracked / 236 eligible**
+- **70 parsed**
+- **10 unparseable**
+- **156 unseen**
+- next unseen notice: **`20250403-16`**
+
+The 14 newly parsed references begin with:
+
+- RACHIT PRINTS LIMITED — 544503
+- ABRIL PAPER TECH LIMITED — 544500
+- SUGS LLOYD LIMITED — 544501
+- OVAL PROJECTS ENGINEERING LIMITED — 544498
+- GLOBTIER INFOTECH LIMITED — 544494
+- NIS MANAGEMENT LIMITED — 544495
+- STAR IMAGING AND PATH LAB LIMITED — 544482
+- BLT LOGISTICS LIMITED — 544474
+- ESSEX MARINE LIMITED — 544475
+- REPONO LIMITED — 544463
+- UMIYA MOBILE LIMITED — 544464
+- MONARCH SURVEYORS AND ENGINEERING CONSULTANTS LIMITED — 544453
+- SWASTIKA CASTAL LIMITED — 544452
+- MONIKA ALCOBEV LIMITED — 544451
+
+The ten new unparseable notices are:
+
+- `20250716-16`
+- `20250715-47`
+- `20250711-10`
+- `20250710-17`
+- `20250606-10`
+- `20250529-14`
+- `20250512-14`
+- `20250509-10`
+- `20250408-20`
+- `20250407-20`
+
+None of these 14 new references or 10 unparseable notices were reconciled/materialized as part of PR #180.
+
+### Next task
+
+Always re-read `ops/bse-sme-addition-notices.json` first because the cursor advances independently.
+
+If the cursor is still at the 80-notice state, the next coherent batch is:
+
+1. reconcile the **14 newly parsed listing references** against the current **1000-record** recovery universe;
+2. split genuinely missing identities into bounded verification batches of at most 15;
+3. verify issuer-specific official BSE listing evidence before publication;
+4. keep the **10 unparseable notices** as a separate parser/source-family repair track.
+
+Do not repeat the completed `20250912-85` repair.
+
 ## Latest completed batch: second historical BSE cursor batch published — PR #178
 
 PR #178, **Reconcile second historical BSE cursor batch**, merged as:
