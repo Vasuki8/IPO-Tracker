@@ -12,12 +12,14 @@ on:
     paths:
       - "scripts/verify-bse-publication.mjs"
       - "scripts/test-verify-bse-publication.mjs"
+      - "scripts/test-bse-public-projection.mjs"
       - ".github/workflows/verify-bse-publication.yml"
   push:
     branches: ["main"]
     paths:
       - "scripts/verify-bse-publication.mjs"
       - "scripts/test-verify-bse-publication.mjs"
+      - "scripts/test-bse-public-projection.mjs"
       - ".github/workflows/verify-bse-publication.yml"
 
 permissions:
@@ -37,7 +39,9 @@ jobs:
         with:
           node-version: "20"
       - name: Test live publication identity, evidence and failure guards
-        run: node scripts/test-verify-bse-publication.mjs
+        run: |
+          node scripts/test-verify-bse-publication.mjs
+          node scripts/test-bse-public-projection.mjs
       - name: Retain exact verification source revision
         run: |
           mkdir -p "${{ runner.temp }}/bse-publication"

@@ -10,8 +10,12 @@ const FIELDS = ['listing_date', 'market_lot', 'issue_price'];
 const OTHER_FIELDS = ['price_band', 'open_date', 'close_date', 'issue_size_inr',
   'minimum_bid_quantity', 'minimum_application_amount_inr'];
 const stamp = (v) => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}T[\d:.]+Z$/.test(v) && Number.isFinite(Date.parse(v));
-const sourceMatches = (s, e, page) => s?.url === e.source_url &&
-  s?.document_identity === e.document_identity && s?.document_sha256 === e.document_sha256 &&
+// Recovery must retain the original hash. Public evidence is a projection that
+// currently omits it; an explicitly published hash must still match exactly.
+const sourceMatches = (s, e, page, hashRequired = true) => s?.url === e.source_url &&
+  s?.document_identity === e.document_identity &&
+  s?.document_type === (e.evidence_kind === 'official_notice_html' ? 'BSE Listing Notice' : 'BSE Listing Notice PDF') &&
+  (s?.document_sha256 === e.document_sha256 || (!hashRequired && !Object.hasOwn(s, 'document_sha256'))) &&
   s?.publication_date === e.publication_date && s?.collected_at === e.collected_at &&
   (page === undefined || s?.page === page);
 
@@ -52,35 +56,44 @@ export function auditPublishedRelease({ batches, recoveryByYear, data, checkedAt
       if (!live || !raw || live.id !== raw.id || issuerKey(live.issuer_name) !== key) errors.push('live_identity_mismatch');
       if (live?.board !== e.board || live?.status !== 'listed') errors.push('live_board_or_status_mismatch');
       for (const evidence of ['board_evidence', 'status_evidence']) {
-        if (!live?.[evidence]?.some((s) => sourceMatches(s, e))) errors.push(evidence + '_mismatch');
+        if (!live?.[evidence]?.some((s) => sourceMatches(s, e, undefined, false))) errors.push(evidence + '_mismatch');
       }
       for (const field of FIELDS) {
         const fact = e.facts[field], retained = raw?.[field], displayed = live?.[field];
-        if (retained?.value !== fact.value || retained?.status !== 'verified' ||
+        if (retained?.value !== fact.value || retained?.status !== 'verified' || retained?.source_value !== fact.source_value ||
             !sourceMatches(retained?.source, e) || retained?.page !== (fact.page ?? null)) {
           errors.push('recovery_' + field + '_mismatch');
         }
         if (displayed?.value !== fact.value || displayed?.status !== 'verified' ||
-            !Array.isArray(displayed?.corrections) || !displayed?.evidence?.some((s) => sourceMatches(s, e, fact.page ?? null))) {
+            !Array.isArray(displayed?.corrections) ||
+            JSON.stringify(displayed.corrections) !== JSON.stringify(retained?.corrections ?? []) ||
+            !displayed?.evidence?.some((s) => sourceMatches(s, e, fact.page ?? null, false))) {
           errors.push('live_' + field + '_mismatch');
         }
       }
       // Later source-backed enrichment is allowed; missing must never mean zero/guessed.
       for (const field of OTHER_FIELDS) {
         const f = live?.[field];
-        if (!f || (f.status === 'missing' && f.value !== null) ||
-            (f.status === 'verified' && (f.value === null || !f.evidence?.length))) errors.push('invalid_' + field);
+        if (!f || !['missing', 'verified', 'provisional', 'conflict'].includes(f.status) || !Array.isArray(f.evidence) ||
+            (f.status === 'missing' ? f.value !== null || f.evidence.length !== 0 : f.value == null || !f.evidence.length)) {
+          errors.push('invalid_' + field);
+        }
       }
       results.push({ issuer_name: e.issuer_name, listing_notice_no: e.listing_notice_no,
         manifest: manifest_path, public_occurrences: hits.length, recovery_occurrences: rawHits.length,
         facts: Object.fromEntries(FIELDS.map((f) => [f, live?.[f]?.value ?? null])),
-        null_fields: OTHER_FIELDS.filter((f) => live?.[f]?.value === null), errors });
+        null_fields: OTHER_FIELDS.filter((f) => live?.[f]?.value === null),
+        retained_document_hash_fields: FIELDS.filter((f) => raw?.[f]?.source?.document_sha256 === e.document_sha256).length,
+        live_document_hash_fields: FIELDS.filter((f) => live?.[f]?.evidence?.some((s) => s.document_sha256 === e.document_sha256)).length, errors });
     }
   }
   return { status: results.every((r) => !r.errors.length) ? 'verified' : 'failed',
     checked_at: checkedAt, dataset_generated_at: data.generated_at, published_records: data.records.length,
     checked_issuers: results.length, checked_fields: results.length * FIELDS.length,
-    failed_issuers: results.filter((r) => r.errors.length).length, results };
+    failed_issuers: results.filter((r) => r.errors.length).length,
+    document_hash_scope: { retained_fields: results.reduce((n, r) => n + r.retained_document_hash_fields, 0),
+      serialized_live_fields: results.reduce((n, r) => n + r.live_document_hash_fields, 0),
+      note: 'Original document hashes are verified in retained recovery. Missing public hashes are not reported as live hash verification.' }, results };
 }
 
 export function loadRelease(root, paths) {
