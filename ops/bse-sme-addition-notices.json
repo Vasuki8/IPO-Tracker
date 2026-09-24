@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "parser_version": "1.3.0",
-  "updated_at": "2026-09-24T18:12:33.727Z",
+  "updated_at": "2026-09-24T20:00:39.470Z",
   "bootstrap": {
     "source_run_id": "35939161246",
     "source_commit_sha": "7eedd8f9668cd7fce51d373427d7a2d7eafd7a8c",
@@ -17,7 +17,7 @@
     "eligible_count": 236,
     "newest_notice_no": "20260821-22",
     "oldest_notice_no": "20200113-10",
-    "observed_at": "2026-09-24T18:12:33.727Z"
+    "observed_at": "2026-09-24T20:00:39.470Z"
   },
   "notices": {
     "20260821-22": {
@@ -3674,6 +3674,508 @@
       "parsed_entry_count": 0,
       "parsed_entries": [],
       "error": "no_parseable_listing_reference"
+    },
+    "20231206-8": {
+      "notice_no": "20231206-8",
+      "notice_date": "2023-12-06",
+      "subject": "Additions to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "unparseable",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T20:00:39.470Z",
+      "last_attempted_at": "2026-09-24T20:00:39.470Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20231206-8",
+      "pdf_url": null,
+      "extracted_text_sha256": "b24ef957d7bc69d17f70c81050668d9691e7c2018f0f279aeb27621b5012e9bc",
+      "parsed_entry_count": 0,
+      "parsed_entries": [],
+      "error": "no_parseable_listing_reference"
+    },
+    "20231205-10": {
+      "notice_no": "20231205-10",
+      "notice_date": "2023-12-05",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T20:00:39.470Z",
+      "last_attempted_at": "2026-09-24T20:00:39.470Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20231205-10",
+      "pdf_url": null,
+      "extracted_text_sha256": "bc0bc333887d4cc07fe8b7501b4e5ee2b134d914eef148527c89731712e938f2",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20231204-38",
+          "issuer_name": "Swashthik Plascon Limited",
+          "bse_scrip_code": "544035",
+          "listing_date": "2023-12-05",
+          "listing_date_raw": "December 05, 2023",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20231204-38"
+        }
+      ],
+      "error": null
+    },
+    "20231128-11": {
+      "notice_no": "20231128-11",
+      "notice_date": "2023-11-28",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T20:00:39.470Z",
+      "last_attempted_at": "2026-09-24T20:00:39.470Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20231128-11",
+      "pdf_url": null,
+      "extracted_text_sha256": "405e72769fde5b21bc80bf12c30ebbd441aa5780ecf0919dd389581a402fd61c",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20231124-50",
+          "issuer_name": "Arrowhead Separation Engineering Limited",
+          "bse_scrip_code": "544025",
+          "listing_date": "2023-11-28",
+          "listing_date_raw": "November 28, 2023",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20231124-50"
+        }
+      ],
+      "error": null
+    },
+    "20231117-21": {
+      "notice_no": "20231117-21",
+      "notice_date": "2023-11-17",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T20:00:39.470Z",
+      "last_attempted_at": "2026-09-24T20:00:39.470Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20231117-21",
+      "pdf_url": null,
+      "extracted_text_sha256": "b80ae557698d4f52fd96ddcc0b5426b50e0a38125bc0b81d5215142e9448b005",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20231116-15",
+          "issuer_name": "Kalyani Cast-Tech Limited",
+          "bse_scrip_code": "544023",
+          "listing_date": "2023-11-17",
+          "listing_date_raw": "November 17, 2023",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20231116-15"
+        }
+      ],
+      "error": null
+    },
+    "20231012-16": {
+      "notice_no": "20231012-16",
+      "notice_date": "2023-10-12",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T20:00:39.470Z",
+      "last_attempted_at": "2026-09-24T20:00:39.470Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20231012-16",
+      "pdf_url": null,
+      "extracted_text_sha256": "fb9fc14e8a90dca260e51f5b7ddf4cd61da653bfd431d657e349eebb5c6ae649",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20231011-14",
+          "issuer_name": "Vivaa Tradecom Limited",
+          "bse_scrip_code": "544002",
+          "listing_date": "2023-10-12",
+          "listing_date_raw": "October 12, 2023",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20231011-14"
+        }
+      ],
+      "error": null
+    },
+    "20231011-10": {
+      "notice_no": "20231011-10",
+      "notice_date": "2023-10-11",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T20:00:39.470Z",
+      "last_attempted_at": "2026-09-24T20:00:39.470Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20231011-10",
+      "pdf_url": null,
+      "extracted_text_sha256": "8734a7fbc4d0a980d00a537b0a3371de7e9e92171ed3b6059098957f450c58f2",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20231010-19",
+          "issuer_name": "Sunita Tools Limited",
+          "bse_scrip_code": "544001",
+          "listing_date": "2023-10-11",
+          "listing_date_raw": "October 11, 2023",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20231010-19"
+        }
+      ],
+      "error": null
+    },
+    "20231010-13": {
+      "notice_no": "20231010-13",
+      "notice_date": "2023-10-10",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T20:00:39.470Z",
+      "last_attempted_at": "2026-09-24T20:00:39.470Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20231010-13",
+      "pdf_url": null,
+      "extracted_text_sha256": "d27249810d044746ac98710d95203786e2cfc07b3af2213d252848e190955263",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20231009-25",
+          "issuer_name": "CITY CROPS AGRO LIMITED",
+          "bse_scrip_code": "544000",
+          "listing_date": "2023-10-10",
+          "listing_date_raw": "October 10, 2023",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20231009-25"
+        }
+      ],
+      "error": null
+    },
+    "20230915-19": {
+      "notice_no": "20230915-19",
+      "notice_date": "2023-09-15",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T20:00:39.470Z",
+      "last_attempted_at": "2026-09-24T20:00:39.470Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20230915-19",
+      "pdf_url": null,
+      "extracted_text_sha256": "a34f5731e15df43870ce47b079b7430ef352b79312f537dee41a62fbcbcb2d9b",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20230914-34",
+          "issuer_name": "Kahan Packaging Limited",
+          "bse_scrip_code": "543979",
+          "listing_date": "2023-09-15",
+          "listing_date_raw": "September 15, 2023",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20230914-34"
+        }
+      ],
+      "error": null
+    },
+    "20230830-31": {
+      "notice_no": "20230830-31",
+      "notice_date": "2023-08-30",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T20:00:39.470Z",
+      "last_attempted_at": "2026-09-24T20:00:39.470Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20230830-31",
+      "pdf_url": null,
+      "extracted_text_sha256": "9b0317f57353d887945ecf3adf77bb1e4831239dcb24dd7d8ef7cc048df32f7c",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20230829-9",
+          "issuer_name": "Bondada Engineering Limited",
+          "bse_scrip_code": "543971",
+          "listing_date": "2023-08-30",
+          "listing_date_raw": "August 30, 2023",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20230829-9"
+        }
+      ],
+      "error": null
+    },
+    "20230804-14": {
+      "notice_no": "20230804-14",
+      "notice_date": "2023-08-04",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T20:00:39.470Z",
+      "last_attempted_at": "2026-09-24T20:00:39.470Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20230804-14",
+      "pdf_url": null,
+      "extracted_text_sha256": "5e97c35b2459b64a29e601d3b440e81caff189852f57d0d3451a4d9d60f887d0",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20230803-17",
+          "issuer_name": "Innovatus Entertainment Networks Limited",
+          "bse_scrip_code": "543951",
+          "listing_date": "2023-08-04",
+          "listing_date_raw": "August 04, 2023",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20230803-17"
+        }
+      ],
+      "error": null
+    },
+    "20230726-8": {
+      "notice_no": "20230726-8",
+      "notice_date": "2023-07-26",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T20:00:39.470Z",
+      "last_attempted_at": "2026-09-24T20:00:39.470Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20230726-8",
+      "pdf_url": null,
+      "extracted_text_sha256": "3ba55d337e2a55c5cd8eb5abbe25339b369979d8dbf3c2293607af619f34463c",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20230725-25",
+          "issuer_name": "ASARFI HOSPITAL LIMITED",
+          "bse_scrip_code": "543943",
+          "listing_date": "2023-07-26",
+          "listing_date_raw": "July 26, 2023",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20230725-25"
+        }
+      ],
+      "error": null
+    },
+    "20230719-15": {
+      "notice_no": "20230719-15",
+      "notice_date": "2023-07-19",
+      "subject": "Additions to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "unparseable",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T20:00:39.470Z",
+      "last_attempted_at": "2026-09-24T20:00:39.470Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20230719-15",
+      "pdf_url": null,
+      "extracted_text_sha256": "64ffb18809d1e155b80ee72e960b6fd8aaa6a78416dfdd5e539c81837ad0402e",
+      "parsed_entry_count": 0,
+      "parsed_entries": [],
+      "error": "no_parseable_listing_reference"
+    },
+    "20230705-17": {
+      "notice_no": "20230705-17",
+      "notice_date": "2023-07-05",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T20:00:39.470Z",
+      "last_attempted_at": "2026-09-24T20:00:39.470Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20230705-17",
+      "pdf_url": null,
+      "extracted_text_sha256": "47a8e1869f43c827f6c54d94705ec11d9256c1676e15bae39ce5385cd2c0e912",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20230704-8",
+          "issuer_name": "Veefin Solutions Limited",
+          "bse_scrip_code": "543931",
+          "listing_date": "2023-07-05",
+          "listing_date_raw": "July 05, 2023",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20230704-8"
+        }
+      ],
+      "error": null
+    },
+    "20230630-23": {
+      "notice_no": "20230630-23",
+      "notice_date": "2023-06-30",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T20:00:39.470Z",
+      "last_attempted_at": "2026-09-24T20:00:39.470Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20230630-23",
+      "pdf_url": null,
+      "extracted_text_sha256": "cd27cb953578ab4bb890af720057f703a0b6faa6f9e9e273daa84bff2626c98e",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20230628-6",
+          "issuer_name": "Cosmic CRF Limited",
+          "bse_scrip_code": "543928",
+          "listing_date": "2023-06-30",
+          "listing_date_raw": "June 30, 2023",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20230628-6"
+        }
+      ],
+      "error": null
+    },
+    "20230623-14": {
+      "notice_no": "20230623-14",
+      "notice_date": "2023-06-23",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T20:00:39.470Z",
+      "last_attempted_at": "2026-09-24T20:00:39.470Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20230623-14",
+      "pdf_url": null,
+      "extracted_text_sha256": "7bd4313302dad6d40958d0ce823f73e2eb36185479a6a5d0e0033b0c7ed7b35e",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20230622-15",
+          "issuer_name": "Bizotic Commercial Limited",
+          "bse_scrip_code": "543926",
+          "listing_date": "2023-06-23",
+          "listing_date_raw": "June 23, 2023",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20230622-15"
+        }
+      ],
+      "error": null
+    },
+    "20230619-11": {
+      "notice_no": "20230619-11",
+      "notice_date": "2023-06-19",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T20:00:39.470Z",
+      "last_attempted_at": "2026-09-24T20:00:39.470Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20230619-11",
+      "pdf_url": null,
+      "extracted_text_sha256": "e14e406f8c4282ec35a2d653ae6150b4880375ef4761236e8f1ecf95f2b77478",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20230616-11",
+          "issuer_name": "Sonalis Consumer Products Limited",
+          "bse_scrip_code": "543924",
+          "listing_date": "2023-06-19",
+          "listing_date_raw": "June 19, 2023",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20230616-11"
+        }
+      ],
+      "error": null
+    },
+    "20230613-9": {
+      "notice_no": "20230613-9",
+      "notice_date": "2023-06-13",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T20:00:39.470Z",
+      "last_attempted_at": "2026-09-24T20:00:39.470Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20230613-9",
+      "pdf_url": null,
+      "extracted_text_sha256": "8aa08711be41073195e9e127a61e1b2e3fd74d7035607f8b62403ba0a2b2a20e",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20230612-47",
+          "issuer_name": "Comrade Appliances Limited",
+          "bse_scrip_code": "543921",
+          "listing_date": "2023-06-13",
+          "listing_date_raw": "June 13, 2023",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20230612-47"
+        }
+      ],
+      "error": null
+    },
+    "20230612-19": {
+      "notice_no": "20230612-19",
+      "notice_date": "2023-06-12",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T20:00:39.470Z",
+      "last_attempted_at": "2026-09-24T20:00:39.470Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20230612-19",
+      "pdf_url": null,
+      "extracted_text_sha256": "9c74b013d9accef5f35a9b6e3aad1b3a8b3097faf6f52410fb221dfb47178f11",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20230609-10",
+          "issuer_name": "CFF Fluid Control Limited",
+          "bse_scrip_code": "543920",
+          "listing_date": "2023-06-12",
+          "listing_date_raw": "June 12, 2023",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20230609-10"
+        }
+      ],
+      "error": null
+    },
+    "20230605-13": {
+      "notice_no": "20230605-13",
+      "notice_date": "2023-06-05",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T20:00:39.470Z",
+      "last_attempted_at": "2026-09-24T20:00:39.470Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20230605-13",
+      "pdf_url": null,
+      "extracted_text_sha256": "9b8c558fb183c4a059085b7da30274e96347c7451175f38a2668cec6a8c8b185",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20230602-19",
+          "issuer_name": "Hemant Surgical Industries Limited",
+          "bse_scrip_code": "543916",
+          "listing_date": "2023-06-05",
+          "listing_date_raw": "June 05, 2023",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20230602-19"
+        }
+      ],
+      "error": null
+    },
+    "20230511-13": {
+      "notice_no": "20230511-13",
+      "notice_date": "2023-05-11",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T20:00:39.470Z",
+      "last_attempted_at": "2026-09-24T20:00:39.470Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20230511-13",
+      "pdf_url": null,
+      "extracted_text_sha256": "71d027a78d82a104981c182896317e1113e148db4d3f4a713cfeb8b05309bdef",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20230510-10",
+          "issuer_name": "Innokaiz India Limited",
+          "bse_scrip_code": "543905",
+          "listing_date": "2023-05-11",
+          "listing_date_raw": "May 11, 2023",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20230510-10"
+        }
+      ],
+      "error": null
     }
   }
 }
