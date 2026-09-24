@@ -8,6 +8,9 @@ on:
     branches: ["main"]
     paths:
       - "data/bse-ipo-sources.json"
+      - "data/verified-bse-listings/**"
+      - "scripts/apply-verified-bse-listings.mjs"
+      - "scripts/test-apply-verified-bse-listings.mjs"
       - "scripts/audit-bse-sme-ipo-index.mjs"
       - "scripts/test-audit-bse-sme-ipo-index.mjs"
       - "scripts/audit-historical-coverage.mjs"
@@ -100,6 +103,9 @@ jobs:
 
       - name: Materialize 2020-2025 NSE historical IPO universes
         run: node scripts/sync-nse-historical.mjs --year=2020-2025
+
+      - name: Apply reviewed BSE listing evidence without network access
+        run: node scripts/apply-verified-bse-listings.mjs
 
       - name: Apply retained official BSE IPO sources
         run: node scripts/extract-bse-ipo-fields.mjs
