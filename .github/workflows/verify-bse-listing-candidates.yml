@@ -20,6 +20,8 @@ on:
       - "data/discovery/bse-listing-candidates-2026-09-24-batch12.json"
       - "data/discovery/bse-listing-candidates-2026-09-24-batch13.json"
       - "data/discovery/bse-listing-candidates-2026-09-24-batch14.json"
+      - "data/discovery/bse-listing-candidates-2026-09-24-batch15.json"
+      - "data/discovery/bse-listing-candidates-2026-09-24-batch16.json"
       - ".github/workflows/verify-bse-listing-candidates.yml"
   push:
     branches: ["main"]
@@ -39,6 +41,8 @@ on:
       - "data/discovery/bse-listing-candidates-2026-09-24-batch12.json"
       - "data/discovery/bse-listing-candidates-2026-09-24-batch13.json"
       - "data/discovery/bse-listing-candidates-2026-09-24-batch14.json"
+      - "data/discovery/bse-listing-candidates-2026-09-24-batch15.json"
+      - "data/discovery/bse-listing-candidates-2026-09-24-batch16.json"
       - ".github/workflows/verify-bse-listing-candidates.yml"
 
 permissions:
@@ -47,7 +51,7 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -137,13 +141,25 @@ jobs:
       - name: Check official PDF archive for cursor4 batch 14 notices
         continue-on-error: true
         run: node scripts/retry-bse-listing-pdf.mjs --report="${{ runner.temp }}/bse-listing-verification/batch14-report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/batch14-notices" --upgrade-verified-html=true
+      - name: Verify cursor5 batch 15 issuer-specific listing notices
+        continue-on-error: true
+        run: node scripts/verify-bse-listing-candidates.mjs --input=data/discovery/bse-listing-candidates-2026-09-24-batch15.json --output="${{ runner.temp }}/bse-listing-verification/batch15-report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/batch15-notices"
+      - name: Check official PDF archive for cursor5 batch 15 notices
+        continue-on-error: true
+        run: node scripts/retry-bse-listing-pdf.mjs --report="${{ runner.temp }}/bse-listing-verification/batch15-report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/batch15-notices" --upgrade-verified-html=true
+      - name: Verify cursor5 batch 16 issuer-specific listing notices
+        continue-on-error: true
+        run: node scripts/verify-bse-listing-candidates.mjs --input=data/discovery/bse-listing-candidates-2026-09-24-batch16.json --output="${{ runner.temp }}/bse-listing-verification/batch16-report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/batch16-notices"
+      - name: Check official PDF archive for cursor5 batch 16 notices
+        continue-on-error: true
+        run: node scripts/retry-bse-listing-pdf.mjs --report="${{ runner.temp }}/bse-listing-verification/batch16-report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/batch16-notices" --upgrade-verified-html=true
       - name: Report evidence formats for verified candidates
         shell: bash
         run: |
           node --input-type=module <<'JS'
           import fs from 'node:fs';
           const missing = [];
-          for (const batch of ['batch4', 'batch5', 'batch8', 'batch9', 'batch10', 'batch11', 'batch12', 'batch13', 'batch14']) {
+          for (const batch of ['batch4', 'batch5', 'batch8', 'batch9', 'batch10', 'batch11', 'batch12', 'batch13', 'batch14', 'batch15', 'batch16']) {
             const file = `${process.env.RUNNER_TEMP}/bse-listing-verification/${batch}-report.json`;
             const report = JSON.parse(fs.readFileSync(file, 'utf8'));
             for (const r of report.results.filter((item) => item.status === 'verified')) {
@@ -162,7 +178,7 @@ jobs:
         run: |
           node --input-type=module <<'JS'
           import fs from 'node:fs';
-          for (const batch of ['batch4', 'batch5', 'batch12', 'batch13', 'batch14']) {
+          for (const batch of ['batch4', 'batch5', 'batch12', 'batch13', 'batch14', 'batch15', 'batch16']) {
             const file = `${process.env.RUNNER_TEMP}/bse-listing-verification/${batch}-report.json`;
             if (!fs.existsSync(file)) {
               console.log(JSON.stringify({ batch, report: 'missing' }));

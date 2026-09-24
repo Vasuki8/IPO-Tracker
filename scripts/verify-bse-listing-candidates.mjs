@@ -27,6 +27,15 @@ export function issuerKey(value) {
   return String(value ?? "").toLowerCase().replace(/&/g, " and ")
     .replace(/\bltd\b/g, "limited").replace(/[^a-z0-9]+/g, " ").trim();
 }
+function listingIssuerKey(value) {
+  // BSE sometimes appends a historical alias to the current legal issuer name.
+  // Ignore only a trailing "(Formerly Known as ...)" clause for listing identity;
+  // every other current-name, notice, code, date, board and term check stays strict.
+  const currentName = String(value ?? "")
+    .replace(/\s*\(\s*formerly\s+known\s+as\b[^)]*\)\s*$/i, "")
+    .trim();
+  return issuerKey(currentName);
+}
 export function strictDate(value) {
   const raw = String(value ?? "").trim();
   const months = ["january","february","march","april","may","june","july","august","september","october","november","december"];
@@ -78,7 +87,7 @@ export function verifyListingHtml(html, candidate, asOf = new Date().toISOString
   const tableIssuer = body.match(/\bName of the company\s+(.{1,180}?)\s+Registered Office\b/i)?.[1] ?? null;
   const bodyIssuer = body.match(/\bthe Equity Shares of\s+(.{1,180}?)\s+shall be listed\b/i)?.[1] ?? null;
   const issuerMentions = [parsed.company, tableIssuer, bodyIssuer].filter(Boolean);
-  const issuerNames = unique(issuerMentions.map(issuerKey));
+  const issuerNames = unique(issuerMentions.map(listingIssuerKey));
   const issuerName = tableIssuer ?? parsed.company ?? bodyIssuer;
   const publicationRaw = body.match(/\bNotice Date\s+(\d{1,2}\s+[A-Za-z]{3}\s+\d{4})\s+Category\b/i)?.[1] ?? null;
   let publicationDate = null;
@@ -95,7 +104,7 @@ export function verifyListingHtml(html, candidate, asOf = new Date().toISOString
       observed_identity: { issuer_name: null, notice_numbers: [], scrip_codes: [], listing_dates: [], board: null },
       facts: null, response_text: body };
   }
-  if (issuerNames.length !== 1 || issuerNames[0] !== issuerKey(candidate.issuer_name)) reasons.push("issuer_mismatch_or_missing");
+  if (issuerNames.length !== 1 || issuerNames[0] !== listingIssuerKey(candidate.issuer_name)) reasons.push("issuer_mismatch_or_missing");
   if (noticeNos.length !== 1 || noticeNos[0] !== candidate.listing_notice_no) reasons.push("notice_number_mismatch_or_missing");
   if (codes.length !== 1 || codes[0] !== candidate.bse_scrip_code) reasons.push("scrip_code_mismatch_or_missing");
   if (dates.length !== 1 || dates[0] == null || dates[0] !== candidate.listing_date) reasons.push("listing_date_mismatch_or_missing");

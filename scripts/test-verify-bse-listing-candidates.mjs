@@ -88,3 +88,34 @@ assert.equal(verify(html + " Name of the company Other Limited Registered Office
   assert.equal(checked.facts.market_lot.value, 1600);
   assert.equal(checked.facts.issue_price.value, 72);
 }
+
+{
+  const candidate = {
+    issuer_name: "Neopolitan Pizza and Foods Ltd",
+    bse_scrip_code: "544269",
+    listing_notice_no: "20241008-60",
+    listing_date: "2024-10-09",
+    listing_notice_url: listingUrl("20241008-60")
+  };
+  const source =
+    "Notice No. 20241008-60 Notice Date 08 Oct 2024 Category Company related Segment SME " +
+    "Subject Listing of Equity Shares of NEOPOLITAN PIZZA AND FOODS LIMITED (Formerly Known as Neopolitan Pizza Limited) " +
+    "Attachments Annexure I.pdf Content Trading Members are hereby informed that effective from Wednesday, October 09, 2024, " +
+    "the Equity Shares of NEOPOLITAN PIZZA AND FOODS LIMITED (Formerly Known as Neopolitan Pizza Limited) shall be listed and admitted " +
+    "Name of the company NEOPOLITAN PIZZA AND FOODS LIMITED (Formerly Known as Neopolitan Pizza Limited) Registered Office Vadodara " +
+    "Scrip Code 544269 Market Lot 6000 Issue Price for the current Public issue Rs. 20/- per share";
+  const checked = verifyListingHtml(source, candidate, "2026-09-24T00:00:00Z");
+  assert.equal(checked.status, "verified");
+  assert.equal(
+    checked.observed_identity.issuer_name,
+    "NEOPOLITAN PIZZA AND FOODS LIMITED (Formerly Known as Neopolitan Pizza Limited)"
+  );
+  assert.equal(checked.facts.market_lot.value, 6000);
+  assert.equal(checked.facts.issue_price.value, 20);
+  assert.equal(
+    verifyListingHtml(source, { ...candidate, issuer_name: "Neopolitan Pizza Limited" }, "2026-09-24T00:00:00Z").status,
+    "rejected",
+    "former legal name must not replace the current issuer identity"
+  );
+}
+
