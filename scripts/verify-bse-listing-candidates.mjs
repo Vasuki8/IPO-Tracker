@@ -6,7 +6,7 @@ import { parseBseListingNotice } from "./extract-bse-ipo-fields.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 export const MAX_CANDIDATES = 15;
-export const VERIFIER_VERSION = "1.2.0";
+export const VERIFIER_VERSION = "1.1.0";
 const MAX_RESPONSE_BYTES = 2 * 1024 * 1024;
 const HOME = "https://www.bseindia.com/";
 const USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36";
@@ -88,10 +88,7 @@ export function verifyListingHtml(html, candidate, asOf = new Date().toISOString
     publicationDate = strictDate(`${year}-${String(m).padStart(2,"0")}-${day.padStart(2,"0")}`);
   }
   const codes = unique([...body.matchAll(/\b(?:Scrip|Security)\s+Code\s*[:\-]?\s*(\d{6})\b/gi)].map((m) => m[1]));
-  // Leapfrog notice 20260623-30 renders "effective" but pdftotext drops its ff
-  // ligature. Accept only that observed label variant; keep the original match
-  // verbatim as source_value and retain all date/identity disagreement guards.
-  const dateMatches = [...body.matchAll(/\b(?:effective|e ective)\s+from\s+(?:(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s*,?\s*)?([A-Za-z]+\s+\d{1,2},\s*\d{4})/gi)];
+  const dateMatches = [...body.matchAll(/\be(?:ff|\s+)ective\s+from\s+(?:(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s*,?\s*)?([A-Za-z]+\s+\d{1,2},\s*\d{4})/gi)];
   const dates = unique(dateMatches.map((m) => strictDate(m[1])));
   if (!issuerName && !noticeNos.length && !codes.length && !dates.length && !parsed.board) {
     return { status: "unavailable", reasons: ["notice_content_missing"],

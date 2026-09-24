@@ -26,6 +26,28 @@ export function verifyListingPdfText(extracted, candidate, asOf) {
   return checked;
 }
 
+export function applyPdfVerificationResult(result, checked, { url, attempt, bytesLength, evidenceFile }) {
+  result.html_attempt = {
+    source_url: result.source_url,
+    response_sha256: result.response_sha256,
+    collected_at: result.collected_at,
+    evidence_file: result.evidence_file,
+    reasons: result.reasons
+  };
+  Object.assign(result, checked, {
+    source_url: url,
+    source_kind: "BSE Listing Notice PDF",
+    response_sha256: attempt.response_sha256,
+    response_bytes: bytesLength,
+    http_status: attempt.http_status,
+    content_type: attempt.content_type,
+    collected_at: attempt.collected_at,
+    evidence_file: evidenceFile,
+    scanned_pdf_pages: "1-3"
+  });
+  return result;
+}
+
 export async function retryPdf(report, evidenceDir, fetchImpl = fetch) {
   validateBatch({ schema_version: report.schema_version, candidates: report.results.map((r) => r.candidate) });
   fs.mkdirSync(evidenceDir, { recursive: true });
@@ -62,10 +84,12 @@ export async function retryPdf(report, evidenceDir, fetchImpl = fetch) {
       attempt.status = checked.status;
       attempt.reasons = checked.reasons;
       attempt.response_text = checked.response_text;
-      if (checked.status === "verified") {
-        result.html_attempt = { source_url: result.source_url, response_sha256: result.response_sha256, collected_at: result.collected_at, evidence_file: result.evidence_file, reasons: result.reasons };
-        Object.assign(result, checked, { source_url: url, source_kind: "BSE Listing Notice PDF", response_sha256: attempt.response_sha256, response_bytes: bytes.length, http_status: attempt.http_status, content_type: attempt.content_type, collected_at: attempt.collected_at, evidence_file: name, scanned_pdf_pages: "1-3" });
-      }
+      applyPdfVerificationResult(result, checked, {
+        url,
+        attempt,
+        bytesLength: bytes.length,
+        evidenceFile: name
+      });
     } catch (error) { attempt.error = String(error?.message || error); }
     finally { attempt.collected_at ||= new Date().toISOString(); fs.rmSync(dir, { recursive: true, force: true }); }
   }

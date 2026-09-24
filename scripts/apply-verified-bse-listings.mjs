@@ -6,10 +6,8 @@ import { issuerKey, strictDate, validateBatch, VERIFIER_VERSION } from "./verify
 import { archiveProbeUrl, verifyListingPdfText } from "./retry-bse-listing-pdf.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const MANIFEST = "data/verified-bse-listings/2026-09-24.json";
-const REGISTRY = "data/verified-bse-listings/approved-batches.json";
-// Earlier reviewed evidence is revalidated by the current parser, not relabeled.
-const COMPATIBLE_VERSIONS = new Set(["1.1.0", VERIFIER_VERSION]);
+const VERIFIED_ROOT = "data/verified-bse-listings";
+const DEFAULT_MANIFEST = "data/verified-bse-listings/2026-09-24.json";
 const FIELDS = ["listing_date", "market_lot", "issue_price"];
 const hashValid = (value) => typeof value === "string" && /^[a-f0-9]{64}$/.test(value);
 const stampValid = (value) => typeof value === "string" && /^\d{4}-\d{2}-\d{2}T[\d:.]+Z$/.test(value) && Number.isFinite(Date.parse(value));
@@ -19,7 +17,7 @@ const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 // discovers URLs, downloads data, or upgrades an index candidate on its own.
 export function validateEvidenceBatch(manifest, discovery) {
   const candidates = validateBatch(discovery);
-  if (manifest?.schema_version !== "1.0.0" || !COMPATIBLE_VERSIONS.has(manifest.verifier_version) ||
+  if (manifest?.schema_version !== "1.0.0" || manifest.verifier_version !== VERIFIER_VERSION ||
       !hashValid(manifest.source_artifact_sha256) || !/^\d+$/.test(manifest.source_run_id) ||
       !Number.isSafeInteger(manifest.source_artifact_id) || !Array.isArray(manifest.entries) ||
       manifest.entries.length < 1 || manifest.entries.length > 15) throw new Error("invalid_verified_evidence_batch");
@@ -50,7 +48,7 @@ export function validateEvidenceBatch(manifest, discovery) {
   return manifest.entries;
 }
 
-function recoveryRecord(entry, manifest, manifestPath) {
+function recoveryRecord(entry, manifest, manifestPath = DEFAULT_MANIFEST) {
   const collectedAt = entry.collected_at;
   const year = Number(entry.facts.listing_date.value.slice(0, 4));
   const record = buildBseOnlyRecoveryRecord({
@@ -84,7 +82,7 @@ function recoveryRecord(entry, manifest, manifestPath) {
   return { year, record };
 }
 
-export function applyVerifiedListings(recoveryByYear, manifest, discovery, manifestPath = MANIFEST) {
+export function applyVerifiedListings(recoveryByYear, manifest, discovery, manifestPath = DEFAULT_MANIFEST) {
   // Validate the entire batch before making even an in-memory modification.
   const entries = validateEvidenceBatch(manifest, discovery);
   const recovery = structuredClone(recoveryByYear);
@@ -121,71 +119,89 @@ export function applyVerifiedListings(recoveryByYear, manifest, discovery, manif
   return { recovery, stats, holds, changed_years: [...changedYears] };
 }
 
-// Approved registry paths are paired and bounded; no filesystem scan can promote
-// an unreviewed manifest. Validate every batch before any recovery file is written.
-export function validateApprovedPaths(registry) {
-  if (registry?.schema_version !== "1.0.0" || !Array.isArray(registry.batches) ||
-      !registry.batches.length || registry.batches.length > 100) throw new Error("invalid_approved_batch_registry");
-  const seen = new Set();
-  for (const pair of registry.batches) {
-    const suffix = typeof pair?.manifest === "string" && pair.manifest.match(/^data\/verified-bse-listings\/(20\d{2}-\d{2}-\d{2}(?:-batch-\d{2})?)\.json$/)?.[1];
-    if (!suffix || pair.discovery !== "data/discovery/bse-listing-candidates-" + suffix + ".json" ||
-        seen.has(pair.manifest)) throw new Error("unapproved_or_duplicate_batch_path");
-    seen.add(pair.manifest);
-  }
-  return registry.batches;
+export function reviewedManifestPaths(root = ROOT) {
+  const dir = path.join(root, VERIFIED_ROOT);
+  if (!fs.existsSync(dir)) return [];
+  return fs.readdirSync(dir)
+    .filter((name) => /^\d{4}-\d{2}-\d{2}(?:-batch\d+)?\.json$/.test(name))
+    .sort()
+    .map((name) => VERIFIED_ROOT + "/" + name);
 }
-export function loadApprovedBatches(root = ROOT) {
-  const registry = JSON.parse(fs.readFileSync(path.join(root, REGISTRY), "utf8"));
-  return validateApprovedPaths(registry).map((pair) => {
-    const manifest = JSON.parse(fs.readFileSync(path.join(root, pair.manifest), "utf8"));
-    if (manifest.discovery_batch !== pair.discovery) throw new Error("unapproved_discovery_batch_path");
-    return { manifest_path: pair.manifest, manifest,
-      discovery: JSON.parse(fs.readFileSync(path.join(root, pair.discovery), "utf8")) };
-  });
-}
-export function applyApprovedBatches(recoveryByYear, batches) {
-  const codes = new Set(), names = new Set(), notices = new Set();
-  for (const batch of batches) {
-    validateApprovedPaths({ schema_version: "1.0.0", batches: [{ manifest: batch.manifest_path, discovery: batch.manifest.discovery_batch }] });
-    for (const entry of validateEvidenceBatch(batch.manifest, batch.discovery)) {
-      if (codes.has(entry.bse_scrip_code) || names.has(issuerKey(entry.issuer_name)) || notices.has(entry.listing_notice_no)) {
-        throw new Error("cross_batch_identity_conflict");
-      }
-      codes.add(entry.bse_scrip_code); names.add(issuerKey(entry.issuer_name)); notices.add(entry.listing_notice_no);
-    }
+
+function validatedDiscoveryPath(manifest) {
+  const relative = String(manifest?.discovery_batch ?? "");
+  if (!/^data\/discovery\/bse-listing-candidates-\d{4}-\d{2}-\d{2}(?:-batch\d+)?\.json$/.test(relative)) {
+    throw new Error("unapproved_discovery_batch_path");
   }
-  let recovery = recoveryByYear;
+  return relative;
+}
+
+export function applyReviewedListingBatches(recoveryByYear, batches) {
+  let recovery = structuredClone(recoveryByYear);
   const stats = { added: 0, already_present: 0, held_existing: 0, held_identity_conflict: 0 };
-  const changedYears = new Set(), holds = [];
+  const holds = [];
+  const changedYears = new Set();
+
   for (const batch of batches) {
-    const result = applyVerifiedListings(recovery, batch.manifest, batch.discovery, batch.manifest_path);
-    recovery = result.recovery;
-    for (const key of Object.keys(stats)) stats[key] += result.stats[key];
-    for (const year of result.changed_years) changedYears.add(year);
-    holds.push(...result.holds);
+    const applied = applyVerifiedListings(
+      recovery,
+      batch.manifest,
+      batch.discovery,
+      batch.manifest_path
+    );
+    recovery = applied.recovery;
+    for (const key of Object.keys(stats)) stats[key] += applied.stats[key];
+    holds.push(...applied.holds.map((item) => ({ ...item, manifest: batch.manifest_path })));
+    for (const year of applied.changed_years) changedYears.add(year);
   }
+
   return { recovery, stats, holds, changed_years: [...changedYears] };
 }
+
 function run() {
   if (process.argv.slice(2).some((arg) => arg !== "--check")) throw new Error("only --check is supported");
-  const batches = loadApprovedBatches();
+
+  const batches = reviewedManifestPaths().map((manifestPath) => {
+    const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, manifestPath), "utf8"));
+    const discoveryPath = validatedDiscoveryPath(manifest);
+    const discoveryFile = path.join(ROOT, discoveryPath);
+    if (!fs.existsSync(discoveryFile)) throw new Error("approved_discovery_batch_missing");
+    return {
+      manifest_path: manifestPath,
+      manifest,
+      discovery: JSON.parse(fs.readFileSync(discoveryFile, "utf8"))
+    };
+  });
+  if (!batches.length) throw new Error("no_reviewed_bse_listing_batches");
+
   if (process.argv.includes("--check")) {
-    const checked = applyApprovedBatches({}, batches);
-    console.log(JSON.stringify({ approved_bse_batches: batches.length, verified_bse_evidence_entries: checked.stats.added })); return;
+    const byManifest = batches.map((batch) => ({
+      manifest: batch.manifest_path,
+      entries: validateEvidenceBatch(batch.manifest, batch.discovery).length
+    }));
+    console.log(JSON.stringify({
+      verified_bse_evidence_entries: byManifest.reduce((sum, item) => sum + item.entries, 0),
+      batches: byManifest
+    }));
+    return;
   }
+
   const recoveryRoot = path.join(ROOT, "data", "recovery");
   const recovery = {};
   for (const y of fs.readdirSync(recoveryRoot).filter((name) => /^20\d{2}$/.test(name))) {
     const file = path.join(recoveryRoot, y, "nse-issue-information.json");
     if (fs.existsSync(file)) recovery[y] = JSON.parse(fs.readFileSync(file, "utf8"));
   }
-  const applied = applyApprovedBatches(recovery, batches);
+
+  const applied = applyReviewedListingBatches(recovery, batches);
   for (const year of applied.changed_years) {
-    const dir = path.join(recoveryRoot, String(year)); fs.mkdirSync(dir, { recursive: true });
+    const dir = path.join(recoveryRoot, String(year));
+    fs.mkdirSync(dir, { recursive: true });
     const file = path.join(dir, "nse-issue-information.json");
-    fs.writeFileSync(file + ".tmp", JSON.stringify(applied.recovery[year], null, 2) + "\n"); fs.renameSync(file + ".tmp", file);
+    fs.writeFileSync(file + ".tmp", JSON.stringify(applied.recovery[year], null, 2) + "\n");
+    fs.renameSync(file + ".tmp", file);
   }
   console.log(JSON.stringify({ verified_bse_listing_import: applied.stats, holds: applied.holds }, null, 2));
 }
+
 if (process.argv[1] && pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url) run();

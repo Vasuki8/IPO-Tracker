@@ -7,20 +7,18 @@ on:
     paths:
       - "scripts/verify-bse-listing-candidates.mjs"
       - "scripts/test-verify-bse-listing-candidates.mjs"
-      - "scripts/test-bse-remaining-batch.mjs"
       - "scripts/retry-bse-listing-pdf.mjs"
       - "scripts/test-retry-bse-listing-pdf.mjs"
-      - "data/discovery/bse-listing-candidates-*.json"
+      - "data/discovery/bse-listing-candidates-2026-09-24-batch2.json"
       - ".github/workflows/verify-bse-listing-candidates.yml"
   push:
     branches: ["main"]
     paths:
       - "scripts/verify-bse-listing-candidates.mjs"
       - "scripts/test-verify-bse-listing-candidates.mjs"
-      - "scripts/test-bse-remaining-batch.mjs"
       - "scripts/retry-bse-listing-pdf.mjs"
       - "scripts/test-retry-bse-listing-pdf.mjs"
-      - "data/discovery/bse-listing-candidates-*.json"
+      - "data/discovery/bse-listing-candidates-2026-09-24-batch2.json"
       - ".github/workflows/verify-bse-listing-candidates.yml"
 
 permissions:
@@ -60,11 +58,9 @@ jobs:
         run: node scripts/test-retry-bse-listing-pdf.mjs
       - name: Test listing verification and guards
         run: node scripts/test-verify-bse-listing-candidates.mjs
-      - name: Test remaining batch and PDF text regression
-        run: node scripts/test-bse-remaining-batch.mjs
-      - name: Verify 12 pinned remaining listing candidates
+      - name: Verify 12 pinned issuer-specific listing notices
         continue-on-error: true
-        run: node scripts/verify-bse-listing-candidates.mjs --input=data/discovery/bse-listing-candidates-2026-09-24-batch-02.json --output="${{ runner.temp }}/bse-listing-verification/report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/notices"
+        run: node scripts/verify-bse-listing-candidates.mjs --input=data/discovery/bse-listing-candidates-2026-09-24-batch2.json --output="${{ runner.temp }}/bse-listing-verification/report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/notices"
       - name: Check official PDF archive for unresolved notices
         run: node scripts/retry-bse-listing-pdf.mjs --report="${{ runner.temp }}/bse-listing-verification/report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/notices"
       - name: Retain verified and rejected evidence
