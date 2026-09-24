@@ -288,21 +288,62 @@ Production deployment run `35948287263` completed **successfully**, including th
 
 This was an operational metadata repair only; no IPO value or recovery evidence was changed.
 
-## Next task: durable historical BSE notice progress
+## Completed: durable historical BSE notice cursor — PR #173
 
-The original BSE catalog contained **236 eligible SME addition notices**. The completed discovery audit processed only the latest 20; **216 older notices remain outside that audit batch**.
+PR #173 merged at `2dcd60597c0fb8995a446efa00199138034b1603`.
 
-The next bounded P1/P2/P3 task is to build a **durable parser-versioned cursor/backfill** for official BSE SME addition notices so repeated runs advance through older notices instead of rescanning the newest 20.
+The BSE SME addition-notice backfill is now independent, bounded and durable:
+
+- operational state: `ops/bse-sme-addition-notices.json`;
+- parser version: `1.1.0`;
+- maximum batch: **20 notices**;
+- schedule: every two hours, independent of the live IPO critical path;
+- state is keyed by BSE notice ID, not positional offsets, so new notices do not shift historical progress;
+- parser-version changes requeue earlier notices deterministically;
+- unseen notices advance before retries so a failed notice cannot block the older backlog;
+- failed/fetch-error/unparseable notices remain in state with attempt timestamps and are retried after cooldown;
+- semantic state publication resets to latest main, merges notice-by-notice and retries pushes without rewriting IPO values.
+
+The newest 20 successful notices were bootstrapped from retained audit run `35939161246`, artifact `10783988662`, rather than being fetched again. That bootstrap represents 29 previously reviewed discovery references and remains operational state only.
+
+### First production historical batch
+
+Merge-triggered workflow run:
+
+- run: **`35952980189`**
+- conclusion: **success**
+- report artifact: **`10788684195`**
+- artifact SHA-256: `1dde2b06eb2ce178800e6fc382895b1ad57b7458be3077e3f46098c0a248b544`
+- state commit: **`6a8a21ce8c0befea1a3c67911472c3aff731c7f1`**
+
+Observed progress:
+
+- eligible notices: **236**
+- before: **20 parsed / 216 unseen**
+- selected: **20 older notices**
+- parsed: **20/20**
+- fetch errors: **0**
+- unparseable: **0**
+- new discovery references: **23**
+- after: **40 parsed / 196 unseen**
+- next unseen notice: **`20260107-29`**
+
+The batch moved from the June 1, 2026 notice backward through January 13, 2026. Some older notices lacked a direct catalog PDF URL and were parsed through the existing official BSE Index Services detail endpoint; that fallback remains source-labelled in cursor state.
+
+**Important:** these 23 references are discovery candidates only. This workflow never creates or edits IPO records. Every candidate still requires issuer-specific official BSE listing evidence before materialization.
+
+## Next task: reconcile the first historical discovery batch
+
+The next bounded P1/P2 task is to compare the **23 newly discovered references** from run `35952980189` against the current **951-record** production universe and retained BSE evidence.
 
 Acceptance requirements:
 
-- cursor state must be retained separately from IPO values;
-- cursor/version changes must be deterministic and idempotent;
-- batches must remain bounded;
-- failed/unparseable notices must remain visible for retry rather than being silently skipped;
-- discovery candidates must still require issuer-specific official listing evidence before materialization;
-- current index membership remains a discovery aid, not historical-universe authority;
-- do not repeat the completed 544770 conflict work.
+- separate already-present issuers from genuinely missing candidates;
+- retain exact index notice identity, listing-reference notice number, scrip code, listing date and source hash;
+- never infer equivalence from fuzzy names when identity is ambiguous;
+- for missing/unambiguous issuers, verify issuer-specific official BSE listing notices in a bounded batch before publication;
+- preserve null unsupported fields;
+- do not stop or reset the new historical cursor—the independent scheduled backfill should continue advancing the remaining **196** notices.
 
 ## Prior handoffs
 

@@ -24,6 +24,7 @@ Never fill missing data with guesses or price x quantity arithmetic. Preserve so
 | `backfill-historical-offer-dates.yml` | Independent historical PDF offer-date recovery |
 | `backfill-historical-pdf-fields.yml` | Independent historical PDF field recovery |
 | `audit-bse-sme-universe.yml` | Read-only BSE SME constituent and addition-notice audits |
+| `backfill-bse-sme-addition-notices.yml` | Durable parser-versioned historical BSE SME notice discovery cursor |
 | `verify-bse-listing-candidates.yml` | Bounded independent verification of pinned BSE listing candidates |
 | `validate-reviewed-bse-listings.yml` | Offline identity, PDF safety, reviewed evidence and importer tests |
 | `validate-data.yml` | Existing pull-request/push tests and data-contract checks |
@@ -59,7 +60,9 @@ Current production state from that run:
 
 GitHub Pages build `35951543912` succeeded on descendant commit `cf04c69179cd5935e8b04d212d56cc20360f7d40`, so the deployed site includes the two resolved records.
 
-**Next:** build a durable parser-versioned cursor/backfill for the **216 older eligible BSE SME addition notices** not covered by the latest-20 audit. Keep batches bounded, preserve failed notices for retry, and continue requiring issuer-specific official listing evidence before materialization. Do not repeat the completed 544770 conflict work.
+**Cursor completed:** PR #173 added a durable notice-ID/parser-version backfill. Production run `35952980189` parsed the first **20 older notices**, discovered **23 listing references**, had **0 failures**, and advanced progress from **20/236 to 40/236**. State commit: `6a8a21ce8c0befea1a3c67911472c3aff731c7f1`; 196 notices remain and will continue on the independent two-hour schedule.
+
+**Next:** reconcile those 23 discovery references against the current 951-record universe, then verify only genuinely missing/unambiguous issuers from their issuer-specific official BSE listing notices. The cursor itself must continue independently; index evidence remains discovery-only.
 
 Read [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) for exact source hashes, correction history, run IDs, production counts and acceptance criteria.
 
