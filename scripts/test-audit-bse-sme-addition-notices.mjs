@@ -38,6 +38,17 @@ const yashhtej = `
 assert.equal(parseBseSmeAdditionNoticeHtml(yashhtej)[0].issuer_name, "YASHHTEJ INDUSTRIES (INDIA) LIMITED");
 assert.equal(parseBseSmeAdditionNoticeHtml(yashhtej)[0].listing_date, "2026-02-25");
 
+const productionSpacing = `
+<p>With reference to Notice No. 20260224-17, YASHHTEJ INDUSTRIES (INDIA) LIMITED
+(Exchange ticker- 544708 ), is being listed on BSE, effective Wednesday, February 25, 2026 .</p>`;
+assert.deepEqual(parseBseSmeAdditionNoticeHtml(productionSpacing), [{
+  listing_notice_no: "20260224-17",
+  issuer_name: "YASHHTEJ INDUSTRIES (INDIA) LIMITED",
+  bse_scrip_code: "544708",
+  listing_date: "2026-02-25",
+  listing_date_raw: "February 25, 2026"
+}]);
+
 const multiple = `
 With reference to Notice No. 20260810-35, AEGEUS TECHNOLOGIES LIMITED
 (Exchange ticker-544858), is listed on BSE effective Tuesday, August 11, 2026.
