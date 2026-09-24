@@ -33,7 +33,7 @@ Collection time, dataset generation and Pages publication are separate signals. 
 
 ## Handoff for the next prompt
 
-**Verified batch: remaining 12 unambiguous BSE SME listings — PR #168.**
+**Verified batch: remaining 12 unambiguous BSE SME listings — PR #168; independent release verification and safeguards — PR #167.**
 
 PR #168 merged at `39ead2287b9352953d43b24ec9a006ab21f0d72a`. The 12 remaining unambiguous issuer references from the original BSE notice report were independently checked against issuer-specific official BSE listing PDFs.
 
@@ -59,6 +59,10 @@ Pages publication-health persistence was also made race-safe in PR #169. Product
 
 Across PR #166 + PR #168, **27 independently reviewed BSE SME records from the original discovery report are now published**.
 
+**Actual live-data verification:** a fresh deployed snapshot at `2026-09-24T02:36:18.996Z` confirms all **27 issuers and 81 fields** against retained official PDF values, verified states, URLs and page evidence. The 12 new records keep unsupported price bands, offer dates, INR issue sizes and minimum-application fields null. Both held issuers remain absent. The live snapshot passes the core data-contract validator. Proof artifact: `10787263725`, run `35947529605`, attempt 2; hashes and expiry are in PROJECT_STATUS.
+
+PR #167 merged at `3a89120f498f18e54fcd1b26340cf090446e22fe`. Because #168 reached main during its verification, the final reconciliation preserved #168's canonical batch2 implementation rather than duplicating records or replacing newer fixes. The final change adds a real isolated publication/idempotency rehearsal to CI, plus read-only source and deployed snapshots in verification artifacts. All **34 reconciled local test scripts** and all three final PR workflows passed. The rehearsal adds exactly 12 records, preserves all 937 existing public records, and makes no changes on a second import/rebuild. Do not reintroduce the superseded unmerged `batch-02` files or alternative registry.
+
 **Next:** resolve the remaining code-`544770` identity conflict between MERRITRONIX LIMITED and YAASHVI JEWELLERS LIMITED using their original index PDFs plus issuer-specific official BSE listing notices. Do not pick one by recency or fuzzy identity. After that, add a durable versioned cursor for the **216 older eligible BSE SME addition notices** not covered by the latest-20 audit.
 
 Read [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) for exact production evidence, reviewed facts and remaining blockers.
@@ -71,6 +75,7 @@ No UI redesign, research-depth expansion, minimum-investment work, billing, acco
 node scripts/test-verify-bse-listing-candidates.mjs
 node scripts/test-retry-bse-listing-pdf.mjs
 node scripts/test-apply-verified-bse-listings.mjs
+node scripts/test-bse-publication-rehearsal.mjs
 node scripts/apply-verified-bse-listings.mjs --check
 node scripts/build-published-data.mjs --check
 node scripts/validate-data.mjs

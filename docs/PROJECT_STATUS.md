@@ -127,6 +127,39 @@ GitHub Pages build `35947797703` completed successfully on commit:
 
 That commit is a descendant of the source-backed data revision `1d7ffff145b99cf045b6954028d595105a1522fb`, so the deployed Pages build includes the 12 newly published BSE records.
 
+### Independent live-data check and release safeguards — PR #167
+
+The live dataset itself was fetched after publication at **2026-09-24T02:36:18.996Z**, separately from dataset generation time **2026-09-24T02:31:21.345Z**. This was not merely a check that a Pages job was green.
+
+The retained live snapshot contains **949 records**. Each of the **27 issuers and 81 listing-date/market-lot/issue-price fields** across both reviewed batches was compared with the committed evidence: every issuer appears once, every value agrees, every field is verified and retains the corresponding official PDF URL and page 2. Both held issuers remain absent. All six unsupported fields in the 12 new records remain null/missing: price band, open date, close date, INR issue size, minimum bid quantity and minimum application amount. The actual live snapshot also passes the schema 1.2.0 core validator.
+
+PR #167 merged at `3a89120f498f18e54fcd1b26340cf090446e22fe`. During its independent verification, PR #168 reached main with the same 12 issuers. GitHub correctly blocked the stale merge. The final reconciliation preserves #168's canonical `batch2` manifests, importer, PDF rejection classification and ligature repair unchanged. The alternative unmerged `batch-02` manifests and approval-registry implementation were dropped from the PR diff, never added to production. Do not reintroduce that superseded alternative or duplicate the 12 records.
+
+The final #167 change is restricted to:
+
+- `scripts/test-bse-publication-rehearsal.mjs`: an isolated run of the real importer, publisher and validators, proving existing public records are unchanged, unrelated yearly manifests are byte-identical and a second import/rebuild causes no timestamp churn;
+- `.github/workflows/validate-reviewed-bse-listings.yml`: runs this end-to-end rehearsal before merge;
+- `.github/workflows/verify-bse-listing-candidates.yml`: retains a tracked-source ZIP for reproducible tests and a separately timestamped deployed-data snapshot in the existing read-only artifact. No permission expansion or new PDF work inside hourly sync.
+
+All **34 reconciled local test scripts** passed using the actual repository modules, without matcher substitutes. The publication rehearsal measured **937 -> 949**, exactly 12 added and 15 already present, with all 937 pre-existing public records unchanged and a no-op second import. Production's normal NSE/SEBI enrichments in the same sync are distinct from this isolated no-overwrite test.
+
+All three final PR workflows passed: data-contract CI `35947529604`, reviewed-evidence CI `35947529606`, and independent source verification `35947529605`. Post-merge data-contract `35947640996` and reviewed-evidence `35947640921` also passed.
+
+Independent source verification `35946186883` had already checked the same 12 original PDFs; all 12 document hashes and all 36 values/pages agree with the preserved canonical batch. All 24 header/fact pages were rendered and reviewed. Reconciled source run `35947529605` and its post-publication attempt 2 both verify 12/12, with 0 rejected/unavailable.
+
+#### Reproducible evidence retention
+
+The post-publication artifact is `bse-listing-verification-35947529605-2`, ID **10787263725**, from attempt 2. It retains the original listing PDFs, HTML attempts, verification report, tracked-source ZIP and actual deployed-data snapshot.
+
+- ZIP SHA-256: `22dd81e6868e8907184e5efe8089aba00ce674ff7b2cd160d2ddd98ac20aabb6`
+- Deployed snapshot-file SHA-256: `5c7f4df154afe0ed14db78ae2157575e93c9308f3ee00c1cfa23d44e71cd444f`
+- Artifact expiry: `2026-10-08T02:36:37Z`
+- A copy of this artifact and the machine-readable 27-record/81-field live-check report were retained in the conversation.
+
+The independent pre-reconciliation source artifact remains available as ID `10787195768`, run `35946186883`, ZIP SHA-256 `8a0a777a7c29dfef19da9e6549aa1f626b070dccfae6d395333e8d6e294b9612`. Its source ZIP is an earlier revision, not the final reconciled implementation.
+
+This release is **verified live**. Do not repeat the first 15 or remaining 12 listing imports or their completed ligature/source-delivery diagnoses.
+
 ## Reviewed batch-2 facts
 
 | Issuer | BSE listing notice | Listing date | Market lot | Issue price (INR/share) |
