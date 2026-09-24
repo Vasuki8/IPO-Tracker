@@ -1,12 +1,153 @@
 # Project status and handoff
 
-Updated: 2026-09-24. Live observation: 15:28:55 UTC / 11:28:55 America/Toronto.
+Updated: 2026-09-24. Live observation: 16:30:56 UTC / 12:30:56 America/Toronto.
 
 ## Current priority
 
 Continue P1/P2/P3 data correctness, official-source coverage and dependable publication under `DEVELOPMENT_PROCESS.md`. The application-term requirement remains **Lot Size only**. Keep market lot, minimum bid quantity, application amount, listing date and index-admission date distinct. UI redesign and downstream research/commercial infrastructure are out of scope.
 
-## Completed: cursor4 live verification and handoff recovery — PR #189
+## Completed: cursor5 reconciliation, publication and live verification — PR #191 / #192
+
+PR #191 merged as `3e415a4f88d4582d7d0d905d0ec72b89eb5ee20e`.
+
+### Reconciliation
+
+The 20-notice cursor segment first attempted at `2026-09-24T15:09:03.207Z` contained:
+
+- **17 parsed notices**;
+- **18 listing references**;
+- **3 unparseable notices**.
+
+A multi-year reconciliation searched current 2020–2026 retained recovery plus the then-current 1,050-record public dataset, using normalized issuer identity, BSE scrip code and listing-source identity. Result:
+
+- **18 exact-missing identities**;
+- **0 already-present matches**;
+- **0 ambiguous/name-code/source collisions**.
+
+Retained discovery:
+
+- `data/discovery/bse-listing-reconciliation-2026-09-24-cursor5.json`;
+- `data/discovery/bse-listing-candidates-2026-09-24-batch15.json` — 15 candidates;
+- `data/discovery/bse-listing-candidates-2026-09-24-batch16.json` — 3 candidates.
+
+The three failed index notices remain outside the candidate batches:
+
+- `20241211-15`;
+- `20241202-11`;
+- `20240722-21`.
+
+No issuer was inferred from them.
+
+### Bounded source-identity repair
+
+Initial source verification verified 17/18. Neopolitan Pizza and Foods Ltd was the only rejection because its official BSE listing notice uses the current legal issuer followed by:
+
+`(Formerly Known as Neopolitan Pizza Limited)`
+
+The verifier now removes only a **trailing parenthetical former-name clause** when comparing the observed listing issuer with the candidate current name. The historical/former name cannot substitute for the current issuer; an exact regression proves that candidate still rejects. Notice number, six-digit BSE code, listing date, SME segment, equity-listing statement, market lot and final issue price remain strict.
+
+The retained historical regression suite had grown beyond the old 10-minute Actions limit, so the source-verification job timeout was changed to **20 minutes**. This was operational only: no batch size, permission, schedule, source rule or publication behavior changed.
+
+### Source verification and reviewed evidence
+
+Fresh source verification run `36025166795`:
+
+- batch15: **15/15 verified**;
+- batch16: **3/3 verified**;
+- rejected: **0**;
+- unavailable: **0**;
+- artifact: `10819732464`;
+- artifact ZIP SHA-256: `c0a2c88937c66dce95869335642fb6254d234828d7f4c220cd8e0a9379916b89`.
+
+Canonical listing-PDF archive paths were unavailable. Reviewed evidence therefore retains the established strict official-listing-notice HTML contract.
+
+Reviewed manifests:
+
+- `data/verified-bse-listings/2026-09-24-batch20.json` — 15;
+- `data/verified-bse-listings/2026-09-24-batch21.json` — 3.
+
+Final PR-head source verification `36026096850` again reached **15/15 + 3/3**, 0 rejected/unavailable. Artifact `10819618949`, ZIP SHA-256 `b05dbbd501a557dc4c2c13581e88bbbf2123a2d242323a23048a3c99cdead901`.
+
+Final PR checks passed:
+
+- full data contract: `36026096822`;
+- reviewed evidence/importer: `36026096937`;
+- protected BSE identity regression: `36026097009`;
+- source verification: `36026096850`.
+
+### Publication rehearsal and production
+
+The real offline importer/publication rehearsal measured:
+
+- **1,050 → 1,068 records**;
+- exactly **18 additions**;
+- **126 already-present** reviewed BSE entries;
+- **0 held existing**;
+- **0 identity conflicts**;
+- all **1,050 existing records unchanged**;
+- second import/rebuild: no-op / idempotent.
+
+Production sync `36026575507` completed successfully:
+
+- reviewed BSE import: **18 added / 126 already present / 0 holds / 0 identity conflicts**;
+- semantic publication: **18 added / 19 changed / 0 removed / 0 conflicts**;
+- source-backed commit: `eb023d3e60c1d66ed3a1e38f4f78d66cc6de6839`;
+- operator-state commit: `138115a9a0544dcff175c967c1419d8ee26c38ed`;
+- published/validated: **1,068 records**;
+- operator health: **healthy**;
+- post-publication retained counts include **2024 = 269** and **2025 = 293**.
+
+The 19 changed records are normal concurrent official NSE/SEBI enrichment from the same source-first sync, distinct from the 18 additions.
+
+### Deployed-data verification
+
+Native Pages build `36027207308` succeeded on operator revision `138115a9a0544dcff175c967c1419d8ee26c38ed`.
+
+PR #192 updates the existing read-only live verifier default from completed cursor4 manifests batch18/19 to batch20/21. The first run attempt `36027489827` correctly failed because it fetched the previous **1,050-record** Pages snapshot generated at `2026-09-24T15:41:54.375Z`; all 18 new identities were absent. This was a deployment-lag observation, not accepted as release success.
+
+After Pages completed, only the failed verifier job was rerun. Attempt 2 succeeded:
+
+- snapshot fetched: `2026-09-24T16:30:56.256Z`;
+- checked: `2026-09-24T16:30:56.295Z`;
+- dataset generated: `2026-09-24T16:21:47.053Z`;
+- live total: **1,068 records**;
+- unique reviewed issuers: **18 / 18**;
+- matching listing-date / market-lot / issue-price fields: **54 / 54**;
+- failed issuers: **0**;
+- all six unsupported fields null for each reviewed issuer;
+- retained original document-hash sources checked: **54**;
+- document hashes serialized in public field evidence: **0**.
+
+Live snapshot SHA-256:
+
+`3c26f8dbea5e18dbfb498b2a609d3f9be6e431b359734b881a77539b9d603dab`
+
+Successful artifact:
+
+- run: `36027489827`, attempt 2;
+- artifact: `10821006183`;
+- ZIP SHA-256: `b8dcb40ed94b09daf16501b2b2fd8f97769174d10ed20d963129786e4f1f5cfa`;
+- expiry: `2026-10-08T16:30:56Z`.
+
+Durable summary:
+
+`docs/verification/cursor5-live-publication-2026-09-24.json`
+
+### Current cursor and next task
+
+Re-read immediately before handoff:
+
+- parser **1.2.0**;
+- **120 tracked / 236 eligible**;
+- **117 parsed / 3 unparseable**;
+- **116 not yet tracked**;
+- updated at `2026-09-24T15:09:03.207Z`.
+
+The parsed portion of this segment is fully reconciled, reviewed, published and verified live.
+
+If the cursor is unchanged on the next run, the earliest unfinished batch is the **three retained unparseable notices** (`20241211-15`, `20241202-11`, `20240722-21`). Treat them as a bounded parser/source-family repair, group only by demonstrated official-source shape, and do not infer issuers from index evidence. If automation has advanced the cursor and produced an unprocessed segment, re-read that state first and do not skip an earlier unprocessed segment. Do not repeat batches15/16, batches20/21, or the Neopolitan identity repair.
+
+## Prior completed: cursor4 live verification and handoff recovery — PR #189
 
 The release-verification work is complete for the 23 cursor4 issuers already merged in PR #187. This continuation adds no IPOs and does not alter their values or reset any cursor.
 
