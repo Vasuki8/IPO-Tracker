@@ -1,0 +1,43 @@
+name: Verify BSE listing candidates
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "scripts/verify-bse-listing-candidates.mjs"
+      - "scripts/test-verify-bse-listing-candidates.mjs"
+      - "data/discovery/bse-listing-candidates-2026-09-24.json"
+      - ".github/workflows/verify-bse-listing-candidates.yml"
+  push:
+    branches: ["main"]
+    paths:
+      - "scripts/verify-bse-listing-candidates.mjs"
+      - "scripts/test-verify-bse-listing-candidates.mjs"
+      - "data/discovery/bse-listing-candidates-2026-09-24.json"
+      - ".github/workflows/verify-bse-listing-candidates.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Test listing verification and guards
+        run: node scripts/test-verify-bse-listing-candidates.mjs
+      - name: Verify 15 pinned issuer-specific listing notices
+        run: node scripts/verify-bse-listing-candidates.mjs --input=data/discovery/bse-listing-candidates-2026-09-24.json --output="${{ runner.temp }}/bse-listing-verification/report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/notices"
+      - name: Retain verified and rejected evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bse-listing-verification-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/bse-listing-verification
+          retention-days: 14
+          if-no-files-found: warn
