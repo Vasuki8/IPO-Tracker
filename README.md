@@ -34,50 +34,43 @@ Collection time, dataset generation and Pages publication are separate signals. 
 
 ## Handoff for the next prompt
 
-**Latest completed batch: six historical BSE SME listings published — PR #175.**
+**Latest completed batch: remaining seven historical BSE SME listings published — PR #176.**
 
-PR #175 preserved the existing strict reviewed-evidence importer and added a safe PDF-upgrade probe for issuer-specific notices that initially verified through official BSE HTML.
+PR #176 merged as `9edcbb30d0a62575e12c0116a2533564ffffc4f2` and completed the first historical discovery batch's publishable records.
 
-From PR #174's 13 verified historical candidates:
+The seven issuer-specific BSE listing notices did not have usable canonical archive listing-PDF paths. Their notice pages did expose Annexure PDFs, but those annexures are ancillary shareholding/IPO documents and correctly failed the listing-notice verifier. The importer was therefore extended with a separate **official BSE notice HTML** evidence contract rather than treating annexures as listing authority or inventing page evidence.
 
-- **6 have official BSE listing PDFs with page-backed evidence and are now reviewed/published**
-- **7 remain verified from official BSE HTML, but their canonical archive PDF paths return HTTP 404**
-- the prior **4 rejected candidates remain held** and were not published
+For reviewed HTML evidence the importer now requires the exact BSE notice URL, raw-response SHA-256, normalized-evidence SHA-256, collection/publication timestamps, exact notice/issuer/scrip/listing identity, and an offline replay through the existing listing verifier. HTML-backed fields retain `page: null`; no fake page numbers are created.
 
-Published batch manifest:
+Reviewed manifests:
 
-- `data/verified-bse-listings/2026-09-24-batch4.json`
-- source verification run: `35954818300`
-- artifact: `10789632860`
-- artifact ZIP SHA-256: `3c312c2077a4e8ddfc170c50aa65ea54874ceb53fbfff813fdd882506f4db99f`
+- `data/verified-bse-listings/2026-09-24-batch5.json` — Aritas Vinyl, Yajur Fibres
+- `data/verified-bse-listings/2026-09-24-batch6.json` — Elfin Agro, PAN HR Solution, Kanishk Aluminium India, Accretion Nutraveda, Msafe Equipments
+- source verification run: `35956034085`
+- source artifact: `10789439895`
+- artifact ZIP SHA-256: `d78e344277d79ccce4411e3a7f4552b3eeb87089e3d584d8a1fa8a5c746d1acb`
 
-The isolated publication rehearsal on final PR validation run `35955058014` proved **951 -> 957**, exactly 6 additions, all 951 existing records unchanged, 0 holds and an idempotent rerun.
+Final PR validation proved an isolated **957 -> 964** publication rehearsal with exactly **7 additions**, all 957 existing records unchanged, 0 holds/conflicts and an idempotent rerun. Reviewed-evidence CI `35956420754`, data-contract CI `35956420683`, source diagnostics `35956420702` and the 544770 regression workflow `35956420680` all succeeded.
 
-Merge-triggered production sync `35955112253` succeeded:
+Production sync `35956583736` succeeded:
 
-- reviewed BSE import: **6 added / 29 already present / 0 holds**
-- semantic publication: **6 added / 37 changed / 0 removed**
-- source-backed data commit: `fc5e0ec5e6bd9fb3c065544465066827a4005940`
-- operator-state commit: `9c07573b1ca27d48d93724236fbbde30971f11c2`
+- reviewed BSE import: **7 added / 35 already present / 0 holds**
+- semantic publication: **7 added / 36 changed / 0 removed / 0 conflicts**
+- source-backed data commit: `40c8326db90e1c8d29d98cc2c998aa88d159742c`
+- operator-state commit: `ad52c686ebfad609aab8e33db686c34e082ce256`
 - operator health: **healthy**
-- production: **957 total records / 73 records for 2026**
-- 2026 board coverage: **15 mainboard / 48 SME / 10 unknown**
+- production: **964 total records / 80 records for 2026**
+- 2026 board coverage: **15 mainboard / 55 SME / 10 unknown**
 
-GitHub Pages build `35955643913` succeeded on descendant commit `9c07573b1ca27d48d93724236fbbde30971f11c2`, so the deployed revision contains the six additions.
+Current `main` contains each of the seven new issuers exactly once with the reviewed BSE notice URL/hash and verified listing date, market lot and issue price. Unsupported price band, offer dates, issue size, minimum bid quantity and minimum application amount remain null. The four rejected candidates from the same discovery batch remain absent and held: Autofurnish, Recode Studios, Mehul Telecom and Tipco Engineering.
 
-The seven verified-but-HTML-only notices that remain blocked by archive-PDF 404 are:
+GitHub Pages build `35957085010` succeeded on operator commit `ad52c686ebfad609aab8e33db686c34e082ce256`, which is a descendant of the 964-record data commit, so the deployed Pages revision includes this release.
 
-- ELFIN AGRO INDIA LIMITED — `20260311-44`
-- PAN HR SOLUTION LIMITED — `20260212-30`
-- KANISHK ALUMINIUM INDIA LIMITED — `20260203-43`
-- ACCRETION NUTRAVEDA LIMITED — `20260203-44`
-- MSAFE EQUIPMENTS LIMITED — `20260203-45`
-- ARITAS VINYL LIMITED — `20260122-19`
-- YAJUR FIBRES LIMITED — `20260113-25`
+**The original 13 verified missing candidates from PR #174 are now fully published: 6 PDF-backed + 7 reviewed official-HTML-backed.** The four rejected candidates are still a separate identity/source-repair track.
 
-**Next:** repair the official evidence path for those seven. First look for issuer-notice attachments or alternate official BSE document URLs. If BSE truly exposes only HTML, add a separately reviewed official-HTML evidence contract with response hash and exact excerpts—never fake PDF/page evidence. Keep the four rejected candidates on a separate identity/source-repair track. The independent historical cursor remains at **40/236 parsed with 196 unseen** and must continue separately.
+**Next:** re-read the durable historical BSE cursor before starting. At this handoff it remains **40/236 parsed with 196 unseen** and next unseen notice `20260107-29`. If the scheduled cursor has advanced, reconcile its newest completed discovery batch against the current 964-record universe and verify only genuinely missing issuers. If it has not advanced yet, keep the cursor independent and work on the four held identity/source repairs without inferring from index evidence.
 
-Read [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) for exact facts, run IDs, source hashes, rejected candidates and deployment evidence.
+Read [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) for the seven exact facts, evidence-contract details, run IDs, hashes, production verification and remaining holds.
 
 No UI redesign, minimum-investment work, billing, accounts, ads, paid services or permission changes are part of this handoff.
 
