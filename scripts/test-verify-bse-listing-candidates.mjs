@@ -15,6 +15,11 @@ assert.equal(verify(html, { ...candidate, issuer_name: "Other Industries Limited
 for (const [a,b] of [["Scrip Code 544876","Scrip Code 544877"],["20260820-37","20260820-35"],["August 21","August 22"],["Segment SME","Segment Equity"],["August 21","February 30"]]) assert.equal(verify(html.replace(a,b)).status, "rejected");
 assert.equal(verify(html.replace("Scrip Code", "Security Code")).status, "verified");
 assert.equal(verify(html.replace("effective from Friday, August 21, 2026", "e ective from Friday, August 21, 2026")).status, "verified");
+assert.equal(
+  verify(html.replace("effective from Friday, August 21, 2026", "effective from Friday, August 21 , 2026")).status,
+  "verified"
+);
+assert.equal(strictDate("December 31 , 2025"), "2025-12-31");
 assert.equal(verify(html.replace("effective from Friday, August 21, 2026", "Effective at the open of Friday, August 21, 2026")).status, "rejected");
 assert.equal(verify(html + " Scrip Code 544877").status, "rejected");
 assert.equal(verify(html + " Market Lot 2000").status, "rejected");
