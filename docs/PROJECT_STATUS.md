@@ -8,6 +8,159 @@ Continue P1/P2/P3 backend correctness, official-source coverage and dependable p
 
 Never infer missing IPO values. Keep listing date, index admission date, market lot, minimum bid quantity and application amount distinct.
 
+## Latest completed batch: remaining seven historical BSE SME listings published — PR #176
+
+PR #176 merged as:
+
+`9edcbb30d0a62575e12c0116a2533564ffffc4f2`
+
+This completed the publishable subset from the first historical BSE discovery reconciliation. Combined with PR #175's six PDF-backed records, all **13 issuer-specific candidates that independently verified in PR #174 are now published**. The four candidates that failed issuer-specific verification remain held.
+
+### Evidence-path repair
+
+The remaining seven records had verified official BSE listing-notice HTML but no usable canonical archive listing-PDF path. PR #176 tested the notice-bound `DownloadAttach.aspx` links exposed by those pages.
+
+Those attachment URLs were constrained to:
+
+- `https://www.bseindia.com/markets/MarketInfo/DownloadAttach.aspx`;
+- exact matching listing-notice ID;
+- UUID-shaped attachment ID;
+- a maximum of four notice-bound attachment probes.
+
+The attachments were real BSE PDFs, but they were ancillary Annexure documents rather than the listing notice itself and correctly failed the listing verifier with missing listing-notice identity/content. They are **not** used as listing authority.
+
+Instead of weakening the PDF contract, PR #176 added a separate reviewed **official-notice HTML** contract. An HTML-backed reviewed entry must retain and revalidate:
+
+- the exact issuer-specific BSE notice URL;
+- BSE notice number and publication date;
+- raw HTTP-response SHA-256;
+- normalized evidence-text SHA-256;
+- collection timestamp;
+- issuer name, SME segment, scrip code and equity-listing statement;
+- listing date, market lot and final issue price;
+- an offline replay through the existing `verifyListingHtml` identity/fact verifier.
+
+HTML evidence does not invent pagination. Published fields and board/status evidence use `page: null`.
+
+The PDF contract remains strict and separate: PDF-backed entries still require the bounded official PDF URL, document hash, page excerpts, page identity and `verifyListingPdfText` replay.
+
+### Source verification retained
+
+The reviewed HTML evidence came from:
+
+- workflow run: **`35956034085`**
+- artifact: **`10789439895`**
+- artifact ZIP SHA-256: **`d78e344277d79ccce4411e3a7f4552b3eeb87089e3d584d8a1fa8a5c746d1acb`**
+
+Reviewed manifests:
+
+- `data/verified-bse-listings/2026-09-24-batch5.json` — 2 entries
+- `data/verified-bse-listings/2026-09-24-batch6.json` — 5 entries
+
+Exact published facts:
+
+| Issuer | BSE code | Listing notice | Listing date | Market lot | Issue price |
+| --- | --- | --- | --- | ---: | ---: |
+| ELFIN AGRO INDIA LIMITED | 544724 | `20260311-44` | 2026-03-12 | 3,000 | INR 47 |
+| PAN HR SOLUTION LIMITED | 544698 | `20260212-30` | 2026-02-13 | 1,600 | INR 78 |
+| KANISHK ALUMINIUM INDIA LIMITED | 544693 | `20260203-43` | 2026-02-04 | 1,600 | INR 73 |
+| ACCRETION NUTRAVEDA LIMITED | 544694 | `20260203-44` | 2026-02-04 | 1,000 | INR 129 |
+| MSAFE EQUIPMENTS LIMITED | 544695 | `20260203-45` | 2026-02-04 | 1,000 | INR 123 |
+| ARITAS VINYL LIMITED | 544683 | `20260122-19` | 2026-01-23 | 3,000 | INR 47 |
+| YAJUR FIBRES LIMITED | 544676 | `20260113-25` | 2026-01-14 | 800 | INR 174 |
+
+Unsupported price band, offer dates, monetary issue size, minimum bid quantity and minimum application amount remain null for all seven unless supported separately by another official source.
+
+### Pre-merge validation
+
+Final PR-head validation:
+
+- reviewed BSE evidence/importer validation: **`35956420754`** — success
+- full data-contract validation: **`35956420683`** — success
+- issuer-specific BSE source diagnostics: **`35956420702`** — success
+- protected code-544770 regression/source verification: **`35956420680`** — success
+
+The isolated publication rehearsal used the real importer, publisher and validators:
+
+- **957 -> 964 records**
+- exactly **7 additions**
+- **35 already-present** reviewed BSE records
+- **0 held existing records**
+- **0 identity conflicts**
+- all **957 existing records unchanged**
+- second import/rebuild: **no-op / idempotent**
+- total retained reviewed BSE entries after this batch: **42**
+
+### Production publication
+
+Merge-triggered live sync:
+
+- run: **`35956583736`**
+- conclusion: **success**
+- reviewed BSE import: **7 added / 35 already present / 0 holds**
+- semantic publication: **7 added / 36 changed / 0 removed / 0 conflicts**
+- schema 1.2.0 validation: **964 records passed**
+- operator health: **healthy**
+
+The 36 changed records are normal concurrent official NSE/SEBI enrichment from the same source-first run. The semantic publisher separately identified the seven additions and zero removals/conflicts.
+
+Source-backed data commit:
+
+`40c8326db90e1c8d29d98cc2c998aa88d159742c`
+
+Operator-state commit:
+
+`ad52c686ebfad609aab8e33db686c34e082ce256`
+
+Production after publication:
+
+- **964 total IPO records**
+- **80 records for 2026**
+- 2026 board coverage: **15 mainboard / 55 SME / 10 unknown**
+- all seven new issuers occur exactly once on current `main`
+- each retains its reviewed BSE notice URL and document hash
+- each verified listing date, market lot and issue price agrees with the reviewed manifest
+- HTML-backed field/page metadata remains `page: null`
+- unsupported fields remain null
+- the four rejected candidates remain absent
+- deterministic build and schema validation passed
+- operator health: **healthy**
+
+### Deployment
+
+GitHub Pages dynamic build **`35957085010`** completed successfully on:
+
+`ad52c686ebfad609aab8e33db686c34e082ce256`
+
+That commit is one commit ahead of and directly descends from source-backed data commit `40c8326db90e1c8d29d98cc2c998aa88d159742c`, so the deployed Pages revision contains the 964-record release.
+
+The custom `ops/pages-publication.json` snapshot still refers to the merge-triggered deploy attempt because bot-authored data/operator commits do not necessarily re-trigger that custom persistence workflow. The native Pages build above is the authoritative descendant deployment evidence for this data commit.
+
+### Remaining holds
+
+The four rejected candidates from the same historical discovery batch remain excluded:
+
+- AUTOFURNISH LIMITED — `20260527-47`
+- RECODE STUDIOS LIMITED — `20260511-16`
+- MEHUL TELECOM LIMITED — `20260423-27`
+- TIPCO ENGINEERING INDIA LIMITED — `20260330-44`
+
+Current recovery data confirms all four are absent. Do not infer them from SME-index discovery evidence. They require a separate issuer-identity/source repair.
+
+### Next task
+
+Re-read `ops/bse-sme-addition-notices.json` before starting the next run because its scheduled workflow advances independently.
+
+At this handoff the durable cursor is still:
+
+- **40 / 236 parsed**
+- **196 unseen**
+- next unseen notice: **`20260107-29`**
+
+If the cursor has advanced by the next prompt, reconcile the newest completed cursor discovery batch against the current production universe and verify only genuinely missing/unambiguous issuers with issuer-specific official BSE evidence.
+
+If it has not advanced, keep the cursor independent and use the next bounded P1/P2 batch to investigate the four held issuer/source mismatches. Do not reset the cursor, duplicate the 13 now-published historical records, or infer values from BSE index-addition notices.
+
 ## Latest completed batch: six historical BSE SME listings published — PR #175
 
 PR #175 merged as:
