@@ -33,6 +33,25 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
+      - name: Retain reproducible verification source revision
+        run: |
+          mkdir -p "${{ runner.temp }}/bse-listing-verification"
+          git archive --format=zip HEAD > "${{ runner.temp }}/bse-listing-verification/source-snapshot.zip"
+      - name: Capture deployed publication baseline
+        continue-on-error: true
+        env:
+          OUTPUT: ${{ runner.temp }}/bse-listing-verification/deployed-baseline.json
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          const url = 'https://vasuki8.github.io/IPO-Tracker/data/ipos.json?verification=' + process.env.GITHUB_SHA;
+          const response = await fetch(url, { signal: AbortSignal.timeout(30000), headers: { 'cache-control': 'no-cache' } });
+          if (!response.ok) throw new Error('deployed_dataset_http_' + response.status);
+          const data = await response.json();
+          if (!Array.isArray(data.records)) throw new Error('invalid_deployed_dataset');
+          fs.writeFileSync(process.env.OUTPUT, JSON.stringify({ checked_at: new Date().toISOString(), url, data }, null, 2) + '\n');
+          console.log(JSON.stringify({ deployed_records: data.records.length, generated_at: data.generated_at }));
+          JS
       - name: Install notice PDF reader
         run: sudo apt-get update && sudo apt-get install --yes --no-install-recommends poppler-utils
       - name: Test PDF archive safety
