@@ -1096,6 +1096,216 @@
         "publication_date": "2024-12-06"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1733477534705.PDF"
+    },
+    "2025|midwest-limited": {
+      "issuer_name": "Midwest Limited",
+      "listing_date": "2025-10-24",
+      "last_attempted_at": "2026-09-24T10:39:02.191Z",
+      "parser_version": "1.2.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-iTtnL2/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765444608922.pdf\ncurl: (18) transfer closed with 8606290 bytes remaining to read\ncurl: (18) transfer closed with 204834 bytes remaining to read\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765444608922.pdf"
+    },
+    "2024|vishal-mega-mart-limited": {
+      "issuer_name": "Vishal Mega Mart Limited",
+      "listing_date": "2024-12-18",
+      "last_attempted_at": "2026-09-24T10:39:02.191Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Vishal Mega Mart - Red Herring Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1733387815715.pdf",
+        "publication_date": "2024-12-04"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1733387815715.pdf"
+    },
+    "2023|inox-india-limited": {
+      "issuer_name": "INOX India Limited",
+      "listing_date": "2023-12-21",
+      "last_attempted_at": "2026-09-24T10:39:02.191Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Inox India Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702445245405.PDF",
+        "publication_date": "2023-12-13"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702445245405.PDF"
+    },
+    "2022|arham-technologies-limited": {
+      "issuer_name": "Arham Technologies Limited",
+      "listing_date": "2022-12-15",
+      "last_attempted_at": "2026-09-24T10:39:02.191Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 95760000,
+          "source_value": "₹957.60 LAKHS",
+          "page": 2
+        },
+        "market_lot": {
+          "value": 3000,
+          "source_value": "LOT SIZE IS 3,000 EQUITY SHARES",
+          "page": 2
+        },
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Arham Technologies Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1669897342150.pdf",
+        "publication_date": "2022-11-29"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1669897342150.pdf"
+    },
+    "2021|shriram-properties-limited": {
+      "issuer_name": "Shriram Properties Limited",
+      "listing_date": "2021-12-20",
+      "last_attempted_at": "2026-09-24T10:39:02.191Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Shriram Properties Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681819029989.pdf",
+        "publication_date": "2021-12-14"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681819029989.pdf"
+    },
+    "2020|equitas-small-finance-bank-limited": {
+      "issuer_name": "Equitas Small Finance Bank Limited",
+      "listing_date": "2020-11-02",
+      "last_attempted_at": "2026-09-24T10:39:02.191Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "minimum_bid_quantity"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": {
+          "value": 450,
+          "source_value": "Bid Lot 450 Equity Shares",
+          "page": 5
+        }
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Equitas Small Finance Bank - Prospectus Filing — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2020/1603696781117.pdf",
+        "publication_date": "2020-10-26"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2020/1603696781117.pdf"
+    },
+    "2025|lg-electronics-india-limited": {
+      "issuer_name": "LG Electronics India Limited",
+      "listing_date": "2025-10-14",
+      "last_attempted_at": "2026-09-24T10:39:02.191Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "LG Electronics India Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1759464583235.pdf",
+        "publication_date": "2025-09-30"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1759464583235.pdf"
+    },
+    "2024|suraksha-diagnostic-limited": {
+      "issuer_name": "Suraksha Diagnostic Limited",
+      "listing_date": "2024-12-06",
+      "last_attempted_at": "2026-09-24T10:39:02.191Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Suraksha Diagnostic Limited- RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2024/1732605381552.pdf",
+        "publication_date": "2024-11-25"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2024/1732605381552.pdf"
     }
   }
 }
