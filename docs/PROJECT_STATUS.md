@@ -8,6 +8,259 @@ Continue P1/P2/P3 backend correctness, official-source coverage and dependable p
 
 Never infer missing IPO values. Keep listing date, index admission date, market lot, minimum bid quantity and application amount distinct.
 
+## Latest completed batch: third historical BSE cursor parsed references published — PR #181
+
+PR #181 merged as:
+
+`cc44fd35a4bf6eff37aa9a59807393ac33277ee6`
+
+This batch closed the **14 parseable references** from the third durable BSE SME cursor window while keeping the ten failed index notices isolated for a later parser/source-family repair.
+
+### Cursor3 source window
+
+The source cursor window was produced by:
+
+- workflow: **`35962928144`**
+- source commit: **`1e19389f78ddafef7ae2a61596d7e8443dbfb4e9`**
+- artifact: **`10793157274`**
+- artifact ZIP SHA-256: **`caf6f8d747992eb25a447b8600b4f73eaf433d13d92ebde5e6a38aeeab649722`**
+- cursor-state commit: **`1704357838871f9e5dd677da4a7bfabba7b50760`**
+
+The window selected 20 older BSE SME index notices:
+
+- **10 parsed**
+- **10 unparseable**
+- **14 listing references**
+- **0 fetch errors**
+
+Machine-readable reconciliation:
+
+`data/discovery/bse-listing-reconciliation-2026-09-24-cursor3.json`
+
+Pinned issuer-specific verification batch:
+
+`data/discovery/bse-listing-candidates-2026-09-24-batch11.json`
+
+Reconciliation against the then-current 244-record 2025 recovery universe found:
+
+- **14 missing exact identities**
+- **0 already-present matches**
+- **0 ambiguous / identity-review overlaps**
+- no fuzzy matching accepted
+
+Index-addition evidence remained discovery-only.
+
+### Fourteen recovered issuers
+
+The parsed references were:
+
+| Issuer | BSE code | Listing notice | Listing date |
+| --- | ---: | --- | --- |
+| RACHIT PRINTS LIMITED | 544503 | `20250905-49` | 2025-09-08 |
+| ABRIL PAPER TECH LIMITED | 544500 | `20250904-47` | 2025-09-05 |
+| SUGS LLOYD LIMITED | 544501 | `20250904-61` | 2025-09-05 |
+| OVAL PROJECTS ENGINEERING LIMITED | 544498 | `20250903-50` | 2025-09-04 |
+| GLOBTIER INFOTECH LIMITED | 544494 | `20250901-44` | 2025-09-02 |
+| NIS MANAGEMENT LIMITED | 544495 | `20250901-47` | 2025-09-02 |
+| STAR IMAGING AND PATH LAB LIMITED | 544482 | `20250814-59` | 2025-08-18 |
+| BLT LOGISTICS LIMITED | 544474 | `20250808-49` | 2025-08-11 |
+| ESSEX MARINE LIMITED | 544475 | `20250808-47` | 2025-08-11 |
+| REPONO LIMITED | 544463 | `20250801-73` | 2025-08-04 |
+| UMIYA MOBILE LIMITED | 544464 | `20250801-62` | 2025-08-04 |
+| MONARCH SURVEYORS AND ENGINEERING CONSULTANTS LIMITED | 544453 | `20250728-56` | 2025-07-29 |
+| SWASTIKA CASTAL LIMITED | 544452 | `20250726-1` | 2025-07-28 |
+| MONIKA ALCOBEV LIMITED | 544451 | `20250722-42` | 2025-07-23 |
+
+### Globtier issuer-identity repair
+
+Initial source verification run **`35964144439`** reached:
+
+- attempted: **14**
+- verified: **13**
+- rejected: **1**
+- unavailable: **0**
+
+Globtier Infotech was the only rejection.
+
+The official BSE notice was internally consistent and independently contained:
+
+- issuer: Globtier Infotech Limited
+- BSE code: **544494**
+- listing date: **2025-09-02**
+- market lot: **1,600**
+- final issue price: **INR 72**
+
+The false rejection came from BSE HTML wrapping one body-name occurrence in:
+
+`&ldquo;Globtier Infotech limited&rdquo;`
+
+The verifier normalized `&quot;` but not BSE curly-quote entities, producing a spurious second normalized issuer identity.
+
+PR #181 added only the demonstrated decoding repair:
+
+- `&ldquo;` and `&rdquo;` -> ordinary quote;
+- `&lsquo;` and `&rsquo;` -> ordinary apostrophe.
+
+All existing strict checks remain unchanged after decoding:
+
+- normalized issuer identity;
+- exact listing notice;
+- exact six-digit BSE code;
+- exact listing date;
+- SME segment;
+- explicit equity-listing statement;
+- positive market lot / final issue price.
+
+An exact Globtier regression fixture was added.
+
+### Canonical source verification
+
+After the bounded entity repair, run **`35964560752`** independently verified:
+
+- attempted: **14**
+- verified: **14**
+- rejected: **0**
+- unavailable: **0**
+
+Artifact:
+
+- id: **`10792809549`**
+- ZIP SHA-256: **`e6f102405d0c31657ea441b786cf2edb67f532885b759d586e53ca0044303fe7`**
+
+All 14 are retained as reviewed official-BSE-notice HTML evidence because the canonical archive listing-PDF paths were unavailable.
+
+Reviewed manifest:
+
+`data/verified-bse-listings/2026-09-24-batch16.json`
+
+Exact retained lot / final issue-price values:
+
+| Issuer | Market lot | Final issue price |
+| --- | ---: | ---: |
+| RACHIT PRINTS LIMITED | 1,000 | INR 149 |
+| ABRIL PAPER TECH LIMITED | 2,000 | INR 61 |
+| SUGS LLOYD LIMITED | 1,000 | INR 123 |
+| OVAL PROJECTS ENGINEERING LIMITED | 1,600 | INR 85 |
+| GLOBTIER INFOTECH LIMITED | 1,600 | INR 72 |
+| NIS MANAGEMENT LIMITED | 1,200 | INR 111 |
+| STAR IMAGING AND PATH LAB LIMITED | 1,000 | INR 142 |
+| BLT LOGISTICS LIMITED | 1,600 | INR 75 |
+| ESSEX MARINE LIMITED | 2,000 | INR 54 |
+| REPONO LIMITED | 1,200 | INR 96 |
+| UMIYA MOBILE LIMITED | 2,000 | INR 66 |
+| MONARCH SURVEYORS AND ENGINEERING CONSULTANTS LIMITED | 600 | INR 250 |
+| SWASTIKA CASTAL LIMITED | 2,000 | INR 65 |
+| MONIKA ALCOBEV LIMITED | 400 | INR 286 |
+
+Main-branch source re-verification:
+
+- workflow: **`35965260696`**
+- batch11: **14 / 14 verified**
+- artifact: **`10793054943`**
+- artifact ZIP SHA-256: **`cefbbed883f300a65f72c1445493b8edd30859de9506fb6f5145c005338c4377`**
+
+### Pre-merge validation
+
+Final PR-head checks:
+
+- reviewed BSE evidence/importer: **`35965176868`** — success
+- full data contract: **`35965176865`** — success
+- protected BSE 544770 identity regression: **`35965176842`** — success
+- canonical source verification: **`35964560752`** — 14 / 14
+
+The real importer rehearsal measured:
+
+- **1000 -> 1014 records**
+- exactly **14 additions**
+- **78 already-present** reviewed BSE records
+- **0 held existing records**
+- **0 identity conflicts**
+- all **1000 existing records unchanged**
+- second import/rebuild: **no-op / idempotent**
+- total retained reviewed BSE entries: **92**
+
+### Production publication
+
+Merge-triggered live sync:
+
+- run: **`35965260674`**
+- conclusion: **success**
+- reviewed BSE import: **14 added / 78 already present / 0 holds**
+- semantic publication: **14 added / 41 changed / 0 removed / 0 conflicts**
+- schema 1.2.0 validation: **1014 records passed**
+- operator health: **healthy**
+
+Source-backed data commit:
+
+`e607bb92434fbf41fcd84daddd71e0b665ac60ee`
+
+Operator-state commit:
+
+`50792aceff402c683d341dc9bf9bb730739005ef`
+
+Production after publication:
+
+- **1014 total IPO records**
+- **2025: 258 records** — 83 Mainboard / 174 SME / 1 unknown
+- **2026: 85 records** — 15 Mainboard / 60 SME / 10 unknown
+- all 14 batch16 issuers occur exactly once
+- all 14 BSE codes, listing dates, market lots and issue prices agree with reviewed evidence
+- all 14 exact BSE source URLs and document hashes are retained
+- all 14 retain `batch16` provenance
+- HTML-backed facts use `page: null`
+- unsupported price band, offer dates, issue size, minimum bid quantity and minimum application amount remain null
+- deterministic recovery build and schema validation passed
+- operator health: **healthy**
+
+The 41 changed records are normal concurrent official NSE/SEBI enrichment from the same source-first run. The semantic publisher separately identified exactly 14 additions and zero removals/conflicts.
+
+### Deployment
+
+Native GitHub Pages build **`35965869172`** completed successfully on:
+
+`50792aceff402c683d341dc9bf9bb730739005ef`
+
+That operator-state revision directly descends from data commit `e607bb92434fbf41fcd84daddd71e0b665ac60ee`, so the deployed Pages revision contains the 1014-record release.
+
+### Remaining cursor3 parser/source failures
+
+PR #181 did not modify or trigger the durable cursor state.
+
+Current cursor remains:
+
+- **80 tracked / 236 eligible**
+- **70 parsed**
+- **10 unparseable**
+- **156 unseen**
+- next unseen notice: **`20250403-16`**
+
+The 14 parsed cursor3 references are now fully closed.
+
+The ten unfinished notices from this same window are:
+
+- `20250716-16`
+- `20250715-47`
+- `20250711-10`
+- `20250710-17`
+- `20250606-10`
+- `20250529-14`
+- `20250512-14`
+- `20250509-10`
+- `20250408-20`
+- `20250407-20`
+
+These remain `no_parseable_listing_reference` and were **not** used to infer any issuer.
+
+### Next task
+
+Always re-read `ops/bse-sme-addition-notices.json` first because it advances independently.
+
+If the cursor is still at the current 80-notice state, inspect the 10 unparseable notices and group them by demonstrated source/text shape. Repair the smallest reusable source family first, with regression tests and without inferring issuer identities from incomplete evidence.
+
+If the cursor has advanced before the next continuation, reconcile the newly completed cursor segment first.
+
+Do not repeat the completed 14-reference cursor3 publication batch.
+
 ## Latest completed batch: repaired BSE notice 20250912-85 and published two issuers — PR #180
 
 PR #180 merged as:
