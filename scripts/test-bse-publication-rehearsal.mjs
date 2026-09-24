@@ -34,14 +34,26 @@ try {
     for (const entry of manifest.entries) approvedYears.add(entry.facts.listing_date.value.slice(0, 4));
   }
   assert.ok(added >= 0 && added <= approvedEntries, 'only approved reviewed records may be created');
+
+  const recoveryPaths = fs.readdirSync(path.join(temp, 'data/recovery')).filter((y) => /^20\d{2}$/.test(y));
+  const retainedById = new Map();
+  for (const y of recoveryPaths) {
+    const recoveryFile = path.join(temp, 'data/recovery', y, 'nse-issue-information.json');
+    if (!fs.existsSync(recoveryFile)) continue;
+    for (const record of JSON.parse(fs.readFileSync(recoveryFile, 'utf8')).records || []) {
+      assert.ok(!retainedById.has(record.id), 'duplicate retained recovery id: ' + record.id);
+      retainedById.set(record.id, record);
+    }
+  }
   for (const record of addedRecords) {
+    const retained = retainedById.get(record.id);
+    assert.ok(retained, 'added public record missing from retained recovery: ' + record.id);
     assert.ok(
-      approvedManifests.has(record.bse_verified_listing_batch?.manifest),
+      approvedManifests.has(retained.bse_verified_listing_batch?.manifest),
       'added record lacks approved reviewed-BSE provenance: ' + record.id
     );
   }
 
-  const recoveryPaths = fs.readdirSync(path.join(temp, 'data/recovery')).filter((y) => /^20\d{2}$/.test(y));
   for (const y of recoveryPaths.filter((y) => !approvedYears.has(y))) {
     const rel = 'data/recovery/' + y + '/nse-issue-information.json';
     assert.deepEqual(fs.readFileSync(path.join(temp, rel)), fs.readFileSync(path.join(root, rel)), 'unrelated historical manifest changed');
