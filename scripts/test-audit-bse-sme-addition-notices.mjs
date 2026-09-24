@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import {
   isBseSmeAdditionNotice,
   parseBseSmeAdditionNoticeHtml,
+  summarizeBseNoticeDataShape,
   summarizeBseNoticeParseFailure
 } from "./audit-bse-sme-addition-notices.mjs";
 
@@ -72,3 +73,10 @@ August 13, 2026. yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
 assert.ok(failureExcerpt.includes("With reference to Notice No. 20260813-16"));
 assert.ok(failureExcerpt.length <= 300);
 
+
+const shaped = {
+  Html: "<p>With reference to Notice No. 20260813-16, Example Limited (Exchange ticker-544863) is being listed on BSE effective Thursday, August 13, 2026.</p>",
+  Meta: { source: "BSE" }
+};
+assert.equal(summarizeBseNoticeDataShape(shaped).type, "object");
+assert.ok(summarizeBseNoticeParseFailure(shaped, 300).includes("With reference"));
