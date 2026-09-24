@@ -1,94 +1,77 @@
 # Project status and handoff
 
-Updated: 2026-09-24. Backend parser repair operationally verified against the production cursor attempted at 22:06:07 UTC / 18:06:07 America/Toronto.
+Updated: 2026-09-24. Backend publication verified at 22:57:35 UTC / 18:57:35 America/Toronto.
 
 ## Current priority
 
-Continue P1/P2/P3 data correctness, official-source coverage and dependable publication under [DEVELOPMENT_PROCESS.md](DEVELOPMENT_PROCESS.md). This is the **backend** workstream. The application-term requirement remains **Lot Size only**. Keep market lot, minimum bid quantity, application amount, listing date and index-admission date distinct. Do not expand downstream research/commercial infrastructure while upstream correctness is blocked.
+Continue backend data correctness, official-source coverage and dependable publication under [DEVELOPMENT_PROCESS.md](DEVELOPMENT_PROCESS.md). The application-term requirement remains **Lot Size only**. Keep market lot, minimum bid quantity, application amount, listing date and index-admission date distinct. No UI or downstream commercial-feature work belongs to this continuation.
 
-## VERIFIED: seven retained BSE parser failures repaired — PR #213
+## VERIFIED: thirteen repaired cursor7 references published — PR #215 / #216
 
-PR #213 merged as `224349d83acac08370ab30e9239ffaebab58dabc`; tested head `03fb4536d2d059bda189d7c28ae897031d3db691`. Parser **1.4.0** repairs the seven failures left by cursor6/cursor7. These failures are now closed; do not diagnose or replay them again unless new source evidence demonstrates a regression.
+The thirteen references recovered by parser v1.4.0 are now reconciled, independently source-verified, reviewed, published and verified in the actually served Pages dataset. This segment is closed; do not repeat it.
 
-This release recovers **13 discovery references**, not 13 published IPOs. No issuer-specific listing verification, missing-identity reconciliation or new IPO publication was performed for these references. The public dataset and retained recovery were unchanged at **1,109 records**. No UI assets, existing schedules, workflow permissions or commercial features changed.
+PR #215 merged as `45eab356842ecd49895642133fc2e3eab1d0c427`. It added only three evidence files:
 
-### Evidence and bounded grammar
+- `data/discovery/bse-listing-candidates-2026-09-24-batch22.json`
+- `data/discovery/bse-listing-reconciliation-2026-09-24-cursor7-repaired.json`
+- `data/verified-bse-listings/2026-09-24-batch28.json`
 
-A temporary PR-only read-only diagnostic fetched exactly these seven official BSE Index Services detail responses:
+PR #216 merged as `f41557347c204fda3f8f297e4ed23f1267b39d49`. It changes only the two default manifest selections in the existing read-only publication verifier to batch28. No parser, UI, collector, cursor, schedule or permission changes were made in this unit. Generated IPO data was published by the existing source-backed sync, not hand-edited.
 
-`20240624-11`, `20240612-20`, `20240606-11`, `20240205-12`, `20240103-22`, `20231206-8`, `20230719-15`.
+### Evidence and reconciliation
 
-Diagnostic run `36064365512` succeeded. Artifact `10834873538`, ZIP SHA-256 `91a0ee3364f198187400b93a4ed1fc6a61e5d108ab66772907a4d43369e5f2b4`, expires `2026-10-08T21:54:47Z`. All seven raw response hashes were checked, and all seven fresh Data-text hashes matched their retained cursor hashes. The old parser returned zero references from every response.
+Source review run `36068697382` checked all seven 2020-2026 recovery manifests and the committed public dataset at baseline `e7781f054568732ef489fd419f27d379ebfdef5f`: **1,109 records; 13 exact-missing identities; 0 already-present; 0 ambiguous/code/source collisions**. Issuer-specific BSE verification completed **13/13 verified, 0 rejected/unavailable**. No fuzzy identity matching or parser relaxation was needed.
 
-Two notices use **BSE SME Platform** after the venue. Five use ordered shared notice-ID / issuer-ticker lists ending in **respectively**. The additive repair accepts only these demonstrated forms. Shared lists still require equal notice/issuer counts and now explicitly reject duplicate notice IDs or tickers, embedded notice/ticker tokens, misplaced/repeated respectively and leftover prose. Listing statements and valid calendar dates remain mandatory; later index-admission dates are not substituted.
+Artifact `10837695329`, ZIP SHA-256 `b6d7f8ab62eadf63352dfaf2e1b82271864756dce3625864f71a717d429e6d1d`, expires `2026-10-08T22:40:51Z`. The downloaded archive, all ten snapshot hashes, all thirteen original HTTP response hashes and all 39 extracted facts were independently checked. Reviewed evidence uses literal contiguous normalized-text excerpts with offsets and full-text hashes. Collection/publication dates were preserved rather than replaced with release time.
 
-Successfully parsed v1.1/v1.2/v1.3 entries remain compatible. Old-parser failures are selected as an isolated `parser_changed_failure` batch rather than re-fetching successful or unseen notices. The temporary diagnostic workflow was removed before merge.
+Canonical listing-PDF archive probes returned HTTP 404. The established strict issuer-specific official BSE HTML contract remains the authority. Only explicit listing date, market lot and final issue price were retained; six unsupported terms per issuer remain null. The temporary PR-only read-only source-review workflow was removed before merge.
 
-Changed files:
+### Rehearsal and tests
 
-- `scripts/audit-bse-sme-addition-notices.mjs`
-- `scripts/backfill-bse-sme-addition-notices.mjs`
-- `scripts/test-audit-bse-sme-addition-notices.mjs`
-- `scripts/test-backfill-bse-sme-addition-notices.mjs`
-- `scripts/fixtures/bse-cursor7-parser-repair.json`
+The real isolated importer/publication rehearsal proved **1,109 -> 1,122**, exactly **13 additions**, **185 already-present reviewed entries**, **0 holds/conflicts**, all **1,109 existing records unchanged**, and a byte-idempotent second run. A pure audit of the real publisher output also checked all thirteen identities, all 39 facts, nulls and retained hashes.
 
-The fixture preserves literal contiguous normalized clauses, including later index dates, excerpt offsets/hashes, full normalized-text hashes, raw response/Data hashes, collection times and expected discovery references. It is regression evidence, not reviewed IPO listing authority.
+Passed locally: listing-verifier guards; reviewed importer/null/conflict/idempotency tests; real publication rehearsal; live-verifier mutation and real publisher-projection tests; parser/cursor/state regressions; synchronized publication and data validation. The entire tested repository tree `d37ddc479f61cdea51966128b14e133ca00d95b0` exactly matched the committed tree.
 
-### Tests
+PR #215 head checks passed: reviewed evidence/importer `36069399500`, full data contract `36069399553`. PR #216 head checks passed: reviewed evidence `36070151143`, full data contract `36070151155`, served-data verifier `36070151228`.
 
-Passed locally: existing addition-notice parser tests; all seven literal source fixtures; **84 additional fail-closed source mutations**; duplicate-clause checks; cursor selection and real asynchronous migration with mocked network; semantic state merge/idempotency; data validation; synchronized-publication check.
+### Production and actual served-data verification
 
-The asynchronous test makes one catalog request and exactly seven failed-notice detail requests, recovers thirteen references, leaves its input immutable, preserves old successful entries exactly and resumes unseen selection only after the repair batch. The complete committed scripts subtree `4a432be45e09fbcf92b23351a9f7266c2ac31d94` matched the locally tested scripts.
+Production sync `36069541844` succeeded. Source-backed data commit: `0a6e2bae1e0ce35e20975de479a17696395ddfc6`. Operator-state commit: `ca5d59edee121b8d7ce2026e01cc5ffc0fb299b2`. Operator health was **healthy** at `2026-09-24T22:53:13.986Z`.
 
-Final PR-head CI all passed:
+A direct comparison of the served snapshot with the rehearsal baseline found **13 added / 3 changed / 0 removed**. The three existing-record changes were additional SEBI Prospectus/RHP filing/PDF references and collection timestamps for Rubicon Research, WeWork India Management and Garuda Construction and Engineering. No documents were removed and no existing IPO term value changed. These normal source-first enrichments are separate from the thirteen reviewed additions.
 
-| Check | Run |
-| --- | --- |
-| Historical BSE cursor/parser | `36065319366` |
-| Full IPO data contract | `36065319361` |
-| Reviewed BSE evidence/importer | `36065319367` |
+Observed recovery counts: 2020 **51**, 2021 **100**, 2022 **94**, 2023 **196**, 2024 **301**, 2025 **293**, 2026 **87**. Total **1,122**; this batch adds **4 to 2023** and **9 to 2024**. These are observed counts, not complete-universe claims.
 
-### Production verification
-
-Existing merge-triggered backfill run `36065458265` completed successfully:
+Canonical post-merge verifier `36070243437` passed:
 
 | Check | Result |
 | --- | ---: |
-| Selected retained failures | 7 / 7 |
-| Selection reason | All parser_changed_failure |
-| Parsed notices | 7 / 7 |
-| Recovered listing references | 13 |
-| Fetch errors | 0 |
-| Unparseable notices | 0 |
-| Previous successful entries preserved | 153 / 153 |
-| Unseen notices fetched in this repair | 0 |
+| Actually served records | 1,122 |
+| Reviewed issuers | 13 / 13 unique |
+| Listing-date / market-lot / issue-price fields | 39 / 39 matching |
+| Failed issuers | 0 |
+| Unsupported fields | 6 null fields per issuer |
+| Original document-hash field sources checked in recovery | 39 |
+| Document hashes serialized in public evidence | 0 |
 
-Attempted at `2026-09-24T22:06:07.403Z`; saved by cursor commit `ec995bfe578a0ae0fc5f9a47a236d335f9ef83e9`. Production artifact `10835704482`, ZIP SHA-256 `5adf1b4753991bb328b5969eca935a800000a035b74b8c32d9039c60eefc6ff7`, expires `2026-10-08T22:06:10Z`. Exact report SHA-256: `a2683ae7ec30b949e6316289c4e45a40528b6cff2ae016b5cc44bd276b8a6123`.
+Original hashes were checked in retained recovery. The public projection intentionally omits document hashes; do not describe this as public-document-hash verification.
 
-The downloaded artifact was hash-checked, all thirteen production references matched the source fixtures, and all seven source-text hashes still matched. An independently reconstructed whole cursor, changing only the seven entries and run metadata, produced Git blob **`0aba996b117374ea2ba4fbeb299144b63ca9cba2`**, exactly matching the saved GitHub cursor. This verifies all 153 prior successes and bootstrap unchanged; applying the same state proposal is idempotent.
+Snapshot fetched `2026-09-24T22:57:35.734Z`; checked `2026-09-24T22:57:35.772Z`; dataset generated `2026-09-24T22:49:44.462Z`. Snapshot SHA-256: `bd2e2eace8417c760d85f14609c432da0c7fef0cbea3ddf89054d4cd65cc66a3`.
 
-Current cursor: parser **1.4.0**, **160 / 236 tracked**, **160 parsed**, **0 failed**, **76 untracked**. Next unseen notice: **`20230503-13`**. The pre-repair report grouped seven stale-parser failures with unseen/parser-changed work; actual untracked notices remained 76 throughout.
+Post-merge artifact `10838520133`, ZIP SHA-256 `9177f167c564f4c9269c15d4d9bd7ec377dc2320246999284369e0ba080ae8d0`, expires `2026-10-08T22:57:36Z`. Exact downloaded bytes and archive hashes were checked; a fresh pure audit from the retained source snapshot matched every issuer result. PR and post-merge served snapshots were byte-identical. Pages deploy `36070243523` succeeded on PR #216's merge. The earlier merge deploy alone was not accepted as proof of data publication.
 
-Pages deploy `36065458250` succeeded on the parser merge at `2026-09-24T22:06:00Z`. Operational acceptance for this release is the actual saved production cursor, not a new served-IPO-data receipt. A full repository comparison from baseline `f962aba0d70d4ec06878c98b350dea73ef7f480d` to cursor commit `ec995bfe578a0ae0fc5f9a47a236d335f9ef83e9` confirmed no public/recovery data or UI changes.
-
-Durable receipt: [verification/bse-parser-v1.4-2026-09-24.json](verification/bse-parser-v1.4-2026-09-24.json).
+Durable receipt: [verification/repaired-cursor7-live-publication-2026-09-24.json](verification/repaired-cursor7-live-publication-2026-09-24.json). Later independent historical-field automation may enrich unrelated records; this receipt identifies the exact verified snapshot.
 
 ## Exact next backend task
 
-**Reconcile the thirteen recovered discovery references before skipping to newer unseen discovery.** Re-read current main, this handoff and the independent cursor first. The references are retained in the seven repaired cursor entries, the source fixture and the durable receipt; do not assume all thirteen represent missing IPOs.
+Re-read current main, this handoff and `ops/bse-sme-addition-notices.json` first. Latest checked cursor remains parser **1.4.0**, **160/236 tracked**, **160 parsed**, **0 failed**, **76 untracked**, updated `2026-09-24T22:06:07.403Z`, Git blob `0aba996b117374ea2ba4fbeb299144b63ca9cba2`.
 
-Check the latest **2020-2026** recovery manifests and public dataset using normalized issuer identity, BSE scrip code and listing-source identity. Separate already-present, exact-missing and ambiguous cases. Pin only missing/unambiguous candidates in batches of at most 15, then independently verify their issuer-specific official BSE listing notices. Preserve source URLs, hashes, dates and conflicts. Only after that review should explicit listing date, market lot and final issue price enter reviewed manifests; unsupported fields remain null. Rehearse the real importer/publication, preserve existing records, require an idempotent rerun, then publish and check the actually served dataset.
+**Continue one bounded historical discovery segment from the first unseen notice, currently `20230503-13`.** Use the existing state-driven backfill; do not reset or replay prior progress. If independent automation has already advanced, reconcile its earliest pending segment instead of fetching it again. Compare references against all current 2020-2026 recovery and public identities, BSE codes and listing-source identities; separate already-present, missing and ambiguous cases. Independently verify issuer-specific official listing notices only for missing/unambiguous candidates in batches of at most 15. Retain reviewed evidence, rehearse safe/idempotent publication, then verify the actually served result.
 
-Index notice parsing is not listing authority. Do not infer unsupported IPO terms or fuzzy-match issuer identities. If independent automation advances beyond this cursor, account for newer pending segments without skipping these recovered references or replaying completed releases.
+The thirteen repaired references are fully closed as **discovery batch22 / reviewed batch28**. The seven parser failures are also closed. Do not repeat cursor7 discovery20/21 or reviewed26/27, nor cursor6 discovery18/19 or reviewed24/25. Broader historical coverage and field completeness remain incomplete. No UI, minimum-investment, billing, accounts, ads, new spending or permission changes belong to this continuation.
 
-The seven parser failures are closed. Cursor7 discovery batches20/21 and reviewed batches26/27 are also closed, as are cursor6 discovery batches18/19 and reviewed batches24/25. Broader historical coverage and field completeness remain incomplete. No UI, minimum-investment, billing, accounts, ads, new spending or permission changes belong to this continuation.
+## Prior work and preserved history
 
-## Prior release and separate product workstream
+Parser v1.4.0 remains unchanged; its source fixtures, 84 fail-closed mutations and operational receipt remain at [verification/bse-parser-v1.4-2026-09-24.json](verification/bse-parser-v1.4-2026-09-24.json). UI V2 was separately completed in PR #209; its evidence remains in [UI_DESIGN_HANDOFF.md](UI_DESIGN_HANDOFF.md). No UI files changed in this backend unit.
 
-The previous cursor7 reviewed publication remains verified: PR #210 / #211, **1,109 served records**, 18 unique reviewed issuers and 54 matching fields at `2026-09-24T21:37:42Z`. Its historical live evidence remains in [verification/cursor7-live-publication-2026-09-24.json](verification/cursor7-live-publication-2026-09-24.json); no new IPOs were published by the parser repair.
-
-UI V2 was separately completed in PR #209. Its evidence and notes remain in [UI_DESIGN_HANDOFF.md](UI_DESIGN_HANDOFF.md). No UI files changed in this backend unit.
-
-## Preserved history
-
-The entire previous status and README are archived byte-for-byte as [archive/PROJECT_STATUS-before-cursor7-parser-repair.md](archive/PROJECT_STATUS-before-cursor7-parser-repair.md) (original Git blob `05d03ddce3bcb57d785a663111747e5266cc5088`) and [archive/README-before-cursor7-parser-repair.md](archive/README-before-cursor7-parser-repair.md) (blob `b461df24f11b88b5a12750097c8e4d103b620868`). Older archives and release receipts are unchanged. Archived next-task instructions are not current instructions.
+The complete prior status and README are archived byte-for-byte in [archive/PROJECT_STATUS-before-repaired-cursor7-publication.md](archive/PROJECT_STATUS-before-repaired-cursor7-publication.md) (original Git blob `3d48b15db6b82b117302a2d7edcb2922eaa33861`) and [archive/README-before-repaired-cursor7-publication.md](archive/README-before-repaired-cursor7-publication.md) (blob `2ef2c7391b8473496c0829699e73689eaced5cdf`). Older archives and receipts remain unchanged. Archived next-task instructions are not current instructions.

@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0.0",
+  "release": "cursor7-repaired",
+  "status": "verified",
+  "scope": "Backend reconciliation, reviewed evidence and publication of thirteen repaired references. No UI or parser changes.",
+  "reviewed_release": {
+    "pull_request": 215,
+    "merge_sha": "45eab356842ecd49895642133fc2e3eab1d0c427",
+    "tested_head_sha": "6b1918f03675e9cdbff2a95694196c88e4c2e57a",
+    "tested_repository_tree_sha": "d37ddc479f61cdea51966128b14e133ca00d95b0",
+    "baseline_commit": "e7781f054568732ef489fd419f27d379ebfdef5f",
+    "baseline_public_blob": "75bb026b9fd4e2f9305d0a8f1015a15b60b93be0",
+    "discovery_batch": "data/discovery/bse-listing-candidates-2026-09-24-batch22.json",
+    "reconciliation_report": "data/discovery/bse-listing-reconciliation-2026-09-24-cursor7-repaired.json",
+    "manifest": "data/verified-bse-listings/2026-09-24-batch28.json",
+    "manifest_git_blob_sha": "ac4d4de5e61fed648391fb9ec425d323b117a124",
+    "manifest_sha256": "a4a86fefc9da150836efed7ab52901567ebb49ce24863bac6e538ccd45ba0911",
+    "source_run_id": "36068697382",
+    "source_snapshot_commit": "5d51a3a22caf57c5e3b485a855d18b36c517be98",
+    "source_artifact_id": 10837695329,
+    "source_artifact_zip_sha256": "b6d7f8ab62eadf63352dfaf2e1b82271864756dce3625864f71a717d429e6d1d",
+    "source_artifact_expires_at": "2026-10-08T22:40:51Z",
+    "reconciliation": {"records_checked":1109,"annual_recovery_manifests":7,"missing_exact_identity":13,"already_present":0,"identity_review_required":0},
+    "source_verification": {"attempted":13,"verified":13,"rejected":0,"unavailable":0,"raw_response_hashes_rechecked":13,"facts_revalidated":39,"snapshot_hashes_rechecked":10},
+    "evidence_kind": "official_notice_html",
+    "excerpt_method": "literal_contiguous_normalized_text",
+    "pdf_probe_result": "Canonical official listing-PDF archives returned HTTP 404; existing strict HTML contract retained.",
+    "temporary_review_workflow_removed_before_merge": true
+  },
+  "offline_rehearsal": {
+    "before":1109,"after":1122,"added":13,"existing_unchanged":1109,
+    "already_present_reviewed":185,"held_existing":0,"identity_conflicts":0,"byte_idempotent":true,
+    "reviewed_evidence_ci_run_id":"36069399500","data_contract_ci_run_id":"36069399553","ci_status":"success",
+    "local_checks":["independent listing-verifier guards","reviewed importer/null/conflict/idempotency","real publication rehearsal","live-verifier mutation tests","real publisher projection tests","parser/cursor/state regressions","synchronized recovery publication","published data validation"],
+    "whole_local_repository_tree_matches_committed_tree":true
+  },
+  "production": {
+    "sync_run_id":"36069541844","sync_job_id":107867020923,"sync_status":"success",
+    "source_backed_commit":"0a6e2bae1e0ce35e20975de479a17696395ddfc6",
+    "operator_commit":"ca5d59edee121b8d7ce2026e01cc5ffc0fb299b2",
+    "operator_observed_at":"2026-09-24T22:53:13.986Z","operator_health":"healthy",
+    "served_diff_from_rehearsal_baseline":{"added":13,"changed":3,"removed":0},
+    "changed_existing_records":[
+      {"id":"rubicon-research-limited","fields":["documents","last_collected_at"],"documents_added":4,"documents_removed":0},
+      {"id":"wework-india-management-limited","fields":["documents","last_collected_at"],"documents_added":4,"documents_removed":0},
+      {"id":"garuda-construction-and-engineering-limited","fields":["documents","last_collected_at"],"documents_added":2,"documents_removed":0}
+    ],
+    "existing_term_values_changed":0,
+    "change_note":"The normal source-first sync added SEBI Prospectus/RHP filing and PDF document references and updated collection timestamps. These three enrichments are separate from thirteen reviewed additions.",
+    "recovery_counts":{"2020":51,"2021":100,"2022":94,"2023":196,"2024":301,"2025":293,"2026":87},
+    "coverage_note":"Observed snapshot counts, not a complete IPO-universe claim. Later independent automation may enrich unrelated records."
+  },
+  "live_verification": {
+    "pull_request":216,"merge_sha":"f41557347c204fda3f8f297e4ed23f1267b39d49",
+    "run_id":"36070243437","run_attempt":1,"workflow_status":"success",
+    "source_url":"https://vasuki8.github.io/IPO-Tracker/data/ipos.json",
+    "snapshot_fetched_at":"2026-09-24T22:57:35.734Z","checked_at":"2026-09-24T22:57:35.772Z",
+    "dataset_generated_at":"2026-09-24T22:49:44.462Z",
+    "snapshot_sha256":"bd2e2eace8417c760d85f14609c432da0c7fef0cbea3ddf89054d4cd65cc66a3",
+    "snapshot_bytes":5991247,"published_records":1122,"checked_issuers":13,"unique_issuers":13,"checked_fields":39,"failed_issuers":0,
+    "null_fields_per_issuer":6,
+    "null_fields":["price_band","open_date","close_date","issue_size_inr","minimum_bid_quantity","minimum_application_amount_inr"],
+    "document_hash_scope":{"retained_fields":39,"serialized_live_fields":0,"note":"Original hashes were verified in retained recovery. The public projection intentionally omits document hashes; this is not public-document-hash verification."},
+    "artifact_id":10838520133,
+    "artifact_zip_sha256":"9177f167c564f4c9269c15d4d9bd7ec377dc2320246999284369e0ba080ae8d0",
+    "artifact_expires_at":"2026-10-08T22:57:36Z",
+    "artifact_files":["publication-report.json","deployed-data.json","source-snapshot.zip"],
+    "independent_recheck":"Downloaded ZIP hash and exact served bytes checked; pure audit repeated from the retained source snapshot; all issuer results matched. PR and post-merge served snapshots were byte-identical.",
+    "pr_verification":{"run_id":"36070151228","artifact_id":10837732595,"artifact_zip_sha256":"c23ea2cc2177bb5a191f6952cfaa4ec83b68ae5136dad822c900c08a3ecf1401","snapshot_fetched_at":"2026-09-24T22:56:29.888Z","checked_at":"2026-09-24T22:56:29.929Z"},
+    "pr_checks":{"reviewed_evidence":"36070151143","data_contract":"36070151155","status":"success"},
+    "pages_deploy":{"run_id":"36070243523","status":"success","commit_sha":"f41557347c204fda3f8f297e4ed23f1267b39d49"}
+  },
+  "cursor_at_handoff": {
+    "path":"ops/bse-sme-addition-notices.json","git_blob_sha":"0aba996b117374ea2ba4fbeb299144b63ca9cba2",
+    "updated_at":"2026-09-24T22:06:07.403Z","parser_version":"1.4.0",
+    "eligible":236,"tracked":160,"parsed":160,"failed":0,"untracked":76,"next_unseen_notice_no":"20230503-13",
+    "completed_discovery_batch":22,"completed_reviewed_batch":28,
+    "next_task":"Re-read current main, handoff and cursor. Reconcile any newly pending segment first; otherwise continue one bounded historical cursor batch from the first unseen notice, currently 20230503-13. Independently verify issuer-specific listing evidence before publication. Do not replay the thirteen repaired references or prior closed batches."
+  }
+}
