@@ -15,7 +15,7 @@ export const BSE_INDEX_NOTICE_LIST_URL =
 export const BSE_INDEX_NOTICE_DETAIL_URL =
   "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=";
 export const NOTICE_BATCH_SIZE = 20;
-export const NOTICE_PARSER_VERSION = "1.1.0";
+export const NOTICE_PARSER_VERSION = "1.2.0";
 
 const USER_AGENT =
   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36";
@@ -149,7 +149,7 @@ export function parseBseSmeAdditionNoticeHtml(html) {
   const body = stripTags(html);
   const rows = [];
   // The same punctuation grammar must delimit a clause AND parse its entries.
-  const entryStart = /With reference to\s+Notice No\.?\s*:?\s*[0-9]{8}-[0-9]+/gi;
+  const entryStart = /With reference to\s+Notice No\s*\.?\s*:?\s*[0-9]{8}\s*-\s*[0-9]+/gi;
   const starts = [...body.matchAll(entryStart)];
 
   for (let index = 0; index < starts.length; index += 1) {
@@ -158,7 +158,7 @@ export function parseBseSmeAdditionNoticeHtml(html) {
     const clause = body.slice(from, to);
     // Index admission's later "Effective at the open" date is NOT a listing date.
     const listingStatement = clause.match(
-      /\b(?:is being|are being|will be|is|are)\s+listed\s+on\s+(?:SME\s+platform\s+of\s+)?BSE\b[\s,]*effective\s+(?:(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s*,?\s*)?([A-Za-z]+\s+\d{1,2},\s*\d{4})/i
+      /\b(?:is being|are being|will be|is|are)\s+listed\s+on\s+(?:(?:the\s+)?SME\s+platform\s+of\s+)?BSE\b[\s,]*effective\s+(?:(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s*,?\s*)?([A-Za-z]+\s+\d{1,2},\s*\d{4})/i
     );
     if (!listingStatement) continue;
     const listingTerms = clause.slice(0, listingStatement.index);
@@ -167,20 +167,20 @@ export function parseBseSmeAdditionNoticeHtml(html) {
     if (!listingDate) continue;
 
     const entryPattern =
-      /(?:With reference to\s+)?Notice No\.?\s*:?\s*([0-9]{8}-[0-9]+)\s*,?\s*(.{1,220}?)\s*\(Exchange ticker\s*[–—-]\s*([0-9]{6})\s*\)/gi;
+      /(?:With reference to\s+)?Notice No\s*\.?\s*:?\s*([0-9]{8})\s*-\s*([0-9]+)\s*,?\s*(.{1,220}?)\s*\(Exchange ticker\s*[–—-]\s*([0-9]{6})\s*\)/gi;
     const entries = [...listingTerms.matchAll(entryPattern)];
     if (!entries.length) continue;
     // All issuer references before the shared listing statement must be explicit.
     // Do not bridge missing tickers or unrelated prose to a later issuer's date.
     const separators = listingTerms.replace(entryPattern, " ");
     if (!/^(?:\s|,|&|\band\b)*$/i.test(separators)) continue;
-    if (entries.some((entry) => /\bNotice\s+No\b/i.test(entry[2]))) continue;
+    if (entries.some((entry) => /\bNotice\s+No\b/i.test(entry[3]))) continue;
 
     for (const entry of entries) {
       rows.push({
-        listing_notice_no: entry[1],
-        issuer_name: normalizeText(entry[2]),
-        bse_scrip_code: entry[3],
+        listing_notice_no: entry[1] + "-" + entry[2],
+        issuer_name: normalizeText(entry[3]),
+        bse_scrip_code: entry[4],
         listing_date: listingDate,
         listing_date_raw: effectiveRaw
       });
