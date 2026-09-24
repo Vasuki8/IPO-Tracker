@@ -173,19 +173,20 @@ export function parseBseSmeAdditionNoticeHtml(html) {
       // All issuer references before the shared listing statement must be explicit.
       // Do not bridge missing tickers or unrelated prose to a later issuer's date.
       const separators = listingTerms.replace(entryPattern, " ");
-      if (!/^(?:\s|,|&|\band\b)*$/i.test(separators)) continue;
-      if (entries.some((entry) => /\bNotice\s+No\b/i.test(entry[3]))) continue;
-
-      for (const entry of entries) {
-        rows.push({
-          listing_notice_no: entry[1] + "-" + entry[2],
-          issuer_name: normalizeText(entry[3]),
-          bse_scrip_code: entry[4],
-          listing_date: listingDate,
-          listing_date_raw: effectiveRaw
-        });
+      const standardSafe = /^(?:\s|,|&|\band\b)*$/i.test(separators) &&
+        !entries.some((entry) => /\bNotice\s+No\b/i.test(entry[3]));
+      if (standardSafe) {
+        for (const entry of entries) {
+          rows.push({
+            listing_notice_no: entry[1] + "-" + entry[2],
+            issuer_name: normalizeText(entry[3]),
+            bse_scrip_code: entry[4],
+            listing_date: listingDate,
+            listing_date_raw: effectiveRaw
+          });
+        }
+        continue;
       }
-      continue;
     }
 
     // Older BSE notices may list several notice IDs once, then the same number
