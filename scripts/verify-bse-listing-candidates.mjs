@@ -6,7 +6,7 @@ import { parseBseListingNotice } from "./extract-bse-ipo-fields.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 export const MAX_CANDIDATES = 15;
-export const VERIFIER_VERSION = "1.0.0";
+export const VERIFIER_VERSION = "1.1.0";
 const MAX_RESPONSE_BYTES = 2 * 1024 * 1024;
 const HOME = "https://www.bseindia.com/";
 const USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36";
@@ -73,11 +73,29 @@ export function verifyListingHtml(html, candidate, asOf = new Date().toISOString
   const body = noticeText(html);
   const parsed = parseBseListingNotice(body);
   const reasons = [];
-  const noticeNos = unique([...body.matchAll(/\bNotice\s+No\.?\s*:?\s*(\d{8}-\d+)\b/gi)].map((m) => m[1]));
+  // Header identity excludes historical regulatory notices cited in the body.
+  const noticeNos = unique([...body.matchAll(/\bNotice\s+No\.?\s*:?\s*(\d{8}-\d+)\s+Notice Date\b/gi)].map((m) => m[1]));
+  const tableIssuer = body.match(/\bName of the company\s+(.{1,180}?)\s+Registered Office\b/i)?.[1] ?? null;
+  const bodyIssuer = body.match(/\bthe Equity Shares of\s+(.{1,180}?)\s+shall be listed\b/i)?.[1] ?? null;
+  const issuerMentions = [parsed.company, tableIssuer, bodyIssuer].filter(Boolean);
+  const issuerNames = unique(issuerMentions.map(issuerKey));
+  const issuerName = tableIssuer ?? parsed.company ?? bodyIssuer;
+  const publicationRaw = body.match(/\bNotice Date\s+(\d{1,2}\s+[A-Za-z]{3}\s+\d{4})\s+Category\b/i)?.[1] ?? null;
+  let publicationDate = null;
+  if (publicationRaw) {
+    const [day, month, year] = publicationRaw.split(/\s+/);
+    const m = ["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"].indexOf(month.toLowerCase()) + 1;
+    publicationDate = strictDate(`${year}-${String(m).padStart(2,"0")}-${day.padStart(2,"0")}`);
+  }
   const codes = unique([...body.matchAll(/\b(?:Scrip|Security)\s+Code\s*[:\-]?\s*(\d{6})\b/gi)].map((m) => m[1]));
   const dateMatches = [...body.matchAll(/\beffective\s+from\s+(?:(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s*,?\s*)?([A-Za-z]+\s+\d{1,2},\s*\d{4})/gi)];
   const dates = unique(dateMatches.map((m) => strictDate(m[1])));
-  if (!parsed.company || issuerKey(parsed.company) !== issuerKey(candidate.issuer_name)) reasons.push("issuer_mismatch_or_missing");
+  if (!issuerName && !noticeNos.length && !codes.length && !dates.length && !parsed.board) {
+    return { status: "unavailable", reasons: ["notice_content_missing"],
+      observed_identity: { issuer_name: null, notice_numbers: [], scrip_codes: [], listing_dates: [], board: null },
+      facts: null, response_text: body };
+  }
+  if (issuerNames.length !== 1 || issuerNames[0] !== issuerKey(candidate.issuer_name)) reasons.push("issuer_mismatch_or_missing");
   if (noticeNos.length !== 1 || noticeNos[0] !== candidate.listing_notice_no) reasons.push("notice_number_mismatch_or_missing");
   if (codes.length !== 1 || codes[0] !== candidate.bse_scrip_code) reasons.push("scrip_code_mismatch_or_missing");
   if (dates.length !== 1 || dates[0] == null || dates[0] !== candidate.listing_date) reasons.push("listing_date_mismatch_or_missing");
@@ -85,8 +103,8 @@ export function verifyListingHtml(html, candidate, asOf = new Date().toISOString
   if (parsed.board !== "SME") reasons.push("sme_segment_not_confirmed");
   if (!/\bEquity Shares\b[\s\S]*?\b(?:listed|admitted)\b/i.test(body)) reasons.push("equity_listing_statement_missing");
 
-  const lots = scalarMatches(body, /\bMarket Lot\s+([0-9][0-9,]*)\b/gi);
-  const prices = scalarMatches(body, /\bIssue Price for the current Public issue\s+Rs\.?\s*([0-9][0-9,.]*)/gi);
+  const lots = scalarMatches(body, /\bMarket Lot\s+([0-9][0-9,.]*(?:\s*(?:[-–—]|to)\s*[0-9][0-9,.]*)?)/gi);
+  const prices = scalarMatches(body, /\bIssue Price for the current Public issue\s+Rs\.?\s*([0-9][0-9,.]*(?:\s*(?:[-–—]|to)\s*[0-9][0-9,.]*)?)/gi);
   const facts = {};
   for (const [field, matches] of [["market_lot", lots], ["issue_price", prices]]) {
     const values = unique(matches.map((m) => m.value));
@@ -96,7 +114,7 @@ export function verifyListingHtml(html, candidate, asOf = new Date().toISOString
   }
   return {
     status: reasons.length ? "rejected" : "verified", reasons,
-    observed_identity: { issuer_name: parsed.company, notice_numbers: noticeNos, scrip_codes: codes, listing_dates: dates, board: parsed.board },
+    observed_identity: { issuer_name: issuerName, notice_numbers: noticeNos, scrip_codes: codes, listing_dates: dates, board: parsed.board, publication_date: publicationDate, publication_date_raw: publicationRaw },
     facts: reasons.length ? null : { listing_date: { value: dates[0], source_value: dateMatches[0][0] }, ...facts },
     response_text: body
   };

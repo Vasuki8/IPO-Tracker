@@ -3,12 +3,29 @@ import os from "node:os";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { pathToFileURL } from "node:url";
-import { validateBatch, listingUrl, verifyListingHtml, sha256 } from "./verify-bse-listing-candidates.mjs";
+import { validateBatch, listingUrl, verifyListingHtml, noticeText, sha256 } from "./verify-bse-listing-candidates.mjs";
 
 export function archiveProbeUrl(noticeNo) {
   listingUrl(noticeNo); // The archive path is a retrieval probe, never evidence by itself.
   return `https://www.bseindia.com/downloads/UploadDocs/Notices/${noticeNo}/${noticeNo}.pdf`;
 }
+
+export function verifyListingPdfText(extracted, candidate, asOf) {
+  const checked = verifyListingHtml(extracted, candidate, asOf);
+  if (checked.status !== "verified") return checked;
+  const pages = extracted.split("\f").map(noticeText);
+  for (const fact of Object.values(checked.facts)) {
+    const page = pages.findIndex((text) => text.includes(fact.source_value));
+    if (page < 0) throw new Error("field_page_evidence_missing");
+    fact.page = page + 1;
+  }
+  checked.identity_pages = {
+    notice: pages.findIndex((text) => text.includes("Notice No. " + candidate.listing_notice_no)) + 1,
+    board: pages.findIndex((text) => /\bSegment SME\b/.test(text)) + 1
+  };
+  return checked;
+}
+
 export async function retryPdf(report, evidenceDir, fetchImpl = fetch) {
   validateBatch({ schema_version: report.schema_version, candidates: report.results.map((r) => r.candidate) });
   fs.mkdirSync(evidenceDir, { recursive: true });
@@ -41,13 +58,13 @@ export async function retryPdf(report, evidenceDir, fetchImpl = fetch) {
       execFileSync("pdftotext", ["-f", "1", "-l", "3", "-layout", path.join(dir, "notice.pdf"), path.join(dir, "notice.txt")], { timeout: 20000, stdio: "ignore" });
       const extracted = fs.readFileSync(path.join(dir, "notice.txt"), "utf8");
       attempt.extracted_text_sha256 = sha256(extracted);
-      const checked = verifyListingHtml(extracted, candidate, attempt.collected_at);
+      const checked = verifyListingPdfText(extracted, candidate, attempt.collected_at);
       attempt.status = checked.status;
       attempt.reasons = checked.reasons;
       attempt.response_text = checked.response_text;
       if (checked.status === "verified") {
         result.html_attempt = { source_url: result.source_url, response_sha256: result.response_sha256, collected_at: result.collected_at, evidence_file: result.evidence_file, reasons: result.reasons };
-        Object.assign(result, checked, { source_url: url, source_kind: "BSE Listing Notice PDF", response_sha256: attempt.response_sha256, response_bytes: bytes.length, collected_at: attempt.collected_at, evidence_file: name, scanned_pdf_pages: "1-3" });
+        Object.assign(result, checked, { source_url: url, source_kind: "BSE Listing Notice PDF", response_sha256: attempt.response_sha256, response_bytes: bytes.length, http_status: attempt.http_status, content_type: attempt.content_type, collected_at: attempt.collected_at, evidence_file: name, scanned_pdf_pages: "1-3" });
       }
     } catch (error) { attempt.error = String(error?.message || error); }
     finally { attempt.collected_at ||= new Date().toISOString(); fs.rmSync(dir, { recursive: true, force: true }); }
