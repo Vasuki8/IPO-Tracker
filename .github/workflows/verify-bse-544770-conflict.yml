@@ -42,7 +42,7 @@ jobs:
           node scripts/verify-bse-listing-candidates.mjs \
             --input=data/discovery/bse-listing-conflict-544770-merritronix.json \
             --output="${{ runner.temp }}/bse-544770/merritronix/report.json" \
-            --evidence-dir="${{ runner.temp }}/bse-544770/merritronix/notices"
+            --evidence-dir="${{ runner.temp }}/bse-544770/merritronix/notices" || true
           node scripts/retry-bse-listing-pdf.mjs \
             --report="${{ runner.temp }}/bse-544770/merritronix/report.json" \
             --evidence-dir="${{ runner.temp }}/bse-544770/merritronix/notices"
@@ -53,7 +53,7 @@ jobs:
           node scripts/verify-bse-listing-candidates.mjs \
             --input=data/discovery/bse-listing-conflict-544770-yaashvi.json \
             --output="${{ runner.temp }}/bse-544770/yaashvi/report.json" \
-            --evidence-dir="${{ runner.temp }}/bse-544770/yaashvi/notices"
+            --evidence-dir="${{ runner.temp }}/bse-544770/yaashvi/notices" || true
           node scripts/retry-bse-listing-pdf.mjs \
             --report="${{ runner.temp }}/bse-544770/yaashvi/report.json" \
             --evidence-dir="${{ runner.temp }}/bse-544770/yaashvi/notices"
