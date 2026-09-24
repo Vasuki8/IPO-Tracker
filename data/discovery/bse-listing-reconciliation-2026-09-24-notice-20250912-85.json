@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-24T05:16:06.931Z",
+  "source_notice": {
+    "index_notice_no": "20250912-85",
+    "index_notice_date": "2025-09-12",
+    "subject": "Addition to the BSE SME IPO INDEX",
+    "source_kind": "bse_index_notice_detail_api",
+    "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250912-85",
+    "extracted_text_sha256": "c2504ec9ca86dcfc0aa36ff50afa5c70803d3802353d955aff602b5eae88a8d8",
+    "prior_status": "unparseable",
+    "prior_error": "no_parseable_listing_reference",
+    "repaired_parser_shape": "two explicit Notice No / issuer / Exchange ticker references joined by '&', followed by shared 'listed on SME platform of BSE effective ...' listing statement"
+  },
+  "safety_rules": [
+    "September 12, 2025 is the shared listing date from the issuer-listing statement.",
+    "September 15, 2025 is an index-admission effective date and is not used as the listing date.",
+    "Both issuer references must independently provide a listing notice number and six-digit BSE ticker.",
+    "Index evidence is discovery-only; issuer-specific official BSE listing notices are required before materialization."
+  ],
+  "stats": {
+    "repaired_references": 2,
+    "already_present": 0,
+    "missing_exact_identity": 2
+  },
+  "entries": [
+    {
+      "listing_notice_no": "20250911-76",
+      "issuer_name": "AUSTERE SYSTEMS LIMITED",
+      "bse_scrip_code": "544505",
+      "listing_date": "2025-09-12",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250911-76",
+      "classification": "missing_exact_identity"
+    },
+    {
+      "listing_notice_no": "20250911-79",
+      "issuer_name": "SHARVAYA METALS LIMITED",
+      "bse_scrip_code": "544506",
+      "listing_date": "2025-09-12",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250911-79",
+      "classification": "missing_exact_identity"
+    }
+  ]
+}
