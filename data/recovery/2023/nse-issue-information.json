@@ -1,7 +1,7 @@
 {
   "source_family": "Official NSE / SEBI / BSE offer-document and exchange evidence",
   "collection_started_at": "2026-09-23T19:29:29.146Z",
-  "generated_at": "2026-09-24T01:46:49.346Z",
+  "generated_at": "2026-09-24T02:31:21.345Z",
   "records": [
     {
       "id": "a-g-universal-limited",
@@ -708,10 +708,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — ACSAL",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ACSAL&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-24T02:27:19.553Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T02:27:19.553Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -758,6 +765,19 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 3000,
+        "source_value": "3,000 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ACSAL&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — ACSAL",
+          "publication_date": null,
+          "collected_at": "2026-09-24T02:27:19.553Z"
         }
       }
     },
@@ -2166,10 +2186,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — COMMITTED",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=COMMITTED&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-24T02:27:19.553Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T02:27:19.553Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -2216,6 +2243,19 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 1600,
+        "source_value": "1600 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=COMMITTED&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — COMMITTED",
+          "publication_date": null,
+          "collected_at": "2026-09-24T02:27:19.553Z"
         }
       }
     },
@@ -2985,10 +3025,38 @@
           "url": "https://www.nseindia.com/api/ipo-detail?symbol=DOMS&series=EQ",
           "publication_date": null,
           "collected_at": "2026-09-23T20:42:21.127Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "DOMS Industries Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/dec-2023/doms-industries-limited-prospectus_80116.html",
+          "publication_date": "2023-12-20",
+          "collected_at": "2026-09-24T02:31:21.345Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "DOMS Industries Limited - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1703132191872.pdf",
+          "publication_date": "2023-12-20",
+          "collected_at": "2026-09-24T02:31:21.345Z"
+        },
+        {
+          "type": "SEBI RHP filing",
+          "identity": "DOMS Industries Limited - RHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/dec-2023/doms-industries-limited-rhp_79543.html",
+          "publication_date": "2023-12-04",
+          "collected_at": "2026-09-24T02:31:21.345Z"
+        },
+        {
+          "type": "SEBI RHP PDF",
+          "identity": "DOMS Industries Limited - RHP — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1701689941844.pdf",
+          "publication_date": "2023-12-04",
+          "collected_at": "2026-09-24T02:31:21.345Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T20:42:21.127Z",
+      "last_collected_at": "2026-09-24T02:31:21.345Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -5031,10 +5099,38 @@
           "url": "https://www.nseindia.com/api/ipo-detail?symbol=INDIASHLTR&series=EQ",
           "publication_date": null,
           "collected_at": "2026-09-23T20:42:21.127Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "India Shelter Finance Corporation Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/dec-2023/india-shelter-finance-corporation-limited-prospectus_79987.html",
+          "publication_date": "2023-12-18",
+          "collected_at": "2026-09-24T02:31:21.345Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "India Shelter Finance Corporation Limited - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702894971952.pdf",
+          "publication_date": "2023-12-18",
+          "collected_at": "2026-09-24T02:31:21.345Z"
+        },
+        {
+          "type": "SEBI RHP filing",
+          "identity": "India Shelter Finance Corporation Limited - RHP",
+          "url": "https://www.sebi.gov.in/filings/public-issues/dec-2023/india-shelter-finance-corporation-limited-rhp_79741.html",
+          "publication_date": "2023-12-08",
+          "collected_at": "2026-09-24T02:31:21.345Z"
+        },
+        {
+          "type": "SEBI RHP PDF",
+          "identity": "India Shelter Finance Corporation Limited - RHP — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702033205783.PDF",
+          "publication_date": "2023-12-08",
+          "collected_at": "2026-09-24T02:31:21.345Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T20:42:21.127Z",
+      "last_collected_at": "2026-09-24T02:31:21.345Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -5706,10 +5802,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — IRMENERGY",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=IRMENERGY&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-24T02:27:19.553Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T02:27:19.553Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -5756,6 +5859,19 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 29,
+        "source_value": "29 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=IRMENERGY&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — IRMENERGY",
+          "publication_date": null,
+          "collected_at": "2026-09-24T02:27:19.553Z"
         }
       }
     },
@@ -9023,10 +9139,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — PLADAINFO",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PLADAINFO&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-24T02:27:19.553Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T02:27:19.553Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -9073,6 +9196,19 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 3000,
+        "source_value": "3000 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PLADAINFO&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — PLADAINFO",
+          "publication_date": null,
+          "collected_at": "2026-09-24T02:27:19.553Z"
         }
       }
     },
@@ -9699,10 +9835,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — RCDL",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=RCDL&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-24T02:27:19.553Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T02:27:19.553Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -9749,6 +9892,19 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 3000,
+        "source_value": "3000 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=RCDL&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — RCDL",
+          "publication_date": null,
+          "collected_at": "2026-09-24T02:27:19.553Z"
         }
       }
     },
@@ -14680,10 +14836,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — WOMANCART",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=WOMANCART&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-24T02:27:19.553Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T02:27:19.553Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -14730,6 +14893,19 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 1600,
+        "source_value": "1600 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=WOMANCART&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — WOMANCART",
+          "publication_date": null,
+          "collected_at": "2026-09-24T02:27:19.553Z"
         }
       }
     },
