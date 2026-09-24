@@ -65,9 +65,23 @@ export function eligibleBseSmeAdditionNotices(catalog) {
     .sort((a, b) => noticeSortValue(b) - noticeSortValue(a) || noticeNo(b).localeCompare(noticeNo(a)));
 }
 
+const COMPATIBLE_PARSED_PARSER_VERSIONS = new Set(["1.1.0"]);
+
 function currentParserEntry(state, row) {
   const entry = state?.notices?.[noticeNo(row)];
-  return entry?.parser_version === NOTICE_PARSER_VERSION ? entry : null;
+  if (!entry) return null;
+  if (entry.parser_version === NOTICE_PARSER_VERSION) return entry;
+  if (entry.status === "parsed" && COMPATIBLE_PARSED_PARSER_VERSIONS.has(entry.parser_version)) return entry;
+  return null;
+}
+
+function parserChangedFailure(state, row) {
+  const entry = state?.notices?.[noticeNo(row)];
+  return entry &&
+    entry.status !== "parsed" &&
+    entry.parser_version !== NOTICE_PARSER_VERSION
+    ? entry
+    : null;
 }
 
 export function selectBseNoticeBackfillBatch(
@@ -77,7 +91,13 @@ export function selectBseNoticeBackfillBatch(
   nowMs = Date.now()
 ) {
   validateNoticeBatchSize(batchSize);
-  const unseen = eligible.filter((row) => !currentParserEntry(state, row));
+  const repairedFailures = eligible
+    .filter((row) => parserChangedFailure(state, row))
+    .slice(0, batchSize)
+    .map((row) => ({ row, reason: "parser_changed_failure" }));
+  if (repairedFailures.length > 0) return repairedFailures;
+
+  const unseen = eligible.filter((row) => !state?.notices?.[noticeNo(row)] && !currentParserEntry(state, row));
   const selected = unseen.slice(0, batchSize).map((row) => ({ row, reason: "unseen_or_parser_changed" }));
 
   if (selected.length >= batchSize || unseen.length > 0) return selected;
@@ -114,13 +134,14 @@ export function bseNoticeProgress(eligible, state) {
       nextUnseenNoticeNo ||= key;
       continue;
     }
-    if (entry.parser_version !== NOTICE_PARSER_VERSION) {
+    const current = currentParserEntry(state, row);
+    if (!current) {
       staleParser += 1;
       unseen += 1;
       nextUnseenNoticeNo ||= key;
       continue;
     }
-    if (entry.status === "parsed") parsed += 1;
+    if (current.status === "parsed") parsed += 1;
     else failed += 1;
   }
 

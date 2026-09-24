@@ -49,6 +49,17 @@ assert.equal(notRegressed.notices["20260605-1"].status, "parsed");
 assert.equal(notRegressed.notices["20260605-1"].attempts, 2);
 assert.equal(notRegressed.catalog.observed_at, "2026-09-24T02:00:00Z");
 
+const migratedProposal = structuredClone(proposal);
+migratedProposal.parser_version = "1.2.0";
+migratedProposal.updated_at = "2026-09-24T03:00:00Z";
+migratedProposal.notices["20260605-1"] = {
+  ...entry("20260605-1", "2026-09-24T03:00:00Z", 1, "parsed"),
+  parser_version: "1.2.0"
+};
+const migrated = mergeBseNoticeStates(merged, migratedProposal);
+assert.equal(migrated.notices["20260605-1"].parser_version, "1.2.0");
+assert.equal(migrated.notices["20260605-1"].status, "parsed");
+
 assert.deepEqual(
   mergeBseNoticeStates(merged, proposal),
   merged,

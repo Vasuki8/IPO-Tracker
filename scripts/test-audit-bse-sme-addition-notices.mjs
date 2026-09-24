@@ -166,6 +166,71 @@ assert.deepEqual(parseBseSmeAdditionNoticeHtml(pluralProduction), [
   }
 ]);
 
+
+const legacy2025Single = `
+Content Addition to the BSE SME IPO Index
+MUMBAI, JULY 16, 2025: With reference to Notice No . 20250715-53,
+ASSTON PHARMACEUTICALS LIMITED (Exchange ticker - 544445 ),
+is being listed on the SME Platform of BSE effective Wednesday, July 16,2025 .
+Effective at the open of Thursday, July 17,2025 the stock will be added to the below index.
+`;
+assert.deepEqual(parseBseSmeAdditionNoticeHtml(legacy2025Single), [{
+  listing_notice_no: "20250715-53",
+  issuer_name: "ASSTON PHARMACEUTICALS LIMITED",
+  bse_scrip_code: "544445",
+  listing_date: "2025-07-16",
+  listing_date_raw: "July 16,2025"
+}]);
+
+const legacy2025PluralSpacedId = `
+PRESS RELEASE Additions to the BSE SME IPO Index
+MUMBAI, APRIL 08, 2025: With reference to Notice No. 20250407- 51
+SPINAROO COMMERCIAL LIMITED (Exchange ticker- 544392 ) and Notice No. 20250407-67,
+INFONATIVE SOLUTIONS LIMITED (Exchange ticker- 544393 ),
+are being listed on the SME Platform of BSE effective Tuesday, April 08, 2025 .
+Effective at the open of Wednesday, April 09, 2025. stocks will be added to the below index.
+`;
+assert.deepEqual(parseBseSmeAdditionNoticeHtml(legacy2025PluralSpacedId), [
+  {
+    listing_notice_no: "20250407-51",
+    issuer_name: "SPINAROO COMMERCIAL LIMITED",
+    bse_scrip_code: "544392",
+    listing_date: "2025-04-08",
+    listing_date_raw: "April 08, 2025"
+  },
+  {
+    listing_notice_no: "20250407-67",
+    issuer_name: "INFONATIVE SOLUTIONS LIMITED",
+    bse_scrip_code: "544393",
+    listing_date: "2025-04-08",
+    listing_date_raw: "April 08, 2025"
+  }
+]);
+
+const legacy2025Plural = `
+PRESS RELEASE Additions to the BSE SME IPO Index
+MUMBAI, MAY 12, 2025: With reference to Notice No. 20250509-44
+SRIGEE DLM LIMITED (Exchange ticker-544399) and Notice No. 20250509-45,
+MANOJ JEWELLERS LIMITED (Exchange ticker- 544400),
+are being listed on the SME Platform of BSE effective Monday, May 12, 2025 .
+`;
+assert.deepEqual(parseBseSmeAdditionNoticeHtml(legacy2025Plural), [
+  {
+    listing_notice_no: "20250509-44",
+    issuer_name: "SRIGEE DLM LIMITED",
+    bse_scrip_code: "544399",
+    listing_date: "2025-05-12",
+    listing_date_raw: "May 12, 2025"
+  },
+  {
+    listing_notice_no: "20250509-45",
+    issuer_name: "MANOJ JEWELLERS LIMITED",
+    bse_scrip_code: "544400",
+    listing_date: "2025-05-12",
+    listing_date_raw: "May 12, 2025"
+  }
+]);
+
 // Synthetic safety fixtures: punctuation must be accepted in BOTH parser stages.
 for (const label of ["No", "No.", "No:", "No.:", "No. :"]) {
   for (const dash of ["-", "–", "—", "&ndash;", "&mdash;"]) {

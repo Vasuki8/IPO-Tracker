@@ -28,7 +28,7 @@ assert.deepEqual(eligible.map((item) => item.notice_no), [
 ]);
 
 const at = "2026-09-24T03:00:00Z";
-const parsed = (noticeNo, parserVersion = "1.1.0") => ({
+const parsed = (noticeNo, parserVersion = "1.2.0") => ({
   notice_no: noticeNo,
   notice_date: "2026-06-01",
   subject: "Addition to the BSE SME IPO Index",
@@ -82,12 +82,21 @@ assert.deepEqual(
   "failed notices become retry candidates after unseen work is exhausted"
 );
 
-const stale = structuredClone(fullySeen);
-stale.notices["20260605-1"] = parsed("20260605-1", "0.9.0");
-assert.equal(
-  selectBseNoticeBackfillBatch(eligible, stale, 1, Date.parse(at))[0].row.notice_no,
+const compatibleParsed = structuredClone(fullySeen);
+compatibleParsed.notices["20260605-1"] = parsed("20260605-1", "1.1.0");
+assert.notEqual(
+  selectBseNoticeBackfillBatch(eligible, compatibleParsed, 1, Date.parse(at))[0]?.row.notice_no,
   "20260605-1",
-  "parser-version changes must requeue prior results"
+  "successfully parsed v1.1 entries remain compatible with the additive v1.2 grammar"
+);
+
+const stale = structuredClone(fullySeen);
+stale.notices["20260605-1"] = { ...failure, notice_no: "20260605-1", parser_version: "1.1.0" };
+const parserRepair = selectBseNoticeBackfillBatch(eligible, stale, 2, Date.parse(at));
+assert.deepEqual(
+  parserRepair.map((item) => [item.row.notice_no, item.reason]),
+  [["20260605-1", "parser_changed_failure"]],
+  "failed v1.1 entries must be requeued immediately and isolated from unseen discovery"
 );
 
 const progress = bseNoticeProgress(eligible, state);
