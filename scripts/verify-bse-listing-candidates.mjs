@@ -112,7 +112,10 @@ export function verifyListingHtml(html, candidate, asOf = new Date().toISOString
   if (parsed.board !== "SME") reasons.push("sme_segment_not_confirmed");
   if (!/\bEquity Shares\b[\s\S]*?\b(?:listed|admitted)\b/i.test(body)) reasons.push("equity_listing_statement_missing");
 
-  const lots = scalarMatches(body, /\bMarket Lot\s+([0-9][0-9,.]*(?:\s*(?:[-–—]|to)\s*[0-9][0-9,.]*)?)/gi);
+  const lots = [
+    ...scalarMatches(body, /\bMarket Lot\s+([0-9][0-9,.]*(?:\s*(?:[-–—]|to)\s*[0-9][0-9,.]*)?)/gi),
+    ...scalarMatches(body, /\bminimum\s+market\s+lot\s*\(\s*i\.?\s*e\.?\s*([0-9][0-9,.]*)\s*equity\s+shares\s*\)/gi)
+  ];
   const prices = scalarMatches(body, /\bIssue Price for the current Public issue\s+Rs\.?\s*([0-9][0-9,.]*(?:\s*(?:[-–—]|to)\s*[0-9][0-9,.]*)?)/gi);
   const facts = {};
   for (const [field, matches] of [["market_lot", lots], ["issue_price", prices]]) {
