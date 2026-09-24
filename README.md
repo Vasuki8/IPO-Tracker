@@ -34,39 +34,42 @@ Collection time, dataset generation and Pages publication are separate signals. 
 
 ## Handoff for the next prompt
 
-**Latest completed batch: BSE code 544770 conflict resolved and published — PR #171.**
+**Latest completed batch: first historical BSE discovery reconciliation — PR #174.**
 
-Issuer-specific official BSE listing notices resolve the old discovery collision:
+Historical cursor run `35952980189` discovered **23 listing references** from the next 20 older BSE SME index notices. Exact reconciliation against the 67-record 2026 recovery universe found:
 
-- **Yaashvi Jewellers Limited = 544770** — listing 2026-06-02, market lot 1,600, issue price INR 83.
-- **Merritronix Limited = 544773** — listing 2026-06-08, market lot 1,000, issue price INR 149.
+- **6 already present**
+- **17 missing exact identities**
+- **0 fuzzy/ambiguous overlaps accepted**
 
-Merritronix's later SME-index addition notice had claimed 544770. That conflicting index value remains retained as superseded discovery evidence; it was not silently overwritten or used as listing authority.
+The 17 missing references were split into bounded verifier batches of 15 + 2 and checked against issuer-specific official BSE listing notices. Source verification run `35954077034` completed with:
 
-Corrected source verification run `35950849004` passed **2/2** and retained both official PDFs in artifact `10787659263` (SHA-256 `f969117ce1895c8d9d17f5b3ba2a2dfe91640f5f71367898c65f330520c04e21`). Reviewed evidence is committed as `data/verified-bse-listings/2026-09-24-batch3.json`.
+- **13 verified**
+- **4 rejected**
+- **0 unavailable**
+- artifact `10789631977`
+- artifact ZIP SHA-256 `f493f894524bc666b8652b8726283122e85f87fb00e93d96fc258a7090cc9ad6`
 
-PR validation passed, including a **949 -> 951** isolated publication rehearsal with exactly 2 additions, all 949 existing records unchanged by the BSE importer, no held conflicts, and a no-op second import/rebuild.
+Rejected and therefore **not publishable yet**:
 
-Production live sync `35951056853` succeeded. Semantic publication added exactly **2 records** and produced source-backed data commit `6221738a93158e5831c524d4bc8883103492cce5`.
+- AUTOFURNISH LIMITED — `20260527-47`
+- RECODE STUDIOS LIMITED — `20260511-16`
+- MEHUL TELECOM LIMITED — `20260423-27`
+- TIPCO ENGINEERING INDIA LIMITED — `20260330-44`
 
-Current production state from that run:
+Their official listing PDFs did not independently confirm the expected scrip code/listing date; Autofurnish, Mehul Telecom and Tipco also failed the required equity-listing statement check. Do not infer or publish these four from index evidence.
 
-- **951 total records**
-- **67 records for 2026**
-- **42 SME records for 2026**
-- **29 reviewed BSE records across the three retained batches**
-- deterministic build and schema validation passed
-- operator state healthy
+Machine-readable reconciliation and candidate inputs:
 
-GitHub Pages build `35951543912` succeeded on descendant commit `cf04c69179cd5935e8b04d212d56cc20360f7d40`, so the deployed site includes the two resolved records.
+- `data/discovery/bse-listing-reconciliation-2026-09-24.json`
+- `data/discovery/bse-listing-candidates-2026-09-24-batch4.json`
+- `data/discovery/bse-listing-candidates-2026-09-24-batch5.json`
 
-**Cursor completed:** PR #173 added a durable notice-ID/parser-version backfill. Production run `35952980189` parsed the first **20 older notices**, discovered **23 listing references**, had **0 failures**, and advanced progress from **20/236 to 40/236**. State commit: `6a8a21ce8c0befea1a3c67911472c3aff731c7f1`; 196 notices remain and will continue on the independent two-hour schedule.
+**Next:** convert the 13 verified issuer-specific results into reviewed committed evidence manifests, revalidate their page excerpts/hashes, and publish only those 13 through the existing reviewed BSE importer. Keep the four rejected candidates on hold for issuer-identity/source repair. The independent historical cursor must continue advancing separately.
 
-**Next:** reconcile those 23 discovery references against the current 951-record universe, then verify only genuinely missing/unambiguous issuers from their issuer-specific official BSE listing notices. The cursor itself must continue independently; index evidence remains discovery-only.
+Read [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) for exact run IDs, rejection reasons, production state and acceptance criteria.
 
-Read [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) for exact source hashes, correction history, run IDs, production counts and acceptance criteria.
-
-No UI redesign, research-depth expansion, minimum-investment work, billing, accounts, ads, paid services or permission changes are part of this handoff.
+No UI redesign, minimum-investment work, billing, accounts, ads, paid services or permission changes are part of this handoff.
 
 ## Local checks
 
