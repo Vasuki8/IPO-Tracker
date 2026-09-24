@@ -89,6 +89,34 @@ assert.equal(verify(html + " Name of the company Other Limited Registered Office
   assert.equal(checked.facts.issue_price.value, 72);
 }
 
+
+{
+  const candidate = {
+    issuer_name: "PIOTEX INDUSTRIES LIMITED",
+    bse_scrip_code: "544178",
+    listing_notice_no: "20240516-37",
+    listing_date: "2024-05-17",
+    listing_notice_url: listingUrl("20240516-37")
+  };
+  const source =
+    "Notice No. 20240516-37 Notice Date 16 May 2024 Category Company related Segment SME " +
+    "Subject Listing of Equity Shares of PIOTEX INDUSTRIES LIMITED Attachments Annexure I.pdf Content " +
+    "Trading Members are hereby informed that effective from Friday, May 17, 2024, the Equity Shares of " +
+    "PIOTEX INDUSTRIES LIMITED shall be listed and admitted Name of the company PIOTEX INDUSTRIES LIMITED " +
+    "Registered Office Pune Scrip Code 544178 Issue Price for the current Public issue Rs. 94/- per share " +
+    "Trades effected in this scrip will be in minimum market lot (i.e.1200equity shares) and the same shall be modified.";
+  const checked = verifyListingHtml(source, candidate, "2026-09-24T00:00:00Z");
+  assert.equal(checked.status, "verified");
+  assert.equal(checked.facts.market_lot.value, 1200);
+  assert.match(checked.facts.market_lot.source_value, /minimum market lot/i);
+  assert.equal(checked.facts.issue_price.value, 94);
+  assert.equal(
+    verifyListingHtml(source + " Market Lot 1000", candidate, "2026-09-24T00:00:00Z").status,
+    "rejected",
+    "conflicting standard and minimum-market-lot clauses must fail closed"
+  );
+}
+
 {
   const candidate = {
     issuer_name: "Neopolitan Pizza and Foods Ltd",
