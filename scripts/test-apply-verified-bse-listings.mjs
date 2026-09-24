@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 import { applyReviewedListingBatches, applyVerifiedListings, reviewedManifestPaths, validateEvidenceBatch } from "./apply-verified-bse-listings.mjs";
+import { isOfficialListingPdfUrl } from "./retry-bse-listing-pdf.mjs";
+import { listingUrl, sha256 } from "./verify-bse-listing-candidates.mjs";
 const read = (url) => JSON.parse(fs.readFileSync(fileURLToPath(new URL(url, import.meta.url)), "utf8"));
 const manifest = read("../data/verified-bse-listings/2026-09-24.json");
 const discovery = read("../data/discovery/bse-listing-candidates-2026-09-24.json");
@@ -79,3 +81,31 @@ assert.deepEqual(
     "data/verified-bse-listings/test-batch-b.json"
   ])
 );
+
+const attachmentManifest = structuredClone(manifest);
+attachmentManifest.entries = [structuredClone(manifest.entries[0])];
+attachmentManifest.entries[0].source_url = "https://www.bseindia.com/markets/MarketInfo/DownloadAttach.aspx?id=" +
+  attachmentManifest.entries[0].listing_notice_no + "&attachedId=9a1df38b-4dcf-4e58-b182-f378e4c2a8b3";
+assert.equal(isOfficialListingPdfUrl(attachmentManifest.entries[0].source_url, attachmentManifest.entries[0].listing_notice_no), true);
+assert.equal(validateEvidenceBatch(attachmentManifest, discovery).length, 1);
+
+const htmlManifest = structuredClone(manifest);
+htmlManifest.entries = [structuredClone(manifest.entries[0])];
+const htmlEntry = htmlManifest.entries[0];
+htmlEntry.evidence_kind = "official_notice_html";
+htmlEntry.source_url = listingUrl(htmlEntry.listing_notice_no);
+htmlEntry.document_sha256 = "c".repeat(64);
+htmlEntry.evidence_text = htmlEntry.excerpt_pages.map((page) => page.text).join(" ");
+htmlEntry.normalized_text_sha256 = sha256(htmlEntry.evidence_text);
+delete htmlEntry.excerpt_pages;
+delete htmlEntry.identity_pages;
+for (const fact of Object.values(htmlEntry.facts)) delete fact.page;
+assert.equal(validateEvidenceBatch(htmlManifest, discovery).length, 1);
+const htmlApplied = applyVerifiedListings({ 2026: { generated_at: "2026-09-24T02:00:00Z", records: [] } }, htmlManifest, discovery);
+assert.equal(htmlApplied.stats.added, 1);
+assert.equal(htmlApplied.recovery[2026].records[0].documents[0].type, "BSE Listing Notice");
+assert.equal(htmlApplied.recovery[2026].records[0].listing_date.page, null);
+assert.equal(htmlApplied.recovery[2026].records[0].market_lot.page, null);
+const badHtml = structuredClone(htmlManifest);
+badHtml.entries[0].normalized_text_sha256 = "d".repeat(64);
+assert.throws(() => validateEvidenceBatch(badHtml, discovery));

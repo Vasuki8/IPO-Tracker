@@ -2,8 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { buildBseOnlyRecoveryRecord } from "./extract-bse-ipo-fields.mjs";
-import { issuerKey, strictDate, validateBatch, VERIFIER_VERSION } from "./verify-bse-listing-candidates.mjs";
-import { archiveProbeUrl, verifyListingPdfText } from "./retry-bse-listing-pdf.mjs";
+import { issuerKey, listingUrl, sha256, strictDate, validateBatch, verifyListingHtml, VERIFIER_VERSION } from "./verify-bse-listing-candidates.mjs";
+import { isOfficialListingPdfUrl, verifyListingPdfText } from "./retry-bse-listing-pdf.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const VERIFIED_ROOT = "data/verified-bse-listings";
@@ -26,22 +26,44 @@ export function validateEvidenceBatch(manifest, discovery) {
     const candidate = candidates.find((c) => c.listing_notice_no === entry.listing_notice_no);
     if (!candidate || seen.has(entry.listing_notice_no)) throw new Error("unrecognized_or_duplicate_listing_notice");
     seen.add(entry.listing_notice_no);
-    if (entry.source_url !== archiveProbeUrl(entry.listing_notice_no) || !hashValid(entry.document_sha256) ||
+    const evidenceKind = entry.evidence_kind || "official_listing_pdf";
+    const pdfEvidence = evidenceKind === "official_listing_pdf" &&
+      isOfficialListingPdfUrl(entry.source_url, entry.listing_notice_no);
+    const htmlEvidence = evidenceKind === "official_notice_html" &&
+      entry.source_url === listingUrl(entry.listing_notice_no);
+    if ((!pdfEvidence && !htmlEvidence) || !hashValid(entry.document_sha256) ||
         !stampValid(entry.collected_at) || strictDate(entry.publication_date) !== entry.publication_date ||
         entry.document_identity !== "BSE Listing Notice " + entry.listing_notice_no ||
         issuerKey(entry.issuer_name) !== issuerKey(candidate.issuer_name) ||
         entry.bse_scrip_code !== candidate.bse_scrip_code || entry.board !== "SME" ||
         !same(Object.keys(entry.facts || {}).sort(), [...FIELDS].sort())) throw new Error("invalid_listing_evidence");
-    if (!Array.isArray(entry.excerpt_pages) || entry.excerpt_pages.length < 1 || entry.excerpt_pages.length > 3 ||
-        entry.excerpt_pages.some((p, i) => p.page !== i + 1 || typeof p.text !== "string" || !p.text || p.text.length > 10000)) {
-      throw new Error("invalid_page_excerpts");
+
+    let checked;
+    if (pdfEvidence) {
+      if (!Array.isArray(entry.excerpt_pages) || entry.excerpt_pages.length < 1 || entry.excerpt_pages.length > 3 ||
+          entry.excerpt_pages.some((p, i) => p.page !== i + 1 || typeof p.text !== "string" || !p.text || p.text.length > 10000) ||
+          !entry.identity_pages || Object.values(entry.identity_pages).some((p) => !Number.isSafeInteger(p) || p < 1)) {
+        throw new Error("invalid_page_excerpts");
+      }
+      checked = verifyListingPdfText(entry.excerpt_pages.map((p) => p.text).join("\f"), candidate, entry.collected_at);
+      if (checked.status !== "verified" || !same(checked.facts, entry.facts) ||
+          !same(checked.identity_pages, entry.identity_pages)) {
+        throw new Error("listing_evidence_revalidation_failed");
+      }
+    } else {
+      if (typeof entry.evidence_text !== "string" || !entry.evidence_text || entry.evidence_text.length > 10000 ||
+          !hashValid(entry.normalized_text_sha256) || sha256(entry.evidence_text) !== entry.normalized_text_sha256 ||
+          entry.excerpt_pages != null || entry.identity_pages != null ||
+          Object.values(entry.facts).some((fact) => Object.hasOwn(fact, "page") && fact.page != null)) {
+        throw new Error("invalid_html_evidence");
+      }
+      checked = verifyListingHtml(entry.evidence_text, candidate, entry.collected_at);
+      if (checked.status !== "verified" || !same(checked.facts, entry.facts)) {
+        throw new Error("listing_evidence_revalidation_failed");
+      }
     }
-    const checked = verifyListingPdfText(entry.excerpt_pages.map((p) => p.text).join("\f"), candidate, entry.collected_at);
-    if (checked.status !== "verified" || !same(checked.facts, entry.facts) ||
-        !same(checked.identity_pages, entry.identity_pages) ||
-        checked.observed_identity.publication_date !== entry.publication_date ||
-        entry.publication_date > entry.facts.listing_date.value ||
-        Object.values(entry.identity_pages).some((p) => !Number.isSafeInteger(p) || p < 1)) {
+    if (checked.observed_identity.publication_date !== entry.publication_date ||
+        entry.publication_date > entry.facts.listing_date.value) {
       throw new Error("listing_evidence_revalidation_failed");
     }
   }
@@ -59,20 +81,21 @@ function recoveryRecord(entry, manifest, manifestPath = DEFAULT_MANIFEST) {
     market_lot: entry.facts.market_lot.value, issue_price: entry.facts.issue_price.value
   }, collectedAt);
   if (!record) throw new Error("listing_record_factory_rejected_evidence");
+  const htmlEvidence = entry.evidence_kind === "official_notice_html";
   const source = {
-    url: entry.source_url, document_type: "BSE Listing Notice PDF",
+    url: entry.source_url, document_type: htmlEvidence ? "BSE Listing Notice" : "BSE Listing Notice PDF",
     document_identity: entry.document_identity, document_sha256: entry.document_sha256,
     publication_date: entry.publication_date, collected_at: collectedAt
   };
   record.bse_source = source;
   record.bse_scrip_code = entry.bse_scrip_code;
-  record.board_evidence = [{ ...source, page: entry.identity_pages.board }];
-  record.status_evidence = [{ ...source, page: entry.facts.listing_date.page }];
+  record.board_evidence = [{ ...source, page: htmlEvidence ? null : entry.identity_pages.board }];
+  record.status_evidence = [{ ...source, page: entry.facts.listing_date.page ?? null }];
   record.documents = [{ type: source.document_type, identity: source.document_identity, url: source.url,
     publication_date: source.publication_date, collected_at: collectedAt, document_sha256: entry.document_sha256 }];
   for (const field of FIELDS) record[field] = {
     value: entry.facts[field].value, source_value: entry.facts[field].source_value,
-    status: "verified", page: entry.facts[field].page, source: { ...source }, corrections: []
+    status: "verified", page: entry.facts[field].page ?? null, source: { ...source }, corrections: []
   };
   record.bse_verified_listing_batch = {
     manifest: manifestPath, verifier_version: manifest.verifier_version,
