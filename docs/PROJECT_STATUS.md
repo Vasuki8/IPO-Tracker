@@ -2,6 +2,12 @@
 
 Updated: 2026-09-24. Latest source verification completed 21:00 UTC / 17:00 America/Toronto.
 
+## Product workstream: explicitly requested UI V2 — 2026-09-24
+
+The new light directory and company-detail UI is implemented and locally browser-verified. It adds compact responsive layouts, working search/year/board/status filters and pagination, source documents, actual timeline dates and expandable term evidence. Public IPO data and recovery/collection behavior are preserved. Release is pending PR checks and live verification. See [UI_DESIGN_HANDOFF.md](UI_DESIGN_HANDOFF.md) for acceptance checks, files and release evidence.
+
+The backend continuation priority below remains independent of this explicit UI request.
+
 ## Current priority
 
 Continue P1/P2/P3 data correctness, official-source coverage and dependable publication under `DEVELOPMENT_PROCESS.md`. The application-term requirement remains **Lot Size only**. Keep market lot, minimum bid quantity, application amount, listing date and index-admission date distinct. UI redesign and downstream research/commercial infrastructure are out of scope.
