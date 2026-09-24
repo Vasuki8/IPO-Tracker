@@ -90,3 +90,28 @@ assert.equal(
 );
 assert.equal(officialNoticePdfUrl({ FileName: "https://evil.example/notice.pdf" }), null);
 assert.equal(officialNoticePdfUrl({ FileName: "https://www.bseindia.com/notices/index.html" }), null);
+
+const pluralProduction = `
+PRESS RELEASE Additions to the BSE SME IPO Index
+MUMBAI, AUGUST 21, 2026: With reference to Notice No: 20260820-37,
+ENS ENTERPRISES LIMITED (Exchange ticker – 544876),
+Notice No: 20260820-35, TECHNOCRATS PLASMA SYSTEMS LIMITED
+(Exchange ticker - 544877) are being listed on BSE effective Friday, August 21, 2026.
+Effective at the open of Monday, August 24, 2026, these stocks will be added to the below index.
+`;
+assert.deepEqual(parseBseSmeAdditionNoticeHtml(pluralProduction), [
+  {
+    listing_notice_no: "20260820-37",
+    issuer_name: "ENS ENTERPRISES LIMITED",
+    bse_scrip_code: "544876",
+    listing_date: "2026-08-21",
+    listing_date_raw: "August 21, 2026"
+  },
+  {
+    listing_notice_no: "20260820-35",
+    issuer_name: "TECHNOCRATS PLASMA SYSTEMS LIMITED",
+    bse_scrip_code: "544877",
+    listing_date: "2026-08-21",
+    listing_date_raw: "August 21, 2026"
+  }
+]);
