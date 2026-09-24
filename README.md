@@ -26,7 +26,7 @@ Collection time, dataset generation and Pages publication are distinct signals. 
 
 ## Handoff for the next prompt
 
-**Product UI workstream — V2 redesign:** the user explicitly requested a new UI on 2026-09-24. The light directory/detail redesign, browser checks and release status are recorded in [docs/UI_DESIGN_HANDOFF.md](docs/UI_DESIGN_HANDOFF.md). The backend handoff below remains the next task for data continuation.
+**Product UI workstream — V2 live and verified, PR #209:** the requested light directory/detail redesign is published. Desktop/mobile checks, filtering, company details, source links and deployed asset hashes passed. Release evidence and follow-up notes are recorded in [docs/UI_DESIGN_HANDOFF.md](docs/UI_DESIGN_HANDOFF.md). The backend handoff below remains the next task for data continuation.
 
 **Latest completed unit: cursor7 reconciliation and source verification — PR #207.**
 

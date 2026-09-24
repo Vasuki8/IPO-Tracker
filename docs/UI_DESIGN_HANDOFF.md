@@ -38,7 +38,22 @@ The `PLAYWRIGHT_MODULE` environment variable can point at an isolated Playwright
 
 ## Release status
 
-Implementation and local checks complete. PR CI, merge and actual Pages verification are pending; update this section with release evidence before marking the batch verified.
+**VERIFIED.** PR [#209](https://github.com/Vasuki8/IPO-Tracker/pull/209) merged as `8da70a48c95e1b3c267b168fea6ebe49b68f3a76`.
+
+PR checks passed: UI `36059604316`, full data contract `36059604208`, reviewed evidence `36059604321`. Post-merge checks also passed: UI `36059729529`, full data contract `36059729434`, reviewed evidence `36059729605`. Pages deployment `36059729437` succeeded.
+
+Actually served website verified at **2026-09-24T21:12:35.691Z**:
+
+- Live overview: **1,091** records; first page: **20** rows.
+- Open filter: **16** matching records.
+- Shah Investor’s Home detail: **5** source documents, expandable price evidence, working back navigation.
+- No page-level horizontal overflow in desktop/mobile views; no browser page errors.
+- Live HTML, JavaScript and CSS SHA-256 values exactly match the release files. The ordinary homepage URL also matches, without a cache-busting query.
+- Separate dataset generation label: **24 September 2026, 20:49 UTC**. This is not a source-observation timestamp.
+
+Durable receipt: `docs/verification/ui-v2-live-2026-09-24.json`.
+
+The shell could read the repository but had no GitHub push credential. The authorized GitHub connector published the exact locally validated tree (tree SHA matched) and created/merged the PR. Live browser testing required an isolated proxy-certificate exception; independent normal-TLS curl downloads verified the same release bytes. Neither workaround changes the application or production security settings. No unresolved release blocker.
 
 ## Next work
 

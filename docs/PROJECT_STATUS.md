@@ -4,7 +4,7 @@ Updated: 2026-09-24. Latest source verification completed 21:00 UTC / 17:00 Amer
 
 ## Product workstream: explicitly requested UI V2 — 2026-09-24
 
-The new light directory and company-detail UI is implemented and locally browser-verified. It adds compact responsive layouts, working search/year/board/status filters and pagination, source documents, actual timeline dates and expandable term evidence. Public IPO data and recovery/collection behavior are preserved. Release is pending PR checks and live verification. See [UI_DESIGN_HANDOFF.md](UI_DESIGN_HANDOFF.md) for acceptance checks, files and release evidence.
+The new light directory and company-detail UI is **VERIFIED live**, merged in PR **#209** as `8da70a48c95e1b3c267b168fea6ebe49b68f3a76`. It adds compact responsive layouts, working search/year/board/status filters and pagination, source documents, actual timeline dates and expandable term evidence. Public IPO data and recovery/collection behavior are preserved. PR/post-merge browser, data-contract and reviewed-evidence checks passed; Pages deployment `36059729437` succeeded. Live verification at `2026-09-24T21:12:35.691Z` checked 1,091 records, working filters/detail/source documents, no browser errors and matching deployed asset hashes. See [UI_DESIGN_HANDOFF.md](UI_DESIGN_HANDOFF.md) for acceptance checks, files and release evidence.
 
 The backend continuation priority below remains independent of this explicit UI request.
 
