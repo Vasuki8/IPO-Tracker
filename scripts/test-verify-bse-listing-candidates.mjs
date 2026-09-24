@@ -64,3 +64,27 @@ assert.equal(verify(html.replace("Notice Date 20 Aug 2026", "Notice Date 20 Aug 
 const wrapped = html.replace("Subject Listing of Equity Shares of Example Industries Limited", "Listing of Equity Shares of Example Subject Industries Limited") + " Name of the company Example Industries Limited Registered Office Address";
 assert.equal(verify(wrapped).status, "verified");
 assert.equal(verify(html + " Name of the company Other Limited Registered Office Address").status, "rejected");
+
+{
+  const candidate = {
+    issuer_name: "GLOBTIER INFOTECH LIMITED",
+    bse_scrip_code: "544494",
+    listing_notice_no: "20250901-44",
+    listing_date: "2025-09-02",
+    listing_notice_url: listingUrl("20250901-44")
+  };
+  const checked = verifyListingHtml(
+    "Notice No. 20250901-44 Notice Date 01 Sep 2025 Category Company related Segment SME " +
+    "Subject Listing of Equity Shares of Globtier Infotech Limited Attachments Annexure I.pdf Content " +
+    "Trading Members are informed that effective from Tuesday, September 02, 2025, the Equity Shares of " +
+    "&ldquo;Globtier Infotech limited&rdquo; shall be listed and admitted to dealings. " +
+    "Name of the company Globtier Infotech limited Registered Office Noida Scrip Code 544494 " +
+    "Market Lot 1,600 Issue Price for the current Public issue Rs. 72",
+    candidate,
+    "2026-09-24T00:00:00Z"
+  );
+  assert.equal(checked.status, "verified");
+  assert.equal(checked.observed_identity.issuer_name, "Globtier Infotech limited");
+  assert.equal(checked.facts.market_lot.value, 1600);
+  assert.equal(checked.facts.issue_price.value, 72);
+}
