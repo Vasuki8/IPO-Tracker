@@ -34,65 +34,83 @@ Collection time, dataset generation and Pages publication are separate signals. 
 
 ## Handoff for the next prompt
 
-**Latest completed batch: legacy 2025 BSE SME addition-notice parser/source-family repair — PR #182.**
+**Latest completed batch: repaired cursor3 BSE references reconciled, verified and published — PR #184.**
 
-PR #182 merged as `1d892d573181d126bf2cee87ae63ae65057e6977`.
+PR #184 merged as `d08479a3c12cd5975902dfa5f689a22adc90b008`.
 
-The third historical cursor window had left 10 official BSE Index Services notices unparseable. A bounded read-only diagnostic re-fetched exactly those 10 notice-detail payloads and confirmed that every response SHA-256 matched the text hash already retained in `ops/bse-sme-addition-notices.json`. The demonstrated older 2025 template uses:
+The 12 listing references recovered by parser v1.2.0 were reconciled against the then-current **258-record 2025 recovery universe** and **1,014-record public dataset**:
 
-- `Notice No .` with whitespace before the period;
-- `listed on the SME Platform of BSE`;
-- one notice identifier with whitespace around the dash (`20250407- 51`).
+- **1 already present exact identity:** 3B Films Limited, already backed by BSE listing notice `20250605-49`, listing date 2025-06-06, market lot 3,000 and issue price INR 50.
+- **11 genuinely missing exact identities.**
+- **0 ambiguous / identity-review collisions.**
+- no fuzzy-name equivalence accepted.
 
-Parser v1.2.0 adds only those demonstrated grammar variants and canonicalizes recovered notice IDs. Successful v1.1 parsed entries remain compatible, while failed v1.1 entries are isolated for immediate parser-migration retry instead of replaying the entire cursor.
+Machine-readable reconciliation:
 
-A semantic-state regression found during PR validation was also fixed: cursor publication now compares each incoming entry's parser version, so stale same-version failures cannot overwrite newer parsed evidence while a genuine parser-version repair can replace the old failed entry.
+- `data/discovery/bse-listing-reconciliation-2026-09-24-cursor3-repaired.json`
+- pinned verifier batch: `data/discovery/bse-listing-candidates-2026-09-24-batch12.json`
 
-Final PR checks all passed:
+Issuer-specific BSE verification completed **11/11 verified, 0 rejected, 0 unavailable**. Canonical listing-PDF archive paths were unavailable for this batch, so reviewed evidence uses the strict official-BSE-notice HTML contract already used by the prior cursor3 release.
 
-- data-contract CI: `35967129380`
-- reviewed-BSE evidence CI: `35967129462`
-- dedicated BSE historical cursor tests: `35967129385`
+Reviewed publication:
 
-Merge-triggered production backfill `35967210854` succeeded:
+- `data/verified-bse-listings/2026-09-24-batch17.json`
+- source verification run: `35968091282`
+- source artifact: `10795017902`
+- artifact ZIP SHA-256: `98e381697404285d1b521926bc6f81ba8cad4d5b42f43022b4952a1011521036`
+- final PR source re-verification: `35968733466` — 11/11
+- final PR artifact: `10795735136` / SHA-256 `81d0ee8859e2dfee5998a98e30ec68067e95799f0a8db640ae375800b72c21ff`
 
-- selected parser-migration failures: **10**
-- parsed: **10/10**
-- fetch errors: **0**
-- unparseable: **0**
-- recovered listing references: **12**
-- report artifact: **10794322473**
-- cursor-state commit: `f8cdb085377d2beba8a51c5e697b8d618398aaa9`
+Published facts:
 
-Current durable cursor:
+| Issuer | Listing date | Market lot | Issue price |
+| --- | --- | ---: | ---: |
+| ASSTON PHARMACEUTICALS LIMITED | 2025-07-16 | 1,000 | INR 123 |
+| GLEN INDUSTRIES LIMITED | 2025-07-15 | 1,200 | INR 97 |
+| META INFOTECH LIMITED | 2025-07-11 | 800 | INR 161 |
+| CRYOGENIC OGS LIMITED | 2025-07-10 | 3,000 | INR 47 |
+| UNIFIED DATA TECH SOLUTIONS LIMITED | 2025-05-29 | 400 | INR 273 |
+| SRIGEE DLM LIMITED | 2025-05-12 | 1,200 | INR 99 |
+| MANOJ JEWELLERS LIMITED | 2025-05-12 | 2,000 | INR 54 |
+| KENRIK INDUSTRIES LIMITED | 2025-05-09 | 6,000 | INR 25 |
+| SPINAROO COMMERCIAL LIMITED | 2025-04-08 | 2,000 | INR 51 |
+| INFONATIVE SOLUTIONS LIMITED | 2025-04-08 | 1,600 | INR 79 |
+| RETAGGIO INDUSTRIES LIMITED | 2025-04-07 | 6,000 | INR 25 |
 
+Real importer rehearsal proved **1,014 -> 1,025**, exactly **11 additions**, all 1,014 existing records unchanged, **0 holds/conflicts**, and an idempotent rerun.
+
+Production sync `35969070759` succeeded:
+
+- reviewed BSE import: **11 added / 92 already present / 0 holds / 0 identity conflicts**
+- semantic publication: **11 added / 45 changed / 0 removed / 0 conflicts**
+- source-backed data commit: `53589374e3078540394866180b467bf7fb1442ad`
+- operator-state commit: `8cd16c9a2ca45bc38ef239d81b455de7276d225d`
+- schema 1.2.0 validation: **1,025 records passed**
+- operator health: **healthy**
+- production: **1,025 total records**
+- 2025: **269 records**
+- 2026: **85 records**
+
+The 45 changed records were normal concurrent official NSE/SEBI enrichment; the semantic publisher separately identified exactly 11 additions and zero removals/conflicts.
+
+Post-publication audit confirmed every batch17 issuer occurs exactly once in recovery and public data, and every listing date, market lot, issue price, exact source URL, source-document SHA-256 and batch17 provenance matches reviewed evidence. Unsupported price band, offer dates, issue size, minimum bid quantity and minimum application amount remain null.
+
+GitHub Pages build `35969750035` succeeded on final operator revision `8cd16c9a2ca45bc38ef239d81b455de7276d225d`.
+
+### Current historical cursor
+
+The durable BSE SME addition-notice cursor has **not advanced** since the repaired segment:
+
+- parser: **1.2.0**
 - **80 tracked / 236 eligible**
 - **80 parsed**
 - **0 failed/unparseable**
 - **156 unseen**
 - next unseen notice: **`20250403-16`**
-- parser version: **1.2.0**
 
-The 12 recovered references are discovery evidence only and have **not** created or edited IPO records:
+**Next:** always re-read `ops/bse-sme-addition-notices.json` first. If the cursor has advanced beyond 80 tracked notices, reconcile only the newest completed segment against the current 1,025-record universe. If it is unchanged, the next bounded historical discovery work begins with the unseen segment starting at `20250403-16`; use the existing independent backfill workflow, then reconcile its newly parsed references before issuer-specific verification/publication. Do not repeat batch12/batch17 or the parser-repair work.
 
-| Issuer | BSE code | Listing notice | Listing date |
-| --- | ---: | --- | --- |
-| ASSTON PHARMACEUTICALS LIMITED | 544445 | `20250715-53` | 2025-07-16 |
-| GLEN INDUSTRIES LIMITED | 544444 | `20250714-41` | 2025-07-15 |
-| META INFOTECH LIMITED | 544441 | `20250710-60` | 2025-07-11 |
-| CRYOGENIC OGS LIMITED | 544440 | `20250709-45` | 2025-07-10 |
-| 3B Films Limited | 544412 | `20250605-49` | 2025-06-06 |
-| UNIFIED DATA TECH SOLUTIONS LIMITED | 544406 | `20250528-43` | 2025-05-29 |
-| SRIGEE DLM LIMITED | 544399 | `20250509-44` | 2025-05-12 |
-| MANOJ JEWELLERS LIMITED | 544400 | `20250509-45` | 2025-05-12 |
-| KENRIK INDUSTRIES LIMITED | 544398 | `20250508-51` | 2025-05-09 |
-| SPINAROO COMMERCIAL LIMITED | 544392 | `20250407-51` | 2025-04-08 |
-| INFONATIVE SOLUTIONS LIMITED | 544393 | `20250407-67` | 2025-04-08 |
-| RETAGGIO INDUSTRIES LIMITED | 544391 | `20250404-53` | 2025-04-07 |
-
-**Next:** re-read the durable cursor first. Reconcile these 12 recovered references against the current production universe. For genuinely missing, unambiguous identities, verify issuer-specific official BSE listing evidence in a bounded batch before publication. Index-addition notices remain discovery-only and must never be used as authority for market lot, issue price or other listing terms. After this recovered set is reconciled, continue with newer completed cursor segments if the independent cursor has advanced beyond `20250403-16`.
-
-Read [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) for the parser diagnosis, migration safeguards, production run and exact next-task acceptance criteria.
+Read [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) for exact evidence, release verification and the next-task acceptance criteria.
 
 No UI redesign, minimum-investment work, billing, accounts, ads, paid services or permission changes are part of this handoff.
 ## Local checks
