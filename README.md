@@ -34,71 +34,67 @@ Collection time, dataset generation and Pages publication are separate signals. 
 
 ## Handoff for the next prompt
 
-**Latest completed batch: third historical BSE cursor parsed references published — PR #181.**
+**Latest completed batch: legacy 2025 BSE SME addition-notice parser/source-family repair — PR #182.**
 
-PR #181 merged as `cc44fd35a4bf6eff37aa9a59807393ac33277ee6`.
+PR #182 merged as `1d892d573181d126bf2cee87ae63ae65057e6977`.
 
-The durable cursor3 window came from run `35962928144` / artifact `10793157274` (ZIP SHA-256 `caf6f8d747992eb25a447b8600b4f73eaf433d13d92ebde5e6a38aeeab649722`). It had **20 notices: 10 parsed, 10 unparseable**, with the parsed notices producing **14 listing references**.
+The third historical cursor window had left 10 official BSE Index Services notices unparseable. A bounded read-only diagnostic re-fetched exactly those 10 notice-detail payloads and confirmed that every response SHA-256 matched the text hash already retained in `ops/bse-sme-addition-notices.json`. The demonstrated older 2025 template uses:
 
-Cross-check against the then-current 244-record 2025 recovery universe found all **14 as genuinely missing exact identities**, with 0 already-present matches and 0 ambiguous/fuzzy overlaps.
+- `Notice No .` with whitespace before the period;
+- `listed on the SME Platform of BSE`;
+- one notice identifier with whitespace around the dash (`20250407- 51`).
 
-Retained discovery:
+Parser v1.2.0 adds only those demonstrated grammar variants and canonicalizes recovered notice IDs. Successful v1.1 parsed entries remain compatible, while failed v1.1 entries are isolated for immediate parser-migration retry instead of replaying the entire cursor.
 
-- `data/discovery/bse-listing-reconciliation-2026-09-24-cursor3.json`
-- `data/discovery/bse-listing-candidates-2026-09-24-batch11.json`
+A semantic-state regression found during PR validation was also fixed: cursor publication now compares each incoming entry's parser version, so stale same-version failures cannot overwrite newer parsed evidence while a genuine parser-version repair can replace the old failed entry.
 
-Initial issuer-specific verification returned **13 verified / 1 rejected**. The only rejection, **GLOBTIER INFOTECH LIMITED**, was a verifier-normalization defect: BSE wrapped one issuer mention in `&ldquo;...&rdquo;`, which produced a false second issuer identity after tag stripping. PR #181 now decodes BSE curly quote entities before the existing strict issuer comparison; no identity rule was relaxed. A regression fixture covers Globtier's exact source shape.
+Final PR checks all passed:
 
-After that bounded repair, batch11 independently verified **14/14**, with **0 rejected / 0 unavailable**.
+- data-contract CI: `35967129380`
+- reviewed-BSE evidence CI: `35967129462`
+- dedicated BSE historical cursor tests: `35967129385`
 
-Reviewed publication:
+Merge-triggered production backfill `35967210854` succeeded:
 
-- `data/verified-bse-listings/2026-09-24-batch16.json`
-- manifest source run: `35964560752`
-- manifest source artifact: `10792809549`
-- manifest artifact ZIP SHA-256: `e6f102405d0c31657ea441b786cf2edb67f532885b759d586e53ca0044303fe7`
-- final PR source verification: `35965176843` — 14/14
-- final PR artifact: `10793174434` / SHA-256 `1724a3cc23f243edea2e2a2d6ccfae828b29d44d200f02667c144a7cd8aa813e`
-- final main source verification: `35965260696` — 14/14
-- final main artifact: `10793054943` / SHA-256 `cefbbed883f300a65f72c1445493b8edd30859de9506fb6f5145c005338c4377`
+- selected parser-migration failures: **10**
+- parsed: **10/10**
+- fetch errors: **0**
+- unparseable: **0**
+- recovered listing references: **12**
+- report artifact: **10794322473**
+- cursor-state commit: `f8cdb085377d2beba8a51c5e697b8d618398aaa9`
 
-All 14 records use the strict reviewed official-BSE-HTML evidence contract because canonical listing-PDF archive paths are unavailable. Exact notice URL, response/document hash, normalized evidence text, collection/publication time, issuer identity, BSE code, listing date, market lot and issue price are retained. No index notice is used as listing-term authority.
-
-Final publication rehearsal proved **1000 -> 1014**, exactly **14 additions**, all 1000 existing records unchanged, **0 holds/conflicts**, and an idempotent rerun. The reviewed BSE registry now contains **92 retained entries**.
-
-Production sync `35965260674` succeeded:
-
-- reviewed BSE import: **14 added / 78 already present / 0 holds**
-- semantic publication: **14 added / 41 changed / 0 removed / 0 conflicts**
-- source-backed data commit: `e607bb92434fbf41fcd84daddd71e0b665ac60ee`
-- operator-state commit: `50792aceff402c683d341dc9bf9bb730739005ef`
-- operator health: **healthy**
-- production: **1014 total records**
-- 2025: **258 records** — 83 Mainboard / 174 SME / 1 unknown
-- 2026: **85 records** — 15 Mainboard / 60 SME / 10 unknown
-
-Every one of the 14 new issuers occurs exactly once on current `main`, and code/listing date/lot/issue price/source URL/document hash/manifest provenance all match batch16. Unsupported price band, offer dates, issue size, minimum bid quantity and minimum application amount remain null.
-
-GitHub Pages build `35965869172` succeeded on operator commit `50792aceff402c683d341dc9bf9bb730739005ef`, so the deployed Pages revision contains the 1014-record release.
-
-### Current historical cursor
-
-The durable cursor remains:
+Current durable cursor:
 
 - **80 tracked / 236 eligible**
-- **70 parsed**
-- **10 unparseable**
+- **80 parsed**
+- **0 failed/unparseable**
 - **156 unseen**
 - next unseen notice: **`20250403-16`**
+- parser version: **1.2.0**
 
-The 14 parsed references from cursor3 are now fully reconciled and published. The remaining work from that cursor window is the **10 unparseable notices**, which must remain a separate parser/source-family repair track.
+The 12 recovered references are discovery evidence only and have **not** created or edited IPO records:
 
-**Next:** always re-read the cursor first. If it has advanced beyond 80 tracked notices, reconcile only the newest completed cursor segment against the current 1014-record universe. If it is unchanged, inspect the 10 cursor3 unparseable notices as a bounded parser/source-family repair batch; group them by demonstrated source shape and do not infer issuers from index evidence.
+| Issuer | BSE code | Listing notice | Listing date |
+| --- | ---: | --- | --- |
+| ASSTON PHARMACEUTICALS LIMITED | 544445 | `20250715-53` | 2025-07-16 |
+| GLEN INDUSTRIES LIMITED | 544444 | `20250714-41` | 2025-07-15 |
+| META INFOTECH LIMITED | 544441 | `20250710-60` | 2025-07-11 |
+| CRYOGENIC OGS LIMITED | 544440 | `20250709-45` | 2025-07-10 |
+| 3B Films Limited | 544412 | `20250605-49` | 2025-06-06 |
+| UNIFIED DATA TECH SOLUTIONS LIMITED | 544406 | `20250528-43` | 2025-05-29 |
+| SRIGEE DLM LIMITED | 544399 | `20250509-44` | 2025-05-12 |
+| MANOJ JEWELLERS LIMITED | 544400 | `20250509-45` | 2025-05-12 |
+| KENRIK INDUSTRIES LIMITED | 544398 | `20250508-51` | 2025-05-09 |
+| SPINAROO COMMERCIAL LIMITED | 544392 | `20250407-51` | 2025-04-08 |
+| INFONATIVE SOLUTIONS LIMITED | 544393 | `20250407-67` | 2025-04-08 |
+| RETAGGIO INDUSTRIES LIMITED | 544391 | `20250404-53` | 2025-04-07 |
 
-Read [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) for exact issuer facts, verification runs, parser repair details, production validation and the held unparseable notices.
+**Next:** re-read the durable cursor first. Reconcile these 12 recovered references against the current production universe. For genuinely missing, unambiguous identities, verify issuer-specific official BSE listing evidence in a bounded batch before publication. Index-addition notices remain discovery-only and must never be used as authority for market lot, issue price or other listing terms. After this recovered set is reconciled, continue with newer completed cursor segments if the independent cursor has advanced beyond `20250403-16`.
+
+Read [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) for the parser diagnosis, migration safeguards, production run and exact next-task acceptance criteria.
 
 No UI redesign, minimum-investment work, billing, accounts, ads, paid services or permission changes are part of this handoff.
-
 ## Local checks
 
 ```bash
