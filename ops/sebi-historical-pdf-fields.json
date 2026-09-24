@@ -1306,6 +1306,151 @@
         "publication_date": "2024-11-25"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2024/1732605381552.pdf"
+    },
+    "2025|glottis-limited": {
+      "issuer_name": "Glottis Limited",
+      "listing_date": "2025-10-07",
+      "last_attempted_at": "2026-09-24T15:34:02.164Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Glottis Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1759211081569.pdf",
+        "publication_date": "2025-09-24"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1759211081569.pdf"
+    },
+    "2024|enviro-infra-engineers-limited": {
+      "issuer_name": "Enviro Infra Engineers Limited",
+      "listing_date": "2024-11-29",
+      "last_attempted_at": "2026-09-24T15:34:02.164Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Enviro Infra Engineers Limited- RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1733402104066.pdf",
+        "publication_date": "2024-11-17"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1733402104066.pdf"
+    },
+    "2023|doms-industries-limited": {
+      "issuer_name": "DOMS Industries Limited",
+      "listing_date": "2023-12-20",
+      "last_attempted_at": "2026-09-24T15:34:02.164Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 12000000000,
+          "source_value": "₹12,000.00 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "DOMS Industries Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1701689941844.pdf",
+        "publication_date": "2023-12-04"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1701689941844.pdf"
+    },
+    "2022|uniparts-india-limited": {
+      "issuer_name": "Uniparts India Limited",
+      "listing_date": "2022-12-12",
+      "last_attempted_at": "2026-09-24T15:34:02.164Z",
+      "parser_version": "1.2.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-biKKOL/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1669354719740.PDF\ncurl: (18) transfer closed with 6990656 bytes remaining to read\ncurl: (18) transfer closed with 2848232 bytes remaining to read\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1669354719740.PDF"
+    },
+    "2021|rategain-travel-technologies-limited": {
+      "issuer_name": "RateGain Travel Technologies Limited",
+      "listing_date": "2021-12-17",
+      "last_attempted_at": "2026-09-24T15:34:02.164Z",
+      "parser_version": "1.2.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-YukBb3/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2021/1639462159764.pdf\ncurl: (18) transfer closed with 19047640 bytes remaining to read\ncurl: (28) Operation timed out after 75000 milliseconds with 10293399 out of 22452903 bytes received\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2021/1639462159764.pdf"
+    },
+    "2025|pace-digitek-limited": {
+      "issuer_name": "Pace Digitek Limited",
+      "listing_date": "2025-10-06",
+      "last_attempted_at": "2026-09-24T15:34:02.164Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Pace Digitek Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758518940679.pdf",
+        "publication_date": "2025-09-22"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758518940679.pdf"
+    },
+    "2024|zinka-logistics-solutions-limited": {
+      "issuer_name": "Zinka Logistics Solutions Limited",
+      "listing_date": "2024-11-22",
+      "last_attempted_at": "2026-09-24T15:34:02.164Z",
+      "parser_version": "1.2.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-aPZ2CO/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/nov-2024/1731409759538.PDF\ncurl: (28) Operation timed out after 75000 milliseconds with 11405719 out of 12286304 bytes received\ncurl: (18) transfer closed with 6134033 bytes remaining to read\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2024/1731409759538.PDF"
+    },
+    "2023|india-shelter-finance-corporation-limited": {
+      "issuer_name": "India Shelter Finance Corporation Limited",
+      "listing_date": "2023-12-20",
+      "last_attempted_at": "2026-09-24T15:34:02.164Z",
+      "parser_version": "1.2.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-63uJok/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702033205783.PDF\ncurl: (18) transfer closed with 5811814 bytes remaining to read\ncurl: (18) transfer closed with 5968814 bytes remaining to read\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702033205783.PDF"
     }
   }
 }
