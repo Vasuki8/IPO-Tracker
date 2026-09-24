@@ -93,7 +93,6 @@ jobs:
         run: |
           node --check scripts/audit-bse-sme-addition-notices.mjs
           node scripts/test-audit-bse-sme-addition-notices.mjs
-          node scripts/diagnose-current-bse-sme-addition-failures.mjs
 
       - name: Test historical IPO coverage audit
         run: node scripts/test-audit-historical-coverage.mjs
