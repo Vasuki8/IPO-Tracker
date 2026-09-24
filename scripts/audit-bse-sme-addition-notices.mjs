@@ -56,16 +56,33 @@ export function isBseSmeAdditionNotice(row) {
 export function parseBseSmeAdditionNoticeHtml(html) {
   const body = stripTags(html);
   const rows = [];
-  const pattern =
-    /With reference to Notice No\.?\s*([0-9]{8}-[0-9]+)\s*,?\s*(.+?)\s*\(Exchange ticker\s*-\s*([0-9]{6})\s*\)\s*,?\s*is(?: being)? listed on BSE,?\s*effective\s+(?:(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s*,?\s*)?([A-Za-z]+\s+\d{1,2},\s*\d{4})/gi;
+  const entryStart = /With reference to Notice No\.?\s*([0-9]{8}-[0-9]+)/gi;
+  const starts = [...body.matchAll(entryStart)];
 
-  for (const match of body.matchAll(pattern)) {
+  for (let index = 0; index < starts.length; index += 1) {
+    const start = starts[index];
+    const from = start.index ?? 0;
+    const next = starts[index + 1];
+    const to = next?.index ?? Math.min(body.length, from + 1400);
+    const clause = body.slice(from, to);
+
+    const noticeNo = start[1];
+    const issuerTicker = clause.match(
+      /Notice No\.?\s*[0-9]{8}-[0-9]+\s*,?\s*(.+?)\s*\(Exchange ticker\s*-\s*([0-9]{6})\s*\)/i
+    );
+    const listedOnBse = /\blisted\s+on\s+BSE\b/i.test(clause);
+    const effective = clause.match(
+      /\beffective\s+(?:(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s*,?\s*)?([A-Za-z]+\s+\d{1,2},\s*\d{4})/i
+    );
+
+    if (!issuerTicker || !listedOnBse || !effective) continue;
+
     rows.push({
-      listing_notice_no: match[1],
-      issuer_name: normalizeText(match[2]),
-      bse_scrip_code: match[3],
-      listing_date: isoDate(match[4]),
-      listing_date_raw: normalizeText(match[4])
+      listing_notice_no: noticeNo,
+      issuer_name: normalizeText(issuerTicker[1]),
+      bse_scrip_code: issuerTicker[2],
+      listing_date: isoDate(effective[1]),
+      listing_date_raw: normalizeText(effective[1])
     });
   }
 

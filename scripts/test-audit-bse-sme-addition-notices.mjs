@@ -51,11 +51,15 @@ assert.deepEqual(parseBseSmeAdditionNoticeHtml(productionSpacing), [{
 
 const multiple = `
 With reference to Notice No. 20260810-35, AEGEUS TECHNOLOGIES LIMITED
-(Exchange ticker-544858), is listed on BSE effective Tuesday, August 11, 2026.
+(Exchange ticker-544858), will be listed on BSE effective Tuesday, August 11, 2026.
+Effective at the open of Wednesday, August 12, 2026, this stock will be added to the BSE SME IPO INDEX.
 With reference to Notice No. 20260812-34, LAPL AUTOMOTIVE LIMITED
 (Exchange ticker-544863), is being listed on BSE effective Thursday, August 13, 2026.
 `;
-assert.equal(parseBseSmeAdditionNoticeHtml(multiple).length, 2);
+const multipleRows = parseBseSmeAdditionNoticeHtml(multiple);
+assert.equal(multipleRows.length, 2);
+assert.equal(multipleRows[0].listing_date, "2026-08-11");
+assert.equal(multipleRows[1].listing_date, "2026-08-13");
 assert.equal(parseBseSmeAdditionNoticeHtml("unrelated notice").length, 0);
 
 console.log("BSE SME addition notice audit parser tests passed.");
