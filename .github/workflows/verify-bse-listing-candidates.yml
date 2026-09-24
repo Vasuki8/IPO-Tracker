@@ -13,6 +13,8 @@ on:
       - "data/discovery/bse-listing-candidates-2026-09-24-batch4.json"
       - "data/discovery/bse-listing-candidates-2026-09-24-batch5.json"
       - "data/discovery/bse-listing-candidates-2026-09-24-batch7.json"
+      - "data/discovery/bse-listing-candidates-2026-09-24-batch8.json"
+      - "data/discovery/bse-listing-candidates-2026-09-24-batch9.json"
       - ".github/workflows/verify-bse-listing-candidates.yml"
   push:
     branches: ["main"]
@@ -25,6 +27,8 @@ on:
       - "data/discovery/bse-listing-candidates-2026-09-24-batch4.json"
       - "data/discovery/bse-listing-candidates-2026-09-24-batch5.json"
       - "data/discovery/bse-listing-candidates-2026-09-24-batch7.json"
+      - "data/discovery/bse-listing-candidates-2026-09-24-batch8.json"
+      - "data/discovery/bse-listing-candidates-2026-09-24-batch9.json"
       - ".github/workflows/verify-bse-listing-candidates.yml"
 
 permissions:
@@ -81,13 +85,25 @@ jobs:
         run: node scripts/verify-bse-listing-candidates.mjs --input=data/discovery/bse-listing-candidates-2026-09-24-batch7.json --output="${{ runner.temp }}/bse-listing-verification/batch7-report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/batch7-notices"
       - name: Require corrected Recode official PDF
         run: node scripts/retry-bse-listing-pdf.mjs --report="${{ runner.temp }}/bse-listing-verification/batch7-report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/batch7-notices" --upgrade-verified-html=true
+      - name: Verify cursor2 batch 8 issuer-specific listing notices
+        continue-on-error: true
+        run: node scripts/verify-bse-listing-candidates.mjs --input=data/discovery/bse-listing-candidates-2026-09-24-batch8.json --output="${{ runner.temp }}/bse-listing-verification/batch8-report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/batch8-notices"
+      - name: Check official PDF archive for unresolved cursor2 batch 8 notices
+        continue-on-error: true
+        run: node scripts/retry-bse-listing-pdf.mjs --report="${{ runner.temp }}/bse-listing-verification/batch8-report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/batch8-notices" --upgrade-verified-html=true
+      - name: Verify cursor2 batch 9 issuer-specific listing notices
+        continue-on-error: true
+        run: node scripts/verify-bse-listing-candidates.mjs --input=data/discovery/bse-listing-candidates-2026-09-24-batch9.json --output="${{ runner.temp }}/bse-listing-verification/batch9-report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/batch9-notices"
+      - name: Check official PDF archive for unresolved cursor2 batch 9 notices
+        continue-on-error: true
+        run: node scripts/retry-bse-listing-pdf.mjs --report="${{ runner.temp }}/bse-listing-verification/batch9-report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/batch9-notices" --upgrade-verified-html=true
       - name: Report evidence formats for verified candidates
         shell: bash
         run: |
           node --input-type=module <<'JS'
           import fs from 'node:fs';
           const missing = [];
-          for (const batch of ['batch4', 'batch5']) {
+          for (const batch of ['batch4', 'batch5', 'batch8', 'batch9']) {
             const file = `${process.env.RUNNER_TEMP}/bse-listing-verification/${batch}-report.json`;
             const report = JSON.parse(fs.readFileSync(file, 'utf8'));
             for (const r of report.results.filter((item) => item.status === 'verified')) {
