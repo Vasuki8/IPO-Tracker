@@ -1,0 +1,298 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-24T03:48:52.583Z",
+  "source_cursor": {
+    "run_id": "35952980189",
+    "head_sha": "2dcd60597c0fb8995a446efa00199138034b1603",
+    "cursor_state_path": "ops/bse-sme-addition-notices.json",
+    "cursor_updated_at": "2026-09-24T03:48:52.583Z"
+  },
+  "recovery_snapshot": {
+    "path": "data/recovery/2026/nse-issue-information.json",
+    "record_count": 67
+  },
+  "rules": [
+    "Index-addition evidence is discovery-only and never listing authority.",
+    "No fuzzy-name equivalence is used.",
+    "Missing candidates require issuer-specific official BSE listing notice verification before materialization."
+  ],
+  "stats": {
+    "discovered_references": 23,
+    "already_present": 6,
+    "identity_review_required": 0,
+    "missing_exact_identity": 17
+  },
+  "entries": [
+    {
+      "issuer_name": "M.R. MANIVENI FOODS LIMITED",
+      "bse_scrip_code": "544768",
+      "listing_notice_no": "20260529-40",
+      "listing_date": "2026-06-01",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260529-40",
+      "index_notice_no": "20260601-17",
+      "index_notice_source_url": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260601-17/20260601-17.pdf",
+      "extracted_text_sha256": "5f3afc5216fc77b43e29fc3aa4ad0ded97eeef47a597ea9665fbf0e4a16b6b26",
+      "classification": "missing_exact_identity"
+    },
+    {
+      "issuer_name": "AUTOFURNISH LIMITED",
+      "bse_scrip_code": "544767",
+      "listing_notice_no": "20260527-47",
+      "listing_date": "2026-05-29",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260527-47",
+      "index_notice_no": "20260529-18",
+      "index_notice_source_url": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260529-18/20260529-18.pdf",
+      "extracted_text_sha256": "ac5971f804264bc152cbb1077fd314abe18dc9d515d97adc3d91d6f8454200d6",
+      "classification": "missing_exact_identity"
+    },
+    {
+      "issuer_name": "VEGORAMA PUNJABI ANGITHI LIMITED",
+      "bse_scrip_code": "544765",
+      "listing_notice_no": "20260526-31",
+      "listing_date": "2026-05-27",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260526-31",
+      "index_notice_no": "20260527-26",
+      "index_notice_source_url": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260527-26/20260527-26.pdf",
+      "extracted_text_sha256": "ffec94d15371fac26f15e91ef7bed3fad4b90d79b41083165aea64305f7948f9",
+      "classification": "missing_exact_identity"
+    },
+    {
+      "issuer_name": "GOLDLINE PHARMACEUTICAL LIMITED",
+      "bse_scrip_code": "544759",
+      "listing_notice_no": "20260518-28",
+      "listing_date": "2026-05-19",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260518-28",
+      "index_notice_no": "20260519-9",
+      "index_notice_source_url": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260519-9/20260519-9.pdf",
+      "extracted_text_sha256": "eb351f99e20cdc7b39a1e70488dcba6d48d885f09a0795ea4061f6c4034a9101",
+      "classification": "missing_exact_identity"
+    },
+    {
+      "issuer_name": "RECODE STUDIOS LIMITED",
+      "bse_scrip_code": "544755",
+      "listing_notice_no": "20260511-16",
+      "listing_date": "2026-05-12",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260511-16",
+      "index_notice_no": "20260512-30",
+      "index_notice_source_url": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260512-30/20260512-30.pdf",
+      "extracted_text_sha256": "a2e3e2cfb4aa32d648e025e46c9810515814d82915b2e23afef34df100a743f2",
+      "classification": "missing_exact_identity"
+    },
+    {
+      "issuer_name": "MEHUL TELECOM LIMITED",
+      "bse_scrip_code": "544751",
+      "listing_notice_no": "20260423-27",
+      "listing_date": "2026-04-24",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260423-27",
+      "index_notice_no": "20260424-9",
+      "index_notice_source_url": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260424-9/20260424-9.pdf",
+      "extracted_text_sha256": "f678f4d20d8380369c9c1aa4de1a410aae3b4417798cd966644705f8bfc078e2",
+      "classification": "missing_exact_identity"
+    },
+    {
+      "issuer_name": "SAFETY CONTROLS & DEVICES LIMITED",
+      "bse_scrip_code": "544746",
+      "listing_notice_no": "20260410-44",
+      "listing_date": "2026-04-13",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260410-44",
+      "index_notice_no": "20260413-23",
+      "index_notice_source_url": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260413-23/20260413-23.pdf",
+      "extracted_text_sha256": "5590f57140d34cce913e3ef0d97b64b1f3a9757edf67ef34cf73556d09a80764",
+      "classification": "missing_exact_identity"
+    },
+    {
+      "issuer_name": "EMIAC TECHNOLOGIES LIMITED",
+      "bse_scrip_code": "544747",
+      "listing_notice_no": "20260410-43",
+      "listing_date": "2026-04-13",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260410-43",
+      "index_notice_no": "20260413-23",
+      "index_notice_source_url": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260413-23/20260413-23.pdf",
+      "extracted_text_sha256": "5590f57140d34cce913e3ef0d97b64b1f3a9757edf67ef34cf73556d09a80764",
+      "classification": "missing_exact_identity"
+    },
+    {
+      "issuer_name": "TIPCO ENGINEERING INDIA LIMITED",
+      "bse_scrip_code": "544740",
+      "listing_notice_no": "20260330-44",
+      "listing_date": "2026-04-01",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260330-44",
+      "index_notice_no": "20260401-33",
+      "index_notice_source_url": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260401-33/20260401-33.pdf",
+      "extracted_text_sha256": "800f146debd422856ef04785ed11108a9b7bddc0feaa88d58c23883bf160d0d5",
+      "classification": "missing_exact_identity"
+    },
+    {
+      "issuer_name": "NOVUS LOYALTY LIMITED",
+      "bse_scrip_code": "544735",
+      "listing_notice_no": "20260324-28",
+      "listing_date": "2026-03-25",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260324-28",
+      "index_notice_no": "20260325-42",
+      "index_notice_source_url": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260325-42/20260325-42.pdf",
+      "extracted_text_sha256": "928a208dc764877732c1a1d631e03e9bfa919712120bf7ec528da6dff0ee2683",
+      "classification": "missing_exact_identity"
+    },
+    {
+      "issuer_name": "ELFIN AGRO INDIA LIMITED",
+      "bse_scrip_code": "544724",
+      "listing_notice_no": "20260311-44",
+      "listing_date": "2026-03-12",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260311-44",
+      "index_notice_no": "20260312-18",
+      "index_notice_source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20260312-18",
+      "extracted_text_sha256": "6b38a36e7795e173cb3493c25e626c40c34b605154d68d94ad04113ad85806b4",
+      "classification": "missing_exact_identity"
+    },
+    {
+      "issuer_name": "PAN HR SOLUTION LIMITED",
+      "bse_scrip_code": "544698",
+      "listing_notice_no": "20260212-30",
+      "listing_date": "2026-02-13",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260212-30",
+      "index_notice_no": "20260213-21",
+      "index_notice_source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20260213-21",
+      "extracted_text_sha256": "fd304b491265037fd22a7b3188a05e8cb832f73e53c6cb0edf868db4149b6735",
+      "classification": "missing_exact_identity"
+    },
+    {
+      "issuer_name": "KANISHK ALUMINIUM INDIA LIMITED",
+      "bse_scrip_code": "544693",
+      "listing_notice_no": "20260203-43",
+      "listing_date": "2026-02-04",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260203-43",
+      "index_notice_no": "20260204-19",
+      "index_notice_source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20260204-19",
+      "extracted_text_sha256": "569869e164a7cc4e5e0bbcfb3365c28970bdffdc4064a48e17ed05e2dd227fd8",
+      "classification": "missing_exact_identity"
+    },
+    {
+      "issuer_name": "ACCRETION NUTRAVEDA LIMITED",
+      "bse_scrip_code": "544694",
+      "listing_notice_no": "20260203-44",
+      "listing_date": "2026-02-04",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260203-44",
+      "index_notice_no": "20260204-19",
+      "index_notice_source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20260204-19",
+      "extracted_text_sha256": "569869e164a7cc4e5e0bbcfb3365c28970bdffdc4064a48e17ed05e2dd227fd8",
+      "classification": "missing_exact_identity"
+    },
+    {
+      "issuer_name": "MSAFE EQUIPMENTS LIMITED",
+      "bse_scrip_code": "544695",
+      "listing_notice_no": "20260203-45",
+      "listing_date": "2026-02-04",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260203-45",
+      "index_notice_no": "20260204-19",
+      "index_notice_source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20260204-19",
+      "extracted_text_sha256": "569869e164a7cc4e5e0bbcfb3365c28970bdffdc4064a48e17ed05e2dd227fd8",
+      "classification": "missing_exact_identity"
+    },
+    {
+      "issuer_name": "ARITAS VINYL LIMITED",
+      "bse_scrip_code": "544683",
+      "listing_notice_no": "20260122-19",
+      "listing_date": "2026-01-23",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260122-19",
+      "index_notice_no": "20260123-13",
+      "index_notice_source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20260123-13",
+      "extracted_text_sha256": "f7610581b221c149c6ecca7a145cd48eaf8813b8c8a550edb3019c474bc64d89",
+      "classification": "missing_exact_identity"
+    },
+    {
+      "issuer_name": "YAJUR FIBRES LIMITED",
+      "bse_scrip_code": "544676",
+      "listing_notice_no": "20260113-25",
+      "listing_date": "2026-01-14",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260113-25",
+      "index_notice_no": "20260114-31",
+      "index_notice_source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20260114-31",
+      "extracted_text_sha256": "471d88589bf67cf7b2487a015a9f36398cab9405e257056985ef54ae52e2ae5a",
+      "classification": "missing_exact_identity"
+    },
+    {
+      "issuer_name": "YASHHTEJ INDUSTRIES (INDIA) LIMITED",
+      "bse_scrip_code": "544708",
+      "listing_notice_no": "20260224-17",
+      "listing_date": "2026-02-25",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260224-17",
+      "index_notice_no": "20260225-13",
+      "index_notice_source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20260225-13",
+      "extracted_text_sha256": "f6095a19db69ee3e98e134ae6f21eff040b12c5245c78f309123dfca7d0ca0cc",
+      "classification": "already_present",
+      "matched_record": {
+        "id": "yashhtej-industries-india-limited"
+      }
+    },
+    {
+      "issuer_name": "FRACTAL INDUSTRIES LIMITED",
+      "bse_scrip_code": "544707",
+      "listing_notice_no": "20260223-23",
+      "listing_date": "2026-02-24",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260223-23",
+      "index_notice_no": "20260224-19",
+      "index_notice_source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20260224-19",
+      "extracted_text_sha256": "a9badd5105eea44dbf7c332090b10d106b4025bac4b26e1b9b14ca2f29fabd2d",
+      "classification": "already_present",
+      "matched_record": {
+        "id": "fractal-industries-limited"
+      }
+    },
+    {
+      "issuer_name": "KASTURI METAL COMPOSITE LIMITED",
+      "bse_scrip_code": "544688",
+      "listing_notice_no": "20260202-35",
+      "listing_date": "2026-02-03",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260202-35",
+      "index_notice_no": "20260203-21",
+      "index_notice_source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20260203-21",
+      "extracted_text_sha256": "8d9047f55c2ab686dee85cbcc1ee7d123d69054f6d19f156a8509ec468939651",
+      "classification": "already_present",
+      "matched_record": {
+        "id": "kasturi-metal-composite-limited"
+      }
+    },
+    {
+      "issuer_name": "HANNAH JOSEPH HOSPITAL LIMITED",
+      "bse_scrip_code": "544687",
+      "listing_notice_no": "20260201-4",
+      "listing_date": "2026-02-02",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260201-4",
+      "index_notice_no": "20260202-24",
+      "index_notice_source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20260202-24",
+      "extracted_text_sha256": "409d617135cbac73c225c450f5122293506fb69b2b22d410631eddbcf237e2d0",
+      "classification": "already_present",
+      "matched_record": {
+        "id": "hannah-joseph-hospital-limited"
+      }
+    },
+    {
+      "issuer_name": "SHAYONA ENGINEERING LIMITED",
+      "bse_scrip_code": "544686",
+      "listing_notice_no": "20260129-39",
+      "listing_date": "2026-01-30",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260129-39",
+      "index_notice_no": "20260130-22",
+      "index_notice_source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20260130-22",
+      "extracted_text_sha256": "247acf20a6353bd2498142e7fd100dbec07c017aaecfd7b8b8ee1d49cc87a06c",
+      "classification": "already_present",
+      "matched_record": {
+        "id": "shayona-engineering-limited"
+      }
+    },
+    {
+      "issuer_name": "GABION TECHNOLOGIES INDIA LIMITED",
+      "bse_scrip_code": "544675",
+      "listing_notice_no": "20260112-35",
+      "listing_date": "2026-01-13",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260112-35",
+      "index_notice_no": "20260113-26",
+      "index_notice_source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20260113-26",
+      "extracted_text_sha256": "c0ab4d1e69c4a82e5b536fbd2ea6ff46723253d2630a4895ce2d6d8fd9b15183",
+      "classification": "already_present",
+      "matched_record": {
+        "id": "gabion-technologies-india-limited"
+      }
+    }
+  ]
+}
