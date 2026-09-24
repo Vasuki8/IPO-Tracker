@@ -20,37 +20,41 @@ Never invent missing values or use price-times-quantity arithmetic to fill them.
 
 The existing hourly `update-ipos.yml` collects NSE/SEBI data and imports reviewed BSE evidence. Historical PDF recovery and the bounded BSE notice cursor run independently. `deploy-pages.yml` publishes the site. Workflow files define actual schedules and execution.
 
-`verify-bse-publication.yml` is a **read-only post-publication check** for selected reviewed BSE manifests. Its current default is cursor7 reviewed batches26/27. It fetches actual Pages JSON, retains exact bytes/hash and separate observation time, and checks issuer identity, values, public evidence and retained provenance. It runs manually or when its implementation changes; it does not alter the collection schedule or import IPOs.
+`verify-bse-publication.yml` is a **read-only post-publication check** for selected reviewed BSE manifests. It fetches the actual Pages dataset, retains its original bytes/hash and separate observation time, and checks issuer identity, values, source metadata and retained provenance. It runs manually or when its implementation changes; it does not alter the collection schedule or import IPOs. Its current default remains cursor7 reviewed batches26/27.
 
 Collection time, dataset generation and Pages publication are distinct signals. `node scripts/operator-report.mjs` reports operational health without rewriting IPO values.
 
 ## Handoff for the next prompt
 
-**Latest completed backend unit: cursor7 reviewed publication VERIFIED live — PR #210 / #211.** No UI files changed.
+**Latest completed backend unit: seven retained BSE parser failures repaired and VERIFIED operationally — PR #213.** No UI or IPO-data changes.
 
-PR #210 (`66532672a7f9c84d1fadf96cb0b17b55e87e73a8`) added reviewed batches26/27, preserving the exact issuer-specific official BSE evidence for 18 issuers. PR #211 (`34b39bc9617c013c6e4d7d3955b3de5b5207a5f0`) selected those manifests in the existing read-only live verifier.
+PR #213 merged as `224349d83acac08370ab30e9239ffaebab58dabc`. Parser **1.4.0** accepts the demonstrated BSE SME Platform suffix and terminal respectively in ordered shared-ID issuer lists, while rejecting incomplete/ambiguous mappings. Existing successful v1.1/v1.2/v1.3 cursor entries remain compatible. The temporary read-only diagnostic workflow was removed before merge; existing schedules and permissions are unchanged.
 
-The real importer/publication rehearsal proved **1,091 -> 1,109**, **18 additions**, all **1,091 existing records unchanged**, **0 holds/conflicts**, and an idempotent second run. Both PRs' data-contract and reviewed-evidence checks passed.
+All seven freshly fetched source-text hashes matched retained cursor hashes. Seven literal source fixtures, **84 new fail-closed mutations**, asynchronous repair migration and idempotency checks passed. PR-head cursor/parser, reviewed-evidence and full data-contract CI all passed.
 
-Production sync `36061861729` succeeded. The actual served-data comparison found **18 added / 1 changed / 0 removed**; the existing-record change was additional SEBI documents and collection time for Ameya, not an IPO term change. 2023 recovery increased **174 -> 192**.
+Production retry **`36065458265`** selected exactly seven old-parser failures and completed **7/7 parsed**, **13 recovered references**, **0 fetch errors**, **0 unparseable**. All **153 prior successful entries** and bootstrap were preserved exactly. Saved cursor commit: `ec995bfe578a0ae0fc5f9a47a236d335f9ef83e9`; whole-state Git blob: `0aba996b117374ea2ba4fbeb299144b63ca9cba2`.
 
-Canonical post-merge verifier `36062649127` confirmed **1,109 served records**, **18/18 unique issuers**, **54/54 matching fields**, **0 failed issuers**, and **six unsupported fields null per issuer**. Snapshot fetched `2026-09-24T21:37:42.271Z`; dataset generated `2026-09-24T21:30:22.442Z`. Original hashes were checked in 54 retained recovery field sources; the public projection intentionally serializes zero document hashes.
+Current historical cursor, attempted `2026-09-24T22:06:07.403Z`: **160/236 tracked**, **160 parsed**, **0 failed**, **76 untracked**; next unseen notice **`20230503-13`**.
 
-Live artifact `10835146698`, ZIP SHA-256 `6d6a46359c858b93038da3970ed268d6ca918f6e6b27a323c86fd9beb19ba80a`. Durable release evidence: [docs/verification/cursor7-live-publication-2026-09-24.json](docs/verification/cursor7-live-publication-2026-09-24.json). Full tests, commits, clocks and deployment details are in [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md).
+The thirteen recovered references are **discovery only, not newly published IPOs**. Public and retained recovery data were unchanged at **1,109 records**. The previous live-publication receipt remains valid historical evidence; this unit verified the actual operational cursor instead of claiming a new website-data release.
+
+Durable evidence: [docs/verification/bse-parser-v1.4-2026-09-24.json](docs/verification/bse-parser-v1.4-2026-09-24.json). Full source hashes, tests, commits, artifact IDs and production verification are in [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md).
 
 ### Next backend task
 
-Re-read current main and cursor first. Last checked: parser **1.3.0**, **160/236 tracked**, **153 parsed**, **7 unparseable**, **76 untracked**, updated `2026-09-24T20:00:39.470Z`.
+Re-read current main and cursor, then **reconcile the thirteen recovered references against the latest 2020-2026 recovery and public dataset** using issuer identity, BSE scrip code and listing-source identity. Do not assume thirteen missing IPOs. Independently verify issuer-specific BSE listing notices only for missing/unambiguous candidates, in batches of at most 15. Then retain reviewed evidence, rehearse safe/idempotent publication and verify the actually served dataset. Close this recovered segment before skipping to newer unseen work, even if independent automation advances.
 
-Diagnose the seven retained failed BSE Index Services notices as a bounded source/parser-family repair: `20240624-11`, `20240612-20`, `20240606-11`, `20240205-12`, `20240103-22`, `20231206-8`, `20230719-15`. Re-fetch only the failures, compare source hashes, and add only demonstrated grammar with fail-closed regressions. Do not infer issuers or terms from failed index notices. If independent automation has advanced, reconcile its pending segments without replaying completed releases.
+The seven former parser failures are now closed. Do not replay cursor7 discovery batches20/21 or reviewed batches26/27, nor completed cursor6 batches18/19 or reviewed batches24/25. Index discovery is not listing-term authority. No UI, minimum-investment, billing, accounts, ads, spending or permissions changes belong to this continuation.
 
-Cursor7 discovery batches20/21 and reviewed batches26/27 are closed. Do not repeat cursor6 batches18/19 or reviewed batches24/25. No UI, minimum-investment, billing, accounts, ads, spending or permissions changes belong to this backend continuation.
-
-**Product UI workstream — V2 live and verified, PR #209:** the requested light directory/detail redesign is published. Its separate release evidence and follow-up notes remain in [docs/UI_DESIGN_HANDOFF.md](docs/UI_DESIGN_HANDOFF.md).
+**Product UI workstream — V2 live and verified, PR #209:** its separate evidence and notes remain in [docs/UI_DESIGN_HANDOFF.md](docs/UI_DESIGN_HANDOFF.md). No UI files changed in the parser repair.
 
 ## Local checks
 
 ```bash
+node scripts/test-audit-bse-sme-addition-notices.mjs
+node scripts/test-backfill-bse-sme-addition-notices.mjs
+node scripts/test-apply-bse-sme-addition-notice-state.mjs
+node scripts/apply-bse-sme-addition-notice-state.mjs --check
 node scripts/test-verify-bse-publication.mjs
 node scripts/test-bse-public-projection.mjs
 node scripts/test-bse-publication-rehearsal.mjs
@@ -60,8 +64,8 @@ node scripts/validate-data.mjs
 node scripts/audit-historical-coverage.mjs
 ```
 
-For a live receipt, run `scripts/verify-bse-publication.mjs` with `--manifests=<comma-separated reviewed paths>` and `--output-dir=<artifact directory>`. It fails on unavailable/malformed snapshots or mismatches and never imports IPO records.
+For a live IPO-publication receipt, run `scripts/verify-bse-publication.mjs` with `--manifests=<comma-separated reviewed paths>` and `--output-dir=<artifact directory>`. It reports failure on unavailable/malformed snapshots or mismatches and never imports IPO records.
 
 ## Historical handoffs
 
-The preceding README and status are preserved byte-for-byte in [docs/archive/README-before-cursor7-publication.md](docs/archive/README-before-cursor7-publication.md) and [docs/archive/PROJECT_STATUS-before-cursor7-publication.md](docs/archive/PROJECT_STATUS-before-cursor7-publication.md). Older archives and verification receipts remain unchanged. Archived next-task instructions are not current instructions.
+The complete preceding README and status are archived unchanged in [docs/archive/README-before-cursor7-parser-repair.md](docs/archive/README-before-cursor7-parser-repair.md) and [docs/archive/PROJECT_STATUS-before-cursor7-parser-repair.md](docs/archive/PROJECT_STATUS-before-cursor7-parser-repair.md). Older archives and verification receipts remain unchanged. Archived next-task instructions are not current instructions.
