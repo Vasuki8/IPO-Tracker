@@ -67,13 +67,32 @@ jobs:
         run: node scripts/verify-bse-listing-candidates.mjs --input=data/discovery/bse-listing-candidates-2026-09-24-batch4.json --output="${{ runner.temp }}/bse-listing-verification/batch4-report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/batch4-notices"
       - name: Check official PDF archive for unresolved batch 4 notices
         continue-on-error: true
-        run: node scripts/retry-bse-listing-pdf.mjs --report="${{ runner.temp }}/bse-listing-verification/batch4-report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/batch4-notices"
+        run: node scripts/retry-bse-listing-pdf.mjs --report="${{ runner.temp }}/bse-listing-verification/batch4-report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/batch4-notices" --upgrade-verified-html=true
       - name: Verify historical batch 5 issuer-specific listing notices
         continue-on-error: true
         run: node scripts/verify-bse-listing-candidates.mjs --input=data/discovery/bse-listing-candidates-2026-09-24-batch5.json --output="${{ runner.temp }}/bse-listing-verification/batch5-report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/batch5-notices"
       - name: Check official PDF archive for unresolved batch 5 notices
         continue-on-error: true
-        run: node scripts/retry-bse-listing-pdf.mjs --report="${{ runner.temp }}/bse-listing-verification/batch5-report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/batch5-notices"
+        run: node scripts/retry-bse-listing-pdf.mjs --report="${{ runner.temp }}/bse-listing-verification/batch5-report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/batch5-notices" --upgrade-verified-html=true
+      - name: Report PDF readiness for verified candidates
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          const missing = [];
+          for (const batch of ['batch4', 'batch5']) {
+            const file = `${process.env.RUNNER_TEMP}/bse-listing-verification/${batch}-report.json`;
+            const report = JSON.parse(fs.readFileSync(file, 'utf8'));
+            for (const r of report.results.filter((item) => item.status === 'verified')) {
+              const facts = Object.values(r.facts || {});
+              if (r.source_kind !== 'BSE Listing Notice PDF' || !r.identity_pages ||
+                  facts.length !== 3 || facts.some((fact) => !Number.isSafeInteger(fact.page) || fact.page < 1)) {
+                missing.push({ batch, issuer_name: r.candidate?.issuer_name, listing_notice_no: r.candidate?.listing_notice_no });
+              }
+            }
+          }
+          console.log(JSON.stringify({ verified_without_pdf_page_evidence: missing }));
+          JS
       - name: Summarize unresolved listing verification
         if: always()
         shell: bash

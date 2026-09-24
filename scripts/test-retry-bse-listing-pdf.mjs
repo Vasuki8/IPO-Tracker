@@ -19,6 +19,10 @@ try {
   const verified = structuredClone(report); verified.results[0].status = "verified";
   await retryPdf(verified, dir, async () => { throw new Error("must_not_fetch_verified_record"); });
   assert.equal(verified.results[0].pdf_archive_attempt, undefined);
+  const upgrade = structuredClone(verified);
+  await retryPdf(upgrade, dir, async () => new Response("<html>Not a PDF</html>"), { upgradeVerifiedHtml: true });
+  assert.equal(upgrade.results[0].status, "verified");
+  assert.equal(upgrade.results[0].pdf_archive_attempt.error, "not_a_pdf");
 } finally { fs.rmSync(dir, {recursive:true,force:true}); }
 console.log("BSE PDF archive retry tests passed.");
 
