@@ -59,3 +59,28 @@ assert.equal(verify(html.replace("Notice Date 20 Aug 2026", "Notice Date 20 Aug 
 const wrapped = html.replace("Subject Listing of Equity Shares of Example Industries Limited", "Listing of Equity Shares of Example Subject Industries Limited") + " Name of the company Example Industries Limited Registered Office Address";
 assert.equal(verify(wrapped).status, "verified");
 assert.equal(verify(html + " Name of the company Other Limited Registered Office Address").status, "rejected");
+
+assert.equal(strictDate("December 31 , 2025"), "2025-12-31");
+{
+  const candidate = {
+    issuer_name: "APOLLO TECHNO INDUSTRIES LIMITED",
+    bse_scrip_code: "544671",
+    listing_notice_no: "20251230-30",
+    listing_date: "2025-12-31",
+    listing_notice_url: listingUrl("20251230-30")
+  };
+  const checked = verifyListingHtml(
+    "NOTICE Notice No. 20251230-30 Notice Date 30 Dec 2025 Category Company related Segment SME " +
+    "Subject Listing of Equity Shares of APOLLO TECHNO INDUSTRIES LIMITED " +
+    "Trading Members of the Exchange are hereby informed that effective from Wednesday, December 31 , 2025, " +
+    "the Equity Shares of Apollo Techno Industries Limited shall be listed and admitted to dealings on the Exchange. " +
+    "Name of the company Apollo Techno Industries Limited Registered Office Scrip Code 544671 Market Lot 1000 " +
+    "Issue Price for the current Public issue Rs. 130",
+    candidate,
+    "2026-09-24T00:00:00Z"
+  );
+  assert.equal(checked.status, "verified");
+  assert.equal(checked.facts.listing_date.value, "2025-12-31");
+  assert.equal(checked.facts.market_lot.value, 1000);
+  assert.equal(checked.facts.issue_price.value, 130);
+}
