@@ -1,0 +1,101 @@
+name: Verify BSE 544770 identity conflict
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "data/discovery/bse-listing-conflict-544770-*.json"
+      - ".github/workflows/verify-bse-544770-conflict.yml"
+      - "scripts/verify-bse-listing-candidates.mjs"
+      - "scripts/retry-bse-listing-pdf.mjs"
+  push:
+    branches: ["main"]
+    paths:
+      - "data/discovery/bse-listing-conflict-544770-*.json"
+      - ".github/workflows/verify-bse-544770-conflict.yml"
+      - "scripts/verify-bse-listing-candidates.mjs"
+      - "scripts/retry-bse-listing-pdf.mjs"
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install notice PDF reader
+        run: sudo apt-get update && sudo apt-get install --yes --no-install-recommends poppler-utils
+      - name: Test listing verifier
+        run: |
+          node scripts/test-verify-bse-listing-candidates.mjs
+          node scripts/test-retry-bse-listing-pdf.mjs
+      - name: Probe Merritronix issuer-specific listing notice
+        continue-on-error: true
+        run: |
+          mkdir -p "${{ runner.temp }}/bse-544770/merritronix/notices"
+          node scripts/verify-bse-listing-candidates.mjs \
+            --input=data/discovery/bse-listing-conflict-544770-merritronix.json \
+            --output="${{ runner.temp }}/bse-544770/merritronix/report.json" \
+            --evidence-dir="${{ runner.temp }}/bse-544770/merritronix/notices"
+          node scripts/retry-bse-listing-pdf.mjs \
+            --report="${{ runner.temp }}/bse-544770/merritronix/report.json" \
+            --evidence-dir="${{ runner.temp }}/bse-544770/merritronix/notices"
+      - name: Probe Yaashvi issuer-specific listing notice
+        continue-on-error: true
+        run: |
+          mkdir -p "${{ runner.temp }}/bse-544770/yaashvi/notices"
+          node scripts/verify-bse-listing-candidates.mjs \
+            --input=data/discovery/bse-listing-conflict-544770-yaashvi.json \
+            --output="${{ runner.temp }}/bse-544770/yaashvi/report.json" \
+            --evidence-dir="${{ runner.temp }}/bse-544770/yaashvi/notices"
+          node scripts/retry-bse-listing-pdf.mjs \
+            --report="${{ runner.temp }}/bse-544770/yaashvi/report.json" \
+            --evidence-dir="${{ runner.temp }}/bse-544770/yaashvi/notices"
+      - name: Require parsed official PDFs and summarize observed identities
+        run: |
+          node --input-type=module <<'JS'
+          import fs from "node:fs";
+          const root = process.env.RUNNER_TEMP + "/bse-544770";
+          const names = ["merritronix", "yaashvi"];
+          const summary = {};
+          for (const name of names) {
+            const report = JSON.parse(fs.readFileSync(root + "/" + name + "/report.json", "utf8"));
+            const result = report.results?.[0];
+            if (!result || result.source_kind !== "BSE Listing Notice PDF") {
+              throw new Error(name + "_official_listing_pdf_not_parsed");
+            }
+            if (!["verified","rejected"].includes(result.status)) {
+              throw new Error(name + "_listing_identity_unresolved_" + result.status);
+            }
+            const observed = result.observed_identity || {};
+            if (!observed.issuer_name || !Array.isArray(observed.scrip_codes) || observed.scrip_codes.length !== 1 ||
+                !Array.isArray(observed.listing_dates) || observed.listing_dates.length !== 1 || !observed.board) {
+              throw new Error(name + "_observed_identity_incomplete");
+            }
+            summary[name] = {
+              status: result.status,
+              reasons: result.reasons,
+              source_url: result.source_url,
+              response_sha256: result.response_sha256,
+              collected_at: result.collected_at,
+              observed_identity: observed,
+              response_text: result.response_text
+            };
+          }
+          fs.writeFileSync(root + "/summary.json", JSON.stringify(summary, null, 2) + "\n");
+          console.log(JSON.stringify(summary, null, 2));
+          JS
+      - name: Retain conflict evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bse-544770-conflict-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/bse-544770
+          retention-days: 14
+          if-no-files-found: error
