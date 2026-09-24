@@ -1,7 +1,7 @@
 {
   "source_family": "Official NSE / SEBI / BSE offer-document and exchange evidence",
   "collection_started_at": "2026-09-23T19:29:29.146Z",
-  "generated_at": "2026-09-24T07:20:46.054Z",
+  "generated_at": "2026-09-24T14:18:57.346Z",
   "records": [
     {
       "id": "3b-films-limited",
@@ -514,10 +514,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — ACTIVEINFR",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ACTIVEINFR&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T14:18:57.346Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -564,6 +571,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 178,
+          "max": 181
+        },
+        "source_value": "Rs.178 to Rs. 181 per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ACTIVEINFR&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — ACTIVEINFR",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 600,
+        "source_value": "600 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ACTIVEINFR&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — ACTIVEINFR",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       }
     },
@@ -1088,10 +1124,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — AJAXENGG",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=AJAXENGG&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T14:18:57.346Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -1138,6 +1181,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 599,
+          "max": 629
+        },
+        "source_value": "Rs. 599 to Rs. 629 per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=AJAXENGG&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — AJAXENGG",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 23,
+        "source_value": "23 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=AJAXENGG&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — AJAXENGG",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       }
     },
@@ -1257,6 +1329,120 @@
           "publication_date": null,
           "collected_at": "2026-09-23T20:29:27.308Z"
         }
+      }
+    },
+    {
+      "id": "amwill-health-care-limited",
+      "issuer_name": "AMWILL HEALTH CARE LIMITED",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250211-31",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice 20250211-31",
+        "document_sha256": "df54c2a1e64690d9b89280f2b02bd9baa132629821383a97e0215d5cac560342",
+        "publication_date": "2025-02-11",
+        "collected_at": "2026-09-24T07:52:13.099Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice 20250211-31",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250211-31",
+          "publication_date": "2025-02-11",
+          "collected_at": "2026-09-24T07:52:13.099Z",
+          "document_sha256": "df54c2a1e64690d9b89280f2b02bd9baa132629821383a97e0215d5cac560342"
+        }
+      ],
+      "first_observed_at": "2026-09-24T07:52:13.099Z",
+      "last_collected_at": "2026-09-24T07:52:13.099Z",
+      "board_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250211-31",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250211-31",
+          "document_sha256": "df54c2a1e64690d9b89280f2b02bd9baa132629821383a97e0215d5cac560342",
+          "publication_date": "2025-02-11",
+          "collected_at": "2026-09-24T07:52:13.099Z",
+          "page": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250211-31",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250211-31",
+          "document_sha256": "df54c2a1e64690d9b89280f2b02bd9baa132629821383a97e0215d5cac560342",
+          "publication_date": "2025-02-11",
+          "collected_at": "2026-09-24T07:52:13.099Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2025-02-12",
+        "source_value": "effective from Wednesday, February 12, 2025",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250211-31",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250211-31",
+          "document_sha256": "df54c2a1e64690d9b89280f2b02bd9baa132629821383a97e0215d5cac560342",
+          "publication_date": "2025-02-11",
+          "collected_at": "2026-09-24T07:52:13.099Z"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 111,
+        "source_value": "Issue Price for the current Public issue Rs. 111",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250211-31",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250211-31",
+          "document_sha256": "df54c2a1e64690d9b89280f2b02bd9baa132629821383a97e0215d5cac560342",
+          "publication_date": "2025-02-11",
+          "collected_at": "2026-09-24T07:52:13.099Z"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 1200,
+        "source_value": "Market Lot 1200",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250211-31",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250211-31",
+          "document_sha256": "df54c2a1e64690d9b89280f2b02bd9baa132629821383a97e0215d5cac560342",
+          "publication_date": "2025-02-11",
+          "collected_at": "2026-09-24T07:52:13.099Z"
+        },
+        "corrections": []
+      },
+      "bse_scrip_code": "544353",
+      "bse_verified_listing_batch": {
+        "manifest": "data/verified-bse-listings/2026-09-24-batch18.json",
+        "verifier_version": "1.1.0",
+        "source_run_id": "35971558745",
+        "source_artifact_id": 10795923526,
+        "source_artifact_sha256": "1cb1da49b39d524fcc14fbc238ba39714cc95fc860494ae1bb36de9e8f45b68c",
+        "listing_notice_no": "20250211-31"
       }
     },
     {
@@ -2597,10 +2783,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — ATCENERGY",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ATCENERGY&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T14:18:57.346Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -2647,6 +2840,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 112,
+          "max": 118
+        },
+        "source_value": "Rs.112 to Rs. 118 per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ATCENERGY&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — ATCENERGY",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 1200,
+        "source_value": "1200 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ATCENERGY&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — ATCENERGY",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       }
     },
@@ -3225,10 +3447,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — BALAJIPHOS",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=BALAJIPHOS&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T14:18:57.346Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -3275,6 +3504,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 66,
+          "max": 70
+        },
+        "source_value": "Rs.66 to Rs. 70 per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=BALAJIPHOS&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — BALAJIPHOS",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 2000,
+        "source_value": "2000 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=BALAJIPHOS&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — BALAJIPHOS",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       }
     },
@@ -3358,6 +3616,120 @@
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
         }
+      }
+    },
+    {
+      "id": "beezaasan-explotech-limited",
+      "issuer_name": "BEEZAASAN EXPLOTECH LIMITED",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250228-73",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice 20250228-73",
+        "document_sha256": "2ef5023bd7bb014fff576fb21c65aa67140429698bccfe12466ace7602164970",
+        "publication_date": "2025-02-28",
+        "collected_at": "2026-09-24T07:52:04.996Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice 20250228-73",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250228-73",
+          "publication_date": "2025-02-28",
+          "collected_at": "2026-09-24T07:52:04.996Z",
+          "document_sha256": "2ef5023bd7bb014fff576fb21c65aa67140429698bccfe12466ace7602164970"
+        }
+      ],
+      "first_observed_at": "2026-09-24T07:52:04.996Z",
+      "last_collected_at": "2026-09-24T07:52:04.996Z",
+      "board_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250228-73",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250228-73",
+          "document_sha256": "2ef5023bd7bb014fff576fb21c65aa67140429698bccfe12466ace7602164970",
+          "publication_date": "2025-02-28",
+          "collected_at": "2026-09-24T07:52:04.996Z",
+          "page": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250228-73",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250228-73",
+          "document_sha256": "2ef5023bd7bb014fff576fb21c65aa67140429698bccfe12466ace7602164970",
+          "publication_date": "2025-02-28",
+          "collected_at": "2026-09-24T07:52:04.996Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2025-03-03",
+        "source_value": "effective from Monday, March 3, 2025",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250228-73",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250228-73",
+          "document_sha256": "2ef5023bd7bb014fff576fb21c65aa67140429698bccfe12466ace7602164970",
+          "publication_date": "2025-02-28",
+          "collected_at": "2026-09-24T07:52:04.996Z"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 175,
+        "source_value": "Issue Price for the current Public issue Rs. 175",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250228-73",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250228-73",
+          "document_sha256": "2ef5023bd7bb014fff576fb21c65aa67140429698bccfe12466ace7602164970",
+          "publication_date": "2025-02-28",
+          "collected_at": "2026-09-24T07:52:04.996Z"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 800,
+        "source_value": "Market Lot 800",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250228-73",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250228-73",
+          "document_sha256": "2ef5023bd7bb014fff576fb21c65aa67140429698bccfe12466ace7602164970",
+          "publication_date": "2025-02-28",
+          "collected_at": "2026-09-24T07:52:04.996Z"
+        },
+        "corrections": []
+      },
+      "bse_scrip_code": "544369",
+      "bse_verified_listing_batch": {
+        "manifest": "data/verified-bse-listings/2026-09-24-batch18.json",
+        "verifier_version": "1.1.0",
+        "source_run_id": "35971558745",
+        "source_artifact_id": 10795923526,
+        "source_artifact_sha256": "1cb1da49b39d524fcc14fbc238ba39714cc95fc860494ae1bb36de9e8f45b68c",
+        "listing_notice_no": "20250228-73"
       }
     },
     {
@@ -4400,6 +4772,120 @@
       }
     },
     {
+      "id": "capitalnumbers-infotech-limited",
+      "issuer_name": "CAPITALNUMBERS INFOTECH LIMITED",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250124-30",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice 20250124-30",
+        "document_sha256": "94c6a4a7896af36b941ee69d409d3fbe60f256cf7d1be3b06de27c90f598e9b9",
+        "publication_date": "2025-01-24",
+        "collected_at": "2026-09-24T07:52:51.915Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice 20250124-30",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250124-30",
+          "publication_date": "2025-01-24",
+          "collected_at": "2026-09-24T07:52:51.915Z",
+          "document_sha256": "94c6a4a7896af36b941ee69d409d3fbe60f256cf7d1be3b06de27c90f598e9b9"
+        }
+      ],
+      "first_observed_at": "2026-09-24T07:52:51.915Z",
+      "last_collected_at": "2026-09-24T07:52:51.915Z",
+      "board_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250124-30",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250124-30",
+          "document_sha256": "94c6a4a7896af36b941ee69d409d3fbe60f256cf7d1be3b06de27c90f598e9b9",
+          "publication_date": "2025-01-24",
+          "collected_at": "2026-09-24T07:52:51.915Z",
+          "page": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250124-30",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250124-30",
+          "document_sha256": "94c6a4a7896af36b941ee69d409d3fbe60f256cf7d1be3b06de27c90f598e9b9",
+          "publication_date": "2025-01-24",
+          "collected_at": "2026-09-24T07:52:51.915Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2025-01-27",
+        "source_value": "effective from Monday, January 27, 2025",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250124-30",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250124-30",
+          "document_sha256": "94c6a4a7896af36b941ee69d409d3fbe60f256cf7d1be3b06de27c90f598e9b9",
+          "publication_date": "2025-01-24",
+          "collected_at": "2026-09-24T07:52:51.915Z"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 263,
+        "source_value": "Issue Price for the current Public issue Rs. 263",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250124-30",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250124-30",
+          "document_sha256": "94c6a4a7896af36b941ee69d409d3fbe60f256cf7d1be3b06de27c90f598e9b9",
+          "publication_date": "2025-01-24",
+          "collected_at": "2026-09-24T07:52:51.915Z"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 400,
+        "source_value": "Market Lot 400",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250124-30",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250124-30",
+          "document_sha256": "94c6a4a7896af36b941ee69d409d3fbe60f256cf7d1be3b06de27c90f598e9b9",
+          "publication_date": "2025-01-24",
+          "collected_at": "2026-09-24T07:52:51.915Z"
+        },
+        "corrections": []
+      },
+      "bse_scrip_code": "544343",
+      "bse_verified_listing_batch": {
+        "manifest": "data/verified-bse-listings/2026-09-24-batch19.json",
+        "verifier_version": "1.1.0",
+        "source_run_id": "35971558745",
+        "source_artifact_id": 10795923526,
+        "source_artifact_sha256": "1cb1da49b39d524fcc14fbc238ba39714cc95fc860494ae1bb36de9e8f45b68c",
+        "listing_notice_no": "20250124-30"
+      }
+    },
+    {
       "id": "cash-ur-drive-marketing-limited",
       "issuer_name": "Cash Ur Drive Marketing Limited",
       "board": "SME",
@@ -4664,10 +5150,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — CHAMUNDA",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=CHAMUNDA&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T14:18:57.346Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -4715,6 +5208,35 @@
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
         }
+      },
+      "price_band": {
+        "value": {
+          "min": 47,
+          "max": 50
+        },
+        "source_value": "Rs.47/- to Rs. 50/- per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=CHAMUNDA&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — CHAMUNDA",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 3000,
+        "source_value": "3000 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=CHAMUNDA&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — CHAMUNDA",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
+        }
       }
     },
     {
@@ -4746,10 +5268,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — CHANDAN",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=CHANDAN&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T14:18:57.346Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -4796,6 +5325,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 151,
+          "max": 159
+        },
+        "source_value": "Rs. 151 to Rs. 159 per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=CHANDAN&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — CHANDAN",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 800,
+        "source_value": "800 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=CHANDAN&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — CHANDAN",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       }
     },
@@ -5033,6 +5591,120 @@
           "publication_date": null,
           "collected_at": "2026-09-23T19:50:40.057Z"
         }
+      }
+    },
+    {
+      "id": "cln-energy-limited",
+      "issuer_name": "CLN ENERGY LIMITED",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250129-50",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice 20250129-50",
+        "document_sha256": "d703cffde2ae2c915d7a3d77524649b35bf88dfda801afd651d472af39b37a23",
+        "publication_date": "2025-01-29",
+        "collected_at": "2026-09-24T07:52:51.551Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice 20250129-50",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250129-50",
+          "publication_date": "2025-01-29",
+          "collected_at": "2026-09-24T07:52:51.551Z",
+          "document_sha256": "d703cffde2ae2c915d7a3d77524649b35bf88dfda801afd651d472af39b37a23"
+        }
+      ],
+      "first_observed_at": "2026-09-24T07:52:51.551Z",
+      "last_collected_at": "2026-09-24T07:52:51.551Z",
+      "board_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250129-50",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250129-50",
+          "document_sha256": "d703cffde2ae2c915d7a3d77524649b35bf88dfda801afd651d472af39b37a23",
+          "publication_date": "2025-01-29",
+          "collected_at": "2026-09-24T07:52:51.551Z",
+          "page": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250129-50",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250129-50",
+          "document_sha256": "d703cffde2ae2c915d7a3d77524649b35bf88dfda801afd651d472af39b37a23",
+          "publication_date": "2025-01-29",
+          "collected_at": "2026-09-24T07:52:51.551Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2025-01-30",
+        "source_value": "effective from Thursday, January 30, 2025",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250129-50",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250129-50",
+          "document_sha256": "d703cffde2ae2c915d7a3d77524649b35bf88dfda801afd651d472af39b37a23",
+          "publication_date": "2025-01-29",
+          "collected_at": "2026-09-24T07:52:51.551Z"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 250,
+        "source_value": "Issue Price for the current Public issue Rs. 250",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250129-50",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250129-50",
+          "document_sha256": "d703cffde2ae2c915d7a3d77524649b35bf88dfda801afd651d472af39b37a23",
+          "publication_date": "2025-01-29",
+          "collected_at": "2026-09-24T07:52:51.551Z"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 600,
+        "source_value": "Market Lot 600",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250129-50",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250129-50",
+          "document_sha256": "d703cffde2ae2c915d7a3d77524649b35bf88dfda801afd651d472af39b37a23",
+          "publication_date": "2025-01-29",
+          "collected_at": "2026-09-24T07:52:51.551Z"
+        },
+        "corrections": []
+      },
+      "bse_scrip_code": "544347",
+      "bse_verified_listing_batch": {
+        "manifest": "data/verified-bse-listings/2026-09-24-batch19.json",
+        "verifier_version": "1.1.0",
+        "source_run_id": "35971558745",
+        "source_artifact_id": 10795923526,
+        "source_artifact_sha256": "1cb1da49b39d524fcc14fbc238ba39714cc95fc860494ae1bb36de9e8f45b68c",
+        "listing_notice_no": "20250129-50"
       }
     },
     {
@@ -5847,6 +6519,120 @@
       }
     },
     {
+      "id": "davin-sons-retail-limited",
+      "issuer_name": "DAVIN SONS RETAIL LIMITED",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250108-46",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice 20250108-46",
+        "document_sha256": "f3cd99bd6bd5c50fc0a119fea12fb2709140ff5f0d24d141ef1c3b2ffee13e5c",
+        "publication_date": "2025-01-08",
+        "collected_at": "2026-09-24T07:52:53.983Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice 20250108-46",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250108-46",
+          "publication_date": "2025-01-08",
+          "collected_at": "2026-09-24T07:52:53.983Z",
+          "document_sha256": "f3cd99bd6bd5c50fc0a119fea12fb2709140ff5f0d24d141ef1c3b2ffee13e5c"
+        }
+      ],
+      "first_observed_at": "2026-09-24T07:52:53.983Z",
+      "last_collected_at": "2026-09-24T07:52:53.983Z",
+      "board_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250108-46",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250108-46",
+          "document_sha256": "f3cd99bd6bd5c50fc0a119fea12fb2709140ff5f0d24d141ef1c3b2ffee13e5c",
+          "publication_date": "2025-01-08",
+          "collected_at": "2026-09-24T07:52:53.983Z",
+          "page": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250108-46",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250108-46",
+          "document_sha256": "f3cd99bd6bd5c50fc0a119fea12fb2709140ff5f0d24d141ef1c3b2ffee13e5c",
+          "publication_date": "2025-01-08",
+          "collected_at": "2026-09-24T07:52:53.983Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2025-01-09",
+        "source_value": "effective from Thursday, January 9, 2025",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250108-46",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250108-46",
+          "document_sha256": "f3cd99bd6bd5c50fc0a119fea12fb2709140ff5f0d24d141ef1c3b2ffee13e5c",
+          "publication_date": "2025-01-08",
+          "collected_at": "2026-09-24T07:52:53.983Z"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 55,
+        "source_value": "Issue Price for the current Public issue Rs. 55",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250108-46",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250108-46",
+          "document_sha256": "f3cd99bd6bd5c50fc0a119fea12fb2709140ff5f0d24d141ef1c3b2ffee13e5c",
+          "publication_date": "2025-01-08",
+          "collected_at": "2026-09-24T07:52:53.983Z"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 2000,
+        "source_value": "Market Lot 2000",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250108-46",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250108-46",
+          "document_sha256": "f3cd99bd6bd5c50fc0a119fea12fb2709140ff5f0d24d141ef1c3b2ffee13e5c",
+          "publication_date": "2025-01-08",
+          "collected_at": "2026-09-24T07:52:53.983Z"
+        },
+        "corrections": []
+      },
+      "bse_scrip_code": "544331",
+      "bse_verified_listing_batch": {
+        "manifest": "data/verified-bse-listings/2026-09-24-batch19.json",
+        "verifier_version": "1.1.0",
+        "source_run_id": "35971558745",
+        "source_artifact_id": 10795923526,
+        "source_artifact_sha256": "1cb1da49b39d524fcc14fbc238ba39714cc95fc860494ae1bb36de9e8f45b68c",
+        "listing_notice_no": "20250108-46"
+      }
+    },
+    {
       "id": "delta-autocorp-limited",
       "issuer_name": "Delta Autocorp Limited",
       "board": "SME",
@@ -5926,6 +6712,120 @@
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
         }
+      }
+    },
+    {
+      "id": "desco-infratech-ltd",
+      "issuer_name": "DESCO INFRATECH LTD",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250328-52",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice 20250328-52",
+        "document_sha256": "1f235c4c88a6daa3c50ffec23b35a7ba76a1dbd89b7a61fb7c0abadf3c155ba3",
+        "publication_date": "2025-03-28",
+        "collected_at": "2026-09-24T07:51:58.213Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice 20250328-52",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250328-52",
+          "publication_date": "2025-03-28",
+          "collected_at": "2026-09-24T07:51:58.213Z",
+          "document_sha256": "1f235c4c88a6daa3c50ffec23b35a7ba76a1dbd89b7a61fb7c0abadf3c155ba3"
+        }
+      ],
+      "first_observed_at": "2026-09-24T07:51:58.213Z",
+      "last_collected_at": "2026-09-24T07:51:58.213Z",
+      "board_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250328-52",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250328-52",
+          "document_sha256": "1f235c4c88a6daa3c50ffec23b35a7ba76a1dbd89b7a61fb7c0abadf3c155ba3",
+          "publication_date": "2025-03-28",
+          "collected_at": "2026-09-24T07:51:58.213Z",
+          "page": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250328-52",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250328-52",
+          "document_sha256": "1f235c4c88a6daa3c50ffec23b35a7ba76a1dbd89b7a61fb7c0abadf3c155ba3",
+          "publication_date": "2025-03-28",
+          "collected_at": "2026-09-24T07:51:58.213Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2025-04-01",
+        "source_value": "effective from Tuesday, April 1, 2025",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250328-52",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250328-52",
+          "document_sha256": "1f235c4c88a6daa3c50ffec23b35a7ba76a1dbd89b7a61fb7c0abadf3c155ba3",
+          "publication_date": "2025-03-28",
+          "collected_at": "2026-09-24T07:51:58.213Z"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 150,
+        "source_value": "Issue Price for the current Public issue Rs. 150",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250328-52",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250328-52",
+          "document_sha256": "1f235c4c88a6daa3c50ffec23b35a7ba76a1dbd89b7a61fb7c0abadf3c155ba3",
+          "publication_date": "2025-03-28",
+          "collected_at": "2026-09-24T07:51:58.213Z"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 1000,
+        "source_value": "Market Lot 1000",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250328-52",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250328-52",
+          "document_sha256": "1f235c4c88a6daa3c50ffec23b35a7ba76a1dbd89b7a61fb7c0abadf3c155ba3",
+          "publication_date": "2025-03-28",
+          "collected_at": "2026-09-24T07:51:58.213Z"
+        },
+        "corrections": []
+      },
+      "bse_scrip_code": "544387",
+      "bse_verified_listing_batch": {
+        "manifest": "data/verified-bse-listings/2026-09-24-batch18.json",
+        "verifier_version": "1.1.0",
+        "source_run_id": "35971558745",
+        "source_artifact_id": 10795923526,
+        "source_artifact_sha256": "1cb1da49b39d524fcc14fbc238ba39714cc95fc860494ae1bb36de9e8f45b68c",
+        "listing_notice_no": "20250328-52"
       }
     },
     {
@@ -6075,10 +6975,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — DIVINEHIRA",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=DIVINEHIRA&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T14:18:57.346Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -6125,6 +7032,19 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 1600,
+        "source_value": "1600 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=DIVINEHIRA&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — DIVINEHIRA",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       }
     },
@@ -6471,10 +7391,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — ELGNZ",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ELGNZ&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T14:18:57.346Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -6521,6 +7448,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 123,
+          "max": 130
+        },
+        "source_value": "Rs. 123 to Rs. 130 per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ELGNZ&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — ELGNZ",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 1000,
+        "source_value": "1000 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ELGNZ&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — ELGNZ",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       }
     },
@@ -8085,6 +9041,120 @@
       }
     },
     {
+      "id": "fabtech-technologies-cleanrooms-limited",
+      "issuer_name": "FABTECH TECHNOLOGIES CLEANROOMS LIMITED",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250109-63",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice 20250109-63",
+        "document_sha256": "0bde49d0d64cecdc3d194b480e84c5c96f129c2c2ac17317d9205fddbc238bdc",
+        "publication_date": "2025-01-09",
+        "collected_at": "2026-09-24T07:52:53.154Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice 20250109-63",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250109-63",
+          "publication_date": "2025-01-09",
+          "collected_at": "2026-09-24T07:52:53.154Z",
+          "document_sha256": "0bde49d0d64cecdc3d194b480e84c5c96f129c2c2ac17317d9205fddbc238bdc"
+        }
+      ],
+      "first_observed_at": "2026-09-24T07:52:53.154Z",
+      "last_collected_at": "2026-09-24T07:52:53.154Z",
+      "board_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250109-63",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250109-63",
+          "document_sha256": "0bde49d0d64cecdc3d194b480e84c5c96f129c2c2ac17317d9205fddbc238bdc",
+          "publication_date": "2025-01-09",
+          "collected_at": "2026-09-24T07:52:53.154Z",
+          "page": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250109-63",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250109-63",
+          "document_sha256": "0bde49d0d64cecdc3d194b480e84c5c96f129c2c2ac17317d9205fddbc238bdc",
+          "publication_date": "2025-01-09",
+          "collected_at": "2026-09-24T07:52:53.154Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2025-01-10",
+        "source_value": "effective from Friday, January 10, 2025",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250109-63",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250109-63",
+          "document_sha256": "0bde49d0d64cecdc3d194b480e84c5c96f129c2c2ac17317d9205fddbc238bdc",
+          "publication_date": "2025-01-09",
+          "collected_at": "2026-09-24T07:52:53.154Z"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 85,
+        "source_value": "Issue Price for the current Public issue Rs. 85",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250109-63",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250109-63",
+          "document_sha256": "0bde49d0d64cecdc3d194b480e84c5c96f129c2c2ac17317d9205fddbc238bdc",
+          "publication_date": "2025-01-09",
+          "collected_at": "2026-09-24T07:52:53.154Z"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 1600,
+        "source_value": "Market Lot 1600",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250109-63",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250109-63",
+          "document_sha256": "0bde49d0d64cecdc3d194b480e84c5c96f129c2c2ac17317d9205fddbc238bdc",
+          "publication_date": "2025-01-09",
+          "collected_at": "2026-09-24T07:52:53.154Z"
+        },
+        "corrections": []
+      },
+      "bse_scrip_code": "544332",
+      "bse_verified_listing_batch": {
+        "manifest": "data/verified-bse-listings/2026-09-24-batch19.json",
+        "verifier_version": "1.1.0",
+        "source_run_id": "35971558745",
+        "source_artifact_id": 10795923526,
+        "source_artifact_sha256": "1cb1da49b39d524fcc14fbc238ba39714cc95fc860494ae1bb36de9e8f45b68c",
+        "listing_notice_no": "20250109-63"
+      }
+    },
+    {
       "id": "finbud-financial-services-limited",
       "issuer_name": "Finbud Financial Services Limited",
       "board": "SME",
@@ -9026,6 +10096,120 @@
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
         }
+      }
+    },
+    {
+      "id": "gb-logistics-commerce-limited",
+      "issuer_name": "GB LOGISTICS COMMERCE LIMITED",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250130-46",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice 20250130-46",
+        "document_sha256": "0b79858366a25400ab6243e46be15715e94bd0ce79902ff1a3ec8eb99b155963",
+        "publication_date": "2025-01-30",
+        "collected_at": "2026-09-24T07:52:13.453Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice 20250130-46",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250130-46",
+          "publication_date": "2025-01-30",
+          "collected_at": "2026-09-24T07:52:13.453Z",
+          "document_sha256": "0b79858366a25400ab6243e46be15715e94bd0ce79902ff1a3ec8eb99b155963"
+        }
+      ],
+      "first_observed_at": "2026-09-24T07:52:13.453Z",
+      "last_collected_at": "2026-09-24T07:52:13.453Z",
+      "board_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250130-46",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250130-46",
+          "document_sha256": "0b79858366a25400ab6243e46be15715e94bd0ce79902ff1a3ec8eb99b155963",
+          "publication_date": "2025-01-30",
+          "collected_at": "2026-09-24T07:52:13.453Z",
+          "page": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250130-46",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250130-46",
+          "document_sha256": "0b79858366a25400ab6243e46be15715e94bd0ce79902ff1a3ec8eb99b155963",
+          "publication_date": "2025-01-30",
+          "collected_at": "2026-09-24T07:52:13.453Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2025-01-31",
+        "source_value": "effective from Friday, January 31, 2025",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250130-46",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250130-46",
+          "document_sha256": "0b79858366a25400ab6243e46be15715e94bd0ce79902ff1a3ec8eb99b155963",
+          "publication_date": "2025-01-30",
+          "collected_at": "2026-09-24T07:52:13.453Z"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 102,
+        "source_value": "Issue Price for the current Public issue Rs. 102",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250130-46",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250130-46",
+          "document_sha256": "0b79858366a25400ab6243e46be15715e94bd0ce79902ff1a3ec8eb99b155963",
+          "publication_date": "2025-01-30",
+          "collected_at": "2026-09-24T07:52:13.453Z"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 1200,
+        "source_value": "Market Lot 1200",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250130-46",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250130-46",
+          "document_sha256": "0b79858366a25400ab6243e46be15715e94bd0ce79902ff1a3ec8eb99b155963",
+          "publication_date": "2025-01-30",
+          "collected_at": "2026-09-24T07:52:13.453Z"
+        },
+        "corrections": []
+      },
+      "bse_scrip_code": "544348",
+      "bse_verified_listing_batch": {
+        "manifest": "data/verified-bse-listings/2026-09-24-batch18.json",
+        "verifier_version": "1.1.0",
+        "source_run_id": "35971558745",
+        "source_artifact_id": 10795923526,
+        "source_artifact_sha256": "1cb1da49b39d524fcc14fbc238ba39714cc95fc860494ae1bb36de9e8f45b68c",
+        "listing_notice_no": "20250130-46"
       }
     },
     {
@@ -10039,10 +11223,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — GCHOTELS",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=GCHOTELS&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T14:18:57.346Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -10089,6 +11280,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 107,
+          "max": 113
+        },
+        "source_value": "Rs.107/- to Rs. 113/- per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=GCHOTELS&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — GCHOTELS",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 1200,
+        "source_value": "1200 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=GCHOTELS&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — GCHOTELS",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       }
     },
@@ -10452,6 +11672,120 @@
           "publication_date": "2025-09-19",
           "collected_at": "2026-09-23T23:09:56.979Z"
         }
+      }
+    },
+    {
+      "id": "h-m-electro-mech-limited",
+      "issuer_name": "H.M. ELECTRO MECH LIMITED",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250130-45",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice 20250130-45",
+        "document_sha256": "28aacd2ba3df6b95463ff78718ea1aa445bd9f68e47d92184b791bc6fdd42523",
+        "publication_date": "2025-01-30",
+        "collected_at": "2026-09-24T07:52:50.595Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice 20250130-45",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250130-45",
+          "publication_date": "2025-01-30",
+          "collected_at": "2026-09-24T07:52:50.595Z",
+          "document_sha256": "28aacd2ba3df6b95463ff78718ea1aa445bd9f68e47d92184b791bc6fdd42523"
+        }
+      ],
+      "first_observed_at": "2026-09-24T07:52:50.595Z",
+      "last_collected_at": "2026-09-24T07:52:50.595Z",
+      "board_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250130-45",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250130-45",
+          "document_sha256": "28aacd2ba3df6b95463ff78718ea1aa445bd9f68e47d92184b791bc6fdd42523",
+          "publication_date": "2025-01-30",
+          "collected_at": "2026-09-24T07:52:50.595Z",
+          "page": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250130-45",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250130-45",
+          "document_sha256": "28aacd2ba3df6b95463ff78718ea1aa445bd9f68e47d92184b791bc6fdd42523",
+          "publication_date": "2025-01-30",
+          "collected_at": "2026-09-24T07:52:50.595Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2025-01-31",
+        "source_value": "effective from Friday, January 31, 2025",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250130-45",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250130-45",
+          "document_sha256": "28aacd2ba3df6b95463ff78718ea1aa445bd9f68e47d92184b791bc6fdd42523",
+          "publication_date": "2025-01-30",
+          "collected_at": "2026-09-24T07:52:50.595Z"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 75,
+        "source_value": "Issue Price for the current Public issue Rs. 75",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250130-45",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250130-45",
+          "document_sha256": "28aacd2ba3df6b95463ff78718ea1aa445bd9f68e47d92184b791bc6fdd42523",
+          "publication_date": "2025-01-30",
+          "collected_at": "2026-09-24T07:52:50.595Z"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 1600,
+        "source_value": "Market Lot 1600",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250130-45",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250130-45",
+          "document_sha256": "28aacd2ba3df6b95463ff78718ea1aa445bd9f68e47d92184b791bc6fdd42523",
+          "publication_date": "2025-01-30",
+          "collected_at": "2026-09-24T07:52:50.595Z"
+        },
+        "corrections": []
+      },
+      "bse_scrip_code": "544349",
+      "bse_verified_listing_batch": {
+        "manifest": "data/verified-bse-listings/2026-09-24-batch19.json",
+        "verifier_version": "1.1.0",
+        "source_run_id": "35971558745",
+        "source_artifact_id": 10795923526,
+        "source_artifact_sha256": "1cb1da49b39d524fcc14fbc238ba39714cc95fc860494ae1bb36de9e8f45b68c",
+        "listing_notice_no": "20250130-45"
       }
     },
     {
@@ -10833,10 +12167,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — HEXT",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=HEXT&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T14:18:57.346Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -10884,6 +12225,48 @@
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
         }
+      },
+      "price_band": {
+        "value": {
+          "min": 674,
+          "max": 708
+        },
+        "source_value": "Rs. 674 to Rs. 708 per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=HEXT&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — HEXT",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 21,
+        "source_value": "21 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=HEXT&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — HEXT",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
+        }
+      },
+      "issue_size_inr": {
+        "value": 87500000000,
+        "source_value": "Initial Public Offer of offer for sale of up to Rs. 87,500 million (including anchor investor portion of 3,66,94,914 Shares)",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=HEXT&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — HEXT",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
+        }
       }
     },
     {
@@ -10915,10 +12298,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — HPTL",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=HPTL&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T14:18:57.346Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -10965,6 +12355,19 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 1200,
+        "source_value": "1200 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=HPTL&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — HPTL",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       }
     },
@@ -11264,6 +12667,120 @@
           "publication_date": "2025-12-17",
           "collected_at": "2026-09-23T21:40:59.610Z"
         }
+      }
+    },
+    {
+      "id": "identixweb-limited",
+      "issuer_name": "IDENTIXWEB LIMITED",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250402-50",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice 20250402-50",
+        "document_sha256": "41128b49dab472102f04cdfbe358b7616b0d943c608ceaf28bbd2d2d17d622f8",
+        "publication_date": "2025-04-02",
+        "collected_at": "2026-09-24T07:51:57.499Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice 20250402-50",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250402-50",
+          "publication_date": "2025-04-02",
+          "collected_at": "2026-09-24T07:51:57.499Z",
+          "document_sha256": "41128b49dab472102f04cdfbe358b7616b0d943c608ceaf28bbd2d2d17d622f8"
+        }
+      ],
+      "first_observed_at": "2026-09-24T07:51:57.499Z",
+      "last_collected_at": "2026-09-24T07:51:57.499Z",
+      "board_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250402-50",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250402-50",
+          "document_sha256": "41128b49dab472102f04cdfbe358b7616b0d943c608ceaf28bbd2d2d17d622f8",
+          "publication_date": "2025-04-02",
+          "collected_at": "2026-09-24T07:51:57.499Z",
+          "page": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250402-50",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250402-50",
+          "document_sha256": "41128b49dab472102f04cdfbe358b7616b0d943c608ceaf28bbd2d2d17d622f8",
+          "publication_date": "2025-04-02",
+          "collected_at": "2026-09-24T07:51:57.499Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2025-04-03",
+        "source_value": "effective from Thursday, April 03, 2025",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250402-50",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250402-50",
+          "document_sha256": "41128b49dab472102f04cdfbe358b7616b0d943c608ceaf28bbd2d2d17d622f8",
+          "publication_date": "2025-04-02",
+          "collected_at": "2026-09-24T07:51:57.499Z"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 54,
+        "source_value": "Issue Price for the current Public issue Rs. 54",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250402-50",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250402-50",
+          "document_sha256": "41128b49dab472102f04cdfbe358b7616b0d943c608ceaf28bbd2d2d17d622f8",
+          "publication_date": "2025-04-02",
+          "collected_at": "2026-09-24T07:51:57.499Z"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 2000,
+        "source_value": "Market Lot 2000",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250402-50",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250402-50",
+          "document_sha256": "41128b49dab472102f04cdfbe358b7616b0d943c608ceaf28bbd2d2d17d622f8",
+          "publication_date": "2025-04-02",
+          "collected_at": "2026-09-24T07:51:57.499Z"
+        },
+        "corrections": []
+      },
+      "bse_scrip_code": "544388",
+      "bse_verified_listing_batch": {
+        "manifest": "data/verified-bse-listings/2026-09-24-batch18.json",
+        "verifier_version": "1.1.0",
+        "source_run_id": "35971558745",
+        "source_artifact_id": 10795923526,
+        "source_artifact_sha256": "1cb1da49b39d524fcc14fbc238ba39714cc95fc860494ae1bb36de9e8f45b68c",
+        "listing_notice_no": "20250402-50"
       }
     },
     {
@@ -13395,10 +14912,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — KEN",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=KEN&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T14:18:57.346Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -13445,6 +14969,19 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 1200,
+        "source_value": "1200 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=KEN&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — KEN",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       }
     },
@@ -14139,6 +15676,120 @@
       }
     },
     {
+      "id": "l-k-mehta-polymers-limited",
+      "issuer_name": "L.K. MEHTA POLYMERS LIMITED",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250220-44",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice 20250220-44",
+        "document_sha256": "891ef39b4feb7748f1578ea7318679e58dad0902481626e3f2908ef3e3009d56",
+        "publication_date": "2025-02-20",
+        "collected_at": "2026-09-24T07:52:07.450Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice 20250220-44",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250220-44",
+          "publication_date": "2025-02-20",
+          "collected_at": "2026-09-24T07:52:07.450Z",
+          "document_sha256": "891ef39b4feb7748f1578ea7318679e58dad0902481626e3f2908ef3e3009d56"
+        }
+      ],
+      "first_observed_at": "2026-09-24T07:52:07.450Z",
+      "last_collected_at": "2026-09-24T07:52:07.450Z",
+      "board_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250220-44",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250220-44",
+          "document_sha256": "891ef39b4feb7748f1578ea7318679e58dad0902481626e3f2908ef3e3009d56",
+          "publication_date": "2025-02-20",
+          "collected_at": "2026-09-24T07:52:07.450Z",
+          "page": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250220-44",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250220-44",
+          "document_sha256": "891ef39b4feb7748f1578ea7318679e58dad0902481626e3f2908ef3e3009d56",
+          "publication_date": "2025-02-20",
+          "collected_at": "2026-09-24T07:52:07.450Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2025-02-21",
+        "source_value": "effective from Friday, February 21, 2025",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250220-44",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250220-44",
+          "document_sha256": "891ef39b4feb7748f1578ea7318679e58dad0902481626e3f2908ef3e3009d56",
+          "publication_date": "2025-02-20",
+          "collected_at": "2026-09-24T07:52:07.450Z"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 71,
+        "source_value": "Issue Price for the current Public issue Rs. 71",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250220-44",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250220-44",
+          "document_sha256": "891ef39b4feb7748f1578ea7318679e58dad0902481626e3f2908ef3e3009d56",
+          "publication_date": "2025-02-20",
+          "collected_at": "2026-09-24T07:52:07.450Z"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 1600,
+        "source_value": "Market Lot 1600",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250220-44",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250220-44",
+          "document_sha256": "891ef39b4feb7748f1578ea7318679e58dad0902481626e3f2908ef3e3009d56",
+          "publication_date": "2025-02-20",
+          "collected_at": "2026-09-24T07:52:07.450Z"
+        },
+        "corrections": []
+      },
+      "bse_scrip_code": "544366",
+      "bse_verified_listing_batch": {
+        "manifest": "data/verified-bse-listings/2026-09-24-batch18.json",
+        "verifier_version": "1.1.0",
+        "source_run_id": "35971558745",
+        "source_artifact_id": 10795923526,
+        "source_artifact_sha256": "1cb1da49b39d524fcc14fbc238ba39714cc95fc860494ae1bb36de9e8f45b68c",
+        "listing_notice_no": "20250220-44"
+      }
+    },
+    {
       "id": "laxmi-dental-limited",
       "issuer_name": "Laxmi Dental Limited",
       "board": "Mainboard",
@@ -14597,6 +16248,120 @@
           "publication_date": null,
           "collected_at": "2026-09-23T19:50:40.057Z"
         }
+      }
+    },
+    {
+      "id": "leo-dryfruits-and-spices-trading-limited",
+      "issuer_name": "LEO DRYFRUITS & SPICES TRADING LIMITED",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250107-49",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice 20250107-49",
+        "document_sha256": "d9ef4ca472acfcdd0759d0a68011a7ea90868d53080beb88bc86fab996d9540b",
+        "publication_date": "2025-01-07",
+        "collected_at": "2026-09-24T07:52:54.548Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice 20250107-49",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250107-49",
+          "publication_date": "2025-01-07",
+          "collected_at": "2026-09-24T07:52:54.548Z",
+          "document_sha256": "d9ef4ca472acfcdd0759d0a68011a7ea90868d53080beb88bc86fab996d9540b"
+        }
+      ],
+      "first_observed_at": "2026-09-24T07:52:54.548Z",
+      "last_collected_at": "2026-09-24T07:52:54.548Z",
+      "board_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250107-49",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250107-49",
+          "document_sha256": "d9ef4ca472acfcdd0759d0a68011a7ea90868d53080beb88bc86fab996d9540b",
+          "publication_date": "2025-01-07",
+          "collected_at": "2026-09-24T07:52:54.548Z",
+          "page": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250107-49",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250107-49",
+          "document_sha256": "d9ef4ca472acfcdd0759d0a68011a7ea90868d53080beb88bc86fab996d9540b",
+          "publication_date": "2025-01-07",
+          "collected_at": "2026-09-24T07:52:54.548Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2025-01-08",
+        "source_value": "effective from Wednesday, January 8, 2025",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250107-49",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250107-49",
+          "document_sha256": "d9ef4ca472acfcdd0759d0a68011a7ea90868d53080beb88bc86fab996d9540b",
+          "publication_date": "2025-01-07",
+          "collected_at": "2026-09-24T07:52:54.548Z"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 52,
+        "source_value": "Issue Price for the current Public issue Rs. 52",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250107-49",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250107-49",
+          "document_sha256": "d9ef4ca472acfcdd0759d0a68011a7ea90868d53080beb88bc86fab996d9540b",
+          "publication_date": "2025-01-07",
+          "collected_at": "2026-09-24T07:52:54.548Z"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 2000,
+        "source_value": "Market Lot 2000",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250107-49",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250107-49",
+          "document_sha256": "d9ef4ca472acfcdd0759d0a68011a7ea90868d53080beb88bc86fab996d9540b",
+          "publication_date": "2025-01-07",
+          "collected_at": "2026-09-24T07:52:54.548Z"
+        },
+        "corrections": []
+      },
+      "bse_scrip_code": "544329",
+      "bse_verified_listing_batch": {
+        "manifest": "data/verified-bse-listings/2026-09-24-batch19.json",
+        "verifier_version": "1.1.0",
+        "source_run_id": "35971558745",
+        "source_artifact_id": 10795923526,
+        "source_artifact_sha256": "1cb1da49b39d524fcc14fbc238ba39714cc95fc860494ae1bb36de9e8f45b68c",
+        "listing_notice_no": "20250107-49"
       }
     },
     {
@@ -15916,10 +17681,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — MAXVOLT",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=MAXVOLT&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T14:18:57.346Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -15966,6 +17738,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 171,
+          "max": 180
+        },
+        "source_value": "Rs.171 to Rs. 180 per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=MAXVOLT&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — MAXVOLT",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 800,
+        "source_value": "800 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=MAXVOLT&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — MAXVOLT",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       }
     },
@@ -17542,6 +19343,120 @@
       }
     },
     {
+      "id": "naps-global-india-limited",
+      "issuer_name": "NAPS GLOBAL INDIA LIMITED",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250310-42",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice 20250310-42",
+        "document_sha256": "423a5bc0403054937d793a095d476709067c138eebdebf406574b7c218902ad2",
+        "publication_date": "2025-03-10",
+        "collected_at": "2026-09-24T07:52:00.172Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice 20250310-42",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250310-42",
+          "publication_date": "2025-03-10",
+          "collected_at": "2026-09-24T07:52:00.172Z",
+          "document_sha256": "423a5bc0403054937d793a095d476709067c138eebdebf406574b7c218902ad2"
+        }
+      ],
+      "first_observed_at": "2026-09-24T07:52:00.172Z",
+      "last_collected_at": "2026-09-24T07:52:00.172Z",
+      "board_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250310-42",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250310-42",
+          "document_sha256": "423a5bc0403054937d793a095d476709067c138eebdebf406574b7c218902ad2",
+          "publication_date": "2025-03-10",
+          "collected_at": "2026-09-24T07:52:00.172Z",
+          "page": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250310-42",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250310-42",
+          "document_sha256": "423a5bc0403054937d793a095d476709067c138eebdebf406574b7c218902ad2",
+          "publication_date": "2025-03-10",
+          "collected_at": "2026-09-24T07:52:00.172Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2025-03-11",
+        "source_value": "effective from Tuesday, March 11, 2025",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250310-42",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250310-42",
+          "document_sha256": "423a5bc0403054937d793a095d476709067c138eebdebf406574b7c218902ad2",
+          "publication_date": "2025-03-10",
+          "collected_at": "2026-09-24T07:52:00.172Z"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 90,
+        "source_value": "Issue Price for the current public issue Rs. 90",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250310-42",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250310-42",
+          "document_sha256": "423a5bc0403054937d793a095d476709067c138eebdebf406574b7c218902ad2",
+          "publication_date": "2025-03-10",
+          "collected_at": "2026-09-24T07:52:00.172Z"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 1600,
+        "source_value": "Market Lot 1600",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250310-42",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250310-42",
+          "document_sha256": "423a5bc0403054937d793a095d476709067c138eebdebf406574b7c218902ad2",
+          "publication_date": "2025-03-10",
+          "collected_at": "2026-09-24T07:52:00.172Z"
+        },
+        "corrections": []
+      },
+      "bse_scrip_code": "544373",
+      "bse_verified_listing_batch": {
+        "manifest": "data/verified-bse-listings/2026-09-24-batch18.json",
+        "verifier_version": "1.1.0",
+        "source_run_id": "35971558745",
+        "source_artifact_id": 10795923526,
+        "source_artifact_sha256": "1cb1da49b39d524fcc14fbc238ba39714cc95fc860494ae1bb36de9e8f45b68c",
+        "listing_notice_no": "20250310-42"
+      }
+    },
+    {
       "id": "neochem-bio-solutions-limited",
       "issuer_name": "Neochem Bio Solutions Limited",
       "board": "SME",
@@ -18459,6 +20374,120 @@
       }
     },
     {
+      "id": "nukleus-office-solutions-limited",
+      "issuer_name": "NUKLEUS OFFICE SOLUTIONS LIMITED",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250303-51",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice 20250303-51",
+        "document_sha256": "899b90eaf77620e357aa3063a47d269f885811e62d8fc24ec99812232348e2bf",
+        "publication_date": "2025-03-03",
+        "collected_at": "2026-09-24T07:52:04.386Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice 20250303-51",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250303-51",
+          "publication_date": "2025-03-03",
+          "collected_at": "2026-09-24T07:52:04.386Z",
+          "document_sha256": "899b90eaf77620e357aa3063a47d269f885811e62d8fc24ec99812232348e2bf"
+        }
+      ],
+      "first_observed_at": "2026-09-24T07:52:04.386Z",
+      "last_collected_at": "2026-09-24T07:52:04.386Z",
+      "board_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250303-51",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250303-51",
+          "document_sha256": "899b90eaf77620e357aa3063a47d269f885811e62d8fc24ec99812232348e2bf",
+          "publication_date": "2025-03-03",
+          "collected_at": "2026-09-24T07:52:04.386Z",
+          "page": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250303-51",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250303-51",
+          "document_sha256": "899b90eaf77620e357aa3063a47d269f885811e62d8fc24ec99812232348e2bf",
+          "publication_date": "2025-03-03",
+          "collected_at": "2026-09-24T07:52:04.386Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2025-03-04",
+        "source_value": "effective from Tuesday, March 4, 2025",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250303-51",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250303-51",
+          "document_sha256": "899b90eaf77620e357aa3063a47d269f885811e62d8fc24ec99812232348e2bf",
+          "publication_date": "2025-03-03",
+          "collected_at": "2026-09-24T07:52:04.386Z"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 234,
+        "source_value": "Issue Price for the current Public issue Rs. 234",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250303-51",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250303-51",
+          "document_sha256": "899b90eaf77620e357aa3063a47d269f885811e62d8fc24ec99812232348e2bf",
+          "publication_date": "2025-03-03",
+          "collected_at": "2026-09-24T07:52:04.386Z"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 600,
+        "source_value": "Market Lot 600",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250303-51",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250303-51",
+          "document_sha256": "899b90eaf77620e357aa3063a47d269f885811e62d8fc24ec99812232348e2bf",
+          "publication_date": "2025-03-03",
+          "collected_at": "2026-09-24T07:52:04.386Z"
+        },
+        "corrections": []
+      },
+      "bse_scrip_code": "544370",
+      "bse_verified_listing_batch": {
+        "manifest": "data/verified-bse-listings/2026-09-24-batch18.json",
+        "verifier_version": "1.1.0",
+        "source_run_id": "35971558745",
+        "source_artifact_id": 10795923526,
+        "source_artifact_sha256": "1cb1da49b39d524fcc14fbc238ba39714cc95fc860494ae1bb36de9e8f45b68c",
+        "listing_notice_no": "20250303-51"
+      }
+    },
+    {
       "id": "optivalue-tek-consulting-limited",
       "issuer_name": "Optivalue Tek Consulting Limited",
       "board": "SME",
@@ -18973,10 +21002,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — PSRAJ",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PSRAJ&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T14:18:57.346Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -19023,6 +21059,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 132,
+          "max": 140
+        },
+        "source_value": "Rs.132/- to Rs. 140/- per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PSRAJ&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — PSRAJ",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 1000,
+        "source_value": "1000 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PSRAJ&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — PSRAJ",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       }
     },
@@ -19286,6 +21351,120 @@
       }
     },
     {
+      "id": "paradeep-parivahan-ltd",
+      "issuer_name": "PARADEEP PARIVAHAN LTD",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250321-47",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice 20250321-47",
+        "document_sha256": "dd0bb18848f104bcf12af1e3719dd3c3b8dbafd9c99ab3e7c9a77e2ce222f8bd",
+        "publication_date": "2025-03-21",
+        "collected_at": "2026-09-24T07:51:58.743Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice 20250321-47",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250321-47",
+          "publication_date": "2025-03-21",
+          "collected_at": "2026-09-24T07:51:58.743Z",
+          "document_sha256": "dd0bb18848f104bcf12af1e3719dd3c3b8dbafd9c99ab3e7c9a77e2ce222f8bd"
+        }
+      ],
+      "first_observed_at": "2026-09-24T07:51:58.743Z",
+      "last_collected_at": "2026-09-24T07:51:58.743Z",
+      "board_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250321-47",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250321-47",
+          "document_sha256": "dd0bb18848f104bcf12af1e3719dd3c3b8dbafd9c99ab3e7c9a77e2ce222f8bd",
+          "publication_date": "2025-03-21",
+          "collected_at": "2026-09-24T07:51:58.743Z",
+          "page": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250321-47",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250321-47",
+          "document_sha256": "dd0bb18848f104bcf12af1e3719dd3c3b8dbafd9c99ab3e7c9a77e2ce222f8bd",
+          "publication_date": "2025-03-21",
+          "collected_at": "2026-09-24T07:51:58.743Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2025-03-24",
+        "source_value": "effective from Monday, March 24, 2025",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250321-47",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250321-47",
+          "document_sha256": "dd0bb18848f104bcf12af1e3719dd3c3b8dbafd9c99ab3e7c9a77e2ce222f8bd",
+          "publication_date": "2025-03-21",
+          "collected_at": "2026-09-24T07:51:58.743Z"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 98,
+        "source_value": "Issue Price for the current Public issue Rs. 98",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250321-47",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250321-47",
+          "document_sha256": "dd0bb18848f104bcf12af1e3719dd3c3b8dbafd9c99ab3e7c9a77e2ce222f8bd",
+          "publication_date": "2025-03-21",
+          "collected_at": "2026-09-24T07:51:58.743Z"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 1200,
+        "source_value": "Market Lot 1200",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250321-47",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250321-47",
+          "document_sha256": "dd0bb18848f104bcf12af1e3719dd3c3b8dbafd9c99ab3e7c9a77e2ce222f8bd",
+          "publication_date": "2025-03-21",
+          "collected_at": "2026-09-24T07:51:58.743Z"
+        },
+        "corrections": []
+      },
+      "bse_scrip_code": "544383",
+      "bse_verified_listing_batch": {
+        "manifest": "data/verified-bse-listings/2026-09-24-batch18.json",
+        "verifier_version": "1.1.0",
+        "source_run_id": "35971558745",
+        "source_artifact_id": 10795923526,
+        "source_artifact_sha256": "1cb1da49b39d524fcc14fbc238ba39714cc95fc860494ae1bb36de9e8f45b68c",
+        "listing_notice_no": "20250321-47"
+      }
+    },
+    {
       "id": "park-medi-world-limited",
       "issuer_name": "Park Medi World Limited",
       "board": "Mainboard",
@@ -19453,6 +21632,120 @@
           "publication_date": "2025-12-15",
           "collected_at": "2026-09-23T21:40:59.610Z"
         }
+      }
+    },
+    {
+      "id": "parmeshwar-metal-limited",
+      "issuer_name": "PARMESHWAR METAL LIMITED",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250108-48",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice 20250108-48",
+        "document_sha256": "b1086c43901aa6e724c73d5d4ca3c3028bb0405032b277fbb1198319f20ac460",
+        "publication_date": "2025-01-08",
+        "collected_at": "2026-09-24T07:52:53.525Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice 20250108-48",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250108-48",
+          "publication_date": "2025-01-08",
+          "collected_at": "2026-09-24T07:52:53.525Z",
+          "document_sha256": "b1086c43901aa6e724c73d5d4ca3c3028bb0405032b277fbb1198319f20ac460"
+        }
+      ],
+      "first_observed_at": "2026-09-24T07:52:53.525Z",
+      "last_collected_at": "2026-09-24T07:52:53.525Z",
+      "board_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250108-48",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250108-48",
+          "document_sha256": "b1086c43901aa6e724c73d5d4ca3c3028bb0405032b277fbb1198319f20ac460",
+          "publication_date": "2025-01-08",
+          "collected_at": "2026-09-24T07:52:53.525Z",
+          "page": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250108-48",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250108-48",
+          "document_sha256": "b1086c43901aa6e724c73d5d4ca3c3028bb0405032b277fbb1198319f20ac460",
+          "publication_date": "2025-01-08",
+          "collected_at": "2026-09-24T07:52:53.525Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2025-01-09",
+        "source_value": "effective from Thursday, January 9, 2025",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250108-48",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250108-48",
+          "document_sha256": "b1086c43901aa6e724c73d5d4ca3c3028bb0405032b277fbb1198319f20ac460",
+          "publication_date": "2025-01-08",
+          "collected_at": "2026-09-24T07:52:53.525Z"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 61,
+        "source_value": "Issue Price for the current Public issue Rs. 61",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250108-48",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250108-48",
+          "document_sha256": "b1086c43901aa6e724c73d5d4ca3c3028bb0405032b277fbb1198319f20ac460",
+          "publication_date": "2025-01-08",
+          "collected_at": "2026-09-24T07:52:53.525Z"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 2000,
+        "source_value": "Market Lot 2000",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250108-48",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250108-48",
+          "document_sha256": "b1086c43901aa6e724c73d5d4ca3c3028bb0405032b277fbb1198319f20ac460",
+          "publication_date": "2025-01-08",
+          "collected_at": "2026-09-24T07:52:53.525Z"
+        },
+        "corrections": []
+      },
+      "bse_scrip_code": "544330",
+      "bse_verified_listing_batch": {
+        "manifest": "data/verified-bse-listings/2026-09-24-batch19.json",
+        "verifier_version": "1.1.0",
+        "source_run_id": "35971558745",
+        "source_artifact_id": 10795923526,
+        "source_artifact_sha256": "1cb1da49b39d524fcc14fbc238ba39714cc95fc860494ae1bb36de9e8f45b68c",
+        "listing_notice_no": "20250108-48"
       }
     },
     {
@@ -19735,6 +22028,120 @@
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
         }
+      }
+    },
+    {
+      "id": "pdp-shipping-and-projects-ltd",
+      "issuer_name": "PDP SHIPPING & PROJECTS LTD",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250317-72",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice 20250317-72",
+        "document_sha256": "ee59d73136c0cc6eaf889f450c1042bf3f6ebac32cffc45fa7654036215846cd",
+        "publication_date": "2025-03-17",
+        "collected_at": "2026-09-24T07:51:59.549Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice 20250317-72",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250317-72",
+          "publication_date": "2025-03-17",
+          "collected_at": "2026-09-24T07:51:59.549Z",
+          "document_sha256": "ee59d73136c0cc6eaf889f450c1042bf3f6ebac32cffc45fa7654036215846cd"
+        }
+      ],
+      "first_observed_at": "2026-09-24T07:51:59.549Z",
+      "last_collected_at": "2026-09-24T07:51:59.549Z",
+      "board_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250317-72",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250317-72",
+          "document_sha256": "ee59d73136c0cc6eaf889f450c1042bf3f6ebac32cffc45fa7654036215846cd",
+          "publication_date": "2025-03-17",
+          "collected_at": "2026-09-24T07:51:59.549Z",
+          "page": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250317-72",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250317-72",
+          "document_sha256": "ee59d73136c0cc6eaf889f450c1042bf3f6ebac32cffc45fa7654036215846cd",
+          "publication_date": "2025-03-17",
+          "collected_at": "2026-09-24T07:51:59.549Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2025-03-18",
+        "source_value": "effective from Tuesday, March 18, 2025",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250317-72",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250317-72",
+          "document_sha256": "ee59d73136c0cc6eaf889f450c1042bf3f6ebac32cffc45fa7654036215846cd",
+          "publication_date": "2025-03-17",
+          "collected_at": "2026-09-24T07:51:59.549Z"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 135,
+        "source_value": "Issue Price for the current Public issue Rs. 135",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250317-72",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250317-72",
+          "document_sha256": "ee59d73136c0cc6eaf889f450c1042bf3f6ebac32cffc45fa7654036215846cd",
+          "publication_date": "2025-03-17",
+          "collected_at": "2026-09-24T07:51:59.549Z"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 1000,
+        "source_value": "Market Lot 1000",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250317-72",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250317-72",
+          "document_sha256": "ee59d73136c0cc6eaf889f450c1042bf3f6ebac32cffc45fa7654036215846cd",
+          "publication_date": "2025-03-17",
+          "collected_at": "2026-09-24T07:51:59.549Z"
+        },
+        "corrections": []
+      },
+      "bse_scrip_code": "544378",
+      "bse_verified_listing_batch": {
+        "manifest": "data/verified-bse-listings/2026-09-24-batch18.json",
+        "verifier_version": "1.1.0",
+        "source_run_id": "35971558745",
+        "source_artifact_id": 10795923526,
+        "source_artifact_sha256": "1cb1da49b39d524fcc14fbc238ba39714cc95fc860494ae1bb36de9e8f45b68c",
+        "listing_notice_no": "20250317-72"
       }
     },
     {
@@ -20728,10 +23135,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — QPOWER",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=QPOWER&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T14:18:57.346Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -20778,6 +23192,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 401,
+          "max": 425
+        },
+        "source_value": "Rs. 401 to Rs. 425 per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=QPOWER&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — QPOWER",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 26,
+        "source_value": "26 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=QPOWER&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — QPOWER",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       }
     },
@@ -21088,10 +23531,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — RAPIDFLEET",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=RAPIDFLEET&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T14:18:57.346Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -21138,6 +23588,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 183,
+          "max": 192
+        },
+        "source_value": "Rs.183/- to Rs. 192/- per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=RAPIDFLEET&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — RAPIDFLEET",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 600,
+        "source_value": "600 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=RAPIDFLEET&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — RAPIDFLEET",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       }
     },
@@ -21284,10 +23763,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — READYMIX",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=READYMIX&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T14:18:57.346Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -21334,6 +23820,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 121,
+          "max": 123
+        },
+        "source_value": "Rs.121/- to Rs. 123/- per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=READYMIX&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — READYMIX",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 1000,
+        "source_value": "1000 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=READYMIX&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — READYMIX",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       }
     },
@@ -21884,6 +24399,120 @@
       }
     },
     {
+      "id": "rikhav-securities-limited",
+      "issuer_name": "RIKHAV SECURITIES LIMITED",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250121-40",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice 20250121-40",
+        "document_sha256": "df93a2b111cfbaea7eb0315c8e16cdde4e790a0ad3e9153e1c3903f9fc5a6a2e",
+        "publication_date": "2025-01-21",
+        "collected_at": "2026-09-24T07:52:52.407Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice 20250121-40",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250121-40",
+          "publication_date": "2025-01-21",
+          "collected_at": "2026-09-24T07:52:52.407Z",
+          "document_sha256": "df93a2b111cfbaea7eb0315c8e16cdde4e790a0ad3e9153e1c3903f9fc5a6a2e"
+        }
+      ],
+      "first_observed_at": "2026-09-24T07:52:52.407Z",
+      "last_collected_at": "2026-09-24T07:52:52.407Z",
+      "board_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250121-40",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250121-40",
+          "document_sha256": "df93a2b111cfbaea7eb0315c8e16cdde4e790a0ad3e9153e1c3903f9fc5a6a2e",
+          "publication_date": "2025-01-21",
+          "collected_at": "2026-09-24T07:52:52.407Z",
+          "page": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250121-40",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250121-40",
+          "document_sha256": "df93a2b111cfbaea7eb0315c8e16cdde4e790a0ad3e9153e1c3903f9fc5a6a2e",
+          "publication_date": "2025-01-21",
+          "collected_at": "2026-09-24T07:52:52.407Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2025-01-22",
+        "source_value": "effective from Wednesday, January 22, 2025",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250121-40",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250121-40",
+          "document_sha256": "df93a2b111cfbaea7eb0315c8e16cdde4e790a0ad3e9153e1c3903f9fc5a6a2e",
+          "publication_date": "2025-01-21",
+          "collected_at": "2026-09-24T07:52:52.407Z"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 86,
+        "source_value": "Issue Price for the current Public issue Rs. 86",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250121-40",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250121-40",
+          "document_sha256": "df93a2b111cfbaea7eb0315c8e16cdde4e790a0ad3e9153e1c3903f9fc5a6a2e",
+          "publication_date": "2025-01-21",
+          "collected_at": "2026-09-24T07:52:52.407Z"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 1600,
+        "source_value": "Market Lot 1600",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250121-40",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250121-40",
+          "document_sha256": "df93a2b111cfbaea7eb0315c8e16cdde4e790a0ad3e9153e1c3903f9fc5a6a2e",
+          "publication_date": "2025-01-21",
+          "collected_at": "2026-09-24T07:52:52.407Z"
+        },
+        "corrections": []
+      },
+      "bse_scrip_code": "544340",
+      "bse_verified_listing_batch": {
+        "manifest": "data/verified-bse-listings/2026-09-24-batch19.json",
+        "verifier_version": "1.1.0",
+        "source_run_id": "35971558745",
+        "source_artifact_id": 10795923526,
+        "source_artifact_sha256": "1cb1da49b39d524fcc14fbc238ba39714cc95fc860494ae1bb36de9e8f45b68c",
+        "listing_notice_no": "20250121-40"
+      }
+    },
+    {
       "id": "rockingdeals-circular-economy-limited",
       "issuer_name": "Rockingdeals Circular Economy Limited",
       "board": "SME",
@@ -21994,10 +24623,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — ROYALARC",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ROYALARC&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T14:18:57.346Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -22044,6 +24680,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 114,
+          "max": 120
+        },
+        "source_value": "Rs.114 to Rs. 120 per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ROYALARC&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — ROYALARC",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 1200,
+        "source_value": "1200 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ROYALARC&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — ROYALARC",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       }
     },
@@ -23366,6 +26031,120 @@
       }
     },
     {
+      "id": "shanmuga-hospital-limited",
+      "issuer_name": "SHANMUGA HOSPITAL LIMITED",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250220-33",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice 20250220-33",
+        "document_sha256": "f45037dcd92623d9e2026e314eef5f190b73926bc19ce625fb969bc8fb221fb0",
+        "publication_date": "2025-02-20",
+        "collected_at": "2026-09-24T07:52:07.022Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice 20250220-33",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250220-33",
+          "publication_date": "2025-02-20",
+          "collected_at": "2026-09-24T07:52:07.022Z",
+          "document_sha256": "f45037dcd92623d9e2026e314eef5f190b73926bc19ce625fb969bc8fb221fb0"
+        }
+      ],
+      "first_observed_at": "2026-09-24T07:52:07.022Z",
+      "last_collected_at": "2026-09-24T07:52:07.022Z",
+      "board_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250220-33",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250220-33",
+          "document_sha256": "f45037dcd92623d9e2026e314eef5f190b73926bc19ce625fb969bc8fb221fb0",
+          "publication_date": "2025-02-20",
+          "collected_at": "2026-09-24T07:52:07.022Z",
+          "page": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250220-33",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250220-33",
+          "document_sha256": "f45037dcd92623d9e2026e314eef5f190b73926bc19ce625fb969bc8fb221fb0",
+          "publication_date": "2025-02-20",
+          "collected_at": "2026-09-24T07:52:07.022Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2025-02-21",
+        "source_value": "effective from Friday, February 21, 2025",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250220-33",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250220-33",
+          "document_sha256": "f45037dcd92623d9e2026e314eef5f190b73926bc19ce625fb969bc8fb221fb0",
+          "publication_date": "2025-02-20",
+          "collected_at": "2026-09-24T07:52:07.022Z"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 54,
+        "source_value": "Issue Price for the current Public issue Rs. 54",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250220-33",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250220-33",
+          "document_sha256": "f45037dcd92623d9e2026e314eef5f190b73926bc19ce625fb969bc8fb221fb0",
+          "publication_date": "2025-02-20",
+          "collected_at": "2026-09-24T07:52:07.022Z"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 2000,
+        "source_value": "Market Lot 2000",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250220-33",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250220-33",
+          "document_sha256": "f45037dcd92623d9e2026e314eef5f190b73926bc19ce625fb969bc8fb221fb0",
+          "publication_date": "2025-02-20",
+          "collected_at": "2026-09-24T07:52:07.022Z"
+        },
+        "corrections": []
+      },
+      "bse_scrip_code": "544365",
+      "bse_verified_listing_batch": {
+        "manifest": "data/verified-bse-listings/2026-09-24-batch18.json",
+        "verifier_version": "1.1.0",
+        "source_run_id": "35971558745",
+        "source_artifact_id": 10795923526,
+        "source_artifact_sha256": "1cb1da49b39d524fcc14fbc238ba39714cc95fc860494ae1bb36de9e8f45b68c",
+        "listing_notice_no": "20250220-33"
+      }
+    },
+    {
       "id": "shanti-gold-international-limited",
       "issuer_name": "Shanti Gold International Limited",
       "board": "Mainboard",
@@ -24152,6 +26931,120 @@
       }
     },
     {
+      "id": "shreenath-paper-products-limited",
+      "issuer_name": "SHREENATH PAPER PRODUCTS LIMITED",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250304-42",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice 20250304-42",
+        "document_sha256": "d0637fed9f26214fe7df1daaaa4c0d6db9b130e1bb9f369e8817d7418f2ba558",
+        "publication_date": "2025-03-04",
+        "collected_at": "2026-09-24T07:52:02.452Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice 20250304-42",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250304-42",
+          "publication_date": "2025-03-04",
+          "collected_at": "2026-09-24T07:52:02.452Z",
+          "document_sha256": "d0637fed9f26214fe7df1daaaa4c0d6db9b130e1bb9f369e8817d7418f2ba558"
+        }
+      ],
+      "first_observed_at": "2026-09-24T07:52:02.452Z",
+      "last_collected_at": "2026-09-24T07:52:02.452Z",
+      "board_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250304-42",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250304-42",
+          "document_sha256": "d0637fed9f26214fe7df1daaaa4c0d6db9b130e1bb9f369e8817d7418f2ba558",
+          "publication_date": "2025-03-04",
+          "collected_at": "2026-09-24T07:52:02.452Z",
+          "page": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250304-42",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250304-42",
+          "document_sha256": "d0637fed9f26214fe7df1daaaa4c0d6db9b130e1bb9f369e8817d7418f2ba558",
+          "publication_date": "2025-03-04",
+          "collected_at": "2026-09-24T07:52:02.452Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2025-03-05",
+        "source_value": "effective from Wednesday, March 5, 2025",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250304-42",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250304-42",
+          "document_sha256": "d0637fed9f26214fe7df1daaaa4c0d6db9b130e1bb9f369e8817d7418f2ba558",
+          "publication_date": "2025-03-04",
+          "collected_at": "2026-09-24T07:52:02.452Z"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 44,
+        "source_value": "Issue Price for the current Public issue Rs. 44",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250304-42",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250304-42",
+          "document_sha256": "d0637fed9f26214fe7df1daaaa4c0d6db9b130e1bb9f369e8817d7418f2ba558",
+          "publication_date": "2025-03-04",
+          "collected_at": "2026-09-24T07:52:02.452Z"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 3000,
+        "source_value": "Market Lot 3000",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250304-42",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250304-42",
+          "document_sha256": "d0637fed9f26214fe7df1daaaa4c0d6db9b130e1bb9f369e8817d7418f2ba558",
+          "publication_date": "2025-03-04",
+          "collected_at": "2026-09-24T07:52:02.452Z"
+        },
+        "corrections": []
+      },
+      "bse_scrip_code": "544372",
+      "bse_verified_listing_batch": {
+        "manifest": "data/verified-bse-listings/2026-09-24-batch18.json",
+        "verifier_version": "1.1.0",
+        "source_run_id": "35971558745",
+        "source_artifact_id": 10795923526,
+        "source_artifact_sha256": "1cb1da49b39d524fcc14fbc238ba39714cc95fc860494ae1bb36de9e8f45b68c",
+        "listing_notice_no": "20250304-42"
+      }
+    },
+    {
       "id": "shri-ahimsa-naturals-limited",
       "issuer_name": "Shri Ahimsa Naturals Limited",
       "board": "SME",
@@ -24180,10 +27073,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — SHRIAHIMSA",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHRIAHIMSA&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T14:18:57.346Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -24230,6 +27130,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 113,
+          "max": 119
+        },
+        "source_value": "Rs. 113 to Rs. 119 per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHRIAHIMSA&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SHRIAHIMSA",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 1200,
+        "source_value": "1200 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHRIAHIMSA&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SHRIAHIMSA",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       }
     },
@@ -25225,6 +28154,120 @@
           "publication_date": null,
           "collected_at": "2026-09-23T19:59:10.607Z"
         }
+      }
+    },
+    {
+      "id": "solarium-green-energy-limited",
+      "issuer_name": "SOLARIUM GREEN ENERGY LIMITED",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250212-19",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice 20250212-19",
+        "document_sha256": "cbb3fe5877727a5f6aa5ecb929c6af03c72fc48b40072e29ddd772625a88ca15",
+        "publication_date": "2025-02-12",
+        "collected_at": "2026-09-24T07:52:08.100Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice 20250212-19",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250212-19",
+          "publication_date": "2025-02-12",
+          "collected_at": "2026-09-24T07:52:08.100Z",
+          "document_sha256": "cbb3fe5877727a5f6aa5ecb929c6af03c72fc48b40072e29ddd772625a88ca15"
+        }
+      ],
+      "first_observed_at": "2026-09-24T07:52:08.100Z",
+      "last_collected_at": "2026-09-24T07:52:08.100Z",
+      "board_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250212-19",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250212-19",
+          "document_sha256": "cbb3fe5877727a5f6aa5ecb929c6af03c72fc48b40072e29ddd772625a88ca15",
+          "publication_date": "2025-02-12",
+          "collected_at": "2026-09-24T07:52:08.100Z",
+          "page": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250212-19",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250212-19",
+          "document_sha256": "cbb3fe5877727a5f6aa5ecb929c6af03c72fc48b40072e29ddd772625a88ca15",
+          "publication_date": "2025-02-12",
+          "collected_at": "2026-09-24T07:52:08.100Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2025-02-13",
+        "source_value": "effective from Thursday, February 13, 2025",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250212-19",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250212-19",
+          "document_sha256": "cbb3fe5877727a5f6aa5ecb929c6af03c72fc48b40072e29ddd772625a88ca15",
+          "publication_date": "2025-02-12",
+          "collected_at": "2026-09-24T07:52:08.100Z"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 191,
+        "source_value": "Issue Price for the current Public issue Rs. 191",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250212-19",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250212-19",
+          "document_sha256": "cbb3fe5877727a5f6aa5ecb929c6af03c72fc48b40072e29ddd772625a88ca15",
+          "publication_date": "2025-02-12",
+          "collected_at": "2026-09-24T07:52:08.100Z"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 600,
+        "source_value": "Market Lot 600",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250212-19",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250212-19",
+          "document_sha256": "cbb3fe5877727a5f6aa5ecb929c6af03c72fc48b40072e29ddd772625a88ca15",
+          "publication_date": "2025-02-12",
+          "collected_at": "2026-09-24T07:52:08.100Z"
+        },
+        "corrections": []
+      },
+      "bse_scrip_code": "544354",
+      "bse_verified_listing_batch": {
+        "manifest": "data/verified-bse-listings/2026-09-24-batch18.json",
+        "verifier_version": "1.1.0",
+        "source_run_id": "35971558745",
+        "source_artifact_id": 10795923526,
+        "source_artifact_sha256": "1cb1da49b39d524fcc14fbc238ba39714cc95fc860494ae1bb36de9e8f45b68c",
+        "listing_notice_no": "20250212-19"
       }
     },
     {
@@ -27307,6 +30350,234 @@
       }
     },
     {
+      "id": "super-iron-foundry-limited",
+      "issuer_name": "SUPER IRON FOUNDRY LIMITED",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250318-52",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice 20250318-52",
+        "document_sha256": "c5e07439bff1d180c9aecb7bae04e77a47b3a19d3abe68e2e6d1879fb0022630",
+        "publication_date": "2025-03-18",
+        "collected_at": "2026-09-24T07:51:59.166Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice 20250318-52",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250318-52",
+          "publication_date": "2025-03-18",
+          "collected_at": "2026-09-24T07:51:59.166Z",
+          "document_sha256": "c5e07439bff1d180c9aecb7bae04e77a47b3a19d3abe68e2e6d1879fb0022630"
+        }
+      ],
+      "first_observed_at": "2026-09-24T07:51:59.166Z",
+      "last_collected_at": "2026-09-24T07:51:59.166Z",
+      "board_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250318-52",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250318-52",
+          "document_sha256": "c5e07439bff1d180c9aecb7bae04e77a47b3a19d3abe68e2e6d1879fb0022630",
+          "publication_date": "2025-03-18",
+          "collected_at": "2026-09-24T07:51:59.166Z",
+          "page": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250318-52",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250318-52",
+          "document_sha256": "c5e07439bff1d180c9aecb7bae04e77a47b3a19d3abe68e2e6d1879fb0022630",
+          "publication_date": "2025-03-18",
+          "collected_at": "2026-09-24T07:51:59.166Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2025-03-19",
+        "source_value": "effective from Wednesday, March 19, 2025",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250318-52",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250318-52",
+          "document_sha256": "c5e07439bff1d180c9aecb7bae04e77a47b3a19d3abe68e2e6d1879fb0022630",
+          "publication_date": "2025-03-18",
+          "collected_at": "2026-09-24T07:51:59.166Z"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 108,
+        "source_value": "Issue Price for the current Public issue Rs. 108",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250318-52",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250318-52",
+          "document_sha256": "c5e07439bff1d180c9aecb7bae04e77a47b3a19d3abe68e2e6d1879fb0022630",
+          "publication_date": "2025-03-18",
+          "collected_at": "2026-09-24T07:51:59.166Z"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 1200,
+        "source_value": "Market Lot 1200",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250318-52",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250318-52",
+          "document_sha256": "c5e07439bff1d180c9aecb7bae04e77a47b3a19d3abe68e2e6d1879fb0022630",
+          "publication_date": "2025-03-18",
+          "collected_at": "2026-09-24T07:51:59.166Z"
+        },
+        "corrections": []
+      },
+      "bse_scrip_code": "544381",
+      "bse_verified_listing_batch": {
+        "manifest": "data/verified-bse-listings/2026-09-24-batch18.json",
+        "verifier_version": "1.1.0",
+        "source_run_id": "35971558745",
+        "source_artifact_id": 10795923526,
+        "source_artifact_sha256": "1cb1da49b39d524fcc14fbc238ba39714cc95fc860494ae1bb36de9e8f45b68c",
+        "listing_notice_no": "20250318-52"
+      }
+    },
+    {
+      "id": "swasth-foodtech-india-limited",
+      "issuer_name": "SWASTH FOODTECH INDIA LIMITED",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": null,
+      "nse_series": null,
+      "nse_source": null,
+      "bse_symbol": null,
+      "bse_source": {
+        "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250227-40",
+        "document_type": "BSE Listing Notice",
+        "document_identity": "BSE Listing Notice 20250227-40",
+        "document_sha256": "04a346c3dc25bb1dfd83d48cb52637399d8ef2699e9e8575bd3136923ab6d8b0",
+        "publication_date": "2025-02-27",
+        "collected_at": "2026-09-24T07:52:05.514Z"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "BSE Listing Notice",
+          "identity": "BSE Listing Notice 20250227-40",
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250227-40",
+          "publication_date": "2025-02-27",
+          "collected_at": "2026-09-24T07:52:05.514Z",
+          "document_sha256": "04a346c3dc25bb1dfd83d48cb52637399d8ef2699e9e8575bd3136923ab6d8b0"
+        }
+      ],
+      "first_observed_at": "2026-09-24T07:52:05.514Z",
+      "last_collected_at": "2026-09-24T07:52:05.514Z",
+      "board_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250227-40",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250227-40",
+          "document_sha256": "04a346c3dc25bb1dfd83d48cb52637399d8ef2699e9e8575bd3136923ab6d8b0",
+          "publication_date": "2025-02-27",
+          "collected_at": "2026-09-24T07:52:05.514Z",
+          "page": null
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250227-40",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250227-40",
+          "document_sha256": "04a346c3dc25bb1dfd83d48cb52637399d8ef2699e9e8575bd3136923ab6d8b0",
+          "publication_date": "2025-02-27",
+          "collected_at": "2026-09-24T07:52:05.514Z",
+          "page": null
+        }
+      ],
+      "listing_date": {
+        "value": "2025-02-28",
+        "source_value": "effective from Friday, February 28, 2025",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250227-40",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250227-40",
+          "document_sha256": "04a346c3dc25bb1dfd83d48cb52637399d8ef2699e9e8575bd3136923ab6d8b0",
+          "publication_date": "2025-02-27",
+          "collected_at": "2026-09-24T07:52:05.514Z"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 94,
+        "source_value": "Issue Price for the current Public issue Rs. 94",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250227-40",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250227-40",
+          "document_sha256": "04a346c3dc25bb1dfd83d48cb52637399d8ef2699e9e8575bd3136923ab6d8b0",
+          "publication_date": "2025-02-27",
+          "collected_at": "2026-09-24T07:52:05.514Z"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 1200,
+        "source_value": "Market Lot 1200",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250227-40",
+          "document_type": "BSE Listing Notice",
+          "document_identity": "BSE Listing Notice 20250227-40",
+          "document_sha256": "04a346c3dc25bb1dfd83d48cb52637399d8ef2699e9e8575bd3136923ab6d8b0",
+          "publication_date": "2025-02-27",
+          "collected_at": "2026-09-24T07:52:05.514Z"
+        },
+        "corrections": []
+      },
+      "bse_scrip_code": "544368",
+      "bse_verified_listing_batch": {
+        "manifest": "data/verified-bse-listings/2026-09-24-batch18.json",
+        "verifier_version": "1.1.0",
+        "source_run_id": "35971558745",
+        "source_artifact_id": 10795923526,
+        "source_artifact_sha256": "1cb1da49b39d524fcc14fbc238ba39714cc95fc860494ae1bb36de9e8f45b68c",
+        "listing_notice_no": "20250227-40"
+      }
+    },
+    {
       "id": "swastika-castal-limited",
       "issuer_name": "SWASTIKA CASTAL LIMITED",
       "board": "SME",
@@ -27449,10 +30720,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — TANKUP",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=TANKUP&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T14:18:57.346Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -27499,6 +30777,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 133,
+          "max": 140
+        },
+        "source_value": "Rs. 133/- to Rs. 140/- per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=TANKUP&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — TANKUP",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 1000,
+        "source_value": "1000 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=TANKUP&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — TANKUP",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       }
     },
@@ -27767,10 +31074,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — TEJASCARGO",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=TEJASCARGO&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T14:18:57.346Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -27817,6 +31131,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 160,
+          "max": 168
+        },
+        "source_value": "Rs.160/- to Rs. 168/- per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=TEJASCARGO&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — TEJASCARGO",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 800,
+        "source_value": "800 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=TEJASCARGO&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — TEJASCARGO",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       }
     },
@@ -29505,10 +32848,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — VOLERCAR",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=VOLERCAR&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T14:18:57.346Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -29555,6 +32905,35 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "price_band": {
+        "value": {
+          "min": 85,
+          "max": 90
+        },
+        "source_value": "Rs.85 to Rs. 90 per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=VOLERCAR&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — VOLERCAR",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 1600,
+        "source_value": "1600 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=VOLERCAR&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — VOLERCAR",
+          "publication_date": null,
+          "collected_at": "2026-09-24T14:18:57.346Z"
         }
       }
     },
