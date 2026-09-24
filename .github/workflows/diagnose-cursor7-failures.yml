@@ -1,0 +1,61 @@
+name: Diagnose retained BSE cursor failures
+on:
+  pull_request:
+    branches: [main]
+    paths: [".github/workflows/diagnose-cursor7-failures.yml"]
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Fetch only seven retained failed index notices (read-only)
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import { createHash } from 'node:crypto';
+          import { parseBseSmeAdditionNoticeHtml } from './scripts/audit-bse-sme-addition-notices.mjs';
+          const ids = ['20240624-11','20240612-20','20240606-11','20240205-12','20240103-22','20231206-8','20230719-15'];
+          const state = JSON.parse(fs.readFileSync('ops/bse-sme-addition-notices.json','utf8'));
+          const out = path.join(process.env.RUNNER_TEMP,'bse-failure-diagnosis');
+          fs.mkdirSync(out,{recursive:true});
+          const hash = v => createHash('sha256').update(v).digest('hex');
+          const report = { run_id:process.env.GITHUB_RUN_ID, commit_sha:process.env.GITHUB_SHA, started_at:new Date().toISOString(), cursor_blob:hash(fs.readFileSync('ops/bse-sme-addition-notices.json')), results:[] };
+          for (const id of ids) {
+            const retained = state.notices[id];
+            if (!retained || retained.status !== 'unparseable') throw new Error('retained_failure_changed_'+id);
+            const url = 'https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId='+id;
+            const row = {notice_no:id,url,retained_sha256:retained.extracted_text_sha256};
+            try {
+              const response = await fetch(url,{headers:{'user-agent':'Mozilla/5.0','accept':'application/json,*/*','referer':'https://www.bseindices.com/notices'},redirect:'error',signal:AbortSignal.timeout(20000)});
+              if (!response.ok) throw new Error('http_'+response.status);
+              const chunks=[]; let size=0;
+              for await (const chunk of response.body) {size+=chunk.length;if(size>2*1024*1024)throw new Error('size_limit');chunks.push(Buffer.from(chunk));}
+              const bytes=Buffer.concat(chunks), data=JSON.parse(bytes.toString('utf8'));
+              if(typeof data.Data!=='string'||!data.Data.trim())throw new Error('missing_Data');
+              row.collected_at=new Date().toISOString();row.raw_response_sha256=hash(bytes);row.extracted_text_sha256=hash(data.Data);
+              row.hash_matches_retained=row.extracted_text_sha256===row.retained_sha256;
+              row.baseline_parsed_entries=parseBseSmeAdditionNoticeHtml(data.Data);
+              fs.writeFileSync(path.join(out,id+'.json'),bytes);fs.writeFileSync(path.join(out,id+'.html'),data.Data);
+              console.log(JSON.stringify({notice_no:id,hash_matches_retained:row.hash_matches_retained,baseline_parsed:row.baseline_parsed_entries.length}));
+            } catch(e) {row.error=String(e.message||e);}
+            report.results.push(row);
+          }
+          report.completed_at=new Date().toISOString();
+          fs.writeFileSync(path.join(out,'diagnosis.json'),JSON.stringify(report,null,2)+'\n');
+          if(report.results.some(r=>r.error||!r.hash_matches_retained))process.exitCode=1;
+          JS
+      - name: Retain exact responses and hash comparison
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bse-failure-diagnosis-${{ github.run_id }}
+          path: ${{ runner.temp }}/bse-failure-diagnosis
+          retention-days: 14
+          if-no-files-found: error
