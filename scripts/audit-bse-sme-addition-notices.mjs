@@ -158,7 +158,7 @@ export function parseBseSmeAdditionNoticeHtml(html) {
     const clause = body.slice(from, to);
     // Index admission's later "Effective at the open" date is NOT a listing date.
     const listingStatement = clause.match(
-      /\b(?:is being|are being|will be|is|are)\s+listed\s+on\s+BSE\b[\s,]*effective\s+(?:(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s*,?\s*)?([A-Za-z]+\s+\d{1,2},\s*\d{4})/i
+      /\b(?:is being|are being|will be|is|are)\s+listed\s+on\s+(?:SME\s+platform\s+of\s+)?BSE\b[\s,]*effective\s+(?:(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s*,?\s*)?([A-Za-z]+\s+\d{1,2},\s*\d{4})/i
     );
     if (!listingStatement) continue;
     const listingTerms = clause.slice(0, listingStatement.index);
@@ -173,7 +173,7 @@ export function parseBseSmeAdditionNoticeHtml(html) {
     // All issuer references before the shared listing statement must be explicit.
     // Do not bridge missing tickers or unrelated prose to a later issuer's date.
     const separators = listingTerms.replace(entryPattern, " ");
-    if (!/^(?:\s|,|\band\b)*$/i.test(separators)) continue;
+    if (!/^(?:\s|,|&|\band\b)*$/i.test(separators)) continue;
     if (entries.some((entry) => /\bNotice\s+No\b/i.test(entry[2]))) continue;
 
     for (const entry of entries) {
