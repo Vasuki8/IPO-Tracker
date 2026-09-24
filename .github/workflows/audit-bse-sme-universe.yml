@@ -19,6 +19,7 @@ permissions:
 jobs:
   audit:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -44,4 +45,13 @@ jobs:
         run: node scripts/test-audit-bse-sme-addition-notices.mjs
 
       - name: Audit latest BSE SME addition notices
-        run: node scripts/audit-bse-sme-addition-notices.mjs --batch=20
+        run: node scripts/audit-bse-sme-addition-notices.mjs --batch=20 --output="${{ runner.temp }}/bse-sme-addition-notices.json"
+
+      - name: Retain BSE notice audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bse-sme-addition-notices-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/bse-sme-addition-notices.json
+          retention-days: 14
+          if-no-files-found: warn
