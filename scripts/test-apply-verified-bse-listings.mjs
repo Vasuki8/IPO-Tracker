@@ -120,8 +120,8 @@ visualEntry.visual_review = {
   method: "visual_page_review",
   reason: "image_only_pdf_page",
   page: 2,
-  listing_statement: "Trading Members are informed that " + visualEntry.issuer_name +
-    " shall be listed effective from " + visualEntry.facts.listing_date.source_value,
+  listing_statement: "Trading Members are informed that " + visualEntry.facts.listing_date.source_value +
+    ", the Equity Shares of " + visualEntry.issuer_name + " shall be listed and admitted to dealings.",
   scrip_code_source_value: "Scrip Code " + visualEntry.bse_scrip_code,
   market_lot_source_value: visualEntry.facts.market_lot.source_value,
   issue_price_source_value: visualEntry.facts.issue_price.source_value
