@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 import { applyReviewedListingBatches, applyVerifiedListings, reviewedManifestPaths, validateEvidenceBatch } from "./apply-verified-bse-listings.mjs";
+import { isOfficialListingPdfUrl } from "./retry-bse-listing-pdf.mjs";
 const read = (url) => JSON.parse(fs.readFileSync(fileURLToPath(new URL(url, import.meta.url)), "utf8"));
 const manifest = read("../data/verified-bse-listings/2026-09-24.json");
 const discovery = read("../data/discovery/bse-listing-candidates-2026-09-24.json");
@@ -79,3 +80,10 @@ assert.deepEqual(
     "data/verified-bse-listings/test-batch-b.json"
   ])
 );
+
+const attachmentManifest = structuredClone(manifest);
+attachmentManifest.entries = [structuredClone(manifest.entries[0])];
+attachmentManifest.entries[0].source_url = "https://www.bseindia.com/markets/MarketInfo/DownloadAttach.aspx?id=" +
+  attachmentManifest.entries[0].listing_notice_no + "&attachedId=9a1df38b-4dcf-4e58-b182-f378e4c2a8b3";
+assert.equal(isOfficialListingPdfUrl(attachmentManifest.entries[0].source_url, attachmentManifest.entries[0].listing_notice_no), true);
+assert.equal(validateEvidenceBatch(attachmentManifest, discovery).length, 1);
