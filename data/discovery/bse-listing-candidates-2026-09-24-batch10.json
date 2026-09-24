@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "input_report": {
+    "run_id": "35959162509",
+    "commit_sha": "925596c1c4eeb44f3ddd06ec5b9b7cb62f18d596",
+    "generated_at": "2026-09-24T05:16:06.931Z",
+    "reconciliation_report": "data/discovery/bse-listing-reconciliation-2026-09-24-notice-20250912-85.json"
+  },
+  "selection_rule": "Two exact missing identities recovered from repaired BSE SME index notice 20250912-85. Verify issuer-specific listing notices before publication.",
+  "candidates": [
+    {
+      "issuer_name": "AUSTERE SYSTEMS LIMITED",
+      "bse_scrip_code": "544505",
+      "listing_notice_no": "20250911-76",
+      "listing_date": "2025-09-12",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250911-76",
+      "index_notice_no": "20250912-85",
+      "index_notice_source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250912-85",
+      "extracted_text_sha256": "c2504ec9ca86dcfc0aa36ff50afa5c70803d3802353d955aff602b5eae88a8d8"
+    },
+    {
+      "issuer_name": "SHARVAYA METALS LIMITED",
+      "bse_scrip_code": "544506",
+      "listing_notice_no": "20250911-79",
+      "listing_date": "2025-09-12",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250911-79",
+      "index_notice_no": "20250912-85",
+      "index_notice_source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250912-85",
+      "extracted_text_sha256": "c2504ec9ca86dcfc0aa36ff50afa5c70803d3802353d955aff602b5eae88a8d8"
+    }
+  ]
+}
