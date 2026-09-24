@@ -8,7 +8,126 @@ Continue P1/P2/P3 backend correctness, official-source coverage and dependable p
 
 Never infer missing IPO values. Keep listing date, index admission date, market lot, minimum bid quantity and application amount distinct.
 
-## Latest completed batch: third historical BSE cursor parsed references published — PR #181
+## Latest completed batch: legacy 2025 BSE SME notice parser repair — PR #182
+
+PR #182 merged as:
+
+`1d892d573181d126bf2cee87ae63ae65057e6977`
+
+This batch repaired the **10 unparseable notices** left by the third durable BSE SME addition-notice cursor window. It did not materialize IPOs and did not infer listing terms from index evidence.
+
+### Demonstrated source-family failure
+
+A temporary, read-only diagnostic was run against exactly the 10 retained failures. For every notice, the current official BSE Index Services detail response SHA-256 matched the `extracted_text_sha256` already retained in cursor state, proving that the parser was failing on the same source text rather than on changed upstream content.
+
+The 2025 source family demonstrated three grammar variants absent from parser v1.1.0:
+
+- `Notice No .` with whitespace before the period;
+- `listed on the SME Platform of BSE`;
+- whitespace around a listing-notice dash, demonstrated by `20250407- 51`.
+
+Representative official source clauses covered both single-issuer and shared-date plural notices.
+
+### Parser and cursor migration repair
+
+Parser version is now **1.2.0**.
+
+The repair:
+
+- accepts the demonstrated `Notice No .` punctuation;
+- accepts optional `the` before `SME Platform of BSE`;
+- accepts whitespace around the notice-number dash;
+- canonicalizes recovered notice IDs to `YYYYMMDD-N`;
+- retains all prior strict listing-statement, issuer, ticker and date-safety rules;
+- treats successful v1.1 parsed entries as compatible with this additive grammar change;
+- immediately isolates failed v1.1 entries as `parser_changed_failure` work, rather than replaying all previously parsed notices.
+
+During PR validation, the semantic state-merge test exposed one migration edge case. The merge previously compared an existing entry with the proposal's root parser version, which could let a stale same-version failure replace newer parsed evidence. It now compares **incoming entry parser version** instead. Regression coverage proves both behaviors: stale same-version evidence cannot regress state, and a real v1.1 -> v1.2 repair can replace the failed entry.
+
+Temporary diagnostic code and its temporary CI hook were removed before merge.
+
+### Verification
+
+Final PR-head checks:
+
+- data-contract CI `35967129380`: **success**
+- reviewed-BSE evidence CI `35967129462`: **success**
+- dedicated BSE historical cursor workflow `35967129385`: **success**
+
+Post-merge checks on `1d892d573181d126bf2cee87ae63ae65057e6977`:
+
+- data-contract CI `35967210793`: **success**
+- reviewed-BSE evidence CI `35967210815`: **success**
+- BSE SME universe audit `35967210872`: **success**
+- Pages workflow `35967210809`: **success**
+
+### Production parser-migration run
+
+Merge-triggered historical BSE cursor run:
+
+- workflow: **`35967210854`**
+- report artifact: **`10794322473`**
+- parser version: **1.2.0**
+- selected: **10**, all with reason `parser_changed_failure`
+- parsed: **10/10**
+- fetch errors: **0**
+- unparseable: **0**
+- recovered listing references: **12**
+- semantic cursor-state commit: **`f8cdb085377d2beba8a51c5e697b8d618398aaa9`**
+
+Cursor progress changed from:
+
+- 70 compatible parsed
+- 10 stale parser failures
+- 156 untouched older notices
+
+to:
+
+- **80 parsed**
+- **0 failed**
+- **0 stale parser entries**
+- **156 unseen**
+- next unseen notice: **`20250403-16`**
+
+The cursor still has **80 tracked / 236 eligible** notices because this batch repaired ten existing tracked entries rather than advancing into ten new older notices.
+
+### Twelve recovered discovery references
+
+| Issuer | BSE code | Listing notice | Listing date |
+| --- | ---: | --- | --- |
+| ASSTON PHARMACEUTICALS LIMITED | 544445 | `20250715-53` | 2025-07-16 |
+| GLEN INDUSTRIES LIMITED | 544444 | `20250714-41` | 2025-07-15 |
+| META INFOTECH LIMITED | 544441 | `20250710-60` | 2025-07-11 |
+| CRYOGENIC OGS LIMITED | 544440 | `20250709-45` | 2025-07-10 |
+| 3B Films Limited | 544412 | `20250605-49` | 2025-06-06 |
+| UNIFIED DATA TECH SOLUTIONS LIMITED | 544406 | `20250528-43` | 2025-05-29 |
+| SRIGEE DLM LIMITED | 544399 | `20250509-44` | 2025-05-12 |
+| MANOJ JEWELLERS LIMITED | 544400 | `20250509-45` | 2025-05-12 |
+| KENRIK INDUSTRIES LIMITED | 544398 | `20250508-51` | 2025-05-09 |
+| SPINAROO COMMERCIAL LIMITED | 544392 | `20250407-51` | 2025-04-08 |
+| INFONATIVE SOLUTIONS LIMITED | 544393 | `20250407-67` | 2025-04-08 |
+| RETAGGIO INDUSTRIES LIMITED | 544391 | `20250404-53` | 2025-04-07 |
+
+These are **discovery candidates only**. The BSE SME index notice supplies an exact issuer/listing-reference pointer, but it is not accepted as listing-term authority. No IPO record was created or updated by this parser-repair batch.
+
+## Next task: reconcile the repaired cursor3 references
+
+Start by re-reading `ops/bse-sme-addition-notices.json`, because the independent cursor may have advanced after this handoff was written.
+
+For the 12 recovered references above:
+
+- compare exact normalized issuer identities against the current production/recovery universe;
+- classify each as already present, genuinely missing or ambiguous;
+- preserve index notice number/date/source URL/source hash plus recovered listing notice, BSE code and listing date;
+- use no fuzzy identity match as publication authority;
+- for genuinely missing, unambiguous issuers, pin and verify issuer-specific official BSE listing notices in a bounded batch;
+- retain market lot, final issue price and any other listing terms only from issuer-specific official evidence;
+- keep unsupported fields null;
+- do not materialize records from the BSE index notice itself.
+
+After this repaired set is reconciled, process the newest completed cursor segment if the independent historical cursor has advanced past `20250403-16`.
+
+## Prior completed batch: third historical BSE cursor parsed references published — PR #181
 
 PR #181 merged as:
 
