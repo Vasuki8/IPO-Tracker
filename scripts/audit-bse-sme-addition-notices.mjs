@@ -174,7 +174,7 @@ export function parseBseSmeAdditionNoticeHtml(html) {
       // Do not bridge missing tickers or unrelated prose to a later issuer's date.
       const separators = listingTerms.replace(entryPattern, " ");
       const standardSafe = /^(?:\s|,|&|\band\b)*$/i.test(separators) &&
-        !entries.some((entry) => /\bNotice\s+No\b/i.test(entry[3]));
+        !entries.some((entry) => /\bNotice\s+No\b|\b[0-9]{8}\s*-\s*[0-9]+\b/i.test(entry[3]));
       if (standardSafe) {
         for (const entry of entries) {
           rows.push({
