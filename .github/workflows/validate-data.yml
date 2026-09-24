@@ -83,6 +83,11 @@ jobs:
       - name: Test BSE SME IPO index audit
         run: node scripts/test-audit-bse-sme-ipo-index.mjs
 
+      - name: Test BSE SME addition notice audit
+        run: |
+          node --check scripts/audit-bse-sme-addition-notices.mjs
+          node scripts/test-audit-bse-sme-addition-notices.mjs
+
       - name: Test historical IPO coverage audit
         run: node scripts/test-audit-historical-coverage.mjs
 

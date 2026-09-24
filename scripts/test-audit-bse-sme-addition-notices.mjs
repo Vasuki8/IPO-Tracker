@@ -1,5 +1,12 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { spawnSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 import {
+  classifyAdditionNoticeAudit,
+  validateNoticeBatchSize,
   isBseSmeAdditionNotice,
   officialNoticePdfUrl,
   parseBseSmeAdditionNoticeHtml,
@@ -65,12 +72,11 @@ assert.equal(multipleRows[0].listing_date, "2026-08-11");
 assert.equal(multipleRows[1].listing_date, "2026-08-13");
 assert.equal(parseBseSmeAdditionNoticeHtml("unrelated notice").length, 0);
 
-console.log("BSE SME addition notice audit parser tests passed.");
 
 const failureExcerpt = summarizeBseNoticeParseFailure(`
-<html><body>Header text xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx With reference to Notice No. 20260813-16,
+<html><body>Header text ${"x".repeat(120)} With reference to Notice No. 20260813-16,
 LAPL Automotive Limited (Exchange ticker-544863) is being listed on BSE effective Thursday,
-August 13, 2026. yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy</body></html>`, 300);
+August 13, 2026. ${"y".repeat(900)}</body></html>`, 300);
 assert.ok(failureExcerpt.includes("With reference to Notice No. 20260813-16"));
 assert.ok(failureExcerpt.length <= 300);
 
@@ -115,3 +121,66 @@ assert.deepEqual(parseBseSmeAdditionNoticeHtml(pluralProduction), [
     listing_date_raw: "August 21, 2026"
   }
 ]);
+
+// Synthetic safety fixtures: punctuation must be accepted in BOTH parser stages.
+for (const label of ["No", "No.", "No:", "No.:", "No. :"]) {
+  for (const dash of ["-", "–", "—", "&ndash;", "&mdash;"]) {
+    const text = gabion.replace("No.", label).replace("ticker-", "ticker" + dash);
+    assert.equal(parseBseSmeAdditionNoticeHtml(text).length, 1, label + " / " + dash);
+  }
+}
+assert.deepEqual(parseBseSmeAdditionNoticeHtml(pluralProduction + pluralProduction),
+  parseBseSmeAdditionNoticeHtml(pluralProduction), "duplicate clauses must be idempotent");
+assert.equal(parseBseSmeAdditionNoticeHtml(multiple)[0].listing_date, "2026-08-11",
+  "later index addition date is not listing date");
+assert.deepEqual(parseBseSmeAdditionNoticeHtml(gabion.replace("January 13, 2026", "February 30, 2026")), []);
+assert.deepEqual(parseBseSmeAdditionNoticeHtml(gabion.replace("January 13, 2026", "February 29, 2026")), []);
+assert.equal(parseBseSmeAdditionNoticeHtml(gabion.replace("January 13, 2026", "February 29, 2024"))[0].listing_date, "2024-02-29");
+assert.deepEqual(parseBseSmeAdditionNoticeHtml(gabion.replace("is being listed on BSE", "will be added to the index")), []);
+assert.deepEqual(parseBseSmeAdditionNoticeHtml(gabion.replace("is being listed", "is not being listed")), []);
+assert.deepEqual(parseBseSmeAdditionNoticeHtml(gabion.replace("(Exchange ticker-544675)", "(Exchange ticker-[pending])")), []);
+assert.deepEqual(parseBseSmeAdditionNoticeHtml(gabion.replace("is being listed", "Unrelated issuer is being listed")), []);
+assert.deepEqual(parseBseSmeAdditionNoticeHtml(gabion + gabion.replace("January 13, 2026", "January 14, 2026")), [],
+  "conflicting listing dates must not silently use last-wins");
+const overlong = gabion.replace("is being listed", "x".repeat(2000) + " is being listed");
+assert.deepEqual(parseBseSmeAdditionNoticeHtml(overlong + gabion), parseBseSmeAdditionNoticeHtml(gabion),
+  "every clause must remain bounded even if another reference follows");
+const missingTicker = pluralProduction.replace("(Exchange ticker – 544876)", "");
+assert.deepEqual(parseBseSmeAdditionNoticeHtml(missingTicker), [], "do not borrow another issuer's ticker");
+assert.equal(officialNoticePdfUrl({ FileName: "http://www.bseindia.com/notice.pdf" }), null);
+assert.equal(officialNoticePdfUrl({ FileName: "https://u:p@www.bseindia.com/notice.pdf" }), null);
+assert.equal(officialNoticePdfUrl({ FileName: "https://www.bseindia.com.evil.example/notice.pdf" }), null);
+assert.equal(validateNoticeBatchSize(1), 1);
+assert.equal(validateNoticeBatchSize(20), 20);
+for (const invalid of [0, -1, 1.5, 21, NaN, Infinity, "20"]) {
+  assert.throws(() => validateNoticeBatchSize(invalid), /integer between/);
+}
+const good = { stats: { catalog_rows: 100, eligible_sme_addition_notices: 10,
+  attempted_notices: 10, parsed_entries: 12, parse_failures: 0, fetch_errors: 0 }, failures: [] };
+assert.equal(classifyAdditionNoticeAudit(good), "complete");
+assert.equal(classifyAdditionNoticeAudit({ stats: null, failures: [{}] }), "failed");
+assert.equal(classifyAdditionNoticeAudit({ ...good, stats: { ...good.stats, catalog_rows: 0 } }), "failed");
+assert.equal(classifyAdditionNoticeAudit({ ...good, stats: { ...good.stats, parsed_entries: 0 } }), "failed");
+assert.equal(classifyAdditionNoticeAudit({ ...good, stats: { ...good.stats, parse_failures: 1 } }), "partial");
+assert.equal(classifyAdditionNoticeAudit({ ...good, stats: { ...good.stats, fetch_errors: 1 } }), "partial");
+assert.equal(classifyAdditionNoticeAudit({ ...good, stats: { ...good.stats, eligible_sme_addition_notices: 0, attempted_notices: 0, parsed_entries: 0 } }), "no_eligible_notices");
+// Exercise the real CLI failure path without an external network request.
+const temp = fs.mkdtempSync(path.join(os.tmpdir(), "bse-notice-cli-test-"));
+try {
+  const target = fileURLToPath(new URL("./audit-bse-sme-addition-notices.mjs", import.meta.url));
+  const output = path.join(temp, "audit.json");
+  const child = spawnSync(process.execPath, ["--input-type=module", "-e", `
+    globalThis.fetch = async () => { throw new Error("fixture source unavailable"); };
+    process.argv = [process.execPath, ${JSON.stringify(target)}, "--batch=1", ${JSON.stringify("--output=" + output)}];
+    await import(${JSON.stringify(new URL("./audit-bse-sme-addition-notices.mjs", import.meta.url).href)});
+  `], { encoding: "utf8", timeout: 10000 });
+  assert.equal(child.status, 1, child.stderr);
+  const report = JSON.parse(fs.readFileSync(output, "utf8")).bse_sme_addition_notice_audit;
+  assert.equal(report.status, "failed");
+  assert.equal(report.batch_limit, 1);
+  assert.deepEqual(report.candidates, []);
+  assert.match(report.failures[0].error, /fixture source unavailable/);
+} finally {
+  fs.rmSync(temp, { recursive: true, force: true });
+}
+console.log("BSE SME addition notice parser, safety and audit-status tests passed.");
