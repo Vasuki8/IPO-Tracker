@@ -1,0 +1,208 @@
+{
+  "schema_version": "1.0.0",
+  "source_run_id": "36064365512",
+  "source_commit_sha": "cd27a6bae1822747c079dba3b5631bc61911646d",
+  "source_artifact_id": 10834873538,
+  "source_artifact_sha256": "91a0ee3364f198187400b93a4ed1fc6a61e5d108ab66772907a4d43369e5f2b4",
+  "baseline_parser_version": "1.3.0",
+  "parser_version": "1.4.0",
+  "scope_note": "Literal contiguous normalized source clauses, including later index-admission dates, from seven hash-matching official BSE Index Services detail responses. Expected rows are discovery only; issuer-specific listing authority is still required.",
+  "fixtures": [
+    {
+      "notice_no": "20240624-11",
+      "family": "bse_sme_platform_suffix",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240624-11",
+      "collected_at": "2026-09-24T21:54:45.300Z",
+      "raw_response_sha256": "f05c9bcb3eb9cdb431784c5e14b7b57c55e04a5e507920d1ff2b650a96f74cde",
+      "extracted_text_sha256": "9e8130c896633115f194f3d8fc81edf19e70baa14123b47eee9bb68669756fc8",
+      "retained_text_sha256": "9e8130c896633115f194f3d8fc81edf19e70baa14123b47eee9bb68669756fc8",
+      "normalized_text_sha256": "22daa11e36f45085fa31c2545dd2aeff83681412d536b8c0f39ba1c78cde62f6",
+      "excerpt_offset": 194,
+      "excerpt_sha256": "32f8b6e1986592354ef7aba8f42206b47a409cb6d201f8528a79b838d257ffee",
+      "text": "With reference to Notice No. 20240621-55 , United Cotfab Limited (Exchange ticker - 544195 ), is being listed on BSE SME Platform effective Monday, June 24, 2024 . Effective at the open of Tuesday, June 25, 2024 , the stock will be added to the below index.",
+      "expected": [
+        {
+          "listing_notice_no": "20240621-55",
+          "issuer_name": "United Cotfab Limited",
+          "bse_scrip_code": "544195",
+          "listing_date": "2024-06-24",
+          "listing_date_raw": "June 24, 2024"
+        }
+      ]
+    },
+    {
+      "notice_no": "20240612-20",
+      "family": "shared_ids_terminal_respectively",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240612-20",
+      "collected_at": "2026-09-24T21:54:46.505Z",
+      "raw_response_sha256": "1575e017bac26ffd0d0a8ba85f347f0e7c0b0e8b67823b5f24ee9b52ab2d44c8",
+      "extracted_text_sha256": "e2968c4266bce8d9f7f0022596625a8e8791d3ce83589e271fc1d33215adb3a5",
+      "retained_text_sha256": "e2968c4266bce8d9f7f0022596625a8e8791d3ce83589e271fc1d33215adb3a5",
+      "normalized_text_sha256": "1a611d3a3c466d07368b55d50d3032bb7ffa400615bacef20014f09ce25120ed",
+      "excerpt_offset": 195,
+      "excerpt_sha256": "b55afb388276b3deae81fe31f8bdb8bd0d36ebc89a83a340ad9ec3f58703148a",
+      "text": "With reference to Notice No: 20240611-50 , 20240611-33 and 20240611-32, Magenta Lifecare Limited (Exchange ticker - 544188 ), Sattrix Information Security Limited (Exchange ticker - 544189 ) and 3C IT Solutions and Telecoms (India) Limited (Exchange ticker - 544190 ) respectively, are being listed on SME platform of BSE effective Wednesday, June 12, 2024 . Effective at the open of Thursday, June 13, 2024 , these stocks will be added to the below index.",
+      "expected": [
+        {
+          "listing_notice_no": "20240611-50",
+          "issuer_name": "Magenta Lifecare Limited",
+          "bse_scrip_code": "544188",
+          "listing_date": "2024-06-12",
+          "listing_date_raw": "June 12, 2024"
+        },
+        {
+          "listing_notice_no": "20240611-33",
+          "issuer_name": "Sattrix Information Security Limited",
+          "bse_scrip_code": "544189",
+          "listing_date": "2024-06-12",
+          "listing_date_raw": "June 12, 2024"
+        },
+        {
+          "listing_notice_no": "20240611-32",
+          "issuer_name": "3C IT Solutions and Telecoms (India) Limited",
+          "bse_scrip_code": "544190",
+          "listing_date": "2024-06-12",
+          "listing_date_raw": "June 12, 2024"
+        }
+      ]
+    },
+    {
+      "notice_no": "20240606-11",
+      "family": "bse_sme_platform_suffix",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240606-11",
+      "collected_at": "2026-09-24T21:54:46.717Z",
+      "raw_response_sha256": "7245c93a8e9b3aebca7aa19f338e2ca663494956c64eab33644c16d76fab5834",
+      "extracted_text_sha256": "1897319d0135058a1c15879cb0efdff8ee1904f1eaeb0dccbf0236762c1394ec",
+      "retained_text_sha256": "1897319d0135058a1c15879cb0efdff8ee1904f1eaeb0dccbf0236762c1394ec",
+      "normalized_text_sha256": "20ae2dacc7a848ac270997a60ade2a5fd22b12d4db9a100418825f8985d62b3c",
+      "excerpt_offset": 193,
+      "excerpt_sha256": "2a5c7a105b14208d205e8be97bd6d1c4b12d84f4de1c02bfd730a1524362631b",
+      "text": "With reference to Notice No. 20240605-63, Associated Coaters Limited (Exchange ticker - 544183 ), is being listed on BSE SME Platform effective Thursday, June 06, 2024 . Effective at the open of Friday, June 07, 2024 , the stock will be added to the below index.",
+      "expected": [
+        {
+          "listing_notice_no": "20240605-63",
+          "issuer_name": "Associated Coaters Limited",
+          "bse_scrip_code": "544183",
+          "listing_date": "2024-06-06",
+          "listing_date_raw": "June 06, 2024"
+        }
+      ]
+    },
+    {
+      "notice_no": "20240205-12",
+      "family": "shared_ids_terminal_respectively",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240205-12",
+      "collected_at": "2026-09-24T21:54:47.013Z",
+      "raw_response_sha256": "e426a5142637dadb827572d2d2117dbcd0659cbae3da0b5139c0272c3d8169b1",
+      "extracted_text_sha256": "3843aa044e25b731579027387df56aea28a9a62ab04737710089f216c1677091",
+      "retained_text_sha256": "3843aa044e25b731579027387df56aea28a9a62ab04737710089f216c1677091",
+      "normalized_text_sha256": "10063c399c864d8cb9b0d2b5f8e0112da64ba862628cbe75c3d63c50096b3e05",
+      "excerpt_offset": 220,
+      "excerpt_sha256": "9c0da2ed08560a4b7c50c0866d4acd824a3100c44e7b3d7978fe178033671b28",
+      "text": "With reference to Notice No: 20240202-20 and 20240202-25, HARSHDEEP HORTICO LIMITED (Exchange ticker – 544105 ) and Mayank Cattle Food Limited (Exchange ticker - 544106) respectively, are being listed on SME platform of BSE effective Monday, February 05, 2024 . Effective at the open of Tuesday, February 06, 2024 , these stocks will be added to the below index .",
+      "expected": [
+        {
+          "listing_notice_no": "20240202-20",
+          "issuer_name": "HARSHDEEP HORTICO LIMITED",
+          "bse_scrip_code": "544105",
+          "listing_date": "2024-02-05",
+          "listing_date_raw": "February 05, 2024"
+        },
+        {
+          "listing_notice_no": "20240202-25",
+          "issuer_name": "Mayank Cattle Food Limited",
+          "bse_scrip_code": "544106",
+          "listing_date": "2024-02-05",
+          "listing_date_raw": "February 05, 2024"
+        }
+      ]
+    },
+    {
+      "notice_no": "20240103-22",
+      "family": "shared_ids_terminal_respectively",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240103-22",
+      "collected_at": "2026-09-24T21:54:47.225Z",
+      "raw_response_sha256": "eec787cc9db09e42f7d035b4b50392a5d1ea799c5fdc47cffe0828b6c7ceb3dd",
+      "extracted_text_sha256": "82b3c343268a73886f1bec60b7b10d7e387aab5e40fb3c8234a110a243b15930",
+      "retained_text_sha256": "82b3c343268a73886f1bec60b7b10d7e387aab5e40fb3c8234a110a243b15930",
+      "normalized_text_sha256": "58022465af260772c1d805298534fd513957222284fce76ad9240e1958553624",
+      "excerpt_offset": 219,
+      "excerpt_sha256": "df675708a23cab6bb5710bd8b352f75d7b68802c5968ff2af8b3b1d8e1b0d696",
+      "text": "With reference to Notice No: 20240102-24 and 20240102-40, Manoj Ceramic Limited (Exchange ticker – 544073 ) and Shri Balaji Valve Components Limited (Exchange ticker - 544074) respectively, are being listed on SME platform of BSE effective Wednesday, January 03, 2024 . Effective at the open of Thursday, January 04, 2024 , these stocks will be added to the below index .",
+      "expected": [
+        {
+          "listing_notice_no": "20240102-24",
+          "issuer_name": "Manoj Ceramic Limited",
+          "bse_scrip_code": "544073",
+          "listing_date": "2024-01-03",
+          "listing_date_raw": "January 03, 2024"
+        },
+        {
+          "listing_notice_no": "20240102-40",
+          "issuer_name": "Shri Balaji Valve Components Limited",
+          "bse_scrip_code": "544074",
+          "listing_date": "2024-01-03",
+          "listing_date_raw": "January 03, 2024"
+        }
+      ]
+    },
+    {
+      "notice_no": "20231206-8",
+      "family": "shared_ids_terminal_respectively",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20231206-8",
+      "collected_at": "2026-09-24T21:54:47.450Z",
+      "raw_response_sha256": "70a050598f417da88fdfe36e4687368c42f6549aa82b5eff75f2b86e83d73b67",
+      "extracted_text_sha256": "b24ef957d7bc69d17f70c81050668d9691e7c2018f0f279aeb27621b5012e9bc",
+      "retained_text_sha256": "b24ef957d7bc69d17f70c81050668d9691e7c2018f0f279aeb27621b5012e9bc",
+      "normalized_text_sha256": "f46980d719534751f3a6d43e9dfa538dbf7c565810d45dd7d61d0e9792898fa1",
+      "excerpt_offset": 219,
+      "excerpt_sha256": "a2f10919b99629e32789627d50eed17d0e9bcf7db64997ba5075eb1a13da5f5b",
+      "text": "With reference to Notice No: 20231205-34 and 20231205-26, Deepak Chemtex Limited (Exchange ticker - 544036 ) and Amic Forging Limited (Exchange ticker - 544037) respectively, are being listed on the SME Platform of BSE effective Wednesday, December 06, 2023 . Effective at the open of Thursday, December 07, 2023 , these stocks will be added to the below index.",
+      "expected": [
+        {
+          "listing_notice_no": "20231205-34",
+          "issuer_name": "Deepak Chemtex Limited",
+          "bse_scrip_code": "544036",
+          "listing_date": "2023-12-06",
+          "listing_date_raw": "December 06, 2023"
+        },
+        {
+          "listing_notice_no": "20231205-26",
+          "issuer_name": "Amic Forging Limited",
+          "bse_scrip_code": "544037",
+          "listing_date": "2023-12-06",
+          "listing_date_raw": "December 06, 2023"
+        }
+      ]
+    },
+    {
+      "notice_no": "20230719-15",
+      "family": "shared_ids_terminal_respectively",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20230719-15",
+      "collected_at": "2026-09-24T21:54:47.662Z",
+      "raw_response_sha256": "7ecf7aafcc8abde91f8fe32fa749d7e171326dbd7ba646974fb21001cd7e1422",
+      "extracted_text_sha256": "64ffb18809d1e155b80ee72e960b6fd8aaa6a78416dfdd5e539c81837ad0402e",
+      "retained_text_sha256": "64ffb18809d1e155b80ee72e960b6fd8aaa6a78416dfdd5e539c81837ad0402e",
+      "normalized_text_sha256": "6e3e65da13e213ff27da333673031e9ba7978df21b3b60812c901bb00adff8fd",
+      "excerpt_offset": 216,
+      "excerpt_sha256": "9b505cb5451d6d78c62db3c6931051e76057e7cba227d581a7c2fb1082689871",
+      "text": "With reference to Notice No: 20230718-13 and 20230718-14, ACCELERATEBS INDIA LIMITED (Exchange ticker - 543938 ) and Kaka Industries Limited (Exchange ticker - 543939) respectively, are being listed on the SME Platform of BSE effective Wednesday, July 19, 2023 . Effective at the open of Thursday, July 20, 2023 , these stocks will be added to the below index.",
+      "expected": [
+        {
+          "listing_notice_no": "20230718-13",
+          "issuer_name": "ACCELERATEBS INDIA LIMITED",
+          "bse_scrip_code": "543938",
+          "listing_date": "2023-07-19",
+          "listing_date_raw": "July 19, 2023"
+        },
+        {
+          "listing_notice_no": "20230718-14",
+          "issuer_name": "Kaka Industries Limited",
+          "bse_scrip_code": "543939",
+          "listing_date": "2023-07-19",
+          "listing_date_raw": "July 19, 2023"
+        }
+      ]
+    }
+  ]
+}

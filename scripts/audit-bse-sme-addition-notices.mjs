@@ -15,7 +15,7 @@ export const BSE_INDEX_NOTICE_LIST_URL =
 export const BSE_INDEX_NOTICE_DETAIL_URL =
   "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=";
 export const NOTICE_BATCH_SIZE = 20;
-export const NOTICE_PARSER_VERSION = "1.3.0";
+export const NOTICE_PARSER_VERSION = "1.4.0";
 
 const USER_AGENT =
   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36";
@@ -158,7 +158,7 @@ export function parseBseSmeAdditionNoticeHtml(html) {
     const clause = body.slice(from, to);
     // Index admission's later "Effective at the open" date is NOT a listing date.
     const listingStatement = clause.match(
-      /\b(?:is being|are being|will be|is|are)\s+listed\s+on\s+(?:(?:the\s+)?SME\s+platform\s+of\s+)?BSE\b[\s,]*effective\s+(?:(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s*,?\s*)?([A-Za-z]+\s+\d{1,2},\s*\d{4})/i
+      /\b(?:is being|are being|will be|is|are)\s+listed\s+on\s+(?:(?:the\s+)?SME\s+platform\s+of\s+BSE|BSE(?:\s+SME\s+platform)?)\b[\s,]*effective\s+(?:(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s*,?\s*)?([A-Za-z]+\s+\d{1,2},\s*\d{4})/i
     );
     if (!listingStatement) continue;
     const listingTerms = clause.slice(0, listingStatement.index);
@@ -199,11 +199,17 @@ export function parseBseSmeAdditionNoticeHtml(html) {
       .map((match) => match[1] + "-" + match[2]);
     const issuerPattern =
       /(?:^|\s+(?:and|&)\s+|,\s*)(.{1,220}?)\s*\(\s*Exchange ticker\s*[–—-]\s*([0-9]{6})\s*\)/gi;
-    const issuerEntries = [...shared[2].matchAll(issuerPattern)];
-    const sharedRemainder = shared[2].replace(issuerPattern, " ");
+    // The demonstrated ordered-list variant adds exactly one terminal
+    // "respectively". Never discard that word or other prose inside an issuer.
+    const sharedIssuers = shared[2].replace(/\s+respectively\s*,?\s*$/i, "");
+    const issuerEntries = [...sharedIssuers.matchAll(issuerPattern)];
+    const sharedRemainder = sharedIssuers.replace(issuerPattern, " ");
     if (!noticeIds.length || noticeIds.length !== issuerEntries.length ||
         !/^(?:\s|,|&|\band\b)*$/i.test(sharedRemainder)) continue;
-    if (issuerEntries.some((entry) => /\bNotice\s+No\b/i.test(entry[1]))) continue;
+    if (new Set(noticeIds).size !== noticeIds.length ||
+        new Set(issuerEntries.map((entry) => entry[2])).size !== issuerEntries.length ||
+        issuerEntries.some((entry) =>
+          /\bNotice\s+No\b|\b[0-9]{8}\s*-\s*[0-9]+\b|\bExchange\s+ticker\b|\brespectively\b/i.test(entry[1]))) continue;
 
     for (let i = 0; i < noticeIds.length; i += 1) {
       rows.push({
