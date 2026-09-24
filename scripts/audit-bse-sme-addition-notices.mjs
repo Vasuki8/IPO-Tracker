@@ -53,6 +53,17 @@ export function isBseSmeAdditionNotice(row) {
   return /^Additions?\s+to\s+the\s+BSE\s+SME\s+IPO\s+INDEX$/i.test(subject);
 }
 
+export function summarizeBseNoticeParseFailure(html, limit = 700) {
+  const body = stripTags(html);
+  const normalizedLimit = Math.max(120, Math.min(1000, Number(limit) || 700));
+  const markers = ["With reference", "BSE SME IPO", "Exchange ticker", "Exchange Ticker"];
+  const positions = markers
+    .map((marker) => body.toLowerCase().indexOf(marker.toLowerCase()))
+    .filter((value) => value >= 0);
+  const start = positions.length > 0 ? Math.max(0, Math.min(...positions) - 80) : 0;
+  return body.slice(start, start + normalizedLimit);
+}
+
 export function parseBseSmeAdditionNoticeHtml(html) {
   const body = stripTags(html);
   const rows = [];
@@ -184,7 +195,13 @@ export async function auditLatestBseSmeAdditionNotices(batchSize = NOTICE_BATCH_
       const parsed = parseBseSmeAdditionNoticeHtml(detail?.Data);
       if (parsed.length === 0) {
         stats.parse_failures += 1;
-        failures.push({ notice_no: noticeNo, reason: "no_parseable_listing_reference" });
+        failures.push({
+          notice_no: noticeNo,
+          reason: "no_parseable_listing_reference",
+          ...(failures.length < 3
+            ? { excerpt: summarizeBseNoticeParseFailure(detail) }
+            : {})
+        });
         continue;
       }
 
