@@ -6,7 +6,35 @@ Updated: 2026-09-24. Live observation: 16:30:56 UTC / 12:30:56 America/Toronto.
 
 Continue P1/P2/P3 data correctness, official-source coverage and dependable publication under `DEVELOPMENT_PROCESS.md`. The application-term requirement remains **Lot Size only**. Keep market lot, minimum bid quantity, application amount, listing date and index-admission date distinct. UI redesign and downstream research/commercial infrastructure are out of scope.
 
-## Completed: cursor5 parser/source-family repair — PR #193
+## Completed: cursor6 reconciliation and source verification — PR #201
+
+PR #201 merged as `9cc541d3b9e1bc317ed3e9bb3545ea51ce47f327`.
+
+The 20-notice segment first attempted at `2026-09-24T18:12:33.727Z` produced **15 parsed notices / 19 listing references / 5 unparseable notices**. The parsed references were reconciled against current production (**1,072 records**) and 2024 recovery (**273 records**): **19 exact-missing / 0 already-present / 0 ambiguous or BSE-code collisions**.
+
+Retained reconciliation and candidate batches:
+
+- `data/discovery/bse-listing-reconciliation-2026-09-24-cursor6.json`;
+- `data/discovery/bse-listing-candidates-2026-09-24-batch18.json` — 15;
+- `data/discovery/bse-listing-candidates-2026-09-24-batch19.json` — 4.
+
+Source verification run `36041395122` completed **15/15 + 4/4 verified**, 0 rejected/unavailable. Artifact `10826304295`, ZIP SHA-256 `1a54f73efd2784202fb64f1ddadb5cbd825b448aea4056a3d2d2ff2ebe35f441`.
+
+PIOTEX INDUSTRIES LIMITED demonstrated an older official-notice variant where the lot is present only as `minimum market lot (i.e.1200 equity shares)`. The verifier now accepts that bounded clause while retaining all identity/date/SME/price guards; regression coverage is merged.
+
+Current cursor after this batch: parser **1.3.0**, **140/236 tracked**, **135 parsed**, **5 unparseable**, **96 unseen**.
+
+The five failures remain separate: `20240624-11`, `20240612-20`, `20240606-11`, `20240205-12`, `20240103-22`.
+
+### Concurrent repaired-cursor5 closure
+
+The prior handoff's four batch17 issuers were independently completed by concurrent reviewed **batch22** before this continuation reached publication. PR #199 records production sync `36036317281` (4 additions) and live verification `36037026089` (**4/4 issuers, 12/12 fields, 0 failures**) at **1,072 total records**. Duplicate PR #202 was closed unmerged after its rehearsal correctly held all four existing records. Do not repeat batch17/batch22.
+
+### Next task
+
+Freeze cursor6's 19 already-verified source results from artifact `10826304295` into reviewed evidence manifests, preserving exact official HTML text/hash and only explicit listing date, market lot and final issue price. Rehearse against latest main before publication because automation may have changed identity coverage. If still missing/unambiguous, publish through the existing importer and verify the served dataset. Only after cursor6 batches18/19 are closed should the five unparseable notices receive a separate demonstrated parser/source-family repair.
+
+## Prior completed: cursor5 parser/source-family repair — PR #193
 
 PR #193 merged as `61453efd680289a57ecc889a0070aa894624df77`.
 
