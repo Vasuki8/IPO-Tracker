@@ -1628,6 +1628,211 @@
         "publication_date": "2024-11-04"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2024/1730699769714.pdf"
+    },
+    "2025|canara-robeco-asset-management-company-limited": {
+      "issuer_name": "Canara Robeco Asset Management Company Limited",
+      "listing_date": "2025-10-16",
+      "last_attempted_at": "2026-09-24T22:47:16.499Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Canara Robeco Asset Management Company Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1760007284479.pdf",
+        "publication_date": "2025-10-09"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1760007284479.pdf"
+    },
+    "2024|acme-solar-holdings-limited": {
+      "issuer_name": "ACME Solar Holdings Limited",
+      "listing_date": "2024-11-13",
+      "last_attempted_at": "2026-09-24T22:47:16.499Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 29000000000,
+          "source_value": "₹29,000.00 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Acme Solar Holdings Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1730285786121.pdf",
+        "publication_date": "2024-10-29"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1730285786121.pdf"
+    },
+    "2023|fedbank-financial-services-limited": {
+      "issuer_name": "Fedbank Financial Services Limited",
+      "listing_date": "2023-11-30",
+      "last_attempted_at": "2026-09-24T22:47:16.499Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Fedbank Financial Services Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1700470135138.PDF",
+        "publication_date": "2023-11-20"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1700470135138.PDF"
+    },
+    "2022|dharmaj-crop-guard-limited": {
+      "issuer_name": "Dharmaj Crop Guard Limited",
+      "listing_date": "2022-12-08",
+      "last_attempted_at": "2026-09-24T22:47:16.499Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Dharmaj Crop Guard Limited - Red Herring Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1669177261427.PDF",
+        "publication_date": "2022-11-23"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1669177261427.PDF"
+    },
+    "2021|pb-fintech-limited": {
+      "issuer_name": "PB Fintech Limited",
+      "listing_date": "2021-11-15",
+      "last_attempted_at": "2026-09-24T22:47:16.499Z",
+      "parser_version": "1.2.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-lt9KpN/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1635395300515.pdf\ncurl: (28) Operation timed out after 75000 milliseconds with 21462695 out of 27205538 bytes received\ncurl: (28) Operation timed out after 75000 milliseconds with 21075503 out of 27205538 bytes received\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1635395300515.pdf"
+    },
+    "2025|jain-resource-recycling-limited": {
+      "issuer_name": "Jain Resource Recycling Limited",
+      "listing_date": "2025-10-01",
+      "last_attempted_at": "2026-09-24T22:47:16.499Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 12500000000,
+          "source_value": "₹12,500.00 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Jain Resource Recycling Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758262501785.pdf",
+        "publication_date": "2025-09-18"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758262501785.pdf"
+    },
+    "2024|swiggy-limited": {
+      "issuer_name": "Swiggy Limited",
+      "listing_date": "2024-11-13",
+      "last_attempted_at": "2026-09-24T22:47:16.499Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Swiggy Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1730179002038.pdf",
+        "publication_date": "2024-10-28"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1730179002038.pdf"
+    },
+    "2023|gandhar-oil-refinery-india-limited": {
+      "issuer_name": "Gandhar Oil Refinery (India) Limited",
+      "listing_date": "2023-11-30",
+      "last_attempted_at": "2026-09-24T22:47:16.499Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Gandhar Oil Refinery (India) Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1700135458197.pdf",
+        "publication_date": "2023-11-16"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1700135458197.pdf"
     }
   }
 }
