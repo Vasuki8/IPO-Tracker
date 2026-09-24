@@ -26,30 +26,57 @@ Collection time, dataset generation and Pages publication are distinct signals. 
 
 ## Handoff for the next prompt
 
-**Latest completed unit: cursor4 publication verified live; canonical verifier and handoff completed in PR #189.**
+**Latest completed unit: cursor5 parsed references reconciled against current production; no duplicate verification/import required.**
 
-PR #187 had already merged 23 reviewed cursor4 issuers through discovery batches 13/14 and evidence batches 18/19. PR #188 repaired the large-recovery-baseline buffer failure in semantic publication. Neither import nor repair should be repeated.
+The historical cursor segment first attempted at `2026-09-24T15:09:03.207Z` contains 20 notices:
 
-Live verification run **36020477749** checked the actual site at **2026-09-24T15:28:55.890Z**:
+- **17 parsed notices**
+- **18 listing references**
+- **3 unparseable notices**
+- cursor state: **120 / 236 tracked**, **117 parsed**, **3 unparseable**
 
-- **1,050 live records**; retained recovery counts: **2025 = 292**, **2026 = 87**.
-- **23/23 issuers** occur exactly once and **69/69 listing-date, market-lot and issue-price fields** match reviewed evidence.
-- All six unsupported fields remain null for each of these 23 issuers.
-- Original document hashes and batch provenance are verified in retained recovery. The current public projection does **not** serialize document hashes; do not describe them as live hash verification.
-- Data-contract, reviewed-evidence and fresh live-publication workflows passed on code head `3f2e29e1aa3be1e101c0bbe65f1339eb19302c25`.
+The earlier retained report `data/discovery/bse-listing-reconciliation-2026-09-24-cursor5.json` was correct at its 15:43 UTC observation: all 18 parsed identities were then missing. Subsequent official-source syncs populated them. That historical report is preserved unchanged.
 
-Receipt: [docs/verification/cursor4-live-publication-2026-09-24.json](docs/verification/cursor4-live-publication-2026-09-24.json). Artifact **10817060050** retains the full receipt, actual served JSON and source snapshot. Duplicate alternative PR #190 was closed unmerged; do not resurrect its parallel auditor.
+Current-state reconciliation is retained as:
+
+`data/discovery/bse-listing-reconciliation-2026-09-24-cursor5-final.json`
+
+It compares the 18 parsed references against **all recovery years 2020-2026** and current public data, using normalized issuer identity, six-digit BSE code, and exact issuer-specific listing-source URL. Result:
+
+- **18 / 18 already-present exact identities**
+- **18 / 18 current public listing-date / market-lot / issue-price triples match retained recovery**
+- **0 genuinely missing**
+- **0 ambiguous / identity-review cases**
+- **0 code conflicts**
+- therefore **no new verifier batch and no re-import are justified**
+
+Current reconciliation snapshot:
+
+- public dataset: **1,068 records**
+- 2020 recovery: **51**
+- 2021: **100**
+- 2022: **94**
+- 2023: **174**
+- 2024: **269**
+- 2025: **293**
+- 2026: **87**
+- public dataset generation: `2026-09-24T16:21:47.053Z`
+
+Do not replay these 18 references or treat the earlier “missing” classification as current state. The official index notices remain discovery-only; the already-present records retain issuer-specific BSE listing evidence.
 
 ### Next task
 
-Re-read `main`, this handoff, the development process and `ops/bse-sme-addition-notices.json` first.
+Keep the three failed cursor5 notices on their separate parser/source-family repair track:
 
-The independent cursor has advanced to **120/236 tracked: 117 parsed, 3 unparseable, 116 not yet tracked**. The newly completed 20-notice segment first attempted at **2026-09-24T15:09:03.207Z** contains **18 parsed listing references** across 17 notices, from `20250103-24` through `20240627-14`.
+- `20241211-15`
+- `20241202-11`
+- `20240722-21`
 
-**Reconcile those 18 references against the current multi-year recovery/public universe**, then independently verify only genuinely missing, unambiguous issuers in batches of at most 15. These references have not yet been established as missing IPOs. Keep the three failed index notices (`20241211-15`, `20241202-11`, `20240722-21`) on a separate parser/source-family repair track. Do not infer their issuers. Do not skip this unprocessed segment if a newer cursor segment appears.
+Re-fetch only those retained official BSE Index Services notice-detail payloads, confirm response hashes against cursor state, group failures by demonstrated source shape, and make only evidence-backed parser changes. Do **not** infer issuers from titles/index membership.
+
+Before starting, re-read `main` and `ops/bse-sme-addition-notices.json`; if the independent cursor has advanced, do not skip these three held failures.
 
 No UI redesign, minimum-investment work, billing, accounts, ads, spending or permission changes are included.
-
 ## Local checks
 
 ```bash
