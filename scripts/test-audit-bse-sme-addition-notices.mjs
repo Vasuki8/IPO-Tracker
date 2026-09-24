@@ -97,6 +97,50 @@ assert.equal(
 assert.equal(officialNoticePdfUrl({ FileName: "https://evil.example/notice.pdf" }), null);
 assert.equal(officialNoticePdfUrl({ FileName: "https://www.bseindia.com/notices/index.html" }), null);
 
+
+const austereSharvaya = `
+Additions to the BSE SME IPO Index
+MUMBAI, SEPTEMBER 12, 2025: With reference to Notice No: 20250911-76,
+AUSTERE SYSTEMS LIMITED (Exchange ticker – 544505) & Notice No:
+20250911-79, SHARVAYA METALS LIMITED (Exchange ticker – 544506),
+are being listed on SME platform of BSE effective Friday, September 12, 2025.
+Effective at the open of Monday, September 15, 2025, the stock will be added to the below index.
+INDEX ADD Exchange Ticker Stock Name EFFECTIVE DATE
+BSE SME IPO 544505 AUSTERE SYSTEMS LIMITED September 15, 2025
+544506 SHARVAYA METALS LIMITED
+`;
+assert.deepEqual(parseBseSmeAdditionNoticeHtml(austereSharvaya), [
+  {
+    listing_notice_no: "20250911-76",
+    issuer_name: "AUSTERE SYSTEMS LIMITED",
+    bse_scrip_code: "544505",
+    listing_date: "2025-09-12",
+    listing_date_raw: "September 12, 2025"
+  },
+  {
+    listing_notice_no: "20250911-79",
+    issuer_name: "SHARVAYA METALS LIMITED",
+    bse_scrip_code: "544506",
+    listing_date: "2025-09-12",
+    listing_date_raw: "September 12, 2025"
+  }
+]);
+assert.deepEqual(
+  parseBseSmeAdditionNoticeHtml(austereSharvaya.replace("SME platform of BSE", "SME platform of NSE")),
+  [],
+  "only the demonstrated BSE SME-platform listing phrase is accepted"
+);
+assert.deepEqual(
+  parseBseSmeAdditionNoticeHtml(austereSharvaya.replace("(Exchange ticker – 544505)", "")),
+  [],
+  "an ampersand must not allow a missing issuer ticker to borrow another reference"
+);
+assert.equal(
+  parseBseSmeAdditionNoticeHtml(austereSharvaya)[0].listing_date,
+  "2025-09-12",
+  "the later September 15 index-admission date is never the listing date"
+);
+
 const pluralProduction = `
 PRESS RELEASE Additions to the BSE SME IPO Index
 MUMBAI, AUGUST 21, 2026: With reference to Notice No: 20260820-37,
