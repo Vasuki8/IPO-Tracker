@@ -57,6 +57,17 @@ jobs:
           node scripts/retry-bse-listing-pdf.mjs \
             --report="${{ runner.temp }}/bse-544770/yaashvi/report.json" \
             --evidence-dir="${{ runner.temp }}/bse-544770/yaashvi/notices"
+      - name: Verify resolved issuer identities
+        run: |
+          mkdir -p "${{ runner.temp }}/bse-544770/resolved/notices"
+          node scripts/verify-bse-listing-candidates.mjs \
+            --input=data/discovery/bse-listing-candidates-2026-09-24-batch3.json \
+            --output="${{ runner.temp }}/bse-544770/resolved/report.json" \
+            --evidence-dir="${{ runner.temp }}/bse-544770/resolved/notices" || true
+          node scripts/retry-bse-listing-pdf.mjs \
+            --report="${{ runner.temp }}/bse-544770/resolved/report.json" \
+            --evidence-dir="${{ runner.temp }}/bse-544770/resolved/notices"
+
       - name: Require parsed official PDFs and summarize observed identities
         run: |
           node --input-type=module <<'JS'
@@ -88,8 +99,24 @@ jobs:
               response_text: result.response_text
             };
           }
-          fs.writeFileSync(root + "/summary.json", JSON.stringify(summary, null, 2) + "\n");
-          console.log(JSON.stringify(summary, null, 2));
+          const resolved = JSON.parse(fs.readFileSync(root + "/resolved/report.json", "utf8"));
+          if (resolved.status !== "complete" || resolved.stats?.verified !== 2 ||
+              resolved.results?.some((item) => item.status !== "verified")) {
+            throw new Error("resolved_identity_verification_incomplete");
+          }
+          const merr = summary.merritronix;
+          const yaa = summary.yaashvi;
+          if (merr.status !== "rejected" ||
+              JSON.stringify(merr.reasons) !== JSON.stringify(["scrip_code_mismatch_or_missing"]) ||
+              merr.observed_identity.scrip_codes[0] !== "544773") {
+            throw new Error("merritronix_conflict_not_resolved_as_expected");
+          }
+          if (yaa.status !== "verified" || yaa.observed_identity.scrip_codes[0] !== "544770") {
+            throw new Error("yaashvi_544770_not_independently_confirmed");
+          }
+          const output = { original_conflict_probe: summary, resolved_identity_verification: resolved };
+          fs.writeFileSync(root + "/summary.json", JSON.stringify(output, null, 2) + "\n");
+          console.log(JSON.stringify(output, null, 2));
           JS
       - name: Retain conflict evidence
         if: always()
