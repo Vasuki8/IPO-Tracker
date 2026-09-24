@@ -15,7 +15,7 @@ export const BSE_INDEX_NOTICE_LIST_URL =
 export const BSE_INDEX_NOTICE_DETAIL_URL =
   "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=";
 export const NOTICE_BATCH_SIZE = 20;
-export const NOTICE_PARSER_VERSION = "1.2.0";
+export const NOTICE_PARSER_VERSION = "1.3.0";
 
 const USER_AGENT =
   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36";
@@ -167,20 +167,48 @@ export function parseBseSmeAdditionNoticeHtml(html) {
     if (!listingDate) continue;
 
     const entryPattern =
-      /(?:With reference to\s+)?Notice No\s*\.?\s*:?\s*([0-9]{8})\s*-\s*([0-9]+)\s*,?\s*(.{1,220}?)\s*\(Exchange ticker\s*[–—-]\s*([0-9]{6})\s*\)/gi;
+      /(?:With reference to\s+)?Notice No\s*\.?\s*:?\s*([0-9]{8})\s*-\s*([0-9]+)\s*,?\s*(.{1,220}?)\s*\(\s*Exchange ticker\s*[–—-]\s*([0-9]{6})\s*\)/gi;
     const entries = [...listingTerms.matchAll(entryPattern)];
-    if (!entries.length) continue;
-    // All issuer references before the shared listing statement must be explicit.
-    // Do not bridge missing tickers or unrelated prose to a later issuer's date.
-    const separators = listingTerms.replace(entryPattern, " ");
-    if (!/^(?:\s|,|&|\band\b)*$/i.test(separators)) continue;
-    if (entries.some((entry) => /\bNotice\s+No\b/i.test(entry[3]))) continue;
+    if (entries.length) {
+      // All issuer references before the shared listing statement must be explicit.
+      // Do not bridge missing tickers or unrelated prose to a later issuer's date.
+      const separators = listingTerms.replace(entryPattern, " ");
+      if (!/^(?:\s|,|&|\band\b)*$/i.test(separators)) continue;
+      if (entries.some((entry) => /\bNotice\s+No\b/i.test(entry[3]))) continue;
 
-    for (const entry of entries) {
+      for (const entry of entries) {
+        rows.push({
+          listing_notice_no: entry[1] + "-" + entry[2],
+          issuer_name: normalizeText(entry[3]),
+          bse_scrip_code: entry[4],
+          listing_date: listingDate,
+          listing_date_raw: effectiveRaw
+        });
+      }
+      continue;
+    }
+
+    // Older BSE notices may list several notice IDs once, then the same number
+    // of issuer/ticker pairs in order. Accept only a complete one-to-one mapping.
+    const shared = listingTerms.match(
+      /^With reference to\s+Notice No\s*\.?\s*:?\s*((?:[0-9]{8}\s*-\s*[0-9]+)(?:\s*(?:and|&|,)\s*[0-9]{8}\s*-\s*[0-9]+)+)\s*,\s*(.+)$/i
+    );
+    if (!shared) continue;
+    const noticeIds = [...shared[1].matchAll(/([0-9]{8})\s*-\s*([0-9]+)/g)]
+      .map((match) => match[1] + "-" + match[2]);
+    const issuerPattern =
+      /(?:^|\s+(?:and|&)\s+|,\s*)(.{1,220}?)\s*\(\s*Exchange ticker\s*[–—-]\s*([0-9]{6})\s*\)/gi;
+    const issuerEntries = [...shared[2].matchAll(issuerPattern)];
+    const sharedRemainder = shared[2].replace(issuerPattern, " ");
+    if (!noticeIds.length || noticeIds.length !== issuerEntries.length ||
+        !/^(?:\s|,|&|\band\b)*$/i.test(sharedRemainder)) continue;
+    if (issuerEntries.some((entry) => /\bNotice\s+No\b/i.test(entry[1]))) continue;
+
+    for (let i = 0; i < noticeIds.length; i += 1) {
       rows.push({
-        listing_notice_no: entry[1] + "-" + entry[2],
-        issuer_name: normalizeText(entry[3]),
-        bse_scrip_code: entry[4],
+        listing_notice_no: noticeIds[i],
+        issuer_name: normalizeText(issuerEntries[i][1]),
+        bse_scrip_code: issuerEntries[i][2],
         listing_date: listingDate,
         listing_date_raw: effectiveRaw
       });
