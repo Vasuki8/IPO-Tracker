@@ -62,10 +62,17 @@ export function validateEvidenceBatch(manifest, discovery) {
           typeof review.issue_price_source_value !== "string" || !review.issue_price_source_value ||
           entry.excerpt_pages != null || entry.identity_pages != null ||
           Object.values(entry.facts).some((fact) => fact.page !== review.page) ||
+          entry.facts.listing_date.value !== candidate.listing_date ||
+          !Number.isSafeInteger(entry.facts.market_lot.value) || entry.facts.market_lot.value <= 0 ||
+          !Number.isFinite(entry.facts.issue_price.value) || entry.facts.issue_price.value <= 0 ||
           entry.facts.market_lot.source_value !== review.market_lot_source_value ||
           entry.facts.issue_price.source_value !== review.issue_price_source_value ||
           !review.scrip_code_source_value.includes(entry.bse_scrip_code) ||
+          !review.market_lot_source_value.includes(String(entry.facts.market_lot.value)) ||
+          !review.issue_price_source_value.includes(String(entry.facts.issue_price.value)) ||
           !review.listing_statement.toLowerCase().includes(candidate.issuer_name.toLowerCase()) ||
+          !/\bequity shares\b/i.test(review.listing_statement) ||
+          !/\bshall be listed\b/i.test(review.listing_statement) ||
           !review.listing_statement.includes(entry.facts.listing_date.source_value)) {
         throw new Error("invalid_visual_pdf_evidence");
       }
