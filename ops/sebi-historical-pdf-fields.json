@@ -1451,6 +1451,183 @@
       "status": "error",
       "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-63uJok/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702033205783.PDF\ncurl: (18) transfer closed with 5811814 bytes remaining to read\ncurl: (18) transfer closed with 5968814 bytes remaining to read\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702033205783.PDF"
+    },
+    "2025|trualt-bioenergy-limited": {
+      "issuer_name": "TruAlt Bioenergy Limited",
+      "listing_date": "2025-10-03",
+      "last_attempted_at": "2026-09-24T19:34:33.287Z",
+      "parser_version": "1.2.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-yDqyYu/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1759213197626.pdf\ncurl: (28) Operation timed out after 75000 milliseconds with 18667023 out of 20288588 bytes received\ncurl: (18) transfer closed with 19975221 bytes remaining to read\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1759213197626.pdf"
+    },
+    "2024|nacdac-infrastructure-limited": {
+      "issuer_name": "NACDAC INFRASTRUCTURE LIMITED.",
+      "listing_date": "2024-12-24",
+      "last_attempted_at": "2026-09-24T19:34:33.287Z",
+      "parser_version": "1.2.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-7p9OrL/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1734079584907.pdf\ncurl: (18) transfer closed with 7770977 bytes remaining to read\ncurl: (18) transfer closed with 7807561 bytes remaining to read\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1734079584907.pdf"
+    },
+    "2023|flair-writing-industries-limited": {
+      "issuer_name": "Flair Writing Industries Limited",
+      "listing_date": "2023-12-01",
+      "last_attempted_at": "2026-09-24T19:34:33.287Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 5930000000,
+          "source_value": "₹5,930.00 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Flair Writing Industries Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1700224103192.pdf",
+        "publication_date": "2023-11-17"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1700224103192.pdf"
+    },
+    "2022|baheti-recycling-industries-limited": {
+      "issuer_name": "Baheti Recycling Industries Limited",
+      "listing_date": "2022-12-08",
+      "last_attempted_at": "2026-09-24T19:34:33.287Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 124200000,
+          "source_value": "₹1242.00 lakhs",
+          "page": 20
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Baheti Recycling Industries Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1669897397546.PDF",
+        "publication_date": "2022-11-22"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1669897397546.PDF"
+    },
+    "2021|tega-industries-limited": {
+      "issuer_name": "Tega Industries Limited",
+      "listing_date": "2021-12-13",
+      "last_attempted_at": "2026-09-24T19:34:33.287Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Tega Industries Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681883027230.pdf",
+        "publication_date": "2021-11-25"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681883027230.pdf"
+    },
+    "2020|chemcon-speciality-chemicals-limited": {
+      "issuer_name": "Chemcon Speciality Chemicals Limited",
+      "listing_date": "2020-10-01",
+      "last_attempted_at": "2026-09-24T19:34:33.287Z",
+      "parser_version": "1.2.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-gfP5qr/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2020/1601276402345.pdf\ncurl: (18) transfer closed with 2865004 bytes remaining to read\ncurl: (18) transfer closed with 1501588 bytes remaining to read\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2020/1601276402345.pdf"
+    },
+    "2025|gurunanak-agriculture-india-limited": {
+      "issuer_name": "Gurunanak Agriculture India Limited",
+      "listing_date": "2025-10-01",
+      "last_attempted_at": "2026-09-24T19:34:33.287Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 288000000,
+          "source_value": "₹2,880.00 LAKHS",
+          "page": 2
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Gurunanak Agriculture India Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758515829977.pdf",
+        "publication_date": "2025-09-19"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758515829977.pdf"
+    },
+    "2024|niva-bupa-health-insurance-company-limited": {
+      "issuer_name": "Niva Bupa Health Insurance Company Limited",
+      "listing_date": "2024-11-14",
+      "last_attempted_at": "2026-09-24T19:34:33.287Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Niva Bupa Health Insurance Company Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2024/1730699769714.pdf",
+        "publication_date": "2024-11-04"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2024/1730699769714.pdf"
     }
   }
 }
