@@ -66,12 +66,42 @@ jobs:
         continue-on-error: true
         run: node scripts/verify-bse-listing-candidates.mjs --input=data/discovery/bse-listing-candidates-2026-09-24-batch4.json --output="${{ runner.temp }}/bse-listing-verification/batch4-report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/batch4-notices"
       - name: Check official PDF archive for unresolved batch 4 notices
+        continue-on-error: true
         run: node scripts/retry-bse-listing-pdf.mjs --report="${{ runner.temp }}/bse-listing-verification/batch4-report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/batch4-notices"
       - name: Verify historical batch 5 issuer-specific listing notices
         continue-on-error: true
         run: node scripts/verify-bse-listing-candidates.mjs --input=data/discovery/bse-listing-candidates-2026-09-24-batch5.json --output="${{ runner.temp }}/bse-listing-verification/batch5-report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/batch5-notices"
       - name: Check official PDF archive for unresolved batch 5 notices
+        continue-on-error: true
         run: node scripts/retry-bse-listing-pdf.mjs --report="${{ runner.temp }}/bse-listing-verification/batch5-report.json" --evidence-dir="${{ runner.temp }}/bse-listing-verification/batch5-notices"
+      - name: Summarize unresolved listing verification
+        if: always()
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          for (const batch of ['batch4', 'batch5']) {
+            const file = `${process.env.RUNNER_TEMP}/bse-listing-verification/${batch}-report.json`;
+            if (!fs.existsSync(file)) {
+              console.log(JSON.stringify({ batch, report: 'missing' }));
+              continue;
+            }
+            const report = JSON.parse(fs.readFileSync(file, 'utf8'));
+            console.log(JSON.stringify({
+              batch,
+              stats: report.stats,
+              unresolved: report.results
+                .filter((r) => r.status !== 'verified')
+                .map((r) => ({
+                  issuer_name: r.candidate?.issuer_name,
+                  listing_notice_no: r.candidate?.listing_notice_no,
+                  status: r.status,
+                  reasons: r.reasons ?? r.pdf_archive_attempt?.reasons ?? [],
+                  pdf_error: r.pdf_archive_attempt?.error ?? null
+                }))
+            }));
+          }
+          JS
       - name: Retain verified and rejected evidence
         if: always()
         uses: actions/upload-artifact@v4
