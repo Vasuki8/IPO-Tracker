@@ -231,6 +231,48 @@ assert.deepEqual(parseBseSmeAdditionNoticeHtml(legacy2025Plural), [
   }
 ]);
 
+const legacy2024InnerTickerSpace = `
+Content Addition to the BSE SME IPO Index
+MUMBAI, December 11, 2024: With reference to Notice No . 20241210-61 ,
+NISUS FINANCE SERVICES CO LIMITED ( Exchange ticker - 544296),
+is being listed on the SME Platform of BSE effective Wednesday, December 11, 2024 .
+`;
+assert.deepEqual(parseBseSmeAdditionNoticeHtml(legacy2024InnerTickerSpace), [{
+  listing_notice_no: "20241210-61",
+  issuer_name: "NISUS FINANCE SERVICES CO LIMITED",
+  bse_scrip_code: "544296",
+  listing_date: "2024-12-11",
+  listing_date_raw: "December 11, 2024"
+}]);
+
+const sharedNoticeIds2024 = `
+Content Additions to the BSE SME IPO Index
+MUMBAI, JULY 22, 2024: With reference to Notice No:20240719-44 and 20240719-38,
+Aelea Commodities Limited (Exchange ticker - 544213) and Three M Paper Boards Ltd
+(Exchange ticker - 544214), are being listed on the SME Platform of BSE effective Monday, July 22, 2024 .
+`;
+assert.deepEqual(parseBseSmeAdditionNoticeHtml(sharedNoticeIds2024), [
+  {
+    listing_notice_no: "20240719-44",
+    issuer_name: "Aelea Commodities Limited",
+    bse_scrip_code: "544213",
+    listing_date: "2024-07-22",
+    listing_date_raw: "July 22, 2024"
+  },
+  {
+    listing_notice_no: "20240719-38",
+    issuer_name: "Three M Paper Boards Ltd",
+    bse_scrip_code: "544214",
+    listing_date: "2024-07-22",
+    listing_date_raw: "July 22, 2024"
+  }
+]);
+assert.deepEqual(
+  parseBseSmeAdditionNoticeHtml(sharedNoticeIds2024.replace(/\s+and Three M Paper Boards Ltd[\s\S]*?\(Exchange ticker - 544214\)/, "")),
+  [],
+  "shared notice-ID clauses require one issuer/ticker pair per notice ID"
+);
+
 // Synthetic safety fixtures: punctuation must be accepted in BOTH parser stages.
 for (const label of ["No", "No.", "No:", "No.:", "No. :"]) {
   for (const dash of ["-", "–", "—", "&ndash;", "&mdash;"]) {
