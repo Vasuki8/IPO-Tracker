@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0.0",
+  "release": "cursor7",
+  "status": "verified",
+  "scope": "Backend reviewed-evidence publication only; no UI changes.",
+  "reviewed_release": {
+    "pull_request": 210,
+    "merge_sha": "66532672a7f9c84d1fadf96cb0b17b55e87e73a8",
+    "source_verification_run_id": "36058133127",
+    "source_artifact_id": 10833780727,
+    "source_artifact_sha256": "553d9350d77756c3f61bac19f563aae15d3c0c7d97b6eebe47da48e7c4e2137c",
+    "raw_responses_hash_checked": 18,
+    "facts_revalidated": 54,
+    "evidence_kind": "official_notice_html",
+    "excerpt_method": "literal_contiguous_normalized_text",
+    "manifests": [
+      {"path":"data/verified-bse-listings/2026-09-24-batch26.json","issuers":15,"git_blob_sha":"9a5fe64b5ca6a8583ead5d9eaf130e6ad87dff35","sha256":"75ba46707c895dee7bdfc19f4af2818d4cf76d53c332972943da7f2010c9973d"},
+      {"path":"data/verified-bse-listings/2026-09-24-batch27.json","issuers":3,"git_blob_sha":"e0efa88866099abcccf078541b2c60ce5d4d8ab9","sha256":"61e93edf533b6485a43f8f3fbd4ad9f68e00bbb8090e1739dd5ecf5b7b310ae7"}
+    ]
+  },
+  "offline_rehearsal": {
+    "baseline_commit":"a7e78644ee8800227275afe338cc54e885cbd3bb",
+    "baseline_public_blob":"5229a0e5133ba1f53d2a67a947d956266355420d",
+    "before":1091,"after":1109,"added":18,"existing_unchanged":1091,
+    "already_present_reviewed":167,"held_existing":0,"identity_conflicts":0,"idempotent":true,
+    "reviewed_evidence_ci_run_id":"36061743219",
+    "data_contract_ci_run_id":"36061743083",
+    "ci_status":"success"
+  },
+  "production": {
+    "sync_run_id":"36061861729","sync_status":"success",
+    "source_backed_commit":"92d1ec4498c4ea096cd97b0b0572676e635a7352",
+    "operator_commit":"e4b70f1183b08cba74884fa5ecdb9569f84f9a04",
+    "operator_health":"healthy",
+    "served_diff_from_rehearsal_baseline":{"added":18,"changed":1,"removed":0},
+    "changed_existing_record":{"id":"ameya-precision-engineers-limited","fields":["documents","last_collected_at"],"note":"Normal source-first sync added SEBI Prospectus filing/PDF references and updated collection time. No IPO term value changed for this existing record."},
+    "recovery_counts":{"2020":51,"2021":100,"2022":94,"2023":192,"2024":292,"2025":293,"2026":87},
+    "coverage_note":"Observed retained counts; not a claim of complete IPO-universe coverage."
+  },
+  "live_verification": {
+    "pull_request":211,
+    "merge_sha":"34b39bc9617c013c6e4d7d3955b3de5b5207a5f0",
+    "run_id":"36062649127","run_attempt":1,"workflow_status":"success",
+    "source_url":"https://vasuki8.github.io/IPO-Tracker/data/ipos.json",
+    "snapshot_fetched_at":"2026-09-24T21:37:42.271Z",
+    "checked_at":"2026-09-24T21:37:42.328Z",
+    "dataset_generated_at":"2026-09-24T21:30:22.442Z",
+    "snapshot_sha256":"d52a67d7139071afd85bff4aadad69f9ced956aef385690e12f200a1d9a8d992",
+    "snapshot_bytes":5918679,
+    "published_records":1109,"checked_issuers":18,"unique_issuers":18,"checked_fields":54,"failed_issuers":0,
+    "null_fields_per_issuer":6,
+    "null_fields":["price_band","open_date","close_date","issue_size_inr","minimum_bid_quantity","minimum_application_amount_inr"],
+    "document_hash_scope":{"retained_fields":54,"serialized_live_fields":0,"note":"Original document hashes verified in retained recovery. The public projection intentionally omits them; this is not public-document-hash verification."},
+    "artifact_id":10835146698,
+    "artifact_zip_sha256":"6d6a46359c858b93038da3970ed268d6ca918f6e6b27a323c86fd9beb19ba80a",
+    "artifact_expires_at":"2026-10-08T21:37:42Z",
+    "artifact_files":["publication-report.json","deployed-data.json","source-snapshot.zip"],
+    "independent_recheck":"Downloaded artifact hash and exact served bytes checked. Pure audit repeated using retained source snapshot; all issuer results matched. PR and post-merge snapshots were byte-identical.",
+    "pr_verification":{"run_id":"36062528384","artifact_id":10834589197,"artifact_zip_sha256":"8d7533b9796ff8a82bfd6588a0ff69b9ab7bf439e349d000bc392210c95c983f","snapshot_fetched_at":"2026-09-24T21:36:29.219Z","checked_at":"2026-09-24T21:36:29.255Z"},
+    "pr_checks":{"reviewed_evidence":"36062528447","data_contract":"36062528453","status":"success"},
+    "pages_deploy":{"run_id":"36062649299","status":"success","commit_sha":"34b39bc9617c013c6e4d7d3955b3de5b5207a5f0","completed_at":"2026-09-24T21:37:42Z"},
+    "parallel_native_pages_run":{"run_id":"36062648142","status":"cancelled","note":"Do not report every parallel Pages run as successful. The deploy workflow and actual served-data checks above passed."}
+  },
+  "cursor_at_handoff": {
+    "path":"ops/bse-sme-addition-notices.json","git_blob_sha":"6ada9ade533cd1dc535799814b7a61bece067d35",
+    "updated_at":"2026-09-24T20:00:39.470Z","parser_version":"1.3.0",
+    "eligible":236,"tracked":160,"parsed":153,"unparseable":7,"untracked":76,
+    "failed_notice_ids":["20240624-11","20240612-20","20240606-11","20240205-12","20240103-22","20231206-8","20230719-15"],
+    "next_task":"Re-read current main/cursor, then perform a bounded official-source/parser-family diagnosis of the retained failures. Compare fresh response hashes to retained hashes; add only demonstrated grammar with fail-closed regression fixtures. Do not infer issuer identities or IPO terms from failed index notices."
+  }
+}
