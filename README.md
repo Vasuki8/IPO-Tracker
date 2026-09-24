@@ -34,58 +34,75 @@ Collection time, dataset generation and Pages publication are separate signals. 
 
 ## Handoff for the next prompt
 
-**Latest completed batch: all four held historical BSE listings resolved and published — PR #177.**
+**Latest completed batch: second historical BSE cursor batch reconciled and published — PR #178.**
 
-PR #177 merged as `e142d031eca66481c41428b65384b7cb0eb6b748` and closes the remaining source/identity holds from the first historical BSE discovery reconciliation.
+PR #178 merged as `17e0c7322d975587de0f640e83215ef68022c33f` and processed the next durable BSE SME index-notice cursor segment.
 
-Two distinct official-source repairs were required:
+Cursor source run `35959162509` selected 20 older notices. Current operational state is:
 
-- **AUTOFURNISH LIMITED, MEHUL TELECOM LIMITED and TIPCO ENGINEERING INDIA LIMITED:** their official BSE listing PDFs are valid but page 2 is image-only, so `pdftotext` cannot recover the listing facts. A narrowly scoped `official_listing_pdf_visual_review` evidence contract now accepts only the exact official BSE listing-PDF URL, immutable document SHA-256, reviewed page 2, exact candidate identity, positive market-lot/price values and explicit visual source strings. No OCR-derived or index-inferred values are accepted.
-- **RECODE STUDIOS LIMITED:** original BSE notice `20260511-16` explicitly says the listing date/security details will follow in a separate notice. The corrected issuer-specific listing notice is `20260511-46`, independently verified from the official BSE PDF. The original notice remains preserved as correction history.
+- **60 tracked notices total**
+- **59 parsed**
+- **1 unparseable** — BSE index notice `20250912-85`, error `no_parseable_listing_reference`
+- **176 unseen**
+- next unseen notice: **`20250908-25`**
 
-Reviewed evidence:
+The 19 successfully parsed notices produced **30 listing references**. Cross-year reconciliation against retained 2025 + 2026 recovery found **30 genuinely missing exact identities**, with 0 already-present matches and 0 ambiguous/fuzzy matches accepted.
 
-- `data/verified-bse-listings/2026-09-24-batch7.json` — Autofurnish, Mehul Telecom, Tipco Engineering India
-- `data/verified-bse-listings/2026-09-24-batch8.json` — Recode Studios
-- corrected Recode discovery: `data/discovery/bse-listing-candidates-2026-09-24-batch7.json`
-- image-only source artifact: `10789439895` / SHA-256 `d78e344277d79ccce4411e3a7f4552b3eeb87089e3d584d8a1fa8a5c746d1acb`
-- corrected Recode source run: `35957926014`
-- corrected Recode artifact: `10791635591` / SHA-256 `08edc97e797cfba08fcb33cd83ba476a15217eb669f12eee6746a560d8c760dc`
+Retained reconciliation:
+
+- `data/discovery/bse-listing-reconciliation-2026-09-24-cursor2.json`
+- cursor artifact: `10791926413`
+- cursor artifact SHA-256: `ac543656d4fdfa7f6644ef50e0274d93d8c01a75d5aa28fdd70255881a109209`
+
+The 30 missing issuers were split into two bounded 15-candidate discovery batches:
+
+- `data/discovery/bse-listing-candidates-2026-09-24-batch8.json`
+- `data/discovery/bse-listing-candidates-2026-09-24-batch9.json`
+
+Both halves independently verified **15/15** against issuer-specific official BSE listing notices. The canonical archive PDFs were unavailable for these records, so reviewed publication uses the existing strict official-BSE-HTML evidence contract with exact notice URL, response/document hash, normalized evidence text and offline identity/fact replay.
+
+Canonical reviewed manifests are `data/verified-bse-listings/2026-09-24-batch9.json` through `batch14.json`, totaling **30 entries**.
+
+Evidence runs:
+
+- manifest source run: `35959840134`
+- manifest source artifact: `10792036701`
+- artifact SHA-256: `3d883788e3aa99fd09553869f0850150b0a987174861b292804a021e206e6c94`
+- final PR source verification: `35960785399`
+- final artifact: `10792048220`
+- final artifact SHA-256: `2df53976159ccbaa39558020ddf3c5300f76a286d5bdaea907560105afc7e015`
+
+A bounded parser repair was required for Apollo Techno Industries: BSE writes `December 31 , 2025` with whitespace before the comma. The listing-date grammar now accepts only that harmless spacing variant in addition to the existing date form, with a regression test.
 
 Final PR validation passed:
 
-- reviewed-evidence/importer CI: `35958072837`
-- full data-contract CI: `35958072891`
-- BSE source verification: `35958072853`
+- reviewed-evidence/importer CI: `35960785377`
+- full data-contract CI: `35960785360`
+- BSE source verification: `35960785399`
+- protected 544770 regression: `35960785366`
 
-The isolated publication rehearsal proved **964 -> 968**, exactly **4 additions**, all 964 existing records unchanged, **0 holds/conflicts**, and an idempotent rerun. The reviewed BSE registry now contains **46 retained entries**.
+The isolated publication rehearsal proved **968 -> 998**, exactly **30 additions**, all 968 existing records unchanged, **0 holds/conflicts**, and an idempotent rerun. The reviewed BSE registry now contains **76 retained entries**.
 
-Production sync `35958207898` succeeded:
+Production sync `35960919082` succeeded:
 
-- reviewed BSE import: **4 added / 42 already present / 0 holds**
-- semantic publication: **4 added / 35 changed / 0 removed / 0 conflicts**
-- source-backed data commit: `93f4e0b02141c66d547e94b2f184dccaebe39d26`
-- operator-state commit: `69aa8fb5e348a7de55b167fdd403c38c7ebb9ea1`
+- reviewed BSE import: **30 added / 46 already present / 0 holds**
+- semantic publication: **30 added / 36 changed / 0 removed / 0 conflicts**
+- source-backed data commit: `a8b6cc81f7c805598ab67552131833afea4bfa17`
+- operator-state commit: `32cadd15b4fc91a92ef89f5af6415c893b545146`
 - operator health: **healthy**
-- production: **968 total records / 84 records for 2026**
-- 2026 board coverage: **15 mainboard / 59 SME / 10 unknown**
+- production: **998 total records**
+- 2025: **242 records** — 83 Mainboard / 158 SME / 1 unknown
+- 2026: **85 records** — 15 Mainboard / 60 SME / 10 unknown
 
-Current `main` contains each repaired issuer exactly once with verified listing date, market lot and issue price:
+All 30 new issuers occur exactly once on current `main`, and every listing date, BSE code, market lot, issue price, source URL/hash and reviewed-manifest provenance matches the committed evidence. Unsupported price band, offer dates, issue size, minimum bid quantity and minimum application amount remain null.
 
-- Autofurnish — code 544767, 2026-05-29, lot 3,000, INR 41
-- Recode Studios — code 544755, 2026-05-12, lot 800, INR 158
-- Mehul Telecom — code 544751, 2026-04-24, lot 1,200, INR 98
-- Tipco Engineering India — code 544740, 2026-04-01, lot 1,600, INR 89
+GitHub Pages build `35961435740` succeeded on operator commit `32cadd15b4fc91a92ef89f5af6415c893b545146`, a direct descendant of the 998-record data commit.
 
-Unsupported price band, offer dates, issue size, minimum bid quantity and minimum application amount remain null.
+A duplicate PR #179 opened during the same work was closed **without merge** after PR #178 advanced `main`; no duplicate data was published.
 
-GitHub Pages build `35958746456` succeeded on operator commit `69aa8fb5e348a7de55b167fdd403c38c7ebb9ea1`, which descends directly from the 968-record source-backed data commit.
+**Next:** re-read the cursor first. If it has advanced beyond the current 60 tracked notices, reconcile only the newest completed cursor segment against the current 998-record universe. If it is unchanged, repair the single held unparseable index notice `20250912-85` as a bounded parser/source task without guessing an issuer. Do not reset the cursor or repeat the now-completed 30-reference cursor2 batch.
 
-**The first historical discovery batch is now fully resolved:** its 23 references consist of 6 issuers already present at reconciliation time plus 17 recovered and published through reviewed issuer-specific evidence. There are no remaining held candidates from that batch.
-
-**Next:** re-read the durable historical BSE cursor before doing more recovery work. At this handoff it remains **40/236 parsed with 196 unseen**, next unseen notice `20260107-29`. The scheduled cursor is independent; once it advances, reconcile the newest completed discovery batch against the current 968-record universe, then verify/materialize only genuinely missing issuers. If it still has not advanced when the next run starts, inspect the cursor workflow schedule/operational state rather than repeating the now-closed first batch.
-
-Read [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) for the evidence contracts, exact source hashes, correction history, tests and production verification.
+Read [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) for exact source/evidence details, validation results and production verification.
 
 No UI redesign, minimum-investment work, billing, accounts, ads, paid services or permission changes are part of this handoff.
 
