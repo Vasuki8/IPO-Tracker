@@ -1344,6 +1344,222 @@
       "status": "error",
       "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-gNUKgo/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/nov-2024/1731315962150.pdf\ncurl: (18) transfer closed with 3005036 bytes remaining to read\ncurl: (18) transfer closed with 7741852 bytes remaining to read\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2024/1731315962150.pdf"
+    },
+    "2024|nacdac-infrastructure-limited": {
+      "issuer_name": "NACDAC INFRASTRUCTURE LIMITED.",
+      "listing_date": "2024-12-24",
+      "last_attempted_at": "2026-09-24T17:33:40.083Z",
+      "parser_version": "2.0.0",
+      "status": "explicit_dates_absent",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "NACDAC INFRASTRUCTURE LIMITED - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1734079584907.pdf",
+        "publication_date": "2024-12-13"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1734079584907.pdf"
+    },
+    "2023|honasa-consumer-limited": {
+      "issuer_name": "Honasa Consumer Limited",
+      "listing_date": "2023-11-07",
+      "last_attempted_at": "2026-09-24T17:33:40.083Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": "2023-10-30",
+      "close_date": "2023-11-02",
+      "open_extraction": {
+        "value": "2023-10-30",
+        "source_value": "Offer Opening Date i.e., Monday, October 30, 2023",
+        "page": 3
+      },
+      "close_extraction": {
+        "value": "2023-11-02",
+        "source_value": "OFFER CLOSED ON Thursday, November 2, 2023",
+        "page": 3
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Honasa Consumer Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1698993946024.pdf",
+        "publication_date": "2023-11-03"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1698993946024.pdf"
+    },
+    "2022|archean-chemical-industries-limited": {
+      "issuer_name": "Archean Chemical Industries Limited",
+      "listing_date": "2022-11-21",
+      "last_attempted_at": "2026-09-24T17:33:40.083Z",
+      "parser_version": "2.0.0",
+      "status": "official_date_conflict",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Archean Chemical Industries Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1668578636320.pdf",
+        "publication_date": "2022-11-16"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1668578636320.pdf"
+    },
+    "2024|sagility-india-limited": {
+      "issuer_name": "Sagility India Limited",
+      "listing_date": "2024-11-12",
+      "last_attempted_at": "2026-09-24T17:33:40.083Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": null,
+      "close_date": "2024-11-07",
+      "open_extraction": null,
+      "close_extraction": {
+        "value": "2024-11-07",
+        "source_value": "OFFER CLOSED ON: Thursday, November 7, 2024",
+        "page": 3
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Sagility India Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2024/1731322638656.pdf",
+        "publication_date": "2024-11-11"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2024/1731322638656.pdf"
+    },
+    "2023|cello-world-limited": {
+      "issuer_name": "Cello World Limited",
+      "listing_date": "2023-11-06",
+      "last_attempted_at": "2026-09-24T17:33:40.083Z",
+      "parser_version": "2.0.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-K5CF3Z/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1698924971457.pdf\ncurl: (18) transfer closed with 17709210 bytes remaining to read\ncurl: (28) Operation timed out after 45000 milliseconds with 12376791 out of 28132049 bytes received\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1698924971457.pdf"
+    },
+    "2022|amiable-logistics-india-limited": {
+      "issuer_name": "Amiable Logistics (India) Limited",
+      "listing_date": "2022-11-16",
+      "last_attempted_at": "2026-09-24T17:33:40.083Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": "2022-11-02",
+      "close_date": "2022-11-07",
+      "open_extraction": {
+        "value": "2022-11-02",
+        "source_value": "ISSUE OPENS ON: WEDNESDAY, NOVEMBER 02, 2022",
+        "page": 1
+      },
+      "close_extraction": {
+        "value": "2022-11-07",
+        "source_value": "ISSUE CLOSES ON: MONDAY, NOVEMBER 07, 2022",
+        "page": 1
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Amiable Logistics India Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1669197521086.pdf",
+        "publication_date": "2022-10-27"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1669197521086.pdf"
+    },
+    "2024|godavari-biorefineries-limited": {
+      "issuer_name": "Godavari Biorefineries Limited",
+      "listing_date": "2024-10-30",
+      "last_attempted_at": "2026-09-24T17:33:40.083Z",
+      "parser_version": "2.0.0",
+      "status": "official_date_conflict",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Godavari Biorefineries Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1730285692654.pdf",
+        "publication_date": "2024-10-25"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1730285692654.pdf"
+    },
+    "2022|bikaji-foods-international-limited": {
+      "issuer_name": "Bikaji Foods International Limited",
+      "listing_date": "2022-11-16",
+      "last_attempted_at": "2026-09-24T17:33:40.083Z",
+      "parser_version": "2.0.0",
+      "status": "official_date_conflict",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Bikaji Foods International Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1668158972078.pdf",
+        "publication_date": "2022-11-11"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1668158972078.pdf"
+    },
+    "2024|deepak-builders-and-engineers-india-limited": {
+      "issuer_name": "Deepak Builders & Engineers India Limited",
+      "listing_date": "2024-10-28",
+      "last_attempted_at": "2026-09-24T17:33:40.083Z",
+      "parser_version": "2.0.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-odGHSg/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1730282081702.pdf\ncurl: (18) transfer closed with 2992251 bytes remaining to read\ncurl: (18) transfer closed with 4847251 bytes remaining to read\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1730282081702.pdf"
+    },
+    "2022|fusion-micro-finance-limited": {
+      "issuer_name": "Fusion Micro Finance Limited",
+      "listing_date": "2022-11-15",
+      "last_attempted_at": "2026-09-24T17:33:40.083Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": "2022-11-01",
+      "close_date": "2022-11-04",
+      "open_extraction": {
+        "value": "2022-11-01",
+        "source_value": "Offer Opening Date i.e. Tuesday, November 1, 2022",
+        "page": 1
+      },
+      "close_extraction": {
+        "value": "2022-11-04",
+        "source_value": "Offer Closing Date i.e. Friday, November 4, 2022",
+        "page": 1
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Fusion Micro Finance Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1684485565469.pdf",
+        "publication_date": "2022-11-09"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1684485565469.pdf"
+    },
+    "2022|phantom-digital-effects-limited": {
+      "issuer_name": "Phantom Digital Effects Limited",
+      "listing_date": "2022-10-21",
+      "last_attempted_at": "2026-09-24T17:33:40.083Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": "2022-10-12",
+      "close_date": "2022-10-14",
+      "open_extraction": {
+        "value": "2022-10-12",
+        "source_value": "BID/ISSUE OPENS ON: WEDNESDAY, OCTOBER 12, 2022",
+        "page": 1
+      },
+      "close_extraction": {
+        "value": "2022-10-14",
+        "source_value": "BID/ISSUE CLOSES ON: FRIDAY, OCTOBER 14, 2022",
+        "page": 1
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Phantom Digital Effects Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1669197644984.pdf",
+        "publication_date": "2022-10-17"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1669197644984.pdf"
     }
   }
 }
