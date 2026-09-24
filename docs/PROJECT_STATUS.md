@@ -144,6 +144,25 @@ That commit is a descendant of the source-backed data revision `1d7ffff145b99cf0
 | Rajnandini Fashion India | 20260602-37 | 2026-06-03 | 2,000 | 63 |
 | Harikanta Overseas | 20260601-23 | 2026-06-02 | 1,200 | 91 |
 
+## Release reliability follow-up: Pages publication-state race
+
+During final handoff publication, GitHub Pages deployment for README commit `ad62e44ad85c60a0910a6df1e9212349f559c0bc` itself succeeded, but workflow run `35948066974` ended red because its final `ops/pages-publication.json` commit conflicted while rebasing over another Pages-health update.
+
+PR #169 repaired only that operational-state race:
+
+- merge commit: `180087143d3fb986d0413c62c2fdb5a2da69909f`;
+- the workflow now resets to the latest `origin/main`, recomputes Pages state against the newest committed state, validates the operational schema, and retries the push up to three times;
+- CI forbids returning to the old "modify JSON then rebase" pattern.
+
+Production deployment run `35948287263` completed **successfully**, including the formerly failing status-persistence step. Durable Pages state was committed as `45b2f22a4f5d3a7b8416133a0b7eeab6fc580b5a` and records:
+
+- deployment status: success;
+- deployed commit: `180087143d3fb986d0413c62c2fdb5a2da69909f`;
+- completion: `2026-09-24T02:41:40Z`;
+- page URL: `https://vasuki8.github.io/IPO-Tracker/`.
+
+This was an operational metadata repair only; no IPO value or recovery evidence was changed.
+
 ## Remaining BSE blockers and next task
 
 ### 1. Resolve the code-544770 identity collision

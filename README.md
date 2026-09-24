@@ -55,6 +55,8 @@ Current production counts from that run:
 
 GitHub Pages build `35947797703` succeeded on descendant commit `1d92710098fcf9b492a572eb6424e2c434153e93`, so the deployed website includes the new data.
 
+Pages publication-health persistence was also made race-safe in PR #169. Production deployment `35948287263` completed green and durable status commit `45b2f22a4f5d3a7b8416133a0b7eeab6fc580b5a` records the successful deployment.
+
 Across PR #166 + PR #168, **27 independently reviewed BSE SME records from the original discovery report are now published**.
 
 **Next:** resolve the remaining code-`544770` identity conflict between MERRITRONIX LIMITED and YAASHVI JEWELLERS LIMITED using their original index PDFs plus issuer-specific official BSE listing notices. Do not pick one by recency or fuzzy identity. After that, add a durable versioned cursor for the **216 older eligible BSE SME addition notices** not covered by the latest-20 audit.
