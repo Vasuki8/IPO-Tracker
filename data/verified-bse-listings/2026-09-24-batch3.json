@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0.0",
+  "verifier_version": "1.1.0",
+  "source_run_id": "35950849004",
+  "source_artifact_id": 10787659263,
+  "source_artifact_sha256": "f969117ce1895c8d9d17f5b3ba2a2dfe91640f5f71367898c65f330520c04e21",
+  "scope_note": "Two issuer-specific BSE listing PDFs resolve the retained scrip-code-544770 collision. Yaashvi Jewellers is 544770. Merritronix is 544773; its later SME-index addition notice had claimed 544770 and is retained as superseded discovery evidence. Only explicit listing date, market lot and final issue price are published.",
+  "entries": [
+    {
+      "issuer_name": "MERRITRONIX LIMITED",
+      "board": "SME",
+      "bse_scrip_code": "544773",
+      "source_url": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260605-37/20260605-37.pdf",
+      "document_identity": "BSE Listing Notice 20260605-37",
+      "document_sha256": "920101f48760a903cf0f41424f0df00077cd2f85987feed8fe3f91244b9bf0be",
+      "collected_at": "2026-09-24T03:18:03.288Z",
+      "publication_date": "2026-06-05",
+      "identity_pages": {
+        "notice": 1,
+        "board": 1
+      },
+      "facts": {
+        "listing_date": {
+          "value": "2026-06-08",
+          "source_value": "effective from Monday, June 8, 2026",
+          "page": 2
+        },
+        "market_lot": {
+          "value": 1000,
+          "source_value": "Market Lot 1000",
+          "page": 2
+        },
+        "issue_price": {
+          "value": 149,
+          "source_value": "Issue Price for the current Public issue Rs. 149",
+          "page": 2
+        }
+      },
+      "excerpt_pages": [
+        {
+          "page": 1,
+          "text": "NOTICE Notice No. 20260605-37 Notice Date 05 Jun 2026 Category Company related Segment SME Department DCS-Listing Subject Listing of Equity Shares of Merritronix Limited"
+        },
+        {
+          "page": 2,
+          "text": "Trading Members of the Exchange are hereby informed that effective from Monday, June 8, 2026, the Equity Shares of Merritronix Limited shall be listed and admitted to dealings on the Exchange in the list of 'MT' Group of Securities. Name of the company Merritronix Limited Registered Office Scrip Code 544773 Market Lot 1000 Issue Price for the current Public issue Rs. 149"
+        }
+      ],
+      "listing_notice_no": "20260605-37",
+      "identity_correction": {
+        "field": "bse_scrip_code",
+        "superseded_value": "544770",
+        "corrected_value": "544773",
+        "superseded_source_url": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260608-14/20260608-14.pdf",
+        "superseded_document_identity": "BSE SME IPO Index Addition Notice 20260608-14",
+        "resolution": "Issuer-specific BSE Listing Notice 20260605-37 is authoritative for listing identity."
+      }
+    },
+    {
+      "issuer_name": "YAASHVI JEWELLERS LIMITED",
+      "board": "SME",
+      "bse_scrip_code": "544770",
+      "source_url": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260601-25/20260601-25.pdf",
+      "document_identity": "BSE Listing Notice 20260601-25",
+      "document_sha256": "22e26ebf183205834b468993d4441d5eea66a14e2c775464e70c05eed2f37dfd",
+      "collected_at": "2026-09-24T03:18:03.347Z",
+      "publication_date": "2026-06-01",
+      "identity_pages": {
+        "notice": 1,
+        "board": 1
+      },
+      "facts": {
+        "listing_date": {
+          "value": "2026-06-02",
+          "source_value": "e ective from Tuesday, June 2, 2026",
+          "page": 2
+        },
+        "market_lot": {
+          "value": 1600,
+          "source_value": "Market Lot 1600",
+          "page": 2
+        },
+        "issue_price": {
+          "value": 83,
+          "source_value": "Issue Price for the current Public issue Rs. 83",
+          "page": 2
+        }
+      },
+      "excerpt_pages": [
+        {
+          "page": 1,
+          "text": "NOTICE Notice No. 20260601-25 Notice Date 01 Jun 2026 Category Company related Segment SME Department DCS-Listing Subject Listing of Equity Shares of YAASHVI JEWELLERS LIMITED"
+        },
+        {
+          "page": 2,
+          "text": "Trading Members of the Exchange are hereby informed that e ective from Tuesday, June 2, 2026, the Equity Shares of Yaashvi Jewellers Limited shall be listed and admitted to dealings on the Exchange in the list of 'MT' Group of Securities. Name of the company Yaashvi Jewellers Limited Registered Office Scrip Code 544770 Market Lot 1600 Issue Price for the current Public issue Rs. 83"
+        }
+      ],
+      "listing_notice_no": "20260601-25"
+    }
+  ],
+  "discovery_batch": "data/discovery/bse-listing-candidates-2026-09-24-batch3.json"
+}
