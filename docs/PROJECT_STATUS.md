@@ -6,7 +6,98 @@ Updated: 2026-09-24. Live observation: 15:28:55 UTC / 11:28:55 America/Toronto.
 
 Continue P1/P2/P3 data correctness, official-source coverage and dependable publication under `DEVELOPMENT_PROCESS.md`. The application-term requirement remains **Lot Size only**. Keep market lot, minimum bid quantity, application amount, listing date and index-admission date distinct. UI redesign and downstream research/commercial infrastructure are out of scope.
 
-## Completed: cursor4 live verification and handoff recovery — PR #189
+## Completed: cursor5 parsed-reference reconciliation closure
+
+The next historical segment after cursor4 was first attempted at `2026-09-24T15:09:03.207Z`.
+
+Cursor segment:
+
+- selected notices: **20**
+- parsed notices: **17**
+- unparseable notices: **3**
+- parsed listing references: **18**
+- cursor after segment: **120 / 236 tracked**
+- parser: **1.2.0**
+- statuses: **117 parsed / 3 unparseable**
+
+### Historical vs current reconciliation
+
+An earlier machine-readable reconciliation already existed:
+
+`data/discovery/bse-listing-reconciliation-2026-09-24-cursor5.json`
+
+At its observation time, the 18 parsed references were correctly classified as missing against the then-current 1,050-record public / retained-recovery snapshot.
+
+Do not rewrite that evidence. Later scheduled official-source collection changed the production state.
+
+This continuation re-ran reconciliation against the latest multi-year recovery universe and public dataset and retained the result separately as:
+
+`data/discovery/bse-listing-reconciliation-2026-09-24-cursor5-final.json`
+
+Current snapshots:
+
+| Scope | Records |
+| --- | ---: |
+| Public dataset | **1,068** |
+| 2020 recovery | 51 |
+| 2021 recovery | 100 |
+| 2022 recovery | 94 |
+| 2023 recovery | 174 |
+| 2024 recovery | **269** |
+| 2025 recovery | **293** |
+| 2026 recovery | 87 |
+
+Public dataset generation time: `2026-09-24T16:21:47.053Z`.
+
+The final reconciliation checks every recovery year plus the public dataset. Identity acceptance requires:
+
+- exact normalized issuer identity;
+- no conflicting six-digit BSE scrip code;
+- exact issuer-specific BSE listing-source URL;
+- exactly one recovery identity and one public identity;
+- no fuzzy equivalence.
+
+Result:
+
+- **18 / 18 already-present exact identities**
+- **0 missing exact identities**
+- **0 identity-review cases**
+- **0 code conflicts**
+- **18 / 18 public listing-date / market-lot / issue-price triples match retained recovery**
+- all three displayed fields remain **verified**
+- each listing-date public source URL matches the recovered issuer-specific BSE listing notice
+
+No new candidate verification batch was created and no IPO was re-imported. This is intentional: historical index discovery must not duplicate records that later source-first automation has already populated.
+
+### Three held parser failures
+
+The same 20-notice segment contains three notices that remain unparseable and were not used to infer any issuer:
+
+| Notice | Date | Error |
+| --- | --- | --- |
+| `20241211-15` | 2024-12-11 | `no_parseable_listing_reference` |
+| `20241202-11` | 2024-12-02 | `no_parseable_listing_reference` |
+| `20240722-21` | 2024-07-22 | `no_parseable_listing_reference` |
+
+Their retained source URLs and extracted-text SHA-256 values remain in cursor state and in the reconciliation receipts.
+
+## Next task: bounded cursor5 parser/source-family repair
+
+Always re-read current `main` and the durable cursor before starting.
+
+For exactly the three held notices above:
+
+1. Re-fetch the official BSE Index Services notice-detail payload.
+2. Confirm the current response/text hash matches retained cursor evidence before changing grammar.
+3. Inspect the demonstrated wording/HTML shapes and group failures by source family.
+4. Add only grammar variants supported by those sources, with exact regression fixtures.
+5. Preserve already-parsed cursor entries and avoid replaying successful notices.
+6. Re-run the bounded cursor repair and retain newly discovered references as discovery-only.
+7. Reconcile any recovered references against current production before issuer-specific verification.
+
+Do not infer an issuer from an unparseable index notice. Do not repeat cursor4 batches 13/14, reviewed batches 18/19, or the 18 already-present cursor5 references.
+
+## Prior completed unit: cursor4 live verification and handoff recovery — PR #189
 
 The release-verification work is complete for the 23 cursor4 issuers already merged in PR #187. This continuation adds no IPOs and does not alter their values or reset any cursor.
 
