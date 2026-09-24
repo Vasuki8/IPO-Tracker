@@ -65,7 +65,7 @@ export function eligibleBseSmeAdditionNotices(catalog) {
     .sort((a, b) => noticeSortValue(b) - noticeSortValue(a) || noticeNo(b).localeCompare(noticeNo(a)));
 }
 
-const COMPATIBLE_PARSED_PARSER_VERSIONS = new Set(["1.1.0", "1.2.0"]);
+const COMPATIBLE_PARSED_PARSER_VERSIONS = new Set(["1.1.0", "1.2.0", "1.3.0"]);
 
 function currentParserEntry(state, row) {
   const entry = state?.notices?.[noticeNo(row)];

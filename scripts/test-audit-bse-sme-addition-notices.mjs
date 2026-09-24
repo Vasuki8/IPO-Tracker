@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import { createHash } from "node:crypto";
 import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
@@ -335,3 +336,44 @@ try {
   fs.rmSync(temp, { recursive: true, force: true });
 }
 console.log("BSE SME addition notice parser, safety and audit-status tests passed.");
+
+// Literal source regressions from the seven hash-matching cursor6/7 failures.
+const repairedSource = JSON.parse(fs.readFileSync(new URL('./fixtures/bse-cursor7-parser-repair.json', import.meta.url), 'utf8'));
+assert.equal(repairedSource.fixtures.length, 7);
+let recoveredReferences = 0;
+for (const fixture of repairedSource.fixtures) {
+  const { text, expected, notice_no: id } = fixture;
+  assert.equal(fixture.extracted_text_sha256, fixture.retained_text_sha256, id + ': unchanged official source');
+  assert.equal(createHash('sha256').update(text).digest('hex'), fixture.excerpt_sha256, id + ': exact retained excerpt');
+  assert.deepEqual(parseBseSmeAdditionNoticeHtml(text), expected, id);
+  recoveredReferences += expected.length;
+  assert.deepEqual(parseBseSmeAdditionNoticeHtml(text + ' ' + text), expected, id + ': duplicate clauses');
+  for (const [label, mutated] of [
+    ['missing ticker', text.replace(/\(\s*Exchange ticker[^)]+\)/i, '')],
+    ['invalid ticker', text.replace(expected[0].bse_scrip_code, '12345')],
+    ['wrong venue', text.replace(/\bBSE\b/g, 'NSE')],
+    ['negated listing', text.replace(/(?:is|are) being listed/, 'is not being listed')],
+    ['index date only', text.replace(/(?:is|are) being listed[^.]+\./, '')],
+    ['invalid calendar date', text.replace(expected[0].listing_date_raw, 'February 30, 2024')],
+    ['unrelated issuer prose', text.replace(/(?:is|are) being listed/, 'Unrelated issuer is being listed')]
+  ]) {
+    assert.notEqual(mutated, text, id + ': mutation applied: ' + label);
+    assert.deepEqual(parseBseSmeAdditionNoticeHtml(mutated), [], id + ': ' + label);
+  }
+  if (expected.length > 1) {
+    for (const [label, mutated] of [
+      ['extra notice', text.replace(expected[0].listing_notice_no, expected[0].listing_notice_no + ' and 20240101-99')],
+      ['duplicate notice', text.replace(expected[1].listing_notice_no, expected[0].listing_notice_no)],
+      ['duplicate ticker', text.replace(expected[1].bse_scrip_code, expected[0].bse_scrip_code)],
+      ['respectively repeated', text.replace('respectively,', 'respectively respectively,')],
+      ['respectively inside name', text.replace(expected[0].issuer_name, expected[0].issuer_name + ' respectively')],
+      ['raw notice inside name', text.replace(expected[0].issuer_name, expected[0].issuer_name + ' 20240101-99')],
+      ['dangling issuer', text.replace('respectively,', 'and Missing Limited respectively,')]
+    ]) {
+      assert.notEqual(mutated, text);
+      assert.deepEqual(parseBseSmeAdditionNoticeHtml(mutated), [], id + ': ' + label);
+    }
+  }
+}
+assert.equal(recoveredReferences, 13);
+console.log('Seven retained BSE source fixtures recover 13 references; incomplete/ambiguous clauses fail closed.');
