@@ -1,0 +1,56 @@
+name: Audit published BSE release
+
+on:
+  workflow_dispatch:
+    inputs:
+      manifests:
+        description: Comma-separated reviewed manifest paths to audit after publication
+        required: false
+        default: data/verified-bse-listings/2026-09-24-batch18.json,data/verified-bse-listings/2026-09-24-batch19.json
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "scripts/audit-bse-release.mjs"
+      - "scripts/test-audit-bse-release.mjs"
+      - ".github/workflows/audit-bse-release.yml"
+  push:
+    branches: ["main"]
+    paths:
+      - "scripts/audit-bse-release.mjs"
+      - "scripts/test-audit-bse-release.mjs"
+      - ".github/workflows/audit-bse-release.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Test release-integrity and source-failure guards
+        run: node scripts/test-audit-bse-release.mjs
+      - name: Validate committed publication
+        run: |
+          node scripts/build-published-data.mjs --check
+          node scripts/validate-data.mjs
+      - name: Retain reproducible source revision
+        run: |
+          mkdir -p "${{ runner.temp }}/bse-release-audit"
+          git archive --format=zip HEAD > "${{ runner.temp }}/bse-release-audit/source-snapshot.zip"
+      - name: Compare reviewed facts with recovery, repository and deployed data
+        env:
+          RELEASE_MANIFESTS: ${{ inputs.manifests || 'data/verified-bse-listings/2026-09-24-batch18.json,data/verified-bse-listings/2026-09-24-batch19.json' }}
+        run: node scripts/audit-bse-release.mjs --manifests="$RELEASE_MANIFESTS" --output-dir="${{ runner.temp }}/bse-release-audit" --live=true
+      - name: Retain audit and separately timestamped deployed snapshot
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bse-release-audit-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/bse-release-audit
+          retention-days: 14
+          if-no-files-found: warn
