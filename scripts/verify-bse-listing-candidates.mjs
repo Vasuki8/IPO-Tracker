@@ -84,7 +84,7 @@ export function verifyListingHtml(html, candidate, asOf = new Date().toISOString
   const reasons = [];
   // Header identity excludes historical regulatory notices cited in the body.
   const noticeNos = unique([...body.matchAll(/\bNotice\s+No\.?\s*:?\s*(\d{8}-\d+)\s+Notice Date\b/gi)].map((m) => m[1]));
-  const tableIssuer = body.match(/\bName of the company\s+(.{1,180}?)\s+Registered Office\b/i)?.[1] ?? null;
+  const tableIssuer = body.match(/\bName of the company\s+(.{1,180}?)\s+(?:Registered(?:\s*&\s*Corporate)?|Corporate)\s+Office\b/i)?.[1] ?? null;
   const bodyIssuer = body.match(/\bthe Equity Shares of\s+(.{1,180}?)\s+shall be listed\b/i)?.[1] ?? null;
   const issuerMentions = [parsed.company, tableIssuer, bodyIssuer].filter(Boolean);
   const issuerNames = unique(issuerMentions.map(listingIssuerKey));
