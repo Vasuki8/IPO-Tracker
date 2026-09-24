@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "input_report": {
+    "run_id": "35952980189",
+    "commit_sha": "2dcd60597c0fb8995a446efa00199138034b1603",
+    "generated_at": "2026-09-24T03:48:52.583Z",
+    "reconciliation_report": "data/discovery/bse-listing-reconciliation-2026-09-24.json"
+  },
+  "selection_rule": "Remaining 2 genuinely missing exact identities from the same historical cursor batch.",
+  "candidates": [
+    {
+      "issuer_name": "ARITAS VINYL LIMITED",
+      "bse_scrip_code": "544683",
+      "listing_notice_no": "20260122-19",
+      "listing_date": "2026-01-23",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260122-19",
+      "index_notice_no": "20260123-13",
+      "index_notice_source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20260123-13",
+      "extracted_text_sha256": "f7610581b221c149c6ecca7a145cd48eaf8813b8c8a550edb3019c474bc64d89"
+    },
+    {
+      "issuer_name": "YAJUR FIBRES LIMITED",
+      "bse_scrip_code": "544676",
+      "listing_notice_no": "20260113-25",
+      "listing_date": "2026-01-14",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260113-25",
+      "index_notice_no": "20260114-31",
+      "index_notice_source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20260114-31",
+      "extracted_text_sha256": "471d88589bf67cf7b2487a015a9f36398cab9405e257056985ef54ae52e2ae5a"
+    }
+  ]
+}
