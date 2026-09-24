@@ -8,6 +8,70 @@ Continue P1/P2/P3 backend correctness, official-source coverage and dependable p
 
 Never infer missing IPO values. Keep listing date, index admission date, market lot, minimum bid quantity and application amount distinct.
 
+## Latest completed batch: first historical BSE discovery reconciliation
+
+PR #174 reconciled the first historical cursor batch from BSE SME addition-notice run **`35952980189`**.
+
+### Reconciliation result
+
+The cursor's next 20 parsed notices produced **23 listing references**. Exact comparison with the current 2026 recovery universe found:
+
+- **6 already present**
+- **17 missing exact identities**
+- **0 identity-review/fuzzy-match cases**
+
+No index-only candidate was promoted. The reconciliation is retained in:
+
+`data/discovery/bse-listing-reconciliation-2026-09-24.json`
+
+The 17 missing candidates were split to respect the verifier's 15-record safety bound:
+
+- `data/discovery/bse-listing-candidates-2026-09-24-batch4.json` — 15
+- `data/discovery/bse-listing-candidates-2026-09-24-batch5.json` — 2
+
+### Issuer-specific source verification
+
+PR source run **`35954077034`** completed both candidate batches.
+
+Final issuer-specific official BSE listing-notice result:
+
+- attempted: **17**
+- verified: **13**
+- rejected: **4**
+- unavailable: **0**
+
+Artifact:
+
+- id: **`10789631977`**
+- ZIP SHA-256: **`f493f894524bc666b8652b8726283122e85f87fb00e93d96fc258a7090cc9ad6`**
+
+Batch 5 verified **2/2**. Batch 4 verified **11/15** after the official PDF archive retry.
+
+The four rejected candidates are intentionally held:
+
+| Issuer | Listing notice | Rejection |
+| --- | --- | --- |
+| AUTOFURNISH LIMITED | `20260527-47` | scrip code missing/mismatch; listing date missing/mismatch; equity-listing statement missing |
+| RECODE STUDIOS LIMITED | `20260511-16` | scrip code missing/mismatch; listing date missing/mismatch |
+| MEHUL TELECOM LIMITED | `20260423-27` | scrip code missing/mismatch; listing date missing/mismatch; equity-listing statement missing |
+| TIPCO ENGINEERING INDIA LIMITED | `20260330-44` | scrip code missing/mismatch; listing date missing/mismatch; equity-listing statement missing |
+
+These are source-verification failures, not permission to infer values from the SME-index notices. Preserve them as unresolved discovery evidence until issuer identity/source repair proves the correct listing notice or bounded parser fix.
+
+### Validation
+
+On the final PR head:
+
+- Validate reviewed BSE listing evidence: **success** — run `35954077035`
+- Validate IPO data contract: **success** — run `35954077036`
+- Verify BSE listing candidates: **success as a diagnostic collection run** — run `35954077034`; it intentionally retained the four rejected candidates instead of treating them as publishable.
+
+No IPO records are materialized by this PR. Production remains **951 records / 67 records for 2026** until reviewed evidence for the 13 verified issuers is committed and imported.
+
+### Next task
+
+Convert only the **13 verified** results from artifact `10789631977` into reviewed BSE evidence manifests with document hashes/page excerpts, revalidate them offline through the existing importer, then publish those 13. Keep the four rejected candidates held for a separate source/identity repair batch. The independent historical BSE cursor must continue advancing and must not be reset.
+
 ## Latest completed batch: BSE 544770 conflict resolved and published
 
 PR #171, **Resolve BSE 544770 identity conflict**, merged at:
