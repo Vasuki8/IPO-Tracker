@@ -1,0 +1,22 @@
+name: Diagnose BSE August notice parser
+
+on:
+  push:
+    branches:
+      - "diag/bse-august-notice-parser-20260923"
+    paths:
+      - "scripts/diagnose-bse-august-notice-parser.mjs"
+      - ".github/workflows/diagnose-bse-august-notice-parser.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: node scripts/diagnose-bse-august-notice-parser.mjs
