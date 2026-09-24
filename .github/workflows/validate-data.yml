@@ -57,7 +57,13 @@ jobs:
           grep -q 'group: historical-offer-date-backfill' .github/workflows/backfill-historical-offer-dates.yml
           grep -q 'group: historical-pdf-field-backfill' .github/workflows/backfill-historical-pdf-fields.yml
           grep -q 'git ls-files --error-unmatch ops/operator-snapshot.json' .github/workflows/update-ipos.yml
-          grep -q 'git rebase origin/main' .github/workflows/deploy-pages.yml
+          grep -q 'Pages publication-state attempt' .github/workflows/deploy-pages.yml
+          grep -q 'git reset --hard origin/main' .github/workflows/deploy-pages.yml
+          grep -q 'validate-operator-state.mjs' .github/workflows/deploy-pages.yml
+          if grep -q 'git rebase origin/main' .github/workflows/deploy-pages.yml; then
+            echo "Pages status publication must recompute on latest main rather than rebase modified JSON." >&2
+            exit 1
+          fi
           grep -q 'git reset --hard origin/main' .github/workflows/backfill-historical-offer-dates.yml
           grep -q 'apply-historical-offer-date-state.mjs' .github/workflows/backfill-historical-offer-dates.yml
           grep -q 'Semantic publication attempt' .github/workflows/backfill-historical-offer-dates.yml
