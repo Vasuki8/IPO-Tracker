@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "parser_version": "1.1.0",
-  "updated_at": "2026-09-24T06:07:01.445Z",
+  "parser_version": "1.2.0",
+  "updated_at": "2026-09-24T06:59:49.683Z",
   "bootstrap": {
     "source_run_id": "35939161246",
     "source_commit_sha": "7eedd8f9668cd7fce51d373427d7a2d7eafd7a8c",
@@ -17,7 +17,7 @@
     "eligible_count": 236,
     "newest_notice_no": "20260821-22",
     "oldest_notice_no": "20200113-10",
-    "observed_at": "2026-09-24T06:07:01.445Z"
+    "observed_at": "2026-09-24T06:59:49.683Z"
   },
   "notices": {
     "20260821-22": {
@@ -1816,171 +1816,277 @@
       "notice_no": "20250716-16",
       "notice_date": "2025-07-16",
       "subject": "Addition to the BSE SME IPO INDEX",
-      "parser_version": "1.1.0",
-      "status": "unparseable",
+      "parser_version": "1.2.0",
+      "status": "parsed",
       "attempts": 1,
-      "first_attempted_at": "2026-09-24T06:07:01.445Z",
-      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "first_attempted_at": "2026-09-24T06:59:49.683Z",
+      "last_attempted_at": "2026-09-24T06:59:49.683Z",
       "source_kind": "bse_index_notice_detail_api",
       "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250716-16",
       "pdf_url": null,
       "extracted_text_sha256": "fe03c2b25ada169d21f24d37d26004841756ed42c4281bde71f4110c98ab62f0",
-      "parsed_entry_count": 0,
-      "parsed_entries": [],
-      "error": "no_parseable_listing_reference"
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20250715-53",
+          "issuer_name": "ASSTON PHARMACEUTICALS LIMITED",
+          "bse_scrip_code": "544445",
+          "listing_date": "2025-07-16",
+          "listing_date_raw": "July 16,2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250715-53"
+        }
+      ],
+      "error": null
     },
     "20250715-47": {
       "notice_no": "20250715-47",
       "notice_date": "2025-07-15",
       "subject": "Addition to the BSE SME IPO INDEX",
-      "parser_version": "1.1.0",
-      "status": "unparseable",
+      "parser_version": "1.2.0",
+      "status": "parsed",
       "attempts": 1,
-      "first_attempted_at": "2026-09-24T06:07:01.445Z",
-      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "first_attempted_at": "2026-09-24T06:59:49.683Z",
+      "last_attempted_at": "2026-09-24T06:59:49.683Z",
       "source_kind": "bse_index_notice_detail_api",
       "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250715-47",
       "pdf_url": null,
       "extracted_text_sha256": "4e5246634f566ca4c0e7de14e2cd94f2889c83e097c1e977240e019ab6038e04",
-      "parsed_entry_count": 0,
-      "parsed_entries": [],
-      "error": "no_parseable_listing_reference"
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20250714-41",
+          "issuer_name": "GLEN INDUSTRIES LIMITED",
+          "bse_scrip_code": "544444",
+          "listing_date": "2025-07-15",
+          "listing_date_raw": "July 15,2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250714-41"
+        }
+      ],
+      "error": null
     },
     "20250711-10": {
       "notice_no": "20250711-10",
       "notice_date": "2025-07-11",
       "subject": "Addition to the BSE SME IPO INDEX",
-      "parser_version": "1.1.0",
-      "status": "unparseable",
+      "parser_version": "1.2.0",
+      "status": "parsed",
       "attempts": 1,
-      "first_attempted_at": "2026-09-24T06:07:01.445Z",
-      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "first_attempted_at": "2026-09-24T06:59:49.683Z",
+      "last_attempted_at": "2026-09-24T06:59:49.683Z",
       "source_kind": "bse_index_notice_detail_api",
       "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250711-10",
       "pdf_url": null,
       "extracted_text_sha256": "a6655eeef14c59c824a7aff1f4f831bcce3db22a071e88fa1821e3fb608cb3bc",
-      "parsed_entry_count": 0,
-      "parsed_entries": [],
-      "error": "no_parseable_listing_reference"
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20250710-60",
+          "issuer_name": "META INFOTECH LIMITED",
+          "bse_scrip_code": "544441",
+          "listing_date": "2025-07-11",
+          "listing_date_raw": "July 11,2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250710-60"
+        }
+      ],
+      "error": null
     },
     "20250710-17": {
       "notice_no": "20250710-17",
       "notice_date": "2025-07-10",
       "subject": "Addition to the BSE SME IPO INDEX",
-      "parser_version": "1.1.0",
-      "status": "unparseable",
+      "parser_version": "1.2.0",
+      "status": "parsed",
       "attempts": 1,
-      "first_attempted_at": "2026-09-24T06:07:01.445Z",
-      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "first_attempted_at": "2026-09-24T06:59:49.683Z",
+      "last_attempted_at": "2026-09-24T06:59:49.683Z",
       "source_kind": "bse_index_notice_detail_api",
       "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250710-17",
       "pdf_url": null,
       "extracted_text_sha256": "42bcb30e86d2cca6750a9bc291b11436476799dcb249d7a3a7bf7bf8ec224b28",
-      "parsed_entry_count": 0,
-      "parsed_entries": [],
-      "error": "no_parseable_listing_reference"
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20250709-45",
+          "issuer_name": "CRYOGENIC OGS LIMITED",
+          "bse_scrip_code": "544440",
+          "listing_date": "2025-07-10",
+          "listing_date_raw": "July 10,2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250709-45"
+        }
+      ],
+      "error": null
     },
     "20250606-10": {
       "notice_no": "20250606-10",
       "notice_date": "2025-06-06",
       "subject": "Addition to the BSE SME IPO INDEX",
-      "parser_version": "1.1.0",
-      "status": "unparseable",
+      "parser_version": "1.2.0",
+      "status": "parsed",
       "attempts": 1,
-      "first_attempted_at": "2026-09-24T06:07:01.445Z",
-      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "first_attempted_at": "2026-09-24T06:59:49.683Z",
+      "last_attempted_at": "2026-09-24T06:59:49.683Z",
       "source_kind": "bse_index_notice_detail_api",
       "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250606-10",
       "pdf_url": null,
       "extracted_text_sha256": "9d2a4decffc8cfbe33b267e29c6cc3840cc4241cda386817527336114138b71c",
-      "parsed_entry_count": 0,
-      "parsed_entries": [],
-      "error": "no_parseable_listing_reference"
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20250605-49",
+          "issuer_name": "3B Films Limited",
+          "bse_scrip_code": "544412",
+          "listing_date": "2025-06-06",
+          "listing_date_raw": "June 06,2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250605-49"
+        }
+      ],
+      "error": null
     },
     "20250529-14": {
       "notice_no": "20250529-14",
       "notice_date": "2025-05-29",
       "subject": "Addition to the BSE SME IPO INDEX",
-      "parser_version": "1.1.0",
-      "status": "unparseable",
+      "parser_version": "1.2.0",
+      "status": "parsed",
       "attempts": 1,
-      "first_attempted_at": "2026-09-24T06:07:01.445Z",
-      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "first_attempted_at": "2026-09-24T06:59:49.683Z",
+      "last_attempted_at": "2026-09-24T06:59:49.683Z",
       "source_kind": "bse_index_notice_detail_api",
       "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250529-14",
       "pdf_url": null,
       "extracted_text_sha256": "266c9fe115c7a75b506709b4e61780b378aec0db00df3b8a5dbdf9bac9b11d55",
-      "parsed_entry_count": 0,
-      "parsed_entries": [],
-      "error": "no_parseable_listing_reference"
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20250528-43",
+          "issuer_name": "UNIFIED DATA TECH SOLUTIONS LIMITED",
+          "bse_scrip_code": "544406",
+          "listing_date": "2025-05-29",
+          "listing_date_raw": "May 29,2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250528-43"
+        }
+      ],
+      "error": null
     },
     "20250512-14": {
       "notice_no": "20250512-14",
       "notice_date": "2025-05-12",
       "subject": "Additions to the BSE SME IPO INDEX",
-      "parser_version": "1.1.0",
-      "status": "unparseable",
+      "parser_version": "1.2.0",
+      "status": "parsed",
       "attempts": 1,
-      "first_attempted_at": "2026-09-24T06:07:01.445Z",
-      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "first_attempted_at": "2026-09-24T06:59:49.683Z",
+      "last_attempted_at": "2026-09-24T06:59:49.683Z",
       "source_kind": "bse_index_notice_detail_api",
       "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250512-14",
       "pdf_url": null,
       "extracted_text_sha256": "839dc1a5e14fcb88d9fcb0b5ca4fe03c095ee382956754a76cb0ecd1257c6133",
-      "parsed_entry_count": 0,
-      "parsed_entries": [],
-      "error": "no_parseable_listing_reference"
+      "parsed_entry_count": 2,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20250509-44",
+          "issuer_name": "SRIGEE DLM LIMITED",
+          "bse_scrip_code": "544399",
+          "listing_date": "2025-05-12",
+          "listing_date_raw": "May 12, 2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250509-44"
+        },
+        {
+          "listing_notice_no": "20250509-45",
+          "issuer_name": "MANOJ JEWELLERS LIMITED",
+          "bse_scrip_code": "544400",
+          "listing_date": "2025-05-12",
+          "listing_date_raw": "May 12, 2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250509-45"
+        }
+      ],
+      "error": null
     },
     "20250509-10": {
       "notice_no": "20250509-10",
       "notice_date": "2025-05-09",
       "subject": "Addition to the BSE SME IPO INDEX",
-      "parser_version": "1.1.0",
-      "status": "unparseable",
+      "parser_version": "1.2.0",
+      "status": "parsed",
       "attempts": 1,
-      "first_attempted_at": "2026-09-24T06:07:01.445Z",
-      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "first_attempted_at": "2026-09-24T06:59:49.683Z",
+      "last_attempted_at": "2026-09-24T06:59:49.683Z",
       "source_kind": "bse_index_notice_detail_api",
       "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250509-10",
       "pdf_url": null,
       "extracted_text_sha256": "ab6166852784c3a6edf538d7a9df706f044e711ba0fe86e32aeab5c2017e6bbf",
-      "parsed_entry_count": 0,
-      "parsed_entries": [],
-      "error": "no_parseable_listing_reference"
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20250508-51",
+          "issuer_name": "KENRIK INDUSTRIES LIMITED",
+          "bse_scrip_code": "544398",
+          "listing_date": "2025-05-09",
+          "listing_date_raw": "May 09,2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250508-51"
+        }
+      ],
+      "error": null
     },
     "20250408-20": {
       "notice_no": "20250408-20",
       "notice_date": "2025-04-08",
       "subject": "Additions to the BSE SME IPO INDEX",
-      "parser_version": "1.1.0",
-      "status": "unparseable",
+      "parser_version": "1.2.0",
+      "status": "parsed",
       "attempts": 1,
-      "first_attempted_at": "2026-09-24T06:07:01.445Z",
-      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "first_attempted_at": "2026-09-24T06:59:49.683Z",
+      "last_attempted_at": "2026-09-24T06:59:49.683Z",
       "source_kind": "bse_index_notice_detail_api",
       "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250408-20",
       "pdf_url": null,
       "extracted_text_sha256": "741d6a29c85e7cd49e308b2fec31c835029210eb06f70a5fb36cad33c0615b43",
-      "parsed_entry_count": 0,
-      "parsed_entries": [],
-      "error": "no_parseable_listing_reference"
+      "parsed_entry_count": 2,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20250407-51",
+          "issuer_name": "SPINAROO COMMERCIAL LIMITED",
+          "bse_scrip_code": "544392",
+          "listing_date": "2025-04-08",
+          "listing_date_raw": "April 08, 2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250407-51"
+        },
+        {
+          "listing_notice_no": "20250407-67",
+          "issuer_name": "INFONATIVE SOLUTIONS LIMITED",
+          "bse_scrip_code": "544393",
+          "listing_date": "2025-04-08",
+          "listing_date_raw": "April 08, 2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250407-67"
+        }
+      ],
+      "error": null
     },
     "20250407-20": {
       "notice_no": "20250407-20",
       "notice_date": "2025-04-07",
       "subject": "Addition to the BSE SME IPO INDEX",
-      "parser_version": "1.1.0",
-      "status": "unparseable",
+      "parser_version": "1.2.0",
+      "status": "parsed",
       "attempts": 1,
-      "first_attempted_at": "2026-09-24T06:07:01.445Z",
-      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "first_attempted_at": "2026-09-24T06:59:49.683Z",
+      "last_attempted_at": "2026-09-24T06:59:49.683Z",
       "source_kind": "bse_index_notice_detail_api",
       "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250407-20",
       "pdf_url": null,
       "extracted_text_sha256": "1b8c56d55fbf231944585ba4079c78e13591f8f5775b603350e4d55e43202629",
-      "parsed_entry_count": 0,
-      "parsed_entries": [],
-      "error": "no_parseable_listing_reference"
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20250404-53",
+          "issuer_name": "RETAGGIO INDUSTRIES LIMITED",
+          "bse_scrip_code": "544391",
+          "listing_date": "2025-04-07",
+          "listing_date_raw": "April 07,2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250404-53"
+        }
+      ],
+      "error": null
     }
   }
 }
