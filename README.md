@@ -33,17 +33,35 @@ Collection time, dataset generation and Pages publication are separate signals. 
 
 ## Handoff for the next prompt
 
-**Current batch: 15 independently verified BSE SME listings; PR #166.**
+**Verified batch: remaining 12 unambiguous BSE SME listings — PR #168.**
 
-The newest 15 unambiguous candidates from the PR #165 discovery report have now been checked against their actual issuer-specific BSE listing PDFs. Live verification `35942438600` passed all 15; all document hashes and 45 listing-date/lot-size/final-price facts match the retained reviewed evidence. Blank HTML responses and PDF column/header issues are resolved; do not repeat those diagnoses.
+PR #168 merged at `39ead2287b9352953d43b24ec9a006ab21f0d72a`. The 12 remaining unambiguous issuer references from the original BSE notice report were independently checked against issuer-specific official BSE listing PDFs.
 
-`data/verified-bse-listings/2026-09-24.json` retains exact source URLs, PDF hashes, collection/publication timestamps and page evidence. The new offline importer revalidates those facts, creates missing records only and leaves all other fields missing. It never adds PDF downloads to the live sync or overwrites a concurrent record.
+Successful source verification run `35946970931` finished **12/12 verified**, with artifact `10787446306` and artifact SHA-256 `4d93a865acc52cebd8b57e6d00668b722b6182c79aa8d2b874b9864dc57e1863`.
 
-All 33 local test scripts and publication rehearsal passed: 922 -> 937 records, with every existing record preserved; the second import is a no-op. **Final importer CI, merge, production publication and deployed-data verification are pending at this checkpoint.** Read [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) before claiming the 15 records are live.
+The reviewed evidence is retained in `data/verified-bse-listings/2026-09-24-batch2.json`. Only explicit listing date, market lot and final issue price are published. The verifier also now distinguishes rejected PDFs from unavailable sources and handles BSE PDF text where the `ff` ligature in `effective` is extracted as a space without accepting index-admission wording.
 
-After publication verification, process the remaining **12 unambiguous candidates** from the original report. Keep both code-544770 references (Merritronix and Yaashvi Jewellers) on hold. The older 216 eligible notices still need a durable cursor. Index addition dates remain distinct from listing dates; no source-completeness claim is made.
+The reviewed importer now supports multiple committed BSE evidence batches with the same no-overwrite/idempotency rules.
 
-No UI redesign, research-depth expansion, minimum-investment work, billing, accounts, ads, paid services or permission changes are part of this batch.
+Production live sync `35947297162` succeeded and semantic publication added exactly **12 records**. Source-backed data commit: `1d7ffff145b99cf045b6954028d595105a1522fb`.
+
+Current production counts from that run:
+
+- **949 total records**
+- **65 records for 2026**
+- deterministic recovery check passed
+- data-contract validation passed
+- operator state healthy
+
+GitHub Pages build `35947797703` succeeded on descendant commit `1d92710098fcf9b492a572eb6424e2c434153e93`, so the deployed website includes the new data.
+
+Across PR #166 + PR #168, **27 independently reviewed BSE SME records from the original discovery report are now published**.
+
+**Next:** resolve the remaining code-`544770` identity conflict between MERRITRONIX LIMITED and YAASHVI JEWELLERS LIMITED using their original index PDFs plus issuer-specific official BSE listing notices. Do not pick one by recency or fuzzy identity. After that, add a durable versioned cursor for the **216 older eligible BSE SME addition notices** not covered by the latest-20 audit.
+
+Read [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) for exact production evidence, reviewed facts and remaining blockers.
+
+No UI redesign, research-depth expansion, minimum-investment work, billing, accounts, ads, paid services or permission changes are part of this handoff.
 
 ## Local checks
 
