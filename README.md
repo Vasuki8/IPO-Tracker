@@ -33,15 +33,17 @@ Collection time, dataset generation and Pages publication are separate signals. 
 
 ## Handoff for the next prompt
 
-**Current batch: 15 independently verified BSE SME listings; PR #166.**
+**Current batch: remaining 12 independently verified BSE SME listings; PR #167.**
 
-The newest 15 unambiguous candidates from the PR #165 discovery report have now been checked against their actual issuer-specific BSE listing PDFs. Live verification `35942438600` passed all 15; all document hashes and 45 listing-date/lot-size/final-price facts match the retained reviewed evidence. Blank HTML responses and PDF column/header issues are resolved; do not repeat those diagnoses.
+PR #166's first 15 records are already live: a fresh deployed snapshot contains 937 records and all 45 previously reviewed facts. Do not repeat that batch.
 
-`data/verified-bse-listings/2026-09-24.json` retains exact source URLs, PDF hashes, collection/publication timestamps and page evidence. The new offline importer revalidates those facts, creates missing records only and leaves all other fields missing. It never adds PDF downloads to the live sync or overwrites a concurrent record.
+The remaining 12 unambiguous candidates were pinned and independently checked against their actual BSE listing PDFs. Live verification `35946186883` passed all 12. All 24 header/fact pages were rendered and reviewed; all 36 listing-date/lot-size/final-price facts cite PDF page 2. A narrow missing-ff text-extraction fix handles Leapfrog's `e ective from` label while retaining the original source text and all identity/date guards.
 
-All 33 local test scripts and publication rehearsal passed: 922 -> 937 records, with every existing record preserved; the second import is a no-op. **Final importer CI, merge, production publication and deployed-data verification are pending at this checkpoint.** Read [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) before claiming the 15 records are live.
+Both reviewed batches are registered explicitly in `data/verified-bse-listings/approved-batches.json`. The existing offline importer validates every registered batch before writing, protects existing/concurrent values, preserves each batch's source version/times, and rejects cross-batch identity collisions. Unreviewed files are not automatically imported.
 
-After publication verification, process the remaining **12 unambiguous candidates** from the original report. Keep both code-544770 references (Merritronix and Yaashvi Jewellers) on hold. The older 216 eligible notices still need a durable cursor. Index addition dates remain distinct from listing dates; no source-completeness claim is made.
+All 36 local tests passed. Publication rehearsal: **937 -> 949**, with all 937 existing records unchanged and a no-op second import. **Final CI, merge, production publication and deployed verification remain pending at this checkpoint.** Read [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) for observed release results before claiming these 12 are live.
+
+**Next:** resolve the two held code-544770 references (Merritronix and Yaashvi Jewellers) against their original official documents. The other 216 older eligible notices still require a durable cursor. Index admission dates remain distinct from listing dates; no complete-BSE-universe claim is made.
 
 No UI redesign, research-depth expansion, minimum-investment work, billing, accounts, ads, paid services or permission changes are part of this batch.
 
@@ -51,13 +53,15 @@ No UI redesign, research-depth expansion, minimum-investment work, billing, acco
 node scripts/test-verify-bse-listing-candidates.mjs
 node scripts/test-retry-bse-listing-pdf.mjs
 node scripts/test-apply-verified-bse-listings.mjs
+node scripts/test-apply-bse-approved-batches.mjs
+node scripts/test-bse-publication-rehearsal.mjs
 node scripts/apply-verified-bse-listings.mjs --check
 node scripts/build-published-data.mjs --check
 node scripts/validate-data.mjs
 node scripts/audit-historical-coverage.mjs
 ```
 
-To apply the already reviewed batch locally, run `node scripts/apply-verified-bse-listings.mjs` before rebuilding. This uses no network. The independent BSE PDF verification workflow requires `pdftotext`; its report never writes IPO records automatically.
+To apply the already reviewed batches locally, run `node scripts/apply-verified-bse-listings.mjs` before rebuilding. This uses no network. The independent BSE PDF verification workflow requires `pdftotext`; its report never writes IPO records automatically.
 
 ## Earlier handoffs
 

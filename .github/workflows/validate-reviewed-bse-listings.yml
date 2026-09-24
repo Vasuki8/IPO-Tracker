@@ -23,5 +23,11 @@ jobs:
         run: node scripts/test-retry-bse-listing-pdf.mjs
       - name: Test reviewed import, conflicts and idempotency
         run: node scripts/test-apply-verified-bse-listings.mjs
+      - name: Test remaining batch and PDF text regression
+        run: node scripts/test-bse-remaining-batch.mjs
+      - name: Test approved batch registry and no-overwrite replay
+        run: node scripts/test-apply-bse-approved-batches.mjs
+      - name: Rehearse publication and prove existing records unchanged
+        run: node scripts/test-bse-publication-rehearsal.mjs
       - name: Validate retained listing facts against page excerpts
         run: node scripts/apply-verified-bse-listings.mjs --check
