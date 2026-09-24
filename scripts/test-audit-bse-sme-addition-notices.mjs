@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import {
   isBseSmeAdditionNotice,
+  officialNoticePdfUrl,
   parseBseSmeAdditionNoticeHtml,
   summarizeBseNoticeDataShape,
   summarizeBseNoticeParseFailure
@@ -80,3 +81,12 @@ const shaped = {
 };
 assert.equal(summarizeBseNoticeDataShape(shaped).type, "object");
 assert.ok(summarizeBseNoticeParseFailure(shaped, 300).includes("With reference"));
+
+assert.equal(
+  officialNoticePdfUrl({
+    FileName: "https://www.bseindia.com/downloads/UploadDocs/Notices/20260821-22/20260821-22.pdf"
+  }),
+  "https://www.bseindia.com/downloads/UploadDocs/Notices/20260821-22/20260821-22.pdf"
+);
+assert.equal(officialNoticePdfUrl({ FileName: "https://evil.example/notice.pdf" }), null);
+assert.equal(officialNoticePdfUrl({ FileName: "https://www.bseindia.com/notices/index.html" }), null);
