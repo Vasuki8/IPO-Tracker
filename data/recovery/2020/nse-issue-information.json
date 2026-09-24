@@ -1,7 +1,7 @@
 {
   "source_family": "Official NSE / SEBI / BSE offer-document and exchange evidence",
   "collection_started_at": "2026-09-23T19:29:29.146Z",
-  "generated_at": "2026-09-23T23:46:32.325Z",
+  "generated_at": "2026-09-24T01:31:57.821Z",
   "records": [
     {
       "id": "aakash-exploration-services-limited",
@@ -1435,10 +1435,24 @@
           "url": "https://www.nseindia.com/api/ipo-detail?symbol=GLAND&series=EQ",
           "publication_date": null,
           "collected_at": "2026-09-23T20:42:21.127Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "Gland Pharma Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/nov-2020/gland-pharma-limited-prospectus_48166.html",
+          "publication_date": "2020-11-13",
+          "collected_at": "2026-09-24T01:31:57.821Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "Gland Pharma Limited - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2020/1605240990458.pdf",
+          "publication_date": "2020-11-13",
+          "collected_at": "2026-09-24T01:31:57.821Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T20:42:21.127Z",
+      "last_collected_at": "2026-09-24T01:31:57.821Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -2984,10 +2998,17 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — ROSSARI",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ROSSARI&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-24T01:27:56.444Z"
         }
       ],
       "first_observed_at": "2026-09-23T19:29:29.146Z",
-      "last_collected_at": "2026-09-23T19:29:29.146Z",
+      "last_collected_at": "2026-09-24T01:27:56.444Z",
       "board_evidence": [
         {
           "url": "https://www.nseindia.com/api/public-past-issues",
@@ -3034,6 +3055,19 @@
           "publication_date": null,
           "page": null,
           "collected_at": "2026-09-23T19:29:29.146Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 35,
+        "source_value": "35 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ROSSARI&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — ROSSARI",
+          "publication_date": null,
+          "collected_at": "2026-09-24T01:27:56.444Z"
         }
       }
     },

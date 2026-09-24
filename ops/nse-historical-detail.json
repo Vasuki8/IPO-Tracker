@@ -419,14 +419,10 @@
     "2025|tenneco-clean-air-india-limited": {
       "issuer_name": "Tenneco Clean Air India Limited",
       "listing_date": "2025-11-19",
-      "last_attempted_at": "2026-09-23T19:50:40.057Z",
-      "parser_version": "1.0.0",
-      "status": "extracted",
-      "extracted_fields": [
-        "price_band",
-        "minimum_bid_quantity",
-        "issue_size_inr"
-      ],
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
       "remaining_fields": [
         "market_lot"
       ],
@@ -435,45 +431,34 @@
     "2025|emmvee-photovoltaic-power-limited": {
       "issuer_name": "Emmvee Photovoltaic Power Limited",
       "listing_date": "2025-11-18",
-      "last_attempted_at": "2026-09-23T19:50:40.057Z",
-      "parser_version": "1.0.0",
-      "status": "extracted",
-      "extracted_fields": [
-        "price_band",
-        "minimum_bid_quantity"
-      ],
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
       "remaining_fields": [
-        "market_lot",
-        "issue_size_inr"
+        "market_lot"
       ],
       "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=EMMVEE&series=EQ"
     },
     "2025|physicswallah-limited": {
       "issuer_name": "Physicswallah Limited",
       "listing_date": "2025-11-18",
-      "last_attempted_at": "2026-09-23T19:50:40.057Z",
-      "parser_version": "1.0.0",
-      "status": "extracted",
-      "extracted_fields": [
-        "price_band",
-        "minimum_bid_quantity"
-      ],
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
       "remaining_fields": [
-        "market_lot",
-        "issue_size_inr"
+        "market_lot"
       ],
       "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=PWL&series=EQ"
     },
     "2025|curis-lifesciences-limited": {
       "issuer_name": "Curis Lifesciences Limited",
       "listing_date": "2025-11-14",
-      "last_attempted_at": "2026-09-23T19:50:40.057Z",
-      "parser_version": "1.0.0",
-      "status": "extracted",
-      "extracted_fields": [
-        "price_band",
-        "market_lot"
-      ],
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
       "remaining_fields": [
         "minimum_bid_quantity",
         "issue_size_inr"
@@ -483,13 +468,10 @@
     "2025|pine-labs-limited": {
       "issuer_name": "Pine Labs Limited",
       "listing_date": "2025-11-14",
-      "last_attempted_at": "2026-09-23T19:50:40.057Z",
-      "parser_version": "1.0.0",
-      "status": "extracted",
-      "extracted_fields": [
-        "price_band",
-        "minimum_bid_quantity"
-      ],
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
       "remaining_fields": [
         "market_lot",
         "issue_size_inr"
@@ -499,8 +481,8 @@
     "2025|shiv-aum-steels-limited": {
       "issuer_name": "Shiv Aum Steels Limited",
       "listing_date": "2025-11-14",
-      "last_attempted_at": "2026-09-23T19:50:40.057Z",
-      "parser_version": "1.0.0",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
       "status": "no_fields",
       "extracted_fields": [],
       "remaining_fields": [
@@ -514,13 +496,10 @@
     "2025|finbud-financial-services-limited": {
       "issuer_name": "Finbud Financial Services Limited",
       "listing_date": "2025-11-13",
-      "last_attempted_at": "2026-09-23T19:50:40.057Z",
-      "parser_version": "1.0.0",
-      "status": "extracted",
-      "extracted_fields": [
-        "price_band",
-        "market_lot"
-      ],
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
       "remaining_fields": [
         "minimum_bid_quantity",
         "issue_size_inr"
@@ -530,16 +509,12 @@
     "2025|billionbrains-garage-ventures-limited": {
       "issuer_name": "Billionbrains Garage Ventures Limited",
       "listing_date": "2025-11-12",
-      "last_attempted_at": "2026-09-23T19:50:40.057Z",
-      "parser_version": "1.0.0",
-      "status": "extracted",
-      "extracted_fields": [
-        "price_band",
-        "minimum_bid_quantity"
-      ],
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
       "remaining_fields": [
-        "market_lot",
-        "issue_size_inr"
+        "market_lot"
       ],
       "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=GROWW&series=EQ"
     },
@@ -4132,6 +4107,627 @@
         "issue_size_inr"
       ],
       "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=TOTAL&series=SME"
+    },
+    "2024|niva-bupa-health-insurance-company-limited": {
+      "issuer_name": "Niva Bupa Health Insurance Company Limited",
+      "listing_date": "2024-11-14",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "price_band",
+        "minimum_bid_quantity"
+      ],
+      "remaining_fields": [
+        "market_lot",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=NIVABUPA&series=EQ"
+    },
+    "2023|honasa-consumer-limited": {
+      "issuer_name": "Honasa Consumer Limited",
+      "listing_date": "2023-11-07",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "minimum_bid_quantity"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=HONASA&series=EQ"
+    },
+    "2022|narmada-agrobase-limited": {
+      "issuer_name": "Narmada Agrobase Limited",
+      "listing_date": "2022-10-27",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=NARMADA&series=SME"
+    },
+    "2021|art-nirman-limited": {
+      "issuer_name": "Art Nirman Limited",
+      "listing_date": "2021-10-18",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=ARTNIRMAN&series=SME"
+    },
+    "2020|macpower-cnc-machines-limited": {
+      "issuer_name": "Macpower CNC Machines Limited",
+      "listing_date": "2020-08-19",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=MACPOWER&series=SME"
+    },
+    "2024|acme-solar-holdings-limited": {
+      "issuer_name": "ACME Solar Holdings Limited",
+      "listing_date": "2024-11-13",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "price_band",
+        "minimum_bid_quantity"
+      ],
+      "remaining_fields": [
+        "market_lot",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=ACMESOLAR&series=EQ"
+    },
+    "2023|maitreya-medicare-limited": {
+      "issuer_name": "Maitreya Medicare Limited",
+      "listing_date": "2023-11-07",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "minimum_bid_quantity"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=MAITREYA&series=SME"
+    },
+    "2022|phantom-digital-effects-limited": {
+      "issuer_name": "Phantom Digital Effects Limited",
+      "listing_date": "2022-10-21",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "minimum_bid_quantity"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=PHANTOMFX&series=SME"
+    },
+    "2021|pansari-developers-limited": {
+      "issuer_name": "Pansari Developers Limited",
+      "listing_date": "2021-10-18",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=PANSARI&series=SME"
+    },
+    "2020|madhav-copper-limited": {
+      "issuer_name": "Madhav Copper Limited",
+      "listing_date": "2020-08-19",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=MCL&series=SME"
+    },
+    "2024|swiggy-limited": {
+      "issuer_name": "Swiggy Limited",
+      "listing_date": "2024-11-13",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "minimum_bid_quantity"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=SWIGGY&series=EQ"
+    },
+    "2023|cello-world-limited": {
+      "issuer_name": "Cello World Limited",
+      "listing_date": "2023-11-06",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "minimum_bid_quantity",
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=CELLO&series=EQ"
+    },
+    "2022|tracxn-technologies-limited": {
+      "issuer_name": "Tracxn Technologies Limited",
+      "listing_date": "2022-10-20",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "minimum_bid_quantity"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=TRACXN&series=EQ"
+    },
+    "2021|airo-lam-limited": {
+      "issuer_name": "Airo Lam Limited",
+      "listing_date": "2021-10-13",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=AIROLAM&series=SME"
+    },
+    "2020|worth-peripherals-limited": {
+      "issuer_name": "Worth Peripherals Limited",
+      "listing_date": "2020-08-04",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=WORTH&series=SME"
+    },
+    "2024|sagility-india-limited": {
+      "issuer_name": "Sagility India Limited",
+      "listing_date": "2024-11-12",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "price_band",
+        "minimum_bid_quantity"
+      ],
+      "remaining_fields": [
+        "market_lot",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=SAGILITY&series=EQ"
+    },
+    "2023|transteel-seating-technologies-limited": {
+      "issuer_name": "Transteel Seating Technologies Limited",
+      "listing_date": "2023-11-06",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "minimum_bid_quantity"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=TRANSTEEL&series=SME"
+    },
+    "2022|electronics-mart-india-limited": {
+      "issuer_name": "Electronics Mart India Limited",
+      "listing_date": "2022-10-17",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "minimum_bid_quantity",
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=EMIL&series=EQ"
+    },
+    "2021|destiny-logistics-and-infra-limited": {
+      "issuer_name": "Destiny Logistics & Infra Limited",
+      "listing_date": "2021-10-13",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=DESTINY&series=SME"
+    },
+    "2020|rossari-biotech-limited": {
+      "issuer_name": "Rossari Biotech Limited",
+      "listing_date": "2020-07-23",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "minimum_bid_quantity"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=ROSSARI&series=EQ"
+    },
+    "2024|usha-financial-services-limited": {
+      "issuer_name": "Usha Financial Services Limited",
+      "listing_date": "2024-10-31",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "price_band",
+        "minimum_bid_quantity"
+      ],
+      "remaining_fields": [
+        "market_lot",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=USHAFIN&series=SME"
+    },
+    "2023|paragon-fine-and-speciality-chemical-limited": {
+      "issuer_name": "Paragon Fine and Speciality Chemical Limited",
+      "listing_date": "2023-11-03",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "minimum_bid_quantity"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=PARAGON&series=SME"
+    },
+    "2022|secur-credentials-limited": {
+      "issuer_name": "Secur Credentials Limited",
+      "listing_date": "2022-10-17",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=SECURCRED&series=SME"
+    },
+    "2021|bombay-metrics-supply-chain-limited": {
+      "issuer_name": "Bombay Metrics Supply Chain Limited",
+      "listing_date": "2021-10-12",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=BMETRICS&series=SME"
+    },
+    "2020|silly-monks-entertainment-limited": {
+      "issuer_name": "Silly Monks Entertainment Limited",
+      "listing_date": "2020-07-08",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=SILLYMONKS&series=SME"
+    },
+    "2024|godavari-biorefineries-limited": {
+      "issuer_name": "Godavari Biorefineries Limited",
+      "listing_date": "2024-10-30",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "price_band",
+        "minimum_bid_quantity"
+      ],
+      "remaining_fields": [
+        "market_lot",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=GODAVARIB&series=EQ"
+    },
+    "2023|shanthala-fmcg-products-limited": {
+      "issuer_name": "Shanthala FMCG Products Limited",
+      "listing_date": "2023-11-03",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "minimum_bid_quantity"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=SHANTHALA&series=SME"
+    },
+    "2022|frog-cellsat-limited": {
+      "issuer_name": "Frog Cellsat Limited",
+      "listing_date": "2022-10-13",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=FROG&series=SME"
+    },
+    "2021|euro-india-fresh-foods-limited": {
+      "issuer_name": "Euro India Fresh Foods Limited",
+      "listing_date": "2021-10-12",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=EIFFL&series=SME"
+    },
+    "2020|aarvi-encon-limited": {
+      "issuer_name": "Aarvi Encon Limited",
+      "listing_date": "2020-06-24",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=AARVI&series=SME"
+    },
+    "2024|danish-power-limited": {
+      "issuer_name": "Danish Power Limited",
+      "listing_date": "2024-10-29",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "price_band",
+        "minimum_bid_quantity"
+      ],
+      "remaining_fields": [
+        "market_lot",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=DANISH&series=SME"
+    },
+    "2023|blue-jet-healthcare-limited": {
+      "issuer_name": "Blue Jet Healthcare Limited",
+      "listing_date": "2023-11-01",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "minimum_bid_quantity"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=BLUEJET&series=EQ"
+    },
+    "2022|swastik-pipe-limited": {
+      "issuer_name": "Swastik Pipe Limited",
+      "listing_date": "2022-10-12",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=SWASTIK&series=SME"
+    },
+    "2021|aditya-birla-sun-life-amc-limited": {
+      "issuer_name": "Aditya Birla Sun Life AMC Limited",
+      "listing_date": "2021-10-11",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "minimum_bid_quantity"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=ABSLAMC&series=EQ"
+    },
+    "2020|univastu-india-limited": {
+      "issuer_name": "Univastu India Limited",
+      "listing_date": "2020-06-22",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=UNIVASTU&series=SME"
+    },
+    "2024|obsc-perfection-limited": {
+      "issuer_name": "OBSC Perfection Limited",
+      "listing_date": "2024-10-29",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "price_band",
+        "minimum_bid_quantity"
+      ],
+      "remaining_fields": [
+        "market_lot",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=OBSCP&series=SME"
+    },
+    "2023|on-door-concepts-limited": {
+      "issuer_name": "On Door Concepts Limited",
+      "listing_date": "2023-11-01",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "minimum_bid_quantity"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=ONDOOR&series=SME"
+    },
+    "2022|lloyds-luxuries-limited": {
+      "issuer_name": "Lloyds Luxuries Limited",
+      "listing_date": "2022-10-11",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=LLOYDS&series=SME"
+    },
+    "2021|jainam-ferro-alloys-i-limited": {
+      "issuer_name": "Jainam Ferro Alloys (I) Limited",
+      "listing_date": "2021-10-08",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=JAINAM&series=SME"
+    },
+    "2020|kapston-facilities-management-limited": {
+      "issuer_name": "Kapston Facilities Management Limited",
+      "listing_date": "2020-05-27",
+      "last_attempted_at": "2026-09-24T01:27:56.444Z",
+      "parser_version": "1.1.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "market_lot",
+        "minimum_bid_quantity",
+        "issue_size_inr"
+      ],
+      "source_url": "https://www.nseindia.com/api/ipo-detail?symbol=KAPSTON&series=SME"
     }
   }
 }
