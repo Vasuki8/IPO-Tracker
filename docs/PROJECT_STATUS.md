@@ -8,6 +8,98 @@ Continue P1/P2/P3 backend correctness, official-source coverage and dependable p
 
 Never infer missing IPO values. Keep listing date, index admission date, market lot, minimum bid quantity and application amount distinct.
 
+## Latest completed batch: BSE 544770 conflict resolved and published
+
+PR #171, **Resolve BSE 544770 identity conflict**, merged at:
+
+`71f0f0c3824269621734e65cdd0e4abfe0c097bc`
+
+The retained discovery conflict is now resolved by issuer-specific official BSE listing notices:
+
+- **YAASHVI JEWELLERS LIMITED** — BSE Listing Notice `20260601-25` independently confirms **scrip code 544770**, listing date **2026-06-02**, market lot **1,600**, and final issue price **INR 83/share**.
+- **MERRITRONIX LIMITED** — BSE Listing Notice `20260605-37` independently confirms **scrip code 544773**, listing date **2026-06-08**, market lot **1,000**, and final issue price **INR 149/share**.
+
+The older BSE SME index-addition notice `20260608-14` had associated Merritronix with `544770`. That claim is preserved as **superseded discovery evidence** rather than silently deleted or selected by recency. Yaashvi's earlier index notice `20260602-17` and its listing notice both support `544770`.
+
+### Conflict/source verification
+
+The first conflict probe intentionally used the original index-derived identities separately:
+
+- Merritronix candidate `544770` was **rejected only for scrip-code mismatch**, with the issuer-specific PDF observing `544773`;
+- Yaashvi candidate `544770` was **verified**.
+
+The corrected two-record batch then verified **2/2**, with 0 rejected and 0 unavailable.
+
+Successful corrected source run:
+
+- workflow: `35950849004`
+- artifact: `10787659263`
+- artifact SHA-256: `f969117ce1895c8d9d17f5b3ba2a2dfe91640f5f71367898c65f330520c04e21`
+- Merritronix PDF SHA-256: `920101f48760a903cf0f41424f0df00077cd2f85987feed8fe3f91244b9bf0be`
+- Yaashvi PDF SHA-256: `22e26ebf183205834b468993d4441d5eea66a14e2c775464e70c05eed2f37dfd`
+
+Retained inputs/evidence:
+
+- `data/discovery/bse-listing-conflict-544770-merritronix.json`
+- `data/discovery/bse-listing-conflict-544770-yaashvi.json`
+- `data/discovery/bse-listing-candidates-2026-09-24-batch3.json`
+- `data/verified-bse-listings/2026-09-24-batch3.json`
+- `.github/workflows/verify-bse-544770-conflict.yml`
+
+Batch 3 retains Merritronix's original index claim and the issuer-specific correction in machine-readable form. Only explicit issuer-specific listing-date, market-lot and final-issue-price facts are publishable.
+
+### Pre-merge validation
+
+All three PR workflows passed on the reviewed batch:
+
+- conflict/source verification: `35950980614`;
+- reviewed BSE evidence/importer validation: `35950980623`;
+- full data-contract validation: `35950980645`.
+
+The isolated publication rehearsal measured:
+
+- **949 -> 951 records**;
+- exactly **2 records added**;
+- **27 already-present** reviewed BSE records;
+- **0 existing records changed by the BSE importer**;
+- **0 held conflicts**;
+- second import/rebuild: **no-op / idempotent**.
+
+### Production publication
+
+Merge-triggered live sync:
+
+- run: **`35951056853`**
+- conclusion: **success**
+- reviewed BSE import: **2 added, 27 already present, 0 holds**
+- semantic publication: **2 added, 31 changed, 0 removed**
+
+The additional changed records are normal concurrent NSE/SEBI enrichment from the same source-first run; semantic merge reported zero conflicts.
+
+Source-backed data commit:
+
+`6221738a93158e5831c524d4bc8883103492cce5`
+
+Production after publication:
+
+- **951 total IPO records**
+- **67 records for 2026**
+- 2026 board coverage: **15 mainboard / 42 SME / 10 unknown**
+- 2026 verified issue price: **49**
+- 2026 verified market lot: **55**
+- 2026 verified listing date: **49**
+- deterministic recovery build: passed
+- schema 1.2.0 validation: passed
+- operator health: **healthy**
+
+The production diff shows both new records retaining page-2 BSE evidence, document hashes, collection times and batch-3 provenance. Unsupported raw terms remain null: price band, offer dates, INR issue size and minimum bid quantity are not inferred.
+
+### Deployment
+
+The source-backed data commit was followed by operator-state commit `cf04c69179cd5935e8b04d212d56cc20360f7d40`. GitHub Pages build **`35951543912`** completed successfully on that descendant revision, so the deployed Pages artifact includes the 951-record dataset and both resolved records.
+
+This conflict is **closed**. Do not re-open it from index evidence or change Merritronix back to `544770`.
+
 ## Latest completed batch: remaining 12 verified BSE SME listings
 
 PR #168, **Verify and recover remaining 12 BSE SME listings**, merged at:
@@ -196,24 +288,21 @@ Production deployment run `35948287263` completed **successfully**, including th
 
 This was an operational metadata repair only; no IPO value or recovery evidence was changed.
 
-## Remaining BSE blockers and next task
-
-### 1. Resolve the code-544770 identity collision
-
-The next bounded P1/P2 task should independently inspect both original index-addition PDFs and both issuer-specific BSE listing notices for:
-
-- MERRITRONIX LIMITED
-- YAASHVI JEWELLERS LIMITED
-
-Both currently claim BSE scrip code `544770` in retained discovery evidence. Preserve both pieces of evidence until an authoritative issuer/listing source resolves the discrepancy. Do not materialize either candidate from index evidence alone.
-
-### 2. Add durable historical BSE notice progress
+## Next task: durable historical BSE notice progress
 
 The original BSE catalog contained **236 eligible SME addition notices**. The completed discovery audit processed only the latest 20; **216 older notices remain outside that audit batch**.
 
-After the 544770 conflict is addressed, build a durable parser-versioned cursor so historical BSE notice recovery progresses through older notices without rescanning the newest 20 each run.
+The next bounded P1/P2/P3 task is to build a **durable parser-versioned cursor/backfill** for official BSE SME addition notices so repeated runs advance through older notices instead of rescanning the newest 20.
 
-Current BSE index membership is still only a discovery aid; it is not proof of complete historical IPO coverage.
+Acceptance requirements:
+
+- cursor state must be retained separately from IPO values;
+- cursor/version changes must be deterministic and idempotent;
+- batches must remain bounded;
+- failed/unparseable notices must remain visible for retry rather than being silently skipped;
+- discovery candidates must still require issuer-specific official listing evidence before materialization;
+- current index membership remains a discovery aid, not historical-universe authority;
+- do not repeat the completed 544770 conflict work.
 
 ## Prior handoffs
 

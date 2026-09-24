@@ -33,39 +33,35 @@ Collection time, dataset generation and Pages publication are separate signals. 
 
 ## Handoff for the next prompt
 
-**Verified batch: remaining 12 unambiguous BSE SME listings — PR #168; independent release verification and safeguards — PR #167.**
+**Latest completed batch: BSE code 544770 conflict resolved and published — PR #171.**
 
-PR #168 merged at `39ead2287b9352953d43b24ec9a006ab21f0d72a`. The 12 remaining unambiguous issuer references from the original BSE notice report were independently checked against issuer-specific official BSE listing PDFs.
+Issuer-specific official BSE listing notices resolve the old discovery collision:
 
-Successful source verification run `35946970931` finished **12/12 verified**, with artifact `10787446306` and artifact SHA-256 `4d93a865acc52cebd8b57e6d00668b722b6182c79aa8d2b874b9864dc57e1863`.
+- **Yaashvi Jewellers Limited = 544770** — listing 2026-06-02, market lot 1,600, issue price INR 83.
+- **Merritronix Limited = 544773** — listing 2026-06-08, market lot 1,000, issue price INR 149.
 
-The reviewed evidence is retained in `data/verified-bse-listings/2026-09-24-batch2.json`. Only explicit listing date, market lot and final issue price are published. The verifier also now distinguishes rejected PDFs from unavailable sources and handles BSE PDF text where the `ff` ligature in `effective` is extracted as a space without accepting index-admission wording.
+Merritronix's later SME-index addition notice had claimed 544770. That conflicting index value remains retained as superseded discovery evidence; it was not silently overwritten or used as listing authority.
 
-The reviewed importer now supports multiple committed BSE evidence batches with the same no-overwrite/idempotency rules.
+Corrected source verification run `35950849004` passed **2/2** and retained both official PDFs in artifact `10787659263` (SHA-256 `f969117ce1895c8d9d17f5b3ba2a2dfe91640f5f71367898c65f330520c04e21`). Reviewed evidence is committed as `data/verified-bse-listings/2026-09-24-batch3.json`.
 
-Production live sync `35947297162` succeeded and semantic publication added exactly **12 records**. Source-backed data commit: `1d7ffff145b99cf045b6954028d595105a1522fb`.
+PR validation passed, including a **949 -> 951** isolated publication rehearsal with exactly 2 additions, all 949 existing records unchanged by the BSE importer, no held conflicts, and a no-op second import/rebuild.
 
-Current production counts from that run:
+Production live sync `35951056853` succeeded. Semantic publication added exactly **2 records** and produced source-backed data commit `6221738a93158e5831c524d4bc8883103492cce5`.
 
-- **949 total records**
-- **65 records for 2026**
-- deterministic recovery check passed
-- data-contract validation passed
+Current production state from that run:
+
+- **951 total records**
+- **67 records for 2026**
+- **42 SME records for 2026**
+- **29 reviewed BSE records across the three retained batches**
+- deterministic build and schema validation passed
 - operator state healthy
 
-GitHub Pages build `35947797703` succeeded on descendant commit `1d92710098fcf9b492a572eb6424e2c434153e93`, so the deployed website includes the new data.
+GitHub Pages build `35951543912` succeeded on descendant commit `cf04c69179cd5935e8b04d212d56cc20360f7d40`, so the deployed site includes the two resolved records.
 
-Pages publication-health persistence was also made race-safe in PR #169. Production deployment `35948287263` completed green and durable status commit `45b2f22a4f5d3a7b8416133a0b7eeab6fc580b5a` records the successful deployment.
+**Next:** build a durable parser-versioned cursor/backfill for the **216 older eligible BSE SME addition notices** not covered by the latest-20 audit. Keep batches bounded, preserve failed notices for retry, and continue requiring issuer-specific official listing evidence before materialization. Do not repeat the completed 544770 conflict work.
 
-Across PR #166 + PR #168, **27 independently reviewed BSE SME records from the original discovery report are now published**.
-
-**Actual live-data verification:** a fresh deployed snapshot at `2026-09-24T02:36:18.996Z` confirms all **27 issuers and 81 fields** against retained official PDF values, verified states, URLs and page evidence. The 12 new records keep unsupported price bands, offer dates, INR issue sizes and minimum-application fields null. Both held issuers remain absent. The live snapshot passes the core data-contract validator. Proof artifact: `10787263725`, run `35947529605`, attempt 2; hashes and expiry are in PROJECT_STATUS.
-
-PR #167 merged at `3a89120f498f18e54fcd1b26340cf090446e22fe`. Because #168 reached main during its verification, the final reconciliation preserved #168's canonical batch2 implementation rather than duplicating records or replacing newer fixes. The final change adds a real isolated publication/idempotency rehearsal to CI, plus read-only source and deployed snapshots in verification artifacts. All **34 reconciled local test scripts** and all three final PR workflows passed. The rehearsal adds exactly 12 records, preserves all 937 existing public records, and makes no changes on a second import/rebuild. Do not reintroduce the superseded unmerged `batch-02` files or alternative registry.
-
-**Next:** resolve the remaining code-`544770` identity conflict between MERRITRONIX LIMITED and YAASHVI JEWELLERS LIMITED using their original index PDFs plus issuer-specific official BSE listing notices. Do not pick one by recency or fuzzy identity. After that, add a durable versioned cursor for the **216 older eligible BSE SME addition notices** not covered by the latest-20 audit.
-
-Read [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) for exact production evidence, reviewed facts and remaining blockers.
+Read [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) for exact source hashes, correction history, run IDs, production counts and acceptance criteria.
 
 No UI redesign, research-depth expansion, minimum-investment work, billing, accounts, ads, paid services or permission changes are part of this handoff.
 
