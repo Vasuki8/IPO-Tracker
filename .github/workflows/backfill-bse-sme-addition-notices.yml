@@ -1,0 +1,118 @@
+name: Backfill historical BSE SME addition notices
+
+on:
+  schedule:
+    - cron: "17 */2 * * *"
+  workflow_dispatch:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "scripts/audit-bse-sme-addition-notices.mjs"
+      - "scripts/backfill-bse-sme-addition-notices.mjs"
+      - "scripts/test-backfill-bse-sme-addition-notices.mjs"
+      - "scripts/apply-bse-sme-addition-notice-state.mjs"
+      - "scripts/test-apply-bse-sme-addition-notice-state.mjs"
+      - ".github/workflows/backfill-bse-sme-addition-notices.yml"
+      - "ops/bse-sme-addition-notices.json"
+  push:
+    branches: ["main"]
+    paths:
+      - "scripts/audit-bse-sme-addition-notices.mjs"
+      - "scripts/backfill-bse-sme-addition-notices.mjs"
+      - "scripts/test-backfill-bse-sme-addition-notices.mjs"
+      - "scripts/apply-bse-sme-addition-notice-state.mjs"
+      - "scripts/test-apply-bse-sme-addition-notice-state.mjs"
+      - ".github/workflows/backfill-bse-sme-addition-notices.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bse-sme-addition-notice-backfill
+  cancel-in-progress: true
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install PDF text extraction dependency
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends poppler-utils
+          pdftotext -v
+
+      - name: Test durable BSE notice cursor
+        run: |
+          node scripts/test-backfill-bse-sme-addition-notices.mjs
+          node scripts/test-apply-bse-sme-addition-notice-state.mjs
+          node scripts/test-audit-bse-sme-addition-notices.mjs
+          node scripts/apply-bse-sme-addition-notice-state.mjs --check
+
+      - name: Advance historical BSE notice cursor
+        if: github.event_name != 'pull_request'
+        id: backfill
+        shell: bash
+        run: |
+          set -euo pipefail
+          report="${{ runner.temp }}/bse-sme-addition-notice-backfill.json"
+          node scripts/backfill-bse-sme-addition-notices.mjs --batch=20 --output="$report"
+
+          selected="$(node -e "const fs=require('fs');const r=JSON.parse(fs.readFileSync(process.argv[1],'utf8'));process.stdout.write(String(r.stats.selected||0))" "$report")"
+          echo "selected=$selected" >> "$GITHUB_OUTPUT"
+          if [ "$selected" -gt 0 ]; then
+            cp ops/bse-sme-addition-notices.json "${{ runner.temp }}/bse-sme-addition-notices-proposal.json"
+          fi
+
+      - name: Retain historical BSE notice report
+        if: github.event_name != 'pull_request' && always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bse-sme-addition-notice-backfill-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/bse-sme-addition-notice-backfill.json
+          retention-days: 14
+          if-no-files-found: warn
+
+      - name: Publish semantic BSE notice cursor state
+        if: github.event_name != 'pull_request' && steps.backfill.outputs.selected != '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for attempt in 1 2 3; do
+            echo "BSE notice cursor publication attempt $attempt/3"
+            git fetch origin main
+            git reset --hard origin/main
+
+            node scripts/apply-bse-sme-addition-notice-state.mjs \
+              --input="${{ runner.temp }}/bse-sme-addition-notices-proposal.json"
+            node scripts/apply-bse-sme-addition-notice-state.mjs --check
+
+            if git diff --quiet -- ops/bse-sme-addition-notices.json; then
+              echo "Latest main already contains all BSE notice progress."
+              exit 0
+            fi
+
+            git add ops/bse-sme-addition-notices.json
+            git commit -m "chore(ops): advance BSE SME notice cursor"
+
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+
+            echo "Main advanced during BSE cursor publication; recomputing semantic merge."
+          done
+
+          echo "Failed to publish BSE notice cursor after 3 attempts." >&2
+          exit 1
