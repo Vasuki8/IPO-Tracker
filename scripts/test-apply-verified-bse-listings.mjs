@@ -109,3 +109,32 @@ assert.equal(htmlApplied.recovery[2026].records[0].market_lot.page, null);
 const badHtml = structuredClone(htmlManifest);
 badHtml.entries[0].normalized_text_sha256 = "d".repeat(64);
 assert.throws(() => validateEvidenceBatch(badHtml, discovery));
+
+const visualManifest = structuredClone(manifest);
+visualManifest.entries = [structuredClone(manifest.entries[0])];
+const visualEntry = visualManifest.entries[0];
+visualEntry.evidence_kind = "official_listing_pdf_visual_review";
+delete visualEntry.excerpt_pages;
+delete visualEntry.identity_pages;
+visualEntry.visual_review = {
+  method: "visual_page_review",
+  reason: "image_only_pdf_page",
+  page: 2,
+  listing_statement: "Trading Members are informed that " + visualEntry.issuer_name +
+    " shall be listed effective from " + visualEntry.facts.listing_date.source_value,
+  scrip_code_source_value: "Scrip Code " + visualEntry.bse_scrip_code,
+  market_lot_source_value: visualEntry.facts.market_lot.source_value,
+  issue_price_source_value: visualEntry.facts.issue_price.source_value
+};
+assert.equal(validateEvidenceBatch(visualManifest, discovery).length, 1);
+const visualApplied = applyVerifiedListings(
+  { 2026: { generated_at: "2026-09-24T02:00:00Z", records: [] } },
+  visualManifest,
+  discovery
+);
+assert.equal(visualApplied.stats.added, 1);
+assert.equal(visualApplied.recovery[2026].records[0].listing_date.page, 2);
+assert.equal(visualApplied.recovery[2026].records[0].board_evidence[0].page, 1);
+const badVisual = structuredClone(visualManifest);
+badVisual.entries[0].visual_review.scrip_code_source_value = "Scrip Code 000000";
+assert.throws(() => validateEvidenceBatch(badVisual, discovery));
