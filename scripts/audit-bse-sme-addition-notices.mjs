@@ -1,5 +1,7 @@
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
+import { execFileSync } from "node:child_process";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { matchIndexCompany } from "./audit-bse-sme-ipo-index.mjs";
 
@@ -51,6 +53,20 @@ function listingNoticeUrl(noticeNo) {
 export function isBseSmeAdditionNotice(row) {
   const subject = normalizeText(row?.Subject ?? row?.subject);
   return /^Additions?\s+to\s+the\s+BSE\s+SME\s+IPO\s+INDEX$/i.test(subject);
+}
+
+export function officialNoticePdfUrl(row) {
+  const raw = normalizeText(row?.FileName ?? row?.file_name ?? "");
+  if (!raw) return null;
+  try {
+    const url = new URL(raw);
+    const host = url.hostname.toLowerCase();
+    if (!(host === "bseindia.com" || host.endsWith(".bseindia.com"))) return null;
+    if (!/\.pdf$/i.test(url.pathname)) return null;
+    return url.href;
+  } catch {
+    return null;
+  }
 }
 
 export function summarizeBseNoticeDataShape(value, depth = 0) {
@@ -192,6 +208,39 @@ async function fetchJson(url) {
   return response.json();
 }
 
+async function fetchPdfText(url) {
+  const response = await fetch(url, {
+    headers: {
+      "user-agent": USER_AGENT,
+      "accept": "application/pdf,*/*;q=0.5",
+      "accept-language": "en-US,en;q=0.9",
+      "referer": "https://www.bseindices.com/notices"
+    },
+    signal: AbortSignal.timeout(30000)
+  });
+  if (!response.ok) throw new Error("HTTP " + response.status + " " + url);
+
+  const bytes = Buffer.from(await response.arrayBuffer());
+  if (bytes.length < 5 || bytes.subarray(0, 5).toString("ascii") !== "%PDF-") {
+    throw new Error("BSE notice source is not a PDF: " + url);
+  }
+
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "bse-sme-notice-"));
+  const pdfPath = path.join(dir, "notice.pdf");
+  const textPath = path.join(dir, "notice.txt");
+  try {
+    fs.writeFileSync(pdfPath, bytes);
+    execFileSync(
+      "pdftotext",
+      ["-f", "1", "-l", "3", "-layout", pdfPath, textPath],
+      { stdio: "ignore", timeout: 20000 }
+    );
+    return fs.readFileSync(textPath, "utf8");
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
+}
+
 function noticeSortValue(row) {
   const value = Date.parse(row?.Notice_Date ?? row?.dt_tm ?? "");
   return Number.isFinite(value) ? value : 0;
@@ -222,6 +271,8 @@ export async function auditLatestBseSmeAdditionNotices(batchSize = NOTICE_BATCH_
     prefix_matches: 0,
     unmatched_candidates: 0,
     already_retained_sources: 0,
+    pdf_notice_downloads: 0,
+    detail_api_fallbacks: 0,
     parse_failures: 0,
     fetch_errors: 0
   };
@@ -236,54 +287,79 @@ export async function auditLatestBseSmeAdditionNotices(batchSize = NOTICE_BATCH_
       continue;
     }
 
-    try {
-      const detail = await fetchJson(BSE_INDEX_NOTICE_DETAIL_URL + encodeURIComponent(noticeNo));
-      stats.fetched_notices += 1;
-      const parsed = parseBseSmeAdditionNoticeHtml(detail?.Data);
-      if (parsed.length === 0) {
-        stats.parse_failures += 1;
+    const indexNoticePdfUrl = officialNoticePdfUrl(notice);
+    let noticeText = "";
+    let sourceKind = null;
+    let pdfError = null;
+
+    if (indexNoticePdfUrl) {
+      try {
+        noticeText = await fetchPdfText(indexNoticePdfUrl);
+        sourceKind = "bse_index_notice_pdf";
+        stats.pdf_notice_downloads += 1;
+      } catch (error) {
+        pdfError = String(error?.message || error);
+      }
+    }
+
+    if (!noticeText) {
+      try {
+        const detail = await fetchJson(BSE_INDEX_NOTICE_DETAIL_URL + encodeURIComponent(noticeNo));
+        noticeText = String(detail?.Data ?? "");
+        sourceKind = "bse_index_notice_detail_api";
+        stats.detail_api_fallbacks += 1;
+      } catch (error) {
+        stats.fetch_errors += 1;
         failures.push({
           notice_no: noticeNo,
-          reason: "no_parseable_listing_reference",
-          ...(failures.length < 3
-            ? {
-                data_shape: summarizeBseNoticeDataShape(detail?.Data),
-                excerpt: summarizeBseNoticeParseFailure(detail?.Data)
-              }
-            : {})
+          reason: "notice_source_fetch_error",
+          pdf_url: indexNoticePdfUrl,
+          pdf_error: pdfError,
+          detail_error: String(error?.message || error)
         });
         continue;
       }
+    }
 
-      for (const row of parsed) {
-        stats.parsed_entries += 1;
-        const sourceUrl = listingNoticeUrl(row.listing_notice_no);
-        const match = matchIndexCompany(row.issuer_name, recoveryRecords);
-        if (match.match_type === "exact") stats.exact_matches += 1;
-        else if (match.match_type === "prefix") stats.prefix_matches += 1;
-        else if (match.match_type === "none") stats.unmatched_candidates += 1;
-
-        const retained = retainedUrls.has(sourceUrl);
-        if (retained) stats.already_retained_sources += 1;
-
-        candidates.push({
-          index_notice_no: noticeNo,
-          index_notice_date: isoDate(notice?.Notice_Date ?? notice?.dt_tm),
-          index_notice_subject: normalizeText(notice?.Subject ?? notice?.subject),
-          ...row,
-          listing_notice_url: sourceUrl,
-          source_already_retained: retained,
-          match_type: match.match_type,
-          matched_issuer: match.match?.record?.issuer_name ?? null,
-          matched_year: match.match?.year ?? null
-        });
-      }
-    } catch (error) {
-      stats.fetch_errors += 1;
+    stats.fetched_notices += 1;
+    const parsed = parseBseSmeAdditionNoticeHtml(noticeText);
+    if (parsed.length === 0) {
+      stats.parse_failures += 1;
       failures.push({
         notice_no: noticeNo,
-        reason: "detail_fetch_error",
-        error: String(error?.message || error)
+        reason: "no_parseable_listing_reference",
+        source_kind: sourceKind,
+        index_notice_pdf_url: indexNoticePdfUrl,
+        pdf_error: pdfError,
+        ...(failures.length < 3
+          ? { excerpt: summarizeBseNoticeParseFailure(noticeText) }
+          : {})
+      });
+      continue;
+    }
+
+    for (const row of parsed) {
+      stats.parsed_entries += 1;
+      const sourceUrl = listingNoticeUrl(row.listing_notice_no);
+      const match = matchIndexCompany(row.issuer_name, recoveryRecords);
+      if (match.match_type === "exact") stats.exact_matches += 1;
+      else if (match.match_type === "prefix") stats.prefix_matches += 1;
+      else if (match.match_type === "none") stats.unmatched_candidates += 1;
+
+      const retained = retainedUrls.has(sourceUrl);
+      if (retained) stats.already_retained_sources += 1;
+
+      candidates.push({
+        index_notice_no: noticeNo,
+        index_notice_date: isoDate(notice?.Notice_Date ?? notice?.dt_tm),
+        index_notice_subject: normalizeText(notice?.Subject ?? notice?.subject),
+        index_notice_pdf_url: indexNoticePdfUrl,
+        ...row,
+        listing_notice_url: sourceUrl,
+        source_already_retained: retained,
+        match_type: match.match_type,
+        matched_issuer: match.match?.record?.issuer_name ?? null,
+        matched_year: match.match?.year ?? null
       });
     }
 
