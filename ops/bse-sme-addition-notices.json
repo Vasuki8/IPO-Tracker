@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "parser_version": "1.3.0",
-  "updated_at": "2026-09-24T16:37:24.279Z",
+  "updated_at": "2026-09-24T18:12:33.727Z",
   "bootstrap": {
     "source_run_id": "35939161246",
     "source_commit_sha": "7eedd8f9668cd7fce51d373427d7a2d7eafd7a8c",
@@ -17,7 +17,7 @@
     "eligible_count": 236,
     "newest_notice_no": "20260821-22",
     "oldest_notice_no": "20200113-10",
-    "observed_at": "2026-09-24T16:37:24.279Z"
+    "observed_at": "2026-09-24T18:12:33.727Z"
   },
   "notices": {
     "20260821-22": {
@@ -3167,6 +3167,513 @@
         }
       ],
       "error": null
+    },
+    "20240624-11": {
+      "notice_no": "20240624-11",
+      "notice_date": "2024-06-24",
+      "subject": "Addition to the BSE SME IPO INDEX",
+      "parser_version": "1.3.0",
+      "status": "unparseable",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T18:12:33.727Z",
+      "last_attempted_at": "2026-09-24T18:12:33.727Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240624-11",
+      "pdf_url": null,
+      "extracted_text_sha256": "9e8130c896633115f194f3d8fc81edf19e70baa14123b47eee9bb68669756fc8",
+      "parsed_entry_count": 0,
+      "parsed_entries": [],
+      "error": "no_parseable_listing_reference"
+    },
+    "20240612-20": {
+      "notice_no": "20240612-20",
+      "notice_date": "2024-06-12",
+      "subject": "Additions to the BSE SME IPO INDEX",
+      "parser_version": "1.3.0",
+      "status": "unparseable",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T18:12:33.727Z",
+      "last_attempted_at": "2026-09-24T18:12:33.727Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240612-20",
+      "pdf_url": null,
+      "extracted_text_sha256": "e2968c4266bce8d9f7f0022596625a8e8791d3ce83589e271fc1d33215adb3a5",
+      "parsed_entry_count": 0,
+      "parsed_entries": [],
+      "error": "no_parseable_listing_reference"
+    },
+    "20240606-11": {
+      "notice_no": "20240606-11",
+      "notice_date": "2024-06-06",
+      "subject": "Addition to the BSE SME IPO INDEX",
+      "parser_version": "1.3.0",
+      "status": "unparseable",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T18:12:33.727Z",
+      "last_attempted_at": "2026-09-24T18:12:33.727Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240606-11",
+      "pdf_url": null,
+      "extracted_text_sha256": "1897319d0135058a1c15879cb0efdff8ee1904f1eaeb0dccbf0236762c1394ec",
+      "parsed_entry_count": 0,
+      "parsed_entries": [],
+      "error": "no_parseable_listing_reference"
+    },
+    "20240517-11": {
+      "notice_no": "20240517-11",
+      "notice_date": "2024-05-17",
+      "subject": "Additions to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T18:12:33.727Z",
+      "last_attempted_at": "2026-09-24T18:12:33.727Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240517-11",
+      "pdf_url": null,
+      "extracted_text_sha256": "b468c8fa1b6450ab640029e62afed61d4ae7ec74e197facecef491b330220bd4",
+      "parsed_entry_count": 2,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20240516-32",
+          "issuer_name": "Aztec Fluids & Machinery Limited",
+          "bse_scrip_code": "544177",
+          "listing_date": "2024-05-17",
+          "listing_date_raw": "May 17, 2024",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20240516-32"
+        },
+        {
+          "listing_notice_no": "20240516-37",
+          "issuer_name": "PIOTEX INDUSTRIES LIMITED",
+          "bse_scrip_code": "544178",
+          "listing_date": "2024-05-17",
+          "listing_date_raw": "May 17, 2024",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20240516-37"
+        }
+      ],
+      "error": null
+    },
+    "20240514-14": {
+      "notice_no": "20240514-14",
+      "notice_date": "2024-05-14",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T18:12:33.727Z",
+      "last_attempted_at": "2026-09-24T18:12:33.727Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240514-14",
+      "pdf_url": null,
+      "extracted_text_sha256": "7752c78fc75f6474537d0b7541c045d4ac8fe59815967302992e4042d65d11cb",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20240513-19",
+          "issuer_name": "Finelistings Technologies Limited",
+          "bse_scrip_code": "544173",
+          "listing_date": "2024-05-14",
+          "listing_date_raw": "May 14, 2024",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20240513-19"
+        }
+      ],
+      "error": null
+    },
+    "20240508-7": {
+      "notice_no": "20240508-7",
+      "notice_date": "2024-05-08",
+      "subject": "Additions to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T18:12:33.727Z",
+      "last_attempted_at": "2026-09-24T18:12:33.727Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240508-7",
+      "pdf_url": null,
+      "extracted_text_sha256": "fe34a81a2e08169b1a7b38d6495a9a46046046754c8380ef6ab225f35ec69cab",
+      "parsed_entry_count": 3,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20240507-40",
+          "issuer_name": "Amkay Products Limited",
+          "bse_scrip_code": "544169",
+          "listing_date": "2024-05-08",
+          "listing_date_raw": "May 08, 2024",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20240507-40"
+        },
+        {
+          "listing_notice_no": "20240507-39",
+          "issuer_name": "Sai Swami Metals and Alloys Limited",
+          "bse_scrip_code": "544170",
+          "listing_date": "2024-05-08",
+          "listing_date_raw": "May 08, 2024",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20240507-39"
+        },
+        {
+          "listing_notice_no": "20240507-54",
+          "issuer_name": "Storage Technologies and Automation Limited",
+          "bse_scrip_code": "544171",
+          "listing_date": "2024-05-08",
+          "listing_date_raw": "May 08, 2024",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20240507-54"
+        }
+      ],
+      "error": null
+    },
+    "20240426-12": {
+      "notice_no": "20240426-12",
+      "notice_date": "2024-04-26",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T18:12:33.727Z",
+      "last_attempted_at": "2026-09-24T18:12:33.727Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240426-12",
+      "pdf_url": null,
+      "extracted_text_sha256": "42fc5d52d941feabb347c1d21427574076e50baf5c1be4655d110f64f5c415d0",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20240425-39",
+          "issuer_name": "Faalcon Concepts Limited",
+          "bse_scrip_code": "544164",
+          "listing_date": "2024-04-26",
+          "listing_date_raw": "April 26, 2024",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20240425-39"
+        }
+      ],
+      "error": null
+    },
+    "20240422-9": {
+      "notice_no": "20240422-9",
+      "notice_date": "2024-04-22",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T18:12:33.727Z",
+      "last_attempted_at": "2026-09-24T18:12:33.727Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240422-9",
+      "pdf_url": null,
+      "extracted_text_sha256": "b2c7ff76be0751f86f4d651d9689084063afb0c7268355f0b632bcddc7f97a31",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20240419-38",
+          "issuer_name": "Greenhitech Ventures Limited",
+          "bse_scrip_code": "544163",
+          "listing_date": "2024-04-22",
+          "listing_date_raw": "April 22, 2024",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20240419-38"
+        }
+      ],
+      "error": null
+    },
+    "20240408-10": {
+      "notice_no": "20240408-10",
+      "notice_date": "2024-04-08",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T18:12:33.727Z",
+      "last_attempted_at": "2026-09-24T18:12:33.727Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240408-10",
+      "pdf_url": null,
+      "extracted_text_sha256": "50407af4924a49e7469d76213fbe6da295b1e1818f3296e0447f5b0d1082a06a",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20240405-41",
+          "issuer_name": "Jay Kailash Namkeen Limited",
+          "bse_scrip_code": "544160",
+          "listing_date": "2024-04-08",
+          "listing_date_raw": "April 08, 2024",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20240405-41"
+        }
+      ],
+      "error": null
+    },
+    "20240403-9": {
+      "notice_no": "20240403-9",
+      "notice_date": "2024-04-03",
+      "subject": "Additions to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T18:12:33.727Z",
+      "last_attempted_at": "2026-09-24T18:12:33.727Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240403-9",
+      "pdf_url": null,
+      "extracted_text_sha256": "6f9dae6cdffa2d9f9a96d1b680cff9759404e090a10fe28c5737d8d6448ca150",
+      "parsed_entry_count": 2,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20240402-51",
+          "issuer_name": "Gconnect Logitech and Supply Chain Limited",
+          "bse_scrip_code": "544156",
+          "listing_date": "2024-04-03",
+          "listing_date_raw": "April 03, 2024",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20240402-51"
+        },
+        {
+          "listing_notice_no": "20240402-40",
+          "issuer_name": "Vruddhi Engineering Works Limited",
+          "bse_scrip_code": "544157",
+          "listing_date": "2024-04-03",
+          "listing_date_raw": "April 03, 2024",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20240402-40"
+        }
+      ],
+      "error": null
+    },
+    "20240327-20": {
+      "notice_no": "20240327-20",
+      "notice_date": "2024-03-27",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T18:12:33.727Z",
+      "last_attempted_at": "2026-09-24T18:12:33.727Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240327-20",
+      "pdf_url": null,
+      "extracted_text_sha256": "4f20ff4f57689d71f2416fd1ff968414d9329e64d719ef90df48a88508b3a997",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20240326-62",
+          "issuer_name": "Chatha Foods Limited",
+          "bse_scrip_code": "544151",
+          "listing_date": "2024-03-27",
+          "listing_date_raw": "March 27, 2024",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20240326-62"
+        }
+      ],
+      "error": null
+    },
+    "20240322-16": {
+      "notice_no": "20240322-16",
+      "notice_date": "2024-03-22",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T18:12:33.727Z",
+      "last_attempted_at": "2026-09-24T18:12:33.727Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240322-16",
+      "pdf_url": null,
+      "extracted_text_sha256": "06332721177c3c64b0562f07cb6b3d4d1eb8b091b34b9383dcc4548695708769",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20240321-49",
+          "issuer_name": "KP green engineering limited",
+          "bse_scrip_code": "544150",
+          "listing_date": "2024-03-22",
+          "listing_date_raw": "March 22, 2024",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20240321-49"
+        }
+      ],
+      "error": null
+    },
+    "20240315-17": {
+      "notice_no": "20240315-17",
+      "notice_date": "2024-03-15",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T18:12:33.727Z",
+      "last_attempted_at": "2026-09-24T18:12:33.727Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240315-17",
+      "pdf_url": null,
+      "extracted_text_sha256": "922b4e44b2de0b550e5168c93d9d587e38c8a76765f715adda35f50d10e44c34",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20240314-66",
+          "issuer_name": "Pune E – Stock Broking Limited",
+          "bse_scrip_code": "544141",
+          "listing_date": "2024-03-15",
+          "listing_date_raw": "March 15, 2024",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20240314-66"
+        }
+      ],
+      "error": null
+    },
+    "20240215-14": {
+      "notice_no": "20240215-14",
+      "notice_date": "2024-02-15",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T18:12:33.727Z",
+      "last_attempted_at": "2026-09-24T18:12:33.727Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240215-14",
+      "pdf_url": null,
+      "extracted_text_sha256": "cb963f3ea7004765985f9532cc068913f2bd3f4c30b37b5aac043836f5600718",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20240214-39",
+          "issuer_name": "Rudra Gas Enterprise Limited",
+          "bse_scrip_code": "544121",
+          "listing_date": "2024-02-15",
+          "listing_date_raw": "February 15, 2024",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20240214-39"
+        }
+      ],
+      "error": null
+    },
+    "20240207-8": {
+      "notice_no": "20240207-8",
+      "notice_date": "2024-02-07",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T18:12:33.727Z",
+      "last_attempted_at": "2026-09-24T18:12:33.727Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240207-8",
+      "pdf_url": null,
+      "extracted_text_sha256": "401d7b7c556f12b444d06870580e0f4ea0437d1d0cf08de2e8a1ff4c2723cb09",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20240206-33",
+          "issuer_name": "Gabriel Pet Straps Limited",
+          "bse_scrip_code": "544108",
+          "listing_date": "2024-02-07",
+          "listing_date_raw": "February 07, 2024",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20240206-33"
+        }
+      ],
+      "error": null
+    },
+    "20240205-12": {
+      "notice_no": "20240205-12",
+      "notice_date": "2024-02-05",
+      "subject": "Additions to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "unparseable",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T18:12:33.727Z",
+      "last_attempted_at": "2026-09-24T18:12:33.727Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240205-12",
+      "pdf_url": null,
+      "extracted_text_sha256": "3843aa044e25b731579027387df56aea28a9a62ab04737710089f216c1677091",
+      "parsed_entry_count": 0,
+      "parsed_entries": [],
+      "error": "no_parseable_listing_reference"
+    },
+    "20240129-14": {
+      "notice_no": "20240129-14",
+      "notice_date": "2024-01-29",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T18:12:33.727Z",
+      "last_attempted_at": "2026-09-24T18:12:33.727Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240129-14",
+      "pdf_url": null,
+      "extracted_text_sha256": "c804df4d59b4d8d3629aa291edaee716dbb0ff2dde01270b0572c4d774a1a1b2",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20240125-43",
+          "issuer_name": "Qualitek Labs Limited",
+          "bse_scrip_code": "544091",
+          "listing_date": "2024-01-29",
+          "listing_date_raw": "January 29, 2024",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20240125-43"
+        }
+      ],
+      "error": null
+    },
+    "20240119-9": {
+      "notice_no": "20240119-9",
+      "notice_date": "2024-01-19",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T18:12:33.727Z",
+      "last_attempted_at": "2026-09-24T18:12:33.727Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240119-9",
+      "pdf_url": null,
+      "extracted_text_sha256": "944aba34e77263d46eb5d9f25e0f5e8dd9cc71a3af5f5af6174231f8967bd748",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20240118-25",
+          "issuer_name": "Shree Marutinandan Tubes Limited",
+          "bse_scrip_code": "544083",
+          "listing_date": "2024-01-19",
+          "listing_date_raw": "January 19, 2024",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20240118-25"
+        }
+      ],
+      "error": null
+    },
+    "20240118-7": {
+      "notice_no": "20240118-7",
+      "notice_date": "2024-01-18",
+      "subject": "Addition to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T18:12:33.727Z",
+      "last_attempted_at": "2026-09-24T18:12:33.727Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240118-7",
+      "pdf_url": null,
+      "extracted_text_sha256": "19d002100ce4b93fea85d3840b8d0949d4fae191921142676029bc96a50e4ff5",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20240117-29",
+          "issuer_name": "New Swan Multitech Limited",
+          "bse_scrip_code": "544082",
+          "listing_date": "2024-01-18",
+          "listing_date_raw": "January 18, 2024",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20240117-29"
+        }
+      ],
+      "error": null
+    },
+    "20240103-22": {
+      "notice_no": "20240103-22",
+      "notice_date": "2024-01-03",
+      "subject": "Additions to the BSE SME IPO Index",
+      "parser_version": "1.3.0",
+      "status": "unparseable",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T18:12:33.727Z",
+      "last_attempted_at": "2026-09-24T18:12:33.727Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240103-22",
+      "pdf_url": null,
+      "extracted_text_sha256": "82b3c343268a73886f1bec60b7b10d7e387aab5e40fb3c8234a110a243b15930",
+      "parsed_entry_count": 0,
+      "parsed_entries": [],
+      "error": "no_parseable_listing_reference"
     }
   }
 }
