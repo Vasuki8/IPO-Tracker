@@ -4,98 +4,76 @@ Updated: 2026-09-24 UTC (September 23 in America/Toronto).
 
 ## Current priority
 
-Continue P1/P2/P3 backend data correctness, source coverage and dependable publication under `DEVELOPMENT_PROCESS.md`. The active application-term requirement is Lot Size only; minimum investment remains out of scope. Preserve the static architecture and official-source evidence rules.
+Continue P1/P2/P3 backend correctness, official-source coverage and dependable publication under `DEVELOPMENT_PROCESS.md`. Lot Size only; minimum investment, UI redesign, research-depth expansion and commercial infrastructure remain out of scope. Do not invent missing dates, issue sizes or price bands.
 
-The existing NSE/SEBI collection and historical backfill pipelines are already implemented. The BSE SME constituent JSON endpoint is connected. The remaining BSE work is turning correctly parsed discovery candidates into independently verified issuer/listing evidence, without claiming current index membership is the entire historical IPO universe.
+## Current batch: 15 independently verified BSE SME listings
 
-## Current batch: BSE notice discovery and CI repair — VERIFIED
+PR #166: `feat/bse-verified-listing-batch-20260924`.
 
-Verification applies to the parser, read-only discovery audit and deployment, not to candidate materialization or complete historical coverage.
+Base inspected: `4c1d6636839f026d4ba92906fbc25711cdac3a9d`. The preceding PR #165 discovery report contained 29 issuer references. This batch pins the newest 15, excluding both disputed scrip-code-544770 references. No additional issuer is added to the batch during retries.
 
-### Recovered state
+### Source recovery and failed approaches
 
-Base inspected: `545518553efb419362f2cd84e4306ef43d362e72`.
+1. HTML verification run `35940961341` fetched all 15 issuer-specific URLs, but BSE returned empty ASP.NET notice templates. HTTP 200 was not accepted as listing evidence. Raw failed responses were retained.
+2. Official PDF archive verification run `35941366768` downloaded all 15 real listing PDFs. The first strict verifier still rejected them because historical regulatory notice `20120216-29` was counted as header identity, and two subject columns wrap through the word `Subject` in PDF text.
+3. Verifier v1.1 distinguishes header notice numbers from cited circulars and requires consistent issuer names from the subject, company table and/or explicit listing sentence. Missing source content is classified as unavailable; actual identity conflicts remain rejected. No market value was inferred to resolve these failures.
+4. A new live fetch and verification run `35942438600` completed successfully: **15 verified, 0 rejected, 0 unavailable**. All 15 PDF hashes and all 45 facts match the earlier retained bytes and the reviewed evidence manifest. General data-contract CI for that verifier commit passed in run `35942438528`.
 
-The preceding parser change was `8bee31cd7c9f81ddaf6dab77f2260fd9b10a8873`. Production audit run `35937699843` failed its BSE addition-notice test; the notice collection step was skipped. General validation CI did not invoke that test.
+PDF pages 1 and 2 of every listing notice were also rendered and reviewed. Page 1 confirms the notice number, publication date and SME segment; page 2 explicitly states listing date, market lot and final issue price. These are independent exchange listing documents, not the index-addition PDFs.
 
-The failure was reproduced locally against byte-identical copies of the committed parser and test: the plural notice used `Notice No:`, but the parser's initial clause delimiter accepted only the period/no-punctuation forms. Its later entry parser already accepted a colon.
+### Reviewed source facts
 
-### Changes
+| Issuer | BSE listing notice | Listing date | Market lot | Issue price (INR/share) |
+| --- | --- | --- | ---: | ---: |
+| ENS Enterprises | 20260820-37 | 2026-08-21 | 1,200 | 92 |
+| Technocrats Plasma Systems | 20260820-35 | 2026-08-21 | 1,000 | 132 |
+| LAPL Automotive | 20260812-34 | 2026-08-13 | 1,200 | 94 |
+| Aegeus Technologies | 20260810-35 | 2026-08-11 | 1,200 | 105 |
+| Fusion Klassroom Edutech | 20260806-43 | 2026-08-07 | 800 | 159 |
+| Poojaa Precision Engg. | 20260803-22 | 2026-08-04 | 400 | 301 |
+| Advance Technoforge | 20260731-25 | 2026-08-03 | 1,200 | 95 |
+| Silverstorm Parks and Resorts | 20260730-40 | 2026-07-31 | 1,000 | 133 |
+| Shree Balaji (Mala) Textiles | 20260728-26 | 2026-07-29 | 2,000 | 70 |
+| Gulf Lloyds (India) | 20260724-6 | 2026-07-27 | 1,200 | 100 |
+| Sotefin Bharat | 20260722-34 | 2026-07-23 | 600 | 187 |
+| Sampark India Logistics | 20260706-28 | 2026-07-07 | 1,600 | 84 |
+| Kratikal Tech | 20260706-34 | 2026-07-07 | 1,000 | 135 |
+| Atharva Poly-Plast | 20260706-33 | 2026-07-07 | 2,000 | 60 |
+| Seemax Resources | 20260706-30 | 2026-07-07 | 1,000 | 141 |
 
-- Align clause and entry punctuation handling for singular and plural official listing references.
-- Preserve the distinction between the explicit BSE listing date and the later index-addition date.
-- Reject calendar rollover, unrelated prose between references and listing statements, missing tickers, and conflicting duplicate issuer/date evidence within the parsed notice.
-- Enforce the existing bounded scan on every clause, including clauses followed by another reference.
-- Validate notice batch sizes before network work; retain the current maximum of 20 notices.
-- Run the addition-notice test in pull-request/push CI, not just the production source workflow.
-- Classify source audits as `complete`, `partial`, `failed`, or `no_eligible_notices`; partial/failed collection exits nonzero instead of appearing successful with no candidates.
-- Support `--output` JSON with parser version, run/commit identity, generation time, candidates and failures. Candidate evidence includes the actual source kind/URL, collection time and an **extracted-text** SHA-256 (not a PDF-file hash).
-- Retain the JSON as a 14-day Actions artifact even when the notice audit fails. The BSE workflow remains independent and retains `contents: read` permission.
+Exact source spelling, PDF URLs, document SHA-256, collection timestamps, publication dates and normalized page excerpts are in `data/verified-bse-listings/2026-09-24.json`. All 45 field facts cite PDF page 2. Scrip code and SME identity are independently checked before inclusion.
 
-### Files
+### Publication design
 
-`scripts/audit-bse-sme-addition-notices.mjs`, its test, `.github/workflows/validate-data.yml`, `.github/workflows/audit-bse-sme-universe.yml`, README and this handoff. Earlier README/status histories are preserved unchanged under `docs/archive/`.
+- `data/discovery/bse-listing-candidates-2026-09-24.json` retains the pinned discovery inputs and upstream report/text hashes; it is not publication authority.
+- `verify-bse-listing-candidates.mjs` and `retry-bse-listing-pdf.mjs` run in an independent read-only verification workflow. They keep unavailable/rejected responses and actual PDF bytes in a 14-day artifact.
+- `apply-verified-bse-listings.mjs` is a local-only importer for the reviewed committed batch. It revalidates the page excerpts, facts, identity, dates, page numbers and metadata, then uses the existing BSE record factory. It never downloads PDFs in hourly live sync.
+- The importer creates missing records only. Existing identities, conflicting codes, concurrent field changes and correction histories are never overwritten. Reruns neither duplicate records nor freshen timestamps.
+- The existing hourly sync applies this retained evidence, rebuilds the public dataset, validates it and uses the existing semantic publication retry path. No new write permission or paid service was added.
+- Unverified price bands, open/close dates, monetary issue sizes, minimum bids and application amounts remain missing. Market lot is not copied into minimum bid quantity.
 
-### Tests and release verification
+### Tests and release state
 
-Local checks passed: JavaScript syntax; existing singular/plural cases; 25 punctuation/dash combinations; duplicate/conflict, invalid-date/leap-year, wrong-date, missing-ticker, unrelated-text, URL, batch-boundary and audit-health checks; real CLI failure-output test with a simulated source outage; workflow YAML parsing.
+Local tests passed: all **33 test scripts**; syntax checks; all 15 actual-PDF replays; page/identity/price/lot negatives; unavailable-source and non-PDF cases; importer tampering/conflict/null-preservation tests; idempotent second import; deterministic rebuild and data validation.
 
-The local parser suite substitutes the unrelated matcher import only and does not exercise network collection or issuer matching. That substitute was not committed. Both GitHub validation runs used the actual repository modules and passed the full existing suite, including the new notice test and deterministic publication/data-contract checks.
+The local publication rehearsal increased records from **922 to 937**, with all **922 existing published records unchanged**. Only the 2026 recovery manifest gained records; all other year manifests were byte-identical. The 2026 count would rise from 38 to 53 on this baseline. These are rehearsal counts until production data is checked.
 
-| Check | Observed result |
-| --- | --- |
-| Pull request | #165 merged |
-| Merge commit | `7eedd8f9668cd7fce51d373427d7a2d7eafd7a8c` |
-| PR validation run | `35939095504` — completed success |
-| Post-merge validation run | `35939161216` — completed success |
-| Production BSE audit | `35939161246`, job `107442985818` — completed success |
-| Pages deployment | `35939161184` — success for the merge commit; completed `2026-09-24T00:36:33Z` |
-| Audit artifact upload | Success; artifact `10783988662` |
+At this checkpoint, live source verification is complete, but the final importer CI, PR merge, production bot publication and deployed-data verification remain **pending**. Do not label the 15 records live merely because their PDFs verified or a Pages build succeeded. Update this section after observing the production data revision.
 
-### Measured production result
+### Evidence retention
 
-Report generated at `2026-09-24T00:36:54.982Z`, parser version `1.1.0`:
+Original PDF collection: run `35941366768`, artifact `10785245967`, ZIP SHA-256 `23bacb8997abc0bec91df8f3304260e5bd326c1f593162b69244f8148c2fc921`.
 
-- 1,649 catalog rows; 236 eligible SME addition notices.
-- 20 notices attempted; 20 fetched as official PDFs; no HTML detail fallback used.
-- 29 issuer/listing references parsed; 29 unmatched to the inspected recovery universe.
-- 0 fetch errors; 0 parse failures; report status `complete`.
-- No IPO record or market field was added by this read-only audit.
-
-`complete` means this selected notice batch was collected and parsed. It does not certify issuer identities, resolve cross-notice inconsistencies, or imply historical-universe completeness.
-
-### Retained report and integrity
-
-Actions artifact: `bse-sme-addition-notices-35939161246-1`, ID `10783988662`, from run `35939161246`. The downloaded ZIP is 3,581 bytes and contains `bse-sme-addition-notices.json`.
-
-ZIP SHA-256 checked against GitHub's artifact digest:
-
-`d041a66e67d715aa0b62341d6e92ff2bc463a6dedd8f4529a530b0e9b5db7b56`
-
-The Actions artifact expires on `2026-10-08T00:36:55Z`; copies of the original ZIP and extracted JSON were also supplied in the conversation. Report checks confirmed its commit/run identity, counters, PDF source kinds, text-hash presence and unique `(listing_notice_no, bse_scrip_code)` pairs.
-
-### Unresolved cross-notice identity collision
-
-The report contains two different issuer references with scrip code `544770`:
-
-| Extracted issuer | Referenced listing notice | Extracted listing date | Index notice PDF |
-| --- | --- | --- | --- |
-| MERRITRONIX LIMITED | `20260605-37` | `2026-06-08` | `20260608-14.pdf` |
-| YAASHVI JEWELLERS LIMITED | `20260601-25` | `2026-06-02` | `20260602-17.pdf` |
-
-These are **unresolved extracted candidate facts**, not independently verified exchange identities or publication-ready IPO records. Both references remain in the read-only report. The parser's within-notice conflict checks do not resolve this cross-notice collision. Do not choose one by name length, newest date, or last-wins. Recheck both original PDFs and their issuer-specific official BSE listing notices before accepting either mapping.
-
-## Data and safety review
-
-This batch did not edit recovery manifests, `data/ipos.json`, `data/bse-ipo-sources.json`, field values, evidence histories or UI assets. It did not relax issuer-specific BSE listing-evidence requirements or reinsert BSE auditing into hourly live sync. No spending or permission expansion was introduced. The hourly NSE/SEBI sync was not rerun as part of this repair's verification; its code was unchanged.
+Successful re-verification: run `35942438600`, artifact `10784703620`, ZIP SHA-256 `64ec30157884145825c5404e47770f605b8b7a89ca8bd64612f1d7939c4df2e7`. This archive contains the 15 PDFs, failed HTML responses and complete verification report. Original collection timestamps remain in the reviewed manifest, not replaced by the later verification time. Conversation copies are retained; Actions artifacts expire after 14 days.
 
 ## Remaining blockers and next task
 
-1. Verify up to 15 candidate issuers against their issuer-specific official BSE listing notices, prioritizing unambiguous identities from the retained report. Keep the two `544770` references on hold until reconciled. Only then update retained source evidence and rebuild the public dataset.
-2. Keep index admission dates separate from listing dates. Do not promote unmatched index candidates solely because parsing succeeded.
-3. The audit still selects the latest 20 eligible notices; older-notice progress needs a separate durable, versioned cursor. The other 216 eligible notices were not processed in this batch. Do not repeatedly rescan the same latest notices and call it historical completion.
-4. Full 2020–2026 BSE coverage and many historical fields remain incomplete. Generate coverage from current recovery files, rather than using old README counts.
+After production verification of this batch, continue with the **12 remaining unambiguous candidates** from the original 29-reference report. The other two candidates, MERRITRONIX LIMITED and YAASHVI JEWELLERS LIMITED, both claim code `544770`; keep them on hold until their original index PDFs and issuer-specific listing notices resolve the discrepancy.
 
-## Prior history
+The other **216 eligible index notices** were not covered by the original latest-20 audit. A durable versioned cursor is still needed for historical notice progress. Neither current index membership nor this 15-record batch establishes complete BSE IPO coverage for 2020-2026.
 
-The previous full project-status log is preserved byte-for-byte in [archive/PROJECT_STATUS-before-bse-notice-repair.md](archive/PROJECT_STATUS-before-bse-notice-repair.md). The previous README handoff is in [archive/README-before-bse-notice-repair.md](archive/README-before-bse-notice-repair.md). These are historical milestones; this document and current code/run evidence supersede their stale next-task instructions.
+Recover missing fields only from new explicit official evidence. Do not repeat the already completed Angular-shell, empty-detail-response, plural-notice or listing-header diagnoses.
+
+## Prior handoffs
+
+The complete PR #165 discovery/CI repair status is preserved unchanged in `archive/PROJECT_STATUS-before-bse-listing-batch.md`. Older histories remain in `archive/PROJECT_STATUS-before-bse-notice-repair.md` and `archive/README-before-bse-notice-repair.md`. Current code, deployment evidence and this handoff supersede their stale next-task instructions.

@@ -1,0 +1,27 @@
+name: Validate reviewed BSE listing evidence
+
+on:
+  push:
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Test independent listing identity and source failures
+        run: node scripts/test-verify-bse-listing-candidates.mjs
+      - name: Test official PDF retry safety
+        run: node scripts/test-retry-bse-listing-pdf.mjs
+      - name: Test reviewed import, conflicts and idempotency
+        run: node scripts/test-apply-verified-bse-listings.mjs
+      - name: Validate retained listing facts against page excerpts
+        run: node scripts/apply-verified-bse-listings.mjs --check
