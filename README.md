@@ -31,15 +31,17 @@ See [docs/AUTOMATION.md](docs/AUTOMATION.md) for background; the workflow files 
 
 ## Handoff for the next prompt
 
-**Current batch: BSE SME notice parser and validation repair — 2026-09-24 UTC (September 23 in Toronto).**
+**Verified batch: BSE SME notice parser and validation repair — 2026-09-24 UTC (September 23 in Toronto).**
+
+PR #165 merged at `7eedd8f9668cd7fce51d373427d7a2d7eafd7a8c`. Full PR/main validation, production BSE audit and Pages deployment passed. Production audit `35939161246` fetched **20 official notice PDFs and parsed 29 issuer/listing references**, with zero fetch or parse failures. The report is retained as Actions artifact `10783988662`, with a conversation copy; integrity and expiry details are in [PROJECT_STATUS.md](docs/PROJECT_STATUS.md).
 
 The constituent JSON source is already connected. Addition notices can link directly to official PDFs; their HTML detail response may be empty. Do not repeat the completed Angular-shell or empty-HTML diagnosis.
 
-The latest regression was a mismatch between the parser's initial clause delimiter and its later entry parser: `Notice No:` was accepted by one but rejected by the other. The existing plural-notice test failed in production, while general CI had omitted that test. This batch repairs both, strengthens date/identity guards, and retains a machine-readable notice audit report even on source failure.
+The repaired regression was a mismatch between the parser's initial clause delimiter and its later entry parser: `Notice No:` was accepted by one but rejected by the other. The existing plural-notice test failed in production, while general CI had omitted that test. The repair fixes both, strengthens date/identity guards, and retains a machine-readable notice audit report even on source failure.
 
-Read **[PROJECT_STATUS.md](docs/PROJECT_STATUS.md)** for the current CI, merge and production-verification state before continuing. A successful parser test or Pages build is not proof that the live source audit succeeded.
+**No IPO was added by this read-only batch.** The 29 references are discovery candidates, not independently verified IPO records. Two references share scrip code `544770` but name different issuers: MERRITRONIX LIMITED and YAASHVI JEWELLERS LIMITED. Keep both on hold until their original PDFs and issuer-specific BSE listing notices resolve the identity discrepancy.
 
-Next, use a successfully collected audit report to verify a bounded set of issuer-specific BSE listing notices. Keep index admission dates separate from listing dates. Do not automatically materialize index constituents or unverified candidates. The latest-20-notices audit is not a complete historical backfill.
+**Next:** verify up to 15 candidate issuers using official BSE listing notices, retaining source evidence before any materialization. Keep index admission dates separate from listing dates. The latest-20-notices audit is not a complete historical backfill; older-notice progress still needs a durable cursor.
 
 No UI redesign, research-depth expansion, minimum-investment work, billing, accounts, ads, paid services or access changes are part of this batch.
 
