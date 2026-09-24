@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0.0",
+  "input_report": {
+    "run_id": "36028598993",
+    "commit_sha": "61453efd680289a57ecc889a0070aa894624df77",
+    "generated_at": "2026-09-24T16:37:24.279Z",
+    "cursor_state_blob_sha": "f6a2f15029d8d66aabe340a721ccebf9b62d7db8",
+    "reconciliation_report": "data/discovery/bse-listing-reconciliation-2026-09-24-cursor5-repaired.json"
+  },
+  "selection_rule": "All four references recovered by the cursor5 parser-v1.3 repair are exact-missing, unambiguous identities in the current 2024 recovery/public snapshots. They fit within the 15-candidate verifier bound and require issuer-specific official BSE listing verification before materialization.",
+  "candidates": [
+    {
+      "issuer_name": "NISUS FINANCE SERVICES CO LIMITED",
+      "bse_scrip_code": "544296",
+      "listing_notice_no": "20241210-61",
+      "listing_date": "2024-12-11",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20241210-61",
+      "index_notice_no": "20241211-15",
+      "index_notice_source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20241211-15",
+      "extracted_text_sha256": "f9f8af6c8d5ff4bb90988651e6ceb9b7814cc18bc2f7f82716d87c1786c258e9"
+    },
+    {
+      "issuer_name": "Rajesh Power Services Limited.",
+      "bse_scrip_code": "544291",
+      "listing_notice_no": "20241129-72",
+      "listing_date": "2024-12-02",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20241129-72",
+      "index_notice_no": "20241202-11",
+      "index_notice_source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20241202-11",
+      "extracted_text_sha256": "31308fbc6b6f43f758f5310d2fdf7ec73f30c2c99e82f063a7ee86823c53f8e1"
+    },
+    {
+      "issuer_name": "Aelea Commodities Limited",
+      "bse_scrip_code": "544213",
+      "listing_notice_no": "20240719-44",
+      "listing_date": "2024-07-22",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20240719-44",
+      "index_notice_no": "20240722-21",
+      "index_notice_source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240722-21",
+      "extracted_text_sha256": "2c82a1a53467bce1c4d60d0dda60c7b8c49081b3f5da994ed9fb5f9cb19dad18"
+    },
+    {
+      "issuer_name": "Three M Paper Boards Ltd",
+      "bse_scrip_code": "544214",
+      "listing_notice_no": "20240719-38",
+      "listing_date": "2024-07-22",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20240719-38",
+      "index_notice_no": "20240722-21",
+      "index_notice_source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20240722-21",
+      "extracted_text_sha256": "2c82a1a53467bce1c4d60d0dda60c7b8c49081b3f5da994ed9fb5f9cb19dad18"
+    }
+  ]
+}

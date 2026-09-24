@@ -6,7 +6,109 @@ Updated: 2026-09-24. Live observation: 16:30:56 UTC / 12:30:56 America/Toronto.
 
 Continue P1/P2/P3 data correctness, official-source coverage and dependable publication under `DEVELOPMENT_PROCESS.md`. The application-term requirement remains **Lot Size only**. Keep market lot, minimum bid quantity, application amount, listing date and index-admission date distinct. UI redesign and downstream research/commercial infrastructure are out of scope.
 
-## Completed: cursor5 reconciliation, publication and live verification — PR #191 / #192
+## Completed: cursor5 parser/source-family repair — PR #193
+
+PR #193 merged as `61453efd680289a57ecc889a0070aa894624df77`.
+
+This batch closed the three parser failures left after PR #191's cursor5 publication. It did **not** infer IPO terms from BSE index notices and did not materialize new IPO records.
+
+### Bounded diagnosis
+
+The retained failures were:
+
+| Index notice | Retained text SHA-256 |
+| --- | --- |
+| `20241211-15` | `f9f8af6c8d5ff4bb90988651e6ceb9b7814cc18bc2f7f82716d87c1786c258e9` |
+| `20241202-11` | `31308fbc6b6f43f758f5310d2fdf7ec73f30c2c99e82f063a7ee86823c53f8e1` |
+| `20240722-21` | `2c82a1a53467bce1c4d60d0dda60c7b8c49081b3f5da994ed9fb5f9cb19dad18` |
+
+A temporary read-only diagnostic re-fetched exactly these three BSE Index Services detail responses. All three fresh response hashes matched the retained cursor hashes.
+
+Two notices use whitespace after the opening parenthesis before the ticker label. The July 2024 notice uses a single `Notice No:` label followed by two listing-notice IDs and then two issuer/ticker pairs in the same order.
+
+### Parser v1.3.0
+
+The additive repair:
+
+- accepts whitespace inside `( Exchange ticker ... )`;
+- accepts the demonstrated shared notice-ID list only when notice-ID count exactly equals issuer/ticker-pair count;
+- preserves order for that one-to-one mapping;
+- rejects partial clauses, leftover notice IDs and issuer captures containing raw notice-number tokens;
+- keeps all existing listing-statement/date/ticker safety checks;
+- treats successful parser v1.1 and v1.2 cursor entries as compatible;
+- requeues failed v1.2 entries immediately as `parser_changed_failure`.
+
+The temporary diagnostic script and workflow hook were removed before merge.
+
+CI exposed and fixed three test/control-flow issues during development: the migration fixture initially mislabeled the incoming parser version; the standard parser initially aborted before the shared-ID fallback; and an incomplete shared clause could initially leak a raw second notice ID into the first issuer capture. The final regressions explicitly fail closed on all three cases.
+
+Final PR-head validation:
+
+- data contract `36028430818` — success;
+- reviewed evidence `36028430692` — success;
+- dedicated historical BSE cursor/parser `36028431156` — success.
+
+### Production repair
+
+Merge-triggered backfill run `36028598993`:
+
+- selected: **3 / 3**, each `parser_changed_failure`;
+- parsed: **3 / 3**;
+- fetch errors: **0**;
+- unparseable: **0**;
+- recovered references: **4**;
+- artifact: **10820393192**;
+- artifact ZIP SHA-256: `01f9895ba1fcc97abda170c5f4a1690e227fc6401f3e2dde314ee4cd99b95f3c`;
+- cursor-state commit: `fd06045ac437636bc5d0c8dba087397ad4897c28`.
+
+Cursor after repair:
+
+- parser **1.3.0**;
+- **120 tracked / 236 eligible**;
+- **120 parsed**;
+- **0 failed / unparseable**;
+- **116 unseen**;
+- next unseen: **`20240624-11`**.
+
+Post-merge data-contract, reviewed-evidence, BSE-universe and backfill workflows all passed. The Pages deploy workflow for the parser merge also succeeded.
+
+### Repaired-reference reconciliation
+
+Current reconciliation snapshots:
+
+- `data/recovery/2024/nse-issue-information.json`: blob `304a11c1ddaa76a58f8c649cbf2b83fd91e2eab3`, **269 records**;
+- `data/ipos.json`: blob `9d3724dd445ef0e0e12a6bb7fa43c4fc40d42345`, **1,068 records**.
+
+Result: **4 exact-missing identities / 0 already present / 0 ambiguous or BSE-code/source collisions**.
+
+| Issuer | BSE code | Listing notice | Listing date |
+| --- | ---: | --- | --- |
+| NISUS FINANCE SERVICES CO LIMITED | 544296 | `20241210-61` | 2024-12-11 |
+| Rajesh Power Services Limited. | 544291 | `20241129-72` | 2024-12-02 |
+| Aelea Commodities Limited | 544213 | `20240719-44` | 2024-07-22 |
+| Three M Paper Boards Ltd | 544214 | `20240719-38` | 2024-07-22 |
+
+Retained files:
+
+- `data/discovery/bse-listing-reconciliation-2026-09-24-cursor5-repaired.json`;
+- `data/discovery/bse-listing-candidates-2026-09-24-batch17.json`.
+
+These four references are discovery-only until issuer-specific BSE listing notices independently verify them.
+
+### Next task
+
+Always re-read current `main` and cursor state first. Even if the independent cursor advances, close **batch17** before skipping to newer discovery.
+
+Acceptance criteria:
+
+1. independently verify the four pinned issuer-specific official BSE listing notices;
+2. require exact issuer identity, listing notice, six-digit BSE code, listing date and SME listing statement;
+3. retain market lot and final issue price only when explicit in issuer-specific official evidence;
+4. preserve unsupported fields as null;
+5. publish only reviewed evidence through the existing importer and verify the served dataset;
+6. after batch17 is closed, continue the historical cursor from `20240624-11`.
+
+## Prior completed: cursor5 reconciliation, publication and live verification — PR #191 / #192
 
 PR #191 merged as `3e415a4f88d4582d7d0d905d0ec72b89eb5ee20e`.
 
