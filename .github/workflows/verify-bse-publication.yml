@@ -6,7 +6,7 @@ on:
       manifests:
         description: Comma-separated reviewed manifest paths for an already published release
         required: true
-        default: data/verified-bse-listings/2026-09-24-batch26.json,data/verified-bse-listings/2026-09-24-batch27.json
+        default: data/verified-bse-listings/2026-09-24-batch28.json
   pull_request:
     branches: ["main"]
     paths:
@@ -48,7 +48,7 @@ jobs:
           git archive --format=zip HEAD > "${{ runner.temp }}/bse-publication/source-snapshot.zip"
       - name: Verify actually served BSE release against reviewed evidence
         env:
-          MANIFESTS: ${{ inputs.manifests || 'data/verified-bse-listings/2026-09-24-batch26.json,data/verified-bse-listings/2026-09-24-batch27.json' }}
+          MANIFESTS: ${{ inputs.manifests || 'data/verified-bse-listings/2026-09-24-batch28.json' }}
         run: node scripts/verify-bse-publication.mjs --manifests="$MANIFESTS" --output-dir="${{ runner.temp }}/bse-publication"
       - name: Retain live snapshot and verification receipt even on failure
         if: always()
