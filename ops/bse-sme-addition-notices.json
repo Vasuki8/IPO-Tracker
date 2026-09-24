@@ -1465,7 +1465,7 @@
       "notice_date": "2025-09-12",
       "subject": "Addition to the BSE SME IPO INDEX",
       "parser_version": "1.1.0",
-      "status": "unparseable",
+      "status": "parsed",
       "attempts": 1,
       "first_attempted_at": "2026-09-24T05:16:06.931Z",
       "last_attempted_at": "2026-09-24T05:16:06.931Z",
@@ -1473,9 +1473,26 @@
       "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250912-85",
       "pdf_url": null,
       "extracted_text_sha256": "c2504ec9ca86dcfc0aa36ff50afa5c70803d3802353d955aff602b5eae88a8d8",
-      "parsed_entry_count": 0,
-      "parsed_entries": [],
-      "error": "no_parseable_listing_reference"
+      "parsed_entry_count": 2,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20250911-76",
+          "issuer_name": "AUSTERE SYSTEMS LIMITED",
+          "bse_scrip_code": "544505",
+          "listing_date": "2025-09-12",
+          "listing_date_raw": "September 12, 2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250911-76"
+        },
+        {
+          "listing_notice_no": "20250911-79",
+          "issuer_name": "SHARVAYA METALS LIMITED",
+          "bse_scrip_code": "544506",
+          "listing_date": "2025-09-12",
+          "listing_date_raw": "September 12, 2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250911-79"
+        }
+      ],
+      "error": null
     },
     "20250909-40": {
       "notice_no": "20250909-40",
