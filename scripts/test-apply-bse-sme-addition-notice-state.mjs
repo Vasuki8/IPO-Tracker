@@ -54,7 +54,7 @@ migratedProposal.parser_version = "1.3.0";
 migratedProposal.updated_at = "2026-09-24T03:00:00Z";
 migratedProposal.notices["20260605-1"] = {
   ...entry("20260605-1", "2026-09-24T03:00:00Z", 1, "parsed"),
-  parser_version: "1.2.0"
+  parser_version: "1.3.0"
 };
 const migrated = mergeBseNoticeStates(merged, migratedProposal);
 assert.equal(migrated.notices["20260605-1"].parser_version, "1.3.0");
