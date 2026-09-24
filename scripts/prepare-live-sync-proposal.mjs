@@ -22,12 +22,13 @@ function readJson(file) {
   return fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, "utf8")) : undefined;
 }
 
-function gitJson(ref, relativePath) {
+export function gitJson(ref, relativePath, root = ROOT) {
   try {
     const content = execFileSync("git", ["show", `${ref}:${relativePath}`], {
-      cwd: ROOT,
+      cwd: root,
       encoding: "utf8",
-      stdio: ["ignore", "pipe", "ignore"]
+      stdio: ["ignore", "pipe", "ignore"],
+      maxBuffer: 64 * 1024 * 1024
     });
     return JSON.parse(content);
   } catch {
