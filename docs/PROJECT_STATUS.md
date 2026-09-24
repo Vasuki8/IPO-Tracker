@@ -8,6 +8,178 @@ Continue P1/P2/P3 backend correctness, official-source coverage and dependable p
 
 Never infer missing IPO values. Keep listing date, index admission date, market lot, minimum bid quantity and application amount distinct.
 
+## Latest completed batch: four held historical BSE listings resolved — PR #177
+
+PR #177 merged as:
+
+`e142d031eca66481c41428b65384b7cb0eb6b748`
+
+This closes all four remaining source/identity holds from the first historical BSE SME discovery batch.
+
+### Root causes
+
+The four records did not share one failure mode.
+
+**Autofurnish, Mehul Telecom and Tipco Engineering India**
+
+Their issuer-specific official BSE listing PDFs were correctly located and downloaded, but page 2 is image-only. The PDF text layer contains the notice header on page 1 while `pdftotext` cannot recover the page-2 listing statement or terms. The earlier rejection was therefore a text-extraction limitation, not contradictory issuer evidence.
+
+The official immutable PDFs were visually reviewed on page 2 without OCR. The reviewed facts are bound to exact BSE PDF hashes:
+
+| Issuer | Notice | PDF SHA-256 | Listing date | Market lot | Issue price |
+| --- | --- | --- | --- | ---: | ---: |
+| AUTOFURNISH LIMITED | `20260527-47` | `9d19ae886d5aba5c8835ccbb656488d69b3ba8dd91a47b2411b3e7a21e97b8c3` | 2026-05-29 | 3,000 | INR 41 |
+| MEHUL TELECOM LIMITED | `20260423-27` | `b620aec3111262a67e52332ba2d379dbaef32533129a8ef1c2a3215d2ac2300f` | 2026-04-24 | 1,200 | INR 98 |
+| TIPCO ENGINEERING INDIA LIMITED | `20260330-44` | `ce287772d38f0efc53c4994a235331a422697f3bac2116a628fe78068a3d2bbc` | 2026-04-01 | 1,600 | INR 89 |
+
+These three use the new reviewed evidence kind `official_listing_pdf_visual_review`.
+
+That contract is intentionally narrow:
+
+- exact official BSE listing-PDF URL only;
+- immutable source document SHA-256;
+- reviewed visual page limited to pages 1–3;
+- candidate issuer, scrip code and listing date must still agree with discovery identity;
+- market lot must be a positive integer and issue price a positive scalar;
+- retained source strings must explicitly contain the reviewed values;
+- the listing statement must contain the issuer, “Equity Shares”, “shall be listed”, and exact listing-date phrase;
+- no OCR result, BSE index notice or inferred value is accepted as authority.
+
+The visual review is preserved in:
+
+`data/verified-bse-listings/2026-09-24-batch7.json`
+
+Source artifact for the three PDFs:
+
+- run: **`35956034085`**
+- artifact: **`10789439895`**
+- artifact ZIP SHA-256: **`d78e344277d79ccce4411e3a7f4552b3eeb87089e3d584d8a1fa8a5c746d1acb`**
+
+**Recode Studios**
+
+The original index-derived candidate referenced BSE notice `20260511-16`. That official notice is not the final listing-details notice: it explicitly states that the listing date and security details will be informed through a separate notice.
+
+The original claim is preserved as correction history rather than silently replaced.
+
+Corrected discovery:
+
+`data/discovery/bse-listing-candidates-2026-09-24-batch7.json`
+
+Corrected issuer-specific listing notice:
+
+- BSE notice: **`20260511-46`**
+- BSE scrip code: **544755**
+- listing date: **2026-05-12**
+- market lot: **800**
+- final issue price: **INR 158/share**
+- official PDF SHA-256: **`b04afcddd0177f067b27727405256b5bfc60d8783d825a7497367ff01f46e29a`**
+- collection time: **2026-09-24T04:59:43.736Z**
+- listing/lot/price evidence: **page 2**
+
+Independent corrected-source verification:
+
+- workflow run: **`35957926014`**
+- attempted: **1**
+- verified: **1**
+- rejected/unavailable: **0**
+- artifact: **`10791635591`**
+- artifact ZIP SHA-256: **`08edc97e797cfba08fcb33cd83ba476a15217eb669f12eee6746a560d8c760dc`**
+
+Reviewed Recode manifest:
+
+`data/verified-bse-listings/2026-09-24-batch8.json`
+
+### Validation
+
+Final PR-head checks:
+
+- reviewed BSE evidence/importer validation: **`35958072837`** — success
+- full data-contract validation: **`35958072891`** — success
+- BSE source verification including corrected Recode: **`35958072853`** — success
+
+The isolated real-import publication rehearsal measured:
+
+- **964 -> 968 records**
+- exactly **4 additions**
+- **42 already-present** reviewed BSE records
+- **0 held existing records**
+- **0 identity conflicts**
+- all **964 existing records unchanged**
+- second import/rebuild: **no-op / idempotent**
+- total retained reviewed BSE entries: **46**
+
+An initial PR test run failed because the synthetic visual-review fixture omitted the same “Equity Shares … shall be listed” structure required by the tightened contract. The fixture was corrected to realistic source wording; the production evidence contract was not weakened.
+
+### Production publication
+
+A scheduled live sync had already started immediately before the merge. The `live-ipo-sync` concurrency guard correctly cancelled that stale scheduled run when the merge-triggered run queued.
+
+Merge-triggered production sync:
+
+- run: **`35958207898`**
+- conclusion: **success**
+- reviewed BSE import: **4 added / 42 already present / 0 holds**
+- semantic publication: **4 added / 35 changed / 0 removed / 0 conflicts**
+- schema 1.2.0 validation: **968 records passed**
+- operator health: **healthy**
+
+The 35 changed records are concurrent official NSE/SEBI enrichment from the same source-first run; the semantic publisher separately identified exactly four additions and zero removals/conflicts.
+
+Source-backed data commit:
+
+`93f4e0b02141c66d547e94b2f184dccaebe39d26`
+
+Operator-state commit:
+
+`69aa8fb5e348a7de55b167fdd403c38c7ebb9ea1`
+
+Production after publication:
+
+- **968 total IPO records**
+- **84 records for 2026**
+- 2026 board coverage: **15 mainboard / 59 SME / 10 unknown**
+- each of the four repaired issuers occurs exactly once
+- each listing date, market lot and issue price agrees with reviewed evidence
+- all four source document hashes are retained
+- unsupported price band, offer dates, issue size, minimum bid quantity and minimum application amount remain null
+- deterministic build and schema validation passed
+- operator health: **healthy**
+
+### Deployment
+
+Native GitHub Pages build **`35958746456`** completed successfully on:
+
+`69aa8fb5e348a7de55b167fdd403c38c7ebb9ea1`
+
+That operator-state revision directly descends from the 968-record data commit `93f4e0b02141c66d547e94b2f184dccaebe39d26`, so the deployed Pages revision contains the four-record release.
+
+### First historical discovery batch is closed
+
+The first durable-cursor discovery batch contained **23 listing references**.
+
+Its final accounting is now:
+
+- **6** were already present when reconciled;
+- **17** were genuinely missing;
+- all **17** missing issuers have now been resolved and published with reviewed issuer-specific official evidence;
+- no candidates from that batch remain held.
+
+Do not revisit the completed 23-reference batch unless later authoritative evidence creates an explicit correction.
+
+### Next task
+
+Re-read `ops/bse-sme-addition-notices.json` before starting the next run because the cursor advances independently.
+
+At this handoff it remains:
+
+- **40 / 236 parsed**
+- **196 unseen**
+- next unseen notice: **`20260107-29`**
+
+The next scheduled cursor run has not yet advanced this state. Once it does, reconcile only the newly completed cursor batch against the current **968-record** universe, retain exact index-notice/listing-reference evidence, and verify/materialize only genuinely missing issuers.
+
+If the cursor is still unchanged at the next continuation after its expected schedule window, inspect the cursor workflow execution/operational state as the next P3 reliability task. Do not manually reset the cursor or repeat the now-closed first historical batch.
+
 ## Latest completed batch: remaining seven historical BSE SME listings published — PR #176
 
 PR #176 merged as:
