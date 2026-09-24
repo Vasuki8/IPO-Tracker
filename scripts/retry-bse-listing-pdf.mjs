@@ -48,11 +48,13 @@ export function applyPdfVerificationResult(result, checked, { url, attempt, byte
   return result;
 }
 
-export async function retryPdf(report, evidenceDir, fetchImpl = fetch) {
+export async function retryPdf(report, evidenceDir, fetchImpl = fetch, { upgradeVerifiedHtml = false } = {}) {
   validateBatch({ schema_version: report.schema_version, candidates: report.results.map((r) => r.candidate) });
   fs.mkdirSync(evidenceDir, { recursive: true });
   for (const result of report.results) {
-    if (result.status === "verified") continue;
+    const verifiedPdf = result.status === "verified" && result.source_kind === "BSE Listing Notice PDF";
+    const verifiedHtml = result.status === "verified" && !verifiedPdf;
+    if (verifiedPdf || (verifiedHtml && !upgradeVerifiedHtml)) continue;
     const candidate = result.candidate;
     const url = archiveProbeUrl(candidate.listing_notice_no);
     const attempt = { source_url: url, retrieval_method: "official_archive_path_probe", collected_at: null };
@@ -102,8 +104,12 @@ export async function retryPdf(report, evidenceDir, fetchImpl = fetch) {
 async function run() {
   const args = Object.fromEntries(process.argv.slice(2).map((a) => { const i = a.indexOf("="); return [a.slice(0, i), a.slice(i + 1)]; }));
   if (!args["--report"] || !args["--evidence-dir"]) throw new Error("--report and --evidence-dir required");
+  const upgradeVerifiedHtml = args["--upgrade-verified-html"] === "true";
+  if (args["--upgrade-verified-html"] != null && !["true", "false"].includes(args["--upgrade-verified-html"])) {
+    throw new Error("--upgrade-verified-html must be true or false");
+  }
   const report = JSON.parse(fs.readFileSync(args["--report"], "utf8"));
-  const updated = await retryPdf(report, args["--evidence-dir"]);
+  const updated = await retryPdf(report, args["--evidence-dir"], fetch, { upgradeVerifiedHtml });
   fs.writeFileSync(args["--report"], JSON.stringify(updated, null, 2) + "\n");
   console.log(JSON.stringify({ bse_listing_verification_with_pdf: updated.stats, status: updated.status }));
   if (updated.status !== "complete") process.exitCode = 1;
