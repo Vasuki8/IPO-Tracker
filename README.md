@@ -6,119 +6,55 @@ A source-first Indian IPO research website with automated official-source collec
 - Website: https://vasuki8.github.io/IPO-Tracker/
 - Public dataset: `data/ipos.json`, generated from retained evidence under `data/recovery/`.
 - Development contract: [docs/DEVELOPMENT_PROCESS.md](docs/DEVELOPMENT_PROCESS.md).
-- Current handoff and verification: [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md).
+- Current handoff: [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md).
 
 ## Product and data rules
 
-Coverage includes records across 2020-2026, but the historical universe and field coverage remain incomplete. Run `node scripts/audit-historical-coverage.mjs` for current per-year counts; do not reuse old milestone counts as current totals.
+Coverage spans 2020-2026 but is incomplete. Run `node scripts/audit-historical-coverage.mjs` for current counts; old milestones are not current totals.
 
 The active application-term requirement is **Lot Size only**. Display verified market lot first, then verified minimum bid quantity when market lot is missing. Keep the raw fields distinct. Minimum investment/application amount remains out of scope.
 
-Never fill missing data with guesses or price x quantity arithmetic. Preserve source URLs, document identity, reporting dates, collection timestamps, nulls, conflicts and correction history. A final Prospectus is not required for inclusion; use the best available official evidence for each field. Do not edit `data/ipos.json` instead of repairing retained recovery evidence.
+Never invent missing values or use price-times-quantity arithmetic to fill them. Preserve official sources, document identity, dates, hashes when retained, nulls, conflicts and correction history. A final Prospectus is not required for inclusion. Repair retained recovery evidence rather than hand-editing `data/ipos.json`.
 
 ## Automation
 
-| Workflow | Purpose |
-| --- | --- |
-| `update-ipos.yml` | Hourly NSE/SEBI collection, reviewed BSE evidence import and source-backed publication |
-| `backfill-historical-offer-dates.yml` | Independent historical PDF offer-date recovery |
-| `backfill-historical-pdf-fields.yml` | Independent historical PDF field recovery |
-| `audit-bse-sme-universe.yml` | Read-only BSE SME constituent and addition-notice audits |
-| `backfill-bse-sme-addition-notices.yml` | Durable parser-versioned historical BSE SME notice discovery cursor |
-| `verify-bse-listing-candidates.yml` | Bounded independent verification of pinned BSE listing candidates |
-| `validate-reviewed-bse-listings.yml` | Offline identity, PDF safety, reviewed evidence and importer tests |
-| `validate-data.yml` | Existing pull-request/push tests and data-contract checks |
-| `deploy-pages.yml` | Website deployment and publication-health recording |
+The existing hourly `update-ipos.yml` collects NSE/SEBI data and imports reviewed BSE evidence. Historical PDF recovery and the bounded BSE notice cursor run independently. `deploy-pages.yml` publishes the site. Workflow files define actual schedules and execution.
 
-Collection time, dataset generation and Pages publication are separate signals. `node scripts/operator-report.mjs` reports operational health without rewriting IPO values. Workflow files are authoritative for actual execution.
+`verify-bse-publication.yml` is a **read-only post-publication check** for selected reviewed BSE manifests. It fetches the actual Pages dataset, retains its original bytes/hash and separate observation time, and checks issuer identity, values, source metadata and retained provenance. It runs manually or when its implementation changes; it does not alter the collection schedule or import IPOs.
+
+Collection time, dataset generation and Pages publication are distinct signals. `node scripts/operator-report.mjs` reports operational health without rewriting IPO values.
 
 ## Handoff for the next prompt
 
-**Latest completed batch: repaired cursor3 BSE references reconciled, verified and published — PR #184.**
+**Latest completed unit: cursor4 publication verified live; canonical verifier and handoff completed in PR #189.**
 
-PR #184 merged as `d08479a3c12cd5975902dfa5f689a22adc90b008`.
+PR #187 had already merged 23 reviewed cursor4 issuers through discovery batches 13/14 and evidence batches 18/19. PR #188 repaired the large-recovery-baseline buffer failure in semantic publication. Neither import nor repair should be repeated.
 
-The 12 listing references recovered by parser v1.2.0 were reconciled against the then-current **258-record 2025 recovery universe** and **1,014-record public dataset**:
+Live verification run **36020477749** checked the actual site at **2026-09-24T15:28:55.890Z**:
 
-- **1 already present exact identity:** 3B Films Limited, already backed by BSE listing notice `20250605-49`, listing date 2025-06-06, market lot 3,000 and issue price INR 50.
-- **11 genuinely missing exact identities.**
-- **0 ambiguous / identity-review collisions.**
-- no fuzzy-name equivalence accepted.
+- **1,050 live records**; retained recovery counts: **2025 = 292**, **2026 = 87**.
+- **23/23 issuers** occur exactly once and **69/69 listing-date, market-lot and issue-price fields** match reviewed evidence.
+- All six unsupported fields remain null for each of these 23 issuers.
+- Original document hashes and batch provenance are verified in retained recovery. The current public projection does **not** serialize document hashes; do not describe them as live hash verification.
+- Data-contract, reviewed-evidence and fresh live-publication workflows passed on code head `3f2e29e1aa3be1e101c0bbe65f1339eb19302c25`.
 
-Machine-readable reconciliation:
+Receipt: [docs/verification/cursor4-live-publication-2026-09-24.json](docs/verification/cursor4-live-publication-2026-09-24.json). Artifact **10817060050** retains the full receipt, actual served JSON and source snapshot. Duplicate alternative PR #190 was closed unmerged; do not resurrect its parallel auditor.
 
-- `data/discovery/bse-listing-reconciliation-2026-09-24-cursor3-repaired.json`
-- pinned verifier batch: `data/discovery/bse-listing-candidates-2026-09-24-batch12.json`
+### Next task
 
-Issuer-specific BSE verification completed **11/11 verified, 0 rejected, 0 unavailable**. Canonical listing-PDF archive paths were unavailable for this batch, so reviewed evidence uses the strict official-BSE-notice HTML contract already used by the prior cursor3 release.
+Re-read `main`, this handoff, the development process and `ops/bse-sme-addition-notices.json` first.
 
-Reviewed publication:
+The independent cursor has advanced to **120/236 tracked: 117 parsed, 3 unparseable, 116 not yet tracked**. The newly completed 20-notice segment first attempted at **2026-09-24T15:09:03.207Z** contains **18 parsed listing references** across 17 notices, from `20250103-24` through `20240627-14`.
 
-- `data/verified-bse-listings/2026-09-24-batch17.json`
-- source verification run: `35968091282`
-- source artifact: `10795017902`
-- artifact ZIP SHA-256: `98e381697404285d1b521926bc6f81ba8cad4d5b42f43022b4952a1011521036`
-- final PR source re-verification: `35968733466` — 11/11
-- final PR artifact: `10795735136` / SHA-256 `81d0ee8859e2dfee5998a98e30ec68067e95799f0a8db640ae375800b72c21ff`
+**Reconcile those 18 references against the current multi-year recovery/public universe**, then independently verify only genuinely missing, unambiguous issuers in batches of at most 15. These references have not yet been established as missing IPOs. Keep the three failed index notices (`20241211-15`, `20241202-11`, `20240722-21`) on a separate parser/source-family repair track. Do not infer their issuers. Do not skip this unprocessed segment if a newer cursor segment appears.
 
-Published facts:
+No UI redesign, minimum-investment work, billing, accounts, ads, spending or permission changes are included.
 
-| Issuer | Listing date | Market lot | Issue price |
-| --- | --- | ---: | ---: |
-| ASSTON PHARMACEUTICALS LIMITED | 2025-07-16 | 1,000 | INR 123 |
-| GLEN INDUSTRIES LIMITED | 2025-07-15 | 1,200 | INR 97 |
-| META INFOTECH LIMITED | 2025-07-11 | 800 | INR 161 |
-| CRYOGENIC OGS LIMITED | 2025-07-10 | 3,000 | INR 47 |
-| UNIFIED DATA TECH SOLUTIONS LIMITED | 2025-05-29 | 400 | INR 273 |
-| SRIGEE DLM LIMITED | 2025-05-12 | 1,200 | INR 99 |
-| MANOJ JEWELLERS LIMITED | 2025-05-12 | 2,000 | INR 54 |
-| KENRIK INDUSTRIES LIMITED | 2025-05-09 | 6,000 | INR 25 |
-| SPINAROO COMMERCIAL LIMITED | 2025-04-08 | 2,000 | INR 51 |
-| INFONATIVE SOLUTIONS LIMITED | 2025-04-08 | 1,600 | INR 79 |
-| RETAGGIO INDUSTRIES LIMITED | 2025-04-07 | 6,000 | INR 25 |
-
-Real importer rehearsal proved **1,014 -> 1,025**, exactly **11 additions**, all 1,014 existing records unchanged, **0 holds/conflicts**, and an idempotent rerun.
-
-Production sync `35969070759` succeeded:
-
-- reviewed BSE import: **11 added / 92 already present / 0 holds / 0 identity conflicts**
-- semantic publication: **11 added / 45 changed / 0 removed / 0 conflicts**
-- source-backed data commit: `53589374e3078540394866180b467bf7fb1442ad`
-- operator-state commit: `8cd16c9a2ca45bc38ef239d81b455de7276d225d`
-- schema 1.2.0 validation: **1,025 records passed**
-- operator health: **healthy**
-- production: **1,025 total records**
-- 2025: **269 records**
-- 2026: **85 records**
-
-The 45 changed records were normal concurrent official NSE/SEBI enrichment; the semantic publisher separately identified exactly 11 additions and zero removals/conflicts.
-
-Post-publication audit confirmed every batch17 issuer occurs exactly once in recovery and public data, and every listing date, market lot, issue price, exact source URL, source-document SHA-256 and batch17 provenance matches reviewed evidence. Unsupported price band, offer dates, issue size, minimum bid quantity and minimum application amount remain null.
-
-GitHub Pages build `35969750035` succeeded on final operator revision `8cd16c9a2ca45bc38ef239d81b455de7276d225d`.
-
-### Current historical cursor
-
-The durable BSE SME addition-notice cursor has **not advanced** since the repaired segment:
-
-- parser: **1.2.0**
-- **80 tracked / 236 eligible**
-- **80 parsed**
-- **0 failed/unparseable**
-- **156 unseen**
-- next unseen notice: **`20250403-16`**
-
-**Next:** always re-read `ops/bse-sme-addition-notices.json` first. If the cursor has advanced beyond 80 tracked notices, reconcile only the newest completed segment against the current 1,025-record universe. If it is unchanged, the next bounded historical discovery work begins with the unseen segment starting at `20250403-16`; use the existing independent backfill workflow, then reconcile its newly parsed references before issuer-specific verification/publication. Do not repeat batch12/batch17 or the parser-repair work.
-
-Read [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) for exact evidence, release verification and the next-task acceptance criteria.
-
-No UI redesign, minimum-investment work, billing, accounts, ads, paid services or permission changes are part of this handoff.
 ## Local checks
 
 ```bash
-node scripts/test-verify-bse-listing-candidates.mjs
-node scripts/test-retry-bse-listing-pdf.mjs
-node scripts/test-apply-verified-bse-listings.mjs
+node scripts/test-verify-bse-publication.mjs
+node scripts/test-bse-public-projection.mjs
 node scripts/test-bse-publication-rehearsal.mjs
 node scripts/apply-verified-bse-listings.mjs --check
 node scripts/build-published-data.mjs --check
@@ -126,8 +62,8 @@ node scripts/validate-data.mjs
 node scripts/audit-historical-coverage.mjs
 ```
 
-To apply the already reviewed batch locally, run `node scripts/apply-verified-bse-listings.mjs` before rebuilding. This uses no network. The independent BSE PDF verification workflow requires `pdftotext`; its report never writes IPO records automatically.
+For a live receipt, run `scripts/verify-bse-publication.mjs` with `--manifests=<comma-separated reviewed paths>` and `--output-dir=<artifact directory>`. It reports failure on unavailable/malformed snapshots or mismatches and never imports IPO records.
 
-## Earlier handoffs
+## Historical handoffs
 
-PR #165's full verified discovery handoff is preserved in [docs/archive/PROJECT_STATUS-before-bse-listing-batch.md](docs/archive/PROJECT_STATUS-before-bse-listing-batch.md). Earlier accumulated milestones remain unchanged in `docs/archive/`; they are history, not current coverage or instructions.
+The complete previous README and status are preserved unchanged in [docs/archive/README-before-cursor4-live-verification.md](docs/archive/README-before-cursor4-live-verification.md) and [docs/archive/PROJECT_STATUS-before-cursor4-live-verification.md](docs/archive/PROJECT_STATUS-before-cursor4-live-verification.md). Older archives remain unchanged. Archived next-task instructions are not current instructions.

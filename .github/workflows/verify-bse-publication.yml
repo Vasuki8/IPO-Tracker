@@ -1,0 +1,60 @@
+name: Verify BSE publication
+
+on:
+  workflow_dispatch:
+    inputs:
+      manifests:
+        description: Comma-separated reviewed manifest paths for an already published release
+        required: true
+        default: data/verified-bse-listings/2026-09-24-batch18.json,data/verified-bse-listings/2026-09-24-batch19.json
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "scripts/verify-bse-publication.mjs"
+      - "scripts/test-verify-bse-publication.mjs"
+      - "scripts/test-bse-public-projection.mjs"
+      - ".github/workflows/verify-bse-publication.yml"
+  push:
+    branches: ["main"]
+    paths:
+      - "scripts/verify-bse-publication.mjs"
+      - "scripts/test-verify-bse-publication.mjs"
+      - "scripts/test-bse-public-projection.mjs"
+      - ".github/workflows/verify-bse-publication.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verify-bse-publication-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Test live publication identity, evidence and failure guards
+        run: |
+          node scripts/test-verify-bse-publication.mjs
+          node scripts/test-bse-public-projection.mjs
+      - name: Retain exact verification source revision
+        run: |
+          mkdir -p "${{ runner.temp }}/bse-publication"
+          git archive --format=zip HEAD > "${{ runner.temp }}/bse-publication/source-snapshot.zip"
+      - name: Verify actually served BSE release against reviewed evidence
+        env:
+          MANIFESTS: ${{ inputs.manifests || 'data/verified-bse-listings/2026-09-24-batch18.json,data/verified-bse-listings/2026-09-24-batch19.json' }}
+        run: node scripts/verify-bse-publication.mjs --manifests="$MANIFESTS" --output-dir="${{ runner.temp }}/bse-publication"
+      - name: Retain live snapshot and verification receipt even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bse-publication-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/bse-publication
+          retention-days: 14
+          if-no-files-found: warn
