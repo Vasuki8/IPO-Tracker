@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_kind": "summary_of_workflow_artifact",
+  "status": "verified",
+  "source_url": "https://vasuki8.github.io/IPO-Tracker/data/ipos.json",
+  "started_at": "2026-09-24T15:28:55.536Z",
+  "checked_at": "2026-09-24T15:28:55.890Z",
+  "code_commit_sha": "b884a1c58842313764d0bf7a465c32a5f5d15aad",
+  "run_id": "36020477749",
+  "read_only": true,
+  "manifests": [
+    {
+      "path": "data/verified-bse-listings/2026-09-24-batch18.json",
+      "sha256": "b19c795233de88f01b9d9219d8a20b6a6aab811bc3fec4e44b23df16da0a6671"
+    },
+    {
+      "path": "data/verified-bse-listings/2026-09-24-batch19.json",
+      "sha256": "0196adc41e23dd05495abb05b2ef3493cd768e982643f23d3d4f25a1c2d8fd88"
+    }
+  ],
+  "snapshot_fetched_at": "2026-09-24T15:28:55.837Z",
+  "snapshot_sha256": "696bec3c8072af424d39868b51377930b58724a81ddc5a2070ef36d4b8ba65d3",
+  "snapshot_bytes": 5589993,
+  "snapshot_file_in_artifact": "deployed-data.json",
+  "full_report_file_in_artifact": "publication-report.json",
+  "dataset_generated_at": "2026-09-24T15:17:42.466Z",
+  "published_records": 1050,
+  "checked_issuers": 23,
+  "checked_fields": 69,
+  "failed_issuers": 0,
+  "document_hash_scope": {
+    "retained_fields": 69,
+    "serialized_live_fields": 0,
+    "note": "Original document hashes are verified in retained recovery. Missing public hashes are not reported as live hash verification."
+  },
+  "finished_at": "2026-09-24T15:28:55.945Z",
+  "artifact": {
+    "run_id": "36020477749",
+    "id": 10817060050,
+    "sha256": "f32b91690da499944a55e17c2dbff695f6f8a2d2594e7f55cc541c1ed5d99197",
+    "expires_at": "2026-10-08T15:28:56Z"
+  },
+  "checks": {
+    "unique_issuers": 23,
+    "matching_fields": 69,
+    "all_six_unsupported_fields_null_for_each_issuer": true,
+    "original_hashes_verified_in_recovery": 69,
+    "document_hashes_serialized_in_live_fields": 0
+  },
+  "cursor": {
+    "parser_version": "1.2.0",
+    "updated_at": "2026-09-24T15:09:03.207Z",
+    "catalog": {
+      "catalog_rows": 1652,
+      "eligible_count": 236,
+      "newest_notice_no": "20260821-22",
+      "oldest_notice_no": "20200113-10",
+      "observed_at": "2026-09-24T15:09:03.207Z"
+    },
+    "tracked": 120,
+    "statuses": {
+      "parsed": 117,
+      "unparseable": 3
+    }
+  },
+  "next_unreconciled_segment": {
+    "selected_notices": 20,
+    "parsed_notices": 17,
+    "references": 18,
+    "notice_nos": [
+      "20250103-24",
+      "20241224-19",
+      "20241217-17",
+      "20241211-15",
+      "20241202-11",
+      "20241121-18",
+      "20241011-10",
+      "20241009-13",
+      "20241008-20",
+      "20240923-10",
+      "20240911-11",
+      "20240910-24",
+      "20240905-13",
+      "20240830-11",
+      "20240829-23",
+      "20240821-10",
+      "20240801-14",
+      "20240730-10",
+      "20240722-21",
+      "20240627-14"
+    ],
+    "first_attempted_at": "2026-09-24T15:09:03.207Z",
+    "scope": "Discovery references only; not yet reconciled or verified as missing IPOs."
+  }
+}
