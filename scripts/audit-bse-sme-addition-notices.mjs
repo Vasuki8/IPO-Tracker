@@ -137,35 +137,44 @@ export function parseBseSmeAdditionNoticeHtml(html) {
     const start = starts[index];
     const from = start.index ?? 0;
     const next = starts[index + 1];
-    const to = next?.index ?? Math.min(body.length, from + 1400);
+    const to = next?.index ?? Math.min(body.length, from + 1800);
     const clause = body.slice(from, to);
 
-    const noticeNo = start[1];
-    const issuerTicker = clause.match(
-      /Notice No\.?\s*[0-9]{8}-[0-9]+\s*,?\s*(.+?)\s*\(Exchange ticker\s*-\s*([0-9]{6})\s*\)/i
+    const listingStatement = clause.match(
+      /\b(?:is|are|will be|is being|are being)\s+listed\s+on\s+BSE\b[\s,]*effective\s+(?:(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s*,?\s*)?([A-Za-z]+\s+\d{1,2},\s*\d{4})/i
     );
-    const listedOnBse = /\blisted\s+on\s+BSE\b/i.test(clause);
-    const effective = clause.match(
-      /\beffective\s+(?:(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s*,?\s*)?([A-Za-z]+\s+\d{1,2},\s*\d{4})/i
-    );
+    if (!listingStatement) continue;
 
-    if (!issuerTicker || !listedOnBse || !effective) continue;
+    const statementEnd = (listingStatement.index ?? 0) + listingStatement[0].length;
+    const listingTerms = clause.slice(0, statementEnd);
+    const effectiveRaw = normalizeText(listingStatement[1]);
+    const listingDate = isoDate(effectiveRaw);
+    if (!listingDate) continue;
 
-    rows.push({
-      listing_notice_no: noticeNo,
-      issuer_name: normalizeText(issuerTicker[1]),
-      bse_scrip_code: issuerTicker[2],
-      listing_date: isoDate(effective[1]),
-      listing_date_raw: normalizeText(effective[1])
-    });
+    const entryPattern =
+      /(?:With reference to\s+)?Notice No\.?\s*:?\s*([0-9]{8}-[0-9]+)\s*,?\s*(.+?)\s*\(Exchange ticker\s*[–—-]\s*([0-9]{6})\s*\)/gi;
+
+    for (const entry of listingTerms.matchAll(entryPattern)) {
+      rows.push({
+        listing_notice_no: entry[1],
+        issuer_name: normalizeText(entry[2]),
+        bse_scrip_code: entry[3],
+        listing_date: listingDate,
+        listing_date_raw: effectiveRaw
+      });
+    }
   }
 
-  return rows.filter((row) =>
-    /^\d{8}-\d+$/.test(row.listing_notice_no) &&
-    /^\d{6}$/.test(row.bse_scrip_code) &&
-    row.issuer_name &&
-    row.listing_date
-  );
+  return [...new Map(
+    rows
+      .filter((row) =>
+        /^\d{8}-\d+$/.test(row.listing_notice_no) &&
+        /^\d{6}$/.test(row.bse_scrip_code) &&
+        row.issuer_name &&
+        row.listing_date
+      )
+      .map((row) => [row.listing_notice_no + "|" + row.bse_scrip_code, row])
+  ).values()];
 }
 
 function loadRecoveryRecords() {
