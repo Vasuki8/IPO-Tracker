@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "input_report": {
+    "run_id": "35939161246",
+    "commit_sha": "7eedd8f9668cd7fce51d373427d7a2d7eafd7a8c",
+    "generated_at": "2026-09-24T00:36:54.982Z",
+    "sha256": "227fc761494104cf01bcf0bd3051d09505288a844f3e7bf3e1556248d782ccd6"
+  },
+  "selection_rule": "Issuer-specific BSE listing notices resolve the retained 544770 collision: Yaashvi keeps 544770; Merritronix is corrected from the index-derived 544770 claim to listing-notice code 544773. Preserve both original index claims as conflict history.",
+  "candidates": [
+    {
+      "issuer_name": "MERRITRONIX LIMITED",
+      "bse_scrip_code": "544773",
+      "listing_notice_no": "20260605-37",
+      "listing_date": "2026-06-08",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260605-37",
+      "index_notice_no": "20260608-14",
+      "index_notice_source_url": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260608-14/20260608-14.pdf",
+      "extracted_text_sha256": "060c404e8d6032938b82279399c6810af5b9fda044e579de58d1030616808b9b",
+      "index_claimed_bse_scrip_code": "544770",
+      "conflict_resolution": "Issuer-specific BSE Listing Notice 20260605-37 states Scrip Code 544773; index-addition claim 544770 retained as superseded discovery evidence."
+    },
+    {
+      "issuer_name": "YAASHVI JEWELLERS LIMITED",
+      "bse_scrip_code": "544770",
+      "listing_notice_no": "20260601-25",
+      "listing_date": "2026-06-02",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260601-25",
+      "index_notice_no": "20260602-17",
+      "index_notice_source_url": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260602-17/20260602-17.pdf",
+      "extracted_text_sha256": "0dc760231d65dcefe2bfc27f8d5c36e7961eca721b51751d643956dc9736f032",
+      "index_claimed_bse_scrip_code": "544770",
+      "conflict_resolution": "Issuer-specific BSE Listing Notice 20260601-25 independently confirms Scrip Code 544770."
+    }
+  ]
+}
