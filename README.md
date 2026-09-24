@@ -38,57 +38,33 @@ Collection time, dataset generation and Pages publication are separate signals. 
 
 PR #181 merged as `cc44fd35a4bf6eff37aa9a59807393ac33277ee6`.
 
-This batch reconciled the 14 parsed references from the third durable BSE cursor window against the then-current 244-record 2025 recovery universe.
+The durable cursor3 window came from run `35962928144` / artifact `10793157274` (ZIP SHA-256 `caf6f8d747992eb25a447b8600b4f73eaf433d13d92ebde5e6a38aeeab649722`). It had **20 notices: 10 parsed, 10 unparseable**, with the parsed notices producing **14 listing references**.
 
-Cursor3 source window:
+Cross-check against the then-current 244-record 2025 recovery universe found all **14 as genuinely missing exact identities**, with 0 already-present matches and 0 ambiguous/fuzzy overlaps.
 
-- cursor run: `35962928144`
-- cursor artifact: `10793157274`
-- artifact ZIP SHA-256: `caf6f8d747992eb25a447b8600b4f73eaf433d13d92ebde5e6a38aeeab649722`
-- cursor state commit: `1704357838871f9e5dd677da4a7bfabba7b50760`
-- 20 notices selected
-- 10 parsed
-- 10 unparseable
-- 14 listing references
-
-Cross-checking those 14 references against retained 2025 recovery found **14 genuinely missing exact identities**, with **0 already-present matches** and **0 ambiguous/fuzzy overlaps**.
-
-Retained reconciliation and candidates:
+Retained discovery:
 
 - `data/discovery/bse-listing-reconciliation-2026-09-24-cursor3.json`
 - `data/discovery/bse-listing-candidates-2026-09-24-batch11.json`
 
-Initial issuer-specific source verification found **13/14 verified**. Globtier Infotech was the only rejection, and the official BSE notice itself was not contradictory: it independently confirmed code 544494, listing date 2025-09-02, lot 1,600 and issue price INR 72. The rejection came from the notice body wrapping the issuer name in BSE HTML entities `&ldquo;...&rdquo;`, which the verifier had not normalized.
+Initial issuer-specific verification returned **13 verified / 1 rejected**. The only rejection, **GLOBTIER INFOTECH LIMITED**, was a verifier-normalization defect: BSE wrapped one issuer mention in `&ldquo;...&rdquo;`, which produced a false second issuer identity after tag stripping. PR #181 now decodes BSE curly quote entities before the existing strict issuer comparison; no identity rule was relaxed. A regression fixture covers Globtier's exact source shape.
 
-PR #181 therefore added a bounded identity-normalization repair:
+After that bounded repair, batch11 independently verified **14/14**, with **0 rejected / 0 unavailable**.
 
-- decode `&ldquo;` / `&rdquo;` as ordinary quotes;
-- decode `&lsquo;` / `&rsquo;` as ordinary apostrophes;
-- keep the same strict normalized issuer-name, notice-number, BSE-code, listing-date and SME-segment checks after decoding;
-- add an exact Globtier regression fixture.
-
-With that repair, canonical source run `35964560752` verified **14/14**, with **0 rejected / 0 unavailable**.
-
-Reviewed evidence:
+Reviewed publication:
 
 - `data/verified-bse-listings/2026-09-24-batch16.json`
-- source run: `35964560752`
-- source artifact: `10792809549`
-- source artifact ZIP SHA-256: `e6f102405d0c31657ea441b786cf2edb67f532885b759d586e53ca0044303fe7`
+- manifest source run: `35964560752`
+- manifest source artifact: `10792809549`
+- manifest artifact ZIP SHA-256: `e6f102405d0c31657ea441b786cf2edb67f532885b759d586e53ca0044303fe7`
+- final PR source verification: `35965176843` — 14/14
+- final PR artifact: `10793174434` / SHA-256 `1724a3cc23f243edea2e2a2d6ccfae828b29d44d200f02667c144a7cd8aa813e`
+- final main source verification: `35965260696` — 14/14
+- final main artifact: `10793054943` / SHA-256 `cefbbed883f300a65f72c1445493b8edd30859de9506fb6f5145c005338c4377`
 
-All 14 use the strict reviewed official-BSE-notice HTML evidence contract. Canonical archive listing-PDF paths were unavailable; index notices are not used as market-term authority.
+All 14 records use the strict reviewed official-BSE-HTML evidence contract because canonical listing-PDF archive paths are unavailable. Exact notice URL, response/document hash, normalized evidence text, collection/publication time, issuer identity, BSE code, listing date, market lot and issue price are retained. No index notice is used as listing-term authority.
 
-Final PR validation:
-
-- reviewed evidence/importer: `35965176868` — success
-- data contract: `35965176865` — success
-- protected BSE 544770 regression: `35965176842` — success
-- canonical source verification: `35964560752` — 14/14
-- final `main` source re-verification: `35965260696` — 14/14
-- final main artifact: `10793054943`
-- final main artifact SHA-256: `cefbbed883f300a65f72c1445493b8edd30859de9506fb6f5145c005338c4377`
-
-Publication rehearsal proved **1000 -> 1014**, exactly **14 additions**, all 1000 existing records unchanged, **0 holds/conflicts**, and an idempotent rerun. The reviewed BSE registry now contains **92 retained entries**.
+Final publication rehearsal proved **1000 -> 1014**, exactly **14 additions**, all 1000 existing records unchanged, **0 holds/conflicts**, and an idempotent rerun. The reviewed BSE registry now contains **92 retained entries**.
 
 Production sync `35965260674` succeeded:
 
@@ -101,13 +77,13 @@ Production sync `35965260674` succeeded:
 - 2025: **258 records** — 83 Mainboard / 174 SME / 1 unknown
 - 2026: **85 records** — 15 Mainboard / 60 SME / 10 unknown
 
-All 14 new issuers occur exactly once on current `main`, and each listing date, BSE code, market lot, issue price, source URL/hash and batch16 provenance matches the reviewed manifest. Unsupported price band, offer dates, issue size, minimum bid quantity and minimum application amount remain null.
+Every one of the 14 new issuers occurs exactly once on current `main`, and code/listing date/lot/issue price/source URL/document hash/manifest provenance all match batch16. Unsupported price band, offer dates, issue size, minimum bid quantity and minimum application amount remain null.
 
 GitHub Pages build `35965869172` succeeded on operator commit `50792aceff402c683d341dc9bf9bb730739005ef`, so the deployed Pages revision contains the 1014-record release.
 
-### Cursor state
+### Current historical cursor
 
-PR #181 did not touch or trigger the durable cursor workflow. Current cursor remains:
+The durable cursor remains:
 
 - **80 tracked / 236 eligible**
 - **70 parsed**
@@ -115,24 +91,11 @@ PR #181 did not touch or trigger the durable cursor workflow. Current cursor rem
 - **156 unseen**
 - next unseen notice: **`20250403-16`**
 
-The 14 parsed references from cursor3 are now fully reconciled, verified and published. The remaining unfinished work from that cursor window is the **10 unparseable notices**:
+The 14 parsed references from cursor3 are now fully reconciled and published. The remaining work from that cursor window is the **10 unparseable notices**, which must remain a separate parser/source-family repair track.
 
-- `20250716-16`
-- `20250715-47`
-- `20250711-10`
-- `20250710-17`
-- `20250606-10`
-- `20250529-14`
-- `20250512-14`
-- `20250509-10`
-- `20250408-20`
-- `20250407-20`
+**Next:** always re-read the cursor first. If it has advanced beyond 80 tracked notices, reconcile only the newest completed cursor segment against the current 1014-record universe. If it is unchanged, inspect the 10 cursor3 unparseable notices as a bounded parser/source-family repair batch; group them by demonstrated source shape and do not infer issuers from index evidence.
 
-**Next:** re-read the cursor first. If it is still at this 80-notice state, inspect the 10 unparseable notices, group them by demonstrated source/text shape, and repair the smallest reusable parser/source family without guessing issuer identities. If the cursor has advanced independently, reconcile the newly completed cursor window first.
-
-Do not repeat the now-completed 14-reference cursor3 publication batch.
-
-Read [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) for exact evidence, parser normalization, validation, production and deployment details.
+Read [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) for exact issuer facts, verification runs, parser repair details, production validation and the held unparseable notices.
 
 No UI redesign, minimum-investment work, billing, accounts, ads, paid services or permission changes are part of this handoff.
 
