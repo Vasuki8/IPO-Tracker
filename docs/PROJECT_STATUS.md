@@ -8,6 +8,212 @@ Continue P1/P2/P3 backend correctness, official-source coverage and dependable p
 
 Never infer missing IPO values. Keep listing date, index admission date, market lot, minimum bid quantity and application amount distinct.
 
+## Latest completed batch: second historical BSE cursor batch published — PR #178
+
+PR #178, **Reconcile second historical BSE cursor batch**, merged as:
+
+`17e0c7322d975587de0f640e83215ef68022c33f`
+
+This batch consumed the next durable BSE SME index-notice cursor segment and recovered the full set of parseable missing issuers across the 2025/2026 boundary.
+
+### Cursor advance
+
+The bounded cursor run was:
+
+- workflow: **`35959162509`**
+- cursor artifact: **`10791926413`**
+- artifact ZIP SHA-256: **`ac543656d4fdfa7f6644ef50e0274d93d8c01a75d5aa28fdd70255881a109209`**
+- retained state commit: **`5d63a07f9f1910b5b6eccb913dfc31ecdfed327d`**
+
+The selected window contained **20 older BSE SME index notices**.
+
+Current operational status for that cursor position is:
+
+- **60 tracked notices total**
+- **59 parsed**
+- **1 unparseable**
+- **176 unseen**
+- next unseen notice: **`20250908-25`**
+
+The unparseable notice is intentionally retained rather than guessed:
+
+- notice: **`20250912-85`**
+- date: **2025-09-12**
+- source: `https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250912-85`
+- extracted-text SHA-256: **`c2504ec9ca86dcfc0aa36ff50afa5c70803d3802353d955aff602b5eae88a8d8`**
+- error: **`no_parseable_listing_reference`**
+
+The cursor is designed so this failed notice does not block older unseen notices.
+
+### Cross-year reconciliation
+
+The 19 successfully parsed notices produced **30 listing references**.
+
+They were reconciled against both retained recovery universes:
+
+- 2025 recovery before this batch: **213 records**
+- 2026 recovery before this batch: **84 records**
+
+Result:
+
+- **30 missing exact identities**
+- **0 already-present exact matches**
+- **0 identity-review / ambiguous overlaps**
+- **0 fuzzy-name equivalence accepted**
+
+Index-addition evidence remains discovery-only.
+
+Retained machine-readable reconciliation:
+
+`data/discovery/bse-listing-reconciliation-2026-09-24-cursor2.json`
+
+The 30 missing references were divided into two bounded 15-candidate verification files:
+
+- `data/discovery/bse-listing-candidates-2026-09-24-batch8.json`
+- `data/discovery/bse-listing-candidates-2026-09-24-batch9.json`
+
+### Issuer-specific BSE verification
+
+The reviewed manifests were created from source run:
+
+- workflow: **`35959840134`**
+- artifact: **`10792036701`**
+- artifact ZIP SHA-256: **`3d883788e3aa99fd09553869f0850150b0a987174861b292804a021e206e6c94`**
+
+Each bounded half verified **15 / 15** against issuer-specific official BSE listing notices.
+
+The canonical archive listing-PDF paths were not available for these records, so publication uses the existing reviewed **official BSE notice HTML** contract. Each retained entry has the exact BSE notice URL, response/document hash, compact normalized identity/fact evidence, collection/publication timestamps, and offline replay through the listing verifier. No index notice is used as market-term authority and no page number is invented.
+
+Canonical reviewed manifests:
+
+- `data/verified-bse-listings/2026-09-24-batch9.json` — 4 entries
+- `data/verified-bse-listings/2026-09-24-batch10.json` — 7 entries
+- `data/verified-bse-listings/2026-09-24-batch11.json` — 4 entries
+- `data/verified-bse-listings/2026-09-24-batch12.json` — 5 entries
+- `data/verified-bse-listings/2026-09-24-batch13.json` — 5 entries
+- `data/verified-bse-listings/2026-09-24-batch14.json` — 5 entries
+
+Total reviewed records in this cursor batch: **30**.
+
+Final PR source verification repeated both halves successfully:
+
+- workflow: **`35960785399`**
+- batch 8: **15 / 15 verified**
+- batch 9: **15 / 15 verified**
+- rejected: **0**
+- unavailable: **0**
+- artifact: **`10792048220`**
+- artifact ZIP SHA-256: **`2df53976159ccbaa39558020ddf3c5300f76a286d5bdaea907560105afc7e015`**
+
+### Bounded parser repair
+
+Apollo Techno Industries' official notice uses this BSE date formatting:
+
+`December 31 , 2025`
+
+The previous listing-date grammar accepted `December 31, 2025` but not whitespace immediately before the comma.
+
+PR #178 made only the bounded formatting repair:
+
+- `strictDate` permits optional whitespace before the comma;
+- the issuer-specific listing-date regex permits the same harmless spacing;
+- a regression test verifies Apollo's exact formatting.
+
+This is not a relaxed date parser: invalid dates, wrong listing dates and non-listing date statements remain rejected.
+
+### Pre-merge validation
+
+Final PR-head checks:
+
+- reviewed BSE evidence/importer validation: **`35960785377`** — success
+- full data-contract validation: **`35960785360`** — success
+- issuer-specific BSE source verification: **`35960785399`** — success
+- protected BSE 544770 regression/source verification: **`35960785366`** — success
+
+The isolated real-import publication rehearsal measured:
+
+- **968 -> 998 records**
+- exactly **30 additions**
+- **46 already-present** reviewed BSE records
+- **0 held existing records**
+- **0 identity conflicts**
+- all **968 existing records unchanged**
+- second import/rebuild: **no-op / idempotent**
+- total retained reviewed BSE evidence entries after this batch: **76**
+
+### Production publication
+
+Merge-triggered production sync:
+
+- run: **`35960919082`**
+- conclusion: **success**
+- reviewed BSE import: **30 added / 46 already present / 0 holds**
+- semantic publication: **30 added / 36 changed / 0 removed / 0 conflicts**
+- schema 1.2.0 validation: **998 records passed**
+- operator health: **healthy**
+
+A separate historical PDF-field commit `45e34cff370a8f49501b1d3b935bd322aef58412` landed while the production sync was running. The semantic publisher reset against latest `main` and produced the final data commit one commit later, with zero conflicts, so the BSE additions and concurrent official-source enrichment were both retained.
+
+Source-backed data commit:
+
+`a8b6cc81f7c805598ab67552131833afea4bfa17`
+
+Operator-state commit:
+
+`32cadd15b4fc91a92ef89f5af6415c893b545146`
+
+Production after publication:
+
+- **998 total IPO records**
+- **2025: 242 records** — 83 Mainboard / 158 SME / 1 unknown
+- **2026: 85 records** — 15 Mainboard / 60 SME / 10 unknown
+- 29 of the new cursor2 issuers belong to 2025
+- 1 new issuer belongs to 2026
+- every one of the 30 reviewed issuers occurs exactly once
+- every BSE code, listing date, market lot, final issue price, source URL, document hash and manifest provenance matches committed reviewed evidence
+- unsupported price band, offer dates, issue size, minimum bid quantity and minimum application amount remain null
+- deterministic recovery build and schema validation passed
+- operator health: **healthy**
+
+### Deployment
+
+Native GitHub Pages build **`35961435740`** completed successfully on:
+
+`32cadd15b4fc91a92ef89f5af6415c893b545146`
+
+That operator-state revision directly descends from the 998-record data commit `a8b6cc81f7c805598ab67552131833afea4bfa17`, so the deployed Pages revision contains the full 30-record release.
+
+### Concurrent duplicate work reconciliation
+
+A second PR, **#179**, was opened while PR #178 was concurrently completing the same cursor batch.
+
+Repository evidence showed that PR #178 had already:
+
+- reconciled both 15-candidate halves;
+- committed reviewed evidence for all 30 parsed references;
+- included the same bounded Apollo spaced-comma parser repair;
+- passed the complete source/import/data-contract test set.
+
+PR #179 was therefore closed **without merge**. No duplicate evidence or IPO records were published from it.
+
+### Next task
+
+Always re-read `ops/bse-sme-addition-notices.json` first because the cursor advances independently.
+
+At this handoff the state is:
+
+- **60 tracked / 236 eligible**
+- **59 parsed**
+- **1 unparseable**
+- **176 unseen**
+- next unseen notice: **`20250908-25`**
+
+If the cursor has advanced in the next continuation, reconcile only the newly completed cursor segment against the current **998-record** universe.
+
+If the cursor is unchanged, the next bounded source-repair task is notice **`20250912-85`**. Inspect why the official index notice is currently `no_parseable_listing_reference`, repair only the demonstrated parser/source-family gap, and do not infer an issuer or listing notice when the source cannot prove one.
+
+Do not repeat the completed 30-reference cursor2 batch.
+
 ## Latest completed batch: four held historical BSE listings resolved — PR #177
 
 PR #177 merged as:
