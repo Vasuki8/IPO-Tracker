@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "input_report": {
+    "run_id": "35952980189",
+    "commit_sha": "2dcd60597c0fb8995a446efa00199138034b1603",
+    "generated_at": "2026-09-24T03:48:52.583Z",
+    "reconciliation_report": "data/discovery/bse-listing-reconciliation-2026-09-24.json"
+  },
+  "selection_rule": "Correct Recode Studios source identity after BSE notice 20260511-16 explicitly stated that the listing date and security details would follow in a separate notice. Preserve the original discovery claim; verify only the corrected issuer-specific listing notice.",
+  "candidates": [
+    {
+      "issuer_name": "RECODE STUDIOS LIMITED",
+      "bse_scrip_code": "544755",
+      "listing_notice_no": "20260511-46",
+      "listing_date": "2026-05-12",
+      "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20260511-46",
+      "index_notice_no": "20260512-30",
+      "index_notice_source_url": "https://www.bseindia.com/downloads/UploadDocs/Notices/20260512-30/20260512-30.pdf",
+      "extracted_text_sha256": "a2e3e2cfb4aa32d648e025e46c9810515814d82915b2e23afef34df100a743f2",
+      "original_listing_notice_no": "20260511-16",
+      "correction_reason": "BSE Listing Notice 20260511-16 states that listing date and security details will be informed through a separate notice; corrected issuer-specific listing notice is 20260511-46."
+    }
+  ]
+}

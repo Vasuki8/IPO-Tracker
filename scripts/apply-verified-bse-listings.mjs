@@ -29,9 +29,11 @@ export function validateEvidenceBatch(manifest, discovery) {
     const evidenceKind = entry.evidence_kind || "official_listing_pdf";
     const pdfEvidence = evidenceKind === "official_listing_pdf" &&
       isOfficialListingPdfUrl(entry.source_url, entry.listing_notice_no);
+    const visualPdfEvidence = evidenceKind === "official_listing_pdf_visual_review" &&
+      isOfficialListingPdfUrl(entry.source_url, entry.listing_notice_no);
     const htmlEvidence = evidenceKind === "official_notice_html" &&
       entry.source_url === listingUrl(entry.listing_notice_no);
-    if ((!pdfEvidence && !htmlEvidence) || !hashValid(entry.document_sha256) ||
+    if ((!pdfEvidence && !visualPdfEvidence && !htmlEvidence) || !hashValid(entry.document_sha256) ||
         !stampValid(entry.collected_at) || strictDate(entry.publication_date) !== entry.publication_date ||
         entry.document_identity !== "BSE Listing Notice " + entry.listing_notice_no ||
         issuerKey(entry.issuer_name) !== issuerKey(candidate.issuer_name) ||
@@ -50,6 +52,35 @@ export function validateEvidenceBatch(manifest, discovery) {
           !same(checked.identity_pages, entry.identity_pages)) {
         throw new Error("listing_evidence_revalidation_failed");
       }
+    } else if (visualPdfEvidence) {
+      const review = entry.visual_review;
+      if (!review || review.method !== "visual_page_review" || review.reason !== "image_only_pdf_page" ||
+          !Number.isSafeInteger(review.page) || review.page < 1 || review.page > 3 ||
+          typeof review.listing_statement !== "string" || !review.listing_statement ||
+          typeof review.scrip_code_source_value !== "string" || !review.scrip_code_source_value ||
+          typeof review.market_lot_source_value !== "string" || !review.market_lot_source_value ||
+          typeof review.issue_price_source_value !== "string" || !review.issue_price_source_value ||
+          entry.excerpt_pages != null || entry.identity_pages != null ||
+          Object.values(entry.facts).some((fact) => fact.page !== review.page) ||
+          entry.facts.listing_date.value !== candidate.listing_date ||
+          !Number.isSafeInteger(entry.facts.market_lot.value) || entry.facts.market_lot.value <= 0 ||
+          !Number.isFinite(entry.facts.issue_price.value) || entry.facts.issue_price.value <= 0 ||
+          entry.facts.market_lot.source_value !== review.market_lot_source_value ||
+          entry.facts.issue_price.source_value !== review.issue_price_source_value ||
+          !review.scrip_code_source_value.includes(entry.bse_scrip_code) ||
+          !review.market_lot_source_value.includes(String(entry.facts.market_lot.value)) ||
+          !review.issue_price_source_value.includes(String(entry.facts.issue_price.value)) ||
+          !review.listing_statement.toLowerCase().includes(candidate.issuer_name.toLowerCase()) ||
+          !/\bequity shares\b/i.test(review.listing_statement) ||
+          !/\bshall be listed\b/i.test(review.listing_statement) ||
+          !review.listing_statement.includes(entry.facts.listing_date.source_value)) {
+        throw new Error("invalid_visual_pdf_evidence");
+      }
+      checked = {
+        status: "verified",
+        observed_identity: { publication_date: entry.publication_date },
+        facts: entry.facts
+      };
     } else {
       if (typeof entry.evidence_text !== "string" || !entry.evidence_text || entry.evidence_text.length > 10000 ||
           !hashValid(entry.normalized_text_sha256) || sha256(entry.evidence_text) !== entry.normalized_text_sha256 ||
@@ -82,6 +113,7 @@ function recoveryRecord(entry, manifest, manifestPath = DEFAULT_MANIFEST) {
   }, collectedAt);
   if (!record) throw new Error("listing_record_factory_rejected_evidence");
   const htmlEvidence = entry.evidence_kind === "official_notice_html";
+  const visualPdfEvidence = entry.evidence_kind === "official_listing_pdf_visual_review";
   const source = {
     url: entry.source_url, document_type: htmlEvidence ? "BSE Listing Notice" : "BSE Listing Notice PDF",
     document_identity: entry.document_identity, document_sha256: entry.document_sha256,
@@ -89,7 +121,7 @@ function recoveryRecord(entry, manifest, manifestPath = DEFAULT_MANIFEST) {
   };
   record.bse_source = source;
   record.bse_scrip_code = entry.bse_scrip_code;
-  record.board_evidence = [{ ...source, page: htmlEvidence ? null : entry.identity_pages.board }];
+  record.board_evidence = [{ ...source, page: htmlEvidence ? null : visualPdfEvidence ? 1 : entry.identity_pages.board }];
   record.status_evidence = [{ ...source, page: entry.facts.listing_date.page ?? null }];
   record.documents = [{ type: source.document_type, identity: source.document_identity, url: source.url,
     publication_date: source.publication_date, collected_at: collectedAt, document_sha256: entry.document_sha256 }];
