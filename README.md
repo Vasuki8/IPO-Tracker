@@ -34,40 +34,50 @@ Collection time, dataset generation and Pages publication are separate signals. 
 
 ## Handoff for the next prompt
 
-**Latest completed batch: first historical BSE discovery reconciliation — PR #174.**
+**Latest completed batch: six historical BSE SME listings published — PR #175.**
 
-Historical cursor run `35952980189` discovered **23 listing references** from the next 20 older BSE SME index notices. Exact reconciliation against the 67-record 2026 recovery universe found:
+PR #175 preserved the existing strict reviewed-evidence importer and added a safe PDF-upgrade probe for issuer-specific notices that initially verified through official BSE HTML.
 
-- **6 already present**
-- **17 missing exact identities**
-- **0 fuzzy/ambiguous overlaps accepted**
+From PR #174's 13 verified historical candidates:
 
-The 17 missing references were split into bounded verifier batches of 15 + 2 and checked against issuer-specific official BSE listing notices. Source verification run `35954077034` completed with:
+- **6 have official BSE listing PDFs with page-backed evidence and are now reviewed/published**
+- **7 remain verified from official BSE HTML, but their canonical archive PDF paths return HTTP 404**
+- the prior **4 rejected candidates remain held** and were not published
 
-- **13 verified**
-- **4 rejected**
-- **0 unavailable**
-- artifact `10789631977`
-- artifact ZIP SHA-256 `f493f894524bc666b8652b8726283122e85f87fb00e93d96fc258a7090cc9ad6`
+Published batch manifest:
 
-Rejected and therefore **not publishable yet**:
+- `data/verified-bse-listings/2026-09-24-batch4.json`
+- source verification run: `35954818300`
+- artifact: `10789632860`
+- artifact ZIP SHA-256: `3c312c2077a4e8ddfc170c50aa65ea54874ceb53fbfff813fdd882506f4db99f`
 
-- AUTOFURNISH LIMITED — `20260527-47`
-- RECODE STUDIOS LIMITED — `20260511-16`
-- MEHUL TELECOM LIMITED — `20260423-27`
-- TIPCO ENGINEERING INDIA LIMITED — `20260330-44`
+The isolated publication rehearsal on final PR validation run `35955058014` proved **951 -> 957**, exactly 6 additions, all 951 existing records unchanged, 0 holds and an idempotent rerun.
 
-Their official listing PDFs did not independently confirm the expected scrip code/listing date; Autofurnish, Mehul Telecom and Tipco also failed the required equity-listing statement check. Do not infer or publish these four from index evidence.
+Merge-triggered production sync `35955112253` succeeded:
 
-Machine-readable reconciliation and candidate inputs:
+- reviewed BSE import: **6 added / 29 already present / 0 holds**
+- semantic publication: **6 added / 37 changed / 0 removed**
+- source-backed data commit: `fc5e0ec5e6bd9fb3c065544465066827a4005940`
+- operator-state commit: `9c07573b1ca27d48d93724236fbbde30971f11c2`
+- operator health: **healthy**
+- production: **957 total records / 73 records for 2026**
+- 2026 board coverage: **15 mainboard / 48 SME / 10 unknown**
 
-- `data/discovery/bse-listing-reconciliation-2026-09-24.json`
-- `data/discovery/bse-listing-candidates-2026-09-24-batch4.json`
-- `data/discovery/bse-listing-candidates-2026-09-24-batch5.json`
+GitHub Pages build `35955643913` succeeded on descendant commit `9c07573b1ca27d48d93724236fbbde30971f11c2`, so the deployed revision contains the six additions.
 
-**Next:** convert the 13 verified issuer-specific results into reviewed committed evidence manifests, revalidate their page excerpts/hashes, and publish only those 13 through the existing reviewed BSE importer. Keep the four rejected candidates on hold for issuer-identity/source repair. The independent historical cursor must continue advancing separately.
+The seven verified-but-HTML-only notices that remain blocked by archive-PDF 404 are:
 
-Read [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) for exact run IDs, rejection reasons, production state and acceptance criteria.
+- ELFIN AGRO INDIA LIMITED — `20260311-44`
+- PAN HR SOLUTION LIMITED — `20260212-30`
+- KANISHK ALUMINIUM INDIA LIMITED — `20260203-43`
+- ACCRETION NUTRAVEDA LIMITED — `20260203-44`
+- MSAFE EQUIPMENTS LIMITED — `20260203-45`
+- ARITAS VINYL LIMITED — `20260122-19`
+- YAJUR FIBRES LIMITED — `20260113-25`
+
+**Next:** repair the official evidence path for those seven. First look for issuer-notice attachments or alternate official BSE document URLs. If BSE truly exposes only HTML, add a separately reviewed official-HTML evidence contract with response hash and exact excerpts—never fake PDF/page evidence. Keep the four rejected candidates on a separate identity/source-repair track. The independent historical cursor remains at **40/236 parsed with 196 unseen** and must continue separately.
+
+Read [PROJECT_STATUS.md](docs/PROJECT_STATUS.md) for exact facts, run IDs, source hashes, rejected candidates and deployment evidence.
 
 No UI redesign, minimum-investment work, billing, accounts, ads, paid services or permission changes are part of this handoff.
 
