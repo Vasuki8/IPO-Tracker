@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "parser_version": "1.1.0",
-  "updated_at": "2026-09-24T05:16:06.931Z",
+  "updated_at": "2026-09-24T06:07:01.445Z",
   "bootstrap": {
     "source_run_id": "35939161246",
     "source_commit_sha": "7eedd8f9668cd7fce51d373427d7a2d7eafd7a8c",
@@ -17,7 +17,7 @@
     "eligible_count": 236,
     "newest_notice_no": "20260821-22",
     "oldest_notice_no": "20200113-10",
-    "observed_at": "2026-09-24T05:16:06.931Z"
+    "observed_at": "2026-09-24T06:07:01.445Z"
   },
   "notices": {
     "20260821-22": {
@@ -1519,6 +1519,468 @@
         }
       ],
       "error": null
+    },
+    "20250908-25": {
+      "notice_no": "20250908-25",
+      "notice_date": "2025-09-08",
+      "subject": "Addition to the BSE SME IPO INDEX",
+      "parser_version": "1.1.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T06:07:01.445Z",
+      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250908-25",
+      "pdf_url": null,
+      "extracted_text_sha256": "bd1ff82db67bdaf5af7c5bdccac39576ed198c484fb3bf05ce815c0a76661d6c",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20250905-49",
+          "issuer_name": "RACHIT PRINTS LIMITED",
+          "bse_scrip_code": "544503",
+          "listing_date": "2025-09-08",
+          "listing_date_raw": "September 08,2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250905-49"
+        }
+      ],
+      "error": null
+    },
+    "20250905-7": {
+      "notice_no": "20250905-7",
+      "notice_date": "2025-09-05",
+      "subject": "Additions to the BSE SME IPO INDEX",
+      "parser_version": "1.1.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T06:07:01.445Z",
+      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250905-7",
+      "pdf_url": null,
+      "extracted_text_sha256": "72b8bbaddd66ffa4133eeffa1a262b489bf88d55f0b355615108b4c18d277b5f",
+      "parsed_entry_count": 2,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20250904-47",
+          "issuer_name": "ABRIL PAPER TECH LIMITED",
+          "bse_scrip_code": "544500",
+          "listing_date": "2025-09-05",
+          "listing_date_raw": "September 05, 2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250904-47"
+        },
+        {
+          "listing_notice_no": "20250904-61",
+          "issuer_name": "SUGS LLOYD LIMITED",
+          "bse_scrip_code": "544501",
+          "listing_date": "2025-09-05",
+          "listing_date_raw": "September 05, 2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250904-61"
+        }
+      ],
+      "error": null
+    },
+    "20250904-23": {
+      "notice_no": "20250904-23",
+      "notice_date": "2025-09-04",
+      "subject": "Addition to the BSE SME IPO INDEX",
+      "parser_version": "1.1.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T06:07:01.445Z",
+      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250904-23",
+      "pdf_url": null,
+      "extracted_text_sha256": "efdf2f69b479b3139b0ea28fadcd531a6cdb771e2233141035320fcc2624ea00",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20250903-50",
+          "issuer_name": "OVAL PROJECTS ENGINEERING LIMITED",
+          "bse_scrip_code": "544498",
+          "listing_date": "2025-09-04",
+          "listing_date_raw": "September 04,2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250903-50"
+        }
+      ],
+      "error": null
+    },
+    "20250902-21": {
+      "notice_no": "20250902-21",
+      "notice_date": "2025-09-02",
+      "subject": "Additions to the BSE SME IPO INDEX",
+      "parser_version": "1.1.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T06:07:01.445Z",
+      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250902-21",
+      "pdf_url": null,
+      "extracted_text_sha256": "bb17407df16e730835c06902828a85643095fd1d43d9f73dc9df357f7ddf6615",
+      "parsed_entry_count": 2,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20250901-44",
+          "issuer_name": "GLOBTIER INFOTECH LIMITED",
+          "bse_scrip_code": "544494",
+          "listing_date": "2025-09-02",
+          "listing_date_raw": "September 02, 2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250901-44"
+        },
+        {
+          "listing_notice_no": "20250901-47",
+          "issuer_name": "NIS MANAGEMENT LIMITED",
+          "bse_scrip_code": "544495",
+          "listing_date": "2025-09-02",
+          "listing_date_raw": "September 02, 2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250901-47"
+        }
+      ],
+      "error": null
+    },
+    "20250818-24": {
+      "notice_no": "20250818-24",
+      "notice_date": "2025-08-18",
+      "subject": "Addition to the BSE SME IPO INDEX",
+      "parser_version": "1.1.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T06:07:01.445Z",
+      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250818-24",
+      "pdf_url": null,
+      "extracted_text_sha256": "b90855ae729dc6bef3d552701fb8218c7b266097e5e0059560d95115fae98aca",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20250814-59",
+          "issuer_name": "STAR IMAGING AND PATH LAB LIMITED",
+          "bse_scrip_code": "544482",
+          "listing_date": "2025-08-18",
+          "listing_date_raw": "August 18,2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250814-59"
+        }
+      ],
+      "error": null
+    },
+    "20250811-29": {
+      "notice_no": "20250811-29",
+      "notice_date": "2025-08-11",
+      "subject": "Additions to the BSE SME IPO INDEX",
+      "parser_version": "1.1.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T06:07:01.445Z",
+      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250811-29",
+      "pdf_url": null,
+      "extracted_text_sha256": "a37476dd1f87c90bad72fdef371d6daa6f252b56b3af93d10e537e843a55e1af",
+      "parsed_entry_count": 2,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20250808-49",
+          "issuer_name": "BLT LOGISTICS LIMITED",
+          "bse_scrip_code": "544474",
+          "listing_date": "2025-08-11",
+          "listing_date_raw": "August 11, 2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250808-49"
+        },
+        {
+          "listing_notice_no": "20250808-47",
+          "issuer_name": "ESSEX MARINE LIMITED",
+          "bse_scrip_code": "544475",
+          "listing_date": "2025-08-11",
+          "listing_date_raw": "August 11, 2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250808-47"
+        }
+      ],
+      "error": null
+    },
+    "20250804-18": {
+      "notice_no": "20250804-18",
+      "notice_date": "2025-08-04",
+      "subject": "Additions to the BSE SME IPO INDEX",
+      "parser_version": "1.1.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T06:07:01.445Z",
+      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250804-18",
+      "pdf_url": null,
+      "extracted_text_sha256": "8085ac4b2d7bef1187c5aab5a8a2deea63ba9d60564da14ce5866f19889fc4ed",
+      "parsed_entry_count": 2,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20250801-73",
+          "issuer_name": "REPONO LIMITED",
+          "bse_scrip_code": "544463",
+          "listing_date": "2025-08-04",
+          "listing_date_raw": "August 04, 2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250801-73"
+        },
+        {
+          "listing_notice_no": "20250801-62",
+          "issuer_name": "UMIYA MOBILE LIMITED",
+          "bse_scrip_code": "544464",
+          "listing_date": "2025-08-04",
+          "listing_date_raw": "August 04, 2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250801-62"
+        }
+      ],
+      "error": null
+    },
+    "20250729-38": {
+      "notice_no": "20250729-38",
+      "notice_date": "2025-07-29",
+      "subject": "Addition to the BSE SME IPO INDEX",
+      "parser_version": "1.1.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T06:07:01.445Z",
+      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250729-38",
+      "pdf_url": null,
+      "extracted_text_sha256": "fb1ee0c47152b18cba570409a8c1e122db3c158da530264a103a4bd9700c83e9",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20250728-56",
+          "issuer_name": "MONARCH SURVEYORS AND ENGINEERING CONSULTANTS LIMITED",
+          "bse_scrip_code": "544453",
+          "listing_date": "2025-07-29",
+          "listing_date_raw": "July 29,2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250728-56"
+        }
+      ],
+      "error": null
+    },
+    "20250728-20": {
+      "notice_no": "20250728-20",
+      "notice_date": "2025-07-28",
+      "subject": "Addition to the BSE SME IPO INDEX",
+      "parser_version": "1.1.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T06:07:01.445Z",
+      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250728-20",
+      "pdf_url": null,
+      "extracted_text_sha256": "a5b886acef9b2663040040e8216ff852aa94d4f724cdce194001e6b21a2aa4d0",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20250726-1",
+          "issuer_name": "SWASTIKA CASTAL LIMITED",
+          "bse_scrip_code": "544452",
+          "listing_date": "2025-07-28",
+          "listing_date_raw": "July 28,2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250726-1"
+        }
+      ],
+      "error": null
+    },
+    "20250723-18": {
+      "notice_no": "20250723-18",
+      "notice_date": "2025-07-23",
+      "subject": "Addition to the BSE SME IPO INDEX",
+      "parser_version": "1.1.0",
+      "status": "parsed",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T06:07:01.445Z",
+      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250723-18",
+      "pdf_url": null,
+      "extracted_text_sha256": "4b52c079e00708f2fa6adb03a960aa9aebb02c4255df45bba65341e0b80774ce",
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20250722-42",
+          "issuer_name": "MONIKA ALCOBEV LIMITED",
+          "bse_scrip_code": "544451",
+          "listing_date": "2025-07-23",
+          "listing_date_raw": "July 23,2025",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20250722-42"
+        }
+      ],
+      "error": null
+    },
+    "20250716-16": {
+      "notice_no": "20250716-16",
+      "notice_date": "2025-07-16",
+      "subject": "Addition to the BSE SME IPO INDEX",
+      "parser_version": "1.1.0",
+      "status": "unparseable",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T06:07:01.445Z",
+      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250716-16",
+      "pdf_url": null,
+      "extracted_text_sha256": "fe03c2b25ada169d21f24d37d26004841756ed42c4281bde71f4110c98ab62f0",
+      "parsed_entry_count": 0,
+      "parsed_entries": [],
+      "error": "no_parseable_listing_reference"
+    },
+    "20250715-47": {
+      "notice_no": "20250715-47",
+      "notice_date": "2025-07-15",
+      "subject": "Addition to the BSE SME IPO INDEX",
+      "parser_version": "1.1.0",
+      "status": "unparseable",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T06:07:01.445Z",
+      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250715-47",
+      "pdf_url": null,
+      "extracted_text_sha256": "4e5246634f566ca4c0e7de14e2cd94f2889c83e097c1e977240e019ab6038e04",
+      "parsed_entry_count": 0,
+      "parsed_entries": [],
+      "error": "no_parseable_listing_reference"
+    },
+    "20250711-10": {
+      "notice_no": "20250711-10",
+      "notice_date": "2025-07-11",
+      "subject": "Addition to the BSE SME IPO INDEX",
+      "parser_version": "1.1.0",
+      "status": "unparseable",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T06:07:01.445Z",
+      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250711-10",
+      "pdf_url": null,
+      "extracted_text_sha256": "a6655eeef14c59c824a7aff1f4f831bcce3db22a071e88fa1821e3fb608cb3bc",
+      "parsed_entry_count": 0,
+      "parsed_entries": [],
+      "error": "no_parseable_listing_reference"
+    },
+    "20250710-17": {
+      "notice_no": "20250710-17",
+      "notice_date": "2025-07-10",
+      "subject": "Addition to the BSE SME IPO INDEX",
+      "parser_version": "1.1.0",
+      "status": "unparseable",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T06:07:01.445Z",
+      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250710-17",
+      "pdf_url": null,
+      "extracted_text_sha256": "42bcb30e86d2cca6750a9bc291b11436476799dcb249d7a3a7bf7bf8ec224b28",
+      "parsed_entry_count": 0,
+      "parsed_entries": [],
+      "error": "no_parseable_listing_reference"
+    },
+    "20250606-10": {
+      "notice_no": "20250606-10",
+      "notice_date": "2025-06-06",
+      "subject": "Addition to the BSE SME IPO INDEX",
+      "parser_version": "1.1.0",
+      "status": "unparseable",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T06:07:01.445Z",
+      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250606-10",
+      "pdf_url": null,
+      "extracted_text_sha256": "9d2a4decffc8cfbe33b267e29c6cc3840cc4241cda386817527336114138b71c",
+      "parsed_entry_count": 0,
+      "parsed_entries": [],
+      "error": "no_parseable_listing_reference"
+    },
+    "20250529-14": {
+      "notice_no": "20250529-14",
+      "notice_date": "2025-05-29",
+      "subject": "Addition to the BSE SME IPO INDEX",
+      "parser_version": "1.1.0",
+      "status": "unparseable",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T06:07:01.445Z",
+      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250529-14",
+      "pdf_url": null,
+      "extracted_text_sha256": "266c9fe115c7a75b506709b4e61780b378aec0db00df3b8a5dbdf9bac9b11d55",
+      "parsed_entry_count": 0,
+      "parsed_entries": [],
+      "error": "no_parseable_listing_reference"
+    },
+    "20250512-14": {
+      "notice_no": "20250512-14",
+      "notice_date": "2025-05-12",
+      "subject": "Additions to the BSE SME IPO INDEX",
+      "parser_version": "1.1.0",
+      "status": "unparseable",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T06:07:01.445Z",
+      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250512-14",
+      "pdf_url": null,
+      "extracted_text_sha256": "839dc1a5e14fcb88d9fcb0b5ca4fe03c095ee382956754a76cb0ecd1257c6133",
+      "parsed_entry_count": 0,
+      "parsed_entries": [],
+      "error": "no_parseable_listing_reference"
+    },
+    "20250509-10": {
+      "notice_no": "20250509-10",
+      "notice_date": "2025-05-09",
+      "subject": "Addition to the BSE SME IPO INDEX",
+      "parser_version": "1.1.0",
+      "status": "unparseable",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T06:07:01.445Z",
+      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250509-10",
+      "pdf_url": null,
+      "extracted_text_sha256": "ab6166852784c3a6edf538d7a9df706f044e711ba0fe86e32aeab5c2017e6bbf",
+      "parsed_entry_count": 0,
+      "parsed_entries": [],
+      "error": "no_parseable_listing_reference"
+    },
+    "20250408-20": {
+      "notice_no": "20250408-20",
+      "notice_date": "2025-04-08",
+      "subject": "Additions to the BSE SME IPO INDEX",
+      "parser_version": "1.1.0",
+      "status": "unparseable",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T06:07:01.445Z",
+      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250408-20",
+      "pdf_url": null,
+      "extracted_text_sha256": "741d6a29c85e7cd49e308b2fec31c835029210eb06f70a5fb36cad33c0615b43",
+      "parsed_entry_count": 0,
+      "parsed_entries": [],
+      "error": "no_parseable_listing_reference"
+    },
+    "20250407-20": {
+      "notice_no": "20250407-20",
+      "notice_date": "2025-04-07",
+      "subject": "Addition to the BSE SME IPO INDEX",
+      "parser_version": "1.1.0",
+      "status": "unparseable",
+      "attempts": 1,
+      "first_attempted_at": "2026-09-24T06:07:01.445Z",
+      "last_attempted_at": "2026-09-24T06:07:01.445Z",
+      "source_kind": "bse_index_notice_detail_api",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20250407-20",
+      "pdf_url": null,
+      "extracted_text_sha256": "1b8c56d55fbf231944585ba4079c78e13591f8f5775b603350e4d55e43202629",
+      "parsed_entry_count": 0,
+      "parsed_entries": [],
+      "error": "no_parseable_listing_reference"
     }
   }
 }
