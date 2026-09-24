@@ -147,3 +147,25 @@ assert.equal(verify(html + " Name of the company Other Limited Registered Office
   );
 }
 
+
+{
+  const city = {
+    issuer_name: "CITY CROPS AGRO LIMITED",
+    bse_scrip_code: "544000",
+    listing_notice_no: "20231009-25",
+    listing_date: "2023-10-10",
+    listing_notice_url: listingUrl("20231009-25")
+  };
+  const source =
+    "Notice No. 20231009-25 Notice Date 09 Oct 2023 Category Company related Segment SME " +
+    "Subject Listing of Equity Shares of CITY CROPS AGRO LIMITED Attachments Annexure II.pdf Content " +
+    "Trading Members are hereby informed that effective from Tuesday, October 10, 2023, the Equity Shares of " +
+    "CITY CROPS AGRO LIMITED shall be listed and admitted to dealings. Name of the company CITY CROPS AGRO LIMITED " +
+    "Registered & Corporate Office Registered Office: Ahmedabad Scrip Code 544000 Market Lot 6000 " +
+    "Issue Price for the current Public issue Rs. 25/- per share";
+  const checked = verifyListingHtml(source, city, "2026-09-24T00:00:00Z");
+  assert.equal(checked.status, "verified");
+  assert.equal(checked.observed_identity.issuer_name, "CITY CROPS AGRO LIMITED");
+  assert.equal(checked.facts.market_lot.value, 6000);
+  assert.equal(checked.facts.issue_price.value, 25);
+}
