@@ -631,6 +631,238 @@
       "status": "error",
       "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-jTXDc2/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1761802414095.pdf\ncurl: (28) Operation timed out after 75000 milliseconds with 20180399 out of 27796285 bytes received\ncurl: (28) Operation timed out after 75001 milliseconds with 20855031 out of 27796285 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1761802414095.pdf"
+    },
+    "2025|studds-accessories-limited": {
+      "issuer_name": "Studds Accessories Limited",
+      "listing_date": "2025-11-07",
+      "last_attempted_at": "2026-09-24T00:04:55.841Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 4554880000,
+          "source_value": "₹4,554.88 MILLION",
+          "page": 2
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Studds Accessories Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1762922983653.pdf",
+        "publication_date": "2025-11-12"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1762922983653.pdf"
+    },
+    "2024|sanathan-textiles-limited": {
+      "issuer_name": "Sanathan Textiles Limited",
+      "listing_date": "2024-12-27",
+      "last_attempted_at": "2026-09-24T00:04:55.841Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 5500000000,
+          "source_value": "₹5,500.00 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Sanathan Textiles Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1734330549299.PDF",
+        "publication_date": "2024-12-16"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1734330549299.PDF"
+    },
+    "2023|azad-engineering-limited": {
+      "issuer_name": "Azad Engineering Limited",
+      "listing_date": "2023-12-28",
+      "last_attempted_at": "2026-09-24T00:04:55.841Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 7400000000,
+          "source_value": "₹7,400.00 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Azad Engineering Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702623912451.PDF",
+        "publication_date": "2023-12-15"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702623912451.PDF"
+    },
+    "2022|abans-holdings-limited": {
+      "issuer_name": "Abans Holdings Limited",
+      "listing_date": "2022-12-23",
+      "last_attempted_at": "2026-09-24T00:04:55.841Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Abans Holdings Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1670404259679.pdf",
+        "publication_date": "2022-12-07"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1670404259679.pdf"
+    },
+    "2021|medplus-health-services-limited": {
+      "issuer_name": "MedPlus Health Services Limited",
+      "listing_date": "2021-12-23",
+      "last_attempted_at": "2026-09-24T00:04:55.841Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 13982950000,
+          "source_value": "₹13,982.95 MILLION",
+          "page": 1
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "MedPlus Health Services Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681883318116.pdf",
+        "publication_date": "2021-12-21"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681883318116.pdf"
+    },
+    "2025|orkla-india-limited": {
+      "issuer_name": "Orkla India Limited",
+      "listing_date": "2025-11-06",
+      "last_attempted_at": "2026-09-24T00:04:55.841Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Orkla India Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1763620246979.pdf",
+        "publication_date": "2025-10-23"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1763620246979.pdf"
+    },
+    "2024|transrail-lighting-limited": {
+      "issuer_name": "Transrail Lighting Limited",
+      "listing_date": "2024-12-27",
+      "last_attempted_at": "2026-09-24T00:04:55.841Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Transrail Lighting Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1733909890382.pdf",
+        "publication_date": "2024-12-11"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1733909890382.pdf"
+    },
+    "2023|credo-brands-marketing-limited": {
+      "issuer_name": "Credo Brands Marketing Limited",
+      "listing_date": "2023-12-27",
+      "last_attempted_at": "2026-09-24T00:04:55.841Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Credo Brands Marketing Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702530365688.pdf",
+        "publication_date": "2023-12-13"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702530365688.pdf"
     }
   }
 }
