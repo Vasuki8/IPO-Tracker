@@ -1,12 +1,161 @@
 # Project status and handoff
 
-Updated: 2026-09-24 UTC (September 23 in America/Toronto).
+Updated: 2026-09-24 UTC (September 24 in America/Toronto).
 
 ## Current priority
 
 Continue P1/P2/P3 backend correctness, official-source coverage and dependable publication under `DEVELOPMENT_PROCESS.md`. The active application-term requirement is **Lot Size only**; minimum investment, UI redesign, research-depth expansion and commercial infrastructure remain out of scope.
 
 Never infer missing IPO values. Keep listing date, index admission date, market lot, minimum bid quantity and application amount distinct.
+
+## Latest completed batch: six historical BSE SME listings published — PR #175
+
+PR #175 merged as:
+
+`6059dab836760e8d9c658101a3e1e536683bd039`
+
+It completed the safe publishable subset from the first historical discovery reconciliation without weakening the reviewed-evidence importer.
+
+### Why only 6 of the 13 verified candidates were published
+
+The existing reviewed importer intentionally requires an issuer-specific official BSE listing **PDF**, document hash, and page-backed excerpts.
+
+The prior source run had 13 issuer identities that verified through official BSE listing notices, but only 6 had PDF evidence. PR #175 added an opt-in PDF-upgrade probe for already verified HTML notices and tested that behavior without changing the default retry semantics.
+
+Source run:
+
+- workflow: **`35954818300`**
+- artifact: **`10789632860`**
+- artifact ZIP SHA-256: **`3c312c2077a4e8ddfc170c50aa65ea54874ceb53fbfff813fdd882506f4db99f`**
+
+The PDF upgrade confirmed:
+
+- **6 PDF-backed verified candidates**
+- **7 official-HTML verified candidates whose canonical archive PDF path returns HTTP 404**
+- the previously identified **4 rejected candidates remain rejected**
+
+The importer was not relaxed. HTML verification was not converted into fake page evidence.
+
+### Reviewed batch 4
+
+Committed manifest:
+
+`data/verified-bse-listings/2026-09-24-batch4.json`
+
+| Issuer | BSE code | Listing notice | Listing date | Market lot | Issue price |
+| --- | --- | --- | --- | ---: | ---: |
+| M.R. MANIVENI FOODS LIMITED | 544768 | `20260529-40` | 2026-06-01 | 2,000 | INR 52 |
+| VEGORAMA PUNJABI ANGITHI LIMITED | 544765 | `20260526-31` | 2026-05-27 | 1,600 | INR 77 |
+| GOLDLINE PHARMACEUTICAL LIMITED | 544759 | `20260518-28` | 2026-05-19 | 3,000 | INR 43 |
+| SAFETY CONTROLS & DEVICES LIMITED | 544746 | `20260410-44` | 2026-04-13 | 1,600 | INR 80 |
+| EMIAC TECHNOLOGIES LIMITED | 544747 | `20260410-43` | 2026-04-13 | 1,200 | INR 98 |
+| NOVUS LOYALTY LIMITED | 544735 | `20260324-28` | 2026-03-25 | 1,000 | INR 146 |
+
+Only explicit listing date, market lot and final issue price are retained from the listing PDFs. Unsupported price-band, offer-date, issue-size and application fields remain null unless supported by another official source.
+
+### Pre-merge validation
+
+Final PR workflows:
+
+- reviewed BSE evidence/importer validation: **`35955058014`** — success
+- full data-contract validation: **`35955057967`** — success
+- BSE candidate/source diagnostics: **`35955057960`** — success
+- 544770 regression/source verification: **`35955057944`** — success
+
+The isolated real-import rehearsal measured:
+
+- **951 -> 957 records**
+- exactly **6 additions**
+- **29 already-present** reviewed BSE records
+- **0 held existing records**
+- **0 identity conflicts**
+- all **951 existing records unchanged**
+- second import/rebuild: **no-op / idempotent**
+- total reviewed BSE evidence entries after this batch: **35**
+
+### Production publication
+
+Merge-triggered live sync:
+
+- run: **`35955112253`**
+- conclusion: **success**
+- reviewed BSE import: **6 added / 29 already present / 0 holds**
+- semantic publication: **6 added / 37 changed / 0 removed**
+- operator health: **healthy**
+
+The 37 changed records are normal concurrent official NSE/SEBI enrichment from the same source-first run; the semantic publisher separately reported exactly 6 additions and 0 removals.
+
+Source-backed data commit:
+
+`fc5e0ec5e6bd9fb3c065544465066827a4005940`
+
+Operator-state commit:
+
+`9c07573b1ca27d48d93724236fbbde30971f11c2`
+
+Production after publication:
+
+- **957 total IPO records**
+- **73 records for 2026**
+- 2026 board coverage: **15 mainboard / 48 SME / 10 unknown**
+- deterministic publication/recovery checks: passed
+- schema validation: passed
+- operator health: **healthy**
+
+The exact six records are present on current `main` with their BSE scrip codes, verified listing date, market lot, issue price, document hash and batch-4 provenance.
+
+### Deployment verification
+
+GitHub Pages dynamic build **`35955643913`** completed successfully on:
+
+`9c07573b1ca27d48d93724236fbbde30971f11c2`
+
+That revision is a descendant of source-backed data commit `fc5e0ec5e6bd9fb3c065544465066827a4005940`, so the deployed Pages revision contains the six-record release.
+
+A direct HTTP fetch of the deployed JSON could not be performed from this execution environment because external DNS resolution was unavailable. Deployment verification therefore uses the successful descendant Pages build plus exact current-main recovery records and the successful production publication log.
+
+### Remaining seven HTML-verified candidates
+
+These issuer-specific BSE notice pages independently verified identity and listing facts, but the official archive PDF probe returned **HTTP 404** for each:
+
+| Issuer | Listing notice |
+| --- | --- |
+| ELFIN AGRO INDIA LIMITED | `20260311-44` |
+| PAN HR SOLUTION LIMITED | `20260212-30` |
+| KANISHK ALUMINIUM INDIA LIMITED | `20260203-43` |
+| ACCRETION NUTRAVEDA LIMITED | `20260203-44` |
+| MSAFE EQUIPMENTS LIMITED | `20260203-45` |
+| ARITAS VINYL LIMITED | `20260122-19` |
+| YAJUR FIBRES LIMITED | `20260113-25` |
+
+They are **not published yet**. Their official HTML evidence is retained in the verification artifacts, but the current reviewed importer correctly rejects evidence without the required PDF/page contract.
+
+### Four rejected candidates remain held
+
+Do not publish or infer from the SME-index references:
+
+- AUTOFURNISH LIMITED — `20260527-47`
+- RECODE STUDIOS LIMITED — `20260511-16`
+- MEHUL TELECOM LIMITED — `20260423-27`
+- TIPCO ENGINEERING INDIA LIMITED — `20260330-44`
+
+These remain a separate issuer-identity/source-repair problem.
+
+### Next task
+
+Repair the official evidence path for the **seven HTML-verified / PDF-404** notices.
+
+Acceptance requirements:
+
+- first inspect the exact BSE notice pages for attachment/download URLs or another official BSE document endpoint;
+- preserve the already verified HTML response hashes and identities;
+- if an official document exists, verify it independently and retain its hash/page evidence before publication;
+- if BSE genuinely exposes only HTML, design a **separate reviewed official-HTML evidence contract** that retains URL, notice identity, publication date, response hash, collection timestamp and exact excerpts;
+- do not invent page numbers or silently weaken the PDF evidence contract;
+- keep the four rejected candidates out of this batch;
+- after resolving this source family, return to the independent historical cursor, currently **40/236 parsed with 196 unseen** (next unseen notice remains `20260107-29`).
+
+The historical cursor itself remains independent and must not be reset or coupled to live sync.
 
 ## Latest completed batch: first historical BSE discovery reconciliation
 
