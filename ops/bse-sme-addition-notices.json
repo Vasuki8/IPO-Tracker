@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "parser_version": "1.4.0",
-  "updated_at": "2026-09-25T03:11:40.548Z",
+  "parser_version": "1.5.0",
+  "updated_at": "2026-09-25T03:53:14.049Z",
   "bootstrap": {
     "source_run_id": "35939161246",
     "source_commit_sha": "7eedd8f9668cd7fce51d373427d7a2d7eafd7a8c",
@@ -17,7 +17,7 @@
     "eligible_count": 236,
     "newest_notice_no": "20260821-22",
     "oldest_notice_no": "20200113-10",
-    "observed_at": "2026-09-25T03:11:40.548Z"
+    "observed_at": "2026-09-25T03:53:14.049Z"
   },
   "notices": {
     "20260821-22": {
@@ -4800,18 +4800,83 @@
       "notice_no": "20221010-15",
       "notice_date": "2022-10-10",
       "subject": "Additions to the BSE SME IPO Index",
-      "parser_version": "1.4.0",
-      "status": "unparseable",
+      "parser_version": "1.5.0",
+      "status": "parsed",
       "attempts": 1,
-      "first_attempted_at": "2026-09-24T23:13:59.259Z",
-      "last_attempted_at": "2026-09-24T23:13:59.259Z",
+      "first_attempted_at": "2026-09-25T03:53:14.049Z",
+      "last_attempted_at": "2026-09-25T03:53:14.049Z",
       "source_kind": "bse_index_notice_detail_api",
       "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20221010-15",
       "pdf_url": null,
       "extracted_text_sha256": "e6525801defce21780dccc7ef5cd3f70d3ab17bb27f557cc0b4da17995f4ee5f",
-      "parsed_entry_count": 0,
-      "parsed_entries": [],
-      "error": "no_parseable_listing_reference"
+      "parsed_entry_count": 8,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20221007-67",
+          "issuer_name": "Steelman Telecom Limited",
+          "bse_scrip_code": "543622",
+          "listing_date": "2022-10-10",
+          "listing_date_raw": "October 10, 2022",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20221007-67"
+        },
+        {
+          "listing_notice_no": "20221007-40",
+          "issuer_name": "Cargosol Logistics Limited",
+          "bse_scrip_code": "543621",
+          "listing_date": "2022-10-10",
+          "listing_date_raw": "October 10, 2022",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20221007-40"
+        },
+        {
+          "listing_notice_no": "20221007-39",
+          "issuer_name": "Insolation Energy Limited",
+          "bse_scrip_code": "543620",
+          "listing_date": "2022-10-10",
+          "listing_date_raw": "October 10, 2022",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20221007-39"
+        },
+        {
+          "listing_notice_no": "20221007-38",
+          "issuer_name": "Concord Control Systems Limited",
+          "bse_scrip_code": "543619",
+          "listing_date": "2022-10-10",
+          "listing_date_raw": "October 10, 2022",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20221007-38"
+        },
+        {
+          "listing_notice_no": "20221007-30",
+          "issuer_name": "Cargotrans Maritime Limited",
+          "bse_scrip_code": "543618",
+          "listing_date": "2022-10-10",
+          "listing_date_raw": "October 10, 2022",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20221007-30"
+        },
+        {
+          "listing_notice_no": "20221007-29",
+          "issuer_name": "Reetech International Cargo and Courier Limited",
+          "bse_scrip_code": "543617",
+          "listing_date": "2022-10-10",
+          "listing_date_raw": "October 10, 2022",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20221007-29"
+        },
+        {
+          "listing_notice_no": "20221007-28",
+          "issuer_name": "Silicon Rental Solutions Limited",
+          "bse_scrip_code": "543615",
+          "listing_date": "2022-10-10",
+          "listing_date_raw": "October 10, 2022",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20221007-28"
+        },
+        {
+          "listing_notice_no": "20221007-2",
+          "issuer_name": "Trident Lifeline Limited",
+          "bse_scrip_code": "543616",
+          "listing_date": "2022-10-10",
+          "listing_date_raw": "October 10, 2022",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20221007-2"
+        }
+      ],
+      "error": null
     },
     "20221006-16": {
       "notice_no": "20221006-16",
@@ -6111,35 +6176,53 @@
       "notice_no": "20200813-12",
       "notice_date": "2020-08-13",
       "subject": "Addition to the BSE SME IPO Index",
-      "parser_version": "1.4.0",
-      "status": "unparseable",
+      "parser_version": "1.5.0",
+      "status": "parsed",
       "attempts": 1,
-      "first_attempted_at": "2026-09-25T03:11:40.548Z",
-      "last_attempted_at": "2026-09-25T03:11:40.548Z",
+      "first_attempted_at": "2026-09-25T03:53:14.049Z",
+      "last_attempted_at": "2026-09-25T03:53:14.049Z",
       "source_kind": "bse_index_notice_detail_api",
       "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20200813-12",
       "pdf_url": null,
       "extracted_text_sha256": "a4c319b734434f2ad0ae04428fad89eea69cb377f8c54049984ec1edefe2de60",
-      "parsed_entry_count": 0,
-      "parsed_entries": [],
-      "error": "no_parseable_listing_reference"
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20200812-9",
+          "issuer_name": "Suratwwala Business Group Limited",
+          "bse_scrip_code": "543218",
+          "listing_date": "2020-08-13",
+          "listing_date_raw": "August 13 , 2020",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20200812-9"
+        }
+      ],
+      "error": null
     },
     "20200713-20": {
       "notice_no": "20200713-20",
       "notice_date": "2020-07-13",
       "subject": "Addition to the BSE SME IPO Index",
-      "parser_version": "1.4.0",
-      "status": "unparseable",
+      "parser_version": "1.5.0",
+      "status": "parsed",
       "attempts": 1,
-      "first_attempted_at": "2026-09-25T03:11:40.548Z",
-      "last_attempted_at": "2026-09-25T03:11:40.548Z",
+      "first_attempted_at": "2026-09-25T03:53:14.049Z",
+      "last_attempted_at": "2026-09-25T03:53:14.049Z",
       "source_kind": "bse_index_notice_detail_api",
       "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20200713-20",
       "pdf_url": null,
       "extracted_text_sha256": "642ea1063c1071e3802bfa18eedce17af3e6df05ab6d0aa720fcaec79c577678",
-      "parsed_entry_count": 0,
-      "parsed_entries": [],
-      "error": "no_parseable_listing_reference"
+      "parsed_entry_count": 1,
+      "parsed_entries": [
+        {
+          "listing_notice_no": "20200710-38",
+          "issuer_name": "Bonlon Industries Limited",
+          "bse_scrip_code": "543211",
+          "listing_date": "2020-07-13",
+          "listing_date_raw": "July 13 , 2020",
+          "listing_notice_url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20200710-38"
+        }
+      ],
+      "error": null
     },
     "20200630-20": {
       "notice_no": "20200630-20",
