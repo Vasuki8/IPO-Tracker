@@ -1394,19 +1394,60 @@
     "2022|uniparts-india-limited": {
       "issuer_name": "Uniparts India Limited",
       "listing_date": "2022-12-12",
-      "last_attempted_at": "2026-09-24T15:34:02.164Z",
+      "last_attempted_at": "2026-09-25T17:36:49.951Z",
       "parser_version": "1.2.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-biKKOL/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1669354719740.PDF\ncurl: (18) transfer closed with 6990656 bytes remaining to read\ncurl: (18) transfer closed with 2848232 bytes remaining to read\n",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Uniparts India Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1669354719740.PDF",
+        "publication_date": "2022-11-25"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1669354719740.PDF"
     },
     "2021|rategain-travel-technologies-limited": {
       "issuer_name": "RateGain Travel Technologies Limited",
       "listing_date": "2021-12-17",
-      "last_attempted_at": "2026-09-24T15:34:02.164Z",
+      "last_attempted_at": "2026-09-25T17:36:49.951Z",
       "parser_version": "1.2.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-YukBb3/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2021/1639462159764.pdf\ncurl: (18) transfer closed with 19047640 bytes remaining to read\ncurl: (28) Operation timed out after 75000 milliseconds with 10293399 out of 22452903 bytes received\n",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 13357350000,
+          "source_value": "₹13,357.35 MILLION",
+          "page": 1
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Rategain Travel Technologies Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2021/1639462159764.pdf",
+        "publication_date": "2021-12-14"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2021/1639462159764.pdf"
     },
     "2025|pace-digitek-limited": {
@@ -1437,19 +1478,59 @@
     "2024|zinka-logistics-solutions-limited": {
       "issuer_name": "Zinka Logistics Solutions Limited",
       "listing_date": "2024-11-22",
-      "last_attempted_at": "2026-09-24T15:34:02.164Z",
+      "last_attempted_at": "2026-09-25T17:36:49.951Z",
       "parser_version": "1.2.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-aPZ2CO/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/nov-2024/1731409759538.PDF\ncurl: (28) Operation timed out after 75000 milliseconds with 11405719 out of 12286304 bytes received\ncurl: (18) transfer closed with 6134033 bytes remaining to read\n",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Zinka Logistics Solutions Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2024/1731409759538.PDF",
+        "publication_date": "2024-11-08"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2024/1731409759538.PDF"
     },
     "2023|india-shelter-finance-corporation-limited": {
       "issuer_name": "India Shelter Finance Corporation Limited",
       "listing_date": "2023-12-20",
-      "last_attempted_at": "2026-09-24T15:34:02.164Z",
+      "last_attempted_at": "2026-09-25T17:36:49.951Z",
       "parser_version": "1.2.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-63uJok/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702033205783.PDF\ncurl: (18) transfer closed with 5811814 bytes remaining to read\ncurl: (18) transfer closed with 5968814 bytes remaining to read\n",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 12000000000,
+          "source_value": "₹12,000 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "India Shelter Finance Corporation Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702033205783.PDF",
+        "publication_date": "2023-12-08"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702033205783.PDF"
     },
     "2025|trualt-bioenergy-limited": {
@@ -2360,6 +2441,93 @@
       "status": "error",
       "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-AiE2L1/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1759827896999.pdf\ncurl: (18) transfer closed with 5639191 bytes remaining to read\ncurl: (18) transfer closed with 2640335 bytes remaining to read\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1759827896999.pdf"
+    },
+    "2025|ganesh-consumer-products-limited": {
+      "issuer_name": "Ganesh Consumer Products Limited",
+      "listing_date": "2025-09-29",
+      "last_attempted_at": "2026-09-25T17:36:49.951Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Ganesh Consumer Products Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758515492334.pdf",
+        "publication_date": "2025-09-16"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758515492334.pdf"
+    },
+    "2025|saatvik-green-energy-limited": {
+      "issuer_name": "Saatvik Green Energy Limited",
+      "listing_date": "2025-09-26",
+      "last_attempted_at": "2026-09-25T17:36:49.951Z",
+      "parser_version": "1.2.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-p4Ytl5/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758262557157.pdf\ncurl: (18) transfer closed with 1049070 bytes remaining to read\ncurl: (18) transfer closed with 8262574 bytes remaining to read\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758262557157.pdf"
+    },
+    "2024|krn-heat-exchanger-and-refrigeration-limited": {
+      "issuer_name": "KRN Heat Exchanger and Refrigeration Limited",
+      "listing_date": "2024-10-03",
+      "last_attempted_at": "2026-09-25T17:36:49.951Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "KRN Heat Exchanger and Refrigeration Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2024/1726469612929.PDF",
+        "publication_date": "2024-09-16"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2024/1726469612929.PDF"
+    },
+    "2023|jsw-infrastructure-limited": {
+      "issuer_name": "JSW Infrastructure Limited",
+      "listing_date": "2023-10-03",
+      "last_attempted_at": "2026-09-25T17:36:49.951Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "JSW Infrastructure Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694665777392.pdf",
+        "publication_date": "2023-09-13"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694665777392.pdf"
     }
   }
 }
