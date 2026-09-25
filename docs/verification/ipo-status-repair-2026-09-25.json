@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0.0",
+  "status": "verified_live",
+  "scope": "Repair all published IPO records that rendered an Unknown/Status unavailable tag despite verified past NSE listing evidence, and prevent regression.",
+  "audit": {
+    "run_id": "36101891389",
+    "artifact_id": 10849527986,
+    "artifact_sha256": "57d3d6ae65a5eb00725432ca059a0a7095799a53701d6b9e8b9620c7a5dd96d4",
+    "published_records": 1232,
+    "unknown_status_records": 13,
+    "derivable_listed_from_verified_nse_listing_date": 13,
+    "offer_dates_without_listing": 0,
+    "no_dates": 0
+  },
+  "repair": {
+    "pull_request": 232,
+    "final_head": "447cc422da1c55b3faee920be377f2b657c951ba",
+    "merge_commit": "df5d2a6ae8cd14e640c29225acb578f2dee960a3",
+    "rule": "Set status=listed only when status is absent, status evidence is empty, listing_date is strict/verified/not-future, the retained listing source is official NSE, and NSE identity resolves. Copy the retained listing source into status_evidence; never synthesize a new source or change last_collected_at.",
+    "source_backed_sync_run": "36102715450",
+    "generated_data_commit": "b6dab703052210070fd20248410c5e14ab8ff114",
+    "operator_state_commit": "f980611435449220234cf0af82c15c6587d6ea83"
+  },
+  "regression_guard": {
+    "pull_request": 234,
+    "head": "7b36a72eb001c461586e2a9ea2ae37992e290501",
+    "merge_commit": "b62bd84a44cc3b901a4ca4735c315e878047d36d",
+    "rule": "Published data validation now requires every record.status to be one of open/upcoming/closed/listed and requires retained status evidence."
+  },
+  "live_proof_before_batch2": {
+    "run_id": "36144520670",
+    "artifact_id": 10868767456,
+    "artifact_sha256": "54b1bf92cf1c1a1fb98b7754ace5faf1381390627647420d2e262dc8a1c8a243",
+    "published_records": 1232,
+    "snapshot_sha256": "9ddadb5b0bcc81a4e5461e7c597f6a36edb6e52e1a171e746a4814067b0ad886",
+    "status_counts": {
+      "listed": 1211,
+      "open": 16,
+      "closed": 3,
+      "upcoming": 2,
+      "unknown": 0
+    }
+  },
+  "current_live_proof": {
+    "run_id": "36157133065",
+    "artifact_id": 10873708367,
+    "artifact_sha256": "10970bc95d0725f4d7cda64d29944bc66dc569b4044ec71e604f7764ef83b085",
+    "published_records": 1243,
+    "snapshot_sha256": "f349cc612501e4fb16b7616aadf902ae282b4541ae92e84df672299cf4703a54",
+    "status_counts": {
+      "listed": 1222,
+      "open": 16,
+      "closed": 3,
+      "upcoming": 2,
+      "unknown": 0
+    }
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "schema_version": "1.0.0",
+  "status": "verified_live",
+  "scope": "Second pinned NSE 2026 official-universe review batch: 11 independently verified IPOs published and 4 legacy/migration/repeat-security candidates held.",
+  "source_review": {
+    "run_id": "36102861946",
+    "artifact_id": 10849678453,
+    "artifact_sha256": "ca9c15994d67dea46c735b8a3cd555def34a3948463ab05b893615e94af2bdbd",
+    "source_snapshot_commit": "c5192aa36f15ebe37becd67c711fc890fc71aa75",
+    "reviewed_candidates": 15,
+    "verified_initial_equity_ipos": 11,
+    "held_legacy_or_repeat_security": 4,
+    "verified_facts": 66,
+    "fact_breakdown": {
+      "listing_dates": 11,
+      "offer_dates": 22,
+      "final_issue_prices": 11,
+      "price_bands": 11,
+      "market_lots": 7,
+      "minimum_bid_quantities": 4
+    },
+    "original_response_hashes_checked": 31,
+    "issuer_detail_http_200": 15,
+    "quote_identity_http_403": 15,
+    "quote_endpoints_used_as_evidence": false
+  },
+  "held": [
+    {
+      "symbol": "GICL",
+      "issuer_name": "Globe International Carriers Limited",
+      "reason": "Issuer-specific detail has no current Issue Size/Issue Period IPO terms; past feed points to a 2016 offer with 2026 listing metadata."
+    },
+    {
+      "symbol": "SILGOPP",
+      "issuer_name": "Silgo Retail Limited",
+      "reason": "Issuer-specific detail has no current Issue Size/Issue Period IPO terms; past feed points to a 2018 offer with 2026 listing metadata."
+    },
+    {
+      "symbol": "VITAL",
+      "issuer_name": "Vital Chemtech Limited",
+      "reason": "Detail describes the Oct-Nov 2022 IPO while 2026 listing metadata is observed; past-feed issuePrice 46 conflicts with retained Rs.95-101 issue range."
+    },
+    {
+      "symbol": "KOTYARK",
+      "issuer_name": "Kotyark Industries Limited",
+      "reason": "Detail describes the Oct 2021 IPO at Rs.51 while 2026 listing metadata is observed and the past row reports issuePrice 281."
+    }
+  ],
+  "release": {
+    "pull_request": 233,
+    "final_head": "5e654d58ac2286ff017b1f8a3ebb009a86a5cd30",
+    "merge_commit": "1bac6fda9c05214383353741077cb517869b2ec5",
+    "materialization_run": "36156144008",
+    "rehearsal": {
+      "before": 1232,
+      "after": 1243,
+      "added": 11,
+      "existing_unchanged": 1232,
+      "removed": 0,
+      "identity_conflicts": 0,
+      "idempotent": true
+    },
+    "reviewed_manifest": "data/verified-nse-ipos/2026-09-25-batch2.json",
+    "review_receipt": "data/discovery/nse-universe-batch2-review-2026-09-25.json",
+    "parser_change": "Reviewed NSE Issue Period parser now accepts explicit full English month names such as February/March while invalid month names still fail closed."
+  },
+  "production": {
+    "source_backed_sync_run": "36156433535",
+    "generated_data_commit": "06253c537f7ff08dc4ef0fea325647a2ea0ec036",
+    "operator_state_commit": "2850090ae29534b709be9fe47f9d577bad56abe6",
+    "operator_health": "healthy",
+    "operator_snapshot_generated_at": "2026-09-25T15:52:43.894Z"
+  },
+  "live_verification": {
+    "run_id": "36157133065",
+    "artifact_id": 10873708367,
+    "artifact_sha256": "10970bc95d0725f4d7cda64d29944bc66dc569b4044ec71e604f7764ef83b085",
+    "pages_deploy_run": "36157126001",
+    "snapshot_fetched_at": "2026-09-25T15:53:38.128Z",
+    "checked_at": "2026-09-25T15:53:38.204Z",
+    "dataset_generated_at": "2026-09-25T15:47:43.475Z",
+    "snapshot_sha256": "f349cc612501e4fb16b7616aadf902ae282b4541ae92e84df672299cf4703a54",
+    "snapshot_bytes": 6671524,
+    "published_records": 1243,
+    "checked_issuers": 11,
+    "checked_fields": 66,
+    "failed_issuers": 0,
+    "status_counts": {
+      "listed": 1222,
+      "open": 16,
+      "closed": 3,
+      "upcoming": 2,
+      "unknown": 0
+    },
+    "delta_from_previous_verified_snapshot": {
+      "before": 1232,
+      "after": 1243,
+      "added": 11,
+      "removed": 0,
+      "changed_existing_records": 4,
+      "added_ids": [
+        "acetech-e-commerce-limited",
+        "clean-max-enviro-energy-solutions-limited",
+        "manilam-industries-india-limited",
+        "marushika-technology-limited",
+        "mobilise-app-lab-limited",
+        "omnitech-engineering-limited",
+        "pngs-reva-diamond-jewellery-limited",
+        "sedemac-mechatronics-limited",
+        "srinibas-pradhan-constructions-limited",
+        "striders-impex-limited",
+        "yaap-digital-limited"
+      ],
+      "changed_existing_ids": [
+        "arkade-developers-limited",
+        "jsw-infrastructure-limited",
+        "saatvik-green-energy-limited",
+        "shadowfax-technologies-limited"
+      ],
+      "note": "The 11 additions are the batch2 release. Four existing records changed only through independent scheduled/source enrichment in the same publication window; no existing record was removed."
+    }
+  },
+  "remaining_holds": [
+    {
+      "issuer_name": "Adani Enterprises Limited",
+      "symbol": "ADANIENPP1",
+      "disposition": "held_unverified_offering_type"
+    },
+    {
+      "issuer_name": "Fabino Life Sciences Limited",
+      "bse_scrip_code": "543444",
+      "disposition": "held_conflicting_official_listing_year"
+    }
+  ],
+  "next_queue": "data/discovery/ipo-universe-review-2026-09-25-batch3.json"
+}

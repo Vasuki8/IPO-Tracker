@@ -28,29 +28,25 @@ Collection time, source business observation time, dataset generation and Pages 
 
 ## Handoff for the next prompt
 
-**Latest completed backend unit: Unknown-status repair + NSE universe batch2 published and VERIFIED live.** No UI changes.
+**Latest completed backend unit: first 15-candidate NSE universe review published and VERIFIED live — PR #230; propagation reliability fixed in PR #231.** No UI changes.
 
-### Status correctness
+The batch reviewed 15 pinned NSE 2026 candidates using issuer-specific official evidence. **14 were verified as initial public equity offerings and published; ADANIENPP1 remains held** because its detail response lacks issue-specific IPO terms and the past feed contains three conflicting offer periods for the same security.
 
-Audit run `36101891389` found exactly **13** public records with null status; every one already had verified past NSE listing evidence. PR #232 (`df5d2a6ae8cd14e640c29225acb578f2dee960a3`) repairs those records at the recovery layer by deriving `listed` only from strict verified official-NSE listing evidence. PR #234 (`b62bd84a44cc3b901a4ca4735c315e878047d36d`) prevents regression by requiring every published record to have `open/upcoming/closed/listed` plus status evidence.
+Source review run `36096308787`, artifact `10847442489`, SHA-256 `e00e9d7b3665c6f94e1994858e0fed05de6ac67b7bc6465ea7699fdf0e670e96`. The approved set retains **83 explicit facts**: 14 listing dates, 28 offer dates, 14 issue prices, 13 price bands, 9 market lots and 5 minimum bid quantities. Quote endpoints returned HTTP403 and were not used.
 
-The current served snapshot has **0 Unknown statuses**: listed 1,222; open 16; closed 3; upcoming 2. Receipt: [docs/verification/ipo-status-repair-2026-09-25.json](docs/verification/ipo-status-repair-2026-09-25.json).
+PR #230 merged as `60e2ab2360d6782be5952e31cd0253a504b9baa1`. Rehearsal proved **1,218 -> 1,232**, exactly 14 additions, all prior records unchanged, zero identity conflicts and an idempotent rerun. Production sync `36098558475` succeeded; generated data `77c74d759d9833aaf3147d757ae9b7f8e30c1e1f`; operator state `63370ecbd7e5e49a86f8c690f5da62cb65548ce6` is healthy.
 
-### NSE universe batch2
+Publication verifier `36099067573`, attempt 2, verified the actual Pages dataset: **1,232 records, 14/14 issuers, 83/83 reviewed facts, 0 failures**, snapshot SHA-256 `3fe550decca530638e0b354381827b5142c611fff89329c68562f1488e754f5c`. Live delta from the preceding verified snapshot is **+14 added / 0 removed / 7 existing records changed by unrelated scheduled/source enrichment**.
 
-Source review run `36102861946`, artifact `10849678453`, SHA-256 `ca9c15994d67dea46c735b8a3cd555def34a3948463ab05b893615e94af2bdbd`.
+Attempt 1 had failed only because Pages still served the old snapshot before propagation completed. PR #231 (`c170c420774705c86c16f16cb7faf1980cbc86de`) extends the bounded verifier wait to cover the observed multi-minute Pages lag; verification logic, schedules and permissions are unchanged. Post-merge validation and Pages deployment passed.
 
-**11 verified IPOs published:** MARUSHIKA, MANILAM, CLEANMAX, MOBILISE, PNGSREVA, OMNI, YAAP, STRIDERS, ACETEC, SEDEMAC, SPCON. **4 held:** GICL, SILGOPP, VITAL, KOTYARK because their evidence points to older offer periods/migration or repeat-security situations rather than a demonstrated new 2026 IPO.
-
-The reviewed set retains **66 explicit facts**. Rehearsal proved **1,232 -> 1,243**, 11 additions, all prior records unchanged, zero removals/conflicts, idempotent rerun. PR #233 merged as `1bac6fda9c05214383353741077cb517869b2ec5`. Production sync `36156433535` succeeded; generated data `06253c537f7ff08dc4ef0fea325647a2ea0ec036`; operator state `2850090ae29534b709be9fe47f9d577bad56abe6` is healthy.
-
-Live verifier `36157133065` passed on the actual Pages dataset: **1,243 records, 11/11 issuers, 66/66 facts, 0 failures, 0 Unknown statuses**, snapshot SHA-256 `f349cc612501e4fb16b7616aadf902ae282b4541ae92e84df672299cf4703a54`. Receipt: [docs/verification/nse-universe-batch2-live-publication-2026-09-25.json](docs/verification/nse-universe-batch2-live-publication-2026-09-25.json).
+Durable receipt: [docs/verification/nse-universe-batch1-live-publication-2026-09-25.json](docs/verification/nse-universe-batch1-live-publication-2026-09-25.json).
 
 ### Exact next backend task
 
-Review [data/discovery/ipo-universe-review-2026-09-25-batch3.json](data/discovery/ipo-universe-review-2026-09-25-batch3.json): **15 pinned candidates from APSISAERO through SIMCA**. Reconcile against latest main, independently establish offering type and issuer identity, and do not auto-import from the NSE past-issues feed. The symbol **10MWL29** and any previously listed issuer are explicit repeat/migration review signals.
+Review [data/discovery/ipo-universe-review-2026-09-25-batch2.json](data/discovery/ipo-universe-review-2026-09-25-batch2.json): **15 pinned candidates from GICL through SPCON**. Reconcile every row against latest main and all recovery years, then establish IPO versus FPO/rights/partly-paid/repeat/other security using issuer-specific official evidence. Do not auto-import from the NSE past-issues feed. Preserve aliases, nulls and conflicts; publish only independently verified unambiguous IPOs with rehearsal, source-backed sync and actual Pages verification.
 
-Existing holds remain: ADANIENPP1, Fabino Life Sciences, GICL, SILGOPP, VITAL and KOTYARK. BSE parser remains 236/236 parsed. Broader BSE/SEBI universe-source gaps remain unfinished.
+**ADANIENPP1 remains held** for unresolved offering type. **Fabino Life Sciences remains held** for its conflicting official listing year. The BSE parser cursor remains **236/236 parsed** and must not be replayed. BSE summary-source repair, SEBI historical pagination and broader P1 coverage remain unfinished.
 
 No UI, minimum-investment expansion, billing, accounts, ads, spending or permission changes belong to this continuation.
 

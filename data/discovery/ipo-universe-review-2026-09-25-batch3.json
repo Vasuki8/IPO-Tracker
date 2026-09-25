@@ -1,0 +1,148 @@
+{
+  "schema_version": "1.0.0",
+  "status": "review_required_no_import",
+  "source_run_id": "36095239145",
+  "source_commit_sha": "2c9b5d0d97754747b6510a0bb0ad837e988e65b0",
+  "source_artifact_id": 10846749143,
+  "source_artifact_sha256": "14521267a7d9d11f197248c3a7d4fca7fcf2e7257f63544a45677f1e1edf0c8c",
+  "source_url": "https://www.nseindia.com/api/public-past-issues",
+  "source_response_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+  "source_collected_at": "2026-09-25T04:38:22.631Z",
+  "source_audit_baseline_public_records": 1218,
+  "current_public_records": 1243,
+  "current_public_sha256": "f349cc612501e4fb16b7616aadf902ae282b4541ae92e84df672299cf4703a54",
+  "previous_batches": [
+    "data/discovery/ipo-universe-review-2026-09-25-batch1.json",
+    "data/discovery/ipo-universe-review-2026-09-25-batch2.json"
+  ],
+  "previous_batch2_review": "data/discovery/nse-universe-batch2-review-2026-09-25.json",
+  "previous_batch2_result": {
+    "reviewed": 15,
+    "approved_verified_ipos": 11,
+    "held": 4,
+    "held_symbols": [
+      "GICL",
+      "SILGOPP",
+      "VITAL",
+      "KOTYARK"
+    ]
+  },
+  "remaining_eligible_source_groups_after_batch2": 89,
+  "batch_limit": 15,
+  "selection_rule": "Next 15 exact-name-unmatched issuer groups from canonical audit 36095239145 observed in NSE past issues with outcome=listed and a 2026 explicit listing date, excluding all 30 batch1/batch2 symbols, ordered by listing_date then nse_symbol. Reconcile again against latest main before action.",
+  "required_checks": [
+    "Independently establish IPO versus FPO, rights issue, partly-paid/repeat security, migration/listing transfer, or another offer type using issuer-specific official evidence.",
+    "Resolve legal-name aliases, NSE/BSE identifiers, prior offers and source identity across all recovery/public years.",
+    "Treat unusual symbols and previously listed issuer names as review signals, not proof of a new IPO.",
+    "Retain nulls and conflicts; do not infer issue type, prices, dates, quantities, issue size or application amount.",
+    "Only materialize independently verified unambiguous IPOs after preservation/idempotency rehearsal, normal source-backed publication and actual Pages verification."
+  ],
+  "auto_import_allowed": false,
+  "candidates": [
+    {
+      "issuer_name": "Apsis Aerocom Limited",
+      "nse_symbol": "APSISAERO",
+      "board": "SME",
+      "listing_date": "2026-03-18",
+      "row_index": 113
+    },
+    {
+      "issuer_name": "Rajputana Stainless Limited",
+      "nse_symbol": "RSL",
+      "board": "Mainboard",
+      "listing_date": "2026-03-19",
+      "row_index": 115
+    },
+    {
+      "issuer_name": "Innovision Limited",
+      "nse_symbol": "INNOVISION",
+      "board": "Mainboard",
+      "listing_date": "2026-03-23",
+      "row_index": 114
+    },
+    {
+      "issuer_name": "GSP Crop Science Limited",
+      "nse_symbol": "GSPCROP",
+      "board": "Mainboard",
+      "listing_date": "2026-03-24",
+      "row_index": 110
+    },
+    {
+      "issuer_name": "Central Mine Planning & Design Institute Limited",
+      "nse_symbol": "CMPDI",
+      "board": "Mainboard",
+      "listing_date": "2026-03-30",
+      "row_index": 109
+    },
+    {
+      "issuer_name": "Amir Chand Jagdish Kumar (Exports) Limited",
+      "nse_symbol": "AMIRCHAND",
+      "board": "Mainboard",
+      "listing_date": "2026-04-02",
+      "row_index": 106
+    },
+    {
+      "issuer_name": "Powerica Limited",
+      "nse_symbol": "POWERICA",
+      "board": "Mainboard",
+      "listing_date": "2026-04-02",
+      "row_index": 108
+    },
+    {
+      "issuer_name": "Sai Parenteral's Limited",
+      "nse_symbol": "SAIPARENT",
+      "board": "Mainboard",
+      "listing_date": "2026-04-02",
+      "row_index": 107
+    },
+    {
+      "issuer_name": "Vivid Electromech Limited",
+      "nse_symbol": "VIVIDEL",
+      "board": "SME",
+      "listing_date": "2026-04-07",
+      "row_index": 105
+    },
+    {
+      "issuer_name": "Adisoft Technologies Limited",
+      "nse_symbol": "ADISOFT",
+      "board": "SME",
+      "listing_date": "2026-04-30",
+      "row_index": 102
+    },
+    {
+      "issuer_name": "Mangalam Worldwide Limited",
+      "nse_symbol": "10MWL29",
+      "board": "SME",
+      "listing_date": "2026-05-04",
+      "row_index": 929
+    },
+    {
+      "issuer_name": "Amba Auto Sales and Services Limited",
+      "nse_symbol": "AMBAAUTO",
+      "board": "SME",
+      "listing_date": "2026-05-05",
+      "row_index": 101
+    },
+    {
+      "issuer_name": "Onemi Technology Solutions Limited",
+      "nse_symbol": "KISSHT",
+      "board": "Mainboard",
+      "listing_date": "2026-05-08",
+      "row_index": 100
+    },
+    {
+      "issuer_name": "Value 360 Communications Limited",
+      "nse_symbol": "VALUE360",
+      "board": "SME",
+      "listing_date": "2026-05-11",
+      "row_index": 99
+    },
+    {
+      "issuer_name": "Simca Advertising Limited",
+      "nse_symbol": "SIMCA",
+      "board": "SME",
+      "listing_date": "2026-05-15",
+      "row_index": 97
+    }
+  ]
+}
