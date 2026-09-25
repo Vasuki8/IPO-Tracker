@@ -1,0 +1,87 @@
+name: Review pinned NSE universe batch6
+on:
+  pull_request:
+    types: [opened, reopened]
+    branches: [main]
+    paths: ['.github/workflows/review-nse-batch6.yml']
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Retain exact source revision
+        run: |
+          mkdir -p "$RUNNER_TEMP/nse-batch6"
+          git archive --format=zip HEAD > "$RUNNER_TEMP/nse-batch6/source-snapshot.zip"
+          git rev-parse HEAD > "$RUNNER_TEMP/nse-batch6/source-commit.txt"
+      - name: Collect pinned official source evidence without importing
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import assert from 'node:assert/strict';
+          import { createHash } from 'node:crypto';
+          const out=path.join(process.env.RUNNER_TEMP,'nse-batch6');
+          const input='data/discovery/ipo-universe-review-2026-09-25-batch6.json';
+          const queueBytes=fs.readFileSync(input),queue=JSON.parse(queueBytes);
+          assert.equal(queue.auto_import_allowed,false);
+          assert.equal(queue.candidates.length,15);
+          assert.equal(queue.candidates[0].nse_symbol,'MVELECTRO');
+          assert.equal(queue.candidates.at(-1).nse_symbol,'CREDENT');
+          assert.equal(new Set(queue.candidates.map(c=>c.nse_symbol)).size,15);
+          const hash=b=>createHash('sha256').update(b).digest('hex');
+          const headers={'user-agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36','accept':'application/json,text/plain,*/*','referer':'https://www.nseindia.com/market-data/all-upcoming-issues-ipo'};
+          try {const r=await fetch(headers.referer,{headers,signal:AbortSignal.timeout(20000)});if(r.ok)headers.cookie=(r.headers.getSetCookie?.()||[]).map(v=>v.split(';')[0]).join('; ');}catch(e){console.log('Landing unavailable:',e.message);}
+          const rows=[];
+          async function get(url,file,nse=true){
+            const requested_at=new Date().toISOString();
+            try{
+              const r=await fetch(url,{headers:nse?headers:{'user-agent':headers['user-agent'],'accept':'*/*'},signal:AbortSignal.timeout(30000)});
+              const bytes=Buffer.from(await r.arrayBuffer());fs.writeFileSync(path.join(out,file),bytes);
+              return {url,final_url:r.url,status:r.status,content_type:r.headers.get('content-type'),requested_at,collected_at:new Date().toISOString(),file,bytes:bytes.length,sha256:hash(bytes)};
+            }catch(e){return {url,requested_at,collected_at:new Date().toISOString(),error:String(e.message)};}
+          }
+          rows.push({kind:'past',...await get('https://www.nseindia.com/api/public-past-issues','past.json')});
+          for(const c of queue.candidates){
+            const symbol=c.nse_symbol;assert.match(symbol,/^[A-Z0-9-]+$/);
+            rows.push({kind:'ipo_detail',symbol,...await get('https://www.nseindia.com/api/ipo-detail?symbol='+encodeURIComponent(symbol)+'&series='+(c.board==='SME'?'SME':'EQ'),symbol+'-ipo.json')});
+            await new Promise(r=>setTimeout(r,180));
+          }
+          rows.push({kind:'migration_circular',symbol:'ANNAPURNA',...await get('https://nsearchives.nseindia.com/content/circulars/CML75660.pdf','ANNAPURNA-migration-circular.pdf',false)});
+          for(const symbol of ['ANNAPURNA','SWARAJ']){
+            const file=symbol+'-announcements.json';
+            const row={kind:'announcements',symbol,...await get('https://www.nseindia.com/api/corporate-announcements?index=equities&symbol='+symbol+'&from_date=10-08-2026&to_date=13-08-2026',file)};
+            rows.push(row);
+            if(row.status===200){
+              try{
+                const data=JSON.parse(fs.readFileSync(path.join(out,file)));
+                assert.ok(Array.isArray(data));
+                const links=[...new Set(data.filter(r=>/migrat|listing|main.?board/i.test(JSON.stringify(r))).map(r=>r.attchmntFile).filter(Boolean))].slice(0,3);
+                for(const [i,url] of links.entries()){
+                  const u=new URL(url);assert.equal(u.protocol,'https:');assert.ok(['nsearchives.nseindia.com','archives.nseindia.com'].includes(u.hostname));
+                  rows.push({kind:'migration_disclosure',symbol,...await get(url,symbol+'-migration-disclosure-'+i+'.pdf',false)});
+                }
+              }catch(e){console.log('Announcement parsing:',symbol,e.message);}
+            }
+          }
+          rows.push({kind:'deployed_baseline',...await get('https://vasuki8.github.io/IPO-Tracker/data/ipos.json?batch6='+process.env.GITHUB_RUN_ID,'deployed-baseline.json',false)});
+          fs.writeFileSync(path.join(out,'sources.json'),JSON.stringify({schema_version:'1.0.0',generated_at:new Date().toISOString(),run_id:process.env.GITHUB_RUN_ID,source_commit_sha:process.env.GITHUB_SHA,input:{path:input,sha256:hash(queueBytes)},rows},null,2)+'\n');
+          console.log(JSON.stringify(rows.map(({kind,symbol,status,bytes,error})=>({kind,symbol,status,bytes,error})),null,2));
+          JS
+      - name: Prove production data was not modified
+        run: git diff --exit-code -- data ops assets
+      - name: Retain source responses including failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nse-universe-batch6-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/nse-batch6
+          retention-days: 14
+          if-no-files-found: error
