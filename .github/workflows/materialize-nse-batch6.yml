@@ -1,0 +1,68 @@
+name: Materialize reviewed NSE batch6
+on:
+  push:
+    branches: [backend/nse-universe-batch6-20260925]
+    paths: ['.github/workflows/materialize-nse-batch6.yml']
+permissions:
+  contents: write
+  actions: read
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Restore exact reviewed source archive
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs=require('fs'),crypto=require('crypto');
+            const r=await github.rest.actions.downloadArtifact({owner:context.repo.owner,repo:context.repo.repo,artifact_id:10881946171,archive_format:'zip'});
+            const b=Buffer.from(r.data),got=crypto.createHash('sha256').update(b).digest('hex');
+            if(got!=='432491018daa0a376559937a81dde8726623ccb4e110761d7340091a9b240e63')throw new Error('archive_hash_mismatch');
+            fs.writeFileSync(process.env.RUNNER_TEMP+'/batch6-source.zip',b);
+      - name: Apply locally tested parser patch and reviewed decisions
+        shell: bash
+        env:
+          SOURCE_DIR: ${{ runner.temp }}/batch6-source
+        run: |
+          set -euo pipefail
+          mkdir -p "$SOURCE_DIR" "$RUNNER_TEMP/batch6-materialization"
+          unzip -q "$RUNNER_TEMP/batch6-source.zip" -d "$SOURCE_DIR"
+          python scripts/_patch-batch6.py
+          echo 'a95ec9e17d2a4a0b218fc9ab72c469636c29bd0b596201367ff1f3cef21c07da  scripts/extract-nse-ipo-detail-fields.mjs' | sha256sum -c -
+          echo '4345d0b2e7f37d2033b37660b36b95e3e3f5333d4c42d2d989d0d88818b5fb9d  scripts/test-reviewed-nse-batch6.mjs' | sha256sum -c -
+          node scripts/_build-reviewed-batch6.mjs | tee "$RUNNER_TEMP/batch6-materialization/source-review.json"
+          echo 'ca8964d695b445e681a04453d1749a5d3f6934e72971de7e8879f8ccb88a784a  data/verified-nse-ipos/2026-09-25-batch6.json' | sha256sum -c -
+          echo 'a7b5520bf35ecb1251d5d33637cf125b231492632fa2d75704793e0a3b808e9d  data/discovery/nse-universe-batch6-review-2026-09-25.json' | sha256sum -c -
+      - name: Rehearse preservation and pre/post-publication safety
+        run: |
+          set -euo pipefail
+          node scripts/test-extract-nse-ipo-detail-fields.mjs
+          node scripts/test-reviewed-nse-ipos.mjs | tee "$RUNNER_TEMP/batch6-materialization/tests.txt"
+          node scripts/test-reviewed-nse-publication.mjs | tee "$RUNNER_TEMP/batch6-materialization/rehearsal.json"
+          node scripts/apply-reviewed-nse-ipos.mjs --check
+          node scripts/build-published-data.mjs --check
+          node scripts/validate-data.mjs
+          git diff --exit-code -- data/recovery data/ipos.json ops assets
+          git diff --check
+      - name: Commit only reviewed evidence and tested parser changes
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add scripts/extract-nse-ipo-detail-fields.mjs scripts/test-reviewed-nse-ipos.mjs data/verified-nse-ipos/2026-09-25-batch6.json data/discovery/nse-universe-batch6-review-2026-09-25.json
+          git commit -m 'feat(data): retain twelve reviewed NSE batch6 IPOs and bounded parser support'
+          git push origin HEAD:refs/heads/backend/nse-universe-batch6-20260925
+          git rev-parse HEAD > "$RUNNER_TEMP/batch6-materialization/source-commit.txt"
+          git archive --format=zip HEAD > "$RUNNER_TEMP/batch6-materialization/source-snapshot.zip"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nse-batch6-materialization-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/batch6-materialization
+          retention-days: 14
+          if-no-files-found: error
