@@ -66,10 +66,12 @@ function reviewedPeriod(p) {
   const item = revised || ordinary;
   const pattern = revised
     ? /^(\d{1,2}-[A-Za-z]+-\d{4})\s+to\s+(\d{1,2}-[A-Za-z]+-\d{4}) \(The Issue is further extended from start date (\d{2})\/(\d{2})\/(\d{4}) to end date (\d{2})\/(\d{2})\/(\d{4})\)$/i
-    : /^(\d{1,2}-[A-Za-z]+-\d{4})\s+to\s+(\d{1,2}-[A-Za-z]+-\d{4})$/;
+    : /^(\d{1,2}-[A-Za-z]+-\d{4})\s+to\s+(\d{1,2}-[A-Za-z]+-\d{4})(?: \(The Issue is further extended to (\d{1,2}-[A-Za-z]+-\d{4})\))?$/i;
   const match = unquote(item.value).match(pattern);
   requireThat(match, 'unrecognized_offer_period');
   const open = nseDate(match[1]), close = nseDate(match[2]);
+  // An explicit extended endpoint must repeat the stated closing date exactly.
+  if (!revised && match[3]) requireThat(close === nseDate(match[3]) && close !== null, 'inconsistent_extended_offer_period');
   if (revised) requireThat(open === match[5] + '-' + match[4] + '-' + match[3] &&
     close === match[8] + '-' + match[7] + '-' + match[6], 'inconsistent_revised_offer_period');
   return { open, close, rawOpen: match[1], rawClose: match[2], title: norm(item.title) };

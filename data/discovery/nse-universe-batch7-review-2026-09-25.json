@@ -1,0 +1,448 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_13_approved_2_debt_excluded",
+  "reviewed_at": "2026-09-25T19:36:00.288Z",
+  "source_run_id": "36180291566",
+  "source_snapshot_commit": "d451a6166aea8437d976228014c563fc70885981",
+  "source_branch_head": "b81403fee76d64771720eed8b86e7127e0e707f7",
+  "source_artifact_id": 10884545129,
+  "source_artifact_sha256": "4196efe544c31deee32ebd6d642e11d5f904266aee97a10b43c96f392dd27da6",
+  "queue_path": "data/discovery/ipo-universe-review-2026-09-25-batch7.json",
+  "baseline": {
+    "public_records": 1296,
+    "public_sha256": "0fe577e052a06eef0e477eff7a0530a289b5715d25da42e372fc5071f4e9b1e0",
+    "dataset_generated_at": "2026-09-25T18:55:21.251Z",
+    "snapshot_fetched_at": "2026-09-25T19:33:27.352Z",
+    "source_snapshot_matches_served_bytes": true
+  },
+  "stats": {
+    "reviewed_candidates": 15,
+    "verified_initial_equity_ipos": 13,
+    "held": 0,
+    "excluded_debt_securities": 2,
+    "approved_exact_missing": 13,
+    "approved_identity_conflicts": 0,
+    "verified_facts": 78,
+    "listing_date": 13,
+    "open_date": 13,
+    "close_date": 13,
+    "issue_price": 13,
+    "price_band": 13,
+    "market_lot": 4,
+    "minimum_bid_quantity": 9
+  },
+  "sources": {
+    "original_response_hashes_checked": 21,
+    "successful_responses": 21,
+    "unsuccessful_responses": 0,
+    "successful_detail_responses": 15,
+    "past_response_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31"
+  },
+  "parser_notes": [
+    "Recognize only the fully anchored Issue Period suffix (The Issue is further extended to DATE); the suffix must repeat the stated closing date and agree with the independent past-source close.",
+    "Retain the literal full date expression and current official price band; do not use older aggregator dates or estimate a revised window."
+  ],
+  "entries": [
+    {
+      "symbol": "SKYTECH",
+      "issuer_name": "Skytech Infinite Platform Limited",
+      "observed_alias": "Skytech Infinite Platform Limited",
+      "isin": "INE0VFE01017",
+      "board": "SME",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public Offering of Fresh Issue of up to 29,45,600 Equity Shares (including Market Maker portion of 1,48,800 Equity Shares)",
+      "offer_period": {
+        "open": "2026-08-14",
+        "close": "2026-08-18"
+      },
+      "listing_date": "2026-08-21",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "FASCINATE",
+      "issuer_name": "Fascinate Textiles Limited",
+      "observed_alias": "Fascinate Textiles Limited",
+      "isin": "INE1Q2D01019",
+      "board": "SME",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial public offer of Fresh issue up to 34,57,600 equity shares and Offer for Sale Up to 8,36,000 Equity Shares (Including Market Maker Reservation Portion of 2,15,200 Equity Shares)",
+      "offer_period": {
+        "open": "2026-08-11",
+        "close": "2026-08-19"
+      },
+      "listing_date": "2026-08-24",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "HORIZONIND",
+      "issuer_name": "Horizon Industrial Parks Limited",
+      "observed_alias": "Horizon Industrial Parks Limited",
+      "isin": "INE685T01010",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public Offer comprising of Fresh Issue aggregating upto Rs. 26,000 million (including Employee Reservation Portion aggregating up to Rs. 50 million & Anchor Investor Portion of 19,46,25,000 Equity Shares)",
+      "offer_period": {
+        "open": "2026-08-17",
+        "close": "2026-08-19"
+      },
+      "listing_date": "2026-08-24",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "LALITHAA",
+      "issuer_name": "Lalithaa Jewellery Mart Limited",
+      "observed_alias": "Lalithaa Jewellery Mart Limited",
+      "isin": "INE0K9O01026",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public Offer comprising of Fresh Issue aggregating upto Rs. 12,000 million and Offer for Sale aggregating upto Rs. 5,000 million (including Employee Reservation Portion aggregating up to Rs. 60 million and Anchor Investor portion of 2,52,83,581 Equity shares)",
+      "offer_period": {
+        "open": "2026-08-17",
+        "close": "2026-08-19"
+      },
+      "listing_date": "2026-08-24",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "SHANKESH",
+      "issuer_name": "Shankesh Jewellers Limited",
+      "observed_alias": "Shankesh Jewellers Limited",
+      "isin": "INE1WFC01025",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public offer comprising Fresh Issue pf up to 29,482,000 Equity Shares and Offer for Sale of up to 10,000,000 Equity Shares (including Anchor Investor portion of 1,18,44,600 Equity Shares)",
+      "offer_period": {
+        "open": "2026-08-18",
+        "close": "2026-08-20"
+      },
+      "listing_date": "2026-08-25",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "SUNSHINE",
+      "issuer_name": "Sunshine Pictures Limited",
+      "observed_alias": "Sunshine Pictures Limited",
+      "isin": "INE1B3O01011",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public Offer comprising of Fresh Issue up to 48,00,034 Equity Shares and Offer for sale upto 30,37,157 Equity Shares (including Anchor Investor portion of 23,51,140 Equity Shares)",
+      "offer_period": {
+        "open": "2026-08-18",
+        "close": "2026-08-20"
+      },
+      "listing_date": "2026-08-25",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "GAJA",
+      "issuer_name": "Gaja Alternative Asset Management Limited",
+      "observed_alias": "Gaja Alternative Asset Management Limited",
+      "isin": "INE18UN01038",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public Offer comprising of Fresh Issue aggregating up to Rs. 4,500 million and Offer for Sale aggregating up to Rs. 1,000 million. (Including Anchor Investor portion of 1,03,12,500 Equity Shares)",
+      "offer_period": {
+        "open": "2026-08-19",
+        "close": "2026-08-21"
+      },
+      "listing_date": "2026-08-26",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "TEMPSENS",
+      "issuer_name": "Tempsens Instruments (India) Limited",
+      "observed_alias": "Tempsens Instruments (India) Limited",
+      "isin": "INE1KZI01025",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public Offer comprising of Fresh Issue aggregating upto Rs. 950 million and Offer for Sale of upto 1,85,00,000 Equity Shares (Including Eligible Employee reservation portion aggregating upto Rs. 15 million and Anchor Investor portion of 64,84,999 Equity Shares)",
+      "offer_period": {
+        "open": "2026-08-20",
+        "close": "2026-08-24"
+      },
+      "listing_date": "2026-08-28",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "AUGMONT",
+      "issuer_name": "Augmont Enterprises Limited",
+      "observed_alias": "Augmont Enterprises Limited",
+      "isin": "INE16W401027",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public Offer comprising of Fresh Issue aggregating up to Rs. 6,200 million and Offer for Sale aggregating up to Rs. 2,050 million (including Employee Reservation Portion aggregating up to Rs. 40 million and Anchor reservation portion of 31,25,633 Equity shares)",
+      "offer_period": {
+        "open": "2026-08-21",
+        "close": "2026-08-25"
+      },
+      "listing_date": "2026-08-31",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "ABH",
+      "issuer_name": "ABH Healthcare Limited",
+      "observed_alias": "ABH Healthcare Limited",
+      "isin": "INE1R2M01019",
+      "board": "SME",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public Offering of Fresh Issue of up to 34,29,600 Equity Shares (including Market Maker portion of 1,72,800 Equity Shares)",
+      "offer_period": {
+        "open": "2026-08-24",
+        "close": "2026-08-27"
+      },
+      "listing_date": "2026-09-01",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "MADHURKNIT",
+      "issuer_name": "Madhur Knit Crafts Limited",
+      "observed_alias": "Madhur Knit Crafts Limited",
+      "isin": "INE1P5601010",
+      "board": "SME",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public Offer comprising of Fresh Issue of up to 53,26,800 Equity Shares (including Market Maker portion of 2,66,400 Equity Shares and Anchor allocation of 3,02,400 Equity Shares)",
+      "offer_period": {
+        "open": "2026-08-24",
+        "close": "2026-08-27"
+      },
+      "listing_date": "2026-09-01",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "SKYWAYS",
+      "issuer_name": "Skyways Air Services Limited",
+      "observed_alias": "Skyways Air Services Limited",
+      "isin": "INE0PX301025",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public Offer comprising of Fresh Issue up to 2,88,98,300 equity shares and Offer for Sale of up to 1,33,33,300 Equity Shares (including Anchor Investor portion of 1,26,48,000 Equity Shares)",
+      "offer_period": {
+        "open": "2026-08-24",
+        "close": "2026-08-27"
+      },
+      "listing_date": "2026-09-01",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "SYMBIOTEC",
+      "issuer_name": "Symbiotec Pharmalab Limited",
+      "observed_alias": "Symbiotec Pharmalab Limited",
+      "isin": "INE899I01028",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public Offer of Fresh Issue of Aggregating Up to Rs. 1,500 million and Offer for sale up to Rs. 16,070 million (Including Eligible Employees Reservation Portion of Aggregating up to Rs. 30 million and Anchor portion of 53,25,909 Equity shares)",
+      "offer_period": {
+        "open": "2026-08-24",
+        "close": "2026-08-27"
+      },
+      "listing_date": "2026-09-01",
+      "recovery_matches": [],
+      "published_matches": []
+    }
+  ],
+  "excluded": [
+    {
+      "candidate": {
+        "issuer_name": "Vision Infra Equipment Solutions Limited",
+        "nse_symbol": "1150VIES30",
+        "board": "SME",
+        "listing_date": "2026-09-01",
+        "row_index": 474
+      },
+      "decision": "excluded_debt_security_not_initial_equity_ipo",
+      "detail_source": {
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=1150VIES30&series=SME",
+        "final_url": "https://www.nseindia.com/api/ipo-detail?symbol=1150VIES30&series=SME",
+        "http_status": 200,
+        "publication_date": null,
+        "collected_at": "2026-09-25T19:32:59.757Z",
+        "response_sha256": "230bbe6c8bc87c4dc8a52ebabac88c73db7a05e81393cec4d45c5b9d3ccbb4c9",
+        "projection_sha256": "11b2ea62930fcf45e6fe5ecd3a0ad58ee42178ec5325c5b82b96dd0d7ea4a42b",
+        "artifact_file": "1150VIES30-ipo.json"
+      },
+      "detail": {
+        "companyName": "Vision Infra Equipment Solutions Limited",
+        "metaInfo": {
+          "companyName": "Vision Infra Equipment Solutions Limited",
+          "symbol": "1150VIES30",
+          "isin": "INE0TR007022",
+          "listingDate": "2026-09-01",
+          "segment": "EQUITY",
+          "isDebtSec": true,
+          "isETFSec": false,
+          "isMunicipalBond": false,
+          "isHybridSymbol": false
+        },
+        "issueInfo": {
+          "symbol": null,
+          "dataList": []
+        }
+      },
+      "past_source": {
+        "url": "https://www.nseindia.com/api/public-past-issues",
+        "final_url": "https://www.nseindia.com/api/public-past-issues",
+        "http_status": 200,
+        "publication_date": null,
+        "collected_at": "2026-09-25T19:32:32.078Z",
+        "response_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+        "projection_sha256": "29d5b8d7f3d1d4e96b34bad37a3927ec8d9acf6134fa60968898eb8393053e4d",
+        "artifact_file": "past.json"
+      },
+      "past_row": {
+        "companyName": "Vision Infra Equipment Solutions Limited",
+        "ipoEndDate": "10-SEP-2024",
+        "ipoStartDate": "06-SEP-2024",
+        "issuePrice": "100000",
+        "listingDate": "01-SEP-2026",
+        "priceRange": "Rs.155 to Rs.163",
+        "securityType": "SME",
+        "symbol": "1150VIES30",
+        "company": "Vision Infra Equipment Solutions Limited"
+      },
+      "auto_import_allowed": false,
+      "reason": "NSE marks 1150VIES30 as debt. ISIN INE0TR007022 matches the Other Debt Securities circular entry VIESL30, not the separately filed equity ISIN. The 2024 equity-offer terms mixed into the aggregate row are not a new 2026 equity IPO.",
+      "date_note": "The debt-market circular is effective August 31; ipo-detail reports September 1 for the security in the capital-market segment. Neither is an equity IPO listing date.",
+      "independent_official_evidence": {
+        "url": "https://nsearchives.nseindia.com/content/circulars/CML76063.pdf",
+        "final_url": "https://nsearchives.nseindia.com/content/circulars/CML76063.pdf",
+        "http_status": 200,
+        "publication_date": "2026-08-31",
+        "collected_at": "2026-09-25T19:33:26.556Z",
+        "document_sha256": "1f9e16e5da537da949d40a49de7335463879f566df23486cc748e977a6129748",
+        "artifact_file": "1150VIES30-CML76063.pdf",
+        "document_identity": "NSE/CML/76063",
+        "reviewed_pages": [
+          1,
+          5
+        ],
+        "review_method": "PDF text extraction and independent visual inspection of rendered retained original pages",
+        "security": "VIESL30",
+        "description": "VIESL 11.50% 2030 Sr I",
+        "isin": "INE0TR007022",
+        "coupon_percent": 11.5,
+        "maturity_date": "2030-08-27"
+      },
+      "distinct_equity_identity": {
+        "url": "https://nsearchives.nseindia.com/corporate/ixbrl/INTEGRATED_FILING_NONINDAS_156735_11052026195035_iXBRL_WEB.html",
+        "final_url": "https://nsearchives.nseindia.com/corporate/ixbrl/INTEGRATED_FILING_NONINDAS_156735_11052026195035_iXBRL_WEB.html",
+        "http_status": 200,
+        "publication_date": null,
+        "collected_at": "2026-09-25T19:33:27.176Z",
+        "document_sha256": "ec079e915b11066f9e4beb0d060aafbe8a7b65c870a3f3c44431359553cb7d8b",
+        "artifact_file": "VIESL-equity-identity.html",
+        "evidence_locator": "General information about company: NSE Symbol, ISIN, Class of security",
+        "nse_symbol": "VIESL",
+        "isin": "INE0TR001017",
+        "security_class": "Equity"
+      }
+    },
+    {
+      "candidate": {
+        "issuer_name": "AVP Infracon Limited",
+        "nse_symbol": "12AIL28",
+        "board": "SME",
+        "listing_date": "2026-09-02",
+        "row_index": 606
+      },
+      "decision": "excluded_debt_security_not_initial_equity_ipo",
+      "detail_source": {
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=12AIL28&series=SME",
+        "final_url": "https://www.nseindia.com/api/ipo-detail?symbol=12AIL28&series=SME",
+        "http_status": 200,
+        "publication_date": null,
+        "collected_at": "2026-09-25T19:33:24.720Z",
+        "response_sha256": "544edf34d6904225d91773d6a160ab177c0678b8351f82e2ddd5022458064c34",
+        "projection_sha256": "280e71a32eb3def7eb31b0cee1d3864ab44ef3d9987ebe0a77ade26931a85f2b",
+        "artifact_file": "12AIL28-ipo.json"
+      },
+      "detail": {
+        "companyName": "AVP Infracon Limited",
+        "metaInfo": {
+          "companyName": "AVP Infracon Limited",
+          "symbol": "12AIL28",
+          "isin": "INE0R9407016",
+          "listingDate": "2026-09-02",
+          "segment": "EQUITY",
+          "isDebtSec": true,
+          "isETFSec": false,
+          "isMunicipalBond": false,
+          "isHybridSymbol": false
+        },
+        "issueInfo": {
+          "symbol": null,
+          "dataList": []
+        }
+      },
+      "past_source": {
+        "url": "https://www.nseindia.com/api/public-past-issues",
+        "final_url": "https://www.nseindia.com/api/public-past-issues",
+        "http_status": 200,
+        "publication_date": null,
+        "collected_at": "2026-09-25T19:32:32.078Z",
+        "response_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+        "projection_sha256": "59712ce87a4f9567bfe2695d4986d652f31fe2ecf3de287b0e9a21ad609ea691",
+        "artifact_file": "past.json"
+      },
+      "past_row": {
+        "companyName": "AVP Infracon Limited",
+        "ipoEndDate": "15-MAR-2024",
+        "ipoStartDate": "13-MAR-2024",
+        "issuePrice": "10000",
+        "listingDate": "02-SEP-2026",
+        "priceRange": "Rs.71 to Rs.75",
+        "securityType": "SME",
+        "symbol": "12AIL28",
+        "company": "AVP Infracon Limited"
+      },
+      "auto_import_allowed": false,
+      "reason": "NSE marks 12AIL28 as debt. ISIN INE0R9407016 matches the privately placed coupon-bearing security in NSE/CML/76110 and differs from AVPINFRA equity. The aggregate row mixes its 2024 equity offer period with a 2026 debt listing.",
+      "date_note": "The circular admits this security effective September 2, 2026. Its secondary-market lot of 1 is not an IPO application lot.",
+      "independent_official_evidence": {
+        "url": "https://nsearchives.nseindia.com/content/circulars/CML76110.pdf",
+        "final_url": "https://nsearchives.nseindia.com/content/circulars/CML76110.pdf",
+        "http_status": 200,
+        "publication_date": "2026-09-01",
+        "collected_at": "2026-09-25T19:33:26.048Z",
+        "document_sha256": "ff451afc507f6ed1169632b05d0c795cbde8c1c9b9531e455065ab187c3785ba",
+        "artifact_file": "12AIL28-CML76110.pdf",
+        "document_identity": "NSE/CML/76110",
+        "reviewed_pages": [
+          1,
+          2
+        ],
+        "review_method": "PDF text extraction and independent visual inspection of rendered retained original pages",
+        "security": "12AIL28",
+        "description": "AIL 12% 2028",
+        "isin": "INE0R9407016",
+        "coupon_percent": 12,
+        "maturity_date": "2028-08-28"
+      },
+      "distinct_equity_identity": {
+        "url": "https://nsearchives.nseindia.com/corporate/ixbrl/INTEGRATED_FILING_NONINDAS_158515_18052026144725_iXBRL_WEB.html",
+        "final_url": "https://nsearchives.nseindia.com/corporate/ixbrl/INTEGRATED_FILING_NONINDAS_158515_18052026144725_iXBRL_WEB.html",
+        "http_status": 200,
+        "publication_date": null,
+        "collected_at": "2026-09-25T19:33:26.920Z",
+        "document_sha256": "26c818ca0666db3218572ddf995b1850f6c07c66bccdbad947c5f8001aacd723",
+        "artifact_file": "AVPINFRA-equity-identity.html",
+        "evidence_locator": "General information about company: NSE Symbol, ISIN, Class of security",
+        "nse_symbol": "AVPINFRA",
+        "isin": "INE0R9401019",
+        "security_class": "Equity"
+      }
+    }
+  ],
+  "held": []
+}
