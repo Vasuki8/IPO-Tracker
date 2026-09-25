@@ -101,3 +101,5 @@ console.log(JSON.stringify({ reviewed_nse_tests: { issuers: 14, facts: 83, rejec
 await import("./test-reviewed-nse-batch3.mjs");
 
 await import("./test-reviewed-nse-batch4.mjs");
+
+await import("./test-reviewed-nse-batch5.mjs");
