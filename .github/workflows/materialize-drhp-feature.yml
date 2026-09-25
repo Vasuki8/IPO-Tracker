@@ -1,0 +1,152 @@
+name: Materialize reviewed DRHP feature
+on:
+  push:
+    branches: ['feature/drhp-filings-20260925']
+    paths: ['.github/workflows/materialize-drhp-feature.yml']
+permissions:
+  contents: write
+  actions: read
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/drhp-filings-20260925
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Restore exact reviewed code payload and source artifact
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs=require('fs'), path=require('path'), crypto=require('crypto');
+            const out=path.join(process.env.RUNNER_TEMP,'drhp-materialization');fs.mkdirSync(out,{recursive:true});
+            const shas=['3e41aa885732ba3b505110900871e1ccd57501f6','d4527333870d69610e30fd801459164e1aaa0287','a5a9eae3863233f67941dbd412a9b5b5ba108cd7','8d7386cf325cb2af91a122034f82427b216c8613','fa42cb0b8c7e8ac344d9b448736a9618649c7072'];
+            for(let i=0;i<shas.length;i++){
+              const r=await github.rest.git.getBlob({owner:context.repo.owner,repo:context.repo.repo,file_sha:shas[i]});
+              if(r.data.encoding!=='base64')throw new Error('unexpected_blob_encoding');
+              const b=Buffer.from(r.data.content,'base64');
+              const sha=crypto.createHash('sha1').update(Buffer.from('blob '+b.length+'\0')).update(b).digest('hex');
+              if(sha!==shas[i])throw new Error('transport_blob_hash_mismatch');
+              fs.writeFileSync(path.join(out,'part'+i+'.bin'),b);
+            }
+            const a=await github.rest.actions.downloadArtifact({owner:context.repo.owner,repo:context.repo.repo,artifact_id:10888804325,archive_format:'zip'});
+            const b=Buffer.from(a.data);
+            if(crypto.createHash('sha256').update(b).digest('hex')!=='58becb285cd29c5ff7fa5fd93c8820ffbf0dd3160f3ba51cb3b6e6b4f0ac103e')throw new Error('source_zip_hash_mismatch');
+            fs.writeFileSync(path.join(out,'source.zip'),b);
+      - name: Apply only exact reviewed files with before and after hash guards
+        run: |
+          python - <<'PY'
+          import os,base64,gzip,json,hashlib,zipfile
+          from pathlib import Path
+          out=Path(os.environ['RUNNER_TEMP'])/'drhp-materialization'
+          parts=[(out/f'part{i}.bin').read_bytes() for i in range(5)]
+          # Correct one known transfer-encoding omission; final hash must match the reviewed payload.
+          t=base64.b64encode(parts[1]).decode().rstrip('=')
+          assert len(t)==12399 and t.count('Pk9Gs9GZT3')==1
+          t=t.replace('Pk9Gs9GZT3','Pk9Gs9GgZT3')
+          assert t.endswith('Barht71ofnbZlo')
+          parts[1]=base64.b64decode(t[:-1]+'p',validate=True)
+          h=lambda b:hashlib.sha256(b).hexdigest()
+          assert h(parts[1])=='e0726d29a561671eafdf6743f85ebfb701a4ce0ef827121e8afbb226079c3fc8'
+          blob=b''.join(parts)
+          assert h(blob)=='f3e1fdbc720def2b334c5e08f223c32144b9fe1fcda3468694af18278dcc34a2'
+          payload=json.loads(gzip.decompress(blob))
+          (out/'payload.json').write_text(json.dumps(payload))
+          allowed={'.github/workflows/update-drhp-filings.yml','.github/workflows/validate-data.yml','.github/workflows/validate-drhp-interface.yml','.github/workflows/verify-drhp-publication.yml','assets/drhp-model.js','assets/drhp.css','assets/drhp.js','assets/styles.css','data/discovery/ipo-universe-held-review-2026-09-25.json','data/discovery/nse-held-identity-review-2026-09-25.json','docs/DRHP_FILINGS.md','docs/verification/drhp-filings-source-review-2026-09-25.json','drhp.html','index.html','scripts/drhp-filings.mjs','scripts/test-drhp-filings.mjs','scripts/test-drhp-ui.mjs','scripts/test-verify-drhp-publication.mjs','scripts/verify-drhp-publication.mjs'}
+          assert len(payload['files'])==len(allowed)==19
+          assert {f['path'] for f in payload['files']}==allowed
+          changes=[]
+          for f in payload['files']:
+              p=Path(f['path']); old=p.read_bytes() if p.exists() else None
+              assert (h(old) if old is not None else None)==f['old_sha256'],f['path']+':baseline'
+              if 'content' in f: s=f['content']
+              else:
+                  s=old.decode('utf-8')
+                  for r in reversed(f['replacements']): s=s[:r['start']]+r['text']+s[r['end']:]
+              b=s.encode('utf-8');assert h(b)==f['sha256'],f['path']+':result'
+              changes.append((p,b))
+          for p,b in changes:p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(b)
+          source=out/'sources';source.mkdir()
+          with zipfile.ZipFile(out/'source.zip') as z:
+              for n in z.namelist():
+                  p=Path(n);assert not p.is_absolute() and '..' not in p.parts
+              z.extractall(source)
+          (out/'file-validation.json').write_text(json.dumps({'files':[{k:f[k] for k in ('path','old_sha256','sha256')} for f in payload['files']],'payload_sha256':h(blob)},indent=2)+'\n')
+          PY
+      - name: Build separate DRHP seed from original hashed SEBI responses
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';
+          import {pageRequest,parsePage,applyCollection} from './scripts/drhp-filings.mjs';
+          const out=path.join(process.env.RUNNER_TEMP,'drhp-materialization'),dir=path.join(out,'sources');
+          const src=JSON.parse(fs.readFileSync(path.join(dir,'sources.json')));
+          const pages=src.sources.filter(r=>/^page-\d+$/.test(r.id)).map((r,i)=>{
+            const bytes=fs.readFileSync(path.join(dir,r.file));assert.equal(r.http_status,200);assert.equal(bytes.length,r.bytes);assert.equal(createHash('sha256').update(bytes).digest('hex'),r.response_sha256);
+            const receipt={...r,request:pageRequest(i)};
+            return {...receipt,...parsePage(bytes.toString('utf8'),receipt,i)};
+          });
+          assert.equal(pages.length,10);
+          const collection={schema_version:'1.0.0',status:'success',page_limit:10,completed_at:pages.at(-1).collected_at,run_id:src.run_id,source_commit:src.source_commit,pages,errors:[]};
+          fs.writeFileSync(path.join(dir,'collection.json'),JSON.stringify(collection,null,2)+'\n');
+          applyCollection(process.cwd(),dir);
+          const payload=JSON.parse(fs.readFileSync(path.join(out,'payload.json')));
+          for(const [p,sha] of Object.entries(payload.seed_sha256))assert.equal(createHash('sha256').update(fs.readFileSync(p)).digest('hex'),sha,p);
+          fs.copyFileSync('data/drhp-filings.json',path.join(out,'seed-public.json'));
+          console.log(JSON.stringify({filings:JSON.parse(fs.readFileSync('data/drhp-filings.json')).records.length,source_hashes_checked:pages.length,seed_hashes_checked:2}));
+          JS
+      - name: Test new feature and protect existing IPO data
+        run: |
+          set -euo pipefail
+          node scripts/test-drhp-filings.mjs
+          node scripts/drhp-filings.mjs --check
+          node scripts/test-verify-drhp-publication.mjs
+          node scripts/test-homepage-order.mjs
+          node scripts/test-lot-size.mjs
+          node scripts/test-reviewed-nse-ipos.mjs
+          node scripts/test-reviewed-nse-publication.mjs
+          node scripts/build-published-data.mjs --check
+          node scripts/validate-data.mjs
+          git diff --exit-code -- data/ipos.json data/recovery ops
+          git diff --check
+      - name: Commit reviewed feature only to feature branch
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,os,subprocess
+          from pathlib import Path
+          p=json.loads((Path(os.environ['RUNNER_TEMP'])/'drhp-materialization/payload.json').read_text())
+          subprocess.run(['git','add','--']+[f['path'] for f in p['files']]+list(p['seed_sha256']),check=True)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git diff --cached --stat
+          git commit -m 'feat: add source-backed DRHP filing directory and safe refresh'
+          git push origin HEAD:refs/heads/feature/drhp-filings-20260925
+          git rev-parse HEAD > "$RUNNER_TEMP/drhp-materialization/commit.txt"
+          git archive --format=zip HEAD > "$RUNNER_TEMP/drhp-materialization/feature-source.zip"
+      - name: Install pinned browser tools
+        run: |
+          npm install --prefix "$RUNNER_TEMP/drhp-browser" --no-audit --no-fund playwright@1.63.0
+          "$RUNNER_TEMP/drhp-browser/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Run browser scenarios with local fixtures
+        env:
+          PLAYWRIGHT_MODULE: ${{ runner.temp }}/drhp-browser/node_modules/playwright
+          UI_SCREENSHOT_DIR: ${{ runner.temp }}/drhp-materialization/screenshots
+        run: node scripts/test-drhp-ui.mjs
+      - name: Prove tests did not alter source data
+        run: git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: drhp-feature-materialization-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/drhp-materialization/file-validation.json
+            ${{ runner.temp }}/drhp-materialization/seed-public.json
+            ${{ runner.temp }}/drhp-materialization/commit.txt
+            ${{ runner.temp }}/drhp-materialization/feature-source.zip
+            ${{ runner.temp }}/drhp-materialization/screenshots
+          retention-days: 14
+          if-no-files-found: warn

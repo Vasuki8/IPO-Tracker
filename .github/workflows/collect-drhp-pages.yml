@@ -1,0 +1,43 @@
+name: Collect bounded DRHP pages
+on:
+  push:
+    branches: ['feature/drhp-filings-20260925']
+    paths: ['.github/workflows/collect-drhp-pages.yml']
+permissions:
+  contents: read
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Collect literal official draft rows and independent identity filings
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';import path from 'node:path';import {createHash} from 'node:crypto';
+          const out=path.join(process.env.RUNNER_TEMP,'drhp-pages');fs.mkdirSync(out,{recursive:true});
+          const list='https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15';
+          const specs=[];
+          for(let i=0;i<10;i++)specs.push({id:'page-'+(i+1),url:i?'https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp':list,method:i?'POST':'GET',body:i?new URLSearchParams({nextValue:'1',next:'n',search:'',fromDate:'',toDate:'',fromYear:'',toYear:'',deptId:'',sid:'3',ssid:'15',smid:'10',ssidhidden:'15',intmid:'-1',sText:'Filings',ssText:'Public Issues',smText:'Draft Offer Documents filed with SEBI',doDirect:String(i)}).toString():null});
+          specs.push({id:'AMIRCHAND-ixbrl',url:'https://nsearchives.nseindia.com/corporate/ixbrl/PRIOR_INTIMATION_20260411_173737_WEB.html'}, {id:'AMIRCHAND-prospectus-page',url:'https://www.sebi.gov.in/filings/public-issues/apr-2026/amir-chand-jagdish-kumar-exports-limited-prospectus_100674.html'}, {id:'LEAP-prospectus-page',url:'https://www.sebi.gov.in/filings/public-issues/aug-2026/leap-india-limited-prospectus_103511.html'});
+          const sources=[];
+          for(const s of specs){const r={...s,requested_at:new Date().toISOString()};try{
+            const response=await fetch(s.url,{method:s.method||'GET',...(s.body?{body:s.body}:{}),headers:{'user-agent':'Mozilla/5.0','accept':'text/html,*/*','content-type':'application/x-www-form-urlencoded',referer:list},signal:AbortSignal.timeout(25000),redirect:'error'});
+            const b=Buffer.from(await response.arrayBuffer());if(b.length>1500000)throw new Error('size_bound');
+            r.file=s.id+'.html';r.http_status=response.status;r.final_url=response.url;r.content_type=response.headers.get('content-type');r.bytes=b.length;r.response_sha256=createHash('sha256').update(b).digest('hex');fs.writeFileSync(path.join(out,r.file),b);
+          }catch(e){r.error=String(e.message);}r.collected_at=new Date().toISOString();sources.push(r);await new Promise(resolve=>setTimeout(resolve,250));}
+          fs.writeFileSync(path.join(out,'sources.json'),JSON.stringify({schema_version:'1.0.0',run_id:process.env.GITHUB_RUN_ID,source_commit:process.env.GITHUB_SHA,sources},null,2)+'\n');
+          console.log(JSON.stringify(sources.map(({id,http_status,bytes,error})=>({id,http_status,bytes,error}))));
+          JS
+      - name: Ensure read only
+        run: git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: drhp-pages-${{ github.run_id }}
+          path: ${{ runner.temp }}/drhp-pages
+          retention-days: 14
+          if-no-files-found: error
