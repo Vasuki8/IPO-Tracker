@@ -25,10 +25,10 @@
     }
   },
   "source_review": {
-    "run_id": "36087201107",
-    "artifact_id": 10843813845,
-    "artifact_sha256": "823e540317374ada2f983c7ca1d8e03d7c41d8f6b7b78d4741423e04a01f8c52",
-    "source_snapshot_commit": "c862d6c497408991e85ea2ab368994d091d461dd",
+    "run_id": "36087769933",
+    "artifact_id": 10844392203,
+    "artifact_sha256": "1d6de457ff85e0f15c9a7b8c5cb8c783d6a6e4b730372923369e88e402429f56",
+    "source_snapshot_commit": "727c069c117c52a5bff7e8c0201dc9c9286bff51",
     "public_records_at_reconciliation": 1171,
     "missing_exact_identity": 23,
     "already_present": 0,
@@ -47,7 +47,7 @@
         "observed_listing_date": "2021-01-13",
         "publication_date": "2022-01-12",
         "disposition": "held_out_of_publication_no_inference",
-        "reason": "Official BSE notice contains conflicting listing-year text; issuer remains held until authoritative correction resolves the date."
+        "reason": "Official BSE issuer-specific listing notice conflicts with the index/candidate listing year; issuer remains held until authoritative official evidence resolves the date."
       }
     ]
   },
@@ -71,7 +71,12 @@
     "source_backed_sync_run": "36087986289",
     "generated_data_commit": "384f235bdf19545f3960f2c9bcc7ed16e3f70d57",
     "operator_state_commit": "dcaf482c7b9860c1c50fb37ba565ce3fe1d8431b",
-    "operator_health": "healthy"
+    "operator_health": "healthy",
+    "current_head_validation": {
+      "reviewed_evidence_run": "36087912122",
+      "data_contract_run": "36087912060"
+    },
+    "pages_build_run": "36088233705"
   },
   "live_verification": {
     "verifier_pr": 223,
@@ -99,5 +104,16 @@
     ],
     "retained_document_hash_fields": 66,
     "serialized_live_document_hash_fields": 0
+  },
+  "cursor": {
+    "parser_version": "1.4.0",
+    "eligible": 236,
+    "tracked": 220,
+    "parsed": 219,
+    "retained_unparseable": 1,
+    "untracked": 16,
+    "updated_at": "2026-09-25T02:38:14.470Z",
+    "cursor_blob_sha": "9e73a4dfad42352af939152779c6459afdac544d",
+    "next_unseen_notice_no": "20210322-22"
   }
 }
