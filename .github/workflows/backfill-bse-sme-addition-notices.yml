@@ -3,7 +3,7 @@ name: Backfill historical BSE SME addition notices
 on:
   schedule:
     - cron: "17 */2 * * *"
-  # A workflow-file push is the documented safe trigger for one bounded cursor batch when workflow_dispatch is unavailable; selection remains state-driven and capped at 20 notices.
+  # A workflow-file push is the documented safe trigger for one bounded cursor batch when workflow_dispatch is unavailable; selection remains state-driven and capped at 20 notices. Cursor11 resumes from retained progress.
   workflow_dispatch:
   pull_request:
     branches: ["main"]
