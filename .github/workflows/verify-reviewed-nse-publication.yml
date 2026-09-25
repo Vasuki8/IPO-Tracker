@@ -14,7 +14,7 @@ jobs:
   verify:
     if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
@@ -34,15 +34,15 @@ jobs:
         run: |
           set -euo pipefail
           out="$RUNNER_TEMP/nse-publication"
-          for attempt in 1 2 3 4 5; do
+          for attempt in $(seq 1 14); do
             if node scripts/verify-reviewed-nse-publication.mjs \
               --manifest=data/verified-nse-ipos/2026-09-25-batch1.json --output-dir="$out"; then
               cp "$out/report.json" "$out/attempts/$attempt.json"
               exit 0
             fi
             cp "$out/report.json" "$out/attempts/$attempt.json"
-            # Pages may briefly serve the previous commit after sync completes.
-            if [ "$attempt" -lt 5 ]; then sleep 15; fi
+            # GitHub Pages can lag a successful source sync by several minutes; keep this bounded but long enough to cover observed propagation.
+            if [ "$attempt" -lt 14 ]; then sleep 30; fi
           done
           exit 1
       - name: Retain actual snapshot and verification, including failures
