@@ -9,6 +9,9 @@ on:
     paths:
       - "data/bse-ipo-sources.json"
       - "data/verified-bse-listings/**"
+      - "data/verified-nse-ipos/**"
+      - "scripts/apply-reviewed-nse-ipos.mjs"
+      - "scripts/test-reviewed-nse-ipos.mjs"
       - "scripts/apply-verified-bse-listings.mjs"
       - "scripts/test-apply-verified-bse-listings.mjs"
       - "scripts/audit-bse-sme-ipo-index.mjs"
@@ -106,6 +109,11 @@ jobs:
 
       - name: Apply reviewed BSE listing evidence without network access
         run: node scripts/apply-verified-bse-listings.mjs
+
+      - name: Test and apply reviewed NSE IPO evidence
+        run: |
+          node scripts/test-reviewed-nse-ipos.mjs
+          node scripts/apply-reviewed-nse-ipos.mjs
 
       - name: Apply retained official BSE IPO sources
         run: node scripts/extract-bse-ipo-fields.mjs
@@ -207,6 +215,8 @@ jobs:
             git reset --hard origin/main
 
             node scripts/apply-live-sync-proposal.mjs --input=/tmp/live-sync-proposal.json
+            # Recheck reviewed NSE identities after rebasing onto latest main.
+            node scripts/apply-reviewed-nse-ipos.mjs
             node scripts/build-published-data.mjs
             node scripts/build-published-data.mjs --check
             node scripts/validate-data.mjs

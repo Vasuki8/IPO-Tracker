@@ -97,6 +97,12 @@ jobs:
       - name: Test historical IPO coverage audit
         run: node scripts/test-audit-historical-coverage.mjs
 
+      - name: Test reviewed NSE IPO import and real publication
+        run: |
+          node scripts/apply-reviewed-nse-ipos.mjs --check
+          node scripts/test-reviewed-nse-ipos.mjs
+          node scripts/test-reviewed-nse-publication.mjs
+
       - name: Test official IPO universe audit
         run: node scripts/test-audit-ipo-universe.mjs
 
