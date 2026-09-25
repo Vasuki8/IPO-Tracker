@@ -15,6 +15,12 @@ const data = JSON.parse(
 const sourceRecord = data.records.find(
   (row) => row.price_band?.evidence?.length && row.documents?.length,
 );
+const groupedRecord = data.records.find(
+  (row) =>
+    row.documents?.some((doc) =>
+      /sebi|prospectus|issuer/i.test(doc.type || ""),
+    ) && row.documents?.some((doc) => /nse|bse|exchange/i.test(doc.type || "")),
+);
 assert.ok(
   sourceRecord,
   "Published corpus must retain at least one price-band source for browser checks",
@@ -120,6 +126,47 @@ try {
     sourceRecord.issuer_name,
   );
   await page.locator("#resetFilters").click();
+  assert.ok(
+    groupedRecord,
+    "Corpus should include a record with filing and exchange sources",
+  );
+  await page.goto(`${base}/#ipo/${encodeURIComponent(groupedRecord.id)}`);
+  await page.waitForSelector("#detailView:not([hidden])");
+  assert.equal(
+    await page.locator("#documentList .document").count(),
+    groupedRecord.documents.length,
+  );
+  assert.equal(await page.locator(".document-group").count(), 2);
+  const filingCount = groupedRecord.documents.filter((doc) =>
+    /sebi|prospectus|issuer/i.test(doc.type || ""),
+  ).length;
+  await page.locator('[data-document-category="filings"]').click();
+  assert.equal(
+    await page.locator("#documentList .document").count(),
+    filingCount,
+  );
+  assert.equal(
+    await page
+      .locator('[data-document-category="filings"]')
+      .getAttribute("aria-pressed"),
+    "true",
+  );
+  assert.equal(
+    new URL(page.url()).hash,
+    `#ipo/${encodeURIComponent(groupedRecord.id)}`,
+  );
+  await page.locator('[data-document-category="all"]').click();
+  assert.equal(
+    await page.locator("#documentList .document").count(),
+    groupedRecord.documents.length,
+  );
+  await page.locator('[data-detail-section="documents"]').click();
+  assert.equal(
+    new URL(page.url()).hash,
+    `#ipo/${encodeURIComponent(groupedRecord.id)}`,
+  );
+  await page.locator(".back-link").click();
+  await page.waitForSelector("#homeView:not([hidden])");
   await page.locator('#boardFilter [data-board="sme"]').click();
   assert.ok(
     (await page.locator("#ipoRows .company-meta").allTextContents()).every(
