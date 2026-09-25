@@ -52,22 +52,23 @@ jobs:
           from pathlib import Path
 
           p=Path('scripts/apply-reviewed-nse-ipos.mjs')
-          s=p.read_text()
-          old="requireThat(/^Initial Public Offer(?:ing)?\\\\b/i.test(offer) && /\\\\bequity shares\\\\b/i.test(offer) &&"
-          new="const initialPublicEquity = /^(?:Initial Public (?:Offer(?:ing)?|Issue)|Intial Public Offer(?:ing)?)\\\\b/i.test(offer);\\n  requireThat(initialPublicEquity && /\\\\bequity shares\\\\b/i.test(offer) &&"
-          assert s.count(old)==1, 'reviewed offer gate changed unexpectedly'
-          p.write_text(s.replace(old,new))
+          lines=p.read_text().splitlines()
+          hits=[i for i,line in enumerate(lines) if 'requireThat(/^Initial Public Offer(?:ing)?' in line]
+          assert len(hits)==1, 'reviewed offer gate changed unexpectedly'
+          i=hits[0]
+          lines[i]='  const initialPublicEquity = /^(?:Initial Public (?:Offer(?:ing)?|Issue)|Intial Public Offer(?:ing)?)\\b/i.test(offer);'
+          lines.insert(i+1, '  requireThat(initialPublicEquity && /\\bequity shares\\b/i.test(offer) &&')
+          p.write_text('\n'.join(lines)+'\n')
 
           p=Path('scripts/extract-nse-ipo-detail-fields.mjs')
-          s=p.read_text()
-          old='''    "(?:to|[-–—])\\\\s*" + currency + "\\\\s*" + amount + "\\\\s*(?:\\\\/\\\\-)?\\\\s*" +
-              "per\\\\s+(?:Equity\\\\s+)?Share\\\\b",
-          '''
-          new='''    "(?:to|[-–—])\\\\s*(?:" + currency + "\\\\s*)?" + amount + "\\\\s*(?:\\\\/\\\\-)?\\\\s*" +
-              "per\\\\s+(?:Equity\\\\s+)?Shares?\\\\b",
-          '''
-          assert s.count(old)==1, 'price-band pattern changed unexpectedly'
-          p.write_text(s.replace(old,new))
+          lines=p.read_text().splitlines()
+          hits=[i for i,line in enumerate(lines) if '"(?:to|[-–—])' in line and '+ currency +' in line and '+ amount +' in line]
+          assert len(hits)==1, 'price-band pattern changed unexpectedly'
+          i=hits[0]
+          lines[i]=r'    "(?:to|[-–—])\\s*(?:" + currency + "\\s*)?" + amount + "\\s*(?:\\/\\-)?\\s*" +'
+          assert 'Share' in lines[i+1], 'price-band share suffix changed unexpectedly'
+          lines[i+1]=r'    "per\\s+(?:Equity\\s+)?Shares?\\b",'
+          p.write_text('\n'.join(lines)+'\n')
           PY
 
       - name: Materialize reviewed manifest and exclusions from retained source bytes
