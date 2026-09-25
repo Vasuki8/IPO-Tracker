@@ -1,0 +1,126 @@
+{
+  "schema_version": "1.0.0",
+  "status": "verified_live",
+  "verified_at": "2026-09-25T16:55:27.334Z",
+  "batch": "nse_universe_batch3",
+  "reviewed_release": {
+    "review_pr": 235,
+    "review_merge_commit": "2927fe2ed273db9c8a1fe72b3b21543a19003872",
+    "source_run_id": "36158694311",
+    "source_artifact_id": 10875066031,
+    "source_artifact_sha256": "24faa41a1bee5e50eafdcebd8404ec97de79e23149777f1c08f9863d2168e78a",
+    "reviewed_candidates": 15,
+    "approved_initial_equity_ipos": 13,
+    "held_missing_identity": [
+      "AMIRCHAND"
+    ],
+    "excluded_debt_security": [
+      "10MWL29"
+    ],
+    "explicit_facts": 78,
+    "fact_breakdown": {
+      "listing_dates": 13,
+      "offer_dates": 26,
+      "final_issue_prices": 13,
+      "price_bands": 13,
+      "market_lots": 6,
+      "minimum_bid_quantities": 7
+    }
+  },
+  "publication": {
+    "path": "exceptional_narrow_repair_using_existing_source_backed_import_build_validate_live_verifier",
+    "data_commit": "d24291331f15e7f346977790e77b02c2c528c230",
+    "repair_workflow_run_id": "36163697372",
+    "repair_workflow_job_id": "108166179765",
+    "repair_artifact_id": 10876409156,
+    "repair_artifact_sha256": "5df767d48bf49a4c06c7e22ff5cb132451e9907f06840be556c3454a2419d2fe",
+    "pages_deployment_run_id": "36163746445",
+    "pages_deployment_conclusion": "success",
+    "temporary_repair_workflow_removed_commit": "3491f0c4385f7bab2e6e9f718887bc5fb699cf71",
+    "publication_attempt": {
+      "attempt": 1,
+      "before": 1243,
+      "after": 1256
+    }
+  },
+  "live_snapshot": {
+    "source_url": "https://vasuki8.github.io/IPO-Tracker/data/ipos.json",
+    "snapshot_fetched_at": "2026-09-25T16:55:27.249Z",
+    "checked_at": "2026-09-25T16:55:27.334Z",
+    "dataset_generated_at": "2026-09-25T16:08:35.285Z",
+    "records": 1256,
+    "bytes": 6753982,
+    "sha256": "74031fbbac15e9fff5b6e510a23df45c435e2eecf1c9257b064cc9c42ecf3932",
+    "batch3_issuers_checked": 13,
+    "batch3_facts_checked": 78,
+    "failed_issuers": 0,
+    "status_distribution": {
+      "listed": 1235,
+      "open": 16,
+      "closed": 3,
+      "upcoming": 2
+    },
+    "invalid_or_unknown_statuses": 0,
+    "records_missing_status_evidence": 0
+  },
+  "baseline_comparison": {
+    "prior_verified_records": 1243,
+    "prior_snapshot_sha256": "f349cc612501e4fb16b7616aadf902ae282b4541ae92e84df672299cf4703a54",
+    "added": 13,
+    "removed": 0,
+    "existing_records_changed": 0,
+    "added_ids": [
+      "adisoft-technologies-limited",
+      "amba-auto-sales-and-services-limited",
+      "apsis-aerocom-limited",
+      "central-mine-planning-and-design-institute-limited",
+      "gsp-crop-science-limited",
+      "innovision-limited",
+      "onemi-technology-solutions-limited",
+      "powerica-limited",
+      "rajputana-stainless-limited",
+      "sai-parenterals-limited",
+      "simca-advertising-limited",
+      "value-360-communications-limited",
+      "vivid-electromech-limited"
+    ]
+  },
+  "operational_recovery": {
+    "reliability_pr": 236,
+    "reliability_merge_commit": "50fbd2ef2ed4176515607c35e787dfbd0d21f31f",
+    "reliability_change": "Bound optional NSE all-fields enrichment to an 8-minute best-effort budget; deferred fields remain missing and are retried by later scheduled syncs.",
+    "reliability_ci": {
+      "data_contract_run": "36163365949",
+      "reviewed_bse_run": "36163365958",
+      "both_success": true
+    },
+    "original_sync": {
+      "run_id": "36160239429",
+      "conclusion": "cancelled",
+      "reason": "Optional NSE all-fields enrichment remained active far beyond recent sync duration before concurrency cancellation."
+    },
+    "replacement_sync": {
+      "run_id": "36163462983",
+      "conclusion": "failure",
+      "failed_step": "Materialize 2020-2025 NSE historical IPO universes",
+      "error": "NSE historical fetch timed out (DOMException TimeoutError) before reviewed import; operator snapshot recorded unknown for that run."
+    },
+    "note": "The narrow repair did not perform unrelated network enrichment. It used retained reviewed evidence plus the existing importer, public-data builder, validator and read-only Pages verifier. No missing IPO field was guessed or estimated."
+  },
+  "unrelated_concurrent_change": {
+    "ui_pr": 237,
+    "merge_commit": "8dea7696883f0418e90d02ce7981c5a85a7ffb9d",
+    "note": "Concurrent IPO detail navigation UI work was left untouched and is not part of this backend release evidence."
+  },
+  "next_backend_task": {
+    "queue": "data/discovery/ipo-universe-review-2026-09-25-batch4.json",
+    "candidates": 15,
+    "range": "RFBL through SHREEDHAR",
+    "remaining_eligible_source_groups": 74,
+    "explicit_review_signals": [
+      "QMSMEDI",
+      "12VPT28A"
+    ],
+    "instruction": "Reconcile against latest main and the verified live snapshot, independently establish offering type and issuer identity, and do not import from aggregate past-issues evidence alone."
+  }
+}
