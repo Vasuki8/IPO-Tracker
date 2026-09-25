@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
-import { issuerKey } from './verify-bse-listing-candidates.mjs';
+import { issuerKey as baseIssuerKey } from './verify-bse-listing-candidates.mjs';
 import { parsePastIssuePrice } from './diagnose-nse-past-issues.mjs';
 import { buildHistoricalRecord } from './sync-nse-historical.mjs';
 import { parseMarketLotFromIpoDetail, parseMinimumBidFromIpoDetail, parsePriceBandFromIpoDetail } from './extract-nse-ipo-detail-fields.mjs';
@@ -14,6 +14,9 @@ export const FIELD_NAMES = ['listing_date', 'open_date', 'close_date', 'issue_pr
 export const hash = b => createHash('sha256').update(b).digest('hex');
 export const norm = v => String(v ?? '').replace(/\s+/g, ' ').trim();
 const title = v => norm(v).toLowerCase();
+// Ignore only an apostrophe inside a word, not other spelling differences.
+// Symbols, ISIN, board and all source identity checks still have to agree.
+const issuerKey = v => baseIssuerKey(String(v ?? '').replace(/([A-Za-z])['’](?=[A-Za-z])/g, '$1'));
 const unquote = v => norm(v).replace(/^"|"$/g, '');
 const equal = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 const requireThat = (condition, reason) => { if (!condition) throw new Error(reason); };
@@ -35,7 +38,7 @@ function nseDate(raw) {
   return validDate(iso) && Number(m[1]) === Number(iso.slice(8)) ? iso : null;
 }
 export const detailUrl = c => 'https://www.nseindia.com/api/ipo-detail?symbol=' + encodeURIComponent(c.nse_symbol) + '&series=' + (c.board === 'SME' ? 'SME' : 'EQ');
-const TITLES = new Set(['symbol', 'issue size', 'issue period', 'issue type', 'price range', 'price band', 'market lot', 'lot size', 'bid lot', 'minimum order quantity']);
+const TITLES = new Set(['symbol', 'issue size', 'issue period', 'issue type', 'price range', 'price band', 'market lot', 'lot size', 'bid lot', 'minimum order quantity', 'revised/extended issue period', 'revised price range']);
 
 // Literal selected JSON fields, not a reconstructed full response. Original
 // response bytes/hash remain in the recorded source artifact. Selection keeps
@@ -56,6 +59,31 @@ function oneItem(payload, name, required = true) {
   const items = payload.issueInfo.dataList.filter(i => title(i.title) === name);
   requireThat(items.length <= 1 && (!required || items.length === 1), 'missing_or_duplicate_' + name);
   return items[0] || null;
+}
+function reviewedPeriod(p) {
+  const ordinary = oneItem(p, 'issue period', false), revised = oneItem(p, 'revised/extended issue period', false);
+  requireThat(Boolean(ordinary) !== Boolean(revised), 'missing_or_competing_offer_period');
+  const item = revised || ordinary;
+  const pattern = revised
+    ? /^(\d{1,2}-[A-Za-z]+-\d{4})\s+to\s+(\d{1,2}-[A-Za-z]+-\d{4}) \(The Issue is further extended from start date (\d{2})\/(\d{2})\/(\d{4}) to end date (\d{2})\/(\d{2})\/(\d{4})\)$/i
+    : /^(\d{1,2}-[A-Za-z]+-\d{4})\s+to\s+(\d{1,2}-[A-Za-z]+-\d{4})$/;
+  const match = unquote(item.value).match(pattern);
+  requireThat(match, 'unrecognized_offer_period');
+  const open = nseDate(match[1]), close = nseDate(match[2]);
+  if (revised) requireThat(open === match[5] + '-' + match[4] + '-' + match[3] &&
+    close === match[8] + '-' + match[7] + '-' + match[6], 'inconsistent_revised_offer_period');
+  return { open, close, rawOpen: match[1], rawClose: match[2], title: norm(item.title) };
+}
+function reviewedBand(p) {
+  const revised = oneItem(p, 'revised price range', false);
+  if (!revised) return parsePriceBandFromIpoDetail(p);
+  requireThat(!p.issueInfo.dataList.some(i => ['price range', 'price band'].includes(title(i.title))), 'competing_price_bands');
+  // Normalize the title only for the existing parser; retain the literal title
+  // and value in the manifest and the published field's evidence locator.
+  const input = { ...p, issueInfo: { ...p.issueInfo, dataList: p.issueInfo.dataList.map(i =>
+    i === revised ? { ...i, title: 'Price Range' } : i) } };
+  const result = parsePriceBandFromIpoDetail(input);
+  return { ...result, source_title: norm(revised.title) };
 }
 function evidence(source, symbol, detail, pointer) {
   return { url: source.url, document_type: detail ? 'NSE Issue Information API' : 'NSE Public Past Issues',
@@ -84,9 +112,7 @@ export function validateEntry(entry, queue) {
     !/\b(?:follow[ -]?on|further public|rights issue|partly[ -]paid|debenture|non[ -]convertible|FPO)\b/i.test(offer), 'initial_equity_ipo_not_established');
   requireThat(validDate(m.listingDate) && m.listingDate === c.listing_date && m.listingDate === nseDate(r.listingDate) &&
     m.listingDate <= entry.detail_source.collected_at.slice(0, 10) && m.listingDate <= entry.past_source.collected_at.slice(0, 10), 'listing_date_mismatch_or_future');
-  const period = unquote(oneItem(p, 'issue period').value).match(/^(\d{1,2}-[A-Za-z]+-\d{4})\s+to\s+(\d{1,2}-[A-Za-z]+-\d{4})$/);
-  requireThat(period, 'unrecognized_offer_period');
-  const open = nseDate(period[1]), close = nseDate(period[2]);
+  const period = reviewedPeriod(p), { open, close } = period;
   requireThat(validDate(open) && validDate(close) && open <= close && close <= m.listingDate &&
     open === nseDate(r.ipoStartDate) && close === nseDate(r.ipoEndDate), 'offer_period_mismatch');
   const price = parsePastIssuePrice(r.issuePrice);
@@ -97,12 +123,12 @@ export function validateEntry(entry, queue) {
       source: evidence(source, c.nse_symbol, isDetail, pointer), corrections: [] };
   }
   fact('listing_date', m.listingDate, m.listingDate, entry.detail_source, '/metaInfo/listingDate');
-  fact('open_date', open, period[1], entry.detail_source, '/issueInfo/dataList[Issue Period]');
-  fact('close_date', close, period[2], entry.detail_source, '/issueInfo/dataList[Issue Period]');
+  fact('open_date', open, period.rawOpen, entry.detail_source, '/issueInfo/dataList[' + period.title + ']');
+  fact('close_date', close, period.rawClose, entry.detail_source, '/issueInfo/dataList[' + period.title + ']');
   fact('issue_price', price, norm(r.issuePrice), entry.past_source, '/' + c.row_index + '/issuePrice', false);
-  const band = parsePriceBandFromIpoDetail(p), lot = parseMarketLotFromIpoDetail(p), min = parseMinimumBidFromIpoDetail(p);
+  const band = reviewedBand(p), lot = parseMarketLotFromIpoDetail(p), min = parseMinimumBidFromIpoDetail(p);
   for (const [key, result, present] of [
-    ['price_band', band, p.issueInfo.dataList.some(i => ['price range', 'price band'].includes(title(i.title)))],
+    ['price_band', band, p.issueInfo.dataList.some(i => ['price range', 'price band', 'revised price range'].includes(title(i.title)))],
     ['market_lot', lot, p.issueInfo.dataList.some(i => ['market lot', 'lot size'].includes(title(i.title)))],
     ['minimum_bid_quantity', min, p.issueInfo.dataList.some(i => title(i.title) === 'minimum order quantity')]
   ]) {

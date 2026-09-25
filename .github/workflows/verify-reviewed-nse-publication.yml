@@ -36,7 +36,7 @@ jobs:
           out="$RUNNER_TEMP/nse-publication"
           for attempt in $(seq 1 14); do
             if node scripts/verify-reviewed-nse-publication.mjs \
-              --manifest=data/verified-nse-ipos/2026-09-25-batch2.json --output-dir="$out"; then
+              --manifest=data/verified-nse-ipos/2026-09-25-batch3.json --output-dir="$out"; then
               cp "$out/report.json" "$out/attempts/$attempt.json"
               exit 0
             fi
