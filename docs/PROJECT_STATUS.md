@@ -111,6 +111,20 @@ The two ordinary-sync enrichments were:
 
 This ordinary sync enrichment is separate from the batch4 13-record reviewed import.
 
+## Post-publication regression-test fix — PR #241
+
+After batch4 publication, the new batch4 rehearsal test still expected the 13 reviewed records to be absent, so documentation/queue commits correctly encountered `added: 0 / already_present: 13` and failed the test's stale pre-publication expectation. Production data and the live verifier were unaffected.
+
+PR #241 updated **only** `scripts/test-reviewed-nse-batch4.mjs` to reconstruct the pre-release recovery/public snapshots before asserting the 13-record addition, matching the established batch3 test pattern. The test also proves committed recovery files remain read-only.
+
+- PR #241 merge: **`db19e2dfed3ce83e0013c910a8db62e85d96c158`**
+- PR-head full data-contract run `36168251167` — success
+- PR-head reviewed-BSE compatibility run `36168251131` — success
+- merged-main full data-contract run `36168355525` — success
+- merged-main reviewed-BSE compatibility run `36168355423` — success
+
+This was test maintenance only: no IPO source evidence, parser behavior, recovery record, published record or UI changed.
+
 ## Exact next P1 backend task — batch5
 
 Review [../data/discovery/ipo-universe-review-2026-09-25-batch5.json](../data/discovery/ipo-universe-review-2026-09-25-batch5.json): **15 candidates from TEJA through JNPR**.
