@@ -1,7 +1,7 @@
 {
   "source_family": "Official NSE / SEBI / issuer offer-document evidence",
   "collection_started_at": "2026-09-22T02:14:14Z",
-  "generated_at": "2026-09-25T19:55:28.706Z",
+  "generated_at": "2026-09-25T21:02:27.569Z",
   "records": [
     {
       "id": "a-one-steels-india-limited",
@@ -2553,6 +2553,191 @@
         "source_artifact_id": 10847442489,
         "source_artifact_sha256": "e00e9d7b3665c6f94e1994858e0fed05de6ac67b7bc6465ea7699fdf0e670e96",
         "detail_response_sha256": "bd93b3e4f8d64251816a7594e71d8fdb867392ef223ef14cd31899c2a5780913",
+        "decision": "verified_initial_equity_ipo"
+      }
+    },
+    {
+      "id": "ashutosh-fibre-limited",
+      "issuer_name": "Ashutosh Fibre Limited",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": "ASHUTOSH",
+      "nse_series": "SME",
+      "nse_source": {
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=ASHUTOSH&series=SME",
+        "document_type": "NSE Issue Information API",
+        "document_identity": "NSE Issue Information — ASHUTOSH",
+        "document_sha256": "83da72a6c47f47375c963fa8ba6082a99a56794afc6d966dd5f6f83294dd6d16",
+        "publication_date": null,
+        "collected_at": "2026-09-25T20:40:23.275Z",
+        "page": null,
+        "evidence_locator": "/metaInfo/listingDate"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — ASHUTOSH",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ASHUTOSH&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:23.275Z",
+          "document_sha256": "83da72a6c47f47375c963fa8ba6082a99a56794afc6d966dd5f6f83294dd6d16"
+        },
+        {
+          "type": "NSE Public Past Issues",
+          "identity": "NSE Public Past Issues — ASHUTOSH",
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:08.627Z",
+          "document_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31"
+        }
+      ],
+      "first_observed_at": "2026-09-25T20:40:23.275Z",
+      "last_collected_at": "2026-09-25T20:40:23.275Z",
+      "board_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ASHUTOSH&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — ASHUTOSH",
+          "document_sha256": "83da72a6c47f47375c963fa8ba6082a99a56794afc6d966dd5f6f83294dd6d16",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:23.275Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/segment"
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ASHUTOSH&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — ASHUTOSH",
+          "document_sha256": "83da72a6c47f47375c963fa8ba6082a99a56794afc6d966dd5f6f83294dd6d16",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:23.275Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/listingDate"
+        }
+      ],
+      "listing_date": {
+        "value": "2026-09-07",
+        "source_value": "2026-09-07",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ASHUTOSH&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — ASHUTOSH",
+          "document_sha256": "83da72a6c47f47375c963fa8ba6082a99a56794afc6d966dd5f6f83294dd6d16",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:23.275Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/listingDate"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 92,
+        "source_value": "92",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "document_type": "NSE Public Past Issues",
+          "document_identity": "NSE Public Past Issues — ASHUTOSH",
+          "document_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:08.627Z",
+          "page": null,
+          "evidence_locator": "/27/issuePrice"
+        },
+        "corrections": []
+      },
+      "isin": "INE19FR01012",
+      "open_date": {
+        "value": "2026-08-31",
+        "source_value": "31-Aug-2026",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ASHUTOSH&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — ASHUTOSH",
+          "document_sha256": "83da72a6c47f47375c963fa8ba6082a99a56794afc6d966dd5f6f83294dd6d16",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:23.275Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Issue Period]"
+        },
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2026-09-02",
+        "source_value": "02-Sep-2026",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ASHUTOSH&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — ASHUTOSH",
+          "document_sha256": "83da72a6c47f47375c963fa8ba6082a99a56794afc6d966dd5f6f83294dd6d16",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:23.275Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Issue Period]"
+        },
+        "corrections": []
+      },
+      "price_band": {
+        "value": {
+          "min": 87,
+          "max": 92
+        },
+        "source_value": "Rs.87 to Rs.92 per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ASHUTOSH&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — ASHUTOSH",
+          "document_sha256": "83da72a6c47f47375c963fa8ba6082a99a56794afc6d966dd5f6f83294dd6d16",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:23.275Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Price Range]"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 1200,
+        "source_value": "1200 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ASHUTOSH&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — ASHUTOSH",
+          "document_sha256": "83da72a6c47f47375c963fa8ba6082a99a56794afc6d966dd5f6f83294dd6d16",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:23.275Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Lot Size]"
+        },
+        "corrections": []
+      },
+      "nse_verified_ipo_batch": {
+        "manifest": "data/verified-nse-ipos/2026-09-25-batch8.json",
+        "verifier_version": "1.0.0",
+        "source_run_id": "36187113307",
+        "source_artifact_id": 10886636012,
+        "source_artifact_sha256": "7169cbd2c166521850ac2fac44c4f4be808440df1ffc0acd45951cd84b2df1bb",
+        "detail_response_sha256": "83da72a6c47f47375c963fa8ba6082a99a56794afc6d966dd5f6f83294dd6d16",
         "decision": "verified_initial_equity_ipo"
       }
     },
@@ -6463,6 +6648,217 @@
       }
     },
     {
+      "id": "deepa-jewellers-limited",
+      "issuer_name": "Deepa Jewellers Limited",
+      "board": "Mainboard",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": "DEEPA",
+      "nse_series": "EQ",
+      "nse_source": {
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=DEEPA&series=EQ",
+        "document_type": "NSE Issue Information API",
+        "document_identity": "NSE Issue Information — DEEPA",
+        "document_sha256": "57c4c9b9aa51d3b65fc93a1ccd36af1932af82157069a0486a9f958c1852821f",
+        "publication_date": null,
+        "collected_at": "2026-09-25T20:40:38.157Z",
+        "page": null,
+        "evidence_locator": "/metaInfo/listingDate"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — DEEPA",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=DEEPA&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:38.157Z",
+          "document_sha256": "57c4c9b9aa51d3b65fc93a1ccd36af1932af82157069a0486a9f958c1852821f"
+        },
+        {
+          "type": "NSE Public Past Issues",
+          "identity": "NSE Public Past Issues — DEEPA",
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:08.627Z",
+          "document_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "Deepa Jewellers Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/deepa-jewellers-limited-prospectus_104286.html",
+          "publication_date": "2026-09-04",
+          "collected_at": "2026-09-25T20:52:50.318Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "Deepa Jewellers Limited - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788759187148.pdf",
+          "publication_date": "2026-09-04",
+          "collected_at": "2026-09-25T20:52:50.318Z"
+        }
+      ],
+      "first_observed_at": "2026-09-25T20:40:38.157Z",
+      "last_collected_at": "2026-09-25T21:02:27.569Z",
+      "board_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=DEEPA&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — DEEPA",
+          "document_sha256": "57c4c9b9aa51d3b65fc93a1ccd36af1932af82157069a0486a9f958c1852821f",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:38.157Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/segment"
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=DEEPA&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — DEEPA",
+          "document_sha256": "57c4c9b9aa51d3b65fc93a1ccd36af1932af82157069a0486a9f958c1852821f",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:38.157Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/listingDate"
+        }
+      ],
+      "listing_date": {
+        "value": "2026-09-08",
+        "source_value": "2026-09-08",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=DEEPA&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — DEEPA",
+          "document_sha256": "57c4c9b9aa51d3b65fc93a1ccd36af1932af82157069a0486a9f958c1852821f",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:38.157Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/listingDate"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 177,
+        "source_value": "177",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "document_type": "NSE Public Past Issues",
+          "document_identity": "NSE Public Past Issues — DEEPA",
+          "document_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:08.627Z",
+          "page": null,
+          "evidence_locator": "/24/issuePrice"
+        },
+        "corrections": []
+      },
+      "isin": "INE1M2N01020",
+      "open_date": {
+        "value": "2026-09-01",
+        "source_value": "1-Sep-2026",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=DEEPA&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — DEEPA",
+          "document_sha256": "57c4c9b9aa51d3b65fc93a1ccd36af1932af82157069a0486a9f958c1852821f",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:38.157Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Issue Period]"
+        },
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2026-09-03",
+        "source_value": "3-Sep-2026",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=DEEPA&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — DEEPA",
+          "document_sha256": "57c4c9b9aa51d3b65fc93a1ccd36af1932af82157069a0486a9f958c1852821f",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:38.157Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Issue Period]"
+        },
+        "corrections": []
+      },
+      "price_band": {
+        "value": {
+          "min": 168,
+          "max": 177
+        },
+        "source_value": "Rs. 168 to Rs. 177 per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=DEEPA&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — DEEPA",
+          "document_sha256": "57c4c9b9aa51d3b65fc93a1ccd36af1932af82157069a0486a9f958c1852821f",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:38.157Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Price Range]"
+        },
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": 84,
+        "source_value": "84 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=DEEPA&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — DEEPA",
+          "document_sha256": "57c4c9b9aa51d3b65fc93a1ccd36af1932af82157069a0486a9f958c1852821f",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:38.157Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Minimum Order Quantity]"
+        },
+        "corrections": []
+      },
+      "nse_verified_ipo_batch": {
+        "manifest": "data/verified-nse-ipos/2026-09-25-batch8.json",
+        "verifier_version": "1.0.0",
+        "source_run_id": "36187113307",
+        "source_artifact_id": 10886636012,
+        "source_artifact_sha256": "7169cbd2c166521850ac2fac44c4f4be808440df1ffc0acd45951cd84b2df1bb",
+        "detail_response_sha256": "57c4c9b9aa51d3b65fc93a1ccd36af1932af82157069a0486a9f958c1852821f",
+        "decision": "verified_initial_equity_ipo"
+      },
+      "issue_size_inr": {
+        "value": 4597160000,
+        "source_value": "₹4,597.16 MILLION",
+        "page": 3,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788759187148.pdf",
+          "document_type": "SEBI Prospectus PDF",
+          "document_identity": "Deepa Jewellers Limited - Prospectus — PDF",
+          "publication_date": "2026-09-04",
+          "collected_at": "2026-09-25T21:02:27.569Z"
+        }
+      }
+    },
+    {
       "id": "dhoot-transmission-limited",
       "issuer_name": "Dhoot Transmission Limited",
       "board": "Mainboard",
@@ -8721,6 +9117,217 @@
           "document_identity": "NSE Issue Information — GERMAN",
           "publication_date": null,
           "collected_at": "2026-09-23T14:33:31.018Z"
+        }
+      }
+    },
+    {
+      "id": "glass-wall-systems-india-limited",
+      "issuer_name": "Glass Wall Systems (India) Limited",
+      "board": "Mainboard",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": "GLASSWALL",
+      "nse_series": "EQ",
+      "nse_source": {
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=GLASSWALL&series=EQ",
+        "document_type": "NSE Issue Information API",
+        "document_identity": "NSE Issue Information — GLASSWALL",
+        "document_sha256": "6133db9dacad947b61bb2384a13d0978c0fbda71a09c5bce75f7a2183326efce",
+        "publication_date": null,
+        "collected_at": "2026-09-25T20:40:53.092Z",
+        "page": null,
+        "evidence_locator": "/metaInfo/listingDate"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — GLASSWALL",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=GLASSWALL&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:53.092Z",
+          "document_sha256": "6133db9dacad947b61bb2384a13d0978c0fbda71a09c5bce75f7a2183326efce"
+        },
+        {
+          "type": "NSE Public Past Issues",
+          "identity": "NSE Public Past Issues — GLASSWALL",
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:08.627Z",
+          "document_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "GLASS WALL SYSTEMS (INDIA) LIMITED - PROSPECTUS",
+          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/glass-wall-systems-india-limited-prospectus_104426.html",
+          "publication_date": "2026-09-11",
+          "collected_at": "2026-09-25T20:52:50.318Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "GLASS WALL SYSTEMS (INDIA) LIMITED - PROSPECTUS — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789099730206.pdf",
+          "publication_date": "2026-09-11",
+          "collected_at": "2026-09-25T20:52:50.318Z"
+        }
+      ],
+      "first_observed_at": "2026-09-25T20:40:53.092Z",
+      "last_collected_at": "2026-09-25T21:02:27.569Z",
+      "board_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=GLASSWALL&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — GLASSWALL",
+          "document_sha256": "6133db9dacad947b61bb2384a13d0978c0fbda71a09c5bce75f7a2183326efce",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:53.092Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/segment"
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=GLASSWALL&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — GLASSWALL",
+          "document_sha256": "6133db9dacad947b61bb2384a13d0978c0fbda71a09c5bce75f7a2183326efce",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:53.092Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/listingDate"
+        }
+      ],
+      "listing_date": {
+        "value": "2026-09-16",
+        "source_value": "2026-09-16",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=GLASSWALL&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — GLASSWALL",
+          "document_sha256": "6133db9dacad947b61bb2384a13d0978c0fbda71a09c5bce75f7a2183326efce",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:53.092Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/listingDate"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 182,
+        "source_value": "182",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "document_type": "NSE Public Past Issues",
+          "document_identity": "NSE Public Past Issues — GLASSWALL",
+          "document_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:08.627Z",
+          "page": null,
+          "evidence_locator": "/18/issuePrice"
+        },
+        "corrections": []
+      },
+      "isin": "INE644Q01039",
+      "open_date": {
+        "value": "2026-09-08",
+        "source_value": "08-Sep-2026",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=GLASSWALL&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — GLASSWALL",
+          "document_sha256": "6133db9dacad947b61bb2384a13d0978c0fbda71a09c5bce75f7a2183326efce",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:53.092Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Issue Period]"
+        },
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2026-09-10",
+        "source_value": "10-Sep-2026",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=GLASSWALL&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — GLASSWALL",
+          "document_sha256": "6133db9dacad947b61bb2384a13d0978c0fbda71a09c5bce75f7a2183326efce",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:53.092Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Issue Period]"
+        },
+        "corrections": []
+      },
+      "price_band": {
+        "value": {
+          "min": 172,
+          "max": 182
+        },
+        "source_value": "Rs. 172 to Rs. 182 per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=GLASSWALL&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — GLASSWALL",
+          "document_sha256": "6133db9dacad947b61bb2384a13d0978c0fbda71a09c5bce75f7a2183326efce",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:53.092Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Price Range]"
+        },
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": 82,
+        "source_value": "82 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=GLASSWALL&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — GLASSWALL",
+          "document_sha256": "6133db9dacad947b61bb2384a13d0978c0fbda71a09c5bce75f7a2183326efce",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:53.092Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Minimum Order Quantity]"
+        },
+        "corrections": []
+      },
+      "nse_verified_ipo_batch": {
+        "manifest": "data/verified-nse-ipos/2026-09-25-batch8.json",
+        "verifier_version": "1.0.0",
+        "source_run_id": "36187113307",
+        "source_artifact_id": 10886636012,
+        "source_artifact_sha256": "7169cbd2c166521850ac2fac44c4f4be808440df1ffc0acd45951cd84b2df1bb",
+        "detail_response_sha256": "6133db9dacad947b61bb2384a13d0978c0fbda71a09c5bce75f7a2183326efce",
+        "decision": "verified_initial_equity_ipo"
+      },
+      "issue_size_inr": {
+        "value": 4278900000,
+        "source_value": "₹4,278.90 MILLION",
+        "page": 3,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789099730206.pdf",
+          "document_type": "SEBI Prospectus PDF",
+          "document_identity": "GLASS WALL SYSTEMS (INDIA) LIMITED - PROSPECTUS — PDF",
+          "publication_date": "2026-09-11",
+          "collected_at": "2026-09-25T21:02:27.569Z"
         }
       }
     },
@@ -11714,6 +12321,191 @@
       }
     },
     {
+      "id": "kheria-autocomp-limited",
+      "issuer_name": "Kheria Autocomp Limited",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": "KHERIAAUTO",
+      "nse_series": "SME",
+      "nse_source": {
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=KHERIAAUTO&series=SME",
+        "document_type": "NSE Issue Information API",
+        "document_identity": "NSE Issue Information — KHERIAAUTO",
+        "document_sha256": "95c35de288b2a7f15022ab6a9d90aa16c86581650c4abcdcdc00d544781c19da",
+        "publication_date": null,
+        "collected_at": "2026-09-25T20:41:13.305Z",
+        "page": null,
+        "evidence_locator": "/metaInfo/listingDate"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — KHERIAAUTO",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=KHERIAAUTO&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:13.305Z",
+          "document_sha256": "95c35de288b2a7f15022ab6a9d90aa16c86581650c4abcdcdc00d544781c19da"
+        },
+        {
+          "type": "NSE Public Past Issues",
+          "identity": "NSE Public Past Issues — KHERIAAUTO",
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:08.627Z",
+          "document_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31"
+        }
+      ],
+      "first_observed_at": "2026-09-25T20:41:13.305Z",
+      "last_collected_at": "2026-09-25T20:41:13.305Z",
+      "board_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=KHERIAAUTO&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — KHERIAAUTO",
+          "document_sha256": "95c35de288b2a7f15022ab6a9d90aa16c86581650c4abcdcdc00d544781c19da",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:13.305Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/segment"
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=KHERIAAUTO&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — KHERIAAUTO",
+          "document_sha256": "95c35de288b2a7f15022ab6a9d90aa16c86581650c4abcdcdc00d544781c19da",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:13.305Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/listingDate"
+        }
+      ],
+      "listing_date": {
+        "value": "2026-09-24",
+        "source_value": "2026-09-24",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=KHERIAAUTO&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — KHERIAAUTO",
+          "document_sha256": "95c35de288b2a7f15022ab6a9d90aa16c86581650c4abcdcdc00d544781c19da",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:13.305Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/listingDate"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 101,
+        "source_value": "101",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "document_type": "NSE Public Past Issues",
+          "document_identity": "NSE Public Past Issues — KHERIAAUTO",
+          "document_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:08.627Z",
+          "page": null,
+          "evidence_locator": "/4/issuePrice"
+        },
+        "corrections": []
+      },
+      "isin": "INE0HOL01013",
+      "open_date": {
+        "value": "2026-09-17",
+        "source_value": "17-Sep-2026",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=KHERIAAUTO&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — KHERIAAUTO",
+          "document_sha256": "95c35de288b2a7f15022ab6a9d90aa16c86581650c4abcdcdc00d544781c19da",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:13.305Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Issue Period]"
+        },
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2026-09-21",
+        "source_value": "21-Sep-2026",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=KHERIAAUTO&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — KHERIAAUTO",
+          "document_sha256": "95c35de288b2a7f15022ab6a9d90aa16c86581650c4abcdcdc00d544781c19da",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:13.305Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Issue Period]"
+        },
+        "corrections": []
+      },
+      "price_band": {
+        "value": {
+          "min": 96,
+          "max": 101
+        },
+        "source_value": "Rs.96 to Rs.101 per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=KHERIAAUTO&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — KHERIAAUTO",
+          "document_sha256": "95c35de288b2a7f15022ab6a9d90aa16c86581650c4abcdcdc00d544781c19da",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:13.305Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Price Range]"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 1200,
+        "source_value": "1200 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=KHERIAAUTO&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — KHERIAAUTO",
+          "document_sha256": "95c35de288b2a7f15022ab6a9d90aa16c86581650c4abcdcdc00d544781c19da",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:13.305Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Lot Size]"
+        },
+        "corrections": []
+      },
+      "nse_verified_ipo_batch": {
+        "manifest": "data/verified-nse-ipos/2026-09-25-batch8.json",
+        "verifier_version": "1.0.0",
+        "source_run_id": "36187113307",
+        "source_artifact_id": 10886636012,
+        "source_artifact_sha256": "7169cbd2c166521850ac2fac44c4f4be808440df1ffc0acd45951cd84b2df1bb",
+        "detail_response_sha256": "95c35de288b2a7f15022ab6a9d90aa16c86581650c4abcdcdc00d544781c19da",
+        "decision": "verified_initial_equity_ipo"
+      }
+    },
+    {
       "id": "knack-packaging-limited",
       "issuer_name": "Knack Packaging Limited",
       "board": "Mainboard",
@@ -13417,6 +14209,217 @@
         "source_artifact_sha256": "760db5e15a4ec505738f0b1a36f97026d9f210648c3e63720bb12fb575bdea49",
         "detail_response_sha256": "cf6670897c8f0ae95f2a68e1aa938c438eca00c786fce14e363681eeac860516",
         "decision": "verified_initial_equity_ipo"
+      }
+    },
+    {
+      "id": "lumino-industries-limited",
+      "issuer_name": "Lumino Industries Limited",
+      "board": "Mainboard",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": "LUMINO",
+      "nse_series": "EQ",
+      "nse_source": {
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=LUMINO&series=EQ",
+        "document_type": "NSE Issue Information API",
+        "document_identity": "NSE Issue Information — LUMINO",
+        "document_sha256": "8fd6b59f31cbd66f8a44312df9e554520091eaad58dc73a366d72c33fb39b433",
+        "publication_date": null,
+        "collected_at": "2026-09-25T20:40:18.255Z",
+        "page": null,
+        "evidence_locator": "/metaInfo/listingDate"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — LUMINO",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=LUMINO&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:18.255Z",
+          "document_sha256": "8fd6b59f31cbd66f8a44312df9e554520091eaad58dc73a366d72c33fb39b433"
+        },
+        {
+          "type": "NSE Public Past Issues",
+          "identity": "NSE Public Past Issues — LUMINO",
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:08.627Z",
+          "document_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "SEBI Prospectus filing — lumino industries limited",
+          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/lumino-industries-limited-prospectus_104288.html",
+          "publication_date": "2026-09-07",
+          "collected_at": "2026-09-25T20:52:50.318Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "SEBI Prospectus filing — lumino industries limited — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788760904072.pdf",
+          "publication_date": "2026-09-07",
+          "collected_at": "2026-09-25T20:52:50.318Z"
+        }
+      ],
+      "first_observed_at": "2026-09-25T20:40:18.255Z",
+      "last_collected_at": "2026-09-25T21:02:27.569Z",
+      "board_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=LUMINO&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — LUMINO",
+          "document_sha256": "8fd6b59f31cbd66f8a44312df9e554520091eaad58dc73a366d72c33fb39b433",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:18.255Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/segment"
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=LUMINO&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — LUMINO",
+          "document_sha256": "8fd6b59f31cbd66f8a44312df9e554520091eaad58dc73a366d72c33fb39b433",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:18.255Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/listingDate"
+        }
+      ],
+      "listing_date": {
+        "value": "2026-09-03",
+        "source_value": "2026-09-03",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=LUMINO&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — LUMINO",
+          "document_sha256": "8fd6b59f31cbd66f8a44312df9e554520091eaad58dc73a366d72c33fb39b433",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:18.255Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/listingDate"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 82,
+        "source_value": "82",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "document_type": "NSE Public Past Issues",
+          "document_identity": "NSE Public Past Issues — LUMINO",
+          "document_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:08.627Z",
+          "page": null,
+          "evidence_locator": "/30/issuePrice"
+        },
+        "corrections": []
+      },
+      "isin": "INE185Q01025",
+      "open_date": {
+        "value": "2026-08-27",
+        "source_value": "27-Aug-2026",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=LUMINO&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — LUMINO",
+          "document_sha256": "8fd6b59f31cbd66f8a44312df9e554520091eaad58dc73a366d72c33fb39b433",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:18.255Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Issue Period]"
+        },
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2026-08-31",
+        "source_value": "31-Aug-2026",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=LUMINO&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — LUMINO",
+          "document_sha256": "8fd6b59f31cbd66f8a44312df9e554520091eaad58dc73a366d72c33fb39b433",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:18.255Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Issue Period]"
+        },
+        "corrections": []
+      },
+      "price_band": {
+        "value": {
+          "min": 78,
+          "max": 82
+        },
+        "source_value": "Rs. 78/- to Rs. 82/- per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=LUMINO&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — LUMINO",
+          "document_sha256": "8fd6b59f31cbd66f8a44312df9e554520091eaad58dc73a366d72c33fb39b433",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:18.255Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Price Range]"
+        },
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": 182,
+        "source_value": "182 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=LUMINO&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — LUMINO",
+          "document_sha256": "8fd6b59f31cbd66f8a44312df9e554520091eaad58dc73a366d72c33fb39b433",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:18.255Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Minimum Order Quantity]"
+        },
+        "corrections": []
+      },
+      "nse_verified_ipo_batch": {
+        "manifest": "data/verified-nse-ipos/2026-09-25-batch8.json",
+        "verifier_version": "1.0.0",
+        "source_run_id": "36187113307",
+        "source_artifact_id": 10886636012,
+        "source_artifact_sha256": "7169cbd2c166521850ac2fac44c4f4be808440df1ffc0acd45951cd84b2df1bb",
+        "detail_response_sha256": "8fd6b59f31cbd66f8a44312df9e554520091eaad58dc73a366d72c33fb39b433",
+        "decision": "verified_initial_equity_ipo"
+      },
+      "issue_size_inr": {
+        "value": 7000000000,
+        "source_value": "₹7,000.00 MILLION",
+        "page": 2,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788760904072.pdf",
+          "document_type": "SEBI Prospectus PDF",
+          "document_identity": "SEBI Prospectus filing — lumino industries limited — PDF",
+          "publication_date": "2026-09-07",
+          "collected_at": "2026-09-25T21:02:27.569Z"
+        }
       }
     },
     {
@@ -18053,6 +19056,205 @@
       }
     },
     {
+      "id": "prasol-chemicals-limited",
+      "issuer_name": "Prasol Chemicals Limited",
+      "board": "Mainboard",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": "PRASOLCHEM",
+      "nse_series": "EQ",
+      "nse_source": {
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=PRASOLCHEM&series=EQ",
+        "document_type": "NSE Issue Information API",
+        "document_identity": "NSE Issue Information — PRASOLCHEM",
+        "document_sha256": "7e72c6c6ead82f98fa166b8d395465d996ffc50981b62b03f4e220acc14074c0",
+        "publication_date": null,
+        "collected_at": "2026-09-25T20:40:58.084Z",
+        "page": null,
+        "evidence_locator": "/metaInfo/listingDate"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — PRASOLCHEM",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PRASOLCHEM&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:58.084Z",
+          "document_sha256": "7e72c6c6ead82f98fa166b8d395465d996ffc50981b62b03f4e220acc14074c0"
+        },
+        {
+          "type": "NSE Public Past Issues",
+          "identity": "NSE Public Past Issues — PRASOLCHEM",
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:08.627Z",
+          "document_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "PRASOL CHEMICALS LIMITED - PROSPECTUS",
+          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/prasol-chemicals-limited-prospectus_104479.html",
+          "publication_date": "2026-09-11",
+          "collected_at": "2026-09-25T20:52:50.318Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "PRASOL CHEMICALS LIMITED - PROSPECTUS — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789447463194.pdf",
+          "publication_date": "2026-09-11",
+          "collected_at": "2026-09-25T20:52:50.318Z"
+        }
+      ],
+      "first_observed_at": "2026-09-25T20:40:58.084Z",
+      "last_collected_at": "2026-09-25T20:52:50.318Z",
+      "board_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PRASOLCHEM&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — PRASOLCHEM",
+          "document_sha256": "7e72c6c6ead82f98fa166b8d395465d996ffc50981b62b03f4e220acc14074c0",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:58.084Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/segment"
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PRASOLCHEM&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — PRASOLCHEM",
+          "document_sha256": "7e72c6c6ead82f98fa166b8d395465d996ffc50981b62b03f4e220acc14074c0",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:58.084Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/listingDate"
+        }
+      ],
+      "listing_date": {
+        "value": "2026-09-16",
+        "source_value": "2026-09-16",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PRASOLCHEM&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — PRASOLCHEM",
+          "document_sha256": "7e72c6c6ead82f98fa166b8d395465d996ffc50981b62b03f4e220acc14074c0",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:58.084Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/listingDate"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 676,
+        "source_value": "676",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "document_type": "NSE Public Past Issues",
+          "document_identity": "NSE Public Past Issues — PRASOLCHEM",
+          "document_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:08.627Z",
+          "page": null,
+          "evidence_locator": "/20/issuePrice"
+        },
+        "corrections": []
+      },
+      "isin": "INE455U01024",
+      "open_date": {
+        "value": "2026-09-08",
+        "source_value": "08-Sep-2026",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PRASOLCHEM&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — PRASOLCHEM",
+          "document_sha256": "7e72c6c6ead82f98fa166b8d395465d996ffc50981b62b03f4e220acc14074c0",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:58.084Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Issue Period]"
+        },
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2026-09-10",
+        "source_value": "10-Sep-2026",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PRASOLCHEM&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — PRASOLCHEM",
+          "document_sha256": "7e72c6c6ead82f98fa166b8d395465d996ffc50981b62b03f4e220acc14074c0",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:58.084Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Issue Period]"
+        },
+        "corrections": []
+      },
+      "price_band": {
+        "value": {
+          "min": 643,
+          "max": 676
+        },
+        "source_value": "Rs. 643 to Rs. 676 per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PRASOLCHEM&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — PRASOLCHEM",
+          "document_sha256": "7e72c6c6ead82f98fa166b8d395465d996ffc50981b62b03f4e220acc14074c0",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:58.084Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Price Range]"
+        },
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": 22,
+        "source_value": "22 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PRASOLCHEM&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — PRASOLCHEM",
+          "document_sha256": "7e72c6c6ead82f98fa166b8d395465d996ffc50981b62b03f4e220acc14074c0",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:58.084Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Minimum Order Quantity]"
+        },
+        "corrections": []
+      },
+      "nse_verified_ipo_batch": {
+        "manifest": "data/verified-nse-ipos/2026-09-25-batch8.json",
+        "verifier_version": "1.0.0",
+        "source_run_id": "36187113307",
+        "source_artifact_id": 10886636012,
+        "source_artifact_sha256": "7169cbd2c166521850ac2fac44c4f4be808440df1ffc0acd45951cd84b2df1bb",
+        "detail_response_sha256": "7e72c6c6ead82f98fa166b8d395465d996ffc50981b62b03f4e220acc14074c0",
+        "decision": "verified_initial_equity_ipo"
+      }
+    },
+    {
       "id": "propshop-events-and-exhibitions-limited",
       "issuer_name": "Propshop Events and Exhibitions Limited",
       "board": "SME",
@@ -18273,6 +19475,204 @@
           "document_identity": "Propshop Events and Exhibitions Limited - Prospectus — PDF",
           "publication_date": "2026-07-30",
           "collected_at": "2026-09-25T18:51:33.542Z"
+        }
+      }
+    },
+    {
+      "id": "purple-style-labs-limited",
+      "issuer_name": "Purple Style Labs Limited",
+      "board": "Mainboard",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": "PERNIASPOP",
+      "nse_series": "EQ",
+      "nse_source": {
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=PERNIASPOP&series=EQ",
+        "document_type": "NSE Issue Information API",
+        "document_identity": "NSE Issue Information — PERNIASPOP",
+        "document_sha256": "1077a7a846c82d17faa04b098c2e9f1cc4f772762889c46200a8cf179f7d1865",
+        "publication_date": null,
+        "collected_at": "2026-09-25T20:40:28.328Z",
+        "page": null,
+        "evidence_locator": "/metaInfo/listingDate"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — PERNIASPOP",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PERNIASPOP&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:28.328Z",
+          "document_sha256": "1077a7a846c82d17faa04b098c2e9f1cc4f772762889c46200a8cf179f7d1865"
+        },
+        {
+          "type": "NSE Public Past Issues",
+          "identity": "NSE Public Past Issues — PERNIASPOP",
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:08.627Z",
+          "document_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31"
+        }
+      ],
+      "first_observed_at": "2026-09-25T20:40:28.328Z",
+      "last_collected_at": "2026-09-25T20:53:47.409Z",
+      "board_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PERNIASPOP&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — PERNIASPOP",
+          "document_sha256": "1077a7a846c82d17faa04b098c2e9f1cc4f772762889c46200a8cf179f7d1865",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:28.328Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/segment"
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PERNIASPOP&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — PERNIASPOP",
+          "document_sha256": "1077a7a846c82d17faa04b098c2e9f1cc4f772762889c46200a8cf179f7d1865",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:28.328Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/listingDate"
+        }
+      ],
+      "listing_date": {
+        "value": "2026-09-07",
+        "source_value": "2026-09-07",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PERNIASPOP&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — PERNIASPOP",
+          "document_sha256": "1077a7a846c82d17faa04b098c2e9f1cc4f772762889c46200a8cf179f7d1865",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:28.328Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/listingDate"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 575,
+        "source_value": "575",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "document_type": "NSE Public Past Issues",
+          "document_identity": "NSE Public Past Issues — PERNIASPOP",
+          "document_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:08.627Z",
+          "page": null,
+          "evidence_locator": "/25/issuePrice"
+        },
+        "corrections": []
+      },
+      "isin": "INE0I1B01016",
+      "open_date": {
+        "value": "2026-08-31",
+        "source_value": "31-Aug-2026",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PERNIASPOP&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — PERNIASPOP",
+          "document_sha256": "1077a7a846c82d17faa04b098c2e9f1cc4f772762889c46200a8cf179f7d1865",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:28.328Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Issue Period]"
+        },
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2026-09-02",
+        "source_value": "02-Sep-2026",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PERNIASPOP&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — PERNIASPOP",
+          "document_sha256": "1077a7a846c82d17faa04b098c2e9f1cc4f772762889c46200a8cf179f7d1865",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:28.328Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Issue Period]"
+        },
+        "corrections": []
+      },
+      "price_band": {
+        "value": {
+          "min": 546,
+          "max": 575
+        },
+        "source_value": "Rs. 546/- to Rs. 575/- per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PERNIASPOP&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — PERNIASPOP",
+          "document_sha256": "1077a7a846c82d17faa04b098c2e9f1cc4f772762889c46200a8cf179f7d1865",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:28.328Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Price Range]"
+        },
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": 26,
+        "source_value": "26 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PERNIASPOP&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — PERNIASPOP",
+          "document_sha256": "1077a7a846c82d17faa04b098c2e9f1cc4f772762889c46200a8cf179f7d1865",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:28.328Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Minimum Order Quantity]"
+        },
+        "corrections": []
+      },
+      "nse_verified_ipo_batch": {
+        "manifest": "data/verified-nse-ipos/2026-09-25-batch8.json",
+        "verifier_version": "1.0.0",
+        "source_run_id": "36187113307",
+        "source_artifact_id": 10886636012,
+        "source_artifact_sha256": "7169cbd2c166521850ac2fac44c4f4be808440df1ffc0acd45951cd84b2df1bb",
+        "detail_response_sha256": "1077a7a846c82d17faa04b098c2e9f1cc4f772762889c46200a8cf179f7d1865",
+        "decision": "verified_initial_equity_ipo"
+      },
+      "issue_size_inr": {
+        "value": 6800000000,
+        "source_value": "Initial Public offer comprising Fresh issue of aggregating up to Rs. 6800 million (Including Anchor portion of 53,21,739 Equity Shares)",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=PERNIASPOP&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — PERNIASPOP",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:53:47.409Z"
         }
       }
     },
@@ -20866,6 +22266,191 @@
       }
     },
     {
+      "id": "shanti-inorganics-limited",
+      "issuer_name": "Shanti Inorganics Limited",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": "SHANTIINOR",
+      "nse_series": "SME",
+      "nse_source": {
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHANTIINOR&series=SME",
+        "document_type": "NSE Issue Information API",
+        "document_identity": "NSE Issue Information — SHANTIINOR",
+        "document_sha256": "39fe7acda945db29cc8aabb789832133a572a6ea4223a4fd7b9cb83fe718b7c1",
+        "publication_date": null,
+        "collected_at": "2026-09-25T20:40:33.209Z",
+        "page": null,
+        "evidence_locator": "/metaInfo/listingDate"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — SHANTIINOR",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHANTIINOR&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:33.209Z",
+          "document_sha256": "39fe7acda945db29cc8aabb789832133a572a6ea4223a4fd7b9cb83fe718b7c1"
+        },
+        {
+          "type": "NSE Public Past Issues",
+          "identity": "NSE Public Past Issues — SHANTIINOR",
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:08.627Z",
+          "document_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31"
+        }
+      ],
+      "first_observed_at": "2026-09-25T20:40:33.209Z",
+      "last_collected_at": "2026-09-25T20:40:33.209Z",
+      "board_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHANTIINOR&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SHANTIINOR",
+          "document_sha256": "39fe7acda945db29cc8aabb789832133a572a6ea4223a4fd7b9cb83fe718b7c1",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:33.209Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/segment"
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHANTIINOR&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SHANTIINOR",
+          "document_sha256": "39fe7acda945db29cc8aabb789832133a572a6ea4223a4fd7b9cb83fe718b7c1",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:33.209Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/listingDate"
+        }
+      ],
+      "listing_date": {
+        "value": "2026-09-07",
+        "source_value": "2026-09-07",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHANTIINOR&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SHANTIINOR",
+          "document_sha256": "39fe7acda945db29cc8aabb789832133a572a6ea4223a4fd7b9cb83fe718b7c1",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:33.209Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/listingDate"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 83,
+        "source_value": "83",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "document_type": "NSE Public Past Issues",
+          "document_identity": "NSE Public Past Issues — SHANTIINOR",
+          "document_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:08.627Z",
+          "page": null,
+          "evidence_locator": "/26/issuePrice"
+        },
+        "corrections": []
+      },
+      "isin": "INE1ZEE01019",
+      "open_date": {
+        "value": "2026-08-31",
+        "source_value": "31-Aug-2026",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHANTIINOR&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SHANTIINOR",
+          "document_sha256": "39fe7acda945db29cc8aabb789832133a572a6ea4223a4fd7b9cb83fe718b7c1",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:33.209Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Issue Period]"
+        },
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2026-09-02",
+        "source_value": "02-Sep-2026",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHANTIINOR&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SHANTIINOR",
+          "document_sha256": "39fe7acda945db29cc8aabb789832133a572a6ea4223a4fd7b9cb83fe718b7c1",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:33.209Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Issue Period]"
+        },
+        "corrections": []
+      },
+      "price_band": {
+        "value": {
+          "min": 79,
+          "max": 83
+        },
+        "source_value": "Rs.79 to Rs.83 per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHANTIINOR&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SHANTIINOR",
+          "document_sha256": "39fe7acda945db29cc8aabb789832133a572a6ea4223a4fd7b9cb83fe718b7c1",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:33.209Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Price Range]"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 1600,
+        "source_value": "1600 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SHANTIINOR&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SHANTIINOR",
+          "document_sha256": "39fe7acda945db29cc8aabb789832133a572a6ea4223a4fd7b9cb83fe718b7c1",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:33.209Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Lot Size]"
+        },
+        "corrections": []
+      },
+      "nse_verified_ipo_batch": {
+        "manifest": "data/verified-nse-ipos/2026-09-25-batch8.json",
+        "verifier_version": "1.0.0",
+        "source_run_id": "36187113307",
+        "source_artifact_id": 10886636012,
+        "source_artifact_sha256": "7169cbd2c166521850ac2fac44c4f4be808440df1ffc0acd45951cd84b2df1bb",
+        "detail_response_sha256": "39fe7acda945db29cc8aabb789832133a572a6ea4223a4fd7b9cb83fe718b7c1",
+        "decision": "verified_initial_equity_ipo"
+      }
+    },
+    {
       "id": "shayona-engineering-limited",
       "issuer_name": "Shayona Engineering Limited",
       "board": "SME",
@@ -22489,6 +24074,191 @@
       }
     },
     {
+      "id": "spectraa-technology-solutions-limited",
+      "issuer_name": "SpectraA Technology Solutions Limited",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": "SPECTRAA",
+      "nse_series": "SME",
+      "nse_source": {
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=SPECTRAA&series=SME",
+        "document_type": "NSE Issue Information API",
+        "document_identity": "NSE Issue Information — SPECTRAA",
+        "document_sha256": "8fe2a0260679aaddea0d538842b0692c23e410c23a19bc451accd13b40e79676",
+        "publication_date": null,
+        "collected_at": "2026-09-25T20:41:18.496Z",
+        "page": null,
+        "evidence_locator": "/metaInfo/listingDate"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — SPECTRAA",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SPECTRAA&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:18.496Z",
+          "document_sha256": "8fe2a0260679aaddea0d538842b0692c23e410c23a19bc451accd13b40e79676"
+        },
+        {
+          "type": "NSE Public Past Issues",
+          "identity": "NSE Public Past Issues — SPECTRAA",
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:08.627Z",
+          "document_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31"
+        }
+      ],
+      "first_observed_at": "2026-09-25T20:41:18.496Z",
+      "last_collected_at": "2026-09-25T20:41:18.496Z",
+      "board_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SPECTRAA&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SPECTRAA",
+          "document_sha256": "8fe2a0260679aaddea0d538842b0692c23e410c23a19bc451accd13b40e79676",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:18.496Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/segment"
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SPECTRAA&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SPECTRAA",
+          "document_sha256": "8fe2a0260679aaddea0d538842b0692c23e410c23a19bc451accd13b40e79676",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:18.496Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/listingDate"
+        }
+      ],
+      "listing_date": {
+        "value": "2026-09-24",
+        "source_value": "2026-09-24",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SPECTRAA&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SPECTRAA",
+          "document_sha256": "8fe2a0260679aaddea0d538842b0692c23e410c23a19bc451accd13b40e79676",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:18.496Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/listingDate"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 118,
+        "source_value": "118",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "document_type": "NSE Public Past Issues",
+          "document_identity": "NSE Public Past Issues — SPECTRAA",
+          "document_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:08.627Z",
+          "page": null,
+          "evidence_locator": "/5/issuePrice"
+        },
+        "corrections": []
+      },
+      "isin": "INE0GAN01010",
+      "open_date": {
+        "value": "2026-09-17",
+        "source_value": "17-Sep-2026",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SPECTRAA&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SPECTRAA",
+          "document_sha256": "8fe2a0260679aaddea0d538842b0692c23e410c23a19bc451accd13b40e79676",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:18.496Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Issue Period]"
+        },
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2026-09-21",
+        "source_value": "21-Sep-2026",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SPECTRAA&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SPECTRAA",
+          "document_sha256": "8fe2a0260679aaddea0d538842b0692c23e410c23a19bc451accd13b40e79676",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:18.496Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Issue Period]"
+        },
+        "corrections": []
+      },
+      "price_band": {
+        "value": {
+          "min": 112,
+          "max": 118
+        },
+        "source_value": "Rs.112 to Rs.118 per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SPECTRAA&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SPECTRAA",
+          "document_sha256": "8fe2a0260679aaddea0d538842b0692c23e410c23a19bc451accd13b40e79676",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:18.496Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Price Range]"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 1200,
+        "source_value": "1,200 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SPECTRAA&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SPECTRAA",
+          "document_sha256": "8fe2a0260679aaddea0d538842b0692c23e410c23a19bc451accd13b40e79676",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:18.496Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Lot Size]"
+        },
+        "corrections": []
+      },
+      "nse_verified_ipo_batch": {
+        "manifest": "data/verified-nse-ipos/2026-09-25-batch8.json",
+        "verifier_version": "1.0.0",
+        "source_run_id": "36187113307",
+        "source_artifact_id": 10886636012,
+        "source_artifact_sha256": "7169cbd2c166521850ac2fac44c4f4be808440df1ffc0acd45951cd84b2df1bb",
+        "detail_response_sha256": "8fe2a0260679aaddea0d538842b0692c23e410c23a19bc451accd13b40e79676",
+        "decision": "verified_initial_equity_ipo"
+      }
+    },
+    {
       "id": "srinibas-pradhan-constructions-limited",
       "issuer_name": "Srinibas Pradhan Constructions Limited",
       "board": "SME",
@@ -22878,6 +24648,217 @@
       }
     },
     {
+      "id": "steamhouse-india-limited",
+      "issuer_name": "Steamhouse India Limited",
+      "board": "Mainboard",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": "STEAMHOUSE",
+      "nse_series": "EQ",
+      "nse_source": {
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=STEAMHOUSE&series=EQ",
+        "document_type": "NSE Issue Information API",
+        "document_identity": "NSE Issue Information — STEAMHOUSE",
+        "document_sha256": "34b754f620fe5a44c69cfaa09b18e496976b2c753e01a5ea7b92a1d53f4a2bc8",
+        "publication_date": null,
+        "collected_at": "2026-09-25T20:41:03.262Z",
+        "page": null,
+        "evidence_locator": "/metaInfo/listingDate"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — STEAMHOUSE",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=STEAMHOUSE&series=EQ",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:03.262Z",
+          "document_sha256": "34b754f620fe5a44c69cfaa09b18e496976b2c753e01a5ea7b92a1d53f4a2bc8"
+        },
+        {
+          "type": "NSE Public Past Issues",
+          "identity": "NSE Public Past Issues — STEAMHOUSE",
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:08.627Z",
+          "document_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "Steamhouse India Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/steamhouse-india-limited-prospectus_104485.html",
+          "publication_date": "2026-09-14",
+          "collected_at": "2026-09-25T20:52:50.318Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "Steamhouse India Limited - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789450736463.pdf",
+          "publication_date": "2026-09-14",
+          "collected_at": "2026-09-25T20:52:50.318Z"
+        }
+      ],
+      "first_observed_at": "2026-09-25T20:41:03.262Z",
+      "last_collected_at": "2026-09-25T21:02:27.569Z",
+      "board_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=STEAMHOUSE&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — STEAMHOUSE",
+          "document_sha256": "34b754f620fe5a44c69cfaa09b18e496976b2c753e01a5ea7b92a1d53f4a2bc8",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:03.262Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/segment"
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=STEAMHOUSE&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — STEAMHOUSE",
+          "document_sha256": "34b754f620fe5a44c69cfaa09b18e496976b2c753e01a5ea7b92a1d53f4a2bc8",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:03.262Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/listingDate"
+        }
+      ],
+      "listing_date": {
+        "value": "2026-09-17",
+        "source_value": "2026-09-17",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=STEAMHOUSE&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — STEAMHOUSE",
+          "document_sha256": "34b754f620fe5a44c69cfaa09b18e496976b2c753e01a5ea7b92a1d53f4a2bc8",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:03.262Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/listingDate"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 81,
+        "source_value": "81",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "document_type": "NSE Public Past Issues",
+          "document_identity": "NSE Public Past Issues — STEAMHOUSE",
+          "document_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:08.627Z",
+          "page": null,
+          "evidence_locator": "/15/issuePrice"
+        },
+        "corrections": []
+      },
+      "isin": "INE0FRO01022",
+      "open_date": {
+        "value": "2026-09-09",
+        "source_value": "09-Sep-2026",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=STEAMHOUSE&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — STEAMHOUSE",
+          "document_sha256": "34b754f620fe5a44c69cfaa09b18e496976b2c753e01a5ea7b92a1d53f4a2bc8",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:03.262Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Issue Period]"
+        },
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2026-09-11",
+        "source_value": "11-Sep-2026",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=STEAMHOUSE&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — STEAMHOUSE",
+          "document_sha256": "34b754f620fe5a44c69cfaa09b18e496976b2c753e01a5ea7b92a1d53f4a2bc8",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:03.262Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Issue Period]"
+        },
+        "corrections": []
+      },
+      "price_band": {
+        "value": {
+          "min": 77,
+          "max": 81
+        },
+        "source_value": "Rs. 77 to Rs. 81 per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=STEAMHOUSE&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — STEAMHOUSE",
+          "document_sha256": "34b754f620fe5a44c69cfaa09b18e496976b2c753e01a5ea7b92a1d53f4a2bc8",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:03.262Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Price Range]"
+        },
+        "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": 185,
+        "source_value": "185 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=STEAMHOUSE&series=EQ",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — STEAMHOUSE",
+          "document_sha256": "34b754f620fe5a44c69cfaa09b18e496976b2c753e01a5ea7b92a1d53f4a2bc8",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:03.262Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Minimum Order Quantity]"
+        },
+        "corrections": []
+      },
+      "nse_verified_ipo_batch": {
+        "manifest": "data/verified-nse-ipos/2026-09-25-batch8.json",
+        "verifier_version": "1.0.0",
+        "source_run_id": "36187113307",
+        "source_artifact_id": 10886636012,
+        "source_artifact_sha256": "7169cbd2c166521850ac2fac44c4f4be808440df1ffc0acd45951cd84b2df1bb",
+        "detail_response_sha256": "34b754f620fe5a44c69cfaa09b18e496976b2c753e01a5ea7b92a1d53f4a2bc8",
+        "decision": "verified_initial_equity_ipo"
+      },
+      "issue_size_inr": {
+        "value": 4140000000,
+        "source_value": "₹4,140.00 MILLION",
+        "page": 3,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1789450736463.pdf",
+          "document_type": "SEBI Prospectus PDF",
+          "document_identity": "Steamhouse India Limited - Prospectus — PDF",
+          "publication_date": "2026-09-14",
+          "collected_at": "2026-09-25T21:02:27.569Z"
+        }
+      }
+    },
+    {
       "id": "striders-impex-limited",
       "issuer_name": "Striders Impex Limited",
       "board": "SME",
@@ -23059,6 +25040,191 @@
         "source_artifact_id": 10849678453,
         "source_artifact_sha256": "ca9c15994d67dea46c735b8a3cd555def34a3948463ab05b893615e94af2bdbd",
         "detail_response_sha256": "3806759f9e62dc02de17aad0e0e99fef704137a6c506285f2db42bd0923a1da6",
+        "decision": "verified_initial_equity_ipo"
+      }
+    },
+    {
+      "id": "sumax-engineering-limited",
+      "issuer_name": "Sumax Engineering Limited",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": "SUMAX",
+      "nse_series": "SME",
+      "nse_source": {
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=SUMAX&series=SME",
+        "document_type": "NSE Issue Information API",
+        "document_identity": "NSE Issue Information — SUMAX",
+        "document_sha256": "57fcac4e852511adca9954cf720cb6c25458b32b55201f14a7dbd04a1c9c4c75",
+        "publication_date": null,
+        "collected_at": "2026-09-25T20:40:13.369Z",
+        "page": null,
+        "evidence_locator": "/metaInfo/listingDate"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — SUMAX",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SUMAX&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:13.369Z",
+          "document_sha256": "57fcac4e852511adca9954cf720cb6c25458b32b55201f14a7dbd04a1c9c4c75"
+        },
+        {
+          "type": "NSE Public Past Issues",
+          "identity": "NSE Public Past Issues — SUMAX",
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:08.627Z",
+          "document_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31"
+        }
+      ],
+      "first_observed_at": "2026-09-25T20:40:13.369Z",
+      "last_collected_at": "2026-09-25T20:40:13.369Z",
+      "board_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SUMAX&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SUMAX",
+          "document_sha256": "57fcac4e852511adca9954cf720cb6c25458b32b55201f14a7dbd04a1c9c4c75",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:13.369Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/segment"
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SUMAX&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SUMAX",
+          "document_sha256": "57fcac4e852511adca9954cf720cb6c25458b32b55201f14a7dbd04a1c9c4c75",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:13.369Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/listingDate"
+        }
+      ],
+      "listing_date": {
+        "value": "2026-09-02",
+        "source_value": "2026-09-02",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SUMAX&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SUMAX",
+          "document_sha256": "57fcac4e852511adca9954cf720cb6c25458b32b55201f14a7dbd04a1c9c4c75",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:13.369Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/listingDate"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 101,
+        "source_value": "101",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "document_type": "NSE Public Past Issues",
+          "document_identity": "NSE Public Past Issues — SUMAX",
+          "document_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:08.627Z",
+          "page": null,
+          "evidence_locator": "/32/issuePrice"
+        },
+        "corrections": []
+      },
+      "isin": "INE11Z001019",
+      "open_date": {
+        "value": "2026-08-25",
+        "source_value": "25-Aug-2026",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SUMAX&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SUMAX",
+          "document_sha256": "57fcac4e852511adca9954cf720cb6c25458b32b55201f14a7dbd04a1c9c4c75",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:13.369Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Issue Period]"
+        },
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2026-08-28",
+        "source_value": "28-Aug-2026",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SUMAX&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SUMAX",
+          "document_sha256": "57fcac4e852511adca9954cf720cb6c25458b32b55201f14a7dbd04a1c9c4c75",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:13.369Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Issue Period]"
+        },
+        "corrections": []
+      },
+      "price_band": {
+        "value": {
+          "min": 95,
+          "max": 101
+        },
+        "source_value": "Rs. 95/- to Rs. 101/- per Equity Share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SUMAX&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SUMAX",
+          "document_sha256": "57fcac4e852511adca9954cf720cb6c25458b32b55201f14a7dbd04a1c9c4c75",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:13.369Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Price Range]"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 1200,
+        "source_value": "1200 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SUMAX&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SUMAX",
+          "document_sha256": "57fcac4e852511adca9954cf720cb6c25458b32b55201f14a7dbd04a1c9c4c75",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:13.369Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Lot Size]"
+        },
+        "corrections": []
+      },
+      "nse_verified_ipo_batch": {
+        "manifest": "data/verified-nse-ipos/2026-09-25-batch8.json",
+        "verifier_version": "1.0.0",
+        "source_run_id": "36187113307",
+        "source_artifact_id": 10886636012,
+        "source_artifact_sha256": "7169cbd2c166521850ac2fac44c4f4be808440df1ffc0acd45951cd84b2df1bb",
+        "detail_response_sha256": "57fcac4e852511adca9954cf720cb6c25458b32b55201f14a7dbd04a1c9c4c75",
         "decision": "verified_initial_equity_ipo"
       }
     },
@@ -26162,6 +28328,197 @@
         "source_artifact_sha256": "760db5e15a4ec505738f0b1a36f97026d9f210648c3e63720bb12fb575bdea49",
         "detail_response_sha256": "e4a0b6df22b6054f83b6a0e245d42fe4ef92c5e2ce50654f9c2739f20578d5f0",
         "decision": "verified_initial_equity_ipo"
+      }
+    },
+    {
+      "id": "vinod-texworld-limited",
+      "issuer_name": "Vinod Texworld Limited",
+      "board": "SME",
+      "sector": null,
+      "status": "listed",
+      "nse_symbol": "VINOD",
+      "nse_series": "SME",
+      "nse_source": {
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=VINOD&series=SME",
+        "document_type": "NSE Issue Information API",
+        "document_identity": "NSE Issue Information — VINOD",
+        "document_sha256": "69ab032441c4640dd9de737a4f798220ed2e588f177d5550170b318cda630fe8",
+        "publication_date": null,
+        "collected_at": "2026-09-25T20:41:08.161Z",
+        "page": null,
+        "evidence_locator": "/metaInfo/listingDate"
+      },
+      "terms": {
+        "price_band": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null,
+        "open_date": null,
+        "close_date": null
+      },
+      "documents": [
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — VINOD",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=VINOD&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:08.161Z",
+          "document_sha256": "69ab032441c4640dd9de737a4f798220ed2e588f177d5550170b318cda630fe8"
+        },
+        {
+          "type": "NSE Public Past Issues",
+          "identity": "NSE Public Past Issues — VINOD",
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:08.627Z",
+          "document_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "Vinod Texworld Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/vinod-texworld-limited-prospectus_104299.html",
+          "publication_date": "2026-09-03",
+          "collected_at": "2026-09-25T20:52:50.318Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "Vinod Texworld Limited - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788775122933.pdf",
+          "publication_date": "2026-09-03",
+          "collected_at": "2026-09-25T20:52:50.318Z"
+        }
+      ],
+      "first_observed_at": "2026-09-25T20:41:08.161Z",
+      "last_collected_at": "2026-09-25T21:02:27.569Z",
+      "board_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=VINOD&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — VINOD",
+          "document_sha256": "69ab032441c4640dd9de737a4f798220ed2e588f177d5550170b318cda630fe8",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:08.161Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/segment"
+        }
+      ],
+      "status_evidence": [
+        {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=VINOD&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — VINOD",
+          "document_sha256": "69ab032441c4640dd9de737a4f798220ed2e588f177d5550170b318cda630fe8",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:08.161Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/listingDate"
+        }
+      ],
+      "listing_date": {
+        "value": "2026-09-17",
+        "source_value": "2026-09-17",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=VINOD&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — VINOD",
+          "document_sha256": "69ab032441c4640dd9de737a4f798220ed2e588f177d5550170b318cda630fe8",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:08.161Z",
+          "page": null,
+          "evidence_locator": "/metaInfo/listingDate"
+        },
+        "corrections": []
+      },
+      "issue_price": {
+        "value": 94,
+        "source_value": "94",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/public-past-issues",
+          "document_type": "NSE Public Past Issues",
+          "document_identity": "NSE Public Past Issues — VINOD",
+          "document_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:40:08.627Z",
+          "page": null,
+          "evidence_locator": "/17/issuePrice"
+        },
+        "corrections": []
+      },
+      "isin": "INE1A5U01014",
+      "open_date": {
+        "value": "2026-09-09",
+        "source_value": "09-Sep-2026",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=VINOD&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — VINOD",
+          "document_sha256": "69ab032441c4640dd9de737a4f798220ed2e588f177d5550170b318cda630fe8",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:08.161Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Issue Period]"
+        },
+        "corrections": []
+      },
+      "close_date": {
+        "value": "2026-09-11",
+        "source_value": "11-Sep-2026",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=VINOD&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — VINOD",
+          "document_sha256": "69ab032441c4640dd9de737a4f798220ed2e588f177d5550170b318cda630fe8",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:08.161Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Issue Period]"
+        },
+        "corrections": []
+      },
+      "market_lot": {
+        "value": 1200,
+        "source_value": "1200 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=VINOD&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — VINOD",
+          "document_sha256": "69ab032441c4640dd9de737a4f798220ed2e588f177d5550170b318cda630fe8",
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:08.161Z",
+          "page": null,
+          "evidence_locator": "/issueInfo/dataList[Lot Size]"
+        },
+        "corrections": []
+      },
+      "nse_verified_ipo_batch": {
+        "manifest": "data/verified-nse-ipos/2026-09-25-batch8.json",
+        "verifier_version": "1.0.0",
+        "source_run_id": "36187113307",
+        "source_artifact_id": 10886636012,
+        "source_artifact_sha256": "7169cbd2c166521850ac2fac44c4f4be808440df1ffc0acd45951cd84b2df1bb",
+        "detail_response_sha256": "69ab032441c4640dd9de737a4f798220ed2e588f177d5550170b318cda630fe8",
+        "decision": "verified_initial_equity_ipo"
+      },
+      "issue_size_inr": {
+        "value": 428302000,
+        "source_value": "₹4,283.02 LAKHS",
+        "page": 3,
+        "source": {
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2026/1788775122933.pdf",
+          "document_type": "SEBI Prospectus PDF",
+          "document_identity": "Vinod Texworld Limited - Prospectus — PDF",
+          "publication_date": "2026-09-03",
+          "collected_at": "2026-09-25T21:02:27.569Z"
+        }
       }
     },
     {
