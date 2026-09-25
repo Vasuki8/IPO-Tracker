@@ -1882,10 +1882,10 @@
     "2021|pb-fintech-limited": {
       "issuer_name": "PB Fintech Limited",
       "listing_date": "2021-11-15",
-      "last_attempted_at": "2026-09-24T22:47:16.499Z",
+      "last_attempted_at": "2026-09-25T23:40:28.304Z",
       "parser_version": "1.2.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-lt9KpN/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1635395300515.pdf\ncurl: (28) Operation timed out after 75000 milliseconds with 21462695 out of 27205538 bytes received\ncurl: (28) Operation timed out after 75000 milliseconds with 21075503 out of 27205538 bytes received\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-XRqwQN/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1635395300515.pdf\ncurl: (18) transfer closed with 14668539 bytes remaining to read\ncurl: (28) Operation timed out after 75000 milliseconds with 24228271 out of 27205538 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1635395300515.pdf"
     },
     "2025|jain-resource-recycling-limited": {
@@ -2723,6 +2723,197 @@
         "publication_date": "2023-09-11"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694433230975.pdf"
+    },
+    "2025|euro-pratik-sales-limited": {
+      "issuer_name": "Euro Pratik Sales Limited",
+      "listing_date": "2025-09-23",
+      "last_attempted_at": "2026-09-25T23:40:28.304Z",
+      "parser_version": "1.2.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-x0Smfy/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1757407216296.pdf\ncurl: (18) transfer closed with 10561210 bytes remaining to read\ncurl: (18) transfer closed with 13953490 bytes remaining to read\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1757407216296.pdf"
+    },
+    "2024|western-carriers-india-limited": {
+      "issuer_name": "Western Carriers (India) Limited",
+      "listing_date": "2024-09-24",
+      "last_attempted_at": "2026-09-25T23:40:28.304Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Western Carriers (India) Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2024/1726202843862.pdf",
+        "publication_date": "2024-09-07"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2024/1726202843862.pdf"
+    },
+    "2023|signatureglobal-india-limited": {
+      "issuer_name": "Signatureglobal (India) Limited",
+      "listing_date": "2023-09-27",
+      "last_attempted_at": "2026-09-25T23:40:28.304Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Signatureglobal (India) Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694596114578.pdf",
+        "publication_date": "2023-09-12"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694596114578.pdf"
+    },
+    "2022|phantom-digital-effects-limited": {
+      "issuer_name": "Phantom Digital Effects Limited",
+      "listing_date": "2022-10-21",
+      "last_attempted_at": "2026-09-25T23:40:28.304Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "price_band",
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": {
+          "value": {
+            "min": 91,
+            "max": 95
+          },
+          "source_value": "PRICE BAND: ₹ 91.00 to ₹ 95.00 ",
+          "page": 2
+        },
+        "issue_size_inr": {
+          "value": 291042000,
+          "source_value": "₹2,910.42 LAKH",
+          "page": 2
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Phantom Digital Effects Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1669197644984.pdf",
+        "publication_date": "2022-10-17"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1669197644984.pdf"
+    },
+    "2025|airfloa-rail-technology-limited": {
+      "issuer_name": "AIRFLOA RAIL TECHNOLOGY LIMITED",
+      "listing_date": "2025-09-18",
+      "last_attempted_at": "2026-09-25T23:40:28.304Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "minimum_bid_quantity"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": {
+          "value": 2000,
+          "source_value": "Bid Lot 2,000 Equity Shares",
+          "page": 8
+        }
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Airfloa Rail Technology Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758608206692.pdf",
+        "publication_date": "2025-09-23"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758608206692.pdf"
+    },
+    "2024|p-n-gadgil-jewellers-limited": {
+      "issuer_name": "P N Gadgil Jewellers Limited",
+      "listing_date": "2024-09-17",
+      "last_attempted_at": "2026-09-25T23:40:28.304Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 11000000000,
+          "source_value": "₹11,000 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "P N Gadgil Jewellers Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2024/1726037454249.pdf",
+        "publication_date": "2024-09-11"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2024/1726037454249.pdf"
+    },
+    "2023|chavda-infra-limited": {
+      "issuer_name": "Chavda Infra Limited",
+      "listing_date": "2023-09-25",
+      "last_attempted_at": "2026-09-25T23:40:28.304Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Chavda Infra Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2023/1696333094653.PDF",
+        "publication_date": "2023-09-15"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2023/1696333094653.PDF"
     }
   }
 }
