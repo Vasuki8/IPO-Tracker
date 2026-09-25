@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0.0",
+  "status": "verified",
+  "scope": "cursor10 bounded historical BSE SME notice segment",
+  "cursor_backfill": {
+    "run_id": "36087053657",
+    "artifact_id": 10844576517,
+    "artifact_sha256": "10513ea7a8ba1addcd1d5944f0cb3e6010e29f276f8f6817bec1f9cdc1847233",
+    "source_commit_sha": "d211aaea5d6ddda397df611eb7307b3ad21930e3",
+    "attempted_at": "2026-09-25T02:38:14.470Z",
+    "selected_notices": 20,
+    "parsed_notices": 20,
+    "fetch_errors": 0,
+    "unparseable_in_batch": 0,
+    "discovered_references": 23,
+    "cursor_commit": "c3809d9cb42a374d220d12ab7c3004f4e3a6f934",
+    "cursor_blob_sha": "9e73a4dfad42352af939152779c6459afdac544d",
+    "progress_after": {
+      "eligible": 236,
+      "tracked": 220,
+      "parsed": 219,
+      "retained_unparseable": 1,
+      "untracked": 16,
+      "next_unseen_notice_no": "20210322-22"
+    }
+  },
+  "source_review": {
+    "run_id": "36087201107",
+    "artifact_id": 10843813845,
+    "artifact_sha256": "823e540317374ada2f983c7ca1d8e03d7c41d8f6b7b78d4741423e04a01f8c52",
+    "source_snapshot_commit": "c862d6c497408991e85ea2ab368994d091d461dd",
+    "public_records_at_reconciliation": 1171,
+    "missing_exact_identity": 23,
+    "already_present": 0,
+    "identity_review_required": 0,
+    "verified_issuers": 22,
+    "rejected": 1,
+    "unavailable": 0,
+    "verified_facts": 66,
+    "canonical_pdf_result": "http_404",
+    "held_conflicts": [
+      {
+        "issuer_name": "Fabino Life Sciences Limited",
+        "bse_scrip_code": "543444",
+        "listing_notice_no": "20220112-10",
+        "candidate_listing_date": "2022-01-13",
+        "observed_listing_date": "2021-01-13",
+        "publication_date": "2022-01-12",
+        "disposition": "held_out_of_publication_no_inference",
+        "reason": "Official BSE notice contains conflicting listing-year text; issuer remains held until authoritative correction resolves the date."
+      }
+    ]
+  },
+  "publication": {
+    "release_pr": 222,
+    "release_merge_commit": "6413c9e46542a578095c75a6ff5c8edcf5f99f49",
+    "manifests": [
+      "data/verified-bse-listings/2026-09-25-batch33.json",
+      "data/verified-bse-listings/2026-09-25-batch34.json"
+    ],
+    "rehearsal": {
+      "before": 1171,
+      "after": 1193,
+      "added": 22,
+      "existing_unchanged": 1171,
+      "already_present_reviewed_entries": 247,
+      "holds": 0,
+      "conflicts": 0,
+      "idempotent": true
+    },
+    "source_backed_sync_run": "36087986289",
+    "generated_data_commit": "384f235bdf19545f3960f2c9bcc7ed16e3f70d57",
+    "operator_state_commit": "dcaf482c7b9860c1c50fb37ba565ce3fe1d8431b",
+    "operator_health": "healthy"
+  },
+  "live_verification": {
+    "verifier_pr": 223,
+    "verifier_merge_commit": "7e36858a7445aac975be4c32dba62ca0a718a94b",
+    "pr_head_run_id": "36088279308",
+    "post_merge_run_id": "36088367208",
+    "artifact_id": 10844168231,
+    "artifact_sha256": "a437744898c0af70b00e46e0986b1288971f83e813ea076edbf4790f02c413b3",
+    "snapshot_fetched_at": "2026-09-25T02:57:25.917Z",
+    "checked_at": "2026-09-25T02:57:25.960Z",
+    "snapshot_sha256": "e7ea980d0b158a239e3d22f155d42b90385672dfe7303e49efd10d5732f9cff8",
+    "snapshot_bytes": 6352711,
+    "dataset_generated_at": "2026-09-25T02:48:39.265Z",
+    "published_records": 1193,
+    "checked_issuers": 22,
+    "checked_fields": 66,
+    "failed_issuers": 0,
+    "unsupported_null_fields_per_issuer": [
+      "price_band",
+      "open_date",
+      "close_date",
+      "issue_size_inr",
+      "minimum_bid_quantity",
+      "minimum_application_amount_inr"
+    ],
+    "retained_document_hash_fields": 66,
+    "serialized_live_document_hash_fields": 0
+  }
+}
