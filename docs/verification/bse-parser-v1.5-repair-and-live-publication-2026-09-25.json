@@ -1,0 +1,136 @@
+{
+  "schema_version": "1.0.0",
+  "status": "verified_live",
+  "scope": "BSE SME parser v1.5 repair of all three retained parser failures and source-backed publication of the 10 recovered issuer references",
+  "parser_repair": {
+    "pull_request": 226,
+    "final_head": "5b7f2ba4bd158e670446e2d92f6d8befc2b0c58c",
+    "merge_commit": "b489d4d0ba9b01f3f6b2ecf88c56b17b877dcfda",
+    "diagnosis_run": "36091504365",
+    "diagnosis_artifact_id": 10846116502,
+    "diagnosis_artifact_sha256": "aafb6f74855133ca07573163b6b06326d1384361652c80a390ebdecd43784d83",
+    "production_migration_run": "36092149729",
+    "production_artifact_id": 10845847537,
+    "production_artifact_sha256": "93a4e238e50ee030020b21275f30211ded1b7454577cf6c21828154d7a6c03bc",
+    "cursor_commit": "74f8f7d963af16ce18d29b5c3179f55d7db0c404",
+    "cursor_blob_sha": "1ed18c7221833aba026da5c28791c54e590805b7",
+    "parser_version": "1.5.0",
+    "selected_failures": 3,
+    "parsed_failures": 3,
+    "recovered_references": 10,
+    "production_failures": 0,
+    "cursor_after": {
+      "eligible": 236,
+      "tracked": 236,
+      "parsed": 236,
+      "failed": 0,
+      "unseen": 0,
+      "complete": true
+    },
+    "rules": [
+      "legacy listing-date whitespace before comma",
+      "bounded compact repeated notice-suffix list mapped one-to-one to the explicit BSE SME IPO ticker table"
+    ],
+    "safety": "v1.4 parsed successes are compatible with v1.5; production migration retried only the three failed v1.4 notices. Exact official source fixtures and fail-closed mutations are retained."
+  },
+  "recovered_source_review": {
+    "run_id": "36092275068",
+    "artifact_id": 10846242339,
+    "artifact_sha256": "ed0a6042e12dcb199ac4b8dea5c5434eab7918b8ecfbff7f6c9d1591844fc5d5",
+    "source_snapshot_commit": "7a50c603d2d7c0df798288789ea81a9d18048bcc",
+    "public_records_at_reconciliation": 1208,
+    "discovered_references": 10,
+    "missing_exact_identity": 10,
+    "already_present": 0,
+    "identity_review_required": 0,
+    "verified_issuers": 10,
+    "verified_facts": 30,
+    "rejected": 0,
+    "unavailable": 0,
+    "canonical_listing_pdf_probes": {
+      "attempted": 10,
+      "http_404": 10
+    },
+    "evidence_kind": "official_notice_html"
+  },
+  "publication": {
+    "pull_request": 227,
+    "final_head": "da8d40e0a16a663d4edbf56906f64f3ad2e2b70d",
+    "merge_commit": "e581d1e7a47f59fc62a3488849e815f5ae689b15",
+    "manifest": "data/verified-bse-listings/2026-09-25-batch36.json",
+    "manifest_sha256": "aa87ed12a72990ef63cdaa11e124b5064c21c5cc16f989db4c73c6b425c39690",
+    "rehearsal": {
+      "before": 1208,
+      "after": 1218,
+      "added": 10,
+      "existing_unchanged": 1208,
+      "already_present_reviewed_entries": 284,
+      "holds": 0,
+      "conflicts": 0,
+      "idempotent": true
+    },
+    "head_reviewed_evidence_run": "36092644006",
+    "head_data_contract_run": "36092644055",
+    "source_backed_sync_run": "36092732738",
+    "generated_data_commit": "61b173feb789fba15eb207c0bacaaa476704cbbb",
+    "operator_state_commit": "602fd2cdb2d2da6c47e85048bf61c3aa1839566d",
+    "operator_snapshot_generated_at": "2026-09-25T04:04:53.624Z",
+    "operator_health": "healthy"
+  },
+  "live_verification": {
+    "verifier_pull_request": 228,
+    "verifier_head": "44175458bae9fad170d4818ff293d2bd5da11b49",
+    "verifier_merge_commit": "9abfd1f72e9277dc22158be9249fe419fd667fd7",
+    "pr_head_run": "36092999999",
+    "pr_head_artifact_id": 10845673811,
+    "pr_head_artifact_sha256": "40b9ff8442b840bdff4ee1c3c66a6fb9c244792b3020f3d4cf3ff2dacee791d6",
+    "post_merge_run": "36093076719",
+    "post_merge_artifact_id": 10846531544,
+    "post_merge_artifact_sha256": "a035bfefa772678329c32d10a7dae1a0c846911d67318a742d9b30f8ae9c6db7",
+    "post_merge_reviewed_evidence_run": "36093076748",
+    "post_merge_data_contract_run": "36093076711",
+    "post_merge_pages_deploy_run": "36093076768",
+    "source_url": "https://vasuki8.github.io/IPO-Tracker/data/ipos.json",
+    "snapshot_fetched_at": "2026-09-25T04:06:40.989Z",
+    "checked_at": "2026-09-25T04:06:41.046Z",
+    "snapshot_sha256": "9a5ced8e0831bf07961c4fb3593f24d99008688f6874b2b86649c1d449841945",
+    "snapshot_bytes": 6480099,
+    "dataset_generated_at": "2026-09-25T03:54:56.693Z",
+    "published_records": 1218,
+    "checked_issuers": 10,
+    "checked_fields": 30,
+    "failed_issuers": 0,
+    "unsupported_null_fields_per_issuer": 6,
+    "retained_document_hash_fields": 30,
+    "serialized_live_document_hash_fields": 0,
+    "live_delta_from_previous_verified_snapshot": {
+      "before": 1208,
+      "after": 1218,
+      "added": 10,
+      "removed": 0,
+      "changed_existing_records": 0
+    }
+  },
+  "remaining_hold": {
+    "issuer_name": "Fabino Life Sciences Limited",
+    "bse_scrip_code": "543444",
+    "listing_notice_no": "20220112-10",
+    "candidate_index_listing_date": "2022-01-13",
+    "official_listing_notice_observed_date": "2021-01-13",
+    "disposition": "held_out_of_publication_no_inference"
+  },
+  "observed_tracker_baseline": {
+    "total_records": 1218,
+    "records_by_year": {
+      "2020": 65,
+      "2021": 120,
+      "2022": 136,
+      "2023": 216,
+      "2024": 301,
+      "2025": 293,
+      "2026": 87
+    },
+    "note": "Observed tracker counts only; not a claim of full official-universe completeness."
+  },
+  "next_task": "Run a fresh machine-readable official IPO-universe completeness audit across current NSE, BSE and SEBI sources now that the bounded BSE SME notice cursor is fully parsed. Define inclusion/status rules, reconcile issuer identities and source identities, and only add unambiguous exact-missing issuers. Preserve Fabino as a separate held conflict."
+}
