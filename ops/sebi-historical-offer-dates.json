@@ -83,10 +83,10 @@
     "2022|elin-electronics-limited": {
       "issuer_name": "Elin Electronics Limited",
       "listing_date": "2022-12-30",
-      "last_attempted_at": "2026-09-23T21:40:59.610Z",
+      "last_attempted_at": "2026-09-25T00:00:31.152Z",
       "parser_version": "2.0.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-v7NWai/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1682057466538.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 12863255 out of 15064686 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 12839655 out of 15064686 bytes received\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-89uLnS/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1682057466538.pdf\ncurl: (18) transfer closed with 14504031 bytes remaining to read\ncurl: (18) transfer closed with 10555495 bytes remaining to read\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1682057466538.pdf"
     },
     "2020|burger-king-india-limited": {
@@ -390,37 +390,54 @@
     "2024|concord-enviro-systems-limited": {
       "issuer_name": "Concord Enviro Systems Limited",
       "listing_date": "2024-12-27",
-      "last_attempted_at": "2026-09-23T21:40:59.610Z",
+      "last_attempted_at": "2026-09-25T00:00:31.152Z",
       "parser_version": "2.0.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-OVXA8C/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/jan-2025/1735818485116.pdf\ncurl: (18) transfer closed with 6438715 bytes remaining to read\ncurl: (28) Operation timed out after 45000 milliseconds with 11015927 out of 15800154 bytes received\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-Se61Ud/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/jan-2025/1735818485116.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 14353031 out of 15800154 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 13684663 out of 15800154 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/jan-2025/1735818485116.pdf"
     },
     "2025|aequs-limited": {
       "issuer_name": "Aequs Limited",
       "listing_date": "2025-12-10",
-      "last_attempted_at": "2026-09-23T21:40:59.610Z",
+      "last_attempted_at": "2026-09-25T00:00:31.152Z",
       "parser_version": "2.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-Suj1P1/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765174487747.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 12931647 out of 13146434 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 12989247 out of 13146434 bytes received\n",
+      "status": "extracted",
+      "open_date": "2025-12-03",
+      "close_date": "2025-12-05",
+      "open_extraction": {
+        "value": "2025-12-03",
+        "source_value": "Offer opened on Wednesday, December 3, 2025",
+        "page": 3
+      },
+      "close_extraction": {
+        "value": "2025-12-05",
+        "source_value": "Offer closed on Friday, December 5, 2025",
+        "page": 3
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Aequs Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765174487747.pdf",
+        "publication_date": "2025-12-08"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765174487747.pdf"
     },
     "2025|meesho-limited": {
       "issuer_name": "Meesho Limited",
       "listing_date": "2025-12-10",
-      "last_attempted_at": "2026-09-23T21:40:59.610Z",
+      "last_attempted_at": "2026-09-25T00:00:31.152Z",
       "parser_version": "2.0.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-9v9Xyx/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765186673646.pdf\ncurl: (28) Operation timed out after 45001 milliseconds with 12558623 out of 17102785 bytes received\ncurl: (18) transfer closed with 15528650 bytes remaining to read\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-vkLUoF/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765186673646.pdf\ncurl: (18) transfer closed with 16111458 bytes remaining to read\ncurl: (18) transfer closed with 13832786 bytes remaining to read\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765186673646.pdf"
     },
     "2025|vidya-wires-limited": {
       "issuer_name": "Vidya Wires Limited",
       "listing_date": "2025-12-10",
-      "last_attempted_at": "2026-09-23T21:40:59.610Z",
+      "last_attempted_at": "2026-09-25T00:00:31.152Z",
       "parser_version": "2.0.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-KasJp4/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1764671022304.pdf\ncurl: (28) Operation timed out after 45002 milliseconds with 11051911 out of 14575527 bytes received\ncurl: (18) transfer closed with 4542256 bytes remaining to read\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-ZIGE2w/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1764671022304.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 13340359 out of 14575527 bytes received\ncurl: (28) Operation timed out after 45001 milliseconds with 13884871 out of 14575527 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1764671022304.pdf"
     },
     "2025|sudeep-pharma-limited": {
@@ -470,10 +487,10 @@
     "2025|physicswallah-limited": {
       "issuer_name": "Physicswallah Limited",
       "listing_date": "2025-11-18",
-      "last_attempted_at": "2026-09-23T22:47:58.325Z",
+      "last_attempted_at": "2026-09-25T00:00:31.152Z",
       "parser_version": "2.0.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-Ew4rTH/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1763548950658.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 9679799 out of 10087137 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 8228903 out of 10087137 bytes received\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-nwLOJq/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1763548950658.pdf\ncurl: (28) Operation timed out after 45001 milliseconds with 6634439 out of 10087137 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 8006303 out of 10087137 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1763548950658.pdf"
     },
     "2025|pine-labs-limited": {
@@ -505,19 +522,32 @@
     "2025|billionbrains-garage-ventures-limited": {
       "issuer_name": "Billionbrains Garage Ventures Limited",
       "listing_date": "2025-11-12",
-      "last_attempted_at": "2026-09-23T22:47:58.325Z",
+      "last_attempted_at": "2026-09-25T00:00:31.152Z",
       "parser_version": "2.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-WoG6Y6/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1762854394500.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 11964823 out of 13041112 bytes received\ncurl: (28) Operation timed out after 45001 milliseconds with 11289679 out of 13041112 bytes received\n",
+      "status": "extracted",
+      "open_date": "2025-11-07",
+      "close_date": null,
+      "open_extraction": {
+        "value": "2025-11-07",
+        "source_value": "OFFER OPENED ON Friday, November 7, 2025",
+        "page": 4
+      },
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Billionbrains Garage Ventures Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1762854394500.pdf",
+        "publication_date": "2025-11-08"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2025/1762854394500.pdf"
     },
     "2025|lenskart-solutions-limited": {
       "issuer_name": "Lenskart Solutions Limited",
       "listing_date": "2025-11-10",
-      "last_attempted_at": "2026-09-23T22:47:58.325Z",
+      "last_attempted_at": "2026-09-25T00:00:31.152Z",
       "parser_version": "2.0.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-IO5MC4/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1764586985473.pdf\ncurl: (28) Operation timed out after 45001 milliseconds with 11931335 out of 17410868 bytes received\ncurl: (18) transfer closed with 8084317 bytes remaining to read\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-0OjhkG/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1764586985473.pdf\ncurl: (28) Operation timed out after 45001 milliseconds with 11969567 out of 17410868 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 14660663 out of 17410868 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1764586985473.pdf"
     },
     "2025|studds-accessories-limited": {
@@ -1622,6 +1652,69 @@
         "publication_date": "2020-09-24"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2020/1601276402345.pdf"
+    },
+    "2024|hyundai-motor-india-limited": {
+      "issuer_name": "Hyundai Motor India Limited",
+      "listing_date": "2024-10-22",
+      "last_attempted_at": "2026-09-25T00:00:31.152Z",
+      "parser_version": "2.0.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-0D0Zx7/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1729225003827.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 8061976 out of 8384011 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 8200160 out of 8384011 bytes received\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1729225003827.pdf"
+    },
+    "2022|ameya-precision-engineers-limited": {
+      "issuer_name": "Ameya Precision Engineers Limited",
+      "listing_date": "2022-09-08",
+      "last_attempted_at": "2026-09-25T00:00:31.152Z",
+      "parser_version": "2.0.0",
+      "status": "official_date_conflict",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Ameya Precision Engineers Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671770641618.pdf",
+        "publication_date": "2022-08-19"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671770641618.pdf"
+    },
+    "2024|garuda-construction-and-engineering-limited": {
+      "issuer_name": "Garuda Construction and Engineering Limited",
+      "listing_date": "2024-10-15",
+      "last_attempted_at": "2026-09-25T00:00:31.152Z",
+      "parser_version": "2.0.0",
+      "status": "explicit_dates_absent",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Garuda Construction and Engineering Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1727775469844.pdf",
+        "publication_date": "2024-10-01"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1727775469844.pdf"
+    },
+    "2025|canara-robeco-asset-management-company-limited": {
+      "issuer_name": "Canara Robeco Asset Management Company Limited",
+      "listing_date": "2025-10-16",
+      "last_attempted_at": "2026-09-25T00:00:31.152Z",
+      "parser_version": "2.0.0",
+      "status": "explicit_dates_absent",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Canara Robeco Asset Management Company - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1760439483053.pdf",
+        "publication_date": "2025-10-14"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1760439483053.pdf"
     }
   }
 }
