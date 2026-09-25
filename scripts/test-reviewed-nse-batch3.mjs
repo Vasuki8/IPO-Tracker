@@ -1,0 +1,72 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { hash, loadReviewed, loadRecovery, validateReviewedBatch, applyReviewedBatch } from './apply-reviewed-nse-ipos.mjs';
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const batch = loadReviewed(root).find(b => b.manifest_path === 'data/verified-nse-ipos/2026-09-25-batch3.json');
+assert.ok(batch, 'pinned batch3 manifest is required');
+const { manifest: m, queue: q } = batch, checked = validateReviewedBatch(m, q);
+assert.equal(checked.length, 13);
+assert.equal(checked.reduce((n, c) => n + Object.keys(c.facts).length, 0), 78);
+assert.equal(checked.filter(c => c.facts.market_lot).length, 6);
+assert.equal(checked.filter(c => c.facts.minimum_bid_quantity).length, 7);
+for (const c of checked) assert.equal(Object.keys(c.facts).length, 6, 'no inferred optional facts');
+const innovision = checked.find(c => c.candidate.nse_symbol === 'INNOVISION');
+assert.equal(innovision.facts.open_date.value, '2026-03-10');
+assert.equal(innovision.facts.close_date.value, '2026-03-17');
+assert.deepEqual(innovision.facts.price_band.value, { min: 494, max: 519 });
+assert.equal(innovision.facts.minimum_bid_quantity.value, 27);
+assert.equal(innovision.facts.market_lot, undefined, 'Bid Lot is not market lot');
+assert.equal(innovision.facts.close_date.source.evidence_locator, '/issueInfo/dataList[Revised/Extended Issue Period]');
+assert.equal(innovision.facts.price_band.source.evidence_locator, '/issueInfo/dataList[Revised Price Range]');
+assert.equal(checked.find(c => c.candidate.nse_symbol === 'SAIPARENT').issuer_name, 'Sai Parenterals Limited');
+const norm = v => String(v).trim().toLowerCase();
+const item = (e, t) => e.detail.issueInfo.dataList.find(i => norm(i.title) === t);
+const rehash = e => { e.detail_source.projection_sha256 = hash(JSON.stringify(e.detail)); e.past_source.projection_sha256 = hash(JSON.stringify(e.past_row)); };
+let rejected = 0;
+function bad(symbol, mutate) {
+  const copy = structuredClone(m), e = copy.entries.find(e => e.candidate.nse_symbol === symbol);
+  mutate(e); rehash(e); assert.throws(() => validateReviewedBatch(copy, q)); rejected++;
+}
+bad('INNOVISION', e => { e.detail.issueInfo.dataList.push({ title: 'Issue Period', value: '10-Mar-2026 to 12-Mar-2026' }); });
+bad('INNOVISION', e => { e.detail.issueInfo.dataList.push({ title: 'Revised/Extended Issue Period', value: item(e, 'revised/extended issue period').value }); });
+bad('INNOVISION', e => { item(e, 'revised/extended issue period').value = item(e, 'revised/extended issue period').value.replace('17/03/2026', '18/03/2026'); });
+bad('INNOVISION', e => { item(e, 'revised/extended issue period').value = item(e, 'revised/extended issue period').value.replace('10-Mar-2026', '31-Feb-2026'); });
+bad('INNOVISION', e => { item(e, 'revised/extended issue period').value = item(e, 'revised/extended issue period').value.replace(/17/g, '18'); });
+bad('INNOVISION', e => { item(e, 'revised/extended issue period').value += ' or another date'; });
+bad('INNOVISION', e => { item(e, 'revised/extended issue period').value = '10-Mar-2026 to 17-Mar-2026'; });
+bad('INNOVISION', e => { e.detail.issueInfo.dataList.push({ title: 'Price Range', value: 'Rs. 400 to Rs. 519 per Equity Share' }); });
+bad('INNOVISION', e => { e.detail.issueInfo.dataList.push({ title: 'Revised Price Range', value: 'Rs. 494 to Rs. 519 per Equity Share' }); });
+bad('INNOVISION', e => { item(e, 'revised price range').value = 'not established'; });
+bad('INNOVISION', e => { e.past_row.issuePrice = '520'; });
+bad('SAIPARENT', e => { e.detail.companyName = 'Sai Parenteral Limited'; });
+bad('SAIPARENT', e => { e.detail.metaInfo.symbol = 'OTHER'; });
+bad('SAIPARENT', e => { e.detail.metaInfo.isDebtSec = true; });
+bad('SAIPARENT', e => { e.detail.companyName = "Sai Parenteral''s Limited"; });
+const curly = structuredClone(m), sai = curly.entries.find(e => e.candidate.nse_symbol === 'SAIPARENT');
+sai.detail.companyName = 'Sai Parenteral’s Limited'; rehash(sai);
+assert.equal(validateReviewedBatch(curly, q).length, 13, 'internal typographic apostrophe only');
+const review = JSON.parse(fs.readFileSync(path.join(root, 'data/discovery/nse-universe-batch3-review-2026-09-25.json')));
+assert.equal(review.held.length, 2);
+for (const held of review.held) {
+  const copy = { ...structuredClone(m), entries: [{ ...structuredClone(held), decision: 'verified_initial_equity_ipo' }] };
+  assert.throws(() => validateReviewedBatch(copy, q)); rejected++;
+}
+const raw = loadRecovery(root), original = JSON.stringify(raw), pub = JSON.parse(fs.readFileSync(path.join(root, 'data/ipos.json')));
+const rawBefore = structuredClone(raw);
+for (const year of Object.values(rawBefore)) year.records = year.records.filter(r => r.nse_verified_ipo_batch?.manifest !== batch.manifest_path);
+const symbols = new Set(checked.map(c => c.candidate.nse_symbol)), isins = new Set(checked.map(c => c.isin));
+const prior = { ...pub, records: pub.records.filter(r => !symbols.has(r.nse_symbol) && !isins.has(r.isin) && !checked.some(c => c.issuer_name === r.issuer_name)) };
+const plan = applyReviewedBatch(rawBefore, prior, m, q, batch.manifest_path);
+assert.deepEqual(plan.stats, { added: 13, already_present: 0 });
+for (const [y, data] of Object.entries(rawBefore)) for (const r of data.records) assert.deepEqual(plan.recovery[y].records.find(n => n.id === r.id), r);
+assert.deepEqual(applyReviewedBatch(plan.recovery, prior, m, q, batch.manifest_path).recovery, plan.recovery);
+for (const spelling of ["Sai Parenteral's Limited", 'Sai Parenterals Limited', 'Sai Parenteral’s Limited']) {
+  const collision = structuredClone(rawBefore); collision['2021'].records.push({ id: 'prior-issuer', issuer_name: spelling });
+  const before = JSON.stringify(collision);
+  assert.throws(() => applyReviewedBatch(collision, prior, m, q, batch.manifest_path), 'apostrophe alias must not duplicate a prior-year issuer');
+  assert.equal(JSON.stringify(collision), before);
+}
+assert.equal(JSON.stringify(loadRecovery(root)), original, 'tests are read-only');
+console.log(JSON.stringify({ reviewed_nse_batch3_tests: { issuers: 13, facts: 78, rejected_mutations: rejected, alias_collisions: 3, idempotent: true } }));

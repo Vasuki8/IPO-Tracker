@@ -37,5 +37,5 @@ try {
   assert.deepEqual(fs.readFileSync(file), bytes, 'repeat import changed published bytes');
   for (const [y, b] of Object.entries(saved)) assert.deepEqual(fs.readFileSync(path.join(temp, 'data/recovery', y, 'nse-issue-information.json')), b);
   console.log(JSON.stringify({ reviewed_nse_rehearsal: { before: before.records.length, after: data.records.length, added: imported.reviewed_nse_import.added,
-    existing_unchanged: before.records.length, fields_verified: audit.checked_fields, idempotent: true, live_mutations_rejected: 5 } }));
+    existing_unchanged: before.records.length, fields_verified: audit.checked_fields, batches: batches.map(b => { const a = auditReviewedPublication({ batch: b, recovery, data, checkedAt }); return { manifest: b.manifest_path, issuers: a.checked_issuers, facts: a.checked_fields, status: a.status }; }), idempotent: true, live_mutations_rejected: 5 } }));
 } finally { fs.rmSync(temp, { recursive: true, force: true }); }

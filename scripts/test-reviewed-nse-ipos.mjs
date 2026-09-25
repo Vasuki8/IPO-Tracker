@@ -97,3 +97,5 @@ const held = { ...structuredClone(m), entries: [adani] };
 held.entries[0].decision = 'verified_initial_equity_ipo';
 assert.throws(() => validateReviewedBatch(held, q), 'symbol metadata without IPO terms cannot authorize publication');
 console.log(JSON.stringify({ reviewed_nse_tests: { issuers: 14, facts: 83, rejected_mutations: rejected, held_issuer_rejected: true, cross_year_collisions: 4, idempotent: true } }));
+
+await import("./test-reviewed-nse-batch3.mjs");
