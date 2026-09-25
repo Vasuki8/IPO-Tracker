@@ -1,0 +1,79 @@
+name: Audit IPO status correctness
+on:
+  pull_request:
+    branches: [main]
+    paths: ['.github/workflows/audit-ipo-status.yml']
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: Retain exact revision
+        run: |
+          mkdir -p "$RUNNER_TEMP/status-audit"
+          git archive --format=zip HEAD > "$RUNNER_TEMP/status-audit/source-snapshot.zip"
+          git rev-parse HEAD > "$RUNNER_TEMP/status-audit/source-commit.txt"
+      - name: Audit recovery and published status values
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import { createHash } from 'node:crypto';
+          const years=[2020,2021,2022,2023,2024,2025,2026];
+          const allowed=new Set(['open','upcoming','closed','listed']);
+          const rows=[], counts={};
+          const hash=b=>createHash('sha256').update(b).digest('hex');
+          for(const year of years){
+            const file=`data/recovery/${year}/nse-issue-information.json`;
+            const raw=fs.readFileSync(file), m=JSON.parse(raw);
+            for(const r of m.records){
+              const status=r.status??null;
+              counts[status??'null']=(counts[status??'null']||0)+1;
+              if(!allowed.has(status)){
+                rows.push({
+                  year,id:r.id,issuer_name:r.issuer_name,status,
+                  board:r.board??null,nse_symbol:r.nse_symbol??null,nse_series:r.nse_series??null,
+                  open_date:r.open_date?.value??r.terms?.open_date??null,
+                  close_date:r.close_date?.value??r.terms?.close_date??null,
+                  listing_date:r.listing_date?.value??null,
+                  status_evidence:r.status_evidence??[],
+                  listing_source:r.listing_date?.source??null,
+                  nse_source:r.nse_source??null,
+                  documents:(r.documents||[]).map(d=>({type:d.type,identity:d.identity,url:d.url,publication_date:d.publication_date??null}))
+                });
+              }
+            }
+          }
+          const pubRaw=fs.readFileSync('data/ipos.json'), pub=JSON.parse(pubRaw);
+          const publicUnknown=(pub.records||[]).filter(r=>!allowed.has(r.status??null)).map(r=>({
+            id:r.id,issuer_name:r.issuer_name,status:r.status??null,board:r.board??null,
+            open_date:r.open_date?.value??null,close_date:r.close_date?.value??null,listing_date:r.listing_date?.value??null,
+            status_evidence:r.status_evidence??[]
+          }));
+          const report={
+            schema_version:'1.0.0',generated_at:new Date().toISOString(),commit_sha:process.env.GITHUB_SHA,
+            allowed_statuses:[...allowed],recovery_status_counts:counts,
+            recovery_unknown_count:rows.length,public_unknown_count:publicUnknown.length,
+            public_record_count:pub.records.length,public_sha256:hash(pubRaw),
+            derivable_listed:rows.filter(r=>r.listing_date).length,
+            has_offer_dates_no_listing:rows.filter(r=>!r.listing_date&&(r.open_date||r.close_date)).length,
+            no_dates:rows.filter(r=>!r.listing_date&&!r.open_date&&!r.close_date).length,
+            rows,public_unknown:publicUnknown
+          };
+          fs.writeFileSync(path.join(process.env.RUNNER_TEMP,'status-audit','report.json'),JSON.stringify(report,null,2)+'\n');
+          console.log(JSON.stringify({counts,unknown:rows.length,publicUnknown:publicUnknown.length,derivable_listed:report.derivable_listed,has_offer_dates_no_listing:report.has_offer_dates_no_listing,no_dates:report.no_dates}));
+          JS
+      - name: Retain audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ipo-status-audit-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/status-audit
+          retention-days: 14
+          if-no-files-found: error
