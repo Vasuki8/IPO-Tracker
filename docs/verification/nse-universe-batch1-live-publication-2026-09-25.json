@@ -1,0 +1,184 @@
+{
+  "schema_version": "1.0.0",
+  "status": "verified_live",
+  "scope": "First pinned NSE 2026 official-universe review batch: 14 independently verified initial equity IPOs published; ADANIENPP1 held; live publication verified; Pages propagation verifier hardened.",
+  "source_review": {
+    "run_id": "36096308787",
+    "artifact_id": 10847442489,
+    "artifact_sha256": "e00e9d7b3665c6f94e1994858e0fed05de6ac67b7bc6465ea7699fdf0e670e96",
+    "source_snapshot_commit": "cd03b3a9c7ac76518696bcc71877fd88881e96cf",
+    "queue_path": "data/discovery/ipo-universe-review-2026-09-25-batch1.json",
+    "baseline_public_records": 1218,
+    "baseline_public_sha256": "9a5ced8e0831bf07961c4fb3593f24d99008688f6874b2b86649c1d449841945",
+    "reviewed_candidates": 15,
+    "verified_initial_equity_ipos": 14,
+    "held_unverified_offer_type": 1,
+    "approved_identity_conflicts": 0,
+    "verified_facts": 83,
+    "fact_breakdown": {
+      "listing_dates": 14,
+      "offer_dates": 28,
+      "final_issue_prices": 14,
+      "price_bands": 13,
+      "market_lots": 9,
+      "minimum_bid_quantities": 5
+    },
+    "issuer_detail_http_200": 15,
+    "quote_identity_http_403": 15,
+    "quote_endpoints_used_as_evidence": false,
+    "original_response_hashes_checked": 31
+  },
+  "held_adani": {
+    "issuer_name": "Adani Enterprises Limited",
+    "nse_symbol": "ADANIENPP1",
+    "isin": "IN9423A01048",
+    "listing_date_observation": "2026-02-10",
+    "decision": "held_unverified_offering_type",
+    "observed_offer_periods": [
+      [
+        "2024-09-04",
+        "2024-09-06"
+      ],
+      [
+        "2025-07-09",
+        "2025-07-11"
+      ],
+      [
+        "2026-01-06",
+        "2026-01-08"
+      ]
+    ],
+    "reason": "Issuer-specific detail response lacks Issue Size / Issue Period / explicit initial-public-equity-offer evidence, while three past-feed rows reference the same security with different offer periods. Symbol, series and listing metadata alone do not establish IPO status.",
+    "auto_import_allowed": false
+  },
+  "release": {
+    "pull_request": 230,
+    "final_head": "152d78a6bc8af420e2d45ecf07e82969fa929b2a",
+    "merge_commit": "60e2ab2360d6782be5952e31cd0253a504b9baa1",
+    "reviewed_manifest": "data/verified-nse-ipos/2026-09-25-batch1.json",
+    "review_receipt": "data/discovery/nse-universe-batch1-review-2026-09-25.json",
+    "rehearsal": {
+      "before": 1218,
+      "after": 1232,
+      "added": 14,
+      "existing_unchanged": 1218,
+      "identity_conflicts": 0,
+      "idempotent": true
+    },
+    "pr_data_contract_run": "36098474997",
+    "pr_reviewed_evidence_run": "36098474991"
+  },
+  "production": {
+    "source_backed_sync_run": "36098558475",
+    "generated_data_commit": "77c74d759d9833aaf3147d757ae9b7f8e30c1e1f",
+    "concurrent_historical_offer_date_run": "36098475471",
+    "concurrent_historical_offer_date_commit": "ee33b12d81f27272e117d9fe817c26f6c60d5c1e",
+    "operator_state_commit": "63370ecbd7e5e49a86f8c690f5da62cb65548ce6",
+    "operator_snapshot_generated_at": "2026-09-25T05:33:22.126Z",
+    "operator_health": "healthy",
+    "recovery_counts": {
+      "2020": 65,
+      "2021": 120,
+      "2022": 136,
+      "2023": 216,
+      "2024": 301,
+      "2025": 293,
+      "2026": 101
+    },
+    "total_records": 1232
+  },
+  "live_verification": {
+    "workflow_run": "36099067573",
+    "first_attempt": {
+      "run_attempt": 1,
+      "conclusion": "failure",
+      "artifact_id": 10848138848,
+      "artifact_sha256": "a9367a0832c4d25caa6ae50f5a3eda77fa05b4947237407c3c646230e3e75847",
+      "last_observed_records": 1218,
+      "explanation": "Verifier exhausted five 15-second retries while GitHub Pages still served the pre-import snapshot. This was a propagation race, not an evidence or import failure."
+    },
+    "successful_attempt": {
+      "run_attempt": 2,
+      "conclusion": "success",
+      "artifact_id": 10848497149,
+      "artifact_sha256": "6f6e06dfa46e537267c7001a2c4ac873a8da3ee4e386abc759be2d4f7074ba33",
+      "snapshot_fetched_at": "2026-09-25T05:44:14.484Z",
+      "checked_at": "2026-09-25T05:44:14.568Z",
+      "dataset_generated_at": "2026-09-25T05:32:16.102Z",
+      "snapshot_sha256": "3fe550decca530638e0b354381827b5142c611fff89329c68562f1488e754f5c",
+      "snapshot_bytes": 6577125,
+      "published_records": 1232,
+      "checked_issuers": 14,
+      "checked_fields": 83,
+      "failed_issuers": 0
+    },
+    "delta_from_previous_verified_snapshot": {
+      "before": 1218,
+      "after": 1232,
+      "added": 14,
+      "removed": 0,
+      "changed_existing_records": 7,
+      "added_ids": [
+        "amagi-media-labs-limited",
+        "armour-security-india-limited",
+        "avana-electrosystems-limited",
+        "aye-finance-limited",
+        "bharat-coking-coal-limited",
+        "biopol-chemicals-limited",
+        "brandman-retail-limited",
+        "c-k-k-retail-mart-limited",
+        "e-to-e-transportation-infrastructure-limited",
+        "fractal-analytics-limited",
+        "grover-jewells-limited",
+        "krm-ayurveda-limited",
+        "shadowfax-technologies-limited",
+        "victory-electric-vehicles-international-limited"
+      ],
+      "changed_existing_ids": [
+        "inspire-films-limited",
+        "inventurus-knowledge-solutions-limited",
+        "jaro-institute-of-technology-management-and-research-limited",
+        "rubicon-research-limited",
+        "suyog-gurbaxani-funicular-ropeways-limited",
+        "vedant-asset-limited",
+        "wework-india-management-limited"
+      ],
+      "note": "The 14 reviewed additions are the release change. Seven existing records changed through independent scheduled/source enrichment in the same publication window (document references/collection clocks and verified historical offer dates); no existing record was removed."
+    }
+  },
+  "verifier_reliability_fix": {
+    "pull_request": 231,
+    "head": "3de1858e57bc33014e6db95e2b79f29ed61af790",
+    "merge_commit": "c170c420774705c86c16f16cb7faf1980cbc86de",
+    "change": "Extend bounded Pages propagation window from five 15-second attempts to fourteen 30-second attempts and raise job timeout from 5 to 10 minutes.",
+    "verification_logic_changed": false,
+    "schedules_changed": false,
+    "permissions_changed": false,
+    "pr_data_contract_run": "36100044374",
+    "pr_reviewed_evidence_run": "36100044439",
+    "post_merge_data_contract_run": "36100106748",
+    "post_merge_reviewed_evidence_run": "36100106765",
+    "post_merge_pages_deploy_run": "36100106805",
+    "pages_state_commit": "f09bbad89636555dd1f2c21f5a7178418853bab6"
+  },
+  "remaining_holds": [
+    {
+      "issuer_name": "Adani Enterprises Limited",
+      "nse_symbol": "ADANIENPP1",
+      "disposition": "held_unverified_offering_type"
+    },
+    {
+      "issuer_name": "Fabino Life Sciences Limited",
+      "bse_scrip_code": "543444",
+      "listing_notice_no": "20220112-10",
+      "disposition": "held_conflicting_official_listing_year"
+    }
+  ],
+  "next_task": {
+    "queue_path": "data/discovery/ipo-universe-review-2026-09-25-batch2.json",
+    "candidates": 15,
+    "first_symbol": "GICL",
+    "last_symbol": "SPCON",
+    "instruction": "Reconcile against latest main and independently establish offering type/identity using issuer-specific official evidence. Do not auto-import repeat, partly-paid, follow-on, rights or otherwise ambiguous securities."
+  }
+}

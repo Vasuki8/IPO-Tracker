@@ -28,29 +28,34 @@ Collection time, source business observation time, dataset generation and Pages 
 
 ## Handoff for the next prompt
 
-**Latest completed backend unit: first 15-candidate NSE universe review published and VERIFIED live — PR #230; propagation reliability fixed in PR #231.** No UI changes.
+**Latest completed backend unit: bounded official IPO-universe audit VERIFIED — PR #229.** Merge commit `2c9b5d0d97754747b6510a0bb0ad837e988e65b0`. No IPO data or UI changes.
 
-The batch reviewed 15 pinned NSE 2026 candidates using issuer-specific official evidence. **14 were verified as initial public equity offerings and published; ADANIENPP1 remains held** because its detail response lacks issue-specific IPO terms and the past feed contains three conflicting offer periods for the same security.
+Canonical main audit `36095239145`, generated **2026-09-25 04:38:31 UTC / 00:38:31 Toronto**, reconciled **1,283 observations / 1,232 normalized issuer-name groups** against the 1,218-record tracker:
 
-Source review run `36096308787`, artifact `10847442489`, SHA-256 `e00e9d7b3665c6f94e1994858e0fed05de6ac67b7bc6465ea7699fdf0e670e96`. The approved set retains **83 explicit facts**: 14 listing dates, 28 offer dates, 14 issue prices, 13 price bands, 9 market lots and 5 minimum bid quantities. Quote endpoints returned HTTP403 and were not used.
+| Classification | Groups |
+| --- | ---: |
+| Already present | 970 |
+| Exact-name-unmatched review candidates | 224 |
+| Identity-review cases | 38 |
+| New IPOs imported | 0 |
 
-PR #230 merged as `60e2ab2360d6782be5952e31cd0253a504b9baa1`. Rehearsal proved **1,218 -> 1,232**, exactly 14 additions, all prior records unchanged, zero identity conflicts and an idempotent rerun. Production sync `36098558475` succeeded; generated data `77c74d759d9833aaf3147d757ae9b7f8e30c1e1f`; operator state `63370ecbd7e5e49a86f8c690f5da62cb65548ce6` is healthy.
+**224 unmatched names are not 224 confirmed missing IPOs.** Offering type, aliases, identifiers and issuer-specific official evidence require review. Seven of eight source adapters were usable. BSE summary returned an HTML shell with no issuer rows; SEBI covers only the first 25 rows of each filing category; NSE other-series rows and historical completeness remain gaps. A filing stage is not a listing/outcome, and index membership is not the full IPO universe. The audit correctly reports `full_universe_complete:false`.
 
-Publication verifier `36099067573`, attempt 2, verified the actual Pages dataset: **1,232 records, 14/14 issuers, 83/83 reviewed facts, 0 failures**, snapshot SHA-256 `3fe550decca530638e0b354381827b5142c611fff89329c68562f1488e754f5c`. Live delta from the preceding verified snapshot is **+14 added / 0 removed / 7 existing records changed by unrelated scheduled/source enrichment**.
+Source hashes, baseline hashes, and both full and compact reports were independently replayed exactly for the PR and main runs. Current-head and post-merge audit/data-contract/reviewed-evidence checks passed. The main workflow's clean-worktree check passed.
 
-Attempt 1 had failed only because Pages still served the old snapshot before propagation completed. PR #231 (`c170c420774705c86c16f16cb7faf1980cbc86de`) extends the bounded verifier wait to cover the observed multi-minute Pages lag; verification logic, schedules and permissions are unchanged. Post-merge validation and Pages deployment passed.
+A fresh existing Pages verifier run `36093076719`, **attempt 2**, fetched the live dataset at `2026-09-25T04:39:09.873Z`. It remains **1,218 records and byte-identical to the baseline**, SHA-256 `9a5ced8e0831bf07961c4fb3593f24d99008688f6874b2b86649c1d449841945`: **0 added / 0 removed / 0 changed**. No new issuer was published in this unit.
 
-Durable receipt: [docs/verification/nse-universe-batch1-live-publication-2026-09-25.json](docs/verification/nse-universe-batch1-live-publication-2026-09-25.json).
+Durable receipt: [docs/verification/ipo-universe-audit-2026-09-25.json](docs/verification/ipo-universe-audit-2026-09-25.json). Full raw evidence and all-candidate reports are in artifact **10846749143**, SHA-256 `14521267a7d9d11f197248c3a7d4fca7fcf2e7257f63544a45677f1e1edf0c8c`, expiring **2026-10-09 04:38:37 UTC**.
 
 ### Exact next backend task
 
-Review [data/discovery/ipo-universe-review-2026-09-25-batch2.json](data/discovery/ipo-universe-review-2026-09-25-batch2.json): **15 pinned candidates from GICL through SPCON**. Reconcile every row against latest main and all recovery years, then establish IPO versus FPO/rights/partly-paid/repeat/other security using issuer-specific official evidence. Do not auto-import from the NSE past-issues feed. Preserve aliases, nulls and conflicts; publish only independently verified unambiguous IPOs with rehearsal, source-backed sync and actual Pages verification.
+**Review the first 15 NSE 2026 candidates pinned in [data/discovery/ipo-universe-review-2026-09-25-batch1.json](data/discovery/ipo-universe-review-2026-09-25-batch1.json).** The audit observed 119 exact-name-unmatched groups with a 2026 NSE listing-date observation. This batch selects the earliest 15 by date then symbol, beginning `E2ERAIL` and ending `FRACTAL`.
 
-**ADANIENPP1 remains held** for unresolved offering type. **Fabino Life Sciences remains held** for its conflicting official listing year. The BSE parser cursor remains **236/236 parsed** and must not be replayed. BSE summary-source repair, SEBI historical pagination and broader P1 coverage remain unfinished.
+Re-read current main and reconcile all years again. Establish IPO versus FPO, rights, partly-paid/repeat security or another offer type using issuer-specific official evidence; **no row, including `ADANIENPP1`, has approved IPO status from the queue alone**. Resolve legal-name and identifier ambiguity. Only publish independently verified unambiguous IPOs, with a preservation/idempotency rehearsal, normal source-backed sync and actual Pages verification. Do not bulk-import the unmatched names or blindly extend the historical materializer.
 
-No UI, minimum-investment expansion, billing, accounts, ads, spending or permission changes belong to this continuation.
+BSE summary-source repair and SEBI historical pagination remain separate bounded coverage tasks. **Fabino Life Sciences remains held** for its 2021-versus-2022 listing-year conflict; no correction may be inferred. The BSE parser v1.5 cursor remains **236/236 parsed**, with no replay needed. Broader P1 coverage/field completeness remains unfinished.
 
-**Product UI workstream — V2 live and verified, PR #209:** separate notes remain in [docs/UI_DESIGN_HANDOFF.md](docs/UI_DESIGN_HANDOFF.md).
+No UI, minimum-investment expansion, billing, accounts, ads, spending or permission changes belong to this continuation. UI V2 remains a separate completed workstream under [docs/UI_DESIGN_HANDOFF.md](docs/UI_DESIGN_HANDOFF.md).
 
 ## Local checks
 

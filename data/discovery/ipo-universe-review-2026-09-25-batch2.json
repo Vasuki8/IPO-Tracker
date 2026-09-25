@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0.0",
+  "status": "review_required_no_import",
+  "source_run_id": "36095239145",
+  "source_commit_sha": "2c9b5d0d97754747b6510a0bb0ad837e988e65b0",
+  "source_artifact_id": 10846749143,
+  "source_artifact_sha256": "14521267a7d9d11f197248c3a7d4fca7fcf2e7257f63544a45677f1e1edf0c8c",
+  "source_url": "https://www.nseindia.com/api/public-past-issues",
+  "source_response_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+  "source_collected_at": "2026-09-25T04:38:22.631Z",
+  "source_audit_baseline_public_records": 1218,
+  "current_public_records": 1232,
+  "current_public_sha256": "3fe550decca530638e0b354381827b5142c611fff89329c68562f1488e754f5c",
+  "previous_batch": "data/discovery/ipo-universe-review-2026-09-25-batch1.json",
+  "previous_batch_review": "data/discovery/nse-universe-batch1-review-2026-09-25.json",
+  "previous_batch_result": {
+    "reviewed": 15,
+    "approved_verified_ipos": 14,
+    "held": 1,
+    "held_symbols": [
+      "ADANIENPP1"
+    ]
+  },
+  "remaining_eligible_source_groups_after_batch1": 104,
+  "batch_limit": 15,
+  "selection_rule": "Next 15 exact-name-unmatched issuer groups from canonical audit 36095239145 observed in NSE past issues with outcome=listed and a 2026 explicit listing date, excluding all 15 batch1 symbols, ordered by listing_date then nse_symbol. This queue is pinned from the earlier audit snapshot; reconcile again against latest main before action.",
+  "required_checks": [
+    "Independently establish IPO versus FPO, rights issue, partly-paid/repeat security, or another offer type using issuer-specific official evidence.",
+    "Resolve legal-name aliases, NSE/BSE identifiers, prior offers and source identity across all recovery/public years.",
+    "Treat symbols such as SILGOPP and previously listed issuer names as review signals, not proof of a new IPO.",
+    "Retain nulls and conflicts; do not infer issue type, prices, dates, quantities, issue size or application amount.",
+    "Only materialize independently verified unambiguous IPOs after preservation/idempotency rehearsal, normal source-backed publication and actual Pages verification."
+  ],
+  "auto_import_allowed": false,
+  "candidates": [
+    {
+      "issuer_name": "Globe International Carriers Limited",
+      "nse_symbol": "GICL",
+      "board": "SME",
+      "listing_date": "2026-02-18",
+      "row_index": 1395
+    },
+    {
+      "issuer_name": "Marushika Technology Limited",
+      "nse_symbol": "MARUSHIKA",
+      "board": "SME",
+      "listing_date": "2026-02-19",
+      "row_index": 130
+    },
+    {
+      "issuer_name": "Silgo Retail Limited",
+      "nse_symbol": "SILGOPP",
+      "board": "SME",
+      "listing_date": "2026-02-19",
+      "row_index": 1157
+    },
+    {
+      "issuer_name": "Manilam Industries India Limited",
+      "nse_symbol": "MANILAM",
+      "board": "SME",
+      "listing_date": "2026-02-27",
+      "row_index": 128
+    },
+    {
+      "issuer_name": "Clean Max Enviro Energy Solutions Limited",
+      "nse_symbol": "CLEANMAX",
+      "board": "Mainboard",
+      "listing_date": "2026-03-02",
+      "row_index": 125
+    },
+    {
+      "issuer_name": "Mobilise App Lab Limited",
+      "nse_symbol": "MOBILISE",
+      "board": "SME",
+      "listing_date": "2026-03-02",
+      "row_index": 126
+    },
+    {
+      "issuer_name": "PNGS Reva Diamond Jewellery Limited",
+      "nse_symbol": "PNGSREVA",
+      "board": "Mainboard",
+      "listing_date": "2026-03-04",
+      "row_index": 123
+    },
+    {
+      "issuer_name": "Omnitech Engineering Limited",
+      "nse_symbol": "OMNI",
+      "board": "Mainboard",
+      "listing_date": "2026-03-05",
+      "row_index": 120
+    },
+    {
+      "issuer_name": "Yaap Digital Limited",
+      "nse_symbol": "YAAP",
+      "board": "SME",
+      "listing_date": "2026-03-05",
+      "row_index": 122
+    },
+    {
+      "issuer_name": "Striders Impex Limited",
+      "nse_symbol": "STRIDERS",
+      "board": "SME",
+      "listing_date": "2026-03-06",
+      "row_index": 119
+    },
+    {
+      "issuer_name": "Acetech E-Commerce Limited",
+      "nse_symbol": "ACETEC",
+      "board": "SME",
+      "listing_date": "2026-03-09",
+      "row_index": 118
+    },
+    {
+      "issuer_name": "Sedemac Mechatronics Limited",
+      "nse_symbol": "SEDEMAC",
+      "board": "Mainboard",
+      "listing_date": "2026-03-11",
+      "row_index": 117
+    },
+    {
+      "issuer_name": "Vital Chemtech Limited",
+      "nse_symbol": "VITAL",
+      "board": "SME",
+      "listing_date": "2026-03-11",
+      "row_index": 894
+    },
+    {
+      "issuer_name": "Kotyark Industries Limited",
+      "nse_symbol": "KOTYARK",
+      "board": "SME",
+      "listing_date": "2026-03-12",
+      "row_index": 1003
+    },
+    {
+      "issuer_name": "Srinibas Pradhan Constructions Limited",
+      "nse_symbol": "SPCON",
+      "board": "SME",
+      "listing_date": "2026-03-13",
+      "row_index": 116
+    }
+  ]
+}
