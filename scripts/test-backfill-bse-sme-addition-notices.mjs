@@ -31,7 +31,7 @@ assert.deepEqual(eligible.map((item) => item.notice_no), [
 ]);
 
 const at = "2026-09-24T03:00:00Z";
-const parsed = (noticeNo, parserVersion = "1.4.0") => ({
+const parsed = (noticeNo, parserVersion = "1.5.0") => ({
   notice_no: noticeNo,
   notice_date: "2026-06-01",
   subject: "Addition to the BSE SME IPO Index",
@@ -91,7 +91,7 @@ compatibleParsed.notices["20260605-1"] = parsed("20260605-1", "1.1.0");
 assert.notEqual(
   selectBseNoticeBackfillBatch(eligible, compatibleParsed, 1, Date.parse(at))[0]?.row.notice_no,
   "20260605-1",
-  "successfully parsed v1.1 entries remain compatible with the additive v1.4 grammar"
+  "successfully parsed older entries remain compatible with the additive v1.5 grammar"
 );
 
 const stale = structuredClone(fullySeen);
@@ -169,4 +169,47 @@ const mergedRepair = mergeBseNoticeStates(untouched,repaired.state);
 assert.deepEqual(mergeBseNoticeStates(mergedRepair,repaired.state), mergedRepair, 'repair proposal is idempotent');
 assert.deepEqual(selectBseNoticeBackfillBatch(eligibleBseSmeAdditionNotices(repairCatalog), mergedRepair,20,Date.parse(at))
   .map(x=>x.row.notice_no), ['20200113-10'], 'unseen work resumes only after isolated repair');
-console.log('Seven-notice v1.4 migration, exact successful-state preservation and idempotency tests passed.');
+console.log('Seven-notice v1.5 migration, exact successful-state preservation and idempotency tests passed.');
+
+
+// The v1.5 repair must isolate the three retained v1.4 failures and preserve every parsed v1.4 entry.
+const retainedFailureFixtures = JSON.parse(fs.readFileSync(new URL('./fixtures/bse-retained-failure-parser-repair.json', import.meta.url), 'utf8')).fixtures;
+const retainedRepairState = emptyBseNoticeState();
+retainedRepairState.parser_version = '1.4.0';
+retainedRepairState.updated_at = at;
+retainedRepairState.notices['20260605-1'] = parsed('20260605-1', '1.4.0');
+for (const fixture of retainedFailureFixtures) {
+  retainedRepairState.notices[fixture.notice_no] = {
+    ...failure,
+    notice_no: fixture.notice_no,
+    parser_version: '1.4.0',
+    last_attempted_at: at,
+    source_kind: 'bse_index_notice_detail_api',
+    source_url: fixture.source_url,
+    pdf_url: null,
+    extracted_text_sha256: fixture.retained_text_sha256
+  };
+}
+const retainedBefore = structuredClone(retainedRepairState);
+const retainedCatalog = { Table: [
+  ...Object.values(retainedRepairState.notices).map(e => ({...row(e.notice_no, e.notice_date), FileName:null}))
+] };
+const retainedCalls = [];
+const retainedFetch = async url => {
+  retainedCalls.push(url);
+  if (url.includes('GetNoticesadvancesearch')) return new Response(JSON.stringify(retainedCatalog));
+  const id = new URL(url).searchParams.get('NoticeId');
+  const source = retainedFailureFixtures.find(f => f.notice_no === id);
+  assert.ok(source, 'parsed v1.4 successes must not be re-fetched by v1.5 repair');
+  return new Response(JSON.stringify({Data:source.text}));
+};
+const retainedRepaired = await backfillBseSmeAdditionNotices({state:retainedRepairState, fetchImpl:retainedFetch, now:()=>at, sleep:async()=>{}});
+assert.deepEqual(retainedRepaired.report.stats, {selected:3,parsed:3,fetch_errors:0,unparseable:0,discovered_entries:10});
+assert.equal(retainedCalls.length, 4, 'one catalog plus exactly three retained failure detail calls');
+assert.ok(retainedRepaired.report.selected_notice_nos.every(x=>x.reason==='parser_changed_failure'));
+assert.deepEqual(retainedRepaired.state.notices['20260605-1'], retainedBefore.notices['20260605-1'], 'preserve parsed v1.4 success exactly');
+assert.deepEqual(retainedRepaired.report.candidates.map(x=>[x.listing_notice_no,x.bse_scrip_code]).sort(),
+  retainedFailureFixtures.flatMap(f=>f.expected.map(x=>[x.listing_notice_no,x.bse_scrip_code])).sort());
+assert.deepEqual(selectBseNoticeBackfillBatch(eligibleBseSmeAdditionNotices(retainedCatalog), retainedRepaired.state,20,Date.parse(at)), [],
+  'no parsed v1.4 success is replayed after the isolated v1.5 repair');
+console.log('Three retained v1.4 failures migrate to v1.5 without replaying parsed history.');
