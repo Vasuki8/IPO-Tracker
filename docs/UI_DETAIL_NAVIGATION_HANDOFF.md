@@ -10,6 +10,20 @@ Retained documents are grouped by their existing type label into offer filings, 
 
 No IPO facts, source evidence, collection schedule or data contract changed. Deeper sections such as company financials and risks should wait for source-backed structured data; the existing official filing links already provide a route to those documents.
 
+## Future data requirement: company research
+
+Once the earlier data, evidence and reliability priorities are met and P4 correctness/source coverage is no longer materially blocked, build a **source-backed structured dataset** for deeper IPO research before adding new company-page sections. This is a future P5 requirement, not an instruction to interrupt the current P1 backend queue.
+
+| Section | Minimum useful data | Primary evidence |
+| --- | --- | --- |
+| Business overview | What the issuer does, principal products/services, business segments and stated use of issue proceeds, where disclosed. | Issuer-specific RHP/Prospectus sections, with the filing version and page for each item. |
+| Financials | Restated revenue, profit/loss after tax and total assets for the disclosed periods; add other metrics only when consistently defined. | Financial statements in the issuer's official offer document, preserving consolidated/standalone basis, period end, currency and unit. |
+| Key risks | A concise, attributed index of material risk topics, with links to the exact filing pages. | Risk Factors section of the issuer's official offer document; do not publish unsupported conclusions or reproduce long passages. |
+
+Each structured item needs an issuer/offer identity, value or concise description, source URL and document identity/version, publication date, page or section, collection time, verification status, and correction/conflict history. Numeric financial items also need reporting period, unit and accounting basis. Retain source hashes when available. DRHP content must be labelled provisional; later RHP/Prospectus changes must be reconciled rather than silently combined. A final Prospectus is **not** required for an IPO to remain in the directory, and unavailable items stay null.
+
+Start with a bounded sample across mainboard/SME and different document versions. Add extraction and schema tests for units, periods, issuer matching, amended filings, missing values and contradictory sources; retain source-level examples for review. Publish a section only after its fields pass evidence validation and the UI shows the document/page, reporting period and missing/provisional/conflict state clearly. Keep the existing official document links usable while this data is incomplete.
+
 ## Verification
 
 Playwright/Chromium checks pass with real data and isolated edge fixtures, including source grouping and counts, filter switching, hash-route stability, direct links, browser back, 320–1440 px layout, no-documents state, unsafe URLs and HTML escaping. Desktop and mobile detail screenshots were inspected. `test-homepage-order.mjs`, `test-lot-size.mjs`, `validate-data.mjs`, `build-published-data.mjs --check`, JavaScript syntax and `git diff --check` passed locally against 1,243 records at the checked-out revision. That count is a local build check, not a fresh live-publication claim.

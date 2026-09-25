@@ -1,6 +1,6 @@
 # Project status and handoff
 
-The separately requested IPO detail-page UI batch is documented in [UI_DETAIL_NAVIGATION_HANDOFF.md](UI_DETAIL_NAVIGATION_HANDOFF.md). The P1 backend continuation below remains the data workstream handoff.
+The separately requested IPO detail-page UI batch and its future source-backed business, financial and risk-data requirement are documented in [UI_DETAIL_NAVIGATION_HANDOFF.md](UI_DETAIL_NAVIGATION_HANDOFF.md). That research-depth requirement is gated behind the current correctness/coverage work; the P1 backend continuation below remains the active data workstream handoff.
 
 Updated: **2026-09-25**, after live batch3 verification run `36163697372`.
 
