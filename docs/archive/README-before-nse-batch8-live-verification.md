@@ -23,7 +23,7 @@ The existing hourly `update-ipos.yml` collects NSE/SEBI data and imports reviewe
 
 `verify-bse-publication.yml` is a **read-only post-publication check** for selected reviewed BSE manifests. It fetches the actual Pages dataset, retains original bytes/hash and separate observation time, and checks issuer identity, values, source metadata and retained provenance. Its current default remains parser-v1.5 recovered reviewed batch36.
 
-`verify-reviewed-nse-publication.yml` is the corresponding **read-only NSE post-publication check**, triggered after successful source sync. It now selects the batch8 manifest and retains actual Pages bytes, source revision, hashes and separate fetch/check/generation times.
+`verify-reviewed-nse-publication.yml` is the corresponding **read-only NSE post-publication check**, triggered after successful source sync. It now selects the batch7 manifest and retains actual Pages bytes, source revision, hashes and separate fetch/check/generation times.
 
 `audit-ipo-universe.yml` is a **read-only bounded official-universe audit**, with no schedule. It runs manually or when relevant audit code/fixtures change. It collects eight NSE/BSE/SEBI source surfaces, verifies source hashes, reconciles exact issuer identities and records incomplete source coverage. Outputs include original responses, `sources.json`, `audit.json`, `audit-compact.json` and an exact source archive. Workflow artifacts expire after 14 days. No candidates are automatically imported.
 
@@ -31,21 +31,19 @@ Collection time, source business observation time, dataset generation and Pages 
 
 ## Handoff for the next prompt
 
-**Batch8 is VERIFIED LIVE. Do not replay the approved imports from batches 1–8.** PR #245 reviewed the final 14 pinned candidate groups: **12 approved equity IPOs, DOLLEX excluded as migration, 13DCCL28 excluded as debt, zero new holds**. The manifest retains **71 explicit facts**. Existing parsers handled the batch without changes. VINOD's explicit Rs.94 fixed price retains a null band and null minimum bid; its market lot is 1,200.
+**NSE universe batch7 is VERIFIED LIVE.** PR #244 reviewed 15 candidates: **13 approved initial-equity IPOs**, **two debt exclusions (1150VIES30, 12AIL28)** and **no new holds**. The manifest retains **78 explicit facts**. The minimal importer repair reads FASCINATE's explicit extended closing date only when all date representations and independent source dates agree; minimum bid and market lot remain distinct.
 
-Actual Pages fetched **2026-09-25T21:14:56.192Z** contains **1,321 records**, with **12/12 batch8 issuers and 71/71 facts** matching. All eight reviewed batches pass **103 issuers / 615 facts**. Unknown/invalid statuses and missing status evidence are both **0**. Snapshot SHA-256 `704b89e1ff652353af29acf2790d1aee93a3b12fad083c6b4bca052622f37000`. [Durable live receipt](docs/verification/nse-universe-batch8-live-publication-2026-09-25.json).
+Actual Pages fetched **2026-09-25T19:59:16.697Z** contains **1,309 records**. Batch7 passes **13/13 issuers and 78/78 facts**; all seven reviewed NSE batches pass **91 issuers / 544 facts**. Unknown/invalid statuses and missing status evidence are both **0**. SHA-256 `f1b0d662e1dc8a61cd4a821451143e85ea5a6e53425f158431a26953ca8b3df0`. [Durable live receipt](docs/verification/nse-universe-batch7-live-publication-2026-09-25.json).
 
-Normal sync **36188314026** and actual Pages verifier **36189922895** succeeded; operator health **healthy**. Data commit **519c0fd8efb5db650f245aa17e5a368ca57b995b**. Exactly **12 additions / zero removals**. **1,305 of 1,309 prior records were unchanged**; the receipt separately records routine changes and optional enrichments rather than presenting them as manually reviewed batch facts.
+Normal sync **36181601722** and actual Pages verifier **36182904949** succeeded. Data commit **23dc175bced8bc54a8063f43efa140b2eb979104**; operator health **healthy**. Exactly 13 reviewed identities added, none removed; **1,291 of 1,296 prior records unchanged**. The receipt separately records 5 routine-pipeline record changes and 3 optional field enrichments on the new batch, rather than treating them as reviewed manifest facts.
 
-Final-head and merged-main CI passed. Regressions reject **21 source mutations and four cross-year collisions**, and cover pre/post-publication execution, preservation, idempotency, fixed-price/null-band rules, positive exclusions and read-only behavior. The exact post-publication snapshot passed regression/build/schema checks with source files unchanged. [Rehearsal](docs/verification/nse-universe-batch8-rehearsal-2026-09-25.json).
+Final-head and merged-main CI passed. Regressions reject **20 source mutations and four cross-year identity collisions**, and cover pre/post-publication behavior, idempotency, nulls, exclusions and read-only inputs. The exact post-publication snapshot was retested; all **308 archived source files** remained unchanged. [Rehearsal receipt](docs/verification/nse-universe-batch7-rehearsal-2026-09-25.json).
 
-### Exact next task
+### Exact next backend task
 
-The [canonical review summary](data/discovery/nse-universe-canonical-review-2026-09-25.json) accounts for all **119 pinned groups: 103 approved IPOs, nine excluded debt/migration events, seven unresolved cases**. No unreviewed group remains in that queue; this is **not full-universe completeness**.
+Review [batch8](data/discovery/ipo-universe-review-2026-09-25-batch8.json): **14 candidate issuer groups from SUMAX through SPECTRAA**, the remaining groups in the pinned canonical audit—not 14 confirmed IPOs. **DOLLEX** needs prior-offer/migration review; **13DCCL28** needs independent debt/repeat-security classification; **VINOD** needs fixed-price/null-band verification. Reconcile against latest main and actual Pages before any approval.
 
-Begin the [held-candidate queue](data/discovery/ipo-universe-held-review-2026-09-25.json) with **AMIRCHAND and LEAP missing-identity review**, using independent official issuer/exchange evidence. Then resolve ADANIENPP1, GICL, SILGOPP, VITAL and KOTYARK offering/history conflicts. Preserve uncertainty rather than invent identity or terms.
-
-A separate follow-up must assess the **original historical IPOs of the nine excluded-event issuers**: no exact normalized-name matches were found in checked recovery/Pages. Exclusion of a 2026 debt or migration event must not silently exclude an original historical equity IPO. Reconcile aliases and original offering year before any approval. Fabino's BSE listing-year hold and broader BSE/SEBI/NSE-series gaps remain; BSE parser v1.5 is 236/236 parsed. UI/research work remains in [its own handoff](docs/UI_DETAIL_NAVIGATION_HANDOFF.md).
+Preserve separate prior holds and resolved debt/migration exclusions. Completing this queue is not proof of full IPO-universe coverage: BSE/SEBI/NSE-series gaps remain. BSE parser v1.5 is 236/236 parsed. UI/research-depth work stays in [its own handoff](docs/UI_DETAIL_NAVIGATION_HANDOFF.md). No minimum-investment, billing/accounts/ads, spending or access-policy expansion.
 
 ## Local checks
 
@@ -79,9 +77,9 @@ A successful audit execution can still have **partial source coverage**; always 
 For the selected NSE release, verify actual Pages output without importing:
 
 ```bash
-node scripts/verify-reviewed-nse-publication.mjs --manifest=data/verified-nse-ipos/2026-09-25-batch8.json --output-dir=/tmp/nse-publication
+node scripts/verify-reviewed-nse-publication.mjs --manifest=data/verified-nse-ipos/2026-09-25-batch7.json --output-dir=/tmp/nse-publication
 ```
 
 ## Historical handoffs
 
-The immediately preceding README and status are archived byte-for-byte in [docs/archive/README-before-nse-batch8-live-verification.md](docs/archive/README-before-nse-batch8-live-verification.md) and [docs/archive/PROJECT_STATUS-before-nse-batch8-live-verification.md](docs/archive/PROJECT_STATUS-before-nse-batch8-live-verification.md). Earlier archives and verification receipts remain intact. Archived next-task instructions are not current instructions.
+The immediately preceding README and status are archived byte-for-byte in [docs/archive/README-before-nse-batch7-live-verification.md](docs/archive/README-before-nse-batch7-live-verification.md) and [docs/archive/PROJECT_STATUS-before-nse-batch7-live-verification.md](docs/archive/PROJECT_STATUS-before-nse-batch7-live-verification.md). Earlier archives and verification receipts remain intact. Archived next-task instructions are not current instructions.
