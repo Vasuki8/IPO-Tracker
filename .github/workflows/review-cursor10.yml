@@ -253,9 +253,23 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          release="$RUNNER_TEMP/cursor10-release-files"
+          mkdir -p "$release/data/discovery" "$release/data/verified-bse-listings"
+          cp data/discovery/bse-listing-reconciliation-2026-09-25-cursor10.json "$release/data/discovery/"
+          cp data/discovery/bse-listing-candidates-2026-09-25-batch33.json "$release/data/discovery/"
+          cp data/discovery/bse-listing-candidates-2026-09-25-batch34.json "$release/data/discovery/"
+          cp data/verified-bse-listings/2026-09-25-batch33.json "$release/data/verified-bse-listings/"
+          cp data/verified-bse-listings/2026-09-25-batch34.json "$release/data/verified-bse-listings/"
+
           git config user.name "Vasuki Patel"
           git config user.email "47256707+Vasuki8@users.noreply.github.com"
+          git fetch origin "${{ github.head_ref }}"
+          git reset --hard "origin/${{ github.head_ref }}"
+
+          cp "$release/data/discovery/"*.json data/discovery/
+          cp "$release/data/verified-bse-listings/"*.json data/verified-bse-listings/
           rm .github/workflows/review-cursor10.yml
+
           git add data/discovery/bse-listing-reconciliation-2026-09-25-cursor10.json
           git add data/discovery/bse-listing-candidates-2026-09-25-batch33.json
           git add data/discovery/bse-listing-candidates-2026-09-25-batch34.json
