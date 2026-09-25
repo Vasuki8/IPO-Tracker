@@ -26,25 +26,21 @@ Collection time, dataset generation and Pages publication are distinct signals. 
 
 ## Handoff for the next prompt
 
-**Latest completed backend unit: thirteen repaired cursor7 references published and VERIFIED live — PR #215 / #216.** No UI or parser changes.
+**Latest completed backend unit: earliest pending cursor8 segment published and VERIFIED — PR #219.** No UI or parser changes.
 
-PR #215 (`45eab356842ecd49895642133fc2e3eab1d0c427`) retained discovery batch22, the multi-year reconciliation report and reviewed evidence batch28. All thirteen references were absent from the current 1,109-record recovery/public universe and independently verified against issuer-specific official BSE listing notices. Source review run `36068697382`: **13/13 verified, 0 rejected/unavailable**. Original response hashes, collection/publication dates and literal evidence excerpts were preserved; unsupported terms remain null. The temporary read-only review workflow was removed before merge.
+PR #219 merged as `7fbd972531154a19624711a10cf77f52dd12bb58`. It retained discovery batches23/24, cursor8 reconciliation and reviewed evidence batches29/30 for **24 exact-missing BSE SME issuers**. Source review `36072368549` found 24 missing / 0 present / 0 identity-code-source conflicts against the then-current 1,122-record universe. Independent issuer-specific official BSE verification passed **24/24**, with **72 explicit listing-date / market-lot / issue-price facts** revalidated. Unsupported fields remain null; retained unparseable index notice `20221010-15` was not promoted to IPO terms.
 
-The real publication rehearsal proved **1,109 -> 1,122**, **13 additions**, all **1,109 existing records unchanged**, **185 already-present reviewed entries**, **0 holds/conflicts**, and a byte-idempotent rerun. All relevant local tests and PR-head data-contract/reviewed-evidence checks passed.
+The real rehearsal proved **1,122 -> 1,146**, exactly 24 additions, all 1,122 existing records unchanged, 198 already-present reviewed entries, 0 holds/conflicts and byte-idempotent rerun. PR-head and post-merge reviewed-evidence/data-contract CI passed.
 
-Production sync `36069541844` succeeded and operator health was healthy. The actual served comparison found **13 added / 3 changed / 0 removed**. Three existing records gained SEBI document references and collection timestamps; no existing IPO term value changed. Recovery increased **2023: 192 -> 196** and **2024: 292 -> 301**.
-
-PR #216 (`f41557347c204fda3f8f297e4ed23f1267b39d49`) selected batch28 in the existing read-only live verifier. Post-merge run `36070243437` confirmed **1,122 served records**, **13/13 unique issuers**, **39/39 matching fields**, **0 failures**, and **six unsupported fields null per issuer**. Snapshot fetched `2026-09-24T22:57:35.734Z`; dataset generated `2026-09-24T22:49:44.462Z`. Original document hashes were checked in 39 retained recovery field sources; the public projection serializes zero document hashes. Downloaded archive/served bytes and an independent pure audit matched the workflow receipt.
-
-Live artifact `10838520133`, ZIP SHA-256 `9177f167c564f4c9269c15d4d9bd7ec377dc2320246999284369e0ba080ae8d0`. Durable receipt: [docs/verification/repaired-cursor7-live-publication-2026-09-24.json](docs/verification/repaired-cursor7-live-publication-2026-09-24.json). Full source hashes, tests, clocks and commits are in [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md).
+Production source-backed sync `36079891576` succeeded, generated-data commit `9cd4824aa7d1cd3c26c6dbce84c8fca1ad58a641`, operator-state commit `7d5e43eada6b7767048871f89ac3a8cb745ab7f4`. Latest Pages deployment `36080148485` succeeded. Operator snapshot at `2026-09-25T01:01:00.530Z` is **healthy** with collection, rebuild, validation and repository publication successful. Full evidence, clocks and hashes are in [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md).
 
 ### Next backend task
 
-Re-read current main and cursor. Latest checked: parser **1.4.0**, **160/236 tracked**, **160 parsed**, **0 failed**, **76 untracked**, updated `2026-09-24T22:06:07.403Z`.
+Current retained cursor: parser **1.4.0**, **200/236 tracked**, **199 parsed**, **1 retained unparseable**, **36 untracked**, updated `2026-09-24T23:18:20.858Z`.
 
-**Continue one bounded historical cursor segment from the first unseen notice, currently `20230503-13`.** If independent automation has advanced, reconcile its earliest pending segment instead of fetching it again. Check all current recovery/public identities, BSE codes and listing sources; independently verify only missing/unambiguous candidates before reviewed publication. Preserve source hashes, dates and nulls; rehearse safe/idempotent publication and verify the actual served dataset.
+**Reconcile and review the next pending cursor segment, which already contains 25 discovered references from the following 20 notices.** Compare against current recovery/public identities, BSE codes and listing-source identities; independently verify only missing/unambiguous candidates in batches of at most 15. Preserve hashes, dates, excerpts and nulls; rehearse safe/idempotent publication; publish through the normal source-backed sync; verify served output. Do not reset/replay cursor progress.
 
-The thirteen repaired references are closed as discovery batch22 / reviewed batch28. Do not repeat the seven parser repairs, cursor7 discovery20/21 and reviewed26/27, or cursor6 discovery18/19 and reviewed24/25. Index discovery is not listing-term authority. No UI, minimum-investment, billing, accounts, ads, spending or permissions changes belong to this continuation.
+Cursor8 batches23/24 + reviewed29/30 are closed. Do not repeat earlier repaired/cursor batches. Index discovery is not listing-term authority. No UI, minimum-investment, billing, accounts, ads, spending or permissions changes belong to this continuation.
 
 **Product UI workstream — V2 live and verified, PR #209:** its separate evidence and notes remain in [docs/UI_DESIGN_HANDOFF.md](docs/UI_DESIGN_HANDOFF.md). No UI files changed in this backend release.
 
