@@ -822,6 +822,29 @@ export function applyPriceBand(record, extraction, sourceUrl, collectedAt) {
   return true;
 }
 
+export function applyListedStatusFromVerifiedListingDate(record, asOf = new Date().toISOString()) {
+  if (record?.status !== null && record?.status !== undefined && record.status !== "") return false;
+  if (Array.isArray(record?.status_evidence) && record.status_evidence.length > 0) return false;
+  const listing = record?.listing_date;
+  if (!listing || listing.status !== "verified" || typeof listing.value !== "string" ||
+      !/^\d{4}-\d{2}-\d{2}$/.test(listing.value) || !listing.source?.url ||
+      !Number.isFinite(Date.parse(listing.value + "T00:00:00Z")) ||
+      new Date(listing.value + "T00:00:00Z").toISOString().slice(0, 10) !== listing.value ||
+      !Number.isFinite(Date.parse(asOf)) || listing.value > asOf.slice(0, 10)) return false;
+  let host;
+  try { host = new URL(listing.source.url).hostname; } catch { return false; }
+  if (!["nseindia.com", "www.nseindia.com"].includes(host)) return false;
+  if (!resolveNseIdentity(record)) return false;
+
+  record.status = "listed";
+  record.status_evidence = [{
+    ...structuredClone(listing.source),
+    page: listing.page ?? null,
+    evidence_locator: listing.source.evidence_locator ?? "/metaInfo/listingDate"
+  }];
+  return true;
+}
+
 export function applyListingDate(record, extraction, sourceUrl, collectedAt) {
   if (!extraction?.value) return false;
   if (record.listing_date?.value !== null && record.listing_date?.value !== undefined) return false;
@@ -1740,8 +1763,17 @@ async function runAllFields() {
   const groups = recoveryFiles().map((file) => ({ file, recovery: JSON.parse(fs.readFileSync(file, "utf8")), changed: false }));
   const candidates = [];
   let historicalDeferred = 0;
+  let statusCandidates = 0;
+  let statusRepaired = 0;
   for (const group of groups) for (const record of group.recovery.records || []) {
     if (!resolveNseIdentity(record)) continue;
+    if (record.status == null && record.listing_date?.value != null) {
+      statusCandidates += 1;
+      if (applyListedStatusFromVerifiedListingDate(record, now)) {
+        statusRepaired += 1;
+        group.changed = true;
+      }
+    }
     if (!shouldUseIpoDetailForRecord(record)) {
       historicalDeferred += 1;
       continue;
@@ -1756,7 +1788,9 @@ async function runAllFields() {
     };
     if (Object.values(needs).some(Boolean)) candidates.push({ group, record, needs });
   }
-  const stats = { candidates:candidates.length, historical_deferred:historicalDeferred, api_success:0, fetch_errors:0, extracted:{issue_price:0,market_lot:0,issue_size:0,price_band:0,minimum_bid:0,listing_date:0} };
+  const stats = { candidates:candidates.length, historical_deferred:historicalDeferred, status_candidates:statusCandidates,
+    api_success:0, fetch_errors:0,
+    extracted:{issue_price:0,market_lot:0,issue_size:0,price_band:0,minimum_bid:0,listing_date:0,status:statusRepaired} };
   for (const { group, record, needs } of candidates) {
     const url = apiUrl(record);
     try {
