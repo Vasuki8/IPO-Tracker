@@ -52,7 +52,7 @@ jobs:
           };
           assert.equal(queue.candidates.length,15);
           assert.equal(sources.run_id,'36102861946');
-          assert.equal(sources.source_commit_sha,'78da67f8da7f878c45459dfc8969b2047fcb4202');
+          assert.equal(sources.source_commit_sha,'c5192aa36f15ebe37becd67c711fc890fc71aa75');
           assert.equal(sources.rows.length,31);
           for(const row of sources.rows){
             if(!row.file) continue;
