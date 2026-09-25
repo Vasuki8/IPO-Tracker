@@ -1536,19 +1536,54 @@
     "2025|trualt-bioenergy-limited": {
       "issuer_name": "TruAlt Bioenergy Limited",
       "listing_date": "2025-10-03",
-      "last_attempted_at": "2026-09-24T19:34:33.287Z",
+      "last_attempted_at": "2026-09-25T20:49:10.224Z",
       "parser_version": "1.2.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-yDqyYu/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1759213197626.pdf\ncurl: (28) Operation timed out after 75000 milliseconds with 18667023 out of 20288588 bytes received\ncurl: (18) transfer closed with 19975221 bytes remaining to read\n",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "TruAlt Bioenergy Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1759213197626.pdf",
+        "publication_date": "2025-09-22"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1759213197626.pdf"
     },
     "2024|nacdac-infrastructure-limited": {
       "issuer_name": "NACDAC INFRASTRUCTURE LIMITED.",
       "listing_date": "2024-12-24",
-      "last_attempted_at": "2026-09-24T19:34:33.287Z",
+      "last_attempted_at": "2026-09-25T20:49:10.224Z",
       "parser_version": "1.2.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-7p9OrL/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1734079584907.pdf\ncurl: (18) transfer closed with 7770977 bytes remaining to read\ncurl: (18) transfer closed with 7807561 bytes remaining to read\n",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "NACDAC INFRASTRUCTURE LIMITED - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1734079584907.pdf",
+        "publication_date": "2024-12-13"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1734079584907.pdf"
     },
     "2023|flair-writing-industries-limited": {
@@ -1646,10 +1681,33 @@
     "2020|chemcon-speciality-chemicals-limited": {
       "issuer_name": "Chemcon Speciality Chemicals Limited",
       "listing_date": "2020-10-01",
-      "last_attempted_at": "2026-09-24T19:34:33.287Z",
+      "last_attempted_at": "2026-09-25T20:49:10.224Z",
       "parser_version": "1.2.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-gfP5qr/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2020/1601276402345.pdf\ncurl: (18) transfer closed with 2865004 bytes remaining to read\ncurl: (18) transfer closed with 1501588 bytes remaining to read\n",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 3180000000,
+          "source_value": "₹3,180 MILLION",
+          "page": 1
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Chemcon Speciality Chemicals Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2020/1601276402345.pdf",
+        "publication_date": "2020-09-24"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2020/1601276402345.pdf"
     },
     "2025|gurunanak-agriculture-india-limited": {
@@ -2528,6 +2586,143 @@
         "publication_date": "2023-09-13"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694665777392.pdf"
+    },
+    "2023|marco-cables-and-conductors-limited": {
+      "issuer_name": "Marco Cables and Conductors Limited",
+      "listing_date": "2023-09-28",
+      "last_attempted_at": "2026-09-25T20:49:10.224Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 187272000,
+          "source_value": "₹1,872.72 LAKHS",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Marco Cables & Conductors Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1695619868003.pdf",
+        "publication_date": "2023-09-22"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1695619868003.pdf"
+    },
+    "2022|fusion-micro-finance-limited": {
+      "issuer_name": "Fusion Micro Finance Limited",
+      "listing_date": "2022-11-15",
+      "last_attempted_at": "2026-09-25T20:49:10.224Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Fusion Micro Finance Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1684485535717.pdf",
+        "publication_date": "2022-11-01"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1684485535717.pdf"
+    },
+    "2025|ivalue-infosolutions-limited": {
+      "issuer_name": "Ivalue Infosolutions Limited",
+      "listing_date": "2025-09-25",
+      "last_attempted_at": "2026-09-25T20:49:10.224Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Ivalue Infosolutions Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758005828714.pdf",
+        "publication_date": "2025-09-15"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758005828714.pdf"
+    },
+    "2024|arkade-developers-limited": {
+      "issuer_name": "Arkade Developers Limited",
+      "listing_date": "2024-09-24",
+      "last_attempted_at": "2026-09-25T20:49:10.224Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Arkade Developers Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1727932765667.pdf",
+        "publication_date": "2024-09-20"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1727932765667.pdf"
+    },
+    "2023|yatra-online-limited": {
+      "issuer_name": "Yatra Online Limited",
+      "listing_date": "2023-09-28",
+      "last_attempted_at": "2026-09-25T20:49:10.224Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Yatra Online Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694433230975.pdf",
+        "publication_date": "2023-09-11"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694433230975.pdf"
     }
   }
 }
