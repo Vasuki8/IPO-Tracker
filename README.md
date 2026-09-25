@@ -7,6 +7,7 @@ A source-first Indian IPO research website with automated official-source collec
 - Public dataset: `data/ipos.json`, generated from retained evidence under `data/recovery/`.
 - Development contract: [docs/DEVELOPMENT_PROCESS.md](docs/DEVELOPMENT_PROCESS.md).
 - Current handoff: [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md).
+- Current UI design handoff: [docs/UI_DETAIL_NAVIGATION_HANDOFF.md](docs/UI_DETAIL_NAVIGATION_HANDOFF.md).
 
 ## Product and data rules
 

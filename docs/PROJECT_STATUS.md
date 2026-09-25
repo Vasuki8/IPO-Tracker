@@ -1,5 +1,7 @@
 # Project status and handoff
 
+The separately requested IPO detail-page UI batch is documented in [UI_DETAIL_NAVIGATION_HANDOFF.md](UI_DETAIL_NAVIGATION_HANDOFF.md). The P1 backend continuation below remains the data workstream handoff.
+
 Updated: **2026-09-25**, recorded `2026-09-25T16:35:52Z`.
 
 ## Current priority and release state

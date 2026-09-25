@@ -351,6 +351,51 @@ function fieldEvidence(label, field, value, note = "") {
   const corrections = field?.corrections || [];
   return `<details class="evidence-row"><summary><span>${escapeHtml(label)}</span><span class="evidence-value">${escapeHtml(value)}${sourceBadge(sourceStatus(field))}</span></summary><div class="evidence-body">${note ? `<p>${escapeHtml(note)}</p>` : ""}${evidence.length ? evidence.map(evidenceMarkup).join("") : "<p>No retained source evidence is available for this field.</p>"}${corrections.length ? `<p>Retained correction history</p><pre class="correction-history">${escapeHtml(JSON.stringify(corrections, null, 2))}</pre>` : ""}</div></details>`;
 }
+function documentCategory(doc) {
+  const type = (doc.type || "").toLowerCase();
+  if (/sebi|prospectus|issuer/.test(type)) return "filings";
+  if (/nse|bse|exchange/.test(type)) return "exchange";
+  return "other";
+}
+const documentCategories = [
+  ["filings", "Offer filings"],
+  ["exchange", "Exchange records"],
+  ["other", "Other sources"],
+];
+function documentMarkup(doc) {
+  const url = safeUrl(doc.url);
+  const inner = `<strong>${escapeHtml(doc.type || "Official document")}</strong><small>${escapeHtml(doc.identity || "")}</small><small>Published: ${escapeHtml(doc.publication_date ? formatDate(doc.publication_date) : "Date unavailable")}</small><small>Collected: ${escapeHtml(formatTimestamp(doc.collected_at))}</small>`;
+  return `<article class="document"><span class="document-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM14 2v6h6M8 13h8M8 17h5"/></svg></span><div class="document-info">${url ? `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${inner}<span class="sr-only">Opens in a new tab</span></a>` : inner}</div>${url ? '<span class="document-arrow" aria-hidden="true">↗</span>' : ""}</article>`;
+}
+function renderDocuments(docs, category = "all") {
+  const groups = documentCategories
+    .map(([key, label]) => [
+      key,
+      label,
+      docs.filter((doc) => documentCategory(doc) === key),
+    ])
+    .filter(([, , items]) => items.length);
+  const filters = [
+    ["all", "All", docs.length],
+    ...groups.map(([key, label, items]) => [key, label, items.length]),
+  ];
+  $("#documentFilters").hidden = groups.length < 2;
+  $("#documentFilters").innerHTML = filters
+    .map(
+      ([key, label, count]) =>
+        `<button type="button" data-document-category="${key}" aria-pressed="${category === key}" class="${category === key ? "active" : ""}">${escapeHtml(label)} <span>${count}</span></button>`,
+    )
+    .join("");
+  $("#documentList").innerHTML = docs.length
+    ? groups
+        .filter(([key]) => category === "all" || category === key)
+        .map(
+          ([, label, items]) =>
+            `<section class="document-group" aria-label="${escapeHtml(label)}"><h3>${escapeHtml(label)} <span>${items.length}</span></h3>${items.map(documentMarkup).join("")}</section>`,
+        )
+        .join("")
+    : '<p class="small muted">No source documents are retained for this record yet.</p>';
+}
 function showDetail(id) {
   const ipo = IPO_DATA.find((row) => row.id === id);
   if (!ipo) {
@@ -442,15 +487,7 @@ function showDetail(id) {
       .join("");
   const docs = Array.isArray(ipo.documents) ? ipo.documents : [];
   $("#documentCount").textContent = docs.length;
-  $("#documentList").innerHTML = docs.length
-    ? docs
-        .map((doc) => {
-          const url = safeUrl(doc.url);
-          const inner = `<strong>${escapeHtml(doc.type || "Official document")}</strong><small>${escapeHtml(doc.identity || "")}</small><small>Published: ${escapeHtml(doc.publication_date ? formatDate(doc.publication_date) : "Date unavailable")}</small><small>Collected: ${escapeHtml(formatTimestamp(doc.collected_at))}</small>`;
-          return `<article class="document"><span class="document-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM14 2v6h6M8 13h8M8 17h5"/></svg></span><div class="document-info">${url ? `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${inner}<span class="sr-only">Opens in a new tab</span></a>` : inner}</div>${url ? '<span class="document-arrow" aria-hidden="true">↗</span>' : ""}</article>`;
-        })
-        .join("")
-    : '<p class="small muted">No source documents are retained for this record yet.</p>';
+  renderDocuments(docs);
   $("#homeView").hidden = true;
   $("#detailView").hidden = false;
   document.title = `${ipo.issuer_name} — IPO Tracker`;
@@ -562,9 +599,25 @@ for (const [id, delta] of [
     $(".directory").scrollIntoView({ behavior: "smooth" });
   });
 $("#retryLoad").addEventListener("click", loadData);
-$("#jumpDocuments").addEventListener("click", (event) => {
-  event.preventDefault();
+$("#jumpDocuments").addEventListener("click", () => {
   $("#documents").scrollIntoView({ behavior: "smooth" });
+});
+$(".detail-sections").addEventListener("click", (event) => {
+  const button = event.target.closest("[data-detail-section]");
+  if (button)
+    document
+      .getElementById(button.dataset.detailSection)
+      .scrollIntoView({ behavior: "smooth" });
+});
+$("#documentFilters").addEventListener("click", (event) => {
+  const button = event.target.closest("[data-document-category]");
+  if (!button) return;
+  const id = location.hash.startsWith("#ipo/")
+    ? decodeURIComponent(location.hash.slice(5))
+    : "";
+  const ipo = IPO_DATA.find((row) => row.id === id);
+  if (ipo)
+    renderDocuments(ipo.documents || [], button.dataset.documentCategory);
 });
 $$("[data-methodology]").forEach((button) =>
   button.addEventListener("click", () => $("#sourcesDialog").showModal()),

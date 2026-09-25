@@ -924,6 +924,43 @@ tbody tr:hover {
   color: var(--muted);
   margin-top: 24px;
 }
+.detail-sections {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px;
+  margin-top: 18px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 6px 20px #20372a0a;
+}
+.detail-sections__label {
+  color: var(--muted);
+  font-size: 10px;
+  padding: 0 12px;
+  margin-right: 4px;
+  border-right: 1px solid var(--line);
+  white-space: nowrap;
+}
+.detail-sections button {
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #52665a;
+  font-size: 11px;
+  font-weight: 550;
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+.detail-sections button:hover,
+.detail-sections button:focus-visible {
+  color: var(--green);
+  background: var(--green-soft);
+}
 .detail-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.5fr) minmax(290px, 1fr);
@@ -1079,6 +1116,40 @@ tbody tr:hover {
   padding: 12px;
   background: #f8faf6;
   border-radius: 7px;
+}
+.document-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: -7px 0 22px;
+}
+.document-filters button {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: #52665a;
+  font-size: 10px;
+  padding: 7px 9px;
+}
+.document-filters button.active {
+  background: var(--green-soft);
+  border-color: #bed6c4;
+  color: var(--green);
+}
+.document-filters span,
+.document-group h3 span {
+  color: var(--muted);
+  font-size: 9px;
+  margin-left: 3px;
+}
+.document-group + .document-group {
+  margin-top: 25px;
+}
+.document-group h3 {
+  margin: 0 0 13px;
+  color: #52665a;
+  font-size: 11px;
+  font-weight: 650;
 }
 .document {
   display: flex;
@@ -1589,6 +1660,19 @@ dialog p {
   }
   .detail-grid {
     margin-top: 18px;
+  }
+  .detail-sections {
+    overflow-x: auto;
+    scrollbar-width: thin;
+    gap: 0;
+    padding: 7px;
+  }
+  .detail-sections__label {
+    display: none;
+  }
+  .detail-sections button {
+    font-size: 10px;
+    padding: 9px 10px;
   }
   .detail-main {
     gap: 18px;
