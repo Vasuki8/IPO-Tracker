@@ -1,0 +1,156 @@
+{
+  "schema_version": "1.0.0",
+  "status": "review_required_no_import",
+  "source_run_id": "36095239145",
+  "source_commit_sha": "2c9b5d0d97754747b6510a0bb0ad837e988e65b0",
+  "source_artifact_id": 10846749143,
+  "source_artifact_sha256": "14521267a7d9d11f197248c3a7d4fca7fcf2e7257f63544a45677f1e1edf0c8c",
+  "source_url": "https://www.nseindia.com/api/public-past-issues",
+  "source_response_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+  "source_collected_at": "2026-09-25T04:38:22.631Z",
+  "source_audit_baseline_public_records": 1218,
+  "previous_batches": [
+    "data/discovery/ipo-universe-review-2026-09-25-batch1.json",
+    "data/discovery/ipo-universe-review-2026-09-25-batch2.json",
+    "data/discovery/ipo-universe-review-2026-09-25-batch3.json",
+    "data/discovery/ipo-universe-review-2026-09-25-batch4.json"
+  ],
+  "batch_limit": 15,
+  "selection_rule": "Next 15 exact-name-unmatched issuer groups from canonical audit 36095239145 observed in NSE past issues with outcome=listed and a 2026 explicit listing date, excluding all 60 batch1/batch2/batch3/batch4 symbols, ordered by listing_date then nse_symbol. These are candidate source groups, not confirmed IPOs. Reconcile again against latest main before action.",
+  "required_checks": [
+    "Independently establish IPO versus FPO, rights issue, partly-paid/repeat security, migration/listing transfer, debt or another offer type using issuer-specific official evidence.",
+    "Resolve legal-name aliases, NSE/BSE identifiers, prior offers and source identity across all recovery/public years.",
+    "Treat issuer names, symbols and aggregate past-issues rows only as review signals, not proof of a new IPO.",
+    "Retain nulls and conflicts; do not infer issue type, prices, dates, quantities, issue size or application amount.",
+    "Only materialize independently verified unambiguous IPOs after preservation/idempotency rehearsal, normal source-backed publication and actual Pages verification."
+  ],
+  "auto_import_allowed": false,
+  "candidates": [
+    {
+      "issuer_name": "Teja Engineering Industries Limited",
+      "nse_symbol": "TEJA",
+      "board": "SME",
+      "listing_date": "2026-07-07",
+      "row_index": 77
+    },
+    {
+      "issuer_name": "Vinit Mobile Limited",
+      "nse_symbol": "VMOBILE",
+      "board": "SME",
+      "listing_date": "2026-07-07",
+      "row_index": 76
+    },
+    {
+      "issuer_name": "Knack Packaging Limited",
+      "nse_symbol": "KNACK",
+      "board": "Mainboard",
+      "listing_date": "2026-07-08",
+      "row_index": 75
+    },
+    {
+      "issuer_name": "IC Electricals Company Limited",
+      "nse_symbol": "ICELCO",
+      "board": "SME",
+      "listing_date": "2026-07-10",
+      "row_index": 74
+    },
+    {
+      "issuer_name": "Kusumgar Limited",
+      "nse_symbol": "KUSUMGAR",
+      "board": "Mainboard",
+      "listing_date": "2026-07-15",
+      "row_index": 73
+    },
+    {
+      "issuer_name": "Happy Steels Limited",
+      "nse_symbol": "HAPPY",
+      "board": "SME",
+      "listing_date": "2026-07-16",
+      "row_index": 72
+    },
+    {
+      "issuer_name": "Laser Power & Infra Limited",
+      "nse_symbol": "LASERPOWER",
+      "board": "Mainboard",
+      "listing_date": "2026-07-16",
+      "row_index": 71
+    },
+    {
+      "issuer_name": "SBI Funds Management Limited",
+      "nse_symbol": "SBIFUNDS",
+      "board": "Mainboard",
+      "listing_date": "2026-07-21",
+      "row_index": 70
+    },
+    {
+      "issuer_name": "Caliber Mining and Logistics Limited",
+      "nse_symbol": "CMLL",
+      "board": "Mainboard",
+      "listing_date": "2026-07-24",
+      "row_index": 68
+    },
+    {
+      "issuer_name": "Metalic Technoforge Limited",
+      "nse_symbol": "METALIC",
+      "board": "SME",
+      "listing_date": "2026-07-28",
+      "row_index": 67
+    },
+    {
+      "issuer_name": "INDO-MIM Limited",
+      "nse_symbol": "INDOMIM",
+      "board": "Mainboard",
+      "listing_date": "2026-07-30",
+      "row_index": 64
+    },
+    {
+      "issuer_name": "Lohia Corp Limited",
+      "nse_symbol": "LCL",
+      "board": "Mainboard",
+      "listing_date": "2026-07-30",
+      "row_index": 65
+    },
+    {
+      "issuer_name": "Propshop Events and Exhibitions Limited",
+      "nse_symbol": "PROPSHOP",
+      "board": "SME",
+      "listing_date": "2026-08-03",
+      "row_index": 62
+    },
+    {
+      "issuer_name": "Manipal Health Enterprises Limited",
+      "nse_symbol": "MANIPALHOS",
+      "board": "Mainboard",
+      "listing_date": "2026-08-05",
+      "row_index": 61
+    },
+    {
+      "issuer_name": "Juniper Green Energy Limited",
+      "nse_symbol": "JNPR",
+      "board": "Mainboard",
+      "listing_date": "2026-08-06",
+      "row_index": 59
+    }
+  ],
+  "previous_batch4_review": "data/discovery/nse-universe-batch4-review-2026-09-25.json",
+  "previous_batch4_result": {
+    "reviewed": 15,
+    "approved_verified_ipos": 13,
+    "excluded_migration": 1,
+    "excluded_migration_symbols": [
+      "QMSMEDI"
+    ],
+    "excluded_debt": 1,
+    "excluded_debt_symbols": [
+      "12VPT28A"
+    ],
+    "publication_status": "verified_live"
+  },
+  "remaining_eligible_source_groups_after_batch4": 59,
+  "explicit_review_signals": [],
+  "scope_note": "Only the pinned queue is carried forward, not a verified IPO count or import authorization. Candidate identity and offering type remain unreviewed.",
+  "release_prerequisite": "Batch4 is live-verified in docs/verification/nse-universe-batch4-live-publication-2026-09-25.json. Before batch5 action, reconcile these pinned source groups against latest main and actual Pages.",
+  "last_verified_public_records": 1269,
+  "last_verified_public_sha256": "228b3a1861836dbce8e344313a82035d9e7ed38bcd2a09c31f4dcd822047c6b5",
+  "last_verified_public_fetched_at": "2026-09-25T17:30:44.748Z"
+}
