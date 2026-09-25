@@ -1,0 +1,330 @@
+name: Materialize reviewed NSE batch3
+on:
+  pull_request:
+    branches: [main]
+    paths: ['.github/workflows/materialize-nse-batch3.yml']
+permissions:
+  contents: write
+jobs:
+  materialize:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'backend/nse-universe-batch3-20260925'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: backend/nse-universe-batch3-20260925
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Download exact reviewed source archive
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs'), crypto = require('crypto');
+            const r = await github.rest.actions.downloadArtifact({owner: context.repo.owner, repo: context.repo.repo, artifact_id: 10875066031, archive_format: 'zip'});
+            const b = Buffer.from(r.data);
+            if (crypto.createHash('sha256').update(b).digest('hex') !== '24faa41a1bee5e50eafdcebd8404ec97de79e23149777f1c08f9863d2168e78a') throw new Error('archive_hash_mismatch');
+            fs.writeFileSync(process.env.RUNNER_TEMP + '/review-source.zip', b);
+      - name: Restore source bytes and apply reviewed narrow parser repair
+        run: |
+          mkdir -p "$RUNNER_TEMP/review-source" "$RUNNER_TEMP/materialization"
+          unzip -q "$RUNNER_TEMP/review-source.zip" -d "$RUNNER_TEMP/review-source"
+          echo '1840811f4ab0f2d0dd8707afd4e4733cb58e602eb7c2ccf51c4c7e8502f5a9f6  scripts/apply-reviewed-nse-ipos.mjs' | sha256sum --check
+          cat > "$RUNNER_TEMP/parser.patch" <<'PATCH'
+          --- a/scripts/apply-reviewed-nse-ipos.mjs
+          +++ b/scripts/apply-reviewed-nse-ipos.mjs
+          @@ -2,7 +2,7 @@
+           import path from 'node:path';
+           import { fileURLToPath, pathToFileURL } from 'node:url';
+           import { createHash } from 'node:crypto';
+          -import { issuerKey } from './verify-bse-listing-candidates.mjs';
+          +import { issuerKey as baseIssuerKey } from './verify-bse-listing-candidates.mjs';
+           import { parsePastIssuePrice } from './diagnose-nse-past-issues.mjs';
+           import { buildHistoricalRecord } from './sync-nse-historical.mjs';
+           import { parseMarketLotFromIpoDetail, parseMinimumBidFromIpoDetail, parsePriceBandFromIpoDetail } from './extract-nse-ipo-detail-fields.mjs';
+          @@ -14,6 +14,9 @@
+           export const hash = b => createHash('sha256').update(b).digest('hex');
+           export const norm = v => String(v ?? '').replace(/\s+/g, ' ').trim();
+           const title = v => norm(v).toLowerCase();
+          +// Ignore only an apostrophe inside a word, not other spelling differences.
+          +// Symbols, ISIN, board and all source identity checks still have to agree.
+          +const issuerKey = v => baseIssuerKey(String(v ?? '').replace(/([A-Za-z])['’](?=[A-Za-z])/g, '$1'));
+           const unquote = v => norm(v).replace(/^"|"$/g, '');
+           const equal = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+           const requireThat = (condition, reason) => { if (!condition) throw new Error(reason); };
+          @@ -35,7 +38,7 @@
+             return validDate(iso) && Number(m[1]) === Number(iso.slice(8)) ? iso : null;
+           }
+           export const detailUrl = c => 'https://www.nseindia.com/api/ipo-detail?symbol=' + encodeURIComponent(c.nse_symbol) + '&series=' + (c.board === 'SME' ? 'SME' : 'EQ');
+          -const TITLES = new Set(['symbol', 'issue size', 'issue period', 'issue type', 'price range', 'price band', 'market lot', 'lot size', 'bid lot', 'minimum order quantity']);
+          +const TITLES = new Set(['symbol', 'issue size', 'issue period', 'issue type', 'price range', 'price band', 'market lot', 'lot size', 'bid lot', 'minimum order quantity', 'revised/extended issue period', 'revised price range']);
+           
+           // Literal selected JSON fields, not a reconstructed full response. Original
+           // response bytes/hash remain in the recorded source artifact. Selection keeps
+          @@ -56,6 +59,31 @@
+             const items = payload.issueInfo.dataList.filter(i => title(i.title) === name);
+             requireThat(items.length <= 1 && (!required || items.length === 1), 'missing_or_duplicate_' + name);
+             return items[0] || null;
+          +}
+          +function reviewedPeriod(p) {
+          +  const ordinary = oneItem(p, 'issue period', false), revised = oneItem(p, 'revised/extended issue period', false);
+          +  requireThat(Boolean(ordinary) !== Boolean(revised), 'missing_or_competing_offer_period');
+          +  const item = revised || ordinary;
+          +  const pattern = revised
+          +    ? /^(\d{1,2}-[A-Za-z]+-\d{4})\s+to\s+(\d{1,2}-[A-Za-z]+-\d{4}) \(The Issue is further extended from start date (\d{2})\/(\d{2})\/(\d{4}) to end date (\d{2})\/(\d{2})\/(\d{4})\)$/i
+          +    : /^(\d{1,2}-[A-Za-z]+-\d{4})\s+to\s+(\d{1,2}-[A-Za-z]+-\d{4})$/;
+          +  const match = unquote(item.value).match(pattern);
+          +  requireThat(match, 'unrecognized_offer_period');
+          +  const open = nseDate(match[1]), close = nseDate(match[2]);
+          +  if (revised) requireThat(open === match[5] + '-' + match[4] + '-' + match[3] &&
+          +    close === match[8] + '-' + match[7] + '-' + match[6], 'inconsistent_revised_offer_period');
+          +  return { open, close, rawOpen: match[1], rawClose: match[2], title: norm(item.title) };
+          +}
+          +function reviewedBand(p) {
+          +  const revised = oneItem(p, 'revised price range', false);
+          +  if (!revised) return parsePriceBandFromIpoDetail(p);
+          +  requireThat(!p.issueInfo.dataList.some(i => ['price range', 'price band'].includes(title(i.title))), 'competing_price_bands');
+          +  // Normalize the title only for the existing parser; retain the literal title
+          +  // and value in the manifest and the published field's evidence locator.
+          +  const input = { ...p, issueInfo: { ...p.issueInfo, dataList: p.issueInfo.dataList.map(i =>
+          +    i === revised ? { ...i, title: 'Price Range' } : i) } };
+          +  const result = parsePriceBandFromIpoDetail(input);
+          +  return { ...result, source_title: norm(revised.title) };
+           }
+           function evidence(source, symbol, detail, pointer) {
+             return { url: source.url, document_type: detail ? 'NSE Issue Information API' : 'NSE Public Past Issues',
+          @@ -84,9 +112,7 @@
+               !/\b(?:follow[ -]?on|further public|rights issue|partly[ -]paid|debenture|non[ -]convertible|FPO)\b/i.test(offer), 'initial_equity_ipo_not_established');
+             requireThat(validDate(m.listingDate) && m.listingDate === c.listing_date && m.listingDate === nseDate(r.listingDate) &&
+               m.listingDate <= entry.detail_source.collected_at.slice(0, 10) && m.listingDate <= entry.past_source.collected_at.slice(0, 10), 'listing_date_mismatch_or_future');
+          -  const period = unquote(oneItem(p, 'issue period').value).match(/^(\d{1,2}-[A-Za-z]+-\d{4})\s+to\s+(\d{1,2}-[A-Za-z]+-\d{4})$/);
+          -  requireThat(period, 'unrecognized_offer_period');
+          -  const open = nseDate(period[1]), close = nseDate(period[2]);
+          +  const period = reviewedPeriod(p), { open, close } = period;
+             requireThat(validDate(open) && validDate(close) && open <= close && close <= m.listingDate &&
+               open === nseDate(r.ipoStartDate) && close === nseDate(r.ipoEndDate), 'offer_period_mismatch');
+             const price = parsePastIssuePrice(r.issuePrice);
+          @@ -97,12 +123,12 @@
+                 source: evidence(source, c.nse_symbol, isDetail, pointer), corrections: [] };
+             }
+             fact('listing_date', m.listingDate, m.listingDate, entry.detail_source, '/metaInfo/listingDate');
+          -  fact('open_date', open, period[1], entry.detail_source, '/issueInfo/dataList[Issue Period]');
+          -  fact('close_date', close, period[2], entry.detail_source, '/issueInfo/dataList[Issue Period]');
+          +  fact('open_date', open, period.rawOpen, entry.detail_source, '/issueInfo/dataList[' + period.title + ']');
+          +  fact('close_date', close, period.rawClose, entry.detail_source, '/issueInfo/dataList[' + period.title + ']');
+             fact('issue_price', price, norm(r.issuePrice), entry.past_source, '/' + c.row_index + '/issuePrice', false);
+          -  const band = parsePriceBandFromIpoDetail(p), lot = parseMarketLotFromIpoDetail(p), min = parseMinimumBidFromIpoDetail(p);
+          +  const band = reviewedBand(p), lot = parseMarketLotFromIpoDetail(p), min = parseMinimumBidFromIpoDetail(p);
+             for (const [key, result, present] of [
+          -    ['price_band', band, p.issueInfo.dataList.some(i => ['price range', 'price band'].includes(title(i.title)))],
+          +    ['price_band', band, p.issueInfo.dataList.some(i => ['price range', 'price band', 'revised price range'].includes(title(i.title)))],
+               ['market_lot', lot, p.issueInfo.dataList.some(i => ['market lot', 'lot size'].includes(title(i.title)))],
+               ['minimum_bid_quantity', min, p.issueInfo.dataList.some(i => title(i.title) === 'minimum order quantity')]
+             ]) {
+          PATCH
+          git apply "$RUNNER_TEMP/parser.patch"
+          echo '4a5317789c0beb7b6daea4a2503d2864f7ad705faf6c1d84000368c503e3ed31  scripts/apply-reviewed-nse-ipos.mjs' | sha256sum --check
+      - name: Materialize the thirteen manually approved projections and both held cases
+        env:
+          SOURCE_DIR: ${{ runner.temp }}/review-source
+        run: |
+          node --input-type=module <<'JS' | tee "$RUNNER_TEMP/materialization/source-validation.json"
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import assert from 'node:assert/strict';
+          import { hash, projectDetail, validateReviewedBatch, loadRecovery, applyReviewedBatch } from './scripts/apply-reviewed-nse-ipos.mjs';
+          const root = process.cwd(), dir = process.env.SOURCE_DIR;
+          const read = p => JSON.parse(fs.readFileSync(p));
+          const src = read(path.join(dir, 'sources.json'));
+          assert.equal(src.run_id, '36158694311');
+          assert.equal(src.source_commit_sha, '1997f423d49050a576171b4867a7fa71c0015097');
+          const queuePath = 'data/discovery/ipo-universe-review-2026-09-25-batch3.json';
+          const queueBytes = fs.readFileSync(queuePath), queue = JSON.parse(queueBytes);
+          assert.equal(hash(queueBytes), src.input.sha256);
+          assert.equal(queue.candidates.length, 15);
+          assert.equal(src.rows.length, 18);
+          for (const s of src.rows) {
+            assert.equal(s.status, 200); assert.equal(path.basename(s.file), s.file);
+            const bytes = fs.readFileSync(path.join(dir, s.file));
+            assert.equal(bytes.length, s.bytes, s.file + ' byte count');
+            assert.equal(hash(bytes), s.sha256, s.file + ' original hash');
+          }
+          const pastSource = src.rows.find(s => s.kind === 'past');
+          assert.equal(pastSource.sha256, 'b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31');
+          const past = read(path.join(dir, pastSource.file));
+          const approved = ['APSISAERO','RSL','INNOVISION','GSPCROP','CMPDI','POWERICA','SAIPARENT','VIVIDEL','ADISOFT','AMBAAUTO','KISSHT','VALUE360','SIMCA'];
+          const provenance = { source_run_id: src.run_id, source_snapshot_commit: src.source_commit_sha,
+            source_artifact_id: 10875066031, source_artifact_sha256: '24faa41a1bee5e50eafdcebd8404ec97de79e23149777f1c08f9863d2168e78a', queue_path: queuePath };
+          const evidence = (s, projection) => ({ url: s.url, final_url: s.final_url, http_status: s.status,
+            publication_date: null, collected_at: s.collected_at, response_sha256: s.sha256,
+            projection_sha256: hash(JSON.stringify(projection)), artifact_file: s.file });
+          const all = queue.candidates.map(candidate => {
+            const s = src.rows.find(s => s.symbol === candidate.nse_symbol && s.kind === 'ipo_detail');
+            const detail = projectDetail(read(path.join(dir, s.file))), past_row = past[candidate.row_index];
+            assert.equal(past_row.symbol, candidate.nse_symbol);
+            return { candidate, decision: 'verified_initial_equity_ipo', detail_source: evidence(s, detail), detail,
+              past_source: evidence(pastSource, past_row), past_row };
+          });
+          const manifest = { schema_version: '1.0.0', verifier_version: '1.0.0', ...provenance,
+            queue_sha256: hash(JSON.stringify(queue)), projection_method: 'literal_selected_json_fields_all_used_titles_retained',
+            scope_note: 'Manually reviewed initial public equity IPOs only. AMIRCHAND is held for absent issuer identity metadata; 10MWL29 is an identified debt security. No feed-only import, estimated fields or application amount.',
+            entries: all.filter(e => approved.includes(e.candidate.nse_symbol)) };
+          assert.deepEqual(manifest.entries.map(e => e.candidate.nse_symbol), approved);
+          const checked = validateReviewedBatch(manifest, queue);
+          assert.equal(checked.length, 13);
+          assert.equal(checked.reduce((n,c) => n + Object.keys(c.facts).length, 0), 78);
+          assert.equal(checked.filter(c => c.facts.market_lot).length, 6);
+          assert.equal(checked.filter(c => c.facts.minimum_bid_quantity).length, 7);
+          const manifestPath = 'data/verified-nse-ipos/2026-09-25-batch3.json';
+          const publishedBytes = fs.readFileSync('data/ipos.json'), published = JSON.parse(publishedBytes);
+          const raw = loadRecovery(root), before = JSON.stringify(raw);
+          const plan = applyReviewedBatch(raw, published, manifest, queue, manifestPath);
+          assert.deepEqual(plan.stats, { added: 13, already_present: 0 });
+          assert.equal(JSON.stringify(raw), before);
+          for (const [year, data] of Object.entries(raw)) for (const r of data.records) assert.deepEqual(plan.recovery[year].records.find(n => n.id === r.id), r);
+          assert.deepEqual(applyReviewedBatch(plan.recovery, published, manifest, queue, manifestPath).stats, { added: 0, already_present: 13 });
+          const holds = all.filter(e => !approved.includes(e.candidate.nse_symbol)).map(e => {
+            assert.throws(() => validateReviewedBatch({ ...manifest, entries: [e] }, queue));
+            if (e.candidate.nse_symbol === '10MWL29') {
+              const s = src.rows.find(s => s.kind === 'issuer_security_classification');
+              assert.equal(e.detail.metaInfo.isDebtSec, true); assert.equal(e.detail.metaInfo.isin, 'INE0JYY07026');
+              return { ...e, decision: 'excluded_debt_security_not_initial_equity_ipo', auto_import_allowed: false,
+                reason: 'NSE identity explicitly sets isDebtSec=true for ISIN INE0JYY07026; the issuer disclosure separately identifies NSE Debt Symbol 10MWL29 and its equity symbol MWL. The past feed pairs an old 2022 offer period with a 2026 debt listing. Do not turn this into a new equity IPO.',
+                issuer_disclosure: { url: s.url, final_url: s.final_url, http_status: s.status, collected_at: s.collected_at,
+                  publication_date: '2026-05-16', document_sha256: s.sha256, artifact_file: s.file, page: 1,
+                  evidence: 'NSE Debt Symbol: 10MWL29 & ISIN: INE0JYY07026', equity_identity: { symbol: 'MWL', isin: 'INE0JYY01011' } } };
+            }
+            assert.equal(e.candidate.nse_symbol, 'AMIRCHAND'); assert.equal(e.detail.companyName, 'AMIRCHAND');
+            assert.ok(Object.values(e.detail.metaInfo).every(v => v === null));
+            return { ...e, decision: 'held_missing_issuer_identity_metadata', auto_import_allowed: false,
+              reason: 'The issuer-specific response contains explicit initial public equity offer terms, but top-level companyName is only AMIRCHAND and metaInfo is absent. Symbol/ISIN/legal-name/board/listing identity gates therefore cannot pass. Retain terms as unimported evidence; do not fabricate missing metadata from the past feed.',
+              next_check: 'Retrieve official issuer-specific identity evidence through a source-aware adapter, retaining its separate URL/date/hash and reconciling legal name, NSE symbol, ISIN, board and listing date before importing.' };
+          });
+          const review = { schema_version: '1.0.0', status: 'reviewed_13_approved_1_held_1_excluded_debt', reviewed_at: new Date().toISOString(), ...provenance,
+            baseline: { public_records: published.records.length, public_sha256: hash(publishedBytes), note: 'Reconciled across all retained 2020-2026 recovery years and the checked-out public dataset before action; actual publication is verified separately.' },
+            stats: { reviewed_candidates: 15, verified_initial_equity_ipos: 13, held_missing_identity: 1, excluded_debt_securities: 1, approved_exact_missing: 13, approved_identity_conflicts: 0,
+              verified_facts: 78, listing_dates: 13, offer_dates: 26, final_issue_prices: 13, price_bands: 13, market_lots: 6, minimum_bid_quantities: 7 },
+            method: 'Require explicit issuer-specific initial public equity offer terms plus aligned legal name, symbol, ISIN, board and dates. Only an apostrophe inside a word is ignored for name comparison; no other spelling change is accepted. Revised periods require both stated date representations to agree and both official sources to match. Competing period/price-band titles fail closed.',
+            sources: { successful_detail_responses: 15, original_response_hashes_checked: src.rows.length, past_response_sha256: pastSource.sha256 },
+            entries: checked.map(c => ({ symbol: c.candidate.nse_symbol, issuer_name: c.issuer_name, observed_alias: c.candidate.issuer_name, isin: c.isin, board: c.candidate.board,
+              decision: 'approved_verified_initial_equity_ipo', recovery_matches: [], published_matches: [] })), held: holds };
+          fs.writeFileSync(manifestPath, JSON.stringify(manifest) + '\n');
+          fs.writeFileSync('data/discovery/nse-universe-batch3-review-2026-09-25.json', JSON.stringify(review) + '\n');
+          console.log(JSON.stringify({ source_hashes: src.rows.length, ...review.stats, preservation: true, idempotent: true }));
+          JS
+      - name: Add focused revised-term and identity regression tests
+        run: |
+          cat > scripts/test-reviewed-nse-batch3.mjs <<'JS'
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import { fileURLToPath } from 'node:url';
+          import { hash, loadReviewed, loadRecovery, validateReviewedBatch, applyReviewedBatch } from './apply-reviewed-nse-ipos.mjs';
+          const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+          const batch = loadReviewed(root).find(b => b.manifest_path === 'data/verified-nse-ipos/2026-09-25-batch3.json');
+          assert.ok(batch, 'pinned batch3 manifest is required');
+          const { manifest: m, queue: q } = batch, checked = validateReviewedBatch(m, q);
+          assert.equal(checked.length, 13);
+          assert.equal(checked.reduce((n, c) => n + Object.keys(c.facts).length, 0), 78);
+          assert.equal(checked.filter(c => c.facts.market_lot).length, 6);
+          assert.equal(checked.filter(c => c.facts.minimum_bid_quantity).length, 7);
+          for (const c of checked) assert.equal(Object.keys(c.facts).length, 6, 'no inferred optional facts');
+          const innovision = checked.find(c => c.candidate.nse_symbol === 'INNOVISION');
+          assert.equal(innovision.facts.open_date.value, '2026-03-10');
+          assert.equal(innovision.facts.close_date.value, '2026-03-17');
+          assert.deepEqual(innovision.facts.price_band.value, { min: 494, max: 519 });
+          assert.equal(innovision.facts.minimum_bid_quantity.value, 27);
+          assert.equal(innovision.facts.market_lot, undefined, 'Bid Lot is not market lot');
+          assert.equal(innovision.facts.close_date.source.evidence_locator, '/issueInfo/dataList[Revised/Extended Issue Period]');
+          assert.equal(innovision.facts.price_band.source.evidence_locator, '/issueInfo/dataList[Revised Price Range]');
+          assert.equal(checked.find(c => c.candidate.nse_symbol === 'SAIPARENT').issuer_name, 'Sai Parenterals Limited');
+          const norm = v => String(v).trim().toLowerCase();
+          const item = (e, t) => e.detail.issueInfo.dataList.find(i => norm(i.title) === t);
+          const rehash = e => { e.detail_source.projection_sha256 = hash(JSON.stringify(e.detail)); e.past_source.projection_sha256 = hash(JSON.stringify(e.past_row)); };
+          let rejected = 0;
+          function bad(symbol, mutate) {
+            const copy = structuredClone(m), e = copy.entries.find(e => e.candidate.nse_symbol === symbol);
+            mutate(e); rehash(e); assert.throws(() => validateReviewedBatch(copy, q)); rejected++;
+          }
+          bad('INNOVISION', e => { e.detail.issueInfo.dataList.push({ title: 'Issue Period', value: '10-Mar-2026 to 12-Mar-2026' }); });
+          bad('INNOVISION', e => { e.detail.issueInfo.dataList.push({ title: 'Revised/Extended Issue Period', value: item(e, 'revised/extended issue period').value }); });
+          bad('INNOVISION', e => { item(e, 'revised/extended issue period').value = item(e, 'revised/extended issue period').value.replace('17/03/2026', '18/03/2026'); });
+          bad('INNOVISION', e => { item(e, 'revised/extended issue period').value = item(e, 'revised/extended issue period').value.replace('10-Mar-2026', '31-Feb-2026'); });
+          bad('INNOVISION', e => { item(e, 'revised/extended issue period').value = item(e, 'revised/extended issue period').value.replace(/17/g, '18'); });
+          bad('INNOVISION', e => { item(e, 'revised/extended issue period').value += ' or another date'; });
+          bad('INNOVISION', e => { item(e, 'revised/extended issue period').value = '10-Mar-2026 to 17-Mar-2026'; });
+          bad('INNOVISION', e => { e.detail.issueInfo.dataList.push({ title: 'Price Range', value: 'Rs. 400 to Rs. 519 per Equity Share' }); });
+          bad('INNOVISION', e => { e.detail.issueInfo.dataList.push({ title: 'Revised Price Range', value: 'Rs. 494 to Rs. 519 per Equity Share' }); });
+          bad('INNOVISION', e => { item(e, 'revised price range').value = 'not established'; });
+          bad('INNOVISION', e => { e.past_row.issuePrice = '520'; });
+          bad('SAIPARENT', e => { e.detail.companyName = 'Sai Parenteral Limited'; });
+          bad('SAIPARENT', e => { e.detail.metaInfo.symbol = 'OTHER'; });
+          bad('SAIPARENT', e => { e.detail.metaInfo.isDebtSec = true; });
+          bad('SAIPARENT', e => { e.detail.companyName = "Sai Parenteral''s Limited"; });
+          const curly = structuredClone(m), sai = curly.entries.find(e => e.candidate.nse_symbol === 'SAIPARENT');
+          sai.detail.companyName = 'Sai Parenteral’s Limited'; rehash(sai);
+          assert.equal(validateReviewedBatch(curly, q).length, 13, 'internal typographic apostrophe only');
+          const review = JSON.parse(fs.readFileSync(path.join(root, 'data/discovery/nse-universe-batch3-review-2026-09-25.json')));
+          assert.equal(review.held.length, 2);
+          for (const held of review.held) {
+            const copy = { ...structuredClone(m), entries: [{ ...structuredClone(held), decision: 'verified_initial_equity_ipo' }] };
+            assert.throws(() => validateReviewedBatch(copy, q)); rejected++;
+          }
+          const raw = loadRecovery(root), original = JSON.stringify(raw), pub = JSON.parse(fs.readFileSync(path.join(root, 'data/ipos.json')));
+          const rawBefore = structuredClone(raw);
+          for (const year of Object.values(rawBefore)) year.records = year.records.filter(r => r.nse_verified_ipo_batch?.manifest !== batch.manifest_path);
+          const symbols = new Set(checked.map(c => c.candidate.nse_symbol)), isins = new Set(checked.map(c => c.isin));
+          const prior = { ...pub, records: pub.records.filter(r => !symbols.has(r.nse_symbol) && !isins.has(r.isin) && !checked.some(c => c.issuer_name === r.issuer_name)) };
+          const plan = applyReviewedBatch(rawBefore, prior, m, q, batch.manifest_path);
+          assert.deepEqual(plan.stats, { added: 13, already_present: 0 });
+          for (const [y, data] of Object.entries(rawBefore)) for (const r of data.records) assert.deepEqual(plan.recovery[y].records.find(n => n.id === r.id), r);
+          assert.deepEqual(applyReviewedBatch(plan.recovery, prior, m, q, batch.manifest_path).recovery, plan.recovery);
+          for (const spelling of ["Sai Parenteral's Limited", 'Sai Parenterals Limited', 'Sai Parenteral’s Limited']) {
+            const collision = structuredClone(rawBefore); collision['2021'].records.push({ id: 'prior-issuer', issuer_name: spelling });
+            const before = JSON.stringify(collision);
+            assert.throws(() => applyReviewedBatch(collision, prior, m, q, batch.manifest_path), 'apostrophe alias must not duplicate a prior-year issuer');
+            assert.equal(JSON.stringify(collision), before);
+          }
+          assert.equal(JSON.stringify(loadRecovery(root)), original, 'tests are read-only');
+          console.log(JSON.stringify({ reviewed_nse_batch3_tests: { issuers: 13, facts: 78, rejected_mutations: rejected, alias_collisions: 3, idempotent: true } }));
+          JS
+          printf '\nawait import("./test-reviewed-nse-batch3.mjs");\n' >> scripts/test-reviewed-nse-ipos.mjs
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('.github/workflows/verify-reviewed-nse-publication.yml')
+          text=p.read_text(); assert text.count('2026-09-25-batch2.json') == 1
+          p.write_text(text.replace('2026-09-25-batch2.json','2026-09-25-batch3.json'))
+          p=Path('scripts/test-reviewed-nse-publication.mjs'); text=p.read_text()
+          old='fields_verified: audit.checked_fields, idempotent:'
+          assert text.count(old) == 1
+          p.write_text(text.replace(old, 'fields_verified: audit.checked_fields, batches: batches.map(b => { const a = auditReviewedPublication({ batch: b, recovery, data, checkedAt }); return { manifest: b.manifest_path, issuers: a.checked_issuers, facts: a.checked_fields, status: a.status }; }), idempotent:'))
+          PY
+      - name: Verify preservation, idempotency, publication and contract
+        run: |
+          set -euo pipefail
+          node scripts/test-reviewed-nse-ipos.mjs | tee "$RUNNER_TEMP/materialization/tests.jsonl"
+          node scripts/test-reviewed-nse-publication.mjs | tee "$RUNNER_TEMP/materialization/rehearsal.json"
+          node scripts/apply-reviewed-nse-ipos.mjs --check
+          node scripts/build-published-data.mjs --check
+          node scripts/validate-data.mjs
+          git diff --exit-code -- data/ipos.json data/recovery ops assets
+          git diff --check
+      - name: Commit reviewed evidence only to the review branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add scripts/apply-reviewed-nse-ipos.mjs scripts/test-reviewed-nse-ipos.mjs scripts/test-reviewed-nse-batch3.mjs scripts/test-reviewed-nse-publication.mjs data/verified-nse-ipos/2026-09-25-batch3.json data/discovery/nse-universe-batch3-review-2026-09-25.json .github/workflows/verify-reviewed-nse-publication.yml
+          git diff --cached --stat
+          git commit -m 'feat(data): retain thirteen independently verified NSE batch3 IPOs'
+          git push origin HEAD:refs/heads/backend/nse-universe-batch3-20260925
+          git archive --format=zip HEAD > "$RUNNER_TEMP/materialization/source-snapshot.zip"
+          git rev-parse HEAD > "$RUNNER_TEMP/materialization/source-commit.txt"
+      - name: Retain materialization and rehearsal receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nse-batch3-materialization-${{ github.run_id }}
+          path: ${{ runner.temp }}/materialization
+          retention-days: 14
+          if-no-files-found: error
