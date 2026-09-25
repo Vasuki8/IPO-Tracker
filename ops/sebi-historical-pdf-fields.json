@@ -1100,10 +1100,10 @@
     "2025|midwest-limited": {
       "issuer_name": "Midwest Limited",
       "listing_date": "2025-10-24",
-      "last_attempted_at": "2026-09-24T10:39:02.191Z",
+      "last_attempted_at": "2026-09-25T12:23:22.555Z",
       "parser_version": "1.2.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-iTtnL2/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765444608922.pdf\ncurl: (18) transfer closed with 8606290 bytes remaining to read\ncurl: (18) transfer closed with 204834 bytes remaining to read\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-2eFOLB/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765444608922.pdf\ncurl: (18) transfer closed with 7893594 bytes remaining to read\ncurl: (18) transfer closed with 8616922 bytes remaining to read\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765444608922.pdf"
     },
     "2024|vishal-mega-mart-limited": {
@@ -2222,6 +2222,144 @@
         "publication_date": "2022-11-03"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1667459494353.pdf"
+    },
+    "2024|hyundai-motor-india-limited": {
+      "issuer_name": "Hyundai Motor India Limited",
+      "listing_date": "2024-10-22",
+      "last_attempted_at": "2026-09-25T12:23:22.555Z",
+      "parser_version": "1.2.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-brK8zc/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1728898802128.PDF\ncurl: (18) transfer closed with 11116826 bytes remaining to read\ncurl: (18) transfer closed with 8428994 bytes remaining to read\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1728898802128.PDF"
+    },
+    "2023|updater-services-limited": {
+      "issuer_name": "Updater Services Limited",
+      "listing_date": "2023-10-04",
+      "last_attempted_at": "2026-09-25T12:23:22.555Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Updater Services Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1695203524052.PDF",
+        "publication_date": "2023-09-20"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1695203524052.PDF"
+    },
+    "2022|amiable-logistics-india-limited": {
+      "issuer_name": "Amiable Logistics (India) Limited",
+      "listing_date": "2022-11-16",
+      "last_attempted_at": "2026-09-25T12:23:22.555Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 43675000,
+          "source_value": "₹436.75 LAKHS",
+          "page": 2
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Amiable Logistics India Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1669197521086.pdf",
+        "publication_date": "2022-10-27"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1669197521086.pdf"
+    },
+    "2025|seshaasai-technologies-limited": {
+      "issuer_name": "Seshaasai Technologies Limited",
+      "listing_date": "2025-09-30",
+      "last_attempted_at": "2026-09-25T12:23:22.555Z",
+      "parser_version": "1.2.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-CZRT0O/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1759123834724.pdf\ncurl: (18) transfer closed with 10420426 bytes remaining to read\ncurl: (18) transfer closed with 9204978 bytes remaining to read\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1759123834724.pdf"
+    },
+    "2024|garuda-construction-and-engineering-limited": {
+      "issuer_name": "Garuda Construction and Engineering Limited",
+      "listing_date": "2024-10-15",
+      "last_attempted_at": "2026-09-25T12:23:22.555Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Garuda Construction and Engineering Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1727775469844.pdf",
+        "publication_date": "2024-10-01"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1727775469844.pdf"
+    },
+    "2022|bikaji-foods-international-limited": {
+      "issuer_name": "Bikaji Foods International Limited",
+      "listing_date": "2022-11-16",
+      "last_attempted_at": "2026-09-25T12:23:22.555Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Bikaji Foods International Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2022/1666957499627.pdf",
+        "publication_date": "2022-10-25"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2022/1666957499627.pdf"
+    },
+    "2025|solarworld-energy-solutions-limited": {
+      "issuer_name": "Solarworld Energy Solutions Limited",
+      "listing_date": "2025-09-30",
+      "last_attempted_at": "2026-09-25T12:23:22.555Z",
+      "parser_version": "1.2.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-AiE2L1/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1759827896999.pdf\ncurl: (18) transfer closed with 5639191 bytes remaining to read\ncurl: (18) transfer closed with 2640335 bytes remaining to read\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1759827896999.pdf"
     }
   }
 }
