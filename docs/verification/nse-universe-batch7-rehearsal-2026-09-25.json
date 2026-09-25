@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0.0",
+  "status": "rehearsal_verified_not_live_publication",
+  "source_review": {
+    "run_id": "36180291566",
+    "artifact_id": 10884545129,
+    "artifact_sha256": "4196efe544c31deee32ebd6d642e11d5f904266aee97a10b43c96f392dd27da6",
+    "source_snapshot_commit": "d451a6166aea8437d976228014c563fc70885981",
+    "source_branch_head": "b81403fee76d64771720eed8b86e7127e0e707f7",
+    "original_response_hashes_checked": 21,
+    "http_successes": 21,
+    "http_failures": 0,
+    "independent_debt_evidence": ["NSE/CML/76063 pages 1 and 5", "NSE/CML/76110 pages 1 and 2"],
+    "evidence_review": "Official original PDFs were text-extracted and visually inspected using local rendered pages; web PDF screenshots returned cache errors. Separate official equity identity tables were checked by symbol, ISIN and security class."
+  },
+  "materialization": {
+    "run_id": "36181249657",
+    "conclusion": "success",
+    "artifact_id": 10883833361,
+    "artifact_sha256": "8c3e7e5d9ad8f49502f78ec0c57e1594bd7512a8b8c8aa6569d6f71b5ffa22cd",
+    "reviewed_commit": "2ee7c4287ffa4079c790882e730d60594e6999fc",
+    "manifest_sha256": "7ca083442a94c4b64ede8b6b41417edf577190fe8304c31b5b9437f9371c4a84",
+    "review_sha256": "f5299e16f84b81d0e6a3fb29e15b0251943048923093a13599e6363f3fffd52b",
+    "parser_sha256": "47579122000d9ba00d1561367c61c2061b2d97f72511ac0eabc42e1b2b52a6c7",
+    "batch_test_sha256": "3c2271155a4ef234545cfd763ac5d030c169551b31f3f4f3871179aacfefefc3",
+    "all_five_materialized_files_equal_locally_tested_bytes": true
+  },
+  "review": {
+    "candidates": 15,
+    "approved_initial_equity_ipos": 13,
+    "excluded_debt_securities": ["1150VIES30", "12AIL28"],
+    "held": [],
+    "facts": 78,
+    "listing_dates": 13,
+    "offer_dates": 26,
+    "final_issue_prices": 13,
+    "price_bands": 13,
+    "market_lots": 4,
+    "minimum_bid_quantities": 9
+  },
+  "parser_repair": "Accept only a fully anchored Issue Period suffix (The Issue is further extended to DATE). The suffix must repeat the stated closing date and agree with the independent past-source close; preserve the literal expression. No issuer allowlist, date inference or relaxed identity gate.",
+  "baseline": {
+    "records": 1296,
+    "sha256": "0fe577e052a06eef0e477eff7a0530a289b5715d25da42e372fc5071f4e9b1e0",
+    "source_snapshot_matches_served_bytes": true
+  },
+  "rehearsal": {
+    "before": 1296,
+    "after": 1309,
+    "added": 13,
+    "removed": 0,
+    "existing_unchanged": 1296,
+    "idempotent": true,
+    "reviewed_batches": [
+      {"batch": 1, "issuers": 14, "facts": 83, "status": "verified"},
+      {"batch": 2, "issuers": 11, "facts": 66, "status": "verified"},
+      {"batch": 3, "issuers": 13, "facts": 78, "status": "verified"},
+      {"batch": 4, "issuers": 13, "facts": 78, "status": "verified"},
+      {"batch": 5, "issuers": 15, "facts": 89, "status": "verified"},
+      {"batch": 6, "issuers": 12, "facts": 72, "status": "verified"},
+      {"batch": 7, "issuers": 13, "facts": 78, "status": "verified"}
+    ],
+    "total_reviewed_issuers": 91,
+    "total_reviewed_facts": 544,
+    "batch7_rejected_mutations": 20,
+    "batch7_cross_year_collisions": 4,
+    "before_and_after_publication_tests": true,
+    "production_data_unmodified": true
+  },
+  "live_publication_verified": false
+}
