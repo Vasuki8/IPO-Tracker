@@ -626,10 +626,10 @@
     "2025|lenskart-solutions-limited": {
       "issuer_name": "Lenskart Solutions Limited",
       "listing_date": "2025-11-10",
-      "last_attempted_at": "2026-09-23T22:48:03.576Z",
+      "last_attempted_at": "2026-09-25T00:59:18.376Z",
       "parser_version": "1.2.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-jTXDc2/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1761802414095.pdf\ncurl: (28) Operation timed out after 75000 milliseconds with 20180399 out of 27796285 bytes received\ncurl: (28) Operation timed out after 75001 milliseconds with 20855031 out of 27796285 bytes received\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-TycWzl/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1761802414095.pdf\ncurl: (18) transfer closed with 19711982 bytes remaining to read\ncurl: (18) transfer closed with 8903654 bytes remaining to read\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1761802414095.pdf"
     },
     "2025|studds-accessories-limited": {
@@ -1833,6 +1833,189 @@
         "publication_date": "2023-11-16"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1700135458197.pdf"
+    },
+    "2024|sagility-india-limited": {
+      "issuer_name": "Sagility India Limited",
+      "listing_date": "2024-11-12",
+      "last_attempted_at": "2026-09-25T00:59:18.376Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Sagility India Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1730279716127.pdf",
+        "publication_date": "2024-10-30"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1730279716127.pdf"
+    },
+    "2023|honasa-consumer-limited": {
+      "issuer_name": "Honasa Consumer Limited",
+      "listing_date": "2023-11-07",
+      "last_attempted_at": "2026-09-25T00:59:18.376Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Honasa Consumer Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2023/1698221034183.pdf",
+        "publication_date": "2023-10-25"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2023/1698221034183.pdf"
+    },
+    "2022|keystone-realtors-limited": {
+      "issuer_name": "Keystone Realtors Limited",
+      "listing_date": "2022-11-24",
+      "last_attempted_at": "2026-09-25T00:59:18.376Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 6350000000,
+          "source_value": "₹6,350.00 MILLION",
+          "page": 2
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Keystone Realtors Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1667969623175.PDF",
+        "publication_date": "2022-11-05"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1667969623175.PDF"
+    },
+    "2025|rubicon-research-limited": {
+      "issuer_name": "Rubicon Research Limited",
+      "listing_date": "2025-10-16",
+      "last_attempted_at": "2026-09-25T00:59:18.376Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 13774990000,
+          "source_value": "₹13,774.99 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Rubicon Research Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1759837350026.pdf",
+        "publication_date": "2025-10-07"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1759837350026.pdf"
+    },
+    "2024|godavari-biorefineries-limited": {
+      "issuer_name": "Godavari Biorefineries Limited",
+      "listing_date": "2024-10-30",
+      "last_attempted_at": "2026-09-25T00:59:18.376Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Godavari Biorefineries Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1729241444026.pdf",
+        "publication_date": "2024-10-17"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1729241444026.pdf"
+    },
+    "2023|cello-world-limited": {
+      "issuer_name": "Cello World Limited",
+      "listing_date": "2023-11-06",
+      "last_attempted_at": "2026-09-25T00:59:18.376Z",
+      "parser_version": "1.2.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-yilH9m/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2023/1698221152394.pdf\ncurl: (18) transfer closed with 18657070 bytes remaining to read\ncurl: (28) Operation timed out after 75001 milliseconds with 20561551 out of 27831717 bytes received\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2023/1698221152394.pdf"
+    },
+    "2022|inox-green-energy-services-limited": {
+      "issuer_name": "Inox Green Energy Services Limited",
+      "listing_date": "2022-11-23",
+      "last_attempted_at": "2026-09-25T00:59:18.376Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 7400000000,
+          "source_value": "₹7,400 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Inox Green Energy Services Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1667791280614.pdf",
+        "publication_date": "2022-11-07"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2022/1667791280614.pdf"
     }
   }
 }
