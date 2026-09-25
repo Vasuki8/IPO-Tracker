@@ -6,54 +6,54 @@ Updated: 2026-09-24. Cursor10 publication verified on the actually served GitHub
 
 Continue backend data correctness, official-source coverage and dependable publication under [DEVELOPMENT_PROCESS.md](DEVELOPMENT_PROCESS.md). The active application-term requirement remains **Lot Size only**. Keep market lot, minimum bid quantity, minimum application amount, listing date and index-admission date distinct. No UI or downstream commercial-feature work belongs to this continuation.
 
-## VERIFIED: cursor10 bounded segment published — PR #222 / #223
+## VERIFIED: cursor10 bounded historical segment published — PR #222 / #223
 
-The existing state-driven backfill advanced exactly one bounded historical segment. Backfill run `36087053657` selected **20 notices**, parsed **20/20**, had **0 fetch errors / 0 new unparseable notices**, and discovered **23 listing references**. Artifact `10844576517`, ZIP SHA-256 `10513ea7a8ba1addcd1d5944f0cb3e6010e29f276f8f6817bec1f9cdc1847233`. Durable cursor commit: `c3809d9cb42a374d220d12ab7c3004f4e3a6f934`.
+The retained historical BSE SME notice cursor advanced by exactly one bounded 20-notice segment. Backfill run `36087053657` selected and parsed **20/20 notices**, with **0 fetch errors / 0 new unparseable notices**, and discovered **23 listing references**. Artifact `10844576517`, SHA-256 `10513ea7a8ba1addcd1d5944f0cb3e6010e29f276f8f6817bec1f9cdc1847233`. The semantic cursor publication commit is `c3809d9cb42a374d220d12ab7c3004f4e3a6f934`.
 
 ### Reconciliation and source review
 
-Read-only source-review run `36087201107`, artifact `10843813845`, ZIP SHA-256 `823e540317374ada2f983c7ca1d8e03d7c41d8f6b7b78d4741423e04a01f8c52`, source snapshot `c862d6c497408991e85ea2ab368994d091d461dd`.
+Authoritative source-review run `36087769933`, artifact `10844392203`, SHA-256 `1d6de457ff85e0f15c9a7b8c5cb8c783d6a6e4b730372923369e88e402429f56`, source snapshot `727c069c117c52a5bff7e8c0201dc9c9286bff51`.
 
-Against the then-current **1,171-record** recovery/public universe, all **23 references were exact-missing identities**, with **0 already-present** and **0 identity/code/source collisions**. Independent issuer-specific official BSE listing verification produced:
+Against the then-current **1,171-record** 2020-2026 recovery/public universe, all **23 references were exact-missing identities**, with **0 already-present** and **0 identity/code/source conflicts**. Strict issuer-specific official BSE verification produced:
 
 - **22 verified issuers**
-- **1 rejected/held issuer**
-- **0 unavailable**
-- **66 explicit verified facts** across listing date, market lot and final issue price
+- **66 explicit facts**: listing date, market lot and final issue price
+- **1 rejected conflicting source**
+- **0 unavailable sources**
 
-Canonical listing-PDF archive probes returned HTTP 404, so the established strict issuer-specific official BSE HTML contract remains the listing authority for the 22 accepted records. Reviewed evidence preserves original response hashes, collection/publication dates, normalized text and literal contiguous excerpts.
+Canonical listing-PDF archive probes returned HTTP 404, so the established strict official BSE HTML listing-notice contract remains the authority.
 
-### HELD conflict — Fabino Life Sciences Limited
+### Held conflict — Fabino Life Sciences Limited
 
-**Fabino Life Sciences Limited** (BSE scrip `543444`, listing notice `20220112-10`) is deliberately **not published**.
+**Fabino Life Sciences Limited is intentionally not published.** The index/candidate reference identifies listing date `2022-01-13`, while issuer-specific BSE Listing Notice `20220112-10`, published `2022-01-12`, contains an observed listing date of `2021-01-13`. The strict verifier therefore returns `listing_date_mismatch_or_missing`.
 
-The January 12, 2022 official BSE notice contains contradictory year information: its main listing sentence says the shares are effective **January 13, 2021**, while the same notice refers to the IPO special pre-open session on **January 13, 2022**. Discovery/index evidence points to January 13, 2022, but index discovery is not listing-term authority.
+No date correction was inferred. The record stays held until authoritative official evidence resolves the conflicting year.
 
-The strict verifier therefore rejected the candidate with `listing_date_mismatch_or_missing`. No date was inferred, corrected, or guessed. Keep this issuer held until an authoritative official correction or independently authoritative listing source resolves the conflict.
+### Publication rehearsal and release
 
-### Publication rehearsal and merge
+PR #222 merged as `6413c9e46542a578095c75a6ff5c8edcf5f99f49`. Its final release diff contained only five evidence/reconciliation JSON files: discovery batches33/34, cursor10 reconciliation and reviewed batches33/34. The temporary source-review workflow was removed before merge.
 
-The exact source-snapshot rehearsal proved **1,171 -> 1,193**, exactly **22 additions**, all **1,171 existing records unchanged**, **247 already-present reviewed entries**, **0 holds/conflicts within the publishable batch**, and a byte-idempotent rerun.
+Exact publication rehearsal proved:
 
-PR #222 merged as `6413c9e46542a578095c75a6ff5c8edcf5f99f49`. Net release change is only five evidence files:
+| Check | Result |
+| --- | ---: |
+| Baseline records | 1,171 |
+| Result records | 1,193 |
+| Verified additions | 22 |
+| Existing records unchanged | 1,171 / 1,171 |
+| Already-present reviewed entries | 247 |
+| Holds/conflicts during import | 0 / 0 |
+| Second run | Byte-idempotent |
 
-- discovery batch33
-- discovery batch34
-- cursor10 reconciliation
-- reviewed batch33
-- reviewed batch34
+Current-head reviewed-evidence run `36087912122` and data-contract run `36087912060` both passed before merge. Post-merge reviewed-evidence and data-contract checks also passed.
 
-The temporary source-review workflow was removed before merge. No UI, parser, collector, cursor, schedule, permission or hand-edited generated-public-data changes were made in the release.
-
-Current-head reviewed-evidence CI `36087912122` and full data-contract CI `36087912060` passed before merge. Post-merge reviewed-evidence and data-contract checks also passed.
-
-Production source-backed sync `36087986289` succeeded. Generated-data commit: `384f235bdf19545f3960f2c9bcc7ed16e3f70d57`. Operator-state commit: `dcaf482c7b9860c1c50fb37ba565ce3fe1d8431b`. Operator health is **healthy** with collection, rebuild, validation and repository publication all successful.
+Production source-backed sync `36087986289` succeeded and generated data commit `384f235bdf19545f3960f2c9bcc7ed16e3f70d57`; operator-state commit `dcaf482c7b9860c1c50fb37ba565ce3fe1d8431b` reports overall **healthy**, with NSE collection, SEBI collection, rebuild, validation and repository publication all successful. The resulting Pages build `36088233705` succeeded.
 
 ### Actual served-data verification
 
-PR #223 merged as `7e36858a7445aac975be4c32dba62ca0a718a94b` and only selects reviewed batches33/34 in the existing read-only Pages verifier.
+PR #223 merged as `7e36858a7445aac975be4c32dba62ca0a718a94b` and only changes the existing read-only Pages verifier defaults to reviewed batches33/34.
 
-PR-head live verifier run `36088279308` passed. Canonical post-merge verifier run `36088367208` also passed against the actual served Pages dataset:
+Canonical post-merge verifier run `36088367208` passed against the actually served Pages dataset:
 
 | Check | Result |
 | --- | ---: |
@@ -65,9 +65,13 @@ PR-head live verifier run `36088279308` passed. Canonical post-merge verifier ru
 | Retained recovery document-hash fields | 66 |
 | Document hashes serialized in public fields | 0 |
 
-Served snapshot fetched `2026-09-25T02:57:25.917Z`; checked `2026-09-25T02:57:25.960Z`; dataset generated `2026-09-25T02:48:39.265Z`. Snapshot SHA-256: `e7ea980d0b158a239e3d22f155d42b90385672dfe7303e49efd10d5732f9cff8`.
+Served snapshot fetched `2026-09-25T02:57:25.917Z`; checked `2026-09-25T02:57:25.960Z`; dataset generated `2026-09-25T02:48:39.265Z`. Snapshot SHA-256: `e7ea980d0b158a239e3d22f155d42b90385672dfe7303e49efd10d5732f9cff8`, 6,352,711 bytes.
 
-Post-merge live artifact `10844168231`, ZIP SHA-256 `a437744898c0af70b00e46e0986b1288971f83e813ea076edbf4790f02c413b3`. Durable receipt: [verification/cursor10-live-publication-2026-09-25.json](verification/cursor10-live-publication-2026-09-25.json).
+Post-merge artifact `10844168231`, ZIP SHA-256 `a437744898c0af70b00e46e0986b1288971f83e813ea076edbf4790f02c413b3`. Durable receipt: [verification/cursor10-live-publication-2026-09-25.json](verification/cursor10-live-publication-2026-09-25.json).
+
+### Operational note
+
+During temporary review-workflow cleanup, one branch push was rejected as non-fast-forward because the same review branch had advanced concurrently. Source verification and validation had already passed; no evidence was overwritten. The workflow was changed to fetch/reset the current remote branch and reapply the verified release files before pushing. The final PR diff was evidence-only and current-head CI passed.
 
 ## Cursor state and exact next backend task
 
@@ -75,11 +79,11 @@ Current retained BSE SME addition-notice state is parser **1.4.0**, catalog **23
 
 The next unseen notice is **`20210322-22`**.
 
-**Next task: process one final bounded historical discovery segment from `20210322-22` using the existing state-driven backfill.** Do not reset or replay prior progress. Reconcile discovered references against all current recovery/public identities, BSE codes and listing-source identities. Independently verify only missing/unambiguous candidates in batches of at most 15, retain reviewed evidence, rehearse safe/idempotent publication, publish through the normal source-backed sync, and verify the actually served Pages result.
+**Next task: continue the remaining bounded historical discovery segment from `20210322-22` using the existing state-driven backfill.** Do not reset or replay prior progress. Reconcile newly discovered references against current recovery/public identities, BSE codes and listing-source identities. Independently verify only missing/unambiguous candidates in batches of at most 15, retain reviewed evidence, rehearse safe/idempotent publication, publish through the normal source-backed sync, then verify the actually served Pages result.
 
-Keep the Fabino conflict separate from that cursor continuation. Do not publish or silently “correct” Fabino unless an authoritative official source resolves the contradictory listing date.
+Keep the Fabino Life Sciences conflict separate and held. Do not guess a corrected date or include it in a later batch unless authoritative official evidence resolves the conflict.
 
-Cursor10 discovery/reviewed batches33/34 are closed. Cursor9 batches31/32, cursor8 batches23/24 + reviewed29/30 and all earlier repaired/cursor batches are also closed. Broader historical field completeness remains incomplete.
+Cursor10 discovery/reviewed batches33/34 are closed. Cursor9 batches31/32, cursor8 batches23/24 + reviewed29/30 and earlier repaired/cursor batches are also closed. Broader historical field completeness remains incomplete.
 
 No UI, minimum-investment, billing, accounts, ads, new spending or permission changes belong to this continuation.
 
