@@ -97,6 +97,9 @@ jobs:
       - name: Test historical IPO coverage audit
         run: node scripts/test-audit-historical-coverage.mjs
 
+      - name: Test official IPO universe audit
+        run: node scripts/test-audit-ipo-universe.mjs
+
       - name: Test semantic live-sync publication
         run: node scripts/test-live-sync-semantic-publication.mjs
 

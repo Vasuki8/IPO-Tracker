@@ -1,0 +1,50 @@
+name: Audit official IPO universe
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/*ipo-universe*.mjs'
+      - 'scripts/fixtures/ipo-universe-source-contract.json'
+      - '.github/workflows/audit-ipo-universe.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/*ipo-universe*.mjs'
+      - 'scripts/fixtures/ipo-universe-source-contract.json'
+      - '.github/workflows/audit-ipo-universe.yml'
+permissions:
+  contents: read
+concurrency:
+  group: official-universe-audit-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Retain exact audit revision
+        run: |
+          mkdir -p "$RUNNER_TEMP/ipo-universe"
+          git archive --format=zip HEAD > "$RUNNER_TEMP/ipo-universe/source-snapshot.zip"
+          git rev-parse HEAD > "$RUNNER_TEMP/ipo-universe/source-commit.txt"
+      - name: Test audit identity, source and failure guards
+        run: node scripts/test-audit-ipo-universe.mjs
+      - name: Collect bounded official-source observations
+        run: node scripts/collect-ipo-universe-sources.mjs --output-dir="$RUNNER_TEMP/ipo-universe"
+      - name: Reconcile bounded official universe
+        run: node scripts/audit-ipo-universe.mjs --input="$RUNNER_TEMP/ipo-universe" --output="$RUNNER_TEMP/ipo-universe/audit.json"
+      - name: Ensure read-only operation
+        run: test -z "$(git status --porcelain --untracked-files=all)"
+      - name: Retain source observations including failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-ipo-universe-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/ipo-universe
+          retention-days: 14
+          if-no-files-found: error
