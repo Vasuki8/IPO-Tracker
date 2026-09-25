@@ -1,0 +1,302 @@
+name: Materialize reviewed NSE batch4
+
+on:
+  push:
+    branches: ["backend/nse-universe-batch4-20260925"]
+    paths:
+      - ".github/workflows/materialize-nse-universe-batch4.yml"
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: backend/nse-universe-batch4-20260925
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Download exact reviewed source archive
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs'), crypto = require('crypto');
+            const r = await github.rest.actions.downloadArtifact({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              artifact_id: 10877286718,
+              archive_format: 'zip'
+            });
+            const b = Buffer.from(r.data);
+            const got = crypto.createHash('sha256').update(b).digest('hex');
+            if (got !== '7aa33f4f7066e20a246a5da8328e8271759b4f2b2356b6ae4eed6cdec93185ad') {
+              throw new Error('archive_hash_mismatch:' + got);
+            }
+            fs.writeFileSync(process.env.RUNNER_TEMP + '/batch4-source.zip', b);
+
+      - name: Restore exact source bytes and apply narrow parser support
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/batch4-source" "$RUNNER_TEMP/batch4-materialization"
+          unzip -q "$RUNNER_TEMP/batch4-source.zip" -d "$RUNNER_TEMP/batch4-source"
+
+          python - <<'PY'
+          from pathlib import Path
+
+          p=Path('scripts/apply-reviewed-nse-ipos.mjs')
+          s=p.read_text()
+          old="""  requireThat(/^Initial Public Offer(?:ing)?\\b/i.test(offer) && /\\bequity shares\\b/i.test(offer) &&
+            !/\\b(?:follow[ -]?on|further public|rights issue|partly[ -]paid|debenture|non[ -]convertible|FPO)\\b/i.test(offer), 'initial_equity_ipo_not_established');
+          """
+          new="""  const initialPublicEquity = /^(?:Initial Public (?:Offer(?:ing)?|Issue)|Intial Public Offer(?:ing)?)\\b/i.test(offer);
+            requireThat(initialPublicEquity && /\\bequity shares\\b/i.test(offer) &&
+              !/\\b(?:follow[ -]?on|further public|rights issue|partly[ -]paid|debenture|non[ -]convertible|FPO)\\b/i.test(offer), 'initial_equity_ipo_not_established');
+          """
+          assert s.count(old)==1, 'reviewed offer gate changed unexpectedly'
+          p.write_text(s.replace(old,new))
+
+          p=Path('scripts/extract-nse-ipo-detail-fields.mjs')
+          s=p.read_text()
+          old='''    "(?:to|[-–—])\\\\s*" + currency + "\\\\s*" + amount + "\\\\s*(?:\\\\/\\\\-)?\\\\s*" +
+              "per\\\\s+(?:Equity\\\\s+)?Share\\\\b",
+          '''
+          new='''    "(?:to|[-–—])\\\\s*(?:" + currency + "\\\\s*)?" + amount + "\\\\s*(?:\\\\/\\\\-)?\\\\s*" +
+              "per\\\\s+(?:Equity\\\\s+)?Shares?\\\\b",
+          '''
+          assert s.count(old)==1, 'price-band pattern changed unexpectedly'
+          p.write_text(s.replace(old,new))
+          PY
+
+      - name: Materialize reviewed manifest and exclusions from retained source bytes
+        env:
+          SOURCE_DIR: ${{ runner.temp }}/batch4-source
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import assert from 'node:assert/strict';
+          import { hash, projectDetail, validateReviewedBatch, loadRecovery, applyReviewedBatch } from './scripts/apply-reviewed-nse-ipos.mjs';
+
+          const sourceDir=process.env.SOURCE_DIR;
+          const src=JSON.parse(fs.readFileSync(path.join(sourceDir,'sources.json')));
+          assert.equal(src.run_id,'36165195790');
+          assert.equal(src.source_commit_sha,'fd4e9da69a8e4a88967612b2b4ebee661f1532cd');
+          const queuePath='data/discovery/ipo-universe-review-2026-09-25-batch4.json';
+          const queue=JSON.parse(fs.readFileSync(queuePath));
+          const pastSource=src.rows.find(s=>s.kind==='past');
+          const past=JSON.parse(fs.readFileSync(path.join(sourceDir,pastSource.file)));
+          const deployedSource=src.rows.find(s=>s.kind==='deployed_baseline');
+          const deployedBytes=fs.readFileSync(path.join(sourceDir,deployedSource.file));
+          const deployed=JSON.parse(deployedBytes);
+          assert.equal(deployed.records.length,1256);
+          assert.equal(hash(deployedBytes),'74031fbbac15e9fff5b6e510a23df45c435e2eecf1c9257b064cc9c42ecf3932');
+
+          for (const s of src.rows) {
+            assert.equal(s.status,200,s.kind + ':' + (s.symbol || 'global'));
+            const bytes=fs.readFileSync(path.join(sourceDir,s.file));
+            assert.equal(bytes.length,s.bytes,s.file + ':bytes');
+            assert.equal(hash(bytes),s.sha256,s.file + ':sha256');
+          }
+
+          const approved=['RFBL','NFPSAMPOOR','TEAMTECH','BMLL','QLINE','CMRGREEN','GENXAI','UTKAL','CLAYCRAFT','AVIENCE','TURTLEMINT','CORDELIA','SHREEDHAR'];
+          const provenance={
+            source_run_id:src.run_id,
+            source_snapshot_commit:src.source_commit_sha,
+            source_artifact_id:10877286718,
+            source_artifact_sha256:'7aa33f4f7066e20a246a5da8328e8271759b4f2b2356b6ae4eed6cdec93185ad',
+            queue_path:queuePath
+          };
+          const evidence=(s,projection)=>({
+            url:s.url,final_url:s.final_url,http_status:s.status,publication_date:null,
+            collected_at:s.collected_at,response_sha256:s.sha256,
+            projection_sha256:hash(JSON.stringify(projection)),artifact_file:s.file
+          });
+          const all=queue.candidates.map(candidate=>{
+            const s=src.rows.find(s=>s.kind==='ipo_detail'&&s.symbol===candidate.nse_symbol);
+            const detail=projectDetail(JSON.parse(fs.readFileSync(path.join(sourceDir,s.file))));
+            const past_row=past[candidate.row_index];
+            assert.equal(past_row.symbol,candidate.nse_symbol);
+            return {candidate,decision:'verified_initial_equity_ipo',detail_source:evidence(s,detail),detail,past_source:evidence(pastSource,past_row),past_row};
+          });
+          const manifest={
+            schema_version:'1.0.0',verifier_version:'1.0.0',...provenance,
+            queue_sha256:hash(JSON.stringify(queue)),
+            projection_method:'literal_selected_json_fields_all_used_titles_retained',
+            scope_note:'Batch4 independently reviewed initial public equity IPOs only. QMSMEDI is excluded as an SME-to-mainboard migration and 12VPT28A is excluded as debt. No aggregate-feed-only import, estimated field or application amount.',
+            entries:all.filter(e=>approved.includes(e.candidate.nse_symbol))
+          };
+          const checked=validateReviewedBatch(manifest,queue);
+          assert.equal(checked.length,13);
+          assert.equal(checked.reduce((n,c)=>n+Object.keys(c.facts).length,0),78);
+          assert.equal(checked.filter(c=>c.facts.market_lot).length,10);
+          assert.equal(checked.filter(c=>c.facts.minimum_bid_quantity).length,3);
+
+          const raw=loadRecovery(process.cwd()), rawBefore=JSON.stringify(raw);
+          const plan=applyReviewedBatch(raw,deployed,manifest,queue,'data/verified-nse-ipos/2026-09-25-batch4.json');
+          assert.deepEqual(plan.stats,{added:13,already_present:0});
+          assert.equal(JSON.stringify(raw),rawBefore);
+          assert.deepEqual(applyReviewedBatch(plan.recovery,deployed,manifest,queue,'data/verified-nse-ipos/2026-09-25-batch4.json').stats,{added:0,already_present:13});
+
+          const qms=all.find(e=>e.candidate.nse_symbol==='QMSMEDI');
+          const qmsDoc=src.rows.find(s=>s.kind==='migration_approval');
+          assert.equal(qms.detail.issueInfo.symbol,null);
+          assert.equal(qms.past_row.ipoStartDate,'27-SEP-2022');
+          const viv=all.find(e=>e.candidate.nse_symbol==='12VPT28A');
+          const vivDoc=src.rows.find(s=>s.kind==='debt_listing_circular');
+          assert.equal(viv.detail.metaInfo.isDebtSec,true);
+          assert.equal(viv.detail.metaInfo.isin,'INE0MEG07011');
+          assert.equal(viv.detail.issueInfo.symbol,null);
+          assert.equal(viv.past_row.ipoStartDate,'05-SEP-2022');
+
+          const held=[
+            {...qms,decision:'excluded_migration_not_new_ipo',auto_import_allowed:false,
+              reason:'NSE migration approval states that QMSMEDI equity moved from the NSE Emerge SME platform to the Main Board effective 18-Jun-2026. The past-issues row carries a 2022 offer period, so the 2026 listing row is a migration event, not a new IPO.',
+              independent_official_evidence:{url:qmsDoc.url,final_url:qmsDoc.final_url,http_status:qmsDoc.status,collected_at:qmsDoc.collected_at,publication_date:'2026-06-16',document_sha256:qmsDoc.sha256,artifact_file:qmsDoc.file,page:2,evidence:'Listing on Main Board pursuant to Migration from SME Emerge platform; effective June 18, 2026',original_offer_period:{open:'2022-09-27',close:'2022-09-30'}}},
+            {...viv,decision:'excluded_debt_security_not_initial_equity_ipo',auto_import_allowed:false,
+              reason:'NSE ipo-detail explicitly marks 12VPT28A as debt (isDebtSec=true, ISIN INE0MEG07011). NSE debt circular CML74788 lists Viviana Power Tech Limited security VPT28A as Sec Type DB with 12% coupon. The past-issues row carries a 2022 equity-offer period and cannot turn the 2026 debt listing into an equity IPO.',
+              independent_official_evidence:{url:vivDoc.url,final_url:vivDoc.final_url,http_status:vivDoc.status,collected_at:vivDoc.collected_at,publication_date:'2026-06-19',document_sha256:vivDoc.sha256,artifact_file:vivDoc.file,page:12,evidence:'Viviana Power Tech Limited; Sec Type DB; Security VPT28A; ISIN INE0MEG07011; coupon rate 12%',original_offer_period:{open:'2022-09-05',close:'2022-09-08'}}}
+          ];
+          for(const e of held) assert.throws(()=>validateReviewedBatch({...manifest,entries:[{...e,decision:'verified_initial_equity_ipo'}]},queue));
+
+          const review={
+            schema_version:'1.0.0',status:'reviewed_13_approved_2_excluded_non_ipo',
+            reviewed_at:new Date().toISOString(),...provenance,
+            baseline:{public_records:deployed.records.length,public_sha256:hash(deployedBytes),dataset_generated_at:deployed.generated_at,note:'Reconciled against actual Pages snapshot and all retained 2020-2026 recovery manifests before action.'},
+            stats:{reviewed_candidates:15,verified_initial_equity_ipos:13,excluded_migration:1,excluded_debt_security:1,approved_exact_missing:13,approved_identity_conflicts:0,verified_facts:78,listing_dates:13,offer_dates:26,final_issue_prices:13,price_bands:13,market_lots:10,minimum_bid_quantities:3},
+            parser_notes:['Accept explicit NSE wording Initial Public Issue as an initial public equity issue.','Accept only the observed NSE typo Intial Public Offer as a narrow equivalent; other misspellings fail closed.','Price Range may omit a repeated currency marker before the upper bound and may say Equity Shares; the lower bound still requires an INR marker and both values must parse safely.'],
+            sources:{successful_detail_responses:15,original_response_hashes_checked:src.rows.length,past_response_sha256:pastSource.sha256,deployed_snapshot_sha256:deployedSource.sha256},
+            entries:checked.map(c=>({symbol:c.candidate.nse_symbol,issuer_name:c.issuer_name,observed_alias:c.candidate.issuer_name,isin:c.isin,board:c.candidate.board,decision:'approved_verified_initial_equity_ipo',recovery_matches:[],published_matches:[]})),
+            held
+          };
+          fs.writeFileSync('data/verified-nse-ipos/2026-09-25-batch4.json',JSON.stringify(manifest)+'\n');
+          fs.writeFileSync('data/discovery/nse-universe-batch4-review-2026-09-25.json',JSON.stringify(review,null,2)+'\n');
+          fs.writeFileSync(process.env.RUNNER_TEMP+'/batch4-materialization/source-validation.json',JSON.stringify({source_hashes:src.rows.length,...review.stats,preservation:true,idempotent:true},null,2)+'\n');
+          console.log(JSON.stringify({source_hashes:src.rows.length,...review.stats,preservation:true,idempotent:true}));
+          JS
+
+      - name: Add focused batch4 regression tests
+        shell: bash
+        run: |
+          cat > scripts/test-reviewed-nse-batch4.mjs <<'JS'
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import { fileURLToPath } from 'node:url';
+          import { hash, loadReviewed, loadRecovery, validateReviewedBatch, applyReviewedBatch } from './apply-reviewed-nse-ipos.mjs';
+
+          const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+          const manifestPath = 'data/verified-nse-ipos/2026-09-25-batch4.json';
+          const batch = loadReviewed(root).find(b => b.manifest_path === manifestPath);
+          assert.ok(batch, 'pinned batch4 manifest is required');
+          const { manifest: m, queue: q } = batch, checked = validateReviewedBatch(m, q);
+          assert.equal(checked.length, 13);
+          assert.equal(checked.reduce((n, c) => n + Object.keys(c.facts).length, 0), 78);
+          assert.equal(checked.filter(c => c.facts.market_lot).length, 10);
+          assert.equal(checked.filter(c => c.facts.minimum_bid_quantity).length, 3);
+
+          const bmll = checked.find(c => c.candidate.nse_symbol === 'BMLL');
+          assert.match(bmll.offer, /^Initial Public Issue\b/i);
+          const genxai = checked.find(c => c.candidate.nse_symbol === 'GENXAI');
+          assert.match(genxai.offer, /^Intial Public offer\b/i);
+          const turtlemint = checked.find(c => c.candidate.nse_symbol === 'TURTLEMINT');
+          assert.deepEqual(turtlemint.facts.price_band.value, { min: 144, max: 152 });
+          assert.equal(turtlemint.facts.minimum_bid_quantity.value, 98);
+          assert.equal(turtlemint.facts.market_lot, undefined);
+          assert.equal(checked.find(c => c.candidate.nse_symbol === 'CLAYCRAFT').facts.open_date.value, '2026-06-17');
+
+          const review = JSON.parse(fs.readFileSync(path.join(root, 'data/discovery/nse-universe-batch4-review-2026-09-25.json')));
+          assert.equal(review.held.length, 2);
+          assert.equal(review.held.find(e => e.candidate.nse_symbol === 'QMSMEDI').decision, 'excluded_migration_not_new_ipo');
+          assert.equal(review.held.find(e => e.candidate.nse_symbol === '12VPT28A').decision, 'excluded_debt_security_not_initial_equity_ipo');
+          assert.equal(review.held.find(e => e.candidate.nse_symbol === '12VPT28A').detail.metaInfo.isDebtSec, true);
+
+          const rehash = e => { e.detail_source.projection_sha256 = hash(JSON.stringify(e.detail)); e.past_source.projection_sha256 = hash(JSON.stringify(e.past_row)); };
+          let rejected = 0;
+          function bad(symbol, mutate) {
+            const copy = structuredClone(m), e = copy.entries.find(e => e.candidate.nse_symbol === symbol);
+            mutate(e); rehash(e); assert.throws(() => validateReviewedBatch(copy, q)); rejected++;
+          }
+          bad('BMLL', e => { e.detail.issueInfo.dataList.find(i => i.title.trim().toLowerCase() === 'issue size').value = 'Initial Public Placement of 1,000 Equity Shares'; });
+          bad('GENXAI', e => { const i=e.detail.issueInfo.dataList.find(i => i.title.trim().toLowerCase() === 'issue size'); i.value=i.value.replace('Intial','Initail'); });
+          bad('TURTLEMINT', e => { e.detail.issueInfo.dataList.find(i => i.title.trim().toLowerCase() === 'price range').value = '144 to 152 per Equity Shares'; });
+          bad('TURTLEMINT', e => { e.past_row.issuePrice = '999'; });
+          bad('RFBL', e => { e.detail.metaInfo.isDebtSec = true; });
+          for (const held of review.held) {
+            const copy = { ...structuredClone(m), entries: [{ ...structuredClone(held), decision: 'verified_initial_equity_ipo' }] };
+            assert.throws(() => validateReviewedBatch(copy, q)); rejected++;
+          }
+
+          const raw = loadRecovery(root), rawBefore = JSON.stringify(raw), pub = JSON.parse(fs.readFileSync(path.join(root, 'data/ipos.json')));
+          const plan = applyReviewedBatch(raw, pub, m, q, manifestPath);
+          assert.deepEqual(plan.stats, { added: 13, already_present: 0 });
+          assert.equal(JSON.stringify(raw), rawBefore);
+          for (const [year, data] of Object.entries(raw)) for (const r of data.records) assert.deepEqual(plan.recovery[year].records.find(n => n.id === r.id), r);
+          assert.deepEqual(applyReviewedBatch(plan.recovery, pub, m, q, manifestPath).stats, { added: 0, already_present: 13 });
+
+          const first = checked[0], collision = structuredClone(raw);
+          collision['2021'].records.push({ id: 'prior-batch4-collision', issuer_name: 'Different Limited', nse_symbol: first.candidate.nse_symbol });
+          const collisionBefore = JSON.stringify(collision);
+          assert.throws(() => applyReviewedBatch(collision, pub, m, q, manifestPath));
+          assert.equal(JSON.stringify(collision), collisionBefore);
+          console.log(JSON.stringify({ reviewed_nse_batch4_tests: { issuers: 13, facts: 78, rejected_inputs: rejected, preservation: true, idempotent: true } }));
+          JS
+
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('scripts/test-reviewed-nse-ipos.mjs')
+          s=p.read_text()
+          line='await import("./test-reviewed-nse-batch4.mjs");\n'
+          if line not in s:
+              s=s.rstrip()+"\n\n"+line
+          p.write_text(s)
+
+          p=Path('scripts/test-extract-nse-ipo-detail-fields.mjs')
+          s=p.read_text()
+          block='''\nconst omittedRepeatCurrencyBand = parsePriceBandFromIpoDetail({\n  issueInfo: { dataList: [{ title: "Price Range", value: "Rs. 144 to 152 per Equity Shares" }] }\n});\nassert.deepEqual(omittedRepeatCurrencyBand.value, { min: 144, max: 152 });\nconst missingLeadingCurrencyBand = parsePriceBandFromIpoDetail({\n  issueInfo: { dataList: [{ title: "Price Range", value: "144 to 152 per Equity Shares" }] }\n});\nassert.equal(missingLeadingCurrencyBand.value, null);\nassert.equal(missingLeadingCurrencyBand.reason, "placeholder_or_unparseable");\nconsole.log("NSE price-band repeated-currency/plural-share tests passed.");\n'''
+          if 'omittedRepeatCurrencyBand' not in s:
+              s=s.rstrip()+"\n"+block
+          p.write_text(s)
+          PY
+
+      - name: Verify reviewed batch4, preservation and publication rehearsal
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check scripts/apply-reviewed-nse-ipos.mjs
+          node --check scripts/extract-nse-ipo-detail-fields.mjs
+          node scripts/test-extract-nse-ipo-detail-fields.mjs | tee "$RUNNER_TEMP/batch4-materialization/extractor-tests.txt"
+          node scripts/test-reviewed-nse-ipos.mjs | tee "$RUNNER_TEMP/batch4-materialization/review-tests.txt"
+          node scripts/test-reviewed-nse-publication.mjs | tee "$RUNNER_TEMP/batch4-materialization/rehearsal.json"
+          node scripts/apply-reviewed-nse-ipos.mjs --check
+          node scripts/build-published-data.mjs --check
+          node scripts/validate-data.mjs
+          git diff --check
+
+      - name: Commit reviewed batch4 code and evidence to branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             scripts/apply-reviewed-nse-ipos.mjs             scripts/extract-nse-ipo-detail-fields.mjs             scripts/test-extract-nse-ipo-detail-fields.mjs             scripts/test-reviewed-nse-ipos.mjs             scripts/test-reviewed-nse-batch4.mjs             data/verified-nse-ipos/2026-09-25-batch4.json             data/discovery/nse-universe-batch4-review-2026-09-25.json
+          git diff --cached --stat
+          git commit -m "feat(data): retain thirteen independently verified NSE batch4 IPOs"
+          git push origin HEAD:refs/heads/backend/nse-universe-batch4-20260925
+          git rev-parse HEAD > "$RUNNER_TEMP/batch4-materialization/commit.txt"
+
+      - name: Retain materialization receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nse-batch4-materialization-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/batch4-materialization
+          retention-days: 14
+          if-no-files-found: error
