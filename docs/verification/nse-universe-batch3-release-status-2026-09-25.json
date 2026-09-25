@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0.0",
+  "status": "merged_tested_live_verification_pending",
+  "status_recorded_at": "2026-09-25T16:35:52Z",
+  "feature_pr": 235,
+  "merge_commit": "2927fe2ed273db9c8a1fe72b3b21543a19003872",
+  "reviewed_candidates": 15,
+  "approved_initial_equity_ipos": 13,
+  "verified_source_facts": 78,
+  "held_missing_identity": ["AMIRCHAND"],
+  "excluded_debt": ["10MWL29"],
+  "final_head_ci": {"commit":"a676a15f183f20409683ba8d0337a59b9a154865","successful_runs":["36160049319","36160049332"]},
+  "merged_main_validation": {"run_id":"36160239490","conclusion":"success"},
+  "source_sync": {"run_id":"36160239429","job_id":"108154724424","observed_status":"in_progress","active_step":"Extract NSE Issue Information fields in one pass","step_started_at":"2026-09-25T16:23:42Z","reviewed_nse_apply_step":"success","publication_step":"pending"},
+  "rehearsal": {"before":1243,"after":1256,"added":13,"removed":0,"existing_unchanged":1243,"idempotent":true,"receipt":"docs/verification/nse-universe-batch3-rehearsal-2026-09-25.json"},
+  "last_verified_live_baseline": {"records":1243,"unknown_statuses":0,"snapshot_fetched_at":"2026-09-25T15:53:38.128Z","snapshot_sha256":"f349cc612501e4fb16b7616aadf902ae282b4541ae92e84df672299cf4703a54","run_id":"36157133065"},
+  "batch3_live_verified": false,
+  "verification_run_id": null,
+  "deployed_batch3_record_count": null,
+  "next_action": "Finish source-sync/Pages verification first; retrieve the existing read-only NSE publication artifact, validate its actual served bytes and all 13 issuers/78 facts, compare against the last verified baseline and update the handoff with exact results. Do not recollect or reimport this approved batch merely because verification is pending."
+}

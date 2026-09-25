@@ -1,89 +1,67 @@
 # Project status and handoff
 
-Updated: **2026-09-25**, after live verification run `36157133065`.
+Updated: **2026-09-25**, recorded `2026-09-25T16:35:52Z`.
 
-## Current priority
+## Current priority and release state
 
-Continue **P1 issuer identity and IPO-universe coverage** under [DEVELOPMENT_PROCESS.md](DEVELOPMENT_PROCESS.md). The active application-term requirement remains **Lot Size only**. Preserve market lot, minimum bid quantity and minimum application amount as distinct fields. No UI or downstream commercial-feature work belongs to this continuation.
+Continue **P1 issuer identity and IPO-universe coverage** under [DEVELOPMENT_PROCESS.md](DEVELOPMENT_PROCESS.md). The application-term requirement remains **Lot Size only**; keep market lot, minimum bid quantity and minimum application amount distinct. No UI or downstream commercial-feature work belongs to this continuation.
 
-## VERIFIED: Unknown IPO status repair — PR #232 / #234
+**Batch3: MERGED AND TESTED; source-backed publication and actual Pages verification are not yet confirmed. The next action is to finish this release verification, not to repeat its review or start batch4.**
 
-A read-only audit found exactly **13 live records** rendered as `Status unavailable`. All 13 already had a **verified, past official NSE listing date**, empty status evidence, and a resolvable NSE identity. There were **0** unknown records with only offer dates and **0** with no dates.
+## Completed: NSE universe batch3 review and parser repair — PR #235
 
-Audit run `36101891389`, artifact `10849527986`, ZIP SHA-256 `57d3d6ae65a5eb00725432ca059a0a7095799a53701d6b9e8b9620c7a5dd96d4`.
+Reviewed 15 pinned APSISAERO-to-SIMCA candidates. **13 initial public equity IPOs approved; 1 identity hold; 1 debt security excluded.** Approved symbols: **APSISAERO, RSL, INNOVISION, GSPCROP, CMPDI, POWERICA, SAIPARENT, VIVIDEL, ADISOFT, AMBAAUTO, KISSHT, VALUE360, SIMCA**.
 
-PR #232 merged as `df5d2a6ae8cd14e640c29225acb578f2dee960a3`. The source-backed repair sets `status: listed` only when status is absent, status evidence is empty, the listing date is strict/verified/not future, its retained source is official NSE, and NSE identity resolves. The exact listing-date source is copied into `status_evidence`; no new source is invented and `last_collected_at` is not rewritten.
+Retained **78 explicit source-backed facts**: 13 listing dates, 26 offer dates, 13 final issue prices, 13 price bands, 6 market lots and 7 minimum bid quantities. No inferred application amounts or optional facts. Evidence: [../data/verified-nse-ipos/2026-09-25-batch3.json](../data/verified-nse-ipos/2026-09-25-batch3.json); review: [../data/discovery/nse-universe-batch3-review-2026-09-25.json](../data/discovery/nse-universe-batch3-review-2026-09-25.json).
 
-Production repair sync `36102715450`; generated-data commit `b6dab703052210070fd20248410c5e14ab8ff114`; operator-state commit `f980611435449220234cf0af82c15c6587d6ea83`.
+### Source provenance
 
-PR #234 merged as `b62bd84a44cc3b901a4ca4735c315e878047d36d` and makes this a publication invariant: every public record must have one of `open/upcoming/closed/listed` plus retained status evidence.
+Source run `36158694311`; artifact `10875066031`; ZIP SHA-256 `24faa41a1bee5e50eafdcebd8404ec97de79e23149777f1c08f9863d2168e78a`; exact source snapshot `1997f423d49050a576171b4867a7fa71c0015097`. All **18 original response file hashes** were revalidated, including all 15 issuer-detail responses. Literal selected JSON fields and source URL/date/hash identities remain in the manifest; the original Actions artifact has 14-day retention.
 
-**Current actual Pages status distribution:** listed **1,222**, open **16**, closed **3**, upcoming **2**, unknown **0**. Durable receipt: [verification/ipo-status-repair-2026-09-25.json](verification/ipo-status-repair-2026-09-25.json).
+### Reusable parser fixes
 
-## VERIFIED: NSE official-universe review batch 2 — PR #233
+The importer accepts **Revised/Extended Issue Period** only when both explicitly stated date representations and the independent past-source dates agree. It accepts **Revised Price Range**, retains the original source title/value in evidence and rejects competing ordinary/revised labels. Only an apostrophe inside a word is ignored for NSE issuer-name comparison; symbol, ISIN, board, offering type, listing identity and cross-year collision checks remain mandatory. This resolves Innovision's revised terms and Sai Parenterals' apostrophe variant without inferring other spelling changes.
 
-Source run `36102861946`, artifact `10849678453`, ZIP SHA-256 `ca9c15994d67dea46c735b8a3cd555def34a3948463ab05b893615e94af2bdbd`, source snapshot `c5192aa36f15ebe37becd67c711fc890fc71aa75`.
+**AMIRCHAND remains held:** IPO terms were observed, but the issuer-specific response lacked legal-name/ISIN/board/listing identity metadata. A future source-aware identity adapter must retain separate official evidence as its own source, not fabricate missing NSE metadata from the past feed.
 
-### Review result
+**10MWL29 is excluded as debt:** NSE explicitly reports `isDebtSec=true`, ISIN `INE0JYY07026`. The issuer's 2026-05-16 disclosure independently labels it a debt symbol and distinguishes equity MWL/INE0JYY01011. Its misleading old-offer/new-debt-listing past row must not become an equity IPO.
 
-- **15 candidates reviewed**
-- **11 independently verified 2026 initial public equity IPOs**
-- **4 held legacy/migration/repeat-security cases**
-- **66 explicit facts retained**: 11 listing dates, 22 offer dates, 11 final issue prices, 11 price bands, 7 market lots, 4 minimum bid quantities
-- all 15 issuer-detail responses HTTP 200
-- all 15 quote-identity responses HTTP 403 and unused
-- all 31 retained source file hashes revalidated
+### Tests, review and merge
 
-**Published:** MARUSHIKA, MANILAM, CLEANMAX, MOBILISE, PNGSREVA, OMNI, YAAP, STRIDERS, ACETEC, SEDEMAC, SPCON.
+Isolated publication rehearsal: **1,243 -> 1,256**, exactly 13 additions, zero removals, every prior record unchanged and an idempotent rerun. All three NSE batches pass rehearsal checks: **38 issuers / 227 facts** (83 + 66 + 78). The new suite rejects 17 malformed/held inputs and 3 cross-year apostrophe alias collisions; prior 34 negative-input and 4 cross-year collision tests still pass.
 
-**Held:** GICL, SILGOPP, VITAL, KOTYARK. GICL/SILGOPP have old 2016/2018 offer observations and no current issue-specific IPO terms; VITAL retains its 2022 IPO period with 2026 listing metadata and conflicting price evidence; KOTYARK retains its 2021 IPO at Rs.51 while the 2026 past row reports 281. None is inferred to be a new 2026 IPO.
+Final PR-head CI: data contract `36160049319` and reviewed BSE evidence `36160049332`, both successful at `a676a15f183f20409683ba8d0337a59b9a154865`. PR #235 merged as `2927fe2ed273db9c8a1fe72b3b21543a19003872`. The full data-contract suite passed again on merged main in `36160239490`.
 
-The reviewed-period parser was narrowly extended to accept explicit full month names such as `26-February-2026 to 02-March-2026`; invalid month names still fail closed.
+Materialization run `36159865659` passed source validation, tests and rehearsal, but its bot push was rejected because it included a workflow-file edit without workflows permission. The tested commit/tree was read back and submitted through the already-authorized GitHub connector; no permissions changed. Both temporary workflows were removed before merge. Durable rehearsal receipt: [verification/nse-universe-batch3-rehearsal-2026-09-25.json](verification/nse-universe-batch3-rehearsal-2026-09-25.json). This historical bot-push failure is distinct from the pending production sync.
 
-Exact isolated rehearsal: **1,232 -> 1,243**, exactly **11 additions**, all **1,232 existing records unchanged**, 0 removals/identity conflicts, idempotent rerun. Materialization run `36156144008` passed source-hash checks, evidence validation, rehearsal, build synchronization and data validation.
+## Remaining release gate: production sync and actual Pages verification
 
-PR #233 merged as `1bac6fda9c05214383353741077cb517869b2ec5`.
+Production sync **`36160239429`**, job **`108154724424`**, was still **in_progress** at handoff. The reviewed-NSE import step succeeded. The active step was **Extract NSE Issue Information fields in one pass**, started `2026-09-25T16:23:42Z`; source-backed publication had not yet completed. No failure conclusion was observed.
 
-## VERIFIED: batch-2 production and actual Pages output
+Do not claim 1,256 live records or batch3 deployment from the rehearsal or code merge. The latest main observed before this handoff was `b7c5defabb5f420d242ed898d58f48b340d165b4`, an earlier code-Pages health update, not a batch3 generated-data commit.
 
-Production source-backed sync `36156433535` succeeded. Generated-data commit `06253c537f7ff08dc4ef0fea325647a2ea0ec036`; operator-state commit `2850090ae29534b709be9fe47f9d577bad56abe6`; operator health is **healthy**.
+**Exact next actions:** inspect sync `36160239429` to completion, its generated-data/operator commits, the resulting Pages deployment, and the automatically triggered **Verify reviewed NSE IPO publication** workflow. Download its artifact with actual `deployed-data.json`, `report.json` and source snapshot. Verify 13 unique batch3 issuers / 78 facts; check global valid statuses with evidence and Unknown count; compare actual served records against the retained 1,243 baseline; record any ordinary-sync enrichment separately from the isolated import. Recheck all reviewed batches against the actual snapshot when practical. Retain the live publication receipt and update README/status before batch4. Do not recollect or reimport the completed batch solely because verification is pending.
 
-Read-only Pages verifier `36157133065` passed:
+Recorded release state: [verification/nse-universe-batch3-release-status-2026-09-25.json](verification/nse-universe-batch3-release-status-2026-09-25.json).
 
-| Check | Result |
-| --- | ---: |
-| Actually served records | 1,243 |
-| Batch-2 issuers | 11 / 11 unique |
-| Reviewed facts | 66 / 66 matching |
-| Failed issuers | 0 |
-| Unknown statuses | 0 |
-| Snapshot bytes | 6,671,524 |
-| Snapshot SHA-256 | `f349cc612501e4fb16b7616aadf902ae282b4541ae92e84df672299cf4703a54` |
+## Last independently verified live baseline — historical, not a new live claim
 
-Snapshot fetched `2026-09-25T15:53:38.128Z`; checked `15:53:38.204Z`; dataset generated `15:47:43.475Z`. Artifact `10873708367`, ZIP SHA-256 `10970bc95d0725f4d7cda64d29944bc66dc569b4044ec71e604f7764ef83b085`. Pages deployment `36157126001` succeeded.
+Batch2 verifier `36157133065` fetched `2026-09-25T15:53:38.128Z`: **1,243 records**, status distribution **listed 1,222 / open 16 / closed 3 / upcoming 2 / Unknown 0**. Snapshot SHA-256 `f349cc612501e4fb16b7616aadf902ae282b4541ae92e84df672299cf4703a54`; dataset generated `2026-09-25T15:47:43.475Z`.
 
-Compared with the preceding verified 1,232-record snapshot: **11 added, 0 removed, 4 existing records changed through unrelated scheduled/source enrichment**. No existing record was removed.
+The prior PR #232 status repair and PR #234 valid-status-plus-evidence publication invariant remain intact. Historical receipts: [status repair](verification/ipo-status-repair-2026-09-25.json) and [batch2](verification/nse-universe-batch2-live-publication-2026-09-25.json).
 
-Durable receipt: [verification/nse-universe-batch2-live-publication-2026-09-25.json](verification/nse-universe-batch2-live-publication-2026-09-25.json).
+## Queue after batch3 is live-verified
 
-## Remaining holds
+[../data/discovery/ipo-universe-review-2026-09-25-batch4.json](../data/discovery/ipo-universe-review-2026-09-25-batch4.json) pins **15 candidates RFBL through SHREEDHAR**. It is explicitly gated on finishing batch3 verification first. Reconcile against latest main and published data before action; independently establish IPO versus FPO/rights/partly-paid/repeat/migration/debt offering; preserve aliases, nulls and conflicts. No aggregate-feed-only imports.
 
-- **ADANIENPP1 / Adani Enterprises Limited:** offering type remains unverified; do not infer IPO status.
-- **Fabino Life Sciences Limited:** official listing-year conflict remains unresolved.
-- **GICL, SILGOPP, VITAL, KOTYARK:** retained as batch-2 legacy/migration/repeat-security holds, not new 2026 IPOs.
+The queue comes from canonical audit `36095239145`, excluding all 45 prior-batch candidates, including holds/exclusions. **74 eligible source groups remain, not 74 confirmed IPOs.** QMSMEDI and 12VPT28A are prior-offer/security-type review signals only.
 
-## Exact next backend task
+Remaining holds: **AMIRCHAND** (identity metadata), **ADANIENPP1** (offering type), **Fabino Life Sciences** (listing-year conflict), **GICL, SILGOPP, VITAL, KOTYARK** (older-offer/migration/repeat-security conflicts). The debt exclusion must not be recycled into the equity-IPO queue.
 
-Review the pinned 15-candidate queue in [../data/discovery/ipo-universe-review-2026-09-25-batch3.json](../data/discovery/ipo-universe-review-2026-09-25-batch3.json), derived deterministically from canonical audit `36095239145` after excluding all batch1/batch2 symbols.
+Broader gaps remain: BSE issue-summary adapter, SEBI historical pagination and unresolved NSE series. Do not claim complete IPO-universe coverage. BSE parser v1.5 remains **236/236 parsed**; do not replay that cursor.
 
-Batch 3 starts at **APSISAERO** and ends at **SIMCA**. Reconcile against the latest 1,243-record universe before action. Independently establish IPO versus FPO/rights/partly-paid/repeat/migration security using issuer-specific official evidence; preserve aliases, nulls and conflicts; publish only independently verified unambiguous IPOs with rehearsal, source-backed sync and actual Pages verification.
+## Preserved history and scope
 
-The canonical audit still has broader gaps: BSE issue-summary adapter, SEBI historical pagination and unresolved NSE series. Do not claim full IPO-universe completeness.
-
-BSE parser v1.5 remains **236/236 parsed**; do not replay that cursor.
-
-## Preserved history
-
-The preceding handoff is archived byte-for-byte in [archive/PROJECT_STATUS-before-status-and-nse-batch2.md](archive/PROJECT_STATUS-before-status-and-nse-batch2.md) and [archive/README-before-status-and-nse-batch2.md](archive/README-before-status-and-nse-batch2.md). Earlier archives and receipts remain intact. UI V2 remains separate under [UI_DESIGN_HANDOFF.md](UI_DESIGN_HANDOFF.md).
+The preceding handoff is archived byte-for-byte in [archive/PROJECT_STATUS-before-nse-batch3.md](archive/PROJECT_STATUS-before-nse-batch3.md) and [archive/README-before-nse-batch3.md](archive/README-before-nse-batch3.md). Earlier archives and receipts remain intact. UI V2 stays separate under [UI_DESIGN_HANDOFF.md](UI_DESIGN_HANDOFF.md).
 
 No UI, minimum-investment expansion, billing, accounts, ads, spending or permission changes belong to this continuation.
