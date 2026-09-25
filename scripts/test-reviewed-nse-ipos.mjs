@@ -14,6 +14,16 @@ assert.equal(checked[0].facts.open_date.value, '2025-12-26');
 assert.equal(checked[0].facts.listing_date.value, '2026-01-02');
 assert.equal(checked[1].facts.price_band, undefined, 'fixed price is not an invented band');
 assert.equal(checked.find(c => c.candidate.nse_symbol === 'ARMOUR').issuer_name, 'Armour Security (India) Limited');
+
+const fullMonthPeriod = structuredClone(m);
+const periodItem = fullMonthPeriod.entries[0].detail.issueInfo.dataList.find(i => i.title.toLowerCase() === 'issue period');
+periodItem.value = '26-December-2025 to 30-December-2025';
+fullMonthPeriod.entries[0].detail_source.projection_sha256 = hash(JSON.stringify(fullMonthPeriod.entries[0].detail));
+assert.equal(validateReviewedBatch(fullMonthPeriod, q)[0].facts.open_date.value, '2025-12-26', 'full month issue-period names');
+const invalidFullMonth = structuredClone(fullMonthPeriod);
+invalidFullMonth.entries[0].detail.issueInfo.dataList.find(i => i.title.toLowerCase() === 'issue period').value = '26-Decembruary-2025 to 30-December-2025';
+invalidFullMonth.entries[0].detail_source.projection_sha256 = hash(JSON.stringify(invalidFullMonth.entries[0].detail));
+assert.throws(() => validateReviewedBatch(invalidFullMonth, q), 'unknown full month names fail closed');
 const editItem = (e, name, value) => { e.detail.issueInfo.dataList.find(i => i.title.toLowerCase() === name).value = value; };
 let rejected = 0;
 function bad(mutator, rehash = true) {
