@@ -1,0 +1,159 @@
+{
+  "schema_version": "1.0.0",
+  "status": "verified_live",
+  "verified_at": "2026-09-25T17:30:44.828Z",
+  "batch": "nse_universe_batch4",
+  "review": {
+    "pr": 240,
+    "merge_commit": "927782ac7dd9ed7752fc6def8e5fb0025fae8f0b",
+    "source_run_id": "36165195790",
+    "source_snapshot_commit": "fd4e9da69a8e4a88967612b2b4ebee661f1532cd",
+    "source_artifact_id": 10877286718,
+    "source_artifact_sha256": "7aa33f4f7066e20a246a5da8328e8271759b4f2b2356b6ae4eed6cdec93185ad",
+    "materialization_run_id": "36166287987",
+    "materialization_artifact_id": 10878100711,
+    "materialization_artifact_sha256": "80bdf98cbdd5aad9133294b8227ddba01784021eb2eed8cb1a6c6be31327d0a6",
+    "reviewed_commit": "5679d346f4aaa1d84b075732c13bddd60c76c5ee",
+    "reviewed_candidates": 15,
+    "approved_initial_equity_ipos": 13,
+    "excluded_migration": [
+      "QMSMEDI"
+    ],
+    "excluded_debt_security": [
+      "12VPT28A"
+    ],
+    "explicit_facts": 78,
+    "fact_breakdown": {
+      "listing_dates": 13,
+      "offer_dates": 26,
+      "final_issue_prices": 13,
+      "price_bands": 13,
+      "market_lots": 10,
+      "minimum_bid_quantities": 3
+    }
+  },
+  "exclusions": {
+    "QMSMEDI": {
+      "decision": "excluded_migration_not_new_ipo",
+      "reason": "Official NSE migration approval states QMSMEDI moved from the NSE Emerge SME platform to the Main Board effective 2026-06-18; the canonical past-issues row carries the original 2022 offer period."
+    },
+    "12VPT28A": {
+      "decision": "excluded_debt_security_not_initial_equity_ipo",
+      "reason": "NSE ipo-detail reports isDebtSec=true and ISIN INE0MEG07011; NSE circular CML74788 independently lists Viviana Power Tech security VPT28A as debt with a 12% coupon. The canonical past-issues row carries the issuer's 2022 equity offer period."
+    }
+  },
+  "parser_repairs": {
+    "initial_public_equity_wording": [
+      "Initial Public Issue",
+      "Intial Public Offer"
+    ],
+    "price_band": "Accept an omitted repeated INR marker before the upper bound and singular/plural Equity Share(s), while still requiring INR evidence on the lower bound.",
+    "fail_closed": true
+  },
+  "rehearsal": {
+    "before_records": 1256,
+    "after_records": 1269,
+    "added": 13,
+    "removed": 0,
+    "existing_records_unchanged": 1256,
+    "idempotent": true,
+    "reviewed_batches_total": {
+      "issuers": 51,
+      "facts": 305
+    },
+    "receipt": "docs/verification/nse-universe-batch4-rehearsal-2026-09-25.json"
+  },
+  "production": {
+    "sync_run_id": "36166656023",
+    "sync_conclusion": "success",
+    "sync_head_sha": "927782ac7dd9ed7752fc6def8e5fb0025fae8f0b",
+    "data_commit": "35166cf76ee03fb580d53e75898b030f7cc1f9c6",
+    "operator_commit": "4419dbd5e5c378a1f5cf555c949d8f868a508228",
+    "operator_health": "healthy",
+    "stages": {
+      "nse_collection": "success",
+      "sebi_collection": "success",
+      "rebuild": "success",
+      "validation": "success",
+      "repository_publish": "success"
+    },
+    "historical_nse_materialization": "success",
+    "prior_timeout_recurred": false,
+    "bounded_all_fields_enrichment": "success",
+    "pages_containing_published_data_run_id": "36167463271",
+    "pages_containing_published_data_conclusion": "success"
+  },
+  "live_verification": {
+    "workflow_run_id": "36167470675",
+    "workflow_job_id": "108178623328",
+    "artifact_id": 10878475153,
+    "artifact_sha256": "300af4538b2b65835c5644a6156193b596be95dea38d92b5eaa60a3ecd9030ad",
+    "source_commit": "4419dbd5e5c378a1f5cf555c949d8f868a508228",
+    "source_url": "https://vasuki8.github.io/IPO-Tracker/data/ipos.json",
+    "snapshot_fetched_at": "2026-09-25T17:30:44.748Z",
+    "checked_at": "2026-09-25T17:30:44.828Z",
+    "dataset_generated_at": "2026-09-25T17:23:10.833Z",
+    "records": 1269,
+    "bytes": 6841294,
+    "sha256": "228b3a1861836dbce8e344313a82035d9e7ed38bcd2a09c31f4dcd822047c6b5",
+    "checked_issuers": 13,
+    "checked_fields": 78,
+    "failed_issuers": 0,
+    "status_distribution": {
+      "listed": 1248,
+      "open": 16,
+      "closed": 3,
+      "upcoming": 2
+    },
+    "invalid_or_unknown_statuses": 0,
+    "records_missing_status_evidence": 0
+  },
+  "baseline_comparison": {
+    "baseline_records": 1256,
+    "baseline_sha256": "74031fbbac15e9fff5b6e510a23df45c435e2eecf1c9257b064cc9c42ecf3932",
+    "added": 13,
+    "removed": 0,
+    "existing_records_changed": 2,
+    "approved_added_ids": [
+      "avience-biomedicals-limited",
+      "bio-medica-laboratories-limited",
+      "clay-craft-india-limited",
+      "cmr-green-technologies-limited",
+      "genxai-analytics-limited",
+      "nfp-sampoorna-foods-limited",
+      "q-line-biotech-limited",
+      "rfbl-flexi-pack-limited",
+      "shreedhar-spinners-limited",
+      "teamtech-formwork-solutions-limited",
+      "turtlemint-fintech-solutions-limited",
+      "utkal-speciality-industries-india-limited",
+      "waterways-leisure-tourism-limited"
+    ],
+    "ordinary_sync_enrichment": [
+      {
+        "id": "euro-pratik-sales-limited",
+        "changes": [
+          "documents",
+          "last_collected_at"
+        ],
+        "note": "Normal sync attached SEBI Prospectus and RHP filing/PDF documents; no displayed IPO field/value/status changed."
+      },
+      {
+        "id": "ivalue-infosolutions-limited",
+        "changes": [
+          "documents",
+          "last_collected_at"
+        ],
+        "note": "Normal sync attached SEBI Prospectus and RHP filing/PDF documents; no displayed IPO field/value/status changed."
+      }
+    ],
+    "prior_reviewed_ipo_values_changed": 0
+  },
+  "next_task": {
+    "queue": "data/discovery/ipo-universe-review-2026-09-25-batch5.json",
+    "candidates": 15,
+    "range": "TEJA through JNPR",
+    "remaining_eligible_source_groups_after_batch4": 59,
+    "instruction": "Reconcile against latest main and actual Pages before action; independently establish offering type and issuer identity; do not import from aggregate past-issues evidence alone."
+  }
+}
