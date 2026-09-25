@@ -1,0 +1,215 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import { createHash } from 'node:crypto';
+import { issuerKey } from './verify-bse-listing-candidates.mjs';
+import { parseNseDate } from './sync-nse-live.mjs';
+import { parsePastIssuePrice } from './diagnose-nse-past-issues.mjs';
+import { buildHistoricalRecord } from './sync-nse-historical.mjs';
+import { parseMarketLotFromIpoDetail, parseMinimumBidFromIpoDetail, parsePriceBandFromIpoDetail } from './extract-nse-ipo-detail-fields.mjs';
+
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+export const REVIEW_VERSION = '1.0.0';
+export const PAST_URL = 'https://www.nseindia.com/api/public-past-issues';
+export const FIELD_NAMES = ['listing_date', 'open_date', 'close_date', 'issue_price', 'price_band', 'market_lot', 'minimum_bid_quantity'];
+export const hash = b => createHash('sha256').update(b).digest('hex');
+export const norm = v => String(v ?? '').replace(/\s+/g, ' ').trim();
+const title = v => norm(v).toLowerCase();
+const unquote = v => norm(v).replace(/^"|"$/g, '');
+const equal = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+const requireThat = (condition, reason) => { if (!condition) throw new Error(reason); };
+const validHash = v => typeof v === 'string' && /^[a-f0-9]{64}$/.test(v);
+const validStamp = v => typeof v === 'string' && /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d{3})?Z$/.test(v) && Number.isFinite(Date.parse(v)) && new Date(v).toISOString() === (v.includes('.') ? v : v.replace('Z', '.000Z'));
+const validDate = v => typeof v === 'string' && /^\d{4}-\d\d-\d\d$/.test(v) && Number.isFinite(Date.parse(v)) && new Date(v).toISOString().slice(0, 10) === v;
+function nseDate(raw) {
+  const m = norm(raw).match(/^(\d{1,2})-([A-Za-z]{3})-(\d{4})$/), iso = parseNseDate(raw);
+  const months = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
+  return m && validDate(iso) && Number(m[1]) === Number(iso.slice(8)) &&
+    months.indexOf(m[2].toLowerCase()) + 1 === Number(iso.slice(5, 7)) && m[3] === iso.slice(0, 4) ? iso : null;
+}
+export const detailUrl = c => 'https://www.nseindia.com/api/ipo-detail?symbol=' + encodeURIComponent(c.nse_symbol) + '&series=' + (c.board === 'SME' ? 'SME' : 'EQ');
+const TITLES = new Set(['symbol', 'issue size', 'issue period', 'issue type', 'price range', 'price band', 'market lot', 'lot size', 'bid lot', 'minimum order quantity']);
+
+// Literal selected JSON fields, not a reconstructed full response. Original
+// response bytes/hash remain in the recorded source artifact. Selection keeps
+// every occurrence of each used title, so conflicting duplicates are not hidden.
+export function projectDetail(payload) {
+  const m = payload?.metaInfo || {};
+  return { companyName: payload?.companyName ?? null, metaInfo: Object.fromEntries(
+    ['companyName', 'symbol', 'isin', 'listingDate', 'segment', 'isDebtSec', 'isETFSec', 'isMunicipalBond', 'isHybridSymbol'].map(k => [k, m[k] ?? null])),
+  issueInfo: { symbol: payload?.issueInfo?.symbol ?? null,
+    dataList: (payload?.issueInfo?.dataList || []).filter(i => TITLES.has(title(i?.title))).map(i => ({ title: i.title, value: i.value })) } };
+}
+function sourceCheck(s, expectedUrl, projection) {
+  requireThat(s?.url === expectedUrl && s.final_url === expectedUrl && s.http_status === 200 &&
+    validStamp(s.collected_at) && validHash(s.response_sha256) && validHash(s.projection_sha256) &&
+    hash(JSON.stringify(projection)) === s.projection_sha256 && s.publication_date === null, 'invalid_source_or_projection');
+}
+function oneItem(payload, name, required = true) {
+  const items = payload.issueInfo.dataList.filter(i => title(i.title) === name);
+  requireThat(items.length <= 1 && (!required || items.length === 1), 'missing_or_duplicate_' + name);
+  return items[0] || null;
+}
+function evidence(source, symbol, detail, pointer) {
+  return { url: source.url, document_type: detail ? 'NSE Issue Information API' : 'NSE Public Past Issues',
+    document_identity: (detail ? 'NSE Issue Information — ' : 'NSE Public Past Issues — ') + symbol,
+    document_sha256: source.response_sha256, publication_date: null, collected_at: source.collected_at,
+    page: null, evidence_locator: pointer };
+}
+
+export function validateEntry(entry, queue) {
+  const c = queue.candidates.find(c => c.nse_symbol === entry?.candidate?.nse_symbol);
+  requireThat(c && equal(c, entry.candidate) && entry.decision === 'verified_initial_equity_ipo', 'unapproved_candidate');
+  requireThat(/^[A-Z0-9-]+$/.test(c.nse_symbol) && ['SME', 'Mainboard'].includes(c.board), 'invalid_candidate');
+  const p = entry.detail, m = p?.metaInfo, r = entry.past_row;
+  requireThat(p && equal(projectDetail(p), p), 'invalid_detail_projection');
+  for (const t of TITLES) oneItem(p, t, false);
+  sourceCheck(entry.detail_source, detailUrl(c), p); sourceCheck(entry.past_source, PAST_URL, r);
+  requireThat(m?.symbol === c.nse_symbol && p.issueInfo.symbol === c.nse_symbol &&
+    norm(oneItem(p, 'symbol').value) === c.nse_symbol && norm(r?.symbol) === c.nse_symbol, 'symbol_mismatch');
+  requireThat([p.companyName, m.companyName, r.company, r.companyName].filter(v => v != null).every(n => issuerKey(n) === issuerKey(c.issuer_name)) &&
+    typeof p.companyName === 'string' && p.companyName.length > 3, 'issuer_identity_mismatch');
+  requireThat(/^INE[A-Z0-9]{8}\d$/.test(m.isin) && m.segment === (c.board === 'SME' ? 'SME' : 'EQUITY') &&
+    norm(r.securityType) === (c.board === 'SME' ? 'SME' : 'EQ') &&
+    ['isDebtSec', 'isETFSec', 'isMunicipalBond', 'isHybridSymbol'].every(k => m[k] === false), 'non_equity_or_board_mismatch');
+  const offer = unquote(oneItem(p, 'issue size').value);
+  requireThat(/^Initial Public Offer(?:ing)?\b/i.test(offer) && /\bequity shares\b/i.test(offer) &&
+    !/\b(?:follow[ -]?on|further public|rights issue|partly[ -]paid|debenture|non[ -]convertible|FPO)\b/i.test(offer), 'initial_equity_ipo_not_established');
+  requireThat(validDate(m.listingDate) && m.listingDate === c.listing_date && m.listingDate === nseDate(r.listingDate) &&
+    m.listingDate <= entry.detail_source.collected_at.slice(0, 10) && m.listingDate <= entry.past_source.collected_at.slice(0, 10), 'listing_date_mismatch_or_future');
+  const period = unquote(oneItem(p, 'issue period').value).match(/^(\d{1,2}-[A-Za-z]{3}-\d{4})\s+to\s+(\d{1,2}-[A-Za-z]{3}-\d{4})$/);
+  requireThat(period, 'unrecognized_offer_period');
+  const open = nseDate(period[1]), close = nseDate(period[2]);
+  requireThat(validDate(open) && validDate(close) && open <= close && close <= m.listingDate &&
+    open === nseDate(r.ipoStartDate) && close === nseDate(r.ipoEndDate), 'offer_period_mismatch');
+  const price = parsePastIssuePrice(r.issuePrice);
+  requireThat(price !== null && price > 0, 'missing_explicit_final_price');
+  const facts = {};
+  function fact(key, value, raw, source, pointer, isDetail = true) {
+    facts[key] = { value, source_value: raw, status: 'verified', page: null,
+      source: evidence(source, c.nse_symbol, isDetail, pointer), corrections: [] };
+  }
+  fact('listing_date', m.listingDate, m.listingDate, entry.detail_source, '/metaInfo/listingDate');
+  fact('open_date', open, period[1], entry.detail_source, '/issueInfo/dataList[Issue Period]');
+  fact('close_date', close, period[2], entry.detail_source, '/issueInfo/dataList[Issue Period]');
+  fact('issue_price', price, norm(r.issuePrice), entry.past_source, '/' + c.row_index + '/issuePrice', false);
+  const band = parsePriceBandFromIpoDetail(p), lot = parseMarketLotFromIpoDetail(p), min = parseMinimumBidFromIpoDetail(p);
+  for (const [key, result, present] of [
+    ['price_band', band, p.issueInfo.dataList.some(i => ['price range', 'price band'].includes(title(i.title)))],
+    ['market_lot', lot, p.issueInfo.dataList.some(i => ['market lot', 'lot size'].includes(title(i.title)))],
+    ['minimum_bid_quantity', min, p.issueInfo.dataList.some(i => title(i.title) === 'minimum order quantity')]
+  ]) {
+    if (!present) continue; // Bid Lot alone is never reclassified as market lot or minimum bid.
+    if (key === 'price_band' && result.value == null) {
+      // A stated fixed price is not a two-ended price band. Corroborate the
+      // past feed's final price, but leave price_band absent rather than infer.
+      const fixed = unquote(oneItem(p, 'price range').value).match(/^Rs\.?\s*([0-9]+(?:\.[0-9]{1,2})?)\s+per equity share$/i);
+      requireThat(/^Fixed Price$/i.test(unquote(oneItem(p, 'issue type').value)) && fixed && Number(fixed[1]) === price, 'unresolved_price_band');
+      continue;
+    }
+    requireThat(result.value != null && !result.reason, 'unresolved_' + key);
+    fact(key, result.value, result.source_value, entry.detail_source, '/issueInfo/dataList[' + result.source_title + ']');
+  }
+  if (facts.price_band) requireThat(price >= facts.price_band.value.min && price <= facts.price_band.value.max, 'price_outside_band');
+  return { candidate: c, issuer_name: p.companyName, isin: m.isin, facts, offer };
+}
+export function validateReviewedBatch(manifest, queue) {
+  requireThat(manifest?.schema_version === '1.0.0' && manifest.verifier_version === REVIEW_VERSION &&
+    manifest.projection_method === 'literal_selected_json_fields_all_used_titles_retained' &&
+    manifest.source_run_id && /^\d+$/.test(manifest.source_run_id) && Number.isSafeInteger(manifest.source_artifact_id) &&
+    validHash(manifest.source_artifact_sha256) && validHash(manifest.queue_sha256) &&
+    hash(JSON.stringify(queue)) === manifest.queue_sha256 && Array.isArray(manifest.entries) &&
+    manifest.entries.length > 0 && manifest.entries.length <= 15 && queue.auto_import_allowed === false &&
+    queue.candidates.length <= 15 && queue.candidates.length > 0, 'invalid_reviewed_batch');
+  requireThat(new Set(queue.candidates.map(c => c.nse_symbol)).size === queue.candidates.length, 'duplicate_queue_symbol');
+  const checked = manifest.entries.map(e => validateEntry(e, queue));
+  for (const key of ['isin', 'issuer_name']) requireThat(new Set(checked.map(c => key === 'issuer_name' ? issuerKey(c[key]) : c[key])).size === checked.length, 'duplicate_reviewed_identity');
+  requireThat(new Set(checked.map(c => c.candidate.nse_symbol)).size === checked.length, 'duplicate_reviewed_symbol');
+  return checked;
+}
+export function reviewedRecord(entry, checked, manifest, manifestPath) {
+  const now = [entry.detail_source.collected_at, entry.past_source.collected_at].sort().at(-1);
+  const r = buildHistoricalRecord({ ...entry.past_row, company: checked.issuer_name }, now);
+  r.isin = checked.isin;
+  r.nse_source = { ...checked.facts.listing_date.source };
+  r.board_evidence = [{ ...r.nse_source, evidence_locator: '/metaInfo/segment' }]; r.status_evidence = [{ ...r.nse_source }];
+  r.documents = [r.nse_source, checked.facts.issue_price.source].map(e => ({ type: e.document_type,
+    identity: e.document_identity, url: e.url, publication_date: null, collected_at: e.collected_at, document_sha256: e.document_sha256 }));
+  for (const [f, field] of Object.entries(checked.facts)) r[f] = structuredClone(field);
+  r.nse_verified_ipo_batch = { manifest: manifestPath, verifier_version: REVIEW_VERSION,
+    source_run_id: manifest.source_run_id, source_artifact_id: manifest.source_artifact_id,
+    source_artifact_sha256: manifest.source_artifact_sha256,
+    detail_response_sha256: entry.detail_source.response_sha256, decision: entry.decision };
+  return r;
+}
+function strings(v) { return typeof v === 'string' ? [v] : v && typeof v === 'object' ? Object.values(v).flatMap(strings) : []; }
+function matches(r, record, aliases, cache) {
+  let identity = cache.get(r);
+  if (!identity) {
+    const values = strings(r), symbols = new Set([norm(r.nse_symbol).toUpperCase()]);
+    for (const raw of values.filter(v => v.startsWith('https://'))) {
+      try { const u = new URL(raw);
+        if (['nseindia.com', 'www.nseindia.com'].includes(u.hostname) &&
+            ['/api/ipo-detail', '/get-quotes/ipo'].includes(u.pathname)) symbols.add(norm(u.searchParams.get('symbol')).toUpperCase());
+      } catch { /* Invalid legacy URLs are not identity evidence. */ }
+    }
+    identity = { symbols, isin: new Set(values.filter(v => /^IN[A-Z0-9]{10}$/i.test(v)).map(v => v.toUpperCase())) };
+    cache.set(r, identity);
+  }
+  return r.id === record.id || aliases.has(issuerKey(r.issuer_name)) || identity.symbols.has(record.nse_symbol) || identity.isin.has(record.isin);
+}
+// Pure, whole-batch plan: callers write nothing until all manifests have passed.
+export function applyReviewedBatch(recoveryByYear, published, manifest, queue, manifestPath) {
+  const checked = validateReviewedBatch(manifest, queue), recovery = structuredClone(recoveryByYear);
+  const stats = { added: 0, already_present: 0 }, changed = new Set(), cache = new WeakMap();
+  for (let i = 0; i < checked.length; i++) {
+    const c = checked[i], record = reviewedRecord(manifest.entries[i], c, manifest, manifestPath), year = record.listing_date.value.slice(0, 4);
+    requireThat(Number(year) >= 2020 && Number(year) <= 2026, 'out_of_scope_year');
+    const aliases = new Set([issuerKey(record.issuer_name), issuerKey(c.candidate.issuer_name)]);
+    const rawHits = Object.entries(recovery).flatMap(([y, m]) => m.records.filter(r => matches(r, record, aliases, cache)).map(r => ({ y, r })));
+    const publicHits = (published.records || []).filter(r => matches(r, record, aliases, cache));
+    if (rawHits.length) {
+      requireThat(rawHits.length === 1 && rawHits[0].y === year && rawHits[0].r.id === record.id &&
+        rawHits[0].r.isin === record.isin && rawHits[0].r.nse_symbol === record.nse_symbol &&
+        issuerKey(rawHits[0].r.issuer_name) === issuerKey(record.issuer_name) && rawHits[0].r.board === record.board && rawHits[0].r.status === 'listed' &&
+        equal(rawHits[0].r.nse_verified_ipo_batch, record.nse_verified_ipo_batch) &&
+        Object.entries(c.facts).every(([f, v]) => equal(rawHits[0].r[f]?.value, v.value) &&
+          rawHits[0].r[f]?.status === 'verified' && rawHits[0].r[f]?.source_value === v.source_value && equal(rawHits[0].r[f]?.source, v.source)) &&
+        publicHits.length <= 1 && publicHits.every(r => r.id === record.id), 'existing_identity_or_evidence_conflict:' + record.nse_symbol);
+      stats.already_present++; continue;
+    }
+    requireThat(publicHits.length === 0, 'published_identity_without_approved_recovery:' + record.nse_symbol);
+    requireThat(recovery[year] && Array.isArray(recovery[year].records), 'missing_recovery_year');
+    recovery[year].records.push(record);
+    recovery[year].generated_at = [recovery[year].generated_at, record.last_collected_at].sort().at(-1);
+    changed.add(year); stats.added++;
+  }
+  for (const y of changed) recovery[y].records.sort((a, b) => a.issuer_name.localeCompare(b.issuer_name));
+  return { recovery, stats, changed_years: [...changed] };
+}
+export function loadReviewed(root = ROOT) {
+  const dir = path.join(root, 'data/verified-nse-ipos');
+  if (!fs.existsSync(dir)) return [];
+  return fs.readdirSync(dir).filter(f => /^\d{4}-\d\d-\d\d-batch\d+\.json$/.test(f)).sort().map(f => {
+    const manifest_path = 'data/verified-nse-ipos/' + f, manifest = JSON.parse(fs.readFileSync(path.join(root, manifest_path)));
+    requireThat(/^data\/discovery\/ipo-universe-review-\d{4}-\d\d-\d\d-batch\d+\.json$/.test(manifest.queue_path), 'unapproved_queue_path');
+    return { manifest_path, manifest, queue: JSON.parse(fs.readFileSync(path.join(root, manifest.queue_path))) };
+  });
+}
+export function loadRecovery(root = ROOT) {
+  return Object.fromEntries(Array.from({ length: 7 }, (_, i) => String(2020 + i)).map(y => [y,
+    JSON.parse(fs.readFileSync(path.join(root, 'data/recovery', y, 'nse-issue-information.json')))]));
+}
+function run() {
+  requireThat(process.argv.slice(2).every(a => a === '--check'), 'only_--check_supported');
+  const batches = loadReviewed(); requireThat(batches.length > 0, 'no_reviewed_nse_batches');
+  for (const b of batches) validateReviewedBatch(b.manifest, b.queue);
+  if (process.argv.includes('--check')) { console.log(JSON.stringify({ reviewed_nse_ipos: batches.reduce((n, b) => n + b.manifest.entries.length, 0) })); return; }
+  let recovery = loadRecovery(); const published = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/ipos.json'))), changed = new Set();
+  const stats = { added: 0, already_present: 0 };
+  for (const b of batches) { const a = applyReviewedBatch(recovery, published, b.manifest, b.queue, b.manifest_path);
+    recovery = a.recovery; for (const k of Object.keys(stats)) stats[k] += a.stats[k]; for (const y of a.changed_years) changed.add(y); }
+  for (const y of changed) fs.writeFileSync(path.join(ROOT, 'data/recovery', y, 'nse-issue-information.json'), JSON.stringify(recovery[y], null, 2) + '\n');
+  console.log(JSON.stringify({ reviewed_nse_import: stats }));
+}
+if (process.argv[1] && pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url) run();

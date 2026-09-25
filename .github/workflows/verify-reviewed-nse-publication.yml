@@ -1,0 +1,55 @@
+name: Verify reviewed NSE IPO publication
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Sync live IPO data"]
+    types: [completed]
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: verify-reviewed-nse-publication
+  cancel-in-progress: true
+jobs:
+  verify:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Retain exact verification revision
+        run: |
+          mkdir -p "$RUNNER_TEMP/nse-publication/attempts"
+          git archive --format=zip HEAD > "$RUNNER_TEMP/nse-publication/source-snapshot.zip"
+          git rev-parse HEAD > "$RUNNER_TEMP/nse-publication/source-commit.txt"
+      - name: Test publication identity and evidence guards
+        run: node scripts/test-reviewed-nse-publication.mjs
+      - name: Verify actual Pages output after source-backed publication
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/nse-publication"
+          for attempt in 1 2 3 4 5; do
+            if node scripts/verify-reviewed-nse-publication.mjs \
+              --manifest=data/verified-nse-ipos/2026-09-25-batch1.json --output-dir="$out"; then
+              cp "$out/report.json" "$out/attempts/$attempt.json"
+              exit 0
+            fi
+            cp "$out/report.json" "$out/attempts/$attempt.json"
+            # Pages may briefly serve the previous commit after sync completes.
+            if [ "$attempt" -lt 5 ]; then sleep 15; fi
+          done
+          exit 1
+      - name: Retain actual snapshot and verification, including failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reviewed-nse-publication-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/nse-publication
+          retention-days: 14
+          if-no-files-found: error
