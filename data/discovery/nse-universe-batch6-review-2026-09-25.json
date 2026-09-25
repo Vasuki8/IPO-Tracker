@@ -1,0 +1,563 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_12_approved_2_migrations_1_identity_hold",
+  "reviewed_at": "2026-09-25T18:40:26.342Z",
+  "source_run_id": "36174755920",
+  "source_snapshot_commit": "c82637ae5bc82ce59831dcfa1d10ff2438b1ad4b",
+  "source_branch_head": "f9206e03a758dda98716d9092bede1dfcc66d026",
+  "source_artifact_id": 10881946171,
+  "source_artifact_sha256": "432491018daa0a376559937a81dde8726623ccb4e110761d7340091a9b240e63",
+  "queue_path": "data/discovery/ipo-universe-review-2026-09-25-batch6.json",
+  "baseline": {
+    "public_records": 1284,
+    "public_sha256": "a542ba9d96d621dff867f7310c99d5c74f2864898501c46b214d94db112f1e91",
+    "dataset_generated_at": "2026-09-25T18:15:06.172Z",
+    "snapshot_fetched_at": "2026-09-25T18:40:26.337Z",
+    "source_snapshot_matches_served_bytes": true
+  },
+  "stats": {
+    "reviewed_candidates": 15,
+    "verified_initial_equity_ipos": 12,
+    "held_missing_identity": 1,
+    "excluded_migrations": 2,
+    "approved_exact_missing": 12,
+    "approved_identity_conflicts": 0,
+    "verified_facts": 72,
+    "listing_date": 12,
+    "open_date": 12,
+    "close_date": 12,
+    "issue_price": 12,
+    "price_band": 12,
+    "minimum_bid_quantity": 8,
+    "market_lot": 4
+  },
+  "sources": {
+    "original_response_hashes_checked": 24,
+    "successful_responses": 23,
+    "unsuccessful_responses": 1,
+    "successful_detail_responses": 15,
+    "past_response_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+    "failures": [
+      {
+        "kind": "migration_circular",
+        "symbol": "ANNAPURNA",
+        "url": "https://nsearchives.nseindia.com/content/circulars/CML75660.pdf",
+        "final_url": "https://nsearchives.nseindia.com/content/circulars/CML75660.pdf",
+        "status": 404,
+        "content_type": "text/html;charset=UTF-8",
+        "requested_at": "2026-09-25T18:40:21.608Z",
+        "collected_at": "2026-09-25T18:40:22.019Z",
+        "file": "ANNAPURNA-migration-circular.pdf",
+        "bytes": 3425,
+        "sha256": "41fd81290608a684e8c2e9912890d5e77734a2f4f631ab9e4298274e485fa4e1"
+      }
+    ],
+    "note": "The guessed standalone circular path returned 404; the exact NSE circular enclosed in the official issuer disclosure was retrieved and visually reviewed. A failed fetch is not source absence."
+  },
+  "parser_notes": [
+    "ARDEE explicitly repeats per-equity-share units between price bounds; accept this fully anchored form with INR markers on both bounds.",
+    "Minimum-prefixed quantities are accepted only in Bid Lot/Minimum Order Quantity, with a bounded suffix. Literal source_value is retained; market lot semantics are unchanged."
+  ],
+  "entries": [
+    {
+      "symbol": "MVELECTRO",
+      "issuer_name": "MV Electrosystems Limited",
+      "observed_alias": "MV Electrosystems Limited",
+      "isin": "INE0OWZ01020",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public Offer comprising of Fresh Issue aggregating upto Rs. 2900 million (Including anchor portion of 30,70,587 Equity Shares)",
+      "offer_period": {
+        "open": "2026-07-30",
+        "close": "2026-08-03"
+      },
+      "listing_date": "2026-08-06",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "ANAWIL",
+      "issuer_name": "Anawil Wire and Engineering Limited",
+      "observed_alias": "Anawil Wire and Engineering Limited",
+      "isin": "INE1J5V01013",
+      "board": "SME",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public Offer comprising of Fresh Issue of up to 52,84,800 equity shares and Offer for Sale of up to 13,00,800 Equity Shares (Including Market Maker portion of 3,31,200 Equity Shares and Anchor Allocation of 18,75,600 Equity Shares)",
+      "offer_period": {
+        "open": "2026-08-03",
+        "close": "2026-08-05"
+      },
+      "listing_date": "2026-08-10",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "ARDEE",
+      "issuer_name": "Ardee Industries Limited",
+      "observed_alias": "Ardee Industries Limited",
+      "isin": "INE0XNF01022",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public offer comprising Fresh issue of aggregating up to Rs. 3200 million and offer for sale of up to 1,99,75,000 Equity shares (including Anchor Investor portion of 2,41,05,584 Equity Shares)",
+      "offer_period": {
+        "open": "2026-08-05",
+        "close": "2026-08-07"
+      },
+      "listing_date": "2026-08-12",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "OPTIMYSTIX",
+      "issuer_name": "Optimystix Entertainment India Limited",
+      "observed_alias": "Optimystix Entertainment India Limited",
+      "isin": "INE1JZB01022",
+      "board": "SME",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial public offer of Fresh issue up to 50,00,000 equity shares and Offer for sale up to 12,00,000 equity shares (Including Market Maker Reservation Portion of 6,20,000 Equity Shares and Anchor Allocation 16,70,400 Equity Shares)",
+      "offer_period": {
+        "open": "2026-08-07",
+        "close": "2026-08-11"
+      },
+      "listing_date": "2026-08-14",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "TECHNOCRAF",
+      "issuer_name": "Technocraft Ventures Limited",
+      "observed_alias": "Technocraft Ventures Limited",
+      "isin": "INE1D0W01018",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial public offering comprising of Fresh Issue of up to 9,505,000 equity shares and Offer for Sale of up to 2,376,000 equity shares (including Anchor Investor portion of 35,63,810 equity shares)",
+      "offer_period": {
+        "open": "2026-08-07",
+        "close": "2026-08-11"
+      },
+      "listing_date": "2026-08-14",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "DHOOTTRANS",
+      "issuer_name": "Dhoot Transmission Limited",
+      "observed_alias": "Dhoot Transmission Limited",
+      "isin": "INE01NH01023",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public Offer of Fresh Issue of Aggregating Up to Rs. 14,000 million and Offer for sale up to 19,137,602 Equity Shares (Including Eligible Employees Reservation Portion of Aggregating up to Rs. 60 million and Anchor Investor portion of 1,05,42,657 Equity Shares)",
+      "offer_period": {
+        "open": "2026-08-10",
+        "close": "2026-08-12"
+      },
+      "listing_date": "2026-08-17",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "MOLBIO",
+      "issuer_name": "Molbio Diagnostics Limited",
+      "observed_alias": "Molbio Diagnostics Limited",
+      "isin": "INE869T01028",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public Offering comprising of Fresh Issue aggregating up to Rs. 2,000 million and Offer for Sale of up to 9,166,000 Equity Shares (including Employee reservation portion aggregating up to Rs. 15 million and Anchor Investor portion of up to 34,87,717 Equity Shares)",
+      "offer_period": {
+        "open": "2026-08-10",
+        "close": "2026-08-12"
+      },
+      "listing_date": "2026-08-17",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "MILKYMIST",
+      "issuer_name": "Milky Mist Dairy Food Limited",
+      "observed_alias": "Milky Mist Dairy Food Limited",
+      "isin": "INE00IT01020",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public Offer comprising of Fresh Issue aggregating upto Rs. 14,280 million and Offer for Sale aggregating upto Rs. 1,250 million (including Employee Reservation Portion aggregating up to Rs. 20 million & Anchor Investor portion of 3,32,35,713 Equity Shares)",
+      "offer_period": {
+        "open": "2026-08-11",
+        "close": "2026-08-13"
+      },
+      "listing_date": "2026-08-18",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "BLEL",
+      "issuer_name": "Behari Lal Engineering Limited",
+      "observed_alias": "Behari Lal Engineering Limited",
+      "isin": "INE1EEM01017",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public offer comprising Fresh Issue aggregating up to Rs.930 million and Offer for Sale of up to 7,320,001 Equity Shares (including Anchor Investor portion of 31,74,946 Equity Shares)",
+      "offer_period": {
+        "open": "2026-08-12",
+        "close": "2026-08-14"
+      },
+      "listing_date": "2026-08-19",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "PRAMODINI",
+      "issuer_name": "Pramodini Medicare Limited",
+      "observed_alias": "Pramodini Medicare Limited",
+      "isin": "INE2JG601017",
+      "board": "SME",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial public offer comprising Fresh offer up to 53,50,800 equity shares and Offer for sale up to 5,00,400 equity shares (Including Market Maker Reservation Portion 3,36,000 Equity Shares and Anchor Allocation 13,60,800 Equity Shares)",
+      "offer_period": {
+        "open": "2026-08-12",
+        "close": "2026-08-14"
+      },
+      "listing_date": "2026-08-19",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "SHIPROCKET",
+      "issuer_name": "Shiprocket Limited",
+      "observed_alias": "Shiprocket Limited",
+      "isin": "INE0FOO01011",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public Offer comprising of Fresh Issue aggregating upto Rs. 8,855 million and Offer for Sale aggregating upto Rs.7,319.85 million (including Employee Reservation Portion aggregating up to Rs. 10 million & Anchor Investor portion of 74,991,568 Equity Shares)",
+      "offer_period": {
+        "open": "2026-08-12",
+        "close": "2026-08-14"
+      },
+      "listing_date": "2026-08-19",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "CREDENT",
+      "issuer_name": "Credent Connect N Care Limited",
+      "observed_alias": "Credent Connect N Care Limited",
+      "isin": "INE1KPX01025",
+      "board": "SME",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public Offer comprising of Fresh Issue of up to 49,68,000 equity shares (including Market Maker portion of 2,52,000 Equity Shares and Anchor Allocation 14,04,000 Equity Shares)",
+      "offer_period": {
+        "open": "2026-08-13",
+        "close": "2026-08-17"
+      },
+      "listing_date": "2026-08-20",
+      "recovery_matches": [],
+      "published_matches": []
+    }
+  ],
+  "excluded": [
+    {
+      "candidate": {
+        "issuer_name": "Annapurna Swadisht Limited",
+        "nse_symbol": "ANNAPURNA",
+        "board": "SME",
+        "listing_date": "2026-08-12",
+        "row_index": 910
+      },
+      "decision": "excluded_migration_not_new_ipo",
+      "detail_source": {
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=ANNAPURNA&series=SME",
+        "final_url": "https://www.nseindia.com/api/ipo-detail?symbol=ANNAPURNA&series=SME",
+        "http_status": 200,
+        "publication_date": null,
+        "collected_at": "2026-09-25T18:39:21.713Z",
+        "response_sha256": "271bae5a6b752433726fcfdf6b9d40fcf40ecad46cb1010e98711d53fcfca0ee",
+        "projection_sha256": "ce7a7396170add30746552775620452e37400247dc5ae57bd29e48690aa14dcf",
+        "artifact_file": "ANNAPURNA-ipo.json"
+      },
+      "detail": {
+        "companyName": "Annapurna Swadisht Limited",
+        "metaInfo": {
+          "companyName": "Annapurna Swadisht Limited",
+          "symbol": "ANNAPURNA",
+          "isin": "INE0MGM01017",
+          "listingDate": "2026-08-12",
+          "segment": "EQUITY",
+          "isDebtSec": false,
+          "isETFSec": false,
+          "isMunicipalBond": false,
+          "isHybridSymbol": false
+        },
+        "issueInfo": {
+          "symbol": "ANNAPURNA",
+          "dataList": [
+            {
+              "title": "Symbol",
+              "value": "ANNAPURNA"
+            },
+            {
+              "title": "Issue Period",
+              "value": "15-Sep-2022 to 19-Sep-2022"
+            },
+            {
+              "title": "Issue Size ",
+              "value": "\"Initial Public offer of 43,22,000 Equity Shares (including Market Maker portion of 2,16,000 Equity Shares)\""
+            },
+            {
+              "title": "Issue Type",
+              "value": "100% Book Building"
+            },
+            {
+              "title": "Price Range",
+              "value": "Rs.68 to Rs.70"
+            },
+            {
+              "title": "Bid Lot",
+              "value": "\"2,000 Equity Shares and in multiples thereof\""
+            },
+            {
+              "title": "Minimum Order Quantity",
+              "value": "\"2,000 Equity Shares\""
+            }
+          ]
+        }
+      },
+      "past_source": {
+        "url": "https://www.nseindia.com/api/public-past-issues",
+        "final_url": "https://www.nseindia.com/api/public-past-issues",
+        "http_status": 200,
+        "publication_date": null,
+        "collected_at": "2026-09-25T18:39:07.157Z",
+        "response_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+        "projection_sha256": "921c0d17527eb4001fc1a9bec2998b5ace440e107b0c6d00914a0e1cc30c4f68",
+        "artifact_file": "past.json"
+      },
+      "past_row": {
+        "companyName": "Annapurna Swadisht Limited",
+        "ipoEndDate": "19-SEP-2022",
+        "ipoStartDate": "15-SEP-2022",
+        "issuePrice": "157",
+        "listingDate": "12-AUG-2026",
+        "priceRange": "Rs.68 to Rs.70",
+        "securityType": "SME",
+        "symbol": "ANNAPURNA",
+        "company": "Annapurna Swadisht Limited"
+      },
+      "auto_import_allowed": false,
+      "reason": "The official exchange approval establishes an SME-to-Main-Board migration in August 2026, not a new equity IPO. Preserve the original 2022 offer observations and the conflicting price observations; do not combine migration dates with old IPO terms.",
+      "independent_official_evidence": {
+        "url": "https://nsearchives.nseindia.com/corporate/ASL_10082026194134_Intimation_Circular.pdf",
+        "final_url": "https://nsearchives.nseindia.com/corporate/ASL_10082026194134_Intimation_Circular.pdf",
+        "http_status": 200,
+        "collected_at": "2026-09-25T18:40:23.878Z",
+        "publication_date": "2026-08-10",
+        "document_identity": "NSE/CML/75660 enclosed in issuer disclosure",
+        "document_sha256": "20e0627aa7cbc6ec1ea911fd516b8d9eda1cfe0acd1b2b3f4527f2d09e9c2c8b",
+        "artifact_file": "ANNAPURNA-migration-disclosure-1.pdf",
+        "reviewed_pages": [
+          1,
+          2,
+          3
+        ],
+        "migration_effective_date": "2026-08-12",
+        "isin": "INE0MGM01017",
+        "evidence_excerpt": "pursuant to migration from SME Emerge platform",
+        "visually_reviewed": true
+      }
+    },
+    {
+      "candidate": {
+        "issuer_name": "Swaraj Suiting Limited",
+        "nse_symbol": "SWARAJ",
+        "board": "SME",
+        "listing_date": "2026-08-13",
+        "row_index": 959
+      },
+      "decision": "excluded_migration_not_new_ipo",
+      "detail_source": {
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=SWARAJ&series=SME",
+        "final_url": "https://www.nseindia.com/api/ipo-detail?symbol=SWARAJ&series=SME",
+        "http_status": 200,
+        "publication_date": null,
+        "collected_at": "2026-09-25T18:39:31.617Z",
+        "response_sha256": "09c4ff3d4af5ba205665d422b357a40834e9f5c4218027f2ba88291bd588fef8",
+        "projection_sha256": "407cd08caab3391de12ccaaeb513302dfabe0a52e12de16e36f2424226dd059d",
+        "artifact_file": "SWARAJ-ipo.json"
+      },
+      "detail": {
+        "companyName": "Swaraj Suiting Limited",
+        "metaInfo": {
+          "companyName": "Swaraj Suiting Limited",
+          "symbol": "SWARAJ",
+          "isin": "INE0GMR01016",
+          "listingDate": "2026-08-13",
+          "segment": "EQUITY",
+          "isDebtSec": false,
+          "isETFSec": false,
+          "isMunicipalBond": false,
+          "isHybridSymbol": false
+        },
+        "issueInfo": {
+          "symbol": "SWARAJ",
+          "dataList": [
+            {
+              "title": "Symbol",
+              "value": "SWARAJ"
+            },
+            {
+              "title": "Issue Period",
+              "value": "\"March 15, 2022 to March 17, 2022\""
+            },
+            {
+              "title": "Issue Size ",
+              "value": "\"Initial Public Issue of upto 19,08,000 Equity Shares (Including market maker portion of 96,000 shares)\""
+            },
+            {
+              "title": "Issue Type",
+              "value": "Fixed Price"
+            },
+            {
+              "title": "Market Lot",
+              "value": "2000 Equity Shares and in multiples thereof"
+            },
+            {
+              "title": "Minimum Order Quantity",
+              "value": "2000 Equity Shares"
+            }
+          ]
+        }
+      },
+      "past_source": {
+        "url": "https://www.nseindia.com/api/public-past-issues",
+        "final_url": "https://www.nseindia.com/api/public-past-issues",
+        "http_status": 200,
+        "publication_date": null,
+        "collected_at": "2026-09-25T18:39:07.157Z",
+        "response_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+        "projection_sha256": "cf7d660f63bf4d81dc9440ea8ddd93ad729cdc69aef03a1d2dc94731ff9c234a",
+        "artifact_file": "past.json"
+      },
+      "past_row": {
+        "companyName": "Swaraj Suiting Limited",
+        "ipoEndDate": "17-MAR-2022",
+        "ipoStartDate": "15-MAR-2022",
+        "issuePrice": "360",
+        "listingDate": "13-AUG-2026",
+        "priceRange": "Rs.56",
+        "securityType": "SME",
+        "symbol": "SWARAJ",
+        "company": "Swaraj Suiting Limited"
+      },
+      "auto_import_allowed": false,
+      "reason": "The official exchange approval establishes an SME-to-Main-Board migration in August 2026, not a new equity IPO. Preserve the original 2022 offer observations and the conflicting price observations; do not combine migration dates with old IPO terms.",
+      "independent_official_evidence": {
+        "url": "https://nsearchives.nseindia.com/corporate/SWARAJ_11082026164649_Migration_to_NSE.pdf",
+        "final_url": "https://nsearchives.nseindia.com/corporate/SWARAJ_11082026164649_Migration_to_NSE.pdf",
+        "http_status": 200,
+        "collected_at": "2026-09-25T18:40:26.125Z",
+        "publication_date": "2026-08-11",
+        "document_identity": "NSE/LIST/307 enclosed in issuer disclosure",
+        "document_sha256": "6835817d5599f2d2c17d2c5da78ca42248798c6bd02dd916e72bc943c1140b56",
+        "artifact_file": "SWARAJ-migration-disclosure-1.pdf",
+        "reviewed_pages": [
+          1,
+          2
+        ],
+        "migration_effective_date": "2026-08-13",
+        "isin": "INE0GMR01016",
+        "evidence_excerpt": "pursuant to Migration from SME Emerge platform",
+        "visually_reviewed": true
+      }
+    }
+  ],
+  "held": [
+    {
+      "candidate": {
+        "issuer_name": "Leap India Limited",
+        "nse_symbol": "LEAP",
+        "board": "Mainboard",
+        "listing_date": "2026-08-14",
+        "row_index": 54
+      },
+      "decision": "held_missing_issuer_identity",
+      "detail_source": {
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=LEAP&series=EQ",
+        "final_url": "https://www.nseindia.com/api/ipo-detail?symbol=LEAP&series=EQ",
+        "http_status": 200,
+        "publication_date": null,
+        "collected_at": "2026-09-25T18:39:36.501Z",
+        "response_sha256": "13797c349995822f595305f95746f460fd59ed7aa6265d1a9e55a5b158f7af3b",
+        "projection_sha256": "bcc6a19014b6fc731c29b8e7410e7f71c2bae867c73295710b1864e858b0aebf",
+        "artifact_file": "LEAP-ipo.json"
+      },
+      "detail": {
+        "companyName": "LEAP",
+        "metaInfo": {
+          "companyName": null,
+          "symbol": null,
+          "isin": null,
+          "listingDate": null,
+          "segment": null,
+          "isDebtSec": null,
+          "isETFSec": null,
+          "isMunicipalBond": null,
+          "isHybridSymbol": null
+        },
+        "issueInfo": {
+          "symbol": "LEAP",
+          "dataList": [
+            {
+              "title": "Symbol",
+              "value": "LEAP"
+            },
+            {
+              "title": "Issue Period",
+              "value": "07-Aug-2026 to 11-Aug-2026"
+            },
+            {
+              "title": "Issue Size",
+              "value": "\"Initial Public Offer comprising of Fresh Issue aggregating upto Rs. 4,800 million and Offer for Sale aggregating upto Rs. 20,000 million (including Employee Reservation Portion aggregating up to Rs. 12.50 million and Anchor Investor Portion of 46,768,854 Equity Shares)\""
+            },
+            {
+              "title": "Issue Type",
+              "value": "100% Book Building"
+            },
+            {
+              "title": "Price Range",
+              "value": "Rs. 151 to Rs. 159 per Equity Share"
+            },
+            {
+              "title": "Bid Lot",
+              "value": "94 Equity Shares and in multiples thereof"
+            },
+            {
+              "title": "Minimum Order Quantity",
+              "value": "94 Equity Shares"
+            }
+          ]
+        }
+      },
+      "past_source": {
+        "url": "https://www.nseindia.com/api/public-past-issues",
+        "final_url": "https://www.nseindia.com/api/public-past-issues",
+        "http_status": 200,
+        "publication_date": null,
+        "collected_at": "2026-09-25T18:39:07.157Z",
+        "response_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+        "projection_sha256": "e47334c22deb7c83800dcf15b2a519af58caa335fc8ef898f569deef2c3033cd",
+        "artifact_file": "past.json"
+      },
+      "past_row": {
+        "company": "Leap India Limited",
+        "htmSym": "leap",
+        "ipoEndDate": "11-AUG-2026",
+        "ipoStartDate": "07-AUG-2026",
+        "issuePrice": "   159",
+        "linkRemovalDate": "12-AUG-2026",
+        "listingDate": "14-AUG-2026",
+        "priceRange": "Rs.151 to Rs.159",
+        "securityType": "EQ",
+        "symbol": "LEAP"
+      },
+      "auto_import_allowed": false,
+      "reason": "NSE response contains issueInfo offer terms but companyName is only the symbol LEAP and all selected metaInfo identity/security fields are null. Aggregate past-issues data alone cannot establish the missing legal name, ISIN, board or listing identity."
+    }
+  ]
+}
