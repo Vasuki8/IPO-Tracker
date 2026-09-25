@@ -390,7 +390,7 @@ for (const fixture of retainedFailureRepair.fixtures) {
   assert.deepEqual(parseBseSmeAdditionNoticeHtml(text), expected, id);
   retainedRecoveredReferences += expected.length;
   assert.deepEqual(parseBseSmeAdditionNoticeHtml(text + ' ' + text), expected, id + ': duplicate clauses');
-  assert.deepEqual(parseBseSmeAdditionNoticeHtml(text.replace(/\\bBSE\\b/g, 'NSE')), [], id + ': wrong venue');
+  assert.deepEqual(parseBseSmeAdditionNoticeHtml(text.replace(/\bBSE\b/g, 'NSE')), [], id + ': wrong venue');
   assert.deepEqual(parseBseSmeAdditionNoticeHtml(text.replace(/(?:is|are) being listed/, 'is not being listed')), [], id + ': negated listing');
   assert.deepEqual(parseBseSmeAdditionNoticeHtml(text.replace(expected[0].listing_date_raw, 'February 30, 2020')), [], id + ': invalid calendar date');
   if (fixture.family === 'compressed_notice_suffixes_ordered_index_table') {
