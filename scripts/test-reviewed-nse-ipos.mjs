@@ -99,3 +99,5 @@ assert.throws(() => validateReviewedBatch(held, q), 'symbol metadata without IPO
 console.log(JSON.stringify({ reviewed_nse_tests: { issuers: 14, facts: 83, rejected_mutations: rejected, held_issuer_rejected: true, cross_year_collisions: 4, idempotent: true } }));
 
 await import("./test-reviewed-nse-batch3.mjs");
+
+await import("./test-reviewed-nse-batch4.mjs");

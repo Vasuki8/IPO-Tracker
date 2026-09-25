@@ -749,3 +749,14 @@ assert.throws(() => parseAllFieldsBudgetMs(["--all-fields-budget-ms=not-a-number
 assert.equal(withinAllFieldsBudget(1000, 8000, 8999), true);
 assert.equal(withinAllFieldsBudget(1000, 8000, 9000), false);
 console.log("NSE ipo-detail all-fields sync budget tests passed.");
+
+const omittedRepeatCurrencyBand = parsePriceBandFromIpoDetail({
+  issueInfo: { dataList: [{ title: "Price Range", value: "Rs. 144 to 152 per Equity Shares" }] }
+});
+assert.deepEqual(omittedRepeatCurrencyBand.value, { min: 144, max: 152 });
+const missingLeadingCurrencyBand = parsePriceBandFromIpoDetail({
+  issueInfo: { dataList: [{ title: "Price Range", value: "144 to 152 per Equity Shares" }] }
+});
+assert.equal(missingLeadingCurrencyBand.value, null);
+assert.equal(missingLeadingCurrencyBand.reason, "placeholder_or_unparseable");
+console.log("NSE price-band repeated-currency/plural-share tests passed.");

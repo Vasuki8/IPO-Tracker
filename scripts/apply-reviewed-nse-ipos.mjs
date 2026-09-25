@@ -108,7 +108,8 @@ export function validateEntry(entry, queue) {
     norm(r.securityType) === (c.board === 'SME' ? 'SME' : 'EQ') &&
     ['isDebtSec', 'isETFSec', 'isMunicipalBond', 'isHybridSymbol'].every(k => m[k] === false), 'non_equity_or_board_mismatch');
   const offer = unquote(oneItem(p, 'issue size').value);
-  requireThat(/^Initial Public Offer(?:ing)?\b/i.test(offer) && /\bequity shares\b/i.test(offer) &&
+  const initialPublicEquity = /^(?:Initial Public (?:Offer(?:ing)?|Issue)|Intial Public Offer(?:ing)?)\b/i.test(offer);
+  requireThat(initialPublicEquity && /\bequity shares\b/i.test(offer) &&
     !/\b(?:follow[ -]?on|further public|rights issue|partly[ -]paid|debenture|non[ -]convertible|FPO)\b/i.test(offer), 'initial_equity_ipo_not_established');
   requireThat(validDate(m.listingDate) && m.listingDate === c.listing_date && m.listingDate === nseDate(r.listingDate) &&
     m.listingDate <= entry.detail_source.collected_at.slice(0, 10) && m.listingDate <= entry.past_source.collected_at.slice(0, 10), 'listing_date_mismatch_or_future');
