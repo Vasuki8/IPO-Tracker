@@ -3,6 +3,7 @@ import {
   applyIssuePrice,
   applyIssueSize,
   applyListingDate,
+  applyListedStatusFromVerifiedListingDate,
   applyMarketLot,
   applyMinimumBid,
   issuePriceCandidatesFromIpoDetail,
@@ -641,6 +642,55 @@ assert.equal(
   false
 );
 assert.equal(record.listing_date.value, "2026-10-01");
+
+
+const listedStatusRecord = {
+  issuer_name: "Listed Status Limited",
+  nse_symbol: "LISTED",
+  nse_series: "EQ",
+  status: null,
+  status_evidence: [],
+  last_collected_at: "2026-09-22T12:00:00Z",
+  listing_date: {
+    value: "2026-09-23",
+    status: "verified",
+    page: null,
+    source: {
+      url: "https://www.nseindia.com/api/ipo-detail?symbol=LISTED&series=EQ",
+      document_type: "NSE Issue Information API",
+      document_identity: "NSE Issue Information — LISTED",
+      publication_date: null,
+      collected_at: "2026-09-23T18:00:00Z"
+    }
+  }
+};
+assert.equal(applyListedStatusFromVerifiedListingDate(listedStatusRecord, "2026-09-25T06:00:00Z"), true);
+assert.equal(listedStatusRecord.status, "listed");
+assert.equal(listedStatusRecord.status_evidence.length, 1);
+assert.equal(listedStatusRecord.status_evidence[0].url, listedStatusRecord.listing_date.source.url);
+assert.equal(listedStatusRecord.status_evidence[0].collected_at, "2026-09-23T18:00:00Z");
+assert.equal(listedStatusRecord.status_evidence[0].evidence_locator, "/metaInfo/listingDate");
+assert.equal(listedStatusRecord.last_collected_at, "2026-09-22T12:00:00Z");
+assert.equal(applyListedStatusFromVerifiedListingDate(listedStatusRecord, "2026-09-25T06:00:00Z"), false);
+
+for (const [label, mutate] of [
+  ["future listing", r => { r.listing_date.value = "2026-09-26"; }],
+  ["unverified listing", r => { r.listing_date.status = "provisional"; }],
+  ["non NSE source", r => { r.listing_date.source.url = "https://www.bseindia.com/example"; }],
+  ["invalid date", r => { r.listing_date.value = "2026-02-30"; }],
+  ["pre-existing evidence", r => { r.status_evidence = [{ url: "https://www.nseindia.com/example" }]; }]
+]) {
+  const r = structuredClone({
+    ...listedStatusRecord,
+    status: null,
+    status_evidence: [],
+    listing_date: structuredClone(listedStatusRecord.listing_date)
+  });
+  mutate(r);
+  assert.equal(applyListedStatusFromVerifiedListingDate(r, "2026-09-25T06:00:00Z"), false, label);
+  assert.equal(r.status, null, label + " status unchanged");
+}
+console.log("NSE status repair uses verified listing evidence and fails closed.");
 
 const legacyRecord = {
   issuer_name: "Legacy Limited",
