@@ -611,19 +611,28 @@
     "2025|pace-digitek-limited": {
       "issuer_name": "Pace Digitek Limited",
       "listing_date": "2025-10-06",
-      "last_attempted_at": "2026-09-23T22:47:58.325Z",
+      "last_attempted_at": "2026-09-25T05:26:04.210Z",
       "parser_version": "2.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-Kp7ESd/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758518940679.pdf\ncurl: (18) transfer closed with 4694472 bytes remaining to read\ncurl: (28) Operation timed out after 45000 milliseconds with 7385592 out of 9658712 bytes received\n",
+      "status": "explicit_dates_absent",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Pace Digitek Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758518940679.pdf",
+        "publication_date": "2025-09-22"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758518940679.pdf"
     },
     "2025|trualt-bioenergy-limited": {
       "issuer_name": "TruAlt Bioenergy Limited",
       "listing_date": "2025-10-03",
-      "last_attempted_at": "2026-09-23T23:09:56.979Z",
+      "last_attempted_at": "2026-09-25T05:26:04.210Z",
       "parser_version": "2.0.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-APqhkQ/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1760692316356.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 10451935 out of 20255279 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 9661015 out of 20255279 bytes received\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-TvaEdF/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1760692316356.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 13963103 out of 20255279 bytes received\ncurl: (18) transfer closed with 17570480 bytes remaining to read\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1760692316356.pdf"
     },
     "2024|sanathan-textiles-limited": {
@@ -889,10 +898,27 @@
     "2024|inventurus-knowledge-solutions-limited": {
       "issuer_name": "Inventurus Knowledge Solutions Limited",
       "listing_date": "2024-12-19",
-      "last_attempted_at": "2026-09-24T01:39:32.071Z",
+      "last_attempted_at": "2026-09-25T05:26:04.210Z",
       "parser_version": "2.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-hgtIRE/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1734496617957.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 6372071 out of 14279922 bytes received\ncurl: (18) transfer closed with 6867571 bytes remaining to read\n",
+      "status": "extracted",
+      "open_date": "2024-12-12",
+      "close_date": "2024-12-16",
+      "open_extraction": {
+        "value": "2024-12-12",
+        "source_value": "OFFER OPENED ON Thursday, December 12, 2024",
+        "page": 2
+      },
+      "close_extraction": {
+        "value": "2024-12-16",
+        "source_value": "OFFER CLOSED ON Monday, December 16, 2024",
+        "page": 2
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Inventurus Knowledge Solutions Limited- Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1734496617957.pdf",
+        "publication_date": "2024-12-18"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2024/1734496617957.pdf"
     },
     "2023|suraj-estate-developers-limited": {
@@ -950,10 +976,10 @@
     "2023|inox-india-limited": {
       "issuer_name": "INOX India Limited",
       "listing_date": "2023-12-21",
-      "last_attempted_at": "2026-09-24T01:39:32.071Z",
+      "last_attempted_at": "2026-09-25T05:26:04.210Z",
       "parser_version": "2.0.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-fDdSBP/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702983583674.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 13696575 out of 16545359 bytes received\ncurl: (18) transfer closed with 15214656 bytes remaining to read\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-5a3YVR/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702983583674.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 12307247 out of 16545359 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 14046927 out of 16545359 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2023/1702983583674.pdf"
     },
     "2025|excelsoft-technologies-limited": {
@@ -1715,6 +1741,124 @@
         "publication_date": "2025-10-14"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1760439483053.pdf"
+    },
+    "2025|rubicon-research-limited": {
+      "issuer_name": "Rubicon Research Limited",
+      "listing_date": "2025-10-16",
+      "last_attempted_at": "2026-09-25T05:26:04.210Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": "2025-10-09",
+      "close_date": "2025-10-13",
+      "open_extraction": {
+        "value": "2025-10-09",
+        "source_value": "OFFER OPENED ON Thursday, October 9, 2025",
+        "page": 3
+      },
+      "close_extraction": {
+        "value": "2025-10-13",
+        "source_value": "OFFER CLOSED ON Monday, October 13, 2025",
+        "page": 3
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Rubicon Research Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1760522458122.pdf",
+        "publication_date": "2025-10-15"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1760522458122.pdf"
+    },
+    "2022|vedant-asset-limited": {
+      "issuer_name": "Vedant Asset Limited",
+      "listing_date": "2022-10-12",
+      "last_attempted_at": "2026-09-25T05:26:04.210Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": "2022-09-30",
+      "close_date": "2022-10-04",
+      "open_extraction": {
+        "value": "2022-09-30",
+        "source_value": "ISSUE OPENS ON: SEPTEMBER 30, 2022",
+        "page": 1
+      },
+      "close_extraction": {
+        "value": "2022-10-04",
+        "source_value": "ISSUE CLOSES ON: OCTOBER 04, 2022",
+        "page": 1
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Vedant Asset Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1669897532907.pdf",
+        "publication_date": "2022-09-26"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1669897532907.pdf"
+    },
+    "2021|suyog-gurbaxani-funicular-ropeways-limited": {
+      "issuer_name": "Suyog Gurbaxani Funicular Ropeways Limited",
+      "listing_date": "2021-11-16",
+      "last_attempted_at": "2026-09-25T05:26:04.210Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": null,
+      "close_date": "2021-11-01",
+      "open_extraction": null,
+      "close_extraction": {
+        "value": "2021-11-01",
+        "source_value": "OFFER CLOSES ON NOVEMBER 01, 2021",
+        "page": 1
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Suyog Gurbaxani Funicular Ropeways Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671795864522.pdf",
+        "publication_date": "2021-10-25"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671795864522.pdf"
+    },
+    "2025|wework-india-management-limited": {
+      "issuer_name": "WeWork India Management Limited",
+      "listing_date": "2025-10-10",
+      "last_attempted_at": "2026-09-25T05:26:04.210Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": "2025-10-03",
+      "close_date": "2025-10-07",
+      "open_extraction": {
+        "value": "2025-10-03",
+        "source_value": "Offer opened on Friday, October 3, 2025",
+        "page": 3
+      },
+      "close_extraction": {
+        "value": "2025-10-07",
+        "source_value": "Offer closed on Tuesday, October 7, 2025",
+        "page": 3
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "WeWork India Management Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1759905089730.pdf",
+        "publication_date": "2025-10-07"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1759905089730.pdf"
+    },
+    "2024|krn-heat-exchanger-and-refrigeration-limited": {
+      "issuer_name": "KRN Heat Exchanger and Refrigeration Limited",
+      "listing_date": "2024-10-03",
+      "last_attempted_at": "2026-09-25T05:26:04.210Z",
+      "parser_version": "2.0.0",
+      "status": "official_date_conflict",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "KRN Heat Exchanger and Refrigeration Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2024/1726469612929.PDF",
+        "publication_date": "2024-09-16"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2024/1726469612929.PDF"
     }
   }
 }
