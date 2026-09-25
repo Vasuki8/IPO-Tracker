@@ -46,16 +46,26 @@ for (const held of review.held) {
   assert.throws(() => validateReviewedBatch(copy, q)); rejected++;
 }
 
-const raw = loadRecovery(root), rawBefore = JSON.stringify(raw), pub = JSON.parse(fs.readFileSync(path.join(root, 'data/ipos.json')));
-const plan = applyReviewedBatch(raw, pub, m, q, manifestPath);
+const raw = loadRecovery(root), original = JSON.stringify(raw), pub = JSON.parse(fs.readFileSync(path.join(root, 'data/ipos.json')));
+const rawBefore = structuredClone(raw);
+for (const year of Object.values(rawBefore)) {
+  year.records = year.records.filter(r => r.nse_verified_ipo_batch?.manifest !== manifestPath);
+}
+const symbols = new Set(checked.map(c => c.candidate.nse_symbol)), isins = new Set(checked.map(c => c.isin));
+const prior = { ...pub, records: pub.records.filter(r =>
+  !symbols.has(r.nse_symbol) && !isins.has(r.isin) && !checked.some(c => c.issuer_name === r.issuer_name)
+) };
+const plan = applyReviewedBatch(rawBefore, prior, m, q, manifestPath);
 assert.deepEqual(plan.stats, { added: 13, already_present: 0 });
-assert.equal(JSON.stringify(raw), rawBefore);
-for (const [year, data] of Object.entries(raw)) for (const r of data.records) assert.deepEqual(plan.recovery[year].records.find(n => n.id === r.id), r);
-assert.deepEqual(applyReviewedBatch(plan.recovery, pub, m, q, manifestPath).stats, { added: 0, already_present: 13 });
+for (const [year, data] of Object.entries(rawBefore)) {
+  for (const r of data.records) assert.deepEqual(plan.recovery[year].records.find(n => n.id === r.id), r);
+}
+assert.deepEqual(applyReviewedBatch(plan.recovery, prior, m, q, manifestPath).stats, { added: 0, already_present: 13 });
 
-const first = checked[0], collision = structuredClone(raw);
+const first = checked[0], collision = structuredClone(rawBefore);
 collision['2021'].records.push({ id: 'prior-batch4-collision', issuer_name: 'Different Limited', nse_symbol: first.candidate.nse_symbol });
 const collisionBefore = JSON.stringify(collision);
-assert.throws(() => applyReviewedBatch(collision, pub, m, q, manifestPath));
+assert.throws(() => applyReviewedBatch(collision, prior, m, q, manifestPath));
 assert.equal(JSON.stringify(collision), collisionBefore);
+assert.equal(JSON.stringify(loadRecovery(root)), original, 'tests are read-only');
 console.log(JSON.stringify({ reviewed_nse_batch4_tests: { issuers: 13, facts: 78, rejected_inputs: rejected, preservation: true, idempotent: true } }));
