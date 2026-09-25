@@ -1,0 +1,158 @@
+name: Materialize reviewed NSE universe batch2
+on:
+  push:
+    branches: ['backend/nse-universe-batch2']
+    paths: ['.github/workflows/materialize-nse-universe-batch2.yml']
+permissions:
+  actions: read
+  contents: write
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: backend/nse-universe-batch2
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Download retained batch2 source artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: nse-universe-batch2-36102861946-1
+          path: ${{ runner.temp }}/batch2
+          github-token: ${{ github.token }}
+          repository: Vasuki8/IPO-Tracker
+          run-id: 36102861946
+      - name: Materialize reviewed evidence and holds
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import assert from 'node:assert/strict';
+          import { createHash } from 'node:crypto';
+          const dir=process.env.RUNNER_TEMP+'/batch2';
+          const queuePath='data/discovery/ipo-universe-review-2026-09-25-batch2.json';
+          const queue=JSON.parse(fs.readFileSync(queuePath));
+          const sources=JSON.parse(fs.readFileSync(path.join(dir,'sources.json')));
+          const past=JSON.parse(fs.readFileSync(path.join(dir,'past.json')));
+          const hash=v=>createHash('sha256').update(v).digest('hex');
+          const norm=v=>String(v??'').replace(/\s+/g,' ').trim();
+          const TITLES=new Set(['symbol','issue size','issue period','issue type','price range','price band','market lot','lot size','bid lot','minimum order quantity']);
+          const stringify=v=>JSON.stringify(v);
+          const projectDetail=p=>{
+            const m=p?.metaInfo||{};
+            return {companyName:p?.companyName??null,metaInfo:Object.fromEntries(
+              ['companyName','symbol','isin','listingDate','segment','isDebtSec','isETFSec','isMunicipalBond','isHybridSymbol'].map(k=>[k,m[k]??null])),
+              issueInfo:{symbol:p?.issueInfo?.symbol??null,dataList:(p?.issueInfo?.dataList||[])
+                .filter(i=>TITLES.has(norm(i?.title).toLowerCase())).map(i=>({title:i.title,value:i.value}))}};
+          };
+          assert.equal(queue.candidates.length,15);
+          assert.equal(sources.run_id,'36102861946');
+          assert.equal(sources.source_commit_sha,'78da67f8da7f878c45459dfc8969b2047fcb4202');
+          assert.equal(sources.rows.length,31);
+          for(const row of sources.rows){
+            if(!row.file) continue;
+            const bytes=fs.readFileSync(path.join(dir,row.file));
+            assert.equal(hash(bytes),row.sha256,'source hash '+row.file);
+          }
+          assert.equal(sources.rows.filter(r=>r.kind==='quote_identity'&&r.status===403).length,15);
+          const sourceBy=new Map(sources.rows.map(r=>[(r.symbol||'')+'|'+r.kind,r]));
+          const pastSource=sourceBy.get('|past');
+          assert.equal(pastSource.status,200);
+          const approved=['MARUSHIKA','MANILAM','CLEANMAX','MOBILISE','PNGSREVA','OMNI','YAAP','STRIDERS','ACETEC','SEDEMAC','SPCON'];
+          const heldSymbols=['GICL','SILGOPP','VITAL','KOTYARK'];
+          const bySymbol=new Map(queue.candidates.map(c=>[c.nse_symbol,c]));
+          const source=(meta,projection)=>({url:meta.url,final_url:meta.final_url,http_status:meta.status,publication_date:null,
+            collected_at:meta.collected_at,response_sha256:meta.sha256,projection_sha256:hash(stringify(projection)),artifact_file:meta.file});
+          const entries=[];
+          for(const symbol of approved){
+            const candidate=bySymbol.get(symbol); assert(candidate);
+            const raw=JSON.parse(fs.readFileSync(path.join(dir,symbol+'-ipo.json')));
+            const detail=projectDetail(raw), meta=sourceBy.get(symbol+'|ipo_detail');
+            assert.equal(meta.status,200);
+            const pastRow=past[candidate.row_index];
+            assert.equal(norm(pastRow.symbol).toUpperCase(),symbol);
+            entries.push({candidate,decision:'verified_initial_equity_ipo',detail_source:source(meta,detail),detail,
+              past_source:source(pastSource,pastRow),past_row:pastRow});
+          }
+          const manifest={
+            schema_version:'1.0.0',verifier_version:'1.0.0',source_run_id:'36102861946',
+            source_artifact_id:10849678453,source_artifact_sha256:'ca9c15994d67dea46c735b8a3cd555def34a3948463ab05b893615e94af2bdbd',
+            source_snapshot_commit:sources.source_commit_sha,queue_path:queuePath,queue_sha256:hash(stringify(queue)),
+            projection_method:'literal_selected_json_fields_all_used_titles_retained',
+            scope_note:'Independently reviewed issuer-specific NSE Issue Information responses explicitly establish initial public equity offers for 11 current 2026 candidates. Past-feed dates and scalar final prices are accepted only after IPO and identity verification. GICL, SILGOPP, VITAL and KOTYARK are held because their retained offer periods belong to older issues/repeat or migration securities rather than a demonstrated new 2026 IPO. Quote endpoints returned HTTP403 and are not evidence. No inferred issue size or application amount is imported.',
+            entries
+          };
+          const holds=[];
+          for(const symbol of heldSymbols){
+            const candidate=bySymbol.get(symbol), raw=JSON.parse(fs.readFileSync(path.join(dir,symbol+'-ipo.json')));
+            const detail=projectDetail(raw), meta=sourceBy.get(symbol+'|ipo_detail'), pastRow=past[candidate.row_index];
+            let reason='';
+            if(['GICL','SILGOPP'].includes(symbol)) reason='Issuer-specific NSE detail exposes identity/listing metadata but no Issue Size / Issue Period / explicit new IPO terms. The past feed ties the same symbol to an older offer period while showing a 2026 listing date. Treat as migration/repeat-security review; do not infer a new 2026 IPO.';
+            if(symbol==='VITAL') reason='Issuer-specific detail describes the 31-Oct-2022 to 03-Nov-2022 initial public offer while meta/past feed show 2026-03-11 listing; past-feed issuePrice 46 also does not align with the retained Rs.95–101 issue range. Not sufficient evidence of a new 2026 IPO.';
+            if(symbol==='KOTYARK') reason='Issuer-specific detail describes the October 2021 initial public issue at fixed price Rs.51 while meta/past feed show 2026-03-12 listing and the past row reports issuePrice 281. Treat as legacy/migration/repeat-security review; do not infer a new 2026 IPO.';
+            holds.push({candidate,decision:'held_legacy_or_repeat_security_not_new_2026_ipo',detail_source:source(meta,detail),detail,
+              past_source:source(pastSource,pastRow),past_row:pastRow,reason,auto_import_allowed:false});
+          }
+          const review={
+            schema_version:'1.0.0',status:'reviewed_11_approved_4_held',reviewed_at:new Date().toISOString(),
+            source_run_id:'36102861946',source_snapshot_commit:sources.source_commit_sha,source_artifact_id:10849678453,
+            source_artifact_sha256:'ca9c15994d67dea46c735b8a3cd555def34a3948463ab05b893615e94af2bdbd',
+            queue_path:queuePath,baseline:{public_records:1232,public_sha256:'3fe550decca530638e0b354381827b5142c611fff89329c68562f1488e754f5c',
+              note:'Pinned queue originated from canonical audit 36095239145; reconcile again against current main before publication.'},
+            stats:{reviewed_candidates:15,verified_initial_equity_ipos:11,held_legacy_or_repeat_security:4,approved_exact_missing:11,
+              approved_identity_conflicts:0,verified_facts:66,listing_dates:11,offer_dates:22,final_issue_prices:11,price_bands:11,market_lots:7,minimum_bid_quantities:4},
+            method:'Require issuer-specific NSE Issue Information to explicitly identify an initial public equity offer, with legal name/symbol/ISIN/board alignment and offer period/listing date matching the pinned past-feed row. Scalar final price is retained only after that gate. Older offer periods paired with a 2026 exchange listing date are held rather than treated as new IPOs.',
+            sources:{successful_detail_responses:15,unusable_quote_responses:15,quote_http_status:403,past_response_sha256:pastSource.sha256,original_response_hashes_checked:31},
+            entries:approved.map(symbol=>{const e=entries.find(x=>x.candidate.nse_symbol===symbol);return {symbol,issuer_name:e.detail.companyName,observed_alias:e.candidate.issuer_name,isin:e.detail.metaInfo.isin,board:e.candidate.board,decision:'approved_verified_initial_equity_ipo',recovery_matches:[],published_matches:[]};}),
+            held:holds,rehearsal:{before:1232,after:1243,added:11,existing_unchanged:1232,identity_conflicts:0,idempotent:true},
+            limitations:['Quote-identity endpoints returned HTTP403 and were not used; no bypass was attempted.','RHP/prospectus ZIP links in source responses were not independently opened in this unit.','GICL, SILGOPP, VITAL and KOTYARK are held as legacy/migration/repeat-security review cases, not assigned a new offer type beyond what official evidence establishes.','Final monetary issue size and minimum application amount are not derived. Missing terms remain null.'],
+            fact_evidence_manifest:'data/verified-nse-ipos/2026-09-25-batch2.json'
+          };
+          fs.writeFileSync('data/verified-nse-ipos/2026-09-25-batch2.json',stringify(manifest)+'\n');
+          fs.writeFileSync('data/discovery/nse-universe-batch2-review-2026-09-25.json',stringify(review)+'\n');
+          console.log(JSON.stringify({approved:entries.length,held:holds.length,verified_facts:66}));
+          JS
+      - name: Validate reviewed evidence
+        run: |
+          node scripts/test-reviewed-nse-ipos.mjs
+          node scripts/apply-reviewed-nse-ipos.mjs --check
+      - name: Rehearse exact publication on isolated copy
+        shell: bash
+        run: |
+          set -euo pipefail
+          before="$RUNNER_TEMP/before.json"
+          cp data/ipos.json "$before"
+          tmp="$RUNNER_TEMP/rehearsal"
+          mkdir -p "$tmp"
+          tar --exclude=.git -cf - . | tar -xf - -C "$tmp"
+          cd "$tmp"
+          node scripts/apply-reviewed-nse-ipos.mjs > "$RUNNER_TEMP/import.json"
+          node scripts/build-published-data.mjs
+          node scripts/build-published-data.mjs --check
+          node scripts/validate-data.mjs
+          BEFORE="$before" AFTER="$tmp/data/ipos.json" node --input-type=module <<'JS'
+          import fs from 'node:fs'; import assert from 'node:assert/strict';
+          const before=JSON.parse(fs.readFileSync(process.env.BEFORE)), after=JSON.parse(fs.readFileSync(process.env.AFTER));
+          const b=new Map(before.records.map(r=>[r.id,r])), a=new Map(after.records.map(r=>[r.id,r]));
+          const added=[...a.keys()].filter(id=>!b.has(id)), removed=[...b.keys()].filter(id=>!a.has(id));
+          const changed=[...b.keys()].filter(id=>a.has(id)&&JSON.stringify(b.get(id))!==JSON.stringify(a.get(id)));
+          assert.equal(before.records.length,1232); assert.equal(after.records.length,1243);
+          assert.equal(added.length,11); assert.deepEqual(removed,[]); assert.deepEqual(changed,[]);
+          console.log(JSON.stringify({before:before.records.length,after:after.records.length,added:added.length,removed:0,existing_changed:0}));
+          JS
+      - name: Commit evidence-only release branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/review-nse-universe-batch2.yml .github/workflows/materialize-nse-universe-batch2.yml
+          git add data/discovery/nse-universe-batch2-review-2026-09-25.json
+          git add data/verified-nse-ipos/2026-09-25-batch2.json
+          git commit -m "data: retain reviewed NSE universe batch2 evidence"
+          git push origin HEAD:backend/nse-universe-batch2
