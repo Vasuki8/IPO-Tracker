@@ -132,7 +132,7 @@ export function summarizeBseNoticeParseFailure(value, limit = 700) {
 
 // Unlike Date.parse, reject calendar rollover (e.g. February 30 -> March 2).
 function strictListingDate(raw) {
-  const match = String(raw).match(/^([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})$/);
+  const match = String(raw).match(/^([A-Za-z]+)\s+(\d{1,2})\s*,\s*(\d{4})$/);
   if (!match) return null;
   const months = ["january", "february", "march", "april", "may", "june",
     "july", "august", "september", "october", "november", "december"];
@@ -158,7 +158,7 @@ export function parseBseSmeAdditionNoticeHtml(html) {
     const clause = body.slice(from, to);
     // Index admission's later "Effective at the open" date is NOT a listing date.
     const listingStatement = clause.match(
-      /\b(?:is being|are being|will be|is|are)\s+listed\s+on\s+(?:(?:the\s+)?SME\s+platform\s+of\s+BSE|BSE(?:\s+SME\s+platform)?)\b[\s,]*effective\s+(?:(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s*,?\s*)?([A-Za-z]+\s+\d{1,2},\s*\d{4})/i
+      /\b(?:is being|are being|will be|is|are)\s+listed\s+on\s+(?:(?:the\s+)?SME\s+platform\s+of\s+BSE|BSE(?:\s+SME\s+platform)?)\b[\s,]*effective\s+(?:(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s*,?\s*)?([A-Za-z]+\s+\d{1,2}\s*,\s*\d{4})/i
     );
     if (!listingStatement) continue;
     const listingTerms = clause.slice(0, listingStatement.index);
