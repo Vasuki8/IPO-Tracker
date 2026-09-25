@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0.0",
+  "status": "verified",
+  "scope": "cursor9 second retained BSE SME notice segment",
+  "source_review": {
+    "run_id": "36080905638",
+    "artifact_id": 10841898100,
+    "artifact_sha256": "f1303d5adc7cf14dba75e04464a565f9631bef3b9b0b44ae27aa64bb123f6eb0",
+    "source_commit_sha": "027c1bd2382403636110a55929af61da6bb0d307",
+    "discovered_references": 25,
+    "missing_exact_identity": 25,
+    "verified_issuers": 25,
+    "verified_facts": 75,
+    "rejected": 0,
+    "unavailable": 0,
+    "canonical_pdf_result": "http_404"
+  },
+  "publication": {
+    "release_pr": 220,
+    "release_merge_commit": "3f8bc9086d8ca36f3b7d402c9f614b8e1f0a694d",
+    "rehearsal": {
+      "before": 1146,
+      "after": 1171,
+      "added": 25,
+      "existing_unchanged": 1146,
+      "already_present_reviewed_entries": 222,
+      "holds": 0,
+      "conflicts": 0,
+      "idempotent": true
+    },
+    "source_backed_sync_runs": [
+      "36081911163",
+      "36082722423"
+    ],
+    "generated_data_commits": [
+      "a84d4700a1222691a46ba15d46b3f9391a72404d",
+      "6013bee0e7e44d5b926845638df61b177187de3f"
+    ],
+    "operator_state_commits": [
+      "62f14b65ab3477fc83b45cbedb20fbe5daeb86b2",
+      "5333d0029cf2ceb4b6a6358c3118ff5a75750935"
+    ]
+  },
+  "live_verification": {
+    "verifier_pr": 221,
+    "verifier_merge_commit": "bd549cc8b1951f6741fe6f6fd5ba11bdc5eacd48",
+    "run_id": "36086364954",
+    "artifact_id": 10844520599,
+    "artifact_sha256": "ee80a2b787d46e561f6efe13f76c89784131cf0b4ce199c65f9e97f8fa961df3",
+    "checked_at": "2026-09-25T02:28:13.033Z",
+    "snapshot_fetched_at": "2026-09-25T02:28:12.990Z",
+    "snapshot_sha256": "d8549169d7f15e297e6df535d3ce520abb32ab8c50c1b647a9c43839aa4a9f1c",
+    "snapshot_bytes": 6241820,
+    "dataset_generated_at": "2026-09-25T01:25:57.917Z",
+    "published_records": 1171,
+    "checked_issuers": 25,
+    "checked_fields": 75,
+    "failed_issuers": 0,
+    "unsupported_null_fields_per_issuer": [
+      "price_band",
+      "open_date",
+      "close_date",
+      "issue_size_inr",
+      "minimum_bid_quantity",
+      "minimum_application_amount_inr"
+    ],
+    "retained_document_hash_fields": 75,
+    "serialized_live_document_hash_fields": 0
+  }
+}
