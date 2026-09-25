@@ -8,6 +8,26 @@ const NSE_HOME = "https://www.nseindia.com/market-data/all-upcoming-issues-ipo";
 const API_BASE = "https://www.nseindia.com/api/ipo-detail";
 const USER_AGENT =
   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
+const DEFAULT_ALL_FIELDS_BUDGET_MS = 8 * 60 * 1000;
+
+export function parseAllFieldsBudgetMs(args = []) {
+  const prefix = "--all-fields-budget-ms=";
+  const arg = args.find((value) => value.startsWith(prefix));
+  if (!arg) return DEFAULT_ALL_FIELDS_BUDGET_MS;
+  const value = Number(arg.slice(prefix.length));
+  if (!Number.isInteger(value) || value < 1000 || value > 60 * 60 * 1000) {
+    throw new Error("invalid_all_fields_budget_ms");
+  }
+  return value;
+}
+
+export function withinAllFieldsBudget(startedAt, budgetMs, now = Date.now()) {
+  return Number.isFinite(startedAt) &&
+    Number.isFinite(budgetMs) &&
+    Number.isFinite(now) &&
+    budgetMs > 0 &&
+    now - startedAt < budgetMs;
+}
 const MINIMUM_APPLICATION_DIAGNOSTIC_ISSUERS = new Set([
   "Adroit Industries (India) Limited",
   "Asset Reconstruction Company (India) Limited",
@@ -1756,6 +1776,8 @@ export function shouldUseIpoDetailForRecord(record, currentYear = new Date().get
 
 async function runAllFields() {
   const now = new Date().toISOString();
+  const runStartedAt = Date.now();
+  const runBudgetMs = parseAllFieldsBudgetMs(process.argv.slice(2));
   const landing = await fetchWithRetry(NSE_HOME, {
     headers: { "user-agent": USER_AGENT, "accept": "text/html,application/xhtml+xml", "accept-language": "en-US,en;q=0.9" }
   });
@@ -1789,9 +1811,15 @@ async function runAllFields() {
     if (Object.values(needs).some(Boolean)) candidates.push({ group, record, needs });
   }
   const stats = { candidates:candidates.length, historical_deferred:historicalDeferred, status_candidates:statusCandidates,
-    api_success:0, fetch_errors:0,
+    api_success:0, fetch_errors:0, processed:0, budget_deferred:0, run_budget_ms:runBudgetMs,
     extracted:{issue_price:0,market_lot:0,issue_size:0,price_band:0,minimum_bid:0,listing_date:0,status:statusRepaired} };
   for (const { group, record, needs } of candidates) {
+    if (!withinAllFieldsBudget(runStartedAt, runBudgetMs)) {
+      stats.budget_deferred = candidates.length - stats.processed;
+      console.warn("NSE ipo-detail all-fields budget exhausted; deferring " + stats.budget_deferred + " candidate(s) to a later sync.");
+      break;
+    }
+    stats.processed += 1;
     const url = apiUrl(record);
     try {
       const response = await fetchWithRetry(url, { headers: { "user-agent":USER_AGENT, "accept":"application/json,text/plain,*/*", "accept-language":"en-US,en;q=0.9", "referer":NSE_HOME, "cookie":cookie, "cache-control":"no-cache", "pragma":"no-cache" } });
