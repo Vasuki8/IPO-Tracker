@@ -1,0 +1,506 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_12_approved_1_migration_1_debt_excluded",
+  "reviewed_at": "2026-09-25T20:44:19.397Z",
+  "source_run_id": "36187113307",
+  "source_snapshot_commit": "a678c760130f082327ee591f5e38c154c68150d5",
+  "source_branch_head": "8fcd9b2557fedaf237f5fc0a1b2a0237b9015330",
+  "source_artifact_id": 10886636012,
+  "source_artifact_sha256": "7169cbd2c166521850ac2fac44c4f4be808440df1ffc0acd45951cd84b2df1bb",
+  "queue_path": "data/discovery/ipo-universe-review-2026-09-25-batch8.json",
+  "baseline": {
+    "public_records": 1309,
+    "public_sha256": "f1b0d662e1dc8a61cd4a821451143e85ea5a6e53425f158431a26953ca8b3df0",
+    "dataset_generated_at": "2026-09-25T19:55:28.706Z",
+    "snapshot_fetched_at": "2026-09-25T20:41:24.792Z",
+    "source_snapshot_matches_served_bytes": true
+  },
+  "stats": {
+    "reviewed_candidates": 14,
+    "verified_initial_equity_ipos": 12,
+    "held": 0,
+    "excluded_migrations": 1,
+    "excluded_debt_securities": 1,
+    "approved_exact_missing": 12,
+    "approved_identity_conflicts": 0,
+    "verified_facts": 71,
+    "listing_date": 12,
+    "open_date": 12,
+    "close_date": 12,
+    "issue_price": 12,
+    "price_band": 11,
+    "market_lot": 6,
+    "minimum_bid_quantity": 6
+  },
+  "sources": {
+    "original_response_hashes_checked": 19,
+    "successful_responses": 19,
+    "unsuccessful_responses": 0,
+    "successful_detail_responses": 14,
+    "past_response_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31"
+  },
+  "parser_changes": [],
+  "notes": [
+    "Existing reviewed importer handles all twelve official forms without relaxing gates.",
+    "VINOD fixed price Rs. 94 is not a two-ended band.",
+    "DOLLEX migration and 13DCCL28 debt require positive official classification; rejection alone is not classification.",
+    "DCCL additional endpoint mixed metadata is retained without approval."
+  ],
+  "entries": [
+    {
+      "symbol": "SUMAX",
+      "issuer_name": "Sumax Engineering Limited",
+      "observed_alias": "Sumax Engineering Limited",
+      "isin": "INE11Z001019",
+      "board": "SME",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial public offer comprising Fresh offer up to 42,91,200 equity shares and Offer for sale up to 9,96,000 equity shares (Including Market Maker Reservation Portion of up to 2,66,400, reservation for employees of 1,92,000 equity shares and Anchor Allocation 14,35,200 Equity Shares)",
+      "offer_period": {
+        "open": "2026-08-25",
+        "close": "2026-08-28"
+      },
+      "listing_date": "2026-09-02",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "LUMINO",
+      "issuer_name": "Lumino Industries Limited",
+      "observed_alias": "Lumino Industries Limited",
+      "isin": "INE185Q01025",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public Offer of Fresh Issue of Aggregating up to Rs. 5000 million and Offer for sale up to Rs. 2000 million (Including Eligible Employees Reservation Portion of Aggregating up to Rs. 100 million and Anchor portion of 25,243,901 Equity Shares)",
+      "offer_period": {
+        "open": "2026-08-27",
+        "close": "2026-08-31"
+      },
+      "listing_date": "2026-09-03",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "ASHUTOSH",
+      "issuer_name": "Ashutosh Fibre Limited",
+      "observed_alias": "Ashutosh Fibre Limited",
+      "isin": "INE19FR01012",
+      "board": "SME",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public Offer comprising of Fresh Issue of up to 61,24,800 Equity Shares (including Market Maker Portion of 3,07,200 Equity Shares and Anchor reservation portion of 17,43,600 Equity Shares)",
+      "offer_period": {
+        "open": "2026-08-31",
+        "close": "2026-09-02"
+      },
+      "listing_date": "2026-09-07",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "PERNIASPOP",
+      "issuer_name": "Purple Style Labs Limited",
+      "observed_alias": "Purple Style Labs Limited",
+      "isin": "INE0I1B01016",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public offer comprising Fresh issue of aggregating up to Rs. 6800 million (Including Anchor portion of 53,21,739 Equity Shares)",
+      "offer_period": {
+        "open": "2026-08-31",
+        "close": "2026-09-02"
+      },
+      "listing_date": "2026-09-07",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "SHANTIINOR",
+      "issuer_name": "Shanti Inorganics Limited",
+      "observed_alias": "Shanti Inorganics Limited",
+      "isin": "INE1ZEE01019",
+      "board": "SME",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public Offer comprising of Fresh Issue of up to 56,91,200 Equity Shares (including Market Maker portion of 2,84,800 Equity Shares and Anchor portion of 16,19,200 Equity Shares)",
+      "offer_period": {
+        "open": "2026-08-31",
+        "close": "2026-09-02"
+      },
+      "listing_date": "2026-09-07",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "DEEPA",
+      "issuer_name": "Deepa Jewellers Limited",
+      "observed_alias": "Deepa Jewellers Limited",
+      "isin": "INE1M2N01020",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public offer comprising of Fresh Issue aggregating up to Rs.2,500 million and Offer for Sale of up to 11,848,340 Equity Shares. (Including Anchor portion of 77,91,789 Equity Shares)",
+      "offer_period": {
+        "open": "2026-09-01",
+        "close": "2026-09-03"
+      },
+      "listing_date": "2026-09-08",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "GLASSWALL",
+      "issuer_name": "Glass Wall Systems (India) Limited",
+      "observed_alias": "Glass Wall Systems (India) Limited",
+      "isin": "INE644Q01039",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial public offer comprising of Fresh Issue aggregating up to Rs. 600 million and Offer for sale of up to 2,02,13,722 Equity shares (Including Anchor Investor Portion of 70,53,127 Equity shares)",
+      "offer_period": {
+        "open": "2026-09-08",
+        "close": "2026-09-10"
+      },
+      "listing_date": "2026-09-16",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "PRASOLCHEM",
+      "issuer_name": "Prasol Chemicals Limited",
+      "observed_alias": "Prasol Chemicals Limited",
+      "isin": "INE455U01024",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public offer comprising of Fresh issue aggregating up to Rs. 800 million and Offer for sale aggregating up to Rs. 4200 million (including Anchor portion of 22,18,930 Equity Shares)",
+      "offer_period": {
+        "open": "2026-09-08",
+        "close": "2026-09-10"
+      },
+      "listing_date": "2026-09-16",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "STEAMHOUSE",
+      "issuer_name": "Steamhouse India Limited",
+      "observed_alias": "Steamhouse India Limited",
+      "isin": "INE0FRO01022",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial public offer comprising of Fresh Issue aggregating up to Rs. 3530 million and Offer for sale aggregating up to Rs. 610 million (Including Anchor portion of 1,53,33,332 equity shares) ",
+      "offer_period": {
+        "open": "2026-09-09",
+        "close": "2026-09-11"
+      },
+      "listing_date": "2026-09-17",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "VINOD",
+      "issuer_name": "Vinod Texworld Limited",
+      "observed_alias": "Vinod Texworld Limited",
+      "isin": "INE1A5U01014",
+      "board": "SME",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public Offer of 45,56,400 Equity Shares at the aggregating to 4,283.02 lakhs.",
+      "offer_period": {
+        "open": "2026-09-09",
+        "close": "2026-09-11"
+      },
+      "listing_date": "2026-09-17",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "KHERIAAUTO",
+      "issuer_name": "Kheria Autocomp Limited",
+      "observed_alias": "Kheria Autocomp Limited",
+      "isin": "INE0HOL01013",
+      "board": "SME",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public Offer comprising of Fresh Issue of up to 45,98,400 Equity Shares (Including Market Maker portion of 2,30,400 Equity Shares and Anchor reservation portion of 13,10,400 Equity Shares)",
+      "offer_period": {
+        "open": "2026-09-17",
+        "close": "2026-09-21"
+      },
+      "listing_date": "2026-09-24",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "SPECTRAA",
+      "issuer_name": "SpectraA Technology Solutions Limited",
+      "observed_alias": "SpectraA Technology Solutions Limited",
+      "isin": "INE0GAN01010",
+      "board": "SME",
+      "decision": "approved_verified_initial_equity_ipo",
+      "offer_evidence": "Initial Public Offer comprising of Fresh Issue of up to 32,55,600 Equity Shares and Offer for sale aggregating upto 3,48,000 Equity Shares (Including Market Maker portion of 1,82,400 Equity Shares and Anchor Allocation 10,24,800 Equity Shares)",
+      "offer_period": {
+        "open": "2026-09-17",
+        "close": "2026-09-21"
+      },
+      "listing_date": "2026-09-24",
+      "recovery_matches": [],
+      "published_matches": []
+    }
+  ],
+  "excluded": [
+    {
+      "candidate": {
+        "issuer_name": "Dollex Agrotech Limited",
+        "nse_symbol": "DOLLEX",
+        "board": "SME",
+        "listing_date": "2026-09-11",
+        "row_index": 871
+      },
+      "decision": "excluded_migration_not_new_ipo",
+      "detail_source": {
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=DOLLEX&series=SME",
+        "final_url": "https://www.nseindia.com/api/ipo-detail?symbol=DOLLEX&series=SME",
+        "http_status": 200,
+        "publication_date": null,
+        "collected_at": "2026-09-25T20:40:43.275Z",
+        "response_sha256": "64a5d802f8a453fc1558cec45537361b5a84082552bd8376b64b3b6ef3144133",
+        "projection_sha256": "035bd789d9437b7942a7265c931a0bd65dee81bcc732ab0378673715908378b6",
+        "artifact_file": "DOLLEX-ipo.json"
+      },
+      "detail": {
+        "companyName": "Dollex Agrotech Limited",
+        "metaInfo": {
+          "companyName": "Dollex Agrotech Limited",
+          "symbol": "DOLLEX",
+          "isin": "INE0JHH01011",
+          "listingDate": "2026-09-11",
+          "segment": "EQUITY",
+          "isDebtSec": false,
+          "isETFSec": false,
+          "isMunicipalBond": false,
+          "isHybridSymbol": false
+        },
+        "issueInfo": {
+          "symbol": "DOLLEX",
+          "dataList": [
+            {
+              "title": "Symbol",
+              "value": "DOLLEX"
+            },
+            {
+              "title": "Issue Period",
+              "value": "15-Dec-2022 to 20-Dec-2022"
+            },
+            {
+              "title": "Issue Size ",
+              "value": "\"Initial Public Offer of Up To 69,68,000 Equity Shares  (including Market Maker Portion of 3,52,000 Equity Shares)\""
+            },
+            {
+              "title": "Issue Type",
+              "value": "Fixed Price"
+            },
+            {
+              "title": "Price Range",
+              "value": "Rs.35"
+            },
+            {
+              "title": "Bid Lot",
+              "value": "4000 Equity Shares and in multiples thereof"
+            },
+            {
+              "title": "Minimum Order Quantity",
+              "value": "4000 Equity Shares"
+            }
+          ]
+        }
+      },
+      "past_source": {
+        "url": "https://www.nseindia.com/api/public-past-issues",
+        "final_url": "https://www.nseindia.com/api/public-past-issues",
+        "http_status": 200,
+        "publication_date": null,
+        "collected_at": "2026-09-25T20:40:08.627Z",
+        "response_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+        "projection_sha256": "b23f546ee8959f484ac055a1788f47c44efa1469799b17eea31ebbb4f9c6864a",
+        "artifact_file": "past.json"
+      },
+      "past_row": {
+        "companyName": "Dollex Agrotech Limited",
+        "ipoEndDate": "20-DEC-2022",
+        "ipoStartDate": "15-DEC-2022",
+        "issuePrice": "38",
+        "listingDate": "11-SEP-2026",
+        "priceRange": "Rs.35",
+        "securityType": "SME",
+        "symbol": "DOLLEX",
+        "company": "Dollex Agrotech Limited"
+      },
+      "auto_import_allowed": false,
+      "reason": "Official issuer disclosure encloses NSE/LIST/314 dated September 9, 2026, approving migration from SME Emerge to NSE Main Board effective September 11, 2026. The issuer endpoint carries the original December 2022 IPO terms; its September 2026 date is not a new equity IPO.",
+      "independent_official_evidence": {
+        "url": "https://nsearchives.nseindia.com/corporate/DOLLEX_09092026163743_CoverletterApprovalsigned.pdf",
+        "final_url": "https://nsearchives.nseindia.com/corporate/DOLLEX_09092026163743_CoverletterApprovalsigned.pdf",
+        "http_status": 200,
+        "collected_at": "2026-09-25T20:41:19.292Z",
+        "document_sha256": "755ed53275d4d43ecc061387fa939e2c1be8557ff0004b4b5500c1375b9e19d3",
+        "artifact_file": "DOLLEX-migration-approval.pdf",
+        "document_identity": "Dollex Agrotech disclosure enclosing NSE/LIST/314",
+        "publication_date": "2026-09-09",
+        "effective_date": "2026-09-11",
+        "reviewed_pages": [
+          1,
+          2
+        ],
+        "review_method": "PDF text extraction and visual inspection of retained original pages",
+        "isin": "INE0JHH01011",
+        "symbol": "DOLLEX",
+        "evidence": "Migration from SME Emerge platform to Capital Market Segment (Main Board).",
+        "trading_lot_not_ipo_application_lot": 1
+      },
+      "original_offer_period": {
+        "open": "2022-12-15",
+        "close": "2022-12-20"
+      },
+      "scope_note": "Excludes this 2026 migration event, not the existence of an earlier equity IPO."
+    },
+    {
+      "candidate": {
+        "issuer_name": "Dar Credit & Capital Limited",
+        "nse_symbol": "13DCCL28",
+        "board": "SME",
+        "listing_date": "2026-09-16",
+        "row_index": 332
+      },
+      "decision": "excluded_debt_security_not_initial_equity_ipo",
+      "detail_source": {
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=13DCCL28&series=SME",
+        "final_url": "https://www.nseindia.com/api/ipo-detail?symbol=13DCCL28&series=SME",
+        "http_status": 200,
+        "publication_date": null,
+        "collected_at": "2026-09-25T20:40:48.096Z",
+        "response_sha256": "d4fb7a68b7d17f820f3d7537d2f397420a59c9381d4baae570754f40d214a67a",
+        "projection_sha256": "f9840be268e2e71a1da1d59ae8e87129d6a06394a866798221b4ef39bee8a2db",
+        "artifact_file": "13DCCL28-ipo.json"
+      },
+      "detail": {
+        "companyName": "Dar Credit & Capital Limited",
+        "metaInfo": {
+          "companyName": "Dar Credit & Capital Limited",
+          "symbol": "13DCCL28",
+          "isin": "INE04Q907231",
+          "listingDate": "2026-09-16",
+          "segment": "EQUITY",
+          "isDebtSec": true,
+          "isETFSec": false,
+          "isMunicipalBond": false,
+          "isHybridSymbol": false
+        },
+        "issueInfo": {
+          "symbol": null,
+          "dataList": []
+        }
+      },
+      "past_source": {
+        "url": "https://www.nseindia.com/api/public-past-issues",
+        "final_url": "https://www.nseindia.com/api/public-past-issues",
+        "http_status": 200,
+        "publication_date": null,
+        "collected_at": "2026-09-25T20:40:08.627Z",
+        "response_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+        "projection_sha256": "38b9c3da47c49606e93e8ae60b2513bb9c09d6a76d63e55cd312f4a0c5aeaec7",
+        "artifact_file": "past.json"
+      },
+      "past_row": {
+        "companyName": "Dar Credit & Capital Limited",
+        "ipoEndDate": "23-MAY-2025",
+        "ipoStartDate": "21-MAY-2025",
+        "issuePrice": "100000",
+        "listingDate": "16-SEP-2026",
+        "priceRange": "Rs.57 to Rs.60",
+        "securityType": "SME",
+        "symbol": "13DCCL28",
+        "company": "Dar Credit & Capital Limited"
+      },
+      "auto_import_allowed": false,
+      "reason": "NSE issuer response marks 13DCCL28 as debt; ISIN INE04Q907231 matches NSE/CML/76341, a privately placed coupon-bearing security, not the earlier equity IPO. Do not mix May 2025 equity-offer terms with the September 2026 debt listing.",
+      "independent_official_evidence": {
+        "url": "https://nsearchives.nseindia.com/content/circulars/CML76341.pdf",
+        "final_url": "https://nsearchives.nseindia.com/content/circulars/CML76341.pdf",
+        "http_status": 200,
+        "collected_at": "2026-09-25T20:41:19.867Z",
+        "document_sha256": "427e35496ae22f3e62607ad7c813ad302c04fa854dd90a7d6388c0563ae32a38",
+        "artifact_file": "13DCCL28-CML76341.pdf",
+        "document_identity": "NSE/CML/76341",
+        "publication_date": "2026-09-15",
+        "effective_date": "2026-09-16",
+        "reviewed_pages": [
+          1,
+          3
+        ],
+        "review_method": "PDF text extraction and visual inspection of retained original pages",
+        "isin": "INE04Q907231",
+        "symbol": "13DCCL28",
+        "series": "N0",
+        "description": "DCCL 13% 2028",
+        "coupon_percent": 13,
+        "maturity_date": "2028-09-10",
+        "trading_lot_not_ipo_application_lot": 1
+      },
+      "additional_endpoint": {
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=DCCL&series=SME",
+          "final_url": "https://www.nseindia.com/api/ipo-detail?symbol=DCCL&series=SME",
+          "http_status": 200,
+          "publication_date": null,
+          "collected_at": "2026-09-25T20:41:24.575Z",
+          "response_sha256": "b58623da0e7416140adaa172e88b595e88fcf4f8350bd81f9e3d745a006842be",
+          "projection_sha256": "a3db06efffbd6e6bb6837af7ba9bd4986c90cc1184401d78cbf0605f26025a44",
+          "artifact_file": "DCCL-equity-ipo.json"
+        },
+        "projection": {
+          "companyName": "Dar Credit & Capital Limited",
+          "metaInfo": {
+            "companyName": "Dar Credit & Capital Limited",
+            "symbol": "DCCL",
+            "isin": "INE04Q901010",
+            "listingDate": "2025-05-28",
+            "segment": "SME",
+            "isDebtSec": true,
+            "isETFSec": false,
+            "isMunicipalBond": false,
+            "isHybridSymbol": false
+          },
+          "issueInfo": {
+            "symbol": "DCCL",
+            "dataList": [
+              {
+                "title": "Symbol",
+                "value": "DCCL"
+              },
+              {
+                "title": "Issue Period",
+                "value": "21-May-2025 to 23-May-2025"
+              },
+              {
+                "title": "Issue Size",
+                "value": "\"Initial Public Issue of offer upto 42,76,000 Equity Shares (Including Market Maker portion of 2,16,000 Equity shares and Anchor allocation portion of 12,16,000 Equity Shares)\""
+              },
+              {
+                "title": "Issue Type",
+                "value": "100 % Book Building"
+              },
+              {
+                "title": "Price Range",
+                "value": "Rs. 57/- to Rs. 60/- per equity share"
+              },
+              {
+                "title": "Bid Lot",
+                "value": "2000 Equity Shares and in multiples thereof"
+              },
+              {
+                "title": "Minimum Order Quantity",
+                "value": "2000 Equity Shares"
+              }
+            ]
+          }
+        },
+        "disposition": "retained_mixed_metadata_not_equity_approval",
+        "note": "The separate DCCL endpoint reports INE04Q901010 and May 2025 IPO terms but isDebtSec=true. This inconsistent flag is preserved, not silently cleared or used to approve an equity record. The debt exclusion relies on matching 13DCCL28/INE04Q907231 in the authoritative circular."
+      }
+    }
+  ],
+  "held": []
+}
