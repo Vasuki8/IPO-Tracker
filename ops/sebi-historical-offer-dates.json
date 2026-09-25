@@ -1497,10 +1497,10 @@
     "2023|cello-world-limited": {
       "issuer_name": "Cello World Limited",
       "listing_date": "2023-11-06",
-      "last_attempted_at": "2026-09-24T17:33:40.083Z",
+      "last_attempted_at": "2026-09-25T19:34:17.340Z",
       "parser_version": "2.0.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-K5CF3Z/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1698924971457.pdf\ncurl: (18) transfer closed with 17709210 bytes remaining to read\ncurl: (28) Operation timed out after 45000 milliseconds with 12376791 out of 28132049 bytes received\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-756v35/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1698924971457.pdf\ncurl: (18) transfer closed with 24080962 bytes remaining to read\ncurl: (28) Operation timed out after 45000 milliseconds with 7532239 out of 28132049 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2023/1698924971457.pdf"
     },
     "2022|amiable-logistics-india-limited": {
@@ -1568,10 +1568,27 @@
     "2024|deepak-builders-and-engineers-india-limited": {
       "issuer_name": "Deepak Builders & Engineers India Limited",
       "listing_date": "2024-10-28",
-      "last_attempted_at": "2026-09-24T17:33:40.083Z",
+      "last_attempted_at": "2026-09-25T19:34:17.340Z",
       "parser_version": "2.0.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-odGHSg/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1730282081702.pdf\ncurl: (18) transfer closed with 2992251 bytes remaining to read\ncurl: (18) transfer closed with 4847251 bytes remaining to read\n",
+      "status": "extracted",
+      "open_date": "2024-10-21",
+      "close_date": "2024-10-23",
+      "open_extraction": {
+        "value": "2024-10-21",
+        "source_value": "OFFER OPENED ON Monday, October 21, 2024",
+        "page": 2
+      },
+      "close_extraction": {
+        "value": "2024-10-23",
+        "source_value": "OFFER CLOSED ON Wednesday, October 23, 2024",
+        "page": 2
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Deepak Builders and Engineers India Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1730282081702.pdf",
+        "publication_date": "2024-10-30"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1730282081702.pdf"
     },
     "2022|fusion-micro-finance-limited": {
@@ -2090,6 +2107,170 @@
       "status": "error",
       "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-toLyTZ/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2023/1696916267320.pdf\ncurl: (28) Operation timed out after 45001 milliseconds with 6588104 out of 8454731 bytes received\ncurl: (28) Operation timed out after 45002 milliseconds with 7673168 out of 8454731 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2023/1696916267320.pdf"
+    },
+    "2025|saatvik-green-energy-limited": {
+      "issuer_name": "Saatvik Green Energy Limited",
+      "listing_date": "2025-09-26",
+      "last_attempted_at": "2026-09-25T19:34:17.340Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": null,
+      "close_date": "2025-09-23",
+      "open_extraction": null,
+      "close_extraction": {
+        "value": "2025-09-23",
+        "source_value": "OFFER CLOSED ON Tuesday, September 23, 2025",
+        "page": 3
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Saatvik Green Energy Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2026/1772446964651.pdf",
+        "publication_date": "2025-09-24"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2026/1772446964651.pdf"
+    },
+    "2022|kesar-india-limited": {
+      "issuer_name": "Kesar India Limited",
+      "listing_date": "2022-07-12",
+      "last_attempted_at": "2026-09-25T19:34:17.340Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": "2022-06-30",
+      "close_date": "2022-07-04",
+      "open_extraction": {
+        "value": "2022-06-30",
+        "source_value": "ISSUE OPENS ON: June 30, 2022",
+        "page": 1
+      },
+      "close_extraction": {
+        "value": "2022-07-04",
+        "source_value": "ISSUE CLOSES ON: July 04, 2022",
+        "page": 1
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Kesar India Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671770507241.pdf",
+        "publication_date": "2022-06-25"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671770507241.pdf"
+    },
+    "2025|ivalue-infosolutions-limited": {
+      "issuer_name": "Ivalue Infosolutions Limited",
+      "listing_date": "2025-09-25",
+      "last_attempted_at": "2026-09-25T19:34:17.340Z",
+      "parser_version": "2.0.0",
+      "status": "official_date_conflict",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Ivalue Infosolutions Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1760692376392.pdf",
+        "publication_date": "2025-09-23"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1760692376392.pdf"
+    },
+    "2024|arkade-developers-limited": {
+      "issuer_name": "Arkade Developers Limited",
+      "listing_date": "2024-09-24",
+      "last_attempted_at": "2026-09-25T19:34:17.340Z",
+      "parser_version": "2.0.0",
+      "status": "explicit_dates_absent",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Arkade Developers Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1727932765667.pdf",
+        "publication_date": "2024-09-20"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1727932765667.pdf"
+    },
+    "2023|marco-cables-and-conductors-limited": {
+      "issuer_name": "Marco Cables and Conductors Limited",
+      "listing_date": "2023-09-28",
+      "last_attempted_at": "2026-09-25T19:34:17.340Z",
+      "parser_version": "2.0.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-N4xyO1/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1695619868003.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 12785711 out of 15920789 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 14855151 out of 15920789 bytes received\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1695619868003.pdf"
+    },
+    "2025|euro-pratik-sales-limited": {
+      "issuer_name": "Euro Pratik Sales Limited",
+      "listing_date": "2025-09-23",
+      "last_attempted_at": "2026-09-25T19:34:17.340Z",
+      "parser_version": "2.0.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-k4Iznx/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1761649813870.pdf\ncurl: (28) Operation timed out after 45001 milliseconds with 10979679 out of 16007022 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 6649751 out of 16007022 bytes received\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2025/1761649813870.pdf"
+    },
+    "2024|western-carriers-india-limited": {
+      "issuer_name": "Western Carriers (India) Limited",
+      "listing_date": "2024-09-24",
+      "last_attempted_at": "2026-09-25T19:34:17.340Z",
+      "parser_version": "2.0.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-lVUZvV/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2024/1727066817456.pdf\ncurl: (28) Operation timed out after 45001 milliseconds with 7270943 out of 11176513 bytes received\ncurl: (28) Operation timed out after 45001 milliseconds with 6254447 out of 11176513 bytes received\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2024/1727066817456.pdf"
+    },
+    "2023|yatra-online-limited": {
+      "issuer_name": "Yatra Online Limited",
+      "listing_date": "2023-09-28",
+      "last_attempted_at": "2026-09-25T19:34:17.340Z",
+      "parser_version": "2.0.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 45 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-offer-dates-LtwfAS/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1695373657832.pdf\ncurl: (28) Operation timed out after 45000 milliseconds with 7460175 out of 12236650 bytes received\ncurl: (28) Operation timed out after 45000 milliseconds with 7211911 out of 12236650 bytes received\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1695373657832.pdf"
+    },
+    "2025|airfloa-rail-technology-limited": {
+      "issuer_name": "AIRFLOA RAIL TECHNOLOGY LIMITED",
+      "listing_date": "2025-09-18",
+      "last_attempted_at": "2026-09-25T19:34:17.340Z",
+      "parser_version": "2.0.0",
+      "status": "extracted",
+      "open_date": "2025-09-11",
+      "close_date": "2025-09-15",
+      "open_extraction": {
+        "value": "2025-09-11",
+        "source_value": "Issue opened on Thursday, September 11, 2025",
+        "page": 11
+      },
+      "close_extraction": {
+        "value": "2025-09-15",
+        "source_value": "Issue Closed on Monday, September 15, 2025",
+        "page": 11
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Airfloa Rail Technology Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758608206692.pdf",
+        "publication_date": "2025-09-23"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758608206692.pdf"
+    },
+    "2024|p-n-gadgil-jewellers-limited": {
+      "issuer_name": "P N Gadgil Jewellers Limited",
+      "listing_date": "2024-09-17",
+      "last_attempted_at": "2026-09-25T19:34:17.340Z",
+      "parser_version": "2.0.0",
+      "status": "explicit_dates_absent",
+      "open_date": null,
+      "close_date": null,
+      "open_extraction": null,
+      "close_extraction": null,
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "P N Gadgil Jewellers Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2024/1726037454249.pdf",
+        "publication_date": "2024-09-11"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2024/1726037454249.pdf"
     }
   }
 }
