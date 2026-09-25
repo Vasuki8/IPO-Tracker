@@ -31,27 +31,29 @@ Collection time, source business observation time, dataset generation and Pages 
 
 ## Handoff for the next prompt
 
-**NSE universe batch3 is VERIFIED LIVE.** Do not repeat its source review or import.
+**NSE universe batch4 is VERIFIED LIVE.** Do not repeat its source review or import.
 
-PR #235 merged the reviewed batch; the retained result is **13 published initial public equity IPOs / 78 explicit facts** from the 15-candidate APSISAERO-to-SIMCA queue. **AMIRCHAND remains held** for missing issuer identity metadata and **10MWL29 is excluded as debt**. Evidence: [data/discovery/nse-universe-batch3-review-2026-09-25.json](data/discovery/nse-universe-batch3-review-2026-09-25.json).
+PR #240 reviewed 15 candidates: **13 independently verified initial public equity IPOs were published**, **QMSMEDI was excluded as an NSE Emerge-to-Main-Board migration**, and **12VPT28A was excluded as debt**. The batch retains **78 explicit facts**: 13 listing dates, 26 offer dates, 13 final prices, 13 price bands, 10 market lots and 3 minimum bid quantities.
 
-The actual served Pages snapshot fetched at **2026-09-25T16:55:27.249Z** contains **1,256 records**. Batch3 verification passed **13/13 issuers, 78/78 facts, 0 failures**. Compared with the preceding verified 1,243-record snapshot: **13 added, 0 removed, 0 existing records changed**. All 1,256 records have one of `open/upcoming/closed/listed` plus status evidence; Unknown/invalid status count is **0**. Live snapshot SHA-256: `74031fbbac15e9fff5b6e510a23df45c435e2eecf1c9257b064cc9c42ecf3932`. Durable receipt: [docs/verification/nse-universe-batch3-live-publication-2026-09-25.json](docs/verification/nse-universe-batch3-live-publication-2026-09-25.json).
+Source review run `36165195790` retained 20 official source files; artifact `10877286718`, SHA-256 `7aa33f4f7066e20a246a5da8328e8271759b4f2b2356b6ae4eed6cdec93185ad`. Successful retained-source materialization run `36166287987` rehearsed **1,256 -> 1,269**, exactly 13 additions, no removals and an idempotent rerun. Durable rehearsal: [docs/verification/nse-universe-batch4-rehearsal-2026-09-25.json](docs/verification/nse-universe-batch4-rehearsal-2026-09-25.json).
 
-Publication used data commit `d24291331f15e7f346977790e77b02c2c528c230`; retained repair verifier run `36163697372` and actual Pages deployment `36163746445` both succeeded. The temporary publication-repair workflow was removed after verification.
+The normal production sync `36166656023` then completed successfully end-to-end, including the historical NSE stage that had timed out in the preceding run. Data commit: `35166cf76ee03fb580d53e75898b030f7cc1f9c6`; operator state: **healthy**.
 
-### Reliability note
+Actual Pages verifier `36167470675` passed **13/13 issuers, 78/78 facts, 0 failures**. The served snapshot fetched `2026-09-25T17:30:44.748Z` contains **1,269 records**, with **0 Unknown/invalid statuses** and status evidence on every record. Snapshot SHA-256: `228b3a1861836dbce8e344313a82035d9e7ed38bcd2a09c31f4dcd822047c6b5`. Durable live receipt: [docs/verification/nse-universe-batch4-live-publication-2026-09-25.json](docs/verification/nse-universe-batch4-live-publication-2026-09-25.json).
 
-The original normal source sync `36160239429` became abnormally long-running in optional NSE all-fields enrichment. PR #236, merged as `50fbd2ef2ed4176515607c35e787dfbd0d21f31f`, now limits that optional enrichment to an **8-minute best-effort budget**; unprocessed fields stay missing and are retried later.
-
-Replacement sync `36163462983` failed independently in historical NSE materialization because an official request timed out. At the start of the next backend run, inspect the latest scheduled sync. If that same timeout repeats, add bounded retry/fail-closed handling to the historical collector rather than weakening data evidence rules.
+Against the preceding 1,256-record live baseline, batch4 added exactly 13 records and removed none. Two unrelated older records received normal SEBI document attachments (Euro Pratik Sales and Ivalue Infosolutions); no prior displayed IPO field/value/status changed.
 
 ### Exact next backend task
 
-Review [data/discovery/ipo-universe-review-2026-09-25-batch4.json](data/discovery/ipo-universe-review-2026-09-25-batch4.json): **15 candidates from RFBL through SHREEDHAR**. Reconcile against latest main and the verified live universe; independently establish offering type and identity; no aggregate-feed-only imports. **QMSMEDI** and **12VPT28A** are explicit prior-offer/security-type review signals.
+Review [data/discovery/ipo-universe-review-2026-09-25-batch5.json](data/discovery/ipo-universe-review-2026-09-25-batch5.json): **15 candidate source groups from TEJA through JNPR**.
 
-Separate holds remain **AMIRCHAND, ADANIENPP1, Fabino Life Sciences, GICL, SILGOPP, VITAL and KOTYARK**. The canonical queue has **74 remaining eligible source groups, not 74 confirmed IPOs**. Broader BSE/SEBI/NSE-series gaps remain; BSE parser v1.5 remains 236/236 parsed.
+Symbols: **TEJA, VMOBILE, KNACK, ICELCO, KUSUMGAR, HAPPY, LASERPOWER, SBIFUNDS, CMLL, METALIC, INDOMIM, LCL, PROPSHOP, MANIPALHOS, JNPR**.
 
-No UI, minimum-investment expansion, billing, accounts, ads, spending or permission changes belong to this backend continuation. Product UI work remains documented separately in [docs/UI_DETAIL_NAVIGATION_HANDOFF.md](docs/UI_DETAIL_NAVIGATION_HANDOFF.md).
+Reconcile against latest main and the actual live universe, independently establish offering type and issuer identity, retain nulls/conflicts, and do not import from the aggregate NSE past-issues feed alone. The canonical audit has **59 remaining eligible source groups, not 59 confirmed IPOs**.
+
+Separate unresolved holds remain **AMIRCHAND, ADANIENPP1, Fabino Life Sciences, GICL, SILGOPP, VITAL and KOTYARK**. **QMSMEDI** and **12VPT28A** are resolved exclusions, not holds. Broader BSE/SEBI/NSE-series gaps remain; BSE parser v1.5 remains 236/236 parsed.
+
+No UI, minimum-investment expansion, billing, accounts, ads, spending or permission changes belong to this backend continuation. Product UI/research-depth work remains documented separately in [docs/UI_DETAIL_NAVIGATION_HANDOFF.md](docs/UI_DETAIL_NAVIGATION_HANDOFF.md).
 
 ## Local checks
 
