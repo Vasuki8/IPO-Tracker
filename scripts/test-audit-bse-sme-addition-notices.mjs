@@ -377,3 +377,38 @@ for (const fixture of repairedSource.fixtures) {
 }
 assert.equal(recoveredReferences, 13);
 console.log('Seven retained BSE source fixtures recover 13 references; incomplete/ambiguous clauses fail closed.');
+
+
+// Literal source regressions for the three retained v1.4 parser failures.
+const retainedFailureRepair = JSON.parse(fs.readFileSync(new URL('./fixtures/bse-retained-failure-parser-repair.json', import.meta.url), 'utf8'));
+assert.equal(retainedFailureRepair.fixtures.length, 3);
+let retainedRecoveredReferences = 0;
+for (const fixture of retainedFailureRepair.fixtures) {
+  const { text, expected, notice_no: id } = fixture;
+  assert.equal(fixture.extracted_text_sha256, fixture.retained_text_sha256, id + ': unchanged official source');
+  assert.equal(createHash('sha256').update(text).digest('hex'), fixture.excerpt_sha256, id + ': exact retained excerpt');
+  assert.deepEqual(parseBseSmeAdditionNoticeHtml(text), expected, id);
+  retainedRecoveredReferences += expected.length;
+  assert.deepEqual(parseBseSmeAdditionNoticeHtml(text + ' ' + text), expected, id + ': duplicate clauses');
+  assert.deepEqual(parseBseSmeAdditionNoticeHtml(text.replace(/\bBSE\b/g, 'NSE')), [], id + ': wrong venue');
+  assert.deepEqual(parseBseSmeAdditionNoticeHtml(text.replace(/(?:is|are) being listed/, 'is not being listed')), [], id + ': negated listing');
+  assert.deepEqual(parseBseSmeAdditionNoticeHtml(text.replace(expected[0].listing_date_raw, 'February 30, 2020')), [], id + ': invalid calendar date');
+  if (fixture.family === 'compressed_notice_suffixes_ordered_index_table') {
+    const firstSuffix = expected[0].listing_notice_no.split('-')[1];
+    const secondSuffix = expected[1].listing_notice_no.split('-')[1];
+    for (const [label, mutated] of [
+      ['duplicate suffix', text.replace(',' + secondSuffix, ',' + firstSuffix)],
+      ['missing table ticker', text.replace(expected[0].bse_scrip_code, 'xxxxx')],
+      ['duplicate table ticker', text.replace(expected[1].bse_scrip_code, expected[0].bse_scrip_code)],
+      ['missing stock', text.replace(expected[0].issuer_name, '')],
+      ['wrong index admission date', text.replace('October 11, 2022', 'October 12, 2022')],
+      ['missing below-stocks marker', text.replace('below stocks', 'securities')],
+      ['broken table header', text.replace('Exchange Ticker Stock Name EFFECTIVE DATE', 'Stock table')]
+    ]) {
+      assert.notEqual(mutated, text, id + ': mutation applied: ' + label);
+      assert.deepEqual(parseBseSmeAdditionNoticeHtml(mutated), [], id + ': ' + label);
+    }
+  }
+}
+assert.equal(retainedRecoveredReferences, 10);
+console.log('Three retained v1.4 source fixtures recover 10 references; compact mapping and legacy dates fail closed.');

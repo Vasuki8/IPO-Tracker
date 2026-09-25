@@ -15,7 +15,7 @@ export const BSE_INDEX_NOTICE_LIST_URL =
 export const BSE_INDEX_NOTICE_DETAIL_URL =
   "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=";
 export const NOTICE_BATCH_SIZE = 20;
-export const NOTICE_PARSER_VERSION = "1.4.0";
+export const NOTICE_PARSER_VERSION = "1.5.0";
 
 const USER_AGENT =
   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36";
@@ -132,7 +132,7 @@ export function summarizeBseNoticeParseFailure(value, limit = 700) {
 
 // Unlike Date.parse, reject calendar rollover (e.g. February 30 -> March 2).
 function strictListingDate(raw) {
-  const match = String(raw).match(/^([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})$/);
+  const match = String(raw).match(/^([A-Za-z]+)\s+(\d{1,2})\s*,\s*(\d{4})$/);
   if (!match) return null;
   const months = ["january", "february", "march", "april", "may", "june",
     "july", "august", "september", "october", "november", "december"];
@@ -158,7 +158,7 @@ export function parseBseSmeAdditionNoticeHtml(html) {
     const clause = body.slice(from, to);
     // Index admission's later "Effective at the open" date is NOT a listing date.
     const listingStatement = clause.match(
-      /\b(?:is being|are being|will be|is|are)\s+listed\s+on\s+(?:(?:the\s+)?SME\s+platform\s+of\s+BSE|BSE(?:\s+SME\s+platform)?)\b[\s,]*effective\s+(?:(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s*,?\s*)?([A-Za-z]+\s+\d{1,2},\s*\d{4})/i
+      /\b(?:is being|are being|will be|is|are)\s+listed\s+on\s+(?:(?:the\s+)?SME\s+platform\s+of\s+BSE|BSE(?:\s+SME\s+platform)?)\b[\s,]*effective\s+(?:(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s*,?\s*)?([A-Za-z]+\s+\d{1,2}\s*,\s*\d{4})/i
     );
     if (!listingStatement) continue;
     const listingTerms = clause.slice(0, listingStatement.index);
@@ -194,7 +194,67 @@ export function parseBseSmeAdditionNoticeHtml(html) {
     const shared = listingTerms.match(
       /^With reference to\s+Notice No\s*\.?\s*:?\s*((?:[0-9]{8}\s*-\s*[0-9]+)(?:\s*(?:and|&|,)\s*[0-9]{8}\s*-\s*[0-9]+)+)\s*,\s*(.+)$/i
     );
-    if (!shared) continue;
+    if (!shared) {
+      // A demonstrated 2022 legacy family compresses repeated notice prefixes
+      // (e.g. 20221007-67,40,... and 2), then lists stocks in the same order
+      // in the explicit INDEX/ADD table. Accept only a complete, unique 1:1 map.
+      const compact = listingTerms.match(
+        /^With reference to\s+Notice No\s*\.?\s*:?\s*([0-9]{8})\s*-\s*([0-9]+)((?:\s*,\s*[0-9]+)+(?:\s+and\s+[0-9]+)?)\s+below\s+stocks\s*$/i
+      );
+      if (!compact) continue;
+      const suffixes = [compact[2], ...[...compact[3].matchAll(/[0-9]+/g)].map((match) => match[0])];
+      const compactNoticeIds = suffixes.map((suffix) => compact[1] + "-" + suffix);
+      if (compactNoticeIds.length < 2 || new Set(compactNoticeIds).size !== compactNoticeIds.length) continue;
+
+      const afterListing = clause.slice(listingStatement.index + listingStatement[0].length);
+      const admission = afterListing.match(
+        /Effective at the open of\s+(?:(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s*,?\s*)?([A-Za-z]+\s+\d{1,2}\s*,\s*\d{4})\s*,?\s*these\s+stocks\s+will\s+be\s+added\s+to\s+the\s+below\s+index\.?(?:\s|$)/i
+      );
+      const table = afterListing.match(
+        /INDEX\s+ADD\s+Exchange\s+Ticker\s+Stock\s+Name\s+EFFECTIVE\s+DATE\s+S&P\s+BSE\s+SME\s+IPO\s+(.+?)(?=\s+For more information\b|$)/i
+      );
+      if (!admission || !table) continue;
+      const admissionRaw = normalizeText(admission[1]);
+      if (!strictListingDate(admissionRaw)) continue;
+
+      const tickerMatches = [...table[1].matchAll(/\b([0-9]{6})\b/g)];
+      if (tickerMatches.length !== compactNoticeIds.length ||
+          new Set(tickerMatches.map((match) => match[1])).size !== tickerMatches.length) continue;
+      const compactEntries = [];
+      let admissionDateCount = 0;
+      for (let i = 0; i < tickerMatches.length; i += 1) {
+        const current = tickerMatches[i];
+        const next = tickerMatches[i + 1];
+        let issuer = normalizeText(table[1].slice(current.index + current[0].length, next?.index ?? table[1].length));
+        const trailingDate = issuer.match(/\s+([A-Za-z]+\s+\d{1,2}\s*,\s*\d{4})$/);
+        if (trailingDate) {
+          if (normalizeText(trailingDate[1]) !== admissionRaw) {
+            admissionDateCount = -1;
+            break;
+          }
+          admissionDateCount += 1;
+          issuer = normalizeText(issuer.slice(0, trailingDate.index));
+        }
+        if (!issuer || issuer.length > 220 || /\b(?:INDEX|ADD|Exchange Ticker|EFFECTIVE DATE)\b/i.test(issuer)) {
+          admissionDateCount = -1;
+          break;
+        }
+        compactEntries.push({ ticker: current[1], issuer });
+      }
+      // The observed table carries one merged effective-date cell. Requiring it
+      // prevents accepting an arbitrary ticker/name list after the prose.
+      if (admissionDateCount !== 1 || compactEntries.length !== compactNoticeIds.length) continue;
+      for (let i = 0; i < compactNoticeIds.length; i += 1) {
+        rows.push({
+          listing_notice_no: compactNoticeIds[i],
+          issuer_name: compactEntries[i].issuer,
+          bse_scrip_code: compactEntries[i].ticker,
+          listing_date: listingDate,
+          listing_date_raw: effectiveRaw
+        });
+      }
+      continue;
+    }
     const noticeIds = [...shared[1].matchAll(/([0-9]{8})\s*-\s*([0-9]+)/g)]
       .map((match) => match[1] + "-" + match[2]);
     const issuerPattern =
