@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0.0",
+  "status": "rehearsal_verified_not_live_publication",
+  "source_review": {
+    "run_id": "36165195790",
+    "artifact_id": 10877286718,
+    "artifact_sha256": "7aa33f4f7066e20a246a5da8328e8271759b4f2b2356b6ae4eed6cdec93185ad",
+    "source_snapshot_commit": "fd4e9da69a8e4a88967612b2b4ebee661f1532cd",
+    "original_files_checked": 20,
+    "original_files_passed": 20
+  },
+  "materialization": {
+    "successful_run_id": "36166287987",
+    "artifact_id": 10878100711,
+    "artifact_sha256": "80bdf98cbdd5aad9133294b8227ddba01784021eb2eed8cb1a6c6be31327d0a6",
+    "reviewed_commit": "5679d346f4aaa1d84b075732c13bddd60c76c5ee",
+    "failed_attempts": [
+      {
+        "run_id": "36166095008",
+        "failure_stage": "temporary parser-patch guard",
+        "production_data_written": false
+      },
+      {
+        "run_id": "36166189950",
+        "failure_stage": "temporary parser-patch guard",
+        "production_data_written": false
+      }
+    ]
+  },
+  "review": {
+    "candidates": 15,
+    "approved_initial_equity_ipos": 13,
+    "excluded_migration": [
+      "QMSMEDI"
+    ],
+    "excluded_debt_security": [
+      "12VPT28A"
+    ],
+    "facts": 78,
+    "listing_dates": 13,
+    "offer_dates": 26,
+    "final_issue_prices": 13,
+    "price_bands": 13,
+    "market_lots": 10,
+    "minimum_bid_quantities": 3
+  },
+  "parser_repairs": {
+    "initial_public_equity_wording": [
+      "Initial Public Issue",
+      "Intial Public Offer"
+    ],
+    "price_band": "Allow omitted repeated INR marker before the upper bound and singular/plural Equity Share(s), while still requiring the lower bound to carry INR currency evidence.",
+    "fail_closed": true
+  },
+  "rehearsal": {
+    "before": 1256,
+    "after": 1269,
+    "added": 13,
+    "removed": 0,
+    "existing_unchanged": 1256,
+    "idempotent": true,
+    "reviewed_batches": [
+      {
+        "manifest": "data/verified-nse-ipos/2026-09-25-batch1.json",
+        "issuers": 14,
+        "facts": 83,
+        "status": "verified"
+      },
+      {
+        "manifest": "data/verified-nse-ipos/2026-09-25-batch2.json",
+        "issuers": 11,
+        "facts": 66,
+        "status": "verified"
+      },
+      {
+        "manifest": "data/verified-nse-ipos/2026-09-25-batch3.json",
+        "issuers": 13,
+        "facts": 78,
+        "status": "verified"
+      },
+      {
+        "manifest": "data/verified-nse-ipos/2026-09-25-batch4.json",
+        "issuers": 13,
+        "facts": 78,
+        "status": "verified"
+      }
+    ],
+    "build_synchronized": true,
+    "public_contract_valid": true,
+    "production_data_unmodified_during_rehearsal": true
+  },
+  "live_publication_verified": false
+}
