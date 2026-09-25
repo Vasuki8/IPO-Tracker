@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "status": "rehearsal_verified_not_live_publication",
+  "source_review": {
+    "run_id": "36187113307",
+    "artifact_id": 10886636012,
+    "artifact_sha256": "7169cbd2c166521850ac2fac44c4f4be808440df1ffc0acd45951cd84b2df1bb",
+    "source_snapshot_commit": "a678c760130f082327ee591f5e38c154c68150d5",
+    "branch_head_commit": "8fcd9b2557fedaf237f5fc0a1b2a0237b9015330",
+    "original_response_files_checked": 19,
+    "original_response_hashes_passed": 19,
+    "successful_http_responses": 19,
+    "failed_responses": 0
+  },
+  "materialization": {
+    "run_id": "36187979805",
+    "artifact_id": 10887157480,
+    "artifact_sha256": "ba00acef89e7f0239810237e365da10f45fa7c5e4633a5a6393b886df152d2c6",
+    "reviewed_commit": "ab5d0275c70168116714fbaf9c6414a63a2ee986",
+    "source_and_test_files_match_local_tested_bytes": true,
+    "failed_attempts": [],
+    "temporary_collection_and_materialization_files_removed_before_merge": true
+  },
+  "review": {
+    "candidates": 14,
+    "approved_initial_equity_ipos": 12,
+    "excluded_migration": ["DOLLEX"],
+    "excluded_debt_security": ["13DCCL28"],
+    "new_holds": [],
+    "facts": 71,
+    "listing_dates": 12,
+    "offer_dates": 24,
+    "final_issue_prices": 12,
+    "price_bands": 11,
+    "market_lots": 6,
+    "minimum_bid_quantities": 6,
+    "fixed_price_null_band": ["VINOD"],
+    "additional_mixed_metadata": "DCCL endpoint reports INE04Q901010 and old IPO terms but also isDebtSec=true; retained as inconsistent supplementary evidence, not cleared or used for equity approval. The 13DCCL28 exclusion matches INE04Q907231 to the authoritative debt circular.",
+    "production_parser_changes": 0
+  },
+  "baseline": {
+    "records": 1309,
+    "sha256": "f1b0d662e1dc8a61cd4a821451143e85ea5a6e53425f158431a26953ca8b3df0",
+    "source_checkout_equals_actual_served_bytes": true
+  },
+  "rehearsal": {
+    "before": 1309,
+    "after": 1321,
+    "added": 12,
+    "removed": 0,
+    "existing_records_unchanged": 1309,
+    "idempotent": true,
+    "all_eight_reviewed_batches": {"issuers": 103, "facts": 615, "status": "verified"},
+    "build_synchronized": true,
+    "public_contract_valid": true,
+    "production_data_unmodified": true
+  },
+  "regressions": {
+    "source_mutations_rejected": 21,
+    "cross_year_identity_collisions_rejected": 4,
+    "before_and_after_publication": true,
+    "corrupted_existing_value_rejected": true,
+    "read_only_inputs": true,
+    "fixed_price_is_not_band": true,
+    "missing_values_not_inferred": true,
+    "positive_official_exclusion_evidence_retained": true
+  },
+  "live_publication_verified": false
+}
