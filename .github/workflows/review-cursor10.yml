@@ -1,0 +1,108 @@
+name: Review cursor10 BSE segment
+on:
+  pull_request:
+    branches: [main]
+    paths: ['.github/workflows/review-cursor10.yml']
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Retain exact source revision
+        run: |
+          mkdir -p "$RUNNER_TEMP/cursor10-review"
+          git archive --format=zip HEAD > "$RUNNER_TEMP/cursor10-review/source-snapshot.zip"
+          git rev-parse HEAD > "$RUNNER_TEMP/cursor10-review/source-commit.txt"
+      - name: Test existing listing and publication guards
+        run: |
+          node scripts/test-verify-bse-listing-candidates.mjs
+          node scripts/test-apply-verified-bse-listings.mjs
+      - name: Reconcile and verify cursor10 segment
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import assert from 'node:assert/strict';
+          import { createHash } from 'node:crypto';
+          import { issuerKey, verifyBatch, sha256 } from './scripts/verify-bse-listing-candidates.mjs';
+          const out = path.join(process.env.RUNNER_TEMP, 'cursor10-review');
+          const save = (name, data) => fs.writeFileSync(path.join(out, name), JSON.stringify(data, null, 2) + '\n');
+          const snapshots = [];
+          function read(file) {
+            const bytes = fs.readFileSync(file);
+            snapshots.push({path:file,sha256:sha256(bytes),git_blob_sha:createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex')});
+            return JSON.parse(bytes);
+          }
+          const state = read('ops/bse-sme-addition-notices.json');
+          const ids = ['20220324-28','20220307-26','20220209-21','20220201-19','20220113-7','20211229-28','20211207-25','20211129-13','20211116-17','20211013-19','20211012-22','20210928-13','20210927-17','20210916-11','20210901-21','20210722-19','20210713-13','20210630-18','20210625-10','20210415-14'];
+          const selected = ids.map(id => state.notices[id]);
+          assert(selected.every(e => e && e.first_attempted_at === '2026-09-25T02:38:14.470Z' && e.status === 'parsed'));
+          const candidates = selected.flatMap(e => e.parsed_entries.map(c => ({...c,index_notice_no:e.notice_no,index_notice_source_url:e.source_url,extracted_text_sha256:e.extracted_text_sha256})));
+          assert.equal(candidates.length,23);
+          const recovery = [], counts = {};
+          for(let year=2020;year<=2026;year++) {
+            const m=read(`data/recovery/${year}/nse-issue-information.json`);
+            counts[year]=m.records.length;
+            recovery.push(...m.records.map(record => ({year,record})));
+          }
+          const data=read('data/ipos.json');
+          const urls = v => typeof v === 'string' ? (/^https?:\/\//.test(v) ? [v] : []) : v && typeof v === 'object' ? Object.values(v).flatMap(urls) : [];
+          function urlKey(raw) {
+            try { const u=new URL(raw); return /^(?:www\.)?bseindia\.com$/i.test(u.hostname) && /\/DispNewNoticesCirculars\.aspx$/i.test(u.pathname) ? 'BSE Listing Notice '+u.searchParams.get('page') : u.href; } catch { return raw; }
+          }
+          function hits(c, rows) {
+            return rows.flatMap(({record:r,...origin}) => {
+              const reasons=[];
+              if(issuerKey(r.issuer_name)===issuerKey(c.issuer_name)) reasons.push('normalized_issuer_identity');
+              if(r.id===issuerKey(c.issuer_name).replace(/ /g,'-')) reasons.push('issuer_id');
+              if(String(r.bse_scrip_code||'')===c.bse_scrip_code) reasons.push('bse_scrip_code');
+              if(urls(r).some(u=>urlKey(u)===urlKey(c.listing_notice_url))) reasons.push('listing_source_identity');
+              return reasons.length ? [{...origin,id:r.id,issuer_name:r.issuer_name,bse_scrip_code:r.bse_scrip_code||null,reasons}] : [];
+            });
+          }
+          const entries=candidates.map(c=>{
+            const a=hits(c,recovery),b=hits(c,data.records.map(record=>({record})));
+            const same=m=>issuerKey(m.issuer_name)===issuerKey(c.issuer_name)&&(!m.bse_scrip_code||m.bse_scrip_code===c.bse_scrip_code);
+            const classification=!a.length&&!b.length?'missing_exact_identity':a.length===1&&b.length===1&&same(a[0])&&same(b[0])&&a[0].id===b[0].id?'already_present':'identity_review_required';
+            return {...c,classification,recovery_matches:a,published_matches:b};
+          });
+          const stats={discovered_references:entries.length,missing_exact_identity:0,already_present:0,identity_review_required:0};
+          for(const e of entries) stats[e.classification]++;
+          save('reconciliation.json',{schema_version:'1.0.0',generated_at:new Date().toISOString(),run_id:process.env.GITHUB_RUN_ID,source_commit_sha:process.env.GITHUB_SHA,source_snapshot:snapshots,recovery_counts:counts,published_records:data.records.length,stats,selected_notice_ids:ids,failures:[],entries,backfill:{run_id:'36087053657',artifact_id:10844576517,artifact_sha256:'10513ea7a8ba1addcd1d5944f0cb3e6010e29f276f8f6817bec1f9cdc1847233',attempted_at:'2026-09-25T02:38:14.470Z'},scope_note:'Cursor10 identity reconciliation; no fuzzy equivalence or IPO publication.'});
+          const missing=entries.filter(e=>e.classification==='missing_exact_identity');
+          for(let offset=0,number=1;offset<missing.length;offset+=15,number++) {
+            const batch={schema_version:'1.0.0',input_report:{source_commit_sha:process.env.GITHUB_SHA,run_id:process.env.GITHUB_RUN_ID,cursor_attempted_at:'2026-09-25T02:38:14.470Z'},candidates:missing.slice(offset,offset+15)};
+            save(`batch${number}-candidates.json`,batch);
+            const report=await verifyBatch(batch,{evidenceDir:path.join(out,`batch${number}-notices`)});
+            save(`batch${number}-report.json`,report);
+            console.log(JSON.stringify({batch:number,...report.stats}));
+          }
+          console.log(JSON.stringify({reconciliation:stats}));
+          JS
+      - name: Install official PDF reader
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends poppler-utils
+      - name: Check canonical official listing PDF archives
+        shell: bash
+        run: |
+          for report in "$RUNNER_TEMP"/cursor10-review/batch*-report.json; do
+            [ -f "$report" ] || continue
+            stem="$(basename "$report" -report.json)"
+            node scripts/retry-bse-listing-pdf.mjs --report="$report" --evidence-dir="$RUNNER_TEMP/cursor10-review/$stem-notices" --upgrade-verified-html=true || true
+          done
+      - name: Retain evidence even when a source is rejected
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cursor10-source-review-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/cursor10-review
+          retention-days: 14
+          if-no-files-found: warn
