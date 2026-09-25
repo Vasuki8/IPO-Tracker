@@ -53,13 +53,8 @@ jobs:
 
           p=Path('scripts/apply-reviewed-nse-ipos.mjs')
           s=p.read_text()
-          old="""  requireThat(/^Initial Public Offer(?:ing)?\\b/i.test(offer) && /\\bequity shares\\b/i.test(offer) &&
-            !/\\b(?:follow[ -]?on|further public|rights issue|partly[ -]paid|debenture|non[ -]convertible|FPO)\\b/i.test(offer), 'initial_equity_ipo_not_established');
-          """
-          new="""  const initialPublicEquity = /^(?:Initial Public (?:Offer(?:ing)?|Issue)|Intial Public Offer(?:ing)?)\\b/i.test(offer);
-            requireThat(initialPublicEquity && /\\bequity shares\\b/i.test(offer) &&
-              !/\\b(?:follow[ -]?on|further public|rights issue|partly[ -]paid|debenture|non[ -]convertible|FPO)\\b/i.test(offer), 'initial_equity_ipo_not_established');
-          """
+          old="requireThat(/^Initial Public Offer(?:ing)?\\\\b/i.test(offer) && /\\\\bequity shares\\\\b/i.test(offer) &&"
+          new="const initialPublicEquity = /^(?:Initial Public (?:Offer(?:ing)?|Issue)|Intial Public Offer(?:ing)?)\\\\b/i.test(offer);\\n  requireThat(initialPublicEquity && /\\\\bequity shares\\\\b/i.test(offer) &&"
           assert s.count(old)==1, 'reviewed offer gate changed unexpectedly'
           p.write_text(s.replace(old,new))
 
