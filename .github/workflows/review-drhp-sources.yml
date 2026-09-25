@@ -1,0 +1,69 @@
+name: Review DRHP source surfaces
+on:
+  pull_request:
+    branches: [main]
+    paths: ['.github/workflows/review-drhp-sources.yml']
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Retain original source revision
+        run: |
+          mkdir -p "$RUNNER_TEMP/drhp-review"
+          git archive --format=zip HEAD > "$RUNNER_TEMP/drhp-review/source-snapshot.zip"
+          git rev-parse HEAD > "$RUNNER_TEMP/drhp-review/source-commit.txt"
+      - name: Read bounded official sources without importing
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import { createHash } from 'node:crypto';
+          const out=path.join(process.env.RUNNER_TEMP,'drhp-review');
+          const ua='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36';
+          const inputs=[
+            ['sebi-draft','https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15'],
+            ['sebi-commonsite','https://www.sebi.gov.in/js/commonsite.js'],
+            ['sebi-common','https://www.sebi.gov.in/js/common.js'],
+            ['sebi-entry','https://www.sebi.gov.in/js/entry.js'],
+            ['sebi-section','https://www.sebi.gov.in/js/3.js'],
+            ['nse-warmup','https://www.nseindia.com/market-data/all-upcoming-issues-ipo'],
+            ['AMIRCHAND-ipo','https://www.nseindia.com/api/ipo-detail?symbol=AMIRCHAND&series=EQ'],
+            ['AMIRCHAND-quote','https://www.nseindia.com/api/quote-equity?symbol=AMIRCHAND'],
+            ['LEAP-ipo','https://www.nseindia.com/api/ipo-detail?symbol=LEAP&series=EQ'],
+            ['LEAP-quote','https://www.nseindia.com/api/quote-equity?symbol=LEAP'],
+            ['deployed-baseline','https://vasuki8.github.io/IPO-Tracker/data/ipos.json']
+          ];
+          const sources=[];let cookie='';
+          for(const [id,url] of inputs){
+            const row={id,url,requested_at:new Date().toISOString()};
+            try{
+              const headers={'user-agent':ua,accept:'*/*','accept-language':'en-US,en;q=0.9',referer:new URL(url).origin+'/'};
+              if(url.includes('www.nseindia.com')){headers.referer='https://www.nseindia.com/market-data/all-upcoming-issues-ipo';if(cookie)headers.cookie=cookie;}
+              const r=await fetch(url,{headers,signal:AbortSignal.timeout(25000)});
+              if(id==='nse-warmup')cookie=(r.headers.getSetCookie?.()||[]).map(v=>v.split(';')[0]).join('; ');
+              const b=Buffer.from(await r.arrayBuffer());
+              if(b.length>15000000)throw new Error('response_size_bound');
+              row.file=id+'.txt';row.status=r.status;row.final_url=r.url;row.content_type=r.headers.get('content-type');row.bytes=b.length;row.sha256=createHash('sha256').update(b).digest('hex');
+              fs.writeFileSync(path.join(out,row.file),b);
+            }catch(e){row.error=String(e.message);}
+            row.collected_at=new Date().toISOString();sources.push(row);
+          }
+          fs.writeFileSync(path.join(out,'sources.json'),JSON.stringify({schema_version:'1.0.0',run_id:process.env.GITHUB_RUN_ID,source_commit:process.env.GITHUB_SHA,sources},null,2)+'\n');
+          console.log(JSON.stringify(sources.map(({id,status,bytes,error})=>({id,status,bytes,error}))));
+          JS
+      - name: Prove read-only operation
+        run: git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: drhp-source-review-${{ github.run_id }}
+          path: ${{ runner.temp }}/drhp-review
+          retention-days: 14
+          if-no-files-found: error
