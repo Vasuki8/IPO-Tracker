@@ -31,33 +31,27 @@ Collection time, source business observation time, dataset generation and Pages 
 
 ## Handoff for the next prompt
 
-**NSE universe batch3 is MERGED AND TESTED; live publication verification remains pending.** Handoff recorded `2026-09-25T16:35:52Z`. The release must not be called fully verified yet.
+**NSE universe batch3 is VERIFIED LIVE.** Do not repeat its source review or import.
 
-PR #235 merged as `2927fe2ed273db9c8a1fe72b3b21543a19003872`. Final-head CI passed (`36160049319`, `36160049332`), and the full data-contract suite also passed on merged main (`36160239490`).
+PR #235 merged the reviewed batch; the retained result is **13 published initial public equity IPOs / 78 explicit facts** from the 15-candidate APSISAERO-to-SIMCA queue. **AMIRCHAND remains held** for missing issuer identity metadata and **10MWL29 is excluded as debt**. Evidence: [data/discovery/nse-universe-batch3-review-2026-09-25.json](data/discovery/nse-universe-batch3-review-2026-09-25.json).
 
-### Completed review and implementation
+The actual served Pages snapshot fetched at **2026-09-25T16:55:27.249Z** contains **1,256 records**. Batch3 verification passed **13/13 issuers, 78/78 facts, 0 failures**. Compared with the preceding verified 1,243-record snapshot: **13 added, 0 removed, 0 existing records changed**. All 1,256 records have one of `open/upcoming/closed/listed` plus status evidence; Unknown/invalid status count is **0**. Live snapshot SHA-256: `74031fbbac15e9fff5b6e510a23df45c435e2eecf1c9257b064cc9c42ecf3932`. Durable receipt: [docs/verification/nse-universe-batch3-live-publication-2026-09-25.json](docs/verification/nse-universe-batch3-live-publication-2026-09-25.json).
 
-Reviewed 15 candidates: **13 independently verified initial public equity IPOs approved**, **AMIRCHAND held for missing issuer-identity metadata**, and **10MWL29 excluded as a debt security**. Approved symbols: APSISAERO, RSL, INNOVISION, GSPCROP, CMPDI, POWERICA, SAIPARENT, VIVIDEL, ADISOFT, AMBAAUTO, KISSHT, VALUE360, SIMCA.
+Publication used data commit `d24291331f15e7f346977790e77b02c2c528c230`; retained repair verifier run `36163697372` and actual Pages deployment `36163746445` both succeeded. The temporary publication-repair workflow was removed after verification.
 
-The retained manifest contains **78 explicit facts**: 13 listing dates, 26 offer dates, 13 final prices, 13 price bands, 6 market lots and 7 minimum bid quantities. The importer now handles explicit revised offer-period/price-band labels and apostrophe-only issuer-name variants without relaxing other identity or conflict checks. Source review: [data/discovery/nse-universe-batch3-review-2026-09-25.json](data/discovery/nse-universe-batch3-review-2026-09-25.json).
+### Reliability note
 
-The isolated rehearsal passed **1,243 -> 1,256**, exactly 13 additions, no removals, all prior records unchanged and an idempotent rerun. **1,256 is a rehearsal result, not a verified live count.** All three reviewed NSE batches pass the rehearsal: 38 issuers / 227 facts.
+The original normal source sync `36160239429` became abnormally long-running in optional NSE all-fields enrichment. PR #236, merged as `50fbd2ef2ed4176515607c35e787dfbd0d21f31f`, now limits that optional enrichment to an **8-minute best-effort budget**; unprocessed fields stay missing and are retried later.
 
-### Remaining release gate — do this first
+Replacement sync `36163462983` failed independently in historical NSE materialization because an official request timed out. At the start of the next backend run, inspect the latest scheduled sync. If that same timeout repeats, add bounded retry/fail-closed handling to the historical collector rather than weakening data evidence rules.
 
-Production sync **`36160239429`** applied the reviewed NSE batch successfully but was still in **Extract NSE Issue Information fields in one pass** at handoff. Its source-backed publication step was not yet complete. Do not confuse the code merge or an earlier Pages deployment with publication of these 13 records.
+### Exact next backend task
 
-First inspect that sync, the resulting Pages deployment and the automatically triggered **Verify reviewed NSE IPO publication** run. Fetch the verifier's retained actual Pages snapshot and confirm all 13 issuers / 78 facts, global status evidence, record count and exact baseline delta. Then retain the live receipt and update this handoff. Do not repeat the completed source review/import.
+Review [data/discovery/ipo-universe-review-2026-09-25-batch4.json](data/discovery/ipo-universe-review-2026-09-25-batch4.json): **15 candidates from RFBL through SHREEDHAR**. Reconcile against latest main and the verified live universe; independently establish offering type and identity; no aggregate-feed-only imports. **QMSMEDI** and **12VPT28A** are explicit prior-offer/security-type review signals.
 
-The **last independently verified live baseline** remains 1,243 records with 0 Unknown statuses, fetched `2026-09-25T15:53:38.128Z`; this is historical baseline evidence, not a new live claim. Release state: [docs/verification/nse-universe-batch3-release-status-2026-09-25.json](docs/verification/nse-universe-batch3-release-status-2026-09-25.json).
+Separate holds remain **AMIRCHAND, ADANIENPP1, Fabino Life Sciences, GICL, SILGOPP, VITAL and KOTYARK**. The canonical queue has **74 remaining eligible source groups, not 74 confirmed IPOs**. Broader BSE/SEBI/NSE-series gaps remain; BSE parser v1.5 remains 236/236 parsed.
 
-### After batch3 is verified
-
-The next queue is [data/discovery/ipo-universe-review-2026-09-25-batch4.json](data/discovery/ipo-universe-review-2026-09-25-batch4.json): **15 candidates from RFBL through SHREEDHAR**, explicitly gated on batch3 live verification. Reconcile against latest main and independently establish offering type and issuer identity; no aggregate-feed-only imports. QMSMEDI and 12VPT28A need specific prior-offer/security-type review, not classification from a symbol alone.
-
-Separate holds remain AMIRCHAND, ADANIENPP1, Fabino Life Sciences, GICL, SILGOPP, VITAL and KOTYARK. The canonical queue has 74 remaining eligible source groups, **not 74 confirmed IPOs**. Broader BSE/SEBI/NSE-series coverage gaps remain. BSE parser v1.5 remains 236/236 parsed; do not replay that cursor.
-
-No UI, minimum-investment expansion, billing, accounts, ads, spending or permission changes belong to this continuation. Product UI V2 remains separate: [docs/UI_DESIGN_HANDOFF.md](docs/UI_DESIGN_HANDOFF.md).
+No UI, minimum-investment expansion, billing, accounts, ads, spending or permission changes belong to this backend continuation. Product UI work remains documented separately in [docs/UI_DETAIL_NAVIGATION_HANDOFF.md](docs/UI_DETAIL_NAVIGATION_HANDOFF.md).
 
 ## Local checks
 
