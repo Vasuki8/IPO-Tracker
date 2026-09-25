@@ -20,27 +20,29 @@ Never invent missing values or use price-times-quantity arithmetic to fill them.
 
 The existing hourly `update-ipos.yml` collects NSE/SEBI data and imports reviewed BSE evidence. Historical PDF recovery and the bounded BSE notice cursor run independently. `deploy-pages.yml` publishes the site. Workflow files define actual schedules and execution.
 
-`verify-bse-publication.yml` is a **read-only post-publication check** for selected reviewed BSE manifests. It fetches the actual Pages dataset, retains its original bytes/hash and separate observation time, and checks issuer identity, values, source metadata and retained provenance. It runs manually or when its implementation changes; it does not alter the collection schedule or import IPOs. Its current default is repaired-cursor7 reviewed batch28.
+`verify-bse-publication.yml` is a **read-only post-publication check** for selected reviewed BSE manifests. It fetches the actual Pages dataset, retains its original bytes/hash and separate observation time, and checks issuer identity, values, source metadata and retained provenance. It runs manually or when its implementation changes; it does not alter the collection schedule or import IPOs. Its current default is cursor10 reviewed batches33/34.
 
 Collection time, dataset generation and Pages publication are distinct signals. `node scripts/operator-report.mjs` reports operational health without rewriting IPO values.
 
 ## Handoff for the next prompt
 
-**Latest completed backend unit: second retained cursor segment published and VERIFIED live — PR #220 / #221.** No UI or parser changes.
+**Latest completed backend unit: cursor10 bounded historical segment published and VERIFIED live — PR #222 / #223.** No UI or parser changes.
 
-PR #220 merged as `3f8bc9086d8ca36f3b7d402c9f614b8e1f0a694d`. It retained discovery batches31/32, cursor9 reconciliation and reviewed evidence batches31/32 for **25 exact-missing BSE SME issuers**. Read-only source review `36080905638` found 25 missing / 0 present / 0 identity-code-source conflicts against the then-current 1,146-record universe. Independent official BSE issuer-listing verification passed **25/25**, with **75 explicit listing-date / market-lot / issue-price facts**. Unsupported fields remain null.
+The existing state-driven backfill run `36087053657` advanced exactly 20 historical notices: **20/20 parsed, 0 fetch errors, 23 listing references discovered**. Current cursor is now **220/236 tracked, 219 parsed, 1 retained unparseable, 16 untracked**; next unseen notice is **`20210322-22`**.
 
-The exact source-snapshot rehearsal proved **1,146 -> 1,171**, exactly 25 additions, all 1,146 existing records unchanged, 222 already-present reviewed entries, 0 holds/conflicts and a byte-idempotent rerun. Relevant importer/evidence, publication-rehearsal, reviewed-evidence and data-contract checks passed.
+Source review `36087201107` reconciled all 23 references as exact-missing identities. Issuer-specific official BSE verification accepted **22 issuers / 66 facts** and held **Fabino Life Sciences Limited** because official notice `20220112-10` contains a contradictory listing year: the listing sentence says January 13, 2021 while the same January 12, 2022 notice refers to an IPO SPOS session on January 13, 2022. Fabino was not guessed, corrected, or published.
 
-Production source-backed syncs completed successfully. PR #221 (`bd549cc8b1951f6741fe6f6fd5ba11bdc5eacd48`) selected batches31/32 in the existing read-only Pages verifier. Post-merge live run `36086364954` verified the actual served snapshot: **1,171 records, 25/25 unique issuers, 75/75 matching fields, 0 failures, six unsupported fields null per issuer**. Snapshot SHA-256 `d8549169d7f15e297e6df535d3ce520abb32ab8c50c1b647a9c43839aa4a9f1c`. Durable receipt: [docs/verification/cursor9-live-publication-2026-09-25.json](docs/verification/cursor9-live-publication-2026-09-25.json).
+PR #222 merged as `6413c9e46542a578095c75a6ff5c8edcf5f99f49`. Exact rehearsal proved **1,171 -> 1,193**, exactly 22 additions, all 1,171 existing records unchanged, 247 already-present reviewed entries, 0 publishable-batch holds/conflicts and byte-idempotent rerun. Production source-backed sync `36087986289` succeeded; generated-data commit `384f235bdf19545f3960f2c9bcc7ed16e3f70d57`. Operator health is **healthy**.
+
+PR #223 (`7e36858a7445aac975be4c32dba62ca0a718a94b`) selected reviewed batches33/34 in the existing read-only live verifier. Post-merge run `36088367208` verified the actual served snapshot: **1,193 records, 22/22 unique issuers, 66/66 matching fields, 0 failures, six unsupported fields null per issuer**. Snapshot SHA-256 `e7ea980d0b158a239e3d22f155d42b90385672dfe7303e49efd10d5732f9cff8`. Durable receipt: [docs/verification/cursor10-live-publication-2026-09-25.json](docs/verification/cursor10-live-publication-2026-09-25.json).
 
 ### Next backend task
 
-Current retained cursor: parser **1.4.0**, **200/236 tracked**, **199 parsed**, **1 retained unparseable**, **36 untracked**, updated `2026-09-24T23:18:20.858Z`.
+**Process one final bounded historical discovery segment from the first unseen notice `20210322-22`.** Use the existing state-driven backfill; do not reset or replay progress. Reconcile discovered references against current recovery/public identities, BSE codes and listing-source identities; independently verify only missing/unambiguous candidates in batches of at most 15. Preserve source hashes, dates, literal evidence and nulls; rehearse safe/idempotent publication; publish through the normal source-backed sync; verify the actually served Pages result.
 
-**Continue one bounded historical discovery segment from the first unseen notice after the current retained state.** Use the existing state-driven backfill; do not reset or replay progress. Reconcile new references against current recovery/public identities, BSE codes and listing-source identities; independently verify only missing/unambiguous candidates in batches of at most 15. Preserve hashes, dates, excerpts and nulls; rehearse safe/idempotent publication; publish through the normal source-backed sync; verify the actually served Pages result.
+Keep the Fabino conflict separate from the cursor continuation. Do not publish or silently correct it unless an authoritative official source resolves the contradictory listing date.
 
-Cursor9 batches31/32 are closed. Cursor8 batches23/24 + reviewed29/30 and all earlier repaired/cursor batches are closed. Index discovery is not listing-term authority. No UI, minimum-investment, billing, accounts, ads, spending or permissions changes belong to this continuation.
+Cursor10 batches33/34 are closed. Cursor9 batches31/32, cursor8 batches23/24 + reviewed29/30, and all earlier repaired/cursor batches are closed. Index discovery is not listing-term authority. No UI, minimum-investment, billing, accounts, ads, spending or permissions changes belong to this continuation.
 
 **Product UI workstream — V2 live and verified, PR #209:** its separate evidence and notes remain in [docs/UI_DESIGN_HANDOFF.md](docs/UI_DESIGN_HANDOFF.md). No UI files changed in this backend release.
 
