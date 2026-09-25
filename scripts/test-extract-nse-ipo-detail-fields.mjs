@@ -20,7 +20,9 @@ import {
   parsePriceBandFromIpoDetail,
   priceBandCandidatesFromIpoDetail,
   resolveNseIdentity,
-  shouldUseIpoDetailForRecord
+  parseAllFieldsBudgetMs,
+  shouldUseIpoDetailForRecord,
+  withinAllFieldsBudget
 } from "./extract-nse-ipo-detail-fields.mjs";
 
 const pureFreshLakhs = parseIssueSizeInrFromIpoDetail({
@@ -739,3 +741,11 @@ assert.equal(
   }, 2026),
   true
 );
+
+assert.equal(parseAllFieldsBudgetMs([]), 8 * 60 * 1000);
+assert.equal(parseAllFieldsBudgetMs(["--all-fields", "--all-fields-budget-ms=420000"]), 420000);
+assert.throws(() => parseAllFieldsBudgetMs(["--all-fields-budget-ms=0"]), /invalid_all_fields_budget_ms/);
+assert.throws(() => parseAllFieldsBudgetMs(["--all-fields-budget-ms=not-a-number"]), /invalid_all_fields_budget_ms/);
+assert.equal(withinAllFieldsBudget(1000, 8000, 8999), true);
+assert.equal(withinAllFieldsBudget(1000, 8000, 9000), false);
+console.log("NSE ipo-detail all-fields sync budget tests passed.");
