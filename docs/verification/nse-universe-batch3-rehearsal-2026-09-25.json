@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "status": "rehearsal_verified_not_live_publication",
+  "source_run_id": "36158694311",
+  "source_artifact_id": 10875066031,
+  "source_artifact_sha256": "24faa41a1bee5e50eafdcebd8404ec97de79e23149777f1c08f9863d2168e78a",
+  "source_snapshot_commit": "1997f423d49050a576171b4867a7fa71c0015097",
+  "materialization_run_id": "36159865659",
+  "materialization_job_id": "108153480419",
+  "materialization_test_artifact_id": 10874418942,
+  "materialization_test_artifact_sha256": "c66e178a5e4d4ba1b61aeb63bd4eefc83c328b28449d996069d7bb36c81662de",
+  "tested_tree_commit": "d6b529d29440be9d0094c3141295bd4bb7d7f9fb",
+  "source_hash_checks": {"original_files":18,"passed":18},
+  "review": {"candidates":15,"approved_initial_equity_ipos":13,"held_missing_identity":1,"excluded_debt_security":1,"facts":78,"market_lots":6,"minimum_bid_quantities":7},
+  "rehearsal": {"before":1243,"after":1256,"added":13,"removed":0,"existing_unchanged":1243,"idempotent":true},
+  "tests": {
+    "baseline_reviewed_nse": {"issuers":14,"facts":83,"rejected_mutations":34,"cross_year_collisions":4},
+    "batch3_reviewed_nse": {"issuers":13,"facts":78,"rejected_mutations":17,"alias_collisions":3},
+    "publication_rehearsal": {"all_batches_verified":true,"batch1_facts":83,"batch2_facts":66,"batch3_facts":78,"live_mutations_rejected":5},
+    "build_synchronized":true,
+    "public_contract_valid":true,
+    "production_data_unmodified":true,
+    "diff_whitespace_valid":true
+  },
+  "workflow_conclusion": "failure_at_bot_push_only",
+  "publication_write_note": "All source validation, regression and rehearsal steps passed. The Actions bot's push was rejected because it included the read-only verifier workflow-file change without workflows permission. The tested commit/tree remained readable; its final diff is reviewed and submitted through the already-authorized GitHub connector. No permissions were expanded. Disposable collection/materialization workflows are removed before merge.",
+  "live_publication_verified": false
+}
