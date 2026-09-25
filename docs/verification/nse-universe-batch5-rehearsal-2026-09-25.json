@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0.0",
+  "status": "rehearsal_verified_not_live_publication",
+  "source_review": {
+    "run_id": "36170193878",
+    "artifact_id": 10880128428,
+    "artifact_sha256": "760db5e15a4ec505738f0b1a36f97026d9f210648c3e63720bb12fb575bdea49",
+    "source_snapshot_commit": "5e6a434b7fdbb1245116c78dee8f44534937fa02",
+    "original_response_hashes_checked": 17,
+    "issuer_detail_responses": 15,
+    "past_responses": 1,
+    "deployed_baseline_responses": 1
+  },
+  "materialization": {
+    "run_id": "36170848441",
+    "artifact_id": 10879669578,
+    "artifact_sha256": "21960fb4bcf125696c0c281ec10986cc8d6795484be62f9ce806689a8ce6e880",
+    "reviewed_commit": "abdc38eeb6a8bc5cf76c1947b9cbd64a0666d183",
+    "manifest_sha256": "7dc2e97b254af58b59edad137ee2150c5740d6f78cdcd40fcdf36343dafefd1a",
+    "review_sha256": "35df87dfad8268f193d828cb8b0b598605207a68c5bd8f0fad86d3a93d86ac5f",
+    "retained_files_equal_locally_tested_bytes": true,
+    "parser_changes": []
+  },
+  "review": {
+    "candidates": 15,
+    "approved_initial_equity_ipos": 15,
+    "held": 0,
+    "excluded": 0,
+    "facts": 89,
+    "listing_dates": 15,
+    "offer_dates": 30,
+    "final_issue_prices": 15,
+    "price_bands": 14,
+    "market_lots": 6,
+    "minimum_bid_quantities": 9,
+    "fixed_price_without_invented_band": ["TEJA"]
+  },
+  "baseline": {
+    "records": 1269,
+    "sha256": "30bf80d968e3f13fe92a46b7d19a0f8f5260f93ecb31c5707eb4ca640fcbeff1",
+    "snapshot_fetched_at": "2026-09-25T17:57:20.563Z",
+    "dataset_generated_at": "2026-09-25T17:43:15.755Z",
+    "note": "Fresh actual Pages bytes equal the source checkout dataset; includes a historical-PDF update after the previous batch4 verification."
+  },
+  "rehearsal": {
+    "before": 1269,
+    "after": 1284,
+    "added": 15,
+    "removed": 0,
+    "existing_unchanged": 1269,
+    "idempotent": true,
+    "reviewed_batches": [
+      {"batch": 1, "issuers": 14, "facts": 83, "status": "verified"},
+      {"batch": 2, "issuers": 11, "facts": 66, "status": "verified"},
+      {"batch": 3, "issuers": 13, "facts": 78, "status": "verified"},
+      {"batch": 4, "issuers": 13, "facts": 78, "status": "verified"},
+      {"batch": 5, "issuers": 15, "facts": 89, "status": "verified"}
+    ],
+    "total_reviewed_issuers": 66,
+    "total_reviewed_facts": 394,
+    "batch5_rejected_mutations": 14,
+    "batch5_cross_year_collisions": 4,
+    "before_and_after_publication_tests": true,
+    "production_data_unmodified": true
+  },
+  "live_publication_verified": false
+}
