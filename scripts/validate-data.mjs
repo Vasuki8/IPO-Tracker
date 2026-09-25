@@ -4,6 +4,7 @@ const path = new URL("../data/ipos.json", import.meta.url);
 const data = JSON.parse(fs.readFileSync(path, "utf8"));
 
 const allowedStatuses = new Set(["verified", "provisional", "conflict", "missing"]);
+const allowedRecordStatuses = new Set(["open", "upcoming", "closed", "listed"]);
 const fieldNames = [
   "price_band", "issue_price", "issue_size_inr", "market_lot",
   "minimum_bid_quantity", "minimum_application_amount_inr",
@@ -48,10 +49,11 @@ for (const [index, record] of (data.records || []).entries()) {
   if (!record.issuer_name || typeof record.issuer_name !== "string") fail(`${prefix}.issuer_name is required`);
   if (!Array.isArray(record.board_evidence)) fail(`${prefix}.board_evidence must be an array`);
   if (!Array.isArray(record.status_evidence)) fail(`${prefix}.status_evidence must be an array`);
+  if (!allowedRecordStatuses.has(record.status)) fail(`${prefix}.status must be one of open, upcoming, closed, listed`);
   if (record.board !== null && record.board_evidence.length === 0) {
     fail(`${prefix}.board requires retained evidence`);
   }
-  if (record.status !== null && record.status_evidence.length === 0) {
+  if (record.status_evidence.length === 0) {
     fail(`${prefix}.status requires retained evidence`);
   }
 
