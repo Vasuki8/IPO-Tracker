@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0.0",
+  "status": "rehearsal_verified_not_live_publication",
+  "source_review": {
+    "run_id": "36174755920",
+    "artifact_id": 10881946171,
+    "artifact_sha256": "432491018daa0a376559937a81dde8726623ccb4e110761d7340091a9b240e63",
+    "source_snapshot_commit": "c82637ae5bc82ce59831dcfa1d10ff2438b1ad4b",
+    "source_branch_head": "f9206e03a758dda98716d9092bede1dfcc66d026",
+    "original_response_hashes_checked": 24,
+    "http_successes": 23,
+    "http_failures": 1,
+    "failure_note": "Standalone guessed circular path returned 404; successful issuer-hosted NSE disclosure contains the same numbered exchange circular and was independently visually reviewed. The failed response is preserved, not treated as proof of source absence."
+  },
+  "materialization": {
+    "run_id": "36175903734",
+    "conclusion": "success",
+    "artifact_id": 10882192517,
+    "artifact_sha256": "6b4a596f1928c5d6d9a59f0023c1065764b07204de44a158de8a7379e4bf5092",
+    "reviewed_commit": "d4473f86206a8e416d338752897359025d44cfe5",
+    "manifest_sha256": "ca8964d695b445e681a04453d1749a5d3f6934e72971de7e8879f8ccb88a784a",
+    "review_sha256": "a7b5520bf35ecb1251d5d33637cf125b231492632fa2d75704793e0a3b808e9d",
+    "parser_sha256": "a95ec9e17d2a4a0b218fc9ab72c469636c29bd0b596201367ff1f3cef21c07da",
+    "batch_test_sha256": "4345d0b2e7f37d2033b37660b36b95e3e3f5333d4c42d2d989d0d88818b5fb9d",
+    "all_five_materialized_files_equal_locally_tested_bytes": true
+  },
+  "review": {
+    "candidates": 15,
+    "approved_initial_equity_ipos": 12,
+    "excluded_migrations": ["ANNAPURNA", "SWARAJ"],
+    "held_missing_issuer_identity": ["LEAP"],
+    "facts": 72,
+    "listing_dates": 12,
+    "offer_dates": 24,
+    "final_issue_prices": 12,
+    "price_bands": 12,
+    "market_lots": 4,
+    "minimum_bid_quantities": 8
+  },
+  "parser_repairs": [
+    "Accept the fully anchored repeated-per-share price-band form with explicit INR currency and share units on both bounds.",
+    "Accept a narrowly bounded Minimum qualifier only in the minimum-bid parser, retain literal source_value, and do not reinterpret it as a market lot."
+  ],
+  "baseline": {
+    "records": 1284,
+    "sha256": "a542ba9d96d621dff867f7310c99d5c74f2864898501c46b214d94db112f1e91",
+    "snapshot_fetched_at": "2026-09-25T18:40:26.337Z",
+    "dataset_generated_at": "2026-09-25T18:15:06.172Z",
+    "source_snapshot_matches_served_bytes": true
+  },
+  "rehearsal": {
+    "before": 1284,
+    "after": 1296,
+    "added": 12,
+    "removed": 0,
+    "existing_unchanged": 1284,
+    "idempotent": true,
+    "reviewed_batches": [
+      {"batch": 1, "issuers": 14, "facts": 83, "status": "verified"},
+      {"batch": 2, "issuers": 11, "facts": 66, "status": "verified"},
+      {"batch": 3, "issuers": 13, "facts": 78, "status": "verified"},
+      {"batch": 4, "issuers": 13, "facts": 78, "status": "verified"},
+      {"batch": 5, "issuers": 15, "facts": 89, "status": "verified"},
+      {"batch": 6, "issuers": 12, "facts": 72, "status": "verified"}
+    ],
+    "total_reviewed_issuers": 78,
+    "total_reviewed_facts": 466,
+    "batch6_rejected_mutations": 18,
+    "batch6_cross_year_collisions": 4,
+    "before_and_after_publication_tests": true,
+    "production_data_unmodified": true
+  },
+  "live_publication_verified": false
+}
