@@ -1,0 +1,127 @@
+{
+  "schema_version": "1.0.0",
+  "source_run_id": "36091504365",
+  "source_commit_sha": "13599fb76281097ef26cb69a4afa2564bdb32d5c",
+  "source_artifact_id": 10846116502,
+  "source_artifact_sha256": "aafb6f74855133ca07573163b6b06326d1384361652c80a390ebdecd43784d83",
+  "baseline_parser_version": "1.4.0",
+  "parser_version": "1.5.0",
+  "scope_note": "Literal normalized source excerpts from the three retained official BSE Index Services detail responses. Expected rows are discovery only; issuer-specific listing notices remain publication authority. The compact-suffix fixture requires an exact unique one-to-one mapping to the explicit index table and uses the prose listing date, never the later index-admission date.",
+  "fixtures": [
+    {
+      "notice_no": "20221010-15",
+      "family": "compressed_notice_suffixes_ordered_index_table",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20221010-15",
+      "collected_at": "2026-09-25T03:43:35.385Z",
+      "raw_response_sha256": "85ea8f187097d8465014a1dec0d70243b34e94cffac0a404df10c95e6614fdc9",
+      "extracted_text_sha256": "e6525801defce21780dccc7ef5cd3f70d3ab17bb27f557cc0b4da17995f4ee5f",
+      "retained_text_sha256": "e6525801defce21780dccc7ef5cd3f70d3ab17bb27f557cc0b4da17995f4ee5f",
+      "normalized_text_sha256": "1fd24e8acd0fb8608dbc5bc936a50f3557f64d8d739ad5ec6343c436c051dbaa",
+      "excerpt_offset": 219,
+      "excerpt_sha256": "95237f78c18eb2a24e001cf4d965bfb7eb399da3915802490a6c8a7fe115f86f",
+      "text": "With reference to Notice No: 20221007-67,40,39,38, 30,29,28 and 2 below stocks are being listed on the SME Platform of BSE effective Monday, October 10, 2022 . Effective at the open of Tuesday, October 11, 2022 , these stocks will be added to the below index. INDEX ADD Exchange Ticker Stock Name EFFECTIVE DATE S&P BSE SME IPO 543622 Steelman Telecom Limited October 11, 2022 543621 Cargosol Logistics Limited 543620 Insolation Energy Limited 543619 Concord Control Systems Limited 543618 Cargotrans Maritime Limited 543617 Reetech International Cargo and Courier Limited 543615 Silicon Rental Solutions Limited 543616 Trident Lifeline Limited",
+      "expected": [
+        {
+          "listing_notice_no": "20221007-67",
+          "issuer_name": "Steelman Telecom Limited",
+          "bse_scrip_code": "543622",
+          "listing_date": "2022-10-10",
+          "listing_date_raw": "October 10, 2022"
+        },
+        {
+          "listing_notice_no": "20221007-40",
+          "issuer_name": "Cargosol Logistics Limited",
+          "bse_scrip_code": "543621",
+          "listing_date": "2022-10-10",
+          "listing_date_raw": "October 10, 2022"
+        },
+        {
+          "listing_notice_no": "20221007-39",
+          "issuer_name": "Insolation Energy Limited",
+          "bse_scrip_code": "543620",
+          "listing_date": "2022-10-10",
+          "listing_date_raw": "October 10, 2022"
+        },
+        {
+          "listing_notice_no": "20221007-38",
+          "issuer_name": "Concord Control Systems Limited",
+          "bse_scrip_code": "543619",
+          "listing_date": "2022-10-10",
+          "listing_date_raw": "October 10, 2022"
+        },
+        {
+          "listing_notice_no": "20221007-30",
+          "issuer_name": "Cargotrans Maritime Limited",
+          "bse_scrip_code": "543618",
+          "listing_date": "2022-10-10",
+          "listing_date_raw": "October 10, 2022"
+        },
+        {
+          "listing_notice_no": "20221007-29",
+          "issuer_name": "Reetech International Cargo and Courier Limited",
+          "bse_scrip_code": "543617",
+          "listing_date": "2022-10-10",
+          "listing_date_raw": "October 10, 2022"
+        },
+        {
+          "listing_notice_no": "20221007-28",
+          "issuer_name": "Silicon Rental Solutions Limited",
+          "bse_scrip_code": "543615",
+          "listing_date": "2022-10-10",
+          "listing_date_raw": "October 10, 2022"
+        },
+        {
+          "listing_notice_no": "20221007-2",
+          "issuer_name": "Trident Lifeline Limited",
+          "bse_scrip_code": "543616",
+          "listing_date": "2022-10-10",
+          "listing_date_raw": "October 10, 2022"
+        }
+      ]
+    },
+    {
+      "notice_no": "20200813-12",
+      "family": "legacy_space_before_date_comma",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20200813-12",
+      "collected_at": "2026-09-25T03:43:35.385Z",
+      "raw_response_sha256": "d43ae2c1e59cb9868ef876d9805577a74a6a751e9aa4231fa485b805242376bf",
+      "extracted_text_sha256": "a4c319b734434f2ad0ae04428fad89eea69cb377f8c54049984ec1edefe2de60",
+      "retained_text_sha256": "a4c319b734434f2ad0ae04428fad89eea69cb377f8c54049984ec1edefe2de60",
+      "normalized_text_sha256": "d22d3e9804776d999196341672b9982025bf3542f023ac0ac56ec037e8a05bec",
+      "excerpt_offset": 216,
+      "excerpt_sha256": "98b79647fe4f43930b26fabcaad17108322fddfb4f1458b7f282f903a617300e",
+      "text": "With reference to Notice No: 20200812-9, Suratwwala Business Group Limited (Exchange ticker – 543218), is being listed on the SME Platform of BSE effective Thursday, August 13 , 2020 . Effective at the open of Friday, August 14, 2020 , the stock will be added to the below index.",
+      "expected": [
+        {
+          "listing_notice_no": "20200812-9",
+          "issuer_name": "Suratwwala Business Group Limited",
+          "bse_scrip_code": "543218",
+          "listing_date": "2020-08-13",
+          "listing_date_raw": "August 13 , 2020"
+        }
+      ]
+    },
+    {
+      "notice_no": "20200713-20",
+      "family": "legacy_space_before_date_comma",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/DisplayNoticecircular/w?NoticeId=20200713-20",
+      "collected_at": "2026-09-25T03:43:35.385Z",
+      "raw_response_sha256": "a6dda407c6bd86ec63825842606785239af362c55482728ca89c0cb44bacd55a",
+      "extracted_text_sha256": "642ea1063c1071e3802bfa18eedce17af3e6df05ab6d0aa720fcaec79c577678",
+      "retained_text_sha256": "642ea1063c1071e3802bfa18eedce17af3e6df05ab6d0aa720fcaec79c577678",
+      "normalized_text_sha256": "be202231149bc5191dfd26c4d5accb6db7fb50db4b6e193c18d6092b82ed6660",
+      "excerpt_offset": 214,
+      "excerpt_sha256": "97bebeeeafe36c32340fe3ba9509395fd5c1ccc4ba09f34f31feaef49cb3adc0",
+      "text": "With reference to Notice No: 20200710-38, Bonlon Industries Limited (Exchange ticker – 543211), is being listed on the SME Platform of BSE effective Monday, July 13 , 2020 . Effective at the open of Tuesday, July 14, 2020 , the stock will be added to the below index.",
+      "expected": [
+        {
+          "listing_notice_no": "20200710-38",
+          "issuer_name": "Bonlon Industries Limited",
+          "bse_scrip_code": "543211",
+          "listing_date": "2020-07-13",
+          "listing_date_raw": "July 13 , 2020"
+        }
+      ]
+    }
+  ]
+}
