@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "status": "review_required_no_import",
+  "source_run_id": "36095239145",
+  "source_commit_sha": "2c9b5d0d97754747b6510a0bb0ad837e988e65b0",
+  "source_artifact_id": 10846749143,
+  "source_artifact_sha256": "14521267a7d9d11f197248c3a7d4fca7fcf2e7257f63544a45677f1e1edf0c8c",
+  "source_url": "https://www.nseindia.com/api/public-past-issues",
+  "source_response_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+  "source_collected_at": "2026-09-25T04:38:22.631Z",
+  "source_audit_baseline_public_records": 1218,
+  "previous_batches": [
+    "data/discovery/ipo-universe-review-2026-09-25-batch1.json",
+    "data/discovery/ipo-universe-review-2026-09-25-batch2.json",
+    "data/discovery/ipo-universe-review-2026-09-25-batch3.json",
+    "data/discovery/ipo-universe-review-2026-09-25-batch4.json",
+    "data/discovery/ipo-universe-review-2026-09-25-batch5.json"
+  ],
+  "batch_limit": 15,
+  "selection_rule": "Next 15 exact-name-unmatched issuer groups from canonical audit 36095239145 with an NSE past-issues listed observation dated in 2026, excluding all 75 prior-batch symbols. One representative per issuer group, sorted by listing_date then nse_symbol; for identical observations use the first row_index. Candidate groups are not confirmed IPOs. Reconcile against latest main before review.",
+  "required_checks": [
+    "Independently establish IPO versus FPO, rights issue, partly-paid/repeat security, migration/listing transfer, debt or another offer type using issuer-specific official evidence.",
+    "Resolve legal-name aliases, NSE/BSE identifiers, prior offers and source identity across all recovery/public years.",
+    "Treat issuer names, symbols and aggregate past-issues rows only as review signals, not proof of a new IPO.",
+    "Retain nulls and conflicts; do not infer issue type, prices, dates, quantities, issue size or application amount.",
+    "Only materialize independently verified unambiguous IPOs after preservation/idempotency rehearsal, normal source-backed publication and actual Pages verification."
+  ],
+  "auto_import_allowed": false,
+  "candidates": [
+    {"issuer_name":"MV Electrosystems Limited","nse_symbol":"MVELECTRO","board":"Mainboard","listing_date":"2026-08-06","row_index":60},
+    {"issuer_name":"Anawil Wire and Engineering Limited","nse_symbol":"ANAWIL","board":"SME","listing_date":"2026-08-10","row_index":58},
+    {"issuer_name":"Annapurna Swadisht Limited","nse_symbol":"ANNAPURNA","board":"SME","listing_date":"2026-08-12","row_index":910},
+    {"issuer_name":"Ardee Industries Limited","nse_symbol":"ARDEE","board":"Mainboard","listing_date":"2026-08-12","row_index":57},
+    {"issuer_name":"Swaraj Suiting Limited","nse_symbol":"SWARAJ","board":"SME","listing_date":"2026-08-13","row_index":959},
+    {"issuer_name":"Leap India Limited","nse_symbol":"LEAP","board":"Mainboard","listing_date":"2026-08-14","row_index":54},
+    {"issuer_name":"Optimystix Entertainment India Limited","nse_symbol":"OPTIMYSTIX","board":"SME","listing_date":"2026-08-14","row_index":56},
+    {"issuer_name":"Technocraft Ventures Limited","nse_symbol":"TECHNOCRAF","board":"Mainboard","listing_date":"2026-08-14","row_index":55},
+    {"issuer_name":"Dhoot Transmission Limited","nse_symbol":"DHOOTTRANS","board":"Mainboard","listing_date":"2026-08-17","row_index":53},
+    {"issuer_name":"Molbio Diagnostics Limited","nse_symbol":"MOLBIO","board":"Mainboard","listing_date":"2026-08-17","row_index":52},
+    {"issuer_name":"Milky Mist Dairy Food Limited","nse_symbol":"MILKYMIST","board":"Mainboard","listing_date":"2026-08-18","row_index":50},
+    {"issuer_name":"Behari Lal Engineering Limited","nse_symbol":"BLEL","board":"Mainboard","listing_date":"2026-08-19","row_index":48},
+    {"issuer_name":"Pramodini Medicare Limited","nse_symbol":"PRAMODINI","board":"SME","listing_date":"2026-08-19","row_index":49},
+    {"issuer_name":"Shiprocket Limited","nse_symbol":"SHIPROCKET","board":"Mainboard","listing_date":"2026-08-19","row_index":47},
+    {"issuer_name":"Credent Connect N Care Limited","nse_symbol":"CREDENT","board":"SME","listing_date":"2026-08-20","row_index":46}
+  ],
+  "previous_batch5_review": "data/discovery/nse-universe-batch5-review-2026-09-25.json",
+  "previous_batch5_result": {"reviewed":15,"approved_verified_ipos":15,"held":0,"excluded":0,"publication_status":"verified_live"},
+  "remaining_eligible_source_groups_after_batch5": 44,
+  "explicit_review_signals": [
+    "ANNAPURNA: canonical row pairs a September 2022 offer period with an August 2026 listing date and a final-price/band mismatch; determine migration or repeat security using issuer-specific official evidence.",
+    "SWARAJ: canonical row pairs a March 2022 offer period with an August 2026 listing date and a final-price/fixed-price mismatch; do not classify as a new IPO from the aggregate row."
+  ],
+  "scope_note": "Review queue only, not approval. Prior holds and debt/migration exclusions remain excluded from automatic import. The 44 remaining groups are not a complete confirmed IPO count.",
+  "release_prerequisite": "Batch5 is live-verified in docs/verification/nse-universe-batch5-live-publication-2026-09-25.json. Reconcile this queue against latest main and actual Pages before review.",
+  "selection_validation": {
+    "canonical_audit_sha256":"ce56c4763f72b1cd452f90a60b0dbb1e42c8ede1052dd7526bbc967b84114bc7",
+    "eligible_issuer_groups":119,
+    "eligible_source_observations":121,
+    "duplicate_observation_groups":[{"issuer_key":"adani enterprises","symbol":"ADANIENPP1","row_indices":[147,291,477]}],
+    "prior_batch_candidates_matched_exactly":75,
+    "remaining_groups_after_batch5":44,
+    "selected_candidate_groups":15,
+    "batch6_rows_match_canonical_original":true
+  },
+  "last_verified_public_records":1284,
+  "last_verified_public_sha256":"a542ba9d96d621dff867f7310c99d5c74f2864898501c46b214d94db112f1e91",
+  "last_verified_public_fetched_at":"2026-09-25T18:16:59.688Z"
+}

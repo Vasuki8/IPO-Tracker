@@ -23,7 +23,7 @@ The existing hourly `update-ipos.yml` collects NSE/SEBI data and imports reviewe
 
 `verify-bse-publication.yml` is a **read-only post-publication check** for selected reviewed BSE manifests. It fetches the actual Pages dataset, retains original bytes/hash and separate observation time, and checks issuer identity, values, source metadata and retained provenance. Its current default remains parser-v1.5 recovered reviewed batch36.
 
-`verify-reviewed-nse-publication.yml` is the corresponding **read-only NSE post-publication check**, triggered after successful source sync. It now selects the batch5 manifest and retains actual Pages bytes, source revision, hashes and separate fetch/check/generation times.
+`verify-reviewed-nse-publication.yml` is the corresponding **read-only NSE post-publication check**, triggered after successful source sync. It now selects the batch3 manifest and retains actual Pages bytes, source revision, hashes and separate fetch/check/generation times.
 
 `audit-ipo-universe.yml` is a **read-only bounded official-universe audit**, with no schedule. It runs manually or when relevant audit code/fixtures change. It collects eight NSE/BSE/SEBI source surfaces, verifies source hashes, reconciles exact issuer identities and records incomplete source coverage. Outputs include original responses, `sources.json`, `audit.json`, `audit-compact.json` and an exact source archive. Workflow artifacts expire after 14 days. No candidates are automatically imported.
 
@@ -31,19 +31,29 @@ Collection time, source business observation time, dataset generation and Pages 
 
 ## Handoff for the next prompt
 
-**NSE universe batch5 is VERIFIED LIVE.** PR #242 added **15 independently verified initial public equity IPOs** and **89 explicit facts**, with no new holds/exclusions or production parser changes. TEJA is fixed price; its price band remains null. Market lot, minimum bid quantity and minimum application amount remain distinct.
+**NSE universe batch4 is VERIFIED LIVE.** Do not repeat its source review or import.
 
-Actual Pages fetched **2026-09-25T18:16:59.688Z** contains **1,284 records**: batch5 **15/15 issuers and 89/89 facts** match, and all five reviewed NSE batches pass **66 issuers / 394 facts**. Unknown/invalid statuses and missing status evidence are both **0**. SHA-256 `a542ba9d96d621dff867f7310c99d5c74f2864898501c46b214d94db112f1e91`. [Durable live receipt](docs/verification/nse-universe-batch5-live-publication-2026-09-25.json).
+PR #240 reviewed 15 candidates: **13 independently verified initial public equity IPOs were published**, **QMSMEDI was excluded as an NSE Emerge-to-Main-Board migration**, and **12VPT28A was excluded as debt**. The batch retains **78 explicit facts**: 13 listing dates, 26 offer dates, 13 final prices, 13 price bands, 10 market lots and 3 minimum bid quantities.
 
-Normal source sync **36171237358** succeeded; data commit **`359ea237cda83fed91d7724ddd4ee658efb96ae8`**; actual Pages verifier **36172343065** succeeded. The 15 approved identities were added with no removals. **1,266 of 1,269 existing baseline records were unchanged**; the receipt separately records 3 normal-sync record changes and any optional source enrichment, rather than attributing everything to the reviewed import.
+Source review run `36165195790` retained 20 official source files; artifact `10877286718`, SHA-256 `7aa33f4f7066e20a246a5da8328e8271759b4f2b2356b6ae4eed6cdec93185ad`. Successful retained-source materialization run `36166287987` rehearsed **1,256 -> 1,269**, exactly 13 additions, no removals and an idempotent rerun. Durable rehearsal: [docs/verification/nse-universe-batch4-rehearsal-2026-09-25.json](docs/verification/nse-universe-batch4-rehearsal-2026-09-25.json).
 
-Final-head CI and merged-main data-contract tests passed. New regressions cover pre/post-publication execution, idempotency, fixed-price/null semantics, source mutations and cross-year collisions; the post-publication source snapshot was retested. [Rehearsal receipt](docs/verification/nse-universe-batch5-rehearsal-2026-09-25.json).
+The normal production sync `36166656023` then completed successfully end-to-end, including the historical NSE stage that had timed out in the preceding run. Data commit: `35166cf76ee03fb580d53e75898b030f7cc1f9c6`; operator state: **healthy**.
+
+Actual Pages verifier `36167470675` passed **13/13 issuers, 78/78 facts, 0 failures**. The served snapshot fetched `2026-09-25T17:30:44.748Z` contains **1,269 records**, with **0 Unknown/invalid statuses** and status evidence on every record. Snapshot SHA-256: `228b3a1861836dbce8e344313a82035d9e7ed38bcd2a09c31f4dcd822047c6b5`. Durable live receipt: [docs/verification/nse-universe-batch4-live-publication-2026-09-25.json](docs/verification/nse-universe-batch4-live-publication-2026-09-25.json).
+
+Against the preceding 1,256-record live baseline, batch4 added exactly 13 records and removed none. Two unrelated older records received normal SEBI document attachments (Euro Pratik Sales and Ivalue Infosolutions); no prior displayed IPO field/value/status changed.
 
 ### Exact next backend task
 
-Review [batch6](data/discovery/ipo-universe-review-2026-09-25-batch6.json): **15 candidate issuer groups from MVELECTRO through CREDENT**. Reconcile against latest main and actual Pages, then independently establish offering type and identity. **ANNAPURNA and SWARAJ** combine 2022 offer dates with 2026 listing dates and need explicit prior-offer/migration/repeat-security review; they are not approved new IPOs.
+Review [data/discovery/ipo-universe-review-2026-09-25-batch5.json](data/discovery/ipo-universe-review-2026-09-25-batch5.json): **15 candidate source groups from TEJA through JNPR**.
 
-The canonical audit has **44 remaining candidate issuer groups, not 44 confirmed IPOs**. Keep prior holds and resolved exclusions separate. Broader BSE/SEBI/NSE-series gaps remain; BSE parser v1.5 is 236/236 parsed. No UI, minimum-investment, billing/accounts/ads, spending or permission work belongs to this backend continuation; UI/research-depth requirements stay in [their own handoff](docs/UI_DETAIL_NAVIGATION_HANDOFF.md).
+Symbols: **TEJA, VMOBILE, KNACK, ICELCO, KUSUMGAR, HAPPY, LASERPOWER, SBIFUNDS, CMLL, METALIC, INDOMIM, LCL, PROPSHOP, MANIPALHOS, JNPR**.
+
+Reconcile against latest main and the actual live universe, independently establish offering type and issuer identity, retain nulls/conflicts, and do not import from the aggregate NSE past-issues feed alone. The canonical audit has **59 remaining eligible source groups, not 59 confirmed IPOs**.
+
+Separate unresolved holds remain **AMIRCHAND, ADANIENPP1, Fabino Life Sciences, GICL, SILGOPP, VITAL and KOTYARK**. **QMSMEDI** and **12VPT28A** are resolved exclusions, not holds. Broader BSE/SEBI/NSE-series gaps remain; BSE parser v1.5 remains 236/236 parsed.
+
+No UI, minimum-investment expansion, billing, accounts, ads, spending or permission changes belong to this backend continuation. Product UI/research-depth work remains documented separately in [docs/UI_DETAIL_NAVIGATION_HANDOFF.md](docs/UI_DETAIL_NAVIGATION_HANDOFF.md).
 
 ## Local checks
 
@@ -77,9 +87,9 @@ A successful audit execution can still have **partial source coverage**; always 
 For the selected NSE release, verify actual Pages output without importing:
 
 ```bash
-node scripts/verify-reviewed-nse-publication.mjs --manifest=data/verified-nse-ipos/2026-09-25-batch5.json --output-dir=/tmp/nse-publication
+node scripts/verify-reviewed-nse-publication.mjs --manifest=data/verified-nse-ipos/2026-09-25-batch3.json --output-dir=/tmp/nse-publication
 ```
 
 ## Historical handoffs
 
-The immediately preceding README and status are archived byte-for-byte in [docs/archive/README-before-nse-batch5-live-verification.md](docs/archive/README-before-nse-batch5-live-verification.md) and [docs/archive/PROJECT_STATUS-before-nse-batch5-live-verification.md](docs/archive/PROJECT_STATUS-before-nse-batch5-live-verification.md). Earlier archives and verification receipts remain intact. Archived next-task instructions are not current instructions.
+The immediately preceding README and status are archived byte-for-byte in [docs/archive/README-before-nse-batch3.md](docs/archive/README-before-nse-batch3.md) and [docs/archive/PROJECT_STATUS-before-nse-batch3.md](docs/archive/PROJECT_STATUS-before-nse-batch3.md). Earlier archives and verification receipts remain intact. Archived next-task instructions are not current instructions.
