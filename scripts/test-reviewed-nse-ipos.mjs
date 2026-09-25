@@ -107,3 +107,5 @@ await import("./test-reviewed-nse-batch5.mjs");
 await import('./test-reviewed-nse-batch6.mjs');
 
 await import("./test-reviewed-nse-batch7.mjs");
+
+await import("./test-reviewed-nse-batch8.mjs");
