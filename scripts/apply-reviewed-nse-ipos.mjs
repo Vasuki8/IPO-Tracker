@@ -3,7 +3,6 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
 import { issuerKey } from './verify-bse-listing-candidates.mjs';
-import { parseNseDate } from './sync-nse-live.mjs';
 import { parsePastIssuePrice } from './diagnose-nse-past-issues.mjs';
 import { buildHistoricalRecord } from './sync-nse-historical.mjs';
 import { parseMarketLotFromIpoDetail, parseMinimumBidFromIpoDetail, parsePriceBandFromIpoDetail } from './extract-nse-ipo-detail-fields.mjs';
@@ -22,10 +21,18 @@ const validHash = v => typeof v === 'string' && /^[a-f0-9]{64}$/.test(v);
 const validStamp = v => typeof v === 'string' && /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d{3})?Z$/.test(v) && Number.isFinite(Date.parse(v)) && new Date(v).toISOString() === (v.includes('.') ? v : v.replace('Z', '.000Z'));
 const validDate = v => typeof v === 'string' && /^\d{4}-\d\d-\d\d$/.test(v) && Number.isFinite(Date.parse(v)) && new Date(v).toISOString().slice(0, 10) === v;
 function nseDate(raw) {
-  const m = norm(raw).match(/^(\d{1,2})-([A-Za-z]{3})-(\d{4})$/), iso = parseNseDate(raw);
-  const months = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
-  return m && validDate(iso) && Number(m[1]) === Number(iso.slice(8)) &&
-    months.indexOf(m[2].toLowerCase()) + 1 === Number(iso.slice(5, 7)) && m[3] === iso.slice(0, 4) ? iso : null;
+  const m = norm(raw).match(/^(\d{1,2})-([A-Za-z]+)-(\d{4})$/);
+  if (!m) return null;
+  const months = new Map([
+    ['jan','01'],['january','01'],['feb','02'],['february','02'],['mar','03'],['march','03'],
+    ['apr','04'],['april','04'],['may','05'],['jun','06'],['june','06'],['jul','07'],['july','07'],
+    ['aug','08'],['august','08'],['sep','09'],['sept','09'],['september','09'],['oct','10'],['october','10'],
+    ['nov','11'],['november','11'],['dec','12'],['december','12']
+  ]);
+  const month = months.get(m[2].toLowerCase());
+  if (!month) return null;
+  const iso = m[3] + '-' + month + '-' + String(Number(m[1])).padStart(2, '0');
+  return validDate(iso) && Number(m[1]) === Number(iso.slice(8)) ? iso : null;
 }
 export const detailUrl = c => 'https://www.nseindia.com/api/ipo-detail?symbol=' + encodeURIComponent(c.nse_symbol) + '&series=' + (c.board === 'SME' ? 'SME' : 'EQ');
 const TITLES = new Set(['symbol', 'issue size', 'issue period', 'issue type', 'price range', 'price band', 'market lot', 'lot size', 'bid lot', 'minimum order quantity']);
@@ -77,7 +84,7 @@ export function validateEntry(entry, queue) {
     !/\b(?:follow[ -]?on|further public|rights issue|partly[ -]paid|debenture|non[ -]convertible|FPO)\b/i.test(offer), 'initial_equity_ipo_not_established');
   requireThat(validDate(m.listingDate) && m.listingDate === c.listing_date && m.listingDate === nseDate(r.listingDate) &&
     m.listingDate <= entry.detail_source.collected_at.slice(0, 10) && m.listingDate <= entry.past_source.collected_at.slice(0, 10), 'listing_date_mismatch_or_future');
-  const period = unquote(oneItem(p, 'issue period').value).match(/^(\d{1,2}-[A-Za-z]{3}-\d{4})\s+to\s+(\d{1,2}-[A-Za-z]{3}-\d{4})$/);
+  const period = unquote(oneItem(p, 'issue period').value).match(/^(\d{1,2}-[A-Za-z]+-\d{4})\s+to\s+(\d{1,2}-[A-Za-z]+-\d{4})$/);
   requireThat(period, 'unrecognized_offer_period');
   const open = nseDate(period[1]), close = nseDate(period[2]);
   requireThat(validDate(open) && validDate(close) && open <= close && close <= m.listingDate &&
