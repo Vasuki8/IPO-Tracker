@@ -118,8 +118,8 @@ function parseRupeeBand(value) {
   const amount = "([0-9][0-9,]*(?:\\.[0-9]{1,2})?)";
   const pattern = new RegExp(
     "^\\s*" + currency + "\\s*" + amount + "\\s*(?:\\/\\-)?\\s*" +
-    "(?:to|[-–—])\\s*" + currency + "\\s*" + amount + "\\s*(?:\\/\\-)?\\s*" +
-    "per\\s+(?:Equity\\s+)?Share\\b",
+    "(?:to|[-–—])\\s*(?:" + currency + "\\s*)?" + amount + "\\s*(?:\\/\\-)?\\s*" +
+    "per\\s+(?:Equity\\s+)?Shares?\\b",
     "i"
   );
   const match = text.match(pattern);

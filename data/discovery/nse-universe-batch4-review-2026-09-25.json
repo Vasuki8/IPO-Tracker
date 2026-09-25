@@ -1,0 +1,328 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_13_approved_2_excluded_non_ipo",
+  "reviewed_at": "2026-09-25T17:18:40.046Z",
+  "source_run_id": "36165195790",
+  "source_snapshot_commit": "fd4e9da69a8e4a88967612b2b4ebee661f1532cd",
+  "source_artifact_id": 10877286718,
+  "source_artifact_sha256": "7aa33f4f7066e20a246a5da8328e8271759b4f2b2356b6ae4eed6cdec93185ad",
+  "queue_path": "data/discovery/ipo-universe-review-2026-09-25-batch4.json",
+  "baseline": {
+    "public_records": 1256,
+    "public_sha256": "74031fbbac15e9fff5b6e510a23df45c435e2eecf1c9257b064cc9c42ecf3932",
+    "dataset_generated_at": "2026-09-25T16:08:35.285Z",
+    "note": "Reconciled against actual Pages snapshot and all retained 2020-2026 recovery manifests before action."
+  },
+  "stats": {
+    "reviewed_candidates": 15,
+    "verified_initial_equity_ipos": 13,
+    "excluded_migration": 1,
+    "excluded_debt_security": 1,
+    "approved_exact_missing": 13,
+    "approved_identity_conflicts": 0,
+    "verified_facts": 78,
+    "listing_dates": 13,
+    "offer_dates": 26,
+    "final_issue_prices": 13,
+    "price_bands": 13,
+    "market_lots": 10,
+    "minimum_bid_quantities": 3
+  },
+  "parser_notes": [
+    "Accept explicit NSE wording Initial Public Issue as an initial public equity issue.",
+    "Accept only the observed NSE typo Intial Public Offer as a narrow equivalent; other misspellings fail closed.",
+    "Price Range may omit a repeated currency marker before the upper bound and may say Equity Shares; the lower bound still requires an INR marker and both values must parse safely."
+  ],
+  "sources": {
+    "successful_detail_responses": 15,
+    "original_response_hashes_checked": 20,
+    "past_response_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+    "deployed_snapshot_sha256": "74031fbbac15e9fff5b6e510a23df45c435e2eecf1c9257b064cc9c42ecf3932"
+  },
+  "entries": [
+    {
+      "symbol": "RFBL",
+      "issuer_name": "RFBL Flexi Pack Limited",
+      "observed_alias": "RFBL Flexi Pack Limited",
+      "isin": "INE0V2V01015",
+      "board": "SME",
+      "decision": "approved_verified_initial_equity_ipo",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "NFPSAMPOOR",
+      "issuer_name": "NFP Sampoorna Foods Limited",
+      "observed_alias": "NFP Sampoorna Foods Limited",
+      "isin": "INE0T1501010",
+      "board": "SME",
+      "decision": "approved_verified_initial_equity_ipo",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "TEAMTECH",
+      "issuer_name": "Teamtech Formwork Solutions Limited",
+      "observed_alias": "Teamtech Formwork Solutions Limited",
+      "isin": "INE2OL601013",
+      "board": "SME",
+      "decision": "approved_verified_initial_equity_ipo",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "BMLL",
+      "issuer_name": "Bio Medica Laboratories Limited",
+      "observed_alias": "Bio Medica Laboratories Limited",
+      "isin": "INE1BKA01015",
+      "board": "SME",
+      "decision": "approved_verified_initial_equity_ipo",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "QLINE",
+      "issuer_name": "Q-Line Biotech Limited",
+      "observed_alias": "Q-Line Biotech Limited",
+      "isin": "INE1G2W01011",
+      "board": "SME",
+      "decision": "approved_verified_initial_equity_ipo",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "CMRGREEN",
+      "issuer_name": "CMR Green Technologies Limited",
+      "observed_alias": "CMR Green Technologies Limited",
+      "isin": "INE00WV01027",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "GENXAI",
+      "issuer_name": "GenXAI Analytics Limited",
+      "observed_alias": "GenXAI Analytics Limited",
+      "isin": "INE1W0N01014",
+      "board": "SME",
+      "decision": "approved_verified_initial_equity_ipo",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "UTKAL",
+      "issuer_name": "Utkal Speciality Industries India Limited",
+      "observed_alias": "Utkal Speciality Industries India Limited",
+      "isin": "INE1V1R01014",
+      "board": "SME",
+      "decision": "approved_verified_initial_equity_ipo",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "CLAYCRAFT",
+      "issuer_name": "Clay Craft India Limited",
+      "observed_alias": "Clay Craft India Limited",
+      "isin": "INE1QGM01024",
+      "board": "SME",
+      "decision": "approved_verified_initial_equity_ipo",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "AVIENCE",
+      "issuer_name": "Avience Biomedicals Limited",
+      "observed_alias": "Avience Biomedicals Limited",
+      "isin": "INE0V9I01017",
+      "board": "SME",
+      "decision": "approved_verified_initial_equity_ipo",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "TURTLEMINT",
+      "issuer_name": "Turtlemint Fintech Solutions Limited",
+      "observed_alias": "Turtlemint Fintech Solutions Limited",
+      "isin": "INE0OC301013",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "CORDELIA",
+      "issuer_name": "Waterways Leisure Tourism Limited",
+      "observed_alias": "Waterways Leisure Tourism Limited",
+      "isin": "INE0LZF01039",
+      "board": "Mainboard",
+      "decision": "approved_verified_initial_equity_ipo",
+      "recovery_matches": [],
+      "published_matches": []
+    },
+    {
+      "symbol": "SHREEDHAR",
+      "issuer_name": "Shreedhar Spinners Limited",
+      "observed_alias": "Shreedhar Spinners Limited",
+      "isin": "INE0K3301012",
+      "board": "SME",
+      "decision": "approved_verified_initial_equity_ipo",
+      "recovery_matches": [],
+      "published_matches": []
+    }
+  ],
+  "held": [
+    {
+      "candidate": {
+        "issuer_name": "QMS Medical Allied Services Limited",
+        "nse_symbol": "QMSMEDI",
+        "board": "SME",
+        "listing_date": "2026-06-18",
+        "row_index": 906
+      },
+      "decision": "excluded_migration_not_new_ipo",
+      "detail_source": {
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=QMSMEDI&series=SME",
+        "final_url": "https://www.nseindia.com/api/ipo-detail?symbol=QMSMEDI&series=SME",
+        "http_status": 200,
+        "publication_date": null,
+        "collected_at": "2026-09-25T17:09:04.803Z",
+        "response_sha256": "ede7f9c4a4a399257a70518fe179d268d169009c06b34ff3669bbd8fa58fe14b",
+        "projection_sha256": "20ebb398e7921e1667cac4094d2238e9e9626be69aeee44c642f8aa8eb4545ce",
+        "artifact_file": "QMSMEDI-ipo.json"
+      },
+      "detail": {
+        "companyName": "QMS Medical Allied Services Limited",
+        "metaInfo": {
+          "companyName": "QMS Medical Allied Services Limited",
+          "symbol": "QMSMEDI",
+          "isin": "INE0FMW01018",
+          "listingDate": "2026-06-18",
+          "segment": "EQUITY",
+          "isDebtSec": false,
+          "isETFSec": false,
+          "isMunicipalBond": false,
+          "isHybridSymbol": false
+        },
+        "issueInfo": {
+          "symbol": null,
+          "dataList": []
+        }
+      },
+      "past_source": {
+        "url": "https://www.nseindia.com/api/public-past-issues",
+        "final_url": "https://www.nseindia.com/api/public-past-issues",
+        "http_status": 200,
+        "publication_date": null,
+        "collected_at": "2026-09-25T17:08:20.312Z",
+        "response_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+        "projection_sha256": "772961270fbafe6e4b7d18f162e8c7cac42519e0e7392ddfc36880bae617b61c",
+        "artifact_file": "past.json"
+      },
+      "past_row": {
+        "companyName": "QMS Medical Allied Services Limited",
+        "ipoEndDate": "30-SEP-2022",
+        "ipoStartDate": "27-SEP-2022",
+        "issuePrice": "96",
+        "listingDate": "18-JUN-2026",
+        "priceRange": "Rs.121",
+        "securityType": "SME",
+        "symbol": "QMSMEDI",
+        "company": "QMS Medical Allied Services Limited"
+      },
+      "auto_import_allowed": false,
+      "reason": "NSE migration approval states that QMSMEDI equity moved from the NSE Emerge SME platform to the Main Board effective 18-Jun-2026. The past-issues row carries a 2022 offer period, so the 2026 listing row is a migration event, not a new IPO.",
+      "independent_official_evidence": {
+        "url": "https://nsearchives.nseindia.com/corporate/QMS_16062026194113_SdMigrationApproval.pdf",
+        "final_url": "https://nsearchives.nseindia.com/corporate/QMS_16062026194113_SdMigrationApproval.pdf",
+        "http_status": 200,
+        "collected_at": "2026-09-25T17:09:35.213Z",
+        "publication_date": "2026-06-16",
+        "document_sha256": "285eae62a02173b12e37189484577a5c549d0b67d1c687cc9cce395ba1f8603f",
+        "artifact_file": "QMSMEDI-migration-approval.pdf",
+        "page": 2,
+        "evidence": "Listing on Main Board pursuant to Migration from SME Emerge platform; effective June 18, 2026",
+        "original_offer_period": {
+          "open": "2022-09-27",
+          "close": "2022-09-30"
+        }
+      }
+    },
+    {
+      "candidate": {
+        "issuer_name": "Viviana Power Tech Limited",
+        "nse_symbol": "12VPT28A",
+        "board": "SME",
+        "listing_date": "2026-06-22",
+        "row_index": 919
+      },
+      "decision": "excluded_debt_security_not_initial_equity_ipo",
+      "detail_source": {
+        "url": "https://www.nseindia.com/api/ipo-detail?symbol=12VPT28A&series=SME",
+        "final_url": "https://www.nseindia.com/api/ipo-detail?symbol=12VPT28A&series=SME",
+        "http_status": 200,
+        "publication_date": null,
+        "collected_at": "2026-09-25T17:09:09.874Z",
+        "response_sha256": "04824b62d1c4988d8c2221e34ac6a5762d7a2fb9ca36f032571cf7d47c552847",
+        "projection_sha256": "39e1c9d1d09655d542627faf2b820c3640b474a5429dcd9388fdcfe74977d386",
+        "artifact_file": "12VPT28A-ipo.json"
+      },
+      "detail": {
+        "companyName": "Viviana Power Tech Limited",
+        "metaInfo": {
+          "companyName": "Viviana Power Tech Limited",
+          "symbol": "12VPT28A",
+          "isin": "INE0MEG07011",
+          "listingDate": "2026-06-22",
+          "segment": "EQUITY",
+          "isDebtSec": true,
+          "isETFSec": false,
+          "isMunicipalBond": false,
+          "isHybridSymbol": false
+        },
+        "issueInfo": {
+          "symbol": null,
+          "dataList": []
+        }
+      },
+      "past_source": {
+        "url": "https://www.nseindia.com/api/public-past-issues",
+        "final_url": "https://www.nseindia.com/api/public-past-issues",
+        "http_status": 200,
+        "publication_date": null,
+        "collected_at": "2026-09-25T17:08:20.312Z",
+        "response_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+        "projection_sha256": "92498a0c48e7d458f655ad81af6ab2dcbde2ea582246938721d3bfcf52b19c35",
+        "artifact_file": "past.json"
+      },
+      "past_row": {
+        "companyName": "Viviana Power Tech Limited",
+        "ipoEndDate": "08-SEP-2022",
+        "ipoStartDate": "05-SEP-2022",
+        "issuePrice": "10000",
+        "listingDate": "22-JUN-2026",
+        "priceRange": "Rs.55",
+        "securityType": "SME",
+        "symbol": "12VPT28A",
+        "company": "Viviana Power Tech Limited"
+      },
+      "auto_import_allowed": false,
+      "reason": "NSE ipo-detail explicitly marks 12VPT28A as debt (isDebtSec=true, ISIN INE0MEG07011). NSE debt circular CML74788 lists Viviana Power Tech Limited security VPT28A as Sec Type DB with 12% coupon. The past-issues row carries a 2022 equity-offer period and cannot turn the 2026 debt listing into an equity IPO.",
+      "independent_official_evidence": {
+        "url": "https://nsearchives.nseindia.com/content/circulars/CML74788.pdf",
+        "final_url": "https://nsearchives.nseindia.com/content/circulars/CML74788.pdf",
+        "http_status": 200,
+        "collected_at": "2026-09-25T17:09:37.826Z",
+        "publication_date": "2026-06-19",
+        "document_sha256": "6bfb0d3f1afdb6873b0efe26dca2e63b4b8655b260d5c99407ded6f6deaffdff",
+        "artifact_file": "12VPT28A-nse-circular.pdf",
+        "page": 12,
+        "evidence": "Viviana Power Tech Limited; Sec Type DB; Security VPT28A; ISIN INE0MEG07011; coupon rate 12%",
+        "original_offer_period": {
+          "open": "2022-09-05",
+          "close": "2022-09-08"
+        }
+      }
+    }
+  ]
+}
