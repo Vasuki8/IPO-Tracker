@@ -4,7 +4,7 @@ on:
     branches: [main]
     paths: ['.github/workflows/review-cursor10.yml']
 permissions:
-  contents: read
+  contents: write
 jobs:
   review:
     runs-on: ubuntu-latest
@@ -99,6 +99,7 @@ jobs:
             node scripts/retry-bse-listing-pdf.mjs --report="$report" --evidence-dir="$RUNNER_TEMP/cursor10-review/$stem-notices" --upgrade-verified-html=true || true
           done
       - name: Retain evidence even when a source is rejected
+        id: upload
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -106,3 +107,160 @@ jobs:
           path: ${{ runner.temp }}/cursor10-review
           retention-days: 14
           if-no-files-found: warn
+
+      - name: Materialize only strictly verified release evidence
+        if: success()
+        env:
+          SOURCE_ARTIFACT_ID: ${{ steps.upload.outputs.artifact-id }}
+          SOURCE_ARTIFACT_DIGEST: ${{ steps.upload.outputs.artifact-digest }}
+          SOURCE_COMMIT_SHA: ${{ github.sha }}
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import assert from 'node:assert/strict';
+          import { createHash } from 'node:crypto';
+
+          const temp = path.join(process.env.RUNNER_TEMP, 'cursor10-review');
+          const artifactId = Number(process.env.SOURCE_ARTIFACT_ID);
+          const artifactSha = String(process.env.SOURCE_ARTIFACT_DIGEST || '').replace(/^sha256:/,'');
+          assert(Number.isSafeInteger(artifactId) && artifactId > 0);
+          assert(/^[a-f0-9]{64}$/.test(artifactSha));
+
+          const read = name => JSON.parse(fs.readFileSync(path.join(temp,name),'utf8'));
+          const write = (file, value) => {
+            fs.mkdirSync(path.dirname(file), {recursive:true});
+            fs.writeFileSync(file, JSON.stringify(value) + '\n');
+          };
+          const sha256 = value => createHash('sha256').update(value).digest('hex');
+          const stripCandidate = c => {
+            const {classification,recovery_matches,published_matches,...clean}=c;
+            return clean;
+          };
+
+          const rec = read('reconciliation.json');
+          const reports = [read('batch1-report.json'),read('batch2-report.json')];
+          const results = reports.flatMap(r=>r.results);
+          const verified = results.filter(r=>r.status==='verified');
+          const rejected = results.filter(r=>r.status==='rejected');
+          const unavailable = results.filter(r=>r.status==='unavailable');
+          assert.equal(rec.stats.discovered_references,23);
+          assert.equal(rec.stats.missing_exact_identity,23);
+          assert.equal(rec.stats.already_present,0);
+          assert.equal(rec.stats.identity_review_required,0);
+          assert.equal(verified.length,22);
+          assert.equal(rejected.length,1);
+          assert.equal(unavailable.length,0);
+          assert.equal(rejected[0].candidate.issuer_name,'Fabino Life Sciences Limited');
+          assert(rejected[0].reasons.includes('listing_date_mismatch_or_missing'));
+
+          rec.source_run_id=process.env.GITHUB_RUN_ID;
+          rec.source_artifact_id=artifactId;
+          rec.source_artifact_sha256=artifactSha;
+          rec.source_snapshot_commit=process.env.SOURCE_COMMIT_SHA;
+          rec.backfill={
+            run_id:'36087053657',
+            artifact_id:10844576517,
+            artifact_sha256:'10513ea7a8ba1addcd1d5944f0cb3e6010e29f276f8f6817bec1f9cdc1847233',
+            attempted_at:'2026-09-25T02:38:14.470Z'
+          };
+          rec.source_verification={
+            attempted:23,
+            verified:22,
+            rejected:1,
+            unavailable:0,
+            facts_revalidated:66,
+            rejected_candidates:rejected.map(r=>({
+              issuer_name:r.candidate.issuer_name,
+              bse_scrip_code:r.candidate.bse_scrip_code,
+              listing_notice_no:r.candidate.listing_notice_no,
+              reason:r.reasons.join(','),
+              candidate_listing_date:r.candidate.listing_date,
+              observed_listing_dates:r.observed_identity?.listing_dates || [],
+              publication_date:r.observed_identity?.publication_date || null,
+              disposition:'held_out_of_publication_no_inference'
+            })),
+            evidence_kind:'official_notice_html'
+          };
+          rec.selection_rule='Current 20-notice state-driven segment attempted 2026-09-25T02:38:14.470Z. All 23 references were exact-missing identities; publish only the 22 issuer-specific notices that independently passed strict verification. No fuzzy equivalence or inferred correction.';
+          write('data/discovery/bse-listing-reconciliation-2026-09-25-cursor10.json',rec);
+
+          for (const [i,report] of reports.entries()) {
+            const batchNo=33+i;
+            const kept=report.results.filter(r=>r.status==='verified');
+            const discoveryPath=`data/discovery/bse-listing-candidates-2026-09-25-batch${batchNo}.json`;
+            const manifestPath=`data/verified-bse-listings/2026-09-25-batch${batchNo}.json`;
+            const discovery={
+              schema_version:'1.0.0',
+              input_report:{
+                source_commit_sha:process.env.SOURCE_COMMIT_SHA,
+                source_run_id:process.env.GITHUB_RUN_ID,
+                source_artifact_id:artifactId,
+                source_artifact_sha256:artifactSha,
+                cursor_attempted_at:'2026-09-25T02:38:14.470Z',
+                reconciliation_report:'data/discovery/bse-listing-reconciliation-2026-09-25-cursor10.json'
+              },
+              candidates:kept.map(r=>stripCandidate(r.candidate))
+            };
+            const entries=kept.map(r=>{
+              const evidenceText=r.response_text;
+              const textHash=sha256(evidenceText);
+              return {
+                issuer_name:r.candidate.issuer_name,
+                board:'SME',
+                bse_scrip_code:r.candidate.bse_scrip_code,
+                listing_notice_no:r.candidate.listing_notice_no,
+                evidence_kind:'official_notice_html',
+                source_url:r.source_url,
+                document_identity:'BSE Listing Notice '+r.candidate.listing_notice_no,
+                document_sha256:r.response_sha256,
+                normalized_text_sha256:textHash,
+                collected_at:r.collected_at,
+                publication_date:r.observed_identity.publication_date,
+                facts:r.facts,
+                evidence_text:evidenceText,
+                evidence_excerpt:{
+                  method:'literal_contiguous_normalized_text',
+                  start:0,
+                  end:evidenceText.length,
+                  full_normalized_text_sha256:textHash
+                }
+              };
+            });
+            const manifest={
+              schema_version:'1.0.0',
+              verifier_version:'1.1.0',
+              source_run_id:process.env.GITHUB_RUN_ID,
+              source_artifact_id:artifactId,
+              source_artifact_sha256:artifactSha,
+              discovery_batch:discoveryPath,
+              scope_note:'Cursor10 reviewed segment. Exact-missing identities reconciled against current 2020-2026 recovery/public data. Strict issuer-specific official BSE HTML independently verified. Only explicit listing date, market lot and final issue price are retained; unsupported fields stay null. Fabino Life Sciences is excluded because its issuer-specific BSE HTML conflicts with the candidate listing year.',
+              entries
+            };
+            write(discoveryPath,discovery);
+            write(manifestPath,manifest);
+          }
+          JS
+
+          node scripts/apply-verified-bse-listings.mjs --check
+          node scripts/test-bse-publication-rehearsal.mjs
+          node scripts/build-published-data.mjs --check
+          node scripts/validate-data.mjs
+
+      - name: Commit reviewed release evidence and remove temporary workflow
+        if: success() && github.actor != 'github-actions[bot]'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "Vasuki Patel"
+          git config user.email "47256707+Vasuki8@users.noreply.github.com"
+          rm .github/workflows/review-cursor10.yml
+          git add data/discovery/bse-listing-reconciliation-2026-09-25-cursor10.json
+          git add data/discovery/bse-listing-candidates-2026-09-25-batch33.json
+          git add data/discovery/bse-listing-candidates-2026-09-25-batch34.json
+          git add data/verified-bse-listings/2026-09-25-batch33.json
+          git add data/verified-bse-listings/2026-09-25-batch34.json
+          git add .github/workflows/review-cursor10.yml
+          git commit -m "data: retain reviewed cursor10 BSE evidence"
+          git push origin "HEAD:${{ github.head_ref }}"
