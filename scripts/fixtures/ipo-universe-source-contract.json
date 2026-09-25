@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0.0",
+  "source_run_id": "36093963252",
+  "source_artifact_id": 10846443390,
+  "source_artifact_sha256": "4d28c795a2c58114daf40f7d76f4473a81f64fceb1bb88aba64c022faed7f6f8",
+  "scope_note": "Small parser fixtures only. Original full responses are in the referenced read-only artifact; JSON fixtures retain selected parsed source rows and HTML fixtures retain literal source rows. No IPO terms are imported.",
+  "fixtures": [
+    {
+      "source_id": "nse_past",
+      "source_url": "https://www.nseindia.com/api/public-past-issues",
+      "response_sha256": "b7d69cea89fb1be0a947d99b9b4522ab12817c26cadd0ac9716a4913bc47ce31",
+      "collected_at": "2026-09-25T04:19:24.993Z",
+      "method": "selected_json_rows",
+      "row_indices": [
+        0,
+        1,
+        854
+      ],
+      "body": "[{\"company\": \"Varmora Granito Limited\", \"htmSym\": \"varmora\", \"ipoEndDate\": \"24-SEP-2026\", \"ipoStartDate\": \"22-SEP-2026\", \"issuePrice\": \"-\", \"linkRemovalDate\": \"25-SEP-2026\", \"listingDate\": \"-\", \"priceRange\": \"Rs.140 to Rs.148\", \"securityType\": \"EQ\", \"symbol\": \"VARMORA\"}, {\"companyName\": \"Axiom Gas Engineering Limited\", \"ipoEndDate\": \"22-SEP-2026\", \"ipoStartDate\": \"18-SEP-2026\", \"issuePrice\": \"54\", \"listingDate\": \"25-SEP-2026\", \"priceRange\": \"Rs.51 to Rs.54\", \"securityType\": \"SME\", \"symbol\": \"AXIOMGAS\", \"company\": \"Axiom Gas Engineering Limited\"}, {\"company\": \"Adani Enterprises Limited-FPO\", \"htmSym\": \"adanientpp\", \"ipoEndDate\": \"31-JAN-2023\", \"ipoStartDate\": \"27-JAN-2023\", \"issuePrice\": \"-\", \"linkRemovalDate\": \"03-FEB-2023\", \"listingDate\": \"-\", \"priceRange\": \"Rs.1556 to Rs.1638\", \"securityType\": \"EQ\", \"symbol\": \"ADANIENTPP\"}]",
+      "fixture_sha256": "3a5c456b57d38284cac586fc272fbd0c7c8e3bf0e6e767fb85e63532caf9cd31"
+    },
+    {
+      "source_id": "bse_sme_index",
+      "source_url": "https://www.bseindices.com/AsiaIndexAPI/api/Codewise_Indices/w?code=76",
+      "response_sha256": "8d02145a509e7aaf66bc9aed74003dacf019485d910b4f3df74d88b2823ecc9d",
+      "collected_at": "2026-09-25T04:19:31.475Z",
+      "method": "selected_json_rows",
+      "row_indices": [
+        0,
+        1
+      ],
+      "body": "{\"Table\": [{\"TransDate\": \"2026-08-31T00:00:00\", \"SCRIP_CODE\": \"544710\", \"index_Code\": 76, \"SCRIPNAME\": \"ACCORD TRANSFORMER & SWITCHGEA\", \"Industry_name\": \"Industrials\"}, {\"TransDate\": \"2026-08-31T00:00:00\", \"SCRIP_CODE\": \"544694\", \"index_Code\": 76, \"SCRIPNAME\": \"Accretion Nutraveda Limited\", \"Industry_name\": \"Healthcare\"}]}",
+      "fixture_sha256": "a7d4763885a6a165c2315974eb5569486c1e4fd3463324966532c8cf05af9014"
+    },
+    {
+      "source_id": "sebi_draft",
+      "source_url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
+      "response_sha256": "e2e06be7a4f2f5b9794ffe49af4cb92d1f4d65cb7e5f13fed4b16d9e97a86633",
+      "collected_at": "2026-09-25T04:19:33.793Z",
+      "method": "literal_source_row",
+      "offset": 16879,
+      "length": 773,
+      "body": "<tr role='row' class='odd'>\n                                    <td>Sep 22, 2026</td>\n                                    \n                                    <td><a href=\"https://www.sebi.gov.in/filings/public-issues/sep-2026/vardaan-biotech-limited-drhp_104652.html\"  target=\"_blank\" title=\"VARDAAN BIOTECH LIMITED - DRHP <br><a href= 'https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/VARDAAN%20BIOTECH%20LIMITED_p.pdf' style=color:#000000> VARDAAN BIOTECH LIMITED - Draft Abridged Prospectus</a>\" class=\"points\"> VARDAAN BIOTECH LIMITED - DRHP <br><a href= 'https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/VARDAAN%20BIOTECH%20LIMITED_p.pdf' style=color:#000000> VARDAAN BIOTECH LIMITED - Draft Abridged Prospectus</a></a>\n                                </tr>",
+      "fixture_sha256": "642f0d00174bcdc4db4ab4c6517aa3e6c3ec1455c7ddb06dd697973a2c80c961"
+    },
+    {
+      "source_id": "sebi_rhp",
+      "source_url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=11&ssid=15",
+      "response_sha256": "104b0c08c1619263dc292b9085af8efc3305586c214d1e7a0659af649f5d9b2b",
+      "collected_at": "2026-09-25T04:19:35.858Z",
+      "method": "literal_source_row",
+      "offset": 16878,
+      "length": 837,
+      "body": "<tr role='row' class='odd'>\n                                    <td>Sep 24, 2026</td>\n                                    \n                                    <td><a href=\"https://www.sebi.gov.in/filings/public-issues/sep-2026/runwal-enterprises-limited-rhp_104683.html\"  target=\"_blank\" title=\"Runwal Enterprises Limited - RHP <br><a href= 'https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Runwal%20Enterprises%20Limited%20-%20Abridged%20Prospectus_p.pdf' style=color:#000000> Runwal Enterprises Limitedd - Abridged Prospectus</a>\" class=\"points\"> Runwal Enterprises Limited - RHP <br><a href= 'https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Runwal%20Enterprises%20Limited%20-%20Abridged%20Prospectus_p.pdf' style=color:#000000> Runwal Enterprises Limitedd - Abridged Prospectus</a></a>\n                                </tr>",
+      "fixture_sha256": "64c59795689f59f815df86e9dd7bb3d08ec441d9d157611058524fbf7fc2c920"
+    },
+    {
+      "source_id": "sebi_final",
+      "source_url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=12&ssid=15",
+      "response_sha256": "6dafe0cc7bd86c33b303ee104a9a4626189d7d5d7969e8c522e8ac50e8d8283a",
+      "collected_at": "2026-09-25T04:19:36.443Z",
+      "method": "literal_source_row",
+      "offset": 16878,
+      "length": 449,
+      "body": "<tr role='row' class='odd'>\n                                    <td>Sep 24, 2026</td>\n                                    \n                                    <td><a href=\"https://www.sebi.gov.in/filings/public-issues/sep-2026/karamtara-engineering-limited-prospectus_104682.html\"  target=\"_blank\" title=\"Karamtara Engineering Limited - Prospectus\" class=\"points\"> Karamtara Engineering Limited - Prospectus</a>\n                                </tr>",
+      "fixture_sha256": "344f5bf4d351bfdecb3662ff0b3d22488cfc89048c69cd59b785d9b601da85eb"
+    },
+    {
+      "source_id": "bse_summary",
+      "source_url": "https://www.bseindia.com/markets/PublicIssues/Issuesummary.aspx",
+      "response_sha256": "a78663008af1a06db462dbf01815802d650b3efa2d68e31934a50b0ec9656424",
+      "collected_at": "2026-09-25T04:19:26.663Z",
+      "method": "literal_source_title",
+      "offset": 96,
+      "length": 141,
+      "body": "<title>\n      LIVE Stock/Share Market | Indian Stock/Share Market LIVE | BSE SENSEX | BSE (formerly Bombay Stock\n      Exchange)\n    </title>",
+      "fixture_sha256": "33a7689a76755938d6d3ea548587ea9d5cd76d5c5cb31b6e64c13e76debf3247"
+    }
+  ]
+}
