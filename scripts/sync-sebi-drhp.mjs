@@ -122,7 +122,9 @@ export function parseAxisDrhpRows(html) {
   const entries = [];
   for (const match of String(html).matchAll(/<a\b[^>]*href\s*=\s*(["'])([^"']+)\1[^>]*>([\s\S]*?)<\/a>/gi)) {
     const label = strip(match[3]);
-    if (!label || /\b(?:abridged|addendum|corrigendum|red herring prospectus\b(?!.*draft)|prospectus\b(?!.*draft))\b/i.test(label)) continue;
+    if (!label || /\b(?:abridged|addendum|corrigendum)\b/i.test(label)) continue;
+    if (/\bRed Herring Prospectus\b/i.test(label) && !/\b(?:Updated\s+)?Draft Red Herring Prospectus\b/i.test(label)) continue;
+    if (/\bProspectus\b/i.test(label) && !/\b(?:Updated\s+)?Draft Red Herring Prospectus\b/i.test(label) && !/\b(?:U?DRHP)\b/i.test(label)) continue;
     const type = filingType(label);
     if (!type) continue;
     const href = absoluteUrl(match[2], AXIS_OFFER_DOCS_URL);
