@@ -70,6 +70,9 @@ jobs:
           grep -q 'group: bse-high-priority-reconciliation-evidence' .github/workflows/materialize-bse-audit-conflict-evidence.yml
           grep -q 'git reset --hard origin/main' .github/workflows/materialize-bse-audit-conflict-evidence.yml
           grep -q 'actions/upload-artifact@v4' .github/workflows/materialize-bse-audit-conflict-evidence.yml
+          grep -q 'group: bse-2020-unmatched-evidence' .github/workflows/materialize-bse-2020-unmatched-evidence.yml
+          grep -q 'git reset --hard origin/main' .github/workflows/materialize-bse-2020-unmatched-evidence.yml
+          grep -q 'actions/upload-artifact@v4' .github/workflows/materialize-bse-2020-unmatched-evidence.yml
           grep -q 'permissions:' .github/workflows/audit-bse-issue-summary.yml
           grep -q 'contents: read' .github/workflows/audit-bse-issue-summary.yml
           grep -q 'Ensure audit is read-only' .github/workflows/audit-bse-issue-summary.yml
@@ -121,6 +124,9 @@ jobs:
         run: |
           node scripts/test-materialize-bse-audit-conflict-evidence.mjs
           node scripts/test-audit-bse-sme-ipo-index.mjs
+
+      - name: Test BSE 2020 unmatched issuer review
+        run: node scripts/test-bse-2020-unmatched-review.mjs
 
       - name: Test BSE detail and listing parsers
         run: node scripts/test-extract-bse-ipo-fields.mjs
