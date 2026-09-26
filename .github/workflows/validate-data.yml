@@ -72,6 +72,10 @@ jobs:
           grep -q 'git reset --hard origin/main' .github/workflows/publish-reviewed-historical-ipos.yml
           grep -q 'node scripts/build-published-data.mjs --check' .github/workflows/publish-reviewed-historical-ipos.yml
           grep -q 'group: verify-reviewed-historical-ipo-publication' .github/workflows/verify-reviewed-historical-ipo-publication.yml
+          grep -q 'group: reviewed-fabino-publication' .github/workflows/publish-reviewed-fabino.yml
+          grep -q 'git reset --hard origin/main' .github/workflows/publish-reviewed-fabino.yml
+          grep -q 'node scripts/build-published-data.mjs --check' .github/workflows/publish-reviewed-fabino.yml
+          grep -q 'group: verify-reviewed-fabino-publication' .github/workflows/verify-reviewed-fabino-publication.yml
           grep -q 'git ls-files --error-unmatch ops/operator-snapshot.json' .github/workflows/update-ipos.yml
           grep -q 'Pages publication-state attempt' .github/workflows/deploy-pages.yml
           grep -q 'git reset --hard origin/main' .github/workflows/deploy-pages.yml
@@ -130,6 +134,12 @@ jobs:
           node scripts/apply-reviewed-historical-ipos.mjs --check
           node scripts/test-reviewed-historical-ipos.mjs
           node scripts/test-reviewed-historical-ipo-publication.mjs
+
+      - name: Test reviewed Fabino correction and publication
+        run: |
+          node scripts/apply-reviewed-fabino.mjs --check
+          node scripts/test-reviewed-fabino.mjs
+          node scripts/test-reviewed-fabino-publication.mjs
 
       - name: Test official IPO universe audit
         run: node scripts/test-audit-ipo-universe.mjs
