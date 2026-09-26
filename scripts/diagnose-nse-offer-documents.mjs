@@ -25,3 +25,19 @@ for(const url of scripts.slice(-40)){
   await sleep(80);
 }
 console.log(JSON.stringify({relevant_scripts:hits},null,2));
+
+const apiUrl="https://www.nseindia.com/api/corporates/offerdocs?index=equities";
+const api=await fetch(apiUrl,{headers:{"user-agent":UA,accept:"application/json,text/plain,*/*","accept-language":"en-US,en;q=0.9",referer:PAGE,cookie},signal:AbortSignal.timeout(30000)});
+const apiText=await api.text();
+let parsed=null;try{parsed=JSON.parse(apiText)}catch{}
+function findAbakkus(v,path=[]){
+ if(Array.isArray(v)) return v.flatMap((x,i)=>findAbakkus(x,[...path,String(i)]));
+ if(v&&typeof v==="object"){
+   const values=Object.values(v).filter(x=>typeof x==="string");
+   const hits=values.some(x=>/abakkus asset manager/i.test(x));
+   return [...(hits?[{path:path.join("."),value:v}]:[]),...Object.entries(v).flatMap(([k,x])=>x&&typeof x==="object"?findAbakkus(x,[...path,k]):[])];
+ }
+ return [];
+}
+console.log(JSON.stringify({api_status:api.status,api_url:api.url,api_bytes:Buffer.byteLength(apiText),top_type:Array.isArray(parsed)?"array":typeof parsed,top_keys:parsed&&!Array.isArray(parsed)&&typeof parsed==="object"?Object.keys(parsed):[],array_length:Array.isArray(parsed)?parsed.length:null,abakkus_hits:parsed?findAbakkus(parsed).slice(0,10):[],sample:Array.isArray(parsed)?parsed.slice(0,2):parsed&&typeof parsed==="object"?Object.fromEntries(Object.entries(parsed).slice(0,4)):apiText.slice(0,500)},null,2));
+if(!api.ok||!parsed)process.exitCode=1;
