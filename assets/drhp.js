@@ -6,10 +6,10 @@ function escapeHtml(value) {
   return String(value ?? "").replace(/[&<>"']/g, (char) =>
     ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"})[char]);
 }
-function safeUrl(value) {
+function safeUrl(value, prefix = "/filings/public-issues/") {
   try {
     const url = new URL(value);
-    return url.protocol === "https:" ? url.href : null;
+    return url.protocol === "https:" && ["www.sebi.gov.in", "sebi.gov.in"].includes(url.hostname) && !url.username && !url.password && url.pathname.startsWith(prefix) ? url.href : null;
   } catch {
     return null;
   }
@@ -44,7 +44,7 @@ function render() {
   const companies = visibleCompanies();
   $("#drhpVisibleCount").textContent = companies.length;
   $("#drhpRows").innerHTML = companies.map(company => `<tr>
-    <td><strong class="drhp-company-name">${escapeHtml(company.issuer_name)}</strong>${company.filing_count > 1 ? `<span class="secondary">${escapeHtml(company.filing_count)} retained filings</span>` : ""}</td>
+    <td><strong class="drhp-company-name">${escapeHtml(company.issuer_name)}</strong>${company.filings?.some(f => f.not_seen_in_latest_scan) ? '<span class="secondary">Includes an earlier retained observation</span>' : ""}${company.filing_count > 1 ? `<span class="secondary">${escapeHtml(company.filing_count)} retained filings</span>` : ""}</td>
     <td><span class="source source--verified">${escapeHtml(company.latest_filing_type)}</span></td>
     <td><span class="number">${escapeHtml(formatDate(company.latest_filing_date))}</span></td>
     <td>${filingLink(company)}</td>
@@ -56,14 +56,19 @@ function render() {
   $("#drhpEmpty").hidden = companies.length !== 0;
 }
 function validateDataset(data) {
-  return data?.schema_version === "1.0.0" &&
-    data?.coverage?.year === 2026 &&
-    data?.coverage?.stop_reason === "first_page_strictly_older_than_year" &&
-    Array.isArray(data.companies) &&
-    data.companies.every(company =>
-      typeof company.issuer_name === "string" &&
-      /^U?DRHP/.test(company.latest_filing_type || "") &&
-      safeUrl(company.latest_filing_url));
+  if(data?.schema_version !== "1.0.0" || data?.coverage?.year !== 2026 ||
+    data?.coverage?.stop_reason !== "first_page_strictly_older_than_year" ||
+    !Array.isArray(data.companies) || !data.companies.length || data.coverage.companies !== data.companies.length) return false;
+  const urls = new Set(); let filings = 0;
+  for(const c of data.companies) {
+    if(typeof c.issuer_name !== "string" || !c.issuer_name.trim() || !Array.isArray(c.filings) || !c.filings.length || c.filing_count !== c.filings.length) return false;
+    if(c.latest_filing_url !== c.filings[0].filing_url || c.latest_filing_date !== c.filings[0].filing_date || c.latest_filing_type !== c.filings[0].filing_type) return false;
+    for(const f of c.filings) {
+      if(!/^(?:DRHP|UDRHP(?:-?(?:I{1,4}|V|\d+))?)$/.test(f.filing_type || "") || !safeUrl(f.filing_url) || urls.has(f.filing_url) || !/^2026-\d\d-\d\d$/.test(f.filing_date)) return false;
+      urls.add(f.filing_url); filings++;
+    }
+  }
+  return data.coverage.filing_records === filings;
 }
 async function load() {
   $("#drhpLoading").hidden = false;
@@ -79,14 +84,24 @@ async function load() {
     $("#drhpFilingCount").textContent = data.coverage.filing_records;
     $("#drhpYear").textContent = data.coverage.year;
     $("#drhpPages").textContent = data.coverage.pages_fetched;
-    $("#drhpGenerated").textContent = "Generated " + formatTimestamp(data.generated_at);
+    $("#drhpGenerated").textContent = "Last successful collection: " + formatTimestamp(data.collection_completed_at || data.source_pages?.at(-1)?.collected_at || data.generated_at);
     $("#drhpCoverageNote").textContent =
       `${data.coverage.year} coverage · ${data.coverage.pages_fetched} SEBI pages checked · explicit DRHP/UDRHP filings only`;
-    const sourceUrl = safeUrl(data.source?.listing_url);
+    const totals = new Set((data.source_pages || []).map(p => p.observed_records));
+    const retained = data.companies.flatMap(c => c.filings).filter(f => f.not_seen_in_latest_scan).length;
+    $("#drhpIntegrityNote").textContent = (totals.size > 1 ? "SEBI page totals differed during collection. " : "") + "This is a retained 2026 filing list, not a complete register. " + (retained ? `${retained} earlier filing(s) not seen in the latest scan remain available; absence is not withdrawal evidence. ` : "") + "Other years, unlabelled draft filings and exchange-only filings are not included.";
+    const sourceUrl = safeUrl(data.source?.listing_url, "/sebiweb/home/");
     if (sourceUrl) $("#sebiSourceLink").href = sourceUrl;
     $("#drhpLoading").hidden = true;
     $("#drhpResults").hidden = false;
     render();
+    try {
+      const healthResponse = await fetch("ops/drhp-collection.json", {cache:"no-store"});
+      if(!healthResponse.ok) throw new Error("health unavailable");
+      const health = await healthResponse.json();
+      if(health.status === "failed") $("#drhpIntegrityNote").textContent += " Latest refresh failed; the last successful list is retained.";
+      else if(health.status !== "success") $("#drhpIntegrityNote").textContent += " Latest refresh status is unavailable.";
+    } catch { $("#drhpIntegrityNote").textContent += " Latest refresh status is unavailable."; }
   } catch (error) {
     console.error(error);
     $("#drhpLoading").hidden = true;
