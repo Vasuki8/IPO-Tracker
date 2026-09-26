@@ -33,6 +33,9 @@ jobs:
           node scripts/test-drhp-lifecycle.mjs
           node scripts/test-drhp-ui.mjs
 
+      - name: Diagnose NSE issuer offer-document source
+        run: node scripts/diagnose-nse-offer-documents.mjs
+
       - name: Test homepage IPO ordering
         run: node scripts/test-homepage-order.mjs
 
