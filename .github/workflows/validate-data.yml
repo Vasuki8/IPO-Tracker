@@ -30,6 +30,7 @@ jobs:
         run: |
           node scripts/test-sync-sebi-drhp.mjs
           node scripts/test-drhp-integrity.mjs
+          node scripts/test-drhp-lifecycle.mjs
           node scripts/test-drhp-ui.mjs
 
       - name: Test homepage IPO ordering
