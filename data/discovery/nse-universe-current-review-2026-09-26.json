@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
-  "status": "current_review_state_pinned_119_resolved_historical_coverage_9_of_9_published_verified",
+  "status": "current_review_state_pinned_119_resolved_historical_and_fabino_repairs_published_verified",
   "as_of": "2026-09-26",
-  "scope": "Current disposition of the 119 pinned NSE candidate groups plus the completed historical-equity-IPO coverage repair for the nine issuers whose 2026 debt/migration events remain excluded. All 119 pinned groups are resolved, all nine historical IPOs are verified, imported through recovery, published, and verified on actual GitHub Pages.",
+  "scope": "Current disposition of the 119 pinned NSE candidate groups plus the completed historical-equity-IPO coverage repair for nine excluded-event issuers and the completed Fabino Life Sciences BSE listing-year correction. All pinned groups are resolved; the nine historical IPOs and Fabino are published through reviewed recovery paths and verified on actual GitHub Pages.",
   "prior_canonical_snapshot": "data/discovery/nse-universe-canonical-review-2026-09-25.json",
   "prior_hold_snapshot": "data/discovery/ipo-universe-held-review-2026-09-25.json",
   "live_receipt": "docs/verification/drhp-identity-release-live-2026-09-26.json",
@@ -105,16 +105,16 @@
   "auto_import_allowed": false,
   "next_bounded_task": {
     "symbols": [
-      "Fabino Life Sciences"
+      "BSE issue-summary coverage"
     ],
-    "objective": "Resolve the separate Fabino Life Sciences BSE listing-year conflict using issuer-specific official BSE listing notices, offer/prospectus documents and issuer filings. Establish the correct legal identity, original IPO/listing date and year, and whether recovery/public coverage is missing or carries a wrong-year observation. Preserve conflicting source observations rather than guessing.",
-    "acceptance": "Retain official source identity, URLs, dates, original bytes/hashes when materialized, and page/locator evidence; use a reviewed recovery path with collision/idempotency tests for any data change; verify actual Pages after publication. Do not infer the listing year from aggregator data or from a later corporate-action/security event."
+    "objective": "Repair and characterize the official BSE issue-summary historical coverage path as a read-only universe-discovery audit. Determine which historical IPOs/years the source can reliably enumerate, retain raw response bytes/hashes and pagination/date semantics, and reconcile results against current recovery plus completed BSE SME listing/index evidence. Do not import any issuer from issue-summary evidence alone.",
+    "acceptance": "Produce a machine-readable audit with source URLs, response hashes, observation/fetch timestamps, pagination or exhaustion evidence, year coverage, matched/unmatched counts and explicit gaps; add parser/regression tests; preserve BSE parser v1.5's completed 236/236 cursor without replaying it; keep publication data unchanged unless a later issuer-specific reviewed import is independently approved."
   },
   "remaining_followups": [
+    "Fabino Life Sciences is resolved and published as a 13-Jan-2022 BSE SME listing; retain the original BSE notice's 2021 typo in correction history.",
     "The nine earlier debt/migration-event issuers now have their original historical equity IPOs imported and verified live; keep the excluded 2026 events out of the IPO universe.",
-    "Fabino Life Sciences remains a separate BSE listing-year hold.",
-    "BSE issue-summary, SEBI historical pagination and unresolved NSE-series coverage are incomplete. BSE parser v1.5 remains 236/236 parsed; do not replay its completed cursor.",
-    "DRHP directory coverage is a separate 2026 explicit-marker collection, not a complete draft-offer register. Improve source pagination and unlabelled-row classification without treating draft filings as automatic IPO approvals."
+    "DRHP directory coverage is a separate 2026 explicit-marker collection, not a complete draft-offer register. Improve source pagination and unlabelled-row classification without treating draft filings as automatic IPO approvals.",
+    "BSE issue-summary, SEBI historical pagination and unresolved NSE-series coverage remain incomplete. Start with the BSE issue-summary path as a read-only coverage audit; do not replay the completed BSE parser v1.5 cursor."
   ],
   "drhp_state": {
     "companies": 95,
@@ -198,5 +198,36 @@
     "live_verification_status": "verified",
     "live_verification_run_id": 36248129988,
     "live_verification_artifact_id": 10908262582
+  },
+  "fabino_listing_year_release": {
+    "status": "published_verified",
+    "review": "data/discovery/bse-fabino-listing-year-review-2026-09-26.json",
+    "evidence_receipt": "data/evidence/fabino-listing-year-source-receipt-2026-09-26.json",
+    "import_manifest": "data/verified-bse-listings/2026-09-26-fabino-correction.json",
+    "release_pr": 264,
+    "release_merge_commit": "5391027eaac6c18724f482c2ef1c5111a33f0f7d",
+    "publication_commit": "6d7fad63f478d17d8238a0976efb1f4a247866ef",
+    "correct_listing_date": "2022-01-13",
+    "bse_scrip_code": "543444",
+    "isin": "INE0DRT01018",
+    "conflict_preserved": "BSE Notice 20220112-10 contains an internal 'January 13, 2021' typo; independent BSE SME IPO Index evidence confirms 13-Jan-2022.",
+    "evidence_materialization": {
+      "workflow_run_id": 36248932290,
+      "artifact_id": 10908566869,
+      "artifact_digest": "sha256:b1dce44e5806fa6998cc25a4895159c4b2f2d32d1e7d65afc11a03606e26a841",
+      "retained_documents": 4,
+      "retained_response_bytes": 12642908,
+      "retention_days": 14
+    },
+    "publication_verification": {
+      "workflow_run_id": 36254088389,
+      "artifact_id": 10909383646,
+      "snapshot_fetched_at": "2026-09-26T16:04:08.456Z",
+      "snapshot_sha256": "64a6ddbfb04e556f9f1deca2f54038561e1bed4444702a6a94b06af5eb8269ad",
+      "published_records": 1333,
+      "checked_fields": 5,
+      "listing_date": "2022-01-13",
+      "errors": []
+    }
   }
 }
