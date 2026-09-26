@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {pathToFileURL} from 'node:url';
-import {buildCompanies,canonicalIssuer,officialSebiUrl,DRHP_LIST_URL} from './sync-sebi-drhp.mjs';
+import {buildCompanies,canonicalIssuer,officialSebiUrl,officialAxisUrl,officialDrhpDocumentUrl,DRHP_LIST_URL,AXIS_OFFER_DOCS_URL} from './sync-sebi-drhp.mjs';
 const hash=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
 const assert=(ok,why)=>{if(!ok)throw new Error(why);};
 const stamp=v=>typeof v==='string'&&Number.isFinite(Date.parse(v))&&new Date(v).toISOString()===v;
@@ -10,13 +10,16 @@ export function validateDrhpData(data,{allowLegacyCounts=false}={}) {
   assert(data?.schema_version==='1.0.0'&&stamp(data.generated_at),'invalid_drhp_schema_or_timestamp');
   assert(data.source?.listing_url===DRHP_LIST_URL&&data.coverage?.year===2026&&data.coverage.stop_reason==='first_page_strictly_older_than_year','invalid_drhp_scope');
   assert(Array.isArray(data.source_pages)&&data.source_pages.length===data.coverage.pages_fetched&&data.source_pages.length>=2,'invalid_drhp_pages');
+  assert(data.supplemental_source_pages==null||Array.isArray(data.supplemental_source_pages),'invalid_drhp_supplemental_pages');
+  if(data.supplemental_sources!=null){assert(Array.isArray(data.supplemental_sources),'invalid_drhp_supplemental_sources');for(const src of data.supplemental_sources)assert(src?.listing_url===AXIS_OFFER_DOCS_URL,'invalid_drhp_supplemental_source');}
   assert(Array.isArray(data.companies)&&data.companies.length>0,'empty_drhp_data');
   const urls=new Set(),names=new Set();let count=0;
   for(const c of data.companies){
     const key=canonicalIssuer(c.issuer_name);assert(key&&!names.has(key),'duplicate_drhp_company');names.add(key);
     assert(c.filing_count===c.filings?.length&&c.filing_count>0,'invalid_drhp_company_count');
     for(const f of c.filings){
-      assert(canonicalIssuer(f.issuer_name)===key&&officialSebiUrl(f.filing_url),'invalid_drhp_filing_identity_or_url');
+      assert(canonicalIssuer(f.issuer_name)===key&&officialDrhpDocumentUrl(f.filing_url),'invalid_drhp_filing_identity_or_url');
+      if(officialAxisUrl(f.filing_url)){assert(f.source_kind==='official_lead_manager'&&f.source_authority==='Axis Capital Limited'&&f.date_basis==='lead_manager_document_upload_timestamp','invalid_lead_manager_drhp_provenance');}
       assert(!urls.has(f.filing_url),'duplicate_drhp_filing_url');urls.add(f.filing_url);count++;
       assert(/^(?:DRHP|UDRHP(?:-?(?:I{1,4}|V|\d+))?)$/.test(f.filing_type),'invalid_drhp_type');
       assert(/^2026-\d\d-\d\d$/.test(f.filing_date)&&Number.isFinite(Date.parse(f.filing_date))&&new Date(f.filing_date).toISOString().slice(0,10)===f.filing_date&&f.filing_date<=data.generated_at.slice(0,10),'invalid_drhp_date');
@@ -45,15 +48,15 @@ export function mergeDrhpSnapshots(previous,incoming) {
     latest.set(f.filing_url,copy);retained.push(f.filing_url);
   }
   for(const f of incoming.companies.flatMap(c=>c.filings))if(latest.has(f.filing_url)&&!f.not_seen_in_latest_scan)latest.get(f.filing_url).not_seen_in_latest_scan=false;
-  const data=structuredClone(incoming);data.collector_version='2.0.0';
+  const data=structuredClone(incoming);data.collector_version=incoming.collector_version||'2.1.0';
   data.collection_started_at ||= incoming.generated_at;
-  data.collection_completed_at ||= [...incoming.source_pages.map(p=>p.collected_at),incoming.generated_at].sort().at(-1);data.companies=buildCompanies([...latest.values()]);
+  data.collection_completed_at ||= [...incoming.source_pages.map(p=>p.collected_at),...(incoming.supplemental_source_pages||[]).map(p=>p.collected_at),incoming.generated_at].sort().at(-1);data.companies=buildCompanies([...latest.values()]);
   const totals=[...new Set(data.source_pages.map(p=>p.observed_records).filter(Number.isInteger))];
   data.coverage={...data.coverage,filing_records:latest.size,companies:data.companies.length,
     latest_scan_unique_filings:incoming.coverage.latest_scan_unique_filings??incoming.companies.reduce((n,c)=>n+c.filings.filter(f=>!f.not_seen_in_latest_scan).length,0),
     retained_not_seen_latest:data.companies.flatMap(c=>c.filings).filter(f=>f.not_seen_in_latest_scan).length,
     pagination_consistent:totals.length===1,observed_source_totals:totals,full_universe_complete:false,
-    limitations:'2026 explicit DRHP/UDRHP observations only. Changing pagination may omit rows; past filings are retained, not presumed withdrawn. Unlabelled filings, other years and exchange-only sources are outside coverage.'};
+    limitations:'2026 explicit SEBI DRHP/UDRHP observations plus configured official lead-manager fallbacks only. Changing pagination may omit rows; past filings are retained, not presumed withdrawn. Unlabelled SEBI filings, other years and unconfigured lead-manager sources remain outside coverage.'};
   validateDrhpData(data);return data;
 }
 if(process.argv[1]&&pathToFileURL(path.resolve(process.argv[1])).href===import.meta.url){
