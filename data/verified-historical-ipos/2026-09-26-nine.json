@@ -65,12 +65,15 @@
       "listing_source": "swaraj_listing",
       "identity_source": "swaraj_identity",
       "field_sources": {
-        "open_date": "swaraj_prospectus",
-        "close_date": "swaraj_prospectus",
-        "issue_price": "swaraj_prospectus",
-        "market_lot": "swaraj_prospectus",
         "listing_date": "swaraj_listing"
-      }
+      },
+      "omitted_verified_fields": [
+        "open_date",
+        "close_date",
+        "issue_price",
+        "market_lot"
+      ],
+      "omission_reason": "The reviewed offer terms are sourced from archives.nseindia.com. The published-data official-host policy is intentionally not expanded in this import; those fields remain missing until equivalent evidence is retained on an already accepted publication host."
     },
     {
       "excluded_event_symbol": "1150VIES30",
