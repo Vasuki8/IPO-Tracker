@@ -148,7 +148,7 @@ async function fetchBsePage(fetchImpl,url,options={}){
   const final=officialSummaryUrl(response.url||url);
   if(!response.ok||!final||new URL(final).pathname.toLowerCase()!==new URL(BSE_ISSUE_SUMMARY_URL).pathname.toLowerCase()){
     await response.body?.cancel();
-    throw new Error("invalid_bse_issue_summary_response:"+response.status);
+    throw new Error("invalid_bse_issue_summary_response:"+response.status+":"+(response.url||url));
   }
   return{response,bytes:await readBounded(response)};
 }
