@@ -1,27 +1,14 @@
 # Project status and handoff
 
-Updated **2026-09-26 (UTC)** after the ADANIENPP1/SILGOPP rights-security review was completed. The active backend priority remains **P1 issuer identity and universe correctness** under [DEVELOPMENT_PROCESS.md](DEVELOPMENT_PROCESS.md). The DRHP directory remains live and separate from IPO-universe decisions. Other UI/research-depth work remains in [UI_DETAIL_NAVIGATION_HANDOFF.md](UI_DETAIL_NAVIGATION_HANDOFF.md).
+Updated **2026-09-26 (UTC)** after the interrupted DRHP/identity release was finalized. The active backend priority remains **P1 issuer identity and universe correctness** under [DEVELOPMENT_PROCESS.md](DEVELOPMENT_PROCESS.md). The user explicitly requested a list of companies that filed DRHPs; that separate directory is now live. Other UI/research-depth work remains in [UI_DETAIL_NAVIGATION_HANDOFF.md](UI_DETAIL_NAVIGATION_HANDOFF.md).
 
 ## Release complete — do not replay
 
 **PR #248 and PR #249 are merged.** AMIRCHAND and LEAP are resolved and published; the DRHP directory and its history-preserving refresh are verified on actual Pages. Do not replay approved imports from batches 1–9.
 
-The current disposition is [nse-universe-current-review-2026-09-26.json](../data/discovery/nse-universe-current-review-2026-09-26.json): **105 approved IPOs + five debt-event exclusions + four migration exclusions + two rights-issue security exclusions + three unresolved NSE cases = 119 pinned groups**. Zero unreviewed groups remain in that original audit. This is **not full Indian IPO-universe completeness**.
+The current disposition is [nse-universe-current-review-2026-09-26.json](../data/discovery/nse-universe-current-review-2026-09-26.json): **105 approved IPOs + five debt-event exclusions + four migration exclusions + five unresolved NSE cases = 119 pinned groups**. Zero unreviewed groups remain in that original audit. This is **not full Indian IPO-universe completeness**.
 
-**Exact next bounded backend task: GICL, VITAL and KOTYARK prior-offer/listing history review.** Use issuer-specific official notices/filings, not symbol spelling or aggregate observations. Reconcile latest main and actual Pages before action. Preserve each issuer's prior IPO history and all source conflicts; remain on hold when proof is insufficient.
-
-## ADANIENPP1 and SILGOPP rights-security review — complete
-
-Both previously held 2026 events are now positively classified from issuer-specific official evidence and excluded from the new-IPO queue. [The retained review](../data/discovery/nse-universe-rights-security-review-2026-09-26.json) records the decisions and literal source projections.
-
-- **ADANIENPP1 / IN9423A01048 — Adani Enterprises Limited:** NSE circular NSE/CML/72630 calls the 10-Feb-2026 event a **further issue** and identifies the security as Re. 1 face value / Re. 0.75 paid up. The issuer separately states that this ISIN resulted from first-call conversion of partly paid shares **in relation to its Rights Issue**. The monitoring report records the rights-issue period as 25-Nov-2025 to 10-Dec-2025 and the security as partly paid equity.
-- **SILGOPP / IN901II01012 — Silgo Retail Limited:** NSE circular NSE/CML/72851 explicitly describes the 19-Feb-2026 listing as **partly paid-up equity shares allotted on Rights Basis**. Silgo's Letter of Offer identifies a rights issue opening 14-Jan-2026 and closing 04-Feb-2026 at Rs. 60 per share, ratio 3 for 10.
-
-No IPO record was added, removed or edited. The review classifies the 2026 security events only and does not erase or overwrite either issuer's earlier IPO/listing history.
-
-One official-source conflict is preserved rather than silently resolved: NSE records SILGOPP allotment on **13-Feb-2026**, while Silgo's later first/final-call notice states **17-Feb-2026**. Both sources independently agree that the security was issued on a rights basis, so this disagreement does not affect the event classification.
-
-Original PDF bytes were not materialized in this connector run. The review therefore retains literal official-source projections with SHA-256 hashes of those projections and explicitly leaves original-file hashes null; no projection hash is represented as an original PDF hash. No parser or adapter change was required, so no parser regression test was added.
+**Exact next bounded backend task: ADANIENPP1 and SILGOPP offering/security-history review.** Use issuer-specific official notices/filings, not symbol spelling or aggregate observations. Reconcile latest main and actual Pages before action. Preserve their prior IPO history and remain on hold when proof is insufficient.
 
 ## DRHP company directory — verified live
 
@@ -83,12 +70,12 @@ Durable combined receipt: [drhp-identity-release-live-2026-09-26.json](verificat
 
 ## Remaining work and preserved history
 
-Active NSE holds: **GICL, VITAL, KOTYARK**. These are now the exact next bounded review. **Fabino Life Sciences** remains a separate BSE listing-year hold. Keep positive debt/migration/rights-event exclusions out of the new-IPO queue while independently reviewing their issuers' original historical equity IPOs.
+Active NSE holds: **ADANIENPP1, GICL, SILGOPP, VITAL, KOTYARK**. Start with ADANIENPP1/SILGOPP, then the other three. **Fabino Life Sciences** remains a separate BSE listing-year hold. Keep positive debt/migration exclusions out of the new-IPO queue while independently reviewing their issuers' original historical equity IPOs.
 
 Broader BSE issue-summary, SEBI historical pagination and NSE-series gaps remain. **BSE parser v1.5 is 236/236 parsed; do not replay its completed cursor.** DRHP coverage expansion must address inconsistent pagination/unlabelled disclosures without treating an observed draft filing as a new approved IPO.
 
 The old canonical review and seven-case hold files dated September 25 are preserved as historical snapshots. Use the linked **September 26 current-review state**, not their stale next-task fields, for new work.
 
-The immediately preceding README and project-status versions are archived byte-for-byte as `docs/archive/README-before-rights-security-review-2026-09-26.md` and `docs/archive/PROJECT_STATUS-before-rights-security-review-2026-09-26.md`. Earlier manifests, archives, evidence and receipts remain intact. Actions artifacts expire after 14 days; the repository retains literal projections, URLs, dates, document identities, hashes and locators.
+Previous README and project-status versions are archived byte-for-byte under `docs/archive/*-before-drhp-identity-finalization.md`. Earlier manifests, evidence and receipts remain intact. Actions artifacts expire after 14 days; the repository retains literal projections, URLs, dates, document identities, hashes and locators.
 
 No minimum-investment expansion, billing/accounts/ads, spending or access-policy changes were introduced.
