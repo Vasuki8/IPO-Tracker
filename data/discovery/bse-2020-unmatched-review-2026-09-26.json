@@ -79,8 +79,7 @@
         "listing_date": "2020-03-16",
         "issue_price": 18,
         "nse_symbol": null,
-        "isin": null,
-        "bse_symbol": "SMAUTO"
+        "isin": null
       },
       "identity_sources": [
         "smauto_draft_prospectus",
@@ -89,10 +88,9 @@
       "field_sources": {
         "listing_date": "smauto_track_record",
         "issue_price": "smauto_track_record",
-        "bse_scrip_code": "smauto_exchange_identity",
-        "bse_symbol": "smauto_exchange_identity"
+        "bse_scrip_code": "smauto_exchange_identity"
       },
-      "note": "The BSE-hosted draft prospectus establishes the 3,840,000-share first public issue and intended BSE SME listing; a later BSE-hosted prospectus retains the lead-manager past-issue disclosure showing the ₹18 issue price and 16-Mar-2020 listing. The BSE audit supplies scrip 543065 only as discovery identity."
+      "note": "The BSE-hosted draft prospectus establishes the 3,840,000-share first public issue and intended BSE SME listing; a later BSE-hosted prospectus retains the lead-manager past-issue disclosure showing the ₹18 issue price and 16-Mar-2020 listing; a stable BSE corporate filing binds the issuer to scrip 543065."
     },
     {
       "key": "shine",
@@ -295,16 +293,15 @@
       "key": "smauto_exchange_identity",
       "authority": "BSE",
       "document_type": "BSE Corporate Filing",
-      "url": "https://www.bseindia.com/xml-data/corpfiling/AttachLive/bac4b2df-4b9f-4d93-a36e-52af81845fe9.pdf",
-      "publication_date": "2025-08-29",
+      "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/203ac3fb-93b7-4adf-85c0-4c6620db457d.pdf",
+      "publication_date": "2024-01-15",
       "page": "1",
-      "evidence_locator": "Header: Scrip Code 543065 / Scrip ID SMAUTO",
+      "evidence_locator": "Header and subject: Scrip 543065; SM Auto Stamping Limited",
       "projection": {
         "issuer": "SM Auto Stamping Limited",
-        "bse_scrip_code": "543065",
-        "bse_symbol": "SMAUTO"
+        "bse_scrip_code": "543065"
       },
-      "projection_sha256": "6046893d63267a17394ae9f216c9c9b2eaebfd0947cde22fa5e0694cf5de5eef"
+      "projection_sha256": "dc3d1e467850895f0b505cfe8447330ab4b192b8f3484d8baf1a40a315571672"
     },
     {
       "key": "shine_exchange_identity",
