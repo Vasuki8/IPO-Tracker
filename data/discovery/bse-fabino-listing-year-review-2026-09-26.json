@@ -1,0 +1,134 @@
+{
+  "schema_version": "1.0.0",
+  "status": "resolved_bse_listing_year_conflict_import_pending",
+  "reviewed_at": "2026-09-26",
+  "issuer": {
+    "issuer_name": "Fabino Life Sciences Limited",
+    "current_name": "Fabino Enterprises Limited",
+    "bse_scrip_code": "543444",
+    "bse_symbol": "FABINO",
+    "isin": "INE0DRT01018",
+    "board": "SME"
+  },
+  "decision": {
+    "correct_listing_date": "2022-01-13",
+    "correct_listing_year": 2022,
+    "decision": "official_bse_listing_notice_contains_typographical_year_error",
+    "reason": "BSE Notice 20220112-10 is dated 12-Jan-2022 but one listing sentence says effective Thursday January 13, 2021. The same notice separately places the Special Pre-open Session on Thursday, January 13, 2022; BSE's official SME IPO Index release explicitly states the company is being listed effective Thursday, January 13, 2022; and the IPO prospectus opened 31-Dec-2021 and closed 05-Jan-2022. The 2021 year in the listing sentence is therefore retained as a source conflict, not used as the listing year."
+  },
+  "historical_equity": {
+    "issuer_name": "Fabino Life Sciences Limited",
+    "bse_scrip_code": "543444",
+    "bse_symbol": "FABINO",
+    "isin": "INE0DRT01018",
+    "board": "SME",
+    "offer_open": "2021-12-31",
+    "offer_close": "2022-01-05",
+    "allotment_date": "2022-01-10",
+    "issue_price_inr": 36,
+    "market_lot": 3000,
+    "shares_offered": 900000,
+    "issue_size_lakh_inr": 324,
+    "listing_date": "2022-01-13"
+  },
+  "sources": [
+    {
+      "key": "bse_listing_notice",
+      "authority": "BSE Limited",
+      "document_type": "BSE Listing Notice",
+      "document_identity": "BSE Notice 20220112-10 — Listing of Equity Shares of Fabino Life Sciences Limited",
+      "publication_date": "2022-01-12",
+      "url": "https://www.bseindia.com/markets/MarketInfo/DispNewNoticesCirculars.aspx?page=20220112-10",
+      "page": null,
+      "evidence_locator": "Notice header, listing statement, scrip/ISIN/market lot/issue price table, SPOS clause",
+      "source_bytes_sha256": null,
+      "projection": {
+        "issuer": "Fabino Life Sciences Limited",
+        "notice_no": "20220112-10",
+        "notice_date": "2022-01-12",
+        "segment": "SME",
+        "subject": "Listing of Equity Shares of Fabino Life Sciences Limited",
+        "conflicting_listing_statement": "effective from Thursday January 13, 2021",
+        "corroborating_spos_date": "2022-01-13",
+        "bse_scrip_code": "543444",
+        "symbol": "FABINO",
+        "isin": "INE0DRT01018",
+        "market_lot": 3000,
+        "issue_price_inr": 36,
+        "allotment_date": "2022-01-10"
+      },
+      "projection_sha256": "3679f9f08f33f7a12ba0e6c54d4929b7e4aa75ca22b2c4e044f9169472515d20"
+    },
+    {
+      "key": "bse_sme_index_press_release",
+      "authority": "BSE Limited / Asia Index Private Limited",
+      "document_type": "BSE SME IPO Index Press Release",
+      "document_identity": "Addition to the S&P BSE SME IPO Index — Fabino Life Sciences Limited",
+      "publication_date": "2022-01-13",
+      "url": "https://www.bseindia.com/downloads/SPDJ_ANN/MediaReleasePDF/1448982_mediareleaseadditiontothes%26pbsesmeipoindex20220113.pdf",
+      "page": 1,
+      "evidence_locator": "Opening paragraph and index addition table",
+      "source_bytes_sha256": null,
+      "projection": {
+        "issuer": "Fabino Life Sciences Limited",
+        "bse_scrip_code": "543444",
+        "listing_date": "2022-01-13",
+        "index_addition_date": "2022-01-14",
+        "index": "S&P BSE SME IPO"
+      },
+      "projection_sha256": "cdf23c142d0cbc6d99441bcbe5074bb9e79c728fe222af63b85181b9faa1b412"
+    },
+    {
+      "key": "bse_prospectus",
+      "authority": "BSE Limited",
+      "document_type": "Prospectus",
+      "document_identity": "Fabino Life Sciences Limited — Prospectus dated 27-Dec-2021",
+      "publication_date": "2021-12-27",
+      "url": "https://www.bseindia.com/corporates/download/398923/SME_IPO%20Open/1.%20Fabino%20Life%20Sciences%20Limited%20-%20Prospectus_20211229111720.pdf",
+      "page": 1,
+      "evidence_locator": "Cover page — issue size, price, listing venue and issue programme; definitions — ISIN",
+      "source_bytes_sha256": null,
+      "projection": {
+        "issuer": "Fabino Life Sciences Limited",
+        "document_date": "2021-12-27",
+        "event_type": "initial public issue",
+        "shares_offered": 900000,
+        "issue_price_inr": 36,
+        "issue_size_lakh_inr": 324,
+        "offer_open": "2021-12-31",
+        "offer_close": "2022-01-05",
+        "listing_venue": "BSE SME",
+        "isin": "INE0DRT01018"
+      },
+      "projection_sha256": "9f1b399b35683c7b6aa410a3face228413e3eb54b57debda7adf2c550369d0da"
+    },
+    {
+      "key": "sebi_final_offer_page",
+      "authority": "Securities and Exchange Board of India",
+      "document_type": "SEBI Final Offer Document Filing",
+      "document_identity": "Fabino Life Sciences Limited-SME IPO",
+      "publication_date": "2021-12-30",
+      "url": "https://www.sebi.gov.in/filings/public-issues/dec-2021/fabino-life-sciences-limited-sme-ipo_55093.html",
+      "page": null,
+      "evidence_locator": "SEBI filing header",
+      "source_bytes_sha256": null,
+      "projection": {
+        "issuer": "Fabino Life Sciences Limited",
+        "filing_type": "Final Offer Documents filed with ROC",
+        "filing_date": "2021-12-30",
+        "label": "Fabino Life Sciences Limited-SME IPO"
+      },
+      "projection_sha256": "49bf7b9b2aeca5b540956e899558f049954c2190c35f8c5cb98c257254774f1e"
+    }
+  ],
+  "correction_policy": {
+    "preserve_conflicting_bse_notice_text": true,
+    "overwrite_source_document": false,
+    "import_listing_date_from": "bse_sme_index_press_release",
+    "import_issue_price_and_market_lot_from": "bse_listing_notice",
+    "import_offer_dates_from": "bse_prospectus",
+    "note": "The corrected listing date is not inferred from chronology alone; it is independently stated by BSE's official SME IPO Index release."
+  },
+  "import_status": "pending_original_source_byte_materialization",
+  "public_dataset_change": false
+}
