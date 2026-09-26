@@ -1,7 +1,7 @@
-name: Sync SEBI DRHP filings
+name: Sync Pre-IPO draft sources
 on:
   schedule:
-    - cron: "43 6 * * *"
+    - cron: "17 */2 * * *"
   workflow_dispatch:
   push:
     branches: [main]
@@ -34,7 +34,7 @@ jobs:
           node scripts/test-sync-sebi-drhp.mjs
           node scripts/test-drhp-integrity.mjs
           node scripts/test-drhp-ui.mjs
-      - name: Collect explicit 2026 DRHP filings and retain original pages
+      - name: Collect official 2026 DRHP sources and retain original pages
         id: collect
         continue-on-error: true
         run: |
@@ -58,7 +58,7 @@ jobs:
             node --input-type=module <<'JS'
           import fs from 'node:fs';
           const d=JSON.parse(fs.readFileSync('data/drhp-filings.json'));
-          fs.writeFileSync('ops/drhp-collection.json',JSON.stringify({schema_version:'1.0.0',status:process.env.COLLECTION_OUTCOME==='success'?'success':'failed',attempted_at:new Date().toISOString(),run_id:process.env.GITHUB_RUN_ID,last_successful_collection_at:d.collection_completed_at||d.source_pages.at(-1).collected_at,companies:d.companies.length,filings:d.coverage.filing_records,source_pagination_consistent:d.coverage.pagination_consistent??null},null,2)+'\n');
+          fs.writeFileSync('ops/drhp-collection.json',JSON.stringify({schema_version:'1.0.0',status:process.env.COLLECTION_OUTCOME==='success'?'success':'failed',attempted_at:new Date().toISOString(),run_id:process.env.GITHUB_RUN_ID,last_successful_collection_at:d.collection_completed_at||d.source_pages.at(-1).collected_at,companies:d.companies.length,filings:d.coverage.filing_records,source_pagination_consistent:d.coverage.pagination_consistent??null,supplemental_source_surfaces_checked:d.coverage.supplemental_source_surfaces_checked??0,supplemental_companies_added:d.coverage.supplemental_companies_added??0},null,2)+'\n');
           JS
             git add data/drhp-filings.json ops/drhp-collection.json
             if git diff --cached --quiet; then break; fi

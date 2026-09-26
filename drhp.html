@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="description" content="Companies that have submitted a DRHP or updated draft offer document to SEBI for a proposed Indian IPO." />
+    <meta name="description" content="Pre-IPO companies discovered from SEBI draft-offer records and configured official lead-manager DRHP sources." />
     <meta name="theme-color" content="#fafbf8" />
     <title>Pre-IPO Companies — IPO Tracker</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
@@ -30,11 +30,11 @@
         <div>
           <p class="eyebrow">IPO PIPELINE</p>
           <h1 id="pageTitle">Companies that have filed for an IPO.</h1>
-          <p class="page-description">Only companies that still appear to be in the draft stage are shown here. When the same issuer reaches Upcoming, Open, Closed, or Listed in the published IPO dataset—or an IPO open/close/listing date appears—it is removed from this page automatically while its DRHP history stays retained.</p>
+          <p class="page-description">Only companies that still appear to be in the draft stage are shown here. Discovery combines SEBI’s draft-offer index with configured official lead-manager DRHP sources. When the same issuer reaches Upcoming, Open, Closed, or Listed—or an IPO open/close/listing date appears—it is removed automatically while its draft history stays retained.</p>
         </div>
         <a class="source-note drhp-source-note" id="sebiSourceLink" href="https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" /><path d="m9 12 2 2 4-4" /></svg>
-          <span>Official SEBI source<small>Draft Offer Documents ↗</small></span>
+          <span>Primary SEBI source<small>Draft Offer Documents ↗</small></span>
         </a>
       </section>
 
@@ -53,7 +53,7 @@
             <h2>Pre-IPO companies <span id="drhpVisibleCount" class="count-chip">—</span></h2>
             <p>One company per row. Companies that progress into the published IPO pipeline are hidden automatically.</p>
           </div>
-          <span class="coverage-note">DRHP / UDRHP evidence · Progressed IPOs excluded dynamically</span>
+          <span class="coverage-note">SEBI + official lead-manager evidence · Progressed IPOs excluded dynamically</span>
         </div>
         <div class="toolbar drhp-toolbar">
           <label class="search">
@@ -98,7 +98,7 @@
       </div>
       <footer class="site-footer">
         <span>IPO Tracker <span class="separator">/</span> Independent research, official sources.</span>
-        <span>DRHP submission is an early IPO-process signal, not an IPO approval or investment recommendation.</span>
+        <span>Coverage is automatic from configured official sources but is not yet certified as a complete Indian DRHP universe.</span>
       </footer>
     </main>
     <script src="assets/pre-ipo-filter.js?v=20260926-preipo2"></script>

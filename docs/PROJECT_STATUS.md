@@ -1,6 +1,6 @@
 # Project status and handoff
 
-Updated **2026-09-26 (UTC)** after correcting the user-facing DRHP feature interpretation. The active backend priority remains **P1 issuer identity and universe correctness** under [DEVELOPMENT_PROCESS.md](DEVELOPMENT_PROCESS.md). The draft-offer collector remains separate from IPO-universe decisions, but its user-facing surface is now a **Pre-IPO companies** list rather than a filing-record directory. Other UI/research-depth work remains in [UI_DETAIL_NAVIGATION_HANDOFF.md](UI_DETAIL_NAVIGATION_HANDOFF.md).
+Updated **2026-09-26 (UTC)** while repairing Pre-IPO source coverage after Abakkus Asset Manager exposed a single-source discovery gap. The active backend priority remains **P1 issuer identity and universe correctness** under [DEVELOPMENT_PROCESS.md](DEVELOPMENT_PROCESS.md). The Pre-IPO surface stays lifecycle-aware; source discovery is being expanded from the SEBI draft index to configured official lead-manager offer-document sources. Other UI/research-depth work remains in [UI_DETAIL_NAVIGATION_HANDOFF.md](UI_DETAIL_NAVIGATION_HANDOFF.md).
 
 ## Release complete — do not replay
 
@@ -44,13 +44,13 @@ The previous document-centric wording (`DRHP filings`, filing-record metric, fil
 
 History retention remains non-destructive: a missing row in a later SEBI index scan is not withdrawal evidence. The latest scan returned **92 observations**, including **two duplicates**, for **90 unique filings observed in that scan**. One earlier retained filing remains in the union, producing **91 retained source documents across 90 companies**. Current lifecycle reconciliation hides **8** progressed issuers and leaves **82** visible as true pre-IPO companies.
 
-Source page totals varied between **2,212 and 2,214**. The UI exposes that inconsistency and incomplete coverage. Only explicit 2026 DRHP/UDRHP markers are included; addenda, corrigenda, unlabelled rows, other years and exchange-only filings are outside this release's coverage.
+Source page totals varied between **2,212 and 2,214**. The UI exposes that inconsistency and incomplete coverage. **Abakkus Asset Manager Limited was not present in the current SEBI draft-offer index despite being published as a DRHP by official book-running lead-manager sources.** The collector is therefore adding an Axis Capital official offer-document fallback. Coverage remains partial: addenda, corrigenda, unlabelled SEBI rows, other years and unconfigured lead-manager sources remain outside the claimed universe.
 
 ### Reliability and publication
 
 PR #249 merged as **253b2d1b11341e240c4e1ea11742a76c1ffd8cef**. The repair preserves filing history, counts globally unique filing URLs, rejects stale/conflicting data and unsafe source URLs, detects non-advancing pages, retains original page bytes and separates collection health from the list. A failed collection leaves the last good dataset available and records the failure. The leftover temporary identity collector was removed from ordinary CI.
 
-The existing DRHP workflow remains scheduled daily at **06:43 UTC**; execution timing is controlled by GitHub Actions. It is bounded to 16 pages and stops at the first page strictly older than the selected year. It publishes only its DRHP dataset/collection-status files and verifies actual served data and page assets afterward.
+The draft-source workflow is being changed to run **every two hours at minute 17 UTC**, subject to GitHub Actions scheduling. The SEBI collector remains bounded to 16 pages and stops at the first page strictly older than the selected year; configured official lead-manager source pages are checked in the same run. It publishes only its draft-evidence dataset/collection-status files and verifies actual served data and page assets afterward.
 
 Post-PR #252 DRHP refresh **36218461502 — success**. Collection completed **2026-09-26T04:39:23.635Z**. The verifier initially observed the prior served dataset while Pages was propagating, retried, and finished **verified** at **2026-09-26T04:40:12.294Z**. Final served bytes matched all six checked files: `data/drhp-filings.json`, `drhp.html`, `assets/pre-ipo-filter.js`, `assets/drhp.js`, `assets/styles.css`, and `index.html`. Served DRHP dataset SHA-256 **fbc56ba56a7db53686c725843e4b8e121cbb3017fb979020b2045ba9228d941c**. The lifecycle helper itself matched SHA-256 **10b2656b301f3505df45e1dc7b3f3b6a86a9c89a5e4e8ce9943ed7183069c4e3**.
 
