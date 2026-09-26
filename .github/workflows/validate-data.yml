@@ -25,16 +25,18 @@ jobs:
           node --check assets/app.js
           node --check assets/ipo-order.js
           node --check assets/lot-size.js
+          node --check assets/drhp-lifecycle.js
+          node --check scripts/sync-nse-drhp-offers.mjs
+          node --check scripts/nse-drhp-integrity.mjs
 
       - name: Test DRHP source integrity and UI
         run: |
           node scripts/test-sync-sebi-drhp.mjs
           node scripts/test-drhp-integrity.mjs
+          node scripts/test-sync-nse-drhp-offers.mjs
+          node scripts/test-nse-drhp-integrity.mjs
           node scripts/test-drhp-lifecycle.mjs
           node scripts/test-drhp-ui.mjs
-
-      - name: Diagnose NSE issuer offer-document source
-        run: node scripts/diagnose-nse-offer-documents.mjs
 
       - name: Test homepage IPO ordering
         run: node scripts/test-homepage-order.mjs
