@@ -1,4 +1,4 @@
-name: Sync SEBI DRHP filings
+name: Sync DRHP / Pre-IPO sources
 on:
   schedule:
     - cron: "43 6 * * *"
@@ -8,20 +8,26 @@ on:
     paths:
       - scripts/sync-sebi-drhp.mjs
       - scripts/drhp-integrity.mjs
+      - scripts/sync-nse-drhp-offers.mjs
+      - scripts/nse-drhp-integrity.mjs
       - scripts/verify-drhp-publication.mjs
       - scripts/test-sync-sebi-drhp.mjs
       - scripts/test-drhp-integrity.mjs
+      - scripts/test-sync-nse-drhp-offers.mjs
+      - scripts/test-nse-drhp-integrity.mjs
+      - scripts/test-drhp-lifecycle.mjs
       - scripts/test-drhp-ui.mjs
+      - assets/drhp-lifecycle.js
       - .github/workflows/update-drhp.yml
 permissions:
   contents: write
 concurrency:
-  group: sebi-drhp-sync
+  group: drhp-pre-ipo-sync
   cancel-in-progress: true
 jobs:
   sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
@@ -29,62 +35,111 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - name: Test DRHP integrity
+
+      - name: Test DRHP and lifecycle contracts
         run: |
           node scripts/test-sync-sebi-drhp.mjs
           node scripts/test-drhp-integrity.mjs
+          node scripts/test-sync-nse-drhp-offers.mjs
+          node scripts/test-nse-drhp-integrity.mjs
           node scripts/test-drhp-lifecycle.mjs
           node scripts/test-drhp-ui.mjs
-      - name: Collect explicit 2026 DRHP filings and retain original pages
-        id: collect
+
+      - name: Collect explicit SEBI 2026 DRHP filings
+        id: collect_sebi
         continue-on-error: true
         run: |
           mkdir -p "$RUNNER_TEMP/drhp-evidence"
-          node scripts/sync-sebi-drhp.mjs --year=2026 --max-pages=16 --output="$RUNNER_TEMP/drhp-evidence/incoming.json" --retain-sources="$RUNNER_TEMP/drhp-evidence/pages"
-      - name: Preserve filing history and record the collection result
+          node scripts/sync-sebi-drhp.mjs --year=2026 --max-pages=16 --output="$RUNNER_TEMP/drhp-evidence/sebi-incoming.json" --retain-sources="$RUNNER_TEMP/drhp-evidence/sebi-pages"
+
+      - name: Collect NSE issuer offer-document DRHP evidence
+        id: collect_nse
+        continue-on-error: true
+        run: node scripts/sync-nse-drhp-offers.mjs --year=2026 --output="$RUNNER_TEMP/drhp-evidence/nse-incoming.json"
+
+      - name: Preserve source history and publish source state
         env:
-          COLLECTION_OUTCOME: ${{ steps.collect.outcome }}
+          SEBI_COLLECTION_OUTCOME: ${{ steps.collect_sebi.outcome }}
+          NSE_COLLECTION_OUTCOME: ${{ steps.collect_nse.outcome }}
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           for attempt in 1 2 3; do
+            echo "DRHP source publication attempt $attempt/3"
             git fetch origin main
             git reset --hard origin/main
-            if [ "$COLLECTION_OUTCOME" = "success" ]; then
-              node scripts/drhp-integrity.mjs --current=data/drhp-filings.json --incoming="$RUNNER_TEMP/drhp-evidence/incoming.json" --output=data/drhp-filings.json
-              node scripts/test-drhp-ui.mjs
+
+            if [ "$SEBI_COLLECTION_OUTCOME" = "success" ]; then
+              node scripts/drhp-integrity.mjs --current=data/drhp-filings.json --incoming="$RUNNER_TEMP/drhp-evidence/sebi-incoming.json" --output=data/drhp-filings.json
             fi
-            node --input-type=module <<'JS'
-          import fs from 'node:fs';
-          const d=JSON.parse(fs.readFileSync('data/drhp-filings.json'));
-          fs.writeFileSync('ops/drhp-collection.json',JSON.stringify({schema_version:'1.0.0',status:process.env.COLLECTION_OUTCOME==='success'?'success':'failed',attempted_at:new Date().toISOString(),run_id:process.env.GITHUB_RUN_ID,last_successful_collection_at:d.collection_completed_at||d.source_pages.at(-1).collected_at,companies:d.companies.length,filings:d.coverage.filing_records,source_pagination_consistent:d.coverage.pagination_consistent??null},null,2)+'\n');
+            if [ "$NSE_COLLECTION_OUTCOME" = "success" ]; then
+              if [ -f data/nse-drhp-filings.json ]; then
+                node scripts/nse-drhp-integrity.mjs --current=data/nse-drhp-filings.json --incoming="$RUNNER_TEMP/drhp-evidence/nse-incoming.json" --output=data/nse-drhp-filings.json
+              else
+                cp "$RUNNER_TEMP/drhp-evidence/nse-incoming.json" data/nse-drhp-filings.json
+              fi
+            fi
+
+            node scripts/test-drhp-integrity.mjs
+            node scripts/test-nse-drhp-integrity.mjs
+            node scripts/test-drhp-lifecycle.mjs
+            node scripts/test-drhp-ui.mjs
+
+            SEBI_COLLECTION_OUTCOME="$SEBI_COLLECTION_OUTCOME" NSE_COLLECTION_OUTCOME="$NSE_COLLECTION_OUTCOME" node --input-type=module <<'JS'
+          import fs from "node:fs";
+          import {buildPreIpoView,mergeOfficialDraftSources} from "./assets/drhp-lifecycle.js";
+          const sebi=JSON.parse(fs.readFileSync("data/drhp-filings.json"));
+          const nse=JSON.parse(fs.readFileSync("data/nse-drhp-filings.json"));
+          const ipos=JSON.parse(fs.readFileSync("data/ipos.json"));
+          const view=buildPreIpoView(mergeOfficialDraftSources(sebi,nse),ipos);
+          const so=process.env.SEBI_COLLECTION_OUTCOME,no=process.env.NSE_COLLECTION_OUTCOME;
+          const status=so==="success"&&no==="success"?"success":so==="success"||no==="success"?"degraded":"failed";
+          const successful=[sebi.collection_completed_at||sebi.generated_at,nse.generated_at].filter(Boolean).sort().at(-1)||null;
+          const out={schema_version:"2.0.0",status,attempted_at:new Date().toISOString(),run_id:process.env.GITHUB_RUN_ID,
+            sebi_status:so,nse_status:no,last_successful_collection_at:successful,
+            sebi_companies:sebi.companies.length,sebi_filings:sebi.coverage.filing_records,
+            nse_companies:nse.companies.length,nse_filings:nse.coverage.filing_records,
+            pre_ipo_companies:view.counts.pre_ipo_companies,pre_ipo_filings:view.counts.pre_ipo_filings,
+            transitioned_companies:view.counts.transitioned_companies,lifecycle_gaps:view.counts.lifecycle_gaps,
+            source_pagination_consistent:sebi.coverage.pagination_consistent??null};
+          fs.writeFileSync("ops/drhp-collection.json",JSON.stringify(out,null,2)+"\n");
           JS
-            git add data/drhp-filings.json ops/drhp-collection.json
-            if git diff --cached --quiet; then break; fi
-            git commit -m "chore(data): refresh DRHP observations without dropping retained filings"
+
+            git add data/drhp-filings.json data/nse-drhp-filings.json ops/drhp-collection.json
+            if git diff --cached --quiet; then
+              echo "DRHP source state unchanged."
+              break
+            fi
+            git commit -m "chore(data): refresh DRHP pre-IPO source evidence"
             if git push origin HEAD:main; then break; fi
             if [ "$attempt" = "3" ]; then exit 1; fi
           done
-          cp data/drhp-filings.json "$RUNNER_TEMP/drhp-evidence/published-data.json"
+
+          cp data/drhp-filings.json "$RUNNER_TEMP/drhp-evidence/sebi-published.json"
+          cp data/nse-drhp-filings.json "$RUNNER_TEMP/drhp-evidence/nse-published.json"
           cp ops/drhp-collection.json "$RUNNER_TEMP/drhp-evidence/collection-status.json"
           git rev-parse HEAD > "$RUNNER_TEMP/drhp-evidence/published-commit.txt"
-      - name: Verify actual Pages data and directory assets
-        if: steps.collect.outcome == 'success'
+
+      - name: Verify actual Pages pre-IPO data and assets
+        if: always() && (steps.collect_sebi.outcome == 'success' || steps.collect_nse.outcome == 'success')
         run: |
           for attempt in $(seq 1 24); do
             if node scripts/verify-drhp-publication.mjs --output-dir="$RUNNER_TEMP/drhp-evidence/live"; then exit 0; fi
             sleep 15
           done
           exit 1
+
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: drhp-publication-${{ github.run_id }}-${{ github.run_attempt }}
+          name: drhp-pre-ipo-publication-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/drhp-evidence
           retention-days: 14
           if-no-files-found: error
-      - name: Surface collection failure without erasing the previous dataset
-        if: steps.collect.outcome != 'success'
+
+      - name: Surface source degradation without erasing last good evidence
+        if: always() && (steps.collect_sebi.outcome != 'success' || steps.collect_nse.outcome != 'success')
         run: exit 1
