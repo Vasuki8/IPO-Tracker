@@ -67,6 +67,9 @@ jobs:
           grep -q 'actions/upload-artifact@v4' .github/workflows/materialize-historical-ipo-evidence.yml
           grep -q 'group: fabino-listing-evidence-materialization' .github/workflows/materialize-fabino-listing-evidence.yml
           grep -q 'group: bse-issue-summary-audit-' .github/workflows/audit-bse-issue-summary.yml
+          grep -q 'group: bse-high-priority-reconciliation-evidence' .github/workflows/materialize-bse-audit-conflict-evidence.yml
+          grep -q 'git reset --hard origin/main' .github/workflows/materialize-bse-audit-conflict-evidence.yml
+          grep -q 'actions/upload-artifact@v4' .github/workflows/materialize-bse-audit-conflict-evidence.yml
           grep -q 'permissions:' .github/workflows/audit-bse-issue-summary.yml
           grep -q 'contents: read' .github/workflows/audit-bse-issue-summary.yml
           grep -q 'Ensure audit is read-only' .github/workflows/audit-bse-issue-summary.yml
@@ -109,6 +112,11 @@ jobs:
 
       - name: Test BSE issue-summary coverage audit
         run: node scripts/test-audit-bse-issue-summary-coverage.mjs
+
+      - name: Test BSE high-priority reconciliation evidence
+        run: |
+          node scripts/test-materialize-bse-audit-conflict-evidence.mjs
+          node scripts/test-audit-bse-sme-ipo-index.mjs
 
       - name: Test BSE detail and listing parsers
         run: node scripts/test-extract-bse-ipo-fields.mjs

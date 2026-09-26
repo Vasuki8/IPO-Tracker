@@ -123,10 +123,16 @@ assert.equal(merged[0].row_format, "merged_official_formats");
 
 const records = [
   { year: 2025, record: { issuer_name: "3B Films Limited" } },
-  { year: 2025, record: { issuer_name: "Chatterbox Technologies Limited" } }
+  { year: 2025, record: { issuer_name: "Chatterbox Technologies Limited" } },
+  { year: 2023, record: { issuer_name: "Happy Forging Limited" } },
+  { year: 2024, record: { issuer_name: "Kronox Lab SciencesLimited" } },
+  { year: 2025, record: { issuer_name: "FABTECH TECHNOLOGIES CLEANROOMS LIMITED" } }
 ];
 assert.equal(matchIndexCompany("3B FILMS LIMITED", records).match_type, "exact");
 assert.equal(matchIndexCompany("Chatterbox Technologies Limite", records).match_type, "prefix");
+assert.equal(matchIndexCompany("Happy Forgings Limited", records).match_type, "prefix");
+assert.equal(matchIndexCompany("Kronox Lab Sciences Limited", records).match_type, "prefix");
+assert.equal(matchIndexCompany("Fabtech Technologies Limited", records).match_type, "none");
 assert.equal(matchIndexCompany("Missing SME Limited", records).match_type, "none");
 
 console.log("BSE SME IPO index audit tests passed.");
