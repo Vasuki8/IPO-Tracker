@@ -30,7 +30,7 @@
         <div>
           <p class="eyebrow">IPO PIPELINE</p>
           <h1 id="pageTitle">Companies that have filed for an IPO.</h1>
-          <p class="page-description">Companies with a retained DRHP or updated draft offer document submitted to SEBI for a proposed IPO. A draft filing shows formal IPO intent; it does not mean the IPO is approved, open, or guaranteed to list.</p>
+          <p class="page-description">Only companies that still appear to be in the draft stage are shown here. When the same issuer reaches Upcoming, Open, Closed, or Listed in the published IPO dataset—or an IPO open/close/listing date appears—it is removed from this page automatically while its DRHP history stays retained.</p>
         </div>
         <a class="source-note drhp-source-note" id="sebiSourceLink" href="https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" /><path d="m9 12 2 2 4-4" /></svg>
@@ -39,7 +39,7 @@
       </section>
 
       <section class="market-overview drhp-overview" aria-label="Pre-IPO company overview">
-        <div class="metric"><span class="metric-label">Companies</span><strong id="drhpCompanyCount">—</strong><small>With retained draft-offer evidence</small></div>
+        <div class="metric"><span class="metric-label">Active pre-IPO</span><strong id="drhpCompanyCount">—</strong><small>Still in the draft stage</small></div>
         <div class="metric"><span class="metric-label">Latest addition</span><strong id="drhpLatestDate">—</strong><small>Latest retained draft date</small></div>
         <div class="metric"><span class="metric-label">Coverage year</span><strong id="drhpYear">—</strong><small>SEBI draft filing date</small></div>
         <div class="metric"><span class="metric-label">SEBI pages checked</span><strong id="drhpPages">—</strong><small>Until the prior-year boundary</small></div>
@@ -51,9 +51,9 @@
         <div class="directory-top">
           <div>
             <h2>Pre-IPO companies <span id="drhpVisibleCount" class="count-chip">—</span></h2>
-            <p>One company per row. Latest retained draft shown as source evidence.</p>
+            <p>One company per row. Companies that progress into the published IPO pipeline are hidden automatically.</p>
           </div>
-          <span class="coverage-note">DRHP / UDRHP evidence · Missing claims are not inferred</span>
+          <span class="coverage-note">DRHP / UDRHP evidence · Progressed IPOs excluded dynamically</span>
         </div>
         <div class="toolbar drhp-toolbar">
           <label class="search">
@@ -101,6 +101,7 @@
         <span>DRHP submission is an early IPO-process signal, not an IPO approval or investment recommendation.</span>
       </footer>
     </main>
-    <script src="assets/drhp.js?v=20260926-preipo1"></script>
+    <script src="assets/pre-ipo-filter.js?v=20260926-preipo2"></script>
+    <script src="assets/drhp.js?v=20260926-preipo2"></script>
   </body>
 </html>
