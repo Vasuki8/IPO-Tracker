@@ -1,0 +1,280 @@
+name: Materialize held identities and DRHP dataset
+
+on:
+  push:
+    branches: ["backend/held-identity-drhp-20260925"]
+    paths:
+      - ".github/workflows/materialize-held-identity-drhp.yml"
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: backend/held-identity-drhp-20260925
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install PDF text dependency
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends poppler-utils
+
+      - name: Restore retained official source artifact
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs=require('fs'), crypto=require('crypto');
+            const r=await github.rest.actions.downloadArtifact({owner:context.repo.owner,repo:context.repo.repo,artifact_id:10894820787,archive_format:'zip'});
+            const b=Buffer.from(r.data), got=crypto.createHash('sha256').update(b).digest('hex');
+            if(got!=='687b48b6ad5f78d9cc3ce4af577568144279117b44b0c00d8beb9b863ad55887') throw new Error('artifact_hash_mismatch:'+got);
+            fs.writeFileSync(process.env.RUNNER_TEMP+'/held-source.zip',b);
+
+      - name: Validate retained source and materialize batch9
+        shell: bash
+        run: |
+          set -euo pipefail
+          src="$RUNNER_TEMP/held-source"
+          mkdir -p "$src" "$RUNNER_TEMP/materialization"
+          unzip -q "$RUNNER_TEMP/held-source.zip" -d "$src"
+          pdftotext "$src/amir-basis.pdf" "$src/amir-basis.txt"
+
+          SRC="$src" node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import { createHash } from 'node:crypto';
+
+          const root=process.cwd(), src=process.env.SRC;
+          const hash=b=>createHash('sha256').update(b).digest('hex');
+          const norm=v=>String(v??'').replace(/\s+/g,' ').trim();
+          const meta=JSON.parse(fs.readFileSync(path.join(src,'sources.json')));
+          if(meta.run_id!=='36207561206' || meta.head_sha!=='da219de7f04cf45eeffacf306d05456e0d8e10aa') throw new Error('unexpected_source_artifact');
+          for(const row of meta.rows){
+            if(row.status!==200 || !row.file) throw new Error('source_failure:'+row.key);
+            const b=fs.readFileSync(path.join(src,row.file));
+            if(b.length!==row.bytes || hash(b)!==row.sha256) throw new Error('source_hash_mismatch:'+row.key);
+          }
+          const source=key=>meta.rows.find(r=>r.key===key);
+          const amirHtml=fs.readFileSync(path.join(src,'amir-nse-identity.html'),'utf8');
+          const amirBasis=fs.readFileSync(path.join(src,'amir-basis.txt'),'utf8');
+          const amirSebi=fs.readFileSync(path.join(src,'amir-sebi-prospectus.html'),'utf8');
+          const leapHtml=fs.readFileSync(path.join(src,'leap-nse-identity.html'),'utf8');
+          const leapDrhp=fs.readFileSync(path.join(src,'leap-sebi-drhp.html'),'utf8');
+          const leapSebi=fs.readFileSync(path.join(src,'leap-sebi-prospectus.html'),'utf8');
+          for(const [ok,label] of [
+            [amirHtml.includes('Amir Chand Jagdish Kumar (Exports) Limited')&&amirHtml.includes('AMIRCHAND')&&amirHtml.includes('INE05TO01019'),'amir_ixbrl'],
+            [/INITIAL PUBLIC OFFER OF EQUITY SHARES ON THE MAIN BOARD/i.test(amirBasis)&&/trading is expected to commence on Thursday, April 02, 2026/i.test(amirBasis),'amir_basis'],
+            [/Apr 01, 2026/.test(amirSebi)&&/Amir Chand Jagdish Kumar Exports Limited - Prospectus/i.test(amirSebi),'amir_sebi'],
+            [leapHtml.includes('LEAPIND')&&leapHtml.includes('INE00GO01025')&&leapHtml.includes('LEAP INDIA LIMITED')&&leapHtml.includes('Main Board'),'leap_ixbrl_identity'],
+            [/completed its Initial Public Offer \(IPO\)/i.test(leapHtml)&&/issue price of Rs\. 159 per share/i.test(leapHtml)&&/listed on National Stock Exchange of India Limited \(NSE\) and BSE Limited \(BSE\) on 14 August 2026/i.test(leapHtml),'leap_ixbrl_offer'],
+            [/Sep 02, 2025/.test(leapDrhp)&&/LEAP INDIA LIMITED/i.test(leapDrhp),'leap_drhp'],
+            [/Aug 12, 2026/.test(leapSebi)&&/LEAP India Limited - Prospectus/i.test(leapSebi),'leap_prospectus']
+          ]) if(!ok) throw new Error('identity_assertion_failed:'+label);
+
+          const review3=JSON.parse(fs.readFileSync('data/discovery/nse-universe-batch3-review-2026-09-25.json'));
+          const review6=JSON.parse(fs.readFileSync('data/discovery/nse-universe-batch6-review-2026-09-25.json'));
+          const findHeld=(review,symbol)=>[...(review.held||[]),...(review.entries||[])].find(e=>e.candidate?.nse_symbol===symbol);
+          const amir=findHeld(review3,'AMIRCHAND'), leap=findHeld(review6,'LEAP');
+          if(!amir||!leap) throw new Error('held_entries_missing');
+
+          const queue={
+            schema_version:'1.0.0',status:'reviewed_identity_fallback_no_aggregate_only_import',auto_import_allowed:false,
+            source_hold_queue:'data/discovery/ipo-universe-held-review-2026-09-25.json',
+            candidates:[amir.candidate,leap.candidate],
+            required_checks:[
+              'The original NSE ipo-detail lookup metadata must still be missing rather than contradictory.',
+              'Legal name, listed NSE symbol, ISIN, board, listing date and completed initial public offer require positive retained official evidence.',
+              'The aggregate past-issues row remains corroboration for offer dates/final price, never the sole identity source.',
+              'For LEAP preserve lookup symbol LEAP separately from listed NSE symbol LEAPIND.'
+            ],
+            scope_note:'Reopens only AMIRCHAND and LEAP from the retained hold queue using independently retained official identity evidence.'
+          };
+          const queuePath='data/discovery/ipo-universe-review-2026-09-25-batch9.json';
+          const makeSource=(row,{publication_date=null,document_type,document_identity,page=null,evidence_locator,projection})=>({
+            url:row.url,final_url:row.final_url,http_status:row.status,publication_date,collected_at:row.collected_at,
+            response_sha256:row.sha256,projection_sha256:hash(JSON.stringify(projection)),artifact_file:row.file,
+            document_type,document_identity,page,evidence_locator,projection
+          });
+          const amirSources=[
+            makeSource(source('amir_nse_identity'),{publication_date:'2026-05-13',document_type:'NSE iXBRL Filing',
+              document_identity:'Amir Chand Jagdish Kumar (Exports) Limited — Prior Intimation General Information',
+              evidence_locator:'General Information',projection:{company_name:'Amir Chand Jagdish Kumar (Exports) Limited',nse_symbol:'AMIRCHAND',isin:'INE05TO01019',board:'Mainboard'}}),
+            makeSource(source('amir_basis'),{publication_date:null,document_type:'NSE Basis of Allotment',
+              document_identity:'Amir Chand Jagdish Kumar (Exports) Limited — Basis of Allotment',page:1,
+              evidence_locator:'Initial Public Offer / trading expected to commence',projection:{company_name:'Amir Chand Jagdish Kumar (Exports) Limited',isin:'INE05TO01019',board:'Mainboard',listing_date:'2026-04-02',completed_initial_public_offer:true}}),
+            makeSource(source('amir_sebi_prospectus'),{publication_date:'2026-04-01',document_type:'SEBI Prospectus Filing',
+              document_identity:'Amir Chand Jagdish Kumar Exports Limited - Prospectus',evidence_locator:'SEBI filing header',
+              projection:{company_name:'Amir Chand Jagdish Kumar (Exports) Limited',filing_type:'Prospectus',filing_date:'2026-04-01'}})
+          ];
+          const leapSources=[
+            makeSource(source('leap_nse_identity'),{publication_date:'2026-08-31',document_type:'NSE iXBRL Integrated Filing',
+              document_identity:'LEAP INDIA LIMITED — Integrated Filing IndAS',evidence_locator:'General information / IPO note',
+              projection:{company_name:'Leap India Limited',nse_symbol:'LEAPIND',isin:'INE00GO01025',board:'Mainboard',listing_date:'2026-08-14',completed_initial_public_offer:true,issue_price:159}}),
+            makeSource(source('leap_sebi_drhp'),{publication_date:'2025-09-02',document_type:'SEBI DRHP Filing',
+              document_identity:'LEAP INDIA LIMITED — Draft Offer Document',evidence_locator:'SEBI filing header',
+              projection:{company_name:'Leap India Limited',filing_type:'DRHP',filing_date:'2025-09-02'}}),
+            makeSource(source('leap_sebi_prospectus'),{publication_date:'2026-08-12',document_type:'SEBI Prospectus Filing',
+              document_identity:'LEAP India Limited - Prospectus',evidence_locator:'SEBI filing header',
+              projection:{company_name:'Leap India Limited',filing_type:'Prospectus',filing_date:'2026-08-12'}})
+          ];
+          const entry=(held,fallback)=>({
+            candidate:held.candidate,decision:'verified_initial_equity_ipo',detail_source:held.detail_source,detail:held.detail,
+            past_source:held.past_source,past_row:held.past_row,identity_fallback:fallback
+          });
+          const entries=[
+            entry(amir,{schema_version:'1.0.0',lookup_symbol:'AMIRCHAND',company_name:'Amir Chand Jagdish Kumar (Exports) Limited',
+              nse_symbol:'AMIRCHAND',isin:'INE05TO01019',board:'Mainboard',listing_date:'2026-04-02',security_class:'Equity',
+              completed_initial_public_offer:true,sources:amirSources}),
+            entry(leap,{schema_version:'1.0.0',lookup_symbol:'LEAP',company_name:'Leap India Limited',
+              nse_symbol:'LEAPIND',isin:'INE00GO01025',board:'Mainboard',listing_date:'2026-08-14',security_class:'Equity',
+              completed_initial_public_offer:true,sources:leapSources})
+          ];
+          const manifest={
+            schema_version:'1.0.0',verifier_version:'1.0.0',source_run_id:'36207561206',
+            source_snapshot_commit:'da219de7f04cf45eeffacf306d05456e0d8e10aa',source_artifact_id:10894820787,
+            source_artifact_sha256:'687b48b6ad5f78d9cc3ce4af577568144279117b44b0c00d8beb9b863ad55887',
+            queue_path:queuePath,queue_sha256:hash(JSON.stringify(queue)),
+            projection_method:'literal_selected_json_fields_all_used_titles_retained',
+            scope_note:'Two previously held initial-equity IPOs resolved only through retained issuer-specific official identity evidence. LEAP lookup symbol is preserved separately from listed symbol LEAPIND.',
+            entries
+          };
+          fs.writeFileSync(queuePath,JSON.stringify(queue)+'\n');
+          fs.writeFileSync('data/verified-nse-ipos/2026-09-25-batch9.json',JSON.stringify(manifest)+'\n');
+          fs.writeFileSync('data/discovery/nse-universe-held-identity-review-2026-09-26.json',JSON.stringify({
+            schema_version:'1.0.0',status:'resolved_two_missing_identity_holds',reviewed_at:new Date().toISOString(),
+            source_run_id:'36207561206',source_artifact_id:10894820787,source_artifact_sha256:'687b48b6ad5f78d9cc3ce4af577568144279117b44b0c00d8beb9b863ad55887',
+            decisions:[
+              {lookup_symbol:'AMIRCHAND',listed_symbol:'AMIRCHAND',issuer_name:'Amir Chand Jagdish Kumar (Exports) Limited',isin:'INE05TO01019',board:'Mainboard',listing_date:'2026-04-02',decision:'approved_verified_initial_equity_ipo'},
+              {lookup_symbol:'LEAP',listed_symbol:'LEAPIND',issuer_name:'Leap India Limited',isin:'INE00GO01025',board:'Mainboard',listing_date:'2026-08-14',decision:'approved_verified_initial_equity_ipo'}
+            ],
+            retained_source_files:meta.rows.filter(r=>!r.key.startsWith('sebi_drhp_page_')&&!r.key.includes('_js')&&r.key!=='sebi_drhp_listing'&&r.key!=='pages_baseline').map(r=>({key:r.key,url:r.url,sha256:r.sha256,bytes:r.bytes,collected_at:r.collected_at})),
+            note:'No identity field was synthesized from the aggregate past-issues feed. Original lookup symbols and missing endpoint metadata remain retained.'
+          },null,2)+'\n');
+
+          const baseline=JSON.parse(fs.readFileSync(path.join(src,'deployed-baseline.json')));
+          if(baseline.records.length!==1321 || hash(fs.readFileSync(path.join(src,'deployed-baseline.json')))!=='a8496e652e3c91f52bf0ca37c70ea627d1104e011e045f2715184cf480f2603c') throw new Error('unexpected_pages_baseline');
+          fs.writeFileSync(process.env.RUNNER_TEMP+'/materialization/source-validation.json',JSON.stringify({source_files:meta.rows.length,baseline_records:baseline.records.length,batch9_entries:entries.length},null,2)+'\n');
+          JS
+
+      - name: Generate current-year DRHP list from official SEBI pagination
+        run: node scripts/sync-sebi-drhp.mjs --year=2026 --max-pages=16
+
+      - name: Add batch9 regression tests
+        shell: bash
+        run: |
+          cat > scripts/test-reviewed-nse-batch9.mjs <<'JS'
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import { fileURLToPath } from 'node:url';
+          import { hash, loadReviewed, loadRecovery, validateReviewedBatch, applyReviewedBatch, reviewedRecord } from './apply-reviewed-nse-ipos.mjs';
+
+          const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+          const manifestPath='data/verified-nse-ipos/2026-09-25-batch9.json';
+          const batch=loadReviewed(root).find(b=>b.manifest_path===manifestPath);
+          assert.ok(batch,'batch9 required');
+          const checked=validateReviewedBatch(batch.manifest,batch.queue);
+          assert.equal(checked.length,2);
+          assert.equal(checked.reduce((n,c)=>n+Object.keys(c.facts).length,0),12);
+          const amir=checked.find(c=>c.candidate.nse_symbol==='AMIRCHAND');
+          const leap=checked.find(c=>c.candidate.nse_symbol==='LEAP');
+          assert.equal(amir.nse_symbol,'AMIRCHAND');
+          assert.equal(amir.isin,'INE05TO01019');
+          assert.equal(leap.nse_symbol,'LEAPIND');
+          assert.equal(leap.isin,'INE00GO01025');
+          assert.equal(leap.facts.issue_price.value,159);
+          assert.deepEqual(leap.facts.price_band.value,{min:151,max:159});
+          assert.equal(leap.facts.minimum_bid_quantity.value,94);
+          assert.equal(leap.facts.market_lot,undefined);
+          assert.equal(reviewedRecord(batch.manifest.entries[1],leap,batch.manifest,manifestPath).nse_symbol,'LEAPIND');
+
+          let rejected=0;
+          function bad(symbol,mutate){
+            const m=structuredClone(batch.manifest), e=m.entries.find(e=>e.candidate.nse_symbol===symbol);
+            mutate(e); assert.throws(()=>validateReviewedBatch(m,batch.queue)); rejected++;
+          }
+          bad('LEAP',e=>{e.identity_fallback.nse_symbol='LEAP';});
+          bad('LEAP',e=>{e.identity_fallback.isin='INE00GO01026';});
+          bad('LEAP',e=>{e.detail.metaInfo.symbol='LEAPIND'; e.detail_source.projection_sha256=hash(JSON.stringify(e.detail));});
+          bad('LEAP',e=>{e.identity_fallback.sources[0].projection.nse_symbol='FAKE'; e.identity_fallback.sources[0].projection_sha256=hash(JSON.stringify(e.identity_fallback.sources[0].projection));});
+          bad('AMIRCHAND',e=>{e.identity_fallback.sources[1].projection.listing_date='2026-04-03'; e.identity_fallback.sources[1].projection_sha256=hash(JSON.stringify(e.identity_fallback.sources[1].projection));});
+          bad('AMIRCHAND',e=>{e.identity_fallback.sources[0].url='https://example.com/fake';e.identity_fallback.sources[0].final_url=e.identity_fallback.sources[0].url;});
+
+          const raw=loadRecovery(root), pub=JSON.parse(fs.readFileSync(path.join(root,'data/ipos.json')));
+          const pre=structuredClone(raw);
+          for(const year of Object.values(pre)) year.records=year.records.filter(r=>!['amir-chand-jagdish-kumar-exports-limited','leap-india-limited'].includes(r.id));
+          const prior={...pub,records:pub.records.filter(r=>!['amir-chand-jagdish-kumar-exports-limited','leap-india-limited'].includes(r.id))};
+          const before=JSON.stringify(pre), plan=applyReviewedBatch(pre,prior,batch.manifest,batch.queue,manifestPath);
+          assert.deepEqual(plan.stats,{added:2,already_present:0});
+          assert.equal(JSON.stringify(pre),before);
+          assert.deepEqual(applyReviewedBatch(plan.recovery,prior,batch.manifest,batch.queue,manifestPath).stats,{added:0,already_present:2});
+
+          for(const symbol of ['LEAP','LEAPIND']){
+            const collision=structuredClone(pre);
+            collision['2021'].records.push({id:'collision-'+symbol.toLowerCase(),issuer_name:'Different Limited',nse_symbol:symbol});
+            assert.throws(()=>applyReviewedBatch(collision,prior,batch.manifest,batch.queue,manifestPath)); rejected++;
+          }
+          const isinCollision=structuredClone(pre);
+          isinCollision['2022'].records.push({id:'collision-isin',issuer_name:'Other Limited',isin:'INE00GO01025'});
+          assert.throws(()=>applyReviewedBatch(isinCollision,prior,batch.manifest,batch.queue,manifestPath)); rejected++;
+
+          console.log(JSON.stringify({reviewed_nse_batch9_tests:{issuers:2,facts:12,rejected_inputs:rejected,lookup_and_listed_symbol_collisions:true,preservation:true,idempotent:true}}));
+          JS
+
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('scripts/test-reviewed-nse-ipos.mjs')
+          s=p.read_text()
+          line='await import("./test-reviewed-nse-batch9.mjs");\n'
+          if line not in s: s=s.rstrip()+"\n\n"+line
+          p.write_text(s)
+          PY
+
+      - name: Test batch9 and DRHP data
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check scripts/apply-reviewed-nse-ipos.mjs
+          node --check scripts/sync-sebi-drhp.mjs
+          node scripts/test-sync-sebi-drhp.mjs
+          node scripts/test-reviewed-nse-ipos.mjs | tee "$RUNNER_TEMP/materialization/review-tests.txt"
+          node scripts/test-reviewed-nse-publication.mjs | tee "$RUNNER_TEMP/materialization/rehearsal.json"
+          node scripts/apply-reviewed-nse-ipos.mjs --check
+          node scripts/build-published-data.mjs --check
+          node scripts/validate-data.mjs
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          const d=JSON.parse(fs.readFileSync('data/drhp-filings.json'));
+          if(d.schema_version!=='1.0.0'||d.coverage.year!==2026||d.coverage.stop_reason!=='first_page_strictly_older_than_year'||!d.companies.length) throw new Error('invalid_drhp_dataset');
+          if(d.companies.some(c=>!/^(?:U?DRHP)/.test(c.latest_filing_type)||!c.latest_filing_url.startsWith('https://www.sebi.gov.in/filings/public-issues/'))) throw new Error('invalid_drhp_company');
+          console.log(JSON.stringify({drhp_dataset:{companies:d.companies.length,filings:d.coverage.filing_records,pages:d.coverage.pages_fetched}}));
+          JS
+          git diff --check
+
+      - name: Commit materialized evidence and data to branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             data/discovery/ipo-universe-review-2026-09-25-batch9.json             data/discovery/nse-universe-held-identity-review-2026-09-26.json             data/verified-nse-ipos/2026-09-25-batch9.json             data/drhp-filings.json             scripts/test-reviewed-nse-batch9.mjs             scripts/test-reviewed-nse-ipos.mjs
+          git commit -m "feat(data): resolve two held identities and seed SEBI DRHP list"
+          git push origin HEAD:backend/held-identity-drhp-20260925
+          git rev-parse HEAD > "$RUNNER_TEMP/materialization/commit.txt"
+
+      - name: Retain materialization receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: held-identity-drhp-materialization-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/materialization
+          retention-days: 14
+          if-no-files-found: error
