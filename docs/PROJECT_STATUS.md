@@ -1,6 +1,6 @@
 # Project status and handoff
 
-Updated **2026-09-26 (UTC)** after publishing and verifying the Fabino Life Sciences BSE listing-year correction. The active backend priority remains **P1 issuer identity and universe correctness** under [DEVELOPMENT_PROCESS.md](DEVELOPMENT_PROCESS.md). The pinned NSE review, nine historical excluded-event IPO repairs and Fabino hold are now closed through reviewed evidence-backed paths. The next bounded task is the read-only BSE issue-summary historical coverage audit. The Pre-IPO source-coverage repair remains live and separate. Other UI/research-depth work remains in [UI_DETAIL_NAVIGATION_HANDOFF.md](UI_DETAIL_NAVIGATION_HANDOFF.md).
+Updated **2026-09-26 (UTC)** after completing the official BSE 2020–2026 historical coverage audit and publishing/verifying its five high-priority reconciliation actions. The active backend priority remains **P1 issuer identity and universe correctness** under [DEVELOPMENT_PROCESS.md](DEVELOPMENT_PROCESS.md). The pinned NSE review, nine historical excluded-event IPO repairs, Fabino, and the first BSE reconciliation batch are closed through reviewed evidence-backed paths. The next bounded task is the four unmatched BSE 2020 issuers. The Pre-IPO source-coverage repair remains live and separate. Other UI/research-depth work remains in [UI_DETAIL_NAVIGATION_HANDOFF.md](UI_DETAIL_NAVIGATION_HANDOFF.md).
 
 ## Release complete — do not replay
 
@@ -8,7 +8,32 @@ Updated **2026-09-26 (UTC)** after publishing and verifying the Fabino Life Scie
 
 The current disposition is [nse-universe-current-review-2026-09-26.json](../data/discovery/nse-universe-current-review-2026-09-26.json): **105 approved IPOs + five debt-event exclusions + seven migration exclusions + two rights-issue security exclusions = 119 pinned groups**. **Zero unresolved and zero unreviewed groups remain in that pinned audit.** This is still **not full Indian IPO-universe completeness**.
 
-**Exact next bounded backend task: repair and characterize the official BSE issue-summary historical coverage path as a read-only universe-discovery audit.** Retain raw official response bytes/hashes, observation/fetch timestamps, date/year semantics and pagination/exhaustion evidence; reconcile against current recovery and completed BSE SME listing/index evidence; produce explicit matched/unmatched/gap accounting. Do not import an issuer from issue-summary evidence alone and do not replay the completed BSE parser v1.5 cursor.
+**Exact next bounded backend task: review the four unmatched BSE 2020 issuers — Likhitha Infrastructure Limited (543240), Secmark Consultancy Limited (543234), SM Auto Stamping Limited (543065), and Shine Fashions (India) Limited (543244).** Treat the BSE historical rows as discovery evidence only. Verify each issuer's legal identity, IPO/issue type, board, offer facts and listing from issuer-specific official BSE/SEBI/issuer sources; materialize original bytes/hashes; import only independently supported records through a reviewed collision/idempotency-safe path.
+
+## BSE historical coverage audit and high-priority reconciliation — published and verified live
+
+[The retained read-only audit](../data/discovery/bse-issue-summary-coverage-audit-2026-09-26.json) now characterizes the official BSE historical source for the project window. BSE exposes **2017–2026**; the audit fully collected **2020–2026**, reconciled every official per-year row total, retained raw response hashes/fetch timestamps, and made **zero automatic imports**.
+
+Audit snapshot before reconciliation:
+- **920 historical rows + 32 current-issue rows**
+- **666 exact / 3 prefix / 0 ambiguous / 251 unmatched**
+- **3 listing-date conflicts**
+- official project-window totals reconciled for every year
+- audit run **36256389220**, artifact **10910408234**
+- not a complete Indian IPO-universe claim
+
+The five high-priority findings were then reviewed from issuer-specific official evidence. [The review](../data/discovery/bse-issue-summary-high-priority-reconciliation-2026-09-26.json) is bound to [a durable 10-document source receipt](../data/evidence/bse-high-priority-reconciliation-source-receipt-2026-09-26.json): **43,318,707 original response bytes**, artifact **10912597972**, digest **sha256:5728fd05047d366a11585224b49fe2bc9472ac50ad0ba43aca6102d6124d547a**.
+
+Published actions:
+- **CAMS:** moved from recovery 2021 to 2020; listing **01-Oct-2020**, issue price **₹1,230**, offer **21–23 Sep 2020**; prior wrong 2021/₹1,240 observations retained in correction history.
+- **Protean eGov:** moved from recovery 2025 to original IPO year 2023; listing **13-Nov-2023**, price **₹792**, offer **06–08 Nov 2023**; later **06-Feb-2025 NSE listing** retained separately.
+- **Fabtech Technologies Limited:** added as a distinct 2025 Mainboard IPO; **Fabtech Technologies Cleanrooms Limited** remained unchanged.
+- **Happy Forgings Limited:** legal name corrected, stable ID/listing facts preserved.
+- **Kronox Lab Sciences Limited:** legal-name spacing corrected, stable ID/listing facts preserved.
+
+PR **#269** merged as **c24dbe0311426649f65b41a8ddb03c7df76a1fc7**; PR **#270** made the regression test valid both before and after application; publication commit **b8ee98c5a8c74b56d0ea580ab9ceac793ea5e341** applied the changes.
+
+Actual Pages verification run **36266960117** passed **5/5 actions / 0 failures** after one normal cache retry. The verified served snapshot contains **1,334 records**, fetched **2026-09-26T19:42:51.919Z**, SHA-256 **9752d227d037e1ffd8994d10cc52f9f8a373da751266934970a07a0cd10ab764**, retained in artifact **10914368318**.
 
 ## Fabino Life Sciences listing-year correction — published and verified live
 
@@ -127,6 +152,8 @@ Against the retained 1,321-record pre-release baseline, exactly the two approved
 
 ## Tests and release evidence
 
+BSE historical audit/reconciliation: PR **#266** added the read-only BSE coverage audit; PR **#267** created the five-action evidence batch; PR **#268** added Protean's original BSE listing proof; PR **#269** added the reviewed importer/verifier; PR **#270** fixed post-apply test semantics. Evidence materialization run **36262801644** passed. PR #269 final-head data contract **36266680368** and reviewed-BSE compatibility **36266680426** passed after the manifest contrast fix; publication run **36266941993** passed; live verification **36266960117** passed and retained artifact **10914368318**.
+
 Fabino release: PR **#263** materialized the four official sources; PR **#264** added the reviewed correction importer and verifier. PR #264 final-head full data contract **36253989366** and reviewed-BSE compatibility **36253989374** passed. Publication workflow **36254067566** passed. Actual Pages verification **36254088389** passed and retained artifact **10909383646**.
 
 Historical IPO release: PR **#259** added source materialization; PR **#260** fixed durable receipt publication; PR **#261** added the reviewed historical importer and verifier. PR #261 final-head full data contract **36248058518** and reviewed-BSE compatibility **36248058467** passed. Publication workflow **36248110656** passed. Actual Pages verification **36248129988** passed and retained artifact **10908262582**.
@@ -141,10 +168,10 @@ Durable combined receipt: [drhp-identity-release-live-2026-09-26.json](verificat
 
 Active NSE holds: **none in the pinned 119-group NSE review**. The nine historical IPOs behind the earlier excluded debt/migration events and **Fabino Life Sciences** are published and verified live. Keep all positively classified 2026 debt/migration/rights events out of the new-IPO queue.
 
-The exact next P1 gap is **BSE issue-summary historical coverage**. Treat it as read-only discovery first: characterize reliable year/pagination coverage and reconcile against recovery/BSE SME evidence before any issuer-specific follow-up. **BSE parser v1.5 is 236/236 parsed; do not replay its completed cursor.** SEBI historical pagination, NSE-series coverage and broader DRHP source completeness remain after that.
+The BSE historical coverage source is now characterized. The exact next P1 batch is the **four unmatched 2020 BSE issuers**: Likhitha Infrastructure Limited (543240), Secmark Consultancy Limited (543234), SM Auto Stamping Limited (543065), and Shine Fashions (India) Limited (543244). Review them issuer-by-issuer with official evidence; do not bulk-import the remaining unmatched rows. **BSE parser v1.5 is 236/236 parsed; do not replay its completed cursor.** After 2020, continue unmatched BSE coverage in bounded year/source-family batches. SEBI historical pagination, NSE-series coverage and broader DRHP source completeness remain separate gaps.
 
 The old canonical review and seven-case hold files dated September 25 are preserved as historical snapshots. Use the linked **September 26 current-review state**, not their stale next-task fields, for new work.
 
-The immediately preceding README and project-status versions are archived byte-for-byte as `docs/archive/README-before-fabino-release-2026-09-26.md` and `docs/archive/PROJECT_STATUS-before-fabino-release-2026-09-26.md`. Earlier manifests, archives, evidence and receipts remain intact. Actions artifacts expire after 14 days; durable receipts retain source hashes, URLs, dates, document identities and locators.
+The immediately preceding README and project-status versions are archived byte-for-byte as `docs/archive/README-before-bse-audit-reconciliation-2026-09-26.md` and `docs/archive/PROJECT_STATUS-before-bse-audit-reconciliation-2026-09-26.md`. Earlier manifests, archives, evidence and receipts remain intact. Actions artifacts expire after 14 days; durable receipts retain source hashes, URLs, dates, document identities and locators.
 
 No minimum-investment expansion, billing/accounts/ads, spending or access-policy changes were introduced.
