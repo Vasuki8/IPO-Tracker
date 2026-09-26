@@ -1,0 +1,76 @@
+name: Collect held identity and DRHP evidence
+
+on:
+  push:
+    branches: ["backend/held-identity-drhp-20260925"]
+    paths:
+      - ".github/workflows/collect-held-identity-drhp.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Collect exact official source bytes read-only
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/held-identity-drhp"
+          mkdir -p "$out"
+          git rev-parse HEAD > "$out/source-commit.txt"
+
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import { createHash } from 'node:crypto';
+
+          const out=path.join(process.env.RUNNER_TEMP,'held-identity-drhp');
+          const ua='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36';
+          const sources=[
+            {key:'sebi_drhp_listing',url:'https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15',file:'sebi-drhp-listing.html'},
+            {key:'amir_nse_identity',url:'https://nsearchives.nseindia.com/corporate/ixbrl/PRIOR_INTIMATION_20260513_193552_WEB.html',file:'amir-nse-identity.html'},
+            {key:'amir_basis',url:'https://nsearchives.nseindia.com/corporate/ADV_INE05TO01019_01APR2026.pdf',file:'amir-basis.pdf'},
+            {key:'amir_sebi_prospectus',url:'https://www.sebi.gov.in/filings/public-issues/apr-2026/amir-chand-jagdish-kumar-exports-limited-prospectus_100674.html',file:'amir-sebi-prospectus.html'},
+            {key:'leap_nse_identity',url:'https://nsearchives.nseindia.com/corporate/ixbrl/INTEGRATED_FILING_INDAS_190859_31082026204911_iXBRL_WEB.html',file:'leap-nse-identity.html'},
+            {key:'leap_sebi_drhp',url:'https://www.sebi.gov.in/filings/public-issues/sep-2025/leap-india-limited_96378.html',file:'leap-sebi-drhp.html'},
+            {key:'leap_sebi_prospectus',url:'https://www.sebi.gov.in/filings/public-issues/aug-2026/leap-india-limited-prospectus_103511.html',file:'leap-sebi-prospectus.html'},
+            {key:'pages_baseline',url:'https://vasuki8.github.io/IPO-Tracker/data/ipos.json?held='+process.env.GITHUB_RUN_ID,file:'deployed-baseline.json'}
+          ];
+          const hash=b=>createHash('sha256').update(b).digest('hex');
+          const rows=[];
+          for(const s of sources){
+            const requested_at=new Date().toISOString();
+            try{
+              const r=await fetch(s.url,{headers:{'user-agent':ua,'accept':'text/html,application/json,application/pdf,*/*','cache-control':'no-cache'},redirect:'follow',signal:AbortSignal.timeout(35000)});
+              const b=Buffer.from(await r.arrayBuffer());
+              fs.writeFileSync(path.join(out,s.file),b);
+              rows.push({...s,status:r.status,final_url:r.url,content_type:r.headers.get('content-type'),requested_at,collected_at:new Date().toISOString(),bytes:b.length,sha256:hash(b)});
+            }catch(e){
+              rows.push({...s,requested_at,collected_at:new Date().toISOString(),error:String(e)});
+            }
+          }
+          fs.writeFileSync(path.join(out,'sources.json'),JSON.stringify({schema_version:'1.0.0',run_id:process.env.GITHUB_RUN_ID,head_sha:process.env.GITHUB_SHA,rows},null,2)+'\n');
+          console.log(JSON.stringify(rows.map(({key,status,bytes,sha256,error})=>({key,status,bytes,sha256,error})),null,2));
+          if(rows.some(r=>r.status!==200)) process.exitCode=1;
+          JS
+
+      - name: Prove repository data unchanged
+        run: git diff --exit-code -- data assets index.html
+
+      - name: Retain source artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: held-identity-drhp-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/held-identity-drhp
+          retention-days: 14
+          if-no-files-found: error
