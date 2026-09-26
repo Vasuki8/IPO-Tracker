@@ -1,6 +1,6 @@
 # Project status and handoff
 
-Updated **2026-09-26 (UTC)** after the ADANIENPP1/SILGOPP rights-security review was completed. The active backend priority remains **P1 issuer identity and universe correctness** under [DEVELOPMENT_PROCESS.md](DEVELOPMENT_PROCESS.md). The DRHP directory remains live and separate from IPO-universe decisions. Other UI/research-depth work remains in [UI_DETAIL_NAVIGATION_HANDOFF.md](UI_DETAIL_NAVIGATION_HANDOFF.md).
+Updated **2026-09-26 (UTC)** after correcting the user-facing DRHP feature interpretation. The active backend priority remains **P1 issuer identity and universe correctness** under [DEVELOPMENT_PROCESS.md](DEVELOPMENT_PROCESS.md). The draft-offer collector remains separate from IPO-universe decisions, but its user-facing surface is now a **Pre-IPO companies** list rather than a filing-record directory. Other UI/research-depth work remains in [UI_DETAIL_NAVIGATION_HANDOFF.md](UI_DETAIL_NAVIGATION_HANDOFF.md).
 
 ## Release complete — do not replay
 
@@ -23,9 +23,11 @@ One official-source conflict is preserved rather than silently resolved: NSE rec
 
 Original PDF bytes were not materialized in this connector run. The review therefore retains literal official-source projections with SHA-256 hashes of those projections and explicitly leaves original-file hashes null; no projection hash is represented as an original PDF hash. No parser or adapter change was required, so no parser regression test was added.
 
-## DRHP company directory — verified live
+## Pre-IPO companies — product interpretation corrected
 
-Entry point: [DRHP filings](../drhp.html), linked from the homepage on desktop and mobile. It provides company search, latest explicit filing type/date and links to official SEBI filing pages. Draft filings remain separate from the IPO dataset; there is no automatic IPO creation or claim of IPO approval.
+Entry point: [Pre-IPO companies](../drhp.html), linked from the homepage on desktop and mobile. The product surface is **one company per row** for companies with retained DRHP/UDRHP evidence from SEBI. Each row shows the `DRHP filed` signal, latest retained draft date and official SEBI document. Draft-version counts remain internal/source evidence rather than the main feature.
+
+The previous document-centric wording (`DRHP filings`, filing-record metric, filing-version emphasis) was the wrong product interpretation and has been removed from the user-facing page. Draft filings remain separate from the IPO dataset; there is no automatic IPO creation or claim of IPO approval, opening, completion or listing.
 
 | Verified DRHP result | Value |
 | --- | ---: |
@@ -89,6 +91,6 @@ Broader BSE issue-summary, SEBI historical pagination and NSE-series gaps remain
 
 The old canonical review and seven-case hold files dated September 25 are preserved as historical snapshots. Use the linked **September 26 current-review state**, not their stale next-task fields, for new work.
 
-The immediately preceding README and project-status versions are archived byte-for-byte as `docs/archive/README-before-rights-security-review-2026-09-26.md` and `docs/archive/PROJECT_STATUS-before-rights-security-review-2026-09-26.md`. Earlier manifests, archives, evidence and receipts remain intact. Actions artifacts expire after 14 days; the repository retains literal projections, URLs, dates, document identities, hashes and locators.
+The immediately preceding README and project-status versions are archived byte-for-byte as `docs/archive/README-before-pre-ipo-company-list-correction-2026-09-26.md` and `docs/archive/PROJECT_STATUS-before-pre-ipo-company-list-correction-2026-09-26.md`. Earlier manifests, archives, evidence and receipts remain intact. Actions artifacts expire after 14 days; the repository retains literal projections, URLs, dates, document identities, hashes and locators.
 
 No minimum-investment expansion, billing/accounts/ads, spending or access-policy changes were introduced.
