@@ -60,6 +60,11 @@ assert.equal(filter.hasProgressed({issuer_name:"X",status:"draft",open_date:{val
 assert.equal(filter.hasProgressed({issuer_name:"X",status:"draft"}),false);
 
 const currentActive=Array.from(filter.activeCompanies(data.companies,ipoData.records));
+const abakkus=data.companies.find(company=>filter.canonicalIssuer(company.issuer_name)==="abakkus asset manager");
+assert.ok(abakkus,"Abakkus Asset Manager must remain in the retained draft dataset");
+assert.equal(abakkus.latest_filing_date,"2026-09-22");
+assert.match(abakkus.latest_filing_url,/^https:\/\/www\.axiscapital\.co\.in\/contents\/.*Draft%20Red%20Herring%20Prospectus/);
+assert.ok(currentActive.some(company=>filter.canonicalIssuer(company.issuer_name)==="abakkus asset manager"),"Abakkus must be visible while it has not progressed into the published IPO lifecycle");
 const currentProgressed=data.companies.length-currentActive.length;
 assert.ok(currentActive.length<=data.companies.length);
 for(const company of currentActive){
@@ -81,7 +86,7 @@ for(const company of data.companies){
   assert.match(company.latest_filing_url,/^https:\/\/(?:www\.sebi\.gov\.in\/filings\/public-issues\/|www\.axiscapital\.co\.in\/contents\/)/);
   for(const filing of company.filings.filter(f=>f.source_kind==="official_lead_manager")){
     assert.equal(filing.source_authority,"Axis Capital Limited");
-    assert.equal(filing.date_basis,"lead_manager_document_upload_timestamp");
+    assert.ok(["lead_manager_document_upload_timestamp","lead_manager_document_earliest_url_timestamp"].includes(filing.date_basis));
   }
   assert.match(company.latest_filing_date,/^2026-\d\d-\d\d$/);
   assert.ok(company.filing_count>=1);
@@ -96,4 +101,5 @@ console.log(JSON.stringify({pre_ipo_company_ui_tests:{
   no_fuzzy_matching:true,
   source_backed:true,
   lead_manager_fallback_supported:true,
+  abakkus_visible_pre_ipo:true,
 }}));
