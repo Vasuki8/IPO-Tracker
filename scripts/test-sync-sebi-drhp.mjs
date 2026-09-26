@@ -27,6 +27,17 @@ assert.deepEqual(rows.map(r => [r.issuer_name,r.filing_type,r.filing_date]), [
   ["VARDAAN BIOTECH LIMITED","DRHP","2026-09-22"]
 ]);
 assert.equal(rows[0].draft_abridged_url, "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/anjali-dap.pdf");
+const variantHtml = `
+<table><tbody>
+<tr><td>Feb 04, 2026</td><td><a href="https://www.sebi.gov.in/filings/public-issues/feb-2026/turtlemint-fintech-solutions-limited-udrhp-1_999901.html" title="Turtlemint Fintech Solutions Limited - UDRHP 1">Turtlemint</a></td></tr>
+<tr><td>Jan 23, 2026</td><td><a href="https://www.sebi.gov.in/filings/public-issues/jan-2026/phonepe-limited-udrhp-i_999902.html" title="PhonePe Limited UDRHP - I">PhonePe</a></td></tr>
+</tbody></table>`;
+const variantRows = parseDrhpRows(variantHtml);
+assert.deepEqual(variantRows.map(r => [r.issuer_name,r.filing_type]), [
+  ["Turtlemint Fintech Solutions Limited","UDRHP-1"],
+  ["PhonePe Limited","UDRHP-I"]
+]);
+
 assert.deepEqual(listingStats(html), {total_records:2214,page:1,total_pages:89});
 
 const fragment = "<input type='hidden' name='nextValue' value='2'/><p>26 to 50 of 2212 records</p><table></table>#@#<div>crumb</div>";
