@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0.0",
+  "status": "rehearsal_verified_not_live_publication",
+  "source_review": {
+    "run_id": "36207561206",
+    "artifact_id": 10894820787,
+    "artifact_sha256": "687b48b6ad5f78d9cc3ce4af577568144279117b44b0c00d8beb9b863ad55887",
+    "source_snapshot_commit": "da219de7f04cf45eeffacf306d05456e0d8e10aa",
+    "retained_source_files": 14
+  },
+  "identity_review": {
+    "resolved_holds": 2,
+    "decisions": [
+      {
+        "lookup_symbol": "AMIRCHAND",
+        "listed_symbol": "AMIRCHAND",
+        "issuer_name": "Amir Chand Jagdish Kumar (Exports) Limited",
+        "isin": "INE05TO01019",
+        "board": "Mainboard",
+        "listing_date": "2026-04-02"
+      },
+      {
+        "lookup_symbol": "LEAP",
+        "listed_symbol": "LEAPIND",
+        "issuer_name": "Leap India Limited",
+        "isin": "INE00GO01025",
+        "board": "Mainboard",
+        "listing_date": "2026-08-14"
+      }
+    ],
+    "reviewed_facts": 12,
+    "aggregate_feed_only_identity_allowed": false,
+    "lookup_and_listed_symbols_kept_distinct": true
+  },
+  "drhp": {
+    "authority": "Securities and Exchange Board of India",
+    "section": "Draft Offer Documents filed with SEBI",
+    "year": 2026,
+    "generated_at": "2026-09-26T01:35:41.135Z",
+    "pages_fetched": 8,
+    "filing_records": 92,
+    "companies": 89,
+    "stop_reason": "first_page_strictly_older_than_year",
+    "scope": "Explicit DRHP/UDRHP filings only; addenda, corrigenda and rows without an explicit DRHP/UDRHP filing marker are excluded.",
+    "issuer_label_normalization": "SEBI variants such as UDRHP 1 and UDRHP - I are normalized without retaining the filing suffix in issuer_name.",
+    "automatic_ipo_import": false
+  },
+  "materialization": {
+    "run_id": "36208924656",
+    "artifact_id": 10894993210,
+    "artifact_sha256": "6b7c4736ba26804b033e66d91a4eac2070037c827b6dc0433a5acb77343dede5",
+    "commit": "cb3510d09eca58c76af459a1bada7a2c16388cc2",
+    "source_files_checked": 14
+  },
+  "rehearsal": {
+    "before_records": 1321,
+    "after_records": 1323,
+    "added": 2,
+    "removed": 0,
+    "existing_unchanged": 1321,
+    "idempotent": true,
+    "reviewed_batches_total": {
+      "issuers": 105,
+      "facts": 627
+    },
+    "live_mutations_rejected": 5,
+    "batch9_tests": {
+      "rejected_inputs": 9,
+      "lookup_and_listed_symbol_collisions": true,
+      "preservation": true
+    }
+  },
+  "live_publication_verified": false
+}

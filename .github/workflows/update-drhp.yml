@@ -1,0 +1,80 @@
+name: Sync SEBI DRHP filings
+
+on:
+  schedule:
+    - cron: "43 6 * * *"
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "scripts/sync-sebi-drhp.mjs"
+      - "scripts/test-sync-sebi-drhp.mjs"
+      - "scripts/test-drhp-ui.mjs"
+      - ".github/workflows/update-drhp.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sebi-drhp-sync
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Test DRHP parser
+        run: node scripts/test-sync-sebi-drhp.mjs
+
+      - name: Collect 2026 explicit DRHP/UDRHP filings
+        run: node scripts/sync-sebi-drhp.mjs --year=2026 --max-pages=16 --output=/tmp/drhp-filings.json
+
+      - name: Validate collected DRHP dataset
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          const d=JSON.parse(fs.readFileSync('/tmp/drhp-filings.json'));
+          if(d.schema_version!=='1.0.0'||d.coverage.year!==2026||
+             d.coverage.stop_reason!=='first_page_strictly_older_than_year'||
+             !Array.isArray(d.companies)||!d.companies.length||
+             d.coverage.companies!==d.companies.length) throw new Error('invalid_drhp_dataset');
+          for(const c of d.companies){
+            if(!/^U?DRHP/.test(c.latest_filing_type||'')||
+               !String(c.latest_filing_url||'').startsWith('https://www.sebi.gov.in/filings/public-issues/')) throw new Error('invalid_drhp_company');
+          }
+          console.log(JSON.stringify({companies:d.companies.length,filings:d.coverage.filing_records,pages:d.coverage.pages_fetched}));
+          JS
+
+      - name: Publish source-backed DRHP dataset
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp /tmp/drhp-filings.json data/drhp-filings.json
+            node scripts/test-drhp-ui.mjs
+
+            git add data/drhp-filings.json
+            if git diff --cached --quiet; then
+              echo "DRHP dataset unchanged."
+              exit 0
+            fi
+            git commit -m "chore(data): refresh SEBI DRHP filing list"
+            if git push origin HEAD:main; then exit 0; fi
+            echo "Main advanced during DRHP publication; retrying."
+          done
+          echo "Failed to publish DRHP dataset after 3 attempts." >&2
+          exit 1

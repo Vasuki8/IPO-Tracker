@@ -39,7 +39,7 @@ export function auditReviewedPublication({ batch, recovery, data, checkedAt }) {
         : displayed.status !== 'verified' || !same(retained?.value, displayed.value) || !retained?.source?.url || displayed.evidence.length === 0)) errors.push('unsupported_' + f);
     }
     if (live?.minimum_application_amount_inr?.value !== null) errors.push('out_of_scope_application_amount');
-    return { symbol: c.candidate.nse_symbol, issuer_name: expected.issuer_name, id: expected.id, occurrences: hits.length,
+    return { symbol: expected.nse_symbol, lookup_symbol: c.candidate.nse_symbol, issuer_name: expected.issuer_name, id: expected.id, occurrences: hits.length,
       checked_fields: Object.keys(c.facts).length, retained_document_hash_fields: Object.keys(c.facts).length,
       facts: Object.fromEntries(Object.keys(c.facts).map(f => [f, live?.[f]?.value ?? null])),
       null_fields: other.filter(f => live?.[f]?.value === null), errors };
