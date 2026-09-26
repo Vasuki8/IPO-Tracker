@@ -69,9 +69,9 @@ function issuerFromLabel(label, type) {
   // rather than the normalized display type. SEBI uses forms such as
   // "UDRHP 1" and "UDRHP - I"; neither belongs in the issuer name.
   return norm(text
-    .replace(/\s*[-–—]?\s*\bUpdated Draft Red Herring Prospectus(?:[-\s]*(?:I{1,4}|V|\d+))?\b\s*$/i,"")
-    .replace(/\s*[-–—]?\s*\bDraft Red Herring Prospectus\b\s*$/i,"")
-    .replace(/\s*[-–—]?\s*\b(?:UDRHP(?:[-\s]*(?:I{1,4}|V|\d+))?|DRHP)\b\s*$/i,""));
+    .replace(/\s*[-–—]?\s*\bUpdated Draft Red Herring Prospectus(?:[-\s]*(?:I{1,4}|V|\d+))?\b(?:\s*\(\s*\d{4}\s*\))?\s*$/i,"")
+    .replace(/\s*[-–—]?\s*\bDraft Red Herring Prospectus\b(?:\s*\(\s*\d{4}\s*\))?\s*$/i,"")
+    .replace(/\s*[-–—]?\s*\b(?:UDRHP(?:[-\s]*(?:I{1,4}|V|\d+))?|DRHP)\b(?:\s*\(\s*\d{4}\s*\))?\s*$/i,""));
 }
 function firstFilingHref(row) {
   for (const m of row.matchAll(/<a\b[^>]*href\s*=\s*(["'])([^"']+)\1[^>]*>/gi)) {
@@ -115,12 +115,21 @@ export function parseDrhpRows(html) {
 export function axisDocumentDate(value) {
   const url = officialAxisUrl(value);
   if (!url) return null;
-  const m = new URL(url).pathname.match(/-(\d{10}|\d{13})\.pdf$/i);
-  if (!m) return null;
-  const raw = Number(m[1]), millis = m[1].length === 13 ? raw : raw * 1000;
-  const date = new Date(millis);
-  if (!Number.isFinite(date.getTime()) || date.getUTCFullYear() < 2020 || date.getUTCFullYear() > 2100) return null;
-  return date.toISOString().slice(0,10);
+  const candidates = [...new URL(url).pathname.matchAll(/(\d{10}|\d{13})/g)]
+    .map(match => {
+      const raw = Number(match[1]), millis = match[1].length === 13 ? raw : raw * 1000;
+      const date = new Date(millis);
+      return Number.isFinite(date.getTime()) && date.getUTCFullYear() >= 2020 && date.getUTCFullYear() <= 2100
+        ? date : null;
+    })
+    .filter(Boolean)
+    .sort((a,b) => a - b);
+  return candidates.length ? candidates[0].toISOString().slice(0,10) : null;
+}
+export function axisExplicitLabelYear(label) {
+  const text = norm(label);
+  const match = text.match(/\b(?:Updated Draft Red Herring Prospectus(?:[-\s]*(?:I{1,4}|V|\d+))?|Draft Red Herring Prospectus|UDRHP(?:[-\s]*(?:I{1,4}|V|\d+))?|DRHP)\b\s*\(\s*(20\d{2})\s*\)\s*$/i);
+  return match ? Number(match[1]) : null;
 }
 export function parseAxisDrhpRows(html) {
   const entries = [];
@@ -135,12 +144,14 @@ export function parseAxisDrhpRows(html) {
     const url = officialAxisUrl(href);
     if (!url || !/\.pdf(?:$|\?)/i.test(new URL(url).pathname)) continue;
     const filing_date = axisDocumentDate(url);
+    const explicit_label_year = axisExplicitLabelYear(label);
     const issuer_name = issuerFromLabel(label, type);
     if (!filing_date || !issuer_name) continue;
     entries.push({
       issuer_name, filing_type:type, filing_date, filing_url:url, draft_abridged_url:null,
       source_kind:"official_lead_manager", source_authority:"Axis Capital Limited",
-      date_basis:"lead_manager_document_upload_timestamp"
+      date_basis:"lead_manager_document_earliest_url_timestamp",
+      ...(explicit_label_year ? {explicit_label_year} : {})
     });
   }
   return entries;
@@ -229,14 +240,17 @@ export async function collectDrhpYear({ year=DEFAULT_YEAR, maxPages=DEFAULT_MAX_
       const file="axis-offer-documents.html";
       if(retainSources)fs.writeFileSync(path.join(retainSources,file),bytes);
       if(!response.ok||!officialAxisUrl(response.url,"/offer-documents")||!response.headers.get("content-type")?.includes("text/html"))throw new Error("invalid_axis_offer_documents_response");
-      const rows=parseAxisDrhpRows(bytes.toString("utf8")).filter(r=>r.filing_date.startsWith(year+"-")&&r.filing_date<=collected_at.slice(0,10));
+      const rows=parseAxisDrhpRows(bytes.toString("utf8")).filter(r=>
+        r.filing_date.startsWith(year+"-")&&r.filing_date<=collected_at.slice(0,10)&&
+        (r.explicit_label_year==null||r.explicit_label_year===year));
       const seenIssuers=new Set(selected.map(r=>canonicalIssuer(r.issuer_name)));
       let added=0;
       for(const row of rows) {
         const key=canonicalIssuer(row.issuer_name);
         if(!key||seenIssuers.has(key))continue;
         selected.push({...row,source_evidence:{url:AXIS_OFFER_DOCS_URL,final_url:response.url,response_sha256:hash(bytes),collected_at,
-          source_authority:"Axis Capital Limited",source_role:"Book Running Lead Manager",filing_url:row.filing_url,date_basis:row.date_basis}});
+          source_authority:"Axis Capital Limited",source_role:"Book Running Lead Manager",filing_url:row.filing_url,date_basis:row.date_basis,
+          ...(row.explicit_label_year?{explicit_label_year:row.explicit_label_year}:{})}});
         seenIssuers.add(key);added++;
       }
       supplemental_source_pages.push({source:"axis_capital_offer_documents",authority:"Axis Capital Limited",role:"Book Running Lead Manager",
@@ -256,7 +270,7 @@ export async function collectDrhpYear({ year=DEFAULT_YEAR, maxPages=DEFAULT_MAX_
   const companies=buildCompanies([...unique.values()]);
   if(!companies.length)throw new Error("no_drhp_companies_for_year");
   const supplementalAdded=supplemental_source_pages.reduce((n,p)=>n+(p.companies_added_as_fallback||0),0);
-  return {schema_version:"1.0.0",collector_version:"2.1.0",collection_started_at,generated_at:clock(),
+  return {schema_version:"1.0.0",collector_version:"2.2.0",collection_started_at,generated_at:clock(),
     source:{authority:"Securities and Exchange Board of India",section:"Draft Offer Documents filed with SEBI",listing_url:DRHP_LIST_URL,ajax_url:DRHP_AJAX_URL},
     supplemental_sources:[{authority:"Axis Capital Limited",role:"Book Running Lead Manager",listing_url:AXIS_OFFER_DOCS_URL,
       purpose:"Official lead-manager fallback for DRHPs not yet visible in the SEBI draft-offer index."}],
