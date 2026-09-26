@@ -39,10 +39,13 @@ assert.equal(currentView.counts.source_companies,currentDrhp.companies.length);
 assert.equal(currentView.counts.pre_ipo_companies+currentView.counts.transitioned_companies,currentDrhp.companies.length);
 assert.ok(currentView.counts.pre_ipo_companies>0,"expected at least one pre-IPO DRHP filer");
 assert.ok(currentView.counts.transitioned_companies>0,"expected at least one DRHP filer already in the normal IPO lifecycle");
+const lifecycleIndex=buildIpoLifecycleIndex(currentIpos);
+const abakkusKey=canonicalLifecycleIssuer(currentDrhp.companies.find(c=>/\babakkus\b/i.test(c.issuer_name))?.issuer_name);
+const abakkusMatches=lifecycleIndex.get(abakkusKey)||[];
+console.log(JSON.stringify({abakkus_diagnostic:{key:abakkusKey,matches:abakkusMatches}}));
 const abakkus=currentView.companies.find(c=>/\babakkus\b/i.test(c.issuer_name));
 assert.ok(abakkus,"Abakkus must be visible while it has no upcoming/open/closed/listed IPO record");
 assert.equal(abakkus.lifecycle_stage,"drhp_filed_pre_ipo");
-const lifecycleIndex=buildIpoLifecycleIndex(currentIpos);
 for(const company of currentView.companies) assert.equal(lifecycleIndex.has(canonicalLifecycleIssuer(company.issuer_name)),false);
 for(const item of currentView.transitioned) assert.ok(item.matches.every(match=>NORMAL_IPO_LIFECYCLE_STATUSES.includes(match.status)));
 
