@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "status": "current_review_state_after_identity_resolution",
+  "as_of": "2026-09-26",
+  "scope": "Current disposition of the 119 candidate groups in the pinned NSE audit, incorporating the two batch9 hold resolutions. The original audit and hold queue remain immutable historical snapshots.",
+  "prior_canonical_snapshot": "data/discovery/nse-universe-canonical-review-2026-09-25.json",
+  "prior_hold_snapshot": "data/discovery/ipo-universe-held-review-2026-09-25.json",
+  "live_receipt": "docs/verification/drhp-identity-release-live-2026-09-26.json",
+  "review_accounting": {
+    "candidate_groups": 119,
+    "approved_initial_equity_ipos": 105,
+    "excluded_debt_events": 5,
+    "excluded_migration_events": 4,
+    "unresolved_nse_groups": 5,
+    "unreviewed_groups": 0,
+    "all_groups_accounted_once": true,
+    "full_universe_complete": false
+  },
+  "resolved_holds": [
+    {
+      "candidate_symbol": "AMIRCHAND",
+      "issuer_name": "Amir Chand Jagdish Kumar (Exports) Limited",
+      "listed_symbol": "AMIRCHAND",
+      "isin": "INE05TO01019",
+      "decision": "approved_initial_equity_ipo_verified_live",
+      "listing_date": "2026-04-02",
+      "origin_batch": 3,
+      "resolution_batch": 9,
+      "resolution_pr": 248,
+      "manifest": "data/verified-nse-ipos/2026-09-25-batch9.json",
+      "review": "data/discovery/nse-universe-held-identity-review-2026-09-26.json"
+    },
+    {
+      "candidate_symbol": "LEAP",
+      "issuer_name": "Leap India Limited",
+      "listed_symbol": "LEAPIND",
+      "isin": "INE00GO01025",
+      "decision": "approved_initial_equity_ipo_verified_live",
+      "listing_date": "2026-08-14",
+      "origin_batch": 6,
+      "resolution_batch": 9,
+      "resolution_pr": 248,
+      "manifest": "data/verified-nse-ipos/2026-09-25-batch9.json",
+      "review": "data/discovery/nse-universe-held-identity-review-2026-09-26.json",
+      "note": "LEAP remains the IPO lookup symbol. LEAPIND is the independently evidenced listed trading symbol. Neither is silently substituted for the other."
+    }
+  ],
+  "active_holds": [
+    {"symbol": "ADANIENPP1", "issuer_name": "Adani Enterprises Limited", "decision": "held_unverified_offering_type", "origin_review": "data/discovery/nse-universe-batch1-review-2026-09-25.json", "reason": "Repeated aggregate observations with conflicting offer periods do not establish a new initial equity IPO. Require positive official offering/security evidence."},
+    {"symbol": "GICL", "issuer_name": "Globe International Carriers Limited", "decision": "held_legacy_or_repeat_security_not_new_2026_ipo", "origin_review": "data/discovery/nse-universe-batch2-review-2026-09-25.json", "reason": "Older offer history is combined with a 2026 listing observation; no explicit new-IPO proof."},
+    {"symbol": "SILGOPP", "issuer_name": "Silgo Retail Limited", "decision": "held_legacy_or_repeat_security_not_new_2026_ipo", "origin_review": "data/discovery/nse-universe-batch2-review-2026-09-25.json", "reason": "Resolve the observed security, prior offer and listing event independently. Do not infer offering type from the symbol."},
+    {"symbol": "VITAL", "issuer_name": "Vital Chemtech Limited", "decision": "held_legacy_or_repeat_security_not_new_2026_ipo", "origin_review": "data/discovery/nse-universe-batch2-review-2026-09-25.json", "reason": "The retained 2022 initial offer, 2026 listing observation and conflicting prices need independent history review."},
+    {"symbol": "KOTYARK", "issuer_name": "Kotyark Industries Limited", "decision": "held_legacy_or_repeat_security_not_new_2026_ipo", "origin_review": "data/discovery/nse-universe-batch2-review-2026-09-25.json", "reason": "The retained 2021 fixed-price issue and 2026 listing/price observations do not establish a new 2026 IPO."}
+  ],
+  "auto_import_allowed": false,
+  "next_bounded_task": {
+    "symbols": ["ADANIENPP1", "SILGOPP"],
+    "objective": "Resolve these two offering/security-history cases from issuer-specific official exchange notices or issuer filings. Match legal name, security identifiers, offering type and event dates; preserve prior IPO identity and all conflicts. Do not infer rights, partly-paid, migration, debt or IPO status from symbol spelling.",
+    "acceptance": "Reconcile latest main and actual Pages, retain original source evidence and positive decision reasons, add reusable tests for any adapter repair, and publish only independently supported changes. Keep a case held when evidence is insufficient."
+  },
+  "remaining_followups": [
+    "Resolve GICL, VITAL and KOTYARK prior-offer/listing histories separately.",
+    "Review the original historical equity IPOs of the nine positively excluded debt/migration-event issuers. A later non-IPO event is not proof that an original IPO is absent or irrelevant.",
+    "Fabino Life Sciences remains a separate BSE listing-year hold.",
+    "BSE issue-summary, SEBI historical pagination and unresolved NSE-series coverage are incomplete. BSE parser v1.5 remains 236/236 parsed; do not replay its completed cursor.",
+    "DRHP directory coverage is a separate 2026 explicit-marker collection, not a complete draft-offer register. Improve source pagination and unlabelled-row classification without treating draft filings as automatic IPO approvals."
+  ],
+  "drhp_state": {"companies": 89, "unique_filings": 90, "year": 2026, "full_universe_complete": false, "published_snapshot_fetched_at": "2026-09-26T02:57:47.820Z"}
+}

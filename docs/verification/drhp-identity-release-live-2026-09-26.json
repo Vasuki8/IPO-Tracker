@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0.0",
+  "status": "verified_live",
+  "scope": "Finalization of the interrupted DRHP directory release and AMIRCHAND/LEAP handoff. DRHP records are discovery observations, not IPO approvals or automatic IPO imports.",
+  "releases": {
+    "identity_and_initial_directory": {"pr": 248, "merge_commit": "a6577265048c5d7e4855feac34a3b6c06800e969"},
+    "drhp_integrity_repair": {"pr": 249, "merge_commit": "253b2d1b11341e240c4e1ea11742a76c1ffd8cef", "final_head": "c27cd7dd2cb46c5165a659f3eb85a4b6928bf963"}
+  },
+  "drhp_publication": {
+    "workflow_run_id": "36213264969",
+    "workflow_conclusion": "success",
+    "published_commit": "43fbd1f519701fe8b149cf7038f76e3709a1a5dd",
+    "artifact_id": 10895679053,
+    "artifact_sha256": "bf2b71bdd21218237d8d03c90521a3b1aba023e538446fee300a1b6711ac880f",
+    "source_collection_completed_at": "2026-09-26T02:56:59.438Z",
+    "snapshot_fetched_at": "2026-09-26T02:57:47.820Z",
+    "checked_at": "2026-09-26T02:57:48.027Z",
+    "snapshot_sha256": "a74943eca9e7bc66d0e791b25f9c59b2347ae37609d4448bfd0f3e373bf51b38",
+    "snapshot_bytes": 138745,
+    "year": 2026,
+    "companies": 89,
+    "unique_filings": 90,
+    "source_pages": 8,
+    "original_page_hashes_and_byte_counts_revalidated": 8,
+    "latest_scan_raw_observations": 93,
+    "latest_scan_duplicate_observations": 4,
+    "latest_scan_unique_filings": 89,
+    "earlier_filings_retained_not_seen_latest": 1,
+    "retained_company": "Paras Healthcare Limited",
+    "pagination_consistent": false,
+    "observed_source_totals": [2214, 2212],
+    "collection_health": "success",
+    "full_universe_complete": false,
+    "limitations": "Only explicit 2026 DRHP/UDRHP markers from the SEBI draft-offer section are included. Addenda, corrigenda, unlabelled filings, other years and exchange-only disclosures are outside coverage. Inconsistent page totals can omit source rows. Absence from a later scan is not withdrawal evidence.",
+    "served_files": [
+      {"path": "data/drhp-filings.json", "http_status": 200, "sha256": "a74943eca9e7bc66d0e791b25f9c59b2347ae37609d4448bfd0f3e373bf51b38", "matches_published_bytes": true},
+      {"path": "drhp.html", "http_status": 200, "sha256": "55764e8691567b4ebdae1e4e37de2debf691fbcd956da5d20537c863b7582bdb", "matches_published_bytes": true},
+      {"path": "assets/drhp.js", "http_status": 200, "sha256": "258392df87eb9c9d4837dd0da3e117c55979384a251d60515bdcf5fb73ef1f0e", "matches_published_bytes": true},
+      {"path": "assets/styles.css", "http_status": 200, "sha256": "86cae2c7d9998f211effb2d77130ddd6c5a2df96384a380a0516151747f4bf4d", "matches_published_bytes": true},
+      {"path": "index.html", "http_status": 200, "sha256": "dbc6cda49498b17f8083dc1712e5390a28aa5d55e5e08b469f3f25df4985cffb", "matches_published_bytes": true}
+    ],
+    "health_verification_scope": "Collection status was checked in the published repository and retained workflow artifact. The current five-file live verifier does not independently fetch ops/drhp-collection.json."
+  },
+  "earlier_ipo_live_snapshot_revalidated": {
+    "source_review_run_id": "36211433801",
+    "artifact_id": 10896315080,
+    "artifact_sha256": "73e0a80da65cbc52ed2ce4c5d4a9635e0306f4b2ea594298ff007a1bdc68615d",
+    "source_snapshot_commit": "6fb0d12f2e5cce8275c9a4a396a3d064fa013e92",
+    "snapshot_fetched_at": "2026-09-26T02:21:48.511Z",
+    "snapshot_sha256": "81a133ee87dfcc1e2fb09a3881361b374902722bbd48bfa8e155d75f3f40838e",
+    "snapshot_bytes": 7237631,
+    "records": 1323,
+    "reviewed_batches": 9,
+    "reviewed_issuers_verified": 105,
+    "reviewed_facts_verified": 627,
+    "batch9_issuers_verified": 2,
+    "batch9_facts_verified": 12,
+    "status_distribution": {"listed": 1302, "open": 12, "closed": 7, "upcoming": 2},
+    "invalid_statuses": 0,
+    "missing_status_evidence": 0,
+    "resolved_identities": [
+      {"issuer_name": "Amir Chand Jagdish Kumar (Exports) Limited", "lookup_symbol": "AMIRCHAND", "listed_symbol": "AMIRCHAND", "isin": "INE05TO01019", "facts_verified": 6},
+      {"issuer_name": "Leap India Limited", "lookup_symbol": "LEAP", "listed_symbol": "LEAPIND", "isin": "INE00GO01025", "facts_verified": 6}
+    ],
+    "baseline_delta": {"before": 1321, "added": 2, "removed": 0, "unchanged_existing": 1317, "routine_pipeline_changes": 4},
+    "routine_changes": [
+      {"issuer": "Vigor Plast India Limited", "fields": ["open_date", "close_date", "documents", "last_collected_at"]},
+      {"issuer": "Hyundai Motor India Limited", "fields": ["open_date", "close_date", "last_collected_at"]},
+      {"issuer": "R R Kabel Limited", "fields": ["open_date", "close_date", "documents", "last_collected_at"]},
+      {"issuer": "Aether Industries Limited", "fields": ["documents", "last_collected_at"]}
+    ],
+    "routine_change_scope": "Six previously missing offer dates and eight added document entries, plus timestamps; no prior populated displayed value or status replaced in this snapshot comparison. External PDFs for these routine fills were not independently reopened. Optional fields are not counted in the 12 reviewed batch9 facts.",
+    "freshness_limit": "This is the retained 02:21 UTC IPO observation, not a new 02:57 UTC IPO fetch. Subsequent routine historical PDF fills on main are outside this snapshot. PR #249 did not edit IPO data or the identity parser."
+  },
+  "tests": {
+    "final_head_data_contract_run": "36212457450",
+    "final_head_interface_run": "36212457353",
+    "final_head_reviewed_bse_run": "36212457388",
+    "merged_main_data_contract_run": "36213264978",
+    "listed_ci_runs_passed": true,
+    "local_retained_source_regressions": ["DRHP parser", "DRHP non-destructive merge and unique counts", "unsafe URLs and conflicts rejected", "pagination and original-response retention", "DRHP UI contract", "all nine reviewed NSE batches", "publication rehearsal", "recovery synchronization", "IPO schema"],
+    "browser": {"mode": "Offline Chromium rendering of exact fetched HTML/CSS/JavaScript; retained JSON and collection-health responses supplied by test doubles. Live browser networking was unavailable.", "widths": [320, 375, 1440], "horizontal_page_overflow": false, "page_errors": 0, "search_and_empty_state": "passed", "mobile_navigation": "passed", "failed_refresh_keeps_list": "passed", "load_error_and_retry": "passed", "invalid_dataset_rejected": "passed"}
+  },
+  "next_state": "data/discovery/nse-universe-current-review-2026-09-26.json",
+  "raw_artifact_retention_days": 14
+}
