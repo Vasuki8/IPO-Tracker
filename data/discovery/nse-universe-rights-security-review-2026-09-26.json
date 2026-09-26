@@ -1,0 +1,206 @@
+{
+  "schema_version": "1.0.0",
+  "status": "resolved_two_rights_issue_security_holds",
+  "reviewed_at": "2026-09-26",
+  "scope": "Resolve ADANIENPP1 and SILGOPP from issuer-specific official exchange/issuer evidence without changing the published IPO dataset.",
+  "decisions": [
+    {
+      "candidate_symbol": "ADANIENPP1",
+      "issuer_name": "Adani Enterprises Limited",
+      "candidate_isin": "IN9423A01048",
+      "candidate_listing_date": "2026-02-10",
+      "decision": "excluded_rights_issue_partly_paid_security_event",
+      "reason": "Official issuer and NSE evidence identifies IN9423A01048 / ADANIENPP1 as a partly paid-up rights-issue security after first-call conversion. NSE describes the 2026-02-10 event as a further issue, not an initial public offer.",
+      "ordinary_security": {
+        "symbol": "ADANIENT",
+        "isin": "INE423A01024",
+        "note": "Ordinary listed equity identity remains separate from the partly paid rights security."
+      },
+      "official_facts": {
+        "rights_issue_period": {
+          "start": "2025-11-25",
+          "end": "2025-12-10"
+        },
+        "rights_issue_price_inr": 1800,
+        "application_paid_inr": 900,
+        "first_call_resulting_paid_up_face_value_inr": 0.75,
+        "listed_event_effective_date": "2026-02-10",
+        "listed_security_description": "Equity Shares of Re. 1/- each (Re. 0.75/- Paid up)"
+      },
+      "preserved_conflicts": [
+        "Aggregate public-past-issues observations carried three conflicting offer periods (2024-09-04..2024-09-06, 2025-07-09..2025-07-11, 2026-01-06..2026-01-08) for the same 2026-02-10 security event.",
+        "Those aggregate periods are not reused as IPO offer dates; the official rights-issue period is retained separately."
+      ],
+      "public_dataset_change": false
+    },
+    {
+      "candidate_symbol": "SILGOPP",
+      "issuer_name": "Silgo Retail Limited",
+      "candidate_isin": "IN901II01012",
+      "candidate_listing_date": "2026-02-19",
+      "decision": "excluded_rights_issue_partly_paid_security_event",
+      "reason": "NSE and issuer evidence explicitly identifies SILGOPP / IN901II01012 as partly paid-up equity shares allotted on a rights basis. The 2026-02-19 event is therefore not a new IPO.",
+      "ordinary_security": {
+        "symbol": "SILGO",
+        "isin": "INE01II01013",
+        "note": "The issuer states that fully paid rights shares convert into the existing ordinary-equity ISIN."
+      },
+      "official_facts": {
+        "rights_issue_open_date": "2026-01-14",
+        "rights_issue_close_date": "2026-02-04",
+        "rights_issue_price_inr": 60,
+        "application_paid_inr": 30,
+        "rights_ratio": "3 for 10",
+        "listed_event_effective_date": "2026-02-19",
+        "listed_security_description": "Partly paid-up Equity shares of Rs. 10/- each (Rs. 5/- partly paid up) allotted on Rights basis"
+      },
+      "preserved_conflicts": [
+        "The NSE listing circular records allotment date 2026-02-13, while the issuer's later first/final-call notice states the partly paid rights shares were allotted on 2026-02-17.",
+        "The prior aggregate past-issues row reused the issuer's 2018 IPO offer period alongside the 2026-02-19 rights-security listing event; it is not treated as a new 2026 IPO."
+      ],
+      "public_dataset_change": false
+    }
+  ],
+  "sources": [
+    {
+      "key": "adani_nse_further_issue",
+      "authority": "National Stock Exchange of India Limited",
+      "document_id": "NSE/CML/72630; Circular Ref. No. 0187/2026",
+      "publication_date": "2026-02-04",
+      "url": "https://nsearchives.nseindia.com/content/circulars/CML72630.pdf",
+      "relevant_pages": [
+        1,
+        2
+      ],
+      "source_bytes_sha256": null,
+      "projection": {
+        "subject": "Listing of further issue of Adani Enterprises Limited",
+        "effective_date": "2026-02-10",
+        "symbol": "ADANIENPP1",
+        "series": "E1",
+        "isin": "IN9423A01048",
+        "security_description": "Equity Shares of Re. 1/- each (Re. 0.75/- Paid up)"
+      },
+      "projection_sha256": "d708daebcde41d6c39b82e7c8eab546f5ad00762d572714cf0c230cf0196d50b",
+      "retention_note": "Original bytes were not materialized in this connector run; decisive official fields are retained as a literal projection with its own hash."
+    },
+    {
+      "key": "adani_issuer_first_call_conversion",
+      "authority": "Adani Enterprises Limited filing to NSE",
+      "publication_date": "2026-02-04",
+      "url": "https://nsearchives.nseindia.com/corporate/ADANIENT_04022026203545_Intimationconversionpptopp1stcall.pdf",
+      "relevant_pages": [
+        1
+      ],
+      "source_bytes_sha256": null,
+      "projection": {
+        "ordinary_symbol": "ADANIENT",
+        "event": "Conversion of Rs. 0.50 partly paid-up equity shares into Rs. 0.75 partly paid-up equity shares in relation to the Rights Issue upon receipt of first call money",
+        "resulting_isin": "IN9423A01048",
+        "resulting_paid_up_face_value_inr": 0.75
+      },
+      "projection_sha256": "88d0ec956162732b2faf40cd30f9873cf10d1b34504d4824bf4986a0a4ce1b96",
+      "retention_note": "Original bytes were not materialized in this connector run; decisive official fields are retained as a literal projection with its own hash."
+    },
+    {
+      "key": "adani_monitoring_report",
+      "authority": "Adani Enterprises Limited / monitoring agency filing to NSE",
+      "publication_date": "2026-02-03",
+      "url": "https://nsearchives.nseindia.com/corporate/ADANIENT_03022026150919_AELMonitoringAgency.pdf",
+      "relevant_pages": [
+        4
+      ],
+      "source_bytes_sha256": null,
+      "projection": {
+        "issuer": "Adani Enterprises Limited",
+        "issue_period": "2025-11-25 to 2025-12-10",
+        "type_of_issue": "Right Issue",
+        "specified_securities": "Equity Shares (Partly Paid up)",
+        "issue_size_crore_inr": 24930.3,
+        "issue_price_inr": 1800,
+        "application_paid_inr": 900
+      },
+      "projection_sha256": "201e66a15d01093308424115b666547f23c537baf2eaad67b600d25439dc37b9",
+      "retention_note": "Original bytes were not materialized in this connector run; decisive official fields are retained as a literal projection with its own hash."
+    },
+    {
+      "key": "silgo_letter_of_offer",
+      "authority": "Silgo Retail Limited filing to NSE",
+      "publication_date": "2026-01-02",
+      "url": "https://nsearchives.nseindia.com/corporate/SILGO_02012026193618_Letter_of_Offer_Signed.pdf",
+      "relevant_pages": [
+        1,
+        86
+      ],
+      "source_bytes_sha256": null,
+      "projection": {
+        "subject": "Proposed Rights Issue of Partly paid-up Equity Shares",
+        "ordinary_symbol": "SILGO",
+        "issue_open_date": "2026-01-14",
+        "issue_close_date": "2026-02-04",
+        "issue_price_inr": 60,
+        "rights_ratio": "3 for 10"
+      },
+      "projection_sha256": "e1bfd958f5b7aeca117ed8a531e127654b058aca27f758a0b3c7abc1ea1129ab",
+      "retention_note": "Page locators follow PDF page order used during review. Original bytes were not materialized in this connector run; decisive official fields are retained as a literal projection with its own hash."
+    },
+    {
+      "key": "silgo_nse_rights_listing",
+      "authority": "National Stock Exchange of India Limited",
+      "document_id": "NSE/CML/72851",
+      "publication_date": "2026-02-17",
+      "url": "https://nsearchives.nseindia.com/content/circulars/CML72851.pdf",
+      "relevant_pages": [
+        1,
+        2
+      ],
+      "source_bytes_sha256": null,
+      "projection": {
+        "subject": "Listing of Partly Paid up Equity Shares allotted on Rights Basis of Silgo Retail Limited",
+        "effective_date": "2026-02-19",
+        "symbol": "SILGOPP",
+        "series": "E1",
+        "isin": "IN901II01012",
+        "face_value_inr": 10,
+        "paid_up_value_inr": 5,
+        "issue_price_inr": 60,
+        "application_paid_inr": 30,
+        "security_description": "Partly paid-up Equity shares of Rs. 10/- each (Rs. 5/- partly paid up) allotted on Rights basis",
+        "allotment_date": "2026-02-13"
+      },
+      "projection_sha256": "cab6a1929680535bb346e81d110d4d95e3890194d7abfd898880538556df497d",
+      "retention_note": "Original bytes were not materialized in this connector run; decisive official fields are retained as a literal projection with its own hash."
+    },
+    {
+      "key": "silgo_first_final_call_notice",
+      "authority": "Silgo Retail Limited filing to NSE",
+      "publication_date": "2026-04-09",
+      "url": "https://nsearchives.nseindia.com/corporate/SILGO_09042026115754_Intimation_to_NSE.pdf",
+      "relevant_pages": [
+        2,
+        3
+      ],
+      "source_bytes_sha256": null,
+      "projection": {
+        "partly_paid_isin": "IN901II01012",
+        "basis": "Rights basis pursuant to Letter of Offer dated 2026-01-02",
+        "issue_price_inr": 60,
+        "rights_ratio": "3 for 10",
+        "stated_allotment_date": "2026-02-17",
+        "fully_paid_ordinary_isin": "INE01II01013"
+      },
+      "projection_sha256": "58e9986c05a68385291ac4cf7af04d8a6e7ea9d88a11422725af8c58ce05a863",
+      "retention_note": "Original bytes were not materialized in this connector run; decisive official fields are retained as a literal projection with its own hash."
+    }
+  ],
+  "integrity": {
+    "source_projection_hash_algorithm": "sha256(canonical-json(projection))",
+    "note": "Projection hashes prove the retained literal review projection only; they are not hashes of the original PDF bytes."
+  },
+  "notes": [
+    "The two decisions classify 2026 security events only. They do not erase or overwrite the issuers' earlier IPO/listing histories.",
+    "No IPO record is added, removed, or edited by this review.",
+    "The Silgo allotment-date disagreement is preserved as an official-source conflict because it is not needed to decide the offering type.",
+    "No parser/adapter change was required, so no parser regression test was added."
+  ]
+}
