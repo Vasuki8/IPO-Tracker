@@ -7,6 +7,7 @@ const app=fs.readFileSync("assets/drhp.js","utf8");
 const filterCode=fs.readFileSync("assets/pre-ipo-filter.js","utf8");
 const index=fs.readFileSync("index.html","utf8");
 const data=JSON.parse(fs.readFileSync("data/drhp-filings.json","utf8"));
+const ipoData=JSON.parse(fs.readFileSync("data/ipos.json","utf8"));
 
 assert.match(index,/href="drhp\.html"[^>]*>Pre-IPO companies<\/a>/);
 assert.match(html,/Companies that have filed for an IPO\./);
@@ -57,6 +58,14 @@ assert.equal(filter.hasProgressed({issuer_name:"X",status:"upcoming"}),true);
 assert.equal(filter.hasProgressed({issuer_name:"X",status:"draft",open_date:{value:"2026-10-01"}}),true);
 assert.equal(filter.hasProgressed({issuer_name:"X",status:"draft"}),false);
 
+const currentActive=Array.from(filter.activeCompanies(data.companies,ipoData.records));
+const currentProgressed=data.companies.length-currentActive.length;
+assert.ok(currentActive.length<=data.companies.length);
+for(const company of currentActive){
+  const key=filter.canonicalIssuer(company.issuer_name);
+  assert.equal(ipoData.records.some(record=>filter.canonicalIssuer(record.issuer_name)===key&&filter.hasProgressed(record)),false);
+}
+
 assert.equal(data.coverage.filing_records,data.companies.reduce((n,c)=>n+c.filings.length,0));
 assert.equal(data.schema_version,"1.0.0");
 assert.equal(data.coverage.year,2026);
@@ -74,6 +83,8 @@ for(const company of data.companies){
 }
 console.log(JSON.stringify({pre_ipo_company_ui_tests:{
   source_companies:data.companies.length,
+  active_pre_ipo_companies:currentActive.length,
+  progressed_hidden:currentProgressed,
   retained_source_filings:data.coverage.filing_records,
   lifecycle_filter:true,
   exact_canonical_identity:true,
