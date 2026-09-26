@@ -1100,10 +1100,32 @@
     "2025|midwest-limited": {
       "issuer_name": "Midwest Limited",
       "listing_date": "2025-10-24",
-      "last_attempted_at": "2026-09-25T12:23:22.555Z",
+      "last_attempted_at": "2026-09-26T13:26:48.069Z",
       "parser_version": "1.2.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-2eFOLB/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765444608922.pdf\ncurl: (18) transfer closed with 7893594 bytes remaining to read\ncurl: (18) transfer closed with 8616922 bytes remaining to read\n",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 4510000000,
+          "source_value": "₹4,510.00 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Midwest Limited - prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765444608922.pdf",
+        "publication_date": "2025-12-11"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2025/1765444608922.pdf"
     },
     "2024|vishal-mega-mart-limited": {
@@ -2382,10 +2404,27 @@
     "2024|hyundai-motor-india-limited": {
       "issuer_name": "Hyundai Motor India Limited",
       "listing_date": "2024-10-22",
-      "last_attempted_at": "2026-09-25T12:23:22.555Z",
+      "last_attempted_at": "2026-09-26T13:26:48.069Z",
       "parser_version": "1.2.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-brK8zc/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1728898802128.PDF\ncurl: (18) transfer closed with 11116826 bytes remaining to read\ncurl: (18) transfer closed with 8428994 bytes remaining to read\n",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Hyundai Motor India Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1728898802128.PDF",
+        "publication_date": "2024-10-14"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2024/1728898802128.PDF"
     },
     "2023|updater-services-limited": {
@@ -2449,10 +2488,32 @@
     "2025|seshaasai-technologies-limited": {
       "issuer_name": "Seshaasai Technologies Limited",
       "listing_date": "2025-09-30",
-      "last_attempted_at": "2026-09-25T12:23:22.555Z",
+      "last_attempted_at": "2026-09-26T13:26:48.069Z",
       "parser_version": "1.2.0",
-      "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-CZRT0O/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1759123834724.pdf\ncurl: (18) transfer closed with 10420426 bytes remaining to read\ncurl: (18) transfer closed with 9204978 bytes remaining to read\n",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 8130740000,
+          "source_value": "₹8,130.74 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Seshaasai Technologies Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1759123834724.pdf",
+        "publication_date": "2025-09-26"
+      },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1759123834724.pdf"
     },
     "2024|garuda-construction-and-engineering-limited": {
@@ -3289,6 +3350,133 @@
         "publication_date": "2022-08-19"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671770641618.pdf"
+    },
+    "2023|jupiter-life-line-hospitals-limited": {
+      "issuer_name": "Jupiter Life Line Hospitals Limited",
+      "listing_date": "2023-09-18",
+      "last_attempted_at": "2026-09-26T13:26:48.069Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Jupiter Life Line Hospitals Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694502977062.pdf",
+        "publication_date": "2023-09-12"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2023/1694502977062.pdf"
+    },
+    "2022|kesar-india-limited": {
+      "issuer_name": "Kesar India Limited",
+      "listing_date": "2022-07-12",
+      "last_attempted_at": "2026-09-26T13:26:48.069Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 158168000,
+          "source_value": "₹1581.68 Lakhs",
+          "page": 1
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Kesar India Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671770507241.pdf",
+        "publication_date": "2022-06-25"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671770507241.pdf"
+    },
+    "2021|sansera-engineering-limited": {
+      "issuer_name": "Sansera Engineering Limited",
+      "listing_date": "2021-09-24",
+      "last_attempted_at": "2026-09-26T13:26:48.069Z",
+      "parser_version": "1.2.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-G4R7lI/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1683091301745.pdf\ncurl: (18) transfer closed with 7287162 bytes remaining to read\ncurl: (18) transfer closed with 1780970 bytes remaining to read\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2023/1683091301745.pdf"
+    },
+    "2024|baazar-style-retail-limited": {
+      "issuer_name": "Baazar Style Retail Limited",
+      "listing_date": "2024-09-06",
+      "last_attempted_at": "2026-09-26T13:26:48.069Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot",
+        "minimum_bid_quantity"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Baazar Style Retail Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1724823679366.pdf",
+        "publication_date": "2024-08-28"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1724823679366.pdf"
+    },
+    "2022|aether-industries-limited": {
+      "issuer_name": "Aether Industries Limited",
+      "listing_date": "2022-06-03",
+      "last_attempted_at": "2026-09-26T13:26:48.069Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 8080440000,
+          "source_value": "₹8,080.44 MILLION",
+          "page": 2
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Aether Industries Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2022/1653979110197.pdf",
+        "publication_date": "2022-05-31"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2022/1653979110197.pdf"
     }
   }
 }
