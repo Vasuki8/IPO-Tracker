@@ -1,0 +1,9 @@
+import assert from "node:assert/strict";
+import {mergeNseDrhpSnapshots,validateNseDrhpData} from "./nse-drhp-integrity.mjs";
+const base=(name,url,date,status="Under Process")=>({issuer_name:name,latest_filing_date:date,latest_filing_type:"DRHP",latest_filing_url:url,latest_processing_status:status,board_hints:["Mainboard"],isins:[],symbols:[],filing_count:1,filings:[{issuer_name:name,board:"Mainboard",filing_type:"DRHP",filing_date:date,filing_url:url,processing_status:status,issue_open_date:null,issue_close_date:null,isin:null,symbol:null,source_evidence:{authority:"National Stock Exchange of India"}}]});
+const snap=(generated,companies)=>({schema_version:"1.0.0",collector_version:"1.0.0",generated_at:generated,source:{authority:"National Stock Exchange of India",section:"Issuer Offer documents",landing_url:"https://www.nseindia.com/companies-listing/corporate-filings-offer-documents?tabIndex=equity",api_base:"https://www.nseindia.com/api/corporates/offerdocs"},coverage:{year:2026,companies:companies.length,filing_records:companies.length,source_rows:20,full_universe_complete:false},source_responses:[{index:"equities"},{index:"sme"}],companies});
+const old=snap("2026-09-25T00:00:00.000Z",[base("Retained Limited","https://nsearchives.nseindia.com/corporate/retained.zip","2026-09-20")]);
+const fresh=snap("2026-09-26T00:00:00.000Z",[base("New Limited","https://nsearchives.nseindia.com/corporate/new.zip","2026-09-25")]);
+const merged=mergeNseDrhpSnapshots(old,fresh);assert.equal(merged.companies.length,2);assert.equal(merged.coverage.retained_not_seen_latest,1);validateNseDrhpData(merged);
+assert.throws(()=>mergeNseDrhpSnapshots(fresh,old),/stale/);const bad=structuredClone(fresh);bad.coverage.filing_records=8;assert.throws(()=>validateNseDrhpData(bad),/count/);
+console.log(JSON.stringify({nse_drhp_integrity_tests:{history_preserved:true,stale_rejected:true,count_guard:true}}));
