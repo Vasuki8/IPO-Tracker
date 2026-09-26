@@ -1,0 +1,64 @@
+name: Verify reviewed Fabino publication
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Publish reviewed Fabino correction"]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verify-reviewed-fabino-publication
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Test Fabino publication verifier
+        run: node scripts/test-reviewed-fabino-publication.mjs
+
+      - name: Retain exact verification revision
+        run: |
+          mkdir -p "$RUNNER_TEMP/fabino-publication/attempts"
+          git archive --format=zip HEAD > "$RUNNER_TEMP/fabino-publication/source-snapshot.zip"
+          git rev-parse HEAD > "$RUNNER_TEMP/fabino-publication/source-commit.txt"
+
+      - name: Verify actual Pages output
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/fabino-publication"
+          for attempt in $(seq 1 14); do
+            if node scripts/verify-reviewed-fabino-publication.mjs --output-dir="$out"; then
+              cp "$out/report.json" "$out/attempts/$attempt.json"
+              exit 0
+            fi
+            cp "$out/report.json" "$out/attempts/$attempt.json"
+            if [ "$attempt" -lt 14 ]; then sleep 30; fi
+          done
+          exit 1
+
+      - name: Retain actual Pages snapshot and report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reviewed-fabino-publication-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/fabino-publication
+          retention-days: 14
+          if-no-files-found: error
