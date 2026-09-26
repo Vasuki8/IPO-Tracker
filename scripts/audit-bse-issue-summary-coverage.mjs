@@ -178,6 +178,11 @@ export async function collectBseIssueSummary({
         method:"POST",headers:{...headers,"content-type":"application/x-www-form-urlencoded"},body
       });
     }
+    const responseCookie=cookieHeader(fetched.response.headers);
+    if(responseCookie){
+      cookie=[cookie,responseCookie].filter(Boolean).join("; ");
+      headers.cookie=cookie;
+    }
     totalBytes+=fetched.bytes.length;
     if(totalBytes>MAX_TOTAL_BYTES)throw new Error("bse_issue_summary_total_size_limit");
     html=fetched.bytes.toString("utf8");
