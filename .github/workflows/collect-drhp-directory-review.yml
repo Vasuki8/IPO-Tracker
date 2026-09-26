@@ -1,0 +1,81 @@
+name: Collect DRHP directory review
+on:
+  push:
+    branches: [backend/held-identity-drhp-20260925]
+    paths: [.github/workflows/collect-drhp-directory-review.yml]
+permissions:
+  contents: read
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Retain latest main and original official responses
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/drhp-review/pages"
+          git fetch origin main
+          git archive --format=zip origin/main > "$RUNNER_TEMP/drhp-review/source-snapshot.zip"
+          git rev-parse origin/main > "$RUNNER_TEMP/drhp-review/source-commit.txt"
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import { createHash } from 'node:crypto';
+          const out=path.join(process.env.RUNNER_TEMP,'drhp-review');
+          const base='https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15';
+          const endpoint='https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp';
+          const headers={'user-agent':'Mozilla/5.0','accept':'text/html,application/json,*/*','referer':base};
+          const rows=[]; const hash=b=>createHash('sha256').update(b).digest('hex');
+          async function get(url,file,opts={}) {
+            let last;
+            for(let attempt=1;attempt<=2;attempt++) {
+              const requested_at=new Date().toISOString();
+              try {
+                const r=await fetch(url,{...opts,headers:{...headers,...opts.headers},signal:AbortSignal.timeout(25000)});
+                const b=Buffer.from(await r.arrayBuffer());
+                fs.writeFileSync(path.join(out,file),b);
+                const meta={url,final_url:r.url,file,method:opts.method||'GET',request_body:opts.body||null,status:r.status,content_type:r.headers.get('content-type'),requested_at,collected_at:new Date().toISOString(),bytes:b.length,sha256:hash(b),attempt};
+                rows.push(meta);last=meta;
+                if(r.ok)return b.toString('utf8');
+              } catch(e) {last={url,file,error:String(e),requested_at,collected_at:new Date().toISOString(),attempt};rows.push(last);}
+              await new Promise(r=>setTimeout(r,1000));
+            }
+            throw new Error('source_failed:'+JSON.stringify(last));
+          }
+          let failure=null;
+          try {
+            let first=await get(base,'pages/000.html');
+            const range=first.match(/(\d+)\s+to\s+(\d+)\s+of\s+([\d,]+)\s+records/i);
+            if(!range)throw new Error('missing_initial_pagination');
+            const total=Number(range[3].replaceAll(',','')), count=Number(range[2]);
+            const pages=Math.ceil(total/count);if(pages>120||count!==25)throw new Error('pagination_bound');
+            for(let page=1;page<pages;page++){
+              const body=new URLSearchParams({nextValue:String(page),next:'n',search:'',fromDate:'',toDate:'',fromYear:'',toYear:'',deptId:'',sid:'3',ssid:'15',smid:'10',ssidhidden:'15',intmid:'-1',sText:'Filings',ssText:'Public Issues',smText:'Draft Offer Documents filed with SEBI',doDirect:String(page)}).toString();
+              const html=await get(endpoint,'pages/'+String(page).padStart(3,'0')+'.html',{method:'POST',headers:{'content-type':'application/x-www-form-urlencoded'},body});
+              const m=html.match(/(\d+)\s+to\s+(\d+)\s+of\s+([\d,]+)\s+records/i);
+              if(!m||Number(m[1])!==page*25+1||Number(m[3].replaceAll(',',''))!==total)throw new Error('pagination_mismatch:'+page+':'+m?.[0]);
+              console.log('Retained page',page+1,'/',pages,m[0]);
+              await new Promise(r=>setTimeout(r,250));
+            }
+            await get(base,'pages/first-recheck.html');
+          }catch(e){failure=String(e);console.error(failure);}
+          for(const [symbol,series] of [['AMIRCHAND','EQ'],['LEAP','EQ'],['LEAPIND','EQ']]){
+            try{await get('https://www.nseindia.com/api/ipo-detail?symbol='+symbol+'&series='+series,symbol+'-ipo.json');}catch(e){console.warn(String(e));}
+          }
+          try{await get('https://vasuki8.github.io/IPO-Tracker/data/ipos.json?drhp='+process.env.GITHUB_RUN_ID,'deployed-baseline.json');}catch(e){failure||=String(e);}
+          fs.writeFileSync(path.join(out,'sources.json'),JSON.stringify({schema_version:'1.0.0',run_id:process.env.GITHUB_RUN_ID,head_sha:process.env.GITHUB_SHA,source_commit:fs.readFileSync(path.join(out,'source-commit.txt'),'utf8').trim(),listing_url:base,endpoint,generated_at:new Date().toISOString(),failure,rows},null,2)+'\n');
+          if(failure)process.exitCode=1;
+          JS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: drhp-directory-review-${{ github.run_id }}
+          path: ${{ runner.temp }}/drhp-review
+          retention-days: 14
+          if-no-files-found: error
