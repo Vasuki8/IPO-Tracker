@@ -1,6 +1,6 @@
 # Project status and handoff
 
-Updated **2026-09-26 (UTC)** after completing the Abakkus/Pre-IPO source-coverage repair. The active backend priority remains **P1 issuer identity and universe correctness** under [DEVELOPMENT_PROCESS.md](DEVELOPMENT_PROCESS.md). The Pre-IPO surface is lifecycle-aware and now discovers draft issuers from the SEBI draft index plus the configured Axis Capital official BRLM fallback. Coverage is still explicitly partial. Other UI/research-depth work remains in [UI_DETAIL_NAVIGATION_HANDOFF.md](UI_DETAIL_NAVIGATION_HANDOFF.md).
+Updated **2026-09-26 (UTC)** after verifying historical equity-IPO coverage for all nine issuers behind the earlier excluded 2026 debt/migration events. The active backend priority remains **P1 issuer identity and universe correctness** under [DEVELOPMENT_PROCESS.md](DEVELOPMENT_PROCESS.md). All nine historical IPOs are verified but import is intentionally pending durable source-byte/hash materialization and a reviewed recovery path. The Pre-IPO source-coverage repair remains live and separate. Other UI/research-depth work remains in [UI_DETAIL_NAVIGATION_HANDOFF.md](UI_DETAIL_NAVIGATION_HANDOFF.md).
 
 ## Release complete — do not replay
 
