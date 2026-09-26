@@ -30,6 +30,34 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Publish pending reviewed BSE 2020 batch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            node scripts/test-bse-2020-unmatched-review.mjs
+            node scripts/apply-reviewed-bse-2020-unmatched.mjs --check
+            node scripts/apply-reviewed-bse-2020-unmatched.mjs
+            node scripts/build-published-data.mjs
+            node scripts/build-published-data.mjs --check
+            node scripts/validate-data.mjs
+            node scripts/test-reviewed-bse-2020-unmatched-import.mjs
+            git add data/recovery/2020/nse-issue-information.json data/ipos.json
+            if git diff --cached --quiet; then
+              echo "Reviewed BSE 2020 batch is already published."
+              break
+            fi
+            git commit -m "data: publish four reviewed BSE 2020 IPOs"
+            if git push origin HEAD:main; then
+              break
+            fi
+            if [ "$attempt" -eq 3 ]; then exit 1; fi
+          done
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
