@@ -47,11 +47,17 @@ Final-head CI, merged-main data-contract tests and local retained-source regress
 
 [Combined live receipt](docs/verification/drhp-identity-release-live-2026-09-26.json) · [Current review/hold state](data/discovery/nse-universe-current-review-2026-09-26.json).
 
+### Rights-security review complete
+
+**ADANIENPP1 and SILGOPP are resolved as non-IPO 2026 rights-security events.** Official NSE/issuer evidence identifies both as partly paid-up equity securities issued on a rights basis. ADANIENPP1 / IN9423A01048 was listed as a further issue effective 10-Feb-2026 after Adani Enterprises' first call; SILGOPP / IN901II01012 was listed effective 19-Feb-2026 as partly paid-up shares allotted on rights basis. No public IPO row was added, removed or edited.
+
+The Silgo sources disagree on the allotment date: NSE records 13-Feb-2026, while the issuer's later call notice states 17-Feb-2026. That conflict is retained because it is not needed to classify the event. Original PDF bytes were not materialized in this connector run; the review retains literal official-source projections and projection SHA-256 values without representing them as original-file hashes. See [the rights-security review](data/discovery/nse-universe-rights-security-review-2026-09-26.json).
+
 ### Exact next backend task
 
-Review **ADANIENPP1 and SILGOPP** offering/security histories with independent official issuer/exchange evidence, then GICL, VITAL and KOTYARK. Reconcile latest main/Pages, preserve prior IPOs and conflicts, and do not infer a security type from its symbol.
+Review **GICL, VITAL and KOTYARK** prior-offer/listing histories with independent official issuer/exchange evidence. Reconcile latest main/Pages, preserve their original IPO histories and source conflicts, and do not infer migration, repeat-security or new-IPO status from symbols or aggregate observations.
 
-Current accounting is **105 approved IPOs, nine excluded debt/migration events and five unresolved cases out of 119 pinned groups**. Original September 25 canonical/hold files are historical snapshots; use the September 26 current-state file for new work. This is not full-universe completeness.
+Current accounting is **105 approved IPOs, five debt-event exclusions, four migration exclusions, two rights-issue security exclusions and three unresolved cases out of 119 pinned groups**. Original September 25 canonical/hold files are historical snapshots; use the September 26 current-state file for new work. This is not full-universe completeness.
 
 Separately review original historical IPO coverage for the nine excluded-event issuers. Fabino's BSE listing-year hold, BSE issue-summary, SEBI historical pagination and NSE-series gaps remain. BSE parser v1.5 is **236/236 parsed**; do not replay its cursor. UI/research-depth work remains in its own handoff. No minimum-investment, billing/accounts/ads, spending or access-policy expansion.
 
@@ -96,4 +102,4 @@ node scripts/verify-drhp-publication.mjs --output-dir=/tmp/drhp-publication
 
 ## Historical handoffs
 
-The immediately preceding README and status are archived byte-for-byte in [docs/archive/README-before-drhp-identity-finalization.md](docs/archive/README-before-drhp-identity-finalization.md) and [docs/archive/PROJECT_STATUS-before-drhp-identity-finalization.md](docs/archive/PROJECT_STATUS-before-drhp-identity-finalization.md). Earlier archives and receipts remain intact. Archived next-task instructions are not current instructions.
+The immediately preceding README and status are archived byte-for-byte in [docs/archive/README-before-rights-security-review-2026-09-26.md](docs/archive/README-before-rights-security-review-2026-09-26.md) and [docs/archive/PROJECT_STATUS-before-rights-security-review-2026-09-26.md](docs/archive/PROJECT_STATUS-before-rights-security-review-2026-09-26.md). Earlier archives and receipts, including the DRHP/identity-finalization archives, remain intact. Archived next-task instructions are not current instructions.
