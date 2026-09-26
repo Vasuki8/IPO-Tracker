@@ -1,6 +1,13 @@
 name: Publish reviewed BSE 2020 unmatched IPOs
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/apply-reviewed-bse-2020-unmatched.mjs"
+      - "scripts/test-reviewed-bse-2020-unmatched-import.mjs"
+      - "data/verified-bse-listings/2026-09-26-bse-2020-unmatched-four.json"
+      - ".github/workflows/publish-reviewed-bse-2020-unmatched.yml"
   pull_request:
     branches: [main]
     paths:
