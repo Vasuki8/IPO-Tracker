@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - "data/verified-bse-listings/2026-09-26-bse-2020-unmatched-four.json"
+      - "scripts/apply-reviewed-bse-2020-unmatched.mjs"
+      - "scripts/test-reviewed-bse-2020-unmatched-import.mjs"
       - ".github/workflows/publish-reviewed-bse-2020-unmatched.yml"
   pull_request:
     branches: [main]
