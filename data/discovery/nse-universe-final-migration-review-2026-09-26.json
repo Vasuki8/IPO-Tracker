@@ -1,0 +1,179 @@
+{
+  "schema_version": "1.0.0",
+  "status": "resolved_final_three_nse_holds_as_migration_events",
+  "reviewed_at": "2026-09-26",
+  "scope": "Resolve GICL, VITAL and KOTYARK 2026 observations using issuer-specific official NSE/issuer evidence, while preserving each issuer's earlier SME IPO history and source conflicts.",
+  "accounting_effect": {
+    "approved_initial_equity_ipos_change": 0,
+    "excluded_migration_events_change": 3,
+    "unresolved_nse_groups_change": -3,
+    "public_ipo_dataset_change": false
+  },
+  "decisions": [
+    {
+      "candidate_symbol": "GICL",
+      "issuer_name": "Globe International Carriers Limited",
+      "isin": "INE947T01022",
+      "event_effective_date": "2026-02-18",
+      "decision": "excluded_migration_not_new_ipo",
+      "reason": "NSE's listing approval explicitly states that GICL's equity shares were admitted to the Main Board effective 18-Feb-2026 pursuant to migration from the SME Emerge platform.",
+      "historical_ipo": {
+        "year": 2016,
+        "status": "preserved_not_replaced",
+        "note": "Older SME IPO history remains separate. The retained past feed carries 30-Sep-2016 to 07-Oct-2016; the issuer's later official documents confirm the company was already NSE SME-listed before the 2026 migration."
+      },
+      "preserved_conflicts": [
+        "A 2025 official filing shows prior ISIN INE947T01014; NSE then changed the ISIN to INE947T01022 effective 15-Oct-2025 after a face-value split from Rs.10 to Rs.5. The 2026 migration uses the new ISIN and is not a new IPO.",
+        "The aggregate past-issues row combines the old 2016 offer period with the 18-Feb-2026 migration listing date and must not be interpreted as a 2026 IPO."
+      ]
+    },
+    {
+      "candidate_symbol": "VITAL",
+      "issuer_name": "Vital Chemtech Limited",
+      "isin": "INE0L4K01016",
+      "event_effective_date": "2026-03-11",
+      "decision": "excluded_migration_not_new_ipo",
+      "reason": "An official issuer filing to NSE states that the company was earlier listed on NSE's SME Platform (EMERGE) and its equity shares were listed on the Main Board effective 11-Mar-2026 upon migration.",
+      "historical_ipo": {
+        "offer_open": "2022-10-31",
+        "offer_close": "2022-11-03",
+        "listing_date": "2022-11-14",
+        "status": "preserved_not_replaced",
+        "note": "Retained NSE issuer detail explicitly calls the 2022 transaction an Initial Public offer; NSE Market Pulse classifies Vital's 14-Nov-2022 listing as SME-IPO."
+      },
+      "preserved_conflicts": [
+        "The retained 2022 issuer detail gives a price range of Rs.95–101 while the aggregate past-issues row reports issuePrice 46. This price conflict is preserved and is irrelevant to classifying the 2026 event as migration.",
+        "The 11-Mar-2026 date is a Main Board migration date, not a new IPO listing date."
+      ]
+    },
+    {
+      "candidate_symbol": "KOTYARK",
+      "issuer_name": "Kotyark Industries Limited",
+      "isin": "INE0J0B01017",
+      "event_effective_date": "2026-03-12",
+      "decision": "excluded_migration_not_new_ipo",
+      "reason": "NSE Circular NSE/CML/73219 explicitly states that KOTYARK would migrate from SME Platform (EMERGE) to the Capital Market Segment (Main Board) effective 12-Mar-2026 and references its original 2021 SME listing circular.",
+      "historical_ipo": {
+        "offer_open": "2021-10-21",
+        "offer_close": "2021-10-25",
+        "allotment_date": "2021-10-29",
+        "issue_price_inr": 51,
+        "listing_date": "2021-11-02",
+        "platform": "NSE Emerge (SME)",
+        "status": "preserved_not_replaced"
+      },
+      "preserved_conflicts": [
+        "The aggregate past-issues row reports issuePrice 281 while issuer financial statements state that the 2021 IPO was issued at Rs.51. The conflict is preserved; the issuer statement is direct evidence of the original IPO.",
+        "The 12-Mar-2026 observation is migration to Main Board, not a new IPO."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "key": "gicl_migration_approval",
+      "authority": "National Stock Exchange of India Limited",
+      "publication_date": "2026-02-16",
+      "url": "https://nsearchives.nseindia.com/corporate/GICL_17022026123707_listing_approval.pdf",
+      "source_bytes_sha256": null,
+      "projection": {
+        "issuer": "Globe International Carriers Limited",
+        "symbol": "GICL",
+        "isin": "INE947T01022",
+        "document_date": "2026-02-16",
+        "effective_date": "2026-02-18",
+        "event": "listing on Main Board pursuant to migration from SME Emerge platform",
+        "security": "Equity shares of Rs.5 each fully paid up",
+        "series": "BE",
+        "market_lot": 1
+      },
+      "projection_sha256": "a909401a1f41de3e27ce65e50f3896ddd9b17d7941e875c80eca9918b608acbc"
+    },
+    {
+      "key": "gicl_isin_change",
+      "authority": "Globe International Carriers Limited / NSE circular",
+      "publication_date": "2025-10-08",
+      "url": "https://nsearchives.nseindia.com/corporate/GICL_08102025104957_ISIN_Covering_merged.pdf",
+      "source_bytes_sha256": null,
+      "projection": {
+        "issuer": "Globe International Carriers Limited",
+        "symbol": "GICL",
+        "old_isin": "INE947T01014",
+        "new_isin": "INE947T01022",
+        "effective_date": "2025-10-15",
+        "reason": "sub-division of shares from face value Rs.10 to Rs.5"
+      },
+      "projection_sha256": "587443305e22fa343313d68de38b62d08b4a6220b6f40d67c81b7fd662a3d2b7"
+    },
+    {
+      "key": "vital_migration_financial_results",
+      "authority": "Vital Chemtech Limited filing to NSE",
+      "publication_date": "2026-05-30",
+      "url": "https://nsearchives.nseindia.com/corporate/VITAL_30052026122633_Newspaperadd.pdf",
+      "source_bytes_sha256": null,
+      "projection": {
+        "issuer": "Vital Chemtech Limited",
+        "symbol": "VITAL",
+        "isin": "INE0L4K01016",
+        "effective_date": "2026-03-11",
+        "event": "equity shares listed on Main Board of NSE upon migration from SME Platform (EMERGE)"
+      },
+      "projection_sha256": "00c9c67f7745dd756d3562b502d46a66960e8c88cb5d28a1aedeb4ed935fcc84"
+    },
+    {
+      "key": "vital_original_ipo_market_pulse",
+      "authority": "National Stock Exchange of India Limited",
+      "publication_date": null,
+      "url": "https://nsearchives.nseindia.com/s3fs-public/inline-files/Market_Pulse_Nov-Dec_2022.pdf",
+      "source_bytes_sha256": null,
+      "projection": {
+        "issuer": "Vital Chemtech Limited",
+        "listing_date": "2022-11-14",
+        "event_type": "SME-IPO"
+      },
+      "projection_sha256": "d218c405e71e7720fa29061eed41e4c9bb2e7ef52309e989eda297226285f6fb"
+    },
+    {
+      "key": "kotyark_migration_circular",
+      "authority": "National Stock Exchange of India Limited",
+      "document_id": "NSE/CML/73219; Circular Ref. No. 0404/2026",
+      "publication_date": "2026-03-10",
+      "url": "https://nsearchives.nseindia.com/corporate/KOTYARK_10032026174351_Reg30.pdf",
+      "source_bytes_sha256": null,
+      "projection": {
+        "issuer": "Kotyark Industries Limited",
+        "symbol": "KOTYARK",
+        "isin": "INE0J0B01017",
+        "document_date": "2026-03-10",
+        "effective_date": "2026-03-12",
+        "event": "migration from SME Platform (EMERGE) to NSE Capital Market Segment (Main Board)",
+        "prior_listing_circular": "NSE/CML/50167 dated 2021-11-01"
+      },
+      "projection_sha256": "8f37d74b2ac7cf4ad5943b945aaf628f323306a28b6250e700ccb39b46e26100"
+    },
+    {
+      "key": "kotyark_original_ipo_financials",
+      "authority": "Kotyark Industries Limited filing to NSE",
+      "publication_date": "2022-05-11",
+      "url": "https://nsearchives.nseindia.com/corporate/KOTYARK_11052022170608_Outcome.pdf",
+      "source_bytes_sha256": null,
+      "projection": {
+        "issuer": "Kotyark Industries Limited",
+        "offer_open": "2021-10-21",
+        "offer_close": "2021-10-25",
+        "allotment_date": "2021-10-29",
+        "issue_price_inr": 51,
+        "listing_date": "2021-11-02",
+        "platform": "NSE Emerge (SME)"
+      },
+      "projection_sha256": "dd91613511a521d2671db777c4b80af35b5b0f907b086543005a69342e2d56b9"
+    }
+  ],
+  "integrity": {
+    "note": "Original PDF bytes were not materialized in this connector review. Literal official-source projections are retained with SHA-256 hashes of those projections only; no projection hash is represented as an original-file hash."
+  },
+  "notes": [
+    "This review classifies the 2026 exchange events only. It does not delete or overwrite the issuers' earlier SME IPO histories.",
+    "No parser/adapter change was required, so no parser regression test was added.",
+    "No public IPO record is added, removed or edited by this review."
+  ]
+}
