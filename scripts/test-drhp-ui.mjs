@@ -77,7 +77,11 @@ assert.equal(new Set(data.companies.map(c=>c.issuer_name.toLowerCase())).size,da
 for(const company of data.companies){
   assert.ok(company.issuer_name);
   assert.match(company.latest_filing_type,/^(?:DRHP|UDRHP(?:-?(?:I{1,4}|V|\d+))?)$/);
-  assert.match(company.latest_filing_url,/^https:\/\/www\.sebi\.gov\.in\/filings\/public-issues\//);
+  assert.match(company.latest_filing_url,/^https:\/\/(?:www\.sebi\.gov\.in\/filings\/public-issues\/|www\.axiscapital\.co\.in\/contents\/)/);
+  for(const filing of company.filings.filter(f=>f.source_kind==="official_lead_manager")){
+    assert.equal(filing.source_authority,"Axis Capital Limited");
+    assert.equal(filing.date_basis,"lead_manager_document_upload_timestamp");
+  }
   assert.match(company.latest_filing_date,/^2026-\d\d-\d\d$/);
   assert.ok(company.filing_count>=1);
 }
@@ -90,4 +94,5 @@ console.log(JSON.stringify({pre_ipo_company_ui_tests:{
   exact_canonical_identity:true,
   no_fuzzy_matching:true,
   source_backed:true,
+  lead_manager_fallback_supported:true,
 }}));
