@@ -1858,3 +1858,12 @@ dialog p {
     border-right: 1px solid #dbe3d7;
   }
 }
+
+.drhp-integrity-note {font-size:12px;line-height:1.7;color:var(--muted);padding:12px 16px;border:1px solid var(--line);border-radius:10px;margin:0 0 24px;}
+@media (max-width:760px) {
+  .primary-nav > .drhp-nav, .primary-nav > .drhp-back-link {display:inline-flex;font-size:11px;padding:8px;}
+  .primary-nav:has(.drhp-nav) > button[data-methodology] {display:none;}
+}
+@media (max-width: 760px) {
+  .drhp-overview .metric-label { white-space: normal; overflow-wrap: anywhere; min-height: 27px; }
+}

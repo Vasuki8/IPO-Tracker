@@ -14,8 +14,17 @@
     "stopped_after_page": 8,
     "stop_reason": "first_page_strictly_older_than_year",
     "official_listing_records_observed": 2212,
-    "filing_records": 91,
-    "companies": 88
+    "filing_records": 90,
+    "companies": 89,
+    "latest_scan_unique_filings": 89,
+    "retained_not_seen_latest": 1,
+    "pagination_consistent": false,
+    "observed_source_totals": [
+      2212,
+      2214
+    ],
+    "full_universe_complete": false,
+    "limitations": "2026 explicit DRHP/UDRHP observations only. Changing pagination may omit rows; past filings are retained, not presumed withdrawn. Unlabelled filings, other years and exchange-only sources are outside coverage."
   },
   "source_pages": [
     {
@@ -104,7 +113,8 @@
           "filing_type": "UDRHP-I",
           "filing_date": "2026-09-25",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/anjali-labtech-limited-udrhp-i_104737.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Anjali%20Labtech%20Limited%20-%20DAP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Anjali%20Labtech%20Limited%20-%20DAP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -121,7 +131,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-09-22",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/hi-tech-flow-solutions-limited-drhp_104635.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/HitechFlowSolutionsDAP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/HitechFlowSolutionsDAP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -138,7 +149,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-09-22",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/vardaan-biotech-limited-drhp_104652.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/VARDAAN%20BIOTECH%20LIMITED_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/VARDAAN%20BIOTECH%20LIMITED_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -155,7 +167,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-09-18",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/anchor-offshore-services-limited-drhp_104580.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Anchor%20Offshore%20Services%20Limited-DA_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Anchor%20Offshore%20Services%20Limited-DA_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -172,14 +185,16 @@
           "filing_type": "DRHP",
           "filing_date": "2026-09-18",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/madhur-iron-and-steel-india-limited-drhp_104575.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Madhur%20Iron%20And%20Steel%20India%20Limited%20-%20Draft%20AP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Madhur%20Iron%20And%20Steel%20India%20Limited%20-%20Draft%20AP_p.pdf",
+          "not_seen_in_latest_scan": false
         },
         {
           "issuer_name": "Madhur Iron & Steel (India) Limited",
           "filing_type": "DRHP",
           "filing_date": "2026-02-06",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/feb-2026/madhur-iron-and-steel-india-limited-drhp_99564.html",
-          "draft_abridged_url": null
+          "draft_abridged_url": null,
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -196,7 +211,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-09-17",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/iberia-pharmaceuticals-india-limited-drhp_104542.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/IBERIA%20PHARMACEUTICALS%20INDIA%20LIMITED_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/IBERIA%20PHARMACEUTICALS%20INDIA%20LIMITED_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -213,7 +229,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-09-15",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/maharashtra-oil-extractions-limited-drhp_104503.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Maharashtra%20Oil%20Extractions%20Limited%20-%20DAP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Maharashtra%20Oil%20Extractions%20Limited%20-%20DAP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -230,7 +247,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-09-11",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/m-k-c-agro-fresh-limited-drhp_104430.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/M%20K%20C%20AGRO%20FRESH%20LIMITED%20-%20DAP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/M%20K%20C%20AGRO%20FRESH%20LIMITED%20-%20DAP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -247,7 +265,8 @@
           "filing_type": "UDRHP-1",
           "filing_date": "2026-09-11",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/nopaperforms-solutions-limited-udrhp-1_104427.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/NOPAPERFORMS%20SOLUTIONS%20LIMITED%20-%20DAP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/NOPAPERFORMS%20SOLUTIONS%20LIMITED%20-%20DAP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -264,7 +283,8 @@
           "filing_type": "UDRHP-I",
           "filing_date": "2026-09-09",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/torrent-gas-limited-udrhp-i_104350.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Torrent%20Gas%20Limited%20-%20DAP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Torrent%20Gas%20Limited%20-%20DAP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -281,7 +301,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-09-04",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/mahanadi-coalfields-ltd-drhp_104290.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Mahanadi%20Coalfields%20Limited%20_Draft%20Abridged%20Prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Mahanadi%20Coalfields%20Limited%20_Draft%20Abridged%20Prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -298,7 +319,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-09-01",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/aragen-life-sciences-limited-drhp_104157.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/ARAGEN%20LIFE%20SCIENCES%20LIMITED%20-%20DAP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/ARAGEN%20LIFE%20SCIENCES%20LIMITED%20-%20DAP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -315,7 +337,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-09-01",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/kataria-dhulchand-pannalal-jewellers-limited-drhp_104178.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Kataria%20Dhulchand%20Pannalal%20Jewellers%20Ltd%20-%20DAP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Kataria%20Dhulchand%20Pannalal%20Jewellers%20Ltd%20-%20DAP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -332,7 +355,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-09-01",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/sep-2026/sembcorp-green-infra-limited-drhp_104162.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Sembcorp%20Green%20Infra%20Limited%20-%20Draft%20Abridged%20Prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Sembcorp%20Green%20Infra%20Limited%20-%20Draft%20Abridged%20Prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -349,7 +373,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-08-27",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/atomberg-technologies-limited-drhp_104037.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/ATOMBERG%20TECHNOLOGIES%20LIMITED%20-%20AP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/ATOMBERG%20TECHNOLOGIES%20LIMITED%20-%20AP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -366,7 +391,8 @@
           "filing_type": "UDRHP",
           "filing_date": "2026-08-25",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/avaada-electro-limited-udrhp_104034.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Avaada%20Electro%20Limited%20-%20Draft%20Abridged%20Prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Avaada%20Electro%20Limited%20-%20Draft%20Abridged%20Prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -383,7 +409,8 @@
           "filing_type": "UDRHP",
           "filing_date": "2026-08-25",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/jay-jagdamba-limited-udrhp_103937.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Jay%20Jagdamba%20Limited%20Draft%20Abridged%20Prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Jay%20Jagdamba%20Limited%20Draft%20Abridged%20Prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -400,7 +427,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-08-25",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/m-p-steel-india-limited-drhp_103990.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/MPSteel-Draft%20Abridged%20Prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/MPSteel-Draft%20Abridged%20Prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -417,7 +445,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-08-25",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/nobel-hygiene-limited-drhp_103938.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Nobel%20Hygiene%20Limited%20-%20Draft%20Abridged%20Prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Nobel%20Hygiene%20Limited%20-%20Draft%20Abridged%20Prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -434,7 +463,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-08-22",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/gemini-edibles-and-fats-india-limited-drhp_104032.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Gemini%20Edibles%20&%20Fats%20India%20Ltd.%20-%20Draft%20Abridged%20Prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Gemini%20Edibles%20&%20Fats%20India%20Ltd.%20-%20Draft%20Abridged%20Prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -451,7 +481,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-08-21",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/avtar-steel-limited-drhp_103867.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Avtar%20Steel%20Limited%20-%20Draft%20Abridged%20Prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Avtar%20Steel%20Limited%20-%20Draft%20Abridged%20Prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -468,7 +499,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-08-18",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/tablespace-technologies-limited-drhp_103710.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/TABLESPACE%20TECHNOLOGIES%20LIMITED%20-%20DAP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/TABLESPACE%20TECHNOLOGIES%20LIMITED%20-%20DAP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -485,7 +517,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-08-17",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/svatantra-microfin-limited-drhp_103765.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Svatantra%20Microfin%20Limited%20%20-%20DAP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Svatantra%20Microfin%20Limited%20%20-%20DAP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -502,7 +535,8 @@
           "filing_type": "UDRHP",
           "filing_date": "2026-08-14",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/ags-health-limited-udrhp_103617.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/AGS%20Health%20Limited%20-%20AP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/AGS%20Health%20Limited%20-%20AP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -519,7 +553,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-08-14",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/tonbo-imaging-india-limited-drhp_103625.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Tonbo%20Imaging%20India%20Limited%20-%20DAP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Tonbo%20Imaging%20India%20Limited%20-%20DAP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -536,7 +571,8 @@
           "filing_type": "UDRHP",
           "filing_date": "2026-08-14",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/zetwerk-manufacturing-businesses-limited-udrhp_103643.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Zetwerk%20Manufacturing%20Businesses%20Limited%20-%20DAP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Zetwerk%20Manufacturing%20Businesses%20Limited%20-%20DAP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -553,7 +589,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-08-12",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/j-pan-tubular-components-limited-drhp_103499.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/J%20PAN%20TUBULAR%20COMPONENTS%20LIMITED%20-%20DAP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/J%20PAN%20TUBULAR%20COMPONENTS%20LIMITED%20-%20DAP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -570,7 +607,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-08-11",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/beauty-garage-limited-drhp_103479.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/BEAUTY%20GARAGE%20LIMITED%20-%20AP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/BEAUTY%20GARAGE%20LIMITED%20-%20AP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -587,7 +625,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-08-10",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/arjun-jewellers-limited-drhp_103462.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Arjun%20Jewellers%20Limited%20-%20DAP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Arjun%20Jewellers%20Limited%20-%20DAP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -604,7 +643,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-08-06",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/encube-ethicals-limited-drhp_103383.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Encube%20Ethicals%20Limited%20-%20AP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Encube%20Ethicals%20Limited%20-%20AP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -621,7 +661,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-08-05",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/advanced-sys-tek-limited-drhp_103353.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Advanced%20Sys-Tek%20Limited%20%20-%20DAP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Advanced%20Sys-Tek%20Limited%20%20-%20DAP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -638,7 +679,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-08-03",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/veritas-finance-limited-drhp_103304.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Veritas%20Finance%20Limited%20-%20AP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Veritas%20Finance%20Limited%20-%20AP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -655,7 +697,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-07-31",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/master-chains-n-jewels-limited-drhp_103287.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Master%20Chains%20N%20Jewels%20Limited%20-%20AP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Master%20Chains%20N%20Jewels%20Limited%20-%20AP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -672,7 +715,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-07-29",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/ifl-finance-ltd-drhp_103313.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/IFL%20Finance%20Ltd-%20DAP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/IFL%20Finance%20Ltd-%20DAP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -689,7 +733,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-07-29",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/indian-gas-exchange-limited-drhp_102988.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/Indian%20Gas%20Exchange%20Limited_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/Indian%20Gas%20Exchange%20Limited_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -706,7 +751,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-07-29",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/yogiji-digi-limited-drhp_103106.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/YOGIJI%20DIGI%20LIMITED_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/YOGIJI%20DIGI%20LIMITED_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -723,7 +769,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-07-16",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/gni-infrastructure-limited-drhp_102874.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/GNI%20INFRASTRUCTURE%20LIMITED%20-%20DA_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/GNI%20INFRASTRUCTURE%20LIMITED%20-%20DA_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -740,7 +787,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-07-09",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/cult-fit-limited-drhp_102714.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/CULT.FIT%20Limited%20-%20AP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/CULT.FIT%20Limited%20-%20AP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -757,7 +805,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-07-09",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/ratnadeep-retail-limited-drhp_102720.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/Ratnadeep%20Retail%20Limited%20-%20DAP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/Ratnadeep%20Retail%20Limited%20-%20DAP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -774,7 +823,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-07-08",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/innoterra-limited-drhp_102678.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/INNOTERRA%20LIMITED%20-%20Abri_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/INNOTERRA%20LIMITED%20-%20Abri_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -791,7 +841,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-07-08",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/tmc-transformers-india-limited-drhp_102680.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/TMC%20Transformers%20India%20Limited%20-%20Abri_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/TMC%20Transformers%20India%20Limited%20-%20Abri_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -808,7 +859,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-07-06",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/functional-and-innovative-foods-limited-drhp_102603.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/Functional%20&%20Innovative%20Foods%20Limited-%20Abri_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/Functional%20&%20Innovative%20Foods%20Limited-%20Abri_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -825,7 +877,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-07-06",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/pragyawan-technologies-limited-drhp_102611.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/Pragyawan%20Technologies%20Limited%20-%20Abriged_p.PDF"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/Pragyawan%20Technologies%20Limited%20-%20Abriged_p.PDF",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -842,7 +895,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-07-06",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/stalwart-people-services-india-limited-drhp_102607.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/Stalwart%20People%20Services%20India%20Limited%20-%20Abri_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/Stalwart%20People%20Services%20India%20Limited%20-%20Abri_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -859,7 +913,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-07-06",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/swara-baby-products-limited-drhp_102609.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/SWARA%20Baby%20Products%20Limited%20-%20DAP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/SWARA%20Baby%20Products%20Limited%20-%20DAP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -876,7 +931,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-07-02",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/eswari-global-metal-industries-limited-drhp_102541.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/GLOBAL%20-%20DAP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/GLOBAL%20-%20DAP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -893,7 +949,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-07-01",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/mann-fleet-partners-limited-drhp_102474.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/Maan%20Fleet%20Partners%20Limited%20-%20DRPH_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/Maan%20Fleet%20Partners%20Limited%20-%20DRPH_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -910,7 +967,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-07-01",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/renfra-energy-india-ltd-drhp_102601.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/REIL%20Abridged_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/REIL%20Abridged_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -927,7 +985,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-07-01",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jul-2026/social-worth-technologies-limited-drhp_102477.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/Social%20Worth%20Technologies%20-%20DA_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/Social%20Worth%20Technologies%20-%20DA_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -944,7 +1003,8 @@
           "filing_type": "UDRHP-I",
           "filing_date": "2026-06-30",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jun-2026/oravel-stays-limited-udrhp-i_102455.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jun-2026/ORAVEL%20STAYS%20LIMITED%20-%20Abridged_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jun-2026/ORAVEL%20STAYS%20LIMITED%20-%20Abridged_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -961,7 +1021,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-06-26",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jun-2026/ujin-pharma-ltd-drhp_102424.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jun-2026/Ujin%20Pharma%20Ltd.%20-%20Draft%20Abridged%20Prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jun-2026/Ujin%20Pharma%20Ltd.%20-%20Draft%20Abridged%20Prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -978,7 +1039,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-06-25",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jun-2026/sky-alloys-and-power-limited-drhp_102415.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jun-2026/Sky%20Alloys%20and%20Power%20Limited%20-%20Abri_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jun-2026/Sky%20Alloys%20and%20Power%20Limited%20-%20Abri_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -995,7 +1057,104 @@
           "filing_type": "DRHP",
           "filing_date": "2026-06-19",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jun-2026/jio-platforms-ltd-drhp_102248.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jun-2026/Jio%20Platforms%20Ltd_p.PDF"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jun-2026/Jio%20Platforms%20Ltd_p.PDF",
+          "not_seen_in_latest_scan": false
+        }
+      ]
+    },
+    {
+      "issuer_name": "Paras Healthcare Limited",
+      "latest_filing_date": "2026-06-18",
+      "latest_filing_type": "DRHP",
+      "latest_filing_url": "https://www.sebi.gov.in/filings/public-issues/jun-2026/paras-healthcare-limited-drhp_102187.html",
+      "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jun-2026/Paras%20Healthcare%20Limited%20-%20Abridged_p.pdf",
+      "filing_count": 1,
+      "filings": [
+        {
+          "issuer_name": "Paras Healthcare Limited",
+          "filing_type": "DRHP",
+          "filing_date": "2026-06-18",
+          "filing_url": "https://www.sebi.gov.in/filings/public-issues/jun-2026/paras-healthcare-limited-drhp_102187.html",
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jun-2026/Paras%20Healthcare%20Limited%20-%20Abridged_p.pdf",
+          "not_seen_in_latest_scan": true,
+          "retained_snapshot_evidence": {
+            "snapshot_generated_at": "2026-09-26T01:35:41.135Z",
+            "snapshot_projection_sha256": "72528702ea2c4f4a9a22f8e95b9e3896788ca0d1c4e31de1ab7c1e01a529a72c",
+            "source_pages": [
+              {
+                "page": 1,
+                "url": "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15",
+                "collected_at": "2026-09-26T01:35:41.135Z",
+                "bytes": 44896,
+                "sha256": "63b0611ffb0e61071703d0f61b69c07a909babc0cc04f6fdfc2de24cd77c922d",
+                "observed_records": 2214
+              },
+              {
+                "page": 2,
+                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
+                "collected_at": "2026-09-26T01:35:43.802Z",
+                "bytes": 17711,
+                "sha256": "00ffd1cd310283f8372e3617e0f4df688bc1f6c49eb07bc06566fc08574f9434",
+                "observed_records": 2212,
+                "request_do_direct": 1
+              },
+              {
+                "page": 3,
+                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
+                "collected_at": "2026-09-26T01:35:44.099Z",
+                "bytes": 19173,
+                "sha256": "d04d0d4228206cd22a957275dc40ab211e1b3d1f467a8ef19332a58a0724f813",
+                "observed_records": 2214,
+                "request_do_direct": 2
+              },
+              {
+                "page": 4,
+                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
+                "collected_at": "2026-09-26T01:35:44.401Z",
+                "bytes": 18126,
+                "sha256": "6142c932ae0110852026b22d50458a1d3f64b462e0753274e0a19d39391daf39",
+                "observed_records": 2214,
+                "request_do_direct": 3
+              },
+              {
+                "page": 5,
+                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
+                "collected_at": "2026-09-26T01:35:44.700Z",
+                "bytes": 16705,
+                "sha256": "1a9dba38e3ac3c3f64361103fd3e3628da6a777033210cebef82c748937702c6",
+                "observed_records": 2214,
+                "request_do_direct": 4
+              },
+              {
+                "page": 6,
+                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
+                "collected_at": "2026-09-26T01:35:44.993Z",
+                "bytes": 11064,
+                "sha256": "36c15cceff6cc9a4f7a02f13f91fda235b93a4a3102804421293042ac0557a04",
+                "observed_records": 2214,
+                "request_do_direct": 5
+              },
+              {
+                "page": 7,
+                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
+                "collected_at": "2026-09-26T01:35:45.312Z",
+                "bytes": 10623,
+                "sha256": "ec44334f22533a69a257e2defdbc296297ecd3cfe5e7a820e90486641c5d1d61",
+                "observed_records": 2212,
+                "request_do_direct": 6
+              },
+              {
+                "page": 8,
+                "url": "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp",
+                "collected_at": "2026-09-26T01:35:45.613Z",
+                "bytes": 10330,
+                "sha256": "ed533e373adf1266a2373c33188c88abbf8caff611d2d8896c96614c48bea830",
+                "observed_records": 2212,
+                "request_do_direct": 7
+              }
+            ],
+            "note": "Retained filing from earlier source-backed dataset; no specific source row is inferred for legacy entries."
+          }
         }
       ]
     },
@@ -1012,7 +1171,8 @@
           "filing_type": "UDRHP1",
           "filing_date": "2026-06-09",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jun-2026/zepto-limited-udrhp1_101929.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jun-2026/Zepto%20Limited%20-%20abridged_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jun-2026/Zepto%20Limited%20-%20abridged_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1029,7 +1189,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-06-02",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jun-2026/arohan-financial-services-limited-drhp_101753.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jun-2026/Arohan%20Financial%20Services%20Limited%20-%20DRHP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jun-2026/Arohan%20Financial%20Services%20Limited%20-%20DRHP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1046,7 +1207,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-06-02",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jun-2026/matangi-rubber-limited-drhp_101764.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jun-2026/Matangi%20Rubber%20Limited%20-%20Abridged_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jun-2026/Matangi%20Rubber%20Limited%20-%20Abridged_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1063,7 +1225,8 @@
           "filing_type": "UDRHP-1",
           "filing_date": "2026-05-29",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/may-2026/dhoot-transmission-limited-udrhp-1_101683.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/may-2026/Incred%20Holdings%20Limited%20-%20Abridged%20prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/may-2026/Incred%20Holdings%20Limited%20-%20Abridged%20prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1080,7 +1243,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-05-15",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/may-2026/gaurik-fashions-limited-drhp_101469.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Gaurik%20Fashions%20Limited%20-%20DAP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/sep-2026/Gaurik%20Fashions%20Limited%20-%20DAP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1097,7 +1261,8 @@
           "filing_type": "UDRHP-1",
           "filing_date": "2026-05-14",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/may-2026/incred-holdings-limited-udrhp-1_101433.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/may-2026/Incred%20Holdings%20Limited-Abridged%20prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/may-2026/Incred%20Holdings%20Limited-Abridged%20prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1114,7 +1279,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-05-14",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/may-2026/online-instruments-india-limited-drhp_101429.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/may-2026/Online%20Instruments%20india%20Limite-AP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/may-2026/Online%20Instruments%20india%20Limite-AP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1131,7 +1297,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-05-05",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/may-2026/jindal-supreme-india-limited-drhp_101256.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/may-2026/Jindal%20Supreme%20India%20Limited%20-%20AP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/may-2026/Jindal%20Supreme%20India%20Limited%20-%20AP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1148,7 +1315,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-04-29",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/playsimple-games-limited-drhp_101159.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/may-2026/Playsimple%20Games%20Limited_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/may-2026/Playsimple%20Games%20Limited_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1165,7 +1333,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-04-22",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/punjab-carbonic-limited-drhp_101039.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/may-2026/Draft_Abridged_Prospectus_PCL_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/may-2026/Draft_Abridged_Prospectus_PCL_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1182,7 +1351,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-04-16",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/absolute-projects-india-limited-drhp_100947.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/Absolute%20Projects%20India%20Limited%20-%20DAP_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/jul-2026/Absolute%20Projects%20India%20Limited%20-%20DAP_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1199,7 +1369,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-04-10",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/expression-360-services-india-limited-drhp_100861.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Expression%20360%20Services%20India%20Limited-Abridged%20Prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Expression%20360%20Services%20India%20Limited-Abridged%20Prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1216,7 +1387,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-04-10",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/t-c-terrytex-limited-drhp_100856.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/TC%20TERRYTEX%20LIMITED-Abridged%20Prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/TC%20TERRYTEX%20LIMITED-Abridged%20Prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1233,7 +1405,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-04-08",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/bvishal-oil-and-energy-limited-drhp_100798.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Bvishal%20Oil%20and%20Energy%20Limited-Abridged%20Prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Bvishal%20Oil%20and%20Energy%20Limited-Abridged%20Prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1250,7 +1423,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-04-08",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/gujarat-victory-forgings-limited-drhp_100804.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/GUJARAT%20VICTORY%20FORGINGS%20LIMITED-Abridged%20Prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/GUJARAT%20VICTORY%20FORGINGS%20LIMITED-Abridged%20Prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1267,7 +1441,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-04-08",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/nityas-gems-and-jewellery-limited-drhp_100802.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Nityas%20Gems%20and%20Jewellery%20Limited-Abridged%20Prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Nityas%20Gems%20and%20Jewellery%20Limited-Abridged%20Prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1284,7 +1459,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-04-08",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/sathya-agencies-limited-drhp_100796.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Sathya%20Agencies%20Limited-Abridged%20Prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Sathya%20Agencies%20Limited-Abridged%20Prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1301,7 +1477,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-04-07",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/adroit-industries-india-limited-drhp_100909.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Adroit%20Industries%20India)Limited-Abridged%20Prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Adroit%20Industries%20India)Limited-Abridged%20Prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1318,7 +1495,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-04-07",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/intellius-recode-limited-drhp_100765.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Intellius%20Recode%20Ltd%20-%20Abridged%20Prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Intellius%20Recode%20Ltd%20-%20Abridged%20Prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1335,7 +1513,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-04-07",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/kay-jay-forgings-limited-drhp_100975.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Kay%20Jay%20Forgings%20Limited-Abridged%20Prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Kay%20Jay%20Forgings%20Limited-Abridged%20Prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1352,7 +1531,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-04-07",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/manipal-health-enterprises-limited-drhp_100763.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Manipal%20Health%20Enterprises%20Limited-Abridged%20Prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Manipal%20Health%20Enterprises%20Limited-Abridged%20Prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1369,7 +1549,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-04-06",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/rentomojo-limited-drhp_100746.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Rentomojo%20Limited-Draft%20Abridged%20Prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Rentomojo%20Limited-Draft%20Abridged%20Prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1386,7 +1567,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-04-02",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/cosmic-pv-power-limited-drhp_100718.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/COSMIC%20PV%20POWER%20LIMITED-Abridged%20prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/COSMIC%20PV%20POWER%20LIMITED-Abridged%20prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1403,7 +1585,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-04-02",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/pioneer-fil-med-limited-drhp_100715.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Pioneer%20Fil-Med%20Limited-Draft%20Abridged%20Prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Pioneer%20Fil-Med%20Limited-Draft%20Abridged%20Prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1420,7 +1603,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-04-02",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/apr-2026/rkb-global-limited-drhp_100702.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/RKB%20Global%20Limited%20-%20Abridged%20prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/RKB%20Global%20Limited%20-%20Abridged%20prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1437,7 +1621,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-03-30",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/mar-2026/bharat-pet-limited-drhp_100673.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Bharat%20PET%20Limited-Abridged%20Prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Bharat%20PET%20Limited-Abridged%20Prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1454,7 +1639,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-03-30",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/mar-2026/laxyo-limited-drhp_100686.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Laxyo%20Limited-Draft%20Abridged%20Prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Laxyo%20Limited-Draft%20Abridged%20Prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1471,7 +1657,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-03-25",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/mar-2026/trenzet-infra-limited-drhp_100553.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Trenzet%20Infra%20Limited-Abridged%20Prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/Trenzet%20Infra%20Limited-Abridged%20Prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1488,7 +1675,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-03-24",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/mar-2026/sbi-funds-management-limited-drhp_100517.html",
-          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/SBI%20Funds%20Management%20Limited%20-Abridged%20Prospectus_p.pdf"
+          "draft_abridged_url": "https://www.sebi.gov.in/sebi_data/commondocs/apr-2026/SBI%20Funds%20Management%20Limited%20-Abridged%20Prospectus_p.pdf",
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1505,7 +1693,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-02-06",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/feb-2026/srit-india-limited-drhp_99558.html",
-          "draft_abridged_url": null
+          "draft_abridged_url": null,
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1522,7 +1711,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-02-04",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/feb-2026/marri-retail-limited-drhp_99483.html",
-          "draft_abridged_url": null
+          "draft_abridged_url": null,
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1539,7 +1729,8 @@
           "filing_type": "UDRHP-1",
           "filing_date": "2026-02-04",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/feb-2026/turtlemint-fintech-solutions-limited-udrhp-1_99493.html",
-          "draft_abridged_url": null
+          "draft_abridged_url": null,
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1556,7 +1747,8 @@
           "filing_type": "UDRHP-I",
           "filing_date": "2026-01-23",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jan-2026/phonepe-limited-udrhp-i_99285.html",
-          "draft_abridged_url": null
+          "draft_abridged_url": null,
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1573,7 +1765,8 @@
           "filing_type": "DRHP",
           "filing_date": "2026-01-22",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jan-2026/advanta-enterprises-limited-drhp_99228.html",
-          "draft_abridged_url": null
+          "draft_abridged_url": null,
+          "not_seen_in_latest_scan": false
         }
       ]
     },
@@ -1590,9 +1783,13 @@
           "filing_type": "DRHP",
           "filing_date": "2026-01-22",
           "filing_url": "https://www.sebi.gov.in/filings/public-issues/jan-2026/eaaa-india-alternatives-limited-drhp_99257.html",
-          "draft_abridged_url": null
+          "draft_abridged_url": null,
+          "not_seen_in_latest_scan": false
         }
       ]
     }
-  ]
+  ],
+  "collector_version": "2.0.0",
+  "collection_started_at": "2026-09-26T01:38:42.232Z",
+  "collection_completed_at": "2026-09-26T01:38:47.267Z"
 }
