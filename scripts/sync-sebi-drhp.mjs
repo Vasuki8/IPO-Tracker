@@ -39,7 +39,7 @@ function filingType(label) {
   const text = norm(label);
   if (/\b(?:addendum|corrigendum)\b/i.test(text)) return null;
   const m = text.match(/\b(UDRHP(?:[-\s]*(?:I{1,4}|V|\d+))?|DRHP)\b/i);
-  return m ? m[1].toUpperCase().replace(/\s+/g,"-") : null;
+  return m ? m[1].toUpperCase().replace(/[-\s]+/g,"-") : null;
 }
 function escapeRegex(value) {
   return String(value).replace(/[.*+?^$()|[\]\\{}]/g, "\\$&");
@@ -47,7 +47,10 @@ function escapeRegex(value) {
 function issuerFromLabel(label, type) {
   const text = strip(String(label).split(/<br\s*\/?\s*>/i)[0]);
   if (!text) return null;
-  return norm(text.replace(new RegExp("\\s*[-–—]?\\s*" + escapeRegex(type) + "\\s*$","i"),""));
+  // Strip the literal filing marker using the source's separator variants,
+  // rather than the normalized display type. SEBI uses forms such as
+  // "UDRHP 1" and "UDRHP - I"; neither belongs in the issuer name.
+  return norm(text.replace(/\s*[-–—]?\s*\b(?:UDRHP(?:[-\s]*(?:I{1,4}|V|\d+))?|DRHP)\b\s*$/i,""));
 }
 function firstFilingHref(row) {
   for (const m of row.matchAll(/<a\b[^>]*href\s*=\s*(["'])([^"']+)\1[^>]*>/gi)) {
