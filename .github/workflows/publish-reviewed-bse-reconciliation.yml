@@ -1,0 +1,50 @@
+name: Publish reviewed BSE reconciliation
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "data/verified-bse-listings/2026-09-26-bse-reconciliation-five.json"
+      - "scripts/apply-reviewed-bse-reconciliation.mjs"
+      - "scripts/test-reviewed-bse-reconciliation.mjs"
+      - ".github/workflows/publish-reviewed-bse-reconciliation.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reviewed-bse-reconciliation-publication
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validate reviewed reconciliation
+        run: |
+          node scripts/apply-reviewed-bse-reconciliation.mjs --check
+          node scripts/test-reviewed-bse-reconciliation.mjs
+      - name: Publish reviewed reconciliation
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            node scripts/apply-reviewed-bse-reconciliation.mjs
+            node scripts/build-published-data.mjs
+            node scripts/build-published-data.mjs --check
+            node scripts/validate-data.mjs
+            node scripts/test-reviewed-bse-reconciliation.mjs
+            if [ -z "$(git status --porcelain -- data/recovery data/ipos.json)" ]; then exit 0; fi
+            git add data/recovery data/ipos.json
+            git commit -m "data(ipo): publish reviewed BSE reconciliation"
+            if git push origin HEAD:main; then exit 0; fi
+          done
+          exit 1
