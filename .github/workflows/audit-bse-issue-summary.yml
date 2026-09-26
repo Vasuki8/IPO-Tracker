@@ -67,6 +67,17 @@ jobs:
             status:report.status,
             coverage:report.coverage,
             reconciliation:report.reconciliation,
+            year_summary:report.year_reports.map(row=>({
+              year:row.year,official_total:row.official_total,mainboard_total:row.mainboard_total,sme_total:row.sme_total,
+              exact_matches:row.exact_matches,prefix_matches:row.prefix_matches,ambiguous_matches:row.ambiguous_matches,
+              unmatched:row.unmatched,listing_date_conflicts:row.listing_date_conflicts
+            })),
+            prefix_matches:report.year_reports.flatMap(row=>row.results.filter(x=>x.match_type==="prefix")).map(x=>({
+              source_year:x.source_year,issuer_name:x.issuer_name,listing_date:x.listing_date,bse_scrip_code:x.bse_scrip_code,matched:x.matched
+            })),
+            listing_date_conflicts:report.year_reports.flatMap(row=>row.results.filter(x=>x.listing_date_conflict)).map(x=>({
+              source_year:x.source_year,issuer_name:x.issuer_name,observed_listing_date:x.listing_date,bse_scrip_code:x.bse_scrip_code,matched:x.matched
+            })),
             unmatched:report.review_candidates.filter(x=>x.match_type==="none").slice(0,50),
             ambiguous:report.review_candidates.filter(x=>x.match_type.startsWith("ambiguous")||x.match_type==="issue_identity_conflict").slice(0,50)
           };
