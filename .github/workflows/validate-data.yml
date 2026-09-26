@@ -128,6 +128,11 @@ jobs:
       - name: Test BSE 2020 unmatched issuer review
         run: node scripts/test-bse-2020-unmatched-review.mjs
 
+      - name: Test first BSE 2021 reviewed import
+        run: |
+          node scripts/test-bse-2021-mainboard-batch1-review.mjs
+          node scripts/test-reviewed-bse-2021-mainboard-batch1-import.mjs
+
       - name: Test BSE detail and listing parsers
         run: node scripts/test-extract-bse-ipo-fields.mjs
 

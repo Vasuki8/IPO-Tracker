@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "status": "approved_bse_2021_mainboard_batch1_import",
+  "review_path": "data/discovery/bse-2021-mainboard-batch1-review-2026-09-26.json",
+  "receipt_path": "data/evidence/bse-2021-mainboard-batch1-source-receipt-2026-09-26.json",
+  "review_sha256": "a6a8d461ca6580aa21f33285b94d2b91e6f2a8a760a8df96387108ae40cf83e9",
+  "source_artifact_id": 10917724737,
+  "source_artifact_digest": "sha256:c682b51c1e0fe3a6bcfb16e509f68f8a642dda6ac9396915628f6843e61aedd4",
+  "target_year": 2021,
+  "actions": [
+    {
+      "key": "irfc",
+      "stable_id": "indian-railway-finance-corporation-limited"
+    },
+    {
+      "key": "anupam",
+      "stable_id": "anupam-rasayan-india-limited"
+    },
+    {
+      "key": "exxaro",
+      "stable_id": "exxaro-tiles-limited"
+    }
+  ],
+  "publication_rules": {
+    "board": "missing unless issuer-specific retained source supports it",
+    "bse_scrip_code": "discovery-only; do not publish without retained field source",
+    "unsupported_fields": "remain null"
+  }
+}
