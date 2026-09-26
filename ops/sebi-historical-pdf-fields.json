@@ -2629,10 +2629,10 @@
     "2025|saatvik-green-energy-limited": {
       "issuer_name": "Saatvik Green Energy Limited",
       "listing_date": "2025-09-26",
-      "last_attempted_at": "2026-09-25T17:36:49.951Z",
+      "last_attempted_at": "2026-09-26T20:17:19.352Z",
       "parser_version": "1.2.0",
       "status": "error",
-      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-p4Ytl5/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758262557157.pdf\ncurl: (18) transfer closed with 1049070 bytes remaining to read\ncurl: (18) transfer closed with 8262574 bytes remaining to read\n",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-A40Leq/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758262557157.pdf\ncurl: (28) Operation timed out after 75002 milliseconds with 8487007 out of 11243765 bytes received\ncurl: (28) Operation timed out after 75001 milliseconds with 10671183 out of 11243765 bytes received\n",
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2025/1758262557157.pdf"
     },
     "2024|krn-heat-exchanger-and-refrigeration-limited": {
@@ -3585,6 +3585,131 @@
         "publication_date": "2022-05-11"
       },
       "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2022/1652258502546.PDF"
+    },
+    "2024|ecos-india-mobility-and-hospitality-limited": {
+      "issuer_name": "Ecos (India) Mobility & Hospitality Limited",
+      "listing_date": "2024-09-04",
+      "last_attempted_at": "2026-09-26T20:17:19.352Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Ecos India Mobility and Hospitality Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1724299816176.pdf",
+        "publication_date": "2024-08-20"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2024/1724299816176.pdf"
+    },
+    "2023|rishabh-instruments-limited": {
+      "issuer_name": "Rishabh Instruments Limited",
+      "listing_date": "2023-09-11",
+      "last_attempted_at": "2026-09-26T20:17:19.352Z",
+      "parser_version": "1.2.0",
+      "status": "error",
+      "error": "Command failed: curl --fail --location --silent --show-error --retry 1 --retry-all-errors --connect-timeout 10 --max-time 75 --user-agent Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36 --referer https://www.sebi.gov.in/ --output /tmp/ipo-historical-pdf-TD0RmX/document.pdf https://www.sebi.gov.in/sebi_data/attachdocs/aug-2023/1693289844543.PDF\ncurl: (18) transfer closed with 3316746 bytes remaining to read\ncurl: (28) Operation timed out after 75000 milliseconds with 9059799 out of 12120489 bytes received\n",
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2023/1693289844543.PDF"
+    },
+    "2022|annapurna-swadisht-limited": {
+      "issuer_name": "Annapurna Swadisht Limited",
+      "listing_date": "2022-09-27",
+      "last_attempted_at": "2026-09-26T20:17:19.352Z",
+      "parser_version": "1.2.0",
+      "status": "no_fields",
+      "extracted_fields": [],
+      "remaining_fields": [
+        "price_band",
+        "issue_size_inr",
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": null,
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Annapurna Swadisht Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671770239441.pdf",
+        "publication_date": "2022-09-20"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671770239441.pdf"
+    },
+    "2025|vikran-engineering-limited": {
+      "issuer_name": "Vikran Engineering Limited",
+      "listing_date": "2025-09-03",
+      "last_attempted_at": "2026-09-26T20:17:19.352Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "market_lot"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 7720000000,
+          "source_value": "₹7,720 MILLION",
+          "page": 3
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI RHP PDF",
+        "identity": "Vikran Engineering Limited - RHP — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1755769672947.pdf",
+        "publication_date": "2025-08-19"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2025/1755769672947.pdf"
+    },
+    "2022|viviana-power-tech-limited": {
+      "issuer_name": "Viviana Power Tech Limited",
+      "listing_date": "2022-09-16",
+      "last_attempted_at": "2026-09-26T20:17:19.352Z",
+      "parser_version": "1.2.0",
+      "status": "extracted",
+      "extracted_fields": [
+        "issue_size_inr"
+      ],
+      "remaining_fields": [
+        "price_band"
+      ],
+      "extractions": {
+        "issue_price": null,
+        "price_band": null,
+        "issue_size_inr": {
+          "value": 88000000,
+          "source_value": "₹880.00 LAKHS",
+          "page": 2
+        },
+        "market_lot": null,
+        "minimum_bid_quantity": null
+      },
+      "document": {
+        "type": "SEBI Prospectus PDF",
+        "identity": "Viviana Power Tech Limited - Prospectus — PDF",
+        "url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671770794144.pdf",
+        "publication_date": "2022-08-29"
+      },
+      "source_url": "https://www.sebi.gov.in/sebi_data/attachdocs/dec-2022/1671770794144.pdf"
     }
   }
 }
