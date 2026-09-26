@@ -63,13 +63,17 @@ This correction does **not** promote a DRHP to an approved/upcoming/open IPO. Th
 
 The Silgo sources disagree on the allotment date: NSE records 13-Feb-2026, while the issuer's later call notice states 17-Feb-2026. That conflict is retained because it is not needed to classify the event. Original PDF bytes were not materialized in this connector run; the review retains literal official-source projections and projection SHA-256 values without representing them as original-file hashes. See [the rights-security review](data/discovery/nse-universe-rights-security-review-2026-09-26.json).
 
+### Final three NSE holds resolved
+
+**GICL, VITAL and KOTYARK are resolved as 2026 SME→Main Board migration events, not new 2026 IPOs.** Official NSE/issuer evidence explicitly identifies the migration dates as 18-Feb-2026, 11-Mar-2026 and 12-Mar-2026 respectively. Their earlier SME IPO histories remain separate and preserved: GICL 2016, VITAL 2022 and KOTYARK 2021. See [the final migration review](data/discovery/nse-universe-final-migration-review-2026-09-26.json).
+
+The pinned 119-group review now has **zero unresolved NSE groups**: **105 approved IPOs + five debt-event exclusions + seven migration exclusions + two rights-issue security exclusions = 119**. This closes the pinned review set but still does **not** establish full Indian IPO-universe completeness.
+
 ### Exact next backend task
 
-Review **GICL, VITAL and KOTYARK** prior-offer/listing histories with independent official issuer/exchange evidence. Reconcile latest main/Pages, preserve their original IPO histories and source conflicts, and do not infer migration, repeat-security or new-IPO status from symbols or aggregate observations.
+Review original historical equity IPO coverage for the **nine earlier debt/migration-event issuers**: 10MWL29, QMSMEDI, 12VPT28A, ANNAPURNA, SWARAJ, 1150VIES30, 12AIL28, DOLLEX and 13DCCL28. Their 2026 non-IPO events remain excluded; independently verify any original IPO/listing history without recycling those events.
 
-Current accounting is **105 approved IPOs, five debt-event exclusions, four migration exclusions, two rights-issue security exclusions and three unresolved cases out of 119 pinned groups**. Original September 25 canonical/hold files are historical snapshots; use the September 26 current-state file for new work. This is not full-universe completeness.
-
-Separately review original historical IPO coverage for the nine excluded-event issuers. Fabino's BSE listing-year hold, BSE issue-summary, SEBI historical pagination and NSE-series gaps remain. BSE parser v1.5 is **236/236 parsed**; do not replay its cursor. UI/research-depth work remains in its own handoff. No minimum-investment, billing/accounts/ads, spending or access-policy expansion.
+Fabino's BSE listing-year hold, BSE issue-summary, SEBI historical pagination and NSE-series gaps remain. BSE parser v1.5 is **236/236 parsed**; do not replay its cursor. UI/research-depth work remains in its own handoff. No minimum-investment, billing/accounts/ads, spending or access-policy expansion.
 
 ## Local checks
 
