@@ -6,12 +6,12 @@ const app=fs.readFileSync("assets/drhp.js","utf8");
 const index=fs.readFileSync("index.html","utf8");
 const data=JSON.parse(fs.readFileSync("data/drhp-filings.json","utf8"));
 
-assert.match(index,/href="drhp\.html"[^>]*>DRHP filings<\/a>/);
+assert.match(index,/href="drhp\.html"[^>]*>DRHP \/ Pre-IPO<\/a>/);
 assert.match(html,/id="drhpSearch"/);
 assert.match(html,/data\/drhp-filings\.json|assets\/drhp\.js/);
-assert.match(html,/A DRHP filing is a draft disclosure/);
+assert.match(html,/DRHP Filed \/ Pre-IPO/);\nassert.match(html,/not yet categorized as Upcoming, Open, Closed, or Listed/);
 assert.match(html,/Official SEBI source/);
-assert.match(app,/fetch\("data\/drhp-filings\.json"/);
+assert.match(app,/fetch\("data\/drhp-filings\.json"/);\nassert.match(app,/fetch\("data\/ipos\.json"/);\nassert.match(app,/buildPreIpoView/);
 assert.match(app,/stop_reason !== "first_page_strictly_older_than_year"/);
 assert.match(app,/drhpIntegrityNote/);
 assert.equal(data.coverage.filing_records,data.companies.reduce((n,c)=>n+c.filings.length,0));
