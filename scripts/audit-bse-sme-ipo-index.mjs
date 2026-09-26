@@ -256,7 +256,11 @@ export function matchIndexCompany(company, records) {
   const prefix = records.filter(({ record }) => {
     const current = normalizeIssuerName(record.issuer_name);
     if (!current || Math.min(current.length, target.length) < 12) return false;
-    return current.startsWith(target) || target.startsWith(current);
+    if (!(current.startsWith(target) || target.startsWith(current))) return false;
+    const longer=current.length>=target.length?current:target;
+    const shorter=current.length>=target.length?target:current;
+    const remainder=longer.slice(shorter.length).trim();
+    return remainder.length<=3 || remainder==="limited";
   });
   if (prefix.length === 1) return { match: prefix[0], match_type: "prefix" };
   if (prefix.length > 1) return { match: null, match_type: "ambiguous_prefix" };
