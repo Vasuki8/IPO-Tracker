@@ -49,6 +49,51 @@ function officialSummaryUrl(value){
 function rowCells(row){
   return [...String(row).matchAll(/<t[dh]\b[^>]*>([\s\S]*?)<\/t[dh]>/gi)].map(m=>text(m[1]));
 }
+
+function shellFingerprint(html){
+  const source=String(html??"");
+  const title=text(source.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1]??"");
+  const scripts=[...source.matchAll(/<script\b[^>]*\bsrc\s*=\s*(["'])(.*?)\1[^>]*>/gi)]
+    .map(m=>{try{return new URL(decode(m[2]),BSE_ISSUE_SUMMARY_URL).href;}catch{return null;}})
+    .filter(Boolean);
+  const forms=[...source.matchAll(/<form\b[^>]*>/gi)].map(m=>attr(m[0],"action")).filter(Boolean);
+  return{
+    title:title||null,
+    text_head:text(source).slice(0,500),
+    script_sources:[...new Set(scripts)].slice(0,20),
+    form_actions:[...new Set(forms)].slice(0,10),
+    displayipo_mentions:(source.match(/DisplayIPO/gi)||[]).length,
+    aspnet_viewstate:/__VIEWSTATE/i.test(source)
+  };
+}
+function bundleHints(source){
+  const hints=[],seen=new Set();
+  for(const match of String(source??"").matchAll(/["'`](.{1,260}?)["'`]/g)){
+    const value=match[1].replace(/\\\//g,"/").trim();
+    if(!/(ipo|issue|publicissue|api|summary)/i.test(value))continue;
+    if(!/[A-Za-z]/.test(value)||seen.has(value))continue;
+    seen.add(value);hints.push(value);
+    if(hints.length>=80)break;
+  }
+  return hints;
+}
+async function diagnoseShell(fetchImpl,html,headers,outputDir){
+  const fingerprint=shellFingerprint(html),bundles=[];
+  for(const [index,url] of fingerprint.script_sources.entries()){
+    let u;try{u=new URL(url);}catch{continue;}
+    if(!["www.bseindia.com","bseindia.com"].includes(u.hostname.toLowerCase()))continue;
+    if(!/\.js(?:\?|$)/i.test(u.pathname+u.search))continue;
+    try{
+      const response=await fetchImpl(u.href,{headers:{...headers,accept:"application/javascript,text/javascript,*/*;q=0.5"},redirect:"follow",signal:AbortSignal.timeout(30000)});
+      const bytes=await readBounded(response,12*1024*1024);
+      const file="raw/shell-bundle-"+String(index+1).padStart(2,"0")+".js";
+      fs.writeFileSync(path.join(outputDir,file),bytes);
+      bundles.push({url:u.href,http_status:response.status,bytes:bytes.length,sha256:sha256(bytes),file,hints:bundleHints(bytes.toString("utf8"))});
+    }catch(error){bundles.push({url:u.href,error:String(error?.message||error)});}
+    if(bundles.length>=8)break;
+  }
+  return{...fingerprint,bundles};
+}
 function parseDetailLink(href){
   const url=officialSummaryUrl(decode(href));
   if(!url||!/\/DisplayIPO\.aspx$/i.test(new URL(url).pathname))return null;
@@ -190,7 +235,14 @@ export async function collectBseIssueSummary({
     if(totalBytes>MAX_TOTAL_BYTES)throw new Error("bse_issue_summary_total_size_limit");
     html=fetched.bytes.toString("utf8");
     const rows=parseBseIssueSummaryRows(html);
-    if(page===1&&!rows.length)throw new Error("bse_issue_summary_no_issue_rows");
+    if(page===1&&!rows.length){
+      const shellFile="raw/page-001-shell.html";
+      fs.writeFileSync(path.join(outputDir,shellFile),fetched.bytes);
+      const diagnostic=await diagnoseShell(fetchImpl,html,headers,outputDir);
+      fs.writeFileSync(path.join(outputDir,"shell-diagnostic.json"),JSON.stringify(diagnostic,null,2)+"\n");
+      console.log(JSON.stringify({bse_issue_summary_shell_diagnostic:diagnostic}));
+      throw new Error("bse_issue_summary_no_issue_rows");
+    }
     const rowFingerprint=sha256(Buffer.from(JSON.stringify(rows.map(r=>[r.issuer_name,r.issue_no,r.issue_start_dates,r.stage_links.map(x=>x.url)]))));
     if(pages.some(p=>p.row_fingerprint===rowFingerprint))throw new Error("bse_issue_summary_pagination_did_not_advance");
     const file="raw/page-"+String(page).padStart(3,"0")+".html";
