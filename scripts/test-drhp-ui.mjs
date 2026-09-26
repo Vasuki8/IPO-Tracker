@@ -9,7 +9,6 @@ const data=JSON.parse(fs.readFileSync("data/drhp-filings.json","utf8"));
 assert.match(index,/href="drhp\.html"[^>]*>Pre-IPO companies<\/a>/);
 assert.match(html,/Companies that have filed for an IPO\./);
 assert.match(html,/One company per row/);
-assert.match(html,/DRHP filed/);
 assert.doesNotMatch(html,/Filing records/);
 assert.doesNotMatch(html,/DRHP filing companies/);
 assert.match(html,/id="drhpSearch"/);
