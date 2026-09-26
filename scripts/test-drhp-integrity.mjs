@@ -31,6 +31,16 @@ assert.equal(correctedEaaa.filings[0].date_basis,'lead_manager_document_earliest
 assert.ok(correctedMerge.corrections.some(c=>c.action==='removed_out_of_scope_axis_fallback'&&c.filing_url===milkyBad.filing_url));
 assert.ok(correctedMerge.corrections.some(c=>c.action==='corrected_axis_fallback_projection'&&c.filing_url===eaaaBad.filing_url));
 assert.equal(correctedMerge.coverage.corrected_invalid_supplemental_rows,2);
+const eaaaPrimary={issuer_name:'EAAA India Alternatives Limited',filing_type:'DRHP',filing_date:'2026-01-22',
+  filing_url:'https://www.sebi.gov.in/filings/public-issues/jan-2026/eaaa-india-alternatives-limited-drhp_99257.html',draft_abridged_url:null};
+const legacyDuplicate=snapshot([filing(),eaaaBad],'2026-09-25T03:00:00.000Z');
+const primaryNow=snapshot([filing(),eaaaPrimary],'2026-09-26T03:00:00.000Z');
+primaryNow.collector_version='2.2.0';
+const dedupedAxis=mergeDrhpSnapshots(legacyDuplicate,primaryNow);
+assert.equal(dedupedAxis.companies.some(c=>/DRHP \(2026\)/.test(c.issuer_name)),false,'malformed Axis mirror identity is retired');
+assert.ok(dedupedAxis.companies.some(c=>c.issuer_name==='EAAA India Alternatives Limited'),'primary-source legal issuer remains');
+assert.ok(dedupedAxis.corrections.some(c=>c.action==='removed_superseded_axis_mirror_identity'&&c.filing_url===eaaaBad.filing_url));
+assert.equal(dedupedAxis.coverage.corrected_invalid_supplemental_rows,1);
 const original=JSON.stringify([old,fresh]);
 const merged=mergeDrhpSnapshots(old,fresh);
 assert.deepEqual(validateDrhpData(merged),{companies:2,filings:2});
@@ -62,4 +72,4 @@ let repeat=0;await assert.rejects(()=>collectDrhpYear({fetchImpl:async url=>resp
 let malformed=0;await assert.rejects(()=>collectDrhpYear({fetchImpl:async url=>response(url,++malformed===1?page(1):'<h1>Access denied</h1>'),clock:()=>fresh.generated_at,supplementalSources:false}),/pagination/);
 await assert.rejects(()=>collectDrhpYear({fetchImpl:async()=>response('https://evil.test',page(1)),clock:()=>fresh.generated_at,supplementalSources:false}),/response/);
 fs.rmSync(out,{recursive:true});
-console.log(JSON.stringify({drhp_integrity_tests:{non_destructive_merge:true,unique_counts:true,source_drift_label:true,stale_and_conflicting_data_rejected:true,pagination_and_raw_retention:true,official_host_guards:true,lead_manager_url_guards:true,legacy_axis_mirror_corrections:true}}));
+console.log(JSON.stringify({drhp_integrity_tests:{non_destructive_merge:true,unique_counts:true,source_drift_label:true,stale_and_conflicting_data_rejected:true,pagination_and_raw_retention:true,official_host_guards:true,lead_manager_url_guards:true,legacy_axis_mirror_corrections:true,superseded_axis_identity_removed:true}}));

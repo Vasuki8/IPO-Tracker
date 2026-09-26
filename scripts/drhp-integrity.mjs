@@ -43,6 +43,15 @@ function legacyAxisOutOfScope(filing,year) {
   const explicitYear=legacyAxisYearHint(filing);
   return Boolean((correctedDate&&!correctedDate.startsWith(year+'-'))||(explicitYear&&explicitYear!==year));
 }
+function legacyAxisCleanIssuerKey(filing) {
+  if (filing?.date_basis!=='lead_manager_document_upload_timestamp'||filing?.source_kind!=='official_lead_manager'||filing?.source_authority!=='Axis Capital Limited') return null;
+  const cleaned=String(filing.issuer_name||'')
+    .replace(/\s*[-–—]?\s*\bUpdated Draft Red Herring Prospectus(?:[-\s]*(?:I{1,4}|V|\d+))?\b(?:\s*\(\s*\d{4}\s*\))?\s*$/i,'')
+    .replace(/\s*[-–—]?\s*\bDraft Red Herring Prospectus\b(?:\s*\(\s*\d{4}\s*\))?\s*$/i,'')
+    .replace(/\s*[-–—]?\s*\b(?:UDRHP(?:[-\s]*(?:I{1,4}|V|\d+))?|DRHP)\b(?:\s*\(\s*\d{4}\s*\))?\s*$/i,'');
+  const key=canonicalIssuer(cleaned);
+  return key&&key!==canonicalIssuer(filing.issuer_name)?key:null;
+}
 function isAxisAdapterCorrection(previous,incoming) {
   return previous?.date_basis==='lead_manager_document_upload_timestamp' &&
     incoming?.date_basis==='lead_manager_document_earliest_url_timestamp' &&
@@ -55,6 +64,7 @@ export function mergeDrhpSnapshots(previous,incoming) {
   validateDrhpData(incoming,{allowLegacyCounts:true});
   if(previous){validateDrhpData(previous,{allowLegacyCounts:true});assert(incoming.generated_at>=previous.generated_at,'stale_drhp_snapshot');}
   const latest=new Map(incoming.companies.flatMap(c=>c.filings).map(f=>[f.filing_url,structuredClone(f)]));
+  const incomingIssuerKeys=new Set(incoming.companies.map(c=>canonicalIssuer(c.issuer_name)).filter(Boolean));
   const prior=previous?.companies.flatMap(c=>c.filings)||[];
   const retained=[], corrections=[...(previous?.corrections||[])];
   for(const f of prior){
@@ -77,6 +87,14 @@ export function mergeDrhpSnapshots(previous,incoming) {
         reason:'Previously retained Axis fallback was classified by a mirror/re-upload timestamp or explicit non-target filing year; it is outside the selected DRHP year.'};
       corrections.push(correction);continue;
     }
+    const cleanedAxisIssuerKey=legacyAxisCleanIssuerKey(f);
+    if(cleanedAxisIssuerKey&&incomingIssuerKeys.has(cleanedAxisIssuerKey)){
+      const correction={corrected_at:incoming.generated_at,action:'removed_superseded_axis_mirror_identity',filing_url:f.filing_url,
+        previous:{issuer_name:f.issuer_name,filing_date:f.filing_date,date_basis:f.date_basis},
+        corrected_issuer_key:cleanedAxisIssuerKey,
+        reason:'Legacy Axis fallback issuer text included a filing marker/year. The same cleaned legal issuer is now present from the current primary/fallback collection, so the malformed mirror identity is retired rather than retained as a separate company.'};
+      corrections.push(correction);continue;
+    }
     const copy=structuredClone(f);copy.not_seen_in_latest_scan=true;
     copy.retained_snapshot_evidence||={snapshot_generated_at:previous.generated_at,snapshot_projection_sha256:hash(previous),
       source_pages:previous.source_pages,note:'Retained filing from earlier source-backed dataset; no specific source row is inferred for legacy entries.'};
@@ -90,7 +108,7 @@ export function mergeDrhpSnapshots(previous,incoming) {
   data.coverage={...data.coverage,filing_records:latest.size,companies:data.companies.length,
     latest_scan_unique_filings:incoming.coverage.latest_scan_unique_filings??incoming.companies.reduce((n,c)=>n+c.filings.filter(f=>!f.not_seen_in_latest_scan).length,0),
     retained_not_seen_latest:data.companies.flatMap(c=>c.filings).filter(f=>f.not_seen_in_latest_scan).length,
-    corrected_invalid_supplemental_rows:corrections.filter(c=>['removed_out_of_scope_axis_fallback','corrected_axis_fallback_projection'].includes(c.action)).length,
+    corrected_invalid_supplemental_rows:corrections.filter(c=>['removed_out_of_scope_axis_fallback','corrected_axis_fallback_projection','removed_superseded_axis_mirror_identity'].includes(c.action)).length,
     pagination_consistent:totals.length===1,observed_source_totals:totals,full_universe_complete:false,
     limitations:'2026 explicit SEBI DRHP/UDRHP observations plus configured official lead-manager fallbacks only. Changing pagination may omit rows; past filings are retained, not presumed withdrawn. Unlabelled SEBI filings, other years and unconfigured lead-manager sources remain outside coverage.'};
   validateDrhpData(data);return data;
