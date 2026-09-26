@@ -1,0 +1,268 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_bse_2020_unmatched_issuer_batch",
+  "audit_path": "data/discovery/bse-issue-summary-coverage-audit-2026-09-26.json",
+  "source_year": 2020,
+  "review_scope": {
+    "official_bse_rows": 31,
+    "previously_matched": 27,
+    "unmatched_reviewed": 4,
+    "remaining_unreviewed_in_2020": 0,
+    "scope_note": "Issuer-by-issuer review of the four BSE 2020 rows left unmatched after the exhausted 2020 official BSE historical source audit."
+  },
+  "import_allowed": false,
+  "publication_change": false,
+  "actions": [
+    {
+      "key": "likhitha",
+      "issuer_name": "Likhitha Infrastructure Limited",
+      "stable_id": "likhitha-infrastructure-limited",
+      "bse_scrip_code": "543240",
+      "bse_audit_match": "unmatched",
+      "decision": "confirmed_missing_historical_ipo_candidate",
+      "target": {
+        "board": "Mainboard",
+        "listing_date": "2020-10-15",
+        "issue_price": 120,
+        "nse_symbol": "LIKHITHA",
+        "isin": null
+      },
+      "identity_sources": [
+        "likhitha_sebi_final_offer",
+        "likhitha_issuer_investors"
+      ],
+      "field_sources": {
+        "listing_date": "sebi_nov_2020_bulletin",
+        "issue_price": "sebi_nov_2020_bulletin",
+        "bse_scrip_code": "likhitha_issuer_investors",
+        "nse_symbol": "likhitha_issuer_investors"
+      },
+      "note": "SEBI final-offer evidence establishes the IPO; the issuer's investor page establishes current exchange identifiers; the SEBI November 2020 bulletin records the ₹120 issue price and 15-Oct-2020 listing."
+    },
+    {
+      "key": "secmark",
+      "issuer_name": "SecMark Consultancy Limited",
+      "stable_id": "secmark-consultancy-limited",
+      "bse_scrip_code": "543234",
+      "bse_audit_match": "unmatched",
+      "decision": "confirmed_missing_historical_ipo_candidate",
+      "target": {
+        "board": "SME",
+        "listing_date": "2020-10-01",
+        "issue_price": 135,
+        "nse_symbol": null,
+        "isin": "INE0BTM01013"
+      },
+      "identity_sources": [
+        "secmark_annual_report"
+      ],
+      "field_sources": {
+        "board": "secmark_annual_report",
+        "listing_date": "sebi_nov_2020_bulletin",
+        "issue_price": "sebi_nov_2020_bulletin",
+        "bse_scrip_code": "secmark_annual_report",
+        "isin": "secmark_annual_report"
+      },
+      "note": "The BSE-filed FY2020-21 annual report records the SME listing identity, BSE scrip code and ISIN; the SEBI November 2020 bulletin independently records the BSE SME IPO, ₹135 issue price and 01-Oct-2020 listing."
+    },
+    {
+      "key": "smauto",
+      "issuer_name": "SM Auto Stamping Limited",
+      "stable_id": "sm-auto-stamping-limited",
+      "bse_scrip_code": "543065",
+      "bse_audit_match": "unmatched",
+      "decision": "confirmed_missing_historical_ipo_candidate",
+      "target": {
+        "board": "SME",
+        "listing_date": "2020-03-16",
+        "issue_price": 18,
+        "nse_symbol": null,
+        "isin": null
+      },
+      "identity_sources": [
+        "smauto_draft_prospectus"
+      ],
+      "field_sources": {
+        "listing_date": "smauto_track_record",
+        "issue_price": "smauto_track_record"
+      },
+      "note": "The BSE-hosted draft prospectus establishes the 3,840,000-share first public issue and intended BSE SME listing; a later BSE-hosted prospectus retains the lead-manager past-issue disclosure showing the ₹18 issue price and 16-Mar-2020 listing. The BSE audit supplies scrip 543065 only as discovery identity."
+    },
+    {
+      "key": "shine",
+      "issuer_name": "Shine Fashions (India) Limited",
+      "stable_id": "shine-fashions-india-limited",
+      "bse_scrip_code": "543244",
+      "bse_audit_match": "unmatched",
+      "decision": "confirmed_missing_historical_ipo_candidate",
+      "target": {
+        "board": "SME",
+        "listing_date": "2020-11-02",
+        "issue_price": 40,
+        "open_date": "2020-10-22",
+        "close_date": "2020-10-26",
+        "market_lot": 3000,
+        "nse_symbol": null,
+        "isin": null
+      },
+      "identity_sources": [
+        "shine_sebi_final_prospectus"
+      ],
+      "field_sources": {
+        "listing_date": "shine_track_record",
+        "issue_price": "shine_sebi_final_prospectus",
+        "open_date": "shine_sebi_final_prospectus",
+        "close_date": "shine_sebi_final_prospectus",
+        "market_lot": "shine_sebi_final_prospectus"
+      },
+      "note": "The SEBI-hosted final prospectus records the offer dates, ₹40 issue price and 3,000-share lot; a later BSE-hosted prospectus retains the lead-manager disclosure showing a 02-Nov-2020 listing. The BSE audit supplies scrip 543244 only as discovery identity."
+    }
+  ],
+  "sources": [
+    {
+      "key": "likhitha_sebi_final_offer",
+      "authority": "SEBI",
+      "document_type": "SEBI Final Offer Filing Page",
+      "url": "https://www.sebi.gov.in/filings/public-issues/oct-2020/likhitha-infrastructure-limited_47858.html",
+      "publication_date": "2020-10-10",
+      "page": null,
+      "evidence_locator": "SEBI final-offer filing page for Likhitha Infrastructure Limited",
+      "projection": {
+        "issuer": "Likhitha Infrastructure Limited",
+        "filing_stage": "final_offer_document",
+        "filing_date": "2020-10-10"
+      },
+      "projection_sha256": "8918f347dd57f83847536944605ab50a836019c4f694dc07b3b92027af0ca93a"
+    },
+    {
+      "key": "sebi_nov_2020_bulletin",
+      "authority": "SEBI",
+      "document_type": "SEBI Bulletin — November 2020",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663924086916.pdf",
+      "publication_date": null,
+      "page": "Table 2",
+      "evidence_locator": "Company-wise Capital Raised through Public and Rights Issues (Equity): Likhitha Infrastructure Limited and Secmark Consultancy Limited",
+      "projection": {
+        "period": "November 2020",
+        "observations": [
+          {
+            "issuer": "Likhitha Infrastructure Limited",
+            "listing_date": "2020-10-15",
+            "issue_type": "IPO",
+            "issue_price_inr": 120,
+            "shares_issued": 5100000
+          },
+          {
+            "issuer": "Secmark Consultancy Limited",
+            "listing_date": "2020-10-01",
+            "issue_type": "BSE SME IPO",
+            "issue_price_inr": 135,
+            "shares_issued": 1114000
+          }
+        ]
+      },
+      "projection_sha256": "b03be49e60f9a7f0a43203a900b5a6ba0dd8d042c4fd17f2c6bb102891712f9d"
+    },
+    {
+      "key": "likhitha_issuer_investors",
+      "authority": "Issuer",
+      "document_type": "Investor Page",
+      "url": "https://www.likhitha.co.in/investors.html",
+      "publication_date": null,
+      "page": null,
+      "evidence_locator": "Investor page footer exchange identifiers",
+      "projection": {
+        "issuer": "Likhitha Infrastructure Limited",
+        "nse_symbol": "LIKHITHA",
+        "bse_scrip_code": "543240"
+      },
+      "projection_sha256": "f2336315a03c7151681afc2e4c879e3b4d7efc8c61a5b0a12e571f406b02f1dc"
+    },
+    {
+      "key": "secmark_annual_report",
+      "authority": "BSE / issuer filing",
+      "document_type": "Annual Report FY2020-21",
+      "url": "https://www.bseindia.com/xml-data/corpfiling/Attachhis/bf62f7d4-507b-4cc2-94b0-fa0f0a93591c.pdf",
+      "publication_date": "2021-09-18",
+      "page": "29,74",
+      "evidence_locator": "Director's Report listing section and IPO proceeds note",
+      "projection": {
+        "issuer": "SecMark Consultancy Limited",
+        "ipo_shares": 1114000,
+        "issue_price_inr": 135,
+        "board": "SME",
+        "listing_date": "2020-10-01",
+        "bse_scrip_code": "543234",
+        "isin": "INE0BTM01013"
+      },
+      "projection_sha256": "898e5a9b6003bf728e64d7c0285411b991547e5eee38caa2afab8dc5a9ad76bd"
+    },
+    {
+      "key": "smauto_draft_prospectus",
+      "authority": "BSE",
+      "document_type": "Draft Prospectus",
+      "url": "https://www.bseindia.com/corporates/download/333034/Draft%20Prospectus%20SM%20Auto_20200101125826.pdf",
+      "publication_date": "2019-12-31",
+      "page": null,
+      "evidence_locator": "Cover: initial public offer of 3,840,000 equity shares; BSE SME proposed listing",
+      "projection": {
+        "issuer": "SM Auto Stamping Limited",
+        "ipo_shares": 3840000,
+        "intended_platform": "BSE SME"
+      },
+      "projection_sha256": "eddae1b96e0d0967e88cb5dbae496ea5a073db4b30fb297f94d51a57c29d22f6"
+    },
+    {
+      "key": "smauto_track_record",
+      "authority": "BSE",
+      "document_type": "Lead Manager Track Record in BSE-hosted Prospectus",
+      "url": "https://www.bseindia.com/corporates/download/373676/SME_IPO%20Open/1Prospectus%20-%20SVRL%2023.09.2021_20210924170138.pdf",
+      "publication_date": null,
+      "page": "182",
+      "evidence_locator": "Past-issue table: source text 'SM Auto Stampling Limited' matched to SM Auto Stamping Limited",
+      "projection": {
+        "issuer_source_value": "SM Auto Stampling Limited",
+        "matched_issuer": "SM Auto Stamping Limited",
+        "issue_size_crore": 6.912,
+        "issue_price_inr": 18,
+        "listing_date": "2020-03-16"
+      },
+      "projection_sha256": "841387f2f12a658d7224d5ce449e80fbfbb36cf984bf553ff159a1537c384ace"
+    },
+    {
+      "key": "shine_sebi_final_prospectus",
+      "authority": "SEBI",
+      "document_type": "Final Prospectus",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/nov-2020/1604574008001.pdf",
+      "publication_date": "2020-10-15",
+      "page": null,
+      "evidence_locator": "Issue definitions: opening, closing, price and lot size",
+      "projection": {
+        "issuer": "Shine Fashions (India) Limited",
+        "open_date": "2020-10-22",
+        "close_date": "2020-10-26",
+        "issue_price_inr": 40,
+        "lot_size": 3000
+      },
+      "projection_sha256": "b9d47763939c4833d202c60e3cb44ed0fd1f7c48a01b42c06742c9bbe787b48e"
+    },
+    {
+      "key": "shine_track_record",
+      "authority": "BSE",
+      "document_type": "Lead Manager Track Record in BSE-hosted Prospectus",
+      "url": "https://www.bseindia.com/corporates/download/332940/SME_IPO%20Open/1.%20Prospectus_20220112191555.pdf",
+      "publication_date": "2022-11-28",
+      "page": "150",
+      "evidence_locator": "Past-issue table: Shine Fashions (India) Limited",
+      "projection": {
+        "issuer": "Shine Fashions (India) Limited",
+        "issue_size_crore": 1.6,
+        "issue_price_inr": 40,
+        "listing_date": "2020-11-02"
+      },
+      "projection_sha256": "76dda09889c90e43c908d9ce95b226361d5f364646a4fc00f6960b3f93b90ab2"
+    }
+  ],
+  "review_result": "All four 2020 BSE-unmatched rows are supported as historical IPOs missing from recovery. This file is review evidence only and cannot publish records without original-source materialization plus a separate reviewed importer.",
+  "next_step": "Materialize the eight original official/issuer sources, retain their response hashes and artifact identity, then prepare a four-record reviewed importer. Missing fields must remain null unless directly supported."
+}

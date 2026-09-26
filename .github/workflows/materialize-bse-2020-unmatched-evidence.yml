@@ -1,0 +1,86 @@
+name: Materialize BSE 2020 unmatched evidence
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "data/discovery/bse-2020-unmatched-review-2026-09-26.json"
+      - "scripts/materialize-bse-2020-unmatched-evidence.mjs"
+      - "scripts/test-bse-2020-unmatched-review.mjs"
+      - ".github/workflows/materialize-bse-2020-unmatched-evidence.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bse-2020-unmatched-evidence
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Test reviewed 2020 unmatched batch
+        run: node scripts/test-bse-2020-unmatched-review.mjs
+
+      - name: Fetch original official sources
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/bse-2020-unmatched-evidence"
+          node scripts/materialize-bse-2020-unmatched-evidence.mjs \
+            --review=data/discovery/bse-2020-unmatched-review-2026-09-26.json \
+            --evidence-dir="$RUNNER_TEMP/bse-2020-unmatched-evidence" \
+            --receipt="$RUNNER_TEMP/bse-2020-unmatched-receipt.json"
+          cp "$RUNNER_TEMP/bse-2020-unmatched-receipt.json" "$RUNNER_TEMP/bse-2020-unmatched-evidence/source-receipt-before-artifact.json"
+
+      - name: Retain original source bytes
+        id: evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: bse-2020-unmatched-evidence-${{ github.run_id }}
+          path: ${{ runner.temp }}/bse-2020-unmatched-evidence
+          retention-days: 14
+          compression-level: 0
+          if-no-files-found: error
+
+      - name: Attach artifact identity
+        env:
+          ARTIFACT_ID: ${{ steps.evidence.outputs.artifact-id }}
+          ARTIFACT_DIGEST: ${{ steps.evidence.outputs.artifact-digest }}
+          ARTIFACT_URL: ${{ steps.evidence.outputs.artifact-url }}
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from "node:fs";
+          const file=process.env.RUNNER_TEMP+"/bse-2020-unmatched-receipt.json";
+          const receipt=JSON.parse(fs.readFileSync(file,"utf8"));
+          const raw=String(process.env.ARTIFACT_DIGEST||"");
+          receipt.workflow_run_id=process.env.GITHUB_RUN_ID;
+          receipt.workflow_artifact={artifact_id:Number(process.env.ARTIFACT_ID),artifact_digest:raw.startsWith("sha256:")?raw:"sha256:"+raw,artifact_url:process.env.ARTIFACT_URL,retention_days:14};
+          fs.writeFileSync(file,JSON.stringify(receipt,null,2)+"\n");
+          NODE
+
+      - name: Publish durable source receipt
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            mkdir -p data/evidence
+            cp "$RUNNER_TEMP/bse-2020-unmatched-receipt.json" data/evidence/bse-2020-unmatched-source-receipt-2026-09-26.json
+            node scripts/materialize-bse-2020-unmatched-evidence.mjs \
+              --review=data/discovery/bse-2020-unmatched-review-2026-09-26.json \
+              --validate-receipt=data/evidence/bse-2020-unmatched-source-receipt-2026-09-26.json
+            if [ -z "$(git status --porcelain -- data/evidence/bse-2020-unmatched-source-receipt-2026-09-26.json)" ]; then exit 0; fi
+            git add data/evidence/bse-2020-unmatched-source-receipt-2026-09-26.json
+            git commit -m "data(evidence): retain BSE 2020 unmatched source receipt"
+            if git push origin HEAD:main; then exit 0; fi
+          done
+          exit 1
