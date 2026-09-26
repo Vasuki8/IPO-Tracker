@@ -6,6 +6,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 export const DRHP_LIST_URL = "https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&sid=3&smid=10&ssid=15";
 export const DRHP_AJAX_URL = "https://www.sebi.gov.in/sebiweb/ajax/home/getnewslistinfo.jsp";
+export const AXIS_OFFER_DOCS_URL = "https://www.axiscapital.co.in/offer-documents";
 export const DEFAULT_YEAR = 2026;
 export const DEFAULT_MAX_PAGES = 16;
 const USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36";
@@ -36,12 +37,21 @@ export function canonicalIssuer(value) {
 export function officialSebiUrl(value, prefix = "/filings/public-issues/") {
   try { const u = new URL(value); return u.protocol === "https:" && ["www.sebi.gov.in", "sebi.gov.in"].includes(u.hostname) && !u.username && !u.password && u.pathname.startsWith(prefix) ? u.href : null; } catch { return null; }
 }
+export function officialAxisUrl(value, prefix = "/contents/") {
+  try { const u = new URL(value); return u.protocol === "https:" && ["www.axiscapital.co.in", "axiscapital.co.in"].includes(u.hostname) && !u.username && !u.password && u.pathname.startsWith(prefix) ? u.href : null; } catch { return null; }
+}
+export function officialDrhpDocumentUrl(value) {
+  return officialSebiUrl(value) || (officialAxisUrl(value) && /\.pdf(?:$|\?)/i.test(new URL(value).pathname) ? new URL(value).href : null);
+}
 function absoluteUrl(raw, base = DRHP_LIST_URL) {
   try { return new URL(decode(raw), base).href; } catch { return null; }
 }
 function filingType(label) {
   const text = norm(label);
-  if (/\b(?:addendum|corrigendum)\b/i.test(text)) return null;
+  if (/\b(?:addendum|corrigendum|abridged)\b/i.test(text)) return null;
+  const updated = text.match(/\bUpdated Draft Red Herring Prospectus(?:[-\s]*(I{1,4}|V|\d+))?\b/i);
+  if (updated) return updated[1] ? "UDRHP-" + updated[1].toUpperCase() : "UDRHP";
+  if (/\bDraft Red Herring Prospectus\b/i.test(text)) return "DRHP";
   const m = text.match(/\b(UDRHP(?:[-\s]*(?:I{1,4}|V|\d+))?|DRHP)\b/i);
   return m ? m[1].toUpperCase().replace(/[-\s]+/g,"-") : null;
 }
@@ -54,7 +64,10 @@ function issuerFromLabel(label, type) {
   // Strip the literal filing marker using the source's separator variants,
   // rather than the normalized display type. SEBI uses forms such as
   // "UDRHP 1" and "UDRHP - I"; neither belongs in the issuer name.
-  return norm(text.replace(/\s*[-–—]?\s*\b(?:UDRHP(?:[-\s]*(?:I{1,4}|V|\d+))?|DRHP)\b\s*$/i,""));
+  return norm(text
+    .replace(/\s*[-–—]?\s*\bUpdated Draft Red Herring Prospectus(?:[-\s]*(?:I{1,4}|V|\d+))?\b\s*$/i,"")
+    .replace(/\s*[-–—]?\s*\bDraft Red Herring Prospectus\b\s*$/i,"")
+    .replace(/\s*[-–—]?\s*\b(?:UDRHP(?:[-\s]*(?:I{1,4}|V|\d+))?|DRHP)\b\s*$/i,""));
 }
 function firstFilingHref(row) {
   for (const m of row.matchAll(/<a\b[^>]*href\s*=\s*(["'])([^"']+)\1[^>]*>/gi)) {
@@ -91,6 +104,38 @@ export function parseDrhpRows(html) {
     const issuer_name = issuerFromLabel(title || decodeURIComponent(new URL(url).pathname), type);
     if (!issuer_name) continue;
     entries.push({ issuer_name, filing_type:type, filing_date, filing_url:url, draft_abridged_url:draftAbridgedUrl(row) });
+  }
+  return entries;
+}
+
+export function axisDocumentDate(value) {
+  const url = officialAxisUrl(value);
+  if (!url) return null;
+  const m = new URL(url).pathname.match(/-(\d{10}|\d{13})\.pdf$/i);
+  if (!m) return null;
+  const raw = Number(m[1]), millis = m[1].length === 13 ? raw : raw * 1000;
+  const date = new Date(millis);
+  if (!Number.isFinite(date.getTime()) || date.getUTCFullYear() < 2020 || date.getUTCFullYear() > 2100) return null;
+  return date.toISOString().slice(0,10);
+}
+export function parseAxisDrhpRows(html) {
+  const entries = [];
+  for (const match of String(html).matchAll(/<a\b[^>]*href\s*=\s*(["'])([^"']+)\1[^>]*>([\s\S]*?)<\/a>/gi)) {
+    const label = strip(match[3]);
+    if (!label || /\b(?:abridged|addendum|corrigendum|red herring prospectus\b(?!.*draft)|prospectus\b(?!.*draft))\b/i.test(label)) continue;
+    const type = filingType(label);
+    if (!type) continue;
+    const href = absoluteUrl(match[2], AXIS_OFFER_DOCS_URL);
+    const url = officialAxisUrl(href);
+    if (!url || !/\.pdf(?:$|\?)/i.test(new URL(url).pathname)) continue;
+    const filing_date = axisDocumentDate(url);
+    const issuer_name = issuerFromLabel(label, type);
+    if (!filing_date || !issuer_name) continue;
+    entries.push({
+      issuer_name, filing_type:type, filing_date, filing_url:url, draft_abridged_url:null,
+      source_kind:"official_lead_manager", source_authority:"Axis Capital Limited",
+      date_basis:"lead_manager_document_upload_timestamp"
+    });
   }
   return entries;
 }
@@ -140,9 +185,9 @@ export function pageRange(html) {
   return {start,end,total};
 }
 export async function collectDrhpYear({ year=DEFAULT_YEAR, maxPages=DEFAULT_MAX_PAGES,
-  fetchImpl=fetch, clock=()=>new Date().toISOString(), retainSources=null } = {}) {
+  fetchImpl=fetch, clock=()=>new Date().toISOString(), retainSources=null, supplementalSources=true } = {}) {
   if (!Number.isInteger(year) || year < 2000 || year > 2100 || !Number.isInteger(maxPages) || maxPages < 2 || maxPages>120) throw new Error("invalid_drhp_collection_options");
-  const collection_started_at=clock(), source_pages=[], selected=[], warnings=[];
+  const collection_started_at=clock(), source_pages=[], supplemental_source_pages=[], selected=[], warnings=[];
   if(retainSources)fs.mkdirSync(retainSources,{recursive:true});
   let stop_reason=null, firstTotal=null;
   for(let page=1;page<=maxPages;page++) {
@@ -169,6 +214,32 @@ export async function collectDrhpYear({ year=DEFAULT_YEAR, maxPages=DEFAULT_MAX_
     if(dates.every(d=>Number(d.slice(0,4))<year)){stop_reason="first_page_strictly_older_than_year";break;}
   }
   if(!stop_reason)throw new Error("drhp_year_boundary_not_reached_within_page_budget");
+  if (supplementalSources) {
+    const requested_at=clock();
+    try {
+      const response=await fetchImpl(AXIS_OFFER_DOCS_URL,{method:"GET",redirect:"follow",signal:AbortSignal.timeout(35000),
+        headers:{"user-agent":USER_AGENT,"accept":"text/html,*/*","cache-control":"no-cache"}});
+      const bytes=Buffer.from(await response.arrayBuffer()), collected_at=clock();
+      const file="axis-offer-documents.html";
+      if(retainSources)fs.writeFileSync(path.join(retainSources,file),bytes);
+      if(!response.ok||!officialAxisUrl(response.url,"/offer-documents")||!response.headers.get("content-type")?.includes("text/html"))throw new Error("invalid_axis_offer_documents_response");
+      const rows=parseAxisDrhpRows(bytes.toString("utf8")).filter(r=>r.filing_date.startsWith(year+"-")&&r.filing_date<=collected_at.slice(0,10));
+      const seenIssuers=new Set(selected.map(r=>canonicalIssuer(r.issuer_name)));
+      let added=0;
+      for(const row of rows) {
+        const key=canonicalIssuer(row.issuer_name);
+        if(!key||seenIssuers.has(key))continue;
+        selected.push({...row,source_evidence:{url:AXIS_OFFER_DOCS_URL,final_url:response.url,response_sha256:hash(bytes),collected_at,
+          source_authority:"Axis Capital Limited",source_role:"Book Running Lead Manager",filing_url:row.filing_url,date_basis:row.date_basis}});
+        seenIssuers.add(key);added++;
+      }
+      supplemental_source_pages.push({source:"axis_capital_offer_documents",authority:"Axis Capital Limited",role:"Book Running Lead Manager",
+        url:AXIS_OFFER_DOCS_URL,final_url:response.url,http_status:response.status,requested_at,collected_at,bytes:bytes.length,sha256:hash(bytes),
+        artifact_file:file,parsed_current_year_drhps:rows.length,companies_added_as_fallback:added});
+    } catch (error) {
+      warnings.push({code:"supplemental_source_unavailable",source:"axis_capital_offer_documents",detail:String(error?.message||error).slice(0,180)});
+    }
+  }
   // Global URL uniqueness: duplicate observations are not additional filings.
   const unique=new Map();
   for(const row of selected){
@@ -178,12 +249,17 @@ export async function collectDrhpYear({ year=DEFAULT_YEAR, maxPages=DEFAULT_MAX_
   }
   const companies=buildCompanies([...unique.values()]);
   if(!companies.length)throw new Error("no_drhp_companies_for_year");
-  return {schema_version:"1.0.0",collector_version:"2.0.0",collection_started_at,generated_at:clock(),
+  const supplementalAdded=supplemental_source_pages.reduce((n,p)=>n+(p.companies_added_as_fallback||0),0);
+  return {schema_version:"1.0.0",collector_version:"2.1.0",collection_started_at,generated_at:clock(),
     source:{authority:"Securities and Exchange Board of India",section:"Draft Offer Documents filed with SEBI",listing_url:DRHP_LIST_URL,ajax_url:DRHP_AJAX_URL},
-    coverage:{year,scope:"2026 explicit DRHP/UDRHP filing observations only; addenda, corrigenda, unlabelled rows, exchange-only filings and other years are not covered.",
+    supplemental_sources:[{authority:"Axis Capital Limited",role:"Book Running Lead Manager",listing_url:AXIS_OFFER_DOCS_URL,
+      purpose:"Official lead-manager fallback for DRHPs not yet visible in the SEBI draft-offer index."}],
+    coverage:{year,scope:"2026 explicit SEBI DRHP/UDRHP observations plus official lead-manager fallback discoveries; addenda, corrigenda, unlabelled SEBI rows, other years and unconfigured lead-manager sources are not covered.",
       pages_fetched:source_pages.length,stopped_after_page:source_pages.length,stop_reason,official_listing_records_observed:firstTotal,
       raw_filing_observations:selected.length,duplicate_observations:selected.length-unique.size,filing_records:unique.size,companies:companies.length,
-      pagination_consistent:warnings.length===0,warnings,full_universe_complete:false},source_pages,companies};
+      supplemental_source_surfaces_checked:supplemental_source_pages.length,supplemental_companies_added:supplementalAdded,
+      pagination_consistent:!warnings.some(w=>w.code==="source_total_changed"),warnings,full_universe_complete:false},
+    source_pages,supplemental_source_pages,companies};
 }
 async function run() {
   const args=process.argv.slice(2);
