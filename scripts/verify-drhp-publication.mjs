@@ -7,7 +7,7 @@ if(args.length!==1||!args[0].startsWith('--output-dir='))throw new Error('use --
 const out=path.resolve(args[0].slice(13));fs.mkdirSync(out,{recursive:true});
 const hash=b=>createHash('sha256').update(b).digest('hex');
 const report={schema_version:'1.0.0',status:'failed',checked_at:null,files:[],errors:[]};
-for(const file of ['data/drhp-filings.json','drhp.html','assets/drhp.js','assets/styles.css','index.html']){
+for(const file of ['data/drhp-filings.json','drhp.html','assets/pre-ipo-filter.js','assets/drhp.js','assets/styles.css','index.html']){
   const url='https://vasuki8.github.io/IPO-Tracker/'+file+'?verify='+Date.now();
   try{
     const r=await fetch(url,{cache:'no-store',signal:AbortSignal.timeout(20000)}),bytes=Buffer.from(await r.arrayBuffer());
