@@ -1,0 +1,195 @@
+{
+  "schema_version": "1.0.0",
+  "status": "reviewed_bse_2021_mainboard_batch1",
+  "source_year": 2021,
+  "audit_path": "data/discovery/bse-issue-summary-coverage-audit-2026-09-26.json",
+  "scope": {
+    "unmatched_2021_total": 16,
+    "reviewed_in_batch": 3,
+    "remaining_after_batch": 13,
+    "note": "First bounded Mainboard batch. Nureca is intentionally deferred until equally strong retained listing/price evidence is bound."
+  },
+  "import_allowed": false,
+  "publication_change": false,
+  "actions": [
+    {
+      "key": "irfc",
+      "issuer_name": "Indian Railway Finance Corporation Limited",
+      "stable_id": "indian-railway-finance-corporation-limited",
+      "bse_scrip_code": "543257",
+      "decision": "confirmed_missing_historical_ipo_candidate",
+      "target": {
+        "board": null,
+        "listing_date": "2021-01-29",
+        "issue_price": 26,
+        "issue_size_inr": 46334000000,
+        "open_date": "2021-01-18",
+        "close_date": "2021-01-20",
+        "market_lot": null
+      },
+      "identity_sources": [
+        "irfc_prospectus",
+        "irfc_bulletin"
+      ],
+      "field_sources": {
+        "listing_date": "irfc_bulletin",
+        "issue_price": "irfc_bulletin",
+        "issue_size_inr": "irfc_bulletin",
+        "open_date": "irfc_prospectus",
+        "close_date": "irfc_prospectus"
+      }
+    },
+    {
+      "key": "anupam",
+      "issuer_name": "Anupam Rasayan India Limited",
+      "stable_id": "anupam-rasayan-india-limited",
+      "bse_scrip_code": "543275",
+      "decision": "confirmed_missing_historical_ipo_candidate",
+      "target": {
+        "board": null,
+        "listing_date": "2021-03-24",
+        "issue_price": 555,
+        "issue_size_inr": 7600000000,
+        "open_date": null,
+        "close_date": null,
+        "market_lot": null
+      },
+      "identity_sources": [
+        "anupam_prospectus",
+        "anupam_bulletin"
+      ],
+      "field_sources": {
+        "listing_date": "anupam_bulletin",
+        "issue_price": "anupam_bulletin",
+        "issue_size_inr": "anupam_bulletin"
+      }
+    },
+    {
+      "key": "exxaro",
+      "issuer_name": "Exxaro Tiles Limited",
+      "stable_id": "exxaro-tiles-limited",
+      "bse_scrip_code": "543327",
+      "decision": "confirmed_missing_historical_ipo_candidate",
+      "target": {
+        "board": null,
+        "listing_date": "2021-08-16",
+        "issue_price": 120,
+        "issue_size_inr": 1611000000,
+        "open_date": null,
+        "close_date": null,
+        "market_lot": null
+      },
+      "identity_sources": [
+        "exxaro_prospectus",
+        "exxaro_bulletin"
+      ],
+      "field_sources": {
+        "listing_date": "exxaro_bulletin",
+        "issue_price": "exxaro_bulletin",
+        "issue_size_inr": "exxaro_bulletin"
+      }
+    }
+  ],
+  "sources": [
+    {
+      "key": "irfc_prospectus",
+      "authority": "SEBI",
+      "document_type": "Final Prospectus",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/jan-2021/1611552161700.pdf",
+      "publication_date": "2021-01-22",
+      "page": "cover",
+      "evidence_locator": "Cover: IPO identity, ₹26 issue price and 18–20 Jan 2021 issue period",
+      "projection": {
+        "issuer": "Indian Railway Finance Corporation Limited",
+        "issue_type": "IPO",
+        "issue_price_inr": 26,
+        "open_date": "2021-01-18",
+        "close_date": "2021-01-20"
+      },
+      "projection_sha256": "ac8b9083d308e3e3768af8fac916cf5cbae47518971e04299e96ec41ce572f4c"
+    },
+    {
+      "key": "irfc_bulletin",
+      "authority": "SEBI",
+      "document_type": "SEBI Bulletin — February 2021",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/mar-2021/1615197736239.pdf",
+      "publication_date": null,
+      "page": "Table 2",
+      "evidence_locator": "January 2021 equity capital table: IRFC",
+      "projection": {
+        "issuer": "Indian Railway Finance Corporation Limited",
+        "listing_date": "2021-01-29",
+        "issue_type": "IPO",
+        "issue_price_inr": 26,
+        "issue_size_crore": 4633.4
+      },
+      "projection_sha256": "ee13c22ada87ee8bdc793da7fcb84a7c4606307be60d08dc28c71d4185932fa3"
+    },
+    {
+      "key": "anupam_prospectus",
+      "authority": "SEBI",
+      "document_type": "Final Prospectus",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/apr-2023/1681360808753.pdf",
+      "publication_date": "2021-03-19",
+      "page": null,
+      "evidence_locator": "SEBI final-offer filing document for Anupam Rasayan India Limited",
+      "projection": {
+        "issuer": "Anupam Rasayan India Limited",
+        "filing_stage": "final_prospectus",
+        "filing_date": "2021-03-19"
+      },
+      "projection_sha256": "5b44624278c9834f7b7d92d2a6a0546d0951d3c5c493c613fc98079bdc222fba"
+    },
+    {
+      "key": "anupam_bulletin",
+      "authority": "SEBI",
+      "document_type": "SEBI Bulletin — April 2021",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/sep-2022/1663923628962.pdf",
+      "publication_date": null,
+      "page": "Table 2",
+      "evidence_locator": "March 2021 equity capital table: Anupam Rasayan India Limited",
+      "projection": {
+        "issuer": "Anupam Rasayan India Limited",
+        "listing_date": "2021-03-24",
+        "issue_type": "IPO",
+        "issue_price_inr": 555,
+        "issue_size_crore": 760
+      },
+      "projection_sha256": "a110a52dcba3b3d52fbda827b764389179dd67264f709a169abcd943794c1da0"
+    },
+    {
+      "key": "exxaro_prospectus",
+      "authority": "SEBI",
+      "document_type": "Final Prospectus",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2021/1628667283989.pdf",
+      "publication_date": "2021-08-10",
+      "page": null,
+      "evidence_locator": "SEBI final-offer filing document for Exxaro Tiles Limited",
+      "projection": {
+        "issuer": "Exxaro Tiles Limited",
+        "filing_stage": "final_prospectus",
+        "filing_date": "2021-08-10"
+      },
+      "projection_sha256": "a7abd29f3181277aa377d17a612e21832e60c1c9818355fdfd4ca63a959973b8"
+    },
+    {
+      "key": "exxaro_bulletin",
+      "authority": "SEBI",
+      "document_type": "SEBI Bulletin — September 2021",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/oct-2021/1633688089802.pdf",
+      "publication_date": null,
+      "page": "Table 2",
+      "evidence_locator": "August 2021 equity capital table: Exxaro Tiles Limited",
+      "projection": {
+        "issuer": "Exxaro Tiles Limited",
+        "listing_date": "2021-08-16",
+        "issue_type": "IPO",
+        "issue_price_inr": 120,
+        "issue_size_crore": 161.1
+      },
+      "projection_sha256": "9d43107d113a2541e9545d4061ed0b2a3add6bd3971d02df5cf219de0f7774ad"
+    }
+  ],
+  "review_result": "Three BSE-2021 unmatched rows are independently confirmed as historical IPOs missing from recovery. Board, lot and unsupported offer dates remain null. This review cannot publish records until original source bytes are materialized and a separate reviewed importer is approved.",
+  "next_step": "Materialize the six SEBI source documents with response hashes and artifact identity, then prepare a collision-safe three-record importer. Continue the remaining 13 BSE-2021 unmatched rows separately."
+}
