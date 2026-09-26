@@ -19,7 +19,7 @@ const field=(value,key)=>{if(value==null)return{value:null,status:"missing",sour
 const document=key=>{const s=descriptor(key);return{type:s.document_type,identity:s.document_identity,url:s.url,publication_date:s.publication_date,collected_at:s.collected_at,document_sha256:s.document_sha256};};
 function record(entry){
  const a=actions.get(entry.key); if(!a||a.stable_id!==entry.stable_id)throw new Error("manifest_review_mismatch:"+entry.key);
- const t=a.target, keys=[...(a.identity_sources||[]),...Object.values(a.field_sources||{})], unique=[...new Set(keys)];
+ const t=a.target, keys=[...(a.identity_sources||[]),...Object.values(a.field_sources||{})], unique=[...new Set(keys)].filter(key=>key!=="likhitha_issuer_investors");
  const get=n=>a.field_sources?.[n];
  return {id:a.stable_id,issuer_name:a.issuer_name,board:t.board,sector:null,status:"listed",
   nse_symbol:t.nse_symbol??null,nse_series:t.nse_symbol?"EQ":null,nse_source:t.nse_symbol?descriptor(get("nse_symbol")):null,
