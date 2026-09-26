@@ -196,7 +196,7 @@ export async function collectBseIssueSummary({
     pages.push({
       page,requested_at:requestedAt,collected_at:clock(),http_status:fetched.response.status,
       content_type:fetched.response.headers.get("content-type"),http_date:fetched.response.headers.get("date"),
-      bytes:fetched.bytes.length,sha256:sha256(fetched.bytes),file,row_fingerprint,
+      bytes:fetched.bytes.length,sha256:sha256(fetched.bytes),file,row_fingerprint:rowFingerprint,
       parsed_rows:rows.length,next_event:next?{target:next.target,argument:next.argument}:null
     });
     observations.push(...rows.map((row,rowIndex)=>({...row,page,row_index:rowIndex})));
