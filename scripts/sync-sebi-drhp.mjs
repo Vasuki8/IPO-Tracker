@@ -49,11 +49,15 @@ function absoluteUrl(raw, base = DRHP_LIST_URL) {
 function filingType(label) {
   const text = norm(label);
   if (/\b(?:addendum|corrigendum|abridged)\b/i.test(text)) return null;
-  const updated = text.match(/\bUpdated Draft Red Herring Prospectus(?:[-\s]*(I{1,4}|V|\d+))?\b/i);
-  if (updated) return updated[1] ? "UDRHP-" + updated[1].toUpperCase() : "UDRHP";
+  const updatedVersion = text.match(/\bUpdated Draft Red Herring Prospectus[-\s]+(I{1,4}|V|\d+)\b/i);
+  if (updatedVersion) return "UDRHP-" + updatedVersion[1].toUpperCase();
+  if (/\bUpdated Draft Red Herring Prospectus\b/i.test(text)) return "UDRHP";
   if (/\bDraft Red Herring Prospectus\b/i.test(text)) return "DRHP";
-  const m = text.match(/\b(UDRHP(?:[-\s]*(?:I{1,4}|V|\d+))?|DRHP)\b/i);
-  return m ? m[1].toUpperCase().replace(/[-\s]+/g,"-") : null;
+  const shortVersion = text.match(/\bUDRHP[-\s]+(I{1,4}|V|\d+)\b/i);
+  if (shortVersion) return "UDRHP-" + shortVersion[1].toUpperCase();
+  if (/\bUDRHP\b/i.test(text)) return "UDRHP";
+  if (/\bDRHP\b/i.test(text)) return "DRHP";
+  return null;
 }
 function escapeRegex(value) {
   return String(value).replace(/[.*+?^$()|[\]\\{}]/g, "\\$&");
