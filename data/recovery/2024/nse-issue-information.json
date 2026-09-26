@@ -1,7 +1,7 @@
 {
   "source_family": "Official NSE / SEBI / BSE offer-document and exchange evidence",
   "collection_started_at": "2026-09-23T19:29:29.146Z",
-  "generated_at": "2026-09-26T13:11:41.177Z",
+  "generated_at": "2026-09-26T16:03:43.476Z",
   "records": [
     {
       "id": "3c-it-solutions-and-telecoms-india-limited",
@@ -3510,10 +3510,17 @@
           "collected_at": "2026-09-26T13:08:58.737Z",
           "document_sha256": "84f3242efe1d16138951071449a35e20a8c33355e72fafe4c5173063f827f27e",
           "page": 1
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — AVPINFRA",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=AVPINFRA&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
         }
       ],
       "first_observed_at": "2026-09-26T13:09:06.427Z",
-      "last_collected_at": "2026-09-26T13:09:06.427Z",
+      "last_collected_at": "2026-09-26T16:03:43.476Z",
       "board_evidence": [
         {
           "url": "https://nsearchives.nseindia.com/web/sites/default/files/2024-03/PR_list_19032024.pdf",
@@ -3636,6 +3643,22 @@
           "evidence_locator": "new SME listing — AVP Infracon Limited"
         },
         "corrections": []
+      },
+      "price_band": {
+        "value": {
+          "min": 71,
+          "max": 75
+        },
+        "source_value": "Rs. 71/- to Rs. 75/- per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=AVPINFRA&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — AVPINFRA",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
+        }
       }
     },
     {
@@ -33682,10 +33705,17 @@
           "publication_date": null,
           "collected_at": "2026-09-26T13:08:56.359Z",
           "document_sha256": "be666e3621c8b8922d9936c151686a8f8f40f2c99aa4d0ca48f0396ffac5eda6"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — VIESL",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=VIESL&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
         }
       ],
       "first_observed_at": "2026-09-26T13:09:06.427Z",
-      "last_collected_at": "2026-09-26T13:09:06.427Z",
+      "last_collected_at": "2026-09-26T16:03:43.476Z",
       "board_evidence": [
         {
           "url": "https://nsearchives.nseindia.com/corporate/ixbrl/INTEGRATED_FILING_NONINDAS_91681_17052025174324_iXBRL_WEB.html",
@@ -33757,6 +33787,35 @@
           "evidence_locator": "Past issues handled by Hem Securities — Vision Infra Equipment Solutions Limited"
         },
         "corrections": []
+      },
+      "price_band": {
+        "value": {
+          "min": 155,
+          "max": 163
+        },
+        "source_value": "Rs. 155 to Rs. 163 per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=VIESL&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — VIESL",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 800,
+        "source_value": "800 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=VIESL&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — VIESL",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
+        }
       }
     },
     {

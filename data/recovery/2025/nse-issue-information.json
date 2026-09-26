@@ -1,7 +1,7 @@
 {
   "source_family": "Official NSE / SEBI / BSE offer-document and exchange evidence",
   "collection_started_at": "2026-09-23T19:29:29.146Z",
-  "generated_at": "2026-09-26T13:32:03.987Z",
+  "generated_at": "2026-09-26T16:03:43.476Z",
   "records": [
     {
       "id": "3b-films-limited",
@@ -6868,10 +6868,17 @@
           "collected_at": "2026-09-26T13:09:05.724Z",
           "document_sha256": "d2448626449dc6cf31b9cda5f1d918a63df7de7d012e1ea7985c675074e2f50b",
           "page": 1
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — DCCL",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=DCCL&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
         }
       ],
       "first_observed_at": "2026-09-26T13:09:06.427Z",
-      "last_collected_at": "2026-09-26T13:09:06.427Z",
+      "last_collected_at": "2026-09-26T16:03:43.476Z",
       "board_evidence": [
         {
           "url": "https://nsearchives.nseindia.com/web/pressrelease/2025-05/PR_List_27052025_20250527185447.pdf",
@@ -6977,6 +6984,35 @@
           "evidence_locator": "new SME listing — Dar Credit & Capital Limited"
         },
         "corrections": []
+      },
+      "price_band": {
+        "value": {
+          "min": 57,
+          "max": 60
+        },
+        "source_value": "Rs. 57/- to Rs. 60/- per equity share",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=DCCL&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — DCCL",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 2000,
+        "source_value": "2000 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=DCCL&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — DCCL",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
+        }
       }
     },
     {

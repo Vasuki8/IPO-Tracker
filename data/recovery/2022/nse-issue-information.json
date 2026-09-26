@@ -1,7 +1,7 @@
 {
   "source_family": "Official NSE / SEBI / BSE offer-document and exchange evidence",
   "collection_started_at": "2026-09-23T19:29:29.146Z",
-  "generated_at": "2026-09-26T14:34:11.682Z",
+  "generated_at": "2026-09-26T16:03:43.476Z",
   "records": [
     {
       "id": "aaa-technologies-limited",
@@ -1607,10 +1607,17 @@
           "collected_at": "2026-09-26T13:08:51.085Z",
           "document_sha256": "14f097b2e8649e0e0a457f5ee994566529e24c72edeb224b05c35cbd9a6b36ba",
           "page": 1
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — ANNAPURNA",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ANNAPURNA&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
         }
       ],
       "first_observed_at": "2026-09-26T13:09:06.427Z",
-      "last_collected_at": "2026-09-26T13:09:06.427Z",
+      "last_collected_at": "2026-09-26T16:03:43.476Z",
       "board_evidence": [
         {
           "url": "https://nsearchives.nseindia.com/content/equities/PD_ANNAPURNA_060924.pdf",
@@ -1717,6 +1724,19 @@
           "evidence_locator": "Statement of utilisation of IPO proceeds"
         },
         "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": 2000,
+        "source_value": "2,000 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ANNAPURNA&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — ANNAPURNA",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
+        }
       }
     },
     {
@@ -4406,10 +4426,17 @@
           "collected_at": "2026-09-26T13:08:59.560Z",
           "document_sha256": "665e39d7f0c6e79c0779f5fbd0278bcf24d489817cf2ab0f99a5df3ca39af30f",
           "page": 1
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — DOLLEX",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=DOLLEX&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
         }
       ],
       "first_observed_at": "2026-09-26T13:09:06.427Z",
-      "last_collected_at": "2026-09-26T13:09:06.427Z",
+      "last_collected_at": "2026-09-26T16:03:43.476Z",
       "board_evidence": [
         {
           "url": "https://nsearchives.nseindia.com/corporate/ixbrl/INTEGRATED_FILING_GOVERNANCE_181860_03082026185821_iXBRL_WEB.html",
@@ -4533,6 +4560,19 @@
           "evidence_locator": "Companies listed on NSE in December 2022"
         },
         "corrections": []
+      },
+      "minimum_bid_quantity": {
+        "value": 4000,
+        "source_value": "4000 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=DOLLEX&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — DOLLEX",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
+        }
       }
     },
     {
@@ -9522,10 +9562,17 @@
           "collected_at": "2026-09-26T13:08:36.919Z",
           "document_sha256": "756f89efefc278ee10f2abd46d3629a69fbe176feb0dc2a313db1ad41ad2734d",
           "page": 1
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — MWL",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=MWL&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
         }
       ],
       "first_observed_at": "2026-09-26T13:09:06.427Z",
-      "last_collected_at": "2026-09-26T13:09:06.427Z",
+      "last_collected_at": "2026-09-26T16:03:43.476Z",
       "board_evidence": [
         {
           "url": "https://nsearchives.nseindia.com/corporate/ixbrl/INTEGRATED_FILING_INDAS_102211_09072025180954_iXBRL_WEB.html",
@@ -9632,6 +9679,32 @@
           "evidence_locator": "migration explanatory statement / original Emerge listing and IPO proceeds"
         },
         "corrections": []
+      },
+      "market_lot": {
+        "value": 1200,
+        "source_value": "1200 Equity Shares and in multiples thereof",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=MWL&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — MWL",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 1200,
+        "source_value": "1200 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=MWL&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — MWL",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
+        }
       }
     },
     {
@@ -14369,10 +14442,17 @@
           "publication_date": null,
           "collected_at": "2026-09-26T13:08:55.266Z",
           "document_sha256": "2340c846aef0443dea7509f7ed99e14b291d4b058a982d87d1d460f795bcdd6f"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — SWARAJ",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SWARAJ&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
         }
       ],
       "first_observed_at": "2026-09-26T13:09:06.427Z",
-      "last_collected_at": "2026-09-26T13:09:06.427Z",
+      "last_collected_at": "2026-09-26T16:03:43.476Z",
       "board_evidence": [
         {
           "url": "https://nsearchives.nseindia.com/corporate/ixbrl/INTEGRATED_FILING_INDAS_162345_27052026205638_iXBRL_WEB.html",
@@ -14428,6 +14508,45 @@
           "evidence_locator": "Companies listed on NSE in March 2022"
         },
         "corrections": []
+      },
+      "issue_price": {
+        "value": 56,
+        "source_value": "Rs.56/-",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SWARAJ&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SWARAJ",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
+        }
+      },
+      "market_lot": {
+        "value": 2000,
+        "source_value": "2000 Equity Shares and in multiples thereof",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SWARAJ&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SWARAJ",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 2000,
+        "source_value": "2000 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SWARAJ&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — SWARAJ",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
+        }
       }
     },
     {
@@ -16299,10 +16418,17 @@
           "collected_at": "2026-09-26T13:08:46.831Z",
           "document_sha256": "9a34eea5d5c62df3235463c6a51f39a61e5839ada8935b4a1f4398eff3de809c",
           "page": 1
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — VIVIANA",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=VIVIANA&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
         }
       ],
       "first_observed_at": "2026-09-26T13:09:06.427Z",
-      "last_collected_at": "2026-09-26T13:09:06.427Z",
+      "last_collected_at": "2026-09-26T16:03:43.476Z",
       "board_evidence": [
         {
           "url": "https://nsearchives.nseindia.com/corporate/ixbrl/INTEGRATED_FILING_INDAS_172189_02072026152659_iXBRL_WEB.html",
@@ -16409,6 +16535,32 @@
           "evidence_locator": "historical NSE Emerge listing statement"
         },
         "corrections": []
+      },
+      "market_lot": {
+        "value": 2000,
+        "source_value": "2,000 Equity Shares and in multiples thereof",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=VIVIANA&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — VIVIANA",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
+        }
+      },
+      "minimum_bid_quantity": {
+        "value": 2000,
+        "source_value": "2,000 Equity Shares",
+        "status": "verified",
+        "page": null,
+        "source": {
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=VIVIANA&series=SME",
+          "document_type": "NSE Issue Information API",
+          "document_identity": "NSE Issue Information — VIVIANA",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
+        }
       }
     }
   ]

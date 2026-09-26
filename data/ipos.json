@@ -1,6 +1,6 @@
 {
   "schema_version": "1.2.0",
-  "generated_at": "2026-09-26T14:34:11.682Z",
+  "generated_at": "2026-09-26T16:13:22.727Z",
   "collection_started_at": "2026-09-22T02:14:14Z",
   "records": [
     {
@@ -12256,9 +12256,18 @@
         "corrections": []
       },
       "issue_size_inr": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 5000000000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Lalithaa%20Jewellery%20Mart%20Limited-AP_p.pdf",
+            "document_type": "SEBI Abridged Prospectus",
+            "document_identity": "Lalithaa Jewellery Mart Limited -Abridged Prospectus",
+            "publication_date": "2026-08-12",
+            "page": 1,
+            "collected_at": "2026-09-26T16:13:22.727Z"
+          }
+        ],
         "corrections": []
       },
       "market_lot": {
@@ -12391,10 +12400,45 @@
           "url": "https://www.nseindia.com/api/public-past-issues",
           "publication_date": null,
           "collected_at": "2026-09-25T19:32:32.078Z"
+        },
+        {
+          "type": "SEBI Prospectus filing",
+          "identity": "Lalithaa Jewellery Mart Limited - Prospectus",
+          "url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/lalithaa-jewellery-mart-limited-prospectus_103788.html",
+          "publication_date": "2026-08-20",
+          "collected_at": "2026-09-26T16:04:28.844Z"
+        },
+        {
+          "type": "SEBI Prospectus PDF",
+          "identity": "Lalithaa Jewellery Mart Limited - Prospectus — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1787208957787.pdf",
+          "publication_date": "2026-08-20",
+          "collected_at": "2026-09-26T16:04:28.844Z"
+        },
+        {
+          "type": "SEBI RHP filing",
+          "identity": "SEBI RHP filing — lalithaa jewellery mart limited",
+          "url": "https://www.sebi.gov.in/filings/public-issues/aug-2026/lalithaa-jewellery-mart-limited-rhp_103513.html",
+          "publication_date": "2026-08-12",
+          "collected_at": "2026-09-26T16:04:28.844Z"
+        },
+        {
+          "type": "SEBI Abridged Prospectus",
+          "identity": "Lalithaa Jewellery Mart Limited -Abridged Prospectus",
+          "url": "https://www.sebi.gov.in/sebi_data/commondocs/aug-2026/Lalithaa%20Jewellery%20Mart%20Limited-AP_p.pdf",
+          "publication_date": "2026-08-12",
+          "collected_at": "2026-09-26T16:04:28.844Z"
+        },
+        {
+          "type": "SEBI RHP PDF",
+          "identity": "SEBI RHP filing — lalithaa jewellery mart limited — PDF",
+          "url": "https://www.sebi.gov.in/sebi_data/attachdocs/aug-2026/1786535451885.pdf",
+          "publication_date": "2026-08-12",
+          "collected_at": "2026-09-26T16:04:28.844Z"
         }
       ],
       "first_observed_at": "2026-09-25T19:32:33.927Z",
-      "last_collected_at": "2026-09-25T19:32:33.927Z"
+      "last_collected_at": "2026-09-26T16:13:22.727Z"
     },
     {
       "id": "skytech-infinite-platform-limited",
@@ -35781,9 +35825,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 57,
+          "max": 60
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=DCCL&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — DCCL",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-26T16:03:43.476Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -35814,9 +35870,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 2000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=DCCL&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — DCCL",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-26T16:03:43.476Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -35928,10 +35993,17 @@
           "url": "https://nsearchives.nseindia.com/emerge/corporates/content/DarCredit%26CapitalLimited_PROSP.pdf",
           "publication_date": null,
           "collected_at": "2026-09-26T13:09:05.724Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — DCCL",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=DCCL&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
         }
       ],
       "first_observed_at": "2026-09-26T13:09:06.427Z",
-      "last_collected_at": "2026-09-26T13:09:06.427Z"
+      "last_collected_at": "2026-09-26T16:03:43.476Z"
     },
     {
       "id": "unimech-aerospace-and-manufacturing-limited",
@@ -38064,9 +38136,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 71,
+          "max": 75
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=AVPINFRA&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — AVPINFRA",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-26T16:03:43.476Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -38220,10 +38304,17 @@
           "url": "https://nsearchives.nseindia.com/emerge/corporates/content/AVPInfraconLimited_PROSP.pdf",
           "publication_date": null,
           "collected_at": "2026-09-26T13:08:58.737Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — AVPINFRA",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=AVPINFRA&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
         }
       ],
       "first_observed_at": "2026-09-26T13:09:06.427Z",
-      "last_collected_at": "2026-09-26T13:09:06.427Z"
+      "last_collected_at": "2026-09-26T16:03:43.476Z"
     },
     {
       "id": "credo-brands-marketing-limited",
@@ -40883,9 +40974,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 4000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=DOLLEX&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — DOLLEX",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-26T16:03:43.476Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -41004,10 +41104,17 @@
           "url": "https://nsearchives.nseindia.com/emerge/corporates/content/DollexAgrotechLtd_PROSP.pdf",
           "publication_date": null,
           "collected_at": "2026-09-26T13:08:59.560Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — DOLLEX",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=DOLLEX&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
         }
       ],
       "first_observed_at": "2026-09-26T13:09:06.427Z",
-      "last_collected_at": "2026-09-26T13:09:06.427Z"
+      "last_collected_at": "2026-09-26T16:03:43.476Z"
     },
     {
       "id": "abans-holdings-limited",
@@ -43768,9 +43875,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 2000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=ANNAPURNA&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — ANNAPURNA",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-26T16:03:43.476Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -43889,10 +44005,17 @@
           "url": "https://nsearchives.nseindia.com/emerge/corporates/content/AnnapurnaSwadisht_PROSP.pdf",
           "publication_date": null,
           "collected_at": "2026-09-26T13:08:51.085Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — ANNAPURNA",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=ANNAPURNA&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
         }
       ],
       "first_observed_at": "2026-09-26T13:09:06.427Z",
-      "last_collected_at": "2026-09-26T13:09:06.427Z"
+      "last_collected_at": "2026-09-26T16:03:43.476Z"
     },
     {
       "id": "viviana-power-tech-limited",
@@ -43948,15 +44071,33 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 2000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=VIVIANA&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — VIVIANA",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-26T16:03:43.476Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 2000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=VIVIANA&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — VIVIANA",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-26T16:03:43.476Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -44075,10 +44216,17 @@
           "url": "https://nsearchives.nseindia.com/emerge/corporates/content/VivianaPowerTech_PROSP.pdf",
           "publication_date": null,
           "collected_at": "2026-09-26T13:08:46.831Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — VIVIANA",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=VIVIANA&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
         }
       ],
       "first_observed_at": "2026-09-26T13:09:06.427Z",
-      "last_collected_at": "2026-09-26T13:09:06.427Z"
+      "last_collected_at": "2026-09-26T16:03:43.476Z"
     },
     {
       "id": "kesar-india-limited",
@@ -44338,15 +44486,33 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 1200,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=MWL&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — MWL",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-26T16:03:43.476Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 1200,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=MWL&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — MWL",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-26T16:03:43.476Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -44465,10 +44631,17 @@
           "url": "https://nsearchives.nseindia.com/emerge/corporates/content/MangalamWorldwideLimited_PROSP.pdf",
           "publication_date": null,
           "collected_at": "2026-09-26T13:08:36.919Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — MWL",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=MWL&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
         }
       ],
       "first_observed_at": "2026-09-26T13:09:06.427Z",
-      "last_collected_at": "2026-09-26T13:09:06.427Z"
+      "last_collected_at": "2026-09-26T16:03:43.476Z"
     },
     {
       "id": "fabino-life-sciences-limited",
@@ -115361,9 +115534,21 @@
         }
       ],
       "price_band": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": {
+          "min": 155,
+          "max": 163
+        },
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=VIESL&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — VIESL",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-26T16:03:43.476Z"
+          }
+        ],
         "corrections": []
       },
       "issue_price": {
@@ -115394,9 +115579,18 @@
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 800,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=VIESL&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — VIESL",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-26T16:03:43.476Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -115490,10 +115684,17 @@
           "url": "https://nsearchives.nseindia.com/emerge/corporates/content/WOL3DIndiaLimited_PROSP.pdf",
           "publication_date": null,
           "collected_at": "2026-09-26T13:08:56.359Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — VIESL",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=VIESL&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
         }
       ],
       "first_observed_at": "2026-09-26T13:09:06.427Z",
-      "last_collected_at": "2026-09-26T13:09:06.427Z"
+      "last_collected_at": "2026-09-26T16:03:43.476Z"
     },
     {
       "id": "my-mudra-fincorp-limited",
@@ -203966,9 +204167,18 @@
         "corrections": []
       },
       "issue_price": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 56,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=SWARAJ&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — SWARAJ",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-26T16:03:43.476Z"
+          }
+        ],
         "corrections": []
       },
       "issue_size_inr": {
@@ -203978,15 +204188,33 @@
         "corrections": []
       },
       "market_lot": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 2000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=SWARAJ&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — SWARAJ",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-26T16:03:43.476Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_bid_quantity": {
-        "value": null,
-        "status": "missing",
-        "evidence": [],
+        "value": 2000,
+        "status": "verified",
+        "evidence": [
+          {
+            "url": "https://www.nseindia.com/api/ipo-detail?symbol=SWARAJ&series=SME",
+            "document_type": "NSE Issue Information API",
+            "document_identity": "NSE Issue Information — SWARAJ",
+            "publication_date": null,
+            "page": null,
+            "collected_at": "2026-09-26T16:03:43.476Z"
+          }
+        ],
         "corrections": []
       },
       "minimum_application_amount_inr": {
@@ -204080,10 +204308,17 @@
           "url": "https://nsearchives.nseindia.com/web/sites/default/files/inline-files/Market_Pulse_April_2022.pdf",
           "publication_date": null,
           "collected_at": "2026-09-26T13:08:55.266Z"
+        },
+        {
+          "type": "NSE Issue Information API",
+          "identity": "NSE Issue Information — SWARAJ",
+          "url": "https://www.nseindia.com/api/ipo-detail?symbol=SWARAJ&series=SME",
+          "publication_date": null,
+          "collected_at": "2026-09-26T16:03:43.476Z"
         }
       ],
       "first_observed_at": "2026-09-26T13:09:06.427Z",
-      "last_collected_at": "2026-09-26T13:09:06.427Z"
+      "last_collected_at": "2026-09-26T16:03:43.476Z"
     },
     {
       "id": "bhatia-colour-chem-limited",
