@@ -260,7 +260,7 @@ export function matchIndexCompany(company, records) {
     const longer=current.length>=target.length?current:target;
     const shorter=current.length>=target.length?target:current;
     const remainder=longer.slice(shorter.length).trim();
-    return remainder.length<=3 || remainder==="limited";
+    return remainder.length<=3 || ["limited","limite","limit","limi"].includes(remainder);
   });
   if (prefix.length === 1) return { match: prefix[0], match_type: "prefix" };
   if (prefix.length > 1) return { match: null, match_type: "ambiguous_prefix" };
