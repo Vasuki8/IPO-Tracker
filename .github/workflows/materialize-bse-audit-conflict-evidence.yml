@@ -1,0 +1,90 @@
+name: Materialize BSE reconciliation evidence
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "data/discovery/bse-issue-summary-high-priority-reconciliation-2026-09-26.json"
+      - "scripts/materialize-bse-audit-conflict-evidence.mjs"
+      - "scripts/test-materialize-bse-audit-conflict-evidence.mjs"
+      - "scripts/audit-bse-sme-ipo-index.mjs"
+      - "scripts/test-audit-bse-sme-ipo-index.mjs"
+      - ".github/workflows/materialize-bse-audit-conflict-evidence.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bse-high-priority-reconciliation-evidence
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Test reconciliation evidence and matcher safety
+        run: |
+          node scripts/test-materialize-bse-audit-conflict-evidence.mjs
+          node scripts/test-audit-bse-sme-ipo-index.mjs
+
+      - name: Fetch original official sources
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/bse-reconciliation-evidence"
+          node scripts/materialize-bse-audit-conflict-evidence.mjs \
+            --review=data/discovery/bse-issue-summary-high-priority-reconciliation-2026-09-26.json \
+            --evidence-dir="$RUNNER_TEMP/bse-reconciliation-evidence" \
+            --receipt="$RUNNER_TEMP/bse-reconciliation-receipt.json"
+          cp "$RUNNER_TEMP/bse-reconciliation-receipt.json" "$RUNNER_TEMP/bse-reconciliation-evidence/source-receipt-before-artifact.json"
+
+      - name: Retain original source bytes
+        id: evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: bse-high-priority-reconciliation-evidence-${{ github.run_id }}
+          path: ${{ runner.temp }}/bse-reconciliation-evidence
+          retention-days: 14
+          compression-level: 0
+          if-no-files-found: error
+
+      - name: Attach artifact identity
+        env:
+          ARTIFACT_ID: ${{ steps.evidence.outputs.artifact-id }}
+          ARTIFACT_DIGEST: ${{ steps.evidence.outputs.artifact-digest }}
+          ARTIFACT_URL: ${{ steps.evidence.outputs.artifact-url }}
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from "node:fs";
+          const file=process.env.RUNNER_TEMP+"/bse-reconciliation-receipt.json";
+          const receipt=JSON.parse(fs.readFileSync(file,"utf8"));
+          const raw=String(process.env.ARTIFACT_DIGEST||"");
+          receipt.workflow_run_id=process.env.GITHUB_RUN_ID;
+          receipt.workflow_artifact={artifact_id:Number(process.env.ARTIFACT_ID),artifact_digest:raw.startsWith("sha256:")?raw:"sha256:"+raw,artifact_url:process.env.ARTIFACT_URL,retention_days:14};
+          fs.writeFileSync(file,JSON.stringify(receipt,null,2)+"\n");
+          NODE
+
+      - name: Publish durable source receipt
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            mkdir -p data/evidence
+            cp "$RUNNER_TEMP/bse-reconciliation-receipt.json" data/evidence/bse-high-priority-reconciliation-source-receipt-2026-09-26.json
+            node scripts/materialize-bse-audit-conflict-evidence.mjs \
+              --review=data/discovery/bse-issue-summary-high-priority-reconciliation-2026-09-26.json \
+              --validate-receipt=data/evidence/bse-high-priority-reconciliation-source-receipt-2026-09-26.json
+            if [ -z "$(git status --porcelain -- data/evidence/bse-high-priority-reconciliation-source-receipt-2026-09-26.json)" ]; then exit 0; fi
+            git add data/evidence/bse-high-priority-reconciliation-source-receipt-2026-09-26.json
+            git commit -m "data(evidence): retain BSE reconciliation source receipt"
+            if git push origin HEAD:main; then exit 0; fi
+          done
+          exit 1
