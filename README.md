@@ -31,13 +31,13 @@ The existing hourly `update-ipos.yml` collects NSE/SEBI data and imports reviewe
 
 `audit-ipo-universe.yml` is a read-only bounded official-universe audit with no schedule. It collects eight NSE/BSE/SEBI source surfaces, verifies source hashes and reconciles identities while retaining incomplete-coverage labels. Candidates are not automatically imported. Raw Actions artifacts expire after 14 days; durable review projections and evidence references remain in the repository.
 
-Historical IPO evidence/import now also has dedicated one-shot reviewed workflows: `materialize-historical-ipo-evidence.yml` retains original official source bytes and a durable hash receipt; `publish-reviewed-historical-ipos.yml` applies only the approved recovery manifest; `verify-reviewed-historical-ipo-publication.yml` checks actual Pages afterward. These are not general auto-import paths.
+Historical corrections use dedicated one-shot reviewed workflows. The nine-IPO repair uses `materialize-historical-ipo-evidence.yml`, `publish-reviewed-historical-ipos.yml` and `verify-reviewed-historical-ipo-publication.yml`. Fabino uses `materialize-fabino-listing-evidence.yml`, `publish-reviewed-fabino.yml` and `verify-reviewed-fabino-publication.yml`. These are evidence-bound release paths, not general auto-import mechanisms.
 
 Collection time, source observation, dataset generation and Pages publication are distinct. `node scripts/operator-report.mjs` reports IPO operational health without rewriting values. DRHP collection health is separate.
 
 ## Handoff for the next prompt
 
-**The pinned 119-group NSE review is resolved, and all nine historical IPOs behind the earlier excluded 2026 debt/migration events are now materialized, imported through recovery, published and verified live. The next P1 task is the separate Fabino Life Sciences BSE listing-year hold.**
+**The pinned 119-group NSE review, the nine historical excluded-event IPO repairs, and the Fabino Life Sciences BSE listing-year hold are all resolved and verified live. The next P1 task is the read-only BSE issue-summary historical coverage audit.**
 
 **The interrupted identity/DRHP release is complete: PR #248 and PR #249 are merged and verified. Do not replay batches 1–9.**
 
@@ -93,11 +93,19 @@ PR **#261** merged as `85e6e96239089ec7237c34cca17df912af029ce0`; the race-safe 
 
 No excluded 2026 debt/migration event was reintroduced. Source-policy boundaries were preserved: VIESL offer dates remain missing because the reviewed date source is the issuer website, and SWARAJ offer terms remain missing because `archives.nseindia.com` was not added to the publication allowlist in this release.
 
+### Fabino Life Sciences listing-year correction — verified live
+
+Fabino Life Sciences Limited is now published as a **BSE SME IPO listed 13-Jan-2022** (scrip **543444 / FABINO**, ISIN **INE0DRT01018**). The IPO opened **31-Dec-2021**, closed **05-Jan-2022**, issue price was **₹36**, and market lot was **3,000**.
+
+BSE Notice **20220112-10** is retained exactly as evidence even though one listing sentence contains the typo **"January 13, 2021"**. The correction does not rewrite that source: independent BSE SME IPO Index evidence explicitly confirms listing on **13-Jan-2022**, and the public record retains the correction history.
+
+PR **#263** materialized **4 official BSE/SEBI documents / 12,642,908 response bytes** in artifact **10908566869** with digest `sha256:b1dce44e5806fa6998cc25a4895159c4b2f2d32d1e7d65afc11a03606e26a841`. PR **#264** merged as `5391027eaac6c18724f482c2ef1c5111a33f0f7d`; publication commit `6d7fad63f478d17d8238a0976efb1f4a247866ef` added the single 2022 recovery record. Actual Pages verification run **36254088389** passed all **5 reviewed fields**, retained artifact **10909383646**, and fetched a **1,333-record** dataset at **2026-09-26T16:04:08.456Z** with SHA-256 `64a6ddbfb04e556f9f1deca2f54038561e1bed4444702a6a94b06af5eb8269ad`.
+
 ### Exact next backend task
 
-Resolve the separate **Fabino Life Sciences BSE listing-year conflict** from issuer-specific official BSE listing notices, offer/prospectus documents and issuer filings. Establish the correct legal identity, original IPO/listing date and year, and whether recovery/public coverage is missing or carries a wrong-year observation. Preserve source conflicts; do not infer the year from aggregator data or a later corporate-action/security event.
+Repair and characterize the **official BSE issue-summary historical coverage path** as a **read-only universe-discovery audit**. Determine which historical IPOs/years it can reliably enumerate; retain raw response bytes/hashes plus observation/fetch timestamps and pagination/exhaustion evidence; reconcile results against current recovery and the completed BSE SME listing/index work. **Do not import an issuer from issue-summary evidence alone.**
 
-Broader BSE issue-summary, SEBI historical pagination and NSE-series gaps remain. BSE parser v1.5 is **236/236 parsed**; do not replay its cursor. UI/research-depth work remains in its own handoff. No minimum-investment, billing/accounts/ads, spending or access-policy expansion.
+BSE parser v1.5 remains **236/236 parsed**; do not replay its completed cursor. SEBI historical pagination and NSE-series gaps remain after the BSE issue-summary audit. UI/research-depth work remains in its own handoff. No minimum-investment, billing/accounts/ads, spending or access-policy expansion.
 
 ## Local checks
 
@@ -108,6 +116,10 @@ node scripts/test-drhp-ui.mjs
 node scripts/test-reviewed-nse-ipos.mjs
 node scripts/test-reviewed-nse-publication.mjs
 node scripts/apply-reviewed-nse-ipos.mjs --check
+node scripts/test-materialize-fabino-listing-evidence.mjs
+node scripts/apply-reviewed-fabino.mjs --check
+node scripts/test-reviewed-fabino.mjs
+node scripts/test-reviewed-fabino-publication.mjs
 node scripts/test-audit-ipo-universe.mjs
 node scripts/test-audit-bse-sme-addition-notices.mjs
 node scripts/test-backfill-bse-sme-addition-notices.mjs
@@ -140,4 +152,4 @@ node scripts/verify-drhp-publication.mjs --output-dir=/tmp/drhp-publication
 
 ## Historical handoffs
 
-The immediately preceding README and status are archived byte-for-byte in [docs/archive/README-before-historical-ipo-release-2026-09-26.md](docs/archive/README-before-historical-ipo-release-2026-09-26.md) and [docs/archive/PROJECT_STATUS-before-historical-ipo-release-2026-09-26.md](docs/archive/PROJECT_STATUS-before-historical-ipo-release-2026-09-26.md). Earlier archives and receipts remain intact. Archived next-task instructions are not current instructions.
+The immediately preceding README and status are archived byte-for-byte in [docs/archive/README-before-fabino-release-2026-09-26.md](docs/archive/README-before-fabino-release-2026-09-26.md) and [docs/archive/PROJECT_STATUS-before-fabino-release-2026-09-26.md](docs/archive/PROJECT_STATUS-before-fabino-release-2026-09-26.md). Earlier archives and receipts remain intact. Archived next-task instructions are not current instructions.
