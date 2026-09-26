@@ -36,11 +36,14 @@ function validDate(value){
   if(dt.getUTCFullYear()!==y||dt.getUTCMonth()!==m-1||dt.getUTCDate()!==d)return null;
   return dt.toISOString().slice(0,10);
 }
+function isIssueSummaryPath(pathname){
+  return /\/markets\/publicissues\/issuesummary(?:\.aspx)?\/?$/i.test(String(pathname??""));
+}
 function officialSummaryUrl(value){
   try{
     const u=new URL(String(value),BSE_ISSUE_SUMMARY_URL);
-    return u.protocol==="https:"&&["www.bseindia.com","bseindia.com"].includes(u.hostname.toLowerCase())&&
-      /\/markets\/publicissues\/(?:issuesummary|displayipo)\.aspx$/i.test(u.pathname)?u.href:null;
+    const allowedPath=isIssueSummaryPath(u.pathname)||/\/markets\/publicissues\/displayipo\.aspx$/i.test(u.pathname);
+    return u.protocol==="https:"&&["www.bseindia.com","bseindia.com"].includes(u.hostname.toLowerCase())&&allowedPath?u.href:null;
   }catch{return null;}
 }
 function rowCells(row){
@@ -146,7 +149,7 @@ async function readBounded(response,max=MAX_PAGE_BYTES){
 async function fetchBsePage(fetchImpl,url,options={}){
   const response=await fetchImpl(url,{redirect:"follow",signal:AbortSignal.timeout(30000),...options});
   const final=officialSummaryUrl(response.url||url);
-  if(!response.ok||!final||new URL(final).pathname.toLowerCase()!==new URL(BSE_ISSUE_SUMMARY_URL).pathname.toLowerCase()){
+  if(!response.ok||!final||!isIssueSummaryPath(new URL(final).pathname)){
     await response.body?.cancel();
     throw new Error("invalid_bse_issue_summary_response:"+response.status+":"+(response.url||url));
   }
