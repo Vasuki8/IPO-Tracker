@@ -65,6 +65,10 @@ jobs:
           grep -q 'group: historical-ipo-evidence-materialization' .github/workflows/materialize-historical-ipo-evidence.yml
           grep -q 'git reset --hard origin/main' .github/workflows/materialize-historical-ipo-evidence.yml
           grep -q 'actions/upload-artifact@v4' .github/workflows/materialize-historical-ipo-evidence.yml
+          grep -q 'group: reviewed-historical-ipo-publication' .github/workflows/publish-reviewed-historical-ipos.yml
+          grep -q 'git reset --hard origin/main' .github/workflows/publish-reviewed-historical-ipos.yml
+          grep -q 'node scripts/build-published-data.mjs --check' .github/workflows/publish-reviewed-historical-ipos.yml
+          grep -q 'group: verify-reviewed-historical-ipo-publication' .github/workflows/verify-reviewed-historical-ipo-publication.yml
           grep -q 'git ls-files --error-unmatch ops/operator-snapshot.json' .github/workflows/update-ipos.yml
           grep -q 'Pages publication-state attempt' .github/workflows/deploy-pages.yml
           grep -q 'git reset --hard origin/main' .github/workflows/deploy-pages.yml
@@ -114,6 +118,12 @@ jobs:
           node scripts/apply-reviewed-nse-ipos.mjs --check
           node scripts/test-reviewed-nse-ipos.mjs
           node scripts/test-reviewed-nse-publication.mjs
+
+      - name: Test reviewed historical IPO import and publication
+        run: |
+          node scripts/apply-reviewed-historical-ipos.mjs --check
+          node scripts/test-reviewed-historical-ipos.mjs
+          node scripts/test-reviewed-historical-ipo-publication.mjs
 
       - name: Test official IPO universe audit
         run: node scripts/test-audit-ipo-universe.mjs
