@@ -81,6 +81,8 @@ function field(value, key, issuerName, maps) {
 }
 
 function expectedHistoricalField(hist, fieldName) {
+  if (fieldName === "open_date") return hist.offer_open;
+  if (fieldName === "close_date") return hist.offer_close;
   if (fieldName === "issue_price") return hist.issue_price_inr;
   return hist[fieldName];
 }
